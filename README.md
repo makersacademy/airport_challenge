@@ -17,7 +17,7 @@ Your task is to create a set of classes/modules to makes the given test suite pa
 
 Read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs. There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-The tests are located at: http://bit.ly/1dFD7f1. These tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests are you see fit.
+The tests are located [here](./spec/airport_spec.rb). These tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests are you see fit.
 
 Please create separate files for every class, module and test suite. Commit it to a repo on Github by the end of the day (or on the weekend if you started late).
 
