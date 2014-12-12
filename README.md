@@ -19,6 +19,11 @@ Read the documentation to learn how to use test doubles: https://www.relishapp.c
 
 The tests are located [here](./spec/airport_spec.rb). These tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests are you see fit.
 
+Video Overview
+--------------
+
+* [Friday Morning Video Overview](https://www.youtube.com/watch?v=6QVv8IxTaWM)
+
 Please create separate files for every class, module and test suite. Commit it to a repo on Github by the end of the day (or on the weekend if you started late).
 
 The submission will be judged on the following criteria:
