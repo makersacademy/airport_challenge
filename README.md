@@ -32,6 +32,8 @@ The submission will be judged on the following criteria:
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
 
+* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
+
 Video Overview
 --------------
 
