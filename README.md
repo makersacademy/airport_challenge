@@ -7,6 +7,7 @@ Instructions
 * challenge time: rest of the day (or the weekend if necessary)
 * Feel free to use google, your notes, books, etc but work on your own
 * If you have a partial solution, still check in a partial solution
+* You must submit a pull request to this repo with your code by 9am Monday morning
 
 Task
 -------
