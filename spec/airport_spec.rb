@@ -10,8 +10,6 @@ require 'airport'
 
 describe Airport do
 
-  let(:airport) { Airport.new }
-
   context 'taking off and landing' do
 
     xit 'a plane can land'

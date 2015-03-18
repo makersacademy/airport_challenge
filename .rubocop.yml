@@ -1,0 +1,6 @@
+EmptyLinesAroundBlockBody:
+  Enabled: false
+Documentation:
+  Enabled: false
+Style/MethodDefParentheses:
+  Enabled: false
