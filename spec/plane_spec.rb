@@ -17,5 +17,5 @@ describe Plane do
   xit 'can take off'
 
   xit 'changes its status to flying after taking off'
-  
+
 end
