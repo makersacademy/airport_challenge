@@ -23,7 +23,7 @@ describe Airport do
 
     xit 'a plane cannot land if the airport is full'
 
-    # Include a weather condition using a module.
+    # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,
     # the plane can not take off and must remain in the airport.
