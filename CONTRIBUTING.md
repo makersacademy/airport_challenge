@@ -6,7 +6,7 @@ Before submitting your test, please review the requirements/guidelines belows. N
 Requirements
 ------
 
-* We use [Hound CI](https://houndci.com/) to check for violations to our style guide. When you submit your Pull Request, please then check over and correct everything that Hound has sniffed out that is wrong with your code (unless you feel you really can't do anything to fix it).
+* We use [Hound CI](https://houndci.com/) to check for violations to our style guide. When you submit your Pull Request, please then check over and correct everything that Hound has sniffed out that is wrong with your code (unless you feel you really can't do anything to fix it). Once you've fixed Hound errors, push your code again and the Pull Request should update automatically.
 * Set up [Travis CI](https://travis-ci.org/) on your own repo and add a [status badge](http://docs.travis-ci.com/user/status-images/) to your README showing that all tests are passing - and make sure it passes our own CI when you submit your PR.
 * Make sure you have written your own README that briefly explains your approach to solving the challenge.
 * If your code isn't finished it's not ideal but acceptable as long as you explain in your README where you got to and how you would plan to finish the challenge.
