@@ -17,7 +17,7 @@ class Airport
   end
 
   def land_plane plane
-    fail 'Airport Full' if @planes.length >= CAPACITY
+    fail 'cannot land' if @planes.length >= CAPACITY
     @planes << plane
   end
 

@@ -77,7 +77,7 @@ describe Airport do
       # we fill the airport up
       20.times { subject.land_plane :plane }
       # then try and land another plane
-      expect { subject.land_plane :plane }.to raise_error 'Airport Full'
+      expect { subject.land_plane :plane }.to raise_error 'cannot land'
     end
 
     # Include a weather condition.
@@ -106,7 +106,12 @@ describe Airport do
         subject.land_plane :plane
         expect { subject.takeoff_plane }.to raise_error 'cannot takeoff'
       end
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        # set up conditions
+        weather = double('Weather', weather: 'stormy')
+        subject.weather(weather)
+        expect { subject.land_plane :plane }.to raise_error 'cannot land'
+      end
     end
   end
 end
