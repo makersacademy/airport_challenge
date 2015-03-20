@@ -23,7 +23,11 @@ describe Airport do
       expect(subject.land_plane :plane).to eq :plane
     end
 
-    xit 'a plane can take off'
+    # 'a plane can take off'
+    # taking off method exists?
+    # taking off method returns the plane that landed
+    it { is_expected.to respond_to :takeoff_plane }
+
   end
 
   context 'traffic control' do
