@@ -29,9 +29,9 @@ describe Airport do
     it { is_expected.to respond_to :takeoff_plane }
     # if the airport is empty then it can't have a plane take off
     # so we don't give the airport a plane for this test
-    # it 'raises error when airport is empty' do
-    #   expect { subject.takeoff_plane }.to raise_error 'No plane to takeoff'
-    # end
+    it 'raises error when airport is empty' do
+      expect { subject.takeoff_plane }.to raise_error 'No plane to takeoff'
+    end
     # taking off method returns the plane that landed
     it 'can takeoff a plane' do
       # to set up the test we ...
