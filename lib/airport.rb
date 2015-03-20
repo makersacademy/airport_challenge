@@ -1,3 +1,5 @@
+require_relative 'air_traffic_control.rb'
+
 class Airport
   attr_writer :plane
   alias_method :land_plane, :plane=

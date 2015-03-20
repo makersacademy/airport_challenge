@@ -47,6 +47,9 @@ describe Airport do
 
   context 'traffic control' do
 
+    # 'an airport has an airtraffic control (atc)'
+    it { is_expected.to respond_to :atc }
+
     xit 'a plane cannot land if the airport is full'
 
     # Include a weather condition.
