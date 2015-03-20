@@ -5,10 +5,6 @@ class Airport
   attr_reader :planes
 
   def initialize
-    # all airports start with an abilty to hold a plane
-    # even if it's just crashing them into the ground
-    # and a brand new airport that has not had a plane land
-    # would have a size of zero
     @planes = Array.new(0)
   end
 
