@@ -18,6 +18,10 @@ describe Airport do
     # 'a plane can land'
     # landing plane method
     it { is_expected.to respond_to :land_plane }
+    # can something land?
+    it 'can land a plane' do
+      expect(subject.land_plane :plane).to eq :plane
+    end
 
     xit 'a plane can take off'
   end
