@@ -14,9 +14,29 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  it 'has a flying status when created' do
+    expect(subject.flying?).to be true
+  end
 
-  xit 'has a flying status when in the air'
+  # not really sure what this test would do
+  # xit 'has a flying status when in the air'
+
+  it { is_expected.to respond_to :land! }
+
+  it 'can land, and change its status' do
+    subject.land!
+    expect(subject.flying?).to be false
+  end
+
+  # Possibly an overly complex test when all I need is the above
+  xit 'can land and display the correct status' do
+    plane = subject
+    airport = double :Airport, land_plane: [plane]
+    airport.land_plane(plane)
+    expect(plane.flying?).to be false
+  end
+
+  xit 'has a landed status when in the airport'
 
   xit 'can take off'
 

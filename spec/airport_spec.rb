@@ -11,22 +11,44 @@ require 'airport'
 #
 # If the airport is full then no planes can land
 
+# RSpec ways of making doubles that can respond to things
+
+# it "passes" do
+#     dbl = double("Some Collaborator")
+#     expect(dbl).to receive(:foo)
+#     dbl.foo
+
+# let(:string) { "a string" }
+#   before { allow(string).to receive(:length).and_return(500) }
+
 describe Airport do
 
   context 'taking off and landing' do
-
+    # DRY out tests using this code later
+    # let(:plane) { double :plane }
+    # allow(plane).to receive(:land!)
     it 'a plane can land' do
       plane = double :plane
-      expect(subject.land_plane(plane)).to eq plane
+      allow(plane).to receive(:land!)
+      expect(subject.land_plane(plane)).to be nil
     end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      plane = double :plane, flying?: false
+      allow(plane).to receive(:land!)
+      subject.land_plane(plane)
+      expect(subject.plane_take_off).to eq plane
+    end
+
+    it 'a plane cannot take off if the airport is empty' do
+      expect { subject.plane_take_off }.to raise_error 'Airport Empty'
+    end
   end
 
   context 'traffic control' do
 
     it 'can return its capacity' do
-      expect(subject.capacity).to eq 1
+      expect(subject.capacity).to eq 20
     end
 
     it 'can return the landed planes' do
@@ -35,7 +57,8 @@ describe Airport do
 
     it 'a plane cannot land if the airport is full' do
       plane = double :plane
-      subject.land_plane(plane)
+      allow(plane).to receive(:land!)
+      20.times { subject.land_plane(plane) }
       expect { subject.land_plane(plane) }.to raise_error 'Airport Full'
     end
 
