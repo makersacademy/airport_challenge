@@ -16,9 +16,8 @@ class Airport
     @planes.empty? || !@sunny ? (fail 'cannot takeoff') : @planes.pop
   end
 
-  def land_plane plane
-    fail 'cannot land' if @planes.length >= CAPACITY
-    @planes << plane
+  def land_plane p
+    @planes.length >= CAPACITY || !@sunny ? (fail 'cannot land') : @planes << p
   end
 
   def atc

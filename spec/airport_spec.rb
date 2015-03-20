@@ -23,6 +23,8 @@ describe Airport do
     # when a plane is landed
     it 'can land a plane' do
       # get current size of the array
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
       planes = subject.num_planes
       # add a new plane
       subject.land_plane :plane
@@ -74,6 +76,8 @@ describe Airport do
     # airport should raise an error if full
     # so in a minute we'll need to add a way for it to be full
     it 'raise and error when full' do
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
       # we fill the airport up
       20.times { subject.land_plane :plane }
       # then try and land another plane
@@ -99,11 +103,13 @@ describe Airport do
       it 'a plane cannot take off when there is a storm brewing' do
         # want to check the weather and add a condition to take off method
         # pass in stormy weather to set up for the test
+        weather = double('Weather', weather: 'sunny')
+        subject.weather(weather)
+        subject.land_plane :plane
         weather = double('Weather', weather: 'stormy')
         subject.weather(weather)
         # pass in a plane so we don't raise the error because
         # there is no plane to take off
-        subject.land_plane :plane
         expect { subject.takeoff_plane }.to raise_error 'cannot takeoff'
       end
       it 'a plane cannot land in the middle of a storm' do
