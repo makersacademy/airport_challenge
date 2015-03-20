@@ -15,6 +15,9 @@ require 'plane'
 describe Plane do
 
   it { is_expected.to respond_to :landed? }
+  context 'when created' do
+    it { is_expected.not_to be_landed }
+  end
 
   xit 'has a flying status when in the air'
 
