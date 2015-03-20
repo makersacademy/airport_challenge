@@ -44,6 +44,8 @@ describe Airport do
       # to set up the test we ...
       # need to give it a plane to take off!!
       # and we know the land_plane method works already b'cos ^
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
       subject.land_plane :plane
       # expect(subject.takeoff_plane).to be one of the planes
       plane = subject.planes.last
