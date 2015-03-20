@@ -6,6 +6,6 @@ class Plane
 
   def take_off
     fail 'cannot take off' if @flying
-    true
+    @flying = true
   end
 end
