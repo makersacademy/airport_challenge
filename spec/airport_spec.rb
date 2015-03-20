@@ -37,8 +37,10 @@ describe Airport do
       # to set up the test we ...
       # need to give it a plane to take off!!
       # and we know the land_plane method works already b'cos ^
-      # subject.land_plane :plane
-      # expect(subject.takeoff_plane)
+      # we hold the landed plane in an instance var so we can
+      # compare it using eq to what takeoff_plane returns
+      plane = subject.land_plane :plane
+      expect(subject.takeoff_plane).to eq plane
     end
 
   end
