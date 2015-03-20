@@ -16,7 +16,7 @@ describe Plane do
 
   # 'has a flying status when created' do
   # which would be an attr_reader :status
-  it { is_expected.to respond_to :flying? }
+  it { is_expected.to respond_to :flying }
 
   xit 'has a flying status when in the air'
 
