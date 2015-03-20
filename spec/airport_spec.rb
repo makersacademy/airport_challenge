@@ -18,7 +18,7 @@ describe Airport do
     # 'a plane can land'
     # landing plane method
     it { is_expected.to respond_to :land_plane }
-    # can something land?
+    # can something land? i.e does the method hold what we give it?
     it 'can land a plane' do
       expect(subject.land_plane :plane).to eq :plane
     end
