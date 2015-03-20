@@ -17,6 +17,11 @@ describe Plane do
   # 'has a flying status when created' do
   # which would be an attr_reader :status
   it { is_expected.to respond_to :flying }
+  # I'll start with new planes flying into our 'airspce'
+  it 'should be in the air when created' do
+    # subject makes a new instance of plane
+    expect(subject.flying).to be true
+  end
 
   xit 'has a flying status when in the air'
 
