@@ -39,18 +39,11 @@ describe Plane do
     subject.flying = false
     expect(subject.take_off).to be true
   end
-
-  # set the plane to not be flying
-  # subject.flying = false
-  # it needs to be launched from an airport
-
-  # it needs an airport to land at
-  # check airport status
-  # so first put it in the airport
-  # then try and have it take off so it is in the air
-  # make a dummy airport to hold the plane
-  # the plane should know it has taken off
-
-  xit 'changes its status to flying after taking off'
+  it 'changes its status to flying after taking off' do
+    # set up test
+    subject.flying = false
+    subject.take_off
+    expect(subject.flying).to be true
+  end
 
 end
