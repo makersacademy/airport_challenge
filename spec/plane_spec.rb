@@ -6,6 +6,7 @@ require 'plane'
 # When we create a new plane, it should have a "flying" status,
 # thus planes can not be created in the airport.
 #
+# --- AirTrafficControl will take care of this ---
 # When we land a plane at the airport, the plane in question should
 # have its status changed to "landed"
 #
@@ -23,9 +24,9 @@ describe Plane do
     expect(subject.flying).to be true
   end
 
-  xit 'has a flying status when in the air'
+  # xit 'has a flying status when in the air'
 
-  xit 'can take off'
+  # it 'can take off'
   # to take off it needs to not be flying
   # it should have a take off method
   it { is_expected.to respond_to :take_off }
@@ -45,5 +46,6 @@ describe Plane do
     subject.take_off
     expect(subject.flying).to be true
   end
+  it { is_expected.to respond_to :land }
 
 end
