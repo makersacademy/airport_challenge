@@ -1,6 +1,8 @@
 require_relative 'plane'
 
 class Airport
+  capacity = 6
+
   def landed_planes
     @landed_planes ||= []
   end
@@ -9,20 +11,29 @@ class Airport
     @airborne_planes ||= []
   end
 
+  def weather
+    'sunny'
+  end
+
+  def can_takeoff
+    weather == 'sunny'
+  end
+
+  def can_land
+    landed_planes.length < capacity
+  end
+
   def landing_permission plane
     plane.land
     landed_planes << plane
   end
 
-  # the probem is that we are not able to delete
-  # the planes from the landed planes array
-  # as we are putting them into the airborne planes array
-
   def request_plane_to_takeoff plane
-    plane.takeoff
-    airborne_planes << plane
-
-    landed_planes.delete(plane)
-    # landed_planes.pop
+    if can_takeoff
+      plane.takeoff
+      airborne_planes << plane
+      landed_planes.delete(plane)
+    else
+    end
   end
 end

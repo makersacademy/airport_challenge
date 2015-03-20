@@ -15,16 +15,12 @@ feature 'Grand Finale' do
     airport = Airport.new
     planes = []
     6.times { planes << Plane.new  }
-    planes.each { |p| airport.landing_permission p }
+    planes.each { |plane| airport.landing_permission plane }
     expect(airport.landed_planes.length).to eq 6
     airport.landed_planes.each do |plane|
       expect(plane.status).to eq 'landed'
     end
-
-    puts "landed planes length: #{airport.landed_planes.length}"
-
     planes.each_with_index do |plane, idx|
-      puts "iteration #{idx}"
       airport.request_plane_to_takeoff plane
     end
     expect(airport.airborne_planes.length).to eq 6

@@ -33,8 +33,13 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-
+      it 'a plane cannot take off when there is a storm brewing' do
+        airport = Airport.new
+        plane = Plane.new
+        airport.landing_permission plane
+        # stormy
+        airport.request_plane_to_takeoff plane
+      end
       xit 'a plane cannot land in the middle of a storm'
     end
   end
