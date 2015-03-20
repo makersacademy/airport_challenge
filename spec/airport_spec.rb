@@ -24,9 +24,22 @@ describe Airport do
     end
 
     # 'a plane can take off'
+    # bad grammer but I want to be consitent in method names
     # taking off method exists?
-    # taking off method returns the plane that landed
     it { is_expected.to respond_to :takeoff_plane }
+    # if the airport is empty then it can't have a plane take off
+    # so we don't give the airport a plane for this test
+    # it 'raises error when airport is empty' do
+    #   expect { subject.takeoff_plane }.to raise_error 'No plane to takeoff'
+    # end
+    # taking off method returns the plane that landed
+    it 'can takeoff a plane' do
+      # to set up the test we ...
+      # need to give it a plane to take off!!
+      # and we know the land_plane method works already b'cos ^
+      # subject.land_plane :plane
+      # expect(subject.takeoff_plane)
+    end
 
   end
 
