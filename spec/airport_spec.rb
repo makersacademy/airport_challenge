@@ -19,8 +19,15 @@ describe Airport do
     # landing plane method
     it { is_expected.to respond_to :land_plane }
     # can something land? i.e does the method hold what we give it?
+    # now planes land in an array so does that array increase in size
+    # when a plane is landed
     it 'can land a plane' do
-      expect(subject.land_plane :plane).to eq :plane
+      # get current size of the array
+      planes = subject.num_planes
+      # add a new plane
+      subject.land_plane :plane
+      # check if number of planes landed has increase
+      expect(subject.num_planes).to eq(planes + 1)
     end
 
     # 'a plane can take off'
@@ -33,14 +40,14 @@ describe Airport do
       expect { subject.takeoff_plane }.to raise_error 'No plane to takeoff'
     end
     # taking off method returns the plane that landed
-    it 'can takeoff a plane' do
+    xit 'can takeoff a plane' do
       # to set up the test we ...
       # need to give it a plane to take off!!
       # and we know the land_plane method works already b'cos ^
-      # we hold the landed plane in an instance var so we can
-      # compare it using eq to what takeoff_plane returns
-      plane = subject.land_plane :plane
-      expect(subject.takeoff_plane).to eq plane
+      subject.land_plane :plane
+      # expect(subject.takeoff_plane).to be one of the planes
+      plane = subject.planes.last
+      expect(subject.takeoff_plane).to be_a(plane)
     end
 
   end
