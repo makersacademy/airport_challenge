@@ -62,11 +62,14 @@ describe Airport do
     it 'should have a capcity of 20' do
       expect(subject.capcity).to eq 20
     end
-    # to check capcity the airport needs to hold multiple planes
-    # and know the number of planes it currently holds
-    it { is_expected.to respond_to :num_planes }
-    # it 'should know how many planes are at the airport' do
-    # end
+    # airport should raise an error if full
+    # so in a minute we'll need to add a way for it to be full
+    it 'raise and error when full' do
+      # we fill the airport up
+      20.times { subject.land_plane :plane }
+      # then try and land another plane
+      expect { subject.land_plane :plane }.to raise_error 'Airport Full'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
