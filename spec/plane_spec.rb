@@ -34,6 +34,12 @@ describe Plane do
     # plane already flying when created so dont need to specify
     expect { subject.take_off }.to raise_error 'cannot take off'
   end
+  it 'should be able to take off if not flying' do
+    # set up test by setting flying to false
+    subject.flying = false
+    expect(subject.take_off).to be true
+  end
+
   # set the plane to not be flying
   # subject.flying = false
   # it needs to be launched from an airport
