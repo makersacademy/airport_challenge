@@ -32,4 +32,8 @@ class Airport
   def num_planes
     @planes.length
   end
+
+  def weather weather
+    weather.weather
+  end
 end

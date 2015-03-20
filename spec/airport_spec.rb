@@ -90,6 +90,14 @@ describe Airport do
     context 'weather conditions' do
       # the airport needs to know what the weather is
       it { is_expected.to respond_to :weather }
+      it 'should be able to return the current weather' do
+        # to stay modular the airport should reach out get an instance of
+        # weather then check it for it's weather method weather.weather
+        # I'll want to pass in a double and check that what it's weather
+        # 'method' returns the correct weather
+        weather = double('Weather', weather: 'sunny')
+        expect(subject.weather(weather)).to eq weather.weather
+      end
       xit 'a plane cannot take off when there is a storm brewing'
 
       xit 'a plane cannot land in the middle of a storm'
