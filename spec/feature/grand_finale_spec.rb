@@ -15,7 +15,7 @@ feature 'Grand Finale' do
     airport = Airport.new
     planes = []
     6.times { planes << Plane.new  }
-    planes.each {|p| airport.landing_permission p }
+    planes.each { |p| airport.landing_permission p }
     expect(airport.landed_planes.length).to eq 6
     airport.landed_planes.each do |plane|
       expect(plane.status).to eq 'landed'

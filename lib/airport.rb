@@ -1,7 +1,6 @@
 require_relative 'plane'
 
 class Airport
-
   def landed_planes
     @landed_planes ||= []
   end
