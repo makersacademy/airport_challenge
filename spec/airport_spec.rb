@@ -94,12 +94,15 @@ describe Airport do
         weather = double('Weather', weather: 'sunny')
         expect(subject.weather(weather)).to eq true
       end
-      xit 'a plane cannot take off when there is a storm brewing' do
+      it 'a plane cannot take off when there is a storm brewing' do
         # want to check the weather and add a condition to take off method
         # pass in stormy weather to set up for the test
         weather = double('Weather', weather: 'stormy')
         subject.weather(weather)
-        expect
+        # pass in a plane so we don't raise the error because
+        # there is no plane to take off
+        subject.land_plane :plane
+        expect { subject.takeoff_plane }.to raise_error 'cannot takeoff'
       end
       xit 'a plane cannot land in the middle of a storm'
     end
