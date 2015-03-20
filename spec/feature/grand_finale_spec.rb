@@ -12,7 +12,7 @@ require 'capybara/rspec'
 feature 'for our airport to be safe' do
   scenario 'all planes can land and all planes can take off' do
     airport = Airport.new
-    plane = airport.clear_for_landing
+    plane = airport.clear_plane_for_landing
     expect(plane).not_to be_landed
   end
   xscenario 'a plane cannot land when an airport is full'
