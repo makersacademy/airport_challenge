@@ -15,9 +15,16 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      expect(subject.plane_count).to eq(0)
+      subject.land_plane double :plane
+      expect(subject.plane_count).to eq(1)
+    end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      subject.land_plane :plane
+      expect(subject.take_off_plane).to eq :plane
+    end
   end
 
   context 'traffic control' do
