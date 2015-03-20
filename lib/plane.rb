@@ -11,5 +11,6 @@ class Plane
 
   def land
     fail 'cannot land' unless @flying
+    @flying = false
   end
 end
