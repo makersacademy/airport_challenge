@@ -20,7 +20,7 @@ feature 'Grand Finale' do
     airport.landed_planes.each do |plane|
       expect(plane.status).to eq 'landed'
     end
-    planes.each_with_index do |plane, idx|
+    planes.each_with_index do |plane|
       airport.request_plane_to_takeoff plane
     end
     expect(airport.airborne_planes.length).to eq 6

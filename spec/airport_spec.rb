@@ -31,16 +31,22 @@ describe Airport do
     # This will require stubbing to stop the random return of the weather.
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
+  end
 
-    context 'weather conditions' do
-      it 'a plane cannot take off when there is a storm brewing' do
-        airport = Airport.new
-        plane = Plane.new
-        airport.landing_permission plane
-        # stormy
-        airport.request_plane_to_takeoff plane
-      end
-      xit 'a plane cannot land in the middle of a storm'
+  context 'weather conditions' do
+    it 'a plane cannot take off when there is a storm brewing' do
+      Airport.any_instance.stub(:weather).and_return(:'stormy')
+      airport = Airport.new
+      plane = Plane.new
+      airport.landing_permission plane
+      # airport.weather = double :airport.weather, weather: 'stormy'
+      expect(airport.request_plane_to_takeoff plane).to eq 'permission denied'
+    end
+    it 'a plane cannot land in the middle of a storm' do
+      Airport.any_instance.stub(:weather).and_return(:'stormy')
+      airport = Airport.new
+      plane = Plane.new
+      expect(airport.landing_permission plane).to eq 'permission denied'
     end
   end
 end

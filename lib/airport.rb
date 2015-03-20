@@ -1,7 +1,7 @@
 require_relative 'plane'
 
 class Airport
-  capacity = 6
+  @capacity = 6
 
   def landed_planes
     @landed_planes ||= []
@@ -11,8 +11,8 @@ class Airport
     @airborne_planes ||= []
   end
 
-  def weather
-    'sunny'
+  def weather set_weather = 'sunny'
+    set_weather
   end
 
   def can_takeoff
@@ -24,8 +24,12 @@ class Airport
   end
 
   def landing_permission plane
-    plane.land
-    landed_planes << plane
+    if can_takeoff
+      plane.land
+      landed_planes << plane
+    else
+      'permission denied'
+    end
   end
 
   def request_plane_to_takeoff plane
@@ -34,6 +38,7 @@ class Airport
       airborne_planes << plane
       landed_planes.delete(plane)
     else
+      'permission denied'
     end
   end
 end
