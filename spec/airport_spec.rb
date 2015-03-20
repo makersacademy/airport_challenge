@@ -6,6 +6,7 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
+      allow(subject).to receive(:local_weather) { 'sunny' }
       subject.land plane
     end
 
@@ -19,11 +20,13 @@ describe Airport do
   context 'traffic control' do
 
     it 'a plane cannot land if the airport is full' do
+      allow(subject).to receive(:local_weather) { 'sunny' }
       6.times { subject.land(double :plane) }
       expect { subject.land plane }.to raise_error 'airport is full'
     end
 
     it 'a plane can land if airport is not full' do
+      allow(subject).to receive(:local_weather) { 'sunny' }
       4.times { subject.land(double :plane) }
       expect { subject.land plane }.not_to raise_error
     end
@@ -41,12 +44,14 @@ describe Airport do
     end
 
     it 'a plane cannot take off when there is a storm brewing' do
-      airport = Airport.new
-      airport.land plane
-      allow(airport).to receive(:local_weather) { 'stormy' }
-      expect { airport.take_off }.to raise_error 'not now, storms brewing!'
+      subject.land plane
+      allow(subject).to receive(:local_weather) { 'stormy' }
+      expect { subject.take_off }.to raise_error 'not now, storms brewing!'
     end
 
-    xit 'a plane cannot land in the middle of a storm'
+    it 'a plane cannot land in the middle of a storm' do
+      allow(subject).to receive(:local_weather) { 'stormy' }
+      expect { subject.land plane }.to raise_error 'not now, storms brewing!'
+    end
   end
 end

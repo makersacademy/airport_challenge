@@ -23,13 +23,16 @@ feature 'airport can land and take off planes' do
   end
   context 'weather conditions' do
     scenario 'a plane cannot take off when there is a storm brewing' do
-      airport.land Plane.new
+      airport.land plane
       allow(airport).to receive(:local_weather) { 'stormy' }
       expect { airport.take_off }.to raise_error 'not now, storms brewing!'
     end
     # This will require stubbing to stop the random return of the weather.
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
-    xit 'a plane cannot land in the middle of a storm'
+    it 'a plane cannot land in the middle of a storm' do
+      allow(airport).to receive(:local_weather) { 'stormy' }
+      expect { airport.land plane }.to raise_error 'not now, storms brewing!'
+    end
   end
 end

@@ -4,6 +4,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'not now, storms brewing!' if local_weather == 'stormy'
     fail 'airport is full' if @planes.length >= 6
     @planes << plane
   end
