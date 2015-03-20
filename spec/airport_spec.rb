@@ -1,5 +1,4 @@
 require 'airport'
-require 'air_traffic_control'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -51,9 +50,6 @@ describe Airport do
     # 'an airport has an airtraffic control (atc)'
     it { is_expected.to respond_to :atc }
     # atc should return an instance of an AirTrafficControl
-    it 'should have an instance of an AirTrafficControl' do
-      expect(subject.atc).to eq AirTrafficControl.new
-    end
 
     xit 'a plane cannot land if the airport is full'
 
