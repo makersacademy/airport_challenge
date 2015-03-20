@@ -55,6 +55,8 @@ The submission will be judged on the following criteria:
 * Tests coverage is good
 * The code is elegant: every class has a clear responsibility, methods are short etc.
 
+Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
 
 * Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
