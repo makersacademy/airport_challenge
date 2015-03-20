@@ -4,8 +4,8 @@ require 'plane'
 ## Feel free to write more tests!!
 
 # Should I have an air class, which contains planes when they're in the air?
-# Otherwise they just vanish (or rather they still exist, but aren't located)
-# anywhere
+# Otherwise they just vanish (or rather they still exist, but aren't located
+# anywhere)
 
 # Should I have the plane's flying variable only be able to be set by airport?
 # Otherwise it will be able to be manipulated into flying in a non-standard way

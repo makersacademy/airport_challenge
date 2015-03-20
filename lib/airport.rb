@@ -12,8 +12,6 @@ class Airport
     fail 'Airport Full' if @planes.count >= @capacity
     plane.land!
     @planes << plane
-    # returns nil to confirm run
-    nil
   end
 
   def plane_take_off(plane)

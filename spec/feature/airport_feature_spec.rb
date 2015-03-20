@@ -12,7 +12,7 @@ feature 'Basic Features: Airport' do
   xscenario 'the plane tries to land, but the weather is stormy'
 
   scenario 'the plane lands at the airport' do
-    expect(airport.land_plane(plane)).to be nil
+    expect(airport.land_plane(plane)).to eq [plane]
   end
 
   scenario 'the plane takes off from the airport' do
