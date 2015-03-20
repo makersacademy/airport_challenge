@@ -40,14 +40,14 @@ describe Airport do
       expect { subject.takeoff_plane }.to raise_error 'No plane to takeoff'
     end
     # taking off method returns the plane that landed
-    xit 'can takeoff a plane' do
+    it 'can takeoff a plane' do
       # to set up the test we ...
       # need to give it a plane to take off!!
       # and we know the land_plane method works already b'cos ^
       subject.land_plane :plane
       # expect(subject.takeoff_plane).to be one of the planes
       plane = subject.planes.last
-      expect(subject.takeoff_plane).to be_a(plane)
+      expect(subject.takeoff_plane).to eq(plane)
     end
 
   end
@@ -88,6 +88,7 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
+      it { is_expected.to respond_to :weather }
       xit 'a plane cannot take off when there is a storm brewing'
 
       xit 'a plane cannot land in the middle of a storm'

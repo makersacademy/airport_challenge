@@ -1,3 +1,4 @@
+require_relative './weather.rb'
 class Airport
   CAPACITY = 20
   attr_writer :plane
