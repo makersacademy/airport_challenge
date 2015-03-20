@@ -13,8 +13,10 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
-
-  xit 'has a flying status when created'
+  it 'has a flying status when created' do
+    plane = Plane.new
+    expect(plane.status).to be 'flying'
+  end
 
   xit 'has a flying status when in the air'
 
