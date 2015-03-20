@@ -11,5 +11,7 @@ require 'capybara/rspec'
 feature 'Grand Finale' do
 
   xscenario 'all planes can land and all planes can take off'
+  xscenario 'a plane cannot land when an airport is full'
+  xscenario 'planes cannot land when the weather is stormy'
 
 end
