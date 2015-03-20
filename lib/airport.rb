@@ -7,19 +7,26 @@ class Airport
 
   def initialize
     @planes = []
+    @weather_conditions= ['Stormy', 'Sunny']
   end
 
   def land plane
     fail 'Airport is Full' if full?
+    fail 'Storm\'s a Brewin' if weather == 'Stormy' && plane.landed == false
     @planes << plane
   end
 
   def take_off
+    fail 'Storm\'s a Brewin' if weather == 'Stormy'
     @planes.pop
   end
 
   def plane_check
     @planes
+  end
+
+  def weather
+    @weather_conditions.sample
   end
 
   private
