@@ -8,4 +8,7 @@ class Airport
     fail 'No plane to takeoff' unless @plane
     @plane
   end
+
+  def atc
+  end
 end
