@@ -10,4 +10,8 @@ class Airport
 
   def atc
   end
+
+  def capcity
+    CAPACITY
+  end
 end
