@@ -13,12 +13,15 @@ require 'airport'
 
 describe Airport do
   context 'taking off and landing' do
-    it { is_expected.to respond_to :land }
-    it { is_expected.to respond_to :takeoff }
+    it { is_expected.to respond_to :landing_permission }
+    it { is_expected.to respond_to :request_plane_to_takeoff }
   end
 
   context 'traffic control' do
-    it 'a plane cannot land if the airport is full'
+    # scenario 'a plane cannot land if the airport is full' do
+    #   airport = Airport.new
+    #   (airport.capacity).times {}
+    # end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
