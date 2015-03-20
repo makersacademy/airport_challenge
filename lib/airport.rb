@@ -30,4 +30,7 @@ class Airport
   def weather weather
     @sunny = (weather.weather == 'sunny')
   end
+
+  def plane_state _plane
+  end
 end
