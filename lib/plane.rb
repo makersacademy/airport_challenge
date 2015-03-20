@@ -3,4 +3,7 @@ class Plane
   def initialize
     @flying = true
   end
+
+  def take_off
+  end
 end
