@@ -51,5 +51,9 @@ describe Plane do
     subject.flying = false
     expect { subject.land }.to raise_error 'cannot land'
   end
+  it 'changes its staus to not fyling after landing' do
+    subject.land
+    expect(subject.flying).to be false
+  end
 
 end
