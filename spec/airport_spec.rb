@@ -22,7 +22,7 @@ describe Airport do
     it 'a plane can take off' do
       allow(subject).to receive(:weather).and_return("Sunny")
       subject.land :plane
-      subject.take_off
+      subject.take_off :plane
       expect(subject.plane_check).to eq []
     end
   end
@@ -49,7 +49,7 @@ describe Airport do
         allow(subject).to receive(:weather).and_return("Sunny")
         subject.land :plane
         allow(subject).to receive(:weather).and_return("Stormy")
-        expect { subject.take_off }.to raise_error 'Storm\'s a Brewin'
+        expect { subject.take_off :plane }.to raise_error 'Storm\'s a Brewin'
       end
 
       it 'a plane cannot land in the middle of a storm' do

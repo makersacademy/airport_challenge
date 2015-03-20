@@ -13,12 +13,14 @@ class Airport
   def land plane
     fail 'Airport is Full' if full?
     fail 'Storm\'s a Brewin' if weather == 'Stormy' && plane.landed ==  false
+    plane.has_landed
     @planes << plane
   end
 
-  def take_off
+  def take_off plane
     fail 'Storm\'s a Brewin' if weather == 'Stormy'
-    @planes.pop
+    plane.taken_off
+    @planes.delete(plane)
   end
 
   def plane_check
