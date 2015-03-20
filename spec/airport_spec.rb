@@ -15,14 +15,26 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      subject.land(double :plane)
+    end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      subject.take_off
+    end
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      6.times { subject.land(double :plane) }
+      expect { subject.land double :plane }.to raise_error 'airport is full'
+    end
+
+    it 'a plane can land if airport is not full' do
+      4.times { subject.land(double :plane) }
+      expect { subject.land double :plane }.not_to raise_error
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
