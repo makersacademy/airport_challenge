@@ -3,4 +3,8 @@ class AirTrafficControl
   def land_plane
     @airport.land_plane
   end
+
+  def land
+    @plane.land
+  end
 end
