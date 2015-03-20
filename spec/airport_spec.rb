@@ -49,9 +49,8 @@ describe Airport do
 
     # 'an airport has an airtraffic control (atc)'
     it { is_expected.to respond_to :atc }
-    # atc should return an instance of an AirTrafficControl
 
-    xit 'a plane cannot land if the airport is full'
+    # xit 'a plane cannot land if the airport is full'
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
