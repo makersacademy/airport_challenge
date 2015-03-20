@@ -1,8 +1,4 @@
 require 'plane'
-
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
 # When we create a new plane, it should have a "flying" status,
 # thus planes can not be created in the airport.
 #
@@ -14,11 +10,22 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  it 'has status "flying" when created' do
+    expect(subject).to be_flying
+  end
+
+  it 'can land' do
+    subject.land
+    expect(subject).not_to be_flying
+  end
 
   xit 'has a flying status when in the air'
 
-  xit 'can take off'
+  it 'can take off' do
+    subject.land
+    subject.take_off
+    expect(subject).to be_flying
+  end
 
   xit 'changes its status to flying after taking off'
 

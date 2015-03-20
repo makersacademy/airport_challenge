@@ -1,42 +1,50 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
-
-  context 'taking off and landing' do
-
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
+  let(:plane) { double :plane, land: nil, take_off: nil }
+  let(:airport) { Airport.new }
+  let(:sunny_time) { allow(airport).to receive(:weather).and_return('sunny') }
+  let(:stormy_time) { allow(airport).to receive(:weather).and_return('stormy') }
+  # what if capacity is set to lower than number of planes currently docked?
+  it 'can set a custom capacity' do
+    initial_capacity = airport.capacity
+    airport.capacity = -1 # in case we happen to set it to the default cap
+    expect(airport.capacity).not_to eq initial_capacity
   end
 
-  context 'traffic control' do
+  context 'taking off and landing:' do
+    it 'a plane can land in good weather' do
+      sunny_time
+      airport.land_plane(plane)
+      expect(airport.planes.length).to eq 1
+    end
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane can take off in good weather' do
+      sunny_time
+      airport.land_plane(plane)
+      airport.initialize_take_off(plane)
+      expect(airport.planes.length).to eq 0
+    end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  end
 
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+  context 'traffic control:' do
 
-      xit 'a plane cannot land in the middle of a storm'
+    it 'a plane cannot land if the airport is full' do
+      sunny_time
+      airport.capacity = 20
+      20.times { airport.land_plane(plane) }
+      expect { airport.land_plane(plane) }.to raise_error 'Airport full'
+    end
+
+    context 'weather conditions:' do
+      it 'error raised when plane landing or taking off in bad weather' do
+        stormy_time
+        error_msg = 'Can not land, bad weather'
+        expect { airport.land_plane(plane) }.to raise_error error_msg
+        error_msg = 'Can not take off, bad weather'
+        expect { airport.initialize_take_off(plane) }.to raise_error error_msg
+      end
     end
   end
 end
