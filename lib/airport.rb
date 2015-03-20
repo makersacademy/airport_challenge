@@ -14,4 +14,7 @@ class Airport
   def capcity
     CAPACITY
   end
+
+  def num_planes
+  end
 end
