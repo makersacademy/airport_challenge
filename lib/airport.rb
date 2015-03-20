@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
   attr_reader :capacity
   attr_reader :planes
@@ -16,9 +18,13 @@ class Airport
   end
 
   # at the moment this just takes the last item out of the array and returns it
+  # at some point it might be fun to have it take an argument, iterate through
+  # the array and take out the element which equals that argument.
   def plane_take_off
     fail 'Airport Empty' if @planes.empty?
-    @planes.pop
+    plane = @planes.pop
+    plane.take_off!
+    plane
   end
 end
 

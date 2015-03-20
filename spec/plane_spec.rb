@@ -12,6 +12,16 @@ require 'plane'
 # When the plane takes of from the airport, the plane's status
 # should become "flying"
 
+# Note to self, refactor to make status 'landed' instead of flying just being
+# false - although this seems to add needless complexity...
+
+# Should I have an air class, which contains planes when they're in the air?
+# Otherwise they just vanish (or rather they still exist, but aren't located)
+# anywhere
+
+# Should I have the plane's flying variable only be able to be set by airport?
+# Otherwise it will be able to be manipulated into flying in a non-standard way
+
 describe Plane do
 
   it 'has a flying status when created' do
@@ -21,25 +31,27 @@ describe Plane do
   # not really sure what this test would do
   # xit 'has a flying status when in the air'
 
-  it { is_expected.to respond_to :land! }
-
   it 'can land, and change its status' do
     subject.land!
     expect(subject.flying?).to be false
   end
 
-  # Possibly an overly complex test when all I need is the above
-  xit 'can land and display the correct status' do
-    plane = subject
-    airport = double :Airport, land_plane: [plane]
-    airport.land_plane(plane)
-    expect(plane.flying?).to be false
-  end
-
   xit 'has a landed status when in the airport'
 
-  xit 'can take off'
+  it 'cannot land when it is already landed' do
+    subject.land!
+    expect { subject.land! }.to raise_error 'Already Landed'
+  end
+
+  it 'can take off and change its status to flying' do
+    subject.land!
+    subject.take_off!
+    expect(subject.flying?).to be true
+  end
 
   xit 'changes its status to flying after taking off'
 
+  it 'cannot take off when it is already flying' do
+    expect { subject.take_off! }.to raise_error 'Already Flying'
+  end
 end

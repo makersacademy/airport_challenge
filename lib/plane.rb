@@ -7,6 +7,12 @@ class Plane
   end
 
   def land!
+    fail 'Already Landed' unless @flying
     @flying = false
+  end
+
+  def take_off!
+    fail 'Already Flying' if @flying
+    @flying = true
   end
 end

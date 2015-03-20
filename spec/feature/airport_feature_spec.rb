@@ -1,24 +1,20 @@
 require 'capybara/rspec'
 
-feature 'a plane comes in to land' do
+feature 'Feature: A plane comes in to land' do
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
   scenario 'the plane tries to land, but the airport is full' do
-    plane = Plane.new
-    airport = Airport.new
-    20.times { airport.land_plane(plane) }
+    20.times { airport.land_plane(Plane.new) }
     expect { airport.land_plane(plane) }.to raise_error 'Airport Full'
   end
 
   xscenario 'the plane tries to land, but the weather is stormy'
 
   scenario 'the plane lands at the airport' do
-    plane = Plane.new
-    airport = Airport.new
     expect(airport.land_plane(plane)).to be nil
   end
 
-  scenario 'a plane takes off from the airport' do
-    plane = Plane.new
-    airport = Airport.new
+  scenario 'the plane takes off from the airport' do
     airport.land_plane(plane)
     expect(airport.plane_take_off).to eq plane
   end

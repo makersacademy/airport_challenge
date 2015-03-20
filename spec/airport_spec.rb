@@ -36,6 +36,7 @@ describe Airport do
     it 'a plane can take off' do
       plane = double :plane, flying?: false
       allow(plane).to receive(:land!)
+      allow(plane).to receive(:take_off!)
       subject.land_plane(plane)
       expect(subject.plane_take_off).to eq plane
     end
@@ -43,6 +44,21 @@ describe Airport do
     it 'a plane cannot take off if the airport is empty' do
       expect { subject.plane_take_off }.to raise_error 'Airport Empty'
     end
+
+    # Pointless unit test, as the method is in the Plane class, not here.
+    # This would just test the plane_take_off method, which is already done
+    # Moved test to plane_spec
+    # xit 'a plane cannot take off if it is already flying' do
+    #   plane = double :plane, flying?: true
+    #   allow(plane).to receive(:land!)
+    #   allow(plane).to receive(:take_off!)
+    #   subject.land_plane(plane)
+    #   expect { subject.plane_take_off }.to raise_error 'Plane Already Flying'
+    # end
+
+    # Also pointless and moved to plane_spec
+    # xit 'a plane cannot land if it is already landed' do
+    # end
   end
 
   context 'traffic control' do
