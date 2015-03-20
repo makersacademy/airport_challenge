@@ -9,6 +9,8 @@ require 'air_traffic_control'
 describe AirTrafficControl do
   it { is_expected.to respond_to :airport }
   it { is_expected.to respond_to :plane }
+  # it 'should be able to take a plane and land it in an airport'
+  it { is_expected.to respond_to :land_plane }
 end
 # it should hold one plane
 # and one airport
