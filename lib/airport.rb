@@ -12,7 +12,7 @@ class Airport
 
   def land plane
     fail 'Airport is Full' if full?
-    fail 'Storm\'s a Brewin' if weather == 'Stormy' && plane.landed == false
+    fail 'Storm\'s a Brewin' if weather == 'Stormy' && plane.landed ==  false
     @planes << plane
   end
 
