@@ -1,6 +1,7 @@
 require 'capybara/rspec'
+require 'airport'
 
-feature 'Feature: A plane comes in to land' do
+feature 'Basic Features: Airport' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
   scenario 'the plane tries to land, but the airport is full' do
@@ -16,6 +17,6 @@ feature 'Feature: A plane comes in to land' do
 
   scenario 'the plane takes off from the airport' do
     airport.land_plane(plane)
-    expect(airport.plane_take_off).to eq plane
+    expect(airport.plane_take_off(plane)).to eq plane
   end
 end

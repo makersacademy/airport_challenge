@@ -4,76 +4,37 @@ require 'airport'
 ## Feel free to write more tests!!
 
 # A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
 
-# RSpec ways of making doubles that can respond to things
-
-# it "passes" do
-#     dbl = double("Some Collaborator")
-#     expect(dbl).to receive(:foo)
-#     dbl.foo
-
-# let(:string) { "a string" }
-#   before { allow(string).to receive(:length).and_return(500) }
+# This plane isn't unique at the moment.
 
 describe Airport do
-
+  let(:plane) { double :plane }
+  before do
+    allow(plane).to receive(:land!)
+    allow(plane).to receive(:take_off!)
+  end
   context 'taking off and landing' do
-    # DRY out tests using this code later
-    # let(:plane) { double :plane }
-    # allow(plane).to receive(:land!)
     it 'a plane can land' do
-      plane = double :plane
-      allow(plane).to receive(:land!)
       expect(subject.land_plane(plane)).to be nil
     end
 
     it 'a plane can take off' do
-      plane = double :plane, flying?: false
-      allow(plane).to receive(:land!)
-      allow(plane).to receive(:take_off!)
       subject.land_plane(plane)
-      expect(subject.plane_take_off).to eq plane
+      expect(subject.plane_take_off(plane)).to eq plane
     end
 
     it 'a plane cannot take off if the airport is empty' do
-      expect { subject.plane_take_off }.to raise_error 'Airport Empty'
+      expect { subject.plane_take_off(plane) }.to raise_error 'Airport Empty'
     end
-
-    # Pointless unit test, as the method is in the Plane class, not here.
-    # This would just test the plane_take_off method, which is already done
-    # Moved test to plane_spec
-    # xit 'a plane cannot take off if it is already flying' do
-    #   plane = double :plane, flying?: true
-    #   allow(plane).to receive(:land!)
-    #   allow(plane).to receive(:take_off!)
-    #   subject.land_plane(plane)
-    #   expect { subject.plane_take_off }.to raise_error 'Plane Already Flying'
-    # end
-
-    # Also pointless and moved to plane_spec
-    # xit 'a plane cannot land if it is already landed' do
-    # end
   end
 
   context 'traffic control' do
-
-    it 'can return its capacity' do
-      expect(subject.capacity).to eq 20
-    end
 
     it 'can return the landed planes' do
       expect(subject.planes).to eq []
     end
 
     it 'a plane cannot land if the airport is full' do
-      plane = double :plane
-      allow(plane).to receive(:land!)
       20.times { subject.land_plane(plane) }
       expect { subject.land_plane(plane) }.to raise_error 'Airport Full'
     end
@@ -94,3 +55,11 @@ describe Airport do
     end
   end
 end
+
+# Completed Features:
+#
+# No more planes can be added to the airport, if it's full.
+# It is up to you how many planes can land in the airport
+# and how that is implemented.
+#
+# If the airport is full then no planes can land

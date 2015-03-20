@@ -3,18 +3,6 @@ require 'plane'
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
-# When we create a new plane, it should have a "flying" status,
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# have its status changed to "landed"
-#
-# When the plane takes of from the airport, the plane's status
-# should become "flying"
-
-# Note to self, refactor to make status 'landed' instead of flying just being
-# false - although this seems to add needless complexity...
-
 # Should I have an air class, which contains planes when they're in the air?
 # Otherwise they just vanish (or rather they still exist, but aren't located)
 # anywhere
@@ -55,3 +43,14 @@ describe Plane do
     expect { subject.take_off! }.to raise_error 'Already Flying'
   end
 end
+
+# Completed Features:
+# When we create a new plane, it should have a "flying" status,
+# thus planes can not be created in the airport.
+#
+# When we land a plane at the airport, the plane in question should
+# have its status changed to "landed"
+### Debatable, I made it return false to the @flying variable
+#
+# When the plane takes of from the airport, the plane's status
+# should become "flying"

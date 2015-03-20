@@ -1,7 +1,6 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :capacity
   attr_reader :planes
 
   def initialize
@@ -17,17 +16,11 @@ class Airport
     nil
   end
 
-  # at the moment this just takes the last item out of the array and returns it
-  # at some point it might be fun to have it take an argument, iterate through
-  # the array and take out the element which equals that argument.
-  def plane_take_off
+  def plane_take_off(plane)
     fail 'Airport Empty' if @planes.empty?
-    plane = @planes.pop
-    plane.take_off!
-    plane
+    # The below is a bit ugly still
+    plane1 = @planes.delete(plane)
+    plane1.take_off!
+    plane1
   end
 end
-
-# perhaps at some point do a checker function, which iterates over all the
-# planes and checks if they are landed, throwing an error if they're flying/not
-# landed
