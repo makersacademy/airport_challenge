@@ -5,5 +5,6 @@ class Plane
   end
 
   def take_off
+    fail 'cannot take off'
   end
 end

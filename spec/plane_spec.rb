@@ -30,6 +30,10 @@ describe Plane do
   # it should have a take off method
   it { is_expected.to respond_to :take_off }
   # which can't be set if already airborne
+  it 'should not be able to take off if flying' do
+    # plane already flying when created so dont need to specify
+    expect { subject.take_off }.to raise_error 'cannot take off'
+  end
   # set the plane to not be flying
   # subject.flying = false
   # it needs to be launched from an airport
