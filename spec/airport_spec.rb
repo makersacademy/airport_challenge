@@ -49,7 +49,7 @@ describe Airport do
 
     context 'weather conditions' do
       let(:airport) { Airport.new }
-      before { allow(airport).to receive(:stormy?).and_return(true) }
+      before { allow(airport).to receive(:stormy_weather?).and_return(true) }
       it 'a plane cannot take off when there is a storm brewing' do
         airport.land_plane(plane)
         expect { airport.plane_take_off(plane) }.to raise_error 'Stormy Weather'
