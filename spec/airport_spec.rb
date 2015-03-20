@@ -1,6 +1,7 @@
 require 'airport'
 
-## Be aware that these are just some guidelines! Be free to write more tests!! 
+## Note these are just some guidelines!
+## Feel free to write more tests!!
 
 # A plane currently in the airport can be requested to take off.
 #

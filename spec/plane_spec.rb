@@ -1,6 +1,7 @@
 require 'plane'
 
-## Be aware that these are just some guidelines! Be free to write more tests!! 
+## Note these are just some guidelines!
+## Feel free to write more tests!!
 
 # When we create a new plane, it should have a "flying" status,
 # thus planes can not be created in the airport.
