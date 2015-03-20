@@ -47,5 +47,8 @@ describe Plane do
     expect(subject.flying).to be true
   end
   it { is_expected.to respond_to :land }
+  it 'should not be able to land if not flying' do
+    expect { subject.land }.to raise_error 'cannot land'
+  end
 
 end

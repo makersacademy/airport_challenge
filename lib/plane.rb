@@ -8,4 +8,7 @@ class Plane
     fail 'cannot take off' if @flying
     @flying = true
   end
+
+  def land
+  end
 end
