@@ -1,5 +1,11 @@
 require 'air_traffic_control'
-require 'plane.rb'
+describe AirTrafficControl do
+  it { is_expected.to respond_to :land_plane }
+  it 'land_plane calls the land_plane method on an airport' do
+    airport = double('Airport', land_plane: 'called')
+    expect(subject.land_plane(airport)).to eq 'called'
+  end
+end
 
 # When we land a plane at the airport, the plane in question should
 # have its status changed to "landed"
@@ -7,7 +13,7 @@ require 'plane.rb'
 # When the plane takes of from the airport, the plane's status
 # should become "flying"
 # airtraffic control can put a plane in an airport
-# describe AirTrafficControl do
+#
 # it 'should be able to take a plane and land it in an airport'
 #  it { is_expected.to respond_to :land_plane }
 #  it 'calls the land_plane method on an airport' do
