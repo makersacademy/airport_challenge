@@ -34,6 +34,6 @@ class Airport
   end
 
   def weather weather
-    weather.weather
+    @sunny = (weather.weather == 'sunny')
   end
 end
