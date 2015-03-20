@@ -48,9 +48,20 @@ describe Airport do
   context 'traffic control' do
 
     # 'an airport has an airtraffic control (atc)'
+    # I'll first hold this functionality in a method
+    # and extract it into a class if needed later
+    # be MINDFUL to keep this method as isolated as possible
     it { is_expected.to respond_to :atc }
 
     # xit 'a plane cannot land if the airport is full'
+    # we need to know if the airport is full
+    # and to be full it needs a capacity, which will be a constant
+    # NOTE in future could call airport_instance::CONSTANT to get
+    # capcity when atc is extracted to a class
+    # -- airport should have a capcity of 20
+    it 'should have a capcity of 20' do
+      expect(subject.capcity).to eq 20
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

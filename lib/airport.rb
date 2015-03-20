@@ -1,4 +1,5 @@
 class Airport
+  CAPACITY = 20
   attr_writer :plane
   alias_method :land_plane, :plane=
 
