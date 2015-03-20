@@ -10,5 +10,6 @@ class Plane
   end
 
   def land
+    fail 'cannot land' unless @flying
   end
 end
