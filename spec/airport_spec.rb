@@ -18,12 +18,19 @@ describe Airport do
       expect(subject.land :plane).to eq [:plane]
     end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      subject.land :plane
+      subject.take_off
+      expect(subject.plane_check).to eq []
+    end
   end
 
-  context 'traffic control' do
+  context 'traffic control'
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      10.times { subject.land :plane }
+      expect { subject.land :plane }.to raise_error 'Airport is Full'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -34,10 +41,9 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'weather conditions' do
+  context 'weather conditions'
       xit 'a plane cannot take off when there is a storm brewing'
 
+
       xit 'a plane cannot land in the middle of a storm'
-    end
-  end
 end

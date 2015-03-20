@@ -19,29 +19,14 @@ describe Plane do
     expect(plane.flying_status).to eq 'Flying'
   end
 
-  # it 'has a flying status when in the air' do
-  #   plane.land
-  #   expect(plane.flying_status).to eq 'Landed'
-  # end
+  it 'has a flying status when landed' do
+    plane.has_landed
+    expect(plane.flying_status).to eq 'Landed'
+  end
 
-  # it 'can land' do
-  #   plane.land
-  #   expect(plane).to be_landed
-  # end
-
-  # it 'can take off' do
-  #   plane.land
-  #   plane.take_off
-  #   expect(plane).not_to be_landed
-  # end
-
-  # it 'changes its status to flying after taking off' do
-  #   plane.land
-  #   plane.take_off
-  #   expect(plane.flying_status).to eq 'Flying'
-  # end
-
-  # it 'plane cannot take off if already flying' do
-  # expect { plane.take_off }.to raise_error 'Plane is already in the air'
-  # end
+  it 'changes its status to flying after taking off' do
+    plane.has_landed
+    plane.taken_off
+    expect(plane.flying_status).to eq 'Flying'
+  end
 end

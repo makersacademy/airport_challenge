@@ -6,14 +6,13 @@ class Plane
     @landed = false
   end
 
-  # def land
-  #   @landed = true
-  # end
+  def has_landed
+    @landed = true
+  end
 
-  # def take_off
-  #   fail 'Plane is already in the air' unless @landed
-  #   @landed = false
-  # end
+  def taken_off
+    @landed = false
+  end
 
   def flying_status
     if @landed == false
