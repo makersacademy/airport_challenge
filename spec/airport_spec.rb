@@ -37,7 +37,7 @@ describe Airport do
     # if the airport is empty then it can't have a plane take off
     # so we don't give the airport a plane for this test
     it 'raises error when airport is empty' do
-      expect { subject.takeoff_plane }.to raise_error 'No plane to takeoff'
+      expect { subject.takeoff_plane }.to raise_error 'cannot takeoff'
     end
     # taking off method returns the plane that landed
     it 'can takeoff a plane' do
@@ -96,8 +96,10 @@ describe Airport do
       end
       xit 'a plane cannot take off when there is a storm brewing' do
         # want to check the weather and add a condition to take off method
-        # so i'll have to modify the above weather test to check for
-        # value of some bool and use that bool in take off
+        # pass in stormy weather to set up for the test
+        weather = double('Weather', weather: 'stormy')
+        subject.weather(weather)
+        expect
       end
       xit 'a plane cannot land in the middle of a storm'
     end

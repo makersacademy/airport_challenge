@@ -13,7 +13,7 @@ class Airport
   end
 
   def takeoff_plane
-    fail 'No plane to takeoff' if @planes.empty?
+    fail 'cannot takeoff' if @planes.empty?
     @planes.pop
   end
 
