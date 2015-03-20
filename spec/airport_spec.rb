@@ -15,15 +15,27 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      plane = double :plane
+      expect(subject.land_plane(plane)).to eq plane
+    end
 
     xit 'a plane can take off'
   end
 
   context 'traffic control' do
 
+    it 'can return its capacity' do
+      expect(subject.capacity).to eq 1
+    end
+
+    it 'can return the landed planes' do
+      expect(subject.planes).to eq []
+    end
+
     it 'a plane cannot land if the airport is full' do
       plane = double :plane
+      subject.land_plane(plane)
       expect { subject.land_plane(plane) }.to raise_error 'Airport Full'
     end
 
