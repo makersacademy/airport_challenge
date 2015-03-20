@@ -3,9 +3,9 @@ class Plane
     @landed = true
   end
 
-  def landed?
+  def landed?  # remove = true and replace with attr_reader
     @landed = true
-  end #remove = truw and replace with attr_reader
+  end
 
   def taken_off
     @landed = false
