@@ -12,10 +12,11 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      expect(subject.land :plane).to eq [:plane]
+    end
 
     xit 'a plane can take off'
   end
