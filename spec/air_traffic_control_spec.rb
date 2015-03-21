@@ -31,7 +31,15 @@ describe AirTrafficControl do
     subject.airport = airport
     expect { subject.land_plane }.to raise_error 'airport at capcity'
   end
-  xit 'redirects planes to a new airport if its stormy' do
+  context 'weather' do
+    it { is_expected.to respond_to :weather }
+    xit 'knows the airports weather' do
+      airport = double('Airport', weather: false)
+      subject.airport = airport
+      expect(subject.weather).to eq false
+    end
+    xit 'it can change the airports weather if stormy' do
+    end
   end
   context 'taking off' do
     xit 'has a taking off method' do
