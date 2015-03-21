@@ -15,18 +15,25 @@ require 'plane'
 describe Plane do
   let(:plane) { Plane.new }
   it 'has a flying status when created' do
-    p subject
     expect(subject.flying?).to eq true
   end
   it 'has a flying status when in the air' do
     plane.flying?
     expect(subject).to be_flying
   end
+  it 'can land' do
+    expect(subject).to respond_to :landed
+  end
+  it 'changes its status to not flying when landing' do
+    plane.landed
+    expect(plane).not_to be_flying
+  end
   it 'can take off' do
-    expect(subject).to respond_to :flying
+    expect(subject).to respond_to :take_off
   end
   it 'changes its status to flying after taking off' do
+    plane.landed
     plane.take_off
-    expect(subject).to be_flying
+    expect(plane).to be_flying
   end
 end

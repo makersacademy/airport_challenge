@@ -13,17 +13,17 @@ require 'airport'
 
 describe Airport do
 
-  context 'taking off and landing' do
+  # context 'taking off and landing' do
 
-    xit 'a plane can land' do
-      plane = Plane.new
-      expect(plane).to respond_to land
-    end
-    xit 'a plane can take off' do
-      plane = Plane.new
-      expect(plane).to respond_to take_off_plane
-    end
-  end
+  #   xit 'a plane can land' do
+  #     plane = Plane.new
+  #     expect(plane).to respond_to land
+  #   end
+  #   xit 'a plane can take off' do
+  #     plane = Plane.new
+  #     expect(plane).to respond_to take_off_plane
+  #   end
+  # end
 
   context 'traffic control' do
 
