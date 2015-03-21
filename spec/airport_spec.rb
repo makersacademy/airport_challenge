@@ -1,21 +1,14 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
   context 'taking off and landing' do
-
-    xit 'a plane can land'
+    it 'a plane can land' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.arrival(plane)
+      expect(airport.stationed_planes).to eq plane
+    end
 
     xit 'a plane can take off'
   end
