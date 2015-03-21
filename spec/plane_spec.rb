@@ -14,7 +14,11 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  context 'when created' do
+    it 'has a flying status when created' do
+      expect(subject).not_to be_flying
+    end
+  end
 
   xit 'has a flying status when in the air'
 
