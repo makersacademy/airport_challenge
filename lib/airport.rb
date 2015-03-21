@@ -6,13 +6,13 @@ class Airport
     @climate = settings.fetch(:climate, 1)
   end
 
-  def land plane
+  def land(plane)
     check_land_safety
     planes << plane
     plane.land
   end
 
-  def take_off plane
+  def take_off(plane)
     fail "Can't find that plane!" unless planes.include? plane
     fail 'Stormy' if bad_weather?
     planes.delete(plane)
