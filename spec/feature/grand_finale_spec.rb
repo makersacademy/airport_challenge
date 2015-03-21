@@ -10,12 +10,47 @@ require 'airport'
 # Once all planes are in the air again, check that they have status "flying!"
 
 feature 'Grand Finale' do
-  let(:airport) { Airport.new }
-  # let(:planes) { 6.times Plane.new }
+
+  airport = Airport.new
+  planes = []
+  6.times { planes << Plane.new }
+
   scenario '6 planes can be created' do
-    planes = []
-    6.times { planes << Plane.new }
     expect(planes.length).to eq 6
+  end
+
+  # planes.each { |plane| airport.landing_permission plane }
+
+  scenario '6 planes can land' do
+    # airport = Airport.new
+    # puts "planes length = #{planes.length}"
+    # puts airport.weather_good
+    # puts airport.can_land
+
+    # puts "landed planes = #{airport.landed_planes.length}"
+    planes.each { |plane| airport.landing_permission plane }
+    expect(airport.landed_planes.length).to eq 6
+  end
+
+  scenario '6 landed planes have status: landed' do
+    airport.landed_planes.each do |plane|
+      expect(plane.status).to eq 'landed'
+    end
+  end
+
+  scenario 'after all 6 planes takeoff there are no more landed planes' do
+    planes.each do |plane|
+      airport.request_plane_to_takeoff plane
+    end
+    expect(airport.landed_planes.length).to eq 0
+  end
+
+  scenario 'after all 6 planes takeoff their status is \'flying\'' do
+    planes.each do |plane|
+      airport.request_plane_to_takeoff plane
+      expect(plane.status).to eq 'flying'
+    end
+    # expect(airport.landed_planes.length).to eq 0
   end
 
   # scenario 'all planes can land and all planes can take off' do
