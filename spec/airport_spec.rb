@@ -17,7 +17,7 @@ describe Airport do
       expect { subject.park :plane }.to raise_error 'Airport is Full'
     end
 
-    it 'has a variable capacity' do
+    it 'can have a variable capacity' do
       airport = Airport.new capacity: 200
       200.times { airport.park :plane }
       expect { airport.park :plane }.to raise_error 'Airport is Full'
@@ -30,6 +30,18 @@ describe Airport do
       subject.unpark :plane
       expect(subject.planes).to eq([])
     end
+
+    it 'can calculate available room after parking planes' do
+      15.times { subject.park :plane }
+      expect(subject.available_room).to eq 15
+    end
+
+    it 'can calculate available room after unparking planes' do
+      (1..15).each { |plane| subject.park plane }
+      (1..5).each { |plane| subject.unpark plane }
+      expect(subject.available_room).to eq 20
+    end
+
   end
 
   context 'traffic control' do
