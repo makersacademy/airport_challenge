@@ -1,16 +1,5 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
   context 'taking off and landing,' do
@@ -49,11 +38,9 @@ describe Airport do
 
   context 'traffic control' do
     let(:plane) { double :plane, land: 'landed', take_off: 'flying' }
-    context 'airport is full' do
-      it 'a plane cannot land' do
-        6.times { subject.land plane }
-        expect { subject.land plane }.to raise_error
-      end
+    it 'when airport is full a plane cannot land' do
+      6.times { subject.land plane }
+      expect { subject.land plane }.to raise_error
     end
 
     # Include a weather condition.
