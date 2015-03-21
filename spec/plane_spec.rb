@@ -29,9 +29,4 @@ describe Plane do
     subject.take_off
     expect(subject.status).to eq 'flying'
   end
-
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
-
 end

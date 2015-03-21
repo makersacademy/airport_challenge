@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane, touch_down: nil }
+  let(:plane) { double :plane, touch_down: nil, take_off: nil }
 
   context 'taking off and landing' do
 
@@ -10,16 +10,38 @@ describe Airport do
       subject.land plane
     end
 
+    it 'a plane can take off' do
+      allow(subject).to receive(:local_weather) { 'sunny' }
+      subject.land plane
+      subject.take_off
+    end
+
     it 'tells an airplane it has landed' do
       allow(subject).to receive(:local_weather) { 'sunny' }
       expect(plane).to receive 'touch_down'
       subject.land plane
-
     end
 
-    it 'a plane can take off' do
+    it 'can tell a specified airplane to take off' do
       allow(subject).to receive(:local_weather) { 'sunny' }
       subject.land plane
+      plane2 = double :plane2, take_off: nil, touch_down: nil
+      subject.land plane2
+      expect(plane2).to receive(:take_off)
+      subject.take_off plane2
+    end
+
+    it 'a plane is no longer in the airport once taken off' do
+      allow(subject).to receive(:local_weather) { 'sunny' }
+      subject.land plane
+      subject.take_off
+      expect { subject.take_off }.to raise_error 'airport is currently empty'
+    end
+
+    it 'sends the message take off to airplane that is ordered to take off' do
+      allow(subject).to receive(:local_weather) { 'sunny' }
+      subject.land plane
+      expect(plane).to receive(:take_off)
       subject.take_off
     end
   end
