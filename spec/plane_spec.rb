@@ -24,4 +24,12 @@ describe Plane do
       expect(subject).to be_flying
     end
   end
+
+  context 'when is flying' do
+    it 'can land' do
+      subject.take_off
+      subject.land
+      expect(subject).not_to be_flying
+    end
+  end
 end
