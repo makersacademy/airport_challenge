@@ -30,19 +30,19 @@ describe Airport do
       end
     end
     context 'take off:' do
-      let(:plane) { double :plane, land: 'flying' }
+      let(:plane) { double :plane, take_off: 'flying', land: '' }
       it 'a plane can take off' do
         expect(subject).to respond_to(:take_off)
       end
 
-      it 'sets plane status' do
+      it 'sets plane status to flying' do
         expect(subject.take_off plane).to eq 'flying'
       end
 
       it 'removes plane from plane list' do
         subject.land plane
         subject.take_off plane
-        expect(subject.planes).to not_include(plane)
+        expect(subject.planes).not_to include(plane)
       end
     end
   end
