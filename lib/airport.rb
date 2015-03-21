@@ -1,10 +1,12 @@
 require_relative 'weather'
+require_relative 'plane'
 
 class Airport
+	attr_writer :capacity
   DEFAULT_CAPACITY = 5
 
   def full
-    runway == capacity
+    plane.length >= @capacity
   end
 
   def ok
