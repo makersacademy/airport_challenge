@@ -13,6 +13,12 @@ require 'airport'
 
 describe Airport do
 
+  context 'when created' do
+    it 'has a control tower' do
+      expect(subject).to respond_to :control_tower
+    end
+  end
+
   context 'taking off and landing' do
 
     xit 'a plane can land'
