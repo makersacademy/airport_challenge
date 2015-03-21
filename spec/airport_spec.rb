@@ -25,7 +25,7 @@ describe Airport do
     it 'a plane cannot land if the airport is full' do
       airport = Airport.new
       plane = Plane.new
-      20.times { airport.arrival(plane.land) }
+      Airport::DEFAULT_CAPACITY.times { airport.arrival(plane.land) }
       expect { airport.arrival(plane.land) }. to raise_error "Airport Full"
     end
 
@@ -33,6 +33,14 @@ describe Airport do
       random_capacity = rand(1..100)
       airport = Airport.new(random_capacity)
       expect(airport.capacity).to eq random_capacity
+    end
+
+    it 'a plane cannot take off if it is not present' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.arrival(plane.land)
+      airport.departure(plane.take_off)
+      expect { airport.departure(plane.take_off) }.to eq
     end
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

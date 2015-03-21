@@ -13,6 +13,7 @@ class Airport
   end
 
   def departure(plane)
+    fail "No Planes for departure" if empty?
     stationed_planes.delete(plane)
   end
 
@@ -20,5 +21,9 @@ class Airport
 
   def full?
     stationed_planes.length >= capacity
+  end
+
+  def empty?
+    stationed_planes.empty?
   end
 end
