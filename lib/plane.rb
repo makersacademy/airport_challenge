@@ -8,6 +8,9 @@ class Plane
   end
 
   def take_off!
+    # use fail instead of raise to signal exception. In the tutorial with
+    # Stephen and Mihail it seems that fail worked. Why?
+    fail 'This plane is already flying' if @status == 'flying'
     @status = 'flying'
   end
 
