@@ -1,9 +1,5 @@
-class Weather
+module Weather
   def weather
-    @weather = [:sunny, :stormy]
-  end
-
-  def ok
-    weather.sample
+    ['sunny' 'sunny' 'stormy'].sample
   end
 end

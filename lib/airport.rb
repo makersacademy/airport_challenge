@@ -2,10 +2,16 @@ require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 5
+
   def full
+    runway == capacity
   end
 
   def ok
-    weather.sample
+    true
+  end
+
+  def runway
+    @runway ||= []
   end
 end
