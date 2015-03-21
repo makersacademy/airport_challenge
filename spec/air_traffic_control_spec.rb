@@ -2,7 +2,10 @@ require 'air_traffic_control'
 describe AirTrafficControl do
   it { is_expected.to respond_to :land_plane }
   it 'land_plane calls the land_plane method on an airport' do
-    airport = double('Airport', land_plane: 'called')
+    airport = double('Airport',
+                     num_planes: 10,
+                     capcity: 20,
+                     land_plane: 'called')
     subject.airport = airport
     expect(subject.land_plane).to eq 'called'
   end
