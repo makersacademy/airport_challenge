@@ -39,9 +39,15 @@ describe AirTrafficControl do
       expect(subject.weather).to eq false
     end
     it { is_expected.to respond_to :wait_for_sun }
+    it 'wait for sun accepts an instance of weather' do
+      expect(subject.wait_for_sun :weather).to eq :weather
+    end
+    # if weather method returns false
+    # call the wait for sun method
+    # until weather returns true
     xit 'it can change the airports weather if stormy' do
-      airport = double('Airport', weather: false)
-      subject.airport = airport
+      # which would be call a new instance of weather
+      # and pass that to the airport
     end
   end
   context 'taking off' do

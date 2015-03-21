@@ -14,6 +14,6 @@ class AirTrafficControl
     @airport.weather
   end
 
-  def wait_for_sun
+  def wait_for_sun _weather
   end
 end
