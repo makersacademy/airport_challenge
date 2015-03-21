@@ -14,6 +14,7 @@ feature 'Grand Finale' do
   airport = Airport.new
   planes = []
   6.times { planes << Plane.new }
+  plane_7 = Plane.new
 
   scenario '6 planes can be created' do
     expect(planes.length).to eq 6
@@ -26,10 +27,20 @@ feature 'Grand Finale' do
     # puts "planes length = #{planes.length}"
     # puts airport.weather_good
     # puts airport.can_land
-
     # puts "landed planes = #{airport.landed_planes.length}"
     planes.each { |plane| airport.landing_permission plane }
     expect(airport.landed_planes.length).to eq 6
+  end
+
+  scenario 'plane is denied landing permission when 6 planes are landed at the airport' do
+    # puts "planes length"
+    # puts planes.length
+    # puts "plane_7"
+    # puts plane_7
+    planes.each { |plane| airport.landing_permission plane }
+    # puts airport.landing_permission plane_7
+    expect(airport.landing_permission plane_7).to eq 'permission denied'
+    # puts airport.landed_planes.length
   end
 
   scenario '6 landed planes have status: landed' do

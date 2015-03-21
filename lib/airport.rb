@@ -1,8 +1,8 @@
 require_relative 'plane'
 
 class Airport
-  def capacity
-    6
+  def capacity capacity_value = 6
+    capacity_value
   end
   # attr_reader :capacity
   # alias_method :capacity=, :capacity
