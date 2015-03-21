@@ -32,10 +32,10 @@ feature 'Grand Finale' do
     end
 
     feature 'another plane tries to land' do
-      scenario 'and is rejected is rejected' do
+      scenario 'and is rejected' do
         expect { airport.land Plane.new }.to raise_error
       end
-      scenario ', plane continues flying' do
+      scenario 'but is rejected and continues flying' do
         rejected_plane = Plane.new
         expect { airport.land Plane.new }.to raise_error
         expect(rejected_plane.status).to eq 'flying'
