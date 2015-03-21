@@ -8,7 +8,8 @@ describe Airport do
       weather = double('Weather', weather: 'sunny')
       subject.weather(weather)
       planes = subject.num_planes
-      subject.land_plane :plane
+      plane = double('Plane', 'flying=' => true)
+      subject.land_plane plane
       expect(subject.num_planes).to eq(planes + 1)
     end
     it { is_expected.to respond_to :takeoff_plane }
@@ -18,7 +19,8 @@ describe Airport do
     it 'can takeoff a plane' do
       weather = double('Weather', weather: 'sunny')
       subject.weather(weather)
-      subject.land_plane :plane
+      plane = double('Plane', 'flying=' => true)
+      subject.land_plane plane
       plane = subject.planes.last
       expect(subject.takeoff_plane).to eq(plane)
     end
@@ -38,11 +40,12 @@ describe Airport do
     it 'should have a capcity of 20' do
       expect(subject.capcity).to eq 20
     end
-    it 'raise and error when full' do
+    it 'raise an error when full' do
       weather = double('Weather', weather: 'sunny')
       subject.weather(weather)
-      20.times { subject.land_plane :plane }
-      expect { subject.land_plane :plane }.to raise_error 'cannot land'
+      plane = double('Plane', 'flying=' => true)
+      20.times { subject.land_plane plane }
+      expect { subject.land_plane plane }.to raise_error 'cannot land'
     end
     context 'weather conditions' do
       it { is_expected.to respond_to :weather }
@@ -53,7 +56,8 @@ describe Airport do
       it 'a plane cannot take off when there is a storm brewing' do
         weather = double('Weather', weather: 'sunny')
         subject.weather(weather)
-        subject.land_plane :plane
+        plane = double('Plane', 'flying=' => true)
+        subject.land_plane plane
         weather = double('Weather', weather: 'stormy')
         subject.weather(weather)
         expect { subject.takeoff_plane }.to raise_error 'cannot takeoff'

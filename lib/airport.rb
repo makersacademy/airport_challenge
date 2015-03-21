@@ -12,7 +12,12 @@ class Airport
   end
 
   def land_plane p
-    @planes.length >= CAPACITY || !@sunny ? (fail 'cannot land') : @planes << p
+    if @planes.length >= CAPACITY || !@sunny
+      (fail 'cannot land')
+    else
+      p.flying = false
+      @planes << p
+    end
   end
 
   def atc
