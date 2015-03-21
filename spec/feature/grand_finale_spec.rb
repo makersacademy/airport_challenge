@@ -21,7 +21,7 @@ feature 'Grand Finale' do
   end
 
   scenario 'plane rejected due to bad weather' do
-    allow(airport).to receive(:weather_bad?).and_return(true)
+    allow(airport).to receive(:bad_weather?).and_return(true)
     expect { airport.land Plane.new }.to raise_error # Be more specific
   end
 

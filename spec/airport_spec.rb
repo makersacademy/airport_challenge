@@ -43,15 +43,6 @@ describe Airport do
       expect { subject.land plane }.to raise_error
     end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
     context ', weather conditions, ' do
       it 'a plane cannot take off when there is a storm brewing' do
         allow(subject).to receive(:bad_weather?).and_return(true)
