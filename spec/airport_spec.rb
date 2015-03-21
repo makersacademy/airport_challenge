@@ -40,7 +40,7 @@ describe Airport do
       plane = Plane.new
       airport.arrival(plane.land)
       airport.departure(plane.take_off)
-      expect { airport.departure(plane.take_off) }.to eq
+      expect { airport.departure(plane.take_off) }.to raise_error "No plane"
     end
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

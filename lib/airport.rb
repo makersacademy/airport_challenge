@@ -13,7 +13,7 @@ class Airport
   end
 
   def departure(plane)
-    fail "No Planes for departure" if empty?
+    fail "No plane" if empty?
     stationed_planes.delete(plane)
   end
 
