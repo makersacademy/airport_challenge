@@ -11,6 +11,17 @@ describe Airport do
       subject.park :plane
       expect(subject.planes).to eq([:plane])
     end
+
+    it 'has a standard capacity of 30' do
+      30.times { subject.park :plane }
+      expect { subject.park :plane }.to raise_error 'Airport is Full'
+    end
+
+    it 'has a variable capacity' do
+      airport = Airport.new capacity: 200
+      200.times { airport.park :plane }
+      expect { airport.park :plane }.to raise_error 'Airport is Full'
+    end
   end
 
   context 'when it has plane stored inside' do
@@ -19,13 +30,6 @@ describe Airport do
       subject.unpark :plane
       expect(subject.planes).to eq([])
     end
-  end
-
-  context 'taking off and landing' do
-
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
   end
 
   context 'traffic control' do
