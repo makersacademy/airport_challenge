@@ -1,5 +1,10 @@
+require 'weather'
+
 class Plane
+  include Weather
+
   def land
+    fail 'Weather Stormy' if stormy?
     true
   end
 
