@@ -14,9 +14,10 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
-
-  xit 'has a flying status when in the air'
+  it 'has an airborne status when created' do
+    plane = Plane.new
+    expect(plane).to respond_to :airborne?
+  end
 
   it 'can take off' do
     plane = Plane.new
@@ -27,7 +28,5 @@ describe Plane do
     plane = Plane.new
     expect(plane.land).not_to be_airborne
   end
-
-  xit 'changes its status to flying after taking off'
 
 end

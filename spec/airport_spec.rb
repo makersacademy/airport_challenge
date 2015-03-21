@@ -22,8 +22,18 @@ describe Airport do
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      airport = Airport.new
+      plane = Plane.new
+      20.times { airport.arrival(plane.land) }
+      expect { airport.arrival(plane.land) }. to raise_error "Airport Full"
+    end
 
+    it 'can set a custom capacity' do
+      random_capacity = rand(1..100)
+      airport = Airport.new(random_capacity)
+      expect(airport.capacity).to eq random_capacity
+    end
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,
