@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+[![Build Status](https://travis-ci.org/RBGeomaticsRob/airport_challenge.svg?branch=master)](https://travis-ci.org/RBGeomaticsRob/airport_challenge)
+
 A coding challenge to create, in a test-driven style, a simple airport management system based on the user stories below:
 
 ```
