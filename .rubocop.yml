@@ -4,3 +4,7 @@ Documentation:
   Enabled: false
 Style/MethodDefParentheses:
   Enabled: false
+StringLiterals:
+  Enabled: false
+StringLiteralsInInterpolation:
+  Enabled: false
