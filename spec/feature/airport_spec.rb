@@ -4,7 +4,7 @@ require 'capybara/rspec'
 require 'airport'
 require 'plane'
 
-feature 'airport can land and take off planes' do
+feature 'Features Extracted From User Stories' do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
   scenario 'airplane can land and take off' do
@@ -28,12 +28,15 @@ feature 'airport can land and take off planes' do
       allow(airport).to receive(:local_weather) { 'stormy' }
       expect { airport.take_off }.to raise_error 'not now, storms brewing!'
     end
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
     it 'a plane cannot land in the middle of a storm' do
       allow(airport).to receive(:local_weather) { 'stormy' }
       expect { airport.land plane }.to raise_error 'not now, storms brewing!'
+    end
+    scenario 'planes status changes upon landing' do
+      original_status = plane.status
+      allow(airport).to receive(:local_weather) { 'sunny' }
+      airport.land plane
+      expect(plane.status).not_to eq original_status
     end
   end
 end

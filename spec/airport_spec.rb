@@ -1,13 +1,20 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane }
+  let(:plane) { double :plane, touch_down: nil }
 
   context 'taking off and landing' do
 
     it 'a plane can land' do
       allow(subject).to receive(:local_weather) { 'sunny' }
       subject.land plane
+    end
+
+    it 'tells an airplane it has landed' do
+      allow(subject).to receive(:local_weather) { 'sunny' }
+      expect(plane).to receive 'touch_down'
+      subject.land plane
+
     end
 
     it 'a plane can take off' do
@@ -21,13 +28,13 @@ describe Airport do
 
     it 'a plane cannot land if the airport is full' do
       allow(subject).to receive(:local_weather) { 'sunny' }
-      6.times { subject.land(double :plane) }
+      6.times { subject.land(double :plane, touch_down: nil) }
       expect { subject.land plane }.to raise_error 'airport is full'
     end
 
     it 'a plane can land if airport is not full' do
       allow(subject).to receive(:local_weather) { 'sunny' }
-      4.times { subject.land(double :plane) }
+      4.times { subject.land(double :plane, touch_down: nil) }
       expect { subject.land plane }.not_to raise_error
     end
 

@@ -7,6 +7,7 @@ class Airport
     fail 'not now, storms brewing!' if local_weather == 'stormy'
     fail 'airport is full' if @planes.length >= 6
     @planes << plane
+    plane.touch_down
   end
 
   def take_off
