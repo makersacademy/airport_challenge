@@ -1,3 +1,8 @@
+This is my first attempt at TDD with the Airport challenge.
+I will update this README file at the end of it..
+
+
+
 Airport Challenge
 =================
 
