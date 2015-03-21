@@ -1,7 +1,14 @@
 class Airport
   attr_accessor :stationed_planes
-  alias_method :arrival, :stationed_planes=
-  def initialize(planes = nil)
-    @stationed_planes = planes
+  def initialize
+    @stationed_planes = []
+  end
+
+  def arrival(plane)
+    stationed_planes << plane
+  end
+
+  def departure(plane)
+    stationed_planes.delete(plane)
   end
 end

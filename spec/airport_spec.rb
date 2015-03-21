@@ -6,11 +6,18 @@ describe Airport do
     it 'a plane can land' do
       airport = Airport.new
       plane = Plane.new
-      airport.arrival(plane)
-      expect(airport.stationed_planes).to eq plane
+      airport.arrival(plane.land)
+      expect(airport.stationed_planes.last).to eq plane
     end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.arrival(plane)
+      airport.departure(plane.take_off)
+      expect(airport.stationed_planes.last).to eq nil
+    end
+
   end
 
   context 'traffic control' do

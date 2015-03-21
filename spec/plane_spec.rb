@@ -18,7 +18,15 @@ describe Plane do
 
   xit 'has a flying status when in the air'
 
-  xit 'can take off'
+  it 'can take off' do
+    plane = Plane.new
+    expect(plane.take_off).to be_airborne
+  end
+
+  it 'can land' do
+    plane = Plane.new
+    expect(plane.land).not_to be_airborne
+  end
 
   xit 'changes its status to flying after taking off'
 
