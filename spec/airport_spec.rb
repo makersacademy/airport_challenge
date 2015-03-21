@@ -12,10 +12,8 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-  context 'can tell a plane to take off' do
-    # airport = Airport.new
-    # plane = Plane.new
-    it { is_expected.to respond_to :request_plane_to_takeoff }
+  context 'can order a plane to take off' do
+    it { is_expected.to respond_to :order_plane_to_takeoff }
   end
 
   context 'can respond to a plane wanting to land' do
@@ -39,14 +37,18 @@ describe Airport do
   end
 
   context 'weather conditions' do
-    it 'a plane cannot land when there is a storm brewing' do
+    it 'a plane cannot land when it is stormy' do
       Airport.any_instance.stub(:weather).and_return(:'stormy')
       airport = Airport.new
-      # puts airport.weather
-      # puts airport.weather_good
       plane = Plane.new
-      # puts airport.landing_permission plane
       expect(airport.landing_permission plane).to eq 'permission denied'
+    end
+
+    it 'a plane cannot takeoff when it is stormy' do
+      Airport.any_instance.stub(:weather).and_return(:'stormy')
+      airport = Airport.new
+      plane = Plane.new
+      expect(airport.order_plane_to_takeoff plane).to eq 'permission denied'
     end
   end
 end

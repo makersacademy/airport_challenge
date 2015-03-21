@@ -15,7 +15,7 @@ class Airport
     @airborne_planes ||= []
   end
 
-  def weather set_weather = 'sunny'
+  def weather set_weather = 'sunny' # ['sunny', 'stormy'].shuffle
     set_weather
   end
 
@@ -36,9 +36,13 @@ class Airport
     end
   end
 
-  def request_plane_to_takeoff plane
-    plane.takeoff
-    airborne_planes << plane
-    landed_planes.delete(plane)
+  def order_plane_to_takeoff plane
+    if weather_good
+      plane.takeoff
+      airborne_planes << plane
+      landed_planes.delete(plane)
+    else
+      'permission denied'
+    end
   end
 end

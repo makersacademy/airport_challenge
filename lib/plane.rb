@@ -4,12 +4,20 @@ class Plane
     @status = 'flying'
   end
 
-  def land
-    @status = 'landed'
+  def request_takeoff airport
+    airport.order_plane_to_takeoff
   end
 
   def takeoff
     @status = 'flying'
+  end
+
+  def request_land # airport
+    airport.landing_permission
+  end
+
+  def land # airport
+    @status = 'landed' # if airport.landing_permission != 'permission denied'
   end
 
   def location

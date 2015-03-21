@@ -23,8 +23,16 @@ describe Plane do
     expect(plane.location).to eq 'air'
   end
 
+  it 'can request to takeoff' do
+    expect(plane).to respond_to :request_takeoff
+  end
+
   it 'responds to takeoff' do
     expect(plane).to respond_to :takeoff
+  end
+
+  it 'can request to land' do
+    expect(plane).to respond_to :request_land
   end
 
   it 'responds to land' do
