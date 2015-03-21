@@ -18,3 +18,9 @@ end
 # airport = Airport.new
 # weather = Weather.new
 # airport.weather(weather.weather)
+# plane = Plane.new
+# ATC = AirTrafficControl.new
+# push 6 planes to AirTrafficControl
+# push an airport to AirTrafficControl
+# if the weather in the airport is stormy
+# reroute the planes to a new instance of airport

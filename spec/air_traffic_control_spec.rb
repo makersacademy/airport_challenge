@@ -16,19 +16,22 @@ describe AirTrafficControl do
     expect(subject.land).to eq 'called'
   end
   it 'can only land a plane if the plane is in the air' do
+    plane = double('Plane', flying: false, land: 'cannot land')
+    subject.plane = plane
+    expect { subject.land }.to raise_error 'cannot land'
   end
-  it 'can only land a plane if there is space at the airport' do
+  xit 'can only land a plane if there is space at the airport' do
   end
-  it 'redirects planes to a new airport if its stormy' do
+  xit 'redirects planes to a new airport if its stormy' do
   end
   context 'taking off' do
-    it 'has a taking off method' do
+    xit 'has a taking off method' do
     end
-    it 'can call the take off method on a plane' do
+    xit 'can call the take off method on a plane' do
     end
-    it 'can call the take off method on an airport' do
+    xit 'can call the take off method on an airport' do
     end
-    it 'doesnt let a plane take off if its stormy' do
+    xit 'doesnt let a plane take off if its stormy' do
     end
   end
 end
