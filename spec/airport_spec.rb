@@ -44,6 +44,7 @@ describe Airport do
     end
 
     it 'a plane cannot take off when there is a storm brewing' do
+      allow(subject).to receive(:local_weather) { 'sunny' }
       subject.land plane
       allow(subject).to receive(:local_weather) { 'stormy' }
       expect { subject.take_off }.to raise_error 'not now, storms brewing!'
