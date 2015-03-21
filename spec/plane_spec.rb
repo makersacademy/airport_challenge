@@ -23,7 +23,10 @@ describe Plane do
     expect(plane).to be_flying
   end
 
-  xit 'can take off'
+  it 'can take off' do
+    plane.landed!
+    expect(plane).not_to be_flying
+  end
 
   xit 'changes its status to flying after taking off'
 
