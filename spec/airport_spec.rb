@@ -16,7 +16,7 @@ describe Airport do
   context 'taking off and landing,' do
 
     it 'a plane can land' do
-      subject.land :plane
+      expect(subject.land double :plane, land: 'landed').to eq 'landed'
       expect(subject.planes).to include(:plane)
     end
 
