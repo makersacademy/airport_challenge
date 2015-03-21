@@ -1,5 +1,9 @@
 class Weather
-  def stormy
-    [false, true, true].random
+  def weather
+    @weather = [:sunny, :stormy]
+  end
+
+  def ok
+    weather.sample
   end
 end
