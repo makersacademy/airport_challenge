@@ -1,7 +1,7 @@
 require_relative 'control_tower'
 
 class Airport
-  attr_reader :control_tower, :planes, :available_room
+  attr_reader :control_tower, :planes, :available_room, :capacity
 
   DEFAULT_CAPACITY = 30
   def initialize(options = {})
@@ -13,7 +13,6 @@ class Airport
 
   def park plane
     fail 'Plane is in the airport' if planes.include?(plane)
-    fail 'Airport is Full' if full?
     @available_room -= 1
     planes << plane
   end
@@ -24,13 +23,13 @@ class Airport
     planes.delete(plane)
   end
 
+  def full?
+    planes_count >= @capacity
+  end
+
   private
 
   def planes_count
     planes.length
-  end
-
-  def full?
-    planes_count >= @capacity
   end
 end

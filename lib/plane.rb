@@ -6,11 +6,13 @@ class Plane
     @flying = false
   end
 
-  def take_off
+  def take_off_from airport
+    airport.control_tower.take_off_request self, airport
     @flying = true
   end
 
-  def land
+  def land_to airport
+    airport.control_tower.land_request self, airport
     @flying = false
   end
 end

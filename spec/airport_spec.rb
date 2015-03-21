@@ -13,14 +13,16 @@ describe Airport do
     end
 
     it 'has a standard capacity of 30' do
-      (1..30).each { |plane| subject.park plane }
-      expect { subject.park :plane }.to raise_error 'Airport is Full'
+      expect(subject.capacity).to eq 30
     end
 
     it 'can have a variable capacity' do
       airport = Airport.new capacity: 200
-      (1..200).each { |plane| airport.park plane }
-      expect { airport.park :plane }.to raise_error 'Airport is Full'
+      expect(airport.capacity).to eq 200
+    end
+
+    it 'cannot unpark a plane that is not in the airport' do
+      expect { subject.unpark :plane }.to raise_error
     end
   end
 
@@ -33,7 +35,7 @@ describe Airport do
 
     it 'cannot park the same plane twice' do
       subject.park :plane
-      expect { subject.park :plane }.to raise_error 'Plane is in the airport'
+      expect { subject.park :plane }.to raise_error
     end
 
     it 'can calculate available room after parking planes' do
@@ -45,27 +47,6 @@ describe Airport do
       (1..15).each { |plane| subject.park plane }
       (1..5).each { |plane| subject.unpark plane }
       expect(subject.available_room).to eq 20
-    end
-
-  end
-
-  context 'traffic control' do
-
-    xit 'a plane cannot land if the airport is full'
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-
-      xit 'a plane cannot land in the middle of a storm'
     end
   end
 end
