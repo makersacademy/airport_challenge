@@ -1,8 +1,9 @@
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :climate, :capacity
   def initialize(settings = {})
     @planes = []
     @capacity = settings.fetch(:capacity, 6)
+    @climate = settings.fetch(:climate, 1)
   end
 
   def land plane
@@ -24,7 +25,7 @@ class Airport
   end
 
   def bad_weather?
-    true if rand(5) > 4
+    true if rand(4 + climate) > 4
   end
 
   def take_off plane

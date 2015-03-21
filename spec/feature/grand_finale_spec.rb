@@ -6,16 +6,12 @@ feature 'Grand Finale' do
     6.times { planes << Plane.new }
     planes
   end
-  let(:airport) { Airport.new(capacity: 7, climate: 2) }
+  let(:airport) { Airport.new(capacity: 7) }
 
   scenario 'all planes land' do
+    allow(airport).to receive(:bad_weather?).and_return(false)
     planes.each do |plane|
-      begin
-        airport.land plane
-        # rescue BadWeatherError => e
-        #   puts e.message
-        #   retry
-      end
+      airport.land plane
     end
     expect(planes).to be_all { |plane| plane.status == 'landed' }
   end
@@ -28,22 +24,18 @@ feature 'Grand Finale' do
   feature 'airport is full' do
     let(:airport) do
       airport = Airport.new(climate: 2)
+      allow(airport).to receive(:bad_weather?).and_return(false)
       planes.each do |plane|
-        begin
-          airport.land plane
-          # rescue BadWeatherError => e
-          #   puts e.message
-          #   retry
-        end
+        airport.land plane
       end
       airport
     end
 
-    feature 'airport full as default capacity is reached' do
-      scenario 'another plane is rejected' do
+    feature 'another plane tries to land' do
+      scenario 'and is rejected is rejected' do
         expect { airport.land Plane.new }.to raise_error
       end
-      scenario 'plane continues flying' do
+      scenario ', plane continues flying' do
         rejected_plane = Plane.new
         expect { airport.land Plane.new }.to raise_error
         expect(rejected_plane.status).to eq 'flying'
@@ -52,12 +44,7 @@ feature 'Grand Finale' do
 
     scenario 'all planes can take off' do
       planes.each do |plane|
-        begin
-          airport.take_off plane
-          # rescue BadWeatherError => e
-          #   puts e.message
-          #   retry
-        end
+        airport.take_off plane
       end
       expect(planes).to be_all { |plane| plane.status == 'flying' }
     end
