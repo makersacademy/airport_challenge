@@ -1,29 +1,27 @@
 require 'airport'
 
 describe Airport do
+
   let(:plane) { double :plane, touch_down: nil, take_off: nil }
 
-  context 'taking off and landing' do
+  before { allow(subject).to receive(:local_weather).and_return('sunny') }
 
-    it 'a plane can land' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
+  context 'take off & landing' do
+    it 'plane can land' do
       subject.land plane
     end
 
-    it 'a plane can take off' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
+    it 'plane can take off' do
       subject.land plane
       subject.take_off
     end
 
-    it 'tells an airplane it has landed' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
+    it 'tells plane it has landed' do
       expect(plane).to receive 'touch_down'
       subject.land plane
     end
 
-    it 'can tell a specified airplane to take off' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
+    it 'tells a specific plane to take off' do
       subject.land plane
       plane2 = double :plane2, take_off: nil, touch_down: nil
       subject.land plane2
@@ -31,51 +29,49 @@ describe Airport do
       subject.take_off plane2
     end
 
-    it 'a plane is no longer in the airport once taken off' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
+    it 'tells first plane take off if none specified' do
+      subject.land plane
+      plane2 = double :plane2, take_off: nil, touch_down: nil
+      subject.land plane2
+      expect(plane).to receive(:take_off)
+      subject.take_off
+    end
+
+    it 'plane no longer in airport once taken off' do
       subject.land plane
       subject.take_off
       expect { subject.take_off }.to raise_error 'airport is currently empty'
-    end
-
-    it 'sends the message take off to airplane that is ordered to take off' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
-      subject.land plane
-      expect(plane).to receive(:take_off)
-      subject.take_off
     end
   end
 
   context 'traffic control' do
 
-    it 'a plane cannot land if the airport is full' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
-      6.times { subject.land(double :plane, touch_down: nil) }
+    it 'plane cannot land if full' do
+      Airport::HANGAR_SIZE.times { subject.land double :plane, touch_down: nil }
       expect { subject.land plane }.to raise_error 'airport is full'
     end
 
-    it 'a plane can land if airport is not full' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
-      4.times { subject.land(double :plane, touch_down: nil) }
+    it 'plane can land if not full' do
+      (Airport::HANGAR_SIZE - 1).times do
+        subject.land(double :plane, touch_down: nil)
+      end
       expect { subject.land plane }.not_to raise_error
     end
 
-    it 'can not issue take off requests if no airplanes' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
+    it 'cannot issue take off requests if empty' do
       expect { subject.take_off }.to raise_error 'airport is currently empty'
     end
   end
 
   context 'weather conditions' do
 
-    it 'a plane cannot take off when there is a storm brewing' do
-      allow(subject).to receive(:local_weather) { 'sunny' }
+    it 'cannot take off if storm' do
       subject.land plane
       allow(subject).to receive(:local_weather) { 'stormy' }
       expect { subject.take_off }.to raise_error 'not now, storms brewing!'
     end
 
-    it 'a plane cannot land in the middle of a storm' do
+    it 'cannot land if storm' do
       allow(subject).to receive(:local_weather) { 'stormy' }
       expect { subject.land plane }.to raise_error 'not now, storms brewing!'
     end
