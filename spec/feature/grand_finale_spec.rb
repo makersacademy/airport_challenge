@@ -25,6 +25,11 @@ feature 'Grand Finale' do
     expect(airport.landed_planes.length).to eq 6
   end
 
+  # scenario 'plane is denied landing permission when airport is full' do
+  #   planes.each { |plane| airport.landing_permission plane }
+  #   it { airport.landing_permission plane_7 }.to raise_err 'permission denied'
+  # end
+
   scenario 'plane is denied landing permission when airport is full' do
     planes.each { |plane| airport.landing_permission plane }
     expect(airport.landing_permission plane_7).to eq 'permission denied'

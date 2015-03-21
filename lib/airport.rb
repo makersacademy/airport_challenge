@@ -20,12 +20,18 @@ class Airport
   end
 
   def weather_good
-    weather == 'sunny'
+    weather == 'sunny' # ['sunny']
   end
 
   def can_land
     landed_planes.length < capacity
   end
+
+  # def landing_permission plane
+  #   fail 'permission denied' if !weather_good || !can_land
+  #     plane.land
+  #     landed_planes << plane
+  # end
 
   def landing_permission plane
     if weather_good && can_land
