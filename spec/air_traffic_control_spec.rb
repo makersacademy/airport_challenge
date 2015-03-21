@@ -15,6 +15,22 @@ describe AirTrafficControl do
     subject.plane = plane
     expect(subject.land).to eq 'called'
   end
+  it 'can only land a plane if the plane is in the air' do
+  end
+  it 'can only land a plane if there is space at the airport' do
+  end
+  it 'redirects planes to a new airport if its stormy' do
+  end
+  context 'taking off' do
+    it 'has a taking off method' do
+    end
+    it 'can call the take off method on a plane' do
+    end
+    it 'can call the take off method on an airport' do
+    end
+    it 'doesnt let a plane take off if its stormy' do
+    end
+  end
 end
 
 # When we land a plane at the airport, the plane in question should
