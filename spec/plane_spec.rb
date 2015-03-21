@@ -1,7 +1,9 @@
 require 'plane'
 
 describe Plane do
-
+  before do
+    allow($stdout).to receive(:puts)
+  end
   context 'when created' do
     it 'has a flying status when created' do
       expect(subject).not_to be_flying

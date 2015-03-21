@@ -1,7 +1,9 @@
 require 'control_tower'
 
 describe ControlTower do
-
+  before do
+    allow($stdout).to receive(:puts)
+  end
   context 'basic operations' do
     before do
       allow(subject).to receive(:stormy?).and_return(false)

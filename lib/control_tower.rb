@@ -1,12 +1,14 @@
 class ControlTower
   def land_request plane, airport
-    fail 'Airport is Full' if airport.full?
-    fail 'Impossible to land because of a storm' if stormy?
+    fail 'CONTROL TOWER: Impossible to land, airport is Full' if airport.full?
+    fail 'CONTROL TOWER: Impossible to land because of a storm' if stormy?
+    puts 'CONTROL TOWER: Control Tower to Plane, cleared for landing'
     airport.park(plane)
   end
 
   def take_off_request plane, airport
-    fail 'Impossible to take off because of a storm' if stormy?
+    fail 'CONTROL TOWER: Impossible to take off because of a storm' if stormy?
+    puts 'CONTROL TOWER: Control Tower to Plane, cleared takeoff'
     airport.unpark(plane)
   end
 
