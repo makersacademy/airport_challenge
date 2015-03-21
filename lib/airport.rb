@@ -6,5 +6,6 @@ class Airport
 
   def land plane
     planes << plane
+    plane.land
   end
 end

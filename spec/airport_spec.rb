@@ -14,12 +14,15 @@ require 'airport'
 describe Airport do
 
   context 'taking off and landing,' do
-
-    it 'a plane can land' do
-      expect(subject.land double :plane, land: 'landed').to eq 'landed'
-      expect(subject.planes).to include(:plane)
+    let(:plane) { double :plane, land: 'landed' }
+    it 'adds plane to plane list on landing' do
+      subject.land plane
+      expect(subject.planes).to include(plane)
     end
 
+    it 'sets plane status to landed on landing' do
+      expect(subject.land plane).to eq 'landed'
+    end
     xit 'a plane can take off'
   end
 
