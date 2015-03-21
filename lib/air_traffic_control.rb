@@ -11,5 +11,6 @@ class AirTrafficControl
   end
 
   def weather
+    @airport.weather
   end
 end
