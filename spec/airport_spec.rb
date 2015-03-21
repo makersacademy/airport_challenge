@@ -22,6 +22,14 @@ describe Airport do
       plane = subject.planes.last
       expect(subject.takeoff_plane).to eq(plane)
     end
+    it 'changes a plane to not flying when a plane lands' do
+      # expect the plane in planes to not be flying
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
+      plane = double('Plane', flying: true)
+      subject.land_plane plane
+      expect(subject.planes.last.flying).to be false
+    end
 
   end
 

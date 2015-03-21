@@ -39,8 +39,17 @@ describe AirTrafficControl do
       expect(subject.weather).to eq false
     end
     it { is_expected.to respond_to :wait_for_sun }
-    it 'wait for sun accepts an instance of weather' do
+    # how do I test a method that calls a new instance
+    # of a class inside a method?
+    xit 'wait for sun accepts an instance of weather' do
       expect(subject.wait_for_sun :weather).to eq :weather
+    end
+    xit 'wait for sun changes weather' do
+      airport = double('Airport', weather: false)
+      subject.airport = airport
+      weather = double('Weather', weather: true)
+      subject.wait_for_sun weather
+      expect(subject.weather).to eq true
     end
     # if weather method returns false
     # call the wait for sun method
