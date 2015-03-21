@@ -9,11 +9,11 @@ require 'capybara/rspec'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
-feature 'for our airport to be safe' do
+feature 'for our airport to be operational' do
   scenario 'planes can land' do
-    airport = Airport.new
-    airport.agree_land Plane.new
-    plane = airport.agree_take_off
+    airport = Airport.new # an airport must exist
+    airport.agree_take_off Plane.new 
+    plane = airport.agree_land # a plane must exist and it must be flying
     expect(plane).not_to be_landed
   end
   # scenario 'airport cannot allow a plane to land if landed' do

@@ -13,12 +13,9 @@ require 'airport'
 
 describe Airport do
 
-  context 'taking off and landing' do
+  it { is_expected.to respond_to :agree_take_off }
 
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
-  end
+  xit 'a plane can take off'
 
   context 'traffic control' do
 
