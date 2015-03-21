@@ -68,10 +68,6 @@ describe Airport do
 
   context 'weather conditions' do
 
-    it 'can check its local weather conditions' do
-      expect(subject.local_weather).to eq('stormy').or eq 'sunny'
-    end
-
     it 'a plane cannot take off when there is a storm brewing' do
       allow(subject).to receive(:local_weather) { 'sunny' }
       subject.land plane
