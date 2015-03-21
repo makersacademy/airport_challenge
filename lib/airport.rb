@@ -15,7 +15,7 @@ class Airport
     if @planes.length >= CAPACITY || !@sunny
       (fail 'cannot land')
     else
-      p.flying = false
+      p.land
       @planes << p
     end
   end
