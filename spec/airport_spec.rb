@@ -52,9 +52,13 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      it 'a plane cannot take off when there is a storm brewing'
+      #   plane = Plane.new
+      # airport = double(:airport, weather: :stormy, departure: plane.take_off)
+      #   expect { airport }.to raise_error "Cancelled Too Stormy"
+      # end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm'
     end
   end
 end
