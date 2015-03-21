@@ -18,6 +18,11 @@ describe Plane do
     expect(subject.status).to eq 'flying'
   end
 
+  it 'has a landed status when landed' do
+    subject.land
+    expect(subject.status).to eq 'landed'
+  end
+
   xit 'has a flying status when in the air'
 
   xit 'can take off'
