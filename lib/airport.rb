@@ -8,4 +8,8 @@ class Airport
     planes << plane
     plane.land
   end
+
+  def take_off plane
+    plane.take_off
+  end
 end
