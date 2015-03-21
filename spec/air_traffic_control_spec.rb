@@ -33,7 +33,7 @@ describe AirTrafficControl do
   end
   context 'weather' do
     it { is_expected.to respond_to :weather }
-    xit 'knows the airports weather' do
+    it 'knows the airports weather' do
       airport = double('Airport', weather: false)
       subject.airport = airport
       expect(subject.weather).to eq false
