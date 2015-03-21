@@ -1,6 +1,7 @@
 class AirTrafficControl
   attr_accessor :airport, :plane
   def land_plane
+    fail 'airport at capcity' unless @airport.num_planes < @airport.capcity
     @airport.land_plane
   end
 
