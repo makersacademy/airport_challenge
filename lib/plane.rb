@@ -14,7 +14,8 @@ class Plane
     @status = 'flying'
   end
 
-  def landed!
+  def land!
+    fail 'This plane has already landed' if @status == 'landed'
     @status = 'landed'
   end
 end

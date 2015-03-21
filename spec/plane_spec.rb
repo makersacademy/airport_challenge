@@ -20,24 +20,29 @@ describe Plane do
 
   it 'has a flying status when in the air' do
     # This test is redundant with the 4th one. Tempted to delete.
-    plane.landed!
+    plane.land!
     plane.take_off!
     expect(plane.status).to eq 'flying'
   end
 
   it 'can take off' do
     # meaning that that once landed it has a landed status. It can take off.
-    plane.landed!
+    plane.land!
     expect(plane.status).to eq 'landed'
   end
 
   it 'changes its status to flying after taking off' do
-    plane.landed!
+    plane.land!
     plane.take_off!
     expect(plane.status).to eq 'flying'
   end
 
   it 'cannot take off if already flying' do
     expect { plane.take_off! }.to raise_error 'This plane is already flying'
+  end
+
+  it 'cannot land if already on the ground' do
+    plane.land!
+    expect { plane.land! }.to raise_error 'This plane has already landed'
   end
 end
