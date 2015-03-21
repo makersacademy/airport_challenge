@@ -8,7 +8,12 @@ class Airport
   end
 
   def takeoff_plane
-    @planes.empty? || !@sunny ? (fail 'cannot takeoff') : @planes.pop
+    if @planes.empty? || !@sunny
+      (fail 'cannot takeoff')
+    else
+      @planes.last.take_off
+      @planes.pop
+    end
   end
 
   def land_plane p

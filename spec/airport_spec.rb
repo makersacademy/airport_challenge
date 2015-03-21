@@ -19,14 +19,12 @@ describe Airport do
     it 'can takeoff a plane' do
       weather = double('Weather', weather: 'sunny')
       subject.weather(weather)
-      plane = double('Plane', land: nil)
+      plane = double('Plane', land: nil, take_off: nil)
       subject.land_plane plane
       plane = subject.planes.last
       expect(subject.takeoff_plane).to eq(plane)
     end
-    # how to do the equivilent of setter and getter with doubles?
     it 'calls a planes land method when it lands' do
-      # expect the plane in planes to not be flying
       weather = double('Weather', weather: 'sunny')
       subject.weather(weather)
       plane = double('Plane')
@@ -41,7 +39,6 @@ describe Airport do
       expect(plane).to receive(:take_off)
       subject.takeoff_plane
     end
-
   end
 
   context 'traffic control:' do
