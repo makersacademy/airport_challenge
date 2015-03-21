@@ -12,6 +12,15 @@ class Airport
     plane.land
   end
 
+  def take_off plane
+    fail "Can't find that plane!" unless planes.include? plane
+    fail 'Stormy' if bad_weather?
+    planes.delete(plane)
+    plane.take_off
+  end
+
+  private
+
   def check_land_safety
     if full?
       fail 'Airport full'
@@ -25,12 +34,6 @@ class Airport
   end
 
   def bad_weather?
-    true if rand(4 + climate) > 4
-  end
-
-  def take_off plane
-    fail 'Stormy' if bad_weather?
-    planes.delete(plane)
-    plane.take_off
+    true if rand(5 + climate) > 4
   end
 end

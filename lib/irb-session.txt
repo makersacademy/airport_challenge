@@ -1,4 +1,4 @@
-irb.rb
+
 
 2.2.0 :001 > require './lib/plane.rb'
  => true

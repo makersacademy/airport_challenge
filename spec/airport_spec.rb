@@ -28,6 +28,7 @@ describe Airport do
 
       it 'sets plane status to flying' do
         allow(subject).to receive(:bad_weather?).and_return(false)
+        subject.land plane
         expect(subject.take_off plane).to eq 'flying'
       end
 
@@ -36,6 +37,10 @@ describe Airport do
         subject.land plane
         subject.take_off plane
         expect(subject.planes).not_to include(plane)
+      end
+
+      it "doesn't allow planes that aren't there to take off" do
+        expect { subject.take_off Plane.new }.to raise_error
       end
     end
   end
