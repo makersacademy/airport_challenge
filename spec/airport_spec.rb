@@ -52,10 +52,16 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+    context ', weather conditions, ' do
+      it 'a plane cannot take off when there is a storm brewing' do
+        allow(subject).to receive(:bad_weather?).and_return(true)
+        expect { subject.take_off plane }.to raise_error # be more specific
+      end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        allow(subject).to receive(:bad_weather?).and_return(true)
+        expect { subject.land plane }.to raise_error # be more specific
+      end
     end
   end
 end
