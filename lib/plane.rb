@@ -1,17 +1,17 @@
 class Plane
-  attr_reader :flying
-  # because I realised that attr_reader doesn't like :flying?
+  attr_reader :status
+  # because I realised that attr_reader doesn't like :status?
   # thanks to google I found the following solution
-  alias_method :flying?, :flying
+  alias_method :status?, :status
   def initialize
-    @flying = true
+    @status = 'flying'
   end
 
   def take_off!
-    @flying = true
+    @status = 'flying'
   end
 
   def landed!
-    @flying = false
+    @status = 'landed'
   end
 end
