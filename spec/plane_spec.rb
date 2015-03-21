@@ -13,27 +13,30 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
+  plane = Plane.new
+
   it 'has a flying status when created' do
-    plane = Plane.new
     expect(plane.status).to eq 'flying'
   end
 
   it 'has a flying status when in the air' do
-    plane = Plane.new
     expect(plane.location).to eq 'air'
   end
 
-  it { is_expected.to respond_to :takeoff }
-  it { is_expected.to respond_to :land }
+  it 'responds to takeoff' do
+    expect(plane).to respond_to :takeoff
+  end
+
+  it 'responds to land' do
+    expect(plane).to respond_to :land
+  end
 
   it 'has a status of landed after landing' do
-    plane = Plane.new
     plane.land
     expect(plane.status).to eq 'landed'
   end
 
   it 'changes its status to flying after taking off' do
-    plane = Plane.new
     plane.land
     plane.takeoff
     expect(plane.status).to eq 'flying'

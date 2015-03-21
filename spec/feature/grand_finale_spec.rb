@@ -32,7 +32,7 @@ feature 'Grand Finale' do
     expect(airport.landed_planes.length).to eq 6
   end
 
-  scenario 'plane is denied landing permission when 6 planes are landed at the airport' do
+  scenario 'plane is denied landing permission when airport is full' do
     # puts "planes length"
     # puts planes.length
     # puts "plane_7"

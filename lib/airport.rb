@@ -5,8 +5,6 @@ class Airport
     capacity_value
   end
   # attr_reader :capacity
-  # alias_method :capacity=, :capacity
-  #
   # @capacity = 6
 
   def landed_planes

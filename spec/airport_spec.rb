@@ -13,8 +13,8 @@ require 'airport'
 
 describe Airport do
   context 'can tell a plane to take off' do
-    airport = Airport.new
-    plane = Plane.new
+    # airport = Airport.new
+    # plane = Plane.new
     it { is_expected.to respond_to :request_plane_to_takeoff }
   end
 
