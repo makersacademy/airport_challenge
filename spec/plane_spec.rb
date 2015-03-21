@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 describe 'plane location' do
   it 'has landed in airport' do
     plane = Plane.new
@@ -8,5 +9,12 @@ describe 'plane location' do
   it 'has taken off' do
     plane = Plane.new
     expect(plane.taken_off).to eq false
+  end
+
+  describe 'plane must have permission to land' do
+    it 'traffic control gives ok to land' do
+      airport = Airport.new
+      expect(airport.ok).to eq true
+    end
   end
 end
