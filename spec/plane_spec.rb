@@ -15,7 +15,7 @@ require 'plane'
 describe Plane do
 
   it 'has a flying status when created' do
-    expect(subject.status).to be('flying')
+    expect(subject.status).to eq 'flying'
   end
 
   xit 'has a flying status when in the air'
