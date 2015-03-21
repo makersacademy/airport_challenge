@@ -20,7 +20,13 @@ describe AirTrafficControl do
     subject.plane = plane
     expect { subject.land }.to raise_error 'cannot land'
   end
-  xit 'can only land a plane if there is space at the airport' do
+  it 'can only land a plane if there is space at the airport' do
+    airport = double('Airport',
+                     num_planes: 20,
+                     capcity: 20,
+                     land_plane: 'called')
+    subject.airport = airport
+    expect { subject.land_plane }.to raise_error 'airport at capcity'
   end
   xit 'redirects planes to a new airport if its stormy' do
   end
