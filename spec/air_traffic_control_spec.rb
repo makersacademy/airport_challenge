@@ -11,7 +11,7 @@ describe AirTrafficControl do
     expect(subject.plane).to eq :plane
   end
   it 'land calls the land method on a plane' do
-    plane = double('Plane', land: 'called')
+    plane = double('Plane', flying: true, land: 'called')
     subject.plane = plane
     expect(subject.land).to eq 'called'
   end

@@ -5,6 +5,7 @@ class AirTrafficControl
   end
 
   def land
+    fail 'cannot land' unless @plane.flying
     @plane.land
   end
 end
