@@ -15,16 +15,16 @@ class Airport
     set_weather
   end
 
-  def can_takeoff
+  def weather_good
     weather == 'sunny'
   end
 
   def can_land
-    landed_planes.length < capacity
+    landed_planes.length < @capacity
   end
 
   def landing_permission plane
-    if can_takeoff
+    if weather_good && can_land
       plane.land
       landed_planes << plane
     else
@@ -33,12 +33,8 @@ class Airport
   end
 
   def request_plane_to_takeoff plane
-    if can_takeoff
-      plane.takeoff
-      airborne_planes << plane
-      landed_planes.delete(plane)
-    else
-      'permission denied'
-    end
+    plane.takeoff
+    airborne_planes << plane
+    landed_planes.delete(plane)
   end
 end
