@@ -11,4 +11,8 @@ class Airport
   def park plane
     planes << plane
   end
+
+  def unpark plane
+    planes.delete(plane)
+  end
 end

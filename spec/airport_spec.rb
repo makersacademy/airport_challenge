@@ -13,6 +13,14 @@ describe Airport do
     end
   end
 
+  context 'when it has plane stored inside' do
+    it 'can unpark planes' do
+      subject.park :plane
+      subject.unpark :plane
+      expect(subject.planes).to eq([])
+    end
+  end
+
   context 'taking off and landing' do
 
     xit 'a plane can land'
