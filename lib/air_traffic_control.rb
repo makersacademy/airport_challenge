@@ -9,4 +9,7 @@ class AirTrafficControl
     fail 'cannot land' unless @plane.flying
     @plane.land
   end
+
+  def weather
+  end
 end
