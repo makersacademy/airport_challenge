@@ -13,9 +13,12 @@ require 'airport'
 
 describe Airport do
 
-  context 'taking off and landing' do
+  context 'taking off and landing,' do
 
     it 'a plane can land' do
+      subject.land :plane
+      expect(subject.planes).to include(:plane)
+    end
 
     xit 'a plane can take off'
   end
