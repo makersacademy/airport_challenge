@@ -15,15 +15,21 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
+    xit 'a plane can land' do
+      plane = Plane.new
+      expect(plane).to respond_to land
+    end
+    xit 'a plane can take off' do
+      plane = Plane.new
+      expect(plane).to respond_to take_off_plane
+    end
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
-
+    xit 'a plane cannot land if the airport is full' do
+      expect { plane.land }.to raise_error 'Airport is full'
+    end
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,
