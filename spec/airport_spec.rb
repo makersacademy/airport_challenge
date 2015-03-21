@@ -14,9 +14,11 @@ require 'airport'
 describe Airport do
 
   context 'taking off and landing' do
-
-    xit 'a plane can land'
-
+    it 'a plane can land' do
+      airport = Airport.new
+      plane = airport.land_plane
+      expects(plane).not_to be_landed
+    end
     xit 'a plane can take off'
   end
 
