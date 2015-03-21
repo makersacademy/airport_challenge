@@ -2,7 +2,7 @@ require_relative 'weather'
 require_relative 'plane'
 
 class Airport
-	attr_writer :capacity
+  attr_writer :capacity
   DEFAULT_CAPACITY = 5
 
   def full
