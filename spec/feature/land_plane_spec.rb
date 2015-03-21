@@ -8,4 +8,5 @@ feature 'a plane landing' do
     airport.land plane
     expect(plane.status).to eq 'landed'
   end
+  xscenario 'raises erro when condtions are unsafe'
 end
