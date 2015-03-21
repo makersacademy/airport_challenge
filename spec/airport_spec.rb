@@ -48,8 +48,13 @@ describe Airport do
   end
 
   context 'traffic control' do
-
-    xit 'a plane cannot land if the airport is full'
+    let(:plane) { double :plane, land: 'landed', take_off: 'flying' }
+    context 'airport is full' do
+      it 'a plane cannot land' do
+        6.times { subject.land plane }
+        expect { subject.land plane }.to raise_error
+      end
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

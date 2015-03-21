@@ -15,7 +15,7 @@ feature 'Grand Finale' do
     planes
   end
   let(:airport) { Airport.new(capacity: 7, climate: 2) }
-  scenario 'all planes can land and all planes can take off' do
+  scenario 'all planes can land' do
     planes.each do |plane|
       begin
         airport.land plane
@@ -25,6 +25,11 @@ feature 'Grand Finale' do
       end
     end
     expect(planes).to be_all { |plane| plane.status == 'landed' }
+  end
+  scenario 'another plane is rejected as default capacity is reached' do
+    expect { airport.land Plane.new }.to raise_error
+  end
+  scenario 'all planes can take off' do
     planes.each do |plane|
       begin
         airport.take_off plane
