@@ -13,13 +13,13 @@ describe Airport do
     end
 
     it 'has a standard capacity of 30' do
-      30.times { subject.park :plane }
+      (1..30).each { |plane| subject.park plane }
       expect { subject.park :plane }.to raise_error 'Airport is Full'
     end
 
     it 'can have a variable capacity' do
       airport = Airport.new capacity: 200
-      200.times { airport.park :plane }
+      (1..200).each { |plane| airport.park plane }
       expect { airport.park :plane }.to raise_error 'Airport is Full'
     end
   end
@@ -31,8 +31,13 @@ describe Airport do
       expect(subject.planes).to eq([])
     end
 
+    it 'cannot park the same plane twice' do
+      subject.park :plane
+      expect { subject.park :plane }.to raise_error 'Plane is in the airport'
+    end
+
     it 'can calculate available room after parking planes' do
-      15.times { subject.park :plane }
+      (1..15).each { |plane| subject.park plane }
       expect(subject.available_room).to eq 15
     end
 

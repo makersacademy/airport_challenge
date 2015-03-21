@@ -12,12 +12,14 @@ class Airport
   end
 
   def park plane
+    fail 'Plane is in the airport' if planes.include?(plane)
     fail 'Airport is Full' if full?
     @available_room -= 1
     planes << plane
   end
 
   def unpark plane
+    fail 'Plane is not in the airport' unless planes.include?(plane)
     @available_room += 1
     planes.delete(plane)
   end
