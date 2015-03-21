@@ -38,7 +38,10 @@ describe AirTrafficControl do
       subject.airport = airport
       expect(subject.weather).to eq false
     end
+    it { is_expected.to respond_to :wait_for_sun }
     xit 'it can change the airports weather if stormy' do
+      airport = double('Airport', weather: false)
+      subject.airport = airport
     end
   end
   context 'taking off' do
