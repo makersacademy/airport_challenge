@@ -18,12 +18,10 @@ describe Plane do
     it 'has a flying status when created' do
       expect(subject).not_to be_flying
     end
+
+    it 'can take off' do
+      subject.take_off
+      expect(subject).to be_flying
+    end
   end
-
-  xit 'has a flying status when in the air'
-
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
-
 end
