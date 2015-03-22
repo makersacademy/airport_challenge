@@ -30,7 +30,6 @@ feature 'As an airtraffic controller' do
       plane = Plane.new
       planes << plane
     end
-    p planes
     planes.each { |plane| airport.land_plane plane }
     plane = Plane.new
     expect { airport.land_plane plane }.to raise_error 'cannot land'
@@ -57,7 +56,6 @@ feature 'Grand Finale' do
     plane = Plane.new
     planes << plane
   end
-  p planes
   scenario 'all planes can land and all planes can take off' do
     puts "the weather is #{weather.weather}"
     if !airport.weather weather
