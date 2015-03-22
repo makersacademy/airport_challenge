@@ -43,7 +43,7 @@ describe Airport do
     # This tells the die object to return the value 3 when it receives the roll
     # message.
     context 'weather conditions' do
-      it 'Plane cannot take off, there is a storm' do
+      it ' cannot allow planes to take off due to a storm' do
         subject.land(plane)
         allow(subject).to receive(:stormy?).and_return(true)
         expect { subject.take_off }.to raise_error 'No Take Off Due To Storm'
@@ -53,7 +53,10 @@ describe Airport do
         # 'No Take Offs Due To Storm'
       end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'cannot allow planes to land due to storm' do
+        allow(subject).to receive(:stormy?).and_return(true)
+        expect { subject.land(plane) }.to raise_error 'No Landing Due To Storm'
+      end
     end
   end
 end
