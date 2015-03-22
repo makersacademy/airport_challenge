@@ -19,16 +19,8 @@ describe Plane do
     expect(plane.status).to eq 'flying'
   end
 
-  it 'has a flying status when in the air' do
+  it 'is located in the air when created' do
     expect(plane.location).to eq 'air'
-  end
-
-  it 'can request to takeoff' do
-    expect(plane).to respond_to :request_takeoff
-  end
-
-  it 'responds to takeoff' do
-    expect(plane).to respond_to :takeoff
   end
 
   it 'can request to land' do
@@ -42,6 +34,14 @@ describe Plane do
   it 'has a status of landed after landing' do
     plane.land
     expect(plane.status).to eq 'landed'
+  end
+
+  it 'can request to takeoff' do
+    expect(plane).to respond_to :request_takeoff
+  end
+
+  it 'responds to takeoff' do
+    expect(plane).to respond_to :takeoff
   end
 
   it 'changes its status to flying after taking off' do
