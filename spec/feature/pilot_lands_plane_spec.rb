@@ -3,8 +3,8 @@ feature 'Pilot accesses airport' do
     plane = Plane.new
     airport = Airport.new
     # response = airport.request_landing(plane)
-    airport.land(plane)
-    plane.landed?
+    plane = airport.land(plane)
+    # plane.landed?
     expect(airport.land(plane)).to be_landed
   end
 end
