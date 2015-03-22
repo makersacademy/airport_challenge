@@ -10,6 +10,6 @@ feature 'a plane landing' do
   end
   scenario 'raises error when conditions are unsafe' do
     allow(airport).to receive(:bad_weather?).and_return(true)
-    expect { airport.land plane }.to raise_error # be more specific
+    expect { airport.land plane }.to raise_error 'Stormy'
   end
 end

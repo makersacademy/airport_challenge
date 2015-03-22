@@ -19,6 +19,7 @@ describe Airport do
         expect(subject.land plane).to eq 'landed'
       end
     end
+
     context 'take off:' do
       let(:plane) { double :plane, take_off: 'flying', land: '' }
       it 'a plane can take off' do
@@ -50,18 +51,20 @@ describe Airport do
     it 'when airport is full a plane cannot land' do
       allow(subject).to receive(:bad_weather?).and_return(false)
       6.times { subject.land plane }
-      expect { subject.land plane }.to raise_error
+      expect { subject.land plane }.to raise_error 'Airport full'
     end
 
     context ', weather conditions, ' do
       it 'a plane cannot take off when there is a storm brewing' do
+        allow(subject).to receive(:bad_weather?).and_return(false)
+        subject.land plane
         allow(subject).to receive(:bad_weather?).and_return(true)
-        expect { subject.take_off plane }.to raise_error # be more specific
+        expect { subject.take_off plane }.to raise_error 'Stormy'
       end
 
       it 'a plane cannot land in the middle of a storm' do
         allow(subject).to receive(:bad_weather?).and_return(true)
-        expect { subject.land plane }.to raise_error # be more specific
+        expect { subject.land plane }.to raise_error 'Stormy'
       end
     end
   end
