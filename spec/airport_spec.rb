@@ -1,6 +1,16 @@
 require 'airport'
 
 describe Airport do
+  it 'knows when a plane is in the air' do
+    plane = double :plane, location: 'air'
+    expect(subject.locate_plane plane).to eq('air')
+  end
+
+  it 'knows when a plane is in the airport' do
+    plane = double :plane, location: 'airport'
+    expect(subject.locate_plane plane).to eq('airport')
+  end
+
   context 'can order a plane to take off' do
     it { is_expected.to respond_to :order_plane_takeoff }
   end

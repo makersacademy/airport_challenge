@@ -59,6 +59,8 @@ Feature Tests:
 
 Unit Tests (Airport):
 `./spec/airport_spec`
+- Knows when a plane is in the air
+- Knows when a plane is in the airport
 - Can order a plane to takeoff
 - Can respond to a plane wanting to land
 - A plane cannot land if the airport is full

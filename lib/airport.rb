@@ -5,6 +5,10 @@ class Airport
     @capacity = 6
   end
 
+  def locate_plane plane
+    plane.location
+  end
+
   def landed_planes
     @landed_planes ||= []
   end
