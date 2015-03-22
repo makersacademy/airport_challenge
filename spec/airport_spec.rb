@@ -42,7 +42,6 @@ describe Airport do
   end
 
   context 'traffic control:' do
-    it { is_expected.to respond_to :atc }
     it 'should have a capcity of 20' do
       expect(subject.capcity).to eq 20
     end

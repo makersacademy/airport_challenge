@@ -25,9 +25,6 @@ class Airport
     end
   end
 
-  def atc
-  end
-
   def capcity
     CAPACITY
   end
@@ -38,8 +35,5 @@ class Airport
 
   def weather weather
     @sunny = (weather.weather == 'sunny')
-  end
-
-  def plane_state _plane
   end
 end
