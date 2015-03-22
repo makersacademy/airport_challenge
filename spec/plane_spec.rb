@@ -14,14 +14,17 @@ require 'plane'
 
 describe Plane do
 
-  context 'when created' do
-    it { is_expected.not_to be_landed }
-  end
-  context 'when approved for landing' do
-    it { is_expected.not_to be_landed }
-  end
+  xit 'has a flaying status when created'
 
   xit 'has a flying status when in the air'
+
+  xit 'must get approval from airport for landing'
+
+  xit 'can land'
+
+  xit 'changes its status to landed after landing'
+
+  xit 'must get approval from airport for taking off'
 
   xit 'can take off'
 

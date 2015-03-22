@@ -23,8 +23,13 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing when the weather is stormy
 ```
 
-These four user stories can be delivered in three feature tests:
-  'all planes can land and all planes can take off'
-  'a plane cannot land when an airport is full'
-  'planes cannot land when the weather is stormy'
+I really struggled with how to set up the tests. I started over twice.
+I eventually decided that the top level features were very simple
+and have deviated very far from the original prompts.
+
+My grande finale feature tests are just that:
+Pilots want to be able to take off and land.
+Airports want to be able to approve each take off and landing.
+
+Then, inside the unit tests are the checks on status, capacity and weather.
 

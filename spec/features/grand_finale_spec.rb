@@ -8,28 +8,22 @@ require 'capybara/rspec'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
-feature 'as an operational airport we want' do
+feature 'as a pilot i want' do
 
-  scenario 'to be able to tell a plane to land' do
-    airport = Airport.new
-    airport.acknowledge Plane.new
-    plane = airport.approve_landing
-    expect(plane).not_to be_landed
+  scenario 'to be able to land my plane' do
   end
 
-  scenario 'not to land an already-landed plane' do
-    airport = Airport.new
-    expect { airport.approve_landing }.to raise_error 'Plane already landed.'
+  scenario 'to be able to take off my plane' do
   end
 
-  scenario 'to be able to tell a plane to take off' do
-    # airport = Airport.new
-    plane = Plane.new
-    plane.land
-    # plane = airport.take_off
-    expect(plane).to be_landed
-    # landed_plane = airport.land(plane)
-    # expect(landed_plane).to respond_to airport.take_off
+end
+
+feature 'as the airport i want' do
+
+  scenario 'to be able to approve each plane landing' do
+  end
+
+  scenario 'to be able to approve each plane taking off' do
   end
 
 end
