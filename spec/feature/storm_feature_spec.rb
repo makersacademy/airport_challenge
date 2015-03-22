@@ -8,7 +8,7 @@ feature 'Storm' do
   end
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
-  scenario 'planes cannot land during a storm' do
+  scenario 'planes cannot take off during a storm' do
     allow(airport.control_tower).to receive(:stormy?).and_return(true)
     airport.park(plane)
     expect { plane.take_off_from airport }.to raise_error
