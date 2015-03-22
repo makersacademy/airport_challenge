@@ -71,6 +71,8 @@ Unit Tests (Plane):
 ToDo:
 ----
 
-Ensure plane does not land or takeoff without permission
-Unit tests for airport traffic control using doubles
-Enable random weather conditions
+- Ensure plane does not land or takeoff without permission
+- Unit tests for airport traffic control using doubles
+- Enable random weather conditions
+- Ensure planes can not land when landed
+- Ensure planes cannot takeoff after takeoff
