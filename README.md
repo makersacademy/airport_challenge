@@ -22,19 +22,27 @@ As an air traffic controller
 So that I can avoid accidents
 I want to be able to prevent airplanes landing when the weather is stormy
 ```
-##Setup##
+##Contribution##
 
-You will need to require the following to have the full functionality of the system.
+This is a challenge set to identify progress in Wk1 at Makers Academy, therefore is designed to be tackled individually.
+
+However comment on the quality of the code would be very welcome.
+
 
 ##Classes and Methods##
 
+The system currently has the following structure:
+
 Airport
-  -arrival(*plane*)
-  -departure(*plane*)
-  -capacity
+- arrival(*plane*)
+- departure(*plane*) - *Will default to next available plane*
+- capacity
+- stationed_planes
+Airport can recieve an argument of an options hash with key capacity to set capacity.
 
 Plane
-  -takeoff
-  -land
-  -airborne?
+- takeoff
+- land
+- airborne?
+Plane can recieve an argument of an options hash with key airborne to set the the status to true or false.
 
