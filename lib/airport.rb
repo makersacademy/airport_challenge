@@ -13,12 +13,12 @@ class Airport
     @airborne_planes ||= []
   end
 
-  def weather set_weather = 'sunny' # ['sunny', 'stormy'].shuffle
+  def weather set_weather = %w(sunny stormy).sample
     set_weather
   end
 
   def weather_good
-    weather == 'sunny' # ['sunny']
+    weather == 'sunny'
   end
 
   def can_land

@@ -79,8 +79,10 @@ Unit Tests (Plane):
 ToDo:
 ----
 
-- Enable random weather conditions
-- Object-Oriented refactoring
+- Apply Object-Oriented principles
+- Setup a running simulation
+- Restart from new and do it again!  And again!  And again!
+- ~~Enable random weather conditions~~
 - ~~Ensure plane does not land without permission~~
 - ~~Ensure plane does not takeoff without permission~~
 - ~~Unit tests for airport traffic control using doubles~~
