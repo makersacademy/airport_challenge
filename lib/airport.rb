@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     fail 'Airport Full' if full?
+    fail 'No Landing Due To Storm' if stormy?
     plane.land
     planes << plane
     plane
