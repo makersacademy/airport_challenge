@@ -13,18 +13,21 @@ feature 'as an operational airport we want' do
   scenario 'to be able to tell a plane to land' do
     airport = Airport.new
     airport.acknowledge Plane.new
-    plane = airport.land
+    plane = airport.approve_landing
     expect(plane).not_to be_landed
   end
 
   scenario 'not to land an already-landed plane' do
     airport = Airport.new
-    expect { airport.land }.to raise_error 'Plane already landed.'
+    expect { airport.approve_landing }.to raise_error 'Plane already landed.'
   end
 
-  xscenario 'to be able to tell a plane to take off' do
-    # plane = Plane.new
+  scenario 'to be able to tell a plane to take off' do
     # airport = Airport.new
+    plane = Plane.new
+    plane.land
+    # plane = airport.take_off
+    expect(plane).to be_landed
     # landed_plane = airport.land(plane)
     # expect(landed_plane).to respond_to airport.take_off
   end

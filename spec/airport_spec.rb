@@ -10,20 +10,21 @@ require 'airport'
 
 describe Airport do
   context 'taking off and landing' do
-    it { is_expected.to respond_to :acknowledge }
     it 'can acknowledge a plane' do
       expect(subject.acknowledge :plane).to eq :plane
     end
     it 'only lets flying planes land' do
       subject.acknowledge double :place, landed?: false
-      plane = subject.land
+      plane = subject.approve_landing
       expect(plane).not_to be_landed
     end
     it 'raises error when landed plane tries to land' do
-      expect { subject.land }.to raise_error 'Plane already landed.'
+      expect { subject.approve_landing }.to raise_error 'Plane already landed.'
     end
 
-    xit 'a plane can take off'
+    it 'lets a plane take off' do
+      expect(subject).to respond_to :take_off
+    end
   end
 
   context 'traffic control' do

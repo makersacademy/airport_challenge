@@ -17,10 +17,9 @@ describe Plane do
   context 'when created' do
     it { is_expected.not_to be_landed }
   end
-  xit 'has a flying status when created'
-  # plane = Plane.new
-  # expect(plane).to respond_to :flying
-  # end
+  context 'when approved for landing' do
+    it { is_expected.not_to be_landed }
+  end
 
   xit 'has a flying status when in the air'
 
