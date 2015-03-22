@@ -16,22 +16,16 @@ feature 'Grand Finale' do
 end
 
 feature 'As a pilot' do
+  plane = Plane.new
+  airport = Airport.new
+  weather = Weather.new
+  airport.weather weather
   scenario 'I would like to land my plane at the appropriate airport' do
-    plane = Plane.new
-    airport = Airport.new
-    weather = Weather.new
-    airport.weather weather
     airport.land_plane plane
     expect(plane.flying).to be false
   end
+  scenario 'I would like to take off from appropriate airport' do
+    airport.takeoff_plane
+    expect(plane.flying).to be true
+  end
 end
-
-# airport = Airport.new
-# weather = Weather.new
-# airport.weather(weather.weather)
-# plane = Plane.new
-# ATC = AirTrafficControl.new
-# push 6 planes to AirTrafficControl
-# push an airport to AirTrafficControl
-# if the weather in the airport is stormy
-# reroute the planes to a new instance of airport
