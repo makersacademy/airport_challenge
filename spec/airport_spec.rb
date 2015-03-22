@@ -4,18 +4,16 @@ describe Airport do
 
   context 'taking off and landing' do
     it 'a plane can land' do
-      airport = Airport.new
-      plane = Plane.new
-      airport.arrival(plane.land)
-      expect(airport.stationed_planes.last).to eq plane
+      plane = double(:plane, land: :plane1)
+      subject.arrival(plane.land)
+      expect(subject.stationed_planes.last).not_to eq nil
     end
 
     it 'a plane can take off' do
-      airport = Airport.new
-      plane = Plane.new
-      airport.arrival(plane)
-      airport.departure(plane.take_off)
-      expect(airport.stationed_planes.last).to eq nil
+      plane = double(:plane, land: :plane1, take_off: :plane1)
+      subject.arrival(plane.land)
+      subject.departure(plane.take_off)
+      expect(subject.stationed_planes.last).to eq nil
     end
 
   end
@@ -23,10 +21,9 @@ describe Airport do
   context 'traffic control' do
 
     it 'a plane cannot land if the airport is full' do
-      airport = Airport.new
-      plane = Plane.new
-      Airport::DEFAULT_CAPACITY.times { airport.arrival(plane.land) }
-      expect { airport.arrival(plane.land) }. to raise_error "Airport Full"
+      plane = double(:plane, land: :plane1)
+      Airport::DEFAULT_CAPACITY.times { subject.arrival(plane.land) }
+      expect { subject.arrival(plane.land) }. to raise_error "Airport Full"
     end
 
     it 'can set a custom capacity' do
@@ -36,29 +33,25 @@ describe Airport do
     end
 
     it 'a plane cannot take off if it is not present' do
-      airport = Airport.new
       plane = Plane.new
-      airport.arrival(plane.land)
-      airport.departure(plane.take_off)
-      expect { airport.departure(plane.take_off) }.to raise_error "No plane"
+      subject.arrival(plane.land)
+      subject.departure(plane.take_off)
+      expect { subject.departure(plane.take_off) }.to raise_error "No plane"
     end
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  end
+  context 'weather conditions' do
+    it 'a plane cannot take off when there is a storm brewing' do
+      plane = Plane.new
+      controlstorm = double(:control, forecast: :stormy)
+      controlsun = double(:control, forecast: :sunny)
+      subject.arrival(plane.land, controlsun.forecast)
+      take_off = plane.take_off
+      wthr = controlstorm.forecast
+      expect { subject.departure(take_off, wthr) }.to raise_error "Too Stormy"
+    end
 
-    context 'weather conditions' do
-      it 'a plane cannot take off when there is a storm brewing'
-      #   plane = Plane.new
-      # airport = double(:airport, weather: :stormy, departure: plane.take_off)
-      #   expect { airport }.to raise_error "Cancelled Too Stormy"
-      # end
+    it 'a plane cannot land in the middle of a storm' do
 
-      it 'a plane cannot land in the middle of a storm'
     end
   end
 end

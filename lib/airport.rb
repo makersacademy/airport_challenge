@@ -7,13 +7,15 @@ class Airport
     @capacity = load_capacity
   end
 
-  def arrival(plane)
+  def arrival(plane, forecast = :sunny)
     fail "Airport Full" if full?
+    fail "Too Stormy" if forecast == :stormy
     stationed_planes << plane
   end
 
-  def departure(plane)
+  def departure(plane, forecast = :sunny)
     fail "No plane" if empty?
+    fail "Too Stormy" if forecast == :stormy
     stationed_planes.delete(plane)
   end
 
