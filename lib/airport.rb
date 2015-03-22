@@ -7,7 +7,7 @@ class Airport
   end
 
   def plane_lands(plane = '')
-    @planes << plane
+    (@planes.length == capacity) ? (fail 'airport full') : @planes << plane
   end
 
   def plane_takes_off(*)

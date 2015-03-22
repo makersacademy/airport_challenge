@@ -46,7 +46,11 @@ describe Airport do
       expect(airport).to be_full
     end
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      (airport.capacity).times { airport.plane_lands(flying_plane) }
+      # rubocop doesn't allow over 80 char. What to do if it's a long code line?
+      expect { airport.plane_lands(flying_plane) }.to raise_error 'airport full'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
