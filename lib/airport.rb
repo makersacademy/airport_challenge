@@ -18,11 +18,13 @@ class Airport
   def plane_take_off(plane)
     fail 'Airport Empty' if @planes.empty?
     fail 'Stormy Weather' if stormy_weather?
-    # The below is a bit ugly still
     plane1 = @planes.delete(plane)
+    fail 'That plane does not exist, or is not at this airport' unless plane1
     plane1.take_off!
     plane1
   end
+
+  private
 
   def stormy_weather?
     [true, false, false, false].sample
