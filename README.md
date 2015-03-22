@@ -1,5 +1,6 @@
 Makers Academy Week1 Challenge: Airport Challenge.
 ==================================================
+[![Build Status](https://travis-ci.org/rjlynch/airport_challenge.svg?branch=master)](https://travis-ci.org/rjlynch/airport_challenge)
 
 How I went about the challenge:
 -------------------------------
