@@ -4,9 +4,7 @@ Airport Challenge
 Requirements
 ------------
 
-To run the full application with a graphical interface you will need JRuby and Shoes installed. Then you need to move the graphical-interface folder into a seperate directory to avoid interence from the Gemfile. Run `rvm jruby`, `shoes control-desk.rb` to start the application.
-
-To run the command line version you just need to open your favourite interactive ruby environment.
+To run this in the command line you just need to start your favourite interactive ruby environment.
 
 Approach:
 ---------
