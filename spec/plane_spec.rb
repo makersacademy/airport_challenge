@@ -21,19 +21,19 @@ describe Plane do
     plane.flying?
     expect(subject).to be_flying
   end
-  it 'can land' do
+  it 'respond to #landed' do
     expect(subject).to respond_to :landed
   end
   it 'changes its status to not flying when landing' do
     plane.landed
     expect(plane).not_to be_flying
   end
-  it 'can take off' do
-    expect(subject).to respond_to :take_off
+  it 'respond to #taked_off_plane' do
+    expect(subject).to respond_to :taked_off
   end
   it 'changes its status to flying after taking off' do
     plane.landed
-    plane.take_off
+    plane.taked_off
     expect(plane).to be_flying
   end
 end

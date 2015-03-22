@@ -1,5 +1,5 @@
 class Plane
-  attr_reader :flying
+  attr_accessor :flying
   alias_method :take_off, :flying
   alias_method :flying?, :flying
 
@@ -11,14 +11,14 @@ class Plane
     @flying = false
   end
 
-  def take_off
-    @flying
+  def taked_off
+    @flying = true
   end
 end
 
-plane = Plane.new
-p plane.landed
-p plane.flying?
-# plane.take_off
+# plane = Plane.new
+# p plane.landed
 # p plane.flying?
-p plane
+# # plane.take_off
+# # p plane.flying?
+# p plane
