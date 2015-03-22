@@ -19,4 +19,9 @@ class Plane
     airport.control_tower.land_request self, airport
     @flying = false
   end
+
+  def travel from, to
+    take_off_from from
+    land_to to
+  end
 end
