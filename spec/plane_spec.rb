@@ -1,8 +1,4 @@
 require 'plane'
-
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
 # When we create a new plane, it should have a "flying" status,
 # thus planes can not be created in the airport.
 #
@@ -14,12 +10,32 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  it 'has status "flying" when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'has a flying status when in the air'
+  it 'can be assigned a flight number' do
+    expect(subject).to respond_to :flight_number
+  end
 
-  xit 'can take off'
+  it 'can land' do
+    expect(subject).to respond_to :land
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'does not have "flying" status after landing' do
+    subject.land
+    expect(subject).not_to be_flying
+  end
 
+  it 'can take off' do
+    expect(subject).to respond_to :take_off
+  end
+
+  it 'has a flying status after taking off' do
+    # could do subject.land but then test is dependent on that method working
+    class Plane; attr_writer :flying; end
+    subject.flying = false
+    subject.take_off
+    expect(subject).to be_flying
+  end
 end
