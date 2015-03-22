@@ -15,13 +15,18 @@ feature 'Grand Finale' do
     airport = Airport.new
     plane = Plane.new
     expect(plane.status).to eq 'airborne'
-    airport.land_plane plane
-    airborne_plane = airport.take_off_plane
+    airport.land plane
+    airborne_plane = airport.take_off
     expect(airborne_plane.status).to eq 'airborne'
   end
 
-  # scenario 'landing and taking off is impossible during stormy weather' do
-  # end
+  scenario 'airport has a limited capacity' do
+    airport = Airport.new
+    plane = Plane.new
+    expect { airport.take_off }.to raise_error 'Airport is Empty'
+    airport.capacity.times { airport.land plane }
+    expect { airport.land plane }.to raise_error 'Sorry, Airport Full'
+  end
 
   # scenario
 end

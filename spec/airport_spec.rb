@@ -17,19 +17,30 @@ describe Airport do
 
     it 'a plane can land' do
       expect(subject.plane_count).to eq(0)
-      subject.land_plane double :plane
+      subject.land double :plane
       expect(subject.plane_count).to eq(1)
     end
 
     it 'a plane can take off' do
-      subject.land_plane :plane
-      expect(subject.take_off_plane).to eq :plane
+      subject.land :plane
+      expect(subject.take_off).to eq :plane
     end
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'has a fixed capacity' do
+      expect(subject.capacity).to eq(20)
+    end
+
+    it 'cannot take off a plane if the airport is empty' do
+      expect { subject.take_off }.to raise_error 'Airport is Empty'
+    end
+
+    it 'cannot land a plane if the airport is full' do
+      subject.capacity.times { subject.land :plane }
+      expect { subject.land :plane }.to raise_error 'Sorry, Airport Full'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

@@ -1,13 +1,19 @@
 class Airport
-  def initialize
+  DEFAULT_CAPACITY = 20
+  attr_reader :capacity
+
+  def initialize options = {}
     @planes = []
+    @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
-  def land_plane plane
+  def land plane
+    fail 'Sorry, Airport Full' if full?
     planes << plane
   end
 
-  def take_off_plane
+  def take_off
+    fail 'Airport is Empty' if empty?
     planes.pop
   end
 
@@ -18,4 +24,12 @@ class Airport
   private
 
   attr_accessor :planes
+
+  def empty?
+    planes.empty?
+  end
+
+  def full?
+    planes.length >= capacity
+  end
 end
