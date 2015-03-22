@@ -13,6 +13,7 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
+  let(:plane) { Plane.new }
 
   xit 'has a flaying status when created'
 
@@ -21,7 +22,6 @@ describe Plane do
   xit 'must get approval from airport for landing'
 
   it 'can land' do
-    plane = Plane.new
     expect(plane).to respond_to :land
   end
 
@@ -29,7 +29,9 @@ describe Plane do
 
   xit 'must get approval from airport for taking off'
 
-  xit 'can take off'
+  it 'can take off' do
+    expect(plane).to respond_to :take_off
+  end
 
   xit 'changes its status to flying after taking off'
 
