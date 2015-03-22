@@ -1,11 +1,9 @@
 require_relative 'plane'
 
 class Airport
-  def capacity capacity_value = 6
-    capacity_value
+  def initialize
+    @capacity = 6
   end
-  # attr_reader :capacity
-  # @capacity = 6
 
   def landed_planes
     @landed_planes ||= []
@@ -24,7 +22,7 @@ class Airport
   end
 
   def can_land
-    landed_planes.length < capacity
+    landed_planes.length < @capacity
   end
 
   # def landing_permission plane
