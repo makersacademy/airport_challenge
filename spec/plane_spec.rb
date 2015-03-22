@@ -1,25 +1,28 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# When we create a new plane, it should have a "flying" status,
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# have its status changed to "landed"
-#
-# When the plane takes of from the airport, the plane's status
-# should become "flying"
-
 describe Plane do
 
-  xit 'has a flying status when created'
+  it 'has a flying status when created' do
+    expect(subject.flying?).to be true
+  end
 
-  xit 'has a flying status when in the air'
+  it 'can land, and change its status' do
+    subject.land!
+    expect(subject.flying?).to be false
+  end
 
-  xit 'can take off'
+  it 'cannot land when it is already landed' do
+    subject.land!
+    expect { subject.land! }.to raise_error 'Already Landed'
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'can take off and change its status to flying' do
+    subject.land!
+    subject.take_off!
+    expect(subject.flying?).to be true
+  end
 
+  it 'cannot take off when it is already flying' do
+    expect { subject.take_off! }.to raise_error 'Already Flying'
+  end
 end
