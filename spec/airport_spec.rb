@@ -10,7 +10,7 @@ require 'airport'
 # and how that is implemented.
 #
 # If the airport is full then no planes can land
-
+require 'airport'
 describe Airport do
   let(:plane) { double :plane }
   context 'taking off and landing' do
@@ -19,7 +19,12 @@ describe Airport do
       expect(subject.land(plane)).to eql [plane]
     end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      plane = Plane.new
+      subject.land(plane)
+      plane = subject.take_off
+      expect(plane).to be plane
+    end
   end
 
   context 'traffic control' do

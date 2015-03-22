@@ -10,7 +10,7 @@ feature 'Pilot accesses airport' do
     plane = Plane.new
     airport = Airport.new
     airport.land(plane)
-    plane = airport.take_off(plane)
+    plane = airport.take_off
     expect(plane).to be plane
   end
 
