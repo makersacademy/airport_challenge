@@ -1,6 +1,9 @@
 require 'plane'
 require 'airport'
+
 describe 'plane location' do
+  let(:plane) { Plane.new }
+
   it 'has landed in airport' do
     plane = Plane.new
     expect(plane.landed?).to eq true

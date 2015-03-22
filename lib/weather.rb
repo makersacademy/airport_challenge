@@ -1,5 +1,5 @@
 module Weather
-  def weather
-    ['sunny' 'sunny' 'stormy'].sample
+  def sunny
+    [true, false, true].sample
   end
 end

@@ -1,9 +1,10 @@
 class Plane
+  attr_reader :plane
   def initialize
     @landed = true
   end
 
-  def landed?  # remove = true and replace with attr_reader
+  def landed?
     @landed = true
   end
 
