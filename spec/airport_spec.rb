@@ -18,6 +18,13 @@ describe Airport do
   end
 
   context 'weather conditions' do
+    it 'can be both sunny and stormy' do
+      airport = Airport.new
+      weather_array = []
+      100.times { weather_array << airport.weather }
+      expect(weather_array.uniq.length).to eq(2)
+    end
+
     it 'a plane cannot land when it is stormy' do
       Airport.any_instance.stub(:weather).and_return(:'stormy')
       a = Airport.new

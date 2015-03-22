@@ -60,6 +60,7 @@ Unit Tests (Airport):
 - Can order a plane to takeoff
 - Can respond to a plane wanting to land
 - A plane cannot land if the airport is full
+- Can be both sunny and stormy
 - A plane cannot land when it is stormy
 - A plane cannot takeoff when it is stormy
 
@@ -82,6 +83,7 @@ ToDo:
 - Apply Object-Oriented principles
 - Setup a running simulation
 - Restart from new and do it again!  And again!  And again!
+- ~~Test that weather conditions are random~~
 - ~~Enable random weather conditions~~
 - ~~Ensure plane does not land without permission~~
 - ~~Ensure plane does not takeoff without permission~~
