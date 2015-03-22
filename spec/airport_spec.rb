@@ -22,6 +22,7 @@ describe Airport do
     end
 
     it 'a plane can take off' do
+      airport.weather(1)
       airport.plane_lands(flying_plane)
       airport.plane_takes_off(flying_plane)
       expect(airport.planes).to eq []
@@ -67,8 +68,11 @@ describe Airport do
         expect(airport.weather).to satisfy { 'stormy' || 'sunny' }
       end
 
-      xit 'a plane cannot take off when there is a storm brewing'
-
+      it 'a plane cannot take off when there is a storm brewing' do
+        # for the purpose of that test, the weather method always return stormy
+        airport.weather(10)
+        expect { airport.plane_takes_off(flying_plane) }.to raise_error 'STORM'
+      end
       xit 'a plane cannot land in the middle of a storm'
     end
   end

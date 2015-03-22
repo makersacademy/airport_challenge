@@ -11,15 +11,16 @@ class Airport
   end
 
   def plane_takes_off(*)
-    @planes.pop
+    (@weather == 'stormy') ? (fail 'STORM') : @planes.pop
   end
 
   def full?
     @planes.length == capacity
   end
 
-  def weather
-    # for the purpose of the test, it's 50-50 for now.
-    (rand(10) >= 5) ? 'stormy' : 'sunny'
+  def weather(*option)
+    # 'stormy on rare occasions'. I will make it 10%
+    option << (rand(10))
+    @weather = (((option[0]) >= 9) ? 'stormy' : 'sunny')
   end
 end
