@@ -38,6 +38,11 @@ describe Airport do
       expect { subject.park :plane }.to raise_error
     end
 
+    it 'cannot park more than his capacity' do
+      (1..30).each { |plane| subject.park plane }
+      expect { subject.park :plane }.to raise_error
+    end
+
     it 'can calculate available room after parking planes' do
       (1..15).each { |plane| subject.park plane }
       expect(subject.available_room).to eq 15

@@ -3,6 +3,7 @@ require 'plane'
 describe Plane do
   before do
     allow($stdout).to receive(:puts)
+    allow(subject).to receive(:`)
   end
   context 'when created' do
     it 'has a flying status when created' do

@@ -3,6 +3,7 @@ require 'control_tower'
 describe ControlTower do
   before do
     allow($stdout).to receive(:puts)
+    allow(subject).to receive(:`)
   end
   context 'basic operations' do
     before do

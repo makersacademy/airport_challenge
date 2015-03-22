@@ -3,11 +3,13 @@ require 'airport'
 require 'plane'
 
 feature 'Storm' do
-  before do
-    allow($stdout).to receive(:puts)
-  end
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
+  before do
+    allow($stdout).to receive(:puts)
+    allow(plane).to receive(:`)
+    allow(airport.control_tower).to receive(:`)
+  end
   scenario 'planes cannot take off during a storm' do
     allow(airport.control_tower).to receive(:stormy?).and_return(true)
     airport.park(plane)
@@ -16,6 +18,7 @@ feature 'Storm' do
   scenario 'planes cannot land in an airport during a storm' do
     another_airport = Airport.new
     allow(airport.control_tower).to receive(:stormy?).and_return(false)
+    allow(another_airport.control_tower).to receive(:`)
     allow(another_airport.control_tower).to receive(:stormy?).and_return(true)
     airport.park(plane)
     plane.take_off_from(airport)

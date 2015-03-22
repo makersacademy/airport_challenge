@@ -13,6 +13,7 @@ class Airport
 
   def park plane
     fail 'Plane is in the airport' if planes.include?(plane)
+    fail 'Airport is full' if full?
     @available_room -= 1
     planes << plane
   end
