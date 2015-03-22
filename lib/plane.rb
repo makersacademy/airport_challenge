@@ -1,8 +1,9 @@
 class Plane
   attr_reader :flying
   alias_method :airborne?, :flying
-  def initialize(airborne = true)
-    @flying = airborne
+
+  def initialize(options = {})
+    @flying = options[:airborne]
   end
 
   def take_off
@@ -13,5 +14,11 @@ class Plane
   def land
     @flying = false
     self
+  end
+
+  private
+
+  def defaults
+    { airborne: true }
   end
 end

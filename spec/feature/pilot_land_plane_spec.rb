@@ -1,10 +1,10 @@
-require 'capybara/rspec'
+require "capybara/rspec"
 
 feature "a pilot can land their plane" do
 
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
-  let(:land_a_plane) { airport.arrival(plane.land) }
+  let(:land_a_plane) { airport.arrival(plane) }
 
   before { allow(airport).to receive(:stormy?).and_return(false) }
 
@@ -14,8 +14,8 @@ feature "a pilot can land their plane" do
   end
 
   scenario "except when the airport is full" do
-    Airport::DEFAULT_CAPACITY.times { airport.arrival(plane.land) }
-    expect { land_a_plane }.to raise_error 'Airport Full'
+    Airport::DEFAULT_CAPACITY.times { airport.arrival(plane) }
+    expect { land_a_plane }.to raise_error "Airport Full"
   end
 
 end

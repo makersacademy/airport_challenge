@@ -1,4 +1,4 @@
-require 'capybara/rspec'
+require "capybara/rspec"
 
 feature "a pilot can take off a plane" do
 

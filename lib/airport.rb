@@ -1,10 +1,13 @@
 class Airport
   DEFAULT_CAPACITY = 20
+
   attr_accessor :stationed_planes
   attr_reader :capacity
-  def initialize(load_capacity = DEFAULT_CAPACITY)
+
+  def initialize(options = {})
+    options = defaults.merge(options)
     @stationed_planes = []
-    @capacity = load_capacity
+    @capacity = options[:capacity]
   end
 
   def arrival(plane)
@@ -49,5 +52,9 @@ class Airport
 
   def confirm_landing(plane)
     plane.land
+  end
+
+  def defaults
+    { capacity: DEFAULT_CAPACITY }
   end
 end
