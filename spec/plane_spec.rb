@@ -14,24 +14,29 @@ require 'plane'
 
 describe Plane do
   let(:airport) { Airport.new }
-  it 'has a flying status when created' do
-    expect(subject.status).to eq 'flying'
-  end
-
+  # it 'has a flying status when created' do
+  #   expect(subject.status).to eq 'flying'
+  # end
+  #
   it 'change state to landed' do
     # airport = double :airport, planes:
     subject.land
     expect(subject.status).to eq 'landed'
   end
-  xit 'has a flying status when in the air'
 
-  # it 'can take off' do
-  #   subject.take_off
-  #   expect(subject.status).to eq 'taking off'
-  # end
-
-  it 'changes its status to flying after #taking off' do
-    subject.take_off
+  it 'change state to flying' do
+    subject.fly
     expect(subject.status).to eq 'flying'
   end
+  # xit 'has a flying status when in the air'
+  #
+  # # it 'can take off' do
+  # #   subject.take_off
+  # #   expect(subject.status).to eq 'taking off'
+  # # end
+  #
+  # it 'changes its status to flying after #taking off' do
+  #   subject.take_off
+  #   expect(subject.status).to eq 'flying'
+  # end
 end

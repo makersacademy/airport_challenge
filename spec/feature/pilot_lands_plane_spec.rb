@@ -2,17 +2,21 @@ require 'capybara/rspec'
 feature 'Pilot accesses airport' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
-  scenario 'Pilot lands at airport' do
-    plane = airport.land(plane)
-    expect(airport.planes).to be plane
+  scenario 'Plane lands at airport'  do
+    landed_plane = airport.land(plane)
+    status = landed_plane.status
+    expect(status).to eq 'landed'
   end
-  scenario 'Pilot takes off from airport' do
+  scenario 'Plane takes off from airport' do
     airport.land(plane)
-    plane = airport.take_off
-    expect(plane).to be plane
+    airport.take_off
+    # status = flying_plane.status
+    expect(plane.status).to eq 'flying'
   end
-  scenario 'Plane cannot land, airport full' do
-    10.times { airport.land(plane) }
-    expect { airport.land(plane) }.to raise_error 'Airport Full'
-  end
+  xscenario 'Plane cannot land, airport full' # do
+  #   10.times { airport.land(plane) }
+  #   expect { airport.land(plane) }.to raise_error 'Airport Full'
+  # end
+  xscenario 'Plane cannot land in Airport due to storm' # do
+  xscenario 'Plane cannot take off from Airport due to storm' # do
 end
