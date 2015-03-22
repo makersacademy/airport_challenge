@@ -26,6 +26,7 @@ describe Plane do
   end
 
   xit 'changes its status to landed after landing'
+  # expect { object.action }.to change(object, :value).from(old).to(new)
 
   xit 'must get approval from airport for taking off'
 
@@ -34,5 +35,5 @@ describe Plane do
   end
 
   xit 'changes its status to flying after taking off'
-
+  # expect { object.action }.to change(object, :value).from(old).to(new)
 end

@@ -14,22 +14,20 @@ require 'airport'
 describe Airport do
 
   context 'airport must approve' do
-
     xit 'when a plane is landing'
 
     xit 'when a plane is taking off'
   end
 
   context 'appropriate plane status checks' do
-
     xit 'when a plane is landed, it cannot land'
 
     xit 'when a plane is flying, it cannot take off'
   end
 
   context 'traffic control checks' do
-
     xit 'a plane cannot land if the airport is full'
+    # expect(airport_status).to be < 20
   end
 
   # Include a weather condition.

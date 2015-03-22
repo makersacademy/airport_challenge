@@ -23,10 +23,10 @@ end
 
 feature 'as the airport i want' do
 
-  xscenario 'to be able to approve each plane landing' do
-  end
+  xscenario 'to be able to approve each plane landing'
+  # expect(airport.request_approval(land)).to be_granted
+  # end
 
-  xscenario 'to be able to approve each plane taking off' do
-  end
+  xscenario 'to be able to approve each plane taking off'
 
 end

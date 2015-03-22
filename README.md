@@ -36,3 +36,6 @@ Then, inside the unit tests are the checks on status, capacity and weather.
 I would really like to talk through my three attempts at feature tests
 with someone.
 
+I keep coming up against a wall when deciding where the method call is going.
+If I want the airport to approve a plane for landing, how can I structure
+those four elements? Where should the methods be called?
