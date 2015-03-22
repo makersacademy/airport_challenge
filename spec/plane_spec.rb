@@ -18,13 +18,13 @@ describe Plane do
   #   expect(subject.status).to eq 'flying'
   # end
   #
-  it 'change state to landed' do
+  it 'can change state to landed' do
     # airport = double :airport, planes:
     subject.land
     expect(subject.status).to eq 'landed'
   end
 
-  it 'change state to flying' do
+  it 'can change state to flying' do
     subject.fly
     expect(subject.status).to eq 'flying'
   end
