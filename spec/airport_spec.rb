@@ -10,7 +10,6 @@ require 'airport'
 # and how that is implemented.
 #
 # If the airport is full then no planes can land
-require 'airport'
 describe Airport do
   let(:plane) { double :plane }
   context 'taking off and landing' do
@@ -29,7 +28,10 @@ describe Airport do
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      10.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error 'Airport Full'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
