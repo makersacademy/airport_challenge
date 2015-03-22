@@ -34,6 +34,7 @@ class Airport
   end
 
   def local_weather
-    %w(stormy sunny).shuffle.first
+    return 'stormy' if rand(1..5) == 5
+    'sunny'
   end
 end
