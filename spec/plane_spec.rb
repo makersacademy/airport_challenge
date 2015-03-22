@@ -21,8 +21,7 @@ describe Plane do
   end
 
   it 'has a status of \'landed\' after landing' do
-    airport = double :airport, landing_permission: true
-    plane.land airport
+    plane.land :airport
     expect(plane.status).to eq 'landed'
   end
 

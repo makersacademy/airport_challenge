@@ -29,7 +29,7 @@ feature 'Grand Finale' do
 
   scenario 'after all 6 planes takeoff there are no more landed planes' do
     planes.each do |plane|
-      airport.order_plane_to_takeoff plane
+      airport.order_plane_takeoff plane
     end
     expect(airport.landed_planes.length).to eq 0
   end

@@ -31,7 +31,7 @@ class Airport
     landed_planes << plane
   end
 
-  def order_plane_to_takeoff plane
+  def order_plane_takeoff plane
     fail 'permission denied' unless weather_good
     plane.takeoff
     airborne_planes << plane

@@ -8,7 +8,7 @@ class Plane
     airport.landing_permission self
   end
 
-  def land airport
+  def land(*)
     fail 'already landed' if @status == 'landed'
     @status = 'landed'
   end
