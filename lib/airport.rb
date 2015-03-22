@@ -1,21 +1,16 @@
 class Airport
   DEFAULT_CAPACITY = 10
 
-  attr_reader :capacity
+  attr_accessor :capacity
+  attr_reader :hangar
+  attr_writer :land
 
   def initialize
-    @hangar = []
+    @hangar = nil
   end
 
-  def capacity(value)
-    @capacity = value
-  end
-
-  def hangar(plane = nil)
-    @hangar << plane
-  end
-
-  def land
+  def land(plane)
+    @hangar = plane
   end
 
   def take_off

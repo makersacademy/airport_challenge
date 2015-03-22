@@ -12,26 +12,25 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-
+  let(:airport) { Airport.new }
   context 'taking off and landing' do
 
     it 'a plane can be landed' do
-      expect(subject).to respond_to :land
+      expect(airport).to respond_to :land
     end
 
     it 'can store landed planes in hangar' do
-      subject.land(plane)
-      expect(subject.hangar).to eq plane
-
+      airport.land double :plane
+      expect(airport.hangar).to eq :plane
     end
 
     it 'a plane can take off' do
-      expect(subject).to respond_to :take_off
+      expect(airport).to respond_to :take_off
     end
 
     xit 'can have a max capacity' do
       default_cap = 10
-      expect(subject.capacity(default_cap)).to eq default_cap
+      expect(airport.capacity(default_cap)).to eq default_cap
     end
 
   end
@@ -43,7 +42,7 @@ describe Airport do
 
     xit 'a plane cannot land if the airport is full' do
       default_cap = 10
-      subject.land
+      airport.land
       expect(subject.land).to raise "Airport is full"
     end
 
