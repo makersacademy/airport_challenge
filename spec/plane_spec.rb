@@ -12,14 +12,13 @@ require 'plane'
 # When the plane takes of from the airport, the plane's status
 # should become "flying"
 
-describe Plane do
-
-  xit 'has a flying status when created'
-
-  xit 'has a flying status when in the air'
-
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
-
+describe 'plane status' do
+  it 'landed in airport' do
+    plane = Plane.new
+    expect(plane.landed?).to eq true
+  end
+  it 'taken off' do
+    plane = Plane.new
+    expect(plane.taken_off).to eq false
+  end
 end
