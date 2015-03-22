@@ -64,9 +64,11 @@ Unit Tests (Plane):
 - Can request to land
 - Responds to land
 - Has a status of landed after landing
-- Can request to takeoff
+- Does not respond to land after landing
 - Responds to takeoff
+- Can request to takeoff
 - Changes its status to flying after takeoff
+- Does not respond to takeoff after takeoff
 
 ToDo:
 ----
@@ -74,5 +76,6 @@ ToDo:
 - Ensure plane does not land or takeoff without permission
 - Unit tests for airport traffic control using doubles
 - Enable random weather conditions
-- Ensure planes can not land when landed
-- Ensure planes cannot takeoff after takeoff
+- ~~Ensure planes can not land when landed~~
+- ~~Ensure planes cannot takeoff after takeoff~~
+- Object-Oriented refactoring
