@@ -12,9 +12,12 @@ class Airport
   end
 
   def take_off
-    planes.pop
+    planes.pop unless storm?
   end
   # def full?
   #
   # end
+  def storm?
+    weather == 'storm'
+  end
 end

@@ -40,11 +40,13 @@ describe Airport do
     # This will require stubbing to stop the random return of the weather.
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
-
+    # This tells the die object to return the value 3 when it receives the roll
+    # message.
     context 'weather conditions' do
       it 'plane cannot take off, there is a storm' do
-        stormy_airport = double :airport, storm?: true
-        expect { stormy_airport.take_off }.to raise_error
+        # stormy_airport = double :airport, storm?: true
+        allow(subject).to receive(:storm?) { true }
+        expect { subject.storm? }.to raise_error
         'No Take Offs Due To Storm'
       end
 
