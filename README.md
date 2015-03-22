@@ -37,6 +37,11 @@ How to run
 
 Type `rake` in the application's root folder.
 
+Application Code:
+-----------------
+
+- `./lib/airport`
+- `./lib/plane`
 
 Tests
 -----
