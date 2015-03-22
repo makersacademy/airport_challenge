@@ -54,6 +54,7 @@ Unit Tests (Airport):
 `./spec/airport_spec`
 - Can order a plane to takeoff
 - Can respond to a plane wanting to land
+- A plane cannot land if the airport is full
 - A plane cannot land when it is stormy
 - A plane cannot takeoff when it is stormy
 
@@ -76,6 +77,7 @@ ToDo:
 - Ensure plane does not land or takeoff without permission
 - Unit tests for airport traffic control using doubles
 - Enable random weather conditions
-- ~~Ensure planes can not land when landed~~
+- ~~Ensure a plane cannot land if airport is full, using double in unit test~~
+- ~~Ensure planes cannot land when landed~~
 - ~~Ensure planes cannot takeoff after takeoff~~
 - Object-Oriented refactoring
