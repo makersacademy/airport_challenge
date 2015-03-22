@@ -34,15 +34,15 @@ However comment on the quality of the code would be very welcome.
 The system currently has the following structure:
 
 Airport
-- arrival(*plane*)
-- departure(*plane*) - *Will default to next available plane*
-- capacity
-- stationed_planes
+- `arrival(plane)`
+- `departure(plane)` - *Will default to next available plane, with no argument*
+- `capacity`
+- `stationed_planes`
 Airport can recieve an argument of an options hash with key capacity to set capacity.
 
 Plane
-- takeoff
-- land
-- airborne?
+- `takeoff`
+- `land`
+- `airborne?`
 Plane can recieve an argument of an options hash with key airborne to set the the status to true or false.
 
