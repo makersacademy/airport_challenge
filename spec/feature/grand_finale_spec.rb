@@ -12,13 +12,13 @@ feature 'Grand Finale' do
     expect(planes.length).to eq 6
   end
 
-  scenario '6 planes can land' do
-    planes.each { |plane| airport.landing_permission plane }
+  scenario '6 planes can land at specified airport' do
+    planes.each { |plane| plane.request_land airport }
     expect(airport.landed_planes.length).to eq 6
   end
 
   scenario 'plane is denied landing permission when airport is full' do
-    expect { (airport.landing_permission p).to raise_error 'permission denied' }
+    expect { (p.request_land airport) }.to raise_error 'permission denied'
   end
 
   scenario '6 landed planes have status: landed' do

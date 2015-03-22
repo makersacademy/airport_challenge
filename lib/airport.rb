@@ -13,7 +13,7 @@ class Airport
     @airborne_planes ||= []
   end
 
-  def weather set_weather = 'sunny' # ['sunny', 'stormy'].sample
+  def weather set_weather = 'sunny' # ['sunny', 'stormy'].shuffle
     set_weather
   end
 
@@ -27,7 +27,7 @@ class Airport
 
   def landing_permission plane
     fail 'permission denied' if !weather_good || !can_land
-    plane.land
+    plane.land self
     landed_planes << plane
   end
 

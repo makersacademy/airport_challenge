@@ -49,7 +49,7 @@ Tests
 Feature Tests:
 `./spec/feature/grand_finale_spec`
 - 6 planes can be created
-- 6 planes can land
+- 6 planes can land at specified airport
 - Plane is denied landing permission when airport is at maximum capacity
 - 6 landed planes have status 'landed'
 - After all 6 planes takeoff there are no more landed planes
@@ -79,9 +79,10 @@ Unit Tests (Plane):
 ToDo:
 ----
 
-- Ensure plane does not land or takeoff without permission
 - Enable random weather conditions
 - Object-Oriented refactoring
+- ~~Ensure plane does not land without permission~~
+- ~~Ensure plane does not takeoff without permission~~
 - ~~Unit tests for airport traffic control using doubles~~
 - ~~Ensure a plane cannot land if airport is full, using double in unit test~~
 - ~~Ensure planes cannot land when landed~~

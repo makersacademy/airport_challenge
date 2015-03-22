@@ -11,8 +11,9 @@ describe Plane do
     expect(plane.location).to eq 'air'
   end
 
-  it 'can \'request to land\'' do
-    expect(plane).to respond_to :request_land
+  it 'can \'request to land\' at airport' do
+    airport = double :airport, landing_permission: true
+    expect(plane.request_land airport).to eq true
   end
 
   it 'responds to \'land\'' do
@@ -20,12 +21,13 @@ describe Plane do
   end
 
   it 'has a status of \'landed\' after landing' do
-    plane.land
+    airport = double :airport, landing_permission: true
+    plane.land airport
     expect(plane.status).to eq 'landed'
   end
 
   it 'does not respond to \'land\' after landing' do
-    expect { (plane.land) }.to raise_error 'already landed'
+    expect { (plane.land :airport) }.to raise_error 'already landed'
   end
 
   it 'responds to \'takeoff\'' do
