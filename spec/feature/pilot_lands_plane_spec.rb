@@ -1,5 +1,5 @@
 require 'capybara/rspec'
-feature 'Pilot accesses airport' do
+feature 'Planes accesses airport' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
   scenario 'Plane lands at airport'  do
@@ -26,7 +26,8 @@ feature 'Pilot accesses airport' do
     # expect { airport.land(plane) }.to raise_error 'No Landing Due To Storm'
   end
   scenario 'Plane cannot take off from Airport due to storm' do
-    allow(airport).to receive(:stormy).and_return(true)
+    airport.land(plane)
+    allow(airport).to receive(:stormy?).and_return(true)
     expect { airport.take_off }.to raise_error 'No Take Off Due To Storm'
   end
 end

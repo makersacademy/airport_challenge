@@ -45,7 +45,7 @@ describe Airport do
     context 'weather conditions' do
       it 'Plane cannot take off, there is a storm' do
         subject.land(plane)
-        allow(subject).to receive(:stormy).and_return(true)
+        allow(subject).to receive(:stormy?).and_return(true)
         expect { subject.take_off }.to raise_error 'No Take Off Due To Storm'
         # stormy_airport = double :airport, storm?: true
         # allow(subject).to receive(:storm?) { true }

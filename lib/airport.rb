@@ -14,6 +14,7 @@ class Airport
   end
 
   def take_off
+    fail 'No Take Off Due To Storm' if stormy?
     plane = planes.pop
     plane.fly
   end
@@ -21,14 +22,7 @@ class Airport
   def full?
     planes.length >= DEFAULT_CAPACITY
   end
-  #
-  # def take_off
-  #   planes.pop unless storm?
-  # end
-  # # def full?
-  # #
-  # # end
-  # def storm?
-  #   weather == 'storm'
-  # end
+
+  def stormy?
+  end
 end
