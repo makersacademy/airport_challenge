@@ -1,8 +1,5 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
 # A plane currently in the airport can be requested to take off.
 #
 # No more planes can be added to the airport, if it's full.
@@ -12,10 +9,17 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-
+  let(:airport) { Airport.new }
+  let(:flying_plane) { double :flying_plane, status?: 'flying' }
+  let(:landed_plane) { double :landed_plane, status?: 'landed' }
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      # which I see as the "airport can accept a plane".
+      # and that plane should be there when landed. This is what we test.
+      airport.accepts(flying_plane)
+      expect(airport.planes).to eq [flying_plane]
+    end
 
     xit 'a plane can take off'
   end
