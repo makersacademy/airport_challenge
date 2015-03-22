@@ -1,25 +1,41 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# When we create a new plane, it should have a "flying" status,
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# have its status changed to "landed"
-#
-# When the plane takes of from the airport, the plane's status
-# should become "flying"
-
 describe Plane do
+  before do
+    allow($stdout).to receive(:puts)
+    allow(subject).to receive(:`)
+  end
+  context 'when created' do
+    it 'has a flying status when created' do
+      expect(subject).not_to be_flying
+    end
+  end
 
-  xit 'has a flying status when created'
+  context 'when is parked' do
+    it 'can take from from an airport' do
+      airport = double :airport
+      control_tower = double :control_tower
+      expect(airport).to receive(:control_tower).and_return(control_tower)
+      expect(control_tower).to receive(:take_off_request).and_return([])
+      subject.take_off_from airport
+      expect(subject).to be_flying
+    end
+  end
 
-  xit 'has a flying status when in the air'
-
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
+  context 'when is flying' do
+    it 'can land to a specific airport' do
+      airport = double :airport
+      another_airport = double :airport
+      control_tower = double :control_tower
+      another_ct = double :another_ct
+      expect(airport).to receive(:control_tower).and_return(control_tower)
+      expect(control_tower).to receive(:take_off_request).and_return([])
+      expect(another_airport).to receive(:control_tower).and_return(another_ct)
+      expect(another_ct).to receive(:land_request).and_return([subject])
+      subject.take_off_from airport
+      subject.land_to another_airport
+      expect(subject).not_to be_flying
+    end
+  end
 
 end

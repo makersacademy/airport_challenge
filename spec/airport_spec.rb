@@ -1,42 +1,57 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
-  context 'taking off and landing' do
+  context 'when created' do
+    it 'has a control tower' do
+      expect(subject).to respond_to :control_tower
+    end
 
-    xit 'a plane can land'
+    it 'can park planes' do
+      subject.park :plane
+      expect(subject.planes).to eq([:plane])
+    end
 
-    xit 'a plane can take off'
+    it 'has a standard capacity of 30' do
+      expect(subject.capacity).to eq 30
+    end
+
+    it 'can have a variable capacity' do
+      airport = Airport.new capacity: 200
+      expect(airport.capacity).to eq 200
+    end
+
+    it 'cannot unpark a plane that is not in the airport' do
+      expect { subject.unpark :plane }.to raise_error
+    end
   end
 
-  context 'traffic control' do
+  context 'when it has plane stored inside' do
+    it 'can unpark planes' do
+      subject.park :plane
+      subject.unpark :plane
+      expect(subject.planes).to eq([])
+    end
 
-    xit 'a plane cannot land if the airport is full'
+    it 'cannot park the same plane twice' do
+      subject.park :plane
+      expect { subject.park :plane }.to raise_error
+    end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+    it 'cannot park more than his capacity' do
+      (1..30).each { |plane| subject.park plane }
+      expect { subject.park :plane }.to raise_error
+    end
 
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+    it 'can calculate available room after parking planes' do
+      (1..15).each { |plane| subject.park plane }
+      expect(subject.available_room).to eq 15
+    end
 
-      xit 'a plane cannot land in the middle of a storm'
+    it 'can calculate available room after unparking planes' do
+      (1..15).each { |plane| subject.park plane }
+      (1..5).each { |plane| subject.unpark plane }
+      expect(subject.available_room).to eq 20
     end
   end
 end
