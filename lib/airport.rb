@@ -7,11 +7,17 @@ class Airport
   end
 
   def plane_lands(plane = '')
-    (@planes.length == capacity) ? (fail 'airport full') : @planes << plane
+    if @planes.length == capacity
+      fail 'THE AIRPORT IS FULL'
+    elsif @weather == 'stormy'
+      fail 'ITS STORMY'
+    else
+      @planes << plane
+    end
   end
 
   def plane_takes_off(*)
-    (@weather == 'stormy') ? (fail 'STORM') : @planes.pop
+    (@weather == 'stormy') ? (fail 'ITS STORMY') : @planes.pop
   end
 
   def full?

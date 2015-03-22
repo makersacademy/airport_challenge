@@ -10,21 +10,20 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new }
-  let(:flying_plane) { double :flying_plane, status?: 'flying' }
-  let(:landed_plane) { double :landed_plane, status?: 'landed' }
+  let(:plane) { double :plane }
   context 'taking off and landing' do
 
     it 'a plane can land' do
       # which I see as the "airport can accept a plane".
       # and that plane should be there when landed. This is what we test.
-      airport.plane_lands(flying_plane)
-      expect(airport.planes).to eq [flying_plane]
+      airport.plane_lands(plane)
+      expect(airport.planes).to eq [plane]
     end
 
     it 'a plane can take off' do
       airport.weather(1)
-      airport.plane_lands(flying_plane)
-      airport.plane_takes_off(flying_plane)
+      airport.plane_lands(plane)
+      airport.plane_takes_off(plane)
       expect(airport.planes).to eq []
     end
   end
@@ -43,14 +42,14 @@ describe Airport do
 
     it 'can be full' do
       # before jumpig into the next test, I want to check when its full
-      (airport.capacity).times { airport.plane_lands(flying_plane) }
+      (airport.capacity).times { airport.plane_lands(plane) }
       expect(airport).to be_full
     end
 
     it 'a plane cannot land if the airport is full' do
-      (airport.capacity).times { airport.plane_lands(flying_plane) }
+      (airport.capacity).times { airport.plane_lands(plane) }
       # rubocop doesn't allow over 80 char. What to do if it's a long code line?
-      expect { airport.plane_lands(flying_plane) }.to raise_error 'airport full'
+      expect { airport.plane_lands(plane) }.to raise_error 'THE AIRPORT IS FULL'
     end
 
     # Include a weather condition.
@@ -71,9 +70,12 @@ describe Airport do
       it 'a plane cannot take off when there is a storm brewing' do
         # for the purpose of that test, the weather method always return stormy
         airport.weather(10)
-        expect { airport.plane_takes_off(flying_plane) }.to raise_error 'STORM'
+        expect { airport.plane_takes_off(plane) }.to raise_error 'ITS STORMY'
       end
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        airport.weather(10)
+        expect { airport.plane_lands(plane) }.to raise_error 'ITS STORMY'
+      end
     end
   end
 end
