@@ -80,9 +80,9 @@ ToDo:
 ----
 
 - Ensure plane does not land or takeoff without permission
-- Unit tests for airport traffic control using doubles
 - Enable random weather conditions
+- Object-Oriented refactoring
+- ~~Unit tests for airport traffic control using doubles~~
 - ~~Ensure a plane cannot land if airport is full, using double in unit test~~
 - ~~Ensure planes cannot land when landed~~
 - ~~Ensure planes cannot takeoff after takeoff~~
-- Object-Oriented refactoring
