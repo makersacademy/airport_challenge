@@ -12,10 +12,22 @@ feature 'Grand Finale' do
     expect(planes.length).to eq 6
   end
 
+  scenario 'airport knows planes are in the air' do
+    planes.each do |plane|
+      expect(plane.location).to eq('air')
+    end
+  end
+
   scenario '6 planes can land at specified airport' do
     Airport.any_instance.stub(:weather_good).and_return(true)
     planes.each { |plane| plane.request_land airport }
     expect(airport.landed_planes.length).to eq 6
+  end
+
+  scenario 'airport knows planes are in the airport' do
+    planes.each do |plane|
+      expect(plane.location).to eq('airport')
+    end
   end
 
   scenario 'plane is denied landing permission when airport is full' do

@@ -49,7 +49,9 @@ Tests
 Feature Tests:
 `./spec/feature/grand_finale_spec`
 - 6 planes can be created
+- Airport knows planes are in the air
 - 6 planes can land at specified airport
+- Airport knows planes are in the airport
 - Plane is denied landing permission when airport is at maximum capacity
 - 6 landed planes have status 'landed'
 - After all 6 planes takeoff there are no more landed planes
@@ -83,6 +85,7 @@ ToDo:
 - Apply Object-Oriented principles
 - Setup a running simulation
 - Restart from new and do it again!  And again!  And again!
+- ~~Airport knows planes' location~~
 - ~~Test that weather conditions are random~~
 - ~~Enable random weather conditions~~
 - ~~Ensure plane does not land without permission~~

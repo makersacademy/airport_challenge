@@ -1,5 +1,5 @@
 class Plane
-  attr_reader :status
+  attr_reader :status, :location
   def initialize
     @status = 'flying'
   end
@@ -14,7 +14,7 @@ class Plane
   end
 
   def request_takeoff airport
-    airport.order_plane_to_takeoff
+    airport.order_plane_takeoff
   end
 
   def takeoff
