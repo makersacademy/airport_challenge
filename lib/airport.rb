@@ -10,14 +10,14 @@ class Airport
 
   def land_plane(plane)
     fail 'Airport Full' if @planes.count >= @capacity
-    # fail 'Stormy Weather' if stormy_weather?
+    fail 'Stormy Weather' if stormy_weather?
     plane.land!
     @planes << plane
   end
 
   def plane_take_off(plane)
     fail 'Airport Empty' if @planes.empty?
-    # fail 'Stormy Weather' if stormy_weather?
+    fail 'Stormy Weather' if stormy_weather?
     # The below is a bit ugly still
     plane1 = @planes.delete(plane)
     plane1.take_off!
@@ -25,6 +25,6 @@ class Airport
   end
 
   def stormy_weather?
-    [true, false].sample
+    [true, false, false].sample
   end
 end

@@ -6,6 +6,7 @@ require 'airport'
 feature 'Basic Features: Plane' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
+  before { allow(airport).to receive(:stormy_weather?) { false } }
   scenario 'when created, it should be flying' do
     expect(plane.flying?).to be true
   end
