@@ -1,11 +1,13 @@
 class Airport
+  DEFAULT_CAPACITY = 10
   attr_reader :planes
+  attr_writer :capacity
   def initialize
     @planes = []
   end
 
   def land(plane)
-    fail 'Airport Full' if planes.length >= 10
+    fail 'Airport Full' if planes.length >= DEFAULT_CAPACITY
     planes << plane
   end
 

@@ -19,7 +19,6 @@ describe Airport do
     end
 
     it 'a plane can take off' do
-      plane = Plane.new
       subject.land(plane)
       plane = subject.take_off
       expect(plane).to be plane
@@ -29,7 +28,7 @@ describe Airport do
   context 'traffic control' do
 
     it 'a plane cannot land if the airport is full' do
-      10.times { subject.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'Airport Full'
     end
 
