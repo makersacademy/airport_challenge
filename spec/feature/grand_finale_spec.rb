@@ -41,9 +41,15 @@ feature 'As an airtraffic controller' do
     20.times do
       plane = Plane.new
       planes << plane
-      p planes
     end
+    p planes
     planes.each { |plane| airport.land_plane plane }
+    plane = Plane.new
+    expect { airport.land_plane plane }.to raise_error 'cannot land'
+  end
+  scenario 'I want to prevent planes landing if it is stormy' do
+    weather = double('Weather', weather: 'stormy')
+    airport.weather weather
     plane = Plane.new
     expect { airport.land_plane plane }.to raise_error 'cannot land'
   end
