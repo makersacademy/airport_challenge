@@ -13,4 +13,8 @@ class Airport
   def plane_takes_off(*)
     @planes.pop
   end
+
+  def full?
+    @planes.length == capacity
+  end
 end

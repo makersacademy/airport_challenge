@@ -40,6 +40,12 @@ describe Airport do
       expect(airport2.capacity).to eq 200
     end
 
+    it 'can be full' do
+      # before jumpig into the next test, I want to check when its full
+      (airport.capacity).times { airport.plane_lands(flying_plane) }
+      expect(airport).to be_full
+    end
+
     xit 'a plane cannot land if the airport is full'
 
     # Include a weather condition.
