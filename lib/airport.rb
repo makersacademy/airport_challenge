@@ -13,20 +13,21 @@ class Airport
   end
 
   def take_off(plane)
-    fail "Can't find that plane!" unless planes.include? plane
-    fail 'Stormy' if bad_weather?
+    check_can_take_off(plane)
     planes.delete(plane)
     plane.take_off
   end
 
   private
 
+  def check_can_take_off(plane)
+    fail "Can't find that plane!" unless planes.include? plane
+    fail 'Stormy' if bad_weather?
+  end
+
   def check_land_safety
-    if full?
-      fail 'Airport full'
-    elsif bad_weather?
-      fail 'Stormy'
-    end
+    fail 'Airport full' if full?
+    fail 'Stormy' if bad_weather?
   end
 
   def full?

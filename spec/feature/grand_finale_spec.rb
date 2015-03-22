@@ -6,6 +6,7 @@ feature 'Grand Finale' do
     6.times { planes << Plane.new }
     planes
   end
+
   let(:airport) { Airport.new(capacity: 7) }
 
   scenario 'all planes land' do
@@ -35,6 +36,7 @@ feature 'Grand Finale' do
       scenario 'and is rejected' do
         expect { airport.land Plane.new }.to raise_error
       end
+
       scenario 'but is rejected and continues flying' do
         rejected_plane = Plane.new
         expect { airport.land Plane.new }.to raise_error
