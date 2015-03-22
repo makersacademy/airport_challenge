@@ -11,6 +11,7 @@ require 'capybara/rspec'
 feature 'as a pilot i want' do
 
   scenario 'to be able to land my plane' do
+    plane = Plane.new
     expect(plane).to respond_to :land
   end
 

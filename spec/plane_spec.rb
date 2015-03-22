@@ -21,6 +21,7 @@ describe Plane do
   xit 'must get approval from airport for landing'
 
   it 'can land' do
+    plane = Plane.new
     expect(plane).to respond_to :land
   end
 
