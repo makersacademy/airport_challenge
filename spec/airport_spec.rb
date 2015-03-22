@@ -17,11 +17,15 @@ describe Airport do
     it 'a plane can land' do
       # which I see as the "airport can accept a plane".
       # and that plane should be there when landed. This is what we test.
-      airport.accepts(flying_plane)
+      airport.plane_lands(flying_plane)
       expect(airport.planes).to eq [flying_plane]
     end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      airport.plane_lands(flying_plane)
+      airport.plane_takes_off(flying_plane)
+      expect(airport.planes).to eq []
+    end
   end
 
   context 'traffic control' do

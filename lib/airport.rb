@@ -4,7 +4,11 @@ class Airport
     @planes = []
   end
 
-  def accepts(plane = '')
+  def plane_lands(plane = '')
     @planes << plane
+  end
+
+  def plane_takes_off(*)
+    @planes.pop
   end
 end
