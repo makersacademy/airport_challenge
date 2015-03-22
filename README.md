@@ -28,6 +28,6 @@ The Plane class can return 'True' or 'False' when asked flying?, as well as bein
 
 The Airport class has a capacity and an array of planes. The capacity is 20 and the array is empty when an Airport is initialised. It has a private method 'stormy_weather?' which returns true 1/4 of the time. It's main methods are:
  * land_plane(plane) - which takes a plane as an argument, changes it's status to landed, and adds it to the airport's array of planes. It gives an error if the number of objects in the airport's array is greater than it's capacity. It also gives an error if the weather is stormy.
- * plane_take_off(plane) - which takes a plane as an argument, changes it's status to flying, and removes it from the airport's array of planes. It gives an error if the airport is empty and if the weather is stormy. It also gives an error if the requested take off plane is not at that airport (or doesn't exist). This function is slightly complicated by the tests needing to check that the right plane was released.
+ * plane_take_off(plane) - which takes a plane as an argument, changes it's status to flying, and removes it from the airport's array of planes. It gives an error if the airport is empty and if the weather is stormy. This function is slightly complicated by the tests needing to check that the right plane was released.
 
  There is a 'Grand Finale' feature test, as well as feature tests and unit tests for each class. 

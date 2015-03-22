@@ -19,7 +19,6 @@ class Airport
     fail 'Airport Empty' if @planes.empty?
     fail 'Stormy Weather' if stormy_weather?
     plane1 = @planes.delete(plane)
-    fail 'That plane does not exist, or is not at this airport' unless plane1
     plane1.take_off!
     plane1
   end
