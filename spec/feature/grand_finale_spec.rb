@@ -15,6 +15,17 @@ feature 'Grand Finale' do
   xscenario 'all planes can land and all planes can take off'
 end
 
+feature 'As a pilot' do
+  scenario 'I would like to land my plane at the appropriate airport' do
+    plane = Plane.new
+    airport = Airport.new
+    weather = Weather.new
+    airport.weather weather
+    airport.land_plane plane
+    expect(plane.flying).to be false
+  end
+end
+
 # airport = Airport.new
 # weather = Weather.new
 # airport.weather(weather.weather)
