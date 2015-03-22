@@ -14,19 +14,28 @@ describe Plane do
     expect(subject).to be_flying
   end
 
+  it 'can be assigned a flight number' do
+    expect(subject).to respond_to :flight_number
+  end
+
   it 'can land' do
+    expect(subject).to respond_to :land
+  end
+
+  it 'does not have "flying" status after landing' do
     subject.land
     expect(subject).not_to be_flying
   end
 
-  xit 'has a flying status when in the air'
-
   it 'can take off' do
-    subject.land
+    expect(subject).to respond_to :take_off
+  end
+
+  it 'has a flying status after taking off' do
+    # could do subject.land but then test is dependent on that method working
+    class Plane; attr_writer :flying; end
+    subject.flying = false
     subject.take_off
     expect(subject).to be_flying
   end
-
-  xit 'changes its status to flying after taking off'
-
 end

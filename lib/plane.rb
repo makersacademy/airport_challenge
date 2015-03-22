@@ -2,6 +2,7 @@
 
 class Plane
   attr_reader :flying
+  attr_accessor :flight_number
   alias_method :flying?, :flying
 
   def initialize

@@ -5,7 +5,11 @@ describe Airport do
   let(:airport) { Airport.new }
   let(:sunny_time) { allow(airport).to receive(:weather).and_return('sunny') }
   let(:stormy_time) { allow(airport).to receive(:weather).and_return('stormy') }
-  # what if capacity is set to lower than number of planes currently docked?
+
+  before do
+    airport.add_flight(:flight)
+  end
+
   it 'can set a custom capacity' do
     initial_capacity = airport.capacity
     airport.capacity = -1 # in case we happen to set it to the default cap
@@ -46,5 +50,43 @@ describe Airport do
         expect { airport.initialize_take_off(plane) }.to raise_error error_msg
       end
     end
+  end
+  context 'passenger travel:' do
+    it 'can add a flight to schedule' do
+      airport.add_flight('BA444')
+      expect(airport.flights.include?('BA444')).to eq true
+    end
+
+    it 'can check in passengers to a flight' do
+      expect(airport).to respond_to :check_in
+    end
+
+    it 'has number of checked in passengers' do
+      airport.check_in(:person, :flight)
+      airport.check_in(:person2, :flight)
+      expect(airport.checked_in_passengers.length).to eq 2
+      expect(airport.checked_in_passengers.include?(:person)).to eq true
+    end
+
+    it 'can check out passengers' do
+      expect(airport).to respond_to :check_out
+    end
+
+    it 'no longer considers passenger "in the airport" when checked out' do
+      airport.check_in(:person, :flight)
+      airport.check_out(:person)
+      expect(airport.checked_in_passengers.include?(:person)).to eq false
+    end
+
+    it 'raises an error if passenger already checked in' do
+      airport.check_in(:person, :flight)
+      err_msg = 'Already checked in'
+      expect { airport.check_in(:person, :flight) }.to raise_error err_msg
+    end
+
+    xit 'passengers can be boarded on a flight'
+    xit 'raises error if passengers boarded on wrong flight'
+    xit 'can check if all passengers are boarded'
+    xit 'can warn passengers of last call'
   end
 end
