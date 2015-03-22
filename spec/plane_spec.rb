@@ -20,7 +20,9 @@ describe Plane do
 
   xit 'must get approval from airport for landing'
 
-  xit 'can land'
+  it 'can land' do
+    expect(plane).to respond_to :land
+  end
 
   xit 'changes its status to landed after landing'
 
