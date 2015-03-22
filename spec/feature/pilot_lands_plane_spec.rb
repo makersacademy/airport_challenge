@@ -13,10 +13,10 @@ feature 'Pilot accesses airport' do
     # status = flying_plane.status
     expect(plane.status).to eq 'flying'
   end
-  xscenario 'Plane cannot land, airport full' # do
-  #   10.times { airport.land(plane) }
-  #   expect { airport.land(plane) }.to raise_error 'Airport Full'
-  # end
+  scenario 'Plane cannot land, airport full' do
+    Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error 'Airport Full'
+  end
   xscenario 'Plane cannot land in Airport due to storm' # do
   xscenario 'Plane cannot take off from Airport due to storm' # do
 end
