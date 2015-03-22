@@ -1,25 +1,32 @@
-require 'plane'
+require 'capybara/rspec'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
-# When we create a new plane, it should have a "flying" status,
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# have its status changed to "landed"
-#
-# When the plane takes of from the airport, the plane's status
-# should become "flying"
+# Given 6 planes, each plane must land.
+# Be careful of the weather, it could be stormy!
+# Check when all the planes have landed that they have status "landed"
+# Once all planes are in the air again, check that they have status "flying!"
 
-describe Plane do
+feature 'as an operational airport we want' do
 
-  xit 'has a flying status when created'
+  scenario 'to be able to tell a plane to land' do
+    airport = Airport.new
+    airport.acknowledge Plane.new
+    plane = airport.land
+    expect(plane).not_to be_landed
+  end
 
-  xit 'has a flying status when in the air'
+  scenario 'not to land an already-landed plane' do
+    airport = Airport.new
+    expect { airport.land }.to raise_error 'Plane already landed.'
+  end
 
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
+  xscenario 'to be able to tell a plane to take off' do
+    # plane = Plane.new
+    # airport = Airport.new
+    # landed_plane = airport.land(plane)
+    # expect(landed_plane).to respond_to airport.take_off
+  end
 
 end
