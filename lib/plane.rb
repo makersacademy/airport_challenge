@@ -1,9 +1,13 @@
 class Plane
-  attr_reader :flying
+  DEFAULT_SEATS = 50
+  attr_reader :flying, :capacity, :seats
   alias_method :airborne?, :flying
 
   def initialize(options = {})
+    options = defaults.merge(options)
     @flying = options[:airborne]
+    @capacity = options[:capacity]
+    @seats = []
   end
 
   def take_off
@@ -16,9 +20,20 @@ class Plane
     self
   end
 
+  def board(passenger)
+    seats << passenger
+    check_in(passenger)
+  end
+
   private
 
+  attr_writer :seats
+
   def defaults
-    { airborne: true }
+    { airborne: true, capacity: DEFAULT_SEATS }
+  end
+
+  def check_in(passenger)
+    passenger.check_in
   end
 end

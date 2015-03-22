@@ -22,6 +22,9 @@ As an air traffic controller
 So that I can avoid accidents
 I want to be able to prevent airplanes landing when the weather is stormy
 
+As a passenger
+So that I can get to my destination
+I wish to be able to get on a landed plane
 ```
 ##Contribution##
 
