@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+https://travis-ci.org/joejknowles/airport_challenge.svg?branch=master
+
 Requirements
 ------------
 
