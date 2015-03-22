@@ -15,24 +15,36 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    it 'a plane can land' do
+    it 'a plane can be landed' do
       expect(subject).to respond_to :land
+    end
+
+    it 'can store landed planes in hangar' do
+      subject.land(plane)
+      expect(subject.hangar).to eq plane
+
     end
 
     it 'a plane can take off' do
       expect(subject).to respond_to :take_off
     end
+
+    xit 'can have a max capacity' do
+      default_cap = 10
+      expect(subject.capacity(default_cap)).to eq default_cap
+    end
+
   end
 
   context 'traffic control' do
 
-    it 'can have a capacity' do
-      default = 10
-      expect(subject.capacity(default)).to eq default
-    end
+    it 'can '
 
-    it 'a plane cannot land if the airport is full' do
 
+    xit 'a plane cannot land if the airport is full' do
+      default_cap = 10
+      subject.land
+      expect(subject.land).to raise "Airport is full"
     end
 
     # Include a weather condition.
