@@ -11,19 +11,20 @@ require 'capybara/rspec'
 feature 'as a pilot i want' do
 
   scenario 'to be able to land my plane' do
+    expect(plane).to respond_to :land
   end
 
-  scenario 'to be able to take off my plane' do
+  xscenario 'to be able to take off my plane' do
   end
 
 end
 
 feature 'as the airport i want' do
 
-  scenario 'to be able to approve each plane landing' do
+  xscenario 'to be able to approve each plane landing' do
   end
 
-  scenario 'to be able to approve each plane taking off' do
+  xscenario 'to be able to approve each plane taking off' do
   end
 
 end
