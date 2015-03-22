@@ -67,7 +67,7 @@ Unit Tests (Plane):
 `./spec/plane_spec`
 - Has a flying status when created
 - Is located in the air when created
-- Can request to land
+- Can request to land at specified airport
 - Responds to land
 - Has a status of landed after landing
 - Does not respond to land after landing
