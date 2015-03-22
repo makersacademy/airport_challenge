@@ -1,8 +1,6 @@
 require 'capybara/rspec'
 require 'airport'
 
-# Make sure you test all this in irb to check dependencies etc are all working
-
 feature 'Basic Features: Plane' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }

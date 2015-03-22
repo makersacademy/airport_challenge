@@ -25,6 +25,6 @@ class Airport
   end
 
   def stormy_weather?
-    [true, false, false].sample
+    [true, false, false, false].sample
   end
 end
