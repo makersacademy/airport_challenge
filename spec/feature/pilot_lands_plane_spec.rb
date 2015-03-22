@@ -20,13 +20,13 @@ feature 'Planes accesses airport' do
     expect { airport.land(plane) }.to raise_error 'Airport Full'
   end
   scenario 'Plane cannot land in Airport due to storm' do
-    allow(airport).to receive(:stormy?).and_return(true)
+    allow(airport).to receive(:storm?).and_return(true)
     expect { airport.land(plane) }.to raise_error 'No Landing Due To Storm'
   end
 
   scenario 'Plane cannot take off from Airport due to storm' do
     airport.land(plane)
-    allow(airport).to receive(:stormy?).and_return(true)
+    allow(airport).to receive(:storm?).and_return(true)
     expect { airport.take_off }.to raise_error 'No Take Off Due To Storm'
   end
 end

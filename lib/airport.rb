@@ -8,14 +8,14 @@ class Airport
 
   def land(plane)
     fail 'Airport Full' if full?
-    fail 'No Landing Due To Storm' if stormy?
+    fail 'No Landing Due To Storm' if storm?
     plane.land
     planes << plane
     plane
   end
 
   def take_off
-    fail 'No Take Off Due To Storm' if stormy?
+    fail 'No Take Off Due To Storm' if storm?
     plane = planes.pop
     plane.fly
   end
@@ -24,6 +24,6 @@ class Airport
     planes.length >= DEFAULT_CAPACITY
   end
 
-  def stormy?
+  def storm?
   end
 end
