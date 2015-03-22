@@ -9,13 +9,14 @@ require 'capybara/rspec'
 # Once all planes are in the air again, check that they have status "flying!"
 
 feature 'as a pilot i want' do
+  let(:plane) { Plane.new }
 
   scenario 'to be able to land my plane' do
-    plane = Plane.new
     expect(plane).to respond_to :land
   end
 
-  xscenario 'to be able to take off my plane' do
+  scenario 'to be able to take off my plane' do
+    expect(plane).to respond_to :take_off
   end
 
 end
