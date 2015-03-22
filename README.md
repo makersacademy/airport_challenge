@@ -1,6 +1,14 @@
 Airport Challenge
 =================
 
+Notes from Benny
+---------
+
+I am confident that I completed the requirements of the challenge. After having done this I attempted to go into passenger travel. I only realized later on that this was a much big challenger than I expected. I did not initially take into account flight numbers, schedules and so forth. Although it is compeltely feasible, I did not have the time to finish this by the end of the weekend. 
+
+I believe I have set up my project in a relatively conventional way. One thing to note is that the landing of a plane is initialized by the Aiport land_plane method, which then calls the Plane land method. I suppose it might have been more realistic for the Plane class to have a request_landing method to initialize the landing process. 
+
+
 Instructions
 ---------
 
