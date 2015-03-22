@@ -22,7 +22,7 @@ describe Airport do
       airport = Airport.new
       weather_array = []
       100.times { weather_array << airport.weather }
-      expect(weather_array.uniq.length).to eq(2)
+      expect(weather_array.uniq).to contain_exactly('sunny', 'stormy')
     end
 
     it 'a plane cannot land when it is stormy' do
