@@ -44,7 +44,6 @@ feature 'Grand Finale' do
 
   scenario 'after all 6 planes takeoff their status is \'flying\'' do
     planes.each do |plane|
-      airport.order_plane_to_takeoff plane
       expect(plane.status).to eq 'flying'
     end
   end
