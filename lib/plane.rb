@@ -1,9 +1,9 @@
 class Plane
-  attr_reader :flying
-  alias_method :flying?, :flying
+  attr_reader :status
+  alias_method :status?, :status
 
   def initialize
-    @flying = true
+    @status = 'flying'
   end
 
   def land

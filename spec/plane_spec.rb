@@ -16,7 +16,7 @@ describe Plane do
   let(:plane) { Plane.new }
 
   it 'has a flying status when created' do
-    expect(plane).to be_flying
+    expect(plane).to have_attributes(status: 'flying')
   end
 
   xit 'has a flying status when in the air'
@@ -27,8 +27,9 @@ describe Plane do
     expect(plane).to respond_to :land
   end
 
-  xit 'changes its status to landed after landing'
-  # expect { object.action }.to change(object, :value).from(old).to(new)
+  it 'changes its status to landed after landing' do
+    expect { plane.take_off }.to change(plane, :status).from(flying).to(landed)
+  end
 
   xit 'must get approval from airport for taking off'
 
