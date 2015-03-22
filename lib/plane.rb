@@ -21,13 +21,18 @@ class Plane
   end
 
   def board(passenger)
-    seats << passenger
+    fail "Plane Full" if full?
     check_in(passenger)
+    seats << passenger
   end
 
   private
 
   attr_writer :seats
+
+  def full?
+    seats.length >= capacity
+  end
 
   def defaults
     { airborne: true, capacity: DEFAULT_SEATS }

@@ -49,6 +49,12 @@ Plane
 - `takeoff`
 - `land`
 - `airborne?`
+- `board(passenger)`
+- `capacity`
 
 Plane can recieve an argument of an options hash with key airborne to set the the status to true or false.
+
+Passenger
+- `check_in`
+- `checked_in?`
 
