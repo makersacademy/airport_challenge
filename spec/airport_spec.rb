@@ -39,16 +39,16 @@ describe Airport do
   context 'weather conditions' do
     it 'a plane cannot land when it is stormy' do
       Airport.any_instance.stub(:weather).and_return(:'stormy')
-      airport = Airport.new
+      a = Airport.new
       plane = Plane.new
-      expect(airport.landing_permission plane).to eq 'permission denied'
+      expect { (a.landing_permission plane).to raise_error 'permission denied' }
     end
 
     it 'a plane cannot takeoff when it is stormy' do
       Airport.any_instance.stub(:weather).and_return(:'stormy')
-      airport = Airport.new
-      plane = Plane.new
-      expect(airport.order_plane_to_takeoff plane).to eq 'permission denied'
+      a = Airport.new
+      p = Plane.new
+      expect { (a.order_plane_to_takeoff p).to raise_error 'permission denied' }
     end
   end
 end
