@@ -16,12 +16,14 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
+      allow(subject).to receive(:weather) { 'sunny' }
       expect(subject.plane_count).to eq(0)
       subject.land double :plane
       expect(subject.plane_count).to eq(1)
     end
 
     it 'a plane can take off' do
+      allow(subject).to receive(:weather) { 'sunny' }
       subject.land :plane
       expect(subject.take_off).to eq :plane
     end
@@ -34,10 +36,12 @@ describe Airport do
     end
 
     it 'cannot take off a plane if the airport is empty' do
+      allow(subject).to receive(:weather) { 'sunny' }
       expect { subject.take_off }.to raise_error 'Airport is Empty'
     end
 
     it 'cannot land a plane if the airport is full' do
+      allow(subject).to receive(:weather) { 'sunny' }
       subject.capacity.times { subject.land :plane }
       expect { subject.land :plane }.to raise_error 'Sorry, Airport Full'
     end
@@ -52,9 +56,17 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      it 'a plane cannot take off when there is a storm brewing' do
+        allow(subject).to receive(:weather) { 'sunny' }
+        subject.land :plane
+        allow(subject).to receive(:weather) { 'stormy' }
+        expect { subject.take_off }.to raise_error 'Impossible, Stormy Weather'
+      end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        allow(subject).to receive(:weather) { 'stormy' }
+        expect { subject.land :plane }.to raise_error 'Impossible, Stormy Weather'
+      end
     end
   end
 end

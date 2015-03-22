@@ -10,10 +10,11 @@ require 'airport'
 # Once all planes are in the air again, check that they have status "flying!"
 
 feature 'Grand Finale' do
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
 
   scenario 'planes can land and take off' do
-    airport = Airport.new
-    plane = Plane.new
+    allow(airport).to receive(:weather) { 'sunny' }
     expect(plane.status).to eq 'airborne'
     airport.land plane
     airborne_plane = airport.take_off
@@ -21,12 +22,17 @@ feature 'Grand Finale' do
   end
 
   scenario 'airport has a limited capacity' do
-    airport = Airport.new
-    plane = Plane.new
+    allow(airport).to receive(:weather) { 'sunny' }
     expect { airport.take_off }.to raise_error 'Airport is Empty'
     airport.capacity.times { airport.land plane }
     expect { airport.land plane }.to raise_error 'Sorry, Airport Full'
   end
 
-  # scenario
+  scenario 'the planes cannot fly during stormy weather' do
+    allow(airport).to receive(:weather) { 'sunny' }
+    airport.land plane
+    allow(airport).to receive(:weather) { 'stormy' }
+    expect { airport.land plane }.to raise_error 'Impossible, Stormy Weather'
+    expect { airport.take_off }.to raise_error 'Impossible, Stormy Weather'
+  end
 end
