@@ -62,6 +62,11 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
+      it 'has a weather. Its sunny or stormy' do
+        # before checking planes conditions against weather, I create weather
+        expect(airport.weather).to satisfy { 'stormy' || 'sunny' }
+      end
+
       xit 'a plane cannot take off when there is a storm brewing'
 
       xit 'a plane cannot land in the middle of a storm'

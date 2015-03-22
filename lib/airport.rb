@@ -17,4 +17,9 @@ class Airport
   def full?
     @planes.length == capacity
   end
+
+  def weather
+    # for the purpose of the test, it's 50-50 for now.
+    (rand(10) >= 5) ? 'stormy' : 'sunny'
+  end
 end
