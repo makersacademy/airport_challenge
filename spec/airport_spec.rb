@@ -30,6 +30,16 @@ describe Airport do
 
   context 'traffic control' do
 
+    it 'the airport has a capacity' do
+      # before we talk about full capacity, I want to check a capacity.
+      expect(airport.capacity).to eq 50
+    end
+
+    it 'an other airport can have a custom capacity' do
+      airport2 = Airport.new(200)
+      expect(airport2.capacity).to eq 200
+    end
+
     xit 'a plane cannot land if the airport is full'
 
     # Include a weather condition.
