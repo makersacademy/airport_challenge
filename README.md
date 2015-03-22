@@ -1,9 +1,5 @@
-Makers Academy 
-==============
-Week1 Challenge
-=============== 
-Airport Challenge.
-==================
+Makers Academy Week1 Challenge: Airport Challenge.
+==================================================
 
 How I went about the challenge:
 -------------------------------
