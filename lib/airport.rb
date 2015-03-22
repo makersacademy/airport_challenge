@@ -10,12 +10,14 @@ class Airport
   def arrival(plane)
     fail "Airport Full" if full?
     fail "Too Stormy" if stormy?
+    confirm_landing(plane)
     stationed_planes << plane
   end
 
-  def departure(plane)
+  def departure(plane = default_plane)
     fail "No plane" if empty?
     fail "Too Stormy" if stormy?
+    confirm_departure(plane)
     stationed_planes.delete(plane)
   end
 
@@ -35,5 +37,17 @@ class Airport
 
   def stormy?
     forecast == :stormy
+  end
+
+  def default_plane
+    stationed_planes.last if stationed_planes.length > 0
+  end
+
+  def confirm_departure(plane)
+    plane.take_off
+  end
+
+  def confirm_landing(plane)
+    plane.land
   end
 end

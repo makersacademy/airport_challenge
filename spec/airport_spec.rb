@@ -2,13 +2,16 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double(:plane, land: :plane1, take_off: :plane1) }
-  let(:plane_arrival) { subject.arrival(plane.land) }
-  let(:plane_depature) { subject.departure(plane.take_off) }
+  let(:plane) { double(:plane) }
+  let(:plane_arrival) { subject.arrival(plane) }
+  let(:plane_depature) { subject.departure }
 
   before { allow(subject).to receive(:stormy?) { false } }
+  before { allow(plane).to receive(:land) { plane } }
+  before { allow(plane).to receive(:take_off) { plane } }
 
   context 'taking off and landing' do
+
     it 'a plane can land' do
       plane_arrival
       expect(subject.stationed_planes.last).not_to eq nil
@@ -19,11 +22,13 @@ describe Airport do
       plane_depature
       expect(subject.stationed_planes.last).to eq nil
     end
+
   end
 
   context 'traffic control' do
+
     it 'a plane cannot land if the airport is full' do
-      Airport::DEFAULT_CAPACITY.times { subject.arrival(plane.land) }
+      Airport::DEFAULT_CAPACITY.times { subject.arrival(plane) }
       expect { plane_arrival }. to raise_error "Airport Full"
     end
 
@@ -36,11 +41,13 @@ describe Airport do
     it 'a plane cannot take off if it is not present' do
       plane_arrival
       plane_depature
-      expect { subject.departure(plane.take_off) }.to raise_error "No plane"
+      expect { subject.departure(plane) }.to raise_error "No plane"
     end
+
   end
 
   context 'weather conditions' do
+
     it 'a plane cannot take off when there is a storm brewing' do
       plane_arrival
       allow(subject).to receive(:stormy?) { true }
@@ -51,6 +58,7 @@ describe Airport do
       allow(subject).to receive(:stormy?) { true }
       expect { plane_arrival }.to raise_error "Too Stormy"
     end
+
   end
 
 end

@@ -1,15 +1,27 @@
 require 'capybara/rspec'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
-
 feature 'Grand Finale' do
 
-  xscenario 'all planes can land and all planes can take off'
+  scenario 'all planes can land and all planes can take off' do
 
+    airport = Airport.new
+    allow(airport).to receive(:stormy?).and_return(false)
+
+    6.times do
+      plane = Plane.new
+      airport.arrival(plane)
+      expect(plane).not_to be_airborne
+    end
+
+    expect(airport.stationed_planes.length).to eq(6)
+
+    6.times do
+      next_plane = airport.stationed_planes.last
+      airport.departure
+      expect(next_plane).to be_airborne
+    end
+
+    expect(airport.stationed_planes.length).to eq(0)
+
+  end
 end

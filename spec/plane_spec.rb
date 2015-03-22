@@ -2,19 +2,16 @@ require 'plane'
 
 describe Plane do
 
-  it 'has an airborne status when created' do
-    plane = Plane.new
-    expect(plane).to respond_to :airborne?
+  it "has an airborne status when created" do
+    expect(subject).to respond_to :airborne?
   end
 
-  it 'can take off' do
-    plane = Plane.new
-    expect(plane.take_off).to be_airborne
+  it "can take off" do
+    expect(subject.take_off).to be_airborne
   end
 
-  it 'can land' do
-    plane = Plane.new
-    expect(plane.land).not_to be_airborne
+  it "can land" do
+    expect(subject.land).not_to be_airborne
   end
 
 end
