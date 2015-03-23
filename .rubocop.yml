@@ -4,3 +4,5 @@ Documentation:
   Enabled: false
 Style/MethodDefParentheses:
   Enabled: false
+Style/Tab:
+  Enabled: false
