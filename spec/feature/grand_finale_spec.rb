@@ -4,14 +4,14 @@ feature 'Grand Finale' do
 
   scenario 'all planes can land' do
     airport = Airport.new
-    airport.weather = 'sunny'
+    allow(airport).to receive(:weather) { 'sunny' }
     6.times { airport.land Plane.new }
     expect(airport.planes[5].status). to eq 'landed'
   end
 
   scenario 'all planes can take off' do
     airport = Airport.new
-    airport.weather = 'sunny'
+    allow(airport).to receive(:weather) { 'sunny' }
     6.times { airport.land Plane.new }
     5.times { airport.take_off }
     expect(airport.take_off.status).to eq 'flying'
