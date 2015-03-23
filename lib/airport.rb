@@ -5,9 +5,10 @@ class Airport
 
   attr_reader :planes
 
-  def initialize
+  def initialize(airport_size = {})
     @planes = []
-    @weather_conditions= ['Stormy', 'Sunny']
+    @weather_conditions = ['Stormy', 'Sunny']
+    @capacity = airport_size.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
   def land plane
