@@ -2,7 +2,15 @@ require_relative 'weather'
 require_relative 'plane'
 
 class Airport
-  # attr_writer :capacity
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
+
+  def land plane
+    planes << plane
+  end
 
   # DEFAULT_CAPACITY = 5
 
@@ -14,8 +22,7 @@ class Airport
   #   plane.runway.count
   # end
 
-  # def ok_to_land
-  #   puts 'Ok to land'
+  # def o
   #   runway << @plane
   #   plane.landed
   # end
