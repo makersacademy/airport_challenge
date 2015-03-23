@@ -12,31 +12,42 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  let (:plane) { double :plane, flying?: true, land!: nil }
+  let (:airport) { Airport.new }
 
-  context 'taking off and landing' do
-
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
+  it 'should be empty when created' do
+    expect(airport.planes.length).to eq 0 
   end
 
-  context 'traffic control' do
-
-    xit 'a plane cannot land if the airport is full'
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-
-      xit 'a plane cannot land in the middle of a storm'
-    end
+  it 'allows a plane to land' do
+    airport.land(plane)
+    expect(airport.planes.length).to eq 1
   end
+
+  it 'the plane is notified that it has landed' do
+    
+  end
+
+    # it {is_expected.to respond_to :flying?}
+    # it {is_expected.to respond_to :landed_planes}
+    # # it {is_expected.to respond_to :land_permission}
+
+    # context 'allows a plane to take off' do
+    #   it { is_expected.to respond_to :takeoff }
+    # end
+
+    # it 'knows when a plane is flying' do
+    #   expect(subject).to respond_to :flying
+    # end
+
+    # it 'a plane can land' do
+    #   # it { is_expected.to respond_to :land_permission }
+    # end
+
+    # it 'a plane cannot land if the airport is full' do
+    #   airport = Airport.new
+    #   (airport.capacity).times {}
+    # end
+
+>>>>>>> initial commit
 end

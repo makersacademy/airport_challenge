@@ -1,5 +1,6 @@
 require 'plane'
 
+<<<<<<< HEAD
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -13,13 +14,15 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
+  plane = Plane.new
 
-  xit 'has a flying status when created'
+  it 'should be flying when it is created' do
+    expect(plane).to be_flying
+  end
 
-  xit 'has a flying status when in the air'
-
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
+  it 'should be able to land' do
+    plane.land!
+    expect(plane).not_to be_flying    
+  end
 
 end
