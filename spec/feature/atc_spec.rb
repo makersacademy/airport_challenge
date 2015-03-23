@@ -18,7 +18,6 @@ feature 'plane should not land at airport in certain circumstances –' do
 
   scenario 'when weather is stormy' do
     allow(plane.land).to receive(:stormy?) { true }
-    puts plane.land
     expect { plane.land }.to raise_error 'Weather Stormy'
   end
 end
