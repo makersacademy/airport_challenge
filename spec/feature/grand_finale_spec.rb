@@ -5,14 +5,14 @@ feature 'Grand Finale' do
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
 
-  xscenario 'all planes can land and all planes can take off' do
+  scenario 'all planes can land and all planes can take off' do
     airport = Airport.new
     all_planes = Array.new(6, Plane.new)
-    allow(airport).to receive(:weather){:'!sunny'}
+    allow(airport).to receive(:weather) { :'!stormy' }
 
-    for plane in @all_plane do airport.landing_order(plane)
-    for plane in @all_plane do expect(plane.flying).to eq false
-    for plane in @all_plane do airport.takeoff_order(plane)
-    for plane in @all_plane do expect(plane.flying).to eq true
+    all_planes.each { |plane| airport.landing_order(plane) }
+    all_planes.each { |plane| expect(plane.flying).to eq false }
+    all_planes.each { |plane| airport.takeoff_order(plane) }
+    all_planes.each { |plane| expect(plane.flying).to eq true }
   end
 end

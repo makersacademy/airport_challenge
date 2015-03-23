@@ -17,15 +17,17 @@ class Airport
       return 'plane is flying'
     else
       return 'plane landed'
+    end
   end
 
   def landing_order(plane)
-    if @stormy == true or airport_full? == true
+    if @stormy == true || airport_full? == true
       return 'plane cannot land'
     else
       return 'plane can land'
       plane.landing_order
       @planes << plane
+    end
   end
 
   def takeoff_order(plane)
@@ -35,6 +37,7 @@ class Airport
       return 'plane can take off'
       plane.takeoff_order
       @planes.delete plane
+    end
   end
 
   def airport_full?
@@ -42,5 +45,6 @@ class Airport
       return 'true'
     else
       return 'false'
+    end
   end
 end
