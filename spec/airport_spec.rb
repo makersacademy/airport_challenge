@@ -32,8 +32,10 @@ describe Airport do
   end
 
   context 'traffic control checks' do
-    xit 'a plane cannot land if the airport is full'
-    # expect(airport_status).to be < 20
+    it 'a plane cannot land if the airport is full' do
+      10.times { subject.agree_land double :plane }
+      expect { subject.agree_land double :plane }.to raise_error 'Airport is full.'
+    end
   end
 
   # Include a weather condition.
