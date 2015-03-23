@@ -13,13 +13,20 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
+  let(:plane) { Plane.new }
 
-  xit 'has a flying status when created'
+  it 'has a flying status when created' do
+    expect(plane.flying_status).to eq 'Flying'
+  end
 
-  xit 'has a flying status when in the air'
+  it 'has a flying status when landed' do
+    plane.has_landed
+    expect(plane.flying_status).to eq 'Landed'
+  end
 
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
-
+  it 'changes its status to flying after taking off' do
+    plane.has_landed
+    plane.taken_off
+    expect(plane.flying_status).to eq 'Flying'
+  end
 end
