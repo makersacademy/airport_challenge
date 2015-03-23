@@ -1,5 +1,7 @@
-
-I managed to get the plane to take off, have a 'flying' status in flight, land and be ready for take off. Theres's still quite a few issues to resolve such as the airport capacity, conditions for the plane to land or take off. 
+Plane can take off 
+Plane has a 'flying' status in flight 
+Plane can land and be ready for take off 
+Theres's still quite a few issues to resolve such as the airport capacity, conditions for the plane to land or take off. 
 
 
 Airport Challenge
