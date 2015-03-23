@@ -5,4 +5,4 @@ Documentation:
 Style/MethodDefParentheses:
   Enabled: false
 Metrics/LineLength:
-  Max: 90
+  Max: 110

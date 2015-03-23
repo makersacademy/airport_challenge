@@ -4,38 +4,18 @@ Airport Challenge
 Thinking
 ---------
 
+I really struggled with how to set up the feature tests. I started over three times.
+I eventually decided that the top level features had to be very simple for me
+and have deviated far from the original prompts.
 
-```
-As a pilot
-So that I can arrive at my specified destination
-I would like to land my plane at the appropriate airport
-
-As a pilot
-So that I can set off for my specified destination
-I would like to be able to take off from the appropriate airport
-
-As an air traffic controller
-So that I can avoid collisions
-I want to be able to prevent airplanes landing when the airport if full
-
-As an air traffic controller
-So that I can avoid accidents
-I want to be able to prevent airplanes landing when the weather is stormy
-```
-
-I really struggled with how to set up the tests. I started over twice.
-I eventually decided that the top level features were very simple
-and have deviated very far from the original prompts.
-
-My grande finale feature tests are just that:
-Pilots want to be able to take off and land.
-Airports want to be able to approve each take off and landing.
-
-Then, inside the unit tests are the checks on status, capacity and weather.
-
-I would really like to talk through my three attempts at feature tests
-with someone.
+I would really like to talk through my attempts at feature tests with someone.
 
 I keep coming up against a wall when deciding where the method call is going.
 If I want the airport to approve a plane for landing, how can I structure
 those four elements? Where should the methods be called?
+
+Finally, I cannot make my airport capacity test validate. I get an ArgumentError.
+
+All in all, I'm disappointed in myself that I couldn't do a better job on this challenge, 
+but I look forward to coming back to it and making it work after feedback.
+

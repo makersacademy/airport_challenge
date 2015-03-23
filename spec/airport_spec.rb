@@ -1,15 +1,6 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
 # A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
 
 describe Airport do
   let(:plane) { Plane.new }
@@ -32,9 +23,13 @@ describe Airport do
   end
 
   context 'traffic control checks' do
+    it 'can check capacity' do
+      expect(subject.agree_land :plane).to be nil
+    end
+
     it 'a plane cannot land if the airport is full' do
       10.times { subject.agree_land double :plane }
-      expect { subject.agree_land double :plane }.to raise_error 'Airport is full.'
+      expect { subject.agree_land double :plane, @status == 'flying' }.to raise_error 'Airport is full.'
     end
   end
 
