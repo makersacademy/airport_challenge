@@ -19,8 +19,6 @@ describe Plane do
     expect(plane).to have_attributes(status: 'flying')
   end
 
-  xit 'has a flying status when in the air'
-
   xit 'must get approval from airport for landing'
 
   it 'can land' do

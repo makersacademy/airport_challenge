@@ -12,7 +12,7 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-
+  let(:plane) { Plane.new }
   context 'airport must approve' do
     xit 'when a plane is landing'
 
@@ -20,9 +20,13 @@ describe Airport do
   end
 
   context 'appropriate plane status checks' do
-    xit 'when a plane is landed, it cannot land'
-
+    it 'when a plane is landed, it cannot land' do
+      plane.land
+      expect { plane.land }.to raise_error 'Plane already landed.'
+      # expect(plane).to have_attributes(status: 'flying')
+    end
     xit 'when a plane is flying, it cannot take off'
+    # expect(plane.take_off).not_to be _flying
   end
 
   context 'traffic control checks' do
