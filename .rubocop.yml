@@ -4,3 +4,6 @@ Documentation:
   Enabled: false
 Style/MethodDefParentheses:
   Enabled: false
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes 
