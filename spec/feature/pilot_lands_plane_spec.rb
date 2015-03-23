@@ -2,7 +2,9 @@ require 'capybara/rspec'
 feature 'Planes accesses airport' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
-
+  before(:each) do
+    allow(airport).to receive(:storm?).and_return(false)
+  end
   scenario 'Plane lands at airport'  do
     landed_plane = airport.land(plane)
     status = landed_plane.status
