@@ -1,15 +1,5 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
 describe Airport do
   let(:weather) { double :weather }
   let(:plane) { Plane.new }
@@ -19,7 +9,8 @@ describe Airport do
       allow(subject).to receive(:storm?).and_return(false)
     end
     it 'can land a plane' do
-      expect(subject.land(plane)).to eql plane
+      subject.land(plane)
+      expect(subject.planes).to eql [plane]
     end
 
     it 'can release planes for #take_off' do
