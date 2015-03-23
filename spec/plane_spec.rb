@@ -1,23 +1,26 @@
 require 'plane'
 require 'airport'
 
-describe 'plane location' do
+describe Plane do
   let(:plane) { Plane.new }
 
-  it 'has landed in airport' do
-    plane = Plane.new
-    expect(plane.landed?).to eq true
+  it 'has flying status when created' do
+    expect(plane).to be_flying
   end
 
-  it 'has taken off' do
-    plane = Plane.new
-    expect(plane.taken_off).to eq false
+  it 'has a flying status when flying' do
+    expect(plane.status).to eq :flying
   end
 
-  describe 'plane must have permission to land' do
-    it 'traffic control gives ok to land' do
-      airport = Airport.new
-      expect(airport.ok).to eq true
-    end
+  it 'can land' do
+    plane.land
+    plane.take_off
+    expect(plane.status).to eq :landed
+  end
+
+  it 'can take off' do
+    plane.land
+    plane.take_off
+    expect(plane.status).to eq :flying
   end
 end
