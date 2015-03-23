@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 class Airport
+=======
+>>>>>>> 596954af958e6a8e8a7a3a654ef5e5530983f27d
 require_relative 'plane'
 
 class Airport
@@ -13,4 +16,8 @@ class Airport
   def land(plane)
     @planes << plane
   end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 596954af958e6a8e8a7a3a654ef5e5530983f27d
 end
