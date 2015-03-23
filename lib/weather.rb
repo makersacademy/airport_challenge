@@ -1,5 +1,5 @@
-module Weather
+class Weather
   def sunny
-    [true, false, true].sample
+    [true, false].sample
   end
 end
