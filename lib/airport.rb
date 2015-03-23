@@ -11,13 +11,21 @@ class Airport
   end
 
   def land(plane)
-    fail 'The plane cannot land' if unfavourable? || full?
+    permission
+    fail 'The plane cannot land' if full?
     planes << plane
+    plane.landed
   end
 
   def take_off
-    fail 'The plane cannot take off' if empty? || unfavourable?
+    permission
+    fail 'The plane cannot take off' if empty?
     planes.pop
+    plane.taked_off
+  end
+
+  def permission
+    fail 'The plane cannot take off' if unfavourable?
   end
 
   def unfavourable?

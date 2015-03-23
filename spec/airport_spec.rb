@@ -40,16 +40,17 @@ describe Airport do
     it 'plane cannot take off when no plane landed' do
       expect { airport.take_off }.to raise_error 'The plane cannot take off'
     end
-    it 'plane can land' do
+    it 'plane can land when airport is not full' do
+      allow(subject).to receive(:full?).and_return(false)
       subject.land(plane)
-      expect(subject).not_to be_empty
+      expect(plane).to be_landed
     end
   end
 
   context 'traffic control' do
 
     it 'a plane cannot land if the airport is full' do
-      airport.capacity.times { airport.land(plane) }
+      allow(subject).to receive(:full?).and_return(true)
       expect { airport.land(plane) }.to raise_error 'The plane cannot land'
     end
     context 'weather conditions' do
