@@ -1,42 +1,45 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
-
-  context 'taking off and landing' do
-
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
+  let(:airport) {Airport.new}
+  let(:plane) { double :plane, flying?: true}
+  let(:sunny) { double :sunny, sunny?: rand(21..100) }
+  let(:stormy) { double :stormy, stormy?: rand(1..20) }
+  
+  it "can have a default capacity" do
+    expect(airport.capacity).to eq 10
   end
 
-  context 'traffic control' do
+  it "can allow a plane to dock" do
+    airport.dock plane
+    expect(airport.planes).to eq [plane]
+  end
 
-    xit 'a plane cannot land if the airport is full'
+  it "can allow a plane to be released" do
+    airport.dock plane
+    airport.release(plane)
+    expect(airport.planes).to eq []
+  end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  it "can have sunny weather" do
+    expect(airport).to be_sunny
+  end
 
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+  it "can have stormy weather" do
+    expect(airport).to be_stormy
+  end
 
-      xit 'a plane cannot land in the middle of a storm'
-    end
+  it "knows when its full" do
+    airport.capacity.times{ airport.dock plane }
+    expect(airport).to be_full
+  end
+
+  it "knows when its not full" do
+    expect(airport).not_to be_full
+  end
+
+  it "can not allow a plane to dock if full" do
+    airport.capacity.times { airport.dock plane }
+    expect {airport.dock plane}.to raise_error "Airport is full"
   end
 end
