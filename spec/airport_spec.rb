@@ -28,7 +28,7 @@ describe Airport do
     end
 
     it 'a plane cannot land if the airport is full' do
-      10.times { subject.agree_land double :plane }
+      10.times { subject.agree_land double :plane, @status == 'flying' }
       expect { subject.agree_land double :plane, @status == 'flying' }.to raise_error 'Airport is full.'
     end
   end
