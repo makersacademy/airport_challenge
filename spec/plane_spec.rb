@@ -28,7 +28,7 @@ describe Plane do
   end
 
   it 'changes its status to landed after landing' do
-    expect { plane.take_off }.to change(plane, :status).from(flying).to(landed)
+    expect { plane.land }.to change(plane, :status).from('flying').to('landed')
   end
 
   xit 'must get approval from airport for taking off'
@@ -37,6 +37,8 @@ describe Plane do
     expect(plane).to respond_to :take_off
   end
 
-  xit 'changes its status to flying after taking off'
-  # expect { object.action }.to change(object, :value).from(old).to(new)
+  it 'changes its status to flying after taking off' do
+    plane.land
+    expect { plane.take_off }.to change(plane, :status).from('landed').to('flying')
+  end
 end
