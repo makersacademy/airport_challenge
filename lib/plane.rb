@@ -15,10 +15,3 @@ class Plane
     @flying = true
   end
 end
-
-# plane = Plane.new
-# p plane.landed
-# p plane.flying?
-# # plane.take_off
-# # p plane.flying?
-# p plane

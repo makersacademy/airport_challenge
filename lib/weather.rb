@@ -1,13 +1,12 @@
-class Weather
-  def weather
-    @weather = %w(Sunny Stormy)
-  end
+# class Weather
+#   attr_reader :condition
 
-  def condition
-    @condition = weather.sample
-  end
+#   def initialize
+#     weather = %w(Sunny Stormy)
+#     @condition = weather.sample
+#   end
 
-  # def favourable?
-  #   @condition == 'Sunny'
-  # end
-end
+#   def unfavourable
+#     @condition = 'Stormy'
+#   end
+# end
