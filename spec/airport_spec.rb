@@ -15,28 +15,39 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      plane = Plane.new
+      expect(plane).to respond_to(:land)
+    end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      plane = Plane.new
+      expect(plane).to respond_to(:take_off)
+    end
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      airport = Airport.new
+      plane = Plane.new
+      allow(airport).to receive(:weather) { :good }
+      airport.capacity.times do
+        plane.land(airport)
+      end
+      expect { Plane.new.land(airport) }.to raise_error('all spaces are taken')
+    end
+  end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  context 'weather conditions' do
+    it 'a plane cannot take off when there is a storm brewing' do
+    end
 
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-
-      xit 'a plane cannot land in the middle of a storm'
+    it 'a plane cannot land in the middle of a storm' do
+      airport = Airport.new
+      allow(airport).to receive(:weather) { :stormy }
+      plane = Plane.new
+      expect { plane.land(airport) }.to raise_error('cannot land in storm')
     end
   end
 end

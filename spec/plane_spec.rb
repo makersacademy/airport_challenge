@@ -14,12 +14,39 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  it 'has a flying status when created' do
+    plane = Plane.new
+    expect(plane.status).to be(:flying)
+  end
 
-  xit 'has a flying status when in the air'
+  it 'has a flying status when in the air' do
+    plane = Plane.new
+    expect(plane.take_off(airport)).to be(:flying)
+  end
 
-  xit 'can take off'
+  it 'can take off' do
+    plane = Plane.new
+    expect(plane).to respond_to(:take_off)
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'can land' do
+    plane = Plane.new
+    expect(plane).to respond_to(:land)
+  end
+
+  it 'has a landed status after landing' do
+    plane = Plane.new
+    airport = Airport.new('Heathrow')
+    allow(airport).to receive(:weather) { :good }
+    expect(plane.land(airport)).to be(:landed)
+  end
+
+  it 'changes its status to flying after taking off' do
+    plane = Plane.new
+    airport = Airport.new('Heathrow')
+    allow(airport).to receive(:weather) { :good }
+    plane.land(airport)
+    expect { plane.take_off(airport) }.to change { plane.status }.to(:flying)
+  end
 
 end
