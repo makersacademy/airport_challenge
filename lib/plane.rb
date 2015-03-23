@@ -12,6 +12,7 @@ class Plane
   end
 
   def take_off
+    fail 'Plane already flying.' unless @status == 'landed'
     @status = 'flying'
   end
 end

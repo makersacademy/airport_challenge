@@ -23,10 +23,12 @@ describe Airport do
     it 'when a plane is landed, it cannot land' do
       plane.land
       expect { plane.land }.to raise_error 'Plane already landed.'
-      # expect(plane).to have_attributes(status: 'flying')
     end
-    xit 'when a plane is flying, it cannot take off'
-    # expect(plane.take_off).not_to be _flying
+    it 'when a plane is flying, it cannot take off' do
+      plane.land
+      plane.take_off
+      expect { plane.take_off }.to raise_error 'Plane already flying.'
+    end
   end
 
   context 'traffic control checks' do
