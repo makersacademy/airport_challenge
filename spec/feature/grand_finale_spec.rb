@@ -1,19 +1,33 @@
 require 'capybara/rspec'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
-
 feature 'As a pilot' do
 
   scenario 'I would like to land my plane at an appropriate airport' do
-    plane = Plane.new
-    expect(plane).to be_flying
     airport = Airport.new
+    plane = Plane.new
     airport.land(plane)
+    expect @landed.should include(plane)
+  end
+  scenario 'I would like to be able to take off from the appropriate airport' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.take_off(plane)
+    expect @landed.should_not include(plane)
+  end
+end
+
+feature 'As an air traffic controller' do
+
+  scenario 'I want to prevent planes landing when the airport is full' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect('Airport is full, landing denied').to eq('Airport is full, landing denied')
+  end
+  scenario 'I want to prevent planes landing when the weather is stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    expect('There is a storm, landing denied').to eq('There is a storm, landing denied')
   end
 end

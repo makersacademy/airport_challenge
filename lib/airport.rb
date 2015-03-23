@@ -1,5 +1,5 @@
 class Airport
-
+  attr_reader :landed
   def initialize
     @landed = []
     @capacity = 0
@@ -16,10 +16,6 @@ class Airport
     end
   end
 
-  def landed
-    @landed
-  end
-
   def weather
     @weather = rand(1..6)
   end
@@ -28,5 +24,4 @@ class Airport
     @landed.delete(plane.flying)
     @capacity -= 1
   end
-
 end
