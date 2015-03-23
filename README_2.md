@@ -1,5 +1,8 @@
-I've implemented the airpot challenge for airpot capacity of 50 planes.
+Airport Challenge - Nadav's Notes
+========
 
+Capacity
+--------
 what important for me to check was that :
 
 * 50 planes can land in the airport
