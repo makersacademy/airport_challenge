@@ -6,11 +6,6 @@ Capacity
 
 I'v set for the Airport class a pubic instance variable 'capacity' with default of 20
 
-Passing the test with a random variable
---------
-
-I wasn't sure how to do it so I just set the instance variable 'weather' to 'sunny' before every test
-
 Airport Challenge
 =================
 
