@@ -7,6 +7,6 @@ describe Weather do
   end
 
   it 'should be sunny' do
-    expect { weather(!stormy) }
+    expect { weather(sunny) }
   end
 end

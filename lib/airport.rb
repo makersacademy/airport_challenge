@@ -25,7 +25,6 @@ class Airport
       return 'plane cannot land'
     else
       return 'plane can land'
-      plane.landing_order
       @planes << plane
     end
   end
@@ -35,7 +34,6 @@ class Airport
       return 'plane cannot take off'
     else
       return 'plane can take off'
-      plane.takeoff_order
       @planes.delete plane
     end
   end
