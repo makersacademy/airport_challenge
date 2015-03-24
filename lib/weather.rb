@@ -1,6 +1,6 @@
 module Weather
   def weather_rand
-    rand(100)
+    rand(100) + 1
   end
 
   def storm?

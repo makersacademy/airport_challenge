@@ -13,7 +13,7 @@ feature 'Planes accesses airport' do
 
   scenario 'Plane takes off from airport' do
     airport.land(plane)
-    airport.take_off
+    airport.take_off(plane)
     expect(plane.status).to eq 'flying'
   end
 
@@ -29,6 +29,6 @@ feature 'Planes accesses airport' do
   scenario 'Plane cannot take off from Airport due to storm' do
     airport.land(plane)
     allow(airport).to receive(:storm?).and_return(true)
-    expect { airport.take_off }.to raise_error 'No Take Off Due To Storm'
+    expect { airport.take_off(plane) }.to raise_error 'No Take Off Due To Storm'
   end
 end

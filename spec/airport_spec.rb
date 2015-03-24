@@ -1,9 +1,9 @@
 require 'airport'
 
 describe Airport do
-  let(:weather) { double :weather }
+  # let(:weather) { double :weather }
+  # let(:plane) { Plane.new }
   let(:plane) { Plane.new }
-
   context 'taking off and landing' do
     before(:each) do
       allow(subject).to receive(:storm?).and_return(false)
@@ -15,7 +15,7 @@ describe Airport do
 
     it 'can release planes for #take_off' do
       subject.land(plane)
-      subject.take_off
+      subject.take_off(plane)
       expect(subject.planes).to eq []
     end
   end
@@ -33,7 +33,8 @@ describe Airport do
       it ' cannot allow planes to take off due to a storm' do
         subject.land(plane)
         allow(subject).to receive(:storm?).and_return(true)
-        expect { subject.take_off }.to raise_error 'No Take Off Due To Storm'
+        expect { subject.take_off(plane) }.to raise_error
+        'No Take Off Due To Storm'
       end
 
       it 'cannot allow planes to land due to storm' do
