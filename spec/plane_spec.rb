@@ -1,7 +1,5 @@
 require 'plane'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -14,8 +12,6 @@ require 'plane'
 # When the plane takes of from the airport, the plane's status
 # should become "flying"
 
-=======
->>>>>>> 596954af958e6a8e8a7a3a654ef5e5530983f27d
 describe Plane do
   plane = Plane.new
 

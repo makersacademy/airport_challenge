@@ -1,6 +1,5 @@
 require 'airport'
 
-<<<<<<< HEAD
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -12,8 +11,7 @@ require 'airport'
 #
 # If the airport is full then no planes can land
 
-=======
->>>>>>> 596954af958e6a8e8a7a3a654ef5e5530983f27d
+
 describe Airport do
   let (:plane) { double :plane, flying?: true, land!: nil }
   let (:airport) { Airport.new }
@@ -30,8 +28,4 @@ describe Airport do
   it 'the plane is notified that it has landed' do
     
   end
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> 596954af958e6a8e8a7a3a654ef5e5530983f27d
