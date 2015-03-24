@@ -31,23 +31,23 @@ describe Plane do
   end
 
   it 'responds to \'takeoff\'' do
-    plane.land
+    plane.land :airport
     expect(plane).to respond_to :takeoff
   end
 
   it 'can \'request to takeoff\'' do
-    plane.land
+    plane.land :airport
     expect(plane).to respond_to :request_takeoff
   end
 
   it 'changes its status to \'flying\' after takeoff' do
-    plane.land
+    plane.land :airport
     plane.takeoff
     expect(plane.status).to eq 'flying'
   end
 
   it 'does not respond to \'takeoff\' after takeoff' do
-    plane.land
+    plane.land :airport
     plane.takeoff
     expect { (plane.takeoff) }.to raise_error 'already flying'
   end

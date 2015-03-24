@@ -8,9 +8,10 @@ class Plane
     airport.landing_permission self
   end
 
-  def land(*) # using (*) instead of (airport) to please rubocop
+  def land airport
     fail 'already landed' if @status == 'landed'
     @status = 'landed'
+    airport
   end
 
   def request_takeoff airport
