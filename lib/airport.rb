@@ -7,14 +7,14 @@ class Airport
 
   def initialize(airport_size = {})
     @planes = []
-    @weather_conditions = ['Stormy', 'Sunny']
+    @weather_conditions = %(Stormy Sunny)
     @capacity = airport_size.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
   def land plane
     fail 'Airport is Full' if full?
-    fail 'Storm\'s a Brewin' if weather == 'Stormy' && plane.landed ==  false
-    plane.has_landed
+    fail 'Storm\'s a Brewin' if weather == 'Stormy' && !plane.landed?
+    plane.land
     @planes << plane
   end
 
@@ -22,10 +22,6 @@ class Airport
     fail 'Storm\'s a Brewin' if weather == 'Stormy'
     plane.taken_off
     @planes.delete(plane)
-  end
-
-  def plane_check
-    @planes
   end
 
   def weather

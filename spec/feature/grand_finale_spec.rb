@@ -11,20 +11,20 @@ require 'airport'
 # Once all planes are in the air again, check that they have status "flying!"
 
 feature 'Grand Finale' do
-  context'in good weather'
-    scenario 'all planes can land and all planes can take off' do
-      airport = Airport.new
-      plane = Plane.new
-      allow(airport).to receive(:weather).and_return("Sunny")
-      6.times { airport.land plane }
-      6.times { airport.take_off plane}
-      expect(airport.plane_check).to eq []
-    end
-    scenario 'planes at airport have a "Landed" flying status' do
-      airport = Airport.new
-      plane = Plane.new
-      allow(airport).to receive(:weather).and_return("Sunny")
-      airport.land plane
-      expect(plane.flying_status).to eq "Landed"
-    end
+  context 'in good weather'
+  scenario 'all planes can land and all planes can take off' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:weather).and_return('Sunny')
+    6.times { airport.land plane }
+    6.times { airport.take_off plane }
+    expect(airport.planes).to eq []
   end
+  scenario 'planes at airport have a "Landed" flying status' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:weather).and_return('Sunny')
+    airport.land plane
+    expect(plane.flying_status).to eq 'Landed'
+  end
+end

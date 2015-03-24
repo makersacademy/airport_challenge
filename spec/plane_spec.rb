@@ -20,12 +20,12 @@ describe Plane do
   end
 
   it 'has a flying status when landed' do
-    plane.has_landed
+    plane.land
     expect(plane.flying_status).to eq 'Landed'
   end
 
   it 'changes its status to flying after taking off' do
-    plane.has_landed
+    plane.land
     plane.taken_off
     expect(plane.flying_status).to eq 'Flying'
   end
