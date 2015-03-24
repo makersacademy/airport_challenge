@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  plane = Plane.new
+  let(:plane) { Plane.new }
 
   it 'has a \'flying\' status when created' do
     expect(plane.status).to eq 'flying'
@@ -26,23 +26,29 @@ describe Plane do
   end
 
   it 'does not respond to \'land\' after landing' do
+    plane.land :airport
     expect { (plane.land :airport) }.to raise_error 'already landed'
   end
 
   it 'responds to \'takeoff\'' do
+    plane.land
     expect(plane).to respond_to :takeoff
   end
 
   it 'can \'request to takeoff\'' do
+    plane.land
     expect(plane).to respond_to :request_takeoff
   end
 
   it 'changes its status to \'flying\' after takeoff' do
+    plane.land
     plane.takeoff
     expect(plane.status).to eq 'flying'
   end
 
   it 'does not respond to \'takeoff\' after takeoff' do
+    plane.land
+    plane.takeoff
     expect { (plane.takeoff) }.to raise_error 'already flying'
   end
 end
