@@ -19,7 +19,7 @@ feature 'Grand Finale' do
   end
 
   scenario '6 planes can land at specified airport' do
-    Airport.any_instance.stub(:weather_good).and_return(true)
+    Airport.any_instance.stub(:weather_good?).and_return(true)
     planes.each { |plane| plane.request_land airport }
     expect(airport.landed_planes.length).to eq 6
   end
@@ -31,7 +31,7 @@ feature 'Grand Finale' do
   end
 
   scenario 'plane is denied landing permission when airport is full' do
-    Airport.any_instance.stub(:weather_good).and_return(true)
+    Airport.any_instance.stub(:weather_good?).and_return(true)
     expect { (p.request_land airport) }.to raise_error 'permission denied'
   end
 
@@ -42,7 +42,7 @@ feature 'Grand Finale' do
   end
 
   scenario 'after all 6 planes takeoff there are no more landed planes' do
-    Airport.any_instance.stub(:weather_good).and_return(true)
+    Airport.any_instance.stub(:weather_good?).and_return(true)
     planes.each do |plane|
       airport.order_plane_takeoff plane
     end

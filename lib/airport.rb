@@ -5,7 +5,7 @@ class Airport
     @capacity = 6
   end
 
-  def locate_plane plane
+  def location_of plane
     plane.location
   end
 
@@ -17,26 +17,26 @@ class Airport
     @airborne_planes ||= []
   end
 
-  def weather set_weather = %w(sunny stormy).sample
-    set_weather
+  def weather
+    %w(sunny stormy).sample
   end
 
-  def weather_good
+  def weather_good?
     weather == 'sunny'
   end
 
-  def can_land
+  def can_land?
     landed_planes.length < @capacity
   end
 
   def landing_permission plane
-    fail 'permission denied' if !weather_good || !can_land
+    fail 'permission denied' if !weather_good? || !can_land?
     plane.land self
     landed_planes << plane
   end
 
   def order_plane_takeoff plane
-    fail 'permission denied' unless weather_good
+    fail 'permission denied' unless weather_good?
     plane.takeoff
     airborne_planes << plane
     landed_planes.delete(plane)

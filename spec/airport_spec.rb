@@ -3,25 +3,25 @@ require 'airport'
 describe Airport do
   it 'knows when a plane is in the air' do
     plane = double :plane, location: 'air'
-    expect(subject.locate_plane plane).to eq('air')
+    expect(subject.location_of plane).to eq('air')
   end
 
   it 'knows when a plane is in the airport' do
     plane = double :plane, location: 'airport'
-    expect(subject.locate_plane plane).to eq('airport')
+    expect(subject.location_of plane).to eq('airport')
   end
 
-  context 'can order a plane to take off' do
-    it { is_expected.to respond_to :order_plane_takeoff }
+  it 'can order a plane to take off' do
+    expect(subject).to respond_to :order_plane_takeoff
   end
 
-  context 'can respond to a plane wanting to land' do
-    it { is_expected.to respond_to :landing_permission }
+  it 'can respond to a plane wanting to land' do
+    expect(subject).to respond_to :landing_permission
   end
 
   context 'traffic control' do
     it 'a plane cannot land if the airport is full' do
-      Airport.any_instance.stub(:can_land).and_return(false)
+      Airport.any_instance.stub(:can_land?).and_return(false)
       a = Airport.new
       expect { (a.landing_permission :p) }.to raise_error 'permission denied'
     end
