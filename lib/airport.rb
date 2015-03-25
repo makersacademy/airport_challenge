@@ -9,7 +9,7 @@ class Airport
 
   def initialize
     @airport_capacity ||= DEFAULT_CAPACITY
-    @planes = []
+    @planes ||= []
   end
 
   def flying?
@@ -21,22 +21,16 @@ class Airport
   end
 
   def land(plane)
-    if @stormy == true || full? == true
-      return 'plane cannot land'
-    else
-      return 'plane can land'
-      plane.land
-      @planes << plane
-    end
+    raise 'plane cannot land' if @stormy
+    plane.land
+    @planes << plane
   end
 
   def take_off(plane)
-    if @stormy == true
-      return 'plane cannot take off'
-    else
-      return 'plane can take off'
-      @planes.delete plane
-    end
+    raise 'plane cannot take off' if @stormy
+    plane.take_off
+    @planes << plane
+    @planes.delete plane
   end
 
   def full?

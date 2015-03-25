@@ -40,13 +40,13 @@ describe Airport do
     end
 
     it 'a plane cannot take off when there is a storm brewing' do
-      allow(airport).to receive(:stormy).and_return(true)
-      expect { airport.take_off(plane) }.to raise_error
+      Airport.stub(:weather).and_return(true)
+      expect { airport.take_off(plane) }.to raise_error 'plane cannot take off'
     end
 
     it 'a plane cannot land in the middle of a storm' do
       allow(airport).to receive(:stormy).and_return(true)
-		    expect { airport.land(plane) }.to raise_error
+		  expect { airport.land(plane) }.to raise_error 'plane cannot land'
     end
   end
 end
