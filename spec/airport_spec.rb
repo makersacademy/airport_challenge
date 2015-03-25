@@ -53,5 +53,9 @@ describe Airport do
         expect { subject.land flying_plane }.to raise_error 'Storm\'s a Brewin'
       end
     end
+
+    it 'should not throw an error when checking weather' do
+      expect { subject.weather }.not_to raise_error
+    end
   end
 end

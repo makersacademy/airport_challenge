@@ -7,7 +7,7 @@ class Airport
 
   def initialize(airport_size = {})
     @planes = []
-    @weather_conditions = %(Stormy Sunny)
+    @weather_conditions = %w(Stormy Sunny)
     @capacity = airport_size.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
