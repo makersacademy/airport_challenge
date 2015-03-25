@@ -17,4 +17,7 @@ describe AirportWeather do
     expect(subject).to be_storm
   end
   it { is_expected.to respond_to(:storm?) }
+  it ' is expected to retun boolean value' do
+    expect([true, false]).to include(subject.storm?)
+  end
 end
