@@ -16,4 +16,5 @@ describe AirportWeather do
     allow(subject).to receive(:storm?).and_return(true)
     expect(subject).to be_storm
   end
+  it { is_expected.to respond_to(:storm?) }
 end
