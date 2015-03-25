@@ -20,16 +20,17 @@ class Airport
     end
   end
 
-  def landing_order(plane)
-    if @stormy == true || airport_full? == true
+  def land(plane)
+    if @stormy == true || full? == true
       return 'plane cannot land'
     else
       return 'plane can land'
+      plane.land
       @planes << plane
     end
   end
 
-  def takeoff_order(plane)
+  def take_off(plane)
     if @stormy == true
       return 'plane cannot take off'
     else
@@ -38,7 +39,7 @@ class Airport
     end
   end
 
-  def airport_full?
+  def full?
     if planes.count >= MAXIMUM_CAPACITY
       return 'true'
     else

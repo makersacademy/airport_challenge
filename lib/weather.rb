@@ -1,5 +1,5 @@
 module Weather
-  def stormy
-    rand(0..3) == 3
+  def weather
+    rand(0..3) == 3 ? "stormy" : "sunny"
   end
 end

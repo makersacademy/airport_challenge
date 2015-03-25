@@ -8,11 +8,13 @@ feature 'Grand Finale' do
   scenario 'all planes can land and all planes can take off' do
     airport = Airport.new
     all_planes = Array.new(6, Plane.new)
-    allow(airport).to receive(:weather) { :'!stormy' }
+    allow(airport).to receive(:weather) { :'sunny' }
 
-    all_planes.each { |plane| airport.landing_order(plane) }
-    all_planes.each { |plane| expect(plane.flying).to eq false }
-    all_planes.each { |plane| airport.takeoff_order(plane) }
-    all_planes.each { |plane| expect(plane.flying).to eq true }
+    planes.each{ |plane|airport.land plane }
+    expect(airport.planes).to eq planes
+    expect(airport.planes.map{|plane| plane.status}.uniq).to eq [:landed]
+    planes.each{|plane| airport.take_off plane}
+    expect(airport.planes).to be_empty
+    expect(planes.map{|plane| plane.status}.uniq).to eq [:flying]
   end
 end
