@@ -10,17 +10,17 @@ describe Plane do
   end
 
   it 'has a flying status when in the air' do
-    plane.takeoff_order
+    plane.fly
     expect(plane.status).to eq 'flying'
   end
 
   it 'can take off' do
-    plane.takeoff_order
+    plane.land
     expect(plane).to be_fly
   end
 
   it 'have landed status when on the ground' do
-    plane.landing_order
+    plane.land
     expect(plane.status).to eq 'landed'
   end
 end

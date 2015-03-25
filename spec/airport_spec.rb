@@ -2,14 +2,14 @@ require 'airport'
 require 'weather'
 
 describe Airport do
-  let(:plane) {double :plane }
+  let(:plane) { double :plane }
   let(:airport) { Airport.new }
 
   context 'taking off and landing' do
     before do
       allow(plane).to receive :land
       allow(plane).to receive :take_off
-      allow(airport).to receive(:weather).and_return "Sunny"
+      allow(airport).to receive(:weather).and_return 'Sunny'
     end
 
     it 'a plane can land' do
