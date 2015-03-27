@@ -5,27 +5,27 @@ require 'airport'
 feature 'plane can be landed and taked off in airport' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
+  let(:planes) { [] }
 
-  scenario 'plane can land when airport is not full' do
-    expect(airport.full?).to eq false
+  scenario 'plane can land when airport is not full and sunny' do
+    allow(airport).to receive(:weather) { 'Sunny' }
+    plane.ground
+    expect(plane).not_to be_flying
   end
 
   scenario 'plane cannot land when airport is full' do
-    airport.capacity.times { airport.land(plane) }
-    expect { airport.land(plane) }.to raise_error 'The plane cannot land'
-  end
-
-  scenario 'plane can land when weather is sunny' do
-    expect(airport.unfavourable?).to eq false
+    allow(airport).to receive(:weather) { 'Sunny' }
+    Airport::CAPACITY.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error 'Airport is full'
   end
 
   scenario 'plane cannot land in stormy day' do
-    airport.unfavourable?
-    expect { airport.land(plane) }.to raise_error 'The plane cannot land'
+    allow(airport).to receive(:weather) { 'Stormy' }
+    expect { airport.land(plane) }.to raise_error 'Poor weather, not transit'
   end
 
   scenario 'plane cannot take off if weather is stormy' do
-    airport.unfavourable?
-    expect { airport.take_off }.to raise_error 'The plane cannot take off'
+    allow(airport).to receive(:weather) { 'Stormy' }
+    expect { airport.take_off(plane) }.to raise_error 'Poor weather, not transit'
   end
 end

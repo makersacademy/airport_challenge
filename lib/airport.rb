@@ -1,42 +1,45 @@
 require_relative 'plane'
-require_relative 'weather'
 
 class Airport
-  attr_reader :capacity, :planes, :condition
+  CAPACITY = 6
+
+  attr_reader :planes
+
   def initialize
     @planes = []
-    @capacity = 6
-    weather = %w(Sunny Stormy)
-    @condition = weather.sample
   end
 
   def land(plane)
-    permission
-    fail 'The plane cannot land' if full?
+    permission_to_transit
+    fail 'Airport is full' if airport_full?
     planes << plane
-    plane.landed
+    plane.ground
   end
 
-  def take_off
-    permission
-    fail 'The plane cannot take off' if empty?
-    planes.pop
-    plane.taked_off
+  def take_off(plane)
+    permission_to_transit
+    fail 'Airport is empty' if airport_empty?
+    planes.delete(plane)
+    plane.ground
   end
 
-  def permission
-    fail 'The plane cannot take off' if unfavourable?
+  def weather
+    %w(Sunny Stormy).sample
   end
 
-  def unfavourable?
-    condition == 'Stormy'
+  def permission_to_transit
+    fail 'Poor weather, not transit' if poor_weather?
   end
 
-  def empty?
+  def poor_weather?
+    weather == 'Stormy'
+  end
+
+  def airport_empty?
     planes.empty?
   end
 
-  def full?
-    planes.length == capacity
+  def airport_full?
+    planes.length >= CAPACITY
   end
 end

@@ -1,17 +1,16 @@
 class Plane
   attr_accessor :flying
-  alias_method :take_off, :flying
   alias_method :flying?, :flying
 
   def initialize
     @flying = true
   end
 
-  def landed
+  def ground
     @flying = false
   end
 
-  def taked_off
+  def take_off
     @flying = true
   end
 end

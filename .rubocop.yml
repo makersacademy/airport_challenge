@@ -4,3 +4,7 @@ Documentation:
   Enabled: false
 Style/MethodDefParentheses:
   Enabled: false
+WhileUntilModifier:
+  Enabled: false
+StringLiterals:
+  Enabled: false
