@@ -1,15 +1,54 @@
 require 'capybara/rspec'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
-
 feature 'Grand Finale' do
+  let(:planes) do
+    planes = []
+    6.times { planes << Plane.new }
+    planes
+  end
 
-  xscenario 'all planes can land and all planes can take off'
+  let(:airport) { Airport.new(capacity: 7) }
 
+  scenario 'all planes land' do
+    allow(airport).to receive(:bad_weather?).and_return(false)
+    planes.each do |plane|
+      airport.land plane
+    end
+    expect(planes).to be_all { |plane| plane.status == 'landed' }
+  end
+
+  scenario 'plane rejected due to bad weather' do
+    allow(airport).to receive(:bad_weather?).and_return(true)
+    expect { airport.land Plane.new }.to raise_error # Be more specific
+  end
+
+  feature 'airport is full' do
+    let(:airport) do
+      airport = Airport.new(climate: 2)
+      allow(airport).to receive(:bad_weather?).and_return(false)
+      planes.each do |plane|
+        airport.land plane
+      end
+      airport
+    end
+
+    feature 'another plane tries to land' do
+      scenario 'and is rejected' do
+        expect { airport.land Plane.new }.to raise_error
+      end
+
+      scenario 'but is rejected and continues flying' do
+        rejected_plane = Plane.new
+        expect { airport.land Plane.new }.to raise_error
+        expect(rejected_plane.status).to eq 'flying'
+      end
+    end
+
+    scenario 'all planes can take off' do
+      planes.each do |plane|
+        airport.take_off plane
+      end
+      expect(planes).to be_all { |plane| plane.status == 'flying' }
+    end
+  end
 end
