@@ -1,42 +1,50 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it { is_expected.to respond_to(:land).with(1).argument }
 
-    xit 'a plane can take off'
+    it { is_expected.to respond_to :planes }
+
+    it 'should change status of plane to landed when it lands' do
+      plane = Plane.new
+      allow(subject).to receive(:weather) { 'sunny' }
+      subject.land plane
+      expect(plane.status).to eq 'landed'
+    end
+
+    it { is_expected.to respond_to :take_off }
+
+    it 'should status of plane to flying after take_off' do
+      plane = Plane.new
+      allow(subject).to receive(:weather) { 'sunny' }
+      subject.land plane
+      subject.take_off
+      expect(plane.status).to eq 'flying'
+    end
+
+    it 'cannot land plane if the airport is full' do
+      allow(subject).to receive(:weather) { 'sunny' }
+      20.times { subject.land Plane.new }
+      expect { subject.land Plane.new }.to raise_error 'Airport Full'
+    end
+
+    it 'should have a capacity' do
+      expect(subject).to respond_to :capacity
+    end
+
+    it 'cannot take off plane of empty' do
+      allow(subject).to receive(:weather) { 'sunny' }
+      expect { subject.take_off }.to raise_error 'Airport Empty'
+    end
+
   end
 
-  context 'traffic control' do
+  context 'weather conditions' do
 
-    xit 'a plane cannot land if the airport is full'
+    it { is_expected.to respond_to :weather }
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-
-      xit 'a plane cannot land in the middle of a storm'
-    end
   end
 end
