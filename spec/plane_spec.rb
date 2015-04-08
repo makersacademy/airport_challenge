@@ -1,25 +1,54 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# When we create a new plane, it should have a "flying" status,
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# have its status changed to "landed"
-#
-# When the plane takes of from the airport, the plane's status
-# should become "flying"
-
 describe Plane do
+  let(:plane) { Plane.new }
 
-  xit 'has a flying status when created'
+  it 'has a \'flying\' status when created' do
+    expect(plane.status).to eq 'flying'
+  end
 
-  xit 'has a flying status when in the air'
+  it 'is located in the air when created' do
+    expect(plane.location).to eq 'air'
+  end
 
-  xit 'can take off'
+  it 'can \'request to land\' at airport' do
+    airport = double :airport, landing_permission: true
+    expect(plane.request_land airport).to eq true
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'responds to \'land\'' do
+    expect(plane).to respond_to :land
+  end
 
+  it 'has a status of \'landed\' after landing' do
+    plane.land :airport
+    expect(plane.status).to eq 'landed'
+  end
+
+  it 'does not respond to \'land\' after landing' do
+    plane.land :airport
+    expect { (plane.land :airport) }.to raise_error 'already landed'
+  end
+
+  it 'responds to \'takeoff\'' do
+    plane.land :airport
+    expect(plane).to respond_to :takeoff
+  end
+
+  it 'can \'request to takeoff\'' do
+    plane.land :airport
+    expect(plane).to respond_to :request_takeoff
+  end
+
+  it 'changes its status to \'flying\' after takeoff' do
+    plane.land :airport
+    plane.takeoff
+    expect(plane.status).to eq 'flying'
+  end
+
+  it 'does not respond to \'takeoff\' after takeoff' do
+    plane.land :airport
+    plane.takeoff
+    expect { (plane.takeoff) }.to raise_error 'already flying'
+  end
 end

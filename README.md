@@ -1,22 +1,15 @@
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+
 Airport Challenge
 =================
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, still check in a partial solution
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. Complete the following task:
-
 Task
+----
+
+To create the feature tests, matching unit tests and application code to meet the brief.
+
+
+Brief
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client.
@@ -39,24 +32,67 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing when the weather is stormy
 ```
 
-Your task is to test drive the creation a set of classes/modules to satisfy all the above user stories. You will need to use random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
+How to run
+----------
 
-The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests, and a pending 'grand finale' feature test that combines a number of features. It is up to you to implement the tests and create additional tests as necessary.
+Type `rake` in the application's root folder.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Application Code:
+-----------------
 
-As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
+- `./lib/airport`
+- `./lib/plane`
 
-Please create separate files for every class, module and test suite. 
+Tests
+-----
 
-The submission will be judged on the following criteria:
+Feature Tests:
+`./spec/feature/grand_finale_spec`
+- 6 planes can be created
+- Airport knows planes are in the air
+- 6 planes can land at specified airport
+- Airport knows planes are in the airport
+- Plane is denied landing permission when airport is at maximum capacity
+- 6 landed planes have status 'landed'
+- After all 6 planes takeoff there are no more landed planes
+- After all 6 planes takeoff their status is 'flying'
 
-* Tests pass
-* Tests coverage is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
+Unit Tests (Airport):
+`./spec/airport_spec`
+- Knows when a plane is in the air
+- Knows when a plane is in the airport
+- Can order a plane to takeoff
+- Can respond to a plane wanting to land
+- A plane cannot land if the airport is full
+- Can be both sunny and stormy
+- A plane cannot land when it is stormy
+- A plane cannot takeoff when it is stormy
 
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+Unit Tests (Plane):
+`./spec/plane_spec`
+- Has a flying status when created
+- Is located in the air when created
+- Can request to land at specified airport
+- Responds to land
+- Has a status of landed after landing
+- Does not respond to land after landing
+- Responds to takeoff
+- Can request to takeoff
+- Changes its status to flying after takeoff
+- Does not respond to takeoff after takeoff
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
+ToDo:
+----
 
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
+- Apply Object-Oriented principles
+- Setup a running simulation
+- Restart from new and do it again!  And again!  And again!
+- ~~Airport knows planes' location~~
+- ~~Test that weather conditions are random~~
+- ~~Enable random weather conditions~~
+- ~~Ensure plane does not land without permission~~
+- ~~Ensure plane does not takeoff without permission~~
+- ~~Unit tests for airport traffic control using doubles~~
+- ~~Ensure a plane cannot land if airport is full, using double in unit test~~
+- ~~Ensure planes cannot land when landed~~
+- ~~Ensure planes cannot takeoff after takeoff~~
