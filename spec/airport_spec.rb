@@ -3,8 +3,13 @@ require 'airport'
 describe Airport do
 
   context 'taking off and landing' do
+    let(:airport) { Airport.new }
+    let(:plane) { Plane.new }
 
-    xit 'a plane can land'
+    it 'can land a plane' do
+      airport.land(plane)
+      expect(airport.planes).to eq [plane]
+    end
 
     xit 'a plane can take off'
   end

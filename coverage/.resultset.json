@@ -7,8 +7,13 @@
         1,
         null,
         1,
+        2,
+        2,
         null,
         1,
+        1,
+        1,
+        null,
         null,
         1,
         null,
@@ -27,6 +32,17 @@
       ],
       "/Users/Abukmeil/Dropbox/Development/airport_challenge/lib/airport.rb": [
         1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/Abukmeil/Dropbox/Development/airport_challenge/spec/feature/grand_finale_spec.rb": [
@@ -67,7 +83,7 @@
       "/Users/Abukmeil/Dropbox/Development/airport_challenge/lib/plane.rb": [
         1,
         1,
-        4,
+        5,
         null,
         null,
         1,
@@ -88,6 +104,6 @@
         null
       ]
     },
-    "timestamp": 1428789502
+    "timestamp": 1428790071
   }
 }
