@@ -9,6 +9,7 @@ describe Airport do
     before do
       allow(plane).to receive :land!
       allow(plane).to receive :take_off
+      allow(airport).to receive(:weather).and_return "Sunny"
     end
 
     it 'can land a plane' do
@@ -36,6 +37,8 @@ describe Airport do
 
   context 'traffic control' do
 
+    before { allow(airport).to receive(:weather).and_return "Sunny" }
+
     it 'can have a capacity' do
       expect(airport.capacity).to eq 20
     end
@@ -49,6 +52,7 @@ describe Airport do
     context 'weather conditions' do
       it 'a plane cannot take off when there is a storm brewing' do
         allow(plane).to receive :land!
+        allow(airport).to receive(:weather).and_return "Sunny"
         airport.land(plane)
         allow(airport).to receive(:weather).and_return "Stormy"
         expect { airport.take_off plane }.to raise_error 'You cannot take_off in a storm.'
