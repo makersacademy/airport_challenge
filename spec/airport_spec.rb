@@ -43,13 +43,21 @@ describe Airport do
     it 'a plane cannot land if the airport is full' do
       allow(plane).to receive :land!
       airport.capacity.times { airport.land plane }
-      expect { airport.land(plane) }.to raise_error 'Airport is full, cannot land.'
+      expect { airport.land plane }.to raise_error 'Airport is full, cannot land.'
     end
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      it 'a plane cannot take off when there is a storm brewing' do
+        allow(plane).to receive :land!
+        airport.land(plane)
+        allow(airport).to receive(:weather).and_return "Stormy"
+        expect { airport.take_off plane }.to raise_error 'You cannot take_off in a storm.'
+      end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        allow(airport).to receive(:weather).and_return "Stormy"
+        expect { airport.land plane }.to raise_error 'You cannot land in a storm.'
+      end
     end
   end
 end
