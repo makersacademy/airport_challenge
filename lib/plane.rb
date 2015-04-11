@@ -11,7 +11,7 @@ class Plane
     flying? ? :flying : :landed
   end
 
-  def land
+  def land!
     @flying = false
   end
 

@@ -4,14 +4,33 @@ describe Airport do
 
   context 'taking off and landing' do
     let(:airport) { Airport.new }
-    let(:plane) { Plane.new }
+    let(:plane) { double :plane }
 
     it 'can land a plane' do
+      allow(plane).to receive :land!
       airport.land(plane)
       expect(airport.planes).to eq [plane]
     end
 
-    xit 'a plane can take off'
+    it 'changes status of plane to landed when landing a plane' do
+      expect(plane).to receive(:land!)
+      airport.land(plane)
+    end
+
+    it 'can take off a plane' do
+      allow(plane).to receive :land!
+      airport.land(plane)
+      allow(plane).to receive :take_off
+      airport.take_off(plane)
+      expect(airport.planes).to be_empty
+    end
+
+    it 'changes status of plane to flying when taking off a plane' do
+      allow(plane).to receive :land!
+      airport.land plane
+      allow(plane).to receive :take_off
+      airport.take_off plane
+    end
   end
 
   context 'traffic control' do
