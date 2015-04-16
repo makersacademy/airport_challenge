@@ -11,18 +11,36 @@ require 'airport'
 #
 # If the airport is full then no planes can land
 
+
 describe Airport do
+  let(:heathrow){Airport.new}
+  let(:plane){Plane.new}
+
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      heathrow.ok_landing(plane)
+      expect(heathrow.planes).to eq [plane]
+    end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      heathrow.ok_landing plane
+      heathrow.ok_takeoff(plane)
+      expect(heathrow.planes).to eq []
+    end
+
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      heathrow.capacity.times{ heathrow.ok_landing(plane) }
+      expect(heathrow).to be_full
+    end
+  end
+
+
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -34,9 +52,12 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      xit 'a plane cannot take off when there is a storm brewing' do
+       # heathrow.ok_landing plane
+       # allow(heathrow).to receive(:weather) {1}
+       # expect(heathrow.planes).to eq [plane]
+    end
 
       xit 'a plane cannot land in the middle of a storm'
-    end
   end
 end
