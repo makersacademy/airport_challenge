@@ -1,42 +1,77 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
-  context 'taking off and landing' do
-
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
+  context 'taking off and landing:' do
+    it { is_expected.to respond_to :land_plane }
+    it 'can land a plane' do
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
+      planes = subject.num_planes
+      plane = double('Plane', land: nil)
+      subject.land_plane plane
+      expect(subject.num_planes).to eq(planes + 1)
+    end
+    it { is_expected.to respond_to :takeoff_plane }
+    it 'raises error when airport is empty' do
+      expect { subject.takeoff_plane }.to raise_error 'cannot takeoff'
+    end
+    it 'can takeoff a plane' do
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
+      plane = double('Plane', land: nil, take_off: nil)
+      subject.land_plane plane
+      plane = subject.planes.last
+      expect(subject.takeoff_plane).to eq(plane)
+    end
+    it 'calls a planes land method when it lands' do
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
+      plane = double('Plane')
+      expect(plane).to receive(:land)
+      subject.land_plane plane
+    end
+    it 'calls a planes take_off method when it takes off' do
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
+      plane = double('Plane', land: nil)
+      subject.land_plane plane
+      expect(plane).to receive(:take_off)
+      subject.takeoff_plane
+    end
   end
 
-  context 'traffic control' do
-
-    xit 'a plane cannot land if the airport is full'
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-
-      xit 'a plane cannot land in the middle of a storm'
+  context 'traffic control:' do
+    it 'should have a capcity of 20' do
+      expect(subject.capcity).to eq 20
+    end
+    it 'raise an error when full' do
+      weather = double('Weather', weather: 'sunny')
+      subject.weather(weather)
+      plane = double('Plane', land: nil)
+      20.times { subject.land_plane plane }
+      expect { subject.land_plane plane }.to raise_error 'cannot land'
+    end
+    context 'weather conditions:' do
+      it { is_expected.to respond_to :weather }
+      it 'should return true if weather is sunny' do
+        weather = double('Weather', weather: 'sunny')
+        expect(subject.weather(weather)).to eq true
+      end
+      it 'a plane cannot take off when there is a storm brewing' do
+        weather = double('Weather', weather: 'sunny')
+        subject.weather(weather)
+        plane = double('Plane', land: nil)
+        subject.land_plane plane
+        weather = double('Weather', weather: 'stormy')
+        subject.weather(weather)
+        expect { subject.takeoff_plane }.to raise_error 'cannot takeoff'
+      end
+      it 'a plane cannot land in the middle of a storm' do
+        weather = double('Weather', weather: 'stormy')
+        subject.weather(weather)
+        expect { subject.land_plane :plane }.to raise_error 'cannot land'
+      end
     end
   end
 end
