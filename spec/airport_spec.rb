@@ -1,42 +1,32 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
-
-  context 'taking off and landing' do
-
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
+  let(:airport) { Airport.new }
+  let(:plane) { double(:plane) }
+  it 'has a default capacity' do
+    expect(airport.capacity).to eq 200
   end
 
-  context 'traffic control' do
+  it 'cannot land planes when capacity is reached' do
+    allow(airport).to receive(:weather?).and_return 'sunny'
+    allow(plane).to receive(:land)
+    allow(plane).to receive(:status)
+    200.times { airport.land(plane) }
+    expect { airport.land(plane)}.to raise_error
+    'Airport full. Please stand by, over...'
+  end
 
-    xit 'a plane cannot land if the airport is full'
+   it 'cannot land a plane if already landed' do
+    allow(plane).to receive(land)
+    # allow(airport).to receive(:weather).and_return 'sunny'
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error
+    'You cannot land a plane that\'s already landed'
+  end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-
-      xit 'a plane cannot land in the middle of a storm'
-    end
+  it 'cannot land a plane if the weather is stormy' do
+    allow(airport).to receive(:weather?).and_return 'stormy'
+    expect { airport.land(plane) }.to raise_error
+    'Adverse weather. Please stand by, over...'
   end
 end
