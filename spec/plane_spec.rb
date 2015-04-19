@@ -1,8 +1,5 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
 # When we create a new plane, it should have a "flying" status,
 # thus planes can not be created in the airport.
 #
@@ -14,12 +11,30 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  let(:plane) { Plane.new }
 
-  xit 'has a flying status when in the air'
+  it 'has a flying status when created' do
+    expect(plane.status).to eq 'flying'
+  end
 
-  xit 'can take off'
+  it 'can land and receives the landed status' do
+    plane.land
+    expect(plane.status).to eq 'landed'
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'can take off and gets a flying status when in the air' do
+    plane.land
+    plane.take_off
+    expect(plane.status).to eq 'flying'
+  end
+
+  it 'cannot land if already on the ground' do
+    plane.land
+    expect { plane.land }.to raise_error 'Plane is already on ground'
+  end
+
+  it 'cannot take off if already in the sky' do
+    expect { plane.take_off }.to raise_error 'Plane is already airborne'
+  end
 
 end
