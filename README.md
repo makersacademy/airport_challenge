@@ -28,6 +28,13 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing when the weather is stormy
 ```
 
+The technologies used include:
+
+* [Capybara/RSpec]( https://github.com/jnicklas/capybara#using-capybara-with-rspec)
+* [RSpec]( http://rspec.info/)
+* [Rubocop](http://batsov.com/rubocop/)
+* [Rake](https://github.com/ruby/rake)
+
 How to use
 --------------
 
