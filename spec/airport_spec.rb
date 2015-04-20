@@ -63,6 +63,12 @@ describe Airport do
         allow(airport).to receive(:weather).and_return "Stormy"
         expect { airport.land plane }.to raise_error "Cant land in storm"
       end
+
+      it 'can be both sunny and stormy' do
+        weather_array = []
+        100.times { weather_array << airport.weather }
+        expect(weather_array.uniq).to contain_exactly('Sunny')
+      end
     end
   end
 end
