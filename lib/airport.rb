@@ -1,18 +1,27 @@
 class Airport
+  attr_reader :hangar, :capacity, :weather
+
   DEFAULT_CAPACITY = 10
 
-  attr_accessor :capacity
-  attr_reader :hangar
-  attr_writer :land
-
   def initialize
-    @hangar = nil
+    @hangar = []
+    @capacity = DEFAULT_CAPACITY
+    @weather = 'sunny'
   end
 
   def land(plane)
-    @hangar = plane
+    fail 'Airport full' if full?
+    fail 'Cannot land in storm' if @weather == 'stormy'
+    @hangar << plane
   end
 
-  def take_off
+  def weather(weather)
+    @weather = weather.condition
+  end
+
+  private
+
+  def full?
+    hangar.count >= DEFAULT_CAPACITY
   end
 end

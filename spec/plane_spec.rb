@@ -13,25 +13,25 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
-  let(:aeroplane) { Plane.new }
+  # let(:aeroplane) { Plane.new }
 
-  it 'can have a flying status' do
-    expect(aeroplane).to respond_to :flying # why the colon?
-  end
+  # it 'can have a flying status' do
+  #   expect(aeroplane).to respond_to :flying
+  # end
 
-  it 'has a flying status of false, when created' do
-    expect(aeroplane.flying).to eq false
-  end
+  # it 'has a flying status of false, when created' do
+  #   expect(aeroplane.flying).to eq false
+  # end
 
-  it 'can take off' do
-    expect(aeroplane).to respond_to :take_off
-  end
+  # it 'can take off' do
+  #   expect(aeroplane).to respond_to :take_off
+  # end
 
-  it 'changes its status to flying after taking off' do
-    aeroplane.take_off
-    expect(aeroplane.flying).to eq true
-  end
+  # it 'changes its status to flying after taking off' do
+  #   aeroplane.take_off
+  #   expect(aeroplane.flying).to eq true
+  # end
 
-  it 'has a flying status when in the air'
+  # it 'has a flying status when in the air'
 
 end

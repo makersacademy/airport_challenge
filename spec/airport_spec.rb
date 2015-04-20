@@ -13,37 +13,28 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new }
-  context 'taking off and landing' do
+  let(:weather) { double :weather, condition: 'sunny' }
 
-    it 'a plane can be landed' do
-      expect(airport).to respond_to :land
+  context 'when created' do
+    it 'has an empty hangar' do
+      expect(airport.hangar.count).to eq 0
     end
 
-    it 'can store landed planes in hangar' do
-      airport.land double :plane
-      expect(airport.hangar).to eq :plane
+    it 'the hangar has a capacity of 10' do
+      expect(airport.capacity).to eq 10
     end
-
-    it 'a plane can take off' do
-      expect(airport).to respond_to :take_off
-    end
-
-    xit 'can have a max capacity' do
-      default_cap = 10
-      expect(airport.capacity(default_cap)).to eq default_cap
-    end
-
   end
 
   context 'traffic control' do
 
-    it 'can '
+    it 'can land plane' do
+      airport.land(:plane)
+      expect(airport.hangar.count).to eq 1
+    end
 
-
-    xit 'a plane cannot land if the airport is full' do
-      default_cap = 10
-      airport.land
-      expect(subject.land).to raise "Airport is full"
+    it 'cannot land plane if the airport is full' do
+      Airport::DEFAULT_CAPACITY.times { airport.land :plane }
+      expect { airport.land :plane }.to raise_error 'Airport full'
     end
 
     # Include a weather condition.
@@ -56,9 +47,18 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      before(:example) do
+        weather = double :weather, condition: 'stormy'
+        airport.weather(weather)
+      end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        expect { airport.land :plane }.to raise_error 'Cannot land in storm'
+      end
+
+      xit 'a plane cannot take off when there is a storm brewing' do
+      end
+
     end
   end
 end
