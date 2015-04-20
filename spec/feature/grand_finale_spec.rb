@@ -9,10 +9,10 @@ feature 'Grand Finale' do
     planes = [Plane.new, Plane.new, Plane.new, Plane.new, Plane.new, Plane.new]
     planes.each { |plane| airport.land plane }
     expect(airport.planes).to eq planes
-    expect(airport.planes.map { |plane| plane.status}.uniq).to eq [:landed]
-    planes.each{ |plane| airport.take_off plane}
+    expect(airport.planes.map(&:status).uniq).to eq [:landed]
+    planes.each { |plane| airport.take_off plane }
     expect(airport.planes).to be_empty
-    expect(planes.map { |plane| plane.status}.uniq).to eq [:flying]
+    expect(planes.map(&:status).uniq).to eq [:flying]
   end
 
 end

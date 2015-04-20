@@ -1,4 +1,5 @@
 class Airport
+
   attr_reader :planes, :capacity
 
   def initialize
@@ -8,7 +9,7 @@ class Airport
 
   def land plane
     check_weather_for(__method__)
-    fail 'Airport is full, cannot land.' if full?
+    fail "Airport full, can't land." if full?
     plane.land!
     planes << plane
   end
@@ -24,10 +25,11 @@ class Airport
   end
 
   def check_weather_for transit
-    fail "You cannot #{transit} in a storm." if weather == 'Stormy'
+    fail "Cant #{transit} in storm" if weather == 'Stormy'
   end
 
   def weather
+    rand(10) > 3 ? "Sunny" : "Stormy"
   end
 
 end

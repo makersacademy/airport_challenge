@@ -60,6 +60,7 @@
         1,
         1,
         2,
+        1,
         null,
         null,
         1,
@@ -72,6 +73,7 @@
       ],
       "/Users/Abukmeil/Dropbox/Development/airport_challenge/lib/airport.rb": [
         1,
+        null,
         1,
         null,
         1,
@@ -101,6 +103,7 @@
         null,
         null,
         1,
+        0,
         null,
         null,
         null
@@ -117,22 +120,22 @@
         1,
         7,
         1,
-        7,
-        7,
         1,
         7,
+        1,
+        1,
         null,
         null,
         null
       ],
       "/Users/Abukmeil/Dropbox/Development/airport_challenge/lib/plane.rb": [
         1,
+        null,
+        1,
+        1,
+        null,
         1,
         10,
-        null,
-        null,
-        1,
-        16,
         null,
         null,
         1,
@@ -145,6 +148,7 @@
         null,
         1,
         7,
+        null,
         null,
         null
       ],
@@ -175,6 +179,6 @@
         null
       ]
     },
-    "timestamp": 1428795828
+    "timestamp": 1429542580
   }
 }
