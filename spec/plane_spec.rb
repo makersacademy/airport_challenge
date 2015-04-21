@@ -1,5 +1,5 @@
 require 'plane'
-require 'airport'
+require 'coveralls'
 
 describe Plane do
   let(:plane) { Plane.new }
