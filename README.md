@@ -38,7 +38,7 @@ The technologies used include:
 How to use
 --------------
 
-* Fork and clone this repo
+* Clone this repo
 * Navigate to the cloned directory in terminal
 * Fire up IRB: `$ irb`
 * Require the files: `> require ‘./lib/airport.rb’` and `> require ‘./lib/plane.rb’`
