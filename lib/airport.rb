@@ -6,17 +6,18 @@ class Airport
   end
 
   def land(plane)
-    fail 'Sorry it is too stormy to land' if weather == "Stormy"
-    fail "Sorry you can not land, the Airport is full" if full?
+    fail 'Sorry it is too stormy to land' if weather == 'Stormy'
+    fail 'Sorry you can not land, the Airport is full' if full?
     plane.land
     planes << plane
   end
 
-    def weather
-    end
+  def weather
+    # ['Sunny', 'Stormy', 'Sunny'].sample
+  end
 
   def take_off plane
-    fail 'Sorry it is too stormy to take off' if weather == "Stormy"
+    fail 'Sorry it is too stormy to take off' if weather == 'Stormy'
     plane.take_off
     planes.delete plane
   end

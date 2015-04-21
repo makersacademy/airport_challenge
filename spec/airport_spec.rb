@@ -55,7 +55,7 @@ describe Airport do
 
     it 'cannot let a plane lands when there is a storm.' do
       airport.land(plane)
-      allow(airport).to receive(:weather).and_return "Stormy"
+      allow(airport).to receive(:weather).and_return 'Stormy'
       expect { airport.land plane }.to raise_error 'Sorry it is too stormy to land'
     end
   end
