@@ -8,13 +8,12 @@ describe Plane do
     expect(plane).to be_flying
   end
 
-  it 'has a flying status when flying' do
+  it 'has a flying status when in the air' do
     expect(plane.status).to eq :flying
   end
 
   it 'can land' do
     plane.land
-    plane.take_off
     expect(plane.status).to eq :landed
   end
 
