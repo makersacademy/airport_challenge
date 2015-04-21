@@ -1,20 +1,23 @@
 require 'airport'
-require 'weather'
 
-# describe Airport do
-#   let(:airport) { Airport.new }
-#   let(:plane) { double :plane }
+describe Airport do
+  let(:airport) { Airport.new }
+  let(:plane) { double :plane }
+  # we use a double beacuse this is an airport test not a plane test
 
-#   context 'taking off and landing' do
-#     it 'can land a plane' do
-#       airport.land(plane)
-#       expect(airport.planes).to eq [plane]
-#     end
-#   end
+  context 'taking off and landing' do
 
-#   describe 'plane must have permission to land' do
-#     it 'airport denines landing' do
-#       expect(Weather.sunny).to eq false
-#     end
-#   end
-# end
+    it 'can land a plane' do
+      allow(plane).to receive :land
+      # you need to allow doubles to recive arguments
+      airport.land(plane)
+      expect(airport.planes).to eq [plane]
+    end
+
+    it 'lands the same plane when landing a plane' do
+      expect(plane).to receive(:land)
+      airport.land(plane)
+    end
+
+  end
+end
