@@ -11,7 +11,7 @@ feature 'Basic Features: Plane' do
 
   scenario 'it lands and then takes off from an airport in normal weather' do
     airport.land_plane(plane)
-    airport.plane_take_off(plane)
+    airport.take_off(plane)
     expect(plane.flying?).to be true
   end
 
@@ -28,6 +28,6 @@ feature 'Basic Features: Plane' do
   scenario 'it tries to take off but is already flying' do
     airport.land_plane(plane)
     plane.take_off!
-    expect { airport.plane_take_off(plane) }.to raise_error 'Already Flying'
+    expect { airport.take_off(plane) }.to raise_error 'Already Flying'
   end
 end

@@ -16,7 +16,7 @@ feature 'Basic Features: Airport' do
 
   scenario 'the plane takes off from the airport' do
     airport.land_plane(plane)
-    expect(airport.plane_take_off(plane)).to eq plane
+    expect(airport.take_off(plane)).to eq plane
   end
 
   scenario 'a plane tries to land, but the weather is stormy' do
@@ -28,6 +28,6 @@ feature 'Basic Features: Airport' do
   scenario 'a plane tries to take off, but the weather is stormy' do
     airport.land_plane(plane)
     allow(airport).to receive(:stormy_weather?) { true }
-    expect { airport.plane_take_off(plane) }.to raise_error 'Stormy Weather'
+    expect { airport.take_off(plane) }.to raise_error 'Stormy Weather'
   end
 end
