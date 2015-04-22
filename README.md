@@ -1,3 +1,36 @@
+This is my first attempt at TDD with the Airport challenge.
+I tried to approach every test one by one, understanding what each class would do or
+could do. I started everything on paper at first.
+
+Then I started to work on the plane itself, testing every option I can think of and 
+committing each time a test was passing. I've added a few extra tests which I thought
+could be useful in the process.
+
+in reverse order, I had all of the following commits working:
+- plane cannot land when its stormy
+- plane cannot take off when stormy
+- Introduction and test of weather method
+- a plane cannot land if the airport is full
+- airport can be full
+- airport capacities
+- a plane can take off
+- a plabe can land in the airport
+- Plane cannot land if already on the ground
+- Plane cannot take off if already flying
+- plane status updated and plane status is flying after take off
+- plane can take off when landed
+- plane has a flying status when in the air
+- a plane flies when created
+- updated the README file
+
+making it 16 examples, 0 failures and 1 pending test (Grand finale).
+It's also "rubocop-happy".
+
+I didn't finish the challenge and need to go back into the tutorial and also the Makers Videos on TDD. I'm not completely happy of the syntax either and may make a few things
+too complicated so would be keen for the teachers at Makers to give me a bit of advice on
+how to carry on, what to change, and some first thoughts on my style, and what I need to
+improve. I plan to review and discuss all of that tomorrow.
+
 Airport Challenge
 =================
 
