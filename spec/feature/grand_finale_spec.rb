@@ -1,15 +1,47 @@
 require 'capybara/rspec'
+require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
+feature 'planes can use airport' do
+  airport = Airport.new
+  planes = []
+  6.times { planes << Plane.new }
+  scenario ' 6 planes ' do
+    expect(planes.count).to eq 6
+  end
 
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
+  scenario ' 6 planes can land with no bad weather present' do
+    planes.each { |plane| airport.land_plane(plane) }
+    expect(airport.planes.count).to eq 6
+  end
 
-feature 'Grand Finale' do
+  scenario ' landed planes are no longer flying' do
+    airport.planes.each do |p|
+      expect(p.flying?).to be false
+    end
+  end
 
-  xscenario 'all planes can land and all planes can take off'
+  scenario ' planes can leave airport' do
+    6.times do
+      airport.planes.each { |plane| airport.plane_take_off(plane) }
+    end
+    expect(airport.planes.count).to eq 0
+  end
 
+  scenario 'planes have flying status' do
+    planes.each do |plane|
+      fail 'plane not flying' unless plane.flying?
+    end
+  end
+
+  scenario ' Airport full? ' do
+    expect(planes.count).to eq 6
+  end
+
+  scenario ' The weather is bad, no planes to land allowed' do
+    expect { airport.land_plane(planes) }.to raise_error ' Bad Weather'
+  end
+
+  scenario ' not allowed to leave the airport' do
+    expect { airport.fly(planes) }.to raise_error 'Bad Weather'
+  end
 end
