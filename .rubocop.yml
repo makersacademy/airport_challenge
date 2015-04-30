@@ -5,7 +5,7 @@ EmptyLinesAroundBlockBody:
 
 Style/EmptyLinesAroundClassBody:
   Description: Keeps track of empty lines around class bodies.
-  Enabled: true
+  Enabled: false
   EnforcedStyle: empty_lines
   SupportedStyles:
   - empty_lines
