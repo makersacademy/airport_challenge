@@ -13,13 +13,18 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
+  it 'has a flying status when created' do
+    expect(subject.flying_status).to eq 'Flying'
+  end
 
-  xit 'has a flying status when created'
+  it 'has a flying status when landed' do
+    subject.land
+    expect(subject.flying_status).to eq 'Landed'
+  end
 
-  xit 'has a flying status when in the air'
-
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
-
+  it 'changes its status to flying after taking off' do
+    subject.land
+    subject.taken_off
+    expect(subject.flying_status).to eq 'Flying'
+  end
 end
