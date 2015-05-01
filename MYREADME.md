@@ -1,3 +1,7 @@
+--Eighth commit
+
+Planes cannot land when the weather is stormy. Weather is sunny by default
+
 --Seventh commit
 
 Airports can be created with variable capacity. A plane cannot land when an extended airport is full

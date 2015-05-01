@@ -31,14 +31,21 @@ feature 'Plane can' do
   end
 
   scenario 'not land when the airport is full' do
-    2.times {heathrow.land(plane)}
+    capacity = heathrow::capacity
+    capacity.times {heathrow.land(plane)}
     expect {heathrow.land(Plane.new)}.to raise_error "The airport is full"
   end
 
   scenario 'not land when the airport is full with extended capacaity' do
     heathrow = Airport.new(5)
-    5.times {heathrow.land(plane)}
+    capacity = heathrow::capacity
+    capacity.times {heathrow.land(plane)}
     expect{heathrow.land(plane)}.to raise_error 'The airport is full'
+  end
+
+  scenario 'not land in bad weather' do
+    heathrow::weather = "stormy"
+    expect{heathrow.land(plane)}.to raise_error 'Cannot land in stormy weather'
   end
 
 end

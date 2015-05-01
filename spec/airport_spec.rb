@@ -28,7 +28,8 @@ describe Airport do
     it 'a plane cannot land if the airport is full' do
       airplane = double(:airplane)
       allow(airplane).to receive(:status=) {"landed"}
-      2.times {subject.land(airplane)}
+      capacity = subject::capacity
+      capacity.times {subject.land(airplane)}
       expect{subject.land(airplane)}.to raise_error 'The airport is full'
     end
 
@@ -36,7 +37,8 @@ describe Airport do
       airplane = double(:airplane)
       allow(airplane).to receive(:status=) {"landed"}
       heathrow = Airport.new(5)
-      5.times {heathrow.land(airplane)}
+      capacity = heathrow::capacity
+      capacity.times {heathrow.land(airplane)}
       expect{heathrow.land(airplane)}.to raise_error 'The airport is full'
     end
 
@@ -52,7 +54,10 @@ describe Airport do
     context 'weather conditions' do
       xit 'a plane cannot take off when there is a storm brewing'
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        subject::weather = "stormy"
+        expect{subject.land(Plane.new)}.to raise_error 'Cannot land in stormy weather'
+      end
     end
   end
 end

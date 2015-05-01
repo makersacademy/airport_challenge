@@ -48,13 +48,15 @@ describe Plane do
 
     it 'land when the airport is full' do
       heathrow = Airport.new
-      2.times {heathrow.land(subject)}
+      capacity = heathrow::capacity
+      capacity.times {heathrow.land(subject)}
       expect {heathrow.land(subject)}.to raise_error 'The airport is full'
     end
 
     it 'land when the airport is full with extended capacity' do
       heathrow = Airport.new(10)
-      10.times {heathrow.land(subject)}
+      capacity = heathrow::capacity
+      capacity.times {heathrow.land(subject)}
       expect {heathrow.land(subject)}.to raise_error 'The airport is full'
     end
   end
