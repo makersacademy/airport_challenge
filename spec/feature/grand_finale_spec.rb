@@ -8,8 +8,39 @@ require 'capybara/rspec'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
+#Note that we're going to stub out weather checks to give predictable results
+
 feature 'Grand Finale' do
 
-  xscenario 'all planes can land and all planes can take off'
+  scenario 'all planes can land and all planes can take off' do
 
+    #Create an empty airport with capacity for 6 planes
+    airport = Airport.new 6
+
+    #Create 6 planes and land them at the airport, each in turn
+    planes = []
+
+    6.times do
+      planes << Plane.new
+    end
+
+    planes.each do |plane|
+      airport.land plane
+    end
+
+    #Check that each of the 6 planes is landed
+    planes.each do |plane|
+      expect{plane}.not_to be_flying
+    end
+
+    #Launch all 6 planes
+    planes.each do |plane|
+      airport.launch plane
+    end
+
+    #Check that each of the 6 planes is flying
+    planes.each do |plane|
+      expect{plane}.to be_flying
+    end
+  end
 end
