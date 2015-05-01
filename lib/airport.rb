@@ -4,8 +4,8 @@ class Airport
 
   attr_reader :planes, :capacity
 
-  def random_weather
-    Random.rand(1..10).even? ? 'stormy' : 'calm'
+  def stormy?
+    Random.rand(1..10).even? ? true : false
   end
 
   def initialize(capacity = 6)
@@ -16,7 +16,7 @@ class Airport
   def land plane
     if @planes.count == @capacity
       fail 'Airport Full'
-    elsif random_weather == 'stormy'
+    elsif stormy?
       fail 'Stormy weather'
     else
       @planes << plane
