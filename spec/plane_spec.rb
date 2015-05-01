@@ -9,17 +9,33 @@ require 'plane'
 # When we land a plane at the airport, the plane in question should
 # have its status changed to "landed"
 #
-# When the plane takes of from the airport, the plane's status
+# When the plane takes off from the airport, the plane's status
 # should become "flying"
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  let(:airport) {double :airport, receive: true, launch: true, planes: []}
 
-  xit 'has a flying status when in the air'
+  it 'has a flying status when created' do
+    expect(subject.flying?).to be true
+  end
 
-  xit 'can take off'
+  it 'has a flying status when in the air' do
+    expect(subject.flying?).to be true
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'can take off' do
+    airport.receive subject
+    airport.launch subject
+    planes = airport.planes
+    expect(planes.include? subject).to be false
+  end
+
+  it 'changes its status to flying after taking off' do
+    subject = Plane.new
+    airport.receive subject
+    airport.launch subject
+    expect(subject.flying?).to be true
+  end
 
 end

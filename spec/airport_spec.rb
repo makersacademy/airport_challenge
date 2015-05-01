@@ -13,11 +13,22 @@ require 'airport'
 
 describe Airport do
 
+  let(:plane) {double :plane, takeoff: true, land: false}
+
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      subject.receive plane
+      planes = subject.planes
+      expect(planes.include? plane).to be true
+    end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      subject.receive plane
+      subject.launch plane
+      planes = subject.planes
+      expect(planes.include? plane).to be false
+    end
   end
 
   context 'traffic control' do

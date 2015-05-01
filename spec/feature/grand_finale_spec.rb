@@ -1,4 +1,6 @@
 require 'capybara/rspec'
+require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -10,6 +12,21 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
 
-  xscenario 'all planes can land and all planes can take off'
+  scenario 'all planes can take off' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.receive plane
+    airport.launch plane
+    planes = airport.planes
+    expect(planes.include? plane).to be false
+  end
+
+  scenario 'all planes can land' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.receive plane
+    planes = airport.planes
+    expect(planes.include? plane).to be true
+  end
 
 end
