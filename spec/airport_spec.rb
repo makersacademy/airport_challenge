@@ -29,6 +29,13 @@ describe Airport do
   context 'traffic control' do
 
     xit 'a plane cannot land if the airport is full'
+    #implies the airport has capacity, therefore we
+    #we need to define this
+
+
+
+
+
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

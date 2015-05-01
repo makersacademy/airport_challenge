@@ -4,6 +4,11 @@ class Plane
 	end
 
 	def take_off
+		status
+	end
+
+	def status
+		"flying"
 	end
 
 end
