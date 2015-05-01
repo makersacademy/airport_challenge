@@ -14,10 +14,10 @@ feature 'Grand Finale' do
 
   scenario 'all planes can land and all planes can take off' do
 
-    #Create an empty airport with capacity for 6 planes
+    # Create an empty airport with capacity for 6 planes
     airport = Airport.new 6
 
-    #Create 6 planes and land them at the airport, each in turn
+    # Create 6 planes and land them at the airport, each in turn
     planes = []
 
     6.times do
@@ -28,19 +28,19 @@ feature 'Grand Finale' do
       airport.land plane
     end
 
-    #Check that each of the 6 planes is landed
+    # Check that each of the 6 planes is landed
     planes.each do |plane|
-      expect{plane}.not_to be_flying
+      expect { plane }.not_to be_flying
     end
 
-    #Launch all 6 planes
+    # Launch all 6 planes
     planes.each do |plane|
       airport.launch plane
     end
 
-    #Check that each of the 6 planes is flying
+    # Check that each of the 6 planes is flying
     planes.each do |plane|
-      expect{plane}.to be_flying
+      expect { plane }.to be_flying
     end
   end
 end
