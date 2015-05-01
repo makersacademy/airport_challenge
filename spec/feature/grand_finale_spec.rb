@@ -14,21 +14,20 @@ feature 'Grand Finale' do
 
 end
 
-feature 'Plane can land' do
-  scenario 'in an airport' do
-    plane = Plane.new
-    heathrow = Airport.new
+feature 'Plane can' do
+
+  let (:plane) {Plane.new}
+  let (:heathrow) {Airport.new}
+
+  scenario 'land in an airport' do
     heathrow.land(plane)
     expect(plane::status).to eq "landed"
   end
-end
 
-feature 'Plane can' do
   scenario 'land and then take off' do
-    plane = Plane.new
-    heathrow = Airport.new
     heathrow.land(plane)
     heathrow.take_off(plane)
     expect(plane::status).to eq "flying"
   end
+
 end
