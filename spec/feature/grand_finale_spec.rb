@@ -48,4 +48,9 @@ feature 'Plane can' do
     expect{heathrow.land(plane)}.to raise_error 'Cannot land in stormy weather'
   end
 
+  scenario 'not take off in bad weather' do
+    heathrow.land(plane)
+    heathrow::weather = "stormy"
+    expect{heathrow.take_off(plane)}.to raise_error 'Cannot take off in stormy weather'
+  end
 end

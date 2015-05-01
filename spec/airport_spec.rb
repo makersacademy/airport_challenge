@@ -52,7 +52,12 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      it 'a plane cannot take off when there is a storm brewing' do
+        plane = Plane.new
+        subject.land(plane)
+        subject::weather = "stormy"
+        expect{subject.take_off(plane)}.to raise_error 'Cannot take off in stormy weather'
+      end
 
       it 'a plane cannot land in the middle of a storm' do
         subject::weather = "stormy"

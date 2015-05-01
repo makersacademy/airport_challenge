@@ -20,8 +20,12 @@ class Airport
   end
 
   def take_off(plane)
-    plane::status = "flying"
-    @parked_planes.delete(plane)
+    if @weather == "stormy"
+      fail 'Cannot take off in stormy weather'
+    else
+      plane::status = "flying"
+      @parked_planes.delete(plane)
+    end
   end
 
 end
