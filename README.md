@@ -48,13 +48,14 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 Classes - Airports, Planes
 
-Airports:
-          Can receive (dock) planes (if weather == "sunny") and when not full
+Airports: Issue the instructions to planes
+          Can receive (dock) planes (if weather == "sunny") and when not full - therefore has a maximum capacity
           can release planes (if weather == "sunny")
-Planes:
+
+Planes:   Receive instructions from Airports
           Can take off (be released) from airports (if weather == "sunny")
           Can land (be docked) at airports (if weather == "sunny") when airport not full
-          Have two statuses - flying/landed - default to flying, airport sets it to landed when received
+          Have two statuses - flying/landed - default to flying (when created), airport sets it to landed when received
 
 Extra functionality: planes take off/land at the appropriate (selected) airport (predefined routes? Just fly planes between two airports, back and forth?)
 
