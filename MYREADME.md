@@ -1,3 +1,7 @@
+--Sixth commit
+
+A plane cannot land when the airport is full (current capacity 2). Tested using doubles
+
 --Fifth commit
 
   The airport object can now store plane objects when they land, and release them when they take off. Refactored tests

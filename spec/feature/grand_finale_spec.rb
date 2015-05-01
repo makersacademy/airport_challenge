@@ -30,4 +30,9 @@ feature 'Plane can' do
     expect(plane::status).to eq "flying"
   end
 
+  scenario 'not land when the airport is full' do
+    2.times {heathrow.land(Plane.new)}
+    expect {heathrow.land(Plane.new)}.to raise_error "The airport is full"
+  end
+
 end

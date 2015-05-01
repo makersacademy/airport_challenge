@@ -25,6 +25,13 @@ describe Airport do
 
   context 'traffic control' do
 
+    it 'a plane cannot land if the airport is full' do
+      airplane = double(:airplane)
+      allow(airplane).to receive(:status=) {"landed"}
+      2.times {subject.land(airplane)}
+      expect{subject.land(airplane)}.to raise_error 'The airport is full'
+    end
+
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,
