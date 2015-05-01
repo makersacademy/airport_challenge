@@ -9,10 +9,14 @@ To-do list
 * [x] Land plane
 * [x] Take off plane
 * [x] Disallow landing when airport is full
-* [ ] Prevent landing when stormy
+* [x] Prevent landing when stormy
 
 Log
 --------
+
+### Friday 1st May 2015 - 16:00 pm
+
+* After watching @tansaku masterclass on doubles I was able to use mock stubs to override the "random_weather" method that was used to set weather = calm so we can land planes
 
 ### Friday 1st May 2015 - 15:00 pm
 
