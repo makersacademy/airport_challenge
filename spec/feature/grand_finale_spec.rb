@@ -8,12 +8,12 @@ require 'capybara/rspec'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
-feature "Planes are able to land at the right airports" do
-	scenario "Plane lands at the appropriate airport" do 
+feature "Fully functioning airport" do
+	scenario "Planes land and take off from the appropriate airport" do 
 		plane = Plane.new
 		airport = Airport.new
-	  right_airport = plane.land airport 
-	  expect(right_airport).to eq airport
+	  expect(plane.land airport).to eq airport
+	  expect(plane.take_off airport).to eq airport
 	end
 end
 
