@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+
 Instructions
 ---------
 
@@ -62,5 +64,3 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
 
 ************            ********************          ***********************
-
-{<img src="https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/makersacademy/airport_challenge]
