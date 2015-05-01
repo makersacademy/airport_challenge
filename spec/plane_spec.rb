@@ -14,12 +14,27 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  it 'has a flying status when created' do
+    expect (subject).to be_flying
+  end
 
   xit 'has a flying status when in the air'
+  # I have no idea how to differentiate this from the other tests
+  # Somehow test that any plane not landed shows as flying?
+  # Maybe test that not(landed) implies flying?!
+  # I'm going to leave it as tautologous for now, maybe poke again later
 
-  xit 'can take off'
+  it 'can take off' do
+    airport = Airport.new
+    airport.land subject
+    expect { airport.launch subject }.not_to raise_error
+    # As always, weather will default to sunny in tests unless set otherwise
+  end
 
-  xit 'changes its status to flying after taking off'
-
+  it 'changes its status to flying after taking off' do
+    airport = Airport.new
+    airport.land subject
+    airport.launch subject
+    expect (subject).to be_flying
+  end
 end
