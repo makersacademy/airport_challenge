@@ -11,7 +11,6 @@ class Airport
   def land plane
     @planes << plane
     plane.landed = true
-
   end
 
 end

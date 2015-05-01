@@ -6,13 +6,19 @@ Airport Challenge
 To-do list
 ----------
 
-* [ ] Land plane
+* [x] Land plane
 * [ ] Take off plane
 * [ ] Disallow landing when airport is full
 * [ ] Prevent landing when stormy
 
 Log
 --------
+
+## Friday 1st May 2015 - 13:30 pm
+
+* Worked with Tom Coakes on Rspec syntax
+* Got [simplecov](https://github.com/colszowka/simplecov) setup locally
+* attr_accessor finally makes sense to me
 
 ### Friday 1st May 2015 - noon
 
