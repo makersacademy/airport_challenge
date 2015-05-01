@@ -32,6 +32,14 @@ describe Airport do
       expect{subject.land(airplane)}.to raise_error 'The airport is full'
     end
 
+    it 'a plane cannot land if the airport is full with extended capacaity' do
+      airplane = double(:airplane)
+      allow(airplane).to receive(:status=) {"landed"}
+      heathrow = Airport.new(5)
+      5.times {heathrow.land(airplane)}
+      expect{heathrow.land(airplane)}.to raise_error 'The airport is full'
+    end
+
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,

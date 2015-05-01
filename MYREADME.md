@@ -1,3 +1,7 @@
+--Seventh commit
+
+Airports can be created with variable capacity. A plane cannot land when an extended airport is full
+
 --Sixth commit
 
 A plane cannot land when the airport is full (current capacity 2). Tested using doubles
