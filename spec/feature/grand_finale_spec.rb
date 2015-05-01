@@ -17,8 +17,16 @@ end
 feature 'Plane can land' do
   scenario 'in an airport' do
     plane = Plane.new
-    heathrow = Airport.new
     plane.land
-    plane::status == "landed"
+    expect(plane::status).to eq "landed"
+  end
+end
+
+feature 'Plane can' do
+  scenario 'land and then take off'  do
+    plane = Plane.new
+    plane.land
+    plane.take_off
+    expect(plane::status).to eq "flying"
   end
 end
