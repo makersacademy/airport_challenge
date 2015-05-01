@@ -8,7 +8,7 @@ To-do list
 
 * [x] Land plane
 * [x] Take off plane
-* [ ] Disallow landing when airport is full
+* [x] Disallow landing when airport is full
 * [ ] Prevent landing when stormy
 
 Log

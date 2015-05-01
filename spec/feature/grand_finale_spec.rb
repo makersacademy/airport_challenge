@@ -25,4 +25,9 @@ feature 'Grand Finale' do
     expect(airport.planes.count).to eq 3
   end
 
+  scenario 'Plane cannot land at full airport' do
+    6.times { airport.land Plane.new }
+    expect { airport.land Plane.new }.to raise_error 'Airport Full'
+  end
+
 end
