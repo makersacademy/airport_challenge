@@ -23,7 +23,10 @@ describe Plane do
       expect(plane::status).to eq "landed"
     end
 
-  xit 'has a flying status when created'
+  it 'has a flying status when created' do
+    plane = Plane.new
+    expect(plane::status).to eq "flying"
+  end
 
   xit 'has a flying status when in the air'
 
