@@ -14,7 +14,6 @@ class Airport
   end
 
   def land plane
-
     if @planes.count == @capacity
       fail 'Airport Full'
     elsif random_weather == 'stormy'
