@@ -13,3 +13,12 @@ feature 'Grand Finale' do
   xscenario 'all planes can land and all planes can take off'
 
 end
+
+feature 'Plane can land' do
+  scenario 'in an airport' do
+    plane = Plane.new
+    heathrow = Airport.new
+    plane.land
+    plane::status == "landed"
+  end
+end

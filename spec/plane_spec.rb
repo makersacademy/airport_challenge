@@ -14,6 +14,15 @@ require 'plane'
 
 describe Plane do
 
+  context 'it can' do
+
+    it 'land' do
+      plane = Plane.new
+      heathrow = Airport.new
+      plane.land
+      expect(plane::status).to eq "landed"
+    end
+
   xit 'has a flying status when created'
 
   xit 'has a flying status when in the air'
@@ -21,5 +30,7 @@ describe Plane do
   xit 'can take off'
 
   xit 'changes its status to flying after taking off'
+
+  end
 
 end
