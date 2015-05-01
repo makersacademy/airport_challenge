@@ -10,6 +10,9 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
 
-  xscenario 'all planes can land and all planes can take off'
+  scenario 'all planes can land and all planes can take off' do
+  	plane = Plane.new
+  	expect(plane).to respond_to :land && :take_off
+  end
 
 end
