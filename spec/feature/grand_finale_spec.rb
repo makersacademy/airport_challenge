@@ -11,7 +11,7 @@ require 'airport'
 # Once all planes are in the air again, check that they have status "flying!"
 
 feature 'Grand Finale' do
-  let(:airport) {Airport.new}
+  let(:airport) { Airport.new }
 
   scenario '6 planes can land' do
     allow(airport).to receive(:stormy?).and_return(false)

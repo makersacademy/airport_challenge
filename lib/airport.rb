@@ -1,12 +1,11 @@
 require_relative 'plane'
+require_relative 'weather_container'
 
 class Airport
 
   attr_reader :planes, :capacity
 
-  def stormy?
-    Random.rand(1..10).even? ? true : false
-  end
+  include WeatherContainer
 
   def initialize(capacity = 6)
     @planes = []
