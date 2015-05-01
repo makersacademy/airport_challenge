@@ -14,6 +14,13 @@ require 'plane'
 
 describe Plane do
 
+	it { is_expected.to respond_to(:land).with(1).argument}
+
+	it "should land at the right airport" do 
+		airport = Airport.new
+		expect(subject.land airport).to eq airport
+	end
+
   xit 'has a flying status when created'
 
   xit 'has a flying status when in the air'
