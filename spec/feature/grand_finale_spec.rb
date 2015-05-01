@@ -1,4 +1,6 @@
+require_relative '../spec_helper'
 require 'capybara/rspec'
+require 'airport'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -10,11 +12,10 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
 
-  scenario 'all planes can land' do
+  let(:airport) { Airport.new }
 
-    airport = Airport.new
-    plane = Plane.new
-    airport.land plane
-    expect(plane).to be_landed
+  scenario '6 planes can land' do
+    6.times { airport.land Plane.new }
+    airport.planes.each { |p| expect(p).to be_landed }
   end
 end
