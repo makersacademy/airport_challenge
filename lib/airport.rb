@@ -19,7 +19,7 @@ class Airport
     end
   end
 
-  def take_off(plane)
+  def take_off(plane=@parked_planes.first)
     if @weather == "stormy"
       fail 'Cannot take off in stormy weather'
     else

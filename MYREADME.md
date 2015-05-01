@@ -1,3 +1,7 @@
+--Tenth commit
+
+The take_off method can be called without an argument. Can now choose a plane to take off next or, if empty, the first plane that landed takes off
+
 --Nine commit
 
 Planes cannot take off when the weather is stormy
