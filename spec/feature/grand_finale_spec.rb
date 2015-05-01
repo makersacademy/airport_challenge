@@ -8,7 +8,7 @@ require 'capybara/rspec'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
-#Note that we're going to stub out weather checks to give predictable results
+# Note that we're going to stub out weather checks to give predictable results
 
 feature 'Grand Finale' do
 
