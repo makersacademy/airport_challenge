@@ -34,7 +34,6 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      it { is_expected.to respond_to :stormy? }
 
       xit 'a plane cannot take off when there is a storm brewing'
 
