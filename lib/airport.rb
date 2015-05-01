@@ -13,4 +13,8 @@ class Airport
     plane.landed = true
   end
 
+  def takeoff
+    @planes.pop.takeoff
+  end
+
 end

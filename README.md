@@ -7,14 +7,18 @@ To-do list
 ----------
 
 * [x] Land plane
-* [ ] Take off plane
+* [x] Take off plane
 * [ ] Disallow landing when airport is full
 * [ ] Prevent landing when stormy
 
 Log
 --------
 
-## Friday 1st May 2015 - 13:30 pm
+### Friday 1st May 2015 - 15:00 pm
+
+* Discussed with Alumni how to check status of plane after taking off. Had to create my first unit test to test "takeoff" method for plane.
+
+### Friday 1st May 2015 - 13:30 pm
 
 * Worked with Tom Coakes on Rspec syntax
 * Got [simplecov](https://github.com/colszowka/simplecov) setup locally

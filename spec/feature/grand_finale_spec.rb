@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 require 'capybara/rspec'
 require 'airport'
 
@@ -18,4 +18,11 @@ feature 'Grand Finale' do
     6.times { airport.land Plane.new }
     airport.planes.each { |p| expect(p).to be_landed }
   end
+
+  scenario '6 planes can land & then 3 take off' do
+    6.times { airport.land Plane.new }
+    3. times { airport.takeoff }
+    expect(airport.planes.count).to eq 3
+  end
+
 end

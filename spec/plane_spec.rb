@@ -20,6 +20,10 @@ describe Plane do
 
   xit 'can take off'
 
-  xit 'changes its status to flying after taking off'
+  it 'changes its status to flying after taking off' do
+    plane = Plane.new true
+    plane.takeoff
+    expect(plane).to_not be_landed
+  end
 
 end
