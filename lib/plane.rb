@@ -1,6 +1,9 @@
+require_relative 'airport'
+
 class Plane
 
-  def initialize(status='flying')
+  def flying?
+    true
   end
 
 end

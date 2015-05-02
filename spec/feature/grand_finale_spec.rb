@@ -12,7 +12,16 @@ require 'airport'
 
 feature 'Grand Finale' do
 
-  scenario 'all planes can land and all planes can take off' do
+  scenario 'plane can land at airport' do
+    airport = Airport.new
+    plane = airport.land_plane
+    expect(plane).to be_flying
+  end
 
+  scenario 'plane can take-off from airport' do
+    airport = Airport.new
+    plane = airport.release_plane
+    expect(plane).not_to be_flying
+  end
 
 end
