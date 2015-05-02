@@ -13,10 +13,10 @@ feature 'Grand Finale' do
 	feature 'the plane lands at the specified airport' do
 
 	  scenario 'at Luton' do
-		plane = Plane.new
-		luton = Airport.new
-		plane.land luton
-		expect(plane.location).to eq luton
-	    end
+			plane = Plane.new
+			luton = Airport.new
+			plane.land luton
+			expect(plane.location).to eq luton
+	  end
 	end
 end
