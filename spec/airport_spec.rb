@@ -48,6 +48,11 @@ describe Airport do
 
       xit 'a plane cannot land in the middle of a storm'
 
+      it 'weather report states either sunny or stormy' do
+        weather_states = ['sunny', 'stormy']
+        expect(weather_states.include? subject.weather).to be true
+      end
+
     end
 
   end
