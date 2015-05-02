@@ -1,3 +1,13 @@
+# Unit tests (airports):
+
+# - Can instruct a plane to take-off
+# - Can instruct a plane to land
+# - Can prevent a plane from take-off if weather not 'sunny'
+# - Can prevent a plane from land if weather not 'sunny'
+# - Can provide 'sunny' or 'stormy' weather update
+# - Knows if a plane is in air
+# - or at airport
+
 require_relative 'plane'
 
 class Airport

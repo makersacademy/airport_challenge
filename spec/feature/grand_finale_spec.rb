@@ -10,6 +10,17 @@ require 'airport'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
+# Feature tests:
+
+# - six planes can be created
+# - planes have a status of 'flying' when created, 'landed' when at airport
+# - planes have a location of 'mid-air' when flying, 'in-hangar' when landed
+# - six planes can land at airport, stored in hangar
+# - six planes can depart from airport
+# - planes cannot take-off/land unless weather is 'sunny'
+# - planes cannot land when airport is full
+# - Airport knows planes are in the air/in the airport
+
 feature 'Grand Finale' do
 
   let(:airport) { Airport.new }
