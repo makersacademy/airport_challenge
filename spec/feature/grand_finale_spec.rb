@@ -9,8 +9,8 @@ require 'capybara/rspec'
 # Once all planes are in the air again, check that they have status "flying!"
 
 feature 'Grand Finale' do
-  let(:plane){Plane.new}
-  let(:airport){Airport.new}
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
 
   scenario 'all planes can land' do
     airport.land(plane)
