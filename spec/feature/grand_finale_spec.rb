@@ -1,5 +1,4 @@
-require 'capybara/rspec'
-
+require 'airport'
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -10,6 +9,14 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
 
-  xscenario 'all planes can land and all planes can take off'
 
+	feature 'the plane lands at the specified airport' do
+
+	  scenario 'at Luton' do
+		plane = Plane.new
+		luton = Airport.new
+		plane.land luton
+		expect(plane.location).to eq luton
+	    end
+	end
 end
