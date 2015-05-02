@@ -61,3 +61,56 @@ Extra functionality: planes take off/land at the appropriate (selected) airport 
 
 Weather: Randomly selected from ["sunny", "stormy"] (stub required to override this)
 
+Feature tests:
+
+- six planes can be created
+- planes have a status of 'flying' when created, 'landed' when at airport
+- planes have a location of 'mid-air' when flying, 'in-hangar' when landed
+- six planes can land at airport, stored in hangar
+- six planes can depart from airport
+- planes cannot take-off/land unless weather is 'sunny'
+- planes cannot land when airport is full
+- Airport knows planes are in the air/in the airport
+
+Unit tests (planes):
+
+- New plane can be created
+- Plane is created with status 'flying', and location 'mid-air'
+- Plane status changes to 'landed' when landed, location changes to 'in-hangar'
+- Plane can land/take-off from airport
+- Plane cannot land when airport is full
+- Plane cannot land/take-off unless weather is 'sunny'
+- Responds to land request, unless landed
+- Responds to take-off, unless flying
+
+Unit tests (airports):
+
+- Can instruct a plane to take-off
+- Can instruct a plane to land
+- Can prevent a plane from take-off if weather not 'sunny'
+- Can prevent a plane from land if weather not 'sunny'
+- Can provide 'sunny' or 'stormy' weather update
+- Knows if a plane is in air
+- or at airport
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

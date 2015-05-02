@@ -12,8 +12,10 @@ require 'airport'
 
 feature 'Grand Finale' do
 
+  let(:airport) { Airport.new }
+
   scenario 'plane can land at airport' do
-    airport = Airport.new
+    # airport = Airport.new
     fleet = []
     6.times { fleet << Plane.new }
   end
@@ -28,11 +30,16 @@ feature 'Grand Finale' do
   end
 
   scenario 'plane can take-off from airport' do
-    airport = Airport.new
+    # airport = Airport.new
     plane = airport.release_plane
     expect(plane).to be_landed
   end
 
+  # scenario 'plane cannot land when airport is full' do
+  #     airport = Airport.new # refactor this?
+  #     airport.capacity.times { something }
+  #     expect { airport.hangar # ?}.to raise_error 'Airport is full'
+  #   end
 end
 end
 # plane = airport.land_plane
