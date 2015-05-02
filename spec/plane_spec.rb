@@ -14,7 +14,10 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to :flying?}
+  it { is_expected.to respond_to :flying? }
+
+  it { is_expected.to respond_to :plane_status }
+
 
   xit 'has a flying status when in the air'
 

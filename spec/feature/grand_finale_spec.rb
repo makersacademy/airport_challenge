@@ -14,14 +14,25 @@ feature 'Grand Finale' do
 
   scenario 'plane can land at airport' do
     airport = Airport.new
-    plane = airport.land_plane
-    expect(plane).to be_flying
+    fleet = []
+    6.times { fleet << Plane.new }
+  end
+
+  scenario 'we have six planes in our fleet' do
+    expect(fleet.length).to eq 6
+  end
+
+  scenario 'plan is in the air when created' do
+    fleet.each do |plane|
+    expect(plane.status).to eq 'flying'
   end
 
   scenario 'plane can take-off from airport' do
     airport = Airport.new
     plane = airport.release_plane
-    expect(plane).not_to be_flying
+    expect(plane).to be_landed
   end
 
 end
+end
+# plane = airport.land_plane

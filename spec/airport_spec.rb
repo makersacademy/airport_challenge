@@ -15,7 +15,8 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    it { is_expected.to respond_to :release_plane }
+  it { is_expected.to respond_to :release_plane }
+
 
     it 'allows a plane to land' do
       plane = subject.land_plane
@@ -24,7 +25,7 @@ describe Airport do
 
     it 'allows a plane to take-off' do
       plane = subject.release_plane
-      expect(plane).not_to be_flying
+      expect(plane).to be_landed
 
     end
 
