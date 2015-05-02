@@ -13,6 +13,7 @@ feature 'Air traffic outgoing' do
   let(:airport) { Airport.new }
 
   scenario 'plane can take off' do
+    allow(airport).to receive(:weather?).and_return('sunny')
     airport.receive plane
     airport.launch plane
     planes = airport.planes

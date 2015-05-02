@@ -15,6 +15,7 @@ describe Airport do
     end
 
     it 'a plane can take off' do
+      allow(subject).to receive(:weather?).and_return('sunny')
       subject.receive plane
       subject.launch plane
       planes = subject.planes
