@@ -15,9 +15,10 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it { is_expected.to respond_to :allow_landing }
+  end
 
-    xit 'a plane can take off'
+    it { is_expected.to respond_to :allow_takeoff }
   end
 
   context 'traffic control' do
@@ -39,4 +40,3 @@ describe Airport do
       xit 'a plane cannot land in the middle of a storm'
     end
   end
-end

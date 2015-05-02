@@ -8,8 +8,19 @@ require 'capybara/rspec'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
-feature 'Grand Finale' do
+feature 'Planes can take off and land from airport' do
+  scenario 'Plane takes off from airport' do
+    airport = Airport.new
+    plane = airport.allow_takeoff
+  end
 
-  xscenario 'all planes can land and all planes can take off'
-
+  scenario 'A plane lands at airport' do
+    airport = Airport.new
+    plane = airport.allow_landing
+  end
 end
+# feature 'Grand Finale' do
+
+#   xscenario 'all planes can land and all planes can take off'
+
+# end
