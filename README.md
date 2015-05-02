@@ -1,22 +1,7 @@
 Airport Challenge
 =================
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, still check in a partial solution
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. Complete the following task:
-
-Task
+Original Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client.
@@ -39,24 +24,23 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing when the weather is stormy
 ```
 
-Your task is to test drive the creation a set of classes/modules to satisfy all the above user stories. You will need to use random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
+Approach
+-----
 
-The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests, and a pending 'grand finale' feature test that combines a number of features. It is up to you to implement the tests and create additional tests as necessary.
+Developed an airport centric system where two primary method interfaces (land and release) control the movement of planes. This is because the tasks across all stakeholder use cases involved a key action from the airport destination.
+IRB has been assumed as the user interface for pilots and air traffic controllers.  
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Plane objects are tracked through their 'flying' status which is toggled between true and false by the airport's land and release methods.
 
-As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
+Weather volatility is introduced through the random weather change method which uses a random number generator (rand(2)) to control the 'stormy' attribute in the airport.
 
-Please create separate files for every class, module and test suite. 
+The testing suite has adopted one core feature test utilising stubs to check weather 6 planes are able to land and take off during non-stormy condtions. 
+Unit testing on the airport then adds the context of stormy conditions which raise errors when trying to land or take-off.
+Plane unit tests ensure that the flying attribute changes correctly before and after take-off.
 
-The submission will be judged on the following criteria:
 
-* Tests pass
-* Tests coverage is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
+Outstanding Issues
+-----
 
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+* The program works fully in IRB and at feature test level but the two unit tests checking expected actions in stormy weather are currently failing due to an undefined singleton class error >> this is being further explored
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
-
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am

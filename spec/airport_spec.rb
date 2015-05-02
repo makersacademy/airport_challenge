@@ -24,7 +24,7 @@ describe Airport do
 
     it 'a plane cannot land if the airport is full' do 
         plane = double(:plane) 
-        allow(plane).to receive(:lands).and_return(@flying = false) #how come this is passing?
+        allow(plane).to receive(:lands).and_return(false) #how come this is passing?
         subject.capacity.times{subject.land plane}
         expect {subject.land plane}.to raise_error "Airport is full"
     end
@@ -44,15 +44,14 @@ describe Airport do
     context 'weather conditions' do
       it 'a plane cannot take off when there is a storm brewing' do 
           plane = double(:plane)
-          allow(:plane).to receive(:lands).and_return(@flying = false)
-          allow(subject).to receive(:rand_weather_change).and_return(true)
+          allow(subject).to receive(:stormy?).and_return(true)
           expect{subject.release}.to raise_error "Weather is stormy"
       end
 
       it 'a plane cannot land in the middle of a storm' do 
           plane = double(:plane)
-          allow(:plane).to receive(:lands).and_return(@flying = false)
-          allow(subject).to receive(:rand_weather_change).and_return(true)
+          allow(:plane).to receive(:lands).and_return(false)
+          allow(subject).to receive(:stormy?).and_return(true)
           expect{subject.land plane}.to raise_error "Weather is stormy"
       end
     end

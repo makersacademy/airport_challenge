@@ -3,6 +3,7 @@ require_relative 'plane'
 class Airport
 	DEFAULT_CAPACITY = 10
 	attr_accessor :capacity
+	attr_reader :stormy
 
 	def initialize
 		@capacity ||= DEFAULT_CAPACITY
@@ -28,8 +29,7 @@ class Airport
 	def release
 		fail "No planes to take off" if empty?
 		fail "Weather is stormy" if stormy?
-		@planes.last.fly_again
-		@planes.pop
+		@planes.pop.fly_again
 	end
 
 	def stormy?

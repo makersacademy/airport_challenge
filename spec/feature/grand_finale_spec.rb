@@ -9,14 +9,13 @@ require 'capybara/rspec'
 # Once all planes are in the air again, check that they have status "flying!"
 
 feature 'Grand Finale' do
-
-  xscenario 'all planes can land and all planes can take off' do 
-  	airport = Airport.new
+	let (:airport) {Airport.new}
+  scenario 'all planes can land and all planes can take off' do 
+  	allow(airport).to receive(:stormy?).and_return(false)
   	6.times{airport.land Plane.new}
-  	#how do you separately check the status of each plane as landed
-  	#how do I test the storm parameter
+  	airport.planes.each{|plane| expect(plane).not_to be_flying}
   	6.times{airport.release}
-  	#how do you separately check the status of each plane as flying again
+  	airport.planes.each{|plane| expect(plane).to be_flying}
  	end
 
 end
