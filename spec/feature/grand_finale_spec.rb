@@ -20,6 +20,12 @@ feature "Fully functioning airport" do
     airport = Airport.new
     expect(plane.take_off airport).to eq airport
   end
+
+  scenario "To avoid collisions, planes cannot land when the airport is full" do
+    airport = Airport.new
+    6.times {plane.land airport}
+    expect{ plane.land }.to raise_error "Plane cannot land, airport is full"
+  end
 end
 
 # feature 'Grand Finale' do
