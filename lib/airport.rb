@@ -10,7 +10,10 @@ class Airport
   end
 
   def receive plane
-    if @planes.count == @capacity
+    p self.weather
+    if self.weather == 'stormy'
+      fail 'plane cannot land when storm brewing'
+    elsif @planes.count == @capacity
       fail 'airport cannot receive planes when at capacity'
     else
       plane.land

@@ -2,11 +2,6 @@ require 'capybara/rspec'
 require 'airport'
 require 'plane'
 
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
-
 feature 'Air traffic outgoing' do
 
   let(:plane) { Plane.new }
