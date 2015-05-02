@@ -24,7 +24,7 @@ describe Airport do
 
     it 'a plane cannot land if the airport is full' do 
         plane = double(:plane) 
-        allow(plane).to receive(:lands).and_return(false) #how come this is passing?
+        allow(plane).to receive(:lands).and_return(false)
         subject.capacity.times{subject.land plane}
         expect {subject.land plane}.to raise_error "Airport is full"
     end
