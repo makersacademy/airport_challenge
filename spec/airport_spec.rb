@@ -13,7 +13,7 @@ require 'airport'
 
 describe Airport do
 
-  context 'taking off and landing' 
+  context 'taking off and landing' do
 
 
 
