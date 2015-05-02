@@ -10,6 +10,13 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
 
-  xscenario 'all planes can land and all planes can take off'
+  xscenario 'all planes can land and all planes can take off' do 
+  	airport = Airport.new
+  	6.times{airport.land Plane.new}
+  	#how do you separately check the status of each plane as landed
+  	#how do I test the storm parameter
+  	6.times{airport.release}
+  	#how do you separately check the status of each plane as flying again
+ 	end
 
 end

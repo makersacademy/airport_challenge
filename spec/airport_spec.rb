@@ -23,7 +23,8 @@ describe Airport do
   context 'traffic control' do
 
     it 'a plane cannot land if the airport is full' do 
-        plane = Plane.new
+        plane = double(:plane) 
+        allow(plane).to receive(:lands).and_return(@flying = false) #how come this is passing?
         subject.capacity.times{subject.land plane}
         expect {subject.land plane}.to raise_error "Airport is full"
     end
@@ -41,9 +42,19 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      it 'a plane cannot take off when there is a storm brewing' do 
+          plane = double(:plane)
+          allow(:plane).to receive(:lands).and_return(@flying = false)
+          allow(subject).to receive(:rand_weather_change).and_return(true)
+          expect{subject.release}.to raise_error "Weather is stormy"
+      end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do 
+          plane = double(:plane)
+          allow(:plane).to receive(:lands).and_return(@flying = false)
+          allow(subject).to receive(:rand_weather_change).and_return(true)
+          expect{subject.land plane}.to raise_error "Weather is stormy"
+      end
     end
   end
 end

@@ -7,18 +7,33 @@ class Airport
 	def initialize
 		@capacity ||= DEFAULT_CAPACITY
 		@planes = []
+		@stormy = false
+	end
+
+	def rand_weather_change
+		if rand(2) == 0 
+			@stormy = true
+		else 
+			@stormy = false
+		end
 	end
 
 	def land plane
 		fail "Airport is full" if full?
+		fail "Weather is stormy" if stormy?
 		plane.lands
 		@planes << plane
 	end
 
 	def release
 		fail "No planes to take off" if empty?
+		fail "Weather is stormy" if stormy?
 		@planes.last.fly_again
 		@planes.pop
+	end
+
+	def stormy?
+		@stormy
 	end
 
 	attr_reader :planes

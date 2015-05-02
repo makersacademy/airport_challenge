@@ -19,8 +19,10 @@ describe Plane do
   	expect(plane).to be_flying
 	end
 
-  it 'has a flying status when in the air' do 
-
+  it 'is not flying when it is not in the air' do 
+  	plane = Plane.new
+  	plane.lands
+  	expect(plane).to_not be_flying
   end
 
   it {is_expected.to respond_to(:fly_again)}
