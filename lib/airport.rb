@@ -1,12 +1,19 @@
 class Airport
 
-  def initialize
+  attr_accessor :capacity
+
+  def initialize capacity = 10
     @planes = []
+    @capacity = capacity
   end
 
   def receive plane
-    plane.land
-    @planes << plane
+    if @planes.count == @capacity
+      fail 'airport cannot receive planes when at capacity'
+    else
+      plane.land
+      @planes << plane
+    end
   end
 
   def launch plane
