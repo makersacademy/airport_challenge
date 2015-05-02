@@ -1,12 +1,6 @@
 class Plane
-  def initialize(status='landed')
 
-  end
-  def status
-    'flying'
+  def initialize(status='flying')
   end
 
-  def landed?
-    true
-  end
 end
