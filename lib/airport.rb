@@ -19,7 +19,7 @@ class Airport
   end
 
   def launch plane
-    if self.weather? == 'stormy'
+    if self.weather == 'stormy'
       fail 'plane cannot take off when storm brewing'
     else
       plane.takeoff
@@ -31,7 +31,7 @@ class Airport
     @planes
   end
 
-  def weather?
+  def weather
     @weather
   end
 

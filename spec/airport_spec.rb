@@ -15,7 +15,7 @@ describe Airport do
     end
 
     it 'a plane can take off' do
-      allow(subject).to receive(:weather?).and_return('sunny')
+      allow(subject).to receive(:weather).and_return('sunny')
       subject.receive plane
       subject.launch plane
       planes = subject.planes
@@ -42,11 +42,12 @@ describe Airport do
 
     context 'weather conditions' do
       it 'a plane cannot take off when there is a storm brewing' do
-        allow(subject).to receive(:weather?).and_return('stormy')
+        allow(subject).to receive(:weather).and_return('stormy')
         expect { subject.launch plane }.to raise_error 'plane cannot take off when storm brewing'
       end
 
       xit 'a plane cannot land in the middle of a storm'
+
     end
 
   end
