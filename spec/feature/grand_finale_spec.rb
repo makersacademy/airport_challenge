@@ -1,16 +1,9 @@
 require 'capybara/rspec'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
-
 feature 'Grand Finale' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
+  let(:weather) { Weather.new }
 
   scenario 'all planes can land' do
     airport.land(plane)
@@ -29,6 +22,12 @@ feature 'Grand Finale' do
   end
 
   scenario 'planes cannot land when the airport is full' do
+    capacity = 10
+    capacity.times { airport.land(plane) }
     expect { airport.land(plane) }.to raise_error "Airport is full"
   end
+
+  # scenario 'planes cannot land when there is a storm' do
+
+  # end
 end

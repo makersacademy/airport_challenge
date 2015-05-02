@@ -1,15 +1,5 @@
 require 'airport'
 require 'plane'
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
 
 describe Airport do
 	let(:plane) { Plane.new }
@@ -19,8 +9,8 @@ describe Airport do
 		it { is_expected.to respond_to(:take_off).with(1).argument }
 
 		it 'a plane can land' do
-		subject.land(plane)
-		expect(plane).to be_landed
+			subject.land(plane)
+			expect(plane).to be_landed
 		end
 
 		it 'a plane can take off' do
@@ -29,16 +19,21 @@ describe Airport do
 			expect(plane).to be_flying
 		end
 
-	it 'a plane cannot land if the airport is full' do
+		it 'a plane is no longer in the airport when it has taken off' do
+			subject.land(plane)
+			subject.take_off(plane)
+			expect(subject.planes).to be_empty
+		end
 	end
 
+	context 'traffic control' do
 
-end
-
-
-#   context 'traffic control' do
-
-#     xit 'a plane cannot land if the airport is full'
+		it 'a plane cannot land if the airport is full' do
+			capacity = 10
+			capacity.times { subject.land(plane) }
+			expect{ subject.land(plane) }.to raise_error "Airport is full"
+		end
+	end
 
 #     # Include a weather condition.
 #     # The weather must be random and only have two states "sunny" or "stormy".
@@ -48,9 +43,14 @@ end
 #     # This will require stubbing to stop the random return of the weather.
 #     # If the airport has a weather condition of stormy,
 #     # the plane can not land, and must not be in the airport
-
-#     context 'weather conditions' do
-#       xit 'a plane cannot take off when there is a storm brewing'
+	# context 'weather conditions' do
+	# 	it 'a plane cannot take off when there is a storm brewing' do
+	# 		subject.land(plane)
+	# 		weather = double(:weather, {forecast: 'stormy'}
+	# 		weather.forecast == 'stormy'
+	# 		expect{ subject.take_off(plane) }.to raise_error "Storm brewing"
+	# 	end
+	# end
 
 #       xit 'a plane cannot land in the middle of a storm'
 #     end
