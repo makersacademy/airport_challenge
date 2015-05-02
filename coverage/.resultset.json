@@ -4,17 +4,6 @@
       "/Users/makersacademy24/Projects/airport_challenge/spec/airport_spec.rb": [
         1,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         1,
         null,
         1,
@@ -48,8 +37,10 @@
       "/Users/makersacademy24/Projects/airport_challenge/lib/airport.rb": [
         1,
         1,
+        1,
         null,
         1,
+        0,
         null,
         null
       ],
@@ -73,20 +64,23 @@
         1,
         1,
         1,
-        1,
-        1,
-        1,
+        0,
+        0,
+        0,
         null,
         null
       ],
       "/Users/makersacademy24/Projects/airport_challenge/lib/plane.rb": [
         1,
         1,
-        1,
         null,
         null,
         1,
+        0,
+        null,
+        null,
         1,
+        0,
         null,
         null
       ],
@@ -102,21 +96,11 @@
       "/Users/makersacademy24/Projects/airport_challenge/spec/plane_spec.rb": [
         1,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         1,
         null,
         1,
+        null,
+        null,
         null,
         1,
         null,
@@ -129,6 +113,6 @@
         null
       ]
     },
-    "timestamp": 1430570115
+    "timestamp": 1430572948
   }
 }
