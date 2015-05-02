@@ -33,6 +33,9 @@
         1,
         null,
         null,
+        1,
+        null,
+        null,
         null,
         null,
         null,
@@ -74,24 +77,20 @@
       ],
       "/Users/mollie/Makers/airport_challenge/lib/plane.rb": [
         1,
-        null,
         1,
         1,
         null,
         1,
         9,
         9,
+        null,
         null,
         1,
         4,
         null,
         null,
-        null,
         1,
         2,
-        null,
-        null,
-        null,
         null,
         null
       ],
@@ -129,7 +128,6 @@
         1,
         2,
         null,
-        null,
         null
       ],
       "/Users/mollie/Makers/airport_challenge/spec/plane_spec.rb": [
@@ -163,9 +161,10 @@
         null,
         null,
         null,
+        null,
         null
       ]
     },
-    "timestamp": 1430567374
+    "timestamp": 1430570338
   }
 }
