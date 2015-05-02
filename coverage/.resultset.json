@@ -49,6 +49,8 @@
         1,
         1,
         null,
+        1,
+        null,
         null
       ],
       "/Users/makersacademy24/Projects/airport_challenge/spec/feature/grand_finale_spec.rb": [
@@ -72,20 +74,19 @@
         1,
         1,
         1,
-        0,
-        0,
-        0,
+        1,
+        1,
         null,
         null
       ],
       "/Users/makersacademy24/Projects/airport_challenge/lib/plane.rb": [
         1,
         1,
-        0,
+        1,
         null,
         null,
         1,
-        0,
+        1,
         null,
         null
       ],
@@ -128,6 +129,6 @@
         null
       ]
     },
-    "timestamp": 1430568848
+    "timestamp": 1430570115
   }
 }

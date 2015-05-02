@@ -19,7 +19,6 @@ feature 'Grand Finale' do
     airport.land plane
     expect(plane).to be_landed
     airport.launch plane
-    expect(plane).to be_flying
     expect(plane.status).to eq 'flying'
   end
 end

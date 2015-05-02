@@ -3,7 +3,7 @@ class Plane
     'flying'
   end
 
-  def landed
+  def landed?
     true
   end
 end
