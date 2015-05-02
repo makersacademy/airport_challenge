@@ -15,13 +15,23 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
-    #is expected to respond to land
-
-    xit 'a plane can take off'
-    #is expected to respond to takeoff
-
+    it 'a plane can land' do
+      # override weather!!!
+    plane = double(:plane)
+    subject.land (plane)
+    expect(subject.planes.include?(plane))
   end
+
+
+    it 'a plane can take off' do
+    #is expected to respond to takeoff
+    #override weather!!!
+    plane = double(:plane)
+    subject.land (plane)
+    subject.launch (plane)
+    expect(subject.planes.not.include?(plane))
+  end
+end
 
   context 'traffic control' do
 

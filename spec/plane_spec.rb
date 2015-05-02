@@ -28,19 +28,36 @@ describe Plane do
     #Need to use a double for the airport?!?!
     #We can create dummy methods and responses for each double
     #e.g. depo = double(:depo, { request_clean: true })
-    #or allow(depo).to_receive(:request_clean).and_return(true)
-    #or expect(depo).to_receive(:request_clean).and_return(true) to enforce an expectation that the method is called at some point in the test!
+    #or allow(depo).to receive(:request_clean).and_return(true)
+    #or expect(depo).to receive(:request_clean).and_return(true) to enforce an expectation that the method is called at some point in the test!
     #airport = double(:airport { weather_check: "sunny"})
+    airport = double(:airport)
+    allow(airport).to receive(:land).and_return(true)
     subject.land airport
-    expect { subject.launch airport }.not_to raise_error
-    # As always, weather will default to sunny in tests unless set otherwise
+    expect { subject.launch }.not_to raise_error
+    # Weather is handled by airport, so doubling airport.land bypasses capacity and weather
   end
 
   it 'changes its status to flying after taking off' do
     #Need to use a double for the airport?!?!
     #airport = double(:airport { weather_check: "sunny", space: true})
+    airport = double(:airport)
+    allow(airport).to receive(:land).and_return(true)
+    allow(airport).to receive(:launch).and_return(true)
     subject.land airport
-    subject.launch airport
+    subject.launch
     expect(subject).to be_flying
   end
+
+  it 'cannot land at an airport when it is already landed' do
+    airport = double(:airport)
+    allow(airport).to receive(:land).and_return(true)
+    subject.land airport
+    expect {subject.land airport}.to raise_error('Already landed!')
+  end
+
+  it 'cannot launch if it is already flying' do
+    expect {subject.launch}.to raise_error('Already flying!')
+  end
+  
 end
