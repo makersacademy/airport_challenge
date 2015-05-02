@@ -5,22 +5,28 @@ require 'airport'
 
 # A plane currently in the airport can be requested to take off.
 #
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
+# No more planes can be added to the airport, if it's full. SET CAPACITY
+# It is up to you how many planes can land in the airport. SAY 20
+# and how that is implemented. ref Bojo capcity statement
 #
-# If the airport is full then no planes can land
+# If the airport is full then no planes can land ref bojo dock is full test and code
 
 describe Airport do
 
   context 'taking off and landing' do
+    it {is_expected.to respond_to :land_plane}
 
-    xit 'a plane can land'
+    it 'lets planes land' do
+      expect(subject.land_plane).to eq true
+    end
+    # 'a plane can land'
 
-    xit 'a plane can take off'
+    it 'a plane can take off from airport' do
+    expect(subject.allow_take_off).to eq true
   end
+end
 
-  context 'traffic control' do
+  context 'traffic control' do # use with/as capacity statement
 
     xit 'a plane cannot land if the airport is full'
 

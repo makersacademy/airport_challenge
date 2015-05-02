@@ -22,4 +22,7 @@ describe Plane do
 
   xit 'changes its status to flying after taking off'
 
+  #'can land at airport'
+    it {is_expected.to respond_to :landing}
+
 end
