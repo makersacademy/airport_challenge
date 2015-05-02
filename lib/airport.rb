@@ -1,11 +1,11 @@
 require_relative 'plane'
-require_relative 'weather_container'
+require_relative 'weather'
 
 class Airport
 
   attr_reader :planes, :capacity
 
-  include WeatherContainer
+  include Weather
 
   def initialize(capacity = 6)
     @planes = []

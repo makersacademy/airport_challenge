@@ -1,8 +1,8 @@
-require 'weather_container'
+require 'weather'
 
-class Weather; include WeatherContainer; end
+class WeatherWrapper; include Weather; end
 
-describe Weather do
+describe WeatherWrapper do
 
   it { is_expected.to respond_to :stormy? }
 
