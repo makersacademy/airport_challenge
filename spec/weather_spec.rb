@@ -1,9 +1,18 @@
 require 'weather'
 
-class WeatherWrapper; include Weather; end
+class DummyClass
+  include Weather
+end
 
-describe WeatherWrapper do
+describe DummyClass do
 
   it { is_expected.to respond_to :stormy? }
+
+  #  describe 'stormy?' do
+  #    it { [true,false].should include stormy? }
+  #  end
+
+  # undefined method `stormy?'
+  # for #<RSpec::ExampleGroups::DummyClass::Stormy:0x007fb4ad4def40>
 
 end
