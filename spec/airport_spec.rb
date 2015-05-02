@@ -16,8 +16,11 @@ describe Airport do
   context 'taking off and landing' do
 
     xit 'a plane can land'
+    #is expected to respond to land
 
     xit 'a plane can take off'
+    #is expected to respond to takeoff
+
   end
 
   context 'traffic control' do

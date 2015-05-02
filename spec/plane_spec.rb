@@ -15,7 +15,7 @@ require 'plane'
 describe Plane do
 
   it 'has a flying status when created' do
-    expect (subject).to be_flying
+    expect(subject).to be_flying
   end
 
   xit 'has a flying status when in the air'
@@ -25,16 +25,22 @@ describe Plane do
   # I'm going to leave it as tautologous for now, maybe poke again later
 
   it 'can take off' do
-    airport = Airport.new
-    airport.land subject
-    expect { airport.launch subject }.not_to raise_error
+    #Need to use a double for the airport?!?!
+    #We can create dummy methods and responses for each double
+    #e.g. depo = double(:depo, { request_clean: true })
+    #or allow(depo).to_receive(:request_clean).and_return(true)
+    #or expect(depo).to_receive(:request_clean).and_return(true) to enforce an expectation that the method is called at some point in the test!
+    #airport = double(:airport { weather_check: "sunny"})
+    subject.land airport
+    expect { subject.launch airport }.not_to raise_error
     # As always, weather will default to sunny in tests unless set otherwise
   end
 
   it 'changes its status to flying after taking off' do
-    airport = Airport.new
-    airport.land subject
-    airport.launch subject
-    expect (subject).to be_flying
+    #Need to use a double for the airport?!?!
+    #airport = double(:airport { weather_check: "sunny", space: true})
+    subject.land airport
+    subject.launch airport
+    expect(subject).to be_flying
   end
 end

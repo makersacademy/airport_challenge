@@ -20,27 +20,30 @@ feature 'Grand Finale' do
     # Create 6 planes and land them at the airport, each in turn
     planes = []
 
+    #allow(catford).to receive(:another_method).and_return(true))
+    #THIS IS CALLED STUBBING AND COULD BE HANDY FOR WEATHER
+
     6.times do
       planes << Plane.new
     end
 
     planes.each do |plane|
-      airport.land plane
+      plane.land airport
     end
 
     # Check that each of the 6 planes is landed
     planes.each do |plane|
-      expect { plane }.not_to be_flying
+      expect( plane ).not_to be_flying
     end
 
     # Launch all 6 planes
     planes.each do |plane|
-      airport.launch plane
+      plane.launch
     end
 
     # Check that each of the 6 planes is flying
     planes.each do |plane|
-      expect { plane }.to be_flying
+      expect ( plane ).to be_flying
     end
   end
 end
