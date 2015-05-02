@@ -6,15 +6,14 @@ class Plane
     @flying = flying
     @landed = landed
   end
+
   def flying?
     @flying
   end
 
-
   def landed?
     @landed
   end
-
 end
 
   

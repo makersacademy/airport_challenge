@@ -12,26 +12,27 @@ require 'plane'
 # If the airport is full then no planes can land
 
 describe Airport do
-  let(:plane){Plane.new}
+	let(:plane){Plane.new}
 
-context 'taking off and landing' do
-  it {is_expected.to respond_to(:land).with(1).argument}
-  it {is_expected.to respond_to(:take_off).with(1).argument}
+	context 'taking off and landing' do
+		it {is_expected.to respond_to(:land).with(1).argument}
+		it {is_expected.to respond_to(:take_off).with(1).argument}
 
-   it 'a plane can land' do
-     subject.land(plane)
-     expect(plane).to be_landed
-  end
+		it 'a plane can land' do
+		subject.land(plane)
+		expect(plane).to be_landed
+		end
 
-  it 'a plane can take off' do
-    subject.land(plane)
-    subject.take_off(plane)
-    expect(plane).to be_flying
-  end
+		it 'a plane can take off' do
+			subject.land(plane)
+			subject.take_off(plane)
+			expect(plane).to be_flying
+		end
 
-  it 'a plane cannot land if the airport is full' do
-    
-  end
+	it 'a plane cannot land if the airport is full' do
+	end
+		
+	end
 end
 
 
