@@ -2,9 +2,6 @@ require 'capybara/rspec'
 require 'airport'
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
 # Given 6 planes, each plane must land.
 # Be careful of the weather, it could be stormy!
 # Check when all the planes have landed that they have status "landed"

@@ -1,8 +1,5 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
 # A plane currently in the airport can be requested to take off.
 #
 # No more planes can be added to the airport, if it's full.
@@ -13,7 +10,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) {double :plane, takeoff: true, land: false}
+  let(:plane) { double :plane, takeoff: true, land: false }
 
   context 'taking off and landing' do
 

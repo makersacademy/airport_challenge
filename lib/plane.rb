@@ -3,19 +3,19 @@ class Plane
   attr_accessor :in_air
 
   def initialize
-    @in_air = true
+    @status = 'flying'
   end
 
   def land
-    @in_air = false
+    @status = 'landed'
   end
 
   def takeoff
-    @in_air = true
+    @status = 'flying'
   end
 
-  def flying?
-    @in_air
+  def status?
+    @status
   end
 
 end
