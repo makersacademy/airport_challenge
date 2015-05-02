@@ -5,6 +5,7 @@ class Airport
   def initialize capacity = 10
     @planes = []
     @capacity = capacity
+    @weather = ['sunny', 'stormy'].sample
   end
 
   def receive plane
@@ -17,12 +18,20 @@ class Airport
   end
 
   def launch plane
-    plane.takeoff
-    @planes.delete(plane)
+    if self.weather? == 'stormy'
+      fail 'plane cannot take off when storm brewing'
+    else
+      plane.takeoff
+      @planes.delete(plane)
+    end
   end
 
   def planes
     @planes
+  end
+
+  def weather?
+    @weather
   end
 
 end

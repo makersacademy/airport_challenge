@@ -7,23 +7,21 @@ require 'plane'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
-feature 'Grand Finale' do
+feature 'Air traffic outgoing' do
 
-  scenario 'all planes can take off' do
-    plane = Plane.new
-    airport = Airport.new
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
+
+  scenario 'plane can take off' do
     airport.receive plane
     airport.launch plane
     planes = airport.planes
     expect(planes.include? plane).to be false
   end
 
-  scenario 'all planes can land' do
-    plane = Plane.new
-    airport = Airport.new
-    airport.receive plane
-    planes = airport.planes
-    expect(planes.include? plane).to be true
+  scenario 'a plane cannot take off when there is a storm brewing' do
+    allow(airport).to receive(:weather?).and_return('stormy')
+    expect { airport.launch plane }.to raise_error 'plane cannot take off when storm brewing'
   end
 
 end
