@@ -1,6 +1,6 @@
 class Plane
 
-  attr_accessor :in_air
+  attr_accessor :status
 
   def initialize
     @status = 'flying'
