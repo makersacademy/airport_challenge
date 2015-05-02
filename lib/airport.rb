@@ -19,12 +19,16 @@ class Airport
       fail 'Stormy weather'
     else
       @planes << plane
-      plane.landed = true
+      plane.land
     end
   end
 
   def takeoff
-    @planes.pop.takeoff
+    if stormy?
+      fail 'Stormy weather'
+    else
+      @planes.pop.takeoff
+    end
   end
 
 end
