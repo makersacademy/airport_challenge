@@ -28,13 +28,13 @@ Approach
 -----
 
 Developed an airport centric system where two primary method interfaces (land and release) control the movement of planes. This is because the tasks across all stakeholder use cases involved a key action from the airport destination.
-IRB has been assumed as the user interface for pilots and air traffic controllers.  
+IRB has been assumed as the user interface for pilots and air traffic controllers.
 
 Plane objects are tracked through their 'flying' status which is toggled between true and false by the airport's land and release methods.
 
 Weather volatility is introduced through the random weather change method which uses a random number generator (rand(2)) to control the 'stormy' attribute in the airport.
 
-The testing suite has adopted one core feature test utilising stubs to check weather 6 planes are able to land and take off during non-stormy condtions. 
+The testing suite has adopted one core feature test utilising stubs to check weather 6 planes are able to land and take off during non-stormy condtions.
 Unit testing on the airport then adds the context of stormy conditions which raise errors when trying to land or take-off.
 Plane unit tests ensure that the flying attribute changes correctly before and after take-off.
 
@@ -43,4 +43,5 @@ Outstanding Issues
 -----
 
 * The program works fully in IRB and at feature test level but the two unit tests checking expected actions in stormy weather are currently failing due to an undefined singleton class error >> this is being further explored
+* Working on decreasing Hound style violations
 
