@@ -21,4 +21,9 @@ feature 'Grand Finale' do
 	expect(plane).to be_flying
   end
 
+  scenario "An error is raised if a pilot tries to land at a full airport" do
+  	airport = Airport.new
+  	plane = Plane.new
+  	expect { airport.land(Plane.new)}.to raise_error 'Airport full, remain in stack'
+  end
 end

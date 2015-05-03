@@ -19,9 +19,7 @@ describe Airport do
     it it {is_expected.to respond_to :takeoff}
   end
 
-
-  context 'traffic control' do
-
+  describe 'traffic control' do
     it 'raises an error to pilot as plane cannot land if the airport is full' do
       expect {subject.land(Plane.new)}.to raise_error 'Airport full, remain in stack'
     end
