@@ -23,7 +23,7 @@ feature 'Air traffic outgoing' do
     allow(airport).to receive(:weather).and_return('sunny')
     6.times { airport.receive plane }
     launched = []
-    airport.planes.each { |plane| launched << (airport.launch plane)}
+    airport.planes.each { |plane| launched << (airport.launch plane) }
     expect(launched.map{ |plane| plane.status == 'flying' }.all?).to be true
   end
 
