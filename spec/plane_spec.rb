@@ -14,10 +14,10 @@ require 'plane'
 
 describe Plane do
 
-  it 'has a flying status when created' do
-  	#we create plane, it has a status set to flying.
-  	#so our planes are all set to 'flying' by default.
-  	#so our test is expecting 'flying' to be the status
+  it 'has a landed status when created' do
+  	#we create plane, it has a status set to landed.
+  	#so our planes are all set to 'landed' by default.
+  	#so our test is expecting 'landed' to be the status
   	#of a newly created plane
   	expect(subject.status).to eq "flying"
   end
@@ -27,11 +27,22 @@ describe Plane do
   	#once they've taken off, so we will need to include
   	#our take_off method in our expectation
   	#we expect plane.take_off to eq "flying"
-  	expect(subject.take_off).to eq "flying"
+  	expect(subject.status).to eq "flying"
   end
 
-  xit 'can take off'
+  xit 'can take off' do
+  	#can this plane take_off? would I need to create a
+  	#test that checks whether a plane is able to fly
+  	#i.e. is it in need of repair or is it already in the
+  	#air?
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'changes its status to flying after taking off' do
+  	#once the plane has taken off its status will instead
+  	#be "flying". So we're expecting plane.status to eq
+  	#'flying' after plane.take_off
+  	plane = subject.take_off
+  	expect(plane).to eq "flying"
+  end
 
 end
