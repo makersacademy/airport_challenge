@@ -13,8 +13,8 @@ class Plane
 
   def unlandable?
     true
-    #yes, unlandable is true but the pilots trying to land
-    #their planes don't know this. Change this!
+    # yes, unlandable is true but the pilots trying to land
+    # their planes don't know this. Change this!
   end
 
 end
