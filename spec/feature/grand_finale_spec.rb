@@ -10,17 +10,14 @@ require 'plane'
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
 
-#feature 'Grand Finale' do
+# feature 'Grand Finale' do
 
-  #scenario 'all planes can land and all planes can take off' do
+  # scenario 'all planes can land and all planes can take off' do
 
 
-  feature 'Plane can land' do
-    scenario 'at the airport' do
-    airport = Airport.new
-    plane = Plane.new
-    airport.can_receive(plane)
-    expect(plane.land(status)).to eq "landed"
+  feature 'Plane can/has' do
+    scenario 'flying status when created' do
+      plane = Plane.new
+      expect(plane.status).to eq "flying"
+    end
   end
-end
-

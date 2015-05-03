@@ -18,16 +18,7 @@
         1,
         null,
         1,
-        null,
-        null,
         1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
         null,
         1,
         null,
@@ -55,17 +46,13 @@
         1,
         null,
         1,
-        null,
-        1,
-        null,
         null
       ],
       "/Users/annaklimas/Projects/Makers/airport_challenge/lib/plane.rb": [
-        null,
         1,
         null,
-        null,
-        null,
+        1,
+        2,
         null,
         null,
         null
@@ -92,9 +79,6 @@
         1,
         1,
         1,
-        1,
-        1,
-        null,
         null,
         null
       ],
@@ -102,9 +86,6 @@
         1,
         null,
         1,
-        null,
-        1,
-        null,
         null
       ],
       "/Users/annaklimas/Projects/Makers/airport_challenge/spec/plane_spec.rb": [
@@ -125,8 +106,7 @@
         1,
         null,
         1,
-        2,
-        null,
+        1,
         null,
         null,
         1,
@@ -134,10 +114,9 @@
         1,
         null,
         1,
-        null,
         null
       ]
     },
-    "timestamp": 1430563660
+    "timestamp": 1430668069
   }
 }
