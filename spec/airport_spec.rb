@@ -6,19 +6,17 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    it 'a plane can land' do
+    it 'allow a plane to land' do
       allow(subject).to receive(:weather).and_return('sunny')
       subject.receive plane
-      planes = subject.planes
-      expect(planes.include? plane).to be true
+      expect(subject.planes.include? plane).to be true
     end
 
-    it 'a plane can take off' do
+    it 'allow a plane to take off' do
       allow(subject).to receive(:weather).and_return('sunny')
       subject.receive plane
       subject.launch plane
-      planes = subject.planes
-      expect(planes.include? plane).to be false
+      expect(subject.planes.include? plane).to be false
     end
 
   end

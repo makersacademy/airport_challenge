@@ -14,7 +14,7 @@ class Plane
     @status = 'flying'
   end
 
-  def status?
+  def status
     @status
   end
 
