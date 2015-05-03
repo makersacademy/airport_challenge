@@ -14,7 +14,7 @@ require 'plane'
 
 describe Plane do
 
-  it 'has a landed status when created' do
+  it 'has a flying status when created' do
   	#we create plane, it has a status set to landed.
   	#so our planes are all set to 'landed' by default.
   	#so our test is expecting 'landed' to be the status
@@ -30,11 +30,26 @@ describe Plane do
   	expect(subject.status).to eq "flying"
   end
 
-  xit 'can take off' do
+  it 'has status \'in maintenance\' when in in maintenance' do
+  #adding another test to check that a plane can have 
+  #a status saying 'being repaired' (so I can create
+  #the below test for being able to take off)
+	plane = subject.maintenance
+  	expect(plane).to eq "in maintenance"
+  end
+
+  it 'can take off' do
   	#can this plane take_off? would I need to create a
   	#test that checks whether a plane is able to fly
   	#i.e. is it in need of repair or is it already in the
   	#air?
+  	#or maybe it needs to get permission for taking
+  	#off?
+  	#so expect that the plane can only take off if
+  	#it is landed
+  	#expect if plane.status = in maintenance, plane
+  	#can't respond to take_off
+  	expect(subject).to respond_to :take_off
   end
 
   it 'changes its status to flying after taking off' do
