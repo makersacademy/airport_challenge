@@ -15,14 +15,16 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
+    it {is_expected.to respond_to :land}
+    it it {is_expected.to respond_to :takeoff}
   end
+
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'raises an error to pilot as plane cannot land if the airport is full' do
+      expect {subject.land(Plane.new)}.to raise_error 'Airport full, remain in stack'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
