@@ -13,16 +13,37 @@ require 'airport'
 
 describe Airport do
 
+  let(:airport) { Airport.new }
+  let(:plane) { double :plane }
+
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      allow(plane).to receive(:land) { true }
+      allow(airport).to receive(:stormy?) { false }
+      airport.land plane
+      expect(airport.planes.count).to eq 1
 
-    xit 'a plane can take off'
+    end
+
+    it 'a plane can take off' do
+      allow(plane).to receive(:land) { true }
+      allow(plane).to receive(:takeoff) { true }
+      allow(airport).to receive(:stormy?) { false }
+      airport.land plane
+      airport.takeoff
+      expect(airport.planes.count).to eq 0
+    end
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      allow(plane).to receive(:land) { true }
+      allow(airport).to receive(:stormy?) { false }
+      6.times { airport.land plane }
+      expect { airport.land plane }.to raise_error 'Airport Full'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -34,9 +55,22 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot take off when there is a storm brewing' do
+        allow(airport).to receive(:stormy?) { false }
+        allow(plane).to receive(:land) { true }
+        airport.land plane
+        allow(airport).to receive(:stormy?) { true }
+        allow(plane).to receive(:land) { true }
+        expect { airport.takeoff }.to raise_error 'Stormy weather'
+
+      end
+
+      it 'a plane cannot land in the middle of a storm' do
+        allow(airport).to receive(:stormy?) { true }
+        expect { airport.land plane }.to raise_error 'Stormy weather'
+
+      end
     end
   end
 end
