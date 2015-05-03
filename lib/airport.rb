@@ -12,9 +12,9 @@ class Airport
 	end
 
 	def rand_weather_change
-		if rand(2) == 0 
+		if rand(2) == 0
 			@stormy = true
-		else 
+		else
 			@stormy = false
 		end
 	end

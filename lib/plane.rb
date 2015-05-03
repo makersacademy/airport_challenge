@@ -15,11 +15,9 @@ class Plane
 
 	def lands
 		@flying = false
-		@flying
 	end
 
 	def fly_again
 		@flying = true
-		@flying
 	end
 end

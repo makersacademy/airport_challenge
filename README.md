@@ -42,6 +42,5 @@ Plane unit tests ensure that the flying attribute changes correctly before and a
 Outstanding Issues
 -----
 
-* The program works fully in IRB and at feature test level but the two unit tests checking expected actions in stormy weather are currently failing due to an undefined singleton class error >> this is being further explored
-* Working on decreasing Hound style violations
+* Despite installing rubocop and editing sublime style settings still registering a large number of basic Hound style violations e.g. trialling white-space, tabs etc
 
