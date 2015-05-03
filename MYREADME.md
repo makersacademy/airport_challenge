@@ -1,3 +1,7 @@
+--Twelth commit
+
+Refactored and fixed styling
+
 --Eleventh commit
 
 Reset to this point. Can't use take_off when airport empty

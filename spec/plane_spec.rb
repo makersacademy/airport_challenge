@@ -16,8 +16,9 @@ describe Plane do
 
   context 'it can' do
 
+    let (:heathrow) { Airport.new }
+
     it 'land' do
-      heathrow = Airport.new
       heathrow.land(subject)
       expect(subject::status).to eq "landed"
     end
@@ -31,7 +32,6 @@ describe Plane do
     end
 
     it 'change its status to flying after taking off' do
-      heathrow = Airport.new
       heathrow.land(subject)
       heathrow.take_off(subject)
       expect(subject::status).to eq "flying"

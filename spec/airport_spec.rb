@@ -25,21 +25,21 @@ describe Airport do
 
   context 'traffic control' do
 
+    let (:airplane) { double(:airplane) }
+
     it 'a plane cannot land if the airport is full' do
-      airplane = double(:airplane)
       allow(airplane).to receive(:status=) {"landed"}
       capacity = subject::capacity
-      capacity.times {subject.land(airplane)}
-      expect{subject.land(airplane)}.to raise_error 'The airport is full'
+      capacity.times { subject.land(airplane) }
+      expect { subject.land(airplane) }.to raise_error 'The airport is full'
     end
 
     it 'a plane cannot land if the airport is full with extended capacaity' do
-      airplane = double(:airplane)
       allow(airplane).to receive(:status=) {"landed"}
       heathrow = Airport.new(5)
       capacity = heathrow::capacity
-      capacity.times {heathrow.land(airplane)}
-      expect{heathrow.land(airplane)}.to raise_error 'The airport is full'
+      capacity.times { heathrow.land(airplane) }
+      expect { heathrow.land(airplane) }.to raise_error 'The airport is full'
     end
 
     it 'a plane cannot land if the airport is empty' do
@@ -60,12 +60,12 @@ describe Airport do
         plane = Plane.new
         subject.land(plane)
         subject::weather = "stormy"
-        expect{subject.take_off(plane)}.to raise_error 'Cannot take off in stormy weather'
+        expect { subject.take_off(plane) }.to raise_error 'Cannot take off in stormy weather'
       end
 
       it 'a plane cannot land in the middle of a storm' do
         subject::weather = "stormy"
-        expect{subject.land(Plane.new)}.to raise_error 'Cannot land in stormy weather'
+        expect { subject.land(Plane.new) }.to raise_error 'Cannot land in stormy weather'
       end
     end
   end

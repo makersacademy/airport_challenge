@@ -16,8 +16,8 @@ end
 
 feature 'Plane can' do
 
-  let (:plane) {Plane.new}
-  let (:heathrow) {Airport.new}
+  let (:plane) { Plane.new }
+  let (:heathrow) { Airport.new }
 
   scenario 'land in an airport' do
     heathrow.land(plane)
