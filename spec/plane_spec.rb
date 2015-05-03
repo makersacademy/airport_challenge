@@ -20,28 +20,39 @@ describe Plane do
 
   it { is_expected.to respond_to :unlandable? }
 
+  it { is_expected.to respond_to :status }
+
   it "should land at the right airport" do
-    destination = Airport.new
+    destination = double :airport
     expect(subject.land destination).to eq destination
   end
 
   it "should take off from the right airport" do
-    airport = Airport.new
+    airport = double :airport
     expect(subject.take_off airport).to eq airport
   end
 
   it "should not be able to land if the airport is full" do
-    airport = Airport.new
+    airport = double :airport, accept_plane: true
     6.times { airport.accept_plane Plane.new }
     expect(subject).to be_unlandable
   end
 
-  xit 'has a flying status when created'
+  it 'has a flying status when created' do
+    expect(subject.status).to eq "flying"
+  end
+
+  it 'changes status to landed after it has landed' do
+    plane = Plane.new
+    plane.land double :airport
+    expect(plane.status).to eq "landed"
+  end
 
   xit 'has a flying status when in the air'
 
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
-
+  it 'changes its status to flying after taking off' do
+    subject.status = "landed"
+    subject.take_off double :airport
+    expect(subject.status).to eq "flying"
+  end
 end
