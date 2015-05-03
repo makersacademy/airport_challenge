@@ -10,12 +10,16 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
   #scenario 'all planes can land and all planes can take off' do
-  airport = Airport.new
-  planes = []
-  6.times {planes<< Plane.new} #test make 6 planes
+  stansted = Airport.new
+  jumbo = Plane.new
+  airbus = Plane.new
+   #test make 6 planes
 
    scenario 'can land a plane' do
-    expect(airport.land_plane).to eq true
+    stansted.land jumbo
+    stansted.land airbus
+    expect(stansted.planes.count).to eq 2
+    expect(jumbo.status).to eq 'landed'
     end
 
 

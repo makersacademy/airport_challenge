@@ -14,16 +14,20 @@ require 'airport'
 describe Airport do
 
   context 'taking off and landing' do
-    it {is_expected.to respond_to :land_plane}
+    it {is_expected.to respond_to :land}
 
-    it 'lets planes land' do
-      expect(subject.land_plane).to eq true
+    it 'should have a plane after landing' do
+      plane = double :plane
+      allow(plane).to receive(:land) { 'landed' }
+      airport = Airport.new
+      airport.land plane
+      expect(airport.planes.count).to eq 1
     end
+
+    #'lets planes land'
     # 'a plane can land'
 
-    it 'a plane can take off from airport' do
-    expect(subject.allow_take_off).to eq true
-  end
+    it 'a plane can take off from airport'
 end
 
   context 'traffic control' do # use with/as capacity statement

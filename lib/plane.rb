@@ -6,7 +6,7 @@ class Plane
   def landing
     true
   end
-  def landed
+  def land
     @status='landed'
   end # if plane.landed called then status is told to change to landedirb
 
