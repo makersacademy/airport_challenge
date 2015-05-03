@@ -22,13 +22,15 @@ end
 	it 'can be landed'do
 	plane =Plane.new
   airport = Airport.new
-  airport.land(plane)
+  airport.approves_landing(plane)
 	expect(plane).to be_flying
 
   end
 
   it 'changes its status to not flying after landing'do
   plane = Plane.new
+  airport = Airport.new
+  airport.approves_landing(plane)
   plane.landed
   expect(plane).not_to be_flying
 end

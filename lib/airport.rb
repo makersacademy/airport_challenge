@@ -7,11 +7,13 @@ class Airport
 		@capacity = capacity
 	end
 
-  def land plane
+  def approves_landing plane
     fail 'Airport is full' if full?
     planes << plane
   end
-  def take_off
+  def approves_take_off
+    fail 'No planes at airport' if empty?
+		planes.pop
   end
   def stormy?
     false
