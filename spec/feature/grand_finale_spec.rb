@@ -12,12 +12,18 @@ feature 'Pilot can land his plane at airport'do
   end
 
   scenario 'airport allows plane to take off if not stormy'do
-  aiport = Airport.new
-  airport.land Plane.new
-  plane = airport.take-off
+  airport = Airport.new
+  airport.land Plane.new # assumes airport empty at start
+  plane = airport.take_off
   expect(airport).not_to be_stormy
 end
+  scenario 'you can tell if plane if flying or landed'
+  it { is_expected.to respond_to :flying?}
 
+	it 'can be landed'do
+	subject.land
+	expect(subject).not_to be_flying
+	end
 
 end
 

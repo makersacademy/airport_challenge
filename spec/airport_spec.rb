@@ -25,7 +25,7 @@ describe Airport do
     it 'a plane can take off'do
     subject.land Plane.new
     plane = subject.take_off
-    expect(airport).not_to be_stormy
+    expect(subject).not_to be_stormy
   end
   end
 

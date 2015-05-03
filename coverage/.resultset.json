@@ -62,7 +62,7 @@
         1,
         null,
         1,
-        2,
+        4,
         null,
         null
       ],
@@ -83,8 +83,8 @@
         1,
         1,
         1,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null,
@@ -99,6 +99,7 @@
       "/Users/makerslaptop079/Documents/Projects/airport_challenge/lib/plane.rb": [
         1,
         1,
+        null,
         2,
         null,
         null
@@ -134,6 +135,6 @@
         null
       ]
     },
-    "timestamp": 1430673200
+    "timestamp": 1430674080
   }
 }
