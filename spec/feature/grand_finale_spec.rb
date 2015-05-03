@@ -27,7 +27,7 @@ feature 'Grand Finale' do
     expect { airport.land(plane) }.to raise_error "Airport is full"
   end
 
-  # scenario 'planes cannot land when there is a storm' do
-
-  # end
+  scenario 'planes cannot land when there is a storm' do
+    expect { airport.land(plane) }.to raise_error "Cannot land during a storm"
+  end
 end

@@ -9,17 +9,21 @@ class Airport
   end
 
   def land plane
-    fail "Airport is full" if full?
-    plane.landed = true
-    plane.flying = false
-    planes << plane
+    weather = Weather.new
+    weather.forecast
+    fail "Cannot land during a storm" if weather.stormy?
+    if full?
+      fail "Airport is full"
+    else
+      (plane.landed = true) && (plane.flying = false)
+      planes << plane
+    end
   end
 
   def take_off plane
     plane.flying = true
     plane.landed = false
     planes.delete(plane)
-
   end
 
   attr_accessor :planes
@@ -28,4 +32,3 @@ class Airport
     planes.count >= @capacity
   end
 end
-

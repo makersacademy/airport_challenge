@@ -22,7 +22,6 @@ describe Plane do
   end
 end
 
-
 #   xit 'has a flying status when in the air'
 
 #   xit 'can take off'
