@@ -63,8 +63,8 @@ describe Airport do
 
     it 'airports commission cannot set capacity to lower than number of planes in airport' do
       allow(subject).to receive(:weather).and_return('sunny')
-      3.times { subject.receive plane }
-      expect { subject.capacity = 2 }.to raise_error 'capacity cannot be lower than number of planes'
+      2.times { subject.receive plane }
+      expect { subject.capacity = 1 }.to raise_error 'capacity cannot be lower than number of planes'
     end
 
   end
