@@ -23,9 +23,8 @@ describe Airport do
   context 'traffic control' do
 
     it 'should not let a plane land if the airport is full' do
-      plane = Plane.new
-      6.times { subject.accept_plane Plane.new }
-      expect { subject.accept_plane Plane.new }.to raise_error "Airport is full"
+      6.times { subject.accept_plane double :plane}
+      expect { subject.accept_plane double :plane }.to raise_error "Airport is full"
     end
 
     # Include a weather condition.
