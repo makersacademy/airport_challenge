@@ -17,14 +17,19 @@ feature 'Pilot can land his plane at airport'do
   plane = airport.take_off
   expect(airport).not_to be_stormy
 end
-  scenario 'you can tell if plane if flying or landed'
-  it { is_expected.to respond_to :flying?}
 
-	it 'can be landed'do
-	subject.land
-	expect(subject).not_to be_flying
-	end
+   scenario 'planes cannot land if airport is full'do
+   airport = Airport.new
+    capacity = airport::capacity
+    capacity.times {airport.land Plane.new}
+    expect {airport.land Plane.new}.to raise_error 'Airport is full'
+  end
 
+  scenario 'planes are considered to be flying unless landed'do
+    plane = Plane.new
+    plane.land
+    expect(plane).not_to be_flying
+  end
 end
 
 

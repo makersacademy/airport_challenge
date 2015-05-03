@@ -1,11 +1,15 @@
 class Plane
-  def flying?
-    true
-    xit { is_expected.to respond_to :flying?}
 
-  	xit 'can be landed'
-  	subject.land
-  	expect(subject).not_to be_flying
-  	
+  def initialize
+    @flying = true
   end
+
+  def flying?
+    @flying
+  end
+
+  def land
+	  @flying = false
+  end
+
 end

@@ -11,7 +11,7 @@ require 'plane'
 #
 # When the plane takes of from the airport, the plane's status
 # should become "flying"
-
+require 'airport'
 describe Plane do
 
    it 'has a flying status when not at an airport'do
@@ -19,10 +19,20 @@ describe Plane do
    expect(plane).to be_flying
 end
 
-  
+	it 'can be landed'do
+	plane =Plane.new
+  airport = Airport.new
+  airport.land(plane)
+	expect(plane).to be_flying
 
-  xit 'can take off'
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'changes its status to not flying after landing'do
+  plane = Plane.new
+  plane.land
+  expect(plane).not_to be_flying
+end
+
+
 
 end
