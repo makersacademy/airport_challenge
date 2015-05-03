@@ -14,6 +14,28 @@ require 'plane'
 
 describe Plane do
 
+  it { is_expected.to respond_to(:land).with(1).argument }
+
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+
+  it { is_expected.to respond_to :unlandable? }
+
+  it "should land at the right airport" do
+    destination = Airport.new
+    expect(subject.land destination).to eq destination
+  end
+
+  it "should take off from the right airport" do
+    airport = Airport.new
+    expect(subject.take_off airport).to eq airport
+  end
+
+  it "should not be able to land if the airport is full" do
+    airport = Airport.new
+    6.times{airport.accept_plane Plane.new}
+    expect(subject).to be_unlandable
+  end
+
   xit 'has a flying status when created'
 
   xit 'has a flying status when in the air'

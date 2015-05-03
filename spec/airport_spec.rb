@@ -22,7 +22,13 @@ describe Airport do
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'should not let a plane land if the airport is full' do
+      plane = Plane.new
+      6.times{subject.accept_plane Plane.new}
+      expect{ subject.accept_plane Plane.new }.to raise_error "Airport is full, plane cannot land"
+    end
+
+
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
