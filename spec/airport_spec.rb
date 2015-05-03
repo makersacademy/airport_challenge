@@ -15,7 +15,7 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it { is_expected.to respond_to :land }
 
     xit 'a plane can take off'
   end
