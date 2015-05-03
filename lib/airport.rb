@@ -2,6 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
+  include Weather
 
   def initialize
     @planes = []
@@ -9,9 +10,7 @@ class Airport
   end
 
   def land plane
-    weather = Weather.new
-    weather.forecast
-    fail "Cannot land during a storm" if weather.stormy?
+    fail "Cannot land during a storm" if stormy?
     if full?
       fail "Airport is full"
     else
@@ -21,6 +20,7 @@ class Airport
   end
 
   def take_off plane
+    fail "Storm brewing" if stormy?
     plane.flying = true
     plane.landed = false
     planes.delete(plane)
