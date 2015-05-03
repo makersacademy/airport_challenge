@@ -15,9 +15,18 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land'do
+    plane = Plane.new
+    airport = Airport.new
+    airport.land(plane)
+    expect(airport).not_to be_stormy
+  end
 
-    xit 'a plane can take off'
+    it 'a plane can take off'do
+    subject.land Plane.new
+    plane = subject.take_off
+    expect(airport).not_to be_stormy
+  end
   end
 
   context 'traffic control' do

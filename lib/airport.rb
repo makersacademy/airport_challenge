@@ -1,6 +1,10 @@
+
 class Airport
-
-  def land
+  def land plane
   end
-
+  def take_off
+  end
+  def stormy?
+    false
+  end
 end

@@ -5,9 +5,20 @@ require 'airport'
 feature 'Pilot can land his plane at airport'do
   scenario 'airport accepts request to land flying plane and lands plane'do
     airport = Airport.new
-    plane = airport.land
+    plane = Plane.new
+    airport.land plane
+    expect(airport).not_to be_stormy
     expect(plane).to be_flying
   end
+
+  scenario 'airport allows plane to take off if not stormy'do
+  aiport = Airport.new
+  airport.land Plane.new
+  plane = airport.take-off
+  expect(airport).not_to be_stormy
+end
+
+
 end
 
 
