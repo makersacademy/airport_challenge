@@ -1,15 +1,23 @@
 require 'capybara/rspec'
+require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
 
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
 
-feature 'Grand Finale' do
+feature 'working airport' do
 
-  xscenario 'all planes can land and all planes can take off'
+  airport = Airport.new
+  planes = []
+  10.times { planes << Plane.new }
+  plane = Plane.new
+
+  scenario 'creating 10 planes' do
+    expect(planes.length).to eq 10
+  end
+
+  scenario 'airport knows planes are airborn' do
+    planes.each do |x|
+      expect(x.location).to eq('air')
+    end
+  end
 
 end
