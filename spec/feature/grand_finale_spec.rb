@@ -27,7 +27,7 @@ end
 
   scenario 'planes are considered to be flying unless landed'do
     plane = Plane.new
-    plane.land
+    plane.landed
     expect(plane).not_to be_flying
   end
 end

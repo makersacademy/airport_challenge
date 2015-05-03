@@ -29,7 +29,7 @@ end
 
   it 'changes its status to not flying after landing'do
   plane = Plane.new
-  plane.land
+  plane.landed
   expect(plane).not_to be_flying
 end
 

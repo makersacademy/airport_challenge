@@ -1,3 +1,5 @@
+require 'airport'
+
 class Plane
 
   def initialize
@@ -8,7 +10,7 @@ class Plane
     @flying
   end
 
-  def land
+  def landed
 	  @flying = false
   end
 
