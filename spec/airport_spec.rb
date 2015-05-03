@@ -15,9 +15,13 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+
+    it 'a plane can land' do
+
+
 
     xit 'a plane can take off'
+
   end
 
   context 'traffic control' do
@@ -39,4 +43,5 @@ describe Airport do
       xit 'a plane cannot land in the middle of a storm'
     end
   end
+end
 end
