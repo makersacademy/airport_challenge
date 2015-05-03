@@ -23,8 +23,10 @@ feature "Fully functioning airport" do
 
   scenario "To avoid collisions, planes cannot land when the airport is full" do
     airport = Airport.new
-    6.times {plane.land airport}
-    expect{ plane.land }.to raise_error "Plane cannot land, airport is full"
+    6.times {airport.accept_plane Plane.new}
+    plane = Plane.new
+    expect{ airport.accept_plane plane }.to raise_error "Airport is full, plane cannot land"
+    expect(plane).to be_unlandable
   end
 end
 
