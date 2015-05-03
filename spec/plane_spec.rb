@@ -30,34 +30,11 @@ describe Plane do
       expect(subject::status).to eq "flying"
     end
 
-    it 'take off' do
-      heathrow = Airport.new
-      heathrow.land(subject)
-      expect(heathrow).to respond_to(:take_off).with(1).argument
-    end
-
     it 'change its status to flying after taking off' do
       heathrow = Airport.new
       heathrow.land(subject)
       heathrow.take_off(subject)
       expect(subject::status).to eq "flying"
-    end
-  end
-
-  context "it can't" do
-
-    it 'land when the airport is full' do
-      heathrow = Airport.new
-      capacity = heathrow::capacity
-      capacity.times {heathrow.land(subject)}
-      expect {heathrow.land(subject)}.to raise_error 'The airport is full'
-    end
-
-    it 'land when the airport is full with extended capacity' do
-      heathrow = Airport.new(10)
-      capacity = heathrow::capacity
-      capacity.times {heathrow.land(subject)}
-      expect {heathrow.land(subject)}.to raise_error 'The airport is full'
     end
   end
 end

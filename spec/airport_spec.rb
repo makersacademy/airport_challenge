@@ -42,6 +42,10 @@ describe Airport do
       expect{heathrow.land(airplane)}.to raise_error 'The airport is full'
     end
 
+    it 'a plane cannot land if the airport is empty' do
+      expect { subject.take_off}.to raise_error 'Airport is empty'
+    end
+
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,

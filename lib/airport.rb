@@ -20,7 +20,9 @@ class Airport
   end
 
   def take_off(plane=@parked_planes.first)
-    if @weather == "stormy"
+    if @parked_planes.empty?
+      fail 'Airport is empty'
+    elsif @weather == "stormy"
       fail 'Cannot take off in stormy weather'
     else
       plane::status = "flying"
