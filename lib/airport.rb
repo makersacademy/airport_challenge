@@ -37,4 +37,8 @@ class Airport
     @weather
   end
 
+  def weather_update
+    @weather = ['sunny', 'stormy'].sample
+  end
+
 end

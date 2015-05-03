@@ -43,9 +43,14 @@ describe Airport do
         expect { subject.receive plane }.to raise_error 'plane cannot land when storm brewing'
       end
 
-      it 'weather report states either sunny or stormy' do
+      it 'weather status will read either sunny or stormy' do
         weather_states = ['sunny', 'stormy']
         expect(weather_states.include? subject.weather).to be true
+      end
+
+      it 'request for weather update will read either sunny or stormy' do
+        weather_states = ['sunny', 'stormy']
+        expect(weather_states.include? subject.weather_update).to be true
       end
 
     end

@@ -60,29 +60,3 @@ Note that is a practice 'Tech Test' of the kinds that employers use to screen de
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
 * Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
-
-####################
-
-OUTSTANDING:-
-=============
-
-# airport_spec.rb
-# A plane currently in the airport can be requested to take off.
-
---------------------
-
-# grand_finale_spec.rb
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
-
---------------------
-
-# As a pilot
-# So that I can arrive at my specified destination
-# I would like to land my plane at the appropriate airport
-
-# As a pilot
-# So that I can set off for my specified destination
-# I would like to be able to take off from the appropriate airport
