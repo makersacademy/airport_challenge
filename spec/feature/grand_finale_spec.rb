@@ -11,14 +11,18 @@ require 'capybara/rspec'
 feature "Fully functioning airport" do
   scenario "Planes land at the appropriate airport" do
     plane = Plane.new
+    expect(plane.status).to eq "flying"
     airport = Airport.new
     expect(plane.land airport).to eq airport
+    expect(plane.status).to eq "landed"
   end
 
   scenario "Planes can take off from the appropriate airport" do
     plane = Plane.new
+    plane.status = "landed"
     airport = Airport.new
     expect(plane.take_off airport).to eq airport
+    expect(plane.status).to eq "flying"
   end
 
   scenario "To avoid collisions, planes cannot land when the airport is full" do
