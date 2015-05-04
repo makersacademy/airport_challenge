@@ -17,9 +17,9 @@ describe Plane do
 
   xit 'has a flying status when in the air'
 
-  it { is_expected.to respond_to :release_plane}
+  it { is_expected.to respond_to :takeoff }
 
-  it { is_expected.to respond_to :land_plane}
+  it { is_expected.to respond_to :land }
 
   xit 'changes its status to flying after taking off'
 

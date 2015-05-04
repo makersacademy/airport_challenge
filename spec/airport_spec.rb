@@ -1,7 +1,5 @@
 # Unit tests (airports):
 
-# - Can instruct a plane to take-off (release_plane)
-# - Can instruct a plane to land (land_plane)
 # - Can prevent a plane from take-off if weather not 'sunny'
 # - Can prevent a plane from land if weather not 'sunny'
 # - Can provide 'sunny' or 'stormy' weather update
@@ -13,24 +11,23 @@ describe Airport do
 
   context 'taking off and landing' do
 
-  it { is_expected.to respond_to :land_plane }
-  it { is_expected.to respond_to :release_plane }
+  it { is_expected.to respond_to :land }
+  it { is_expected.to respond_to :takeoff }
 
-  it 'allows a plane to land' do
-      plane = double :plane
-      allow(plane).to receive(:land_plane) { 'landed' }
-      airport = Airport.new
-      airport.land_plane plane
-      expect(airport.hangar.count).to eq 1
+  it 'has one plane after landing' do
+    plane = double :plane
+    allow(plane).to receive(:land) { 'landed' }
+    airport = Airport.new
+    airport.land plane
+    expect(airport.hangar.count).to eq 1
   end
 
-  it 'allows a plane to take-off' do
-      plane = double :plane
-      allow(plane).to receive(:release_plane) { 'flying' }
-      airport = Airport.new
-      airport.release_plane plane
-      expect(airport.hangar.count).to be_empty?
-  end
+  # it 'allows a plane to take-off' do
+  #   plane = double :plane
+  #   allow(plane).to receive(:takeoff) { 'flying' }
+  #   airport = Airport.new
+  #   airport.takeoff plane
+  # end
 
   context 'traffic control' do
 

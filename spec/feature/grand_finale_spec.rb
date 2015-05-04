@@ -7,21 +7,27 @@ feature 'Grand Finale' do
   # let(:airport) { Airport.new }
   # let(:plane) { Plane.new }
   airport = Airport.new
-  6.times { plane = Plane.new }
+  plane = Plane.new # 6.times
 
   scenario 'plane is in the air when created' do
     expect(plane.status).to eq 'flying'
   end
 
   scenario 'plane can land at airport' do
-    plane = airport.land_plane
+    airport.land plane
+    expect(airport.hangar.count).to eq 1
     expect(plane.status).to eq 'landed'
   end
 
   scenario 'plane can take-off from airport' do
-    plane = airport.release_plane
+    airport.takeoff plane
+    expect(airport.hangar.count).to eq 0
     expect(plane.status).to eq 'flying'
   end
+
+  scenario 'plane cannot land when airport is full' do
+    airport.land plane
+    expect()
 
   # scenario 'plane cannot land when airport is full' do
   #     capacity = Airport::DEFAULT_CAPACITY

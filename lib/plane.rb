@@ -7,12 +7,13 @@ class Plane
     @status = 'flying'
   end
 
-  def release_plane
+  def takeoff
     @status = 'flying'
   end
 
-  def land_plane
+  def land
     @status = 'landed'
   end
 
 end
+

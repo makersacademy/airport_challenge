@@ -6,27 +6,18 @@ class Airport
     @hangar = []
   end
 
-  def release_plane plane
-    fail 'Airport empty' if empty?
-    @hangar.pop
-    plane.release_plane
+  def takeoff plane
+    hangar.pop
+    plane.takeoff
   end
 
-  def land_plane plane
-    fail 'Airport full' if full?
-    plane.land_plane
+  def land plane
+    fail 'Airport full' if @hangar.count >= 6
     @hangar << plane
+    plane.land
   end
 
-  private
+  weather [:sunny, :stormy]
+  weather_today = weather ([rand(2)])
 
-  attr_reader :hangar
-
-  def full?
-  @hangar.count >= 6
-  end
-
-  def empty?
-  @hangar.empty?
-  end
 end
