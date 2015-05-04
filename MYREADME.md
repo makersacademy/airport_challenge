@@ -1,3 +1,7 @@
+--Thirteenth commit
+
+Weather is now randomized. Finally got the stubbing to work! Now need to work on the grand finale feature test
+
 --Twelth commit
 
 Refactored and fixed styling

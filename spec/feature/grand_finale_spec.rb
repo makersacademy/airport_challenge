@@ -20,17 +20,20 @@ feature 'Plane can' do
   let (:heathrow) { Airport.new }
 
   scenario 'land in an airport' do
+    allow(heathrow).to receive(:storm_brewing) { 'sunny' }
     heathrow.land(plane)
     expect(plane::status).to eq "landed"
   end
 
   scenario 'land and then take off' do
+    allow(heathrow).to receive(:storm_brewing) { 'sunny' }
     heathrow.land(plane)
     heathrow.take_off(plane)
     expect(plane::status).to eq "flying"
   end
 
   scenario 'not land when the airport is full' do
+    allow(heathrow).to receive(:storm_brewing) { 'sunny' }
     capacity = heathrow::capacity
     capacity.times {heathrow.land(plane)}
     expect {heathrow.land(Plane.new)}.to raise_error "The airport is full"
@@ -38,19 +41,21 @@ feature 'Plane can' do
 
   scenario 'not land when the airport is full with extended capacaity' do
     heathrow = Airport.new(5)
+    allow(heathrow).to receive(:storm_brewing) { 'sunny' }
     capacity = heathrow::capacity
     capacity.times {heathrow.land(plane)}
     expect{heathrow.land(plane)}.to raise_error 'The airport is full'
   end
 
   scenario 'not land in bad weather' do
-    heathrow::weather = "stormy"
+    allow(heathrow).to receive(:storm_brewing) { 'stormy' }
     expect{heathrow.land(plane)}.to raise_error 'Cannot land in stormy weather'
   end
 
   scenario 'not take off in bad weather' do
+    allow(heathrow).to receive(:storm_brewing) { 'sunny' }
     heathrow.land(plane)
-    heathrow::weather = "stormy"
+    allow(heathrow).to receive(:storm_brewing) { 'stormy' }
     expect{heathrow.take_off(plane)}.to raise_error 'Cannot take off in stormy weather'
   end
 end

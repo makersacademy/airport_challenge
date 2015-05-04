@@ -28,21 +28,24 @@ describe Airport do
     let (:airplane) { double(:airplane) }
 
     it 'a plane cannot land if the airport is full' do
-      allow(airplane).to receive(:status=) {"landed"}
+      allow(airplane).to receive(:status=) { "landed" }
+      allow(subject).to receive(:storm_brewing) { 'sunny' }
       capacity = subject::capacity
       capacity.times { subject.land(airplane) }
       expect { subject.land(airplane) }.to raise_error 'The airport is full'
     end
 
-    it 'a plane cannot land if the airport is full with extended capacaity' do
-      allow(airplane).to receive(:status=) {"landed"}
+    it 'a plane cannot land if the airport is full with extended capacity' do
+      allow(airplane).to receive(:status=) { "landed" }
       heathrow = Airport.new(5)
+      allow(heathrow).to receive(:storm_brewing) { 'sunny' }
       capacity = heathrow::capacity
       capacity.times { heathrow.land(airplane) }
       expect { heathrow.land(airplane) }.to raise_error 'The airport is full'
     end
 
     it 'a plane cannot land if the airport is empty' do
+      allow(subject).to receive(:storm_brewing) { 'sunny' }
       expect { subject.take_off}.to raise_error 'Airport is empty'
     end
 
@@ -57,15 +60,16 @@ describe Airport do
 
     context 'weather conditions' do
       it 'a plane cannot take off when there is a storm brewing' do
+        allow(subject).to receive(:storm_brewing) { 'sunny' }
         plane = Plane.new
         subject.land(plane)
-        subject::weather = "stormy"
+        allow(subject).to receive(:storm_brewing) { 'stormy' }
         expect { subject.take_off(plane) }.to raise_error 'Cannot take off in stormy weather'
       end
 
       it 'a plane cannot land in the middle of a storm' do
-        subject::weather = "stormy"
-        expect { subject.land(Plane.new) }.to raise_error 'Cannot land in stormy weather'
+        allow(subject).to receive(:storm_brewing) { 'stormy' }
+        expect { subject.land(Plane.new) }.to raise_error
       end
     end
   end
