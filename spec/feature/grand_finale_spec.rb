@@ -12,14 +12,14 @@ feature 'Pilot can land his plane at airport'do
   end
 
   scenario 'airport allows plane to take off if not stormy'do
-  airport = Airport.new
-  airport.approves_landing Plane.new # assumes airport empty at start
-  plane = airport.approves_take_off
-  expect(airport).not_to be_stormy
+    airport = Airport.new
+    airport.approves_landing Plane.new # assumes airport empty at start
+    plane = airport.approves_take_off
+    expect(airport).not_to be_stormy
 end
 
    scenario 'planes cannot land if airport is full'do
-   airport = Airport.new
+    airport = Airport.new
     capacity = airport::capacity
     capacity.times {airport.approves_landing Plane.new}
     expect {airport.approves_landing Plane.new}.to raise_error 'Airport is full'
@@ -31,9 +31,3 @@ end
     expect(plane).not_to be_flying
   end
 end
-
-
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
