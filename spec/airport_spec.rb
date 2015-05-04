@@ -27,8 +27,8 @@ describe Airport do
     it 'a plane cannot land if the airport is full' do
       allow(plane).to receive(:landed)
       capacity = subject::capacity
-      capacity.times {subject.land plane}
-      expect {subject.land plane}.to raise_error 'airport full, permission denied'
+      capacity.times { subject.land plane }
+      expect { subject.land plane }.to raise_error 'airport full, permission denied'
     end
     it 'raises an error when full with default capacity' do
       expect(subject::capacity).to eq 2
