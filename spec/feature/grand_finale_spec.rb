@@ -43,7 +43,7 @@ feature 'Grand Finale' do
 
     # Check that each of the 6 planes is flying
     planes.each do |plane|
-      expect ( plane ).to be_flying
+      expect( plane ).to be_flying
     end
   end
 end
