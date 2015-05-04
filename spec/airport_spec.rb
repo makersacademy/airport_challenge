@@ -1,42 +1,62 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
+
+  let(:plane) { double :plane, takeoff: true, land: true }
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'allow a plane to land' do
+      allow(subject).to receive(:weather).and_return('sunny')
+      subject.receive plane
+      expect(subject.planes.include? plane).to be true
+    end
 
-    xit 'a plane can take off'
+    it 'allow a plane to take off' do
+      allow(subject).to receive(:weather).and_return('sunny')
+      subject.receive plane
+      subject.launch plane
+      expect(subject.planes.include? plane).to be false
+    end
+
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+    it 'a plane cannot land if the airport is full' do
+      allow(subject).to receive(:weather).and_return('sunny')
+      subject.capacity.times { subject.receive plane }
+      expect { subject.receive plane }.to raise_error 'airport cannot receive planes when at capacity'
+    end
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot take off when there is a storm brewing' do
+        allow(subject).to receive(:weather).and_return('stormy')
+        expect { subject.launch plane }.to raise_error 'plane cannot take off when storm brewing'
+      end
+
+      it 'a plane cannot land in the middle of a storm' do
+        allow(subject).to receive(:weather).and_return('stormy')
+        expect { subject.receive plane }.to raise_error 'plane cannot land when storm brewing'
+      end
+
     end
+
   end
+
+  context 'airport capacity' do
+
+    it 'airports commission instructs amend to airport capacity' do
+      expect(subject.capacity = 50).to eq 50
+    end
+
+    it 'airports commission cannot set capacity to lower than number of planes in airport' do
+      allow(subject).to receive(:weather).and_return('sunny')
+      2.times { subject.receive plane }
+      expect { subject.capacity = 1 }.to raise_error 'capacity cannot be lower than number of planes'
+    end
+
+  end
+
 end

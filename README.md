@@ -1,25 +1,22 @@
+[![Build Status](https://travis-ci.org/andygout/airport_challenge.png)](https://travis-ci.org/andygout/airport_challenge)
+
 Airport Challenge
 =================
 
-Instructions
----------
+Notes:-
+-----------------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, still check in a partial solution
-* You must submit a pull request to this repo with your code by 9am Monday morning
+* In 'plane_spec.rb' file, I felt the plane status (flying/landed) should have been tested through an airport double, but I had problems setting the stubs given a particular airport method called a plane method (to set plane's new status) from within those, so could not figure out the automatic response it should have given.
 
-Steps
--------
+* In 'airport.rb' I have included a weather_update method as I did not want to use a traditional setter method given the value needs to be set to one of two specified values, which this method does.
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. Complete the following task:
+* In 'traffic_control_incoming_spec.rb' and 'traffic_control_outgoing_spec.rb' for the final test for each (land/launch six planes), I was not sure if the handling required the weather fixed to 'sunny' so as to allow the process to proceed unimpeded, or if the idea was (i.e. for incoming) to leave the weather set to random and create a stack of planes that circle and then re-attempt to land following a weather update which reports a change in the weather (hence why I created this method).  However, in trying to do this I encountered problems with an instance of stormy weather creating a fail error before the process could proceed to a stack and re-attempt at landing.
 
-Task
------
+* I felt with the handling of the weather I could have created a 'stormy?' attribute with a boolean value rather than, as I have done, a 'weather' attribute with the description as a string value ('sunny'/'stormy'). I felt this improved the readability slightly and also future proofs the programme so as to allow the possibility of other relevant weather conditions being included later on (i.e. hurricane, fog, etc.).  I also originally used the sample method to randomly call one of two entries in an array, i.e. ['sunny', 'stormy'].sample, but realised the brief called for the occurence of a storm to be much less likely, and so I've implemented handling that gives it a 1/10 likelihood (using rand(1..10) as a basis).
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client.
+Original brief
+--------------
+[https://github.com/makersacademy/airport_challenge/blob/master/README.md](https://github.com/makersacademy/airport_challenge/blob/master/README.md)
 
 ```
 As a pilot
@@ -39,24 +36,45 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing when the weather is stormy
 ```
 
-Your task is to test drive the creation a set of classes/modules to satisfy all the above user stories. You will need to use random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
+airport.spec.rb
+---------------
+[https://github.com/makersacademy/airport_challenge/blob/master/spec/plane_spec.rb](https://github.com/makersacademy/airport_challenge/blob/master/spec/plane_spec.rb)
+```
+When we create a new plane, it should have a "flying" status, thus planes can not be created in the airport.
 
-The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests, and a pending 'grand finale' feature test that combines a number of features. It is up to you to implement the tests and create additional tests as necessary.
+When we land a plane at the airport, the plane in question should have its status changed to "landed".
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+When the plane takes of from the airport, the plane's status should become "flying".
+```
 
-As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
+plane.spec.rb
+-------------
+[https://github.com/makersacademy/airport_challenge/blob/master/spec/plane_spec.rb](https://github.com/makersacademy/airport_challenge/blob/master/spec/plane_spec.rb)
+```
+A plane currently in the airport can be requested to take off.
 
-Please create separate files for every class, module and test suite. 
+No more planes can be added to the airport, if it's full.
+It is up to you how many planes can land in the airport and how that is implemented.
 
-The submission will be judged on the following criteria:
+If the airport is full then no planes can land.
+```
 
-* Tests pass
-* Tests coverage is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
+```
+Include a weather condition.
+The weather must be random and only have two states "sunny" or "stormy".
+Try and take off a plane, but if the weather is stormy, the plane can not take off and must remain in the airport.
 
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+This will require stubbing to stop the random return of the weather.
+If the airport has a weather condition of stormy, the plane can not land, and must not be in the airport.
+```
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
+grand_finale_spec.rb
+--------------------
+[https://github.com/makersacademy/airport_challenge/blob/master/spec/feature/grand_finale_spec.rb](https://github.com/makersacademy/airport_challenge/blob/master/spec/feature/grand_finale_spec.rb)
 
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
+```
+Given 6 planes, each plane must land.
+Be careful of the weather, it could be stormy!
+Check when all the planes have landed that they have status "landed"
+Once all planes are in the air again, check that they have status "flying!"
+```
