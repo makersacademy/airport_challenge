@@ -6,12 +6,12 @@ class Airport
   attr_reader :weather, :planes
   
   def initialize
-  	@capacity = 6
+    @capacity = 6
     @planes = []
   end
 
   def permission_to_land plane
-  	if stormy?
+    if stormy?
       fail 'Weather is stormy' 
     elsif reached_capacity?
       fail 'Permission denied'
@@ -19,7 +19,7 @@ class Airport
 # each plane going into "planes" array to
 # 'flying', but method was 'undefined' for plane?
 # will come back to this... Works on irb?
-  	else
+    else
       plane.land
       @planes << plane
     end
@@ -37,7 +37,7 @@ class Airport
   end
 
   def reached_capacity?
-  	planes.length >= capacity
+    planes.length >= capacity
   end
 
   def empty?
