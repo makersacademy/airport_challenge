@@ -10,6 +10,7 @@ class Airport
   end
 
   def land plane
+    fail "Plane already landed" if planes.include?(plane)
     fail "Cannot land during a storm" if stormy?
     if full?
       fail "Airport is full"
@@ -21,6 +22,7 @@ class Airport
 
   def take_off plane
     fail "Storm brewing" if stormy?
+    fail "Plane already flying" unless planes.include?(plane)
     plane.flying = true
     planes.delete(plane)
   end

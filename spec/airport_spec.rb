@@ -26,8 +26,7 @@ describe Airport do
 
     it 'a plane cannot land if the airport is full' do
       allow(subject).to receive(:stormy?) { false }
-      capacity = 10
-      capacity.times { subject.land(plane) }
+      allow(subject).to receive(:full?) { true }
       expect { subject.land(plane) }.to raise_error "Airport is full"
     end
 

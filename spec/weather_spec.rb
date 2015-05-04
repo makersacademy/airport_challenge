@@ -11,6 +11,7 @@ describe Weather do
     end
 
     it 'can be sunny' do
+      allow(airport).to receive(:stormy?) { false }
       allow(airport).to receive(:sunny?) { true }
       expect(airport).to be_sunny
     end
