@@ -1,42 +1,43 @@
 require 'airport'
-
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
+require 'plane'
 
 describe Airport do
+  let(:plane) { Plane.new }
 
   context 'taking off and landing' do
+    it { is_expected.to respond_to(:land).with(1).argument }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
+      expect(subject.planes.count).to be 1
+    end
 
-    xit 'a plane can take off'
+    it 'a plane is no longer in the airport when it has taken off' do
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).to be_empty
+    end
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      allow(subject).to receive(:stormy?) { false }
+      allow(subject).to receive(:full?) { true }
+      expect { subject.land(plane) }.to raise_error "Airport is full"
+    end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+    it 'a plane cannot land if the weather is stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land plane }.to raise_error "Cannot land during a storm"
+    end
 
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-
-      xit 'a plane cannot land in the middle of a storm'
+    it 'a plane cannot take off if the weather is stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.take_off plane }.to raise_error "Storm brewing"
     end
   end
 end

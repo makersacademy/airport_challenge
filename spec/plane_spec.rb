@@ -1,25 +1,36 @@
 require 'plane'
-
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# When we create a new plane, it should have a "flying" status,
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# have its status changed to "landed"
-#
-# When the plane takes of from the airport, the plane's status
-# should become "flying"
+require 'airport'
 
 describe Plane do
+  let(:airport) { Airport.new }
 
-  xit 'has a flying status when created'
+  it { is_expected.to respond_to :landed? }
+  it { is_expected.to respond_to :flying? }
 
-  xit 'has a flying status when in the air'
+  it 'has a flying status when created' do
+    allow(airport).to receive(:stormy?) { false }
+    expect(subject.flying?).to equal true
+  end
 
-  xit 'can take off'
+  it 'can land' do
+    allow(airport).to receive(:stormy?) { false }
+    airport.land(subject)
+    expect(subject).not_to be_flying
+  end
 
-  xit 'changes its status to flying after taking off'
+  it 'can take off' do
+    allow(airport).to receive(:stormy?) { false }
+    airport.land(subject)
+    airport.take_off(subject)
+    expect(subject).to be_flying
+  end
 
+  it 'a landed plane does not respond to land' do
+    allow(airport).to receive(:stormy?) { false }
+    airport.land(subject)
+    expect { airport.land(subject) }.to raise_error "Plane already landed"
+  end
 end
+
+
+
