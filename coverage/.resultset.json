@@ -57,6 +57,11 @@
       ],
       "/Users/makerslaptop93/projects/airport_challenge/lib/plane.rb": [
         1,
+        1,
+        null,
+        null,
+        1,
+        null,
         null,
         null
       ],
@@ -78,8 +83,10 @@
         1,
         1,
         1,
+        1,
         null,
         null,
+        1,
         1,
         1,
         1,
@@ -109,8 +116,12 @@
         null,
         null,
         1,
+        2,
+        null,
+        2,
+        null,
         1,
-        1,
+        null,
         null,
         null,
         1,
@@ -118,12 +129,13 @@
         1,
         null,
         1,
+        null,
         null,
         1,
         null,
         null
       ]
     },
-    "timestamp": 1430737006
+    "timestamp": 1430738468
   }
 }

@@ -15,12 +15,14 @@ feature 'Planes can take off and land from airport' do
     aeroplane = Plane.new
     airport = Airport.new
     airport.allow_landing(aeroplane)
+    aeroplane.lands(airport)
   end
 
   scenario 'Plane is allowed to take off from airport' do
     aeroplane = Plane.new
     airport = Airport.new
     airport.allow_takeoff(aeroplane)
+    aeroplane.takes_off(airport)
   end
 end
 
