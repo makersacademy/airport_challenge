@@ -25,7 +25,6 @@ describe Airport do
 
 
     it 'a plane can take off' do
-      #is expected to respond to takeoff
       #override weather!!!
       allow(subject).to receive(:weather_check).and_return(:sunny)
       plane = double(:plane)
@@ -37,7 +36,19 @@ describe Airport do
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      # change capacity to a specific amount. assumption in rest
+      # of tests is that capacity is at least 6, but we need a set
+      # figure for this particular test
+      subject.capacity = 20
+      allow(subject).to receive(:weather_check).and_return(:sunny)
+      plane = double(:plane)
+      20.times do
+        subject.land(plane)
+      end
+      expect(subject.land(plane)).to raise_error('Airport full')
+
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
