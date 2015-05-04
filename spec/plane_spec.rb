@@ -43,12 +43,16 @@ describe Plane do
   end
 
   it 'has a flying status when in the air' do
-  	#we want our planes to have a status of 'flying'
-  	#once they're in the air - would need to include
-  	#new attr for location??
+  #we want our planes to have a status of 'flying'
+  #once they're in the air - would need to include
+  #new attr for location??
   end
 
   it 'has status \'in maintenance\' when in in maintenance' do
+  #basically wanted to see if I could define a method
+  #that that will not let a plane take_off if it's 
+  #in maintenance, but I haven't got round to it yet!
+  #not sure how I would test that either...
   #adding another test to check that a plane can have 
   #a status saying 'being repaired' (so I can create
   #the below test for being able to take off)

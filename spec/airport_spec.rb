@@ -39,8 +39,12 @@ describe Airport do
     #implies the airport has capacity, therefore we
     #we need to define this
     #if airport is at capacity
-      airport.capacity.times {airport.permission_to_land :plane}
-      expect { (airport.permission_to_land :plane) }.to raise_error 'Permission denied'
+      plane = Plane.new
+      airport.capacity.times {airport.permission_to_land plane}
+      expect { (airport.permission_to_land plane) }.to raise_error 'Permission denied'
+    end
+
+    xit 'planes cannot take off from airport if airport is empty' do
     end
 
     # Include a weather condition.
@@ -53,13 +57,22 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      it 'a plane cannot take off when there is a storm brewing' do
+      xit 'a plane cannot take off when there is a storm brewing' do
         #expect landed plane not to respond to take_off
-        #if weather = "stormy"
-        expect(subject).not_to respond_to :take_off
+        #if stormy_weather returns true
+        expect(airport).not_to respond_to :take_off
       end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        #want a method called stormy, if stormy equals true
+        #(this generated randomly) then the plane cannot land.
+        plane = double(:plane)
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect{ (airport.permission_to_land :plane) }.to raise_error "Weather is stormy"
+      end
+
+
+
     end
   end
 end

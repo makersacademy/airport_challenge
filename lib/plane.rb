@@ -7,7 +7,7 @@ class Plane
   end
 
   def take_off
-#    fail "Plane currently in maintenance" if @status = 'in maintenance'
+#fail "Plane currently in maintenance" if @status = 'in maintenance'
     @status = 'flying'
   end
 
