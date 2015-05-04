@@ -46,7 +46,7 @@ describe Airport do
       20.times do
         subject.land(plane)
       end
-      expect(subject.land(plane)).to raise_error('Airport full')
+      expect{subject.land(plane)}.to raise_error('Airport full')
 
     end
 
