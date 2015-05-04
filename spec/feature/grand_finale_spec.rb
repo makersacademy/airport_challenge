@@ -31,10 +31,10 @@ feature 'Grand Finale' do
     expect { airport.land Plane.new }.to raise_error 'Airport full'
   end
 
-  scenario 'plane cannot take-off when weather is "stormy"' do
-  end
+  # scenario 'plane cannot take-off when weather is "stormy"' do
+  # end
 
-  scenario 'plane cannot land when weather is "stormy" ' do
-  end
+  # scenario 'plane cannot land when weather is "stormy" ' do
+  # end
 
 end

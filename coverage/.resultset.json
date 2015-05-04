@@ -55,6 +55,7 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "/Users/makersacademy24/Projects/airport_challenge/lib/airport.rb": [
@@ -69,6 +70,7 @@
         1,
         1,
         1,
+        1,
         null,
         null,
         1,
@@ -77,6 +79,10 @@
         14,
         null,
         null,
+        1,
+        1,
+        0,
+        1,
         null,
         null,
         null,
@@ -137,10 +143,10 @@
         2,
         null,
         null,
-        1,
         null,
         null,
-        1,
+        null,
+        null,
         null,
         null,
         null
@@ -171,6 +177,6 @@
         null
       ]
     },
-    "timestamp": 1430757467
+    "timestamp": 1430760648
   }
 }

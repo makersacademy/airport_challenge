@@ -7,7 +7,8 @@ class Airport
   end
 
   def takeoff plane
-    hangar.pop
+    fail 'Cannot takeoff if stormy' if weather == 'stormy'
+    @hangar.delete(plane)
     plane.takeoff
   end
 
@@ -17,7 +18,11 @@ class Airport
     plane.land
   end
 
-  # weather [:sunny, :stormy]
-  # weather_today = weather ([rand(2)])
+  def weather
+    if rand(10)==1
+      'stormy'
+    else 'sunny'
+    end
+  end
 
 end
