@@ -1,0 +1,56 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/cmanessis/Desktop/makers/Projects/week1/airportchallenge/airport_challenge/spec/airport_spec.rb": [
+        1,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/Users/cmanessis/Desktop/makers/Projects/week1/airportchallenge/airport_challenge/lib/airport.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1430726411
+  }
+}
