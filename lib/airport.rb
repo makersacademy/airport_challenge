@@ -1,12 +1,14 @@
+require 'weather'
+
 class Airport
 
+  include Weather
+
   attr_accessor :capacity
-  attr_accessor :weather
 
   def initialize capacity = 10
     @planes = []
     @capacity = capacity
-    @weather = self.weather_update
   end
 
   def capacity=(capacity)
@@ -15,7 +17,7 @@ class Airport
   end
 
   def receive plane
-    if self.weather == 'stormy'
+    if weather == 'stormy'
       fail 'plane cannot land when storm brewing'
     elsif @planes.count == @capacity
       fail 'airport cannot receive planes when at capacity'
@@ -26,7 +28,7 @@ class Airport
   end
 
   def launch plane
-    if self.weather == 'stormy'
+    if weather == 'stormy'
       fail 'plane cannot take off when storm brewing'
     else
       plane.takeoff
@@ -36,18 +38,6 @@ class Airport
 
   def planes
     @planes
-  end
-
-  def weather
-    @weather
-  end
-
-  def weather_update
-    if rand(1..10) == 1
-      @weather = 'stormy'
-    else
-      @weather = 'sunny'
-    end
   end
 
 end
