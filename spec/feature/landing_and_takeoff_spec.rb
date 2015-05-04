@@ -1,9 +1,8 @@
 require 'capybara/rspec'
 
-feature 'Grand Finale' do
+feature 'Landing and Taking off' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
-  let(:weather) { Weather.new }
 
   scenario 'all planes can land' do
     allow(airport).to receive(:stormy?) { false }
@@ -33,21 +32,5 @@ feature 'Grand Finale' do
   scenario 'a flying plane does not respond to take_off' do
     allow(airport).to receive(:stormy?) { false }
     expect { airport.take_off(plane) }.to raise_error "Plane already flying"
-  end
-
-  scenario 'planes cannot land when the airport is full' do
-    allow(airport).to receive(:stormy?) { false }
-    allow(airport).to receive(:full?) { true }
-    expect { airport.land(plane) }.to raise_error "Airport is full"
-  end
-
-  scenario 'planes cannot land when there is a storm' do
-    allow(airport).to receive(:stormy?) { true }
-    expect { airport.land(plane) }.to raise_error "Cannot land during a storm"
-  end
-
-  scenario 'planes cannot take off in a storm' do
-    allow(airport).to receive(:stormy?) { true }
-    expect { airport.take_off(plane) }.to raise_error "Storm brewing"
   end
 end

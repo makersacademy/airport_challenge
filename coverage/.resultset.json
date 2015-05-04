@@ -62,11 +62,8 @@
         15,
         13,
         11,
-        2,
-        null,
         9,
         9,
-        null,
         null,
         null,
         1,
@@ -112,13 +109,12 @@
         null,
         null
       ],
-      "/Users/mollie/Makers/airport_challenge/spec/feature/grand_finale_spec.rb": [
+      "/Users/mollie/Makers/airport_challenge/spec/feature/landing_and_takeoff_spec.rb": [
         1,
         null,
         1,
-        9,
-        9,
-        1,
+        6,
+        6,
         null,
         1,
         2,
@@ -140,7 +136,7 @@
         null,
         null,
         1,
-        2,
+        3,
         1,
         2,
         null,
@@ -149,6 +145,14 @@
         2,
         2,
         null,
+        null
+      ],
+      "/Users/mollie/Makers/airport_challenge/spec/feature/traffic_control_spec.rb": [
+        1,
+        null,
+        1,
+        4,
+        4,
         null,
         1,
         2,
@@ -196,7 +200,7 @@
         null,
         null,
         1,
-        2,
+        3,
         1,
         2,
         null,
@@ -212,8 +216,6 @@
         4,
         null,
         1,
-        null,
-        1,
         2,
         1,
         null,
@@ -228,11 +230,10 @@
         1,
         2,
         1,
-        null,
         null,
         null
       ]
     },
-    "timestamp": 1430734143
+    "timestamp": 1430742887
   }
 }

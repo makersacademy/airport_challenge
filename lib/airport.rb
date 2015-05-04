@@ -6,18 +6,15 @@ class Airport
 
   def initialize
     @planes = []
-    @capacity = 10
+    @capacity = 6
   end
 
   def land plane
-    fail "Plane already landed" if planes.include?(plane)
     fail "Cannot land during a storm" if stormy?
-    if full?
-      fail "Airport is full"
-    else
-      plane.flying = false
-      planes << plane
-    end
+    fail "Plane already landed" if planes.include?(plane)
+    fail "Airport is full" if full?
+    plane.flying = false
+    planes << plane
   end
 
   def take_off plane
