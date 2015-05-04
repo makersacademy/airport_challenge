@@ -16,6 +16,9 @@ feature 'Grand Finale' do
 
     # Create an empty airport with capacity for 6 planes
     airport = Airport.new 6
+    
+    #Stub weather to sunny - not testing in this feature
+    allow(airport).to receive(:weather_check).and_return(:sunny)
 
     # Create 6 planes and land them at the airport, each in turn
     planes = []
