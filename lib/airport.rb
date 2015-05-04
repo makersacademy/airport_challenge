@@ -17,7 +17,7 @@ class Airport
     plane.land
   end
 
-  weather [:sunny, :stormy]
-  weather_today = weather ([rand(2)])
+  # weather [:sunny, :stormy]
+  # weather_today = weather ([rand(2)])
 
 end

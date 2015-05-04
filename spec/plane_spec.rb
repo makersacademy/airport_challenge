@@ -13,14 +13,11 @@ require 'plane'
 
 describe Plane do
 
+  context 'taking off and landing' do
   it { is_expected.to respond_to :status }
-
-  xit 'has a flying status when in the air'
 
   it { is_expected.to respond_to :takeoff }
 
   it { is_expected.to respond_to :land }
-
-  xit 'changes its status to flying after taking off'
-
+end
 end
