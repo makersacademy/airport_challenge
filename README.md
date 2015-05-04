@@ -3,7 +3,7 @@
 Airport Challenge
 =================
 
-Andy Gout notes:-
+Notes:-
 -----------------
 
 * In 'plane_spec.rb' file, I felt the plane status (flying/landed) should have been tested through an airport double, but I had problems setting the stubs given a particular airport method called a plane method (to set plane's new status) from within those, so could not figure out the automatic response it should have given.
@@ -12,6 +12,7 @@ Andy Gout notes:-
 
 * In 'traffic_control_incoming_spec.rb' and 'traffic_control_outgoing_spec.rb' for the final test for each (land/launch six planes), I was not sure if the handling required the weather fixed to 'sunny' so as to allow the process to proceed unimpeded, or if the idea was (i.e. for incoming) to leave the weather set to random and create a stack of planes that circle and then re-attempt to land following a weather update which reports a change in the weather (hence why I created this method).  However, in trying to do this I encountered problems with an instance of stormy weather creating a fail error before the process could proceed to a stack and re-attempt at landing.
 
+* I felt with the handling of the weather I could have created a 'stormy?' attribute with a boolean value rather than, as I have done, a 'weather' attribute with the description as a string value ('sunny'/'stormy'). I felt this improved the readability slightly and also future proofs the programme so as to allow the possibility of other relevant weather conditions being included later on (i.e. hurricane, fog, etc.).  I also originally used the sample method to randomly call one of two entries in an array, i.e. ['sunny', 'stormy'].sample, but realised the brief called for the occurence of a storm to be much less likely, and so I've implemented handling that gives it a 1/10 likelihood (using rand(1..10) as a basis).
 
 Original brief
 --------------

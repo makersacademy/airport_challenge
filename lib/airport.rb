@@ -6,7 +6,7 @@ class Airport
   def initialize capacity = 10
     @planes = []
     @capacity = capacity
-    @weather = ['sunny', 'stormy'].sample
+    @weather = self.weather_update
   end
 
   def capacity=(capacity)
@@ -43,7 +43,11 @@ class Airport
   end
 
   def weather_update
-    @weather = ['sunny', 'stormy'].sample
+    if rand(1..10) == 1
+      @weather = 'stormy'
+    else
+      @weather = 'sunny'
+    end
   end
 
 end
