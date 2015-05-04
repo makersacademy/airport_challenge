@@ -31,7 +31,7 @@ describe Airport do
     xit 'a plane cannot land if the airport is full'
     #implies the airport has capacity, therefore we
     #we need to define this
-    
+
 
 
 
@@ -48,7 +48,11 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      it 'a plane cannot take off when there is a storm brewing' do
+        #expect landed plane not to respond to take_off
+        #if weather = "stormy"
+        expect(subject).not_to respond_to :take_off
+      end
 
       xit 'a plane cannot land in the middle of a storm'
     end

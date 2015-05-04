@@ -3,19 +3,19 @@ class Plane
   attr_reader :status
 
   def initialize
-    @status = "flying"
+    @status = 'flying'
   end
 
   def take_off
-    @status
+    @status = 'flying'
   end
 
   def land
-    @status = "landed"
+    @status = 'landed'
   end
 
   def maintenance
-  	@status = "in maintenance"
+  	@status = 'in maintenance'
   end
 
 end
