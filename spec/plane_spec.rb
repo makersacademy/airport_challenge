@@ -15,7 +15,7 @@ require 'plane'
 describe Plane do
 
   context 'taking off and landing' do
-    it {is_expected.to respond_to :status}
+    it { is_expected.to respond_to :status }
     it { is_expected.to respond_to :land }
     it { is_expected.to respond_to :take_off }
 

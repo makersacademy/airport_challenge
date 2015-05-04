@@ -40,23 +40,25 @@ describe Airport do
     end
   end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  # Include a weather condition.
+  # The weather must be random and only have two states "sunny" or "stormy".
+  # Try and take off a plane, but if the weather is stormy,
+  # the plane can not take off and must remain in the airport.
+  # This will require stubbing to stop the random return of the weather.
+  # If the airport has a weather condition of stormy,
+  # the plane can not land, and must not be in the airport
 
-    # context 'weather conditions' do
-    #   it 'a plane cannot take off when there is a storm brewing' do
-    #     plane = Plane.new
-    #     allow(airport).to receive(:weather) { 'stormy' }
-    #     heathrow = Airport.new
-    #     airport.take_off plane
-    #     expect(airport.take_off).to raise_error 'stormy cannot take_off'
-    #   end
+  context 'weather conditions' do
+    it 'a plane cannot take off when there is a storm brewing' do
+      heathrow = Airport.new
+      allow(heathrow).to receive(:weather).and_return('stormy')
+      expect(heathrow.take_off Plane.new).to raise_error 'stormy cannot take_off'
+    end
 
-      xit 'a plane cannot land in the middle of a storm'
+    it 'a plane cannot land in the middle of a storm' do
+      heathrow = Airport.new
+      allow(heathrow).to receive(:weather).and_return('stormy')
+      expect(heathrow.land Plane.new).to raise_error 'stormy cannot take_off'
+    end
+  end
 end

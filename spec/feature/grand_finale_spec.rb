@@ -3,7 +3,7 @@ require 'capybara/rspec'
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
-# Given 6 planes, each plane must land. have them
+# Given 6 planes, each plane must land.
 # Be careful of the weather, it could be stormy!
 # Check when all the planes have landed that they have status "landed"
 # Once all planes are in the air again, check that they have status "flying!"
@@ -32,15 +32,17 @@ feature 'Grand Finale' do
     expect { heathrow.land Plane.new }.to raise_error 'Airport full'
   end
 
-  # scenario 'planes cannot land if weather stormy' do
-  #   plane = Plane.new
-  #   allow(airport).to receive(:weather) { 'stormy' }
-  #   heathrow = Airport.new
-  #   airport.take_off plane
-  #   expect(airport.take_off).to raise_error 'stormy cannot take_off'
-  # end
+  scenario 'planes cannot take_off in stormy weather' do
+    heathrow = Airport.new
+    allow(heathrow).to receive(:weather).and_return('stormy')
+    expect(heathrow.take_off Plane.new).to raise_error 'stormy cannot take_off'
+  end
+
+  scenario 'planes cannot land in stormy weather' do
+    heathrow = Airport.new
+    allow(heathrow).to receive(:weather).and_return('stormy')
+    expect(heathrow.land Plane.new).to raise_error 'stormy cannot take_off'
+  end
 end
 
-# prevent airplanes landing when the weather is stormy
 
-#Weather what method to use?
