@@ -9,8 +9,7 @@ require 'plane'
 # No more planes can be added to the airport, if it's full.
 # It is up to you how many planes can land in the airport
 # and how that is implemented.
-#
-# If the airport is full then no planes can land
+
 
 describe Airport do
   context 'Permission to land' do
@@ -19,6 +18,14 @@ describe Airport do
 
   context 'Permission to takeoff' do
     it { is_expected.to respond_to :allow_takeoff }
+  end
+
+  context 'When the airport is full' do
+    it 'should raise error and refuse landing permission' do
+      airport = Airport.new
+      6.times { subject.allow_landing Plane.new }
+      expect { subject.allow_landing Plane.new }.to raise_error 'Airport is full!'
+    end
   end
 
   context 'traffic control' do
