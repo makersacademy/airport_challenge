@@ -32,7 +32,8 @@ describe Plane do
     #or expect(depo).to receive(:request_clean).and_return(true) to enforce an expectation that the method is called at some point in the test!
     #airport = double(:airport { weather_check: "sunny"})
     airport = double(:airport)
-    allow(airport).to receive(:land).and_return(true)
+    allow(airport).to receive(:land).and_return(airport)
+    allow(airport).to receive(:launch).and_return(subject)
     subject.land airport
     expect { subject.launch }.not_to raise_error
     # Weather is handled by airport, so doubling airport.land bypasses capacity and weather
@@ -42,7 +43,7 @@ describe Plane do
     #Need to use a double for the airport?!?!
     #airport = double(:airport { weather_check: "sunny", space: true})
     airport = double(:airport)
-    allow(airport).to receive(:land).and_return(true)
+    allow(airport).to receive(:land).and_return(airport)
     allow(airport).to receive(:launch).and_return(true)
     subject.land airport
     subject.launch
@@ -59,5 +60,5 @@ describe Plane do
   it 'cannot launch if it is already flying' do
     expect {subject.launch}.to raise_error('Already flying!')
   end
-  
+
 end
