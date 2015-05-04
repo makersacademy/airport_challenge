@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master.png)](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)
+[![Build Status](https://travis-ci.org/andygout/airport_challenge.png)](https://travis-ci.org/andygout/airport_challenge)
 
 Airport Challenge
 =================
