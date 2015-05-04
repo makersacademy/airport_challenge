@@ -1,11 +1,9 @@
 class Plane
 
+  attr_accessor :status
+
   def initialize
     @status = :flying
-  end
-
-  def status=(status)
-    @status = status
   end
 
   def flying?
@@ -35,9 +33,7 @@ class Plane
     # Order airport to release plane, fails if not launched, otherwise
     # returns the plane object
     result = @status.launch self
-    if result
-      @status = :flying
-    end
+    @status = :flying if result
     result
   end
 

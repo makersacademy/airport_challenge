@@ -1,38 +1,35 @@
 class Airport
 
   attr_accessor :capacity
+  attr_reader :planes
 
-  def initialize (capacity=20)
+  def initialize(capacity = 20)
     @capacity = capacity
     @planes = []
   end
 
-  def land (plane)
+  def land(plane)
     # check capacity
     fail 'Airport full' if @planes.count >= @capacity
     # check weather
     fail 'Stormy weather' if weather_check == :stormy
-    # add plane to airport roster, let calling function know to change plane status
+    # add plane to airport roster, return change to plane status
     @planes << plane
     # return the airport
     self
   end
 
-  def launch (plane)
-    #check weather
+  def launch(plane)
+    # check weather
     fail 'Stormy weather' if weather_check == :stormy
-    #fail if the plane isn't at this airport
+    # fail if the plane isn't at this airport
     fail unless @planes.include?(plane)
-    #remove the plane from the airport and return it
+    # remove the plane from the airport and return it
     @planes.delete(plane)
   end
 
-  def planes
-    @planes
-  end
-
   def weather_check
-    [:stormy,:sunny][[rand(10),1].min]
+    [:stormy, :sunny][[rand(10), 1].min]
   end
 
 end

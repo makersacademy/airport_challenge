@@ -39,11 +39,11 @@ describe Plane do
     airport = double(:airport)
     allow(airport).to receive(:land).and_return(true)
     subject.land airport
-    expect {subject.land airport}.to raise_error('Already landed!')
+    expect { subject.land airport }.to raise_error('Already landed!')
   end
 
   it 'cannot launch if it is already flying' do
-    expect {subject.launch}.to raise_error('Already flying!')
+    expect { subject.launch }.to raise_error('Already flying!')
   end
 
 end

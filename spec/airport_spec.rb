@@ -5,20 +5,18 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
-      # override weather!!!
       allow(subject).to receive(:weather_check).and_return(:sunny)
       plane = double(:plane)
-      subject.land (plane)
+      subject.land(plane)
       expect(subject.planes).to include(plane)
     end
 
     # A plane currently in the airport can be requested to take off.
     it 'a plane can take off' do
-      #override weather!!!
       allow(subject).to receive(:weather_check).and_return(:sunny)
       plane = double(:plane)
-      subject.land (plane)
-      subject.launch (plane)
+      subject.land(plane)
+      subject.launch(plane)
       expect(subject.planes).not_to include(plane)
     end
   end
@@ -37,7 +35,7 @@ describe Airport do
       20.times do
         subject.land(plane)
       end
-      expect{subject.land(plane)}.to raise_error('Airport full')
+      expect { subject.land(plane) }.to raise_error('Airport full')
     end
 
     # Include a weather condition.
@@ -57,13 +55,13 @@ describe Airport do
         plane = double(:plane)
         subject.land(plane)
         allow(subject).to receive(:weather_check).and_return(:stormy)
-        expect{subject.launch(plane)}.to raise_error('Stormy weather')
+        expect { subject.launch(plane) }.to raise_error('Stormy weather')
       end
 
       it 'a plane cannot land in the middle of a storm' do
         allow(subject).to receive(:weather_check).and_return(:stormy)
         plane = double(:plane)
-        expect{subject.land(plane)}.to raise_error('Stormy weather')
+        expect { subject.land(plane) }.to raise_error('Stormy weather')
       end
     end
   end
