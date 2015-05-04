@@ -6,7 +6,7 @@ describe Airport do
 
   it 'knows when a plane is airborn' do
     plane = double :plane, location: 'air'
-    expect(airport.location_of plane).to eq( 'air')
+    expect(airport.location_of plane).to eq('air')
   end
 
   it 'knows when a plane is in the airport' do
