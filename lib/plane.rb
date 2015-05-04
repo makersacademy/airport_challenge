@@ -1,4 +1,4 @@
-require 'airport.rb'
+require './lib/airport.rb'
 
 class Plane
 
@@ -17,12 +17,6 @@ class Plane
   def take_off airport
     @status = "flying"
     @airport = airport
-  end
-
-  def unlandable?
-    true
-    # yes, unlandable is true but the pilots trying to land
-    # their planes don't know this. Change this!
   end
 
 end
