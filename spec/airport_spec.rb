@@ -46,7 +46,7 @@ describe Airport do
 
     it 'a plane cannot land if the airport is empty' do
       allow(subject).to receive(:storm_brewing) { 'sunny' }
-      expect { subject.take_off}.to raise_error 'Airport is empty'
+      expect { subject.take_off }.to raise_error 'Airport is empty'
     end
 
     # Include a weather condition.
@@ -64,12 +64,16 @@ describe Airport do
         plane = Plane.new
         subject.land(plane)
         allow(subject).to receive(:storm_brewing) { 'stormy' }
-        expect { subject.take_off(plane) }.to raise_error 'Cannot take off in stormy weather'
+        expect { subject.take_off(plane) }.to raise_error
       end
 
       it 'a plane cannot land in the middle of a storm' do
         allow(subject).to receive(:storm_brewing) { 'stormy' }
         expect { subject.land(Plane.new) }.to raise_error
+      end
+
+      it 'responds to storm_brewing method' do
+        expect(subject).to respond_to :storm_brewing
       end
     end
   end

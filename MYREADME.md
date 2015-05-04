@@ -1,3 +1,7 @@
+--Fourteenth commit
+
+Added tests for storm_brewing method
+
 --Thirteenth commit
 
 Weather is now randomized. Finally got the stubbing to work! Now need to work on the grand finale feature test
