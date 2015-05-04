@@ -47,7 +47,6 @@ describe Airport do
         subject.land(plane)
       end
       expect{subject.land(plane)}.to raise_error('Airport full')
-
     end
 
     # Include a weather condition.
@@ -60,13 +59,19 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
-      #allow(subject).to receive(:weather_check).and_return(:stormy)
+      it 'a plane cannot take off when there is a storm brewing' do
+        allow(subject).to receive(:weather_check).and_return(:sunny)
+        plane = double(:plane)
+        subject.land(plane)
+        allow(subject).to receive(:weather_check).and_return(:stormy)
+        expect{subject.launch(plane)}.to raise_error('Stormy weather')
+      end
 
-
-      xit 'a plane cannot land in the middle of a storm'
-      #allow(subject).to receive(:weather_check).and_return(:stormy)
-
+      it 'a plane cannot land in the middle of a storm' do
+        allow(subject).to receive(:weather_check).and_return(:stormy)
+        plane = double(:plane)
+        expect{subject.land(plane)}.to raise_error('Stormy weather')
+      end
     end
   end
 end
