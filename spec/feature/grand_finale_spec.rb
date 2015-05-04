@@ -22,6 +22,13 @@ feature 'a pilot flies a plane' do
     airport.land plane
     expect(plane.status).to eq "landed"
   end
+
+  scenario 'plane cannot land, airport is full' do
+    airport = Airport.new
+    expect(airport.capacity).to eq 2
+  end
+
+
   scenario 'plane takes off from airport' do
     airport = Airport.new
     plane = Plane.new
