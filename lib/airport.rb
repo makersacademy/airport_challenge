@@ -17,23 +17,16 @@ class Airport
   end
 
   def receive plane
-    if weather == 'stormy'
-      fail 'plane cannot land when storm brewing'
-    elsif @planes.count == @capacity
-      fail 'airport cannot receive planes when at capacity'
-    else
-      plane.land
-      @planes << plane
-    end
+    fail 'plane cannot land when storm brewing' if weather == 'stormy'
+    fail 'airport cannot receive planes when at capacity' if @planes.count == @capacity
+    plane.land
+    @planes << plane
   end
 
   def launch plane
-    if weather == 'stormy'
-      fail 'plane cannot take off when storm brewing'
-    else
-      plane.takeoff
-      @planes.delete(plane)
-    end
+    fail 'plane cannot take off when storm brewing' if weather == 'stormy'
+    plane.takeoff
+    @planes.delete(plane)
   end
 
   def planes
