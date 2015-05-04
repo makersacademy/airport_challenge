@@ -1,31 +1,36 @@
+# Unit tests (airports):
+
+# - Can instruct a plane to take-off (release_plane)
+# - Can instruct a plane to land (land_plane)
+# - Can prevent a plane from take-off if weather not 'sunny'
+# - Can prevent a plane from land if weather not 'sunny'
+# - Can provide 'sunny' or 'stormy' weather update
+# - Knows if a plane is in air
+# - or at airport
+
 require 'airport'
-
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
   context 'taking off and landing' do
 
+  it { is_expected.to respond_to :land_plane }
   it { is_expected.to respond_to :release_plane }
 
 
     it 'allows a plane to land' do
-      plane = subject.land_plane
-      expect(plane).to be_flying
+      plane = double :plane
+      allow(plane).to receive(:land_plane) { 'landed'}
+      airport = Airport.new
+      airport.land_plane
+      expect(airport.hangar.count).to eq 1
     end
 
     it 'allows a plane to take-off' do
-      plane = subject.release_plane
-      expect(plane).to be_landed
+      plane = double :plane
+      allow(plane).to receive(:release_plane) { 'flying'}
+      airport = Airport.new
+      airport.land_plane
+      expect(airport.hangar.count).to be_empty?
 
     end
 

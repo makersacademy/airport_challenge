@@ -2,14 +2,6 @@ require 'capybara/rspec'
 require 'plane'
 require 'airport'
 
-# Note these are just some guidelines!
-# Feel free to write more tests!!
-
-# Given 6 planes, each plane must land.
-# Be careful of the weather, it could be stormy!
-# Check when all the planes have landed that they have status "landed"
-# Once all planes are in the air again, check that they have status "flying!"
-
 # Feature tests:
 
 # - six planes can be created
@@ -23,27 +15,29 @@ require 'airport'
 
 feature 'Grand Finale' do
 
-  let(:airport) { Airport.new }
+  # let(:airport) { Airport.new }
+  # let(:plane) { Plane.new }
+  airport = Airport.new
+  plane = Plane.new
 
   scenario 'plane can land at airport' do
-    # airport = Airport.new
-    fleet = []
-    6.times { fleet << Plane.new }
-  end
+    expect(plane.plane_status).to eq 'landed'
+    end
 
-  scenario 'we have six planes in our fleet' do
-    expect(fleet.length).to eq 6
-  end
+  # scenario 'we have six planes in our fleet' do
+  #   expect(fleet.length).to eq 6
+  # end
 
-  scenario 'plan is in the air when created' do
-    fleet.each do |plane|
-    expect(plane.status).to eq 'flying'
+  scenario 'plane is in the air when created' do
+    plane = Plane.new
+    expect(plane.plane_status).to eq 'flying'
   end
 
   scenario 'plane can take-off from airport' do
-    # airport = Airport.new
-    plane = airport.release_plane
-    expect(plane).to be_landed
+    expect(plane.plane_status).to eq 'flying'
+  #   # airport = Airport.new
+  #   plane = airport.release_plane
+  #   expect(plane).to be_landed
   end
 
   # scenario 'plane cannot land when airport is full' do
@@ -51,6 +45,5 @@ feature 'Grand Finale' do
   #     airport.capacity.times { something }
   #     expect { airport.hangar # ?}.to raise_error 'Airport is full'
   #   end
-end
 end
 # plane = airport.land_plane

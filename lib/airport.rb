@@ -1,47 +1,32 @@
-# Unit tests (airports):
-
-# - Can instruct a plane to take-off
-# - Can instruct a plane to land
-# - Can prevent a plane from take-off if weather not 'sunny'
-# - Can prevent a plane from land if weather not 'sunny'
-# - Can provide 'sunny' or 'stormy' weather update
-# - Knows if a plane is in air
-# - or at airport
-
 require_relative 'plane'
 
 class Airport
-  DEFAULT_CAPACITY = 6
-
-  attr_accessor :capacity
-
-  # def initialize capacity=6
-    @capacity = DEFAULT_CAPACITY
+  attr_accessor :hangar
+  def initialize
     @hangar = []
   end
 
-  def release_plane
+  def release_plane plane
     fail 'Airport empty' if empty?
     @hangar.pop
+    plane.take_off
   end
 
-  def land_plane
+  def land_plane plane
     fail 'Airport full' if full?
-    @hangar = plane
+    @hangar << plane
+    plane.land
   end
-end
-
 
 private
 
   attr_reader :hangar
 
   def full?
-  @hangar.count >= :capacity
+  @hangar.count >= 6
   end
 
   def empty?
   @hangar.empty?
   end
-
 end
