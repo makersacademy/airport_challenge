@@ -9,12 +9,14 @@ require 'airport'
 # It is up to you how many planes can land in the airport. SAY 20
 # and how that is implemented. ref Bojo capcity statement
 #
-# If the airport is full then no planes can land ref bojo dock is full test and code
+# If the airport is full then no planes can land
+# ref bojo dock is full test and code
 
 describe Airport do
 
   context 'taking off and landing' do
-    it {is_expected.to respond_to :land}
+    it { is_expected.to respond_to :land }
+    it { is_expected.to respond_to :take_off }
 
     it 'should have a plane after landing' do
       plane = double :plane
@@ -24,15 +26,18 @@ describe Airport do
       expect(airport.planes.count).to eq 1
     end
 
-    #'lets planes land'
-    # 'a plane can land'
+  # 'lets planes land'
+  #  'a plane can land'
+  #  'a plane can take off from airport'
 
-    it 'a plane can take off from airport'
-end
+  end
 
   context 'traffic control' do # use with/as capacity statement
-
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
+      heathrow = Airport.new
+      6.times { heathrow.land Plane.new }
+      expect { heathrow.land Plane.new }.to raise_error 'Airport full'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
