@@ -13,9 +13,7 @@ require 'airport'
 
 describe Airport do
 
-let(:airport) {Airport.new}
-
-
+  let(:airport) {Airport.new}
 
   context 'taking off and landing' do
 

@@ -39,4 +39,4 @@ Methods
 
 Also need a status call which could take the form of asking the plane whether or not it is in the airports array.
 
-
+=end
