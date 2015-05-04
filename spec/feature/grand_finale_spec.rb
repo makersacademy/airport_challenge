@@ -14,10 +14,14 @@ feature 'working airport' do
     expect(planes.length).to eq 10
   end
 
-  scenario 'airport knows planes are airborn' do
+  scenario 'airport knows when planes are airborn' do
     planes.each do |x|
       expect(x.location).to eq('air')
-    end
+  end
+  scenario '10 planes can land at specified airport' do
+    Airport.any_instance.stub(:weather_sunny?).and_return(true)
+    planes.each { |p| p.land airport }
+   expect(airport.landed_planes.length).to eq 10
   end
 
 end

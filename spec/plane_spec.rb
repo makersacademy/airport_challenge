@@ -11,6 +11,8 @@ describe Plane do
     expect(plane.location).to eq 'air'
   end
 
+
+
   # xit 'can take off'
   #
   # xit 'changes its status to flying after taking off'
