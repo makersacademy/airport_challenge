@@ -1,16 +1,5 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
   context 'taking off and landing' do
@@ -23,7 +12,7 @@ describe Airport do
       expect(subject.planes).to include(plane)
     end
 
-
+    # A plane currently in the airport can be requested to take off.
     it 'a plane can take off' do
       #override weather!!!
       allow(subject).to receive(:weather_check).and_return(:sunny)
@@ -36,10 +25,12 @@ describe Airport do
 
   context 'traffic control' do
 
+    # No more planes can be added to the airport, if it's full.
+    # It is up to you how many planes can land in the airport
+    # and how that is implemented.
     it 'a plane cannot land if the airport is full' do
-      # change capacity to a specific amount. assumption in rest
-      # of tests is that capacity is at least 6, but we need a set
-      # figure for this particular test
+      # change capacity to 20. assumption in rest of tests is that
+      # capacity is at least 1
       subject.capacity = 20
       allow(subject).to receive(:weather_check).and_return(:sunny)
       plane = double(:plane)
@@ -58,6 +49,8 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
+    # Note that this test checks launch error, doesn't check ongoing
+    # landed status of plane
     context 'weather conditions' do
       it 'a plane cannot take off when there is a storm brewing' do
         allow(subject).to receive(:weather_check).and_return(:sunny)

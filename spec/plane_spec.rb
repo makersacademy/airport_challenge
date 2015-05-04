@@ -1,47 +1,29 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# When we create a new plane, it should have a "flying" status,
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# have its status changed to "landed"
-#
-# When the plane takes of from the airport, the plane's status
-# should become "flying"
-
 describe Plane do
 
+  # When we create a new plane, it should have a "flying" status,
+  # thus planes can not be created in the airport.
   it 'has a flying status when created' do
     expect(subject).to be_flying
   end
 
-  xit 'has a flying status when in the air'
-  # I have no idea how to differentiate this from the other tests
-  # Somehow test that any plane not landed shows as flying?
-  # Maybe test that not(landed) implies flying?!
-  # I'm going to leave it as tautologous for now, maybe poke again later
+  # This test is tautologous, and at best repeats other tests. Ignoring
+  # xit 'has a flying status when in the air'
 
   it 'can take off' do
-    #Need to use a double for the airport?!?!
-    #We can create dummy methods and responses for each double
-    #e.g. depo = double(:depo, { request_clean: true })
-    #or allow(depo).to receive(:request_clean).and_return(true)
-    #or expect(depo).to receive(:request_clean).and_return(true) to enforce an expectation that the method is called at some point in the test!
-    #airport = double(:airport { weather_check: "sunny"})
     airport = double(:airport)
+    # Doubling airport.land bypasses capacity and weather checks
     allow(airport).to receive(:land).and_return(airport)
+    # Likewise with airport.launch
     allow(airport).to receive(:launch).and_return(subject)
     subject.land airport
     expect { subject.launch }.not_to raise_error
-    # Weather is handled by airport, so doubling airport.land bypasses capacity and weather
   end
 
+  # When the plane takes of from the airport, the plane's status
+  # should become "flying"
   it 'changes its status to flying after taking off' do
-    #Need to use a double for the airport?!?!
-    #airport = double(:airport { weather_check: "sunny", space: true})
     airport = double(:airport)
     allow(airport).to receive(:land).and_return(airport)
     allow(airport).to receive(:launch).and_return(true)
@@ -50,6 +32,9 @@ describe Plane do
     expect(subject).to be_flying
   end
 
+  # When we land a plane at the airport, the plane in question should
+  # have its status changed to "landed"
+  # Note: due to chosen structure, this isn't precisely what's stored
   it 'cannot land at an airport when it is already landed' do
     airport = double(:airport)
     allow(airport).to receive(:land).and_return(true)
