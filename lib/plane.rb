@@ -1,7 +1,20 @@
 class Plane
 
-  def status
-    return 'flying' if Plane.new
+  attr_accessor :flying
+
+  def initialize
+    @flying = true
+  end
+
+  def landed?
+    !@flying
+  end
+
+  def flying?
+    @flying
+  end
+
+  def lands!
+    @flying = false
   end
 end
-
