@@ -18,11 +18,11 @@ class Airport
     plane.land
   end
 
-  def weather
-    if rand(10)==1
-      'stormy'
-    else 'sunny'
-    end
-  end
+  # def weather
+  #   if rand(10)==1
+  #     'stormy'
+  #   else 'sunny'
+  #   end
+  # end
 
 end

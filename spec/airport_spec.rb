@@ -38,10 +38,6 @@ describe Airport do
     end
   end
 
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
   # context 'weather conditions' do
   #   it 'a plane cannot take off when there is a storm brewing' do
   #     airport = Airport.new
