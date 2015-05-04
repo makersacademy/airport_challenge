@@ -30,7 +30,6 @@ describe Airport do
 
   context 'traffic control' do
 
-
     it 'can get permission to land' do
       expect(airport).to respond_to :permission_to_land
     end
@@ -44,9 +43,8 @@ describe Airport do
       expect { (airport.permission_to_land plane) }.to raise_error 'Permission denied'
     end
 
-    xit 'planes cannot take off from airport if airport is empty' do
-      plane = Plane.new
-      airport {(airport.permi)}
+    it 'planes cannot take off from airport if airport is empty' do
+      expect { (airport.permission_to_takeoff :plane) }.to raise_error 'Apologies, there are no planes here!'
     end
 
     # Include a weather condition.
