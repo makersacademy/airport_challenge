@@ -31,8 +31,6 @@ describe Plane do
   end
 
   xit "should not be able to land if the airport is full" do
-    6.times { airport.accept_plane Plane.new }
-    expect(subject).to be_unlandable
   end
 
   it 'has a flying status when created' do
