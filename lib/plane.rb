@@ -2,9 +2,9 @@
 require_relative 'airport'
 
 class Plane
-  attr_accessor :plane_status
+  attr_accessor :status
   def initialize
-    @plane_status = 'flying'
+    @status = 'flying'
   end
 
   def release_plane

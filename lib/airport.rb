@@ -9,13 +9,13 @@ class Airport
   def release_plane plane
     fail 'Airport empty' if empty?
     @hangar.pop
-    plane.take_off
+    plane.release_plane
   end
 
   def land_plane plane
     fail 'Airport full' if full?
+    plane.land_plane
     @hangar << plane
-    plane.land
   end
 
 private

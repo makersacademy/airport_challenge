@@ -2,48 +2,37 @@ require 'capybara/rspec'
 require 'plane'
 require 'airport'
 
-# Feature tests:
-
-# - six planes can be created
-# - planes have a status of 'flying' when created, 'landed' when at airport
-# - planes have a location of 'mid-air' when flying, 'in-hangar' when landed
-# - six planes can land at airport, stored in hangar
-# - six planes can depart from airport
-# - planes cannot take-off/land unless weather is 'sunny'
-# - planes cannot land when airport is full
-# - Airport knows planes are in the air/in the airport
-
 feature 'Grand Finale' do
 
   # let(:airport) { Airport.new }
   # let(:plane) { Plane.new }
   airport = Airport.new
-  plane = Plane.new
+  6.times { plane = Plane.new }                                               # - six planes can be created
 
-  scenario 'plane can land at airport' do
-    expect(plane.plane_status).to eq 'landed'
+  scenario 'plane is in the air when created' do                              # - planes have a status of 'flying' when created
+    expect(plane.status).to eq 'flying'
+  end
+
+  scenario 'plane can land at airport' do                                     # - planes have a status of 'landed' when at airport
+    plane = airport.land_plane
+    expect(plane.status).to eq 'landed'
     end
 
-  # scenario 'we have six planes in our fleet' do
-  #   expect(fleet.length).to eq 6
-  # end
-
-  scenario 'plane is in the air when created' do
-    plane = Plane.new
-    expect(plane.plane_status).to eq 'flying'
+  scenario 'plane can take-off from airport' do                               # - planes have a status of 'flying' after take-off
+    plane = airport.release_plane
+    expect(plane.status).to eq 'flying'
   end
 
-  scenario 'plane can take-off from airport' do
-    expect(plane.plane_status).to eq 'flying'
-  #   # airport = Airport.new
-  #   plane = airport.release_plane
-  #   expect(plane).to be_landed
-  end
-
-  # scenario 'plane cannot land when airport is full' do
-  #     airport = Airport.new # refactor this?
-  #     airport.capacity.times { something }
-  #     expect { airport.hangar # ?}.to raise_error 'Airport is full'
+  # scenario 'plane cannot land when airport is full' do                      # - plane cannot land when airport capacity is reached
+  #     capacity = Airport::DEFAULT_CAPACITY
+  #     capacity.times { airport.land_plane }
+  #     expect { airport.hangar }.to raise_error 'Airport is full'
   #   end
+
+  scenario 'plane cannot take-off when weather is "stormy"' do                # - plane cannot take-off when weather is "stormy"
+  end
+
+  scenario 'plane cannot land when weather is "stormy" ' do                   # - plane cannot land when weather is "stormy"
+  end
+
 end
-# plane = airport.land_plane

@@ -19,17 +19,17 @@ describe Airport do
 
     it 'allows a plane to land' do
       plane = double :plane
-      allow(plane).to receive(:land_plane) { 'landed'}
+      allow(plane).to receive(:land_plane) { 'landed' }
       airport = Airport.new
-      airport.land_plane
+      airport.land_plane plane
       expect(airport.hangar.count).to eq 1
     end
 
     it 'allows a plane to take-off' do
       plane = double :plane
-      allow(plane).to receive(:release_plane) { 'flying'}
+      allow(plane).to receive(:release_plane) { 'flying' }
       airport = Airport.new
-      airport.land_plane
+      airport.release_plane plane
       expect(airport.hangar.count).to be_empty?
 
     end
