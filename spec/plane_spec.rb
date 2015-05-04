@@ -26,10 +26,18 @@ describe Plane do
   	expect(subject).to be_flying
 	end
 
-  xit 'can take off'
 
+	it 'has a landed status when on the ground' do
+		plane = double :plane
+		allow(plane).to receive(:land) { true }
+		expect(plane.land).to eq true
+	end
 
-
-  xit 'changes its status to flying after taking off'
-
+ 	it 'can take off' do
+ 	plane = double :plane
+		allow(plane).to receive(:takeoff) { true }
+  	expect(plane.takeoff).to eq true
+  end
 end
+  #it 'changes its status to flying after taking off'
+
