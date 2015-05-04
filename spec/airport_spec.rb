@@ -1,10 +1,8 @@
 require 'airport'
 require 'plane'
-require 'weather'
 
 describe Airport do
   let(:plane) { Plane.new }
-  let(:weather) { Weather.new }
 
   context 'taking off and landing' do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -40,7 +38,7 @@ describe Airport do
 
     it 'a plane cannot take off if the weather is stormy' do
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.take_off plane}.to raise_error "Storm brewing"
+      expect { subject.take_off plane }.to raise_error "Storm brewing"
     end
   end
 end

@@ -4,7 +4,6 @@ require 'airport'
 describe Plane do
   let(:airport) { Airport.new }
 
-
   it { is_expected.to respond_to :landed? }
   it { is_expected.to respond_to :flying? }
 
@@ -16,7 +15,7 @@ describe Plane do
   it 'can land' do
     allow(subject).to receive(:stormy?) { false }
     airport.land(subject)
-    expect(subject).to be_landed
+    expect(subject).not_to be_flying
   end
 
   it 'can take off' do

@@ -14,7 +14,7 @@ class Airport
     if full?
       fail "Airport is full"
     else
-      (plane.landed = true) && (plane.flying = false)
+      plane.flying = false
       planes << plane
     end
   end
@@ -22,7 +22,6 @@ class Airport
   def take_off plane
     fail "Storm brewing" if stormy?
     plane.flying = true
-    plane.landed = false
     planes.delete(plane)
   end
 
