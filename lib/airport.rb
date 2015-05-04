@@ -18,7 +18,7 @@ class Airport
     @hangar << plane
   end
 
-private
+  private
 
   attr_reader :hangar
 

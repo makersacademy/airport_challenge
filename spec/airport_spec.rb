@@ -16,23 +16,21 @@ describe Airport do
   it { is_expected.to respond_to :land_plane }
   it { is_expected.to respond_to :release_plane }
 
-
-    it 'allows a plane to land' do
+  it 'allows a plane to land' do
       plane = double :plane
       allow(plane).to receive(:land_plane) { 'landed' }
       airport = Airport.new
       airport.land_plane plane
       expect(airport.hangar.count).to eq 1
-    end
+  end
 
-    it 'allows a plane to take-off' do
+  it 'allows a plane to take-off' do
       plane = double :plane
       allow(plane).to receive(:release_plane) { 'flying' }
       airport = Airport.new
       airport.release_plane plane
       expect(airport.hangar.count).to be_empty?
-
-    end
+  end
 
   context 'traffic control' do
 
