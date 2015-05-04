@@ -13,6 +13,8 @@ require 'airport'
 
 describe Airport do
 
+  let(:airport) {Airport.new}
+
   context 'taking off and landing' do
 
     it 'a plane can land' do
@@ -28,9 +30,18 @@ describe Airport do
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'a plane cannot land if the airport is full' do
     #implies the airport has capacity, therefore we
     #we need to define this
+    #if airport is at capacity
+      airport.capacity.times {airport.permission_to_land Plane.new}
+      expect { (airport.permission_to_land Plane.new) }.to raise_error 'Permission denied'
+    end
+
+
+
+
+    
 
 
 

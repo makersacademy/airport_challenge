@@ -16,29 +16,8 @@ describe Plane do
 
 	let(:plane) { Plane.new }
 
-  it 'has a flying status when created' do
-  	#we create plane, it has a status set to landed.
-  	#so our planes are all set to 'landed' by default.
-  	#so our test is expecting 'landed' to be the status
-  	#of a newly created plane
-  	expect(plane.status).to eq 'flying'
-  end
-
-  it 'has a flying status when in the air' do
-  	#we want our planes to have a status of 'flying'
-  	#once they've taken off, so we will need to include
-  	#our take_off method in our expectation
-  	#we expect plane.take_off to eq "flying"
-  	plane.take_off
-  	expect(plane.status).to eq 'flying'
-  end
-
-  it 'has status \'in maintenance\' when in in maintenance' do
-  #adding another test to check that a plane can have 
-  #a status saying 'being repaired' (so I can create
-  #the below test for being able to take off)
-	plane.maintenance
-  	expect(plane.status).to eq 'in maintenance'
+  it 'can land' do
+  	expect(plane).to respond_to :land
   end
 
   it 'can take off' do
@@ -55,6 +34,35 @@ describe Plane do
   	expect(plane).to respond_to :take_off
   end
 
+  it 'has a flying status when created' do
+  	#we create plane, it has a status set to landed.
+  	#so our planes are all set to 'landed' by default.
+  	#so our test is expecting 'landed' to be the status
+  	#of a newly created plane
+  	expect(plane.status).to eq 'flying'
+  end
+
+  it 'has a flying status when in the air' do
+  	#we want our planes to have a status of 'flying'
+  	#once they're in the air - would need to include
+  	#new attr for location??
+  end
+
+  it 'has status \'in maintenance\' when in in maintenance' do
+  #adding another test to check that a plane can have 
+  #a status saying 'being repaired' (so I can create
+  #the below test for being able to take off)
+	plane.maintenance
+  	expect(plane.status).to eq 'in maintenance'
+  end
+
+  # it 'is unable to take off when in maintenance' do
+  # 	#our plane cannot take_off if the status is
+  # 	#'in maintenance'
+  # 	plane.maintenance
+  # 	expect(plane).to raise_error "Plane currently in maintenance"
+  # end
+
   it 'changes its status to flying after taking off' do
   	#once the plane has taken off its status will instead
   	#be "flying". So we're expecting plane.status to eq
@@ -67,6 +75,5 @@ describe Plane do
   	plane.land
   	expect(plane.status).to eq 'landed'
   end
-
 
 end
