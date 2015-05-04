@@ -45,6 +45,8 @@ describe Airport do
     end
 
     xit 'planes cannot take off from airport if airport is empty' do
+      plane = Plane.new
+      airport {(airport.permi)}
     end
 
     # Include a weather condition.
@@ -57,10 +59,12 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing' do
+      it 'a plane cannot take off when there is a storm brewing' do
         #expect landed plane not to respond to take_off
         #if stormy_weather returns true
-        expect(airport).not_to respond_to :take_off
+        plane = double(:plane)
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect{ (airport.permission_to_takeoff :plane) }.to raise_error "Weather is stormy"
       end
 
       it 'a plane cannot land in the middle of a storm' do

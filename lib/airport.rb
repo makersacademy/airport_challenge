@@ -25,8 +25,23 @@ class Airport
     end
   end
 
+  def permission_to_takeoff plane
+    if stormy?
+      fail "Weather is stormy"
+    elsif empty?
+      fail "Apologies, there are no planes here!"
+    else
+      plane.take_off
+      @planes.pop
+    end
+  end
+
   def reached_capacity?
   	planes.length >= capacity
+  end
+
+  def empty?
+    @planes = []
   end
 
   def weather
