@@ -1,10 +1,9 @@
 class Airport
-  def allow_takeoff
 
+  def allow_takeoff (aeroplane)
   end
 
-  def allow_landing
-
+  def allow_landing (aeroplane)
   end
 
 end
