@@ -15,15 +15,10 @@ class Airport
   end
 
   def permission_to_land plane
-    fail 'permission denied' if 
+    fail 'permission denied' if
   end
 
   def location_of plane
     plane.location
   end
-
-  def
-
-
-  def
 end
