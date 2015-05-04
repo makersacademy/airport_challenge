@@ -15,23 +15,9 @@ require 'plane'
 describe Plane do
 
   context 'taking off and landing' do
+    it {is_expected.to respond_to :status}
     it { is_expected.to respond_to :land }
     it { is_expected.to respond_to :take_off }
 
-    end
-
-
-    xit 'has a flying status when created'
-
-  xit 'has a flying status when in the air'
-  #unit test for take off could be to expect your planes array to be empty?
-
-  #'can take off'
-
-
-  xit 'changes its status to flying after taking off'
-
-  # 'can land at airport'
-
-
+  end
 end

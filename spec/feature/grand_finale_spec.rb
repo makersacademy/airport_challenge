@@ -10,27 +10,37 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
   # scenario 'all planes can land and all planes can take off' do
-  stansted = Airport.new
+  heathrow = Airport.new
   plane = Plane.new
   # test make 6 planes
 
   scenario 'can land a plane' do
-    stansted.land plane
-    expect(stansted.planes.count).to eq 1
+    heathrow.land plane
+    expect(heathrow.planes.count).to eq 1
     expect(plane.status).to eq 'landed'
   end
 
   scenario 'plane can take off' do
-    stansted.take_off plane
-    expect(stansted.planes.count).to eq 0
+    heathrow.take_off plane
+    expect(heathrow.planes.count).to eq 0
     expect(plane.status).to eq 'flying'
   end
 
-  scenario 'traffic control' do # use with/as capacity statement
-      heathrow = Airport.new
-      6.times { heathrow.land Plane.new }
-      expect { heathrow.land Plane.new }.to raise_error 'Airport full'
-    end
+  scenario 'traffic control' do
+    heathrow = Airport.new
+    6.times { heathrow.land Plane.new }
+    expect { heathrow.land Plane.new }.to raise_error 'Airport full'
+  end
+
+  # scenario 'planes cannot land if weather stormy' do
+  #   plane = Plane.new
+  #   allow(airport).to receive(:weather) { 'stormy' }
+  #   heathrow = Airport.new
+  #   airport.take_off plane
+  #   expect(airport.take_off).to raise_error 'stormy cannot take_off'
+  # end
 end
 
+# prevent airplanes landing when the weather is stormy
 
+#Weather what method to use?

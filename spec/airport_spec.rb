@@ -26,9 +26,9 @@ describe Airport do
       expect(airport.planes.count).to eq 1
     end
 
-  # 'lets planes land'
-  #  'a plane can land'
-  #  'a plane can take off from airport'
+    # 'lets planes land'
+    # 'a plane can land'
+    # 'a plane can take off from airport'
 
   end
 
@@ -38,6 +38,7 @@ describe Airport do
       6.times { heathrow.land Plane.new }
       expect { heathrow.land Plane.new }.to raise_error 'Airport full'
     end
+  end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -48,10 +49,14 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+    # context 'weather conditions' do
+    #   it 'a plane cannot take off when there is a storm brewing' do
+    #     plane = Plane.new
+    #     allow(airport).to receive(:weather) { 'stormy' }
+    #     heathrow = Airport.new
+    #     airport.take_off plane
+    #     expect(airport.take_off).to raise_error 'stormy cannot take_off'
+    #   end
 
       xit 'a plane cannot land in the middle of a storm'
-    end
-  end
 end
