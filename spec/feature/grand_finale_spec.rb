@@ -23,6 +23,7 @@ feature "Fully functioning airport" do
     airport = Airport.new
     expect(plane.take_off airport).to eq airport
     expect(plane.status).to eq "flying"
+    expect(airport.launch_plane plane).to eq plane
   end
 
   scenario "To avoid collisions, planes cannot land when the airport is full" do
@@ -30,7 +31,20 @@ feature "Fully functioning airport" do
     6.times { airport.accept_plane Plane.new }
     plane = Plane.new
     expect { airport.accept_plane plane }.to raise_error "Airport is full"
-    expect(plane).to be_unlandable
+  end
+
+  scenario "Prevent airplanes from landing when it is stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?) { true }
+    expect { airport.accept_plane plane }.to raise_error "Stormy weather"
+  end
+
+  scenario "Prevent airplanes from taking off when there is a storm brewing" do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?) { true }
+    expect { airport.launch_plane plane }.to raise_error "Stormy weather"
   end
 end
 
