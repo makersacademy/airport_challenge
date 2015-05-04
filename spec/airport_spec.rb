@@ -30,24 +30,18 @@ describe Airport do
 
   context 'traffic control' do
 
+
+    it 'can get permission to land' do
+      expect(airport).to respond_to :permission_to_land
+    end
+
     it 'a plane cannot land if the airport is full' do
     #implies the airport has capacity, therefore we
     #we need to define this
     #if airport is at capacity
-      airport.capacity.times {airport.permission_to_land Plane.new}
-      expect { (airport.permission_to_land Plane.new) }.to raise_error 'Permission denied'
+      airport.capacity.times {airport.permission_to_land :plane}
+      expect { (airport.permission_to_land :plane) }.to raise_error 'Permission denied'
     end
-
-
-
-
-    
-
-
-
-
-
-
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
