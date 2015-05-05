@@ -13,8 +13,13 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
+
   it 'has a flying status when created' do
     expect(subject.status).to eq "flying"
+  end
+  it 'has a landed status when landed' do
+    subject.landed
+    expect(subject.status).to eq "landed"
   end
 end
 
