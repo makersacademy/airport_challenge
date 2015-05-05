@@ -9,10 +9,12 @@ require 'plane'
 # When we land a plane at the airport, the plane in question should
 # have its status changed to "landed"
 #
-# When the plane takes of from the airport, the plane's status
+# When the plane takes off from the airport, the plane's status
 # should become "flying"
 
 describe Plane do
+
+  it { is_expected.to respond_to :flying }
 
   xit 'has a flying status when created'
 

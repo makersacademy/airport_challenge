@@ -10,6 +10,11 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
 
-  xscenario 'all planes can land and all planes can take off'
-
+  scenario 'all planes can land and all planes can take off' do
+    airport = Airport.new # initialize a new object, an instance of the Airport class
+    planecome = airport.land # ask the airport to land a plane
+    planego = airport.takeoff # ask the airport to let a plane takeoff
+    expect(planecome).to arrive # expect the plane to respond to the method 'land?' with true
+    expect(planego).to leave # expect the bike to respond to the method 'takeoff?' with true
+  end
 end

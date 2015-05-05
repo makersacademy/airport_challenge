@@ -1,2 +1,4 @@
+
+—-require capybara/rspec
 --color --format documentation
 --require spec_helper
