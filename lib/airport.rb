@@ -22,7 +22,7 @@ class Airport
 
   def weather
     if rand(10) == 1
-      'stormy'
+      return'stormy'
     else 'sunny'
     end
   end
