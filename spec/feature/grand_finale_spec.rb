@@ -10,9 +10,8 @@ require 'capybara/rspec'
 
 feature 'Grand Finale' do
   # scenario 'all planes can land and all planes can take off' do
-  let (:heathrow) {Airport.new}
-  plane = Plane.new
-  # test make 6 planes
+  let(:heathrow) { Airport.new }
+  let(:plane) { Plane.new }
 
   scenario 'can land a plane' do
     heathrow.land plane
@@ -30,18 +29,18 @@ feature 'Grand Finale' do
 
   scenario 'traffic control' do
     allow(heathrow).to receive(:weather).and_return('sunny')
-    6.times { heathrow.land Plane.new }
-    expect { heathrow.land Plane.new }.to raise_error 'Airport full'
+    6.times { heathrow.land plane }
+    expect { heathrow.land plane }.to raise_error 'Airport full'
   end
 
   scenario 'planes cannot take_off in stormy weather' do
     allow(heathrow).to receive(:weather).and_return('stormy')
-    expect{ heathrow.take_off Plane.new }.to raise_error 'Stormy cannot take_off'
+    expect { heathrow.take_off plane }.to raise_error 'Do not take_off'
   end
 
   scenario 'planes cannot land in stormy weather' do
     allow(heathrow).to receive(:weather).and_return('stormy')
-    expect{heathrow.land Plane.new}.to raise_error 'Stormy cannot land'
+    expect { heathrow.land plane }.to raise_error 'Stormy cannot land'
   end
 end
 

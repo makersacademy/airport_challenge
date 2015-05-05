@@ -13,6 +13,8 @@ require 'airport'
 # ref bojo dock is full test and code
 
 describe Airport do
+  let(:gatwick) { Airport.new }
+  let(:plane) { Plane.new }
 
   context 'taking off and landing' do
     it { is_expected.to respond_to :land }
@@ -21,24 +23,17 @@ describe Airport do
     it 'should have a plane after landing' do
       plane = double :plane
       allow(plane).to receive(:land) { 'landed' }
-      airport = Airport.new
-      airport.land plane
-      allow(airport).to receive(:weather).and_return('sunny')
-      expect(airport.planes.count).to eq 1
+      gatwick.land plane
+      allow(gatwick).to receive(:weather).and_return('sunny')
+      expect(gatwick.planes.count).to eq 1
     end
-
-    # 'lets planes land'
-    # 'a plane can land'
-    # 'a plane can take off from airport'
-
   end
 
   context 'traffic control' do # use with/as capacity statement
     it 'a plane cannot land if the airport is full' do
-      heathrow = Airport.new
-      allow(heathrow).to receive(:weather).and_return('sunny')
-      6.times { heathrow.land Plane.new }
-      expect { heathrow.land Plane.new }.to raise_error 'Airport full'
+      allow(gatwick).to receive(:weather).and_return('sunny')
+      6.times { gatwick.land plane }
+      expect { gatwick.land plane }.to raise_error 'Airport full'
     end
   end
 
@@ -52,15 +47,13 @@ describe Airport do
 
   context 'weather conditions' do
     it 'a plane cannot take off when there is a storm brewing' do
-      heathrow = Airport.new
-      allow(heathrow).to receive(:weather).and_return('stormy')
-      expect{ heathrow.take_off Plane.new}.to raise_error 'Stormy cannot take_off'
+      allow(gatwick).to receive(:weather).and_return('stormy')
+      expect { gatwick.take_off plane } .to raise_error 'Do not take_off'
     end
 
     it 'a plane cannot land in the middle of a storm' do
-      heathrow = Airport.new
-      allow(heathrow).to receive(:weather).and_return('stormy')
-      expect{ heathrow.land Plane.new }.to raise_error 'Stormy cannot land'
+      allow(gatwick).to receive(:weather).and_return('stormy')
+      expect { gatwick.land plane }.to raise_error 'Stormy cannot land'
     end
   end
 end
