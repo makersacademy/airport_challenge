@@ -4,6 +4,7 @@ class Airport
   attr_accessor :hangar
   def initialize
     @hangar = []
+    @weather = 'sunny'
   end
 
   def takeoff plane
@@ -13,16 +14,22 @@ class Airport
   end
 
   def land plane
-    fail 'Airport full' if @hangar.count >= 6
+    @weather = weather
+    if @weather == 'stormy'
+      fail 'Cannot land in a storm'
+    elsif @hangar.count >= 6
+      fail 'Airport full'
+    else
     @hangar << plane
     plane.land
+    end
   end
 
-  # def weather
-  #   if rand(10)==1
-  #     'stormy'
-  #   else 'sunny'
-  #   end
-  # end
+  def weather
+    if rand(2)==1
+      'stormy'
+    else 'sunny'
+    end
+  end
 
 end

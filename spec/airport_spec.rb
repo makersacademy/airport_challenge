@@ -18,9 +18,9 @@ describe Airport do
     it 'has one plane after landing' do
       plane = double :plane
       allow(plane).to receive(:land) { 'landed' }
-      airport = Airport.new
-      airport.land plane
-      expect(airport.hangar.count).to eq 1
+      allow(subject).to receive(:weather) { 'sunny' }
+      subject.land plane
+      expect(subject.hangar.count).to eq 1
     end
   end
   # it 'allows a plane to take-off' do
@@ -33,19 +33,24 @@ describe Airport do
   context 'traffic control' do
 
     it 'raises an error when full' do
+      allow(subject).to receive(:weather) { 'sunny' }
       6.times { subject.land Plane.new }
       expect { subject.land Plane.new }.to raise_error 'Airport full'
     end
   end
 
-  # context 'weather conditions' do
-  #   it 'a plane cannot take off when there is a storm brewing' do
-  #     airport = Airport.new
-  #     subject.takeoff plane
-  #     allow(airport).to receive(:weather) { 'landed' }
-  #   end
-  # end
+  context 'weather conditions' do
+    # it 'a plane cannot take off when there is a storm brewing' do
+    #   airport = Airport.new
 
-  #     xit 'a plane cannot land in the middle of a storm'
-  # end
+    #   subject.takeoff plane
+    #   allow(airport).to receive(:weather) { 'stormy' }
+    # end
+
+    it 'a plane cannot land when weather is stormy' do
+      plane = Plane.new
+      allow(subject).to receive(:weather) { 'stormy' }
+      expect { subject.land plane}.to raise_error 'Cannot land in a storm'
+    end
+  end
 end
