@@ -24,3 +24,21 @@ feature 'Planes cannot land when airport is full' do
     expect { airport.allow_landing Plane.new }.to raise_error 'Airport is full!'
   end
 end
+
+# feature 'Planes cannot land when conditions are stormy' do
+#   scenario 'A plane tries to land when it\'s stormy' do
+#     aeroplane = Plane.new
+#     airport = Airport.new
+#     # (somehow knows it's stormy or not)
+#     expect { airport.allow_landing Plane.new }.to raise_error 'It\'s too stormy to fly!'
+#     end
+
+#   scenario 'A plane tries to take off when it\'s stormy' do |variable|
+#     aeroplane = Plane.new
+#     airport = Airport.new
+#     # (somehow knows it's stormy or not)
+#     expect { airport.allow_landing Plane.new }.to raise_error 'It\'s too stormy to land!'
+    # end
+
+  # end
+# end
