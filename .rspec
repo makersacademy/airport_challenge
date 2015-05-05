@@ -1,2 +1,4 @@
---color --format documentation
+--color §
 --require spec_helper
+--require capybara/rspec
+--format documentation
