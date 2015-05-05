@@ -1,4 +1,4 @@
-require 'plane'
+require './lib/plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -14,12 +14,40 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  let(:airport) { double :airport, accept_plane: true }
+
+  it { is_expected.to respond_to(:land).with(1).argument }
+
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+
+  it { is_expected.to respond_to :status }
+
+  it "should land at the right airport" do
+    expect(subject.land airport).to eq airport
+  end
+
+  it "should take off from the right airport" do
+    expect(subject.take_off airport).to eq airport
+  end
+
+  xit "should not be able to land if the airport is full" do
+  end
+
+  it 'has a flying status when created' do
+    expect(subject.status).to eq "flying"
+  end
+
+  it 'changes status to landed after it has landed' do
+    plane = Plane.new
+    plane.land airport
+    expect(plane.status).to eq "landed"
+  end
 
   xit 'has a flying status when in the air'
 
-  xit 'can take off'
-
-  xit 'changes its status to flying after taking off'
-
+  it 'changes its status to flying after taking off' do
+    subject.status = "landed"
+    subject.take_off airport
+    expect(subject.status).to eq "flying"
+  end
 end

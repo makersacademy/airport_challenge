@@ -13,16 +13,25 @@ require 'airport'
 
 describe Airport do
 
+  let(:airport) { Airport.new }
+  let(:plane) { double :plane }
+
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it { is_expected.to respond_to(:accept_plane).with(1).argument }
+    it { is_expected.to respond_to(:launch_plane).with(1).argument }
 
-    xit 'a plane can take off'
+    it 'can launch planes' do
+      expect(subject.launch_plane plane).to eq plane
+    end
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'should not let a plane land if the airport is full' do
+      6.times { subject.accept_plane plane }
+      expect { subject.accept_plane plane }.to raise_error "Airport is full"
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -34,9 +43,15 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      it 'a plane cannot take off when there is a storm brewing' do
+        allow(subject).to receive(:stormy?) { true }
+        expect { subject.launch_plane plane }.to raise_error "Stormy weather"
+      end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'prevents a plane from landing in the middle of a storm' do
+        allow(subject).to receive(:stormy?) { true }
+        expect { subject.accept_plane plane }.to raise_error "Stormy weather"
+      end
     end
   end
 end
