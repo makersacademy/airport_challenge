@@ -13,16 +13,39 @@ require 'airport'
 
 describe Airport do
 
+  let(:airport) {Airport.new}
+
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      plane = Plane.new
+      expect(plane).to respond_to :land
+    end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      plane = Plane.new
+      expect(plane).to respond_to :take_off
+    end
   end
 
   context 'traffic control' do
 
-    xit 'a plane cannot land if the airport is full'
+    it 'can get permission to land' do
+      expect(airport).to respond_to :permission_to_land
+    end
+
+    it 'a plane cannot land if the airport is full' do
+    #implies the airport has capacity, therefore we
+    #we need to define this
+    #if airport is at capacity
+      plane = Plane.new
+      airport.capacity.times {airport.permission_to_land plane}
+      expect { (airport.permission_to_land plane) }.to raise_error 'Permission denied'
+    end
+
+    it 'planes cannot take off from airport if airport is empty' do
+      expect { (airport.permission_to_takeoff :plane) }.to raise_error 'Apologies, there are no planes here!'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -34,9 +57,24 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+      it 'a plane cannot take off when there is a storm brewing' do
+        #expect landed plane not to respond to take_off
+        #if stormy_weather returns true
+        plane = double(:plane)
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect{ (airport.permission_to_takeoff :plane) }.to raise_error "Weather is stormy"
+      end
 
-      xit 'a plane cannot land in the middle of a storm'
+      it 'a plane cannot land in the middle of a storm' do
+        #want a method called stormy, if stormy equals true
+        #(this generated randomly) then the plane cannot land.
+        plane = double(:plane)
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect{ (airport.permission_to_land :plane) }.to raise_error "Weather is stormy"
+      end
+
+
+
     end
   end
 end
