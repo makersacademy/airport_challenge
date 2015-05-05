@@ -1,5 +1,7 @@
 require 'plane'
 
+
+
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -12,14 +14,30 @@ require 'plane'
 # When the plane takes of from the airport, the plane's status
 # should become "flying"
 
+
+
+
 describe Plane do
+	it {is_expected.to respond_to :flying?}
+	it {is_expected.to respond_to :landed?}
 
-  xit 'has a flying status when created'
+	
+  it 'has a flying status when in the air' do
+  	expect(subject).to be_flying
+	end
 
-  xit 'has a flying status when in the air'
 
-  xit 'can take off'
+	it 'has a landed status when on the ground' do
+		plane = double :plane
+		allow(plane).to receive(:land) { true }
+		expect(plane.land).to eq true
+	end
 
-  xit 'changes its status to flying after taking off'
-
+ 	it 'can take off' do
+ 	plane = double :plane
+		allow(plane).to receive(:takeoff) { true }
+  	expect(plane.takeoff).to eq true
+  end
 end
+  #it 'changes its status to flying after taking off'
+
