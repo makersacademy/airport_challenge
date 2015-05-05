@@ -23,6 +23,7 @@ describe Airport do
       allow(plane).to receive(:land) { 'landed' }
       airport = Airport.new
       airport.land plane
+      allow(airport).to receive(:weather).and_return('sunny')
       expect(airport.planes.count).to eq 1
     end
 
@@ -35,6 +36,7 @@ describe Airport do
   context 'traffic control' do # use with/as capacity statement
     it 'a plane cannot land if the airport is full' do
       heathrow = Airport.new
+      allow(heathrow).to receive(:weather).and_return('sunny')
       6.times { heathrow.land Plane.new }
       expect { heathrow.land Plane.new }.to raise_error 'Airport full'
     end
@@ -52,13 +54,13 @@ describe Airport do
     it 'a plane cannot take off when there is a storm brewing' do
       heathrow = Airport.new
       allow(heathrow).to receive(:weather).and_return('stormy')
-      expect(heathrow.take_off Plane.new).to raise_error 'stormy cannot take_off'
+      expect{ heathrow.take_off Plane.new}.to raise_error 'Stormy cannot take_off'
     end
 
     it 'a plane cannot land in the middle of a storm' do
       heathrow = Airport.new
       allow(heathrow).to receive(:weather).and_return('stormy')
-      expect(heathrow.land Plane.new).to raise_error 'stormy cannot take_off'
+      expect{ heathrow.land Plane.new }.to raise_error 'Stormy cannot land'
     end
   end
 end

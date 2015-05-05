@@ -9,9 +9,9 @@ class Airport
 
   def land(plane)
     fail 'Airport full' if @planes.count >= 6
-    fail 'Stormy cannot take_off' if weather == 'stormy'
     @planes << plane
     plane.land
+    fail 'Stormy cannot land' if weather == 'stormy'
   end
 
   def take_off(plane)
