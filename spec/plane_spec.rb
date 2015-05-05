@@ -13,8 +13,27 @@ require 'plane'
 # should become "flying"
 
 describe Plane do
+	let(:airport){ double(:airport) }
 
-  xit 'has a flying status when created'
+  it 'lands at Luton' do
+  	subject.land airport
+  	expect(subject.location).to eq airport
+  end
+
+  it 'has landed' do
+  	subject.land airport 
+  	expect(subject).to respond_to :landed?
+  end
+
+  it 'takes off from Heathrow' do 
+  	subject.take_off airport
+  	expect(subject.location).to eq airport
+  end
+
+  it 'is flying' do 
+  	subject.take_off airport
+  	expect(subject).not_to be_landed
+  end
 
   xit 'has a flying status when in the air'
 
