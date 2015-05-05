@@ -15,7 +15,10 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      subject.land :plane
+    end
+
 
     xit 'a plane can take off'
   end
