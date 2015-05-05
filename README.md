@@ -12,7 +12,7 @@ Instructions
 Steps
 -------
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (start by forking this repo, then edit week 1 - you can edit directly on Github)
+1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_april2015 (start by forking this repo, then edit week 1 - you can edit directly on Github)
 2. Fork this repo, and clone to your local machine
 3. Complete the following task:
 
