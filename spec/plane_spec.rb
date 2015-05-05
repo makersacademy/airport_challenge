@@ -14,12 +14,29 @@ require 'plane'
 
 describe Plane do
 
-  xit 'has a flying status when created'
+  context 'it can' do
 
-  xit 'has a flying status when in the air'
+    let (:heathrow) { Airport.new }
 
-  xit 'can take off'
+    it 'land' do
+      allow(heathrow).to receive(:storm_brewing) { 'sunny' }
+      heathrow.land(subject)
+      expect(subject::status).to eq "landed"
+    end
 
-  xit 'changes its status to flying after taking off'
+    it 'has a flying status when created' do
+      expect(subject::status).to eq "flying"
+    end
 
+    it 'has a flying status when in the air' do
+      expect(subject::status).to eq "flying"
+    end
+
+    it 'change its status to flying after taking off' do
+      allow(heathrow).to receive(:storm_brewing) { 'sunny' }
+      heathrow.land(subject)
+      heathrow.take_off(subject)
+      expect(subject::status).to eq "flying"
+    end
+  end
 end
