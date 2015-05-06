@@ -14,9 +14,9 @@ feature 'Grand Finale' do
   let(:plane) { Plane.new }
 
   scenario 'can land a plane' do
+    allow(heathrow).to receive(:weather).and_return('sunny')
     heathrow.land plane
     expect(heathrow.planes.count).to eq 1
-    allow(heathrow).to receive(:weather).and_return('sunny')
     expect(plane.status).to eq 'landed'
   end
 
