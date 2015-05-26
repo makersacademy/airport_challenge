@@ -1,6 +1,14 @@
 class Plane
-  def arrive
+
+  def initialize
+    @status = 'flying'
   end
-  def leave
+
+  def flying
+    @status = 'flying'
+  end
+
+  def land
+    @status = 'landed'
   end
 end

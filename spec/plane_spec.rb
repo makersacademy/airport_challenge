@@ -14,14 +14,21 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to :flying }
-
   xit 'has a flying status when created'
 
-  xit 'has a flying status when in the air'
+  it 'has a flying status when in the air' do
+    expect(subject).to be_flying
+  end
 
   xit 'can take off'
 
-  xit 'changes its status to flying after taking off'
+  it 'changes its status to flying after taking off' do
+    subject.fly
+    expect(subject.status).to eq 'flying'
+  end
 
+  it 'can land' do
+    subject.land
+    expect(subject.status).to eq 'landed'
+  end
 end
