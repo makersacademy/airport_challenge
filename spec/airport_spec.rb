@@ -2,6 +2,9 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+
+
+
   context 'Permission to land' do
     it { is_expected.to respond_to :allow_landing }
   end
@@ -11,9 +14,11 @@ describe Airport do
   end
 
   context 'When the airport is full' do
+
+
     it 'should raise error and refuse landing permission' do
       airport = Airport.new
-      6.times { subject.allow_landing Plane.new }
+      Airport::CAPACITY.times { subject.allow_landing Plane.new }
       expect { subject.allow_landing Plane.new }.to raise_error 'Airport is full!'
     end
   end
