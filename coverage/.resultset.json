@@ -84,6 +84,9 @@
         null,
         null,
         null,
+        null,
+        1,
+        null,
         null
       ],
       "/Users/kirstenjones/projects/airport_challenge/spec/plane_spec.rb": [
@@ -108,7 +111,7 @@
         null,
         2,
         null,
-        1,
+        2,
         null,
         1,
         null,
@@ -119,6 +122,6 @@
         null
       ]
     },
-    "timestamp": 1434130916
+    "timestamp": 1434131015
   }
 }

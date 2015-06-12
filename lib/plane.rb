@@ -16,4 +16,7 @@ class Plane
   # HOW TO CONNECT THE LAND METHOD
   # IN THE AIRPORT WITH THE FLYING? STATUS
   # OF THE PLANE
+
+  def land
+  end
 end
