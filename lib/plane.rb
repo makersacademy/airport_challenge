@@ -15,4 +15,8 @@ class Plane
   def landed?
     !flying
   end
+
+  def take_off
+
+  end
 end
