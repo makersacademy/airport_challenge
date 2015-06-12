@@ -7,4 +7,8 @@ class Plane
   def flying?
     flying
   end
+
+  def land
+
+  end
 end
