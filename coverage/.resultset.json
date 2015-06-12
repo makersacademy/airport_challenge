@@ -23,6 +23,8 @@
         1,
         null,
         null,
+        2,
+        null,
         1,
         1,
         null,
@@ -55,12 +57,23 @@
         1,
         null,
         1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/kirstenjones/projects/airport_challenge/lib/plane.rb": [
         1,
         null,
         1,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         1,
         0,
@@ -101,6 +114,6 @@
         null
       ]
     },
-    "timestamp": 1434129501
+    "timestamp": 1434130659
   }
 }
