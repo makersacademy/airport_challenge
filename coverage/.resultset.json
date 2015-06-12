@@ -53,6 +53,19 @@
       ],
       "/Users/kirstenjones/projects/airport_challenge/lib/airport.rb": [
         1,
+        null,
+        1,
+        null
+      ],
+      "/Users/kirstenjones/projects/airport_challenge/lib/plane.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/kirstenjones/projects/airport_challenge/spec/plane_spec.rb": [
@@ -74,7 +87,8 @@
         null,
         1,
         null,
-        1,
+        null,
+        2,
         null,
         1,
         null,
@@ -84,13 +98,9 @@
         null,
         1,
         null,
-        null
-      ],
-      "/Users/kirstenjones/projects/airport_challenge/lib/plane.rb": [
-        1,
         null
       ]
     },
-    "timestamp": 1434127928
+    "timestamp": 1434129501
   }
 }
