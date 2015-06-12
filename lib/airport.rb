@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  def land plane
+  def receive_plane plane
   end
 
 

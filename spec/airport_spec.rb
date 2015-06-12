@@ -19,7 +19,7 @@ describe Airport do
     xit 'releases a plane'
   end
 
-  it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:receive_plane).with(1).argument }
 
   describe 'landing' do
     xit 'instructs a plane to land'
