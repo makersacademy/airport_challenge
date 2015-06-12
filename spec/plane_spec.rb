@@ -41,4 +41,11 @@ describe Plane do
     expect(plane).to be_flying
   end
 
+  it 'should not be landed after take off' do
+    plane = Plane.new
+    plane.land
+    plane.take_off
+    expect(plane).not_to be_landed
+  end
+
 end
