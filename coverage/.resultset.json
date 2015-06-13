@@ -51,6 +51,32 @@
         null,
         null
       ],
+      "/Users/gerardmorera/Desktop/airport_challenge/spec/flight_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        2,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/gerardmorera/Desktop/airport_challenge/lib/flight.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/gerardmorera/Desktop/airport_challenge/spec/plane_spec.rb": [
         1,
         null,
@@ -64,6 +90,6 @@
 
       ]
     },
-    "timestamp": 1434220642
+    "timestamp": 1434221926
   }
 }
