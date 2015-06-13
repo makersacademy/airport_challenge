@@ -14,27 +14,41 @@ require 'plane'
 
 describe Airport do
 
+  describe 'Airport' do
+
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
   describe 'take off' do
 
     it 'instructs a plane to take off' do
-      expect(subject).to respond_to :release_plane
+      expect(subject).to respond_to :take_off
     end
 
     it 'releases a plane' do
       plane = Plane.new
       subject.land_plane plane
-      expect(subject.release_plane plane).to be plane
+      expect(subject.take_off plane).to be plane
+    end
+  end
+
+  describe 'land pland' do
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to :land_plane
     end
 
+
+    it 'receives a plane' do
+      plane = Plane.new
+      expect(subject.land_plane plane).to eq [plane]
+    end
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
-  end
 
   describe 'traffic control' do
+
     context 'when airport is full' do
       xit 'does not allow a plane to land'
     end
@@ -50,9 +64,9 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       xit 'does not allow a plane to take off'
-
       xit 'does not allow a plane to land'
     end
+
   end
 
 end
