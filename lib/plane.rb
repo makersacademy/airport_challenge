@@ -32,4 +32,9 @@ class Plane
   def prepare_to_take_off
     self.can_take_off = true
   end
+
+  def take_off
+    self.can_take_off = false
+    self.flying = true
+  end
 end

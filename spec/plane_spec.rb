@@ -39,7 +39,9 @@ describe Plane do
       expect(subject.prepare_to_take_off).to eq true
     end
 
-    xit 'is flying after take off'
+    it 'is flying after take off' do
+      expect(subject.take_off).to eq true
+    end
   end
 
 end

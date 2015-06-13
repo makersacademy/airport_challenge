@@ -14,7 +14,7 @@ require 'airport'
 describe Airport do
 
   describe 'taking off' do
-    context 'instructs a plane to take off' do
+    context 'instructing a plane to take off' do
       it { is_expected.to respond_to(:instruct_take_off).with(1).argument }
 
       it 'tells take_off_plane to prepare_to_take_off' do
@@ -24,7 +24,16 @@ describe Airport do
       end
     end
 
-    xit 'releases a plane'
+    context 'releasing a plane' do
+      it { is_expected.to respond_to(:release).with(1).argument}
+
+      it 'releases a plane if that plane can take off' do
+        take_off_plane = Plane.new
+        take_off_plane.flying = false
+        subject.instruct_take_off(take_off_plane)
+        expect(subject.release(take_off_plane)).to eq true
+      end
+    end
   end
 
   describe 'landing' do
