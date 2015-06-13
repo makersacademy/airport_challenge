@@ -17,11 +17,11 @@ require 'plane'
 describe Plane do
 
   it 'is flying when created' do
-    expect(subject.flying?).to eq true
+    expect(subject.flying).to eq true
   end
 
   it 'cannot land when created' do
-    expect(subject.can_land?).to eq false
+    expect(subject.can_land).to eq false
   end
 
   describe 'landing' do

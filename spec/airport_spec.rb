@@ -17,7 +17,7 @@ describe Airport do
     context 'instructs a plane to take off' do
       it { is_expected.to respond_to(:instruct_take_off).with(1).argument }
 
-      xit 'tells take_off_plane to prepare_to_take_off' do
+      it 'tells take_off_plane to prepare_to_take_off' do
         take_off_plane = Plane.new
         take_off_plane.flying = false
         expect(subject.instruct_take_off(take_off_plane)).to eq true
