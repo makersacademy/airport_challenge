@@ -39,4 +39,9 @@ describe Plane do
     expect(subject).to be_flying
   end
 
+  it 'is not flying when landed' do
+    subject.landing
+    expect(subject).to_not be_flying  
+  end
+
 end

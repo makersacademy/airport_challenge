@@ -8,9 +8,9 @@ attr_reader :planes
     planes = []
   end
 
-
   def land plane
-   planes << plane
+    plane.landing
+    planes << plane
   end
 
 
