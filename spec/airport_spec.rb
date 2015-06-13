@@ -34,7 +34,7 @@ describe Airport do
     it 'cannot release a plane which is not at the airport' do
       p = double :plane
       p.stub(:take_off)
-      p.stub(:land)
+      subject.stub(:current_weather).and_return('sunny')
       expect{subject.take_off p}.to raise_error 'The plane is not at the airport'
 
     end
@@ -44,6 +44,7 @@ describe Airport do
       p.stub(:take_off)
       p.stub(:land)
       subject.landing p
+      subject.stub(:current_weather).and_return('sunny')
       expect(subject.take_off p).to be p.take_off
     end
 
@@ -69,9 +70,17 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+        subject.stub(:current_weather).and_return('stormy')
+        expect{subject.take_off double(:plane)}.to raise_error 'Too stormy to take off'
+      end
 
-      xit 'does not allow a plane to land'
+      xit 'does not allow a plane to land' do
+
+      end
+
     end
+
   end
+
 end

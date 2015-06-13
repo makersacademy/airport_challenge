@@ -10,6 +10,7 @@ class Airport
   end
 
   def take_off plane
+    fail 'Too stormy to take off' if current_weather == 'stormy'
     fail 'The plane is not at the airport' unless planes.include?(plane)
     planes.delete(plane)
     plane.take_off
@@ -27,6 +28,11 @@ class Airport
 
   def full?
     planes.count >= capacity
+  end
+
+  def current_weather
+    weather_conditions = ['sunny','stormy']
+    weather_conditions[rand(weather_conditions.length)]
   end
 
   private
