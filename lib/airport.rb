@@ -3,20 +3,20 @@ require_relative 'plane'
 class Airport
 
   DEFAULT_CAPACITY = 5
-  DEFAULT_WEATHER = true
+  # DEFAULT_WEATHER = true
 
   attr_accessor :capacity
 
   def initialize
     @planes=[]
     @capacity = DEFAULT_CAPACITY
-    @weather = DEFAULT_WEATHER
+    @weather = true
   end
 
   def check_the_weather
     random = rand(3)
-    @weather = false if random == 1
-    return @weather
+    @weather = random == 1 ? false : true
+    @weather
   end
 
 
@@ -26,12 +26,14 @@ class Airport
   end
 
   def release_plane
+    fail "\n\n*****   WARNING!! Weather is stormy, plane is not authorized to take off  *****\n\n".upcase if !@weather
     fail "\n\n*****   Airport is empty   *****\n\n".upcase if empty?
     @planes.pop
   end
 
   def landing plane
     fail "\n\n*****   Airport is full   *****\n\n".upcase if full?
+    fail "\n\n*****   WARNING!! Weather is stormy, plane is not authorized to landing  *****\n\n".upcase if !@weather
     planes << plane
   end
 
