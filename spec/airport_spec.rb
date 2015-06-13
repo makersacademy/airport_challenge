@@ -17,14 +17,15 @@ it {is_expected.to respond_to(:land).with(1).argument}
 
   # describe 'take off' do
   #   it 'instructs the plane to take off' do
-  #     expect (subject).to respond_to :take_off
+  #     expect (subject).to take_off
   #   end
   # end
 #   describe 'take off' do
 #     xit 'instructs a plane to take off'
 
-#     xit 'releases a plane'
-#   end
+    # it 'releases a plane' do
+    #   plane = :double Plane 
+    # end
 
 #   describe 'landing' do
 #     xit 'instructs a plane to land'
