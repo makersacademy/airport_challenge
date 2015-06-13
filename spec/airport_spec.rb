@@ -23,7 +23,7 @@ describe Airport do
       p.stub(:land)
       subject.stub(:current_weather).and_return('sunny')
       subject.landing p
-      expect(subject).not_to be_empty
+      expect(subject.planes[-1]).to be p
     end
   end
 

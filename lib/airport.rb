@@ -3,6 +3,7 @@ require_relative 'plane'
 class Airport
 
   attr_accessor :capacity
+  attr_reader :planes
 
   def initialize capacity=100
     @planes = []
@@ -23,21 +24,15 @@ class Airport
     plane.land
   end
 
-  def empty?
-    planes.empty?
-  end
-
   def full?
     planes.count >= capacity
   end
+
+  private
 
   def current_weather
     weather_conditions = ['sunny','stormy']
     weather_conditions[rand(weather_conditions.length)]
   end
-
-  private
-
-  attr_reader :planes
 
 end
