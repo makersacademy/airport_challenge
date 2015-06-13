@@ -6,16 +6,17 @@ class Airport
     @planes = []
   end
 
-  def take_off plane
-    planes.pop
+  def take_off
+    Plane.new
   end
 
-  def landing plane
+  def land plane
     planes << plane
   end
 
   def traffic_control
-    raise 'Plane can not land, the airport is full.'
+    fail 'Plane can not land, the airport is full.' if @planes
+    @planes = plane
   end
 
   def empty?

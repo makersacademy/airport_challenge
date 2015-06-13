@@ -13,16 +13,12 @@ require 'plane'
 
 describe Plane do
 
- # it { is_expected.to respond_to landed? }
-
   it 'is flying after take off' do
-    airport = Airport.new
-    airport.take_off subject
-    expect(subject).to be_flying
+    expect(subject).to respond_to :flying?
   end
 
-  #it 'is landed after landing' do
-  #  expect(subject).to be_landed
-  #end
+  it 'is landed after landing' do
+    expect(subject.landed?).to eq false
+  end
 
 end

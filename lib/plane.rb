@@ -1,19 +1,19 @@
 class Plane
 
-  def flying?
-    true
+  def initialize
+    @flying = true
   end
 
-  #def landed?
-  #  true
-  #end
+  def flying?
+    flying
+  end
 
-#  def request_landing
+  def landed?
+    not flying
+  end
 
- # end
+  private
 
-  #def request_take_off
-
- # end
-
+  attr_reader :flying
+  
 end

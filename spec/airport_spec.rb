@@ -16,7 +16,7 @@ describe Airport do
   describe 'take off' do
 
     it 'releases a plane' do
-      subject.take_off Plane.new
+      subject.take_off
       expect(subject).to be_empty
     end
   end
@@ -24,7 +24,7 @@ describe Airport do
   describe 'landing' do
 
     it 'receives a plane' do
-      subject.landing Plane.new
+      subject.land Plane.new
       expect(subject).not_to be_empty
     end
 
