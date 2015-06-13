@@ -13,10 +13,11 @@ require 'airport'
 
 describe Airport do
 
+it {is_expected.to respond_to(:land).with(1).argument}
 
   # describe 'take off' do
   #   it 'instructs the plane to take off' do
-  #     expect(Plane.new).to respond_to take_off
+  #     expect (subject).to respond_to :take_off
   #   end
   # end
 #   describe 'take off' do

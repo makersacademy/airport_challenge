@@ -17,6 +17,7 @@
         null,
         1,
         null,
+        2,
         null,
         null,
         null,
@@ -62,11 +63,16 @@
         null,
         1,
         null,
+        1,
         null,
         null,
         null,
         null,
         null,
+        null,
+        null,
+        null,
+        1,
         null,
         null,
         null
@@ -74,7 +80,6 @@
       "/Users/makerslaptop65/Desktop/Projects/Week 1/airport_challenge/lib/plane.rb": [
         1,
         null,
-        1,
         null,
         1,
         1,
@@ -82,7 +87,6 @@
         null,
         1,
         1,
-        null,
         null,
         null,
         null
@@ -118,11 +122,9 @@
         null,
         null,
         null,
-        null,
-        null,
         null
       ]
     },
-    "timestamp": 1434224546
+    "timestamp": 1434224925
   }
 }

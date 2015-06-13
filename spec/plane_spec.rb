@@ -20,9 +20,7 @@ describe Plane do
     expect(subject).to be_flying
   end
 
-  # it 'can land' do
-  #   expect(subject).to land
-  # end
+  
 
 #   xit 'is landed after landing'
 
