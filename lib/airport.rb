@@ -9,6 +9,7 @@ DEFAULT_CAPACITY = 50
   end
 
   def land_plane plane
+    fail 'Airport is full' if @planes.count >= capacity
     plane.land
     @planes << plane
   end
