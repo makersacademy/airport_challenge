@@ -11,14 +11,19 @@ describe Airport do
   describe 'take off' do
     let(:plane) {Plane.new}
     it 'a plane should be able to take off when the weather is sunny' do
-       expect(subject).to receive(:weather) {'sunny'}
-       subject.landing(plane)
-       expect(subject).to receive(:weather) {'sunny'}
-       subject.take_off
-       expect(subject).to be_empty
+      expect(subject).to receive(:weather) {'sunny'}
+      subject.landing(plane)
+      expect(subject).to receive(:weather) {'sunny'}
+      subject.take_off
+      expect(subject).to be_empty
     end
 
-    xit 'releases a plane'
+    it 'a plane is actually released when its sunny' do
+      expect(subject).to receive(:weather) {'sunny'}
+      subject.landing(plane)
+      expect(subject).to receive(:weather) {'sunny'}
+      expect(subject.take_off).to be_an_instance_of(Plane)
+    end
   end
 
   describe 'landing' do
@@ -44,10 +49,10 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'a plane should not be able to take off' do
-       expect(subject).to receive(:weather) {'sunny'}
-       subject.landing(plane)
-       expect(subject).to receive(:weather) {'stormy'}
-       expect{subject.take_off}.to raise_error 'The weather is too stormy to take-off'
+        expect(subject).to receive(:weather) {'sunny'}
+        subject.landing(plane)
+        expect(subject).to receive(:weather) {'stormy'}
+        expect{subject.take_off}.to raise_error 'The weather is too stormy to take-off'
       end
 
       it 'a plane should not be able to land' do
