@@ -18,4 +18,8 @@ class Plane
     @landed
   end
 
+  def take_off
+
+  end  
+
 end
