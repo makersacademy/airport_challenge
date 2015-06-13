@@ -2,6 +2,7 @@ require_relative 'airport'
 
 class Plane
 
+
   def initialize
     @flying = true
   end
@@ -16,7 +17,7 @@ class Plane
   end
 
   def landed?
-    @flying = false
+    !@flying
   end
 
   # NEED TO ADD SOME WAY FOR PLANE TO KNOW
@@ -26,6 +27,10 @@ class Plane
   # OF THE PLANE
 
   def land
-    !@flying
+    @flying = false
+  end
+
+  def takeoff
+    @flying = true
   end
 end
