@@ -15,13 +15,14 @@ describe Airport do
 
 it {is_expected.to respond_to(:land).with(1).argument}
 
-  # describe 'take off' do
-  #   it 'instructs the plane to take off' do
-  #     plane = double :Plane, landed?: true
-  #     plane.take_off
-  #   end
+  describe 'take off' do
+    it 'instructs the plane to take off' do
+      plane = double :Plane, landed?: true
+      plane.take_off
+      expect(subject.take_off).to be_flying
+    end
+  end
 
-  # end
 #   describe 'take off' do
 #     xit 'instructs a plane to take off'
 
