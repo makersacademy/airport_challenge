@@ -13,11 +13,22 @@ require 'airport'
 
 describe Airport do
 
+  describe 'instruct_plane'
+
    it {is_expected.to respond_to :instruct_plane}
+
+   # it 'Give route and authorization if weather it"s good'
+   #  expect {subject.instruct_plane}.not_to raise_error "Route assigned, weather is sunny, plane authorized to take off"
+
+  describe 'release_plane'
 
    it {is_expected.to respond_to :release_plane}
 
-   it {is_expected.to respond_to :check_the_wheather}
+   it {is_expected.to respond_to :check_the_weather}
+
+
+
+
 
   # describe 'take off' do
   #   it 'instructs a plane to take off'
