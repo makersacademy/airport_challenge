@@ -30,8 +30,11 @@ describe Airport do
       it 'releases a plane if that plane can take off' do
         take_off_plane = Plane.new
         take_off_plane.flying = false
+        subject.planes << take_off_plane
         subject.instruct_take_off(take_off_plane)
-        expect(subject.release(take_off_plane)).to eq true
+        #expect(subject.release(take_off_plane)).to eq true
+        subject.release(take_off_plane)
+        expect(subject.planes.length).to eq 0
       end
     end
   end

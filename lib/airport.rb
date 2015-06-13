@@ -25,6 +25,7 @@ class Airport
 
   def release(take_off_plane)
     take_off_plane.take_off if take_off_plane.can_take_off == true
+    planes.delete_if { |a| a == take_off_plane }
   end
 
   def full
