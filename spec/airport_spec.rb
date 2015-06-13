@@ -13,7 +13,7 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
+  describe 'taking off' do
     xit 'instructs a plane to take off'
 
     xit 'releases a plane'
@@ -31,6 +31,12 @@ describe Airport do
 
     context 'receiving a plane' do
       it {is_expected.to respond_to(:receive).with(1).argument }
+
+      it 'receives a plane if that plan can land' do
+        landing_plane = Plane.new
+        subject.instruct_landing(landing_plane)
+        expect(subject.receive(landing_plane)).to eq false
+      end
     end
   end
 

@@ -7,6 +7,6 @@ class Airport
   end
 
   def receive(landing_plane)
-
+    landing_plane.land if landing_plane.can_land?
   end
 end

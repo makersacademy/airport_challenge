@@ -17,6 +17,9 @@ class Plane
 
   def prepare_to_land
     self.can_land = true
-    #ask about this, relative to the :working example
+  end
+
+  def land
+    self.flying = false
   end
 end
