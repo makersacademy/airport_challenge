@@ -14,6 +14,7 @@ DEFAULT_CAPACITY = 50
   end
 
   def take_off_plane plane
+    fail 'No planes available' if @planes.empty?
     plane.take_off
     @planes.delete plane
   end
