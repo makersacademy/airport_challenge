@@ -16,6 +16,8 @@ require 'plane'
 
 describe Plane do
 
+  it { is_expected.to respond_to :grounded? }
+
   xit 'is flying when created'
 
   xit 'can land'

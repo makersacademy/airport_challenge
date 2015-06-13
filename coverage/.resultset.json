@@ -21,6 +21,11 @@
         null,
         1,
         1,
+        1,
+        null,
+        null,
+        1,
+        1,
         null,
         1,
         null,
@@ -54,6 +59,8 @@
         null
       ],
       "/Users/loliphant/Documents/Projects/airport_challenge/lib/airport.rb": [
+        1,
+        null,
         null,
         null,
         null,
@@ -65,7 +72,16 @@
         1,
         null,
         1,
+        1,
         null,
+        null,
+        null
+      ],
+      "/Users/loliphant/Documents/Projects/airport_challenge/lib/plane.rb": [
+        1,
+        null,
+        1,
+        1,
         null,
         null,
         null
@@ -89,7 +105,7 @@
         null,
         1,
         null,
-        1,
+        2,
         null,
         1,
         null,
@@ -99,13 +115,11 @@
         null,
         1,
         null,
-        null
-      ],
-      "/Users/loliphant/Documents/Projects/airport_challenge/lib/plane.rb": [
         1,
+        null,
         null
       ]
     },
-    "timestamp": 1434219880
+    "timestamp": 1434229246
   }
 }

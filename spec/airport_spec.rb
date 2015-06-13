@@ -15,6 +15,11 @@ describe Airport do
 
   it { is_expected.to respond_to :release_plane }
 
+  it 'releases grounded planes' do
+    plane = subject.release_plane
+    expect(plane).to be_grounded
+  end
+
   describe 'take off' do
     xit 'instructs a plane to take off'
 
