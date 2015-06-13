@@ -18,8 +18,9 @@ describe Airport do
 
     it {is_expected.to respond_to :take_off}
 
-    it 'releases a plane' do
+    xit 'releases a plane' do
       it expects(subject.take_off).to
+    end
 
   end
 
