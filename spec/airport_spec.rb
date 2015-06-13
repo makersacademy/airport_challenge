@@ -20,7 +20,11 @@ describe Airport do
       subject.take_off_plane plane
     end
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      plane = double :plane, take_off: true, land: false
+      subject.land_plane plane
+      expect(subject.take_off_plane plane).to be plane
+    end
   end
 
   describe 'landing' do
@@ -31,7 +35,7 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      plane = double :plane, land: true
+      plane = double :plane, land: false
       expect(subject.land_plane plane).to eq [plane]
     end
   end
