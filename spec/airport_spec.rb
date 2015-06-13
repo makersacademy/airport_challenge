@@ -15,7 +15,8 @@ describe Airport do
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-      plane = double :plane
+      plane = double :plane, land: false
+      subject.land_plane plane
       expect(plane).to receive :take_off
       subject.take_off_plane plane
     end
@@ -24,6 +25,11 @@ describe Airport do
       plane = double :plane, take_off: true, land: false
       subject.land_plane plane
       expect(subject.take_off_plane plane).to be plane
+    end
+
+    it 'raises an erro when empty' do
+      plane = double :plane, take_off: true
+      expect{subject.take_off_plane plane}.to raise_error 'No planes available'
     end
   end
 
