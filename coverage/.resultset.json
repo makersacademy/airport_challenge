@@ -1,0 +1,69 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/gerardmorera/Desktop/airport_challenge/spec/airport_spec.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/gerardmorera/Desktop/airport_challenge/spec/plane_spec.rb": [
+        1,
+        null,
+        null
+      ],
+      "/Users/gerardmorera/Desktop/airport_challenge/lib/plane.rb": [
+        1,
+        null
+      ],
+      "/Users/gerardmorera/Desktop/airport_challenge/spec/weather_spec.rb": [
+
+      ]
+    },
+    "timestamp": 1434220642
+  }
+}
