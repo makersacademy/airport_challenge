@@ -9,4 +9,8 @@ class Airport
   def receive(landing_plane)
     landing_plane.land if landing_plane.can_land?
   end
+
+  def instruct_take_off(take_off_plane)
+
+  end
 end

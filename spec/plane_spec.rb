@@ -24,16 +24,22 @@ describe Plane do
     expect(subject.can_land?).to eq false
   end
 
-  it 'can prepare_to_land when instructed' do
-    expect(subject.prepare_to_land).to eq true
+  describe 'landing' do
+    it 'can prepare_to_land when instructed' do
+      expect(subject.prepare_to_land).to eq true
+    end
+
+    it 'is landed after landing' do
+      expect(subject.land).to eq false
+    end
   end
 
-  it 'is landed after landing' do
-    expect(subject.land).to eq false
+  describe 'taking off' do
+    it 'can prepare_to_take_off when instructed' do
+      expect(subject.prepare_to_take_off).to eq true
+    end
+
+    xit 'is flying after take off'
   end
-
-  xit 'can take off'
-
-  xit 'is flying after take off'
 
 end
