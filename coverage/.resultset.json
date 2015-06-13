@@ -53,12 +53,6 @@
       ],
       "/Users/DuskyShelf/Projects/airport_challenge/lib/airport.rb": [
         1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
         null
       ],
       "/Users/DuskyShelf/Projects/airport_challenge/spec/plane_spec.rb": [
@@ -90,30 +84,51 @@
         null,
         null,
         1,
-        null,
+        1,
+        1,
         1,
         null,
+        null,
+        null,
         1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null,
         null
       ],
       "/Users/DuskyShelf/Projects/airport_challenge/lib/plane.rb": [
         1,
         1,
+        5,
+        null,
+        null,
+        1,
+        null,
+        1,
         2,
         null,
         null,
         1,
-        null,
-        1,
         1,
         null,
         null,
+        1,
+        2,
+        null,
+        null,
+        1,
         1,
         null,
         null
       ]
     },
-    "timestamp": 1434224867
+    "timestamp": 1434225376
   }
 }
