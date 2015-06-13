@@ -19,6 +19,10 @@ describe Airport do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
+
+    it 'can set the default capacity' do
+      expect(subject.capacity=(20)).to eq 20
+    end
   end
 
   describe 'take off' do
@@ -50,8 +54,12 @@ describe Airport do
   describe 'traffic control' do
 
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times {subject.land_plane(Plane.new)}
+        expect{subject.land_plane(Plane.new)}.to raise_error "Airport is full"
+      end
     end
+
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
