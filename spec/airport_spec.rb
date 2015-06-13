@@ -31,9 +31,19 @@ describe Airport do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
 
+    it 'cannot release a plane which is not at the airport' do
+      p = double :plane
+      p.stub(:take_off)
+      p.stub(:land)
+      expect{subject.take_off p}.to raise_error 'The plane is not at the airport'
+
+    end
+
     it 'releases a plane' do
       p = double :plane
       p.stub(:take_off)
+      p.stub(:land)
+      subject.landing p
       expect(subject.take_off p).to be p.take_off
     end
 
@@ -41,7 +51,12 @@ describe Airport do
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        p = double :plane
+        p.stub(:land)
+        subject.capacity.times{subject.landing p}
+        expect{subject.landing p}.to raise_error 'Cannot land plane. Airport is full'
+      end
     end
 
     # Include a weather condition.
