@@ -13,9 +13,14 @@ class Airport
   end
 
   def requesting_take_off
-    fail 'Sorry - no planes to take off!' if empty?
-    plane = @planes.pop
-    plane.take_off
+    if empty?
+      fail 'No planes to take off!'
+    elsif forecast == 'stormy'
+      fail 'It\'s too stormy to fly!'
+    else
+      plane = @planes.pop
+      plane.take_off
+    end
   end
 
   def empty?
@@ -23,18 +28,27 @@ class Airport
   end
 
   def landing plane
-    fail 'The airport is full!' if @planes.count >= DEFAULT_CAPACITY
-    plane.land
-    @planes << plane
-  end
-
-  def traffic_control
-    weather = rand(1..5)
-    if weather == 5
-      puts 'stormy'
+    if @planes.count >= DEFAULT_CAPACITY
+      fail 'The airport is full!'
+    elsif forecast == 'stormy'
+      fail 'It\'s too stormy to land!'
     else
-      puts 'sunny'
+      plane.land
+      @planes << plane
     end
   end
+
+  def weather
+    rand(6)
+  end
+
+  def forecast
+    if weather == 5
+      'stormy'
+    else
+      'sunny'
+    end
+  end
+
 
 end
