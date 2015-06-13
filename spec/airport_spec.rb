@@ -14,7 +14,11 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      plane = double :plane
+      expect(plane).to receive :take_off
+      subject.take_off_plane plane
+    end
 
     xit 'releases a plane'
   end
