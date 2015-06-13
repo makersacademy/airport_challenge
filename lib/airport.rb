@@ -11,6 +11,7 @@ class Airport
 
   def take_off_plane plane
     plane.take_off
+    @planes.delete plane
   end
 
 end
