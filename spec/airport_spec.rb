@@ -14,26 +14,44 @@ require 'plane'
 
 describe Airport do
 
+   it 'has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it {is_expected.to respond_to :check_the_weather}
+
+
   describe 'instruct_plane'
 
    it {is_expected.to respond_to :instruct_plane}
 
-   # it 'Give route and authorization if weather it"s good'
-   #  expect {subject.instruct_plane}.not_to raise_error "Route assigned, weather is sunny, plane authorized to take off"
 
   describe 'release_plane'
 
-   it {is_expected.to respond_to :release_plane}
+    it {is_expected.to respond_to :release_plane}
 
-   it 'releases a plane if weather is good' do
-    planes = ['plane1','plane2']
-    expect(subject.release_plane planes).to eq ('plane2')
-  end
+    it 'releases a plane' do
+    plane = double :plane
+    subject.landing plane
+    expect(subject.release_plane).to be plane
+    end
 
-   it {is_expected.to respond_to :check_the_weather}
 
 
-   it {is_expected.to respond_to :landing}
+
+  describe 'landing'
+
+    it {is_expected.to respond_to :landing}
+
+    it 'raise an error if full' do
+      subject.capacity.times {subject.landing double :plane}
+      expect {subject.landing :plane}.to raise_error "\n\n*****   Airport is full   *****\n\n".upcase
+
+
+
+    end
+
+
 
 
 

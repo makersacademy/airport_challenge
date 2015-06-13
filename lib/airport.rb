@@ -5,6 +5,8 @@ class Airport
   DEFAULT_CAPACITY = 5
   DEFAULT_WEATHER = true
 
+  attr_accessor :capacity
+
   def initialize
     @planes=[]
     @capacity = DEFAULT_CAPACITY
@@ -23,11 +25,27 @@ class Airport
     return print "\n\n*****   WARNING!! Weather is stormy, plane is not authorized to take off   *****\n\n".upcase if !@weather
   end
 
-  def release_plane planes
-    planes.pop
+  def release_plane
+    fail "\n\n*****   Airport is empty   *****\n\n".upcase if empty?
+    @planes.pop
   end
 
-  def landing
+  def landing plane
+    fail "\n\n*****   Airport is full   *****\n\n".upcase if full?
+    planes << plane
+  end
+
+
+  private
+
+  attr_reader :planes
+
+  def empty?
+    planes.empty?
+  end
+
+  def full?
+    planes.count >= @capacity
   end
 
 
