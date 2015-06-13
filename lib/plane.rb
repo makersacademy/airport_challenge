@@ -11,12 +11,12 @@ class Plane
   end
 
   def landed?
-    !@flying
+    @landed = true
   end
 
   def landing
-    @landed = true
     @flying = false
+    @landed = true
   end
 
 end

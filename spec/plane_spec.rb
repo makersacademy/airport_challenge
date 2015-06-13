@@ -18,14 +18,14 @@ describe Plane do
 
   it { is_expected.to respond_to :flying? }
 
+  it { is_expected.to respond_to :landing }
+
   it { is_expected.to respond_to :landed? }
 
 
-it 'is flying when created' do
+  it 'is flying when created' do
     expect(subject).to be_flying
   end
-
-  # xit 'can land'
 
   it 'is landed after landing' do
     subject.landing
