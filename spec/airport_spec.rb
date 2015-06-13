@@ -26,7 +26,10 @@ describe Airport do
       subject.land_plane plane
     end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      plane = double :plane, land: true
+      expect(subject.land_plane plane).to eq [plane]
+    end
   end
 
   describe 'traffic control' do
