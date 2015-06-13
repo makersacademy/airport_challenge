@@ -49,17 +49,36 @@ describe Airport do
     context 'receiving a plane' do
       it {is_expected.to respond_to(:receive).with(1).argument }
 
-      it 'receives a plane if that plane can land' do
+      # it 'receives a plane if that plane can land' do
+      #   landing_plane = Plane.new
+      #   subject.instruct_landing(landing_plane)
+      #   expect(subject.receive(landing_plane)).to eq Airport::planes
+      # end
+
+      it 'stores planes received in an array' do
         landing_plane = Plane.new
         subject.instruct_landing(landing_plane)
-        expect(subject.receive(landing_plane)).to eq false
+        subject.receive(landing_plane)
+        expect(subject.planes.length).to eq 1
       end
+
     end
   end
 
   describe 'traffic control' do
+
+
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = Plane.new
+        subject.instruct_landing(plane)
+        subject.receive(plane)
+
+        plane2 = Plane.new
+        subject.instruct_landing(plane2)
+        expect { subject.receive(plane2) }.to raise_error "Airport is full"
+
+      end
     end
 
     # Include a weather condition.
