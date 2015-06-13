@@ -27,7 +27,7 @@ describe Airport do
       expect(subject.take_off_plane plane).to be plane
     end
 
-    it 'raises an erro when empty' do
+    it 'raises an error when empty' do
       plane = double :plane, take_off: true
       expect{subject.take_off_plane plane}.to raise_error 'No planes available'
     end
