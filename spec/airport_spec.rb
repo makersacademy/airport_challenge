@@ -20,7 +20,7 @@ describe Airport do
   end
 
   describe 'landing' do
-    context 'of instructing a plane to land' do
+    context 'instructing a plane to land' do
       it { is_expected.to respond_to(:instruct_landing).with(1).argument }
 
       it 'tells landing_plane to prepare_to_land' do
@@ -29,7 +29,9 @@ describe Airport do
       end
     end
 
-    xit 'receives a plane'
+    context 'receiving a plane' do
+      it {is_expected.to respond_to(:receive).with(1).argument }
+    end
   end
 
   describe 'traffic control' do
