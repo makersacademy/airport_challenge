@@ -9,7 +9,14 @@ describe Airport do
   end
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    let(:plane) {Plane.new}
+    it 'a plane should be able to take off when the weather is sunny' do
+       expect(subject).to receive(:weather) {'sunny'}
+       subject.landing(plane)
+       expect(subject).to receive(:weather) {'sunny'}
+       subject.take_off
+       expect(subject).to be_empty
+    end
 
     xit 'releases a plane'
   end
@@ -23,30 +30,31 @@ describe Airport do
       expect(subject).not_to be_empty
     end
 
-
-    it 'a plane should not be able to land when the airport is full' do
-      expect(subject).to receive(:weather) {'sunny'}
-      expect(subject).to receive(:full?) {true}
-      expect{subject.landing(plane)}.to raise_error 'The airport is currently full'
-    end
-
-    it 'a plane should not be able to land when the weather is stormy' do
-      expect(subject).to receive(:weather) {'stormy'}
-      expect{subject.landing(plane)}.to raise_error 'The weather is too stormy to land'
-  
-    end
-
   end
 
   describe 'traffic control' do
+    let(:plane) {Plane.new}
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'a plane should not be able to land' do
+        expect(subject).to receive(:weather) {'sunny'}
+        expect(subject).to receive(:full?) {true}
+        expect{subject.landing(plane)}.to raise_error 'The airport is currently full'
+      end
     end
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'a plane should not be able to take off' do
+       expect(subject).to receive(:weather) {'sunny'}
+       subject.landing(plane)
+       expect(subject).to receive(:weather) {'stormy'}
+       expect{subject.take_off}.to raise_error 'The weather is too stormy to take-off'
+      end
 
-      xit 'does not allow a plane to land'
+      it 'a plane should not be able to land' do
+        expect(subject).to receive(:weather) {'stormy'}
+        expect{subject.landing(plane)}.to raise_error 'The weather is too stormy to land'
+
+      end
     end
   end
 end
