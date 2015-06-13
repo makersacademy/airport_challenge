@@ -48,6 +48,13 @@ describe Airport do
       plane = double :plane, land: false
       expect(subject.land_plane plane).to eq [plane]
     end
+
+    it 'prevents plane from landing if full' do
+      plane = double :plane, land: false
+      subject.capacity.times {subject.land_plane plane}
+      expect{subject.land_plane plane}.to raise_error 'Airport is full'
+    end
+
   end
 
   describe 'traffic control' do
