@@ -14,7 +14,9 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to(:take_off).with(1).argument
+    end
 
     xit 'releases a plane'
   end
