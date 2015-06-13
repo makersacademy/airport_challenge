@@ -1,28 +1,22 @@
-Airport Challenge
-=================
+Description:
+-----------
 
-Instructions
----------
+We are building a system to control the flow of planes at an airport. Our system will allow planes to land and take off from the designated airport. Our system will keep track of the number of planes at each airport. Occasionally airports will be full - planes will not be permitted to land if the airport if full. Planes will only be allowed to take off if the weather is sunny; when the weather is stormy planes will be prevented from taking off.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, still check in a partial solution
-* You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
--------
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_june2015 (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When teh installation completes, run `bundle`
-3. Complete the following task:
+# A plane currently in the airport can be requested to take off.
+#
+# No more planes can be added to the airport, if it's full.
+# It is up to you how many planes can land in the airport
+# and how that is implemented.
+#
+# If the airport is full then no planes can land
 
-Task
------
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client.
 
+User stories:
+------------
 ```
 As a pilot
 So that I can arrive at my specified destination
@@ -61,4 +55,35 @@ Note that is a practice 'Tech Test' of the kinds that employers use to screen de
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
 
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
+
+
+What I did:
+
+* First I put pen to paper to break down the problem into smaller parts to make it easier to understand - constructed basic domain model
+* Class-responsibility-collaboration cards for Plane and Airport classes to help organise in my mind
+
+
+
+On top of the card, the class name
+On the left, the responsibilities of the class
+On the right, collaborators (other classes) with which this class interacts to fulfill its responsibilities
+
+Check the following:
+Tests pass
+Tests coverage is good
+The code is elegant: every class has a clear responsibility, methods are short etc.
+
+
+QUESTIONS TO ASK YOURSELF:
+
+Has it matched the specification?
+Is it clean code?
+CI - Has it passed Continuous Integration
+OOD - How well-designed is it?
+OOP - Are your objects SOLID?
+TDD - How well tested is it?
+MVC - Have you understood how to build an MVC app properly?
+DRY
+KISS
+You Aren't Gonna Need It
+Principle of Least Astonishment

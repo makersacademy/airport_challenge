@@ -13,6 +13,8 @@ require 'airport'
 
 describe Airport do
 
+  it { is_expected.to respond_to :release_plane }
+
   describe 'take off' do
     xit 'instructs a plane to take off'
 
