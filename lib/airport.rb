@@ -17,8 +17,8 @@ class Airport
 
 
   def instruct_plane
-    return print "Route assigned, weather is sunny, plane authorized to take off" if @weather
-    return print "WARNING!! Weather is stormy, plane is not authorized to take off" if !@weather
+    return print "\n\n*****   Route assigned, weather is sunny, plane authorized to take off   *****\n\n".upcase if @weather
+    return print "\n\n*****   WARNING!! Weather is stormy, plane is not authorized to take off   *****\n\n".upcase if !@weather
   end
 
   def release_plane

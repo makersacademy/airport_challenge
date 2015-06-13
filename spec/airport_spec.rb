@@ -24,6 +24,12 @@ describe Airport do
 
    it {is_expected.to respond_to :release_plane}
 
+   it 'releases a plane in weather is good' do
+    plane = double :plane, weather: true
+    subject.release_plane
+    expect(subject.release_plane).to be :plane
+  end
+
    it {is_expected.to respond_to :check_the_weather}
 
 
