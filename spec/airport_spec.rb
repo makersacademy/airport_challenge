@@ -19,7 +19,9 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      subject.landing double :plane
+      p = double :plane
+      p.stub(:land)
+      subject.landing p
       expect(subject).not_to be_empty
     end
   end
@@ -30,9 +32,9 @@ describe Airport do
     end
 
     it 'releases a plane' do
-      p = double(:plane)
-      subject.landing p
-      expect(subject.take_off p).to be p
+      p = double :plane
+      p.stub(:take_off)
+      expect(subject.take_off p).to be p.take_off
     end
 
   end

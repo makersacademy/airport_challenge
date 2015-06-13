@@ -8,11 +8,11 @@ class Airport
 
   def take_off plane
     planes.delete(plane)
-    plane
+    plane.take_off
   end
 
   def landing plane
-    planes << plane
+    planes << plane.land
   end
 
   def empty?
