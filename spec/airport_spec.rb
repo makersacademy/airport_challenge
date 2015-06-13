@@ -18,7 +18,10 @@ describe Airport do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      p = double :plane
+      expect(subject.take_off p).to be p
+    end
   end
 
   describe 'landing' do
