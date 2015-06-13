@@ -6,4 +6,8 @@ class Airport
     plane
   end
 
+  def landing plane
+
+  end
+
 end
