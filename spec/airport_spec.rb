@@ -15,6 +15,8 @@ describe Airport do
 
    it {is_expected.to respond_to :instruct_plane}
 
+   it {is_expected.to respond_to :release_plane}
+
 
   # describe 'take off' do
   #   it 'instructs a plane to take off'

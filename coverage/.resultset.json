@@ -19,6 +19,8 @@
         null,
         2,
         null,
+        2,
+        null,
         null,
         null,
         null,
@@ -58,7 +60,11 @@
       "/Users/massimilianomura/MakersProjects/WEEK 1/airport_challenge/lib/airport.rb": [
         1,
         null,
+        1,
+        0,
         null,
+        null,
+        1,
         null,
         null,
         null,
@@ -100,6 +106,6 @@
         null
       ]
     },
-    "timestamp": 1434204994
+    "timestamp": 1434208837
   }
 }
