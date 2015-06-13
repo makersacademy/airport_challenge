@@ -13,36 +13,42 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
-  end
+  # describe 'take off' do
+  #   it 'instructs the plane to take off' do
+  #     expect(Plane.new).to respond_to take_off
+  #   end
+  # end
+#   describe 'take off' do
+#     xit 'instructs a plane to take off'
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+#     xit 'releases a plane'
+#   end
 
-    xit 'receives a plane'
-  end
+#   describe 'landing' do
+#     xit 'instructs a plane to land'
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
-    end
+#     xit 'receives a plane'
+#   end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+#   describe 'traffic control' do
+#     context 'when airport is full' do
+#       xit 'does not allow a plane to land'
+#     end
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+#     # Include a weather condition.
+#     # The weather must be random and only have two states "sunny" or "stormy".
+#     # Try and take off a plane, but if the weather is stormy,
+#     # the plane can not take off and must remain in the airport.
+#     #
+#     # This will require stubbing to stop the random return of the weather.
+#     # If the airport has a weather condition of stormy,
+#     # the plane can not land, and must not be in the airport
 
-      xit 'does not allow a plane to land'
-    end
-  end
+#     context 'when weather conditions are stormy' do
+#       xit 'does not allow a plane to take off'
+
+#       xit 'does not allow a plane to land'
+#     end
+#   end
 end
