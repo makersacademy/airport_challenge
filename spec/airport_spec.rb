@@ -21,6 +21,7 @@ describe Airport do
     it 'receives a plane' do
       p = double :plane
       p.stub(:land)
+      subject.stub(:current_weather).and_return('sunny')
       subject.landing p
       expect(subject).not_to be_empty
     end
@@ -43,8 +44,8 @@ describe Airport do
       p = double :plane
       p.stub(:take_off)
       p.stub(:land)
-      subject.landing p
       subject.stub(:current_weather).and_return('sunny')
+      subject.landing p
       expect(subject.take_off p).to be p.take_off
     end
 
@@ -55,6 +56,7 @@ describe Airport do
       it 'does not allow a plane to land' do
         p = double :plane
         p.stub(:land)
+        subject.stub(:current_weather).and_return('sunny')
         subject.capacity.times{subject.landing p}
         expect{subject.landing p}.to raise_error 'Cannot land plane. Airport is full'
       end
@@ -75,8 +77,9 @@ describe Airport do
         expect{subject.take_off double(:plane)}.to raise_error 'Too stormy to take off'
       end
 
-      xit 'does not allow a plane to land' do
-
+      it 'does not allow a plane to land' do
+        subject.stub(:current_weather).and_return('stormy')
+        expect{subject.landing double(:plane)}.to raise_error 'Too stormy to land'
       end
 
     end

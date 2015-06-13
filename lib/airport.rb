@@ -17,6 +17,7 @@ class Airport
   end
 
   def landing plane
+    fail 'Too stormy to land' if current_weather == 'stormy'
     fail 'Cannot land plane. Airport is full' if full?
     planes << plane
     plane.land
