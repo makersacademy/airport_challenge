@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -24,13 +25,15 @@ describe Airport do
 
    it {is_expected.to respond_to :release_plane}
 
-   it 'releases a plane in weather is good' do
-    plane = double :plane, weather: true
-    subject.release_plane
-    expect(subject.release_plane).to be :plane
+   it 'releases a plane if weather is good' do
+    planes = ['plane1','plane2']
+    expect(subject.release_plane planes).to eq ('plane2')
   end
 
    it {is_expected.to respond_to :check_the_weather}
+
+
+   it {is_expected.to respond_to :landing}
 
 
 

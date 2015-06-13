@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   DEFAULT_CAPACITY = 5
@@ -21,8 +23,13 @@ class Airport
     return print "\n\n*****   WARNING!! Weather is stormy, plane is not authorized to take off   *****\n\n".upcase if !@weather
   end
 
-  def release_plane
+  def release_plane planes
+    planes.pop
+  end
+
+  def landing
   end
 
 
 end
+
