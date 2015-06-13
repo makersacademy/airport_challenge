@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -14,9 +15,17 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to :release_plane
+    end
+
+    it 'releases a plane' do
+      plane = Plane.new
+      subject.land_plane plane
+      expect(subject.release_plane plane).to be plane
+    end
+
   end
 
   describe 'landing' do
@@ -45,4 +54,5 @@ describe Airport do
       xit 'does not allow a plane to land'
     end
   end
+
 end
