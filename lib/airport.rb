@@ -21,6 +21,7 @@ class Airport
 
   def traffic_control
     fail 'Plane can not land, the airport is full.' if full?
+    fail 'Plane is egibible to land'
   end
 
   def full?

@@ -25,7 +25,7 @@ describe Airport do
     end
   end
 
-  describe 'landing' do
+  describe 'land' do
 
     it 'receives a plane' do
       subject.land Plane.new
