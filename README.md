@@ -1,6 +1,14 @@
 Airport Challenge
 =================
 
+My strategy:
+I did the airport challenge following the same sort of steps that I did in boris-bikes.
+By this I mean I was essentially just replacing bikes with planes, dockingstation with
+the airport, and whether or not the bike was working with the actual weather.
+This made the challenge pretty straightforward, and I know I'll be able to look back 
+on both of these repo's in the future if I ever need a reference.
+
+
 Instructions
 ---------
 
