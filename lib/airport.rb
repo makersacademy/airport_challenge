@@ -4,21 +4,22 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  attr_accessor :capacity, :weather
+  attr_accessor :capacity
+  attr_reader :weather
 
 
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
-    @weather = 'sunny'
+    @weather='sunny'
   end
 
-  def check_weather
+  def weather
     rand < 0.5 ? @weather = 'stormy' : @weather = 'sunny'
   end
 
   def take_off(plane)
-    check_weather
+    weather
     fail "No planes in airport" if empty?
     fail 'Plane cannot take-off due to bad weather' if stormy?
     planes.pop
