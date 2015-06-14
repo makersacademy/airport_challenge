@@ -1,64 +1,30 @@
-Airport Challenge
-=================
+Brief description of task:
+-------------------------
 
-Instructions
----------
+We are building a system to control the flow of planes at an airport. Our system will allow planes to land and take off from the designated airport. Our system will keep track of the number of planes at each airport. Occasionally airports will be full - planes will not be permitted to land if the airport if full. Planes will only be allowed to take off if the weather is sunny; when the weather is stormy planes will be prevented from taking off.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, still check in a partial solution
-* You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
--------
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_june2015 (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When teh installation completes, run `bundle`
-3. Complete the following task:
+What I did:
+-----------
 
-Task
------
+* First I put pen to paper to break down the problem into smaller parts to make it easier to understand - constructed basic domain model
+* Class-responsibility-collaboration cards for Plane and Airport classes to help organise user stories into classes and responsibilities
+* I started with the plane class as it seemed like the most straight forward, firstly I created a method for airborne, and set it's state to true in the initialize method to, so that all instances of the Plane class are airborne when created. From there I added a take off and a land method
+* For the airport class I added a default capacity of 100 planes, created an error message to be run when a plane attempted to land at an airport that had reached this max capacity.
+* I created en empty planes array for each instance of airport to track the number of planes and created methods for landing planes and receiving_planes to manipulate this array
+* I had trouble naming methods appropriate names within the Airport class
+* I also had issues with the various tests in the airport_spec - instructing plane to land, receiving a plane, instruction plane to take off, and releasing plane tests - I haven't managed to implement tests that actually test anything so far...
+* Where possible I used examples and parts of the Boris Bike example and applied them to the Airport challenge - eg. for capacity and planes array to keep track of the number of grounded planes at the airport, I modelled the landing and release_plane classes on the dock and release_bike classes
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client.
 
-```
-As a pilot
-So that I can arrive at my specified destination
-I would like to land my plane at the appropriate airport
 
-As a pilot
-So that I can set off for my specified destination
-I would like to be able to take off from the appropriate airport
 
-As an air traffic controller
-So that I can avoid collisions
-I want to be able to prevent airplanes landing when the airport if full
 
-As an air traffic controller
-So that I can avoid accidents
-I want to be able to prevent airplanes landing when the weather is stormy
-```
+What I have left to do:
+----------------------
 
-Your task is to test drive the creation a set of classes/modules to satisfy all the above user stories. You will need to use random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
+* Implement weather condition tests for stormy and sunny conditions - using stubs to stop randomly returned weather conditions - in all honesty I am not sure how I would go about doing this - I hit a blocker at this stage
+*  In order to satisfy I would add some form of weather method that returns randomly generated weather states of 'stormy' and 'sunny'
+* Add additional functionality
 
-The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests, and a pending 'grand finale' feature test that combines a number of features. It is up to you to implement the tests and create additional tests as necessary.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
-
-Please create separate files for every class, module and test suite. 
-
-The submission will be judged on the following criteria:
-
-* Tests pass
-* Tests coverage is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
-
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
-
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am

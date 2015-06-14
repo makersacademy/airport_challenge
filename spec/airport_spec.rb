@@ -1,33 +1,54 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  let(:plane) { Plane.new }
 
-    xit 'releases a plane'
+  it { is_expected.to respond_to(:landing).with(1).argument }
+
+  it { is_expected.to respond_to :release_plane }
+
+  it 'has a DEFAULT capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+
+  describe 'take off' do
+
+    # it 'instructs a plane to take off' do
+    #   subject.landing plane
+    #   subject.release_plane
+    # end
+
+    it 'releases planes' do
+      # what expectation can you add here that actually tests something?
+      subject.release_plane
+    end
+
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
 
-    xit 'receives a plane'
+    # it 'instructs a plane to land' do
+    #   subject.landing plane
+    #   plane.land
+    # end
+
+    it 'receives a plane' do
+      # what expectation can you add here that actually tests something?
+      subject.landing plane
+    end
   end
 
   describe 'traffic control' do
+
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+
+      it 'does not allow plane to land' do
+        subject.capacity.times { subject.landing plane }
+        expect { subject.landing plane }.to raise_error 'The airport is full!'
+      end
+
     end
 
     # Include a weather condition.
