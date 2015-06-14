@@ -19,12 +19,31 @@ describe Airport do
     end
 
 
-    xit 'receives a plane'
+    it 'receives a plane' do 
+      test_plane = double :plane, flying?: true
+      subject.land test_plane
+      expect(subject.landed_planes).to eq [test_plane]
+    end
+  end
+
+  describe 'capacity' do 
+    it 'has a (default) maximum capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'airport has no landed planes when created' do 
+      expect(subject.landed_planes).to eq []
+    end
+
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times {subject.land double :plane, flying?: true}
+        expect{subject.land double :plane}.to raise_error "Airport is full"
+      end
+
     end
 
     # Include a weather condition.
