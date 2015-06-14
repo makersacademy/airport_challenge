@@ -21,7 +21,7 @@ class Airport
   end
 
   def landing plane
-    fail 'It is too stormy to land' if stormy?
+    fail 'Cant land too stormy' if stormy?
     fail 'The airport is full' if full?
     planes << plane
     plane.landing
