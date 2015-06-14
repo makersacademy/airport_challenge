@@ -9,6 +9,7 @@ describe Airport do
   end
 
   describe 'take off' do
+
     let(:plane){Plane.new}
 
     it 'releases a plane' do
@@ -29,9 +30,21 @@ describe Airport do
       expect{subject.requesting_take_off}.to raise_error 'No planes to take off!'
     end
 
+    context 'when weather conditions are stormy' do
+
+      it 'raises an error when plane tries to take off' do
+        allow(subject).to receive(:weather) {4}
+        subject.landing plane
+        allow(subject).to receive(:weather) {10}
+        expect{subject.requesting_take_off}.to raise_error 'It\'s too stormy to fly!'
+      end
+
+    end
+
   end
 
   describe 'landing' do
+
     let(:plane){Plane.new}
 
     it 'receives a plane' do
@@ -47,10 +60,26 @@ describe Airport do
       expect(plane).to be_landed
     end
 
-    it 'raises an error message when the airport is full' do
+    it 'raises an error when the airport is full' do
       allow(subject).to receive(:weather) {4}
-      15.times {subject.landing plane}
+      15.times {subject.landing Plane.new}
       expect{subject.landing plane}.to raise_error 'The airport is full!'
+    end
+
+    it 'raises an error when landing a plane that has already landed' do
+      allow(subject).to receive(:weather) {4}
+      subject.landing plane
+      expect{subject.landing plane}.to raise_error 'That plane has already landed!'
+    end
+
+    context 'when weather conditions are stormy' do
+      let(:plane){Plane.new}
+
+      it 'raises an error when plane tries to land' do
+        allow(subject).to receive(:weather) {10}
+        expect{subject.landing plane}.to raise_error 'It\'s too stormy to land!'
+      end
+
     end
 
   end
@@ -58,30 +87,14 @@ describe Airport do
   describe 'weather' do
 
     it 'sets weather status as stormy if number is 5' do
-      allow(subject).to receive(:weather) {5}
+      allow(subject).to receive(:weather) {10}
       expect(subject.forecast).to eq 'stormy'
     end
 
-  end
-
-  describe 'traffic control' do
-
-    let(:plane){Plane.new}
-
-    context 'when weather conditions are stormy' do
-
-      it 'raises an error when plane tries to land' do
-        allow(subject).to receive(:weather) {5}
-        expect{subject.landing plane}.to raise_error 'It\'s too stormy to land!'
-      end
-
-      it 'raises an error when plane tries to take off' do
-        subject.landing plane
-        allow(subject).to receive(:weather) {5}
-        expect{subject.requesting_take_off}.to raise_error 'It\'s too stormy to fly!'
-      end
-
+    it 'sets weather status as stormy if number is not 5' do
+      allow(subject).to receive(:weather) {3}
     end
+
   end
 
 end
