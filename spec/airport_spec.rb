@@ -21,22 +21,26 @@ describe Airport do
   end
 
   describe 'take off' do
-    it 'instructs a plane to take off' do
+    it 'instructs a plane to take off if sunny' do
+      allow(subject).to receive(:weather) {'sunny'}
       expect(subject).to respond_to :take_off
     end
 
-    it 'releases a plane'do
+    it 'releases a plane if sunny'do
+    allow(subject).to receive(:weather) {'sunny'}
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes.count).to eq 0
     end
 
     describe 'landing' do
-      it 'instructs a plane to land' do
+      it 'instructs a plane to land if sunny' do
+        allow(subject).to receive(:weather) {'sunny'}
         expect(subject).to respond_to :land
       end
 
-      it 'receives a plane' do
+      it 'receives a plane if sunny' do
+        allow(subject).to receive(:weather) {'sunny'}
         subject.land(plane)
         expect(subject.planes.count).to eq 1
       end
@@ -45,6 +49,7 @@ describe Airport do
     describe 'traffic control' do
       context 'when airport is full' do
         it 'does not allow a plane to land'do
+          allow(subject).to receive(:weather) {'sunny'}
           subject.capacity.times{subject.land(plane)}
           expect{subject.land(plane)}.to raise_error 'The airport is full!'
         end

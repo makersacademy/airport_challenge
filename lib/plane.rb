@@ -7,7 +7,7 @@ attr_accessor :landing
   @landed = false
   end
 
-  def landing
+  def land
     @landed =true
     @flying =false
   end

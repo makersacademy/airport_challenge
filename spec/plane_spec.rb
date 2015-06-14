@@ -27,12 +27,12 @@ describe Plane do
 it {expect(subject).to respond_to :landing}
 
   it 'is landed after landing' do
-    subject.landing
+    subject.land
     expect(subject).to be_landed
   end
 
  it 'is not flying after landing' do
- subject.landing
+ subject.land
  expect(subject).not_to be_flying
 end
 
