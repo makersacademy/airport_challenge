@@ -11,16 +11,32 @@ DEFAULT_CAPACITY = 50
   end
 
   def land_plane plane
-    fail 'Airport is full' if @planes.count >= capacity
-    fail 'stormy weather cannot land' if weather == :stormy
+    fail 'Airport is full' if full?
+    fail 'stormy weather cannot land' if stormy?
     plane.land
     @planes << plane
   end
 
   def take_off_plane plane
-    fail 'No planes available' if @planes.empty?
-    fail 'stormy weather cannot take off' if weather == :stormy
+    fail 'No planes available' if empty?
+    fail 'stormy weather cannot take off' if stormy?
     plane.take_off
     @planes.delete plane
   end
+
+
+  private
+
+  def stormy?
+    weather == :stormy
+  end
+
+  def empty?
+    @planes.empty?
+  end
+
+  def full?
+    @planes.count >= capacity
+  end
+
 end
