@@ -9,11 +9,13 @@ class Airport
   end
 
   def instruct_plane_to_take_off plane
+    fail "Cannot allow take off due to stormy weather" if stormy?
     plane.takeoff
     release_plane(plane)
   end
 
   def instruct_plane_to_land plane
+    fail "Cannot allow land request due to stormy weather" if stormy?
     plane.land
     receive_plane plane
   end
@@ -33,6 +35,14 @@ class Airport
 
   def full?
     planes.count >= capacity
+  end
+
+  def weather
+    "fine"
+  end
+
+  def stormy?
+    weather == :stormy
   end
 
   private
