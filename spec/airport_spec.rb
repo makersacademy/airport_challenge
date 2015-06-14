@@ -20,7 +20,6 @@ it { is_expected.to respond_to(:land).with(1).argument }
 
   describe 'take off' do
 
-    #THIS TEST IS PROBLEMATIC ----ASK FOR HELP
     it 'instructs a plane to take off' do
       plane = double :plane, landing: false
       allow(subject).to receive(:weather){'sunny'}
@@ -39,7 +38,7 @@ it { is_expected.to respond_to(:land).with(1).argument }
     describe 'landing' do
 
       it 'instructs plane to land - receives a plane' do
-        plane = Plane.new
+        plane = double :plane, landing: false
         subject.land plane
         expect(subject).not_to be_empty
       end
@@ -54,7 +53,6 @@ it { is_expected.to respond_to(:land).with(1).argument }
     
     context 'when airport is full' do
 
-      #THIS TEST IS PROBLEMATIC ---- ASK FOR HELP
       it 'does not allow a plane to land' do
         plane = double :plane, landing: false
         allow(subject).to receive(:weather){:sunny}
@@ -74,10 +72,22 @@ it { is_expected.to respond_to(:land).with(1).argument }
 #     # If the airport has a weather condition of stormy,
 #     # the plane can not land, and must not be in the airport
 
-#     context 'when weather conditions are stormy' do
-#       xit 'does not allow a plane to take off'
+    context 'when weather conditions are stormy' do
+      
+      it 'does not allow a plane to take off' do
+        plane = double :plane, landing: false
+        allow(subject).to receive(:weather){"sunny"}
+        subject.land plane
+        allow(subject).to receive(:weather){"stormy"}
+        expect{subject.release_plane plane}.to raise_error 'Too stormy to take off'
+      end
 
-#       xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = double :plane, landing: false
+        allow(subject).to receive(:weather){"stormy"}
+        expect{subject.land plane}.to raise_error 'Too stormy to land'
+      end
     end
+  end
   end
 end
