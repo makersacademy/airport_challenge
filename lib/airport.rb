@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  DEFAULT_CAPACITY = 10
+  DEFAULT_CAPACITY = 5
 
   attr_accessor :capacity
 
@@ -25,8 +25,8 @@ class Airport
 
   def release_plane plane
     check_the_weather
+     fail "\n\n*****   Airport is empty   *****\n\n".upcase if empty?
     fail "\n\n*****   WARNING!! It's stormy, plane is not authorized to take off  *****\n\n".upcase if !@weather
-    fail "\n\n*****   Airport is empty   *****\n\n".upcase if empty?
     @planes.pop
     print self.instruct_plane
     print "\n\n*****   Plane taken off, it's sunny   *****\n\n".upcase
