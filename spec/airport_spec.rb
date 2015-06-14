@@ -21,6 +21,11 @@ describe Airport do
         take_off_plane = Plane.new
         take_off_plane.flying = false
         expect(subject.instruct_take_off(take_off_plane)).to eq true
+
+        # take_off_plane = double :take_off_plane, :flying => false, :can_take_off => false
+        # ready_for_take_off_plane = double :ready_for_take_off_plane, :flying => false, :can_take_off => true
+        # expect(take_off_plane).to receive(:prepare_to_take_off)
+        # expect(subject.instruct_take_off(take_off_plane)).to be (double :take_off_plane, :flying => false, :can_take_off => true)
       end
     end
 

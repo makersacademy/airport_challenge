@@ -2,13 +2,13 @@ require_relative 'plane'
 
 class Airport
 
-  attr_accessor :capacity, :planes, :weather, :stormy, :sunny
+  attr_accessor :capacity, :planes, :weather#, :stormy, :sunny
 
   def initialize
     @capacity = 1
     @planes = []
-    @stormy = false
-    @sunny = false
+    #@stormy = false
+    #@sunny = false
     @weather = self.weather_controller
   end
 
@@ -22,8 +22,9 @@ class Airport
     if landing_plane.can_land == true
       landing_plane.land
       planes << landing_plane
+      "Airspace is now full" if planes.length == capacity #untested, works on irb
     end
-    #"AIRSPACE FULL" if planes.length == capacity
+
   end
 
   def instruct_take_off(take_off_plane)
@@ -46,15 +47,14 @@ class Airport
 
   def weather_controller
     if rand(1..10) == 10
-      self.stormy = true
-      self.sunny = false
+      # self.stormy = true
+      # self.sunny = false
       "stormy"
     else
-      self.sunny = true
-      self.stormy = false
+      # self.sunny = true
+      # self.stormy = false
       "sunny"
     end
   end
-
 
 end
