@@ -13,6 +13,10 @@ require 'airport'
 
 describe Airport do
 
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe 'take off' do
     xit 'instructs a plane to take off'
 
