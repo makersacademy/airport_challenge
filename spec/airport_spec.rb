@@ -46,7 +46,7 @@ describe Airport do
 
       it 'does not allow plane to land' do
         subject.capacity.times { subject.landing plane }
-        expect{ subject.landing plane }.to raise_error 'The airport is full!'
+        expect { subject.landing plane }.to raise_error 'The airport is full!'
       end
 
     end
