@@ -18,4 +18,13 @@ class Plane
     @able_to_land
   end
 
+  def land_at_airport
+  	@landed = true
+  	@able_to_land = false
+  end
+
+  def landed?
+  	@landed
+  end
+
 end

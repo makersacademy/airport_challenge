@@ -35,6 +35,7 @@ describe Airport do
 
     it 'receives a plane' do
       plane = double :plane, able_to_land?: true
+      allow(plane).to receive(:land_at_airport) {plane}
       expect(subject.land_plane plane).to eq plane
     end
 

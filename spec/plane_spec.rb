@@ -25,7 +25,11 @@ describe Plane do
     expect(subject).to be_able_to_land
   end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do 
+    subject.change_landing_status 	
+    subject.land_at_airport
+    expect(subject).to be_landed
+  end
 
   xit 'can take off'
 

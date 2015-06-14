@@ -7,7 +7,7 @@ class Airport
 
   def land_plane plane
     fail 'Plane not cleared for landing' if (plane.able_to_land? == false)
-    plane
+    plane.land_at_airport
   end
 
 end
