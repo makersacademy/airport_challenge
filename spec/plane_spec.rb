@@ -20,7 +20,7 @@ describe Plane do
     is_expected.to respond_to :flying
   end
 
-  it 'can land' dot
+  it 'can land' do
     is_expected.to respond_to :land
   end
 
