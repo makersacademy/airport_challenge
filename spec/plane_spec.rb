@@ -24,7 +24,6 @@ describe Plane do
     is_expected.to respond_to :land
   end
 
-
   it 'is landed after landing' do
     subject.land
     is_expected.to be_landed

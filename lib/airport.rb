@@ -31,8 +31,7 @@ class Airport
   end
 
   def stormy?
-    storm_chance = Random.new.rand(10)
-    storm_chance >= 8 ? true : false
+    Random.new.rand(10) >= 8 ? true : false
   end
 
 
