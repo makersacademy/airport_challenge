@@ -3,7 +3,6 @@ require_relative 'plane'
 class Airport
 
 CAPACITY = 100
-attr_reader :planes
 attr_accessor :capacity
 
   def initialize
@@ -11,29 +10,43 @@ attr_accessor :capacity
     @capacity = CAPACITY
   end
 
+
   def land plane
-    'Incoming plane for landing.'
-    plane.landing
+    fail 'Airport is full' if full?
+    fail 'Too stormy to land' if stormy? 
     planes << plane
+    plane.landing
   end
 
   def release_plane
+    fail 'Too stormy to take off' if stormy?
+    fail 'No planes currently in Airport' if empty?
     plane = planes.find{ |plane| plane.landed?}
     plane.take_off
     planes.pop
   end
 
-  def instruct_take_off
-    plane = planes.find{ |plane| plane.landed?}
-    "#{plane} is instructed to take off."
+  def empty?
+    planes.empty?
   end
 
-  # def instruct_landing
+  def stormy?
+    weather == "stormy"
+  end
 
-  # end
+
+
+
+  private
+
+  attr_reader :planes
+
+  def weather
+    rand(101) > 15 ? "sunny" : "stormy"
+  end
 
 
   def full?
-
+    planes.count >= capacity
   end
 end
