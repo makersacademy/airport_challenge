@@ -11,14 +11,13 @@ class Plane
   end
 
   def land_at_airport
-  	@landed = true
   	@able_to_land = false
   	@flying = false
   end
 
   def take_off
-  	@landed = false
   	@flying = true
+  	@ready_to_take_off = false
   end
 
   def confirm_take_off
@@ -35,7 +34,7 @@ class Plane
   end
 
   def landed?
-  	@landed
+  	!@flying
   end
   
   def ready_to_take_off?
