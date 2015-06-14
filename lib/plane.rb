@@ -1,7 +1,13 @@
+require_relative 'airport'
 class Plane
-  
+
   def initialize 
     @flying = true
+    @able_to_land = false
+  end
+  
+  def change_landing_status
+  	@able_to_land = true
   end
 
   def flying?
@@ -9,7 +15,7 @@ class Plane
   end
 
   def able_to_land?
-    true
+    @able_to_land
   end
 
 end

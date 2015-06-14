@@ -20,7 +20,14 @@ describe Airport do
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+
+    it{is_expected.to respond_to :tell_plane_to_land}
+    
+    it 'instructs a plane to land' do
+      plane = Plane.new
+      landing_plane = double :plane, able_to_land?: true
+      expect(subject.tell_plane_to_land plane).to eq true
+    end
 
     xit 'receives a plane'
   end

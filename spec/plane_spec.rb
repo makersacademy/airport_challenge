@@ -21,6 +21,7 @@ describe Plane do
   end
 
   it 'can land' do
+    subject.change_landing_status
     expect(subject).to be_able_to_land
   end
 
