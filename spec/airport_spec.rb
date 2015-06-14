@@ -16,7 +16,7 @@ describe Airport do
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-      plane = double :plane, landed?: true
+      plane = double :plane
       expect(plane).to receive :takeoff
       subject.instruct_plane_to_take_off plane
     end
@@ -31,7 +31,11 @@ describe Airport do
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      plane = double :plane
+      expect(plane).to receive :land
+      subject.instruct_plane_to_land plane
+    end
 
     xit 'receives a plane'
   end
