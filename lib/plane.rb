@@ -7,10 +7,12 @@ attr_reader :status
 
   def land
     @status = :landed
+    self
   end
 
   def take_off
-      @status = :flying
+    @status = :flying
+    self
   end
 
 end

@@ -1,6 +1,9 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+
+  include Weather
 
   DEFAULT_CAPACITY = 10
   
@@ -12,11 +15,11 @@ class Airport
   end
 
   def ready_plane_for_take_off plane
-    landed_planes.select {|plane| plane == plane.take_off}
+    landed_planes.delete_if { |plane| plane.take_off } if flying_possible?
   end
 
   def ready_plane_for_landing plane
-    landed_planes << plane.land 
+    landed_planes << plane.land
   end
 
   def traffic_control
@@ -26,6 +29,10 @@ class Airport
 
   def airport_full?
     landed_planes.count >= capacity
+  end
+
+  def flying_possible?
+    report == :sunny
   end
 
   attr_reader :landed_planes
