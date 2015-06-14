@@ -13,35 +13,32 @@ require 'airport'
 
 describe Airport do
 
+  let(:airport) {Airport.new}
+
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-  describe 'take off' do
+  describe 'ready plane for take off' do
 
-    it 'releases a plane' do
-      subject.take_off
-      expect(subject).to be_empty
+    it 'allows a plane to take off' do
+      airport.ready_plane_for_take_off Plane.new
+      expect(airport.landed_planes.count).to eq 0
     end
   end
 
-  describe 'land' do
+  describe 'ready a plane for landing' do
 
-    it 'receives a plane' do
-      subject.land Plane.new
-      expect(subject).not_to be_empty
-    end
-
-    it 'raises an error when full' do
-      subject.capacity.times { subject.land Plane.new }
-      expect { subject.land Plane.new }.to raise_error 'Plane can not land, the airport is full.'
+    it 'allows a plane to land' do
+      airport.ready_plane_for_landing Plane.new
+      expect(airport.landed_planes.count).to eq 1
     end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
       it 'raises an error telling planes not to land' do
-        subject.capacity.times { subject.land Plane.new }
+        subject.capacity.times { subject.ready_plane_for_landing Plane.new }
         expect { subject.traffic_control }.to raise_error 'Plane can not land, the airport is full.'
     end
   end

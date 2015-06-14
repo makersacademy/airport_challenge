@@ -1,37 +1,33 @@
 require_relative 'plane'
 
 class Airport
+
   DEFAULT_CAPACITY = 10
   
   attr_reader :capacity
 
   def initialize
-    @planes = []
+    @landed_planes = []
     @capacity = DEFAULT_CAPACITY
   end
 
-  def take_off
-    Plane.new
+  def ready_plane_for_take_off plane
+    landed_planes.select {|plane| plane == plane.take_off}
   end
 
-  def land plane
-    fail 'Plane can not land, the airport is full.' if full?
-    planes << plane
+  def ready_plane_for_landing plane
+    landed_planes << plane.land 
   end
 
   def traffic_control
-    fail 'Plane can not land, the airport is full.' if full?
-    fail 'Plane is egibible to land'
+    fail 'Plane can not land, the airport is full.' if airport_full?
+    'Plane is egibible to land'
   end
 
-  def full?
-    planes.count >= capacity
+  def airport_full?
+    landed_planes.count >= capacity
   end
 
-  def empty?
-    planes.empty?
-  end
-
-  attr_reader :planes
+  attr_reader :landed_planes
   
 end

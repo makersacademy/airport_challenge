@@ -1,19 +1,16 @@
 class Plane
+attr_reader :status
 
   def initialize
-    @flying = true
+    @status = :flying
   end
 
-  def flying?
-    flying
+  def land
+    @status = :landed
   end
 
-  def landed?
-    not flying
+  def take_off
+      @status = :flying
   end
 
-  private
-
-  attr_reader :flying
-  
 end
