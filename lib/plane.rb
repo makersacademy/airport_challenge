@@ -21,5 +21,4 @@ class Plane
     @flying = true
     @landed = false
   end
-
 end
