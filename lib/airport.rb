@@ -16,7 +16,9 @@ def land plane
 	landed_planes << plane
 end
 
-def take_off
+def take_off plane
+	fail 'No planes to take off' if empty?
+	landed_planes.delete plane 
 end
 
 end
@@ -25,4 +27,8 @@ private
 
 def full?
 	landed_planes.count >= capacity
+end
+
+def empty?
+	landed_planes == []
 end
