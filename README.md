@@ -1,6 +1,14 @@
 Airport Challenge
 =================
 
+My Approach
+---------
+1. Broke task into the 4 user stories
+2. Wrote a detailed manual feature test for the first user story
+3. Wrote unit test followed by production code for each step in the manual feature test
+4. Ran rspec
+5. Repeated steps 2-3 for next 3 user stories
+
 Instructions
 ---------
 
