@@ -10,10 +10,10 @@ describe Airport do
       expect(subject).to respond_to :weather_type
     end
 
-    it 'tests sunny weather' do
-      allow(subject).to receive(:weather){7}
-      expect(subject.weather_type).to eq "sunny"
-    end
+    # it 'tests sunny weather' do
+    #   allow(subject).to receive(:weather){7}
+    #   expect(subject.weather_type).to eq "sunny"
+    # end
 
   end
 
@@ -23,6 +23,16 @@ describe Airport do
     end
 
     it{is_expected.to respond_to(:land).with(1).argument}
+
+  end
+
+  describe 'traffic control' do
+    context 'when conditions are stormy' do
+      it 'does not allow planes to take off' do
+      allow(subject).to receive(:weather_type){'stormy'}
+      expect{subject.land Plane.new}.to raise_error 'Stormy weather. Land later'
+      end
+    end
     
   end
 
