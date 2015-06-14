@@ -17,9 +17,17 @@ class Airport
   # how does this mesh with the land method
   # in the plane file?
 
+  def release_plane plane
+  end
+
+
   def full?
     @planes.count >= capacity
   end
 
 
 end
+
+# MAKE IT SO THAT THE PLANE CAN'T LAND OR 
+# TAKE OFF UNLESS THE AIRPORT RECEIVES OR
+# RELEASES IT.

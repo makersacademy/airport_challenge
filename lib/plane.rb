@@ -20,6 +20,10 @@ class Plane
     !@flying
   end
 
+  # def authorise
+  #   @authorised
+  # end
+
   # NEED TO ADD SOME WAY FOR PLANE TO KNOW
   # IF IT HAS LANDED
   # HOW TO CONNECT THE LAND METHOD
@@ -31,6 +35,7 @@ class Plane
     # put failure if airport.permissino = false?
     # should this be more like ask permission to land?
     # then land if airport.permission = true?
+    #fail 'Airport is full' if !@authorised
     @flying = false
   end
 

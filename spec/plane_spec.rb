@@ -53,4 +53,13 @@ describe Plane do
     expect(subject).to be_flying
   end
 
+  # describe 'land' do
+  #   it 'raises an error when airport is full' do
+  #     airport = Airport.new
+  #     airport.full?
+  #     expect { subject.land }.to raise_error 'Airport is full'
+  #   end
+  # end
+
+
 end

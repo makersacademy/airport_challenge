@@ -15,15 +15,19 @@ describe Airport do
 
   it { is_expected.to respond_to(:capacity) }
 
-  describe 'take off' do
+  describe 'release_plane' do
+    it {is_expected.to respond_to(:release_plane).with(1).argument }
+
     xit 'instructs a plane to take off'
 
     xit 'releases a plane'
   end
 
-  it { is_expected.to respond_to(:receive_plane).with(1).argument }
 
   describe 'receive_plane' do
+
+    it { is_expected.to respond_to(:receive_plane).with(1).argument }
+
     it 'raises an error when full' do
       plane = Plane.new
       subject.capacity.times { subject.receive_plane plane }
@@ -35,7 +39,15 @@ describe Airport do
   #   CAN'T FIGURE OUT HOW TO WRITE THAT TEST IN RSPEC.
   # end
 
+  
 
+  # describe 'receive_plane' do
+  #   it 'raises an error when full' do
+  #     plane = Plane.new
+  #     subject.capacity.times { subject.receive_plane plane }
+  #     expect { subject.receive_plane plane }.to raise_error 'Airport is full'
+  #   end
+  # end
 
     xit 'receives a plane'
 
