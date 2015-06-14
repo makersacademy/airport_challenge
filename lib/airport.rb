@@ -6,7 +6,7 @@ class Airport
 
   def initialize capacity = CAPACITY
     @capacity = capacity 
-    state
+    @state    = :operating
   end
 
   def to_sym
@@ -30,7 +30,7 @@ class Airport
       puts "Airport currently not working"
       state = :closed
     else
-      puts "Airport working"
+      puts "Airport operating"
       state = :opering
     end
   end
@@ -50,7 +50,6 @@ class Airport
   def planes_on_land
     number_of_planes_on_land
   end
-
 
   def number_of_planes_on_land
     rand capacity

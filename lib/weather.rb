@@ -15,10 +15,8 @@ class Weather
   def set_weather
     if rand > 0.7
       self.weather = :stormy
-      puts "is stormy"
     else
       self.weather = :good
-      puts "good weather"
     end
   end
 

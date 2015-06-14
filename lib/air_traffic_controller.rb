@@ -3,13 +3,13 @@ require_relative 'airport'
 class AirTrafficController
 
   def request_taking_off_permission
-    puts "requested taking off permision"
-    request_permision
+    puts "requested taking off permission"
+    request_permission
   end
 
-  def request_landind_permision
-    request_permision
-    puts "requested landed permision"
+  def request_landing_permission
+    puts "requested landed permission"
+    request_permission
   end
 
   def airport
@@ -18,12 +18,14 @@ class AirTrafficController
 
   private
 
-  def request_permision
+  def request_permission
     if airport.to_sym == :opering
-      puts "permisino afirmative"
+      puts "Afirmative!"
+
       :afirmative
     else
-      puts "permisino negative"
+      puts "Negative!"
+      
       :negative
     end
   end
