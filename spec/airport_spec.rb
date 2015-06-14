@@ -19,6 +19,8 @@ describe Airport do
     it {is_expected.to respond_to(:release_plane).with(1).argument }
 
     xit 'instructs a plane to take off'
+  #   NEED TO ADD TEST THAT CHECKS THAT THIS METHOD TRIGGERS THE PLANE.TAKEOFF METHOD?
+  #   CAN'T FIGURE OUT HOW TO WRITE THAT TEST IN RSPEC.
 
     xit 'releases a plane'
   end
@@ -29,29 +31,24 @@ describe Airport do
     it { is_expected.to respond_to(:receive_plane).with(1).argument }
 
     it 'raises an error when full' do
-      plane = Plane.new
-      subject.capacity.times { subject.receive_plane plane }
-      expect { subject.receive_plane plane }.to raise_error 'Airport is full'
+      allow(subject).to receive(:full?) { true }
+      #subject.capacity.times { subject.receive_plane plane }
+      expect { subject.receive_plane Plane.new }.to raise_error 'Airport is full'
     end
+
+    it 'raises an error when weather is stormy' do
+      #plane = Plane.new
+      allow(subject).to receive(:weather?) { false }
+      expect {subject.receive_plane Plane.new }.to raise_error 'Cannot land due to weather'
+    end
+
+      #   NEED TO ADD TEST THAT CHECKS THAT THIS METHOD TRIGGERS THE PLANE.LAND METHOD?
+      #   CAN'T FIGURE OUT HOW TO WRITE THAT TEST IN RSPEC.
   end
 
-  #   NEED TO ADD TEST THAT CHECKS THAT THIS METHOD TRIGGERS THE PLANE.LAND METHOD?
-  #   CAN'T FIGURE OUT HOW TO WRITE THAT TEST IN RSPEC.
-  # end
 
   
 
-  # describe 'receive_plane' do
-  #   it 'raises an error when full' do
-  #     plane = Plane.new
-  #     subject.capacity.times { subject.receive_plane plane }
-  #     expect { subject.receive_plane plane }.to raise_error 'Airport is full'
-  #   end
-  # end
-
-    xit 'receives a plane'
-
-    xit 'raises an error when airport is full'
   
   
 

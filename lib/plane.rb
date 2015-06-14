@@ -19,10 +19,7 @@ class Plane
   def landed?
     !@flying
   end
-
-  # def authorise
-  #   @authorised
-  # end
+  
 
   # NEED TO ADD SOME WAY FOR PLANE TO KNOW
   # IF IT HAS LANDED
@@ -31,15 +28,12 @@ class Plane
   # OF THE PLANE
 
   def land
-    # put if airport.instruct_to_land(subject)???
-    # put failure if airport.permissino = false?
-    # should this be more like ask permission to land?
-    # then land if airport.permission = true?
-    #fail 'Airport is full' if !@authorised
     @flying = false
   end
+  # NEED TO ADD CODE LIKE "IF AIRPORT.RECEIVE_PLANE"
 
   def takeoff
     @flying = true
   end
+  # NEED TO ADD CODE LIKE "IF AIRPORT.RELEASE_PLANE"
 end
