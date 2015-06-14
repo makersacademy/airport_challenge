@@ -12,6 +12,7 @@ class Airport
   end
 
   def land plane
+  	fail 'The airport is full!' if @planes.count == @capacity
     @planes<<plane
     
   end
