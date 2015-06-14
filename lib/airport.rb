@@ -10,21 +10,20 @@ class Airport
 		@capacity = DEFAULT_CAPACITY
 	end
 
-	def release_plane 
-		fail 'Airport is empty' if empty?
-    	planes.pop
-    end
-
-    def land_plane 
+	def land_plane(plane)
     	fail 'Airport is full' if full?
+    	plane.land
     	planes << plane
     end
 
-    def take_off
-    	fail 'Airport is empty' if empty?
-    	planes.pop
+	def take_off
+		fail 'Airport is empty' if empty?
+    	plane = planes.pop
+    	plane.take_off
+    	plane
     end
 
+    
     private
 
   attr_reader :planes
