@@ -21,7 +21,7 @@ class Airport
   end
 
   def take_off # NOT SURE HOW TO TEST FOR THIS ONE
-    fail 'No planes to take off' if @planes.lenght == 0
+    fail 'No planes to take off' if @planes.length == 0
   end
 
 
