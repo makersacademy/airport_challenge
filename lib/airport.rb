@@ -18,12 +18,17 @@ class Airport
   end
 
   def ready_plane_for_take_off plane
-    landed_planes.delete_if { |plane| plane.take_off } if flying_possible?
+      TrafficControl.take_off_during_storm if !flying_possible?
+      landed_planes.delete_if { |plane| plane.take_off } if flying_possible?
   end
 
   def ready_plane_for_landing plane
+    TrafficControl.landing_during_storm if !flying_possible?
+    TrafficControl.landing_when_airport_is_full if airport_full?
     landed_planes << plane.land if flying_possible?
   end
+
+  private
 
   def airport_full?
     landed_planes.count == capacity
