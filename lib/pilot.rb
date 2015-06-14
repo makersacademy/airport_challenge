@@ -26,15 +26,15 @@ class Pilot
   private
 
   def air_traffic_controller
-    air_traffic_controller ||= AirTrafficController.new
+    @air_traffic_controller ||= AirTrafficController.new
   end
 
   def plane
-    Plane.new
+    @plane = Plane.new
   end
 
   def take_off
-    plane.take_off airport
+    plane.take_off airport 
   end
 
   def land

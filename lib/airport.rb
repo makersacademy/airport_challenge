@@ -10,32 +10,32 @@ class Airport
   end
 
   def to_sym
-    state
+    get_state
   end
 
   def notified_take_off
-    self.capacity -= 1
+    self.number_of_planes_on_land -= 1
   end
 
   def notified_landing
-    self.capacity += 1
+    self.number_of_planes_on_land += 1
+  end
+
+  def get_state
+    if closed?
+      puts "Airport currently not working"
+
+      self.state = :closed
+    else
+      puts "Airport operating"
+      
+      self.state = :opering
+    end
   end
 
   private
 
-  attr_accessor :state, :capacity, :weather
-
-  def state
-    if closed?
-      puts "Airport currently not working"
-
-      state = :closed
-    else
-      puts "Airport operating"
-      
-      state = :opering
-    end
-  end
+  attr_accessor :state, :capacity, :weather, :number_of_planes_on_land
 
   def weather
     @weather = Weather.new
@@ -46,15 +46,11 @@ class Airport
   end
 
   def full?
-    planes_on_land >= capacity
-  end
-
-  def planes_on_land
-    number_of_planes_on_land
+    number_of_planes_on_land >= capacity
   end
 
   def number_of_planes_on_land
-    rand capacity
+    @number_of_planes_on_land ||= rand capacity
   end
 
 end
