@@ -14,14 +14,13 @@ attr_accessor :capacity
   def land plane
     fail 'Airport is full' if full?
     fail 'Too stormy to land' if stormy? 
-    planes << plane
     plane.landing
+    planes << plane
   end
 
-  def release_plane
+  def release_plane plane
     fail 'Too stormy to take off' if stormy?
     fail 'No planes currently in Airport' if empty?
-    plane = planes.find{ |plane| plane.landed?}
     plane.take_off
     planes.pop
   end
@@ -42,7 +41,7 @@ attr_accessor :capacity
   attr_reader :planes
 
   def weather
-    rand(101) > 15 ? "sunny" : "stormy"
+    rand(101) > 20 ? "sunny" : "stormy"
   end
 
 

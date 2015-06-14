@@ -20,13 +20,20 @@ it { is_expected.to respond_to(:land).with(1).argument }
 
   describe 'take off' do
 
-    #THIS TEST IS PROBLEMATIC 
-    it 'instructs plane to take off - releases a plane' do
+    #THIS TEST IS PROBLEMATIC ----ASK FOR HELP
+    it 'instructs a plane to take off' do
       plane = double :plane, landing: false
-      allow(subject).to receive(:weather){:sunny}
+      allow(subject).to receive(:weather){'sunny'}
       subject.land plane
-      expect(plane).to receive(:landing)
-      expect{subject.release_plane}.to eq plane
+      expect(plane).to receive :take_off
+      subject.release_plane plane
+    end
+
+    it 'releases a plane' do
+      plane = double :plane, take_off: true, landing: false
+      allow(subject).to receive(:weather){"sunny"}
+      subject.land plane
+      expect(subject.release_plane plane).to be plane
     end
 
     describe 'landing' do
@@ -47,11 +54,10 @@ it { is_expected.to respond_to(:land).with(1).argument }
     
     context 'when airport is full' do
 
-      #THIS TEST IS PROBLEMATIC 
+      #THIS TEST IS PROBLEMATIC ---- ASK FOR HELP
       it 'does not allow a plane to land' do
-        plane = double :plane, landing?: false
-        allow(subject).to receive(:weather) {:sunny}
-        expect(plane).to receive 100.times:landing
+        plane = double :plane, landing: false
+        allow(subject).to receive(:weather){:sunny}
         subject.capacity.times{subject.land plane}
         expect{subject.land plane}.to raise_error 'Airport is full' 
       end
