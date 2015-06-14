@@ -13,7 +13,8 @@ class Airport
 
   def take_off
     fail "There are no planes to take off" if empty?
-    planes.pop
+    plane = planes.pop
+    plane.take_off
   end
 
   def land_plane plane

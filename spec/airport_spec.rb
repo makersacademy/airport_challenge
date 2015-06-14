@@ -22,6 +22,13 @@ describe Airport do
       expect {subject.take_off}.to raise_error "There are no planes to take off"
     end
 
+    it 'releases a plane' do
+      no_of_planes = Random.new.rand(1..subject.capacity)
+      no_of_planes.times {subject.land_plane(double :plane, :landed? => false,land: nil, take_off: nil)}
+      subject.take_off
+      expect(subject.current_number_of_planes).to eq no_of_planes - 1
+    end
+
   end
 
   describe 'landing' do
@@ -34,7 +41,11 @@ describe Airport do
 
 
 
-    it 'receives a plane'
+    it 'receives a plane' do
+      no_of_planes = subject.current_number_of_planes
+      subject.land_plane(double :plane, :landed? => false,land: nil)
+      expect(subject.current_number_of_planes).to eq no_of_planes + 1
+    end
 
   end
 
