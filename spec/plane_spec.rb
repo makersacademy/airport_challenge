@@ -16,14 +16,49 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  describe :landed
 
-  xit 'can land'
+  it {is_expected.to respond_to :landed}
 
-  xit 'is landed after landing'
+  it "check if is landed" do
+    plane = Plane.new
+    plane.landed
+    expect(@landed==true)
+  end
 
-  xit 'can take off'
+    it "check if is not flying" do
+    plane = Plane.new
+    plane.landed
+    expect(@flying==false)
+  end
 
-  xit 'is flying after take off'
+
+  describe :flying
+
+  it {is_expected.to respond_to :flying}
+
+  it "check if is flying" do
+    plane = Plane.new
+    plane.flying
+    expect(@flying==true)
+  end
+
+  it "check if is not landed" do
+    plane = Plane.new
+    plane.flying
+    expect(@landed==false)
+  end
+
+
+
+  # xit 'is flying when created'
+
+  # xit 'can land'
+
+  # xit 'is landed after landing'
+
+  # xit 'can take off'
+
+  # xit 'is flying after take off'
 
 end

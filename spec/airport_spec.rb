@@ -32,9 +32,19 @@ describe Airport do
 
     it 'releases a plane' do
     plane = double :plane
+    weather = double :weather
+    weather = true
+
+    check_the_weather = double :check_the_weather
+
+    allow(check_the_weather).to receive(:weather) { true }
+
+
     subject.landing plane
     expect(subject.release_plane).to be plane
     end
+
+
 
 
 
