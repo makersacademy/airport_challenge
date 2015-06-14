@@ -1,7 +1,9 @@
-## Airport Challenge :plane:
+# Airport Challenge :plane:
 
-# Instructions
+## Instructions
 
-#Steps
+## Steps
+
+### Step 1: Domain Model
 
 
