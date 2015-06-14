@@ -15,17 +15,20 @@ describe Airport do
 
   let(:plane){Plane.new}
 
-  it { is_expected.to respond_to(:land_plane).with(1).argument }
+  it { is_expected.to respond_to(:receive_plane).with(1).argument }
 
   it { is_expected.to respond_to :release_plane }
 
+  it 'has a DEFAULT capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe 'take off' do
 
-    xit 'instructs a plane to take off' do
-
+    xit 'instructs a plane to take off'
 
     it 'releases planes' do
-      subject.land_plane plane
+      subject.receive_plane plane
       subject.release_plane
     end
 
@@ -38,8 +41,14 @@ describe Airport do
   end
 
   describe 'traffic control' do
+
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+
+      it 'does not allow plane to land' do
+        subject.capacity.times {subject.receive_plane plane}
+        expect{subject.receive_plane plane}.to raise_error 'The airport is full!'
+      end
+
     end
 
     # Include a weather condition.
