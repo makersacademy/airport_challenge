@@ -22,7 +22,9 @@ describe Airport do
     end
 
     it 'releases a plane' do
-      plane = double :plane, ready_to_take_off?: true
+      plane = double :plane, able_to_land?: true
+      allow(plane).to receive (:land_at_airport) {plane}
+      subject.land_plane plane
       allow(plane).to receive (:take_off) {plane}
       expect(subject.release_plane plane).to be plane
     end
@@ -43,20 +45,25 @@ describe Airport do
     it 'receives a plane' do
       plane = double :plane, able_to_land?: true
       allow(plane).to receive(:land_at_airport) {plane}
-      expect(subject.land_plane plane).to eq plane
+      expect(subject.land_plane plane).to eq [plane]
     end
 
     it 'does not receive a plane which is not able to land' do
       plane = double :plane, able_to_land?:false
       expect{subject.land_plane plane}.to raise_error 'Plane not cleared for landing'
     end
-
+    
 
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = double :plane, able_to_land?: true
+        allow(plane).to receive(:land_at_airport) {plane}
+        Airport::DEFAULT_CAPACITY.times {subject.land_plane plane}
+        expect{subject.land_plane plane}.to raise_error 'Airport is full'
+      end
     end
 
     # Include a weather condition.
