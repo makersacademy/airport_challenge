@@ -21,7 +21,12 @@ describe Airport do
       expect(subject.tell_plane_to_take_off plane).to be ready_plane 
     end
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      plane = double :plane, ready_to_take_off?: true
+      allow(plane).to receive (:take_off) {plane}
+      expect(subject.release_plane plane).to be plane
+    end
+
   end
 
   describe 'landing' do

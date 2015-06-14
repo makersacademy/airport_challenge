@@ -14,5 +14,8 @@ class Airport
     plane.confirm_take_off
   end
 
+  def release_plane plane
+    plane.take_off
+  end
 
 end
