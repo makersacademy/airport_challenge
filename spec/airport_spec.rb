@@ -23,8 +23,8 @@ describe Airport do
 
     it 'releases a plane' do
       plane = Plane.new
-      plane.land
-      released_plane = subject.instruct_plane_to_take_off plane
+      subject.instruct_plane_to_land plane
+      released_plane = subject.release_plane plane
       expect(released_plane).to eq plane
     end
 
@@ -37,7 +37,12 @@ describe Airport do
       subject.instruct_plane_to_land plane
     end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+    plane = Plane.new
+    subject.instruct_plane_to_land plane
+    expect(subject).not_to be_empty
+    end
+
   end
 
   describe 'traffic control' do

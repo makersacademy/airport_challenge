@@ -1,4 +1,4 @@
-class Airport\
+class Airport
 
   def initialize
     @planes = []
@@ -7,14 +7,28 @@ class Airport\
 
   def instruct_plane_to_take_off plane
     plane.takeoff
-    plane
+    release_plane(plane)
   end
 
   def instruct_plane_to_land plane
     plane.land
-    @planes << plane
+    receive_plane plane
   end
 
-  def releases_a_plane plane
+  def release_plane plane
+    planes.delete(plane)
   end
+
+  def receive_plane plane
+    planes << plane
+  end
+
+  def empty?
+    planes.empty?
+  end
+
+  private
+
+  attr_accessor :planes
+
 end
