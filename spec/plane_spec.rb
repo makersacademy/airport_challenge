@@ -39,7 +39,7 @@ describe Plane do
 
   end
 
-  it 'cannot take off if it is landed at a different airport' do
+  it 'cannot take off from an airport if it is landed at a different airport' do
     subject.land(airport)
     expect{subject.takeoff(airport2)}.to raise_error "Plane not at this airport"
   end

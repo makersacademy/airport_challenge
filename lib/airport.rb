@@ -29,7 +29,6 @@ class Airport
     fail 'Weather bad: landing not permitted' if check_weather == "Stormy"
     return true if (planes.delete(plane) == plane)
     fail "Plane not at this airport"
-    false
   end
 
   def check_weather
