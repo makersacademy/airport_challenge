@@ -62,6 +62,12 @@ What I did:
 * First I put pen to paper to break down the problem into smaller parts to make it easier to understand - constructed basic domain model
 * Class-responsibility-collaboration cards for Plane and Airport classes to help organise in my mind
 
+* Where possible I used examples and parts of the Boris Bike example and translated them to the Airport challenge - eg. for capacity and planes array to keep track of the number of grounded planes at the airport
+
+
+
+* Struggled to find appropriate method names for methods in my airport class
+
 
 
 On top of the card, the class name
