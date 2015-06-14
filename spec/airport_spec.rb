@@ -31,10 +31,10 @@ describe Airport do
         take_off_plane = Plane.new
         take_off_plane.flying = false
         subject.planes << take_off_plane
+        allow(subject).to receive(:weather) { "sunny" }
         subject.instruct_take_off(take_off_plane)
         #expect(subject.release(take_off_plane)).to eq true
-        subject.release(take_off_plane)
-        expect(subject.planes.length).to eq 0
+        expect { subject.release(take_off_plane) }.to change { subject.planes.length }.from(1).to(0)
       end
     end
   end
@@ -61,8 +61,8 @@ describe Airport do
       it 'stores planes received in an array' do
         landing_plane = Plane.new
         subject.instruct_landing(landing_plane)
-        subject.receive(landing_plane)
-        expect(subject.planes.length).to eq 1
+        allow(subject).to receive(:weather) { "sunny" }
+        expect { subject.receive(landing_plane) }.to change { subject.planes.length }.from(0).to(1)
       end
 
     end
@@ -76,7 +76,6 @@ describe Airport do
         plane = Plane.new
         subject.instruct_landing(plane)
         subject.receive(plane)
-
         plane2 = Plane.new
         subject.instruct_landing(plane2)
         expect { subject.receive(plane2) }.to raise_error "Airport is full"
@@ -93,10 +92,26 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+    context 'when weather conditions are stormy(which is 10% of the time)' do
+      # it 'has a weather condition' do
+      #   allow(rand(1..10)).to receive(10)
+      #   expect(subject.weather).to eq "stormy"
+      #end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to take off' do
+        take_off_plane = Plane.new
+        take_off_plane.flying = false
+        subject.instruct_take_off(take_off_plane)
+        allow(subject).to receive(:weather) { "stormy" }
+        expect { subject.release(take_off_plane) }.to raise_error "Too stormy to fly"
+      end
+
+      it 'does not allow a plane to land' do
+        landing_plane = Plane.new
+        subject.instruct_landing(landing_plane)
+        allow(subject).to receive(:weather) { "stormy" }
+        expect { subject.receive(landing_plane) }.to raise_error "Too stormy to land"
+      end
     end
   end
 end
