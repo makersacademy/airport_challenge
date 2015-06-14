@@ -14,8 +14,8 @@ class Airport
   end
 
   def land plane
-  	fail 'The airport is full!' if @planes.count == @capacity
-  	fail 'Can\'t land during a storm!' if self.weather=='stormy'
+    fail 'The airport is full!' if @planes.count == @capacity
+    fail 'Can\'t land during a storm!' if self.weather=='stormy'
     @planes<<plane
     plane.land
   end
@@ -26,8 +26,7 @@ class Airport
     plane.take_off
   end
 
-def weather
+  def weather
     rand(1...10) == 1 ? @weather='stormy' : @weather = 'sunny'
   end
-end	
-
+end

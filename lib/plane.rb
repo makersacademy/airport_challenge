@@ -1,17 +1,17 @@
 class Plane
 
-attr_accessor :landing
+  attr_accessor :landing
 
   def initialize
     @flying = true
-  @landed = false
+    @landed = false
   end
 
   def land
     @landed =true
     @flying =false
   end
-  
+
   def take_off
     @flying = true
     @landed = false
