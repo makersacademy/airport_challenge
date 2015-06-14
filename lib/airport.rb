@@ -1,37 +1,32 @@
 require_relative 'plane'
 
 class Airport
-  DEFAULT_CAPACITY = 2
-  attr_accessor :capacity
+  DEFAULT_CAPACITY = 20
+  attr_reader :capacity
 
   def initialize
     @capacity = DEFAULT_CAPACITY
     @planes = []
-
-
   end
 
   def approve_take_off plane
-    raise "#{self.class.name} is empty" if empty?
-    raise "#{self.class.name} has stormy weather" if stormy?
-    planes.delete (plane)
+    raise "airport is empty" if empty?
+    raise "stormy weather can't take off" if stormy?
+    @planes.delete plane
     plane.take_off
   end
 
 
   def approve_landing plane
-    raise "#{self.class.name} is full" if full?
-    raise "#{self.class.name} has stormy weather" if stormy?
+    raise "airport is full" if full?
+    raise "stormy weather can't land" if stormy?
     @planes << plane
     plane.land
+
   end
 
   def empty?
-    planes.count == 0
-  end
-
-  def check_weather
-    weather
+    @planes.empty?
   end
 
   private
@@ -53,13 +48,6 @@ class Airport
   def sunny?
     weather == :sunny
   end
-
-
-
-
-
-  #attr_reader :capacity
-
 
 
 end

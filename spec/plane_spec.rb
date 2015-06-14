@@ -30,7 +30,6 @@ describe Plane do
   end
 
   it 'can take off' do
-    subject.land
     is_expected.to respond_to :take_off
   end
 
