@@ -1,5 +1,4 @@
 shared_examples_for Weather do
-  
   it 'can be stormy' do
     allow(subject).to receive(:report) { :stormy }
     expect(subject.report).to be :stormy

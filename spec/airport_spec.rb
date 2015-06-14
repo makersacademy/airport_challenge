@@ -3,8 +3,8 @@ require_relative './support/shared_examples_for_weather_test'
 
 describe Airport do
 
-  let(:airport) {Airport.new}
-  let(:plane) {Plane.new}
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
 
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY

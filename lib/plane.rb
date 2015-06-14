@@ -1,5 +1,5 @@
 class Plane
-attr_reader :status
+  attr_reader :status
 
   def initialize
     @status = :flying
@@ -14,5 +14,4 @@ attr_reader :status
     @status = :flying
     self
   end
-
 end

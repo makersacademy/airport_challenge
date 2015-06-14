@@ -19,7 +19,7 @@ class Airport
 
   def ready_plane_for_take_off plane
     #TrafficControl.take_off_during_storm if !flying_possible?
-    landed_planes.delete_if { |plane| plane.take_off } if flying_possible?
+    landed_planes.delete_if &:take_off if flying_possible?
   end
 
   def ready_plane_for_landing plane
@@ -37,5 +37,4 @@ class Airport
   def flying_possible?
     report == :sunny
   end
-  
 end
