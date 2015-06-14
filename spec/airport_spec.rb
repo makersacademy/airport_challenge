@@ -14,7 +14,6 @@ describe Airport do
 
    it {is_expected.to respond_to :instruct_plane}
 
-
   describe 'release_plane'
 
     it {is_expected.to respond_to :release_plane}
