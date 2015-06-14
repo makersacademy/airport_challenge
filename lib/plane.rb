@@ -14,7 +14,6 @@ class Plane
   def land(airport)
     fail 'Plane already on ground' unless self.flying?
     self.is_inflight = false if airport.request_land?(self)
-
   end
 
   def takeoff(airport)

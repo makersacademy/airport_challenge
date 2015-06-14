@@ -13,9 +13,12 @@ require 'airport'
 
 describe Airport do
   let (:plane) {Plane.new}
-
+  before(:each) do
+    subject.stub check_weather: "Sunny"
+  end
 
   describe 'take off' do
+
     it {is_expected.to respond_to(:instruct_takeoff).with(1).argument}
 
     it 'instructs a plane to take off' do
@@ -34,6 +37,7 @@ describe Airport do
       expect(subject.planes).to be_empty
     end
   end
+
   describe 'landing' do
 
     it "gives permission for planes to land" do
@@ -56,14 +60,19 @@ describe Airport do
       expect(subject.planes[0]).to eq plane
 
     end
+
   end
 
   describe 'traffic control' do
+
     context 'when airport is full' do
+
       it 'does not allow a plane to land' do
       subject.capacity.times { subject.planes << :plane }
       expect { plane.land(subject) }.to raise_error "Airport full"
+
       end
+
     end
 
     it "when a plane lands and takes off it should be the same plane" do
@@ -85,9 +94,25 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it "can check the weather" do
+        expect(subject.check_weather.is_a?(String)).to eq true
+      end
 
-      xit 'does not allow a plane to land'
+      it "can return stormy or sunny" do
+        subject.stub check_weather: "Stormy"
+        expect(subject.check_weather).to eq "Stormy"
+        subject.stub check_weather: "Sunny"
+        expect(subject.check_weather).to eq "Sunny"
+      end
+
+      it 'does not allow a plane to land if weather is stormy' do
+        subject.stub check_weather: "Stormy"
+        expect { subject.request_land?(plane) }.to raise_error "Weather bad: landing not permitted"
+      end
+      it 'does not allow a plane to takeoff if weather is stormy' do
+        subject.stub check_weather: "Stormy"
+        expect { subject.request_takeoff?(plane) }.to raise_error "Weather bad: landing not permitted"
+      end
     end
 
 end
