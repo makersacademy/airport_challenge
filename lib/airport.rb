@@ -29,16 +29,13 @@ class Airport
     @planes.empty?
   end
 
-  def check_weather
-    weather
-  end
-  
-  private
-  attr_reader :planes
-
   def weather
     [:sunny, :sunny, :sunny, :stormy].sample
   end
+
+  private
+  attr_reader :planes
+
 
   def full?
     planes.count >= DEFAULT_CAPACITY
