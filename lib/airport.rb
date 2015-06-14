@@ -7,7 +7,6 @@ class Airport
   attr_accessor :capacity
   attr_reader :weather
 
-
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
@@ -20,13 +19,16 @@ class Airport
 
   def take_off(plane)
     weather
-    fail "No planes in airport" if empty?
+    fail "#{plane} not in airport" if !planes.include?(plane)
     fail 'Plane cannot take-off due to bad weather' if stormy?
-    planes.pop
+    plane.take_off
+    planes.delete(plane)
   end
 
   def land_plane(plane)
     fail "Airport is full" if full?
+    fail "#{plane} is not flying" if !plane.flying?
+    plane.landed
     planes << plane
   end
 

@@ -38,13 +38,20 @@ describe Airport do
       expect(subject.take_off plane).to be plane
     end
 
-    it 'raises an error when there are no planes in airport' do
-      expect{subject.take_off(Plane.new)}.to raise_error "No planes in airport"
+    it 'raises an error when a plane is not in airport' do
+      plane = Plane.new
+      expect{subject.take_off plane}.to raise_error "#{plane} not in airport"
     end
+
+    # it 'raises an error when a plane is flying'
+    #   plane = Plane.new
+    #   expect
+    # end
+
   end
 
 
-  describe 'land pland' do
+  describe 'land plane' do
     it 'instructs a plane to land' do
       expect(subject).to respond_to :land_plane
     end
@@ -53,6 +60,13 @@ describe Airport do
     it 'receives a plane' do
       plane = Plane.new
       expect(subject.land_plane plane).to eq [plane]
+    end
+
+    it 'raises an error when a plane is not flying' do
+      plane = Plane.new
+      airport2 = Airport.new
+      airport2.land_plane(plane)
+      expect{subject.land_plane plane}.to raise_error "#{plane} is not flying"
     end
   end
 
@@ -83,9 +97,7 @@ describe Airport do
         # allow(subject).to receive(:weather) {'stormy'}
         # expect{subject.take_off(plane)}.to raise_error 'Plane cannot take-off due to bad weather'
       end
-
     end
-
         #xit 'does not allow a plane to land'
   end
 

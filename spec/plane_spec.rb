@@ -20,10 +20,10 @@ describe Plane do
     expect(subject.flying?).to eq true
   end
 
-  it { is_expected.to respond_to :land_plane }
+  it { is_expected.to respond_to :landed }
 
   it 'is landed after landing' do
-    expect(subject.land_plane).to eq false
+    expect(subject.landed).to eq false
   end
 
   it { is_expected.to respond_to :take_off }
