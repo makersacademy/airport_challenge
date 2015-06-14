@@ -23,11 +23,18 @@ describe Airport do
 
   it { is_expected.to respond_to(:receive_plane).with(1).argument }
 
-  # describe 'receives_plane' do
-  #   it 'instructs a plane to land - should call land method in plane class'
-  #   expect(subject.receive(plane)).to eq true
+  describe 'receive_plane' do
+    it 'raises an error when full' do
+      plane = Plane.new
+      subject.capacity.times { subject.receive_plane plane }
+      expect { subject.receive_plane plane }.to raise_error 'Airport is full'
+    end
+  end
+
+  #   NEED TO ADD TEST THAT CHECKS THAT THIS METHOD TRIGGERS THE PLANE.LAND METHOD?
+  #   CAN'T FIGURE OUT HOW TO WRITE THAT TEST IN RSPEC.
   # end
-  # CANT GET THIS TEST TO WORK.
+
 
 
     xit 'receives a plane'
