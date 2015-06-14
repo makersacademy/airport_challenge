@@ -12,18 +12,16 @@ class Airport
 
   def receive_plane plane
     fail 'Airport is full' if full?
-    fail 'Cannot land due to weather' if weather? == true
+    fail 'Cannot land due to weather' if weather? == "stormy"
 
     plane.land
     @planes << plane
    
   end
-  # how does this mesh with the land method
-  # in the plane file?
 
-  def release_plane plane
+  def release_plane(plane)
     plane.takeoff
-    @planes.pop
+    @planes.reject(plane)
   end
 
 
@@ -32,17 +30,14 @@ class Airport
   end
 
   def weather?
-    x = rand(1..10)
-    return true if x >= 7
-    return false if x < 7
+    x = rand(6)
+    return "stormy" if x  <=1
+    return "sunny" if x > 1
 
   end
 
 
 
 
-end
 
-# MAKE IT SO THAT THE PLANE CAN'T LAND OR 
-# TAKE OFF UNLESS THE AIRPORT RECEIVES OR
-# RELEASES IT.
+end

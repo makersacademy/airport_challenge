@@ -9,8 +9,8 @@ class Plane
 
   # attr_reader :flying
   # find out if attr_reader would work or not.
-  # looks bad because want ? method and 
-  # doesn't seem to work with attr_reader name.
+  # looks bad because want a ? method and ?
+  # doesn't seem to work with attr_reader.
 
   def flying?
     @flying
@@ -21,19 +21,17 @@ class Plane
   end
   
 
-  # NEED TO ADD SOME WAY FOR PLANE TO KNOW
-  # IF IT HAS LANDED
-  # HOW TO CONNECT THE LAND METHOD
-  # IN THE AIRPORT WITH THE FLYING? STATUS
-  # OF THE PLANE
-
   def land
     @flying = false
   end
-  # NEED TO ADD CODE LIKE "IF AIRPORT.RECEIVE_PLANE"
+  # NEED TO MAKE THIS CONDITIONAL ON THE AIRPORT
+  # METHOD RECEIVE_PLANE BEING CALLED
+  # if airport.receive_plane(plane) DOESNT WORK.
 
   def takeoff
     @flying = true
   end
-  # NEED TO ADD CODE LIKE "IF AIRPORT.RELEASE_PLANE"
+  # NEED TO MAKE THIS CONDITIONAL ON THE AIRPORT
+  # METHOD RELEASE_PLANE BEING CALLED
+  # if airport.release_plane(plane) DOESNT WORK.
 end
