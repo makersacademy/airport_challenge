@@ -10,33 +10,37 @@ class Airport
     @planes = []
   end
 
+  def empty?
+    planes.count == 0
+  end
+
   def take_off
-    fail 'Airport empty' if empty?
+    fail 'The airport is empty' if empty?
     planes.last.take_off
     planes.pop
   end
 
   def landing plane
-    fail 'Airport full' if full?
+    fail 'It is too stormy to land' if stormy?
+    fail 'The airport is full' if full?
     planes << plane
+    plane.landing
   end
 
-
   private
+
   attr_reader :planes
 
-  def stormy?
-    weather == 'stormy'
+  def full?
+    planes.count == capacity
   end
 
   def weather
+    weather_options = ['stormy', 'clear', 'clear', 'clear', 'clear', ]
+    return weather_options.sample
   end
 
-  def empty?
-    planes.count == 0
-  end
-
-  def full?
-    planes.count >= capacity
+  def stormy?
+    weather == 'stormy'
   end
 end
