@@ -52,5 +52,4 @@ class Airport
     end
   end
 
-
 end
