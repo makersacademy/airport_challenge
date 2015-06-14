@@ -23,16 +23,26 @@ describe Airport do
 
   it { is_expected.to respond_to(:receive_plane).with(1).argument }
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  # describe 'receives_plane' do
+  #   it 'instructs a plane to land - should call land method in plane class'
+  #   expect(subject.receive(plane)).to eq true
+  # end
+  # CANT GET THIS TEST TO WORK.
+
 
     xit 'receives a plane'
-  end
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
-    end
+    xit 'raises an error when airport is full'
+  
+  
+
+
+  # describe 'traffic control' do
+  #   context 'when airport is full' do
+  #     xit 'does not allow a plane to land'
+  #   end
+
+
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -48,5 +58,5 @@ describe Airport do
 
       xit 'does not allow a plane to land'
     end
-  end
+  
 end

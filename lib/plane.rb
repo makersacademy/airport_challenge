@@ -27,6 +27,10 @@ class Plane
   # OF THE PLANE
 
   def land
+    # put if airport.instruct_to_land(subject)???
+    # put failure if airport.permissino = false?
+    # should this be more like ask permission to land?
+    # then land if airport.permission = true?
     @flying = false
   end
 
