@@ -30,37 +30,25 @@ describe Airport do
     context 'when conditions are stormy' do
       it 'does not allow planes to take off' do
       allow(subject).to receive(:weather_type){'stormy'}
-      expect{subject.land Plane.new}.to raise_error 'Stormy weather. Land later'
+      expect{subject.land Plane.new}.to raise_error 'Stormy weather. Try later'
       end
     end
-    
-  end
 
+    context 'when airport full' do
+      it 'does not allow planes to take off' do
+      20.times{subject.land Plane.new}
+      expect{subject.land Plane.new}.to raise_error "No capacity at airport"
+      end
+    end
+  end
 end
 
-			
-
+  # NOT SURE HOW TO TEST FOR THIS ONE
   # describe 'take off' do
-  #   xit 'instructs a plane to take off'
+  #   it 'does not have any onground planes'
+  #     @planes.length == 0
+  #     exepct{xxxxx}.to raise_error "No plans to take off"
 
-  #   xit 'releases a plane'
   # end
 
-  # describe 'landing' do
-  #   xit 'instructs a plane to land'
-
-  #   xit 'receives a plane'
-  # end
-
-  # describe 'traffic control' do
-  #   context 'when airport is full' do
-  #     xit 'does not allow a plane to land'
-  #   end
-
-  #   context 'when weather conditions are stormy' do
-  #     xit 'does not allow a plane to take off'
-
-  #     xit 'does not allow a plane to land'
-  #   end
-  # end
-
+		
