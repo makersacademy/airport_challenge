@@ -13,33 +13,43 @@ require 'airport'
 
 describe Airport do
 
+it { is_expected.to respond_to :release_plane }
+
 it {is_expected.to respond_to(:land).with(1).argument}
 
-  describe 'take off' do
-    it 'instructs the plane to take off' do
-      plane = double :Plane, landed?: true
-      plane.take_off
-      expect(subject.take_off).to be_flying
-    end
-  end
 
-#   describe 'take off' do
-#     xit 'instructs a plane to take off'
-
-    # it 'releases a plane' do
-    #   plane = :double Plane 
+  # describe 'release plane' do
+  #   it 'instructs a plane to take off' do
+  #     plane = double :plane, landed?: true
+  #     expect(subject.take_off).to release_plane
     # end
 
-#   describe 'landing' do
-#     xit 'instructs a plane to land'
+    # it 'releases a plane' do
+    #   plane = double :plane, landed?: true
+    #   expect(subject.release_plane).to eq double :plane, landed?: false
+    # end
 
-#     xit 'receives a plane'
-#   end
+  # describe 'landing' do
+  #   it 'instructs a plane to land' do
 
-#   describe 'traffic control' do
-#     context 'when airport is full' do
-#       xit 'does not allow a plane to land'
-#     end
+  #   end
+
+    # it 'receives a plane' do
+    # end
+
+  describe 'traffic control' do
+
+    it 'there is a DEFAULT capacity' do
+      expect(subject.capacity).to eq Airport::CAPACITY
+    end 
+    
+    # context 'when airport is full' do
+
+    #   it 'does not allow a plane to land' do
+    #   subject.capacity.times(subject.land double :plane)
+    #   expect(subject.land double :plane).to raise_error 'Airport is full'
+    #   expect 
+    #   end
 
 #     # Include a weather condition.
 #     # The weather must be random and only have two states "sunny" or "stormy".
@@ -54,6 +64,6 @@ it {is_expected.to respond_to(:land).with(1).argument}
 #       xit 'does not allow a plane to take off'
 
 #       xit 'does not allow a plane to land'
-#     end
-#   end
+    # end
+  end
 end

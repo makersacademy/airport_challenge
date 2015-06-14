@@ -33,15 +33,20 @@ describe Plane do
     subject.landing
     expect(subject).to be_landed
   end
+
+  it 'is not flying when landed' do
+    subject.landing
+    expect(subject).to_not be_flying  
+  end
  
   it 'is flying after take off' do
     subject.take_off
     expect(subject).to be_flying
   end
 
-  it 'is not flying when landed' do
-    subject.landing
-    expect(subject).to_not be_flying  
+  it 'is not landed when flying' do
+    subject.take_off
+    expect(subject).to be_flying
   end
 
 end
