@@ -36,8 +36,8 @@ class Airport
   end
 
   def weather
-    weather_options = ['stormy', 'clear', 'clear', 'clear', 'clear', ]
-    return weather_options.sample
+    weather_options = ['stormy', 'clear', 'clear', 'clear', 'clear',]
+    weather_options.sample
   end
 
   def stormy?
