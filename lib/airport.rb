@@ -27,7 +27,7 @@ class Airport
   end
 
 def weather
-    rand(1...1) == 1 ? @weather='stormy' : @weather = 'sunny'
+    rand(1...10) == 1 ? @weather='stormy' : @weather = 'sunny'
   end
 end	
 
