@@ -32,9 +32,14 @@ describe Airport do
     end
 
     describe 'landing' do
-      xit 'instructs a plane to land'
+      it 'instructs a plane to land' do
+        expect(subject).to respond_to :land
+      end
 
-      xit 'receives a plane'
+      it 'receives a plane' do
+        subject.land(plane)
+        expect(subject.planes.count).to eq 1
+      end
     end
 
     describe 'traffic control' do
@@ -58,4 +63,5 @@ describe Airport do
       end
     end
   end
+
 end
