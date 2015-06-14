@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+
 My strategy:
 I did the airport challenge following the same sort of steps that I did in boris-bikes.
 By this I mean I was essentially just replacing bikes with planes, dockingstation with
