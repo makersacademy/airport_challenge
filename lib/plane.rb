@@ -6,7 +6,7 @@ class Plane
     @flying = true
   end
 
-  def flying?
+  def flying? # or falling with style?
     @flying == true
   end
 

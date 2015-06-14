@@ -13,6 +13,7 @@ class Airport
 
   def take_off
     fail "There are no planes to take off" if empty?
+    fail "Too stormy to take off" if stormy?
     plane = planes.pop
     plane.take_off
   end
@@ -20,12 +21,18 @@ class Airport
   def land_plane plane
     fail "Airport is full" if full?
     fail "This plane isn't flying" if plane.landed?
+    fail "Too stormy to land" if stormy?
     plane.land
     planes << plane
   end
 
   def current_number_of_planes
     planes.count
+  end
+
+  def stormy?
+    storm_chance = Random.new.rand(10)
+    storm_chance >= 8 ? true : false
   end
 
 
