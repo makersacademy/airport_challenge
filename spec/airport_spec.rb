@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane){Plane.new}
+  let(:plane) { Plane.new }
 
   it { is_expected.to respond_to(:landing).with(1).argument }
 
@@ -15,40 +15,38 @@ describe Airport do
 
   describe 'take off' do
 
-    it 'instructs a plane to take off' do
-      subject.landing plane
-      subject.release_plane
-      expect(plane).to be_airborne
-    end
+    # it 'instructs a plane to take off' do
+    #   subject.landing plane
+    #   subject.release_plane
+    # end
 
     it 'releases planes' do
-      subject.landing plane
+      # what expectation can you add here that actually tests something?
       subject.release_plane
     end
 
   end
 
-
   describe 'landing' do
-    it 'instructs a plane to land' do
-      subject.landing plane
-      plane.land
-      expect(plane).to be_grounded
-    end
+
+    # it 'instructs a plane to land' do
+    #   subject.landing plane
+    #   plane.land
+    # end
 
     it 'receives a plane' do
+      # what expectation can you add here that actually tests something?
       subject.landing plane
     end
   end
-
 
   describe 'traffic control' do
 
     context 'when airport is full' do
 
       it 'does not allow plane to land' do
-        subject.capacity.times {subject.landing plane}
-        expect{subject.landing plane}.to raise_error 'The airport is full!'
+        subject.capacity.times { subject.landing plane }
+        expect{ subject.landing plane }.to raise_error 'The airport is full!'
       end
 
     end

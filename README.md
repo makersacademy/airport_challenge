@@ -14,7 +14,10 @@ What I did:
 * For the airport class I added a default capacity of 100 planes, created an error message to be run when a plane attempted to land at an airport that had reached this max capacity.
 * I created en empty planes array for each instance of airport to track the number of planes and created methods for landing planes and receiving_planes to manipulate this array
 * I had trouble naming methods appropriate names within the Airport class
+* I also had issues with the various tests in the airport_spec - instructing plane to land, receiving a plane, instruction plane to take off, and releasing plane tests - I haven't managed to implement tests that actually test anything so far...
 * Where possible I used examples and parts of the Boris Bike example and applied them to the Airport challenge - eg. for capacity and planes array to keep track of the number of grounded planes at the airport, I modelled the landing and release_plane classes on the dock and release_bike classes
+
+
 
 
 
@@ -23,4 +26,5 @@ What I have left to do:
 
 * Implement weather condition tests for stormy and sunny conditions - using stubs to stop randomly returned weather conditions - in all honesty I am not sure how I would go about doing this - I hit a blocker at this stage
 *  In order to satisfy I would add some form of weather method that returns randomly generated weather states of 'stormy' and 'sunny'
+* Add additional functionality
 

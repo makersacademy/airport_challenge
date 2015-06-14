@@ -1,5 +1,5 @@
 class Plane
-  
+
   def initialize
     @airborne = true
   end

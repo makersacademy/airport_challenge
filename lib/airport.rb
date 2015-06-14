@@ -20,7 +20,7 @@ class Airport
 
   def release_plane
     plane = planes.pop
-    plane.take_off
+    # plane.take_off
   end
 
   private
