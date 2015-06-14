@@ -17,7 +17,7 @@ describe Airport do
 
     context 'releasing a plane' do
 
-      it { is_expected.to respond_to(:release).with(1).argument}
+      it { is_expected.to respond_to(:release).with(1).argument }
 
       it 'releases a plane if that plane can take off' do
         take_off_plane = Plane.new
@@ -44,7 +44,7 @@ describe Airport do
 
     context 'receiving a plane' do
 
-      it {is_expected.to respond_to(:receive).with(1).argument }
+      it { is_expected.to respond_to(:receive).with(1).argument }
 
       it 'stores planes received in an array' do
         landing_plane = Plane.new
@@ -73,18 +73,18 @@ describe Airport do
     context 'when weather conditions are stormy(which is 10% of the time)' do
 
       it 'does not allow a plane to take off' do
-        take_off_plane = Plane.new
-        take_off_plane.flying = false
-        subject.instruct_take_off(take_off_plane)
+        plane = Plane.new
+        plane.flying = false
+        subject.instruct_take_off(plane)
         allow(subject).to receive(:weather) { "stormy" }
-        expect { subject.release(take_off_plane) }.to raise_error "Too stormy to fly"
+        expect { subject.release(plane) }.to raise_error "Too stormy to fly"
       end
 
       it 'does not allow a plane to land' do
-        landing_plane = Plane.new
-        subject.instruct_landing(landing_plane)
+        plane = Plane.new
+        subject.instruct_landing(plane)
         allow(subject).to receive(:weather) { "stormy" }
-        expect { subject.receive(landing_plane) }.to raise_error "Too stormy to land"
+        expect { subject.receive(plane) }.to raise_error "Too stormy to land"
       end
     end
   end
