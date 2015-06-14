@@ -1,8 +1,11 @@
 class Airport
+  DEFAULT_CAPACITY = 10
+
+  attr_accessor :capacity
 
   def initialize
     @planes = []
-    @capacity = 10
+    @capacity = DEFAULT_CAPACITY
   end
 
   def instruct_plane_to_take_off plane
@@ -20,11 +23,16 @@ class Airport
   end
 
   def receive_plane plane
+    fail "Airport Full" if full?
     planes << plane
   end
 
   def empty?
     planes.empty?
+  end
+
+  def full?
+    planes.count >= capacity
   end
 
   private
