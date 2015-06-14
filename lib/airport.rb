@@ -5,4 +5,9 @@ class Airport
     plane.change_landing_status
   end
 
+  def land_plane plane
+    fail 'Plane not cleared for landing' if (plane.able_to_land? == false)
+    plane
+  end
+
 end
