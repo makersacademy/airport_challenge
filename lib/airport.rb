@@ -1,11 +1,15 @@
+require_relative 'plane'
+
 class Airport
   DEFAULT_CAPACITY = 10
 
   attr_accessor :capacity
+  attr_reader :weather
 
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
+    @weather = :fine
   end
 
   def instruct_plane_to_take_off plane
@@ -37,8 +41,12 @@ class Airport
     planes.count >= capacity
   end
 
-  def weather
-    "fine"
+  def check_weather
+    if rand(100) >= 80
+      @weather = :stormy
+    else
+      @weather = :fine
+    end
   end
 
   def stormy?

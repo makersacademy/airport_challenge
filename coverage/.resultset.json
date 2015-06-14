@@ -85,11 +85,15 @@
       ],
       "/Users/DuskyShelf/Projects/airport_challenge/lib/airport.rb": [
         1,
+        null,
+        1,
         1,
         null,
         1,
+        1,
         null,
         1,
+        7,
         7,
         7,
         null,
@@ -124,7 +128,11 @@
         null,
         null,
         1,
-        4,
+        0,
+        0,
+        null,
+        0,
+        null,
         null,
         null,
         1,
@@ -211,6 +219,6 @@
         null
       ]
     },
-    "timestamp": 1434315850
+    "timestamp": 1434323398
   }
 }
