@@ -1,6 +1,15 @@
 Airport Challenge
 =================
 
+Approach to challenge:
+
+I started by drawing up a brief domain model to ensure I had a clear idea of the classes and methods required.
+
+I took a very test driven approach to the challenge, writing a failing test and then writing the code to make it pass (as per the weeks' learning). This was slow moving at first, but very useful when it came to the later stages and particularly implementing weather (tested using stubs). I also used IRB along the way to ensure things were working as expected.
+
+I had some difficulty with some of the tests and specifically what to test for, but I think I have now achieved pretty good coverage. All tests are passing, and the user needs have all been met.
+
+
 Instructions
 ---------
 
