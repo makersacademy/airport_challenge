@@ -29,6 +29,9 @@ class Airport
     @planes.empty?
   end
 
+  def check_weather
+    weather
+  end
   private
   attr_reader :planes
 
