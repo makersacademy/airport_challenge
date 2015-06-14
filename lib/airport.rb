@@ -10,14 +10,14 @@ DEFAULT_CAPACITY = 50
     @weather = [:sunny,:sunny,:sunny,:stormy].sample
   end
 
-  def land_plane plane
+  def instruct_landing plane
     fail 'Airport is full' if full?
     fail 'stormy weather cannot land' if stormy?
     plane.land
     @planes << plane
   end
 
-  def take_off_plane plane
+  def instruct_take_off plane
     fail 'No planes available' if empty?
     fail 'stormy weather cannot take off' if stormy?
     plane.take_off
