@@ -15,15 +15,53 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
+  let(:airport) {Airport.new}
 
-  xit 'is flying when created'
+  it {is_expected.to respond_to :flying?}
 
-  xit 'can land'
+  it 'is flying when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'is landed after landing'
+  it "request a landing from airport" do
+    subject.land(airport)
+    expect(subject.flying?).to eq false
+  end
 
-  xit 'can take off'
+  it 'can land' do
+    is_expected.to respond_to :land
+  end
 
-  xit 'is flying after take off'
+  it 'is landed after landing' do
+    subject.land(airport)
+    expect(subject).not_to be_flying
+  end
+
+  it 'cannot land if it is already on the ground' do
+    subject.land(airport)
+    expect { subject.land(airport) }.to raise_error "Plane already on ground"
+  end
+
+  it 'cannot take off if it is already flying' do
+    expect { subject.takeoff(airport) }.to raise_error "Plane already flying"
+
+  end
+
+
+  it 'can take off' do
+    is_expected.to respond_to :takeoff
+  end
+
+  it 'requests a takeoff from an airport' do
+    subject.land(airport)
+    expect(subject.takeoff(airport)).to eq true
+
+  end
+
+  it 'is flying after take off' do
+    subject.land(airport)
+    subject.takeoff(airport)
+    expect(subject).to be_flying
+  end
 
 end
