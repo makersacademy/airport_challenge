@@ -75,11 +75,19 @@ describe Airport do
       it 'does not allow a plane to land' do
         plane = Plane.new
         subject.instruct_landing(plane)
+        allow(subject).to receive(:weather) { "sunny" }
         subject.receive(plane)
         plane2 = Plane.new
         subject.instruct_landing(plane2)
         expect { subject.receive(plane2) }.to raise_error "Airport is full"
+      end
 
+      xit 'notifies traffic controller about full capacity'do
+        # plane = Plane.new
+        # subject.instruct_landing(plane)
+        allow(subject).to receive(:weather) { "sunny" }
+        # subject.receive(plane)
+        #expect(subject.capacity.times { subject.receive(double.should_receive(:land).with(:no_args) :plane, :flying => true, :can_land => true) }).to eq "AIRSPACE FULL"
       end
     end
 
