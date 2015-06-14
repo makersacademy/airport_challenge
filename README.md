@@ -62,3 +62,6 @@ Note that is a practice 'Tech Test' of the kinds that employers use to screen de
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
 
 * Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
+* 
+https://travis-ci.org/jonathanngkh/airport_challenge.svg?branch=master
+
