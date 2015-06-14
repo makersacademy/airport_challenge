@@ -12,12 +12,19 @@ class Airport
   end
 
   def take_off
-    Plane.new
+    fail "There are no planes to take off" if empty?
+    planes.pop
   end
 
-  def land plane
+  def land_plane plane
     fail "Airport is full" if full?
+    fail "This plane isn't flying" if plane.landed?
+    plane.land
     planes << plane
+  end
+
+  def current_number_of_planes
+    planes.count
   end
 
 
@@ -27,6 +34,10 @@ class Airport
 
   def full?
     planes.count >= capacity
+  end
+
+  def empty?
+    planes.empty?
   end
 
 end

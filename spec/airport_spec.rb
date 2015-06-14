@@ -17,27 +17,33 @@ describe Airport do
 
     it {is_expected.to respond_to :take_off}
 
-    it 'releases a plane' do
-      plane = subject.take_off
-      expect(plane).to be_flying
+    it 'raises error when airport is empty' do
+      subject.current_number_of_planes.times {subject.take_off}
+      expect {subject.take_off}.to raise_error "There are no planes to take off"
     end
 
   end
 
   describe 'landing' do
-    it {is_expected.to respond_to(:land).with(1).argument}
+    it {is_expected.to respond_to(:land_plane).with(1).argument}
+
+    it 'cannot land a landed plane' do
+      plane = double :plane, :landed? => true
+      expect {subject.land_plane(plane)}.to raise_error "This plane isn't flying"
+    end
 
 
 
-    xit 'receives a plane'
+    it 'receives a plane'
+
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        plane = double :plane
-        subject.capacity.times {subject.land(plane)}
-        expect {subject.land(plane)}.to raise_error "Airport is full"
+        plane = double :plane, land: nil, :landed? => false
+        subject.capacity.times {subject.land_plane(plane)}
+        expect {subject.land_plane(plane)}.to raise_error "Airport is full"
       end
     end
 
