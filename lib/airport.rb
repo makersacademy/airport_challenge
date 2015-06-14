@@ -10,4 +10,9 @@ class Airport
     plane.land_at_airport
   end
 
+  def tell_plane_to_take_off plane
+    plane.confirm_take_off
+  end
+
+
 end

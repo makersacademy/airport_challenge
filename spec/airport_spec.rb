@@ -14,7 +14,12 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do 
+      plane = double :plane, ready_to_take_off: false
+      ready_plane = double :plane, ready_to_take_off: true
+      allow(plane).to receive (:confirm_take_off) {ready_plane}
+      expect(subject.tell_plane_to_take_off plane).to be ready_plane 
+    end
 
     xit 'releases a plane'
   end
