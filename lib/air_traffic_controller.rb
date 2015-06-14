@@ -4,11 +4,13 @@ class AirTrafficController
 
   def request_taking_off_permission
     puts "requested taking off permission"
+    
     request_permission
   end
 
   def request_landing_permission
     puts "requested landed permission"
+
     request_permission
   end
 
@@ -25,7 +27,7 @@ class AirTrafficController
       :afirmative
     else
       puts "Negative!"
-      
+
       :negative
     end
   end

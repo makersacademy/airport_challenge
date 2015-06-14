@@ -7,14 +7,14 @@ class Plane
   end
 
   def take_off airport
-    state = :on_air
+    self.state = :on_air
     airport.notified_take_off
-    
+
     puts "Plane on air!"
   end
 
   def land airport
-    state = :on_land
+    self.state = :on_land
     airport.notified_landing
 
     puts "Plane on land!"

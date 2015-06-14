@@ -28,9 +28,11 @@ class Airport
   def state
     if closed?
       puts "Airport currently not working"
+
       state = :closed
     else
       puts "Airport operating"
+      
       state = :opering
     end
   end
