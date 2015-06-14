@@ -32,6 +32,7 @@ class Airport
   def check_weather
     weather
   end
+  
   private
   attr_reader :planes
 
@@ -46,10 +47,6 @@ class Airport
 
   def stormy?
     weather == :stormy
-  end
-
-  def sunny?
-    not :stormy
   end
 
 end
