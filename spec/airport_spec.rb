@@ -18,7 +18,7 @@ describe Airport do
     it 'instructs a plane to take off' do
       subject.landing plane
       subject.release_plane
-      expect(plane).to be_grounded
+      expect(plane).to be_airborne
     end
 
     it 'releases planes' do
@@ -33,7 +33,7 @@ describe Airport do
     it 'instructs a plane to land' do
       subject.landing plane
       plane.land
-      expect(plane).to be_airborne
+      expect(plane).to be_grounded
     end
 
     it 'receives a plane' do

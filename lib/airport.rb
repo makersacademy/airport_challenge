@@ -13,13 +13,14 @@ class Airport
   end
 
   def landing plane
-    plane.grounded?
     fail 'The airport is full!' if full?
+    plane.land
     planes << plane
   end
 
   def release_plane
-    planes.pop
+    plane = planes.pop
+    plane.take_off
   end
 
   private

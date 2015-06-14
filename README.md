@@ -60,19 +60,23 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 What I did:
 
 * First I put pen to paper to break down the problem into smaller parts to make it easier to understand - constructed basic domain model
-* Class-responsibility-collaboration cards for Plane and Airport classes to help organise in my mind
+* Class-responsibility-collaboration cards for Plane and Airport classes to help organise user stories into classes and responsibilities
 
 * Where possible I used examples and parts of the Boris Bike example and translated them to the Airport challenge - eg. for capacity and planes array to keep track of the number of grounded planes at the airport
-
 
 
 * Struggled to find appropriate method names for methods in my airport class
 
 
+What I have left to do:
+
+* Tests pass but I don't think my tests for landing and take off are thorough enough as when I test in irb when I land an instance of a plane it's airborne state remains set to true
+* Implement
+
 
 On top of the card, the class name
 On the left, the responsibilities of the class
-On the right, collaborators (other classes) with which this class interacts to fulfill its responsibilities
+On the right, collaborators (other classes) with which this class interacts to fufill its responsibilities
 
 Check the following:
 Tests pass
