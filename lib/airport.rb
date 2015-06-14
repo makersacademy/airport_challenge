@@ -11,17 +11,24 @@ class Airport
 	 @landed_planes = []	
 	end
 
-	def land plane
+	def instruct_land plane
+		fail 'Planes cannot land during stormy weather' if weather_conditions == 'stormy'
 		fail "Airport is full" if full?
 		landed_planes << plane
 	end
 
-	def take_off plane
+	def instruct_take_off plane
+		fail 'Planes cannot take off during stormy weather' if weather_conditions == 'stormy'
 		fail 'No planes to take off' if empty?
 		landed_planes.delete plane 
 	end
 
+	def weather_conditions
+		current_weather = ['sunny','stormy']
+		current_weather[rand(current_weather.count)]
+		self
 	end
+
 
 	private
 
@@ -31,4 +38,8 @@ class Airport
 
 	def empty?
 		landed_planes == []
+	end
+
+	
+
 end
