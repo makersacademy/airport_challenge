@@ -23,13 +23,10 @@ describe Airport do
 
     it{is_expected.to respond_to :tell_plane_to_land}
     
-    #I am thinking of removing the below test as I can't think of a way 
-    #of not testing both the plane and the airport at the same time.
-    #This is because the airport method calls the plane method.
-    #Any advice welcome.
     it 'instructs a plane to land' do
-      plane = Plane.new
+      plane = double :plane, able_to_land?: false
       landing_plane = double :plane, able_to_land?: true
+      allow(plane).to receive (:change_landing_status) {true}
       expect(subject.tell_plane_to_land plane).to eq true
     end
 
