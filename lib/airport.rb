@@ -45,4 +45,8 @@ class Airport
     weather == :stormy
   end
 
+  def sunny?
+    not :stormy
+  end
+
 end
