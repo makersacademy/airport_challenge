@@ -5,6 +5,7 @@ class Plane
 
   def initialize
     @flying = true
+   # @land_authorised = false
   end
 
   # attr_reader :flying
@@ -22,7 +23,9 @@ class Plane
   
 
   def land
-    @flying = false
+    #if @land_authorised
+      @flying = false
+    #end
   end
   # NEED TO MAKE THIS CONDITIONAL ON THE AIRPORT
   # METHOD RECEIVE_PLANE BEING CALLED
@@ -34,4 +37,18 @@ class Plane
   # NEED TO MAKE THIS CONDITIONAL ON THE AIRPORT
   # METHOD RELEASE_PLANE BEING CALLED
   # if airport.release_plane(plane) DOESNT WORK.
+
+  # def land_athorised?
+  #   @land_authorised
+  # end
+
+  # def land_authorised
+  #   @land_authorised = true
+  # end
+
+  # def land_authorised_over
+  #   @land_authorised = false
+  # end
+
+
 end

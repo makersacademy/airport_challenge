@@ -14,6 +14,7 @@ class Airport
     fail 'Airport is full' if full?
     fail 'Cannot land due to weather' if weather? == "stormy"
 
+    #plane.land_authorised
     plane.land
     @planes << plane
    
@@ -21,7 +22,7 @@ class Airport
 
   def release_plane(plane)
     plane.takeoff
-    @planes.reject(plane)
+    @planes.delete(plane)
   end
 
 

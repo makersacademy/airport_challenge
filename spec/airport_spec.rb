@@ -16,7 +16,7 @@ describe Airport do
   it { is_expected.to respond_to(:capacity) }
 
   describe 'release_plane' do
-    it {is_expected.to respond_to(:release_plane).with(1).argument }
+    it { is_expected.to respond_to(:release_plane).with(1).argument }
 
     #xit 'instructs a plane to take off'
   #   NEED TO ADD TEST THAT CHECKS THAT THIS METHOD TRIGGERS THE PLANE.TAKEOFF METHOD?
