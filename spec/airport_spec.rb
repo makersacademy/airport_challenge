@@ -66,19 +66,5 @@ describe Airport do
       end
 
     end
-
-    context 'when weather conditions are sunny' do
-      before (:each) {expect(subject).to receive(:weather) {:sunny}}
-
-      it 'allows a plane to land' do
-        subject.approve_landing plane
-      end
-
-      it 'allows planes to take off' do
-        subject.approve_landing plane
-        expect(subject).to receive(:weather) {:sunny}
-        subject.approve_take_off plane
-      end
-    end
   end
 end

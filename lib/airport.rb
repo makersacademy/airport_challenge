@@ -33,7 +33,7 @@ class Airport
   attr_reader :planes
 
   def weather
-    [:sunny, :sunny, :sunny, :stormy].shuffle.first
+    [:sunny, :sunny, :sunny, :stormy].sample
   end
 
   def full?
@@ -44,10 +44,5 @@ class Airport
   def stormy?
     weather == :stormy
   end
-
-  def sunny?
-    weather == :sunny
-  end
-
 
 end
