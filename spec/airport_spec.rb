@@ -12,7 +12,7 @@ describe Airport do
 
   describe 'instruct_plane'
 
-   it {is_expected.to respond_to :instruct_plane}
+    it {is_expected.to respond_to :instruct_plane}
 
   describe 'release_plane'
 
@@ -25,11 +25,11 @@ describe Airport do
     end
 
     it 'release a plane if sunny' do
-    plane = Plane.new
-    allow(subject).to receive(:check_the_weather) { true }
-    subject.landing(plane)
-    expect(subject.release_plane(plane)) == plane
-  end
+      plane = Plane.new
+      allow(subject).to receive(:check_the_weather) { true }
+      subject.landing(plane)
+      expect(subject.release_plane(plane)) == plane
+    end
 
     # it "raise a error if it's stormy" do
     #   plane = Plane.new
