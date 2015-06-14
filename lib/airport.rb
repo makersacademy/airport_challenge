@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  DEFAULT_CAPACITY = 5
+  DEFAULT_CAPACITY = 10
 
   attr_accessor :capacity
 
@@ -29,7 +29,7 @@ class Airport
     fail "\n\n*****   Airport is empty   *****\n\n".upcase if empty?
     @planes.pop
     print self.instruct_plane
-    print "\n\n*****   Plane taken off   *****\n\n".upcase
+    print "\n\n*****   Plane taken off, it's sunny   *****\n\n".upcase
     plane.flying
 
   end
@@ -39,7 +39,7 @@ class Airport
     fail "\n\n*****   Airport is full   *****\n\n".upcase if full?
     fail "\n\n*****   WARNING!! It's stormy, plane is not authorized to landing  *****\n\n".upcase if !@weather
     planes << plane
-    print "\n\n*****   Plane landed   *****\n\n".upcase
+    print "\n\n*****   Plane landed, it's sunny   *****\n\n".upcase
     plane.landed
   end
 
