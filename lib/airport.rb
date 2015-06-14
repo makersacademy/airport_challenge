@@ -8,11 +8,24 @@ require_relative 'plane'
 # So that I can set off for my specified destination
 # I would like to be able to take off from the appropriate airport
 
+# As an air traffic controller
+# So that I can avoid collisions
+# I want to be able to prevent airplanes landing when the airport if full
+#
+# As an air traffic controller
+# So that I can avoid accidents
+# I want to be able to prevent airplanes landing when the weather is stormy
+
 class Airport
 
+  def land_plane plane
+
+  end
 
   def release_plane
-    Plane.new
+    # Plane.new
   end
+
+
 
 end
