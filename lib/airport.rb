@@ -16,8 +16,14 @@ DEFAULT_CAPACITY = 50
 
   def take_off_plane plane
     fail 'No planes available' if @planes.empty?
+    fail 'Stormy weather cannot take off' if weather == :stormy
     plane.take_off
     @planes.delete plane
+  end
+
+
+  def weather
+    [:sunny,:sunny,:sunny,:stormy].sample
   end
 
 end
