@@ -41,5 +41,5 @@ class Airport
   def empty?
     landed_planes == []
   end
-  
+
 end
