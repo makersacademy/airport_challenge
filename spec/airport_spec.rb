@@ -14,6 +14,7 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
+    
     it 'instructs a plane to take off' do 
       expect(subject).to respond_to(:release_plane).with(1).argument   
     end
@@ -31,7 +32,6 @@ describe Airport do
       plane = double :plane
       expect{subject.release_plane plane}.to raise_error 'No planes at the airport'
     end
-
   end
 
   describe 'landing' do
@@ -77,7 +77,6 @@ describe Airport do
         allow(plane).to receive(:take_off) {plane}
         expect{subject.release_plane plane}.to raise_error 'Weather is too stormy'
       end
-        
       
       it 'does not allow a plane to land' do
         plane = double :plane
