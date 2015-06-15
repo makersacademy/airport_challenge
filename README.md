@@ -38,7 +38,7 @@ I want to be able to prevent airplanes landing when the airport if full
 
 As an air traffic controller
 So that I can avoid accidents
-I want to be able to prevent airplanes landing when the weather is stormy
+I want to be able to prevent airplanes landing or taking off when the weather is stormy
 ```
 
 Your task is to test drive the creation a set of classes/modules to satisfy all the above user stories. You will need to use random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
