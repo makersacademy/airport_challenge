@@ -8,12 +8,14 @@ class Airport
 
   def land_plane plane
     fail 'Airport is full' if full?
+    fail 'Weather is too stormy' if stormy?
     plane.land_at_airport
     @planes << plane
   end
 
-  def take_off plane
+  def release_plane plane
   	fail 'No planes at the airport' if empty?
+  	fail 'Weather is too stormy' if stormy?
     plane.take_off
     @planes.delete(plane)
   end
@@ -24,5 +26,9 @@ class Airport
 
   def empty?
   	@planes.length == 0
+  end
+
+  def stormy?
+  	rand(5) == 0
   end
 end
