@@ -13,7 +13,8 @@ describe Plane do
 
   it 'cannot land if already landed' do
     subject.land
-    expect { subject.land }.to raise_error 'Plane has already landed'
+    expect { subject.land }.to raise_error
+    'Plane has already landed'
   end
 
   it 'is landed after landing' do
@@ -26,7 +27,8 @@ describe Plane do
   end
 
   it 'cannot take off if already flying' do
-    expect { subject.take_off }.to raise_error 'Plane cannot take off when flying'
+    expect { subject.take_off }.to raise_error
+    'Plane cannot take off when flying'
   end
 
   it 'is flying after take off' do

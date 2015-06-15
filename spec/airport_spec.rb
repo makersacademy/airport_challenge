@@ -27,7 +27,8 @@ describe Airport do
 
     it 'cannot tell a plane to take-off if airport is empty' do
       test_plane = double :plane,landed?: true
-      expect { subject.instruct_take_off test_plane }.to raise_error 'No planes to take off'
+      expect { subject.instruct_take_off test_plane }.to raise_error
+      'No planes to take off'
     end
   end
 
@@ -70,7 +71,8 @@ describe Airport do
 
       it 'does not allow a plane to land' do
         allow(subject).to receive(:weather_conditions).and_return('stormy')
-        expect { subject.instruct_land double :plane }.to raise_error 'Planes cannot land during stormy weather'
+        expect { subject.instruct_land double :plane }.to raise_error
+        'Planes cannot land during stormy weather'
       end
     end
   end
