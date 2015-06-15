@@ -1,11 +1,9 @@
 require 'airport'
 
-
-
 describe Airport do
 
   describe 'take off' do
-    it 'instructs a plane to take off' do 
+    it 'instructs a plane to take off' do
       expect(subject).to respond_to(:instruct_take_off).with(1).argument
     end
 
@@ -68,7 +66,7 @@ describe Airport do
     end
 
     context 'when weather conditions are stormy' do
-      it 'does not allow a plane to take off' do 
+      it 'does not allow a plane to take off' do
         allow(subject).to receive(:weather_conditions).and_return('stormy')
         expect{subject.instruct_take_off double :plane}.to raise_error 'Planes cannot take off during stormy weather'
       end

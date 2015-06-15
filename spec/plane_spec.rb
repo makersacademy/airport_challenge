@@ -37,5 +37,4 @@ describe Plane do
   it 'cannot be both flying and landed' do
   	expect(subject.flying?).not_to eq subject.landed?
   end
-  
 end
