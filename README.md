@@ -1,64 +1,32 @@
-Airport Challenge
-=================
+# Airport Challenge :airplane:
 
-Instructions
----------
+## Instructions
+[The task](TASK.md) for the weekend challenge was to create a simple system for an airport subject to the clients needs.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, still check in a partial solution
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Addressing the User Stories obtained from the correspondence with the client we are able to build the system by Test Driven Design. 
 
-Steps
--------
+## Steps
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_june2015 (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When teh installation completes, run `bundle`
-3. Complete the following task:
+### Step 1: Domain Model
+The firt step taken to complete the challenge was to create a simple domain model; this helps visualize the problem and allows us to initially predict the object classes we will require and how they will interact. In this challenge it was immediately clear that we would need both an airport and an airplane class and they would interact through take off and landing, for example.
 
-Task
------
+### Step 2: User Stories
+Obtaining [User Stories](USERSTORIES.md) is crucial in order to meet the client requirements when building a system; frequent during the build ensures the client's needs are met throughout. I personally choose to seperate the User Stories into a seperate file in order to isolate them individually.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client.
+Assessing the User Stories allows the build process to begin. Predicting most nouns to become classes and verbs to become methods is a good place to start although should be interpreted with caution; in this challenge 'the weather' was not created as a class but rather was a state of an airport. 
 
-```
-As a pilot
-So that I can arrive at my specified destination
-I would like to land my plane at the appropriate airport
+### Step 3: Test Driven Design (TDD)
+TDD is fundamental when approaching challenges like this. By creating the tests first, using rspec in this case, we are able to create the code critically. It enables the production of the system to be rigorously checked throughout and account for how additional code changes the whole system. 
 
-As a pilot
-So that I can set off for my specified destination
-I would like to be able to take off from the appropriate airport
+In this case, starting with the first User Story, we can see a pilot would like to be able to land a plane at an airport. Before writing the code, we first write the test to see if there is a method to land at an airport i.e the pilot 'can' land a plane. 
 
-As an air traffic controller
-So that I can avoid collisions
-I want to be able to prevent airplanes landing when the airport if full
+Continuing this method through small steps leads to the creation of a system that has been continually tested.
 
-As an air traffic controller
-So that I can avoid accidents
-I want to be able to prevent airplanes landing when the weather is stormy
-```
+### Step 4: Object Orientated Design (OOD)
+Once a test has been written, the goal is to pass that test in the most simple way possible. Following which, we refactor and then repeat the process. Using OOD, we are able to create the classes required to tackle this problem - plane and airport - and address how they interact and what properties they may have. 
 
-Your task is to test drive the creation a set of classes/modules to satisfy all the above user stories. You will need to use random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
+For example; the plane can interact with the airport by landing or taking off and the airport has a capacity.
 
-The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests, and a pending 'grand finale' feature test that combines a number of features. It is up to you to implement the tests and create additional tests as necessary.
+:banana:
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
-
-Please create separate files for every class, module and test suite. 
-
-The submission will be judged on the following criteria:
-
-* Tests pass
-* Tests coverage is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
-
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
-
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
