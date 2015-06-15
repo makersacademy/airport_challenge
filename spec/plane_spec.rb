@@ -24,7 +24,6 @@ describe Plane do
     expect(subject).to respond_to :land
   end
 
-
   it 'is landed after landing' do
     plane = Plane.new
     plane.land
