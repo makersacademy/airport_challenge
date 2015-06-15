@@ -6,25 +6,23 @@ class Airport
     @planes = []
   end
 
-  def tell_plane_to_land plane
-    plane.change_landing_status
-  end
-
   def land_plane plane
-    fail 'Plane not cleared for landing' if (plane.able_to_land? == false)
-    fail 'Airport is full' if @planes.count >= DEFAULT_CAPACITY
+    fail 'Airport is full' if full?
     plane.land_at_airport
     @planes << plane
   end
 
-  def tell_plane_to_take_off plane
-    plane.confirm_take_off
-  end
-
-  def release_plane plane
-  	fail 'No planes available' if (@planes.count == 0)
+  def take_off plane
+  	fail 'No planes at the airport' if empty?
     plane.take_off
     @planes.delete(plane)
   end
 
+  def full?
+  	@planes.count >= DEFAULT_CAPACITY
+  end
+
+  def empty?
+  	@planes.length == 0
+  end
 end
