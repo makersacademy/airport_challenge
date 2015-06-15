@@ -12,7 +12,7 @@ class Airport
     @capacity = DEFAULT_CAPACITY
   end
 
-  def requesting_take_off
+  def request_take_off
     if empty?
       fail 'No planes to take off!'
     elsif forecast == 'stormy'
