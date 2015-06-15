@@ -29,7 +29,6 @@ describe Airport do
       test_plane = double :plane,landed?: true
       expect{subject.instruct_take_off test_plane}.to raise_error 'No planes to take off'
     end
-
   end
 
   describe 'landing' do
@@ -52,7 +51,6 @@ describe Airport do
     it 'airport has no landed planes when created' do
       expect(subject.landed_planes).to eq []
     end
-
   end
 
   describe 'traffic control' do
@@ -61,7 +59,6 @@ describe Airport do
         subject.capacity.times {subject.instruct_land double :plane, flying?: true}
         expect{subject.instruct_land double :plane}.to raise_error "Airport is full"
       end
-
     end
 
     context 'when weather conditions are stormy' do
@@ -77,5 +74,7 @@ describe Airport do
     end
   end
 end
+
+#Airport
 
 
