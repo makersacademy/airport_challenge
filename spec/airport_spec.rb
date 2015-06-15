@@ -25,7 +25,7 @@ describe Airport do
       expect(subject.landed_planes).to eq [filler_plane1, filler_plane2]
     end
 
-    it 'cannot tell a plane to take-off if airport is empty' do
+    it 'cannot tell a plane to take off if airport is empty' do
       test_plane = double :plane,landed?: true
       expect { subject.instruct_take_off test_plane }.to raise_error
       'No planes to take off'
@@ -57,8 +57,10 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        subject.capacity.times {subject.instruct_land double :plane, flying?: true}
-        expect { subject.instruct_land double :plane }.to raise_error "Airport is full"
+        p = double :plane, flying?: true 
+        subject.capacity.times {subject.instruct_land p}
+        expect { subject.instruct_land double :plane }.to raise_error 
+        "Airport is full"
       end
     end
 
@@ -78,6 +80,5 @@ describe Airport do
   end
 end
 
-#Airport
 
 
