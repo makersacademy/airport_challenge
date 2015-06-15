@@ -30,11 +30,6 @@ class Airport
     planes.count
   end
 
-  def stormy?
-    Random.new.rand(10) >= 8 ? true : false
-  end
-
-
   private
 
   attr_reader :planes
@@ -45,6 +40,10 @@ class Airport
 
   def empty?
     planes.empty?
+  end
+
+  def stormy?
+    Random.new.rand(10) >= 8 ? true : false
   end
 
 end

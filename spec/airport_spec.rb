@@ -83,7 +83,7 @@ describe Airport do
 
       it 'does not allow a plane to land' do
         allow(subject).to receive(:stormy?) { true }
-        plane = double :plane, :landed? => false,land: nil, take_off: nil
+        plane = double :plane, :landed? => false, land: nil, take_off: nil
         expect { subject.land_plane(plane) }.to raise_error "Too stormy to land"
 
       end
