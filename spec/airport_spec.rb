@@ -57,8 +57,8 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        p = double :plane, flying?: true 
-        subject.capacity.times {subject.instruct_land p}
+        p = double :plane, flying?: true
+        subject.capacity.times { subject.instruct_land p }
         expect { subject.instruct_land double :plane }.to raise_error
         "Airport is full"
       end
