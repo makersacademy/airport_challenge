@@ -14,7 +14,7 @@ class Airport
   end
 
   def weather
-    rand < 0.5 ? @weather = 'stormy' : @weather = 'sunny'
+    rand < 0.2 ? @weather = 'stormy' : @weather = 'sunny'
   end
 
   def take_off(plane)
