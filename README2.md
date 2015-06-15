@@ -10,6 +10,10 @@ Could not figure out how to write tests for the following:
 
 Not 100% clear that the right plane is definitely being targetted at all times. Used 'plane' as argument in methods to try to deal with this but unsure if it really does.
 
+Haven't really used doubles - focussed on getting the code and tests right.
+
+Not clear on effect of making methods/objects private.
+
 Issues generally with referring to e.g. the plane when in the airport file. Had to use a parameter 'plane' in order to reference plane within a method, so unsure if that has dealt with it or is a fudge.
 
 Wasn't able to make the methods for landing and taking off in the plane file conditional upon the corresponding methods in the airport file. I.e. plane should not take off until airport has released it, and plane should not land until plane has received it. Theoretically the plane file methods for land and take off can be called separately without the airport methods happening first. Had trouble figuring out how to reference the airport methods within the plane methods in order to do this.
