@@ -46,6 +46,11 @@ describe Airport do
   end
 
   describe 'traffic control' do
+
+    it 'can check what the weather is' do
+      expect(subject).to respond_to :check_weather
+    end
+
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         subject.capacity.times { subject.receive_plane double(:plane) }
