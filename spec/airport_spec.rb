@@ -15,19 +15,19 @@ describe Airport do
     it 'releases a plane' do
       allow(subject).to receive(:weather) { 4 }
       subject.landing plane
-      subject.request_take_off
+      subject.requesting_take_off
       expect(subject.empty?).to eq true
     end
 
     it 'instructs a plane to take off' do
       allow(subject).to receive(:weather) { 4 }
       subject.landing plane
-      subject.request_take_off
+      subject.requesting_take_off
       expect(plane).to be_flying
     end
 
     it 'raises an error message when the airport is empty' do
-      expect { subject.request_take_off }.to raise_error 'No planes to take off!'
+      expect { subject.requesting_take_off }.to raise_error 'No planes to take off!'
     end
 
     context 'when weather conditions are stormy' do
@@ -36,7 +36,7 @@ describe Airport do
         allow(subject).to receive(:weather) { 4 }
         subject.landing plane
         allow(subject).to receive(:weather) { 10 }
-        expect { subject.request_take_off }.to raise_error 'It\'s too stormy to fly!'
+        expect { subject.requesting_take_off }.to raise_error 'It\'s too stormy to fly!'
       end
 
     end
