@@ -13,28 +13,20 @@ class Airport
 
   end
 
-  def take_off
-    if stormy?    
-      raise 'The weather is too stormy to take-off'
-    elsif empty?
-      raise 'The airport is empty' 
-    else
-      planes.last.take_off
-      planes.pop
-    end
-
+  def take_off plane
+    raise 'The plane is not in the airport' unless planes.include?(plane)
+    raise 'The weather is too stormy to take-off' if stormy?
+    raise 'The airport is empty' if empty?
+    plane.take_off
+    planes.delete(plane)
   end
 
   def landing plane
-
-    if stormy?    
-      raise 'The weather is too stormy to land'
-    elsif full?
-      raise 'The airport is currently full'
-    else
-      planes << plane
-      plane.landing
-    end
+    raise 'The plane is already in the airport' if planes.include?(plane)
+    raise 'The weather is too stormy to land' if stormy?
+    raise 'The airport is currently full' if full?
+    planes << plane
+    plane.landing
   end
 
    def empty?
@@ -63,6 +55,11 @@ class Airport
   end
 
 end
+
+
+
+
+
 
 
 

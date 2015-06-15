@@ -14,15 +14,19 @@ describe Airport do
       expect(subject).to receive(:weather) {'sunny'}
       subject.landing(plane)
       expect(subject).to receive(:weather) {'sunny'}
-      subject.take_off
+      subject.take_off plane
       expect(subject).to be_empty
+    end
+
+    it 'a plane should not be able to take off when it is not in the airport' do
+      expect{subject.take_off(plane)}.to raise_error 'The plane is not in the airport'
     end
 
     it 'a plane is actually released when its sunny' do
       expect(subject).to receive(:weather) {'sunny'}
       subject.landing(plane)
       expect(subject).to receive(:weather) {'sunny'}
-      expect(subject.take_off).to be_an_instance_of(Plane)
+      expect(subject.take_off (plane)).to be_an_instance_of(Plane)
     end
   end
 
@@ -33,6 +37,11 @@ describe Airport do
       expect(subject).to receive(:weather) {'sunny'}
       subject.landing(plane)
       expect(subject).not_to be_empty
+    end
+
+    it 'a plane should not be able to land if it is already in the airport' do
+      subject.landing(plane)
+      expect{subject.landing(plane)}.to raise_error 'The plane is already in the airport'
     end
 
   end
@@ -52,7 +61,7 @@ describe Airport do
         expect(subject).to receive(:weather) {'sunny'}
         subject.landing(plane)
         expect(subject).to receive(:weather) {'stormy'}
-        expect{subject.take_off}.to raise_error 'The weather is too stormy to take-off'
+        expect{subject.take_off (plane)}.to raise_error 'The weather is too stormy to take-off'
       end
 
       it 'a plane should not be able to land' do
