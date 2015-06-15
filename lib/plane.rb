@@ -19,7 +19,7 @@ class Plane
   def flying?
     @flying
   end
-  
+
   def landed?
     !@flying
   end
