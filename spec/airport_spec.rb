@@ -59,7 +59,7 @@ describe Airport do
       it 'does not allow a plane to land' do
         p = double :plane, flying?: true 
         subject.capacity.times {subject.instruct_land p}
-        expect { subject.instruct_land double :plane }.to raise_error 
+        expect { subject.instruct_land double :plane }.to raise_error
         "Airport is full"
       end
     end
@@ -67,7 +67,7 @@ describe Airport do
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
         allow(subject).to receive(:weather_conditions).and_return('stormy')
-        expect { subject.instruct_take_off double :plane }.to raise_error 
+        expect { subject.instruct_take_off double :plane }.to raise_error
         'Planes cannot take off during stormy weather'
       end
 
@@ -80,5 +80,6 @@ describe Airport do
   end
 end
 
+# Airport Spec
 
 
