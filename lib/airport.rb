@@ -19,8 +19,13 @@ class Airport
   end
 
   def release_plane
+    fail 'Too stormy to fly.' if stormy?
     plane = planes.pop
-    # plane.take_off
+    plane.take_off
+  end
+  
+  def stormy?
+    true if rand > 0.9
   end
 
   private
