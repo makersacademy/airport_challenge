@@ -2,39 +2,43 @@ require_relative 'plane'
 
 class Airport
 
-  attr_accessor :weather
+  DEFAULT_CAPACITY = 10 
+
+  attr_reader :weather, :planes, :capacity
 
   def initialize
-    @weather = rand(10)
     @planes = []
+    @weather = rand(10)
+    @capacity = DEFAULT_CAPACITY
   end
 
-  def weather_type
-    @weather <= 8? 'sunny' : 'stormy'
+  def weather_check
+    if @weather <= 8
+      'sunny'
+    else 
+      'stormy'
+    end
   end
 
   def land plane
-    fail 'Stormy weather. Try later' if self.weather_type == 'stormy' #WHEN DO WE USE SELF?
-    fail 'No capacity at airport' if full?
+    raise 'Stormy weather. Try later' if weather_check == 'stormy' #WHEN DO WE USE SELF?
+    raise 'No capacity at airport' if full?
 
-    @planes << plane
+    plane.flying = false
+
+    planes << plane
   end
 
-  def take_off # NOT SURE HOW TO TEST FOR THIS ONE
+  def take_off plane # NOT SURE HOW TO TEST FOR THIS ONE
     fail 'No planes to take off' if @planes.length == 0
+    planes.reject!{|specific_plane| specific_plane = plane} #ask about this method
   end
 
+  private
 
-
-private
-
-  def full?
-    @planes.count >= 20
-  end  
-
-
-
-
-
+    def full?
+      @planes.count == @capacity
+    end  
+  
 
 end
