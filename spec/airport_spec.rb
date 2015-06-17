@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { Plane.new } # TODO have this be a double of plane, rather than a real plane
+  let(:plane) { double :plane, land: nil, take_off: nil } 
 
   it { is_expected.to respond_to(:landing).with(1).argument }
   it { is_expected.to respond_to :release_plane }
@@ -20,10 +20,10 @@ describe Airport do
     # SETUP
     plane = double :plane, land: nil, take_off: nil
     subject.landing plane
-    
+
     # EXPECTATION ABOUT THE FUTURE
     expect(plane).to receive :take_off
-    
+
     # ACTION
     subject.release_plane
   end
@@ -36,7 +36,7 @@ describe Airport do
 
     it 'receives a plane' do
       subject.landing plane
-      # Try to write an expectation on the airport's collection of planes 
+      # Try to write an expectation on the airport's collection of planes
     end
   end
 
