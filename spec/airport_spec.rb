@@ -30,15 +30,15 @@ describe Airport do
       expect(subject).to respond_to :take_off
     end
 
-    xit 'releases a plane'
-    #     plane = double :plane, flying?: true
-    #     allow(plane).to receive(:landed).and_return(false)
-    #     # allow(plane).to receive(:take_off)
-    #     subject.land_plane(plane)
-    #     allow(subject).to receive(:weather).and_return("stormy")
-    #     p subject.weather
-    #     expect(subject.take_off plane).to be plane
-    # end
+    it 'releases a plane' do
+        plane = double :plane, flying?: true
+        allow(plane).to receive(:landed).and_return(false)
+        allow(plane).to receive(:take_off)
+        subject.land_plane(plane)
+        allow(subject).to receive(:weather).and_return("stormy")
+        p subject.weather
+        expect(subject.take_off plane).to be plane
+    end
 
     it 'raises an error when a plane is not in airport' do
       plane = double :plane
@@ -88,15 +88,14 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     # context 'when weather conditions are stormy' do
-    xit 'does not allow a plane to take off'
-    #   #   plane = double :plane, flying?: true
-    #   #   subject.land_plane(plane)
-    #   #   allow(subject).to receive(:weather) {'stormy'}
-    #   #   expect{subject.take_off(plane)}.to raise_error 'Plane cannot take-off due to bad weather'
-    #   # end
-    # end
+    it 'does not allow a plane to take off' do
+        plane = double :plane, flying?: true
+        subject.land_plane(plane)
+        allow(subject).to receive(:weather) {'stormy'}
+        expect{subject.take_off(plane)}.to raise_error 'Plane cannot take-off due to bad weather'
+      end
+    end
 
     xit 'does not allow a plane to land'
-  end
 
 end
