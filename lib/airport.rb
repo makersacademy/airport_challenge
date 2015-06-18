@@ -13,17 +13,18 @@ class Airport
   end
 
   def landing plane
-    fail 'The airport is full!' if full?
+    raise 'Too stormy to land.' if stormy?
+    raise 'The airport is full!' if full?
     plane.land
     planes << plane
   end
 
-  def release_plane
-    fail 'Too stormy to fly.' if stormy?
-    plane = planes.pop
+  def release plane
+    raise 'Too stormy to fly.' if stormy?
+    planes.delete plane
     plane.take_off
   end
-  
+
   def stormy?
     true if rand > 0.9
   end
