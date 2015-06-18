@@ -47,7 +47,8 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-      subject.capacity.times { subject.land_plane }
+        plane = Plane.new
+      expect(plane.flying?).to be true
       expect { subject.land_plane }.to raise_error 'Airoport is full'
     end
 
@@ -62,10 +63,15 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
-        expect { subject.take_off_plane}.to raise_error 'the weather is stormy,the plane can not take off'
+        plane = Plane.new
+        subject.land_plane plane
+        expect(plane.landed?).to be true
+        expect { subject.take_off plane}.to raise_error 'the weather is stormy,the plane can not take off'
       end
 
       it 'does not allow a plane to land' do
+        plane = Plane.new
+        expect(plane.flying?).to be true
         expect { subject.land_plane}.to raise_error 'the weather is stormy,the plane can not land'
       end
     end
