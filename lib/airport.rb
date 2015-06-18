@@ -13,23 +13,25 @@ class Airport
   end
 
   def instruct_land plane
-    fail 'Planes cannot land during stormy weather'
-    if weather_conditions == 'stormy'
+    fail 'Planes cannot land during stormy weather' if stormy?
     fail "Airport is full" if full?
     landed_planes << plane
   end
 
   def instruct_take_off plane
-    fail 'Planes cannot take off during stormy weather'
-    if weather_conditions == 'stormy'
+    fail 'Planes cannot take off during stormy weather' if weather_conditions == 'stormy' # refactor as we've done above
     fail 'No planes to take off' if empty?
+    plane.take_off
     landed_planes.delete plane
   end
 
   def weather_conditions
     current_weather = ['sunny','stormy']
     current_weather[rand(current_weather.count)]
-    self
+  end
+
+  def stormy?
+    weather_conditions == 'stormy'
   end
 
   private

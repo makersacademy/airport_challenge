@@ -1,46 +1,53 @@
 require 'airport'
 
 describe Airport do
+    
+  let(:test_plane) { double :plane, landed?: true, take_off: nil }
+
+  before do
+    allow(subject).to receive(:weather_conditions).and_return 'sunny'
+  end
 
   describe 'take off' do
+
     it 'instructs a plane to take off' do
-      expect(subject).to respond_to(:instruct_take_off).with(1).argument
+      expect(test_plane).to receive :take_off
+
+      subject.instruct_land test_plane
+
+      subject.instruct_take_off test_plane
     end
 
     it 'releases a plane when it was the last plane that landed' do
-      test_plane = double :plane, landed?: true
       subject.instruct_land test_plane
       subject.instruct_take_off test_plane
-      expect(subject.landed_planes).to eq []
+      expect(subject.landed_planes).to be_empty
     end
 
     it 'releases specific plane, even if not last to land' do
-      test_plane = double :plane, landed?: true
       filler_plane1 = double :plane, landed?: true
-      filler_plane2 = double :plane, landed?: true
-      subject.instruct_land filler_plane1
-      subject.instruct_land test_plane
-      subject.instruct_land filler_plane2
-      subject.instruct_take_off test_plane
-      expect(subject.landed_planes).to eq [filler_plane1, filler_plane2]
+
+      [test_plane, filler_plane1].each do |plane|
+        subject.instruct_land plane
+      end
+      
+      expect(subject.instruct_take_off test_plane).to eq test_plane
     end
 
     it 'cannot tell a plane to take off if airport is empty' do
-      test_plane = double :plane,landed?: true
-      expect { subject.instruct_take_off test_plane }.to raise_error
-      'No planes to take off'
+      expect { subject.instruct_take_off test_plane }.
+        to raise_error 'No planes to take off'
     end
   end
 
   describe 'landing' do
-    it 'instructs a plane to land' do
+    it 'instructs a plane to land' do # implement this test as we did above with take off
       expect(subject).to respond_to(:instruct_land).with(1).argument
     end
 
     it 'receives a plane' do
-      test_plane = double :plane, flying?: true
       subject.instruct_land test_plane
-      expect(subject.landed_planes).to eq [test_plane]
+      expect(subject.landed_planes).to include test_plane
     end
   end
 
@@ -50,15 +57,14 @@ describe Airport do
     end
 
     it 'airport has no landed planes when created' do
-      expect(subject.landed_planes).to eq []
+      expect(subject.landed_planes).to be_empty
     end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        p = double :plane, flying?: true
-        subject.capacity.times { subject.instruct_land p }
+        subject.capacity.times { subject.instruct_land test_plane }
         expect { subject.instruct_land double :plane }.to raise_error
         "Airport is full"
       end
@@ -80,6 +86,5 @@ describe Airport do
   end
 end
 
-# Airport Spec
 
 
