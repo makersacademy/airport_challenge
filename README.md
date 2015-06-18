@@ -19,12 +19,14 @@ What I did:
 
 
 
-
-
-What I have left to do:
+Post 1:1 with Ptolemy:
 ----------------------
 
-* Implement weather condition tests for stormy and sunny conditions - using stubs to stop randomly returned weather conditions - in all honesty I am not sure how I would go about doing this - I hit a blocker at this stage
-*  In order to satisfy I would add some form of weather method that returns randomly generated weather states of 'stormy' and 'sunny'
-* Add additional functionality
+Ptolemy helped answer any outstanding questions I had and ran through some ways to improve my challenge by doing following:
+* In airport_spec - I refactored group tests related to a particular method together with a context block and updated some tests to use one-liner syntax combines with context blocks instead (where appropriate)
 
+* Double added in airport spec to remove dependency
+
+* Implemented weather condition tests for stormy and sunny conditions - using stubs to stop randomly returned stormy weather condition - guidance provided by Ptolemy on first stage and how to use stubs here.
+
+* Refactored to group tests related to a particular method together with a context block
