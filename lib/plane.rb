@@ -11,7 +11,7 @@ class Plane
   end
 
   def take_off
-    @landed ? true : false
+    @landed = false
   end
 
   # def landed??

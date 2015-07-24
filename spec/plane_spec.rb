@@ -40,6 +40,9 @@ describe Plane do
     expect(subject.take_off).to be false
   end
 
-  xit 'is flying after take off'
+  it 'is flying after take off' do
+    subject.take_off
+    expect(subject.landed).to be false
+  end
 
 end
