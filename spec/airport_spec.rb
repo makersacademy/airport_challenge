@@ -40,6 +40,13 @@ describe Airport do
     end
   end
 
+  describe 'land' do
+    it 'raises an error when you try to land a plane in a storm' do
+      @weather = :stormy
+      expect { subject.land(:plane) }.to raise_error 'It\'s too dangerous to land!'
+    end
+  end
+
   describe 'capacity' do
   it 'has a capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY

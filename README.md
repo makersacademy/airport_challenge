@@ -1,5 +1,4 @@
-https://travis-ci.org/christopheralcock/airport_challenge.svg?branch=master
-
+[![Build Status](https://travis-ci.org/christopheralcock/airport_challenge.svg?branch=master)](https://travis-ci.org/christopheralcock/airport_challenge)
 
 Airport Challenge
 =================
@@ -14,10 +13,10 @@ Airport Challenge
 8. launching planes must free up space /n
 9. airport must not launch planes that aren't there /n
 10. airport must not land planes when full /n
-11. airport has weather
-airport must not land planes when stormy /n
-airport must land planes when it isn't full AND it is sunny /n
-airport must only land planesr
+11. airport has weather /n
+12. airport must not land planes when stormy /n
+13. airport must not launch planes when stormy /n
+14. airport must only land planes /n
 
 1a. irb
 
@@ -435,7 +434,50 @@ NoMethod error
 
 11c. Ruby
 
+  def initialize
+    @capacity = DEFAULT_CAPACITY
+    @hanger = []
+    @weather
+  end
 
+  def weather
+    weather_god = rand(100)
+    if weather_god <= PERCENTAGE_OF_DAYS_STORMY
+      @weather = :stormy
+    else @weather = :sunny
+    end
+  end
+
+11d. spec
+
+pass
+
+11e. irb
+
+heathrow = Airport.new
+heathrow.weather
+sunny
+
+git commit
+
+12a. irb
+
+heathrow = Airport.new
+@weather = :stormy
+boeing_747 = Plane.new
+heathrow.land(boeing_747)
+ok
+
+12b. rspec
+
+  describe 'land' do
+    it 'raises an error when you try to land a plane in a storm' do
+      @weather = :stormy
+      expect { subject.land(:plane) }.to raise_error 'It\'s too dangerous to land!''
+    end
+  end
+
+12c. ruby
 
 
 

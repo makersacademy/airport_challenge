@@ -1,17 +1,25 @@
 class Airport
 DEFAULT_CAPACITY = 25
+PERCENTAGE_OF_DAYS_STORMY = 3
 attr_reader :capacity
+attr_reader :weather
+
 
   def initialize
     @capacity = DEFAULT_CAPACITY
     @hanger = []
-    @weather
+    @weather = self.weather
   end
 
   def land(plane)
-    if @hanger.length < @capacity
-      @hanger << plane
-    else fail 'There\'s no room here'
+    if @hanger.length >= @capacity && @weather == :stormy
+       fail 'There\'s no room here'
+       fail 'It\'s too dangerous to land!'
+    elsif @weather == :stormy
+       fail 'It\'s too dangerous to land!'
+    elsif @hanger.length >= @capacity
+       fail 'There\'s no room here'
+    else @hanger << plane
     end
   end
 
@@ -28,10 +36,10 @@ attr_reader :capacity
 
   def weather
     weather_god = rand(100)
-    if weather_god < 3
+    if weather_god <= PERCENTAGE_OF_DAYS_STORMY
       @weather = :stormy
     else @weather = :sunny
-    end 
+    end
   end
 
 end
