@@ -1,3 +1,5 @@
+require_relative 'airport'
+
 class Plane
 	def initialize
 		@flying = true
@@ -7,7 +9,7 @@ class Plane
 		@flying
 	end 
 
-	def land
+	def land 
 		@flying = false 
 	end 
 
@@ -15,7 +17,7 @@ class Plane
 		!flying?
 	end 
 
-	def take_off
+	def take_off 
 		@flying = true
 	end 
 end 

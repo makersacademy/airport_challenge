@@ -13,10 +13,16 @@ class Airport
 
 	def release plane
 		@planes.pop
+		plane.take_off
 	end 
 
 	def allow_landing
 		@allowlanding = true
-	end 
+	end
 
+	def receive plane
+		plane.land
+		@planes << plane
+
+	end 
 end

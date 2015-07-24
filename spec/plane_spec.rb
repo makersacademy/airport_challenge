@@ -1,6 +1,5 @@
 require 'plane'
 
-
 describe Plane do
 
   it 'is flying when created' do 

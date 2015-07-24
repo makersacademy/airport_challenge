@@ -13,9 +13,8 @@
         1,
         null,
         null,
-        null,
-        null,
-        null,
+        1,
+        1,
         null,
         null,
         null,
@@ -25,6 +24,8 @@
         null,
         null,
         1,
+        1,
+        null,
         null,
         null,
         1,
@@ -54,9 +55,9 @@
         null,
         1,
         1,
-        2,
-        2,
-        2,
+        4,
+        4,
+        4,
         null,
         null,
         1,
@@ -65,15 +66,23 @@
         null,
         1,
         0,
+        0,
         null,
         null,
         1,
+        0,
+        null,
+        null,
+        1,
+        0,
         0,
         null,
         null,
         null
       ],
       "/Users/Benjamina/Desktop/Makers/Projects/course/airport_challenge/lib/plane.rb": [
+        1,
+        null,
         1,
         1,
         5,
@@ -98,7 +107,6 @@
       ],
       "/Users/Benjamina/Desktop/Makers/Projects/course/airport_challenge/spec/plane_spec.rb": [
         1,
-        null,
         null,
         1,
         null,
@@ -127,6 +135,6 @@
         null
       ]
     },
-    "timestamp": 1437758269
+    "timestamp": 1437760090
   }
 }

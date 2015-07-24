@@ -1,18 +1,17 @@
 require 'airport'
 
 describe Airport do
-  let(:landed_plane) {double(:landed_plane,{:flying? => false})}
-  let(:flying_plane) {double(:landed_plane,{:flying? => true})}
+  #let(:landed_plane) {double(:landed_plane,{:flying? => false})}
+  #let(:flying_plane) {double(:landed_plane,{:flying? => true})}
   
   describe 'take off' do
     it 'instructs a plane to take off' do 
       expect(subject).to respond_to :allow_take_off
     end 
 
-    #it 'releases a plane' do 
-      #subject.release landed_plane
-      #expect(subject)
-    #end 
+    it 'releases a plane' do 
+      expect(subject).to respond_to(:release).with(1).argument
+    end 
   end
 
   describe 'landing' do
@@ -20,12 +19,29 @@ describe Airport do
       expect(subject).to respond_to :allow_landing
     end 
 
-    xit 'receives a plane'
+    it 'receives a plane' do 
+      expect(subject).to respond_to(:receive).with(1).argument
+    end 
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land'
     end
 
     # Include a weather condition.
