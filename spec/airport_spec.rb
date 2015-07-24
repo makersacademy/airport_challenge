@@ -13,9 +13,9 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    it 'launches a plane' do
-      expect(subject).to respond_to(:launch)
+  describe 'launch' do
+    it 'launches a specific plane' do
+      expect(subject).to respond_to(:launch).with(1).argument
     end
   end
 
@@ -36,6 +36,17 @@ end
       expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY-1)
     end
   end
+
+  describe 'space_check' do
+    it 'can return its spare space, which is raised by a plane launching' do
+      random = rand(100)
+      random.times{subject.land(:plane)}
+      random.times{subject.launch(:plane)}
+      expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY)
+    end
+  end
+
+
 
 
   describe 'traffic control' do

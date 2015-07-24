@@ -10,10 +10,9 @@ Airport Challenge
 4. airport must have a free space method /n
 5. airport must count how many planes are there /n
 6. landing planes must take up space /n
-
-
-
-airport must not launch planes when empty /n
+7. airport must launch specific planes /n
+8. launching planes must free up space /n
+. airport must not launch planes that aren't there /n
 airport must not land planes when full /n
 airport must not land planes when stormy /n
 airport must land planes when it isn't full AND it is sunny /n
@@ -199,7 +198,7 @@ attr_reader :capacity
   def land(plane)
   end
 
-  def launch(plane)
+  def launch(plan)
   end
 
   def space_check
@@ -258,6 +257,84 @@ heathrow.space_check
 24
 
 git commit
+
+7a. irb
+
+heathrow = Airport.new
+boeing_747 = Plane.new
+heathrow.land(boeing_747)
+heathrow.launch(boeing_747)
+error
+
+7b. rspec
+
+  describe 'launch' do
+    it 'launches a specific plane' do
+      expect(subject).to respond_to(:launch).with(1).argument
+    end
+  end
+
+*went home. opened up laptop. bit confused, somehow, as to why this test is now passing*
+?????
+
+7c. irb
+
+heathrow = Airport.new
+boeing_747 = Plane.new
+heathrow.land(boeing_747)
+heathrow.launch(boeing_747)
+nil
+
+8a. irb
+
+heathrow = Airport.new
+boeing_747 = Plane.new
+heathrow.land(boeing_747)
+heathrow.space_check
+24
+heathrow.launch(boeing_747)
+heathrow.space_check
+24
+
+8b. rspec
+
+  describe 'space_check' do
+    it 'can return its spare space, which is raised by a plane launching' do
+      random = rand(100)
+      random.times{subject.land(:plane)}
+      random.times{subject.launch(:plane)}
+      expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY)
+    end
+  end
+
+Fail 
+
+8c. ruby
+
+  def launch(plane)
+    @hanger.delete(plane) 
+  end
+
+8d. rspec
+
+5 greens - space check now correct after a plane leaves
+
+8e.
+
+heathrow = Airport.new
+boeing_747 = Plane.new
+heathrow.land(boeing_747)
+heathrow.space_check
+24
+heathrow.launch(boeing_747)
+heathrow.space_check
+25
+
+
+
+git commit
+
+
 
 
 

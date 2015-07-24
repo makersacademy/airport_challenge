@@ -11,6 +11,7 @@ attr_reader :capacity
   end
 
   def launch(plane)
+    @hanger.delete(plane) 
   end
 
   def space_check
