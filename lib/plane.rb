@@ -13,7 +13,12 @@ class Plane
       false
     end
   end
+
   def land
     @status = "landed"
+  end
+
+  def takeoff
+    @status = "flying"
   end
 end
