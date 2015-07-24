@@ -30,7 +30,15 @@ describe Plane do
     expect(subject.landed).to be true
   end
 
-  xit 'can take off'
+  it 'can take off' do
+    subject.land
+    expect(subject).to respond_to :take_off
+  end
+
+  it ' cannot take off if flying' do
+    subject.landed = false
+    expect(subject.take_off).to be false
+  end
 
   xit 'is flying after take off'
 
