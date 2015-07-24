@@ -12,23 +12,35 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  let(:plane){double(:airplane)}
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to(:plane_take_off)
+    end
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      subject.land :plane
+      expect(subject.plane_take_off).to eq(:plane)
+    end
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      expect(subject.land :plane).not_to be_empty
+    end
   end
 
   describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
-    end
+    # context 'when airport is full' do
+    #   it 'does not allow a plane to land' do
+    #     expect{subject.land :plane}.to raise_error "Airport at capacity!  You can not land here!"
+    #   end
+    #end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
