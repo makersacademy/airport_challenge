@@ -24,6 +24,9 @@ describe Plane do
     expect(subject).to respond_to :land
   end
 
+  it 'is not landed if flying' do
+    expect(subject).to_not be_landed
+  end
 
   describe '#land' do
 
