@@ -5,7 +5,18 @@ class Plane
   end
   
   def flying?
-    flying
+    @flying
+  end
+  
+  def land
+  end
+  
+  def landed
+    !@flying
+  end
+  
+  def take_off
+    @flying
   end
   
 end
