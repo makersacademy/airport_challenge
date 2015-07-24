@@ -16,7 +16,11 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+#  xit 'is flying when created'
+  it 'is expected to be flying when created' do
+    plane = Plane.new
+    expect(plane).to respond_to :flying?
+  end
 
   xit 'can land'
 
@@ -25,5 +29,5 @@ describe Plane do
   xit 'can take off'
 
   xit 'is flying after take off'
-
+    
 end
