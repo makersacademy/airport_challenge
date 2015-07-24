@@ -31,9 +31,9 @@ describe Airport do
   end
 end
 
-  describe 'space' do
+  describe 'space_check' do
     it 'can return its spare space' do
-      expect(subject).to respond_to(:space_check)
+      expect(subject.space_check). to eq Airport::DEFAULT_CAPACITY
     end
   end
 

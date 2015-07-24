@@ -7,7 +7,9 @@ Airport Challenge
 1. airport must land planes /n
 2. airport must launch planes /n 
 3. airport must have a capacity /n
-4. airport must not launch planes when empty /n
+4. airport must have a free space method /n
+5. airport must count how many planes are there /n
+. airport must not launch planes when empty /n
 airport must not land planes when full /n
 airport must not land planes when stormy /n
 airport must land planes when it isn't full AND it is sunny /n
@@ -141,7 +143,7 @@ error
 
 4b. rspec
 
-  describe 'space' do
+  describe 'space_check' do
     it 'can return its spare space' do
       expect(subject).to respond_to(:space_check)
     end
@@ -165,6 +167,55 @@ heathrow.space_check
 nil
 
 git commit
+
+5a. irb
+
+heathrow = station.new
+heathrow.space_check
+nil
+
+5b. rspec
+
+  describe 'space_check' do
+    it 'can return its spare space' do
+      expect(subject.space_check). to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
+5c. Ruby
+
+class Airport
+DEFAULT_CAPACITY = 25
+attr_reader :capacity
+
+  def initialize
+    @capacity = DEFAULT_CAPACITY
+    @hanger = []
+  end
+  def land(plane)
+  end
+
+  def launch(plane)
+  end
+
+  def space_check
+    @capacity - @hanger.length
+  end
+
+end
+
+5d. rspec
+
+four greens - modified space check now correct
+
+5e. irb
+
+heathrow = station.new
+heathrow.space_check
+25
+
+git commit
+
 
 
 

@@ -4,6 +4,7 @@ attr_reader :capacity
 
   def initialize
     @capacity = DEFAULT_CAPACITY
+    @hanger = []
   end
   def land(plane)
   end
@@ -12,6 +13,7 @@ attr_reader :capacity
   end
 
   def space_check
+    @capacity - @hanger.length
   end
 
 end
