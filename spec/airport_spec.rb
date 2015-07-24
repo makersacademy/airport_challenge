@@ -31,6 +31,12 @@ describe Airport do
   end
 end
 
+  describe 'space' do
+    it 'can return its spare space' do
+      expect(subject).to respond_to(:space_check)
+    end
+  end
+
   describe 'traffic control' do
     context 'when airport is full' do
       xit 'does not allow a plane to land'
