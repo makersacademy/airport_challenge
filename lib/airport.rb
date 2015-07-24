@@ -27,6 +27,11 @@ attr_reader :capacity
   end
 
   def weather
+    weather_god = rand(100)
+    if weather_god < 3
+      @weather = :stormy
+    else @weather = :sunny
+    end 
   end
 
 end
