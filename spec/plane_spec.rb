@@ -18,13 +18,27 @@ describe Plane do
 
 	context 'when created' do 
 		it 'is flying' do 
-			expect(subject.flying?).to eq(true)
+			expect(subject.flying?).to eq true
 		end
 	end
 
-  xit 'can land'
+  it 'can land' do 
+  	expect(subject).to respond_to :land
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do 
+  	subject.land
+  	expect(subject).to be_landed
+  end
+
+  it 'cannot be flying and landed at the same time' do 
+  	expect(subject).to_not be_landed
+  end
+
+  it 'cannot be landed and flying at the same time' do 
+  	subject.land 
+  	expect(subject).to_not be_flying
+  end
 
   xit 'can take off'
 
