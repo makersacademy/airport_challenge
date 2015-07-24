@@ -56,8 +56,6 @@ describe Plane do
     end
   end
 
-
-
   # xit 'is flying when created'
 
   # xit 'can land'
