@@ -7,6 +7,7 @@ class Plane
   end
 
   def land
+    raise "Plane is landed so cannot land" if landed?
     @flying = false
   end
 

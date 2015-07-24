@@ -36,10 +36,14 @@ describe Plane do
 
   describe '#land' do
 
-
     it 'is landed after landing' do
-      subject.land               #change
+      subject.land
       expect(subject).to be_landed
+    end
+
+    it 'does not allow landed planes to land' do
+      subject.land
+      expect{subject.land}.to raise_error "Plane is landed so cannot land"
     end
 
   #   it 'is not flying after landing' do   #change
