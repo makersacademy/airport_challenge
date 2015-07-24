@@ -17,12 +17,12 @@ describe Airport do
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-      expect(subject).to respond_to(:plane_take_off)
+      expect(subject).to respond_to(:allow_take_off)
     end
 
     it 'releases a plane' do
       subject.accept :plane
-      expect(subject.plane_take_off).to eq(:plane)
+      expect(subject.allow_take_off).to eq(:plane)
     end
   end
 

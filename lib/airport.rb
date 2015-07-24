@@ -11,7 +11,7 @@ class Airport
     planes.push(plane)
   end
 
-  def plane_take_off
+  def allow_take_off
     planes.pop
   end
 
