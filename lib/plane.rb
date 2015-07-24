@@ -1,3 +1,15 @@
 class Plane
-  #initial pull request
+  def initialize
+    @status = "flying"
+  end
+
+  def status
+    @status
+  end
+
+  def landing
+  end
+
+  def take_off
+  end
 end
