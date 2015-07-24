@@ -7,12 +7,13 @@ class Airport
   end
 
   def accept(plane)
-    #plane.land
+    plane.land
     planes.push(plane)
   end
 
   def allow_take_off
-    planes.pop
+    plane = planes.pop
+    #plane.fly
   end
 
   private

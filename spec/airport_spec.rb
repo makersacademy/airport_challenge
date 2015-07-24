@@ -13,7 +13,7 @@ require 'airport'
 
 describe Airport do
   let(:plane){double(:airplane)}
- # allow(plane).to receive(:land)
+
 
   describe 'take off' do
     it 'instructs a plane to take off' do
@@ -21,9 +21,13 @@ describe Airport do
     end
 
     it 'releases a plane' do
-      subject.accept :plane
-      expect(subject.allow_take_off).to eq(:plane)
+      wings = instance_double("Plane")
+      allow(wings).to receive(:land)
+      subject.accept wings
+      expect(subject.allow_take_off).to eq(wings)
     end
+
+    xit 'after releasing a plane'
   end
 
   describe 'landing' do
@@ -32,10 +36,12 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      expect(subject.accept :plane).not_to be_empty
+      wings = instance_double("Plane")
+      allow(wings).to receive(:land)
+      expect(subject.accept wings).not_to be_empty
     end
 
-    it 'after accepting a plane'
+    xit 'after accepting a plane'
   end
 
   describe 'traffic control' do
