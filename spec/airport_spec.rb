@@ -34,6 +34,8 @@ describe Airport do
     it 'receives a plane' do
       expect(subject.accept :plane).not_to be_empty
     end
+
+    it 'after accepting a plane'
   end
 
   describe 'traffic control' do
