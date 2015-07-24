@@ -1,5 +1,6 @@
 require 'plane'
 
+
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -15,6 +16,7 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
+  let(:airport) {double(:airport, land_request: true)}
 
   it 'is flying on creation' do
     expect(subject).to be_flying
@@ -35,12 +37,12 @@ describe Plane do
   describe '#land' do
 
     it 'is landed after landing' do
-      subject.land(:airport)
+      subject.land(airport)
       expect(subject).to be_landed
     end
 
     it 'is not flying after landing' do
-      subject.land(:airport)
+      subject.land(airport)
       expect(subject).to_not be_flying
     end
   end
@@ -48,8 +50,8 @@ describe Plane do
   describe '#take_off' do
 
     it 'is flying after taking off' do
-      subject.land(:airport)
-      subject.take_off(:airport)
+      subject.land(airport)
+      subject.take_off(airport)
       expect(subject).to be_flying
     end
   end

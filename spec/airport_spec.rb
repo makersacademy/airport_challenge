@@ -13,6 +13,12 @@ require 'airport'
 
 # describe Airport do
 
+  describe Airport do
+
+    it 'allows planes to land' do
+      expect(subject.land_request(Plane.new)).to be true
+    end
+  end
 
 #   describe 'take off' do
 #     xit 'instructs a plane to take off'

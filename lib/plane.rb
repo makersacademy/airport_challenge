@@ -1,3 +1,5 @@
+require_relative 'airport'
+
 class Plane
 
   def initialize
@@ -5,6 +7,7 @@ class Plane
   end
 
   def land airport
+    airport.land_request self
     @flying = false
   end
 
@@ -19,5 +22,4 @@ class Plane
   def landed?
     return true unless @flying
   end
-
 end
