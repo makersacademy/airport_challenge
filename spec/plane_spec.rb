@@ -28,11 +28,29 @@ describe Plane do
     expect(subject).to_not be_landed
   end
 
+  it 'can take off' do
+  end
+
+
   describe '#land' do
 
-    it 'is has' do
+    it 'is landed after landing' do
       subject.land(:airport)
       expect(subject).to be_landed
+    end
+
+    it 'is not flying after landing' do
+      subject.land(:airport)
+      expect(subject).to_not be_flying
+    end
+  end
+
+  describe '#take_off' do
+
+    it 'is flying after taking off' do
+      subject.land(:airport)
+      subject.take_off(:airport)
+      expect(subject).to be_flying
     end
   end
 
