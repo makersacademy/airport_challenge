@@ -16,7 +16,11 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+	context 'when created' do 
+		it 'is flying' do 
+			expect(subject.flying?).to eq(true)
+		end
+	end
 
   xit 'can land'
 
