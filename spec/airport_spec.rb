@@ -14,15 +14,15 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
-
-    xit 'releases a plane'
+    it 'launches a plane' do
+      expect(subject).to respond_to(:launch)
+    end
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
+  describe 'land' do
+    it 'receives a plane' do
+      expect(subject).to respond_to(:land)
+    end
   end
 
   describe 'traffic control' do

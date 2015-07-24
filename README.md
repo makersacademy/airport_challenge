@@ -1,10 +1,112 @@
+https://travis-ci.org/christopheralcock/airport_challenge.svg?branch=master
+
+
 Airport Challenge
 =================
 
-airport must interact with planes /n
+1. airport must accept land from planes /n
+2. airport must accept launch from planes /n 
 airport must reject planes when full /n
 airport must reject planes when stormy /n
 airport must accept planes when it isn't full and it is sunny /n
+
+1a. irb
+
+heathrow = Airport.new
+creates airport!
+boeing_747 = Plane.new
+creates plane!
+heathrow.land(boeing_747)
+NoMethod error
+
+1b. rspec
+
+  describe 'land' do
+    it 'receives a plane' do
+      expect(subject).to respond_to(:land)
+    end
+
+Fails!
+
+1c. Ruby
+
+class Airport
+  def land(plane)
+  end
+end
+
+1d. rspec
+
+green - receives a plane
+
+1e. irb
+
+heathrow = Airport.new
+creates airport!
+boeing_747 = Plane.new
+creates plane!
+heathrow.land(boeing_747)
+nil
+I'm not certain this is actually the correct thing to look for, so I try some "wrong" stuff like tring to land lear_jet, which gives an error, which I take as a good sign
+
+2a. irb
+
+heathrow = Airport.new
+creates airport!
+boeing_747 = Plane.new
+creates plane!
+heathrow.launch(boeing_747)
+NoMethod error
+
+2b. rspec
+
+  describe 'take off' do
+    it 'launches a plane' do
+      expect(subject).to respond_to(:launch)
+    end
+  end
+
+ Fails!
+
+2c. Ruby
+
+class Airport
+  def land(plane)
+  end
+
+  def launch(plane)
+  end
+end
+
+2d. rspec
+
+two greens - receives and launches a plane
+
+2e. irb
+
+heathrow = Airport.new
+creates airport!
+boeing_747 = Plane.new
+creates plane!
+heathrow.launch(boeing_747)
+NoMethod error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
