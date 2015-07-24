@@ -12,10 +12,12 @@ Airport Challenge
 6. landing planes must take up space /n
 7. airport must launch specific planes /n
 8. launching planes must free up space /n
-. airport must not launch planes that aren't there /n
-airport must not land planes when full /n
+9. airport must not launch planes that aren't there /n
+10. airport must not land planes when full /n
+11. airport has weather
 airport must not land planes when stormy /n
 airport must land planes when it isn't full AND it is sunny /n
+airport must only land planesr
 
 1a. irb
 
@@ -330,19 +332,108 @@ heathrow.launch(boeing_747)
 heathrow.space_check
 25
 
-
-
 git commit
 
+9a. irb
 
+heathrow = Airport.new
+boeing_747 = Plane.new
+heathrow.launch(boeing_747)
+nil
 
+9b. rspec
 
+  describe 'launch' do
+    it 'raises an error when you try to launch a plane that isn\'t there' do
+      @hanger = [:plane1]
+      expect { subject.launch(:plane2) }.to raise_error 'That plane isn\'t here'
+    end
+  end
 
+9c. ruby
 
+  def launch(plane)
+      if @hanger.include?(plane)
+        @hanger.delete(plane)
+      else fail 'That plane isn\'t here'
+      end
+  end
 
+9d. rspec
 
+  describe 'space_check' do
+    it 'can return its spare space, which is raised by a plane launching' do
+      subject.land(:plane1)
+      subject.land(:plane2)
+      subject.launch(:plane1)
+      expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY-1)
+    end
+  end
 
+had to remove randoms because planes now need to be IDed
 
+9e. irb
+
+heathrow = Airport.new
+boeing_747 = Plane.new
+heathrow.launch(boeing_747)
+error - that plane isn't here
+
+10a. irb
+
+heathrow = Airport.new
+boeing_747 = Plane.new
+25.times{heathrow.land.boeing_747}
+lear_jet = Plane.new
+heathrow.land(lear_jet)
+all good
+
+10b. rspec
+
+  describe 'land' do
+    it 'raises an error when you try to land a plane when there isn\'t room' do
+      Airport::DEFAULT_CAPACITY.times{subject.land(:plane)}
+      expect { subject.land(:plane) }.to raise_error 'There\'s no room here'
+    end
+  end
+
+10c. ruby
+
+  def land(plane)
+    if @hanger.length < @capacity
+      @hanger << plane
+    else fail 'There\'s no room here'
+    end
+  end
+
+ 10d. rspec
+
+ seven greeens
+
+10e. irb
+
+heathrow = Airport.new
+boeing_747 = Plane.new
+25.times{heathrow.land.boeing_747}
+lear_jet = Plane.new
+heathrow.land(lear_jet)
+error - no room
+
+11a. irb
+
+heathrow = Airport.new
+heathrow.weather
+NoMethod error
+
+11b. rspec
+
+  describe 'weather' do
+    it 'has states of weather' do
+      expect(subject).to respond_to(:weather)
+    end
+  end
+
+11c. Ruby
 
 
 

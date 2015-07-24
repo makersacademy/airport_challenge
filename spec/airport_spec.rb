@@ -19,8 +19,24 @@ describe Airport do
     end
   end
 
+  describe 'launch' do
+    it 'raises an error when you try to launch a plane that isn\'t there' do
+      @hanger = [:plane1]
+      expect { subject.launch(:plane2) }.to raise_error 'That plane isn\'t here'
+    end
+  end
+
+
   describe 'land' do
     it 'receives a plane' do
+      expect(subject).to respond_to(:launch).with(1).argument
+    end
+  end
+
+  describe 'land' do
+    it 'raises an error when you try to land a plane when there isn\'t room' do
+      Airport::DEFAULT_CAPACITY.times{subject.land(:plane)}
+      expect { subject.land(:plane) }.to raise_error 'There\'s no room here'
     end
   end
 
@@ -39,14 +55,18 @@ end
 
   describe 'space_check' do
     it 'can return its spare space, which is raised by a plane launching' do
-      random = rand(100)
-      random.times{subject.land(:plane)}
-      random.times{subject.launch(:plane)}
-      expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY)
+      subject.land(:plane1)
+      subject.land(:plane2)
+      subject.launch(:plane1)
+      expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY-1)
     end
   end
 
-
+  describe 'weather' do
+    it 'has states of weather' do
+      expect(subject).to respond_to(:weather)
+    end
+  end
 
 
   describe 'traffic control' do
