@@ -15,8 +15,8 @@ require 'airport'
 
   describe Airport do
 
-    it 'allows planes to land' do
-      expect(subject.land_request(Plane.new)).to be true
+    it 'requests planes to land' do
+      expect(subject.land_request(:plane)).to be true
     end
   end
 

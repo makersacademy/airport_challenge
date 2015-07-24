@@ -6,8 +6,7 @@ class Plane
     @flying = true
   end
 
-  def land airport
-    airport.land_request self
+  def land
     @flying = false
   end
 
