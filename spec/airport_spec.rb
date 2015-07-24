@@ -21,7 +21,6 @@ describe Airport do
 
   describe 'land' do
     it 'receives a plane' do
-      expect(subject).to respond_to(:land)
     end
   end
 
@@ -32,10 +31,12 @@ describe Airport do
 end
 
   describe 'space_check' do
-    it 'can return its spare space' do
-      expect(subject.space_check). to eq Airport::DEFAULT_CAPACITY
+    it 'can return its spare space, which is lowered by a plane landing' do
+      subject.land(:plane)
+      expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY-1)
     end
   end
+
 
   describe 'traffic control' do
     context 'when airport is full' do

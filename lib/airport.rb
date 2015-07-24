@@ -7,6 +7,7 @@ attr_reader :capacity
     @hanger = []
   end
   def land(plane)
+    @hanger << plane
   end
 
   def launch(plane)
