@@ -16,9 +16,12 @@ require 'plane'
 
 describe Plane do
 
+
   xit 'is flying when created'
 
-  xit 'can land'
+  it 'can land'do
+    expect(subject).to respond_to :land
+  end
 
   xit 'is landed after landing'
 
