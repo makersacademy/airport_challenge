@@ -8,6 +8,10 @@ class Plane
 		@flying
 	end
 
+	def land airport
+		true
+	end
+
 
 end
 

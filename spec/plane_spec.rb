@@ -18,12 +18,13 @@ describe Plane do
 
   it 'is flying when created' do
 
-  	#plane = Plane.new
   	expect(subject).to be_flying
-
   end
 
-  xit 'can land'
+  it 'can land' do
+  	airport = Airport.new	
+  	expect(subject.land airport).to eq !@flying
+  end
 
   xit 'is landed after landing'
 
