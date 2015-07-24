@@ -1,10 +1,10 @@
 Airport Challenge
 =================
 
-airport must interact with planes
-airport must reject planes when full
-airport must reject planes when stormy
-airport must accept planes when it isn't full and it is sunny
+airport must interact with planes /n
+airport must reject planes when full /n
+airport must reject planes when stormy /n
+airport must accept planes when it isn't full and it is sunny /n
 
 
 
