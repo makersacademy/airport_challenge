@@ -18,7 +18,10 @@ describe Plane do
   let(:port){double(:airport)}
   #allow(:port).to receive(:land).with(subject)
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    expect(subject.status).to eq(:flying)
+  end
+
 
   it 'can land' do
     subject.land
