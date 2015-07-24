@@ -20,6 +20,13 @@ describe Plane do
     expect(subject).to respond_to :land
   end
 
+  describe '#land' do
+
+    it 'is has' do
+      subject.land(:airport)
+      expect(subject).to be_landed
+    end
+  end
 
   # xit 'is flying when created'
 
