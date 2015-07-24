@@ -1,10 +1,13 @@
+require_relative 'plane'
+
 class Airport
 
   def initialize
     @planes = []
   end
 
-  def land(plane)
+  def accept(plane)
+    #plane.land
     planes.push(plane)
   end
 

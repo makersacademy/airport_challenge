@@ -16,6 +16,7 @@ require 'plane'
 
 describe Plane do
   let(:port){double(:airport)}
+  #allow(:port).to receive(:land).with(subject)
 
   xit 'is flying when created'
 
