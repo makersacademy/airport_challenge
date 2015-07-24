@@ -4,11 +4,13 @@ https://travis-ci.org/christopheralcock/airport_challenge.svg?branch=master
 Airport Challenge
 =================
 
-1. airport must accept land from planes /n
-2. airport must accept launch from planes /n 
-airport must reject planes when full /n
-airport must reject planes when stormy /n
-airport must accept planes when it isn't full and it is sunny /n
+1. airport must land planes /n
+2. airport must launch planes /n 
+3. airport must have a capacity /n
+airport must not launch planes when empty
+airport must not land planes when full /n
+airport must not land planes when stormy /n
+airport must land planes when it isn't full AND it is sunny /n
 
 1a. irb
 
@@ -80,7 +82,7 @@ end
 
 2d. rspec
 
-two greens - receives and launches a plane
+two greens - now launches a plane
 
 2e. irb
 
@@ -89,7 +91,48 @@ creates airport!
 boeing_747 = Plane.new
 creates plane!
 heathrow.launch(boeing_747)
+nil
+I reckon this is good now.
+
+git commit
+
+3a. irb
+
+heathrow = Airport.new
+heathrow.capacity
 NoMethod error
+
+3b. rspec
+
+  describe 'capacity' do
+  	it 'has a capacity' do
+    	expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  	end
+  end
+
+ Fails!
+
+3c. Ruby
+
+DEFAULT_CAPACITY = 25
+attr_reader :capacity
+
+def initialize
+  @capacity = DEFAULT_CAPACITY
+end
+
+3d. rspec
+three greens - now has capacity
+
+3e. irb
+
+heathrow = Airport.new
+heathrow.capacity
+25
+
+git commit
+
+
 
 
 

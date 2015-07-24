@@ -25,6 +25,12 @@ describe Airport do
     end
   end
 
+  describe 'capacity' do
+  it 'has a capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+end
+
   describe 'traffic control' do
     context 'when airport is full' do
       xit 'does not allow a plane to land'
