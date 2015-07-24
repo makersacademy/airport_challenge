@@ -107,7 +107,7 @@
         null,
         1,
         1,
-        0,
+        1,
         null,
         null,
         null,
@@ -123,9 +123,22 @@
       ],
       "/Users/rebeccaappleyard1984/Dropbox/Makers/Course/Week_1/airport_challenge/lib/plane.rb": [
         1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
         null
       ]
     },
-    "timestamp": 1437756252
+    "timestamp": 1437757301
   }
 }

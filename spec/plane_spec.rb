@@ -20,13 +20,13 @@ describe Plane do
   xit 'is flying when created'
 
   it 'can land' do
-    :port.land(subject)
+    subject.land
     expect(subject).to be_landed
   end
 
   # it 'is landed after landing' do
   #   :port.land(subject)
-  #   expect(subject.)
+  #   expect(subject).to be_landed
   # end
 
   xit 'can take off'
