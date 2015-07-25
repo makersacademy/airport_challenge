@@ -14,15 +14,15 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    xit 'instructs a plane it can take off' #chg'd to 'can'
 
-    xit 'releases a plane'
+    xit 'inventory updated when releases a plane' 
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    xit 'instructs a plane it can land' #chg'd to 'can'
 
-    xit 'receives a plane'
+    xit 'inventory updated when receives a plane'
   end
 
   describe 'traffic control' do
