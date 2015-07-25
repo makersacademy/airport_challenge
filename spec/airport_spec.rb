@@ -39,7 +39,7 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        20.times {subject.plane_in Plane.new}
+        2.times {subject.plane_in Plane.new}
         expect{ subject.plane_in Plane.new }.to raise_error "No more space at the airport"
       end
     end
