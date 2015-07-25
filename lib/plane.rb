@@ -4,8 +4,9 @@ class Plane
 
   attr_accessor :landed, :airport
 
-  def initialize
-    @landed = false
+  def initialize (state=false)
+    @landed = state
+    #@airport = nil
   end
 
   def land airport

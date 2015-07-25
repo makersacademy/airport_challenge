@@ -12,8 +12,13 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-# let (:flying_plane) {double(:landed_plane, {:landed => false})}
+let (:flying_plane) {double(:flying_plane, {:landed => false, :airport => nil, :land => :landed_plane})}
 let (:landed_plane) {double(:landed_plane, {:landed => true})}
+
+
+  it 'has a plane' do
+    expect(subject.planes).not_to be_empty
+  end
 
   describe 'take off' do
     it 'instructs a plane to take off' do
@@ -26,9 +31,16 @@ let (:landed_plane) {double(:landed_plane, {:landed => true})}
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      expect(flying_plane.airport).to be nil
+      subject.landing_order(flying_plane)
+    end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      subject.landing_order(flying_plane)
+      flying_plane.land
+      expect(subject.planes).to include(flying_plane)
+    end
   end
 
   describe 'traffic control' do
