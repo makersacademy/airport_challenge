@@ -21,13 +21,13 @@ describe Airport do
 
   describe 'launch' do
     it 'raises an error when you try to launch a plane that isn\'t there' do
-      @hanger = [:plane1]
+      subject.instance_variable_set(:@hanger, [:plane1rsr])
       expect { subject.launch(:plane2) }.to raise_error 'That plane isn\'t here'
     end
   end
 
   describe 'launch' do
-  it 'raises an error when you try to launch a plane in a storm' do
+  it 'raises a danger error when you try to launch a legit plane in a storm' do
     subject.instance_variable_set(:@weather, :stormy)
     subject.instance_variable_set(:@hanger, [:plane])
     expect { subject.launch(:plane) }.to raise_error 'It\'s too dangerous to launch!'

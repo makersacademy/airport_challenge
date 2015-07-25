@@ -16,7 +16,8 @@ Airport Challenge
 11. airport has weather /n
 12. airport must not land planes when stormy /n
 13. airport must not launch planes when stormy /n
-14. airport must only land planes /n
+14. airport's weather should randomise every launch and land - ABORT
+. airport must only land planes /n
 
 1a. irb
 
@@ -546,6 +547,13 @@ heathrow.launch(boeing_747)
 error - too dangerous
 
 git commit
+
+14: don't know how i'd feature or unit test this honestly? just going to add a call to self.weather into the launch and lands. understand that this violates SRP but honestly it's an extra line and they're the only thing that marks the passing of time in this model.
+My network of tests should keep any cock ups in check tho.
+
+actually this destroys a lot of my tests because the states i'm setting get overwritten, and i don't know how i'd rewrite them. instead it's on the user to simulate time by calling heathrow.weather
+
+rr
 
 
 

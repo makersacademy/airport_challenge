@@ -1,6 +1,6 @@
 class Airport
 DEFAULT_CAPACITY = 25
-PERCENTAGE_OF_DAYS_STORMY = 3
+PERCENTAGE_OF_DAYS_STORMY = 3 #I appreciate that this might not strictly return 3% stormy, but close enough for jazz
 attr_reader :capacity
 attr_reader :weather
 
@@ -13,7 +13,7 @@ attr_reader :weather
 
   def land(plane)
     if @hanger.length >= @capacity && @weather == :stormy
-       fail 'There\'s no room here' 'It\'s too dangerous to land!'
+       fail 'There\'s no room here - it\'s too dangerous to land!'
     elsif @weather == :stormy
        fail 'It\'s too dangerous to land!'
     elsif @hanger.length >= @capacity
@@ -22,17 +22,6 @@ attr_reader :weather
     end
   end
 
-
-  def launch(plane)
-    if @hanger.length >= @capacity && @weather == :stormy
-       fail 'There\'s no room here' 'It\'s too dangerous to land!'
-    elsif @weather == :stormy
-       fail 'It\'s too dangerous to land!'
-    elsif @hanger.length >= @capacity
-       fail 'There\'s no room here'
-    else @hanger << plane
-    end
-  end
 
   def launch(plane)
     if @hanger.include?(plane) == false
