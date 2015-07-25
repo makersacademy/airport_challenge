@@ -18,8 +18,7 @@ require_relative '../lib/plane'
 describe Plane do
 
   it 'is flying when created' do
-    plane = Plane.new
-    expect(plane).to be_flying
+    expect(subject).to be_flying
   end
 
   describe '#land' do
@@ -29,16 +28,14 @@ describe Plane do
 
     context 'if the plane has landed'do
       it 'should raise an error' do
-        plane = Plane.new
-        plane.land
-        expect { plane.land }.to raise_error 'Your plane has already landed'
+        subject.land
+        expect { subject.land }.to raise_error 'Plane has already landed'
       end
     end
 
     it 'is landed after landing' do
-      plane = Plane.new
-      plane.land
-      expect(plane).to be_landed
+      subject.land
+      expect(subject).to be_landed
     end
   end
 
@@ -49,16 +46,14 @@ describe Plane do
 
     context 'if the plane is already flying' do
       it 'should raise an error' do
-        plane = Plane.new
-        expect { plane.take_off }.to raise_error 'Your plane is already flying'
+        expect { subject.take_off }.to raise_error 'Plane is already flying'
       end
     end
 
     it 'is flying after take off' do
-      plane = Plane.new
-      plane.land
-      plane.take_off
-      expect(plane).to be_flying
+      subject.land
+      subject.take_off
+      expect(subject).to be_flying
     end
   end
 

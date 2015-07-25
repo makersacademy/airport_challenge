@@ -13,11 +13,11 @@ class Plane
   end
 
   def land
-    @flying ? @flying = false : (fail 'Your plane has already landed')
+    @flying ? @flying = false : (fail 'Plane has already landed')
   end
 
   def take_off
-    !@flying ? @flying = true : (fail 'Your plane is already flying')
+    !@flying ? @flying = true : (fail 'Plane is already flying')
   end
 
 end
