@@ -21,7 +21,11 @@ class Plane
   end
 
   def take_off
-    @flying = true unless @flying
+    if !@flying
+      @flying = true
+    else
+      fail 'Your plane is already flying'
+    end
   end
 
 end
