@@ -24,7 +24,7 @@ describe Plane do
   describe ' #land' do
     it 'lands at the airport' do
       subject.land(airport)
-      expect(subject.airport).to eq airport
+      expect(subject.airport).to be airport
     end
 
     it 'is landed after landing' do

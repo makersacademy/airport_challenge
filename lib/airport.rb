@@ -10,17 +10,19 @@ class Airport
   end
 
   def take_off_order plane
-    plane.last.take_off
+    @planes.last.take_off
   end
 
   def landing_order plane
-    #plane.land self
+    @planes.last.land self
     @planes << plane
+  end
+
+  def receive plane
   end
 
   def release plane
     @planes.pop
-
   end
 
 

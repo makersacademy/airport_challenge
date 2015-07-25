@@ -38,7 +38,8 @@ let (:landed_plane) {double(:landed_plane, {:landed => true})}
 
     it 'receives a plane' do
       subject.landing_order(flying_plane)
-      flying_plane.land
+      subject.receive(flying_plane)
+      #flying_plane.land
       expect(subject.planes).to include(flying_plane)
     end
   end
