@@ -9,7 +9,7 @@ require 'plane'
 # When we land a plane at the airport, the plane in question should
 # be "landed"
 #
-# When the plane takes of from the airport, it should be "flying" again
+# When the plane takes off from the airport, it should be "flying" again
 #
 # Think about your implementation - does it allow a plane to be "flying" and landed?
 # Are you testing that?
