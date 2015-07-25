@@ -31,6 +31,10 @@ describe Airport do
   end
 
   describe 'traffic control' do
+    it "should know airport is full" do
+      expect(subject).to respond_to(:full?)
+    end
+
     context 'when airport is full' do
       xit 'does not allow a plane to land'
     end

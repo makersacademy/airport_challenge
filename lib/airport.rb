@@ -3,4 +3,6 @@ class Airport
   end
   def take_off plane
   end
+  def full?
+  end
 end
