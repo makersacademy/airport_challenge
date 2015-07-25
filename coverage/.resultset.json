@@ -54,6 +54,33 @@
       "/Users/giuseppedesantis/Dropbox/Projects/Challenges/airport_challenge/lib/airport.rb": [
         1,
         null,
+        1,
+        null,
+        null
+      ],
+      "/Users/giuseppedesantis/Dropbox/Projects/Challenges/airport_challenge/lib/plane.rb": [
+        1,
+        null,
+        1,
+        7,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
         null
       ],
       "/Users/giuseppedesantis/Dropbox/Projects/Challenges/airport_challenge/spec/plane_spec.rb": [
@@ -117,33 +144,8 @@
         null,
         null,
         null
-      ],
-      "/Users/giuseppedesantis/Dropbox/Projects/Challenges/airport_challenge/lib/plane.rb": [
-        1,
-        null,
-        1,
-        7,
-        null,
-        null,
-        1,
-        2,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        4,
-        null,
-        null,
-        1,
-        2,
-        null,
-        null,
-        null
       ]
     },
-    "timestamp": 1437841318
+    "timestamp": 1437842069
   }
 }
