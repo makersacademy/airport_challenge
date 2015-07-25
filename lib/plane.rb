@@ -9,7 +9,7 @@ class Plane
   def flying?
     if @status == "flying"
       true
-    else
+    elsif @status == "landed"
       false
     end
   end
