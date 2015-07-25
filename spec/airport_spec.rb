@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -12,22 +13,71 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  let(:plane) { double :plane, flying?: true }
+  before(:each) { allow(plane).to receive(:fly) }
+  before(:each) { allow(plane).to receive(:land) }
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  describe 'capacity' do
+    it 'has a default capacity when initialized' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
 
-    xit 'releases a plane'
+    it 'can be overidden on initialize' do
+      random_capacity = Random.rand(200)
+      airport = described_class.new(random_capacity)
+      expect(airport.capacity).to eq random_capacity
+    end
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  describe '#take_off' do
+    before(:each) { subject.landing plane }
 
-    xit 'receives a plane'
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to(:take_off)
+    end
+
+    it 'releases a plane' do
+      expect(subject.take_off).to eq plane
+    end
+
+    it 'removes the plane from the airport' do
+      subject.take_off
+      expect(subject).to be_empty
+    end
+
+    it 'raises an error when empty' do
+      subject.take_off
+      expect { subject.take_off }.to raise_error 'No planes'
+    end
+
+    it 'releases flying planes' do
+      expect(plane).to receive :fly
+      subject.take_off
+    end
+  end
+
+  describe '#landing' do
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to(:landing).with(1).argument
+    end
+
+    it 'receives a plane' do
+      subject.landing plane
+      expect(subject).not_to be_empty
+    end
+
+    it 'lands landed planes' do
+      expect(plane).to receive :land
+      subject.landing plane
+    end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times { subject.landing plane }
+        expect { subject.landing plane }.to raise_error 'Airport full'
+      end
     end
 
     # Include a weather condition.
@@ -39,10 +89,39 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+    it 'is sunny when created' do
+      expect(subject.weather).to eq 'sunny'
+    end
 
-      xit 'does not allow a plane to land'
+    describe '#change_weather' do
+      it 'should respond to change_weather' do
+        expect(subject).to respond_to(:change_weather).with(1).argument
+      end
+
+      it 'should be sunny for 0 - 3' do
+        subject.change_weather(4)
+        number = rand(3)
+        subject.change_weather(number)
+        expect(subject.weather).to eq 'sunny'
+      end
+
+      it 'should be stormy for 4' do
+        subject.change_weather(4)
+        expect(subject.weather).to eq 'stormy'
+      end
+    end
+
+    context 'when weather conditions are stormy' do
+      it 'does not allow a plane to take off' do
+        subject.landing plane
+        subject.change_weather(4)
+        expect { subject.take_off }.to raise_error 'Not safe to take off'
+      end
+
+      it 'does not allow a plane to land' do
+        subject.change_weather(4)
+        expect { subject.landing plane }.to raise_error 'Not safe to land'
+      end
     end
   end
 end
