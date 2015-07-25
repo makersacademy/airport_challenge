@@ -1,4 +1,4 @@
-require 'airport'
+require_relative '../lib/airport'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
