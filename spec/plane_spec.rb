@@ -32,12 +32,12 @@ describe Plane do
   end
 
   it 'can take off' do
-    expect(subject).to respond_to :take_off
+    expect(subject).to respond_to :taking_off
   end
 
   it 'is flying after take off' do
     plane = Plane.new
-    plane.take_off
+    plane.taking_off
     expect(plane.status).to eq 'flying'
   end
 
