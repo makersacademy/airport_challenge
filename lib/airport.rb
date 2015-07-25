@@ -22,8 +22,9 @@ DEFAULT = 1
 		 end
 	end
 
-	def plane_out 
-		@planes.pop
+	def plane_out plane 
+		@planes.delete(plane)
+		self
 	end
 
 	def plane_size
