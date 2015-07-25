@@ -1,4 +1,4 @@
-require 'plane.rb'
+
 class Airport
 
 DEFAULT = 1
@@ -21,7 +21,11 @@ DEFAULT = 1
 	end
 
 	def plane_in plane
-		@planes << plane
+		if @planes.size >= @capacity
+			fail "No more space at the airport"
+		 else 
+		 	@planes << plane
+		 end
 	end
 
 	def plane_size

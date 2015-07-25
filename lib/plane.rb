@@ -1,4 +1,4 @@
-require 'airport.rb'
+
 class Plane
 
 	def initialize

@@ -32,14 +32,16 @@ describe Airport do
     end
     it 'increase inventory when plane lands' do
       plane = Plane.new
-      puts subject.plane_size
       expect { plane.land subject }.to change{ subject.plane_size }.from(0).to(1)
     end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        20.times {subject.plane_in Plane.new}
+        expect{ subject.plane_in Plane.new }.to raise_error "No more space at the airport"
+      end
     end
 
     # Include a weather condition.
