@@ -17,9 +17,7 @@ let (:landed_plane) {double(:landed_plane, {:landed => true})}
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-     # subject.release(landed_plane)
-
-
+      expect(subject).to respond_to(:take_off_order).with(1).argument
     end
 
     it 'releases a plane' do
