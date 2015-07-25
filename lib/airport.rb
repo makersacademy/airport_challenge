@@ -20,12 +20,16 @@ class Airport
   end
   def take_off plane
     weather
+    raise "No planes here at the mo." unless !empty?
     raise "Nope, too dangerous to fly right now!" unless weather == "sunny"
     @planes.pop
     plane.taking_off
   end
   def full?
     planes.count >= DEFAULT_CAPACITY
+  end
+  def empty?
+    planes.empty?
   end
   def weather
     num = 1 + rand(5)

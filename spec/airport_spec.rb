@@ -31,6 +31,11 @@ describe Airport do
       subject.take_off plane
       expect(subject.planes.count).to eq(count - 1)
     end
+
+    it "doesn't release a plane if there are none" do
+      plane = double :plane, landing: nil, taking_off: nil
+      expect{subject.take_off plane}.to raise_error "No planes here at the mo."
+    end
   end
 
   describe 'landing' do
@@ -74,6 +79,8 @@ describe Airport do
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
         plane = double :plane, landing: nil, taking_off: nil
+        allow(subject).to receive(:weather){"sunny"}
+        subject.land plane
         allow(subject).to receive(:weather){"stormy"}
         expect{subject.take_off plane}.to raise_error "Nope, too dangerous to fly right now!"
       end
