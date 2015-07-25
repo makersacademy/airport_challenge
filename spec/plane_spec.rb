@@ -16,7 +16,10 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    plane = Plane.new
+    expect(plane).to be_flying
+  end
 
   xit 'can land'
 
