@@ -22,31 +22,35 @@ describe Plane do
     expect(plane).to be_flying
   end
 
-  it 'can land' do
-    expect(subject).to respond_to(:land)
+  describe '#land' do
+    it 'can land' do
+      expect(subject).to respond_to(:land)
+    end
+    context 'if the plane has landed'do
+      it 'should raise an error' do
+        plane = Plane.new
+        plane.land
+        expect { plane.land }.to raise_error 'Your plane has already landed'
+      end
+    end
+    it 'is landed after landing' do
+      plane = Plane.new
+      plane.land
+      expect(plane).to be_landed
+    end
   end
 
-  it 'should raise an error if trying to land a landed plane' do
-    plane = Plane.new
-    plane.land
-    expect { plane.land }.to raise_error 'Your plane has already landed'
-  end
+  describe '#take_off' do
+    it 'can take off' do
+      expect(subject).to respond_to(:take_off)
+    end
 
-  it 'is landed after landing' do
-    plane = Plane.new
-    plane.land
-    expect(plane).to be_landed
-  end
-
-  it 'can take off' do
-    expect(subject).to respond_to(:take_off)
-  end
-
-  it 'is flying after take off' do
-    plane = Plane.new
-    plane.land
-    plane.take_off
-    expect(plane).to be_flying
+    it 'is flying after take off' do
+      plane = Plane.new
+      plane.land
+      plane.take_off
+      expect(plane).to be_flying
+    end
   end
 
 end

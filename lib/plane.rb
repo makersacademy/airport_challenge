@@ -13,7 +13,11 @@ class Plane
   end
 
   def land
-    @flying = false if @flying
+    if @flying
+      @flying = false
+    else
+      fail 'Your plane has already landed'
+    end
   end
 
   def take_off
