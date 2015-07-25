@@ -19,7 +19,12 @@ describe Airport do
     end
 
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      subject.land :plane
+      count = subject.planes.count
+      subject.take_off :plane
+      expect(subject.planes.count).to eq(count - 1)
+    end
   end
 
   describe 'landing' do
@@ -27,20 +32,24 @@ describe Airport do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      count = subject.planes.count
+      subject.land :plane
+      expect(subject.planes.count).to eq(count + 1)
+    end
   end
 
   describe 'traffic control' do
 
-    it "has a capacity" do
+    it "has a capacity of 20" do
       expect(Airport::DEFAULT_CAPACITY).to eq 20
-    end
-    it "should know airport is full" do
-      expect(subject).to respond_to(:full?)
     end
 
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        20.times {subject.land :plane}
+        expect{subject.land :plane}.to raise_error "Sorry, we're full!"
+      end
     end
 
     # Include a weather condition.
