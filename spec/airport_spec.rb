@@ -18,31 +18,30 @@ describe Airport do
     it 'does an airport have some capacity' do
       expect(subject).to respond_to :capacity
     end
-  end
-
-  describe 'take off' do
-    it 'allows planes to take off' do
-      expect(subject).to respond_to :permission_fly?
-    end
-  end
-
-  describe 'landing' do
-    it 'allows planes to land' do
-      expect(subject).to respond_to :permission_land?
-    end
     it 'increase inventory when plane lands' do
       plane = Plane.new
       expect { plane.land subject }.to change{ subject.plane_size }.from(0).to(1)
     end
   end
 
+  describe 'take off' do
+    it 'decreases inventory when plane leaves' do
+      plane = Plane.new
+      plane.land subject
+      expect { plane.take_off subject }.to change{ subject.plane_size}.from(1).to(0)
+    end
+  end
+
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        2.times {subject.plane_in Plane.new}
-        expect{ subject.plane_in Plane.new }.to raise_error "No more space at the airport"
+        subject.plane_in Plane.new
+        expect(subject.plane_in Plane.new).to be false
+        # 2.times {subject.plane_in Plane.new}
+        # expect(subject.plane_in Plane.new).to raise_error "No more space at the airport"
       end
     end
+  
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

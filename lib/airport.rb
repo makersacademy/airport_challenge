@@ -8,24 +8,22 @@ DEFAULT = 1
 		@planes = []
 	end
 
-	def permission_fly?
-		
-	end
-
-	def permission_land?
-		
-	end
-
 	def capacity
 		@capacity
 	end
 
 	def plane_in plane
 		if @planes.size >= @capacity
-			fail "No more space at the airport"
+			#fail "No more space at the airport"
+			false
 		 else 
 		 	@planes << plane
+		 	true
 		 end
+	end
+
+	def plane_out 
+		@planes.pop
 	end
 
 	def plane_size

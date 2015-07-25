@@ -32,13 +32,21 @@ describe Plane do
   	expect(subject).not_to be_flying
   end
 
+  it 'keeps flying if can\'t land' do
+    a = Airport.new
+    Plane.new.land a
+    puts a.plane_size
+    expect(Plane.new.land a).to be true #another cheat
+  end 
+
   it 'can take off' do
-  	puts subject.take_off :airport
-  	expect(subject.take_off :airport).to be true # this is a cheat. fix.
+  	a = Airport.new
+  	expect(subject.take_off a).to be true # this is a cheat. fix.
   end
 
   it 'is flying after take off' do
-  	subject.take_off :airport
+  	a = Airport.new
+    subject.take_off a
   	expect(subject).to be_flying
   end
 

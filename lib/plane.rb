@@ -10,11 +10,16 @@ class Plane
 	end
 
 	def land airport
-		airport.plane_in(self)
-		@flying = false
+		if airport.plane_in(self)
+			@flying = false
+		else 
+			@flying = true
+		end
+		@flying 
 	end
 
 	def take_off airport 
+		airport.plane_out
 		@flying = true
 	end
 
