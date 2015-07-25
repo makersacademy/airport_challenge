@@ -26,6 +26,12 @@ describe Plane do
   	expect(subject).to respond_to :land
   end
 
+  context 'when it lands' do
+    it 'returns nil' do 
+      expect(subject.land).to be_nil
+    end
+  end
+
   it 'is landed after landing' do 
   	subject.land
   	expect(subject).to be_landed
