@@ -27,13 +27,18 @@ describe Plane do
 
   it 'is landed after landing' do
     plane = Plane.new
-    expect(plane.status)
+    plane.landing
+    expect(plane.status).to eq 'landed'
   end
 
   it 'can take off' do
     expect(subject).to respond_to :take_off
   end
 
-  xit 'is flying after take off'
+  it 'is flying after take off' do
+    plane = Plane.new
+    plane.take_off
+    expect(plane.status).to eq 'flying'
+  end
 
 end
