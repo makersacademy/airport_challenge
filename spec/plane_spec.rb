@@ -32,7 +32,7 @@ describe Plane do
   end
 
   it 'can take off' do
-
+    expect(subject).to respond_to(:take_off)
   end
 
   xit 'is flying after take off'
