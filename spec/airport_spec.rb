@@ -20,7 +20,9 @@ describe Airport do
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
 
     xit 'receives a plane'
   end
