@@ -2,7 +2,7 @@ require_relative 'airport'
 
 class Plane
 
-  attr_accessor :landed
+  attr_accessor :landed, :airport
 
   def initialize
     @landed = false
@@ -16,18 +16,7 @@ class Plane
   def take_off
     raise "Plane cannot take off, it's already flying!" if !landed
     @landed = false
+    @airport = nil
   end
-
-  def airport
-    @airport
-  end
-
-  # def airport
-
-  # end
-
-  # def landed??
-  #   true
-  # end
 
 end

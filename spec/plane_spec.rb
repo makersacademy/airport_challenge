@@ -15,40 +15,46 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
-let(:airport) {double(:airport, {:full? => false })}
+  let(:airport) {double(:airport, {:full? => false})}
 
-  it 'is flying when created' do
-    expect(subject.landed).to be false
+    it 'is flying when created' do
+      expect(subject.landed).to be false
+    end
+
+  describe ' #land' do
+    it 'lands at the airport' do
+      subject.land(airport)
+      expect(subject.airport).to eq airport
+    end
+
+    it 'is landed after landing' do
+      subject.land(airport)
+      expect(subject.landed).to be true
+    end
   end
 
-  it 'can land somewhere'do
-    expect(subject).to respond_to(:land).with(1).argument
-  end
+  describe ' #take_off' do
+    it 'can take off' do
+      subject.land(airport)
+      expect(subject).to respond_to :take_off
+    end
 
-  it 'lands at the airport' do
-    subject.land(airport)
-    expect(subject.airport).to eq airport
-  end
+    it 'removes airport trace' do
+      subject.land(airport)
+      subject.take_off
+      expect(subject.airport).to be nil
+    end
 
-  it 'is landed after landing' do
-    subject.land :airport
-    expect(subject.landed).to be true
-  end
+    it 'cannot take off if flying' do
+      subject.landed = false
+      expect{subject.take_off}.to raise_error "Plane cannot take off, it's already flying!"
+    end
 
-  it 'can take off' do
-    subject.land :airport
-    expect(subject).to respond_to :take_off
-  end
-
-  it 'cannot take off if flying' do
-    subject.landed = false
-    expect{subject.take_off}.to raise_error "Plane cannot take off, it's already flying!"
-  end
-
-  it 'is flying after take off' do
-    subject.land :airport
-    subject.take_off
-    expect(subject.landed).to be false
+    it 'is flying after take off' do
+      subject.land(airport)
+      subject.take_off
+      expect(subject.landed).to be false
+    end
   end
 
 end
