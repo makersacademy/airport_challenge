@@ -1,6 +1,9 @@
+require_relative 'plane'
+
 class Airport
 
-  def full?
+  def release plane
+    plane.take_off
   end
 
 end

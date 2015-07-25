@@ -12,12 +12,19 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-let (:flying_plane) {double(:landed_plane, {:landed => false})}
+# let (:flying_plane) {double(:landed_plane, {:landed => false})}
+let (:landed_plane) {double(:landed_plane, {:landed => true})}
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+     # subject.release(landed_plane)
 
-    xit 'releases a plane'
+
+    end
+
+    it 'releases a plane' do
+      expect(subject).to respond_to(:release).with(1).argument
+    end
   end
 
   describe 'landing' do
