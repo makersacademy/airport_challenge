@@ -31,6 +31,10 @@ describe Airport do
   end
 
   describe 'traffic control' do
+
+    it "has a capacity" do
+      expect(Airport::DEFAULT_CAPACITY).to eq 20
+    end
     it "should know airport is full" do
       expect(subject).to respond_to(:full?)
     end
