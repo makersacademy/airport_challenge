@@ -13,21 +13,35 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  describe 'landing' do
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to :landing
+    end
 
-    xit 'releases a plane'
+    it 'receives a plane' do
+      subject.landing(double :plane)
+      expect(subject).to_not be_empty
+    end
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  describe 'take off' do
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to :take_off
+    end
 
-    xit 'receives a plane'
+    it 'releases a plane' do
+      subject.landing(double :plane)
+      subject.take_off
+      expect(subject).to be_empty
+    end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times {subject.landing(double :bike)}
+        expect{subject.landing(double :plane)}.to raise_error "Cannot land, airport full"
+      end 
     end
 
     # Include a weather condition.
