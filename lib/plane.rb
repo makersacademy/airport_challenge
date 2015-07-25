@@ -16,4 +16,7 @@ class Plane
     @flying = false if @flying
   end
 
+  def take_off
+  end
+
 end
