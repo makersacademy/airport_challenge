@@ -29,7 +29,7 @@ let (:flying_plane) {double(:landed_plane, {:landed => false})}
   describe 'traffic control' do
     context 'when airport is full' do
 
-      it 'responds to full' do
+      xit 'responds to full' do
         expect(subject).to respond_to :full?
       end
 
