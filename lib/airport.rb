@@ -1,6 +1,6 @@
 require_relative 'plane'
 class Airport
-  DEFAULT_CAPACITY = 50
+  DEFAULT_CAPACITY = 5
   
   attr_accessor :capacity 
   
@@ -9,18 +9,16 @@ class Airport
     @capacity = capacity
   end
 
-  def take_off
-    planes.each_index do |aircraft| 
-      if planes[aircraft].landed
-        return planes.slice!(aircraft)
-      end
-    end
-    fail 'No planes at airport' 
+  def take_off plane
+    raise "There are no planes at #{self.class.name}" if empty?
+    @planes.delete (plane)
+    plane.take_off
   end
   
   def land plane
-    fail 'Airport full' if full?
-    planes << plane
+    raise "#{self.class.name} is full" if full?
+    @planes << plane
+    plane.land
   end
   
   private
@@ -32,7 +30,7 @@ class Airport
   end
   
   def empty?
-    planes.empty?
+    planes.count == 0
   end   
   
 end
