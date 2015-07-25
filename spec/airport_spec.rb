@@ -13,20 +13,27 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane it can take off' #chg'd to 'can'
+  describe 'airport' do
+    it 'does an airport have some capacity' do
+      expect(subject).to respond_to :capacity
+    end
+  end
 
-    xit 'inventory updated when releases a plane' 
+  describe 'take off' do
+    it 'allows planes to take off' do
+      expect(subject).to respond_to :may_fly?
+    end
   end
 
   describe 'landing' do
-    xit 'instructs a plane it can land' #chg'd to 'can'
-
-    xit 'inventory updated when receives a plane'
+    it 'allows planes to land' do
+      expect(subject).to respond_to :may_land?
+    end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
+
       xit 'does not allow a plane to land'
     end
 
