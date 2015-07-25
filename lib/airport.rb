@@ -1,6 +1,9 @@
 class Airport
 DEFAULT_CAPACITY = 25
-PERCENTAGE_OF_DAYS_STORMY = 3 #I appreciate that this might not strictly return 3% stormy, but close enough for jazz
+PERCENTAGE_OF_DAYS_STORMY = 3
+# I appreciate that the above might not
+# strictly return 3% stormy, but close
+# enough for jazz
 attr_reader :capacity
 #attr_reader :weather
 
@@ -21,7 +24,6 @@ attr_reader :capacity
     else @hanger << plane
     end
   end
-
 
   def launch(plane)
     if @hanger.include?(plane) == false
