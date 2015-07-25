@@ -16,6 +16,8 @@ require 'plane'
 
 describe Plane do
 
+  let(:airport){ double :airport }
+
 	context 'when created' do 
 		it 'is flying' do 
 			expect(subject.flying?).to eq true
@@ -27,13 +29,13 @@ describe Plane do
   end
 
   context 'when it lands' do
-    it 'returns nil' do 
-      expect(subject.land).to eq subject
+    it 'returns itself' do 
+      expect(subject.land(airport)).to eq subject
     end
   end
 
   it 'is landed after landing' do 
-  	subject.land
+  	subject.land(airport)
   	expect(subject).to be_landed
   end
 
@@ -42,8 +44,18 @@ describe Plane do
   end
 
   it 'cannot be landed and flying at the same time' do 
-  	subject.land 
+  	subject.land(airport) 
   	expect(subject).to_not be_flying
+  end
+
+  describe '#land' do 
+    it 'raises an error if no argument is given' do
+      expect{subject.land}.to raise_error(ArgumentError)
+    end
+
+    it 'does not raise an error if an argument is given' do 
+      expect{subject.land(airport)}.to_not raise_error
+    end
   end
 
   xit 'can take off'

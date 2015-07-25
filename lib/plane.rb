@@ -8,7 +8,7 @@ class Plane
 		@flying
 	end
 
-	def land
+	def land(airport)
 		@flying = false
 		return self
 	end
