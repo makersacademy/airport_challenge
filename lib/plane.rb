@@ -4,4 +4,7 @@ class Plane
   def initialize
     @status = "flying"
   end
+  def landing
+    @status = "landed"
+  end
 end

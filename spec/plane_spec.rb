@@ -22,7 +22,12 @@ describe Plane do
 
   xit 'can land'
 
-  xit 'is landed after landing'
+
+  #is this enough??????
+  it 'is landed after landing' do
+    subject.landing
+    expect(subject.status).to eq "landed"
+  end
 
   xit 'can take off'
 

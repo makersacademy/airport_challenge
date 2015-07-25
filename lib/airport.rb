@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :planes
@@ -7,6 +9,7 @@ class Airport
   end
   def land plane
     full? ? (raise "Sorry, we're full!") : (@planes << plane)
+    plane.landing
   end
   def take_off plane
     @planes.pop

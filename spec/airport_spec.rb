@@ -20,9 +20,10 @@ describe Airport do
 
 
     it 'releases a plane' do
-      subject.land :plane
+      plane = double :plane, landing: nil
+      subject.land plane
       count = subject.planes.count
-      subject.take_off :plane
+      subject.take_off plane
       expect(subject.planes.count).to eq(count - 1)
     end
   end
@@ -33,8 +34,9 @@ describe Airport do
     end
 
     it 'receives a plane' do
+      plane = double :plane, landing: nil
       count = subject.planes.count
-      subject.land :plane
+      subject.land plane
       expect(subject.planes.count).to eq(count + 1)
     end
   end
@@ -47,8 +49,9 @@ describe Airport do
 
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        20.times {subject.land :plane}
-        expect{subject.land :plane}.to raise_error "Sorry, we're full!"
+        plane = double :plane, landing: nil
+        20.times {subject.land plane}
+        expect{subject.land plane}.to raise_error "Sorry, we're full!"
       end
     end
 
