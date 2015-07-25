@@ -13,8 +13,19 @@ attr_reader :weather
 
   def land(plane)
     if @hanger.length >= @capacity && @weather == :stormy
-       fail 'There\'s no room here'
+       fail 'There\'s no room here' 'It\'s too dangerous to land!'
+    elsif @weather == :stormy
        fail 'It\'s too dangerous to land!'
+    elsif @hanger.length >= @capacity
+       fail 'There\'s no room here'
+    else @hanger << plane
+    end
+  end
+
+
+  def launch(plane)
+    if @hanger.length >= @capacity && @weather == :stormy
+       fail 'There\'s no room here' 'It\'s too dangerous to land!'
     elsif @weather == :stormy
        fail 'It\'s too dangerous to land!'
     elsif @hanger.length >= @capacity
@@ -24,10 +35,12 @@ attr_reader :weather
   end
 
   def launch(plane)
-      if @hanger.include?(plane)
-        @hanger.delete(plane)
-      else fail 'That plane isn\'t here'
-      end
+    if @hanger.include?(plane) == false
+      fail 'That plane isn\'t here'
+    elsif @weather == :stormy
+      fail 'It\'s too dangerous to launch!'
+    else @hanger.delete(plane)
+    end
   end
 
   def space_check

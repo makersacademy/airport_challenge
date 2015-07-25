@@ -26,6 +26,14 @@ describe Airport do
     end
   end
 
+  describe 'launch' do
+  it 'raises an error when you try to launch a plane in a storm' do
+    subject.instance_variable_set(:@weather, :stormy)
+    subject.instance_variable_set(:@hanger, [:plane])
+    expect { subject.launch(:plane) }.to raise_error 'It\'s too dangerous to launch!'
+  end
+end
+
 
   describe 'land' do
     it 'receives a plane' do
@@ -42,7 +50,7 @@ describe Airport do
 
   describe 'land' do
     it 'raises an error when you try to land a plane in a storm' do
-      @weather = :stormy
+      subject.instance_variable_set(:@weather, :stormy)
       expect { subject.land(:plane) }.to raise_error 'It\'s too dangerous to land!'
     end
   end

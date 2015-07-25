@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/christopheralcock/airport_challenge.svg?branch=master)](https://travis-ci.org/christopheralcock/airport_challenge)
+[![Build Status](https://travis-ci.org/christopheralcock/airport_challenge.svg?branch=master)](https://travis-ci.org/christopheralcock/airport_challenge)s
 
 Airport Challenge
 =================
@@ -472,16 +472,80 @@ ok
 
   describe 'land' do
     it 'raises an error when you try to land a plane in a storm' do
-      @weather = :stormy
-      expect { subject.land(:plane) }.to raise_error 'It\'s too dangerous to land!''
+      subject.instance_variable_set(:@weather, :stormy)
+      expect { subject.land(:plane) }.to raise_error 'It\'s too dangerous to land!'
     end
   end
 
 12c. ruby
 
+  def land(plane)
+    if @hanger.length >= @capacity && @weather == :stormy
+       fail 'There\'s no room here' 'It\'s too dangerous to land!'
+    elsif @weather == :stormy
+       fail 'It\'s too dangerous to land!'
+    elsif @hanger.length >= @capacity
+       fail 'There\'s no room here'
+    else @hanger << plane
+    end
+  end
 
+12d. rspec
 
+green
 
+12e. irb
+
+heathrow = Airport.new
+heathrow.instance_variable_set(:@weather, :stormy)
+boeing_747 = Plane.new
+heathrow.land(boeing_747)
+ok
+
+13a. irb
+
+heathrow = Airport.new
+heathrow.instance_variable_set(:@weather, :stormy)
+boeing_747 = Plane.new
+heathrow.land(boeing_747)
+heathrow.launch(boeing_747)
+ok
+
+13b. rspec
+
+  describe 'launch' do
+  it 'raises an error when you try to launch a plane in a storm' do
+    subject.instance_variable_set(:@weather, :stormy)
+    subject.instance_variable_set(:@hanger, [:plane])
+    expect { subject.launch(:plane) }.to raise_error 'It\'s too dangerous to launch!'
+  end
+end
+
+13c. Ruby
+
+  def launch(plane)
+    if @hanger.include?(plane) == false
+      fail 'That plane isn\'t here'
+    elsif @weather == :stormy
+      fail 'It\'s too dangerous to launch!'
+    else @hanger.delete(plane)
+    end
+  end
+
+13d. rspec
+
+green
+
+13e. irb
+
+heathrow = Airport.new
+heathrow.instance_variable_set(:@weather, :stormy)
+boeing_747 = Plane.new
+heathrow.land(boeing_747)
+heathrow.launch(boeing_747)
+error - too dangerous
+
+git commit
 
 
 
