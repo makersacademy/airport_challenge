@@ -1,6 +1,14 @@
 Airport Challenge
 =================
 
+My Approach
+---------
+1. Broke task into the 4 user stories
+2. Wrote a detailed manual feature test for the first user story
+3. Wrote unit test followed by production code for each step in the manual feature test
+4. Ran rspec
+5. Repeated steps 2-3 for next 3 user stories
+
 Instructions
 ---------
 
@@ -68,3 +76,6 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
 
 * Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
+* 
+https://travis-ci.org/jonathanngkh/airport_challenge.svg?branch=master
+
