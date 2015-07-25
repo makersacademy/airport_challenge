@@ -13,8 +13,13 @@ require 'airport'
 
 describe Airport do
 
+  it 'has a default capacity' do
+  end
+
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to(:release_plane).with(1).argument
+    end
 
     xit 'releases a plane'
   end
