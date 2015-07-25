@@ -12,4 +12,8 @@ class Plane
     !@flying
   end
 
+  def land
+    @flying = false if @flying
+  end
+
 end

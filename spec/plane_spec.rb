@@ -1,4 +1,4 @@
-require 'plane'
+require_relative '../lib/plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -21,9 +21,17 @@ describe Plane do
     expect(plane).to be_flying
   end
 
-  xit 'can land'
+  it 'can land' do
+    plane = Plane.new
+    expect(plane).to be_flying
+    plane.land
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+    plane = Plane.new
+    plane.land
+    expect(plane).to be_landed
+  end
 
   xit 'can take off'
 
