@@ -17,18 +17,21 @@ require 'plane'
 describe Plane do
 
   it 'is flying when created' do
-
   	expect(subject).to be_flying
   end
 
-  it 'can land' do
-  	airport = Airport.new	
-  	expect(subject.land airport).to eq !@flying
+  it 'can land' do	
+  	expect(subject.land :airport).not_to eq @flying
   end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+  	subject.land :airport
+  	expect(subject).not_to eq @flying
+  end
 
-  xit 'can take off'
+  it 'can take off' do
+  	expect(subject.take_off :airport).to eq @flying
+  end
 
   xit 'is flying after take off'
 
