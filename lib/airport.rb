@@ -1,6 +1,6 @@
 class Airport
-DEFAULT_CAPACITY = 25
-PERCENTAGE_OF_DAYS_STORMY = 3
+  DEFAULT_CAPACITY = 25
+  PERCENTAGE_OF_DAYS_STORMY = 3
 # I appreciate that the above might not
 # strictly return 3% stormy, but close
 # enough for jazz
