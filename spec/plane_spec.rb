@@ -26,6 +26,12 @@ describe Plane do
     expect(subject).to respond_to(:land)
   end
 
+  it 'should raise an error if trying to land a landed plane' do
+    plane = Plane.new
+    plane.land
+    expect { plane.land }.to raise_error 'Your plane has already landed'
+  end
+
   it 'is landed after landing' do
     plane = Plane.new
     plane.land
