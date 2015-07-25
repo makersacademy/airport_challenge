@@ -10,7 +10,7 @@ class Plane
 
 	def land
 		@flying = false
-		return
+		return self
 	end
 
 	def landed?
