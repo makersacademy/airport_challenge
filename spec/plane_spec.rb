@@ -30,8 +30,14 @@ describe Plane do
 #  xit 'is landed after landing'
   it 'is landed after landing' do
     plane = Plane.new
-    expect(plane).to respond_to :landed
-    expect(plane.landed).to eq false
+    expect(plane).to respond_to :landed?
+  #  expect(plane.landed).to eq false
+  end
+  
+  it 'cannot be flying and landed' do
+    plane = Plane.new
+    plane.land
+    expect(plane.landed?).to eq true
   end
 
 #  xit 'can take off'
@@ -42,6 +48,8 @@ describe Plane do
 #  xit 'is flying after take off'
   it 'is flying after take off' do
     plane = Plane.new
-    expect(plane.take_off).to eq true
+    plane.take_off
+    expect(plane.landed?).to eq false
+    expect(plane.flying?).to eq true
   end
 end
