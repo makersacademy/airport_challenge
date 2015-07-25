@@ -4,7 +4,10 @@ Airport Challenge
 
 What I did
 ----------
-Testing
+I went through the challenge systematically. I first started test driving the creation of the airport, building in the capacity feature
+after that. Then, I wrote the tests and added the landing method, and that also allowed me to test the landing more plans when airport is
+full feature. Then I worked on the counterpart to landing, the take off method. After that, I test drove the developement of the Plane class, with the 'flying' and 'landed' states. I also added two methods, flying? and landed? to the class. Following the instruction in the plane spec file, I realised the state of the plane needed to change after calling the landing and take off method, so I implemented the land and fly method. They were unit tested under plane spec and additional tests about the plane expecting to receive these methods were written under airport spec. Lastly, I went on the implementation of the random weather feature. Whilst writing the change weather method tests, I thought it would be easiest to control test (but still remaining random if necessary) if the method had an argument. After its implementation, I realised I could use rand as a default to keep the code cleaner, rather than having to use change_weather(rand(5)). Didn't really do any refactoring in the end since I set up the tests nicely at the beginning and even though some tests are redundant, like the 'expect to respond to' ones, I kept them in for completion's sake.
+PS Totally forgotten to regularly commit until I actually finished... Will make a mental note to self.
 
 Instructions
 ---------
