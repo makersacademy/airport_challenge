@@ -11,7 +11,8 @@ require_relative '../lib/plane'
 #
 # When the plane takes of from the airport, it should be "flying" again
 #
-# Think about your implementation - does it allow a plane to be "flying" and landed?
+# Think about your implementation
+# does it allow a plane to be "flying" and landed?
 # Are you testing that?
 
 describe Plane do
