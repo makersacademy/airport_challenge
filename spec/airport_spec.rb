@@ -12,6 +12,7 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+let (:flying_plane) {double(:landed_plane, {:landed => false})}
 
   describe 'take off' do
     xit 'instructs a plane to take off'
@@ -27,8 +28,15 @@ describe Airport do
 
   describe 'traffic control' do
     context 'when airport is full' do
+
+      it 'responds to full' do
+        expect(subject).to respond_to :full?
+      end
+
       xit 'does not allow a plane to land'
-    end
+
+
+  end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

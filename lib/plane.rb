@@ -11,6 +11,7 @@ class Plane
   end
 
   def take_off
+    raise "Plane cannot take off, it's already flying!" if !landed
     @landed = false
   end
 
