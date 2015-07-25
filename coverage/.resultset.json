@@ -76,11 +76,16 @@
         null,
         1,
         null,
-        1,
+        2,
+        null,
         null,
         1,
         null,
         1,
+        1,
+        1,
+        null,
+        null,
         null,
         1,
         null,
@@ -88,9 +93,16 @@
       ],
       "/Users/katya-yanivyas/Projects/airport_challenge/lib/plane.rb": [
         1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1437755145
+    "timestamp": 1437825319
   }
 }
