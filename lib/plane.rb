@@ -1,7 +1,7 @@
 class Plane
 
 	def initialize
-		@flying = 'hello'
+		@flying = true
 	end
 
 	def flying?
@@ -12,10 +12,9 @@ class Plane
 		@flying = false
 	end
 
-	def take_off airport
+	def take_off airport 
 		@flying = true
 	end
-
 
 end
 

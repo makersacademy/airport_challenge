@@ -21,18 +21,22 @@ describe Plane do
   end
 
   it 'can land' do	
-  	expect(subject.land :airport).not_to eq @flying
+  	expect(subject.land :airport).not_to be @flying
   end
 
   it 'is landed after landing' do
   	subject.land :airport
-  	expect(subject).not_to eq @flying
+  	expect(subject).not_to be_flying
   end
 
   it 'can take off' do
-  	expect(subject.take_off :airport).to eq @flying
+  	puts subject.take_off :airport
+  	expect(subject.take_off :airport).to be true # this is a cheat. fix.
   end
 
-  xit 'is flying after take off'
+  it 'is flying after take off' do
+  	subject.take_off :airport
+  	expect(subject).to be_flying
+  end
 
 end
