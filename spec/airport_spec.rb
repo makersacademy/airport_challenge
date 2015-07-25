@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -21,19 +22,23 @@ describe Airport do
 
   describe 'take off' do
     it 'allows planes to take off' do
-      expect(subject).to respond_to :may_fly?
+      expect(subject).to respond_to :permission_fly?
     end
   end
 
   describe 'landing' do
     it 'allows planes to land' do
-      expect(subject).to respond_to :may_land?
+      expect(subject).to respond_to :permission_land?
+    end
+    it 'increase inventory when plane lands' do
+      plane = Plane.new
+      puts subject.plane_size
+      expect { plane.land subject }.to change{ subject.plane_size }.from(0).to(1)
     end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-
       xit 'does not allow a plane to land'
     end
 

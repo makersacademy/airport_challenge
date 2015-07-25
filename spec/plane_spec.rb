@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -20,12 +21,14 @@ describe Plane do
   	expect(subject).to be_flying
   end
 
-  it 'can land' do	
-  	expect(subject.land :airport).not_to be @flying
+  it 'can land' do
+    a = Airport.new	
+  	expect(subject.land a).not_to be @flying
   end
 
   it 'is landed after landing' do
-  	subject.land :airport
+  	a = Airport.new
+    subject.land a
   	expect(subject).not_to be_flying
   end
 

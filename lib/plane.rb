@@ -1,3 +1,4 @@
+require 'airport.rb'
 class Plane
 
 	def initialize
@@ -9,6 +10,7 @@ class Plane
 	end
 
 	def land airport
+		airport.plane_in(self)
 		@flying = false
 	end
 
