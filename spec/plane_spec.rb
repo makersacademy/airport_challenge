@@ -31,6 +31,9 @@ describe Plane do
 
   xit 'can take off'
 
-  xit 'is flying after take off'
-
+  it 'is flying after take off' do
+    subject.landing
+    subject.taking_off
+    expect(subject.status).to eq "flying"
+  end
 end

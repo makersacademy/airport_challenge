@@ -13,6 +13,10 @@ require 'airport'
 
 describe Airport do
 
+  it "has a weather state" do
+    expect(subject).to respond_to(:weather)
+  end
+
   describe 'take off' do
     it 'instructs a plane to take off' do
       expect(subject).to respond_to(:take_off).with(1).argument
@@ -20,7 +24,8 @@ describe Airport do
 
 
     it 'releases a plane' do
-      plane = double :plane, landing: nil
+      plane = double :plane, landing: nil, taking_off: nil
+      allow(subject).to receive(:weather){"sunny"}
       subject.land plane
       count = subject.planes.count
       subject.take_off plane
@@ -35,6 +40,7 @@ describe Airport do
 
     it 'receives a plane' do
       plane = double :plane, landing: nil
+      allow(subject).to receive(:weather){"sunny"}
       count = subject.planes.count
       subject.land plane
       expect(subject.planes.count).to eq(count + 1)
@@ -50,6 +56,7 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         plane = double :plane, landing: nil
+        allow(subject).to receive(:weather){"sunny"}
         20.times {subject.land plane}
         expect{subject.land plane}.to raise_error "Sorry, we're full!"
       end
@@ -65,9 +72,17 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+        plane = double :plane, landing: nil, taking_off: nil
+        allow(subject).to receive(:weather){"stormy"}
+        expect{subject.take_off plane}.to raise_error "Nope, too dangerous to fly right now!"
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = double :plane, landing: nil, taking_off: nil
+        allow(subject).to receive(:weather){"stormy"}
+        expect{subject.land plane}.to raise_error "Nope, too dangerous to guide you in at the mo. Circle!"
+      end
     end
   end
 end
