@@ -13,21 +13,53 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  describe 'landing' do
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to(:landing).with(1).argument
+    end
 
-    xit 'releases a plane'
+    it 'receives a plane' do
+      p = double :plane
+      p.stub(:land)
+      subject.stub(:current_weather).and_return('sunny')
+      subject.landing p
+      expect(subject).not_to be_empty
+    end
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  describe 'take off' do
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to(:take_off).with(1).argument
+    end
 
-    xit 'receives a plane'
+    it 'cannot release a plane which is not at the airport' do
+      p = double :plane
+      p.stub(:take_off)
+      subject.stub(:current_weather).and_return('sunny')
+      expect{subject.take_off p}.to raise_error 'The plane is not at the airport'
+
+    end
+
+    it 'releases a plane' do
+      p = double :plane
+      p.stub(:take_off)
+      p.stub(:land)
+      subject.stub(:current_weather).and_return('sunny')
+      subject.landing p
+      expect(subject.take_off p).to be p.take_off
+    end
+
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        p = double :plane
+        p.stub(:land)
+        subject.stub(:current_weather).and_return('sunny')
+        subject.capacity.times{subject.landing p}
+        expect{subject.landing p}.to raise_error 'Cannot land plane. Airport is full'
+      end
     end
 
     # Include a weather condition.
@@ -40,9 +72,18 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+        subject.stub(:current_weather).and_return('stormy')
+        expect{subject.take_off double(:plane)}.to raise_error 'Too stormy to take off'
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.stub(:current_weather).and_return('stormy')
+        expect{subject.landing double(:plane)}.to raise_error 'Too stormy to land'
+      end
+
     end
+
   end
+
 end
