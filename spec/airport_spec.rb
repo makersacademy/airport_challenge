@@ -13,16 +13,34 @@ require 'airport'
 
 describe Airport do
 
+  let(:flying_plane){ double :flying_plane, flying?: :true, landed?: false }
+  let(:landed_plane){ double :landed_plane, landed?: true, flying?: false }
+
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off'
 
     xit 'releases a plane'
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  describe '#land_plane' do
+    it 'instructs a plane to land' do
+      plane = Plane.new(subject)
+      subject.land_plane(plane)
+      expect(plane).to be_landed
+    end
 
-    xit 'receives a plane'
+    it 'receives a plane' do 
+      plane = Plane.new(subject)
+      subject.land_plane(plane)
+      expect(subject.planes.include?(plane)).to eq true
+    end
+
+    it "only receives the plane if it matches the plane's destination" do 
+      airport2 = Airport.new
+      plane = Plane.new(airport2)
+
+      expect{subject.land_plane(plane)}.to raise_error "That plane isn't headed for here!"
+    end
   end
 
   describe 'traffic control' do

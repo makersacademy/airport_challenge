@@ -12,6 +12,7 @@ require 'plane'
 describe Plane do
 
   let(:airport){ double :airport }
+  let(:airport2){ double :airport2 }
 
 	context 'when created' do 
 		it 'is flying' do 
@@ -39,14 +40,23 @@ describe Plane do
   end
 
   context 'after it lands' do
-    it 'is landed' do 
-      subject.land(airport)
-      expect(subject).to be_landed
+
+    it 'is landed' do
+      plane = Plane.new(airport) 
+      plane.land(airport)
+      expect(plane).to be_landed
+    end
+
+    it 'no longer has a destination' do 
+      plane = Plane.new(airport) 
+      plane.land(airport)
+      expect(plane.destination).to be_nil
     end
 
     it 'cannot be landed and flying at the same time' do 
-      subject.land(airport) 
-      expect(subject).to_not be_flying
+      plane = Plane.new(airport) 
+      plane.land(airport) 
+      expect(plane).to_not be_flying
     end
   end
 
@@ -59,10 +69,18 @@ describe Plane do
   end
 
   context 'after it has taken off' do 
-    it 'is flying' do 
-      subject.land(airport)
-      subject.take_off
-      expect(subject).to be_flying
+    it 'is flying' do
+      plane = Plane.new(airport) 
+      plane.land(airport)
+      plane.take_off(airport2)
+      expect(plane).to be_flying
+    end
+
+    it 'has a new destination' do
+      plane = Plane.new(airport) 
+      plane.land(airport)
+      subject.take_off(airport2)
+      expect(subject.destination).to be(airport2)
     end
   end
 
@@ -72,12 +90,14 @@ describe Plane do
       expect{subject.land}.to raise_error(ArgumentError)
     end
 
-    it 'does not raise an error if an argument is given' do 
-      expect{subject.land(airport)}.to_not raise_error
+    it 'does not raise an error if an argument is given' do
+      plane = Plane.new(airport) 
+      expect{plane.land(airport)}.to_not raise_error
     end
 
-    it 'returns the plane when called on a plane' do 
-      expect(subject.land(airport)).to eq subject
+    it 'returns the plane when called on a plane' do
+      plane = Plane.new(airport) 
+      expect(plane.land(airport)).to eq plane
     end
   end
 

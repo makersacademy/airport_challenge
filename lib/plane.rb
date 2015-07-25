@@ -12,7 +12,9 @@ class Plane
 	end
 
 	def land(airport)
+		fail "That plane isn't headed for here!" if airport != self.destination
 		@flying = false
+		@destination = nil
 		return self
 	end
 
@@ -20,7 +22,8 @@ class Plane
 		!flying?
 	end
 
-	def take_off
+	def take_off(destination)
+		@destination = destination
 		@flying = true
 	end
 
