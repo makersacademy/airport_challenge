@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/christopheralcock/airport_challenge.svg?branch=master)](https://travis-ci.org/christopheralcock/airport_challenge)s
+[![Build Status](https://travis-ci.org/christopheralcock/airport_challenge.svg?branch=master)](https://travis-ci.org/christopheralcock/airport_challenge)
 
 Airport Challenge
 =================
