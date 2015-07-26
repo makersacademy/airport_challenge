@@ -71,7 +71,7 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       before(:each) do
-        allow(subject).to receive(:weather_report){"sunny"}
+        allow(subject).to receive(:weather_report) { "sunny" }
         allow(plane).to receive(:land)
       end
       it 'does not allow a plane to land' do
