@@ -34,6 +34,15 @@ describe Airport do
        expect(subject.planes).to include(plane)
      end
     end
+
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+    end
+
+    it 'can set a different capacity when created' do
+      airport = Airport.new 2
+      expect(airport.capacity).to eq(2)
+    end
   #
   # describe 'traffic control' do
   #   context 'when airport is full' do
