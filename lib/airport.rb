@@ -6,7 +6,6 @@ class Airport
 
   def initialize
     @planes = []
-    @weather = "sunny"
   end
   def land plane
     if full?
@@ -19,7 +18,6 @@ class Airport
     end
   end
   def take_off plane
-    weather
     raise "No planes here at the mo." unless !empty?
     raise "Nope, too dangerous to fly right now!" unless weather == "sunny"
     @planes.pop
@@ -34,9 +32,9 @@ class Airport
   def weather
     num = 1 + rand(5)
     if num == 5
-      @weather = "stormy"
+      "stormy"
     else
-      @weather = "sunny"
+      "sunny"
     end
   end
 end
