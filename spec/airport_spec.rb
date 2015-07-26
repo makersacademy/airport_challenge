@@ -42,6 +42,11 @@ require 'airport'
         expect(airport.capacity).to eq(random_number)
       end
 
+      it 'does not allow landing if weather is stormy' do
+        allow(subject).to receive(:weather) { :stormy }
+        expect{subject.request_landing landing_plane}.to raise_error "landing request denied, weather conditions are unsafe"
+      end
+
     end
 
     describe '#request_take_off' do
@@ -54,6 +59,9 @@ require 'airport'
       it 'raises error if plane not at the airport' do
         expect{subject.request_take_off taking_off_plane}.to raise_error "take off request denied, Plane is not at this airport"
       end
+
+
+
     end
 end
 

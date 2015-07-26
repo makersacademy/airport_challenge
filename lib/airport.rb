@@ -7,10 +7,11 @@ class Airport
   def initialize(capacity=20)
     @planes = []
     @capacity = capacity
-    @weather
+    @weather = weather
   end
 
   def request_landing plane
+    weather_conditions_check
     capacity_check
     landing_authorisation plane
     receive_plane plane
@@ -21,6 +22,11 @@ class Airport
     take_off_authorisation plane
     release_plane plane
   end
+
+  def weather
+   [:sunny, :stormy].sample
+  end
+
 
   private
 
@@ -40,6 +46,10 @@ class Airport
     @planes << plane
   end
 
+  def weather_conditions_check
+    raise "landing request denied, weather conditions are unsafe" if @weather == :stormy
+  end
+
   def correct_airport_check plane
     raise "take off request denied, Plane is not at this airport" unless plane_at_air_port_check plane
   end
@@ -55,6 +65,9 @@ class Airport
   def release_plane plane
     @planes.delete plane
   end
+
+
+
 end
 
 
