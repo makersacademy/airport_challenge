@@ -22,7 +22,7 @@ class Airport
   end
 
   def land plane
-    fail "Airport is at full" if full?
+    fail "Airport is full" if full?
     @plane << plane
   end
 
