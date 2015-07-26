@@ -1,3 +1,4 @@
+
 class Plane
 
   attr_reader :status
@@ -7,11 +8,8 @@ class Plane
   end
 
   def flying?
-    if @status == "flying"
-      true
-    elsif @status == "landed"
-      false
-    end
+    false if @status == "landed"
+    @status == "flying"
   end
 
   def land

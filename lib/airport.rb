@@ -1,8 +1,9 @@
+
 class Airport
 
   DEFAULT_CAPACITY = 5
 
-  def initialize (capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
@@ -17,6 +18,7 @@ class Airport
     end
     plane.land
     @planes << plane
+    self
   end
 
   def allow_to_takeoff(plane)
@@ -26,6 +28,7 @@ class Airport
     end
     plane.takeoff
     @planes -= [plane]
+    self
   end
 
   def randomize_weather
@@ -37,6 +40,5 @@ class Airport
 
   attr_reader :planes
   attr_reader :capacity
-  attr_reader :weather
 
 end
