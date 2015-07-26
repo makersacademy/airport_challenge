@@ -12,6 +12,7 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  let(:plane){double :plane, flying?: true}
 
   describe 'ariving' do
     it 'instructs a plane to land' do
@@ -20,8 +21,18 @@ describe Airport do
 
     it 'receives a plane' do
       allow(subject).to receive(:set_weather){"Sunny"}
-      subject.ariving(double :plane)
+      allow(plane).to receive(:land)
+
+      subject.ariving(plane)
       expect(subject).to_not be_empty
+    end
+
+    it "plane should land on arival" do
+      allow(subject).to receive(:set_weather){"Sunny"}
+
+      plane = spy :plane
+      subject.ariving(plane)
+      expect(plane).to have_received(:land)
     end
   end
 
@@ -32,9 +43,21 @@ describe Airport do
 
     it 'releases a plane' do
       allow(subject).to receive(:set_weather){"Sunny"}
-      subject.ariving(double :plane)
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
+
+      subject.ariving(plane)
       subject.leaving
       expect(subject).to be_empty
+    end
+
+    it "plane should take off on leaving" do
+      allow(subject).to receive(:set_weather){"Sunny"}
+
+      plane = spy :plane
+      subject.ariving(plane)
+      subject.leaving
+      expect(plane).to have_received(:take_off)
     end
   end
 
@@ -42,8 +65,10 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         allow(subject).to receive(:set_weather){"Sunny"}
-        subject.capacity.times {subject.ariving(double :bike)}
-        expect{subject.ariving(double :plane)}.to raise_error "Cannot land, airport full"
+        allow(plane).to receive(:land)
+
+        subject.capacity.times {subject.ariving(plane)}
+        expect{subject.ariving(plane)}.to raise_error "Cannot land, airport full"
       end 
     end
 
@@ -60,14 +85,19 @@ describe Airport do
       
       it 'does not allow a plane to take off' do
         allow(subject).to receive(:set_weather){"Sunny"}
-        subject.ariving(double :plane)
+        allow(plane).to receive(:land)
+
+        subject.ariving(plane)
+
         allow(subject).to receive(:set_weather){"Stormy"}
+
         expect{subject.leaving}.to raise_error "Cannot take off, weather conditions too bad"
       end
 
       it 'does not allow a plane to land' do
         allow(subject).to receive(:set_weather){"Stormy"}
-        expect{subject.ariving(double :plane)}.to raise_error "Cannot land, weather conditions too bad"
+
+        expect{subject.ariving(plane)}.to raise_error "Cannot land, weather conditions too bad"
       end 
     end
   end

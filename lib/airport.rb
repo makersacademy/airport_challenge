@@ -4,23 +4,27 @@ class Airport
 
   def initialize
   	@capacity = DEFAULT_MAX_PLANES
-    @plane = []
+    @planes = []
     @weather = set_weather
   end
 
   attr_accessor :capacity
+  attr_reader :planes, :weather
 
   def ariving(plane)
   	@weather = set_weather
   	fail "Cannot land, weather conditions too bad" if (@weather == "Stormy")
   	fail "Cannot land, airport full" if full?
-  	@plane << plane
+  	plane.land
+  	planes << plane
   end
 
   def leaving
   	@weather = set_weather
   	fail "Cannot take off, weather conditions too bad" if (@weather == "Stormy")
-  	@plane.pop
+  	plane = @planes.pop
+  	plane.take_off
+  	plane
   end
 
   def set_weather
@@ -28,11 +32,11 @@ class Airport
   end
 
   def empty?
-  	@plane.length <= 0
+  	planes.length <= 0
   end
 
   def full?
-  	@plane.length >= capacity
+  	planes.length >= capacity
   end
 
 end
