@@ -13,6 +13,7 @@ class Airport
 
   def let_take_off plane
     plane.take_off
+    @landed_planes.delete(plane)
   end
 
   def let_land plane
