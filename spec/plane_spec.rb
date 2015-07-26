@@ -22,7 +22,6 @@ describe Plane do
   end
 
   xit 'can land' do
-      CAPACITY
   end
 
   it 'is landed after landing' do
