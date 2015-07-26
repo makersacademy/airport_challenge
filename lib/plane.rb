@@ -9,7 +9,7 @@ class Plane
   end
 
   def landed?
-   !@flying
+    !@flying
   end
 
   def take_off
