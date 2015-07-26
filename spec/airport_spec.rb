@@ -17,7 +17,7 @@ describe Airport do
       expect(subject).to respond_to(:release_plane)
     end
     it 'releases a plane' do
-      allow(subject).to receive(:get_weather){"sunny"}
+      allow(subject).to receive(:get_weather) { "sunny" }
       subject.accept_plane(plane)
       first_count = subject.plane_count
       subject.release_plane(plane)
@@ -32,8 +32,8 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      first_count = subject.plane_count
-      allow(subject).to receive(:get_weather){"sunny"}
+      first_count = subject.plane_count 
+      allow(subject).to receive(:get_weather) { "sunny" }
       subject.accept_plane(plane)
       expect(subject.plane_count).to be > first_count
     end
@@ -41,7 +41,7 @@ describe Airport do
 
   describe 'traffic control' do
     it 'raises an error if there are no gates available' do
-      allow(subject).to receive(:get_weather){"sunny"}
+      allow(subject).to receive(:get_weather) { "sunny" }
       subject.get_capacity.times {subject.accept_plane plane}
       expect{subject.accept_plane plane}.to raise_error "No gates available"
     end
@@ -57,13 +57,13 @@ describe Airport do
 
     describe 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
-        allow(subject).to receive(:get_weather){"sunny"}
+        allow(subject).to receive(:get_weather) { "sunny" }
         subject.accept_plane(plane)
-        allow(subject).to receive(:get_weather){"stormy"}
+        allow(subject).to receive(:get_weather) { "stormy" }
         expect{subject.release_plane plane}.to raise_error "Weather is stormy"
       end
       it 'does not allow a plane to land' do
-        allow(subject).to receive(:get_weather){"stormy"}
+        allow(subject).to receive(:get_weather) { "stormy" }
         expect{subject.accept_plane plane}.to raise_error "Weather is stormy"
       end
     end
