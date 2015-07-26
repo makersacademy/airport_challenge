@@ -4,7 +4,7 @@ require 'airport'
 
 describe Airport do
 
-  let (:plane) {double(:plane)}
+  let(:plane) {double(:plane)}
 
   describe 'take off' do
 
@@ -23,8 +23,6 @@ describe Airport do
     it 'does not release planes when airport is empty' do
       expect{subject.release_plane}.to raise_error 'Airport is empty, no planes available'
     end
-
-   
 
   end
 
@@ -52,7 +50,7 @@ describe Airport do
       end
     end
     
-    # let(:stormy_plane) {double(:stormy_plane, {:stormy? => true, land=> true })}
+    # let(:stormy_plane) {double(:stormy_plane, {:stormy? => true, land => true })}
 
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to be released' do
