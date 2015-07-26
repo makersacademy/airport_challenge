@@ -20,9 +20,6 @@ describe Airport do
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
   end
 
   describe 'traffic control' do
