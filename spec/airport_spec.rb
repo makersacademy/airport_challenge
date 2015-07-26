@@ -1,7 +1,6 @@
 require 'airport'
+require 'plane' #This has to be substituted for a double!!!!!
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
 
 # A plane currently in the airport can be requested to take off.
 #
@@ -13,17 +12,19 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  it { is_expected.to respond_to(:landing).with(1).argument } 
+  #First test: to see that the airport allows planes to land
 
-    xit 'releases a plane'
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
+  #Second test: to see that the airport has a default capacity
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  it { is_expected.to respond_to(:take_off).with(1).argument } 
+  #Third test: to see that the airport allows planes to take off
 
-    xit 'receives a plane'
-  end
+
+  
 
   describe 'traffic control' do
     context 'when airport is full' do
