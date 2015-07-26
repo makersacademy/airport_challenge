@@ -20,20 +20,20 @@ describe Plane do
     expect(subject).to be_flying
   end
 
-  xit 'can land' do
+  it 'can land' do
     expect(subject).to respond_to :can_land?
   end
 
-  xit 'is landed after landing' do
-    expect(subject).to respond_to :landing_after_landing?
+  it 'is landed after landing' do
+    expect(subject).to respond_to :has_landed?
   end
 
-  xit 'can take off' do
+  it 'can take off' do
     expect(subject).to respond_to :can_take_off?
   end
 
-  xit 'is flying after take off' do
-    expect(subject).to respond_to :is_flying_after_flying?
+  it 'is flying after take off' do
+    expect(subject).to respond_to :taken_off?
   end
 
 end
