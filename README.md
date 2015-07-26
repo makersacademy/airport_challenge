@@ -14,6 +14,7 @@ Added first set of Airport methods. Unit tests passed.
 Added methods to land and take off plane. Airport will not accept planes if at capacity. All unit tests pass.
 Added random weather element. Plane may not land or take off if stormy. Unit tests passed.
 Started working on airport spec.
+Added additional airport spec.
 
 
 
