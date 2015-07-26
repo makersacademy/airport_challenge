@@ -1,11 +1,12 @@
 class Airport
 
-	attr_reader :planes, :traffic_controller, :weather, :capacity
+	attr_reader :planes, :traffic_controller, :capacity
+	attr_accessor :weather
 
 	def initialize 
 		@planes = []
 		@traffic_controller = TrafficController.new(self)
-		@weather = "Glorious Sunshine"
+		@weather = "Glorious sunshine"
 		@capacity = 5
 	end
 

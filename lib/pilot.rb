@@ -10,7 +10,7 @@ class Pilot
 	end
 
 	def request_to_land(airport)
-		if airport.traffic_controller.grant_permission?(self)
+		if airport.traffic_controller.grant_permission_to_land?(self)
 			@permission_to_land = true
 		else 
 			fail "Permission to land denied"

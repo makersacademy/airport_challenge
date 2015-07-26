@@ -5,7 +5,15 @@ class TrafficController
 		@location = airport
 	end
 
-	def grant_permission?(pilot)
+	def generate_weather
+		possibilities = ["Glorious sunshine", "Glorious sunshine", "Stormy, like hell on earth"]
+		possibilities.shuffle!
+		self.location.weather = possibilities.first
+	end
+
+	def grant_permission_to_land?(pilot)
+		weather = generate_weather
+
 		if pilot.plane.destination != self.location || self.location.full?
 			return false
 		else

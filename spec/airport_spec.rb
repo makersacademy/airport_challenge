@@ -11,7 +11,7 @@ describe Airport do
     end
 
     it 'has weather that is sunny' do 
-      expect(subject.weather).to eq "Glorious Sunshine"
+      expect(subject.weather).to eq "Glorious sunshine"
     end
 
     it 'has a capacity of 5 planes' do 

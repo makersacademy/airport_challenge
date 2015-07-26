@@ -1,6 +1,7 @@
 require 'traffic_controller'
 
 describe TrafficController do 
+
 	context 'when created' do 
 		it 'has an airport location' do
 			airport = Airport.new
@@ -17,7 +18,27 @@ describe TrafficController do
 		expect(plane.pilot.permission_to_land).to be true
 	end
 
-	context 'when asked for permission to land' do 
+	it 'has a weather generator method' do 
+		airport = Airport.new
+		expect(airport.traffic_controller).to respond_to :generate_weather
+	end
+
+	context 'when weather generator method is run' do 
+		it 'a string is returned' do
+			airport = Airport.new
+			expect(airport.traffic_controller.generate_weather).to be_a String
+		end
+
+		it "that string becomes the airport's weather" do
+			airport = Airport.new
+			weather = airport.traffic_controller.generate_weather
+			expect(airport.weather).to be weather
+		end
+	end
+
+	context 'when asked for permission to land' do
+
+
 		it 'refuses if airport is full' do 
 			airport = Airport.new
 			
