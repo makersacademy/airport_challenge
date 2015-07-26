@@ -4,6 +4,8 @@ require 'airport'
 
 describe Airport do
 
+  let (:plane) {double(:plane)}
+
   describe 'take off' do
 
     it 'instructs a plane to take off' do
@@ -11,7 +13,6 @@ describe Airport do
     end
 
     it 'releases a plane' do
-      plane = double :plane
       allow(subject).to receive(:stormy?) {false}
       allow(plane).to receive(:land) {plane}
       subject.land_plane(plane)
@@ -33,7 +34,6 @@ describe Airport do
   end
 
     it 'receives a plane' do
-    plane = double :plane
     allow(plane).to receive(:land) {plane}
     allow(subject).to receive(:stormy?) {false}
     expect(subject.land_plane plane).to be plane
@@ -45,18 +45,17 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        plane = double :plane
         allow(subject).to receive(:stormy?) {false}
         allow(plane).to receive(:land) {plane}
         subject.capacity.times{subject.land_plane(plane)}
         expect{subject.land_plane(plane)}.to raise_error 'Airport is full, plane cannot land'
       end
     end
-  
+    
+    # let(:stormy_plane) {double(:stormy_plane, {:stormy? => true, land=> true })}
 
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to be released' do
-        plane = double :plane
         allow(plane).to receive(:land) {plane}
         allow(subject).to receive(:stormy?) {false}
         subject.land_plane (plane)
@@ -65,9 +64,8 @@ describe Airport do
         expect{subject.release_plane}.to raise_error 'Weather is too stormy to take off'
       end
        
-
+     
       it 'does not allow a plane to land' do
-        plane = double :plane
         allow(plane).to receive(:land) {plane}
         allow(subject).to receive(:stormy?) {true}
         expect{subject.land_plane(plane)}.to raise_error 'Weather is too stormy to land' 
