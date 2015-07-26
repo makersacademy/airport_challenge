@@ -18,6 +18,8 @@
         1,
         null,
         1,
+        null,
+        1,
         1,
         1,
         null,
@@ -132,7 +134,7 @@
       "/Users/Macbookpro/Desktop/Projects/airport_challenge/lib/plane.rb": [
         1,
         1,
-        30,
+        5,
         null,
         null,
         1,
@@ -195,6 +197,6 @@
         null
       ]
     },
-    "timestamp": 1437937439
+    "timestamp": 1437942718
   }
 }

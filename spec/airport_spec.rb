@@ -13,6 +13,8 @@ require 'airport'
 
 describe Airport do
 
+  let (:plane){double(:plane)}
+
   describe '#take_off' do
     it 'instructs a plane to take off' do
       expect(subject).to respond_to :take_off
@@ -20,7 +22,7 @@ describe Airport do
 
     it 'releases a plane' do
       terminal = Airport.new
-      plane = Plane.new
+      plane = :plane
       terminal.land plane
       expect(terminal.take_off).to eq plane
     end
@@ -33,7 +35,7 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      plane = Plane.new
+      plane = :plane
       expect(subject.land plane).not_to be_empty
     end
   end
@@ -42,8 +44,8 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         terminal = Airport.new
-        terminal.capacity.times { terminal.land Plane.new }
-        expect { terminal.land Plane.new }.to raise_error 'Airport is full'
+        terminal.capacity.times { terminal.land :plane }
+        expect { terminal.land :plane }.to raise_error 'Airport is full'
       end
     end
     it 'returns error if no planes available' do
@@ -62,7 +64,7 @@ describe Airport do
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
         terminal = Airport.new
-        plane = Plane.new
+        plane = :plane
         terminal.land plane
         terminal.weather(4)
         expect { terminal.take_off }.to raise_error 'Stormy, can not take off'
@@ -70,7 +72,7 @@ describe Airport do
 
       it 'does not allow a plane to land' do
         terminal = Airport.new
-        plane = Plane.new
+        plane = :plane
         terminal.weather(4)
         expect { terminal.land plane }.to raise_error 'Stormy, can not land'
       end
