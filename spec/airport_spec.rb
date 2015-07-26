@@ -44,7 +44,11 @@ describe Airport do
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        allow(plane).to receive(:land)
+        subject.capacity.times { subject.let_land(plane) }
+        expect { subject.let_land(plane) }.to raise_error 'Airport is full'
+      end
     end
 
     # Include a weather condition.

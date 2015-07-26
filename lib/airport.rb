@@ -20,5 +20,6 @@ class Airport
     plane.land
     @landed_planes << plane
   end
+
 end
 
