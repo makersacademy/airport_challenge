@@ -15,7 +15,7 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
-  let(:airport){double(:airport)}
+  let(:airport) { double(:airport) }
   it 'is flying when created' do
     expect(subject.report_status).to eq "Flying"
   end
@@ -33,7 +33,7 @@ describe Plane do
   it 'can take off' do
     expect(subject).to respond_to(:take_off)
   end
-  
+
   it 'is flying after take off' do
     allow(airport).to receive(:release_plane)
     subject.take_off(airport)

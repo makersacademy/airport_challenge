@@ -10,10 +10,9 @@ require 'airport'
 #
 # If the airport is full then no planes can land
 describe Airport do
-  let(:plane){double(:plane)}
+  let(:plane) { double(:plane) }
   describe 'take off' do
     it 'instructs a plane to take off' do
-      #allow(subject).to receive(:get_weather){"sunny"}
       expect(subject).to respond_to(:release_plane)
     end
     it 'releases a plane' do
@@ -27,7 +26,6 @@ describe Airport do
 
   describe 'landing' do
     it 'instructs a plane to land' do
-      #allow(subject).to receive(:get_weather){"sunny"}
       expect(subject).to respond_to(:accept_plane)
     end
 
@@ -42,8 +40,8 @@ describe Airport do
   describe 'traffic control' do
     it 'raises an error if there are no gates available' do
       allow(subject).to receive(:get_weather) { "sunny" }
-      subject.get_capacity.times {subject.accept_plane plane}
-      expect{subject.accept_plane plane}.to raise_error "No gates available"
+      subject.get_capacity.times { subject.accept_plane plane }
+      expect{ subject.accept_plane plane }.to raise_error "No gates available"
     end
 
     # Include a weather condition.
@@ -60,11 +58,11 @@ describe Airport do
         allow(subject).to receive(:get_weather) { "sunny" }
         subject.accept_plane(plane)
         allow(subject).to receive(:get_weather) { "stormy" }
-        expect{subject.release_plane plane}.to raise_error "Weather is stormy"
+        expect{ subject.release_plane plane }.to raise_error "Weather is stormy"
       end
       it 'does not allow a plane to land' do
         allow(subject).to receive(:get_weather) { "stormy" }
-        expect{subject.accept_plane plane}.to raise_error "Weather is stormy"
+        expect{ subject.accept_plane plane }.to raise_error "Weather is stormy"
       end
     end
   end

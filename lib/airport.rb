@@ -1,13 +1,13 @@
 class Airport
   NUMBER_OF_GATES = 5
-  WEATHER = ["stormy","sunny"]
+  WEATHER = ["stormy", "sunny"]
   attr_accessor :airport_capacity
   attr_reader :gates
   attr_accessor :weather
   def initialize
     @airport_capacity = NUMBER_OF_GATES
     @name 
-    @gates =[]
+    @gates = []
     @weather = WEATHER
   end
 
