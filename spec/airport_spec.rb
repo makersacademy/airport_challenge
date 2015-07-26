@@ -205,13 +205,17 @@ describe Airport do
     context 'when weather conditions are stormy' do
       it 'does not allow plane(s) to take off' do
         4.times { subject.landing plane }
-        subject.change_weather(4)
+        allow(subject).to receive(:change_weather) {
+          subject.weather = 'stormy'
+        }
         n = rand(3)
         expect { subject.take_off(n) }.to raise_error 'Not safe to take off'
       end
 
       it 'does not allow plane(s) to land' do
-        subject.change_weather(4)
+        allow(subject).to receive(:change_weather) {
+          subject.weather = 'stormy'
+        }
         expect { subject.land(plane, plane, plane) }.to\
           raise_error 'Not safe to land'
       end

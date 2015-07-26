@@ -18,6 +18,7 @@ class Airport
   end
 
   def take_off(n)
+    change_weather
     fail 'Not safe to take off' if weather == 'stormy'
     n == 1 ? takes_off : take_offs(n)
   end
@@ -39,6 +40,7 @@ class Airport
   end
 
   def land(plane, *args)
+    change_weather
     fail 'Not safe to land' if weather == 'stormy'
     args.empty? ? landing(plane) : landings(plane, args)
   end
