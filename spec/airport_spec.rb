@@ -39,6 +39,10 @@ describe Airport do
 
   describe 'landing' do
 
+    it "checks plane isn't already landed" do
+
+    end
+
     it 'instructs a plane to land' do
       expect(subject).to respond_to(:land).with(1).argument
     end

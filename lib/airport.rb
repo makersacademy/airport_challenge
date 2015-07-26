@@ -13,8 +13,8 @@ class Airport
     elsif weather == "stormy"
       raise "Nope, too dangerous to guide you in at the mo. Circle!"
     else
-      planes << plane
       plane.landing
+      planes << plane
     end
   end
   def take_off

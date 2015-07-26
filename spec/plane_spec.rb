@@ -15,6 +15,15 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
+  it "can't land unless flying" do
+    subject.instance_variable_set(:@status, "landed")
+    expect{subject.landing}.to raise_error "You're already on the ground, sir."
+  end
+
+  it "can't fly if already flying" do
+    subject.instance_variable_set(:@status, "flying")
+    expect{subject.taking_off}.to raise_error "You're already in the air, captain..."
+  end
 
   it 'is flying when created' do
     expect(subject.status).to eq("flying")
