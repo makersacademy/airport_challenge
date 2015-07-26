@@ -1,5 +1,4 @@
 
-require 'weather'
 class Airport
 
 DEFAULT = 1
@@ -7,29 +6,29 @@ DEFAULT = 1
 	def initialize
 		@capacity = DEFAULT
 		@planes = []
-		@weather = true
+		@weather_state = true
 	end
 
 	def capacity
 		@capacity
 	end
 
-	def plane_in plane
+	def plane_in plane # evaluate a request to land
 		if (@planes.size >= @capacity) || (self.weather_state == false)
-			false
+			return false # Tower: No
 		 else 
 		 	@planes << plane
-		 	true
+		 	return true # Tower: yes
 		 end
 	end
 
-	def plane_out plane 
+	def plane_out plane # evaluate a request to take off
 
 		if self.weather_state 
 			@planes.delete(plane)
-			return true
+			return true # Toewer: Yes
 		else
-			return false
+			return false # Tower: No
 		end
 	end
 
@@ -37,8 +36,8 @@ DEFAULT = 1
 		@planes.size
 	end
 
-	def weather_state
-		@weather = Weather.new.weather
+	def weather_state #
+		@weather_state = WeatherReport.new.state
 	end
 
 

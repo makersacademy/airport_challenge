@@ -9,17 +9,17 @@ class Plane
 		@flying
 	end
 
-	def land airport
+	def land airport # Pilot: can I land
 		if airport.plane_in(self)
-			@flying = false
+			@flying = false # Tower: Yes
 		else 
-			@flying = true
+			@flying = true # Tower: No
 		end
 		@flying 
 	end
 
-	def take_off airport 
-		@flying = airport.plane_out(self)
+	def take_off airport # Pilot: Can I take off
+		@flying = airport.plane_out(self) # Tower: Maybe
 	end
 
 end
