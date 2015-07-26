@@ -23,4 +23,13 @@ class Plane
     end
   end
 
+  def takeoff
+    @status = "flying"
+  end
+
+  def tookoff?
+    if status == "flying"
+      true
+    end
+  end
 end
