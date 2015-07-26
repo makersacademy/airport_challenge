@@ -10,16 +10,20 @@ class Airport
     @capacity = DEFAULT_CAPACITY
   end
 
-  def accept(plane)
+  def accept plane
     if weather_report == "stormy"
       raise "You can not land!  The weather is stormy!"
     elsif over_capacity?
       raise "Airport at capacity!  You can not land here!"
     else
-      plane.land
-      planes.push(plane)
-      plane
+      land_plane plane
     end
+  end
+
+  def land_plane plane
+    plane.land
+    planes.push(plane)
+    plane
   end
 
   def allow_take_off
@@ -28,10 +32,14 @@ class Airport
     elsif no_planes_available?
       raise "There are currently no planes ready for take off."
     else
-      plane = planes.pop
-      plane.fly
-      plane
+      release_plane
     end
+  end
+
+  def release_plane
+    plane = planes.pop
+    plane.fly
+    plane
   end
 
   private

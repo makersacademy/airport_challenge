@@ -45,6 +45,7 @@ describe Airport do
   describe 'landing' do
     before(:each) do
       allow(subject).to receive(:weather_report){"sunny"}
+      allow(plane).to receive(:land)
     end
 
     it 'instructs a plane to land' do
@@ -52,12 +53,10 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      allow(plane).to receive(:land)
       expect(subject.accept plane).to eq(plane)
     end
 
     it 'after accepting a plane' do
-      allow(plane).to receive(:land)
       subject.accept plane
       expect(subject.planes).not_to be_empty
     end
