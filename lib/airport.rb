@@ -29,7 +29,7 @@ class Airport
   end
 
   def weather_control
-    ['stormy', 'sunny', 'sunny', 'sunny', 'sunny'].sample
+    ['stormy', 'sunny', 'sunny', 'sunny', 'sunnyi'].sample
   end
 
   private
