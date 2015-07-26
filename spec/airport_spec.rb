@@ -20,8 +20,7 @@ describe Airport do
       subject.let_take_off(plane)
     end
 
-    it 'releases a plane' do
-    end
+    xit 'releases a plane'
   end
 
   describe 'landing' do
