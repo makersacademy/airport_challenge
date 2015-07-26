@@ -25,7 +25,7 @@ describe Airport do
 
     it "raises error if over capacity" do
       subject.capacity.times { subject.request_landing(plane) }
-      expect { subject.request_landing(plane) }.to raise_error "landing request denied, Airport is full"
+      expect { subject.request_landing(plane) }.to raise_error "Airport is full"
     end
 
     it "allows capacity to be specified at initialization" do
@@ -36,7 +36,7 @@ describe Airport do
 
     it "does not allow if weather is stormy" do
       allow(subject).to receive(:weather) { :stormy }
-      expect { subject.request_landing plane }.to raise_error "request denied, weather conditions are unsafe"
+      expect { subject.request_landing plane }.to raise_error "weather is unsafe"
     end
   end
 
@@ -49,13 +49,13 @@ describe Airport do
     end
 
     it "raises error if plane not in the airport" do
-      expect { subject.request_take_off plane }.to raise_error "request denied not at airport"
+      expect { subject.request_take_off plane }.to raise_error "plane not at airport"
     end
 
     it "does not allow if weather is stormy" do
       subject.request_landing(plane)
       allow(subject).to receive(:weather) { :stormy }
-      expect { subject.request_take_off plane }.to raise_error "request denied, weather conditions are unsafe"
+      expect { subject.request_take_off plane }.to raise_error "weather is unsafe"
     end
   end
 end

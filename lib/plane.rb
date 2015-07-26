@@ -7,12 +7,12 @@ class Plane
   end
 
   def land
-    raise "Plane is landed so cannot land" if landed?
+    raise "Plane landed cannot land" if landed?
     @flying = false
   end
 
   def take_off
-    raise "Plane is flying so cannot take off" if flying?
+    raise "Plane flying cannot take off" if flying?
     @flying = true
   end
 

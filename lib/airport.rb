@@ -30,7 +30,7 @@ class Airport
   private
 
   def capacity_check
-    raise "landing request denied, Airport is full" if full?
+    raise "Airport is full" if full?
   end
 
   def full?
@@ -46,11 +46,11 @@ class Airport
   end
 
   def weather_conditions_check
-    raise "request denied, weather conditions are unsafe" if weather == :stormy
+    raise "weather is unsafe" if weather == :stormy
   end
 
   def correct_airport_check plane
-    raise "request denied not at airport" unless plane_at_air_port_check plane
+    raise "plane not at airport" unless plane_at_air_port_check plane
   end
 
   def plane_at_air_port_check plane
