@@ -21,7 +21,7 @@ class Airport
     @planes -= [plane]
   end
 
-  def weather
+  def randomize_weather
     case rand(100)
     when  1..75 then @weather = "sunny"
     when 75..100 then @weather = "stormy"
@@ -30,5 +30,6 @@ class Airport
 
   attr_reader :planes
   attr_reader :capacity
+  attr_reader :weather
 
 end
