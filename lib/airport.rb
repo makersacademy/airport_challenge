@@ -12,12 +12,16 @@ class Airport
   end
 
   def request_take_off plane
-    raise "Plane is not at this airport" unless @planes.include? plane
+    raise "Plane is not at this airport" unless plane_at_air_port_check plane
     take_off_authorisation plane
     release_plane plane
   end
 
   private
+
+  def plane_at_air_port_check plane
+    return true if @planes.include?(plane)
+  end
 
   def landing_authorisation plane
     plane.land
