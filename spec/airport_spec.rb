@@ -1,5 +1,5 @@
 require 'airport'
-
+require_relative '../lib/plane'
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -12,6 +12,7 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  it { is_expected.to respond_to :ATC }
 
   describe 'take off' do
     xit 'instructs a plane to take off'
@@ -24,7 +25,10 @@ describe Airport do
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        5.times { subject.ATC Plane.new }
+        expect { subject.ATC Plane.new }.to raise_error 'No room, Airport is full'
+      end
     end
 
     # Include a weather condition.
