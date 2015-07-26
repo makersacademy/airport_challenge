@@ -12,22 +12,51 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  it 'initiates with default capacity' do
+    expect(subject.capacity).to eq Airport::D_CAPACITY
+  end
+
+  it 'takes custom capacity' do
+    random = Random.rand(100)
+    subject = described_class.new random
+    expect(subject.capacity).to eq random
+  end
+
+  it 'weather is sunny by default' do
+    subject = described_class.new
+    expect(subject.weather).to eq 'sunny'
+  end
+
+  it 'can be stormy weather' do
+    subject = described_class.new stormy
+    expect(subject.weather).to eq 'stormy'
+  end
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it { is_expected.to respond_to :take_off }
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      plane = double :plane
+      subject.landing plane
+      expect(subject.take_off).to be plane
+    end
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it { is_expected.to respond_to(:landing).with(1).argument }
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      subject.landing double :plane
+      expect(subject).not_to be_empty
+    end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times { subject.landing double :plane }
+        expect { subject.landing double :plane }.to raise_error("#{described_class.name} full")
+      end
     end
 
     # Include a weather condition.
