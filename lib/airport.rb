@@ -13,14 +13,14 @@ class Airport
     elsif weather == "stormy"
       raise "Nope, too dangerous to guide you in at the mo. Circle!"
     else
-      (@planes << plane)
+      (planes << plane)
       plane.landing
     end
   end
   def take_off plane
     raise "No planes here at the mo." unless !empty?
     raise "Nope, too dangerous to fly right now!" unless weather == "sunny"
-    @planes.pop
+    planes.pop
     plane.taking_off
   end
   def full?

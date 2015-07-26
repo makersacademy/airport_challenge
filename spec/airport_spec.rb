@@ -13,18 +13,20 @@ require 'airport'
 
 describe Airport do
 
+  let(:plane){double(:plane, {landing: nil, taking_off: nil})}
+
   it "has a weather state" do
     expect(subject).to respond_to(:weather)
   end
 
   describe 'take off' do
+
     it 'instructs a plane to take off' do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
 
 
     it 'releases a plane' do
-      plane = double :plane, landing: nil, taking_off: nil
       allow(subject).to receive(:weather){"sunny"}
       subject.land plane
       count = subject.planes.count
@@ -33,7 +35,6 @@ describe Airport do
     end
 
     it "doesn't release a plane if there are none" do
-      plane = double :plane, landing: nil, taking_off: nil
       expect{subject.take_off plane}.to raise_error "No planes here at the mo."
     end
   end
@@ -44,7 +45,6 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      plane = double :plane, landing: nil
       allow(subject).to receive(:weather){"sunny"}
       count = subject.planes.count
       subject.land plane
@@ -60,7 +60,6 @@ describe Airport do
 
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        plane = double :plane, landing: nil
         allow(subject).to receive(:weather){"sunny"}
         20.times {subject.land plane}
         expect{subject.land plane}.to raise_error "Sorry, we're full!"
@@ -78,7 +77,6 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
-        plane = double :plane, landing: nil, taking_off: nil
         allow(subject).to receive(:weather){"sunny"}
         subject.land plane
         allow(subject).to receive(:weather){"stormy"}
@@ -86,7 +84,6 @@ describe Airport do
       end
 
       it 'does not allow a plane to land' do
-        plane = double :plane, landing: nil, taking_off: nil
         allow(subject).to receive(:weather){"stormy"}
         expect{subject.land plane}.to raise_error "Nope, too dangerous to guide you in at the mo. Circle!"
       end
