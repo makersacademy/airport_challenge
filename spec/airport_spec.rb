@@ -1,5 +1,4 @@
 require 'airport'
-require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -18,27 +17,18 @@ describe Airport do
     it 'does an airport have some capacity' do
       expect(subject).to respond_to :capacity
     end
-    it 'increase inventory when plane lands' do
-      plane = Plane.new
-      expect { plane.land subject }.to change{ subject.plane_size }.from(0).to(1)
-    end
-  end
-
-  describe 'take off' do
-    it 'decreases inventory when plane leaves' do
-      plane = Plane.new
-      plane.land subject
-      expect { plane.take_off subject }.to change{ subject.plane_size}.from(1).to(0)
+    it 'inventory goes up when plane comes in and down when plane leaves' do 
+      pln = double()
+      expect{ subject.plane_in pln }.to change{ subject.plane_size }.from(0).to(1)
+      expect{ subject.plane_out pln }.to change{ subject.plane_size }.from(1).to(0)      
     end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        subject.plane_in Plane.new
-        expect(subject.plane_in Plane.new).to be false
-        # 2.times {subject.plane_in Plane.new}
-        # expect(subject.plane_in Plane.new).to raise_error "No more space at the airport"
+        subject.plane_in :plane
+        expect(subject.plane_in :plane).to be false
       end
     end
   

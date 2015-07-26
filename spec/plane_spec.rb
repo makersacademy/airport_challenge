@@ -1,5 +1,5 @@
 require 'plane'
-require 'airport'
+# require 'airport'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -22,31 +22,35 @@ describe Plane do
   end
 
   it 'can land' do
-    a = Airport.new	
-  	expect(subject.land a).not_to be @flying
+    airport = double()
+    allow(airport).to receive(:plane_in).with(subject)
+  	expect(subject.land airport).not_to be @flying
   end
 
   it 'is landed after landing' do
-  	a = Airport.new
-    subject.land a
+    airport = double()
+    allow(airport).to receive(:plane_in).with(subject).and_return(true) # bring this up in stand up
+    subject.land airport
   	expect(subject).not_to be_flying
   end
 
   it 'keeps flying if can\'t land' do
-    a = Airport.new
-    Plane.new.land a
-    puts a.plane_size
-    expect(Plane.new.land a).to be true #another cheat
+    airport = double()
+    allow(airport).to receive(:plane_in).and_return(false)
+    Plane.new.land airport
+    expect(Plane.new.land airport).to be true #another cheat
   end 
 
   it 'can take off' do
-  	a = Airport.new
-  	expect(subject.take_off a).to be true # this is a cheat. fix.
+  	airport = double()
+    allow(airport).to receive(:plane_out)
+  	expect(subject.take_off airport).to be true # this is a cheat. fix.
   end
 
   it 'is flying after take off' do
-  	a = Airport.new
-    subject.take_off a
+    airport = double()
+    allow(airport).to receive(:plane_out)
+    subject.take_off airport
   	expect(subject).to be_flying
   end
 
