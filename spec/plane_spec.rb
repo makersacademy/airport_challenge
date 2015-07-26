@@ -1,6 +1,7 @@
 require "plane"
 
 describe Plane do
+
   let(:airport) {double(:airport, land_request: true)}
 
   it "is flying on creation" do
@@ -16,6 +17,7 @@ describe Plane do
   end
 
   describe "#land" do
+
     it "is landed after landing" do
       subject.land
       expect(subject).to be_landed
@@ -28,6 +30,7 @@ describe Plane do
   end
 
    describe "#take_off" do
+
     it "is flying after take off" do
       subject.land
       subject.take_off

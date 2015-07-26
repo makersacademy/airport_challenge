@@ -1,8 +1,6 @@
 require "airport"
 
 describe Airport do
-  let(:taking_off_plane){double(:plane, take_off: true )}
-  let(:landing_plane){double(:plane, land: true )}
 
   let(:plane){double(:plane, flying?: true, land: true, take_off: true)}
 
@@ -19,6 +17,7 @@ describe Airport do
   end
 
   describe "#request_landing" do
+
     it "receives a plane" do
       subject.request_landing(plane)
       expect(subject.planes).to include(plane)
@@ -42,8 +41,9 @@ describe Airport do
   end
 
   describe "#request_take_off" do
+
     it "releases plane when successful" do
-      subject.planes << plane
+      subject.request_landing(plane)
       subject.request_take_off(plane)
       expect(subject.planes).not_to include(plane)
     end
@@ -53,7 +53,7 @@ describe Airport do
     end
 
     it "does not allow if weather is stormy" do
-      subject.planes << plane
+      subject.request_landing(plane)
       allow(subject).to receive(:weather).and_return("stormy")
       expect{subject.request_take_off plane}.to raise_error "request denied, weather conditions are unsafe"
     end
