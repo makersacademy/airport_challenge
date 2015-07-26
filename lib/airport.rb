@@ -17,6 +17,7 @@ class Airport
 
   def let_land plane
     plane.land
+    @landed_planes << plane
   end
 end
 
