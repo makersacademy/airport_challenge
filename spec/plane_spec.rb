@@ -1,5 +1,4 @@
 require 'plane'
-
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -13,7 +12,6 @@ require 'plane'
 #
 # Think about your implementation - does it allow a plane to be "flying" and landed?
 # Are you testing that?
-
 describe Plane do
   let(:airport) { double(:airport) }
   it 'is flying when created' do
@@ -39,4 +37,4 @@ describe Plane do
     subject.take_off(airport)
     expect(subject.report_status).to eq "Flying"
   end
-end   
+end

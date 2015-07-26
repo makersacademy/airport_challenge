@@ -20,4 +20,3 @@ class Plane
     airport.release_plane(self)
   end
 end
-

@@ -41,7 +41,7 @@ describe Airport do
     it 'raises an error if there are no gates available' do
       allow(subject).to receive(:get_weather) { "sunny" }
       subject.get_capacity.times { subject.accept_plane plane }
-      expect{ subject.accept_plane plane }.to raise_error "No gates available"
+      expect { subject.accept_plane plane }.to raise_error "No gates available"
     end
 
     # Include a weather condition.
@@ -58,11 +58,11 @@ describe Airport do
         allow(subject).to receive(:get_weather) { "sunny" }
         subject.accept_plane(plane)
         allow(subject).to receive(:get_weather) { "stormy" }
-        expect{ subject.release_plane plane }.to raise_error "Weather is stormy"
+        expect { subject.release_plane plane }.to raise_error "Weather is stormy"
       end
       it 'does not allow a plane to land' do
         allow(subject).to receive(:get_weather) { "stormy" }
-        expect{ subject.accept_plane plane }.to raise_error "Weather is stormy"
+        expect { subject.accept_plane plane }.to raise_error "Weather is stormy"
       end
     end
   end
