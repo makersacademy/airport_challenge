@@ -15,7 +15,7 @@ class Airport
 
   def dock plane
     fail 'Airport full' if full?
-    fail 'Inclement weather' if stormy?
+    fail 'Inclement weather' if bad_weather?
     @planes << plane
   end
 
@@ -32,8 +32,8 @@ def full?
   @planes.count >= capacity
 end
 
-def stormy?
-  @planes.select { |plane | plane.reported_bad_weather}
+def bad_weather?
+  @planes.reject { |plane | plane.stormy?}
 end
 
 

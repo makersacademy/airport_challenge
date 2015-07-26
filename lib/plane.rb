@@ -1,9 +1,10 @@
-
+require_relative 'weather'
 
 class Plane
 
   def initialize
     @flying = false
+    @weather = []
   end
 
   def landing?
@@ -26,8 +27,12 @@ class Plane
     @flying
   end
 
-  def reported_bad_weather
-    @flying = false
+  def stormy?
+    if @weather == 0
+      false
+    else
+      true
+    end
   end
 
 end
