@@ -22,7 +22,7 @@ describe Airport do
 
     it 'should let a plane take off' do
       plane = double :plane, flying?: true
-      allow(plane).to receive(:land) 
+      allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       subject.instruct_land plane
       subject.instruct_take_off
@@ -52,7 +52,12 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'will not allow a plane to take off' do
+        plane = Plane.new
+        subject.instruct_land plane
+        allow(subject).to receive(:weather) {'stormy'}
+        expect{ subject.instruct_take_off }.to raise_error 'You cannot take off now, the weather is too bad'
+      end
 
       xit 'does not allow a plane to land'
     end

@@ -3,11 +3,12 @@ require_relative 'plane'
 class Airport
   DEFAULT_CAPACITY = 50
   attr_accessor :capacity
+  attr_reader :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = [:sunny, :sunny, :sunny, :sunny, :stormy].sample
+    @weather = ['sunny', 'sunny', 'sunny', 'sunny', 'stormy'].sample
   end
 
   def instruct_land plane
@@ -18,6 +19,7 @@ class Airport
 
   def instruct_take_off
     fail 'No planes available' if empty?
+    fail 'You cannot take off now, the weather is too bad' if stormy?
     plane = @planes.pop
     plane.take_off
   end
@@ -30,6 +32,10 @@ class Airport
 
   def empty?
     @planes.empty?
+  end
+
+  def stormy?
+    weather == 'stormy'
   end
 
 end
