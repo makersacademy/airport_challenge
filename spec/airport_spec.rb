@@ -65,7 +65,6 @@ describe Airport do
       end
     end
 
-    
     # let(:stormy_plane) {double(:stormy_plane, {:stormy? => true, land => true })}
 
     context 'when weather conditions are stormy' do
@@ -79,7 +78,6 @@ describe Airport do
         expect{subject.release_plane}.to raise_error 'Weather is too stormy to take off'
       end
        
-     
       it 'does not allow a plane to land' do
         allow(plane).to receive(:land) {plane}
         allow(subject).to receive(:wrong_destination?) { false }
