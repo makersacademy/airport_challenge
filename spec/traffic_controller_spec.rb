@@ -12,6 +12,7 @@ describe TrafficController do
 
 	it 'can grant permission to pilots to land' do 
 		airport = Airport.new
+		airport.stub(:weather).and_return("Glorious sunshine")
 		plane = Plane.new(airport)
 		plane.pilot.request_to_land(airport)
 
@@ -37,10 +38,9 @@ describe TrafficController do
 	end
 
 	context 'when asked for permission to land' do
-
-
 		it 'refuses if airport is full' do 
 			airport = Airport.new
+			airport.stub(:weather).and_return("Glorious sunshine")
 			
 			5.times do
 				plane = Plane.new(airport)
@@ -57,6 +57,14 @@ describe TrafficController do
 			airport2 = Airport.new
 			plane = Plane.new(airport)
 			expect{plane.pilot.request_to_land(airport2)}.to raise_error "Permission to land denied"		
+		end
+
+		it "refuses if weather is stormy" do 
+			airport = Airport.new
+			plane = Plane.new(airport)
+			airport.stub(:weather).and_return("Stormy, like hell on earth")
+
+			expect{plane.pilot.request_to_land(airport)}.to raise_error "Permission to land denied"
 		end
 	end
 end

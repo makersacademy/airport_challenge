@@ -19,6 +19,7 @@ describe Pilot do
 
 		it 'can land a plane' do
 			airport = Airport.new
+			airport.stub(:weather).and_return("Glorious sunshine")
       		plane = Plane.new(airport)
       		plane.pilot.request_to_land(airport)
       		plane.pilot.land_plane(airport)
@@ -45,6 +46,7 @@ describe Pilot do
 	context 'after landing' do 
 		it 'permission to land is reset to false' do 
 			airport = Airport.new
+			airport.stub(:weather).and_return("Glorious sunshine")
       		plane = Plane.new(airport)
       		plane.pilot.request_to_land(airport)
       		plane.pilot.land_plane(airport)
@@ -56,6 +58,7 @@ describe Pilot do
 	context 'after taking off' do 
 		it 'permission to take off is reset to false' do
 			airport = Airport.new
+			airport.stub(:weather).and_return("Glorious sunshine")
 			airport2 = Airport.new
       		plane = Plane.new(airport)
       		plane.pilot.request_to_land(airport)

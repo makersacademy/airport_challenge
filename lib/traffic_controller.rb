@@ -7,14 +7,13 @@ class TrafficController
 
 	def generate_weather
 		possibilities = ["Glorious sunshine", "Glorious sunshine", "Stormy, like hell on earth"]
-		possibilities.shuffle!
-		self.location.weather = possibilities.first
+		self.location.weather = possibilities.shuffle.first
 	end
 
 	def grant_permission_to_land?(pilot)
 		weather = generate_weather
 
-		if pilot.plane.destination != self.location || self.location.full?
+		if (pilot.plane.destination != self.location) || (self.location.full?) || (self.location.weather == "Stormy, like hell on earth")
 			return false
 		else
 			return true

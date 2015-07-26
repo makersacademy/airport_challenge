@@ -51,7 +51,7 @@ describe Plane do
   context 'when landing' do 
     it "traffic controller is notified of final approach and is stopped if airport has since become full" do 
       airport = Airport.new
-
+      airport.stub(:weather).and_return("Glorious sunshine")
       first_plane = Plane.new(airport) 
       first_plane.pilot.request_to_land(airport)
 
@@ -74,6 +74,7 @@ describe Plane do
 
     it 'is landed' do
       airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport)
       plane.land(airport)
@@ -82,6 +83,7 @@ describe Plane do
 
     it 'no longer has a destination' do 
       airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport)
       plane.land(airport)
@@ -89,7 +91,8 @@ describe Plane do
     end
 
     it "its 'location' matches the airport it has landed at" do
-      airport = Airport.new 
+      airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
@@ -99,6 +102,7 @@ describe Plane do
 
     it 'cannot be landed and flying at the same time' do
       airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport) 
@@ -107,7 +111,8 @@ describe Plane do
     end
 
     it 'cannot take off if its pilot does not have permission to take off, even though its destination is to a different airport' do 
-      airport = Airport.new 
+      airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       airport2 = Airport.new
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
@@ -117,7 +122,8 @@ describe Plane do
     end
 
     it 'can take off if its pilot has permission and its destination is to a different airport' do
-      airport = Airport.new 
+      airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       airport2 = Airport.new
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
@@ -129,7 +135,8 @@ describe Plane do
     end
 
     it 'cannot take off for the same destination that it is currently located in' do
-      airport = Airport.new 
+      airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
@@ -146,6 +153,7 @@ describe Plane do
   context 'after it has taken off' do 
     it 'is flying' do
       airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       airport2 = Airport.new
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
@@ -157,6 +165,7 @@ describe Plane do
 
     it 'has a new destination' do
       airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
@@ -166,7 +175,8 @@ describe Plane do
     end
 
     it 'has no location' do
-      airport = Airport.new 
+      airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
@@ -185,6 +195,7 @@ describe Plane do
 
     it 'does not raise an error if an argument is given' do
       airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport)
       expect{plane.land(airport)}.to_not raise_error
@@ -192,6 +203,7 @@ describe Plane do
 
     it 'returns the plane when called on a plane' do
       airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       expect(plane.land(airport)).to eq plane

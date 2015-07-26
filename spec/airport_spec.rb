@@ -19,7 +19,8 @@ describe Airport do
     end
   end
 
-  it 'can receive a plane' do 
+  it 'can receive a plane' do
+    subject.stub(:weather).and_return("Glorious sunshine")
     plane = Plane.new(subject)
     plane.pilot.request_to_land(subject)
     plane.pilot.land_plane(subject)
@@ -27,7 +28,9 @@ describe Airport do
     expect(subject.planes.include?(plane)).to be true
   end
 
-  it 'can be full' do 
+  it 'can be full' do
+    subject.stub(:weather).and_return("Glorious sunshine")
+
     5.times do 
       plane = Plane.new(subject)
       plane.pilot.request_to_land(subject)
@@ -39,6 +42,7 @@ describe Airport do
 
   context 'after a plane has taken off' do 
     it 'there is one less plane in the airport' do 
+      subject.stub(:weather).and_return("Glorious sunshine")
       airport2 = Airport.new
       plane = Plane.new(subject)
       plane.pilot.request_to_land(subject)
