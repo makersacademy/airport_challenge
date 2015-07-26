@@ -13,9 +13,9 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane){double(:plane, {landing: nil, taking_off: nil})}
+  let(:plane) { double(:plane, landing: nil, taking_off: nil) }
   before(:each) do
-    allow(subject).to receive(:weather){"sunny"}
+    allow(subject).to receive(:weather) { "sunny" }
   end
 
   describe 'take off' do
@@ -32,7 +32,7 @@ describe Airport do
     end
 
     it "doesn't release a plane if there are none" do
-      expect{subject.take_off}.to raise_error "No planes here at the mo."
+      expect { subject.take_off }.to raise_error "No planes here at the mo."
     end
 
   end
@@ -63,8 +63,8 @@ describe Airport do
 
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        subject.capacity.times {subject.land plane}
-        expect{subject.land plane}.to raise_error "Sorry, we're full!"
+        subject.capacity.times { subject.land plane }
+        expect { subject.land plane }.to raise_error "Sorry, we're full!"
       end
 
     end
@@ -82,13 +82,13 @@ describe Airport do
 
       it 'does not allow a plane to take off' do
         subject.land plane
-        allow(subject).to receive(:weather){"stormy"}
-        expect{subject.take_off}.to raise_error "Nope, too dangerous to fly right now!"
+        allow(subject).to receive(:weather) { "stormy" }
+        expect { subject.take_off }.to raise_error "Nope, too dangerous to fly right now!"
       end
 
       it 'does not allow a plane to land' do
         allow(subject).to receive(:weather){"stormy"}
-        expect{subject.land plane}.to raise_error "Nope, too dangerous to guide you in at the mo. Circle!"
+        expect { subject.land plane }.to raise_error "Nope, too dangerous to guide you in at the mo. Circle!"
       end
 
     end
