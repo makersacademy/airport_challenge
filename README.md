@@ -1,4 +1,4 @@
-https://travis-ci.org/katylouise/airport_challenge.svg?branch=master
+![Travis CI Build Working](https://travis-ci.org/katylouise/airport_challenge.svg?branch=master)
 
 Airport Challenge
 =================
