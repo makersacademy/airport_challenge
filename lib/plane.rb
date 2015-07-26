@@ -1,18 +1,27 @@
 class Plane
 
-def initialize
-  @airborne = true
-end
 
-def fly
+attr_accessor :airborne
+
+def initialize
+  @airborne = :up
 end
 
 def flying?
-  @airborne
+  @airborne == :up
 end
 
-def landed?
-  !flying?
+
+def fly_away
+  @airborne = :up
+  self
+  #self
+end
+
+def ground
+  @airborne = :downed
+  self
+  #self
 end
 
 end

@@ -16,17 +16,25 @@ require 'plane'
 
 describe Plane do
 
-  it 'is flying when created'
+  let(:plane){ Plane.new }
+  let(:landed_plane) { Plane.new.ground }
+  let(:flying_plane) {landed_plane.fly_away}
+
+
   it { is_expected.to respond_to :flying? }
-  expect(subject).to be_flying
 
-=begin
-  xit 'can land'
 
-  xit 'is landed after landing'
+  it 'is flying when created' do
+    expect(plane).to be_flying
+  end
 
-  xit 'can take off'
+  it 'can land; the landed plane status is downed' do
+    expect(landed_plane).to_not be_flying
+  end
 
-  xit 'is flying after take off'
-=end
+  it 'can take off and then the plane status is up' do
+    expect(flying_plane).to be_flying
+  end
+
 end
+
