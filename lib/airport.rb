@@ -1,11 +1,11 @@
 require_relative 'plane'
 
 class Airport
-  DEFAULT_CAPACITY = 20
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
   def initialize
     @planes = []
+    @capacity = 20
   end
   def land plane
     if full?
@@ -13,18 +13,21 @@ class Airport
     elsif weather == "stormy"
       raise "Nope, too dangerous to guide you in at the mo. Circle!"
     else
-      (planes << plane)
+      planes << plane
       plane.landing
     end
   end
-  def take_off plane
+  def take_off
     raise "No planes here at the mo." unless !empty?
     raise "Nope, too dangerous to fly right now!" unless weather == "sunny"
+    planes.last.taking_off
     planes.pop
-    plane.taking_off
   end
+
+  private
+
   def full?
-    planes.count >= DEFAULT_CAPACITY
+    planes.count >= capacity
   end
   def empty?
     planes.empty?

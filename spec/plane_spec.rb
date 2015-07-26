@@ -20,16 +20,10 @@ describe Plane do
     expect(subject.status).to eq("flying")
   end
 
-  xit 'can land'
-
-
-  #is this enough??????
   it 'is landed after landing' do
     subject.landing
     expect(subject.status).to eq "landed"
   end
-
-  xit 'can take off'
 
   it 'is flying after take off' do
     subject.landing
