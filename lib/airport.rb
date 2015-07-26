@@ -7,6 +7,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @weather = [:sunny, :sunny, :sunny, :sunny, :stormy].sample
   end
 
   def instruct_land plane
