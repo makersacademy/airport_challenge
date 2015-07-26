@@ -20,7 +20,13 @@ describe Airport do
       subject.let_take_off(plane)
     end
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
+      subject.let_land(plane)
+      subject.let_take_off(plane)
+      expect(subject.landed_planes.size).to eq(0)
+    end
   end
 
   describe 'landing' do
