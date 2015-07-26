@@ -54,7 +54,7 @@ describe Airport do
   end
 
   describe '-> traffic control' do
-    context '~ when airport is full' do
+    context 'when airport is full' do
       it '--> does not allow a plane to land' do
         plane = double :plane, land: "landed"
         allow(subject).to receive( :check_weather ) {"sunny"}
@@ -72,7 +72,7 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane cannot land, and must not be in the airport
 
-    context '-> when weather conditions are stormy' do
+    context 'when weather conditions are stormy' do
       it '--> does not allow a plane to take off' do
         allow(subject).to receive( :check_weather ) {"sunny"}
         plane = double :plane, land: "landed"
