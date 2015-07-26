@@ -40,6 +40,17 @@ describe Airport do
     end
   end
 
+  describe 'take_off' do
+    it 'should work, test for after refactoring' do
+      allow(subject).to receive(:change_weather) {
+        subject.weather = 'sunny'
+      }
+      subject.land(plane, plane, plane)
+      subject.take_off(3)
+      expect(subject).to be_empty
+    end
+  end
+
   describe '#takes_off' do
     before(:each) { subject.landing plane }
 
@@ -85,6 +96,11 @@ describe Airport do
     end
 
     it 'raises an error when not enough planes' do
+      2.times { subject.takes_off }
+      expect { subject.take_offs(2) }.to raise_error 'Not enough planes'
+    end
+
+    it 'raises an error when not enough planes' do
       subject.takes_off
       expect { subject.take_offs(3) }.to raise_error 'Not enough planes'
     end
@@ -99,6 +115,9 @@ describe Airport do
 
   describe 'land' do
     it 'should work, test for after refactoring' do
+      allow(subject).to receive(:change_weather) {
+        subject.weather = 'sunny'
+      }
       subject.land(plane, plane, plane)
       expect(subject.planes.length).to eq 3
     end
