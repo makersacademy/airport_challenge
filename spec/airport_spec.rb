@@ -1,7 +1,5 @@
 require 'airport'
 
-# A plane currently in the airport can be requested to take off.
-
 describe Airport do
 
   let(:plane){double :plane}
@@ -16,7 +14,7 @@ describe Airport do
       allow(plane).to receive(:land)
 
       subject.ariving(plane)
-      expect(subject).to_not be_empty
+      expect(subject.planes).to_not eq []
     end
 
     it "plane should land on arival" do
@@ -24,7 +22,8 @@ describe Airport do
 
       plane = spy :plane
       subject.ariving(plane)
-      expect(plane).to have_received(:land){false}
+      expect(plane).to have_received(:land)
+      # This is only testing if it recieves method .land the outcome doesn't matter as that is a problem for the plane spec.
     end
   end
 
@@ -40,7 +39,7 @@ describe Airport do
 
       subject.ariving(plane)
       subject.leaving(plane)
-      expect(subject).to be_empty
+      expect(subject.planes).to eq []
     end
 
     it "plane should take off on leaving" do
@@ -49,7 +48,8 @@ describe Airport do
       plane = spy :plane
       subject.ariving(plane)
       subject.leaving(plane)
-      expect(plane).to have_received(:take_off){true}
+      expect(plane).to have_received(:take_off)
+      # This is the same as testing the .land, outcome doesn't matter.
     end
 
     it "shouldn't let out planes that aren't in the airport" do
@@ -69,15 +69,6 @@ describe Airport do
         expect{subject.ariving(plane)}.to raise_error "Cannot land, airport full"
       end 
     end
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
       
