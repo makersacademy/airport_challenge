@@ -13,6 +13,7 @@ describe Airport do
     describe 'takeoff operations' do
 
      it 'allows a plane to take off' do
+       allow(subject).to receive(:randomize_weather){"sunny"}
        expect(plane).to receive(:takeoff)
        subject.allow_to_takeoff(plane)
      end
@@ -69,13 +70,15 @@ describe Airport do
 
     describe 'weather conditions' do
       context 'when weather conditions are stormy' do
-        xit 'does not allow a plane to take off' do
+        it 'does not allow a plane to take off' do
+          allow(subject).to receive(:randomize_weather){"stormy"}
+          expect {subject.allow_to_takeoff(plane)}.to raise_error "Can't authorize take off, adverse weather conditions"
         end
 
 
         it 'does not allow a plane to land' do
           allow(subject).to receive(:randomize_weather){"stormy"}
-          expect {subject.allow_to_land(plane)}.to raise_error "Can't authorize landing due to adverse weather conditions"
+          expect {subject.allow_to_land(plane)}.to raise_error "Can't authorize landing, adverse weather conditions"
         end
       end
     end

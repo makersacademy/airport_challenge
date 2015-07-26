@@ -10,7 +10,7 @@ class Airport
   def allow_to_land(plane)
     self.randomize_weather
     if self.randomize_weather == "stormy"
-      raise "Can't authorize landing due to adverse weather conditions"
+      raise "Can't authorize landing, adverse weather conditions"
     end
     if @planes.size >= capacity
       raise "Can't authorize landing, the airport is full"
@@ -20,6 +20,10 @@ class Airport
   end
 
   def allow_to_takeoff(plane)
+    self.randomize_weather
+    if self.randomize_weather == "stormy"
+      raise "Can't authorize take off, adverse weather conditions"
+    end
     plane.takeoff
     @planes -= [plane]
   end
