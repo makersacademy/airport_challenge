@@ -23,6 +23,7 @@ describe Airport do
     end
 
     xit 'releases a plane'
+  end
     it "releases a plane" do
       subject.landing(plane)
       expect(subject.take_off).to eq plane
@@ -32,18 +33,27 @@ describe Airport do
       expect{subject.take_off}.to raise_error "Airport empty"
     end
 
+    describe 'landing' do
+      xit 'instructs a plane to land'
+
     it "ensures that taken off plane status is flying" do
       subject.landing(plane)
       expect(plane).to receive :fly
       subject.take_off
     end
-  end
+
+    xit 'receives a plane'
+
 
   describe "initialized stage" do
     it "has a default capacity when initialized" do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
+
+  describe 'traffic control' do
+    context 'when airport is full' do
+      xit 'does not allow a plane to land'
 
   describe "#landing" do
     it "instructs a plane to land" do
@@ -61,7 +71,7 @@ describe Airport do
     end
   end
 
-      # Include a weather condition.
+    # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,
     # the plane can not take off and must remain in the airport.
@@ -69,6 +79,9 @@ describe Airport do
     # This will require stubbing to stop the random return of the weather.
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
+
+    context 'when weather conditions are stormy' do
+      xit 'does not allow a plane to take off'
 
   describe "traffic control" do
     context "when airport is full" do
@@ -84,6 +97,8 @@ describe Airport do
         sunny = rand(3)
         expect(subject.randomize_weather(sunny)).to eq "sunny"
       end
+
+      xit 'does not allow a plane to land'
 
       it "should be stormy between 3 - 4" do
         subject.randomize_weather(0)
