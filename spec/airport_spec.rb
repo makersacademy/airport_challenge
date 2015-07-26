@@ -83,8 +83,6 @@ describe Airport do
         expect(subject.randomize_weather(sunny)).to eq "sunny"
       end
 
-      xit 'does not allow a plane to land'
-
       it "should be stormy between 3 - 4" do
         subject.randomize_weather(0)
         stormy = 3 + rand(2)
