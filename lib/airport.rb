@@ -6,7 +6,7 @@ class Airport
   attr_accessor :weather
   def initialize
     @airport_capacity = NUMBER_OF_GATES
-    @name 
+    @name
     @gates = []
     @weather = WEATHER
   end
