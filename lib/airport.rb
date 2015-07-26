@@ -46,11 +46,11 @@ class Airport
   end
 
   def weather_conditions_check
-    raise "weather is unsafe" if weather == :stormy
+    raise "weather unsafe" if weather == :stormy
   end
 
   def correct_airport_check plane
-    raise "plane not at airport" unless plane_at_air_port_check plane
+    raise "not in airport" unless plane_at_air_port_check plane
   end
 
   def plane_at_air_port_check plane

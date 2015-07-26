@@ -36,7 +36,7 @@ describe Airport do
 
     it "does not allow if weather is stormy" do
       allow(subject).to receive(:weather) { :stormy }
-      expect { subject.request_landing plane }.to raise_error "weather is unsafe"
+      expect { subject.request_landing plane }.to raise_error "weather unsafe"
     end
   end
 
@@ -49,13 +49,13 @@ describe Airport do
     end
 
     it "raises error if plane not in the airport" do
-      expect { subject.request_take_off plane }.to raise_error "plane not at airport"
+      expect { subject.request_take_off plane }.to raise_error "not in airport"
     end
 
     it "does not allow if weather is stormy" do
       subject.request_landing(plane)
       allow(subject).to receive(:weather) { :stormy }
-      expect { subject.request_take_off plane }.to raise_error "weather is unsafe"
+      expect { subject.request_take_off plane }.to raise_error "weather unsafe"
     end
   end
 end
