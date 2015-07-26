@@ -2,16 +2,16 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :planes, :capacity, :weather
+  attr_reader :planes, :capacity #:weather
 
   def initialize(capacity=20)
     @planes = []
     @capacity = capacity
-    @weather = weather
   end
 
   def request_landing plane
     weather_conditions_check
+    #raise "landing request denied, weather conditions are unsafe" if weather "stormy"
     capacity_check
     landing_authorisation plane
     receive_plane plane
@@ -24,7 +24,7 @@ class Airport
   end
 
   def weather
-   [:sunny, :stormy].sample
+   ["sunny", "stormy"].sample
   end
 
 
@@ -47,7 +47,7 @@ class Airport
   end
 
   def weather_conditions_check
-    raise "landing request denied, weather conditions are unsafe" if @weather == :stormy
+    raise "landing request denied, weather conditions are unsafe" if weather == "stormy"
   end
 
   def correct_airport_check plane

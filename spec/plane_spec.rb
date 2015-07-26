@@ -1,4 +1,4 @@
-require 'plane'
+require "plane"
 
 
 ## Note these are just some guidelines!
@@ -18,62 +18,62 @@ require 'plane'
 describe Plane do
   let(:airport) {double(:airport, land_request: true)}
 
-  it 'is flying on creation' do    #keep
+  it "is flying on creation" do
     expect(subject).to be_flying
   end
 
-  it 'can land' do
-    expect(subject).to respond_to :land   #keep
+  it "can land" do
+    expect(subject).to respond_to :land
   end
 
-  it 'is not landed if flying' do
-    expect(subject).to_not be_landed  #rewrite
+  it "is not landed if flying" do
+    expect(subject).to_not be_landed
   end
 
 
-  describe '#land' do
+  describe "#land" do
 
-    it 'is landed after landing' do
+    it "is landed after landing" do
       subject.land
       expect(subject).to be_landed
     end
 
-    it 'does not allow landed planes to land' do
+    it "does not allow landed planes to land" do
       subject.land
       expect{subject.land}.to raise_error "Plane is landed so cannot land"
     end
   end
 
 
-   describe '#take_off' do
+   describe "#take_off" do
 
-     it 'is flying after take off' do
+     it "is flying after take off" do
        subject.land
        subject.take_off
        expect(subject).to be_flying
      end
 
-    it 'does not allow flying planes to take off' do
+    it "does not allow flying planes to take off" do
       expect{subject.take_off}.to raise_error "Plane is flying so cannot take off"
     end
    end
 
 end
-  #   it 'is flying after taking off' do
+  #   it "is flying after taking off" do
   #     subject.land(airport)              #change
   #     subject.take_off(airport)
   #     expect(subject).to be_flying
   #   end
 
 
-  # xit 'is flying when created'
+  # xit "is flying when created"
 
-  # xit 'can land'
+  # xit "can land"
 
-  # xit 'is landed after landing'
+  # xit "is landed after landing"
 
-  # xit 'can take off'
+  # xit "can take off"
 
-  # xit 'is flying after take off'
+  # xit "is flying after take off"
 
 

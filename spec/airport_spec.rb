@@ -1,11 +1,11 @@
-require 'airport'
+require "airport"
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
 # A plane currently in the airport can be requested to take off.
 #
-# No more planes can be added to the airport, if it's full.
+# No more planes can be added to the airport, if it"s full.
 # It is up to you how many planes can land in the airport
 # and how that is implemented.
 #
@@ -17,16 +17,21 @@ require 'airport'
     let(:taking_off_plane){double(:plane, take_off: true )}
     let(:landing_plane){double(:plane, land: true )}
 
-    it 'has a capacity' do
+  before do
+    allow(subject).to receive(:weather).and_return "sunny"
+  end
+
+
+    it "has a capacity" do
       expect(subject).to respond_to(:capacity)
     end
 
-    it 'has weather' do
+    it "has weather" do
       expect(subject).to respond_to(:weather)
     end
 
-    describe '#request_landing' do
-      it 'receives a plane when successful' do
+    describe "#request_landing" do
+      it "receives a plane when successful" do
         subject.request_landing(landing_plane)
         expect(subject.planes).to include(landing_plane)
       end
@@ -42,45 +47,49 @@ require 'airport'
         expect(airport.capacity).to eq(random_number)
       end
 
-      it 'does not allow landing if weather is stormy' do
-        allow(subject).to receive(:weather) { :stormy }
+      it "does not allow landing if weather is stormy" do
+        allow(subject).to receive(:weather).and_return("stormy")
         expect{subject.request_landing landing_plane}.to raise_error "landing request denied, weather conditions are unsafe"
       end
 
     end
 
-    describe '#request_take_off' do
-      it 'releases plane when successful' do
+    describe "#request_take_off" do
+      it "releases plane when successful" do
         subject.planes << taking_off_plane
         subject.request_take_off(taking_off_plane)
         expect(subject.planes).not_to include(taking_off_plane)
       end
 
-      it 'raises error if plane not at the airport' do
+      it "raises error if plane not at the airport" do
         expect{subject.request_take_off taking_off_plane}.to raise_error "take off request denied, Plane is not at this airport"
       end
 
-
+      # it "does not allow if weather is stormy" do
+      #   airport = subject
+      #   allow(airport).to receive(:weather) { :stormy }
+      #   expect{airport.request_take_off taking_off_plane}.to raise_error "take off request denied, weather conditions are unsafe"
+      # end
 
     end
 end
 
 
-#   describe 'take off' do
-#     xit 'instructs a plane to take off'
+#   describe "take off" do
+#     xit "instructs a plane to take off"
 
-#     xit 'releases a plane'
+#     xit "releases a plane"
 #   end
 
-#   describe 'landing' do
-#     xit 'instructs a plane to land'
+#   describe "landing" do
+#     xit "instructs a plane to land"
 
-#     xit 'receives a plane'
+#     xit "receives a plane"
 #   end
 
-#   describe 'traffic control' do
-#     context 'when airport is full' do
-#       xit 'does not allow a plane to land'
+#   describe "traffic control" do
+#     context "when airport is full" do
+#       xit "does not allow a plane to land"
 #     end
 
 #     Include a weather condition.
@@ -92,10 +101,10 @@ end
 #     If the airport has a weather condition of stormy,
 #     the plane can not land, and must not be in the airport
 
-#     context 'when weather conditions are stormy' do
-#       xit 'does not allow a plane to take off'
+#     context "when weather conditions are stormy" do
+#       xit "does not allow a plane to take off"
 
-#       xit 'does not allow a plane to land'
+#       xit "does not allow a plane to land"
 #     end
 #   end
 # end
