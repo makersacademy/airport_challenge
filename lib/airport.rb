@@ -3,9 +3,8 @@ require_relative 'plane'
 class Airport
 
   attr_accessor :planes, :capacity, :weather
-  #@@planes = Array.new
 
-  def initialize capacity=5
+  def initialize capacity = 5
     @capacity = capacity
     @weather = self.weather
     @planes = Array.[](Plane.new true)
@@ -22,7 +21,7 @@ class Airport
     elsif @weather == 'stormy'
       fail 'Bad Weather - cannot land for now'
     else
-        @planes << plane
+      @planes << plane
     end
   end
 

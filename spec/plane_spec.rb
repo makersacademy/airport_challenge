@@ -17,9 +17,9 @@ require 'plane'
 describe Plane do
   let(:airport) {double(:airport, {:full? => false})}
 
-    it 'is flying when created' do
-      expect(subject.landed).to be false
-    end
+  it 'is flying when created' do
+    expect(subject.landed).to be false
+  end
 
   describe ' #land' do
     it 'lands at the airport' do
@@ -56,5 +56,4 @@ describe Plane do
       expect(subject.landed).to be false
     end
   end
-
 end
