@@ -17,25 +17,26 @@ require_relative 'plane'
 
 class Airport
   D_CAPACITY = 50
-  Weather = ['sunny', 'stormy']
 
   attr_accessor :planes
   attr_accessor :capacity
-  attr_accessor :weather
+  attr_accessor :sunny
 
-  def initialize(capacity = D_CAPACITY, weather = Weather[0])
+  def initialize(capacity = D_CAPACITY, weather = true)
     @capacity = capacity
     @planes = []
-    @weather = weather
+    @sunny = weather
   end
 
   def take_off
-    planes.pop
+    fail 'Weather is bad for take off' unless sun?
+    @planes.pop
   end
 
   def landing(plane)
-    fail "#{self.class.name} full" if full?
-    planes << plane
+    fail 'Weather is bad for landing' unless sun?
+    fail 'Airport full' if full?
+    @planes << plane
   end
 
   def empty?
@@ -43,6 +44,10 @@ class Airport
   end
 
   def full?
-    planes.count >= 50
+    @planes.count >= capacity
+  end
+
+  def sun?
+    @sunny
   end
 end

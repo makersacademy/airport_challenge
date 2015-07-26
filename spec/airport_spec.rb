@@ -22,14 +22,13 @@ describe Airport do
     expect(subject.capacity).to eq random
   end
 
-  it 'weather is sunny by default' do
-    subject = described_class.new
-    expect(subject.weather).to eq 'sunny'
+  it 'defaults to sunny weather' do
+    expect(subject.sunny).to eq true
   end
 
-  it 'can be stormy weather' do
-    subject = described_class.new stormy
-    expect(subject.weather).to eq 'stormy'
+  it 'can take non-sunny weather' do
+    subject = described_class.new(50, false)
+    expect(subject.sunny).to eq false
   end
 
   describe 'take off' do
@@ -55,7 +54,7 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         subject.capacity.times { subject.landing double :plane }
-        expect { subject.landing double :plane }.to raise_error("#{described_class.name} full")
+        expect { subject.landing double :plane }.to raise_error('Airport full')
       end
     end
 
@@ -69,9 +68,18 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+        plane = double :plane
+        subject.landing plane
+        subject.sunny = false
+        expect { subject.take_off }.to raise_error('Weather is bad for take off')
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = double :plane
+        subject = described_class.new(50, false)
+        expect { subject.landing plane }.to raise_error('Weather is bad for landing')
+      end
     end
   end
 end
