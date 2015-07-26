@@ -27,8 +27,9 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        subject.plane_in :plane
-        expect(subject.plane_in :plane).to be false
+        pln = double()
+        subject.plane_in pln
+        expect(subject.plane_in pln).to be false
       end
     end
   

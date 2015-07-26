@@ -1,4 +1,5 @@
 
+require 'weather'
 class Airport
 
 DEFAULT = 1
@@ -15,7 +16,6 @@ DEFAULT = 1
 
 	def plane_in plane
 		if (@planes.size >= @capacity) || (self.weather_state == false)
-			#fail "No more space at the airport"
 			false
 		 else 
 		 	@planes << plane
@@ -38,6 +38,7 @@ DEFAULT = 1
 	end
 
 	def weather_state
+		@weather = Weather.new.weather
 	end
 
 
