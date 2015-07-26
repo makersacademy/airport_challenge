@@ -1,14 +1,5 @@
 require 'plane'
 
-# When we create a new plane, it should be "flying",
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# be "landed"
-#
-# When the plane takes of from the airport, it should be "flying" again
-#
-
 describe Plane do
 
   let(:airport){ double :airport }
@@ -30,6 +21,14 @@ describe Plane do
     it 'has no location' do 
       expect(subject.location).to be_nil
     end
+
+    it 'has a pilot' do 
+      expect(subject.pilot).to be_truthy
+    end
+
+    it 'its pilot does not have permission to land anywhere' do 
+      expect(subject.pilot.permission_to_land).to be false
+    end
 	end
 
   context 'when created specifying an airport as a destination' do
@@ -43,34 +42,50 @@ describe Plane do
   	expect(subject).to respond_to :land
   end
 
+  it 'cannot land if pilot does not have permission' do 
+    airport = Airport.new
+    plane = Plane.new(airport)
+    expect{plane.land(airport)}.to raise_error "Pilot does not have permission to land this plane"
+  end
+
   context 'after it lands' do
 
     it 'is landed' do
-      plane = Plane.new(airport) 
+      airport = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport)
       plane.land(airport)
       expect(plane).to be_landed
     end
 
     it 'no longer has a destination' do 
-      plane = Plane.new(airport) 
+      airport = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport)
       plane.land(airport)
       expect(plane.destination).to be_nil
     end
 
-    it "its 'location' matches the airport it has landed at" do 
-      plane = Plane.new(airport) 
+    it "its 'location' matches the airport it has landed at" do
+      airport = Airport.new 
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
       plane.land(airport)
       expect(plane.location).to eq airport
     end
 
-    it 'cannot be landed and flying at the same time' do 
-      plane = Plane.new(airport) 
+    it 'cannot be landed and flying at the same time' do
+      airport = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
       plane.land(airport) 
       expect(plane).to_not be_flying
     end
 
-    it 'cannot take off for the same destination that it is currently located in' do 
-      plane = Plane.new(airport) 
+    it 'cannot take off for the same destination that it is currently located in' do
+      airport = Airport.new 
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
       plane.land(airport)
       expect{plane.take_off(airport)}.to raise_error "This plane is currently located at the destination you have specified - enter a different destination"     
     end
@@ -86,21 +101,27 @@ describe Plane do
 
   context 'after it has taken off' do 
     it 'is flying' do
-      plane = Plane.new(airport) 
+      airport = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
       plane.land(airport)
       plane.take_off(airport2)
       expect(plane).to be_flying
     end
 
     it 'has a new destination' do
-      plane = Plane.new(airport) 
+      airport = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
       plane.land(airport)
       subject.take_off(airport2)
       expect(subject.destination).to be(airport2)
     end
 
-    it 'has no location' do 
-      plane = Plane.new(airport) 
+    it 'has no location' do
+      airport = Airport.new 
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
       plane.land(airport)
       plane.take_off(airport2)
       expect(plane.location).to be_nil      
@@ -110,16 +131,21 @@ describe Plane do
 
   describe '#land' do 
     it 'raises an error if no argument is given' do
+      airport = Airport.new
       expect{subject.land}.to raise_error(ArgumentError)
     end
 
     it 'does not raise an error if an argument is given' do
-      plane = Plane.new(airport) 
+      airport = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport)
       expect{plane.land(airport)}.to_not raise_error
     end
 
     it 'returns the plane when called on a plane' do
-      plane = Plane.new(airport) 
+      airport = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
       expect(plane.land(airport)).to eq plane
     end
   end

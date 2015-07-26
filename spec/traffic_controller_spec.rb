@@ -1,0 +1,41 @@
+require 'traffic_controller'
+
+describe TrafficController do 
+	context 'when created' do 
+		it 'has an airport location' do
+			airport = Airport.new
+			traffic_controller = TrafficController.new(airport) 
+			expect(traffic_controller.location).to be_a Airport
+		end
+	end
+
+	it 'can grant permission to pilots to land' do 
+		airport = Airport.new
+		plane = Plane.new(airport)
+		plane.pilot.request_to_land(airport)
+
+		expect(plane.pilot.permission_to_land).to be true
+	end
+
+	context 'when asked for permission to land' do 
+		it 'refuses if airport is full' do 
+			airport = Airport.new
+			
+			5.times do
+				plane = Plane.new(airport)
+				plane.pilot.request_to_land(airport)
+				plane.pilot.land_plane(airport)
+			end
+
+			plane = Plane.new(airport)
+			expect{plane.pilot.request_to_land(airport)}.to raise_error "Permission to land denied"
+		end
+
+		it "refuses if its airport is not the pilot's plane's current set destination" do 
+			airport = Airport.new
+			airport2 = Airport.new
+			plane = Plane.new(airport)
+			expect{plane.pilot.request_to_land(airport2)}.to raise_error "Permission to land denied"		
+		end
+	end
+end

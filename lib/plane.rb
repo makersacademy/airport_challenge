@@ -1,12 +1,12 @@
 class Plane
 
-	attr_reader :destination
-	attr_reader :location
+	attr_reader :destination, :location, :pilot
 
 	def initialize(destination = "nowhere!") 
 		@flying = true
 		@destination = destination
 		@location = nil
+		@pilot = Pilot.new(self)
 	end
 
 	def flying?
@@ -14,8 +14,14 @@ class Plane
 	end
 
 	def land(airport)
-		fail "That plane isn't headed for here!" if airport != self.destination
+		if self.pilot.permission_to_land == false
+			fail "Pilot does not have permission to land this plane"
+		end
+
 		@flying = false
+
+		airport.receive_plane(self)
+
 		@destination = nil
 		@location = airport
 		return self
@@ -26,8 +32,10 @@ class Plane
 	end
 
 	def take_off(destination)
-		fail "This plane is currently located at the destination you have specified - enter a different destination" if destination == self.location
-
+		if destination == self.location
+			fail "This plane is currently located at the destination you have specified - enter a different destination" 
+		end
+			
 		@destination = destination
 		@flying = true
 		@location = nil

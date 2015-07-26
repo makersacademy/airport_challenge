@@ -1,20 +1,41 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
   let(:flying_plane){ double :flying_plane, flying?: :true, landed?: false }
   let(:landed_plane){ double :landed_plane, landed?: true, flying?: false }
+
+  context 'when it is created' do 
+    it 'has a traffic controller' do 
+      expect(subject.traffic_controller).to be_a TrafficController
+    end
+
+    it 'has weather that is sunny' do 
+      expect(subject.weather).to eq "Glorious Sunshine"
+    end
+
+    it 'has a capacity of 5 planes' do 
+      expect(subject.capacity).to be 5
+    end
+  end
+
+  it 'can receive a plane' do 
+    plane = Plane.new(subject)
+    plane.pilot.request_to_land(subject)
+    plane.pilot.land_plane(subject)
+
+    expect(subject.planes.include?(plane)).to be true
+  end
+
+  it 'can be full' do 
+    5.times do 
+      plane = Plane.new(subject)
+      plane.pilot.request_to_land(subject)
+      plane.pilot.land_plane(subject)
+    end
+
+    expect(subject.full?).to be true
+  end
 
   describe 'take off' do
     it 'instructs a plane to take off'
@@ -23,24 +44,19 @@ describe Airport do
   end
 
   describe '#land_plane' do
-    it 'instructs a plane to land' do
-      plane = Plane.new(subject)
-      subject.land_plane(plane)
-      expect(plane).to be_landed
-    end
 
-    it 'receives a plane' do 
-      plane = Plane.new(subject)
-      subject.land_plane(plane)
-      expect(subject.planes.include?(plane)).to eq true
-    end
+    # it 'receives a plane' do 
+    #   plane = Plane.new(subject)
+    #   subject.land_plane(plane)
+    #   expect(subject.planes.include?(plane)).to eq true
+    # end
 
-    it "only receives the plane if it matches the plane's destination" do 
-      airport2 = Airport.new
-      plane = Plane.new(airport2)
+    # it "only receives the plane if it matches the plane's destination" do 
+    #   airport2 = Airport.new
+    #   plane = Plane.new(airport2)
 
-      expect{subject.land_plane(plane)}.to raise_error "That plane isn't headed for here!"
-    end
+    #   expect{subject.land_plane(plane)}.to raise_error "That plane isn't headed for here!"
+    # end
   end
 
   describe 'traffic control' do
