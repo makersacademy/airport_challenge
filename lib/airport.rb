@@ -34,8 +34,13 @@ class Airport
     @plane.empty?
   end
 
-  def weather
-
-  end
+  # def weather
+  #   number = rand(10)
+  #     if number.odd?
+  #       puts "it is sunny"
+  #     else
+  #       fail "Airport is closed due to bad weather"
+  #     end
+  # end
 
 end

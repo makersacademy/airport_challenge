@@ -47,13 +47,17 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      it { is_expected.to respond_to :weather }
-        it 'does not allow a plane to take off' do
-        end
+  #   context 'when weather conditions are stormy' do
+  #     it { is_expected.to respond_to :weather }
+  #       it 'does not allow a plane to take off' do
+  #         subject.weather.release_plane
+  #         expect{ subject.release_plane }.to raise_error "Airport is closed due to bad weather"
+  #       end
 
-      it 'does not allow a plane to land' do
-      end
-    end
+  #     it 'does not allow a plane to land' do
+  #       subject.weather.land
+  #        expect{ subject.land }.to raise_error "Airport is closed due to bad weather"
+  #     end
+  #   end
   end
 end
