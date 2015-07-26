@@ -2,12 +2,11 @@ class Plane
 	
 	def initialize
 		@flying = true
-		@destination
+		@destination = destination
 	end
 
 	def flying?
 		@flying
-		@destination = ['London', 'New York', 'Tokyo'].sample
 	end
 
 	def landed?
@@ -21,5 +20,10 @@ class Plane
 	def take_off
 		@flying = true
 	end
+
+	def destination
+		['London', 'New York', 'Tokyo'].sample
+	end
+
 
 end
