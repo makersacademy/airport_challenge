@@ -13,24 +13,28 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
+  describe '#take_off' do
     it 'instructs a plane to take off' do
       expect(subject).to respond_to :take_off
     end
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      terminal = Airport.new
+      plane = Plane.new
+      terminal.land plane
+      expect(terminal.take_off).to eq plane
+    end
 
   end
 
-  describe 'land' do
+  describe '#land' do
     it 'instructs a plane to land' do
-      expect(subject).to respond_to :land
+      expect(subject).to respond_to(:land).with(1).argument
     end
 
     it 'receives a plane' do
-      terminal = Airport.new
-      terminal.land Plane.new
-      expect(@planes).should have_exactly(1).items
+      plane = Plane.new
+      expect(subject.land plane).not_to be_empty
     end
   end
 
@@ -56,14 +60,19 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off' do
-        #weather = 4
-        #expect { subject.take_off }.to raise_error 'Stormy, can not take off'
+      it 'does not allow a plane to take off' do
+        terminal = Airport.new
+        plane = Plane.new
+        terminal.land plane
+        terminal.weather(4)
+        expect { terminal.take_off }.to raise_error 'Stormy, can not take off'
       end
 
-      xit 'does not allow a plane to land' do
-        #weather = 4
-        #expect { subject.land Plane.new }.to raise_error 'Stormy, can not land'
+      it 'does not allow a plane to land' do
+        terminal = Airport.new
+        plane = Plane.new
+        terminal.weather(4)
+        expect { subject.land plane }.to raise_error 'Stormy, can not land'
       end
     end
   end
