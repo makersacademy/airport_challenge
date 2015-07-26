@@ -22,19 +22,19 @@ describe Plane do
 
 
   it 'is landed after landing' do
-  subject.land
-  expect(subject).to be_landed
+    subject.land
+    expect(subject).to be_landed
   end
 
   it 'can take off' do
-  subject.take_off
-  expect(subject).to respond_to :take_off
+    subject.take_off
+    expect(subject).to respond_to :take_off
   end
 
   it 'is flying after take off' do
-  subject.land
-  subject.take_off
-  expect(subject).to be_flying
+    subject.land
+    subject.take_off
+    expect(subject).to be_flying
   end
 
 end

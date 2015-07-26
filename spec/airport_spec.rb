@@ -32,7 +32,7 @@ describe Airport do
   describe 'landing' do
     it 'instructs a plane to land' do
       expect(subject).to respond_to(:land_plane).with(1).argument
-  end
+    end
 
     it 'receives a plane' do
       allow(plane).to receive(:land) {plane}
@@ -47,26 +47,25 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        allow(subject).to receive(:stormy?) {false}
+        allow(subject).to receive(:stormy?) { false }
         allow(subject).to receive(:wrong_destination?) { false }
-        allow(plane).to receive(:land) {plane}
-        subject.capacity.times{subject.land_plane(plane)}
-        expect{subject.land_plane(plane)}.to raise_error 'Airport is full, plane cannot land'
+        allow(plane).to receive(:land) { plane }
+        subject.capacity.times {subject.land_plane(plane)}
+        expect{ subject.land_plane(plane) }.to raise_error 'Airport is full, plane cannot land'
       end
     end
 
     context 'when destination is wrong' do
       it 'instructs plane to turn around' do
         allow(subject).to receive(:stormy?) { false }
-        allow(plane).to receive(:land) {plane}
-        allow(plane).to receive(:destination) {plane}
+        allow(plane).to receive(:land) { plane }
+        allow(plane).to receive(:destination) { plane }
         subject.wrong_destination?(plane)
         expect{subject.land_plane(plane)}.to raise_error 'Oops, wrong airport, turn around!'
       end
     end
 
     # let(:stormy_plane) {double(:stormy_plane, {:stormy? => true, land => true })}
-
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to be released' do
         allow(plane).to receive(:land) { plane }
@@ -74,15 +73,15 @@ describe Airport do
         allow(subject).to receive(:wrong_destination?) { false }
         subject.land_plane(plane)
         allow(subject).to receive(:stormy?) { true }
-        allow(plane).to receive(:take_off) {plane}
-        expect{subject.release_plane}.to raise_error 'Weather is too stormy to take off'
+        allow(plane).to receive(:take_off) { plane }
+        expect{ subject.release_plane }.to raise_error 'Weather is too stormy to take off'
       end
        
       it 'does not allow a plane to land' do
-        allow(plane).to receive(:land) {plane}
+        allow(plane).to receive(:land) { plane }
         allow(subject).to receive(:wrong_destination?) { false }
         allow(subject).to receive(:stormy?) { true }
-        expect{subject.land_plane(plane)}.to raise_error 'Weather is too stormy to land' 
+        expect{ subject.land_plane(plane) }.to raise_error 'Weather is too stormy to land' 
       end
     end
   end
