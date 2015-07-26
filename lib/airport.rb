@@ -27,17 +27,18 @@ class Airport
 	def land_plane (plane)
 		# puts "Where would you like to land? London, New York or Tokyo?"
 		# destination = @destination
-		# fail 'Oops, wrong airport, turn around!' if wrong_destination?(plane)
+		fail 'Oops, wrong airport, turn around!' if wrong_destination?(plane)
 		fail 'Airport is full, plane cannot land' if full?
 		fail 'Weather is too stormy to land' if stormy?
 		puts "Your plane has landed!"
 		@planes << plane
 		plane.land
+		plane
 	end
 
-	# def wrong_destination? (plane)
-	# 	self.location != plane.destination
-	# end
+	def wrong_destination? (plane)
+		location != plane.destination
+	end
 
 
 private
