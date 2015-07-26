@@ -1,22 +1,25 @@
 require 'airport'
 
 describe Airport do
-  #let(:landed_plane) {double(:landed_plane,{:flying? => false})}
-  #let(:flying_plane) {double(:landed_plane,{:flying? => true})}
+  let(:landed_plane) {double(:landed_plane,{:flying? => false})}
+  let(:flying_plane) {double(:flying_plane,{:flying? => true})}
   
   describe 'take off' do
     it 'instructs a plane to take off' do 
-      expect(subject).to respond_to :allow_take_off
+      expect(landed_plane).to receive(:take_off)
+      subject.release landed_plane
     end 
 
     it 'releases a plane' do 
       expect(subject).to respond_to(:release).with(1).argument
     end 
+
   end
 
   describe 'landing' do
     it 'instructs a plane to land' do 
-      expect(subject).to respond_to :allow_landing
+      expect(flying_plane).to receive (:land)
+      subject.receive flying_plane
     end 
 
     it 'receives a plane' do 
@@ -24,24 +27,22 @@ describe Airport do
     end 
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   describe 'traffic control' do
     context 'when airport is full' do
-      it 'does not allow a plane to land'
+      it 'has a capacity' do 
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
+
+      it 'Accepts a different capacity than default' do
+        airport = Airport.new 50
+        expect(airport.capacity).to eq 50
+      end
+
+      it "test if Airport is full" do
+        subject.capacity.times{subject.receive Plane.new}
+        expect{subject.receive Plane.new}.to raise_error 'Airport is full'  
+      end
+
     end
 
     # Include a weather condition.
