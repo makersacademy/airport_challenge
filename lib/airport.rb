@@ -1,10 +1,13 @@
+require_relative 'plane'
+
 class Airport
 
-  attr_reader :planes, :capacity
+  attr_reader :planes, :capacity, :weather
 
-  def initialize
+  def initialize(capacity=20)
     @planes = []
-    @capacity = 20
+    @capacity = capacity
+    @weather
   end
 
   def request_landing plane
@@ -22,7 +25,7 @@ class Airport
   private
 
   def capacity_check
-    raise "Airport is full" if full?
+    raise "landing request denied, Airport is full" if full?
   end
 
   def full?
@@ -38,7 +41,7 @@ class Airport
   end
 
   def correct_airport_check plane
-    raise "Plane is not at this airport" unless plane_at_air_port_check plane
+    raise "take off request denied, Plane is not at this airport" unless plane_at_air_port_check plane
   end
 
   def plane_at_air_port_check plane
