@@ -16,14 +16,24 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'can land'
+  xit 'can land' do
+    expect(subject).to respond_to :can_land?
+  end
 
-  xit 'is landed after landing'
+  xit 'is landed after landing' do
+    expect(subject).to respond_to :landing_after_landing?
+  end
 
-  xit 'can take off'
+  xit 'can take off' do
+    expect(subject).to respond_to :can_take_off?
+  end
 
-  xit 'is flying after take off'
+  xit 'is flying after take off' do
+    expect(subject).to respond_to :is_flying_after_flying?
+  end
 
 end
