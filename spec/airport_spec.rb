@@ -23,13 +23,11 @@ describe Airport do
     end
 
 
-    xit 'releases a plane' do
-
-       #subject.airport(double :plane, can_take_off?: true)
-       #plane = subject.take_off
-      # expect(plane).to be_take_off
+    it 'releases a plane' do
+      expect(subject.instance_variable_get(:@planes)).to eql([])
+      expect { subject.take_off?}.to raise_error 'Can not take off'
     end
-  end
+   end
 
   describe 'landing' do
     it 'instructs a plane to land' do
@@ -42,7 +40,7 @@ describe Airport do
   describe 'traffic control' do
       context 'when airport is full' do
         it 'does not allow a plane to land' do
-          10.times { subject.airport Airport.new }
+          subject.capacity.times { subject.airport Airport.new }
           expect { subject.airport Airport.new }.to raise_error 'Airport is full'
         end
       end
@@ -64,7 +62,7 @@ describe Airport do
 
         it 'does not allow a plane to land' do
           allow(subject).to receive(:weather?) {"stormy"}
-          expect { subject.take_off?}.to raise_error 'Can not land plane'
+          expect { subject.take_off?}.to raise_error 'Can not take off'
         end
 
       end
