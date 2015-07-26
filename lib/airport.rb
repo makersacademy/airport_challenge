@@ -5,10 +5,13 @@ class Airport
   def initialize (capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = ["sunny", "stormy"].sample
   end
 
   def allow_to_land(plane)
+    self.randomize_weather
+    if self.randomize_weather == "stormy"
+      raise "Can't authorize landing due to adverse weather conditions"
+    end
     if @planes.size >= capacity
       raise "Can't authorize landing, the airport is full"
     end
