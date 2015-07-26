@@ -83,12 +83,12 @@ describe Airport do
       it 'does not allow a plane to take off' do
         subject.land plane
         allow(subject).to receive(:weather) { "stormy" }
-        expect { subject.take_off }.to raise_error "Nope, too dangerous to fly right now!"
+        expect { subject.take_off }.to raise_error "Denied, bad weather."
       end
 
       it 'does not allow a plane to land' do
         allow(subject).to receive(:weather){"stormy"}
-        expect { subject.land plane }.to raise_error "Nope, too dangerous to guide you in at the mo. Circle!"
+        expect { subject.land plane }.to raise_error "Denied, bad weather."
       end
 
     end

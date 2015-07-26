@@ -6,12 +6,12 @@ class Plane
   end
 
   def landing
-    raise "You're already on the ground, sir." unless @status == "flying"
+    raise "Plane is on the ground, sir." unless @status == "flying"
     @status = "landed"
   end
 
   def taking_off
-    raise "You're already in the air, captain..." unless @status == "landed"
+    raise "Plane is in the air, sir." unless @status == "landed"
     @status = "flying"
   end
 
