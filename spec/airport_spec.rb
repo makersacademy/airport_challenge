@@ -37,7 +37,8 @@ describe Airport do
 
     it 'only allows take off if there is a plane available' do
       subject.request_take_off
-      expect { subject.request_take_off }.to raise_error "There are currently no planes ready for take off."
+      expect { subject.request_take_off }.to raise_error
+      "There are currently no planes ready for take off."
     end
   end
 
@@ -94,12 +95,12 @@ describe Airport do
          allow(subject).to receive(:weather_report) { "stormy" }
       end
       it 'does not allow a plane to take off' do
-        expect{ subject.request_take_off }.to raise_error
-         "You can not take off!  The weather is stormy!"
+        expect { subject.request_take_off }.to raise_error
+        "You can not take off!  The weather is stormy!"
       end
 
       it 'does not allow a plane to land' do
-        expect{ subject.request_landing plane }.to raise_error
+        expect { subject.request_landing plane }.to raise_error
         "You can not land!  The weather is stormy!"
       end
     end
