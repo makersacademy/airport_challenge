@@ -15,7 +15,7 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
-  let(:airport) {double(:airport, {:full? => false})}
+  let(:airport) { double(:airport, { :full? => false }) }
 
   it 'is flying when created' do
     expect(subject.landed).to be false
@@ -47,7 +47,7 @@ describe Plane do
 
     it 'cannot take off if flying' do
       subject.landed = false
-      expect{subject.take_off}.to raise_error "Plane cannot take off, it's already flying!"
+      expect { subject.take_off }.to raise_error "Plane cannot take off, it's already flying!"
     end
 
     it 'is flying after take off' do
