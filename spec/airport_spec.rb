@@ -43,11 +43,15 @@ describe Airport do
       airport = Airport.new 2
       expect(airport.capacity).to eq(2)
     end
-  #
-  # describe 'traffic control' do
-  #   context 'when airport is full' do
-  #     xit 'does not allow a plane to land'
-    #end
+
+    describe 'traffic control' do
+        context 'when airport is full' do
+        it 'does not allow a plane to land' do
+          subject.capacity.times {subject.allow_to_land(plane)}
+          expect {subject.allow_to_land(plane)}.to raise_error "Can't authorize landing, the airport is full"
+        end
+      end
+     end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

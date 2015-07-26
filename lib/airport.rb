@@ -8,8 +8,11 @@ class Airport
   end
 
   def allow_to_land(plane)
-     plane.land
-     @planes << plane
+    if @planes.size >= capacity
+      raise "Can't authorize landing, the airport is full"
+    end
+    plane.land
+    @planes << plane
   end
 
   def allow_to_takeoff(plane)
