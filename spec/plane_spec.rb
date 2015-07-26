@@ -15,8 +15,7 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
-  let(:port){double(:airport)}
-  #allow(:port).to receive(:land).with(subject)
+  let(:port) { double(:airport) }
 
   it 'is flying when created' do
     expect(subject.status).to eq(:flying)

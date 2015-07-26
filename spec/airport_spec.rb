@@ -12,12 +12,11 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-  let(:plane){double(:airplane)}
-  # let(:flying_plane){double(:airplane, {:flying? => true})}
+  let(:plane) { double(:airplane) }
 
   describe '#request_take_off' do
     before(:each) do
-      allow(subject).to receive(:weather_report){"sunny"}
+      allow(subject).to receive(:weather_report) { "sunny" }
       allow(plane).to receive(:land)
       subject.request_landing plane
       allow(plane).to receive(:fly)
@@ -38,13 +37,13 @@ describe Airport do
 
     it 'only allows take off if there is a plane available' do
       subject.request_take_off
-      expect{subject.request_take_off}.to raise_error "There are currently no planes ready for take off."
+      expect { subject.request_take_off }.to raise_error "There are currently no planes ready for take off."
     end
   end
 
   describe '#request_landing' do
     before(:each) do
-      allow(subject).to receive(:weather_report){"sunny"}
+      allow(subject).to receive(:weather_report) { "sunny" }
       allow(plane).to receive(:land)
     end
 
@@ -75,8 +74,9 @@ describe Airport do
         allow(plane).to receive(:land)
       end
       it 'does not allow a plane to land' do
-        subject.capacity.times{subject.request_landing plane}
-        expect{subject.request_landing plane}.to raise_error "Airport at capacity!  You can not land here!"
+        subject.capacity.times { subject.request_landing plane }
+        expect { subject.request_landing plane}.to raise_error
+        "Airport at capacity!  You can not land here!"
       end
     end
 
@@ -91,14 +91,16 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       before(:each) do
-         allow(subject).to receive(:weather_report){"stormy"}
+         allow(subject).to receive(:weather_report) { "stormy" }
       end
       it 'does not allow a plane to take off' do
-        expect{subject.request_take_off}.to raise_error "You can not take off!  The weather is stormy!"
+        expect{ subject.request_take_off }.to raise_error
+         "You can not take off!  The weather is stormy!"
       end
 
       it 'does not allow a plane to land' do
-        expect{subject.request_landing plane}.to raise_error "You can not land!  The weather is stormy!"
+        expect{ subject.request_landing plane }.to raise_error
+        "You can not land!  The weather is stormy!"
       end
     end
   end
