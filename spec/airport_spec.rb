@@ -24,6 +24,7 @@ describe Airport do
       plane = double :plane, flying?: true
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
+      allow(subject).to receive(:weather) {'sunny'}
       subject.instruct_land plane
       subject.instruct_take_off
       expect(plane).to be_flying
@@ -38,7 +39,10 @@ describe Airport do
     it 'raises an error when full' do
       plane = double :plane
       allow(plane).to receive(:flying?) {true}
-      subject.capacity.times {subject.instruct_land Plane.new}
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
+      allow(subject).to receive(:weather) {'sunny'}
+      subject.capacity.times {subject.instruct_land plane}
       expect{ subject.instruct_land plane }.to raise_error 'Airport full'
     end
 
@@ -53,13 +57,21 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'will not allow a plane to take off' do
-        plane = Plane.new
+        plane = double :plane, flying?: true
+        allow(plane).to receive(:land)
+        allow(plane).to receive(:take_off)
         subject.instruct_land plane
         allow(subject).to receive(:weather) {'stormy'}
         expect{ subject.instruct_take_off }.to raise_error 'You cannot take off now, the weather is too bad'
       end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+      plane = double :plane, flying?: true
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
+      allow(subject).to receive(:weather) {'stormy'}
+      expect{ subject.instruct_land plane }.to raise_error 'You cannot land now, the weather is too bad'
+      end
     end
   end
 end
