@@ -23,5 +23,4 @@ describe Plane do
     subject.takeoff
     expect(subject).to be_tookoff
   end
-#
 end
