@@ -9,14 +9,16 @@ class Airport
     @capacity = capacity
   end
 
-  def land plane
+  def instruct_land plane
     fail 'Airport full' if full?
+    plane.land
     @planes << plane
   end
 
-  def take_off
+  def instruct_take_off
     fail 'No planes available' if empty?
-    @planes.pop
+    plane = @planes.pop
+    plane.take_off
   end
 
   private
