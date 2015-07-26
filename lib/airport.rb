@@ -22,7 +22,7 @@ class Airport
   end
 
   def land plane
-    fail "Airport is at max. capacity" if full?
+    fail "Airport is at full" if full?
     @plane << plane
   end
 
@@ -39,7 +39,7 @@ class Airport
   #     if number.odd?
   #       puts "it is sunny"
   #     else
-  #       fail "Airport is closed due to bad weather"
+  #       fail "Airport is closed"
   #     end
   # end
 

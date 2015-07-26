@@ -34,7 +34,7 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         subject.capacity.times { subject.land Plane.new }
-        expect { subject.land Plane.new }.to raise_error "Airport is at max. capacity"
+        expect { subject.land Plane.new }.to raise_error "Airport is full"
       end
     end
 
@@ -47,16 +47,16 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-  #   context 'when weather conditions are stormy' do
+  # context 'when weather conditions are stormy' do
   #     it { is_expected.to respond_to :weather }
   #       it 'does not allow a plane to take off' do
   #         subject.weather.release_plane
-  #         expect{ subject.release_plane }.to raise_error "Airport is closed due to bad weather"
+  #         expect{ subject.release_plane }.to raise_error "Airport is closed"
   #       end
 
   #     it 'does not allow a plane to land' do
   #       subject.weather.land
-  #        expect{ subject.land }.to raise_error "Airport is closed due to bad weather"
+  #        expect{ subject.land }.to raise_error "Airport is closed"
   #     end
   #   end
   end
