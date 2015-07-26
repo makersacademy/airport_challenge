@@ -62,9 +62,24 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+    describe 'weather conditions' do
+    # I could not find a more specific way of testing. I thought that overriding
+    # randomness with a stub would be useless to test this particular behavior,
+    # because it would always test green.
+      it 'has a weather condtion when created' do
+        expect(subject.weather).not_to be(nil)
+      end
 
-      xit 'does not allow a plane to land'
+
+      context 'when weather conditions are stormy' do
+        xit 'does not allow a plane to take off' do
+        end
+
+
+        # it 'does not allow a plane to land' do
+        #   allow(subject).to receive(:weather){"stormy"}
+        #   expect {subject.allow_to_land(plane)}.to raise_error "Can't authorize landing due to stormy weather"
+        # end
+      end
     end
   end
