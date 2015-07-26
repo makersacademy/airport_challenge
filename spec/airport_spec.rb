@@ -16,8 +16,8 @@ describe Airport do
   before(:each) { allow(plane).to receive(:land) }
   before(:each) { allow(plane).to receive(:fly) }
 
-  describe "#take off" do
-    it "instructs a plane to take off" do
+  describe 'take off' do
+    it 'instructs a plane to take off' do
       expect(subject).to respond_to :take_off
     end
 
