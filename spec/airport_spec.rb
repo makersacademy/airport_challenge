@@ -160,6 +160,12 @@ describe Airport do
         (subject.capacity - 1).times { subject.landing plane }
         expect { subject.landings(plane, plane) }.to raise_error 'Airport full'
       end
+
+      it 'does not allow planes to land' do
+        (subject.capacity - 2).times { subject.landing plane }
+        expect { subject.landings(plane, plane, plane) }.to\
+          raise_error 'Airport full'
+      end
     end
 
     # Include a weather condition.

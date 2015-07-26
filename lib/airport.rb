@@ -59,7 +59,7 @@ class Airport
   end
 
   def fail_checks(arr)
-    fail 'Airport full' if planes.length >= capacity - 1
+    fail 'Airport full' if planes.length > capacity - arr.length
     fail 'Too many planes landing' if arr.length > 3
     fail 'Not planes' unless arr.all? { |p| p.respond_to?(:lands) }
   end
