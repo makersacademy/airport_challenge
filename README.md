@@ -1,24 +1,6 @@
 Airport Challenge
 =================
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_july2015 (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
-
 Task
 -----
 
@@ -42,29 +24,44 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing or taking off when the weather is stormy
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
+Solution Approach
+-----------------
+Planes by default are "flying", and they only rely on pilots to land in order to keep track of the airport in which they land. For example:
+```ruby
+plane = Plane.new
+=> #<Plane:0x007fdb611136b0 @landed=false>
 
-The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests. It is up to you to implement the tests and create additional tests as necessary.
+airport = Airport.new
+=> #<Airport:0x007fdb610a0368 @capacity=5, @weather="stormy", @planes=[#<Plane:0x007fdb610a0228 @landed=true>]>
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+plane.land airport
+=> #<Airport:0x007fdb610a0368 @capacity=5, @weather="stormy", @planes=[#<Plane:0x007fdb610a0228 @landed=true>]>
 
-As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
+plane
+=> #<Plane:0x007fdb611136b0 @landed=true, @airport=#<Airport:0x007fdb610a0368 @capacity=5, @weather="stormy", @planes=[#<Plane:0x007fdb610a0228 @landed=true>]>>
+```
+As you can foresee, the `plane` object may start getting messy and not very readable as it drags all the `airport` class variables. Thus, once the landing is instructed from the airport's traffic control tower, `plane` will only reflect its `landed` state.
 
-Please create separate files for every class, module and test suite. 
+For reference, `Airport` class is initialized with a landed plane by  default. To illustrate the reason why `plane` should not pull the `airport` instance variables every time it lands (whether instructed or by itself), compare the above code with the snippet below:
 
-The submission will be judged on the following criteria:
+```ruby
+airport = Airport.new
+ => #<Airport:0x007f8c0315dab0 @capacity=5, @weather="sunny", @planes=[#<Plane:0x007f8c0315da10 @landed=true>]>
 
-* Tests pass
-* Tests coverage is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
- 
-BONUS
-* Write an RSpec **feature** test that lands and takes off a number of planes...
+plane = Plane.new
+ => #<Plane:0x007f8c03145bb8 @landed=false>
 
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+airport.landing_order plane
+ => [#<Plane:0x007f8c0315da10 @landed=true>, #<Plane:0x007f8c03145bb8 @landed=false>]
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
+airport.receive plane
+=> true
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
+plane
+ => #<Plane:0x007f8c03145bb8 @landed=true>
 
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
+airport
+ => #<Airport:0x007f8c0315dab0 @capacity=5, @weather="sunny", @planes=[#<Plane:0x007f8c0315da10 @landed=true>, #<Plane:0x007f8c03145bb8 @landed=true>]>
+
+```
+It is much cleaner like this. In terms of process flow, it was more logical to me to associate the each `plane` to each `airport` when instructed by the `airport` class. Conversely, associate each `airport` to each `plane`class when instructed by the _Pilot_
