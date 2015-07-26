@@ -1,3 +1,5 @@
+require 'airport'
+
 class Plane
   attr_reader :plane_state
 
