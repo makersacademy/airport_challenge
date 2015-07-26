@@ -1,4 +1,4 @@
-require 'plane'
+require_relative '../lib/plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -11,19 +11,50 @@ require 'plane'
 #
 # When the plane takes of from the airport, it should be "flying" again
 #
-# Think about your implementation - does it allow a plane to be "flying" and landed?
+# Think about your implementation
+# does it allow a plane to be "flying" and landed?
 # Are you testing that?
 
 describe Plane do
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'can land'
+  describe '#land' do
+    it 'can land' do
+      expect(subject).to respond_to(:land)
+    end
 
-  xit 'is landed after landing'
+    context 'if the plane has landed'do
+      it 'should raise an error' do
+        subject.land
+        expect { subject.land }.to raise_error 'Plane has already landed'
+      end
+    end
 
-  xit 'can take off'
+    it 'is landed after landing' do
+      subject.land
+      expect(subject).to be_landed
+    end
+  end
 
-  xit 'is flying after take off'
+  describe '#take_off' do
+    it 'can take off' do
+      expect(subject).to respond_to(:take_off)
+    end
+
+    context 'if the plane is already flying' do
+      it 'should raise an error' do
+        expect { subject.take_off }.to raise_error 'Plane is already flying'
+      end
+    end
+
+    it 'is flying after take off' do
+      subject.land
+      subject.take_off
+      expect(subject).to be_flying
+    end
+  end
 
 end
