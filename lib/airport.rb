@@ -1,4 +1,4 @@
-require_relative 'plane'
+require_relative 'weather'
 DEFAULT_CAPACITY = 100
 class Airport
 
@@ -8,24 +8,30 @@ class Airport
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
-    @weather = :sunny
   end
 
   def accept(plane)
-    #weather
-    raise "Airport at capacity!  You can not land here!" if over_capacity?
-    plane.land
-    planes.push(plane)
-    plane
+    if weather_report == "stormy"
+      raise "You can not land!  The weather is stormy!"
+    elsif over_capacity?
+      raise "Airport at capacity!  You can not land here!"
+    else
+      plane.land
+      planes.push(plane)
+      plane
+    end
   end
 
   def allow_take_off
-    weather
-    raise "You can not take off!  The weather is stormy!" if weather == :stormy
-    raise "There are currently no planes ready for take off." if no_planes_available?
-    plane = planes.pop
-    plane.fly
-    plane
+    if weather_report == "stormy"
+      raise "You can not take off!  The weather is stormy!"
+    elsif no_planes_available?
+      raise "There are currently no planes ready for take off."
+    else
+      plane = planes.pop
+      plane.fly
+      plane
+    end
   end
 
   private
@@ -38,7 +44,7 @@ class Airport
     planes.empty?
   end
 
-  def weather
-    weather = :stormy if Random.rand(100) > 85
+  def weather_report
+    Random.rand(100) > 85 ? "stormy" : "sunny"
   end
 end

@@ -17,10 +17,10 @@ describe Airport do
 
   describe 'take off' do
     before(:each) do
+      allow(subject).to receive(:weather_report){"sunny"}
       allow(plane).to receive(:land)
       subject.accept plane
       allow(plane).to receive(:fly)
-
     end
 
     it 'instructs a plane to take off' do
@@ -43,6 +43,10 @@ describe Airport do
   end
 
   describe 'landing' do
+    before(:each) do
+      allow(subject).to receive(:weather_report){"sunny"}
+    end
+
     it 'instructs a plane to land' do
       expect(subject).to respond_to(:accept).with(1).argument
     end
@@ -68,6 +72,7 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       before(:each) do
+        allow(subject).to receive(:weather_report){"sunny"}
         allow(plane).to receive(:land)
       end
       it 'does not allow a plane to land' do
@@ -86,16 +91,16 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      #let(:stormy_weather){double(:weather, :stormy)}
+      before(:each) do
+         allow(subject).to receive(:weather_report){"stormy"}
+      end
       it 'does not allow a plane to take off' do
-        allow(plane).to receive(:land)
-        subject.accept plane
-        allow(plane).to receive(:fly)
-
         expect{subject.allow_take_off}.to raise_error "You can not take off!  The weather is stormy!"
       end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        expect{subject.accept plane}.to raise_error "You can not land!  The weather is stormy!"
+      end
     end
   end
 end
