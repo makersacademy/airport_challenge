@@ -24,12 +24,12 @@ describe Airport do
   end
 
 
-  describe '#take off' do
-    it 'instructs a plane to take off' do
+  describe "#take off" do
+    it "instructs a plane to take off" do
       expect(subject).to respond_to :take_off
     end
 
-    it 'releases a plane' do
+    it "releases a plane" do
       subject.landing(plane)
       expect(subject.take_off).to eq plane
     end
@@ -46,8 +46,8 @@ describe Airport do
   end
 
 
-  describe '#landing' do
-    it 'receives a plane' do
+  describe "#landing" do
+    it "instructs a plane to land" do
       expect(subject).to respond_to(:landing).with(1).argument
     end
 
@@ -73,9 +73,9 @@ describe Airport do
 
 
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      it 'does not allow a plane to land' do
+  describe "traffic control" do
+    context "when airport is full" do
+      it "does not allow a plane to land" do
         subject.capacity.times { subject.landing(plane) }
         expect{subject.landing(plane)}.to raise_error "Airport is full"
       end
@@ -95,18 +95,18 @@ describe Airport do
       end
     end
 
-    context 'when weather conditions are stormy' do
+    context "when weather conditions are stormy" do
       it "recognizes the change weather method" do
         expect(subject).to respond_to(:randomize_weather).with(1).argument
       end
 
-      it 'does not allow a plane to take off in storm' do
+      it "does not allow a plane to take off in storm" do
         subject.landing(plane)
         subject.randomize_weather(4)
         expect{ subject.take_off }.to raise_error "Can't take off in storm"
       end
 
-      it 'does not allow a plane to land in storm' do
+      it "does not allow a plane to land in storm" do
         allow(plane).to receive :fly
         subject.randomize_weather(4)
         expect{ subject.landing(plane) }.to raise_error "Can't land in storm"
