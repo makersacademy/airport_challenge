@@ -22,8 +22,7 @@ class Plane
 	end
 
 	def destination
-		['London', 'New York', 'Tokyo'].sample
+		['London', 'New York'].sample
 	end
-
 
 end
