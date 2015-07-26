@@ -12,4 +12,11 @@ class Airport
     @planes << plane
     plane
   end
+
+  def call_takeoff
+    plane = planes.pop
+    plane.takeoff
+    plane
+  end
+
 end
