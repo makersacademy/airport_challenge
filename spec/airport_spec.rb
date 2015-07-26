@@ -15,54 +15,54 @@ describe Airport do
   let(:plane){double(:airplane)}
   # let(:flying_plane){double(:airplane, {:flying? => true})}
 
-  describe 'take off' do
+  describe '#request_take_off' do
     before(:each) do
       allow(subject).to receive(:weather_report){"sunny"}
       allow(plane).to receive(:land)
-      subject.accept plane
+      subject.request_landing plane
       allow(plane).to receive(:fly)
     end
 
     it 'instructs a plane to take off' do
-      expect(subject).to respond_to(:allow_take_off)
+      expect(subject).to respond_to(:request_take_off)
     end
 
     it 'releases a plane' do
-      expect(subject.allow_take_off).to eq(plane)
+      expect(subject.request_take_off).to eq(plane)
     end
 
     it 'after releasing a plane' do
-      subject.allow_take_off
+      subject.request_take_off
       expect(subject.planes).to be_empty
     end
 
     it 'only allows take off if there is a plane available' do
-      subject.allow_take_off
-      expect{subject.allow_take_off}.to raise_error "There are currently no planes ready for take off."
+      subject.request_take_off
+      expect{subject.request_take_off}.to raise_error "There are currently no planes ready for take off."
     end
   end
 
-  describe 'landing' do
+  describe '#request_landing' do
     before(:each) do
       allow(subject).to receive(:weather_report){"sunny"}
       allow(plane).to receive(:land)
     end
 
     it 'instructs a plane to land' do
-      expect(subject).to respond_to(:accept).with(1).argument
+      expect(subject).to respond_to(:request_landing).with(1).argument
     end
 
     it 'receives a plane' do
-      expect(subject.accept plane).to eq(plane)
+      expect(subject.request_landing plane).to eq(plane)
     end
 
     it 'after accepting a plane' do
-      subject.accept plane
+      subject.request_landing plane
       expect(subject.planes).not_to be_empty
     end
   end
 
-  describe 'capacity' do
+  describe '#capacity' do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
@@ -75,8 +75,8 @@ describe Airport do
         allow(plane).to receive(:land)
       end
       it 'does not allow a plane to land' do
-        subject.capacity.times{subject.accept plane}
-        expect{subject.accept plane}.to raise_error "Airport at capacity!  You can not land here!"
+        subject.capacity.times{subject.request_landing plane}
+        expect{subject.request_landing plane}.to raise_error "Airport at capacity!  You can not land here!"
       end
     end
 
@@ -94,11 +94,11 @@ describe Airport do
          allow(subject).to receive(:weather_report){"stormy"}
       end
       it 'does not allow a plane to take off' do
-        expect{subject.allow_take_off}.to raise_error "You can not take off!  The weather is stormy!"
+        expect{subject.request_take_off}.to raise_error "You can not take off!  The weather is stormy!"
       end
 
       it 'does not allow a plane to land' do
-        expect{subject.accept plane}.to raise_error "You can not land!  The weather is stormy!"
+        expect{subject.request_landing plane}.to raise_error "You can not land!  The weather is stormy!"
       end
     end
   end

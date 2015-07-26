@@ -110,7 +110,9 @@
       ],
       "/Users/rebeccaappleyard1984/Dropbox/Makers/Course/Week_1/airport_challenge/lib/airport.rb": [
         1,
+        null,
         1,
+        null,
         1,
         null,
         1,
@@ -131,10 +133,6 @@
         null,
         null,
         null,
-        1,
-        106,
-        106,
-        106,
         null,
         null,
         1,
@@ -156,6 +154,12 @@
         1,
         null,
         1,
+        106,
+        106,
+        106,
+        null,
+        null,
+        1,
         107,
         null,
         null,
@@ -168,11 +172,28 @@
         null,
         null
       ],
-      "/Users/rebeccaappleyard1984/Dropbox/Makers/Course/Week_1/airport_challenge/lib/weather.rb": [
+      "/Users/rebeccaappleyard1984/Dropbox/Makers/Course/Week_1/airport_challenge/lib/plane.rb": [
+        1,
+        1,
+        null,
+        1,
+        5,
+        null,
+        null,
         1,
         1,
         null,
         null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
         null,
         null,
         null
@@ -221,37 +242,8 @@
         null,
         null,
         null
-      ],
-      "/Users/rebeccaappleyard1984/Dropbox/Makers/Course/Week_1/airport_challenge/lib/plane.rb": [
-        1,
-        1,
-        null,
-        1,
-        5,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/rebeccaappleyard1984/Dropbox/Makers/Course/Week_1/airport_challenge/spec/weather_spec.rb": [
-
       ]
     },
-    "timestamp": 1437920113
+    "timestamp": 1437920536
   }
 }

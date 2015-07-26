@@ -1,6 +1,8 @@
-require_relative 'weather'
-DEFAULT_CAPACITY = 100
+require_relative 'plane'
+
 class Airport
+
+  DEFAULT_CAPACITY = 100
 
   attr_reader :planes
   attr_accessor :capacity, :weather
@@ -10,7 +12,7 @@ class Airport
     @capacity = DEFAULT_CAPACITY
   end
 
-  def accept plane
+  def request_landing plane
     if weather_report == "stormy"
       raise "You can not land!  The weather is stormy!"
     elsif over_capacity?
@@ -20,13 +22,7 @@ class Airport
     end
   end
 
-  def land_plane plane
-    plane.land
-    planes.push(plane)
-    plane
-  end
-
-  def allow_take_off
+  def request_take_off
     if weather_report == "stormy"
       raise "You can not take off!  The weather is stormy!"
     elsif no_planes_available?
@@ -36,13 +32,19 @@ class Airport
     end
   end
 
+  private
+
+  def land_plane plane
+    plane.land
+    planes.push(plane)
+    plane
+  end
+
   def release_plane
     plane = planes.pop
     plane.fly
     plane
   end
-
-  private
 
   def over_capacity?
     planes.count >= capacity
