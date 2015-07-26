@@ -15,7 +15,6 @@ describe Airport do
 let (:flying_plane) {double(:flying_plane, {:landed => false})}
 let (:landed_plane) {double(:landed_plane, {:landed => true})}
 
-
   it 'has a plane' do
     expect(subject.planes).not_to be_empty
   end
@@ -51,13 +50,13 @@ let (:landed_plane) {double(:landed_plane, {:landed => true})}
   describe 'traffic control' do
     context 'when airport is full' do
 
-      xit 'responds to full' do
+      it 'responds to full' do
         expect(subject).to respond_to :full?
       end
 
-      xit 'does not allow a plane to land'
-
-
+      it 'does not allow a plane to land' do
+        expect {subject.capacity.times {subject.landing_order(flying_plane)}}.to raise_error "Airport is full"
+      end
   end
 
     # Include a weather condition.
