@@ -43,19 +43,18 @@ describe Airport do
       end
   end
 
-  #describe 'traffic control' do
-  #  context 'when airport is full' do
-  #    xit 'does not allow a plane to land'
-  #  end
+  describe 'traffic control' do
+    context 'when airport is full' do
+      before(:each) do
+        allow(plane).to receive("land")
+      end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+      it 'does not allow a plane to land' do
+        subject.capacity.times { subject.call_landing(plane)}
+        expect{subject.call_landing(plane)}.to raise_error "Airport is full, keep flying"
+      end
+    end
+  end
 
   #  context 'when weather conditions are stormy' do
   #    xit 'does not allow a plane to take off'
