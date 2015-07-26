@@ -48,6 +48,28 @@ describe Plane do
     expect{plane.land(airport)}.to raise_error "Pilot does not have permission to land this plane"
   end
 
+  context 'when landing' do 
+    it "traffic controller is notified of final approach and is stopped if airport has since become full" do 
+      airport = Airport.new
+
+      first_plane = Plane.new(airport) 
+      first_plane.pilot.request_to_land(airport)
+
+      5.times do 
+        extra_plane = Plane.new(airport)
+        extra_plane.pilot.request_to_land(airport)
+        extra_plane.pilot.land_plane(airport)
+      end
+
+      expect{first_plane.land(airport)}.to raise_error "Airport is now full! Permission to land revoked!"
+      expect(first_plane.pilot.permission_to_land).to be false
+
+    end
+
+    xit "traffic controller is notified of final approach and is stopped if weather has changed to stormy"
+
+  end
+
   context 'after it lands' do
 
     it 'is landed' do

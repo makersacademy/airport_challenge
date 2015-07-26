@@ -1,6 +1,7 @@
 class Pilot
 
-	attr_reader :permission_to_land, :plane
+	attr_reader :plane
+	attr_accessor :permission_to_land
 
 	def initialize(plane = Plane.new)
 		@permission_to_land = false

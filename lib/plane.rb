@@ -18,6 +18,11 @@ class Plane
 			fail "Pilot does not have permission to land this plane"
 		end
 
+		if airport.full?
+			self.pilot.permission_to_land = false
+			fail "Airport is now full! Permission to land revoked!"
+		end
+
 		@flying = false
 
 		airport.receive_plane(self)
