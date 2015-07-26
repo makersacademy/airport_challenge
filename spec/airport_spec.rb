@@ -31,7 +31,7 @@ describe Airport do
     end
   end
 
-  describe "#landing" do
+  describe "landing" do
     it "instructs a plane to land" do
       expect(subject).to respond_to(:landing).with(1).argument
     end
