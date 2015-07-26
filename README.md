@@ -1,4 +1,4 @@
-**Airport Challenge**
+**Airport Challenge** [![Build Status](https://travis-ci.org/7091lapS/airport_challenge.svg)](https://travis-ci.org/7091lapS/airport_challenge)
 =================
 
 **Makers Academy Week 1 Solo Challenge**
