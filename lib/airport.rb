@@ -11,6 +11,7 @@ class Airport
 
   def allow_to_takeoff(plane)
     plane.takeoff
+    @planes -= [plane]
   end
 
   attr_reader :planes

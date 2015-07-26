@@ -16,13 +16,17 @@ describe Airport do
        expect(plane).to receive(:takeoff)
        subject.allow_to_takeoff(plane)
      end
-  #   xit 'releases a plane'
+     it 'releases a plane' do
+       subject.allow_to_land(plane)
+       subject.allow_to_takeoff(plane)
+       expect(subject.planes).not_to include(plane)
+     end
    end
 
    describe 'landing opeartions' do
 
      it 'allows a plane to land' do
-       expect(plane).to receive(:land)
+       expect(plane).to receive(:land) # I had to invert them here, make sure I get why
        subject.allow_to_land(plane)
      end
      it 'receives a plane' do
