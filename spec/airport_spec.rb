@@ -12,6 +12,7 @@ require_relative '../lib/airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  let(:plane) { double(:plane) }
 
   describe 'take off' do
     xit 'instructs a plane to take off'
