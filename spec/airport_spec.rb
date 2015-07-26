@@ -21,7 +21,9 @@ describe Airport do
     end
 
     it 'should let a plane take off' do
-      plane = Plane.new
+      plane = double :plane, flying?: true
+      allow(plane).to receive(:land) 
+      allow(plane).to receive(:take_off)
       subject.instruct_land plane
       subject.instruct_take_off
       expect(plane).to be_flying
@@ -34,8 +36,10 @@ describe Airport do
 
   describe 'traffic control' do
     it 'raises an error when full' do
+      plane = double :plane
+      allow(plane).to receive(:flying?) {true}
       subject.capacity.times {subject.instruct_land Plane.new}
-      expect{ subject.instruct_land Plane.new }.to raise_error 'Airport full'
+      expect{ subject.instruct_land plane }.to raise_error 'Airport full'
     end
 
     # Include a weather condition.
