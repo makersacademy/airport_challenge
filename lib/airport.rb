@@ -6,6 +6,8 @@ class Airport
   attr_accessor :planes, :capacity, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
+    fail 'Not an integer' unless capacity.is_a?(Integer)
+    fail 'Not positive' unless capacity > 0
     @planes = []
     @capacity = capacity
     @weather = 'sunny'

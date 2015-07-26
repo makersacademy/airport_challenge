@@ -27,6 +27,15 @@ describe Airport do
       airport = described_class.new(random_capacity)
       expect(airport.capacity).to eq random_capacity
     end
+
+    it 'can only accept an integer' do
+      expect { described_class.new double :fake_number }.to raise_error 'Not an integer'
+    end
+
+    it 'only accepts a positive integer' do
+      random_capacity = -Random.rand(200)
+      expect { described_class.new(random_capacity) }.to raise_error 'Not positive'
+    end
   end
 
   describe '#take_off' do
