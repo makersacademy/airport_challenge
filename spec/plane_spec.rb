@@ -9,12 +9,22 @@ require 'plane'
 # When we land a plane at the airport, the plane in question should
 # be "landed"
 #
-# When the plane takes off from the airport, it should be "flying" again
+# When the plane takes of from the airport, it should be "flying" again
 #
 # Think about your implementation - does it allow a plane to be "flying" and landed?
 # Are you testing that?
 
 describe Plane do
+
+  xit 'is flying when created'
+
+  xit 'can land'
+
+  xit 'is landed after landing'
+
+  xit 'can take off'
+
+  xit 'is flying after take off'
 
   describe "plane status flying or landed" do
     it "is flying when created" do
