@@ -17,9 +17,9 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-  describe '#take_off' do
+  describe '#take_off?' do
     it 'instructs a plane to take off' do
-      expect(subject).to respond_to :take_off
+      expect(subject).to respond_to :take_off?
     end
 
 
@@ -33,7 +33,7 @@ describe Airport do
 
   describe 'landing' do
     it 'instructs a plane to land' do
-
+      expect(subject).to respond_to :landing?
     end
 
     xit 'receives a plane'
@@ -57,9 +57,16 @@ describe Airport do
       # the plane can not land, and must not be in the airport
 
       context 'when weather conditions are stormy' do
-        xit 'does not allow a plane to take off'
+        it 'does not allow a plane to take off' do
+          allow(subject).to receive(:weather?) {"stormy"}
+          expect { subject.landing?}.to raise_error 'Can not land plane'
+        end
 
-        xit 'does not allow a plane to land'
+        it 'does not allow a plane to land' do
+          allow(subject).to receive(:weather?) {"stormy"}
+          expect { subject.take_off?}.to raise_error 'Can not land plane'
+        end
+
       end
     end
 end
