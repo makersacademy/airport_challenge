@@ -72,7 +72,7 @@ describe Airport do
         terminal = Airport.new
         plane = Plane.new
         terminal.weather(4)
-        expect { subject.land plane }.to raise_error 'Stormy, can not land'
+        expect { terminal.land plane }.to raise_error 'Stormy, can not land'
       end
     end
   end
