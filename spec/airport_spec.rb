@@ -34,7 +34,11 @@ describe Airport do
       expect(subject).to respond_to :landing?
     end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      expect(subject.stub(:full?))
+      expect { subject.landing?}.to raise_error 'Can not land plane'
+    end
+
   end
 
   describe 'traffic control' do
