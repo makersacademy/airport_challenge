@@ -16,7 +16,8 @@ describe Airport do
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-      expect(plane).to receive(:land)
+      expect(plane).to receive(:take_off)
+      subject.let_take_off(plane)
     end
 
     it 'releases a plane' do
