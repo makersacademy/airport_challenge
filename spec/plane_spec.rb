@@ -9,7 +9,7 @@ require 'plane'
 # When we land a plane at the airport, the plane in question should
 # be "landed"
 #
-# When the plane takes of from the airport, it should be "flying" again
+# When the plane takes off from the airport, it should be "flying" again
 #
 # Think about your implementation - does it allow a plane to be "flying" and landed?
 # Are you testing that?
@@ -17,15 +17,26 @@ require 'plane'
 describe Plane do
 
   it 'is flying when created' do 
-    expect(subject.flying?).to be true
+    expect(subject).to be_flying
   end
 
-  xit 'can land'
+  it 'can land' do
+  	expect(subject).to respond_to :land
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+  	subject.land
+  	expect(subject).to be_landed
+  end
 
-  xit 'can take off'
+  it 'can take off' do
+  	expect(subject).to respond_to :take_off
+  end
 
-  xit 'is flying after take off'
+  it 'is flying after take off' do
+  	subject.land
+    subject.take_off
+  	expect(subject).to be_flying
+  end
 
 end
