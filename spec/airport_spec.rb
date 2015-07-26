@@ -1,34 +1,40 @@
-require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
 # No more planes can be added to the airport, if it's full.
 # It is up to you how many planes can land in the airport
 # and how that is implemented.
 #
 # If the airport is full then no planes can land
+require 'airport.rb'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  let(:plane){double(:plane, {land: "landed", takeoff: "flying"})}
 
-    xit 'releases a plane'
-  end
+    describe 'takeoff operations' do
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+     it 'allows a plane to take off' do
+       expect(plane).to receive(:takeoff)
+       subject.allow_to_takeoff(plane)
+     end
+  #   xit 'releases a plane'
+   end
 
-    xit 'receives a plane'
-  end
+   describe 'landing opeartions' do
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+     it 'allows a plane to land' do
+       expect(plane).to receive(:land)
+       subject.allow_to_land(plane)
+     end
+  #    it 'receives a plane' do
+  #      subject.allow_to_land(plane)
+  #      expect(subject.planes).to_include(plane)
+  #    end
     end
+  #
+  # describe 'traffic control' do
+  #   context 'when airport is full' do
+  #     xit 'does not allow a plane to land'
+    #end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -45,4 +51,3 @@ describe Airport do
       xit 'does not allow a plane to land'
     end
   end
-end
