@@ -35,7 +35,6 @@ describe Airport do
 
     describe 'landing' do
       xit 'instructs a plane to land'
-
     it "ensures that taken off plane status is flying" do
       subject.landing(plane)
       expect(plane).to receive :fly
