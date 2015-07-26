@@ -1,21 +1,6 @@
 require 'plane'
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# When we create a new plane, it should be "flying",
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# be "landed"
-#
-# When the plane takes of from the airport, it should be "flying" again
-#
-# Think about your implementation - does it allow a plane to be "flying" and landed?
-# Are you testing that?
-
-
 describe Plane do
 
 	it 'is flying when created' do
@@ -31,27 +16,38 @@ describe Plane do
 
 	it 'is not flying after landing' do
 		airport = Airport.new
-		airport = airport.landing (subject)
-		expect(subject.flying?).to eq false
+		airport.landing (subject) 
+		expect(subject.flying?).to be false
 		end
 	#Third test: when the plane is in the airport, it's state should be not flying, then it should respond to landed?
 
-	it 'can not land (again) when the status is not flying' do
+	it 'can not land (again) when is not flying' do
 		airport = Airport.new
 		subject.landed?
-		expect {airport.landing (subject)}.to raise_error('This plane already landed')
+		expect {airport.landing (subject)}.to raise_error('This plane has already landed')
 	end
 	#Fourth test: The same plane can't land a second time when it is still in the airport and not flying
 
-	
+	it 'can take off' do
+		airport = Airport.new
+		expect {airport.take_off (subject)}.to_not raise_error
+	end
+	#Fifth test: The plane, after landing, can take off the airport.
+
+	it 'is flying after taking off' do
+		airport = Airport.new
+		airport = airport.take_off (subject)
+		expect(subject.flying?).to eq true
+	end
+	#Sixth test: The plane is flying after taking off
+
+	it 'can not take off (again) when it is already flying' do
+		airport = Airport.new
+		subject.departed?
+		expect {airport.take_off (subject)}.to raise_error('This plane has already departed')
+	end
+	#Seventh test: The same plane can't take off a second time when it's already flying
 
 
-
-
-  xit 'can land'
-
-  xit 'can take off'
-
-  xit 'is flying after take off'
 
 end
