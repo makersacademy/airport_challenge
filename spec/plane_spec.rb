@@ -30,9 +30,6 @@ describe Plane do
     expect(subject).to_not be_landed  #rewrite
   end
 
-  # it 'can take off' do
-  # end
-
 
   describe '#land' do
 
@@ -45,21 +42,30 @@ describe Plane do
       subject.land
       expect{subject.land}.to raise_error "Plane is landed so cannot land"
     end
+  end
 
-  #   it 'is not flying after landing' do   #change
-  #     subject.land(airport)
-  #     expect(subject).to_not be_flying
-  #   end
-  # end
 
-  # describe '#take_off' do
 
+   describe '#take_off' do
+
+     it 'is flying after take off' do
+       subject.land
+       subject.take_off
+       expect(subject).to be_flying
+     end
+
+    it 'does not allow flying planes to take off' do
+      expect{subject.take_off}.to raise_error "Plane is flying so cannot take off"
+    end
+   end
+
+end
   #   it 'is flying after taking off' do
   #     subject.land(airport)              #change
   #     subject.take_off(airport)
   #     expect(subject).to be_flying
   #   end
-   end
+
 
   # xit 'is flying when created'
 
@@ -71,4 +77,4 @@ describe Plane do
 
   # xit 'is flying after take off'
 
-end
+

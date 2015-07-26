@@ -1,11 +1,11 @@
 class Airport
 
-  def landing plane
+  def request_landing plane
     plane.land
-   # return true
   end
 
-  def land
+  def request_take_off plane
+    plane.take_off
   end
 end
 

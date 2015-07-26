@@ -11,7 +11,8 @@ class Plane
     @flying = false
   end
 
-  def take_off airport
+  def take_off
+    raise "Plane is flying so cannot take off" if flying?
     @flying = true
   end
 

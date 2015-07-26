@@ -14,15 +14,24 @@ require 'airport'
 # describe Airport do
 
   describe Airport do
-    let(:flying_plane){double(:plane, landed?: false )}
-    let(:plane){double(:plane, land: true )}
+    let(:taking_off_plane){double(:plane, take_off: true )}
+    let(:landing_plane){double(:plane, land: true )}
 
-    describe '#landing'
+    describe '#reuqest_landing' do
       it 'requests planes to land' do
-        expect(subject.landing plane).to eq(true)
+        expect(subject.request_landing landing_plane).to eq(true)
       end
+    end
 
-  end
+    describe '#request_take_off' do
+      it 'requests planes to take_off' do
+        expect(subject.request_take_off taking_off_plane).to eq(true)
+      end
+    end
+
+
+end
+
 
 #   describe 'take off' do
 #     xit 'instructs a plane to take off'
