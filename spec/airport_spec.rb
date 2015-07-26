@@ -16,14 +16,19 @@ describe Airport do
   describe 'take off' do
     it {expect(subject).to respond_to :take_off}
 
+    it 'raises an error when there are no planes at the airport' do
+      expect{ subject.take_off }.to raise_error 'No planes available'
+    end
+
     it 'should let a plane take off' do
+      subject.land Plane.new
       plane = subject.take_off
       expect(plane).to be_flying
     end
   end
 
   describe 'landing' do
-    it {expect(subject).to respond_to :land}
+    it {expect(subject).to respond_to(:land).with(1).argument}
     xit 'receives a plane'
   end
 
