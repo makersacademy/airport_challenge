@@ -5,11 +5,12 @@ class Airport
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
+    @plane = @planes.shuffle.pop
   end
 
   def release_plane
-    fail 'Inclement weather' if weather.stormy?
-    @planes.delete weather.pop
+    fail 'Plane not at airport' if planes_landed.empty?
+    @planes.delete planes_landed.pop
   end
 
   def dock_plane
@@ -25,7 +26,6 @@ class Airport
     @planes.count >= capacity
   end
 
-  def weather
-    @planes.reject {|plane| plane.stormy?}
-  end
+  def planes_landed
+    @planes.select { | plane | plane.landed? }
 end

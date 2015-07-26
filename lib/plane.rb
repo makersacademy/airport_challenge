@@ -1,22 +1,28 @@
-require 'pilot'
+
 
 class Plane
 
   def initialize
-    @stormy = false
-    @weather = []
-
+    @flying = false
   end
 
   def landing?
-    if @stormy == true && pilot.arrive? == true
+    @flying && airport.traffic_control == true
+  end
+
+  def landed?
+    !@flying
   end
 
   def departing?
-    if @stormy == true && pilot.depart? == true
+    if @stormy == false && pilot.depart? == true
   end
 
-  def stormy?
-    @stormy
+  def reported_flying
+    @flying = true
   end
-end
+
+
+  def flying?
+    @flying
+  end
