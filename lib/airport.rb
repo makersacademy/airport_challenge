@@ -9,19 +9,23 @@ class Airport
     @planes = Array.[](Plane.new true)
   end
 
-  def take_off_order plane
+  def take_off_order
     @planes.last.take_off
   end
 
   def landing_order plane
-    @planes.last.land self
     @planes << plane
   end
 
   def receive plane
+    if planes.include? plane
+      @planes.last.landed = true
+    else
+      fail "Plane not instructed to land"
+    end
   end
 
-  def release plane
+  def release
     @planes.pop
   end
 

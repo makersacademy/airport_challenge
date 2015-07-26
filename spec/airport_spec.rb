@@ -12,7 +12,7 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-let (:flying_plane) {double(:flying_plane, {:landed => false, :airport => nil, :land => :landed_plane})}
+let (:flying_plane) {double(:flying_plane, {:landed => false})}
 let (:landed_plane) {double(:landed_plane, {:landed => true})}
 
 
@@ -22,25 +22,29 @@ let (:landed_plane) {double(:landed_plane, {:landed => true})}
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-      expect(subject).to respond_to(:take_off_order).with(1).argument
+      subject.take_off_order
+      expect(subject).to respond_to(:take_off_order)
     end
 
     it 'releases a plane' do
-      expect(subject).to respond_to(:release).with(1).argument
+      expect(subject).to respond_to(:release)
     end
   end
 
   describe 'landing' do
     it 'instructs a plane to land' do
-      expect(flying_plane.airport).to be nil
       subject.landing_order(flying_plane)
+      expect(subject.planes).to include flying_plane
     end
 
     it 'receives a plane' do
+      expect(flying_plane).to receive(:landed=).with(true)
       subject.landing_order(flying_plane)
       subject.receive(flying_plane)
-      #flying_plane.land
-      expect(subject.planes).to include(flying_plane)
+    end
+
+    it 'fails to receive a plane without instruction' do
+      expect{subject.receive flying_plane}.to raise_error "Plane not instructed to land"
     end
   end
 

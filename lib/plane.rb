@@ -6,7 +6,7 @@ class Plane
 
   def initialize (state=false)
     @landed = state
-    #@airport = nil
+    #@airport = airport
   end
 
   def land airport
