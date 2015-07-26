@@ -93,6 +93,7 @@ describe Plane do
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
+
       expect(plane.location).to eq airport
     end
 
@@ -101,7 +102,30 @@ describe Plane do
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport) 
+
       expect(plane).to_not be_flying
+    end
+
+    it 'cannot take off if its pilot does not have permission to take off, even though its destination is to a different airport' do 
+      airport = Airport.new 
+      airport2 = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
+      plane.land(airport)
+
+      expect{plane.take_off(airport2)}.to raise_error "This plane's pilot does not have permission to take off"
+    end
+
+    it 'can take off if its pilot has permission and its destination is to a different airport' do
+      airport = Airport.new 
+      airport2 = Airport.new
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
+      plane.land(airport)
+
+      plane.pilot.request_to_take_off(airport2)
+      plane.pilot.take_off(airport2)
+      expect(plane).to be_flying
     end
 
     it 'cannot take off for the same destination that it is currently located in' do
@@ -109,6 +133,8 @@ describe Plane do
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
+      plane.pilot.request_to_take_off(airport)
+
       expect{plane.take_off(airport)}.to raise_error "This plane is currently located at the destination you have specified - enter a different destination"     
     end
   end
@@ -117,16 +143,14 @@ describe Plane do
   	expect(subject).to_not be_landed
   end
 
-  it 'can take off' do 
-    expect(subject).to respond_to :take_off
-  end
-
   context 'after it has taken off' do 
     it 'is flying' do
       airport = Airport.new
+      airport2 = Airport.new
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
+      plane.pilot.request_to_take_off(airport2)
       plane.take_off(airport2)
       expect(plane).to be_flying
     end
@@ -136,8 +160,9 @@ describe Plane do
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
-      subject.take_off(airport2)
-      expect(subject.destination).to be(airport2)
+      plane.pilot.request_to_take_off(airport2)
+      plane.take_off(airport2)
+      expect(plane.destination).to be(airport2)
     end
 
     it 'has no location' do
@@ -145,6 +170,7 @@ describe Plane do
       plane = Plane.new(airport)
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
+      plane.pilot.request_to_take_off(airport2)
       plane.take_off(airport2)
       expect(plane.location).to be_nil      
     end

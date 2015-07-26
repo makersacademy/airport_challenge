@@ -40,23 +40,31 @@ describe Pilot do
     			expect{plane.pilot.request_to_land(airport2)}.to raise_error "Permission to land denied"
     		end
     	end
+	end
 
-		# context "and requests to land at the correct airport (matches plane's destination)" do
-		# 	it 'receives permission to land' do 
-		# 		airport = Airport.new
-		# 		plane = Plane.new(airport)
-		# 		traffic_controller = TrafficController.new(airport)
+	context 'after landing' do 
+		it 'permission to land is reset to false' do 
+			airport = Airport.new
+      		plane = Plane.new(airport)
+      		plane.pilot.request_to_land(airport)
+      		plane.pilot.land_plane(airport)
 
-		# 		expect(plane.pilot.permission_to_land).to eq true
-		# 	end
-		# end
+      		expect(plane.pilot.permission_to_land).to be false			
+		end
+	end
 
-		# it "cannot land unless it has permission" do 
-		# 	airport = Airport.new
-		# 	plane = Plane.new(airport)
-		# 	traffic_controller = TrafficController.new(airport)
+	context 'after taking off' do 
+		it 'permission to take off is reset to false' do
+			airport = Airport.new
+			airport2 = Airport.new
+      		plane = Plane.new(airport)
+      		plane.pilot.request_to_land(airport)
+      		plane.pilot.land_plane(airport)	
 
-		# 	expect{plane.land(airport)}.to raise_error "You need permission to land first"
-		# end
+      		plane.pilot.request_to_take_off(airport2)
+      		plane.pilot.take_off(airport2)
+
+      		expect(plane.pilot.permission_to_take_off).to be false		
+		end
 	end
 end

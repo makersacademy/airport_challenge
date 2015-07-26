@@ -1,6 +1,7 @@
 class Plane
 
 	attr_reader :destination, :location, :pilot
+	attr_writer :flying
 
 	def initialize(destination = "nowhere!") 
 		@flying = true
@@ -29,6 +30,7 @@ class Plane
 
 		@destination = nil
 		@location = airport
+		self.pilot.permission_to_land = false
 		return self
 	end
 
@@ -37,13 +39,21 @@ class Plane
 	end
 
 	def take_off(destination)
+		if self.pilot.permission_to_take_off == false
+			fail "This plane's pilot does not have permission to take off"
+		end
+
 		if destination == self.location
 			fail "This plane is currently located at the destination you have specified - enter a different destination" 
 		end
-			
+		
+		plane = self.location.planes.index(self)
+		self.location.planes.slice!(plane)
+
 		@destination = destination
 		@flying = true
 		@location = nil
+		self.pilot.permission_to_take_off = false
 	end
 
 end

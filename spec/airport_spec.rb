@@ -37,32 +37,20 @@ describe Airport do
     expect(subject.full?).to be true
   end
 
-  describe 'take off' do
-    it 'instructs a plane to take off'
+  context 'after a plane has taken off' do 
+    it 'there is one less plane in the airport' do 
+      airport2 = Airport.new
+      plane = Plane.new(subject)
+      plane.pilot.request_to_land(subject)
+      plane.pilot.land_plane(subject)
 
-    xit 'releases a plane'
-  end
+      first_count = subject.planes.count
 
-  describe '#land_plane' do
-
-    # it 'receives a plane' do 
-    #   plane = Plane.new(subject)
-    #   subject.land_plane(plane)
-    #   expect(subject.planes.include?(plane)).to eq true
-    # end
-
-    # it "only receives the plane if it matches the plane's destination" do 
-    #   airport2 = Airport.new
-    #   plane = Plane.new(airport2)
-
-    #   expect{subject.land_plane(plane)}.to raise_error "That plane isn't headed for here!"
-    # end
-  end
-
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      plane.pilot.request_to_take_off(airport2)
+      plane.pilot.take_off(airport2)
+      expect(subject.planes.count).to eq(first_count - 1)
     end
+  end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -73,10 +61,4 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
-
-      xit 'does not allow a plane to land'
-    end
-  end
 end

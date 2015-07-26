@@ -12,4 +12,12 @@ class TrafficController
 			return true
 		end
 	end
+
+	def grant_permission_to_take_off?(pilot)
+		if pilot.plane.destination == self.location
+			return false
+		else
+			return true
+		end
+	end
 end
