@@ -36,6 +36,10 @@ require 'airport'
         subject.request_take_off(taking_off_plane)
         expect(subject.planes).not_to include(taking_off_plane)
       end
+
+      it 'raises error if plane not in the airport' do
+        expect{subject.request_take_off taking_off_plane}.to raise_error "Plane is not at this airport"
+      end
     end
 
     describe '#take_off_authorisation' do

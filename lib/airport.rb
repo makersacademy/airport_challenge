@@ -20,6 +20,7 @@ class Airport
   end
 
   def request_take_off plane
+    raise "Plane is not at this airport" unless @planes.include? plane
     take_off_authorisation plane
     release_plane plane
   end
