@@ -131,8 +131,8 @@ describe Airport do
     end
 
     it 'raises an error when more than 3 planes try to land' do
-      expect { subject.landings(plane, plane, plane, plane) }
-        .to raise_error 'Too many planes landing'
+      expect { subject.landings(plane, plane, plane, plane) }.to\
+        raise_error 'Too many planes landing'
     end
 
     it 'lands landed planes' do
