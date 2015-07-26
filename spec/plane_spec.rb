@@ -16,8 +16,8 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
-
+  it { expect(subject).to be_flying }
+  
   xit 'can land'
 
   xit 'is landed after landing'

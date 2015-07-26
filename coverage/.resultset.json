@@ -79,7 +79,7 @@
         null,
         1,
         null,
-        1,
+        2,
         null,
         1,
         null,
@@ -93,9 +93,18 @@
       ],
       "/Users/Sivan/Documents/Projects/airport_challenge/lib/plane.rb": [
         1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1437914194
+    "timestamp": 1437914982
   }
 }
