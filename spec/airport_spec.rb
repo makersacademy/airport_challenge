@@ -16,14 +16,6 @@ describe Airport do
   before(:each) { allow(plane).to receive(:land) }
   before(:each) { allow(plane).to receive(:fly) }
 
-
-  describe "initialized stage" do
-    it "has a default capacity when initialized" do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-    end
-  end
-
-
   describe "#take off" do
     it "instructs a plane to take off" do
       expect(subject).to respond_to :take_off
@@ -45,13 +37,18 @@ describe Airport do
     end
   end
 
+  describe "initialized stage" do
+    it "has a default capacity when initialized" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
 
   describe "#landing" do
     it "instructs a plane to land" do
       expect(subject).to respond_to(:landing).with(1).argument
     end
 
-    it "airport should not be empty after landing" do
+    it "receives a plane" do
       subject.landing(plane)
       expect(subject).not_to be_empty
     end
@@ -70,8 +67,6 @@ describe Airport do
     # This will require stubbing to stop the random return of the weather.
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
-
-
 
   describe "traffic control" do
     context "when airport is full" do

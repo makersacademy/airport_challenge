@@ -22,7 +22,6 @@ describe Plane do
     end
   end
 
-
   describe "plane land method" do
     it "status is landed after landing" do
       subject.land
@@ -30,14 +29,12 @@ describe Plane do
     end
   end
 
-
   describe "plane fly method" do
     it "status is flying after being flown" do
       subject.fly
       expect(subject.fly).to eq "flying"
     end
   end
-
 
   describe "checks status of plane" do
     it "if plane land cannot be flying" do
