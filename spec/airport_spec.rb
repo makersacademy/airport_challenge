@@ -92,7 +92,7 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       before(:each) do
-         allow(subject).to receive(:weather_report) { "stormy" }
+        allow(subject).to receive(:weather_report) { "stormy" }
       end
       it 'does not allow a plane to take off' do
         expect { subject.request_take_off }.to raise_error
