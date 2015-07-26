@@ -12,17 +12,18 @@ class Airport
   attr_reader :planes, :weather
 
   def ariving(plane)
-  	@weather = set_weather
-  	fail "Cannot land, weather conditions too bad" if (@weather == "Stormy")
+  	weather = set_weather
+  	fail "Cannot land, weather conditions too bad" if (weather == "Stormy")
   	fail "Cannot land, airport full" if full?
   	plane.land
   	planes << plane
   end
 
-  def leaving
-  	@weather = set_weather
-  	fail "Cannot take off, weather conditions too bad" if (@weather == "Stormy")
-  	plane = @planes.pop
+  def leaving(plane)
+  	weather = set_weather
+  	fail "The plane is not at this airport" if !planes.include?(plane)
+  	fail "Cannot take off, weather conditions too bad" if (weather == "Stormy")
+  	planes.delete(plane)
   	plane.take_off
   	plane
   end
