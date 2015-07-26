@@ -26,6 +26,10 @@ describe Plane do
     it "has a default destination of 'nowhere!'" do
       expect(subject.destination).to eq("nowhere!")
     end
+
+    it 'has no location' do 
+      expect(subject.location).to be_nil
+    end
 	end
 
   context 'when created specifying an airport as a destination' do
@@ -53,10 +57,22 @@ describe Plane do
       expect(plane.destination).to be_nil
     end
 
+    it "its 'location' matches the airport it has landed at" do 
+      plane = Plane.new(airport) 
+      plane.land(airport)
+      expect(plane.location).to eq airport
+    end
+
     it 'cannot be landed and flying at the same time' do 
       plane = Plane.new(airport) 
       plane.land(airport) 
       expect(plane).to_not be_flying
+    end
+
+    it 'cannot take off for the same destination that it is currently located in' do 
+      plane = Plane.new(airport) 
+      plane.land(airport)
+      expect{plane.take_off(airport)}.to raise_error "This plane is currently located at the destination you have specified - enter a different destination"     
     end
   end
 
@@ -81,6 +97,13 @@ describe Plane do
       plane.land(airport)
       subject.take_off(airport2)
       expect(subject.destination).to be(airport2)
+    end
+
+    it 'has no location' do 
+      plane = Plane.new(airport) 
+      plane.land(airport)
+      plane.take_off(airport2)
+      expect(plane.location).to be_nil      
     end
   end
 
