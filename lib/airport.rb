@@ -20,22 +20,24 @@ class Airport
 
   attr_accessor :planes
   attr_accessor :capacity
-  attr_accessor :sunny
+  attr_accessor :weather
 
-  def initialize(capacity = D_CAPACITY, weather = true)
+  def initialize(capacity = D_CAPACITY, weather = 'sunny')
     @capacity = capacity
     @planes = []
-    @sunny = weather
+    @weather = weather
   end
 
   def take_off
-    fail 'Weather is bad for take off' unless sun?
+    fail 'Weather is bad for take off' if weather == 'stormy'
+    planes.last.off
     @planes.pop
   end
 
   def landing(plane)
-    fail 'Weather is bad for landing' unless sun?
+    fail 'Weather is bad for landing' if weather == 'stormy'
     fail 'Airport full' if full?
+    plane.land
     @planes << plane
   end
 
@@ -47,7 +49,7 @@ class Airport
     @planes.count >= capacity
   end
 
-  def sun?
-    @sunny
+  def change_weather(num = rand(100))
+    num <= 30 ? @weather = 'stormy' : @weather = 'sunny'
   end
 end

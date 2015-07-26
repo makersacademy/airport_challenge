@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -17,20 +18,20 @@ require 'plane'
 describe Plane do
 
   it 'is flying when created' do
-    expect(subject.flying?).to eq true
+    expect(subject.status).to eq 'flying'
   end
 
   it { is_expected.to respond_to :land }
 
   it 'is landed after landing' do
     subject.land
-    expect(subject.landed?).to eq true
+    expect(subject.status).to eq 'landed'
   end
 
-  it { is_expected.to respond_to :take_off }
+  it { is_expected.to respond_to :off }
 
   it 'is flying after take off' do
-    subject.take_off
-    expect(subject.flying?).to eq true
+    subject.off
+    expect(subject.status).to eq 'flying'
   end
 end

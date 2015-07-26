@@ -1,3 +1,4 @@
+require_relative 'airport'
 # As a pilot
 # So that I can arrive at my specified destination
 # I would like to land my plane at the appropriate airport
@@ -15,23 +16,19 @@
 # I want to be able to prevent airplanes landing or taking off when the weather is stormy
 
 class Plane
-  def initialize(flying = true)
-    @flying = flying
+  def initialize(status = 'flying')
+    @status = status
   end
 
   def land
-    @flying = false
+    @status = 'landed'
   end
 
-  def take_off
-    @flying = true
+  def off
+    @status = 'flying'
   end
 
-  def flying?
-    @flying
-  end
-
-  def landed?
-    !@flying
+  def status
+    @status
   end
 end
