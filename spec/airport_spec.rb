@@ -29,12 +29,11 @@ describe Airport do
 
   describe 'landing' do
     it {expect(subject).to respond_to(:land).with(1).argument}
-    xit 'receives a plane'
   end
 
   describe 'traffic control' do
     it 'raises an error when full' do
-      50.times {subject.land Plane.new}
+      subject.capacity.times {subject.land Plane.new}
       expect{ subject.land Plane.new }.to raise_error 'Airport full'
     end
 
