@@ -18,7 +18,7 @@ describe Plane do
 
   it { expect(subject).to be_flying }
 
-  it{ expect(subject).to respond_to :land}
+  it { expect(subject).to respond_to :land }
 
   it 'is landed after landing' do
     plane = Plane.new
@@ -26,7 +26,7 @@ describe Plane do
     expect(plane).to be_landed
   end
 
-  it { expect(subject).to respond_to :take_off}
+  it { expect(subject).to respond_to :take_off }
 
   it 'is flying after take off' do
     plane = Plane.new
