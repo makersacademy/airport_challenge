@@ -15,8 +15,7 @@ class Plane
   end
 
   def departing?
-    if @stormy == false && pilot.depart? == true
-    end
+    !@flying
   end
 
   def reported_flying
@@ -25,6 +24,10 @@ class Plane
 
   def flying?
     @flying
+  end
+
+  def reported_bad_weather
+    @flying = false
   end
 
 end
