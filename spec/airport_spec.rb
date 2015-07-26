@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -14,15 +15,21 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
-
-    xit 'releases a plane'
+   # xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to :take_off
+    end
+   xit 'releases a plane'
+   
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
+   # xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
+   xit 'receives a plane'
+   
   end
 
   describe 'traffic control' do
@@ -42,7 +49,12 @@ describe Airport do
     context 'when weather conditions are stormy' do
       xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
+    # xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.random_weather(3)
+        plane = Plane.new
+        expect{ subject.land plane }.to raise_error "Weather is stormy. You may not land at #{subject.class.name}"
+      end
     end
   end
 end
