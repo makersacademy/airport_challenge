@@ -4,7 +4,7 @@ class Airport
 
   attr_reader :planes, :capacity
 
-  def initialize(capacity=20)
+  def initialize(capacity = 20)
     @planes = []
     @capacity = capacity
   end
@@ -24,7 +24,7 @@ class Airport
   end
 
   def weather
-   ["sunny", "stormy"].sample
+    ["sunny", "stormy"].sample
   end
 
   private
