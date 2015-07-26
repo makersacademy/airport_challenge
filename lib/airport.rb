@@ -5,36 +5,36 @@ class Airport
   attr_reader :gates
   attr_accessor :weather
   def initialize
-	@airport_capacity = NUMBER_OF_GATES
-	@name 
-	@gates =[]
-	@weather = WEATHER
+    @airport_capacity = NUMBER_OF_GATES
+    @name 
+    @gates =[]
+    @weather = WEATHER
   end
 
   def get_capacity
-	@airport_capacity
+    @airport_capacity
   end
 
   def get_weather
-	@weather.sample
+    @weather.sample
   end
 
   def accept_plane(plane)
-	fail "No gates available" if airport_full?
+    fail "No gates available" if airport_full?
     fail "Weather is stormy" if get_weather == "stormy"
-	@gates << plane
+    @gates << plane
   end
 
   def release_plane(plane)
-	fail "Weather is stormy" if get_weather == "stormy"
-	@gates.delete(plane)
+    fail "Weather is stormy" if get_weather == "stormy"
+    @gates.delete(plane)
   end
 
   def airport_full?
-	@gates.count >= @airport_capacity
+    @gates.count >= @airport_capacity
   end
 
   def plane_count
-	@gates.size
+    @gates.size
   end
 end
