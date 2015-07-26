@@ -18,8 +18,15 @@ require 'airport'
     let(:landing_plane){double(:plane, land: true )}
 
     describe '#reuqest_landing' do
-      it 'requests planes to land' do
-        expect(subject.request_landing landing_plane).to eq(true)
+      it 'receives a plane when successful' do
+        subject.request_landing(landing_plane)
+        expect(subject.planes).to include(landing_plane)
+      end
+    end
+
+    describe '#landing_authorisation' do
+      it 'sends request to plane to land' do
+        expect(subject.landing_authorisation landing_plane).to eq(true)
       end
     end
 
