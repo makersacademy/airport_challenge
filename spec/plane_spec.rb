@@ -38,6 +38,5 @@ describe Plane do
   	subject.take_off
   	expect(subject).to be_flying
   end
-
-
+  
 end
