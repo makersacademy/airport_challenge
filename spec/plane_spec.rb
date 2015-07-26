@@ -15,12 +15,17 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
+  it { is_expected.to respond_to :flying? }
 
   xit 'is flying when created'
 
-  xit 'can land'
+  xit 'can land' do
+    it { is_expected.to respond_to :permission_to_land? }
+  end
 
-  xit 'is landed after landing'
+  xit 'is landed after landing' do
+    it { is_expected.to respond_to :landed }
+  end
 
   xit 'can take off'
 
