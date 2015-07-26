@@ -19,8 +19,7 @@ class Plane
 	end
 
 	def take_off airport 
-		airport.plane_out(self)
-		@flying = true
+		@flying = airport.plane_out(self)
 	end
 
 end

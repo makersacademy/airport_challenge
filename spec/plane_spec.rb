@@ -1,5 +1,4 @@
 require 'plane'
-# require 'airport'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -14,7 +13,7 @@ require 'plane'
 #
 # Think about your implementation - does it allow a plane to be "flying" and landed?
 # Are you testing that?
-
+ 
 describe Plane do
 
   it 'is flying when created' do
@@ -29,7 +28,7 @@ describe Plane do
 
   it 'is landed after landing' do
     airport = double()
-    allow(airport).to receive(:plane_in).with(subject).and_return(true) # bring this up in stand up
+    allow(airport).to receive(:plane_in).with(subject).and_return(true) 
     subject.land airport
   	expect(subject).not_to be_flying
   end
@@ -38,18 +37,18 @@ describe Plane do
     airport = double()
     allow(airport).to receive(:plane_in).and_return(false)
     Plane.new.land airport
-    expect(Plane.new.land airport).to be true #another cheat
+    expect(Plane.new.land airport).to be true # is this a cheat
   end 
 
   it 'can take off' do
   	airport = double()
-    allow(airport).to receive(:plane_out)
-  	expect(subject.take_off airport).to be true # this is a cheat. fix.
+    allow(airport).to receive(:plane_out).and_return(true)
+  	expect(subject.take_off airport).to be true # is this a cheat
   end
 
   it 'is flying after take off' do
     airport = double()
-    allow(airport).to receive(:plane_out)
+    allow(airport).to receive(:plane_out).and_return(true)
     subject.take_off airport
   	expect(subject).to be_flying
   end
