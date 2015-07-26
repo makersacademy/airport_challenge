@@ -17,7 +17,7 @@ require 'plane'
 describe Plane do
 
   it 'can land' do
-    expect(subject).to respond_to(:land)
+    expect(subject).to respond_to(:lands)
   end
 
   it 'can fly' do
@@ -29,7 +29,7 @@ describe Plane do
   end
 
   it 'is landed after land' do
-    subject.land
+    subject.lands
     expect(subject.landed?).to eq true
   end
 
@@ -44,7 +44,7 @@ describe Plane do
   end
 
   it 'should return true for landed? after land' do
-    subject.land
+    subject.lands
     expect(subject).to_not be_flying
   end
 end
