@@ -32,6 +32,8 @@ class Airport
     ['stormy', 'sunny', 'sunny', 'sunny', 'sunny', 'sunny', 'sunny', 'sunny'].sample
   end
 
+  private
+
   def stormy?
     weather_control == 'stormy' ? true : false
   end
