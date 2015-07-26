@@ -13,5 +13,9 @@ class Airport
   def let_take_off plane
     plane.take_off
   end
+
+  def let_land plane
+    plane.land
+  end
 end
 
