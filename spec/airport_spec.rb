@@ -13,22 +13,26 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
-
-    xit 'releases a plane'
+  describe 'airport' do
+    it 'does an airport have some capacity' do
+      expect(subject).to respond_to :capacity
+    end
+    it 'inventory goes up when plane comes in and down when plane leaves' do 
+      pln = double()
+      allow(subject).to receive(:weather_state).and_return(true) 
+      expect{ subject.plane_in pln }.to change{ subject.plane_size }.from(0).to(1)
+      expect{ subject.plane_out pln }.to change{ subject.plane_size }.from(1).to(0)      
+    end
   end
-
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
-  end
-
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        pln = double()
+        subject.plane_in pln
+        expect(subject.plane_in pln).to be false
+      end
     end
+  
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -40,9 +44,19 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        allow(subject).to receive(:weather_state).and_return(false) 
+        expect(subject.plane_in :plane).to be false
+      end
+
+      it 'does not allow a plane to take off' do
+        allow(subject).to receive(:weather_state).and_return(false) 
+        expect(subject.plane_out :plane).to be false
+      end
+
+
     end
+
   end
 end
