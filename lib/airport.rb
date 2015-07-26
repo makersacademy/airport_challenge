@@ -1,31 +1,23 @@
-require 'plane'
+require_relative 'plane'
 class Airport
-  DEFAULT_CAPACITY = 20
-  attr_accessor :capacity
   def initialize
     @planes = []
-    @capacity = DEFAULT_CAPACITY
-    @plane = @planes.shuffle.pop
   end
 
-  def release_plane
-    fail 'Plane not at airport' if planes_landed.empty?
-    @planes.delete planes_landed.pop
+  def take_off
+    fail 'Plane is already flying' if landed_planes.empty?
+    @planes.pop
   end
 
-  def dock_plane
-    fail 'Airport full' if full?
+  def dock plane
     @planes << plane
   end
 
-  private
+private
+attr_reader :planes
 
-  attr_reader :planes
+def landed_planes
+  @planes.reject { | plane | plane.flying?}
+end
 
-  def full?
-    @planes.count >= capacity
-  end
-
-  def planes_landed
-    @planes.select { | plane | plane.landed? }
 end

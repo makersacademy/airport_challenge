@@ -12,18 +12,18 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-  it { is_expected.to respond_to :dock_plane.with(1).argument }
-  it { is_expected.to respond_to :release_plane }
+  it { is_expected.to respond_to :dock.with(1).argument }
+  it { is_expected.to respond_to :take_off }
 
   describe '#take_off' do
     xit 'instructs a plane to take off'
-    subject.release_plane
+    subject.take_off
     expect(@plane).to be_landed
   end
 
     xit 'releases a plane'
-      it 'raises an error when plane is flying' do
-        expect { subject.release_plane }.to raise_error 'Plane is flying'
+    it 'raises an error when plane is flying' do
+      expect { subject.take_off }.to raise_error 'Plane is flying'
   end
 
   describe '#landing' do
@@ -33,16 +33,17 @@ describe Airport do
     expect(plane).to be_flying
     xit 'receives a plane'
       it 'raises an error when plane is landed' do
-        expect { subject.dock_plane }.to raise_error 'Plane is in airport already'
+        expect { subject.dock_plane }.to raise_error 'Plane is landed'
       end
   end
 
   describe '#traffic_control' do
     it 'Keeps plane from landing or departing'
+      subject.traffic_control
 
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
-        expect { subject.dock_plane }.to raise_error 'Airport full, plane cannot land'
+    xit 'does not allow a plane to land'
+        expect { subject.dock_plane }.to raise_error 'Airport full'
     end
 
     # Include a weather condition.
@@ -56,11 +57,11 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       xit 'does not allow a plane to take off'
-        expect { subject.release_plane }.to raise_error 'Inclement weather, cannot take off'
+        expect { subject.take_off }.to raise_error 'Inclement weather, cannot take off'
 
 
       xit 'does not allow a plane to land'
-        expect { subject.release_plane }.to raise_error 'Inclement weather, cannot land'
+        expect { subject.take_off }.to raise_error 'Inclement weather, cannot land'
     end
   end
 end

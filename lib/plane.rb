@@ -7,7 +7,7 @@ class Plane
   end
 
   def landing?
-    @flying && airport.traffic_control == true
+    @flying
   end
 
   def landed?
@@ -16,13 +16,15 @@ class Plane
 
   def departing?
     if @stormy == false && pilot.depart? == true
+    end
   end
 
   def reported_flying
     @flying = true
   end
 
-
   def flying?
     @flying
   end
+
+end
