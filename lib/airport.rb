@@ -17,8 +17,17 @@ class Airport
   end
 
   def let_land plane
+    traffic_control
     plane.land
     @landed_planes << plane
+  end
+
+  def traffic_control
+    fail 'Airport is full' if full?
+  end
+
+  def full?
+    landed_planes.size == @capacity ? true : false
   end
 
 end
