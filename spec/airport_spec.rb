@@ -59,7 +59,7 @@ describe Airport do
       expect { subject.takes_off }.to raise_error 'No planes'
     end
 
-    it 'releases flying planes' do
+    it 'releases flying plane' do
       expect(plane).to receive :fly
       subject.takes_off
     end
@@ -94,6 +94,13 @@ describe Airport do
     end
   end
 
+  describe 'land' do
+    it 'should work, test for after refactoring' do
+      subject.land(plane, plane, plane)
+      expect(subject.planes.length).to eq 3
+    end
+  end
+
   describe '#landing' do
     it 'instructs a plane to land' do
       expect(subject).to respond_to(:landing).with(1).argument
@@ -104,7 +111,7 @@ describe Airport do
       expect(subject).not_to be_empty
     end
 
-    it 'lands landed planes' do
+    it 'lands landed plane' do
       expect(plane).to receive :lands
       subject.landing plane
     end
@@ -114,18 +121,39 @@ describe Airport do
     end
   end
 
-  # describe '#landings' do
-  #   it 'allows at most 3 planes to land' do
-  #     subject.landing plane, plane, plane
-  #     expect(subject.planes.length).to eq 3
-  #   end
-  # end
+  describe '#landings' do
+    it 'receive 3 planes' do
+      subject.landings(plane, plane, plane)
+      expect(subject.planes.length).to eq 3
+    end
+
+    it 'raises an error when more than 3 planes try to land' do
+      expect { subject.landings(plane, plane, plane, plane) }.to raise_error 'Too many planes'
+    end
+
+    it 'lands landed planes' do
+      [plane, plane, plane].each do |p|
+        expect(p).to receive :lands
+      end
+      subject.landings(plane, plane, plane)
+    end
+
+    let(:fake_plane) { double :fake_plane }
+    it 'only allows actual planes to land' do
+      expect { subject.landings(fake_plane, fake_plane, fake_plane) }.to raise_error "Not planes"
+    end
+  end
 
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         subject.capacity.times { subject.landing plane }
         expect { subject.landing plane }.to raise_error 'Airport full'
+      end
+
+      it 'does not allow planes to land' do
+        (subject.capacity - 1).times { subject.landing plane }
+        expect { subject.landings(plane, plane) }.to raise_error 'Airport full'
       end
     end
 
@@ -161,16 +189,16 @@ describe Airport do
     end
 
     context 'when weather conditions are stormy' do
-      it 'does not allow a plane to take off' do
+      it 'does not allow plane(s) to take off' do
         4.times { subject.landing plane }
         subject.change_weather(4)
         n = rand(3)
         expect { subject.take_off(n) }.to raise_error 'Not safe to take off'
       end
 
-      it 'does not allow a plane to land' do
+      it 'does not allow plane(s) to land' do
         subject.change_weather(4)
-        expect { subject.landing plane }.to raise_error 'Not safe to land'
+        expect { subject.land(plane, plane, plane) }.to raise_error 'Not safe to land'
       end
     end
   end

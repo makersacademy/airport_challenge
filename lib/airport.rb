@@ -38,22 +38,27 @@ class Airport
     end
   end
 
+  def land(plane, *args)
+    fail 'Not safe to land' if weather == 'stormy'
+    args.empty? ? landing(plane) : landings(plane, args)
+  end
+
   def landing(plane)
     fail 'Airport full' if full?
-    fail 'Not safe to land' if weather == 'stormy'
     fail 'Not a plane' unless plane.respond_to?(:lands)
     plane.lands
     planes << plane
   end
 
-  #   def landing(plane, *args)
-  #   fail 'Airport full' if full?
-  #   fail 'Not safe to land' if weather == 'stormy'
-  #   fail 'Not a plane' unless plane.respond_to?(:land)
-  #   arr = [plane] + args
-  #   arr.each(&:land)
-  #   planes += arr
-  # end
+  def landings(plane1, *args)
+    fail 'Airport full' if planes.length >= capacity - 1
+    arr = [plane1] + args
+    arr.flatten!
+    fail 'Too many planes' if arr.length > 3
+    fail 'Not planes' unless arr.all? { |p| p.respond_to?(:lands) }
+    arr.each(&:lands)
+    @planes += arr
+  end
 
   def full?
     planes.length >= capacity
