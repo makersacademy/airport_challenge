@@ -13,22 +13,30 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  let(:plane) {double(:airplane)}
+  #describe 'take off' do
+  #  xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
-  end
+  #  xit 'releases a plane'
+  #end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
-  end
-
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+  describe ' #call_landing' do
+    before(:each) do
+      allow(plane).to receive(:land)
     end
+      it 'instructs a plane to land' do
+        expect(subject).to respond_to(:call_landing).with(1).argument
+      end
+
+      it 'receives a plane' do
+        expect(subject.call_landing plane).to eq(plane)
+      end
+  end
+
+  #describe 'traffic control' do
+  #  context 'when airport is full' do
+  #    xit 'does not allow a plane to land'
+  #  end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -39,10 +47,10 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+  #  context 'when weather conditions are stormy' do
+  #    xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
-    end
-  end
+  #    xit 'does not allow a plane to land'
+  #  end
+  #end
 end
