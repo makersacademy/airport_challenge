@@ -17,10 +17,12 @@ describe Airport do
   before(:each) { allow(plane).to receive(:fly) }
 
   describe 'take off' do
+    xit 'instructs a plane to take off'
     it 'instructs a plane to take off' do
       expect(subject).to respond_to :take_off
     end
 
+    xit 'releases a plane'
     it "releases a plane" do
       subject.landing(plane)
       expect(subject.take_off).to eq plane
@@ -30,7 +32,7 @@ describe Airport do
       expect{subject.take_off}.to raise_error "Airport empty"
     end
 
-    it "ensures that taken off place status is flying" do
+    it "ensures that taken off plane status is flying" do
       subject.landing(plane)
       expect(plane).to receive :fly
       subject.take_off
