@@ -9,35 +9,34 @@ require 'airport'
 # and how that is implemented.
 #
 # If the airport is full then no planes can land
-
 describe Airport do
   let(:plane){double(:plane)}
   describe 'take off' do
     it 'instructs a plane to take off' do
-       allow(subject).to receive(:get_weather){"sunny"}
-       expect(subject).to respond_to(:release_plane)
-     end
+      #allow(subject).to receive(:get_weather){"sunny"}
+      expect(subject).to respond_to(:release_plane)
+    end
     it 'releases a plane' do
-       allow(subject).to receive(:get_weather){"sunny"}
-       subject.accept_plane(plane)
-       first_count = subject.plane_count
-       subject.release_plane(plane)
-       expect(subject.plane_count).to be < first_count
-     end
+      allow(subject).to receive(:get_weather){"sunny"}
+      subject.accept_plane(plane)
+      first_count = subject.plane_count
+      subject.release_plane(plane)
+      expect(subject.plane_count).to be < first_count
+    end
   end
 
   describe 'landing' do
     it 'instructs a plane to land' do
-       allow(subject).to receive(:get_weather){"sunny"}
-        expect(subject).to respond_to(:accept_plane)
-      end
+      #allow(subject).to receive(:get_weather){"sunny"}
+      expect(subject).to respond_to(:accept_plane)
+    end
 
     it 'receives a plane' do
-        first_count = subject.plane_count
-        allow(subject).to receive(:get_weather){"sunny"}
-        subject.accept_plane(plane)
-        expect(subject.plane_count).to be > first_count
-      end
+      first_count = subject.plane_count
+      allow(subject).to receive(:get_weather){"sunny"}
+      subject.accept_plane(plane)
+      expect(subject.plane_count).to be > first_count
+    end
   end
 
   describe 'traffic control' do
@@ -62,7 +61,7 @@ describe Airport do
         subject.accept_plane(plane)
         allow(subject).to receive(:get_weather){"stormy"}
         expect{subject.release_plane plane}.to raise_error "Weather is stormy"
-          end
+      end
       it 'does not allow a plane to land' do
         allow(subject).to receive(:get_weather){"stormy"}
         expect{subject.accept_plane plane}.to raise_error "Weather is stormy"

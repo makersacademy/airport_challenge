@@ -17,7 +17,7 @@ require 'plane'
 describe Plane do
   let(:airport){double(:airport)}
   it 'is flying when created' do
-  	expect(subject.report_status).to eq "Flying"
+    expect(subject.report_status).to eq "Flying"
   end
 
   it 'can land' do
