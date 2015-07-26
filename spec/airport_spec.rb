@@ -25,10 +25,10 @@ describe Airport do
        expect(plane).to receive(:land)
        subject.allow_to_land(plane)
      end
-  #    it 'receives a plane' do
-  #      subject.allow_to_land(plane)
-  #      expect(subject.planes).to_include(plane)
-  #    end
+     it 'receives a plane' do
+       subject.allow_to_land(plane)
+       expect(subject.planes).to include(plane)
+     end
     end
   #
   # describe 'traffic control' do
