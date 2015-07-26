@@ -29,7 +29,11 @@ describe Airport do
       subject.let_land(plane)
     end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      allow(plane).to receive(:land)
+      subject.let_land(plane)
+      expect(subject.landed_planes.size).to eq(1)
+    end
   end
 
   describe 'traffic control' do
