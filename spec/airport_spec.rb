@@ -24,12 +24,6 @@ require 'airport'
       end
     end
 
-    describe '#landing_authorisation' do
-      it 'tells plane to land' do
-        expect(subject.landing_authorisation landing_plane).to eq(true)
-      end
-    end
-
     describe '#request_take_off' do
       it 'releases plane when successful' do
         subject.planes << taking_off_plane
@@ -41,15 +35,6 @@ require 'airport'
         expect{subject.request_take_off taking_off_plane}.to raise_error "Plane is not at this airport"
       end
     end
-
-    describe '#take_off_authorisation' do
-      it 'it tells plane to take off' do
-      expect(subject.take_off_authorisation taking_off_plane).to eq(true)
-    end
-
-    end
-
-
 end
 
 
