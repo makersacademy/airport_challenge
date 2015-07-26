@@ -1,3 +1,5 @@
+https://travis-ci.org/katylouise/airport_challenge.svg?branch=master
+
 Airport Challenge
 =================
 
