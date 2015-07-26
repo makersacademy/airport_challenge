@@ -13,6 +13,9 @@ require 'airport'
 
 describe Airport do
 
+  let(:plane) {double('plane', flying?: true)}
+
+
   describe 'take off' do
     it {expect(subject).to respond_to :instruct_take_off}
 
@@ -21,7 +24,6 @@ describe Airport do
     end
 
     it 'should let a plane take off' do
-      plane = double :plane, flying?: true
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       allow(subject).to receive(:weather) {'sunny'}
@@ -37,8 +39,6 @@ describe Airport do
 
   describe 'traffic control' do
     it 'raises an error when full' do
-      plane = double :plane
-      allow(plane).to receive(:flying?) {true}
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       allow(subject).to receive(:weather) {'sunny'}
@@ -57,7 +57,6 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'will not allow a plane to take off' do
-        plane = double :plane, flying?: true
         allow(plane).to receive(:land)
         allow(plane).to receive(:take_off)
         subject.instruct_land plane
@@ -66,7 +65,6 @@ describe Airport do
       end
 
       it 'does not allow a plane to land' do
-      plane = double :plane, flying?: true
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       allow(subject).to receive(:weather) {'stormy'}
