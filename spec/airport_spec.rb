@@ -11,14 +11,25 @@ require 'airport'
 #
 # If the airport is full then no planes can land
 
+ describe "initial state of airport" do
+
+    it "will have spaces for planes" do
+      expect @plane == []
+    end
+
+    it "will have a capacity of 20 planes" do
+      airport = Airport.new
+      expect(airport.capacity).to eq 20
+    end
+
+  end
+
 describe Airport do
 
   describe 'take off' do
     it 'instructs a plane to take off' do
       expect(subject).to respond_to :take_off_clearance
     end
-
-    xit 'releases a plane'
       
   end
 
@@ -27,12 +38,21 @@ describe Airport do
       expect(subject).to respond_to :landing_clearance
     end
 
-    xit 'receives a plane'
+    # xit 'receives a plane' do
+      # plane = Plane.new
+      # plane.land
+      #expect(subject).not_to be_empty #LOST!
+    # end
+
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = Plane.new
+        subject.capacity.times {subject.land plane}
+        expect { subject.land plane }.to raise_error('Max capacity reached - airport is full')
+      end    
     end
 
     # Include a weather condition.
@@ -44,9 +64,14 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
+    #creating an error. Have spent all weekend staring at my screen - behind already.
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
-
+      it 'does not allow a plane to take off' do
+        allow(subject).to receive(:weather) { 'sunny' }
+        subject.land (plane)
+        allow(subject).to receive(:weather) { 'stormy' }
+        expect { subject.take_off(plane) }.to raise_error 'It is stormy - you cannot take off!'
+      end
       xit 'does not allow a plane to land'
     end
   end

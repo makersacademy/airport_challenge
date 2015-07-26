@@ -1,5 +1,3 @@
-require 'airport'
-
 class Plane
   attr_reader :plane_state
 
@@ -9,13 +7,13 @@ class Plane
 
   def landed?
     if @plane_state == "landed"
-    	return true
+    	true
     end
   end
 
   def flying?
     if @plane_state == "flying"
-    	return true
+    	true
     end
   end
 
