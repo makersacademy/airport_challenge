@@ -38,11 +38,10 @@ describe Airport do
       expect(subject).to respond_to :landing_clearance
     end
 
-    # xit 'receives a plane' do
-      # plane = Plane.new
-      # plane.land
-      #expect(subject).not_to be_empty #LOST!
-    # end
+     it 'receives a plane' do
+      airport = subject.land(plane)
+      expect(airport).to have_plane(plane)
+     end
 
   end
 
