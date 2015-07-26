@@ -15,9 +15,12 @@ describe Airport do
   let(:plane) { double(:plane) }
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      expect(plane).to receive(:land)
+    end
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+    end
   end
 
   describe 'landing' do
