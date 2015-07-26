@@ -21,6 +21,7 @@ let (:landed_plane) {double(:landed_plane, {:landed => true})}
 
   describe 'take off' do
     it 'instructs a plane to take off' do
+      subject.weather = 'sunny'
       subject.take_off_order
       expect(subject).to respond_to(:take_off_order)
     end
@@ -32,11 +33,13 @@ let (:landed_plane) {double(:landed_plane, {:landed => true})}
 
   describe 'landing' do
     it 'instructs a plane to land' do
+      subject.weather = 'sunny'
       subject.landing_order(flying_plane)
       expect(subject.planes).to include flying_plane
     end
 
     it 'receives a plane' do
+      subject.weather = 'sunny'
       expect(flying_plane).to receive(:landed=).with(true)
       subject.landing_order(flying_plane)
       subject.receive(flying_plane)
@@ -55,23 +58,25 @@ let (:landed_plane) {double(:landed_plane, {:landed => true})}
       end
 
       it 'does not allow a plane to land' do
+        subject.weather = 'sunny'
         expect {subject.capacity.times {subject.landing_order(flying_plane)}}.to raise_error "Airport is full"
       end
-  end
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+    end
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'responds to weather' do
+        expect(subject).to respond_to :weather
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to take off' do
+        subject.weather = 'stormy'
+        expect{subject.take_off_order}.to raise_error "Bad Weather - cannot take off for now"
+      end
+
+      it 'does not allow a plane to land' do
+        subject.weather = 'stormy'
+        expect{subject.landing_order(flying_plane)}.to raise_error "Bad Weather - cannot land for now"
+      end
     end
   end
 end
