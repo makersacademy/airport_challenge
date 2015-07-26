@@ -51,13 +51,17 @@ class Airport
   end
 
   def landings(plane1, *args)
-    fail 'Airport full' if planes.length >= capacity - 1
+    fail 'Airport full' if nearly_fully?
     arr = [plane1] + args
     arr.flatten!
     fail 'Too many planes' if arr.length > 3
     fail 'Not planes' unless arr.all? { |p| p.respond_to?(:lands) }
     arr.each(&:lands)
     @planes += arr
+  end
+
+  def nearly_fully?
+    planes.length >= capacity - 1
   end
 
   def full?

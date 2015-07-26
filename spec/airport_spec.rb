@@ -29,12 +29,14 @@ describe Airport do
     end
 
     it 'can only accept an integer' do
-      expect { described_class.new double :fake_number }.to raise_error 'Not an integer'
+      expect { described_class.new(double :fake_number) }
+        .to raise_error 'Not an integer'
     end
 
     it 'only accepts a positive integer' do
       random_capacity = -Random.rand(200)
-      expect { described_class.new(random_capacity) }.to raise_error 'Not positive'
+      expect { described_class.new random_capacity }
+        .to raise_error 'Not positive'
     end
   end
 
@@ -73,7 +75,8 @@ describe Airport do
 
     it 'raises an error when too many planes try to take off' do
       subject.landing plane
-      expect { subject.take_offs(4) }.to raise_error 'Too many planes taking off'
+      expect { subject.take_offs(4) }
+        .to raise_error 'Too many planes taking off'
     end
 
     it 'removes the planes from the airport' do
@@ -128,7 +131,8 @@ describe Airport do
     end
 
     it 'raises an error when more than 3 planes try to land' do
-      expect { subject.landings(plane, plane, plane, plane) }.to raise_error 'Too many planes'
+      expect { subject.landings(plane, plane, plane, plane) }
+        .to raise_error 'Too many planes'
     end
 
     it 'lands landed planes' do
@@ -140,7 +144,8 @@ describe Airport do
 
     let(:fake_plane) { double :fake_plane }
     it 'only allows actual planes to land' do
-      expect { subject.landings(fake_plane, fake_plane, fake_plane) }.to raise_error "Not planes"
+      expect { subject.landings(fake_plane, fake_plane, fake_plane) }
+        .to raise_error "Not planes"
     end
   end
 
@@ -198,7 +203,8 @@ describe Airport do
 
       it 'does not allow plane(s) to land' do
         subject.change_weather(4)
-        expect { subject.land(plane, plane, plane) }.to raise_error 'Not safe to land'
+        expect { subject.land(plane, plane, plane) }
+          .to raise_error 'Not safe to land'
       end
     end
   end
