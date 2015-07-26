@@ -25,6 +25,7 @@ class Airport
   def landing(plane)
     fail 'Airport full' if full?
     fail 'Not safe to land' if weather == 'stormy'
+    fail 'Not a plane' unless plane.respond_to?(:land)
     plane.land
     planes << plane
   end

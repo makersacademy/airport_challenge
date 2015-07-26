@@ -70,6 +70,10 @@ describe Airport do
       expect(plane).to receive :land
       subject.landing plane
     end
+
+    it 'only allows actual planes to land' do
+      expect { subject.landing double :fake_plane }.to raise_error "Not a plane"
+    end
   end
 
   describe 'traffic control' do
