@@ -45,7 +45,6 @@ describe Plane do
   end
 
 
-
    describe '#take_off' do
 
      it 'is flying after take off' do

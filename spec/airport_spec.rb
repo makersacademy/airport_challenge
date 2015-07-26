@@ -17,11 +17,22 @@ require 'airport'
     let(:taking_off_plane){double(:plane, take_off: true )}
     let(:landing_plane){double(:plane, land: true )}
 
+    it 'has a capacity' do
+      expect(subject).to respond_to(:capacity)
+    end
+
+
     describe '#request_landing' do
       it 'receives a plane when successful' do
         subject.request_landing(landing_plane)
         expect(subject.planes).to include(landing_plane)
       end
+
+      it "raises errror if over capacity" do
+        subject.capacity.times {subject.request_landing(landing_plane)}
+        expect{subject.request_landing(landing_plane)}.to raise_error "Airport is full"
+      end
+
     end
 
     describe '#request_take_off' do
@@ -35,6 +46,9 @@ require 'airport'
         expect{subject.request_take_off taking_off_plane}.to raise_error "Plane is not at this airport"
       end
     end
+
+
+
 end
 
 
