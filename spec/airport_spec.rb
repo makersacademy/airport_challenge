@@ -1,48 +1,45 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
+  describe 'weather' do
+    it 'sets sunny/stormy weather' do
+      expect(subject).to respond_to :weather_check
+    end
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
+    it 'responds to land method' do
+      expect(subject).to respond_to :land
+    end
   end
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+    it{is_expected.to respond_to(:land).with(1).argument}
+
+  describe 'traffic control' do #why doesn't this pass?
+    context 'when conditions are stormy' do
+      it 'does not allow planes to land' do
+        plane = double :plane
+        allow(subject).to receive(:weather_check){'stormy'}
+        expect(subject.land(plane)).to eq 'Stormy weather. Try later'
+      end
+
+    it 'does not allow planes to take off' do
+      allow(subject).to receive(:weather_check){'stormy'}
+      expect(subject.take_off(plane)).to eq 'Stormy weather. Try later'
+    end
     end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  context 'when airport full' do
+     it 'does not allow planes to land' do
+       plane = double :plane
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
-
-      xit 'does not allow a plane to land'
-    end
+       10.times{subject.land plane}
+       expect{subject.land plane}.to raise_error "No capacity at airport"
+     end
+   end
   end
 end
+
