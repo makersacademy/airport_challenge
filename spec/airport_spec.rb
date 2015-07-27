@@ -18,9 +18,8 @@ describe Airport do
     it 'releases a plane' do
       allow(subject).to receive(:get_weather) { "sunny" }
       subject.accept_plane(plane)
-      first_count = subject.plane_count
       subject.release_plane(plane)
-      expect(subject.plane_count).to be < first_count
+      expect(subject.plane_count).to eq 0
     end
   end
 
@@ -30,10 +29,9 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      first_count = subject.plane_count 
       allow(subject).to receive(:get_weather) { "sunny" }
       subject.accept_plane(plane)
-      expect(subject.plane_count).to be > first_count
+      expect(subject.plane_count).to eq 1
     end
   end
 

@@ -1,14 +1,14 @@
 class Airport
   NUMBER_OF_GATES = 5
-  WEATHER = ["stormy", "sunny", "sunny", "sunny", "sunny"]
+  #WEATHER = ["stormy", "sunny", "sunny", "sunny", "sunny"]
   attr_accessor :airport_capacity
   attr_reader :gates
-  attr_accessor :weather
+  attr_accessor :get_weather
   def initialize
     @airport_capacity = NUMBER_OF_GATES
     @name
     @gates = []
-    @weather = WEATHER
+    #@weather = WEATHER
   end
 
   def get_capacity
@@ -16,7 +16,7 @@ class Airport
   end
 
   def get_weather
-    @weather.sample
+    rand(5) == 0 ? "stormy" : "sunny"
   end
 
   def accept_plane(plane)
