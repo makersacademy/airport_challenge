@@ -1,5 +1,4 @@
 require 'plane'
-
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -13,17 +12,39 @@ require 'plane'
 #
 # Think about your implementation - does it allow a plane to be "flying" and landed?
 # Are you testing that?
-
 describe Plane do
+  let(:airport) { double(:airport) }
+  it 'is flying when created' do
+    expect(subject.report_status).to eq "Flying"
+  end
 
-  xit 'is flying when created'
+  it 'is not landed when created' do
+    expect(subject.report_status).not_to eq "Landed"
+  end
 
-  xit 'can land'
+  it 'can land' do
+    expect(subject).to respond_to(:land)
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+    allow(airport).to receive(:accept_plane)
+    allow(subject.land(airport))
+    expect(subject.report_status).to eq "Landed"
+  end
 
-  xit 'can take off'
+  it 'can take off' do
+    expect(subject).to respond_to(:take_off)
+  end
 
-  xit 'is flying after take off'
+  it 'is flying after take off' do
+    allow(airport).to receive(:release_plane)
+    subject.take_off(airport)
+    expect(subject.report_status).to eq "Flying"
+  end
 
+  it 'is not landed after take off' do
+    allow(airport).to receive(:release_plane)
+    subject.take_off(airport)
+    expect(subject.report_status).not_to eq "Landed"
+  end
 end
