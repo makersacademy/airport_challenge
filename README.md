@@ -1,28 +1,46 @@
 Airport Challenge
 =================
 
-Instructions
----------
+The Airport Challenge was the first weekend challenge at Makers Academy. It was designed  to test my capability of following principles of Test Driven Development and Object Orientated Design.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
+Installation
+----------------------
+The program runs as a command line application through a Ruby reply such as IRB or Pry.
 
-Steps
--------
+Clone the repository into a directory on the intended computer and open the reply on the directory. You will need to require lib/airport.rb and lib/plane.rb to use. Alternatively on OSX add an .irbrc file to the home directory with thus line:
+```Dir['./lib/*.rb'].each { |f| require f}```
+all files in lib directories will then be required automatically.
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_july2015 (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+Running Instructions
+-------------------------
 
-Task
------
+There are two classes available to create objects from **Airport** and **Plane**. Instances of these classes can be created.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client.
+Airport has query methods capacity and weather which can be called to check on the states of the capacity and weather.
+
+Capacity can be set on creation of instance by passing in number. If argument not provided the capacity defaults to 20.
+
+Weather changes state and can be either sunny or stormy. There is 3/4 chance it will be sunny. If stormy planes will not be allowed to take off or land.
+
+To take off or land planes use the **take_off** and **request_landing** methods on instances of the airport class passing in a plane.
+
+Example
+-----------
+```
+airbus = Plane.new
+=> #<Plane:0x007fd1fa924a18 @flying=true>
+heathrow = Airport.new
+=><Airport:0x007fd1fa8bbd60 @planes=[], @capacity=20>
+heathrow.request_landing airbus
+ => "landing successful"
+heathrow.request_take_off airbus
+=> "take_off successful"
+```
+
+
+
+User Stories:
+-------------
 
 ```
 As a pilot
@@ -42,29 +60,20 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing or taking off when the weather is stormy
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
+The stories were worked on in an granular way. Each feature was tested in IRB. If not avaiables an Rspec test was written to duplicate the feature test. Then the required code was written to pass the test.
 
-The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests. It is up to you to implement the tests and create additional tests as necessary.
+Domain Model:
+-------------
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+| Class | methods |
+|---|---|
+| AirPort | request_landing, request_take_off, planes, capacity, weather |
+| Plane | land, take_off, flying?, landed?|
 
-As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
 
-Please create separate files for every class, module and test suite. 
+This is the classes and main methods that were created with  test driven development from the stories. As the code was refactored more methods  added to add encapsulation and improve readability. They are triggered by the main methods above.
 
-The submission will be judged on the following criteria:
+To illustrate how the methods and classes were written on the first part of the user story after testing had created the need for Airport and Plane classes, airports needed to be able to be requested to allow a plane to land. A test was created to test if an instance of the Airport class had a take off method, unit test written and code passed, a test was created to test if when the method request_take_off is passed an instance of Plane it authorises it for take off. Again this test failed, a unit test was written in rspec and code was written to get the test to pass. Each part of the user story was added this way. The key is to design through the tests and write code to pass the tests.
 
-* Tests pass
-* Tests coverage is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
- 
-BONUS
-* Write an RSpec **feature** test that lands and takes off a number of planes...
+After tests a test had passed I then went through a cycle of refactoring to tidy up the code, remove repetition and give classes and methods single responsibilities.
 
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
-
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
