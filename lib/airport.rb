@@ -4,12 +4,16 @@ attr_reader :planes,:capacity, :weather
 
 DEFAULT_CAPACITY = 20
 DEFAULT_WEATHER = :sunny
-CHANCE_OF_STORM = 0.20
+CHANCE_OF_STORM = 0.35
 
-  def initialize (capacity = DEFAULT_CAPACITY, weather = DEFAULT_WEATHER)
+  def initialize (weather = DEFAULT_WEATHER, capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
     @weather = weather
+  end
+
+  def weather(set)
+    @weather = set
   end
 
   def possible_land?
@@ -48,8 +52,8 @@ CHANCE_OF_STORM = 0.20
   end
 
   def weather_check
-    :stormy if Random::rand(1.0) < CHANCE_OF_STORM
-    :sunny
+    @weather = :stormy if Random::rand(1.0) < CHANCE_OF_STORM
+    @weather
   end
 
 end

@@ -42,7 +42,8 @@ let(:airport){Airport.new}
     context 'traffic control' do
 
       it 'checks airport capacity when landing' do
-        expect(airport.possible_land?).to eq true
+      allow(airport).to receive(:weather_check).and_return(:sunny)
+      expect(airport.possible_land?).to eq true
       end
 
 
@@ -64,15 +65,21 @@ let(:airport){Airport.new}
 
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
-      storm = double :airport, :weather=>:stormy
-      allow(storm).to receive(:possible_take_off?)
-      expect(storm.possible_take_off?).to_not be true
+      # allow(airport).to receive(:stormy) { :stormy }
+      #storm = double :airport, :weather=>:stormy
+      # storm = Airport.new
+      allow(airport).to receive(:weather_check).and_return(:stormy)
+      # allow(storm).to receive(:possible_take_off?)
+      expect(airport.possible_take_off?).to eq false
     end
 
       it 'does not allow a plane to land' do
-      storm = double :airport, :weather=>:stormy
-      allow(storm).to receive(:possible_land?)
-      expect(storm.possible_land?).to_not be true
+      # #storm = double :airport, :weather=>:stormy
+      # allow(airport).to receive(:stormy) { :stormy }
+      # allow(airport).to receive(:possible_land?)
+      # sunny = Airport.new(:sunny)
+      allow(airport).to receive(:weather_check).and_return(:stormy)
+      expect(airport.possible_land?).to eq false
     end
 
     end
