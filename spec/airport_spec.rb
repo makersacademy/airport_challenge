@@ -13,36 +13,81 @@ require 'airport'
 
 describe Airport do
 
+it { is_expected.to respond_to :release_plane }
+
+it { is_expected.to respond_to(:land).with(1).argument }
+
+
   describe 'take off' do
-    xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
-  end
-
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
-  end
-
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+    it 'instructs a plane to take off' do
+      plane = double :plane, landing: false
+      allow(subject).to receive(:weather){'sunny'}
+      subject.land plane
+      expect(plane).to receive :take_off
+      subject.release_plane plane
     end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+    it 'releases a plane' do
+      plane = double :plane, take_off: true, landing: false
+      allow(subject).to receive(:weather){"sunny"}
+      subject.land plane
+      expect(subject.release_plane plane).to be plane
+    end
+
+    describe 'landing' do
+
+      it 'instructs plane to land - receives a plane' do
+        plane = double :plane, landing: false
+        subject.land plane
+        expect(subject).not_to be_empty
+      end
+
+    end
+  end
+  describe 'traffic control' do
+
+    it 'there is a DEFAULT capacity' do
+      expect(subject.capacity).to eq Airport::CAPACITY
+    end 
+    
+    context 'when airport is full' do
+
+      it 'does not allow a plane to land' do
+        plane = double :plane, landing: false
+        allow(subject).to receive(:weather){:sunny}
+        subject.capacity.times{subject.land plane}
+        expect{subject.land plane}.to raise_error 'Airport is full' 
+      end
+
+    describe 'Include a weather condition.' do
+    
+      it {is_expected.to respond_to :stormy?}
+    end
+#     # The weather must be random and only have two states "sunny" or "stormy".
+#     # Try and take off a plane, but if the weather is stormy,
+#     # the plane can not take off and must remain in the airport.
+#     #
+#     # This will require stubbing to stop the random return of the weather.
+#     # If the airport has a weather condition of stormy,
+#     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      
+      it 'does not allow a plane to take off' do
+        plane = double :plane, landing: false
+        allow(subject).to receive(:weather){"sunny"}
+        subject.land plane
+        allow(subject).to receive(:weather){"stormy"}
+        expect{subject.release_plane plane}.to raise_error 'Too stormy to take off'
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = double :plane, landing: false
+        allow(subject).to receive(:weather){"stormy"}
+        expect{subject.land plane}.to raise_error 'Too stormy to land'
+      end
     end
+  end
   end
 end
