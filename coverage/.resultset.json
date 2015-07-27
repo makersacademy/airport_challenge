@@ -297,13 +297,11 @@
       "/home/nitrous/MakersAcademy/airport_challenge/spec/airport_spec.rb": [
         1,
         1,
+        6,
+        1,
+        1,
         1,
         null,
-        1,
-        1,
-        1,
-        null,
-        1,
         1,
         1,
         1,
@@ -319,11 +317,9 @@
         1,
         1,
         1,
-        1,
         null,
         null,
         null,
-        1,
         1,
         1,
         1,
@@ -336,10 +332,8 @@
         1,
         1,
         1,
-        1,
         2,
         null,
-        1,
         1,
         1,
         2,
@@ -11364,6 +11358,6 @@
         null
       ]
     },
-    "timestamp": 1438026218
+    "timestamp": 1438029498
   }
 }
