@@ -14,20 +14,45 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
+
     xit 'instructs a plane to take off'
+    it { is_expected.to respond_to :take_off }
 
     xit 'releases a plane'
+    it 'releases landed planes' do
+      plane = double :plane, flying?: true
+      subject.landing plane
+      expect(subject.take_off).to be plane
+    end
+
+    xit 'raises an error when your plane is not at this airport'
+    it 'raises an error when your plane is not here' do 
+      expect { subject.take_off }.to raise_error 'Your plane is not here'
+    end
+
   end
 
   describe 'landing' do
     xit 'instructs a plane to land'
-
     xit 'receives a plane'
+    it { is_expected.to respond_to(:landing).with(1).argument }
+
+    
   end
 
   describe 'traffic control' do
+
     context 'when airport is full' do
       xit 'does not allow a plane to land'
+      xit 'raises an error when the airport is full' 
+      it 'raises an error when full' do
+        subject.capacity.times {subject.landing double :plane }
+        expect { subject.landing double :plane }.to raise_error 'Airport full'
+      end
+       xit 'set a default capacity'
+      it 'has a default capacity' do
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
     end
 
     # Include a weather condition.
@@ -40,9 +65,16 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
+
+      # xit 'does not allow a plane to take off'
+      # it 'does not allow a plane to take off when the weather is stormy' do
+      #     expect { subject.take_off double :plane }.to raise_error 'the weather is stormy'
+      # end
+      # xit 'does not allow a plane to land'
+      # it 'does not allow a plane to land when the weather is stormy' do
+      #   expect { subject.landing double :plane }.to raise_error 'the weather is stormy'
+      # end
     end
   end
 end
