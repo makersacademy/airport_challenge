@@ -1,29 +1,21 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
 
-# When we create a new plane, it should be "flying",
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# be "landed"
-#
-# When the plane takes of from the airport, it should be "flying" again
-#
-# Think about your implementation - does it allow a plane to be "flying" and landed?
-# Are you testing that?
 
-describe Plane do
+describe Plane do 
+  let :airport do
+    double 'airport', :notified_take_off => "take_off",
+                      :notified_landing  => "landing"
+  end
 
-  xit 'is flying when created'
+  it "#takes off" do
+    expect( subject ).to receive( :puts ).with( "Plane on air!" )
+    subject.take_off airport
+  end
 
-  xit 'can land'
-
-  xit 'is landed after landing'
-
-  xit 'can take off'
-
-  xit 'is flying after take off'
-
+  it "#lands" do
+    expect( subject ).to receive( :puts ).with( "Plane on land!" )
+    subject.land airport
+  end
 end
+
