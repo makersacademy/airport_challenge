@@ -13,11 +13,14 @@ require 'airport'
 
 # To-do
 # -----
-# I need to find a way to default weather to sunny, and then set stormy?
+# I need to find a way to default the weather to sunny, and then set stormy?
 # to true just for the context in which the severe weather's effect is being
 # tested
 
 describe Airport do
+
+  let(:flying_plane) { double :flying_plane, status: 'flying' }
+  let(:grounded_plane) { double :flying_plane, status: 'grounded' }
 
   describe 'take off' do
     it 'instructs a plane to take off' do
@@ -43,6 +46,11 @@ describe Airport do
       subject.landing plane
       expect(subject.planes).to include(plane)
     end
+
+    xit 'all landed planes have a status of grounded' do
+      expect(flying_plane).to receive(:status=).with 'grounded'
+      subject.landing(:flying_plane)
+    end
   end
 
   describe 'traffic control' do
@@ -64,7 +72,7 @@ describe Airport do
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,
     # the plane can not take off and must remain in the airport.
-    #
+
     # This will require stubbing to stop the random return of the weather.
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport

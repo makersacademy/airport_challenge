@@ -7,7 +7,6 @@ class Airport
   def initialize
     @planes = []
     @capacity = 10
-    @severe_weather
   end
 
   def take_off
@@ -19,6 +18,7 @@ class Airport
   def landing(plane)
     fail 'Airport full. Unable to land' if full?
     fail 'Severe weather. Unable to land' if stormy?
+    # plane.status=('grounded')
     planes << plane
   end
 
