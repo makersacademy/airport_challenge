@@ -1,22 +1,22 @@
 class Plane
   def initialize
-    @status = 'flying'
+    @status = :flying
   end
 
   def flying?
-    @status == 'flying'
+    @status == :flying
   end
 
   def landed?
-    @status == 'landed'
+    @status == :landed
   end
 
   def lands
-    @status = 'landed'
+    @status = :landed
   end
 
   def fly
-    @status = 'flying'
+    @status = :flying
   end
 end
 

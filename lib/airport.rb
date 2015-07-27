@@ -10,17 +10,13 @@ class Airport
     fail 'Not positive' unless capacity > 0
     @planes = []
     @capacity = capacity
-    @weather = 'sunny'
+    @weather = :sunny
   end
 
-  def change_weather(n = rand(5))
-    n == 4 ? @weather = 'stormy' : @weather = 'sunny'
-  end
-
-  def take_off(n)
+  def take_off(number)
     change_weather
-    fail 'Not safe to take off' if weather == 'stormy'
-    n == 1 ? takes_off : take_offs(n)
+    fail 'Not safe to take off' if weather == :stormy
+    number == 1 ? takes_off : take_offs(number)
   end
 
   def takes_off
@@ -29,10 +25,10 @@ class Airport
     plane.tap(&:fly)
   end
 
-  def take_offs(n)
-    fail 'Not enough planes' if planes.length < n
-    if n == 2 || n == 3
-      plane = planes.pop(n)
+  def take_offs(number)
+    fail 'Not enough planes' if planes.length < number
+    if number == 2 || number == 3
+      plane = planes.pop(number)
       plane.each(&:fly)
     else
       fail 'Too many planes taking off'
@@ -41,7 +37,7 @@ class Airport
 
   def land(plane, *args)
     change_weather
-    fail 'Not safe to land' if weather == 'stormy'
+    fail 'Not safe to land' if weather == :stormy
     args.empty? ? landing(plane) : landings(plane, args)
   end
 
@@ -53,17 +49,17 @@ class Airport
   end
 
   def landings(plane1, *args)
-    arr = [plane1] + args
-    arr.flatten!
-    fail_checks(arr)
-    arr.each(&:lands)
-    @planes += arr
+    collection = [plane1] + args
+    collection.flatten!
+    fail_checks(collection)
+    collection.each(&:lands)
+    @planes += collection
   end
 
-  def fail_checks(arr)
-    fail 'Airport full' if planes.length > capacity - arr.length
-    fail 'Too many planes landing' if arr.length > 3
-    fail 'Not planes' unless arr.all? { |p| p.respond_to?(:lands) }
+  def fail_checks(collection)
+    fail 'Airport full' if planes.length > capacity - collection.length
+    fail 'Too many planes landing' if collection.length > 3
+    fail 'Not planes' unless collection.all? { |p| p.respond_to?(:lands) }
   end
 
   def full?
@@ -72,5 +68,12 @@ class Airport
 
   def empty?
     planes.empty?
+  end
+
+  private
+
+  def change_weather
+    n = rand(5)
+    n == 4 ? @weather = :stormy : @weather = :sunny
   end
 end
