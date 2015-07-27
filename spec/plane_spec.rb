@@ -17,8 +17,9 @@ require 'plane'
 describe Plane do
 
   it { is_expected.to be_flying }
-
   it { is_expected.to respond_to :land }
+
+  subject { Plane.new('London') }
 
 
   it 'is landed after landing' do

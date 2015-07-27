@@ -1,6 +1,8 @@
 class Plane
 	
-	def initialize
+	attr_reader :destination
+
+	def initialize (destination)
 		@flying = true
 		@destination = destination
 	end
@@ -14,6 +16,7 @@ class Plane
 	end
 
 	def land
+		fail 'Plane has already landed' if landed?
 		@flying = false
 	end
 
@@ -21,8 +24,8 @@ class Plane
 		@flying = true
 	end
 
-	def destination
-		['London', 'New York'].sample
-	end
+	# def destination
+	# 	['London', 'New York'].sample
+	# end
 
 end
