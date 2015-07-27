@@ -24,7 +24,7 @@ describe Airport do
 
 
     it 'releases a plane' do
-      expect(subject.instance_variable_get(:@planes)).to eql([])
+      expect(subject.instance_variable_get(:@airport)).to eql([])
       expect { subject.take_off?}.to raise_error 'Can not take off'
     end
    end
@@ -38,14 +38,13 @@ describe Airport do
       expect(subject.stub(:full?))
       expect { subject.landing?}.to raise_error 'Can not land plane'
     end
-
   end
 
   describe 'traffic control' do
       context 'when airport is full' do
-        it 'does not allow a plane to land' do
-          subject.capacity.times { subject.airport Airport.new }
-          expect { subject.airport Airport.new }.to raise_error 'Airport is full'
+        xit 'does not allow a plane to land' do
+          subject.capacity.times { subject.landing? Plane.new }
+          expect { subject.landing? Plane.new }.to raise_error 'Can not land plane'
         end
       end
 
