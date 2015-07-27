@@ -30,8 +30,8 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         plane = Plane.new
-        subject.capacity.times {subject.land(plane)}
-        expect{ subject.land(plane) }.to raise_error "#{subject.class.name} is full" 
+        subject.capacity.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error "#{subject.class.name} is full" 
       end
     end
 
@@ -40,12 +40,12 @@ describe Airport do
         plane = Plane.new
         subject.land plane
         subject.random_weather(3)
-        expect{ subject.take_off plane }.to raise_error "Weather is stormy. You may not take off from #{subject.class.name}"
+        expect { subject.take_off plane }.to raise_error "Weather is stormy. You may not take off from #{subject.class.name}"
       end
       it 'does not allow a plane to land' do
         subject.random_weather(3)
         plane = Plane.new
-        expect{ subject.land plane }.to raise_error "Weather is stormy. You may not land at #{subject.class.name}"
+        expect { subject.land plane }.to raise_error "Weather is stormy. You may not land at #{subject.class.name}"
       end
     end
   end

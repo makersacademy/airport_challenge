@@ -1,7 +1,6 @@
 require_relative 'plane'
 class Airport
-  DEFAULT_CAPACITY = 5
-  
+  DEFAULT_CAPACITY = 5  
   attr_reader :capacity 
   
   def initialize(capacity=DEFAULT_CAPACITY)
@@ -36,8 +35,7 @@ class Airport
     end
   end
   
-  private
-  
+  private  
   attr_accessor :planes
   
   def full?
@@ -46,6 +44,5 @@ class Airport
   
   def empty?
     planes.empty?
-  end   
-  
+  end     
 end
