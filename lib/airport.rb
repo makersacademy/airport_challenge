@@ -1,6 +1,8 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+  include Weather
 
   DEFAULT_CAPACITY = 100
 
@@ -52,9 +54,5 @@ class Airport
 
   def no_planes_available?
     planes.empty?
-  end
-
-  def weather_report
-    Random.rand(100) > 85 ? "stormy" : "sunny"
   end
 end
