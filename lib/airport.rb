@@ -14,27 +14,39 @@ PERCENTAGE_OF_DAYS_STORMY = 3
   end
 
   def land(plane)
-    if @hanger.length >= @capacity && @weather == :stormy
-      fail 'There\'s no room here and it\'s too dangerous to land!'
-    elsif @weather == :stormy && @weather == :sunny
-      fail 'It\'s too dangerous to land!'
-    elsif @hanger.length >= @capacity
-      fail 'There\'s no room here'
-    else @hanger << plane
+    if at_capacity? && bad_weather?
+      fail "There's no room here and it's too dangerous to land!"
     end
+    if bad_weather? && !at_capacity?
+      fail 'It\'s too dangerous to land!'
+    end
+    if at_capacity? && good_weather?
+      fail 'There\'s no room here'
+    end
+
+    @hanger << plane
+  end
+
+  def bad_weather?
+    @weather == :stormy
+  end
+
+  def good_weather?
+    @weather == :sunny
+  end
+
+  def at_capacity?
+    @hanger.length >= capacity
   end
 
   def launch(plane)
     if @hanger.include?(plane) == false
-      fail 'That plane isn\'t here'
-    elsif @weather == :stormy
+      fail 'That plane is n\'t here'
+    elsif bad_weather?
       fail 'It\'s too dangerous to launch!'
-    else @hanger.delete(plane)
+    else
+      @hanger.delete(plane)
     end
-  end
-
-  def space_check
-    @capacity - @hanger.length
   end
 
   def weather

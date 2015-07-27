@@ -12,7 +12,7 @@ describe Airport do
   describe 'launch' do
     it 'raises an error when you try to launch a plane that isn\'t there' do
       subject.instance_variable_set(:@weather, :stormy)
-      subject.instance_variable_set(:@hanger, [:plane1rsr])
+      subject.instance_variable_set(:@hanger, [:plane1])
       expect { subject.launch(:plane2) }.to raise_error
       'That plane isn\'t here'
     end
@@ -45,8 +45,8 @@ describe Airport do
 
   describe 'land' do
     it 'raises a space + storm error' do
-      subject.instance_variable_set(:@weather, :stormy)
       Airport::DEFAULT_CAPACITY.times { subject.land(:plane) }
+      subject.instance_variable_set(:@weather, :stormy)
       expect { subject.land(:plane) }.to raise_error
       'There\'s no room here and it\'s too dangerous to land!'
     end
@@ -55,22 +55,6 @@ describe Airport do
   describe 'capacity' do
     it 'has a capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-    end
-  end
-
-  describe 'space_check' do
-    it 'can return its spare space, lowered when plane lands' do
-      subject.land(:plane)
-      expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY - 1)
-    end
-  end
-
-  describe 'space_check' do
-    it 'can return its spare space, raised when plane launches' do
-      subject.land(:plane1)
-      subject.land(:plane2)
-      subject.launch(:plane1)
-      expect(subject.space_check). to eq (Airport::DEFAULT_CAPACITY - 1)
     end
   end
 
