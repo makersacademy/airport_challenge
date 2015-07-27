@@ -61,12 +61,19 @@ describe Plane do
         extra_plane.pilot.land_plane(airport)
       end
 
-      expect{first_plane.land(airport)}.to raise_error "Airport is now full! Permission to land revoked!"
+      expect{first_plane.land(airport)}.to raise_error "Can't land, airport is full now!"
       expect(first_plane.pilot.permission_to_land).to be false
 
     end
 
-    xit "traffic controller is notified of final approach and is stopped if weather has changed to stormy"
+    it "traffic controller is notified of final approach and is stopped if weather has changed to stormy" do 
+      airport = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport)
+      airport.stub(:weather).and_return("Stormy, like hell on earth")
+      expect{plane.pilot.land_plane(airport)}.to raise_error "Airport is too stormy to land now!"
+    end
 
   end
 
@@ -141,8 +148,19 @@ describe Plane do
       plane.pilot.request_to_land(airport) 
       plane.land(airport)
       plane.pilot.request_to_take_off(airport)
-
       expect{plane.take_off(airport)}.to raise_error "This plane is currently located at the destination you have specified - enter a different destination"     
+    end
+
+    it 'cannot take off if the weather is stormy' do 
+      airport = Airport.new
+      airport2 = Airport.new
+      airport.stub(:weather).and_return("Glorious sunshine")
+      plane = Plane.new(airport)
+      plane.pilot.request_to_land(airport) 
+      plane.land(airport)
+      plane.pilot.request_to_take_off(airport2)
+      airport.stub(:weather).and_return("Stormy, like hell on earth")
+      expect{plane.take_off(airport2)}.to raise_error "Cannot take off when the weather is stormy"
     end
   end
 

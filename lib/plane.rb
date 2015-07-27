@@ -21,7 +21,11 @@ class Plane
 
 		if airport.full?
 			self.pilot.permission_to_land = false
-			fail "Airport is now full! Permission to land revoked!"
+			fail "Can't land, airport is full now!"
+		end
+
+		if airport.weather == "Stormy, like hell on earth"
+			fail "Airport is too stormy to land now!"
 		end
 
 		@flying = false
@@ -45,6 +49,10 @@ class Plane
 
 		if destination == self.location
 			fail "This plane is currently located at the destination you have specified - enter a different destination" 
+		end
+
+		if self.location.weather == "Stormy, like hell on earth"
+			fail "Cannot take off when the weather is stormy"
 		end
 		
 		plane = self.location.planes.index(self)

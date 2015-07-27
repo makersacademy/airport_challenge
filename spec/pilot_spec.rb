@@ -40,6 +40,22 @@ describe Pilot do
     			plane = Plane.new(airport)
     			expect{plane.pilot.request_to_land(airport2)}.to raise_error "Permission to land denied"
     		end
+
+    		# it "always sets pilot's permission to land status to false if permission is not granted" do 
+    		# 	# This definitely needs stubbing more elegantly (so weather doesn't need to be stubbed)
+    		#   # Can't work out how to stub the landing permission
+
+    		# 	airport = Airport.new
+    		# 	plane = Plane.new(airport)
+    		# 	airport.stub(:weather).and_return("Glorious sunshine")
+    		# 	plane.pilot.request_to_land(airport)
+    		# 	airport.stub(:weather).and_return("Stormy, like hell on earth")
+    		# 	plane.stub_chain(:pilot, :request_to_land).with(an_instance_of(Airport)) do 
+    		# 		false
+    		# 	end
+    		# 	plane.pilot.request_to_land(airport)
+    		# 	expect(plane.pilot.permission_to_land).to be false
+    		# end
     	end
 	end
 

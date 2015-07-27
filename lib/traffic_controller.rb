@@ -13,7 +13,7 @@ class TrafficController
 	def grant_permission_to_land?(pilot)
 		weather = generate_weather
 
-		if (pilot.plane.destination != self.location) || (self.location.full?) || (self.location.weather == "Stormy, like hell on earth")
+		if (pilot.plane.destination != self.location) || self.location.full? || self.location.weather == "Stormy, like hell on earth"
 			return false
 		else
 			return true
@@ -21,7 +21,9 @@ class TrafficController
 	end
 
 	def grant_permission_to_take_off?(pilot)
-		if pilot.plane.destination == self.location
+		weather = generate_weather
+
+		if pilot.plane.destination == self.location || self.location.weather == "Stormy, like hell on earth"
 			return false
 		else
 			return true

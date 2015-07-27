@@ -19,6 +19,18 @@ describe TrafficController do
 		expect(plane.pilot.permission_to_land).to be true
 	end
 
+	it 'can grant permission to pilots to take off' do 
+		airport = Airport.new
+		airport2 = Airport.new
+		airport.stub(:weather).and_return("Glorious sunshine")
+		plane = Plane.new(airport)
+		plane.pilot.request_to_land(airport)
+		plane.land(airport)
+		plane.pilot.request_to_take_off(airport2)
+
+		expect(plane.pilot.permission_to_take_off).to be true
+	end
+
 	it 'has a weather generator method' do 
 		airport = Airport.new
 		expect(airport.traffic_controller).to respond_to :generate_weather
@@ -65,6 +77,19 @@ describe TrafficController do
 			airport.stub(:weather).and_return("Stormy, like hell on earth")
 
 			expect{plane.pilot.request_to_land(airport)}.to raise_error "Permission to land denied"
+		end
+	end
+
+	context "when asked for permission to take off" do 
+		it "refuses if weather is stormy" do 
+			airport = Airport.new
+			airport2 = Airport.new
+			airport.stub(:weather).and_return("Glorious sunshine")
+			plane = Plane.new(airport)
+			plane.pilot.request_to_land(airport)
+			plane.land(airport)
+			airport.stub(:weather).and_return("Stormy, like hell on earth")
+			expect{plane.pilot.request_to_take_off(airport2)}.to raise_error "Permission to take off denied"
 		end
 	end
 end
