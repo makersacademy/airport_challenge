@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -14,20 +15,47 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      plane = double :plane
+      expect(plane).to receive :takeoff
+      subject.instruct_plane_to_take_off plane
+    end
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      plane = Plane.new
+      subject.instruct_plane_to_land plane
+      released_plane = subject.release_plane plane
+      expect(released_plane).to eq plane
+    end
+
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      plane = double :plane
+      expect(plane).to receive :land
+      subject.instruct_plane_to_land plane
+    end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+    plane = Plane.new
+    subject.instruct_plane_to_land plane
+    expect(subject).not_to be_empty
+    end
+
   end
 
   describe 'traffic control' do
+
+    it 'can check what the weather is' do
+      expect(subject).to respond_to :check_weather
+    end
+
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times { subject.receive_plane double(:plane) }
+        expect { subject.receive_plane double(:plane) }.to raise_error "Airport Full"
+      end
     end
 
     # Include a weather condition.
@@ -40,9 +68,18 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+        plane = double :plane, flying?: false
+        allow(subject).to receive(:weather) { :stormy }
+        expect{ subject.instruct_plane_to_take_off plane }.to raise_error("Cannot allow take off due to stormy weather")
+      end
 
-      xit 'does not allow a plane to land'
+
+      it 'does not allow a plane to land' do
+        plane = double :plane, flying?: false
+        allow(subject).to receive(:weather) { :stormy }
+        expect{ subject.instruct_plane_to_land plane }.to raise_error("Cannot allow land request due to stormy weather")
+      end
     end
   end
 end
