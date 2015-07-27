@@ -16,14 +16,48 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it 'has a destination' do
+   	plane = Plane.new "Paris"
+   	expect(plane.destination).to eq "Paris" 	
+  end
 
-  xit 'can land'
+  it 'is flying when created' do
+   	plane = Plane.new "Paris"
+   	expect(plane).to be_flying
+  end
+  
 
-  xit 'is landed after landing'
+  it 'function can_land exists' do
+   	plane = Plane.new "Paris"
+   	expect(plane).to respond_to :can_land
+	end
 
-  xit 'can take off'
+	it 'can_land' do
+		plane = Plane.new "Paris"
+		plane.can_land
+		expect {plane.can_land}.to raise_error 'the plane cannot land if it is not flying'
+	end
 
-  xit 'is flying after take off'
+  it 'is landed after landing' do
+  	plane = Plane.new "Paris"
+  	plane.can_land
+  	expect(plane).to be_landed
+	end
+  	
+  it 'function take off exists' do
+  	plane = Plane.new "Paris"
+  	expect(plane).to respond_to :can_take_off
+  end
+
+  it 'can take off' do
+  	plane = Plane.new "Paris"
+  	expect {plane.can_take_off}.to raise_error 'the plane cannot take off if it is not landed'
+  end
+
+#need to re do this method so it does not repeat the is fying when created test
+  it 'is flying after take off' do
+  	plane = Plane.new "Paris"
+  	expect(plane).to be_flying
+	end
 
 end
