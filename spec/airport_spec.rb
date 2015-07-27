@@ -38,6 +38,11 @@ describe Airport do
       allow(subject).to receive(:weather) { :stormy }
       expect { subject.request_landing plane }.to raise_error "weather unsafe"
     end
+
+    it "confirms successful" do
+      expect(subject.request_landing plane).to eq("landing successful")
+    end
+
   end
 
   describe "#request_take_off" do
@@ -57,6 +62,12 @@ describe Airport do
       allow(subject).to receive(:weather) { :stormy }
       expect { subject.request_take_off plane }.to raise_error "weather unsafe"
     end
+
+    it "confirms successful" do
+      subject.request_landing(plane)
+      expect(subject.request_take_off plane).to eq("take_off successful")
+    end
+
   end
 end
 

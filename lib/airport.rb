@@ -14,7 +14,7 @@ class Airport
     capacity_check
     landing_authorisation plane
     receive_plane plane
-    landing_confirmation plane
+    landing_confirmation
   end
 
   def request_take_off plane
@@ -22,10 +22,11 @@ class Airport
     correct_airport_check plane
     take_off_authorisation plane
     release_plane plane
+    take_off_confimation
   end
 
   def weather
-    [:sunny, :stormy].sample
+    rand(5) == 0 ? :stormy : :sunny
   end
 
   private
@@ -46,8 +47,8 @@ class Airport
     @planes << plane
   end
 
-  def landing_confirmation plane
-    "plane #{plane} has landed at #{self}"
+  def landing_confirmation
+    "landing successful"
   end
 
   def weather_conditions_check
@@ -68,6 +69,10 @@ class Airport
 
   def release_plane plane
     @planes.delete plane
+  end
+
+  def take_off_confimation
+    "take_off successful"
   end
 end
 
