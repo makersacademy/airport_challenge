@@ -10,26 +10,50 @@ require 'airport'
 # and how that is implemented.
 #
 # If the airport is full then no planes can land
-
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+let(:plane){ double :plane, airborne?:true}
+let(:airport){Airport.new}
 
-    xit 'releases a plane'
+
+  it { is_expected.to respond_to(:request_take_off).with(1).argument }
+  it { is_expected.to respond_to(:request_land).with(1).argument }
+
+
+  describe '#request_land' do
+    it 'instructs a plane to land and receives plane' do
+    allow(plane).to receive(:ground)
+    airport.request_land(plane)
+    expect(airport.planes.pop).to eq plane
+  end
+    ###ALTERNATE TO MAKING ABOVE WORK WOULD BE TO DO expect(airport.planes).to eq [plane]
+
+
+  describe '#request_take_off' do
+    it 'instructs a plane to take off, then releases a plane' do
+    allow(plane).to receive(:ground)
+    allow(plane).to receive(:fly_away)
+    airport.request_land(plane)
+    airport.request_take_off(plane)
+    expect(airport).to be_empty
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
 
-    xit 'receives a plane'
-  end
+    context 'traffic control' do
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'checks airport capacity when landing' do
+      allow(airport).to receive(:weather_check).and_return(:sunny)
+      expect(airport.possible_land?).to eq true
+      end
+
+
+      it 'when airport is full, does not allow a plane to land' do
+        allow(plane).to receive(:ground)
+        airport.capacity.times{ airport.request_land(plane) }
+        expect{airport.request_land(plane)}.to raise_error
+      end
+
     end
-
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
     # Try and take off a plane, but if the weather is stormy,
@@ -40,9 +64,27 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+      # allow(airport).to receive(:stormy) { :stormy }
+      #storm = double :airport, :weather=>:stormy
+      # storm = Airport.new
+      allow(airport).to receive(:weather_check).and_return(:stormy)
+      # allow(storm).to receive(:possible_take_off?)
+      expect(airport.possible_take_off?).to eq false
+    end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+      # #storm = double :airport, :weather=>:stormy
+      # allow(airport).to receive(:stormy) { :stormy }
+      # allow(airport).to receive(:possible_land?)
+      # sunny = Airport.new(:sunny)
+      allow(airport).to receive(:weather_check).and_return(:stormy)
+      expect(airport.possible_land?).to eq false
+    end
+
     end
   end
 end
+end
+
+
