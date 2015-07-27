@@ -7,16 +7,16 @@ class Plane
     @weather = []
   end
 
-  def landing?
-    @flying
+  def can_land?
+    @flying && self.stormy? == false
   end
 
   def landed?
     !@flying
   end
 
-  def departing?
-    !@flying
+  def can_take_off?
+    !@flying && self.stormy? == false
   end
 
   def reported_flying

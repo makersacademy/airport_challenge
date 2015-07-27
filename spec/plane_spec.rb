@@ -37,12 +37,12 @@ describe '#landed?' do
     expect(subject).to be_landed
   end
 
-  xit 'can take off'
+  it 'can take off'
     subject.landed?
     expect(subject).not_to be_flying
   end
 
-  xit 'is flying after take off'
+  it 'is flying after take off'
     subject.take_off
     expect(subject).to be_flying
   end

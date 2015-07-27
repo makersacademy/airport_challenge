@@ -11,18 +11,20 @@ class Airport
   def take_off
     fail 'Plane is already flying' if landed_planes.empty?
     @planes.delete landed_planes.pop
+    fail 'Inclement weather' if bad_weather
   end
 
   def dock plane
-    fail 'Airport full' if full?
-    fail 'Inclement weather' if bad_weather?
+    fail 'Airport is full' if full?
+    fail 'Inclement weather' if bad_weather
     @planes << plane
   end
 
-
-
 private
 attr_reader :planes
+
+def flying_planes
+  @planes.select { | plane | plane.flying?}
 
 def landed_planes
   @planes.reject { | plane | plane.flying?}
