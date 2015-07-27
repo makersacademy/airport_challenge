@@ -9,17 +9,11 @@ class Airport
 	DEFAULT_CAPACITY = 1
 
 	#Objects from the class plane needed. To be substituted with doubles.
-	def initialize 
+	def initialize (capacity=DEFAULT_CAPACITY)
 	plane = Plane.new
 	@planes = [] 
 	@capacity = capacity
 	end
-
-	#Method to define the default and constumized capacity of an airport
-	def capacity (capacity=DEFAULT_CAPACITY)
-		@capacity = capacity
-	end
-
 
 	#The following method let a plane to land on an airport. 
 	#The status of the plane changes from flying to not flying.
@@ -30,7 +24,7 @@ class Airport
 		fail 'The airport is full. No landings are possible.' if full?
 		plane = plane.landed?
 		@planes << plane
-		return 'Your flight has landed'
+		puts 'Your flight has landed'
 
 	end
 
@@ -43,17 +37,17 @@ class Airport
 		plane = plane.departed?
 		@planes[@planes.size - 1] = true
 		@planes.delete(true)
-		return 'Your flight has departed'
+		puts 'Your flight has departed'
 	end
 
 
 
 	private
 
-	attr_reader :bikes
+	attr_reader :planes
 
 	def full?
-		@planes.size >= capacity
+		planes.count >= capacity
 	end
 
 
