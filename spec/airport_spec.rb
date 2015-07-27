@@ -55,11 +55,12 @@ describe Airport do
 
     describe 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
+        error_message = "Weather is stormy"
         allow(subject).to receive(:get_weather) { "sunny" }
         subject.accept_plane(plane)
         allow(subject).to receive(:get_weather) { "stormy" }
-        expect { subject.release_plane plane }.to raise_error
-         "Weather is stormy"
+        expect { subject.release_plane plane }.to raise_error error_message
+         
       end
       it 'does not allow a plane to land' do
         error_message = "Weather is stormy"

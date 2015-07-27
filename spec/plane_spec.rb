@@ -18,6 +18,10 @@ describe Plane do
     expect(subject.report_status).to eq "Flying"
   end
 
+  it 'is not landed when created' do
+    expect(subject.report_status).not_to eq "Landed"
+  end
+
   it 'can land' do
     expect(subject).to respond_to(:land)
   end
@@ -36,5 +40,11 @@ describe Plane do
     allow(airport).to receive(:release_plane)
     subject.take_off(airport)
     expect(subject.report_status).to eq "Flying"
+  end
+
+  it 'is not landed after take off' do
+    allow(airport).to receive(:release_plane)
+    subject.take_off(airport)
+    expect(subject.report_status).not_to eq "Landed"
   end
 end
