@@ -1,6 +1,5 @@
 require 'airport'
 
-
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
