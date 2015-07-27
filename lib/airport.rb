@@ -14,6 +14,7 @@ class Airport
     capacity_check
     landing_authorisation plane
     receive_plane plane
+    landing_confirmation plane
   end
 
   def request_take_off plane
@@ -43,6 +44,10 @@ class Airport
 
   def receive_plane plane
     @planes << plane
+  end
+
+  def landing_confirmation plane
+    "plane #{plane} has landed at #{self}"
   end
 
   def weather_conditions_check
