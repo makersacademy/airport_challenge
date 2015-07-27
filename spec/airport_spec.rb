@@ -55,6 +55,7 @@ describe Airport do
         it 'check plane destination' do
           plane_london = Plane.new "London"
           airport = Airport.new "Paris"
+          allow(airport).to receive(:weather?).and_return(false) 
           expect {airport.release_plane plane_london}.to raise_error 'wrong location we cannot release this plane'
         end
 
@@ -83,12 +84,14 @@ describe Airport do
           plane = Plane.new "Paris" 
           test_airport = Airport.new "Paris"
           v = test_airport.airport.length
+          allow(test_airport).to receive(:weather?).and_return(false) 
           expect(test_airport.receive_plane(plane).length).to eq (v + 1)
         end
 
         it 'check plane destination' do
           plane_london = Plane.new "London"
           airport = Airport.new "Paris"
+          allow(airport).to receive(:weather?).and_return(false) 
           expect {airport.receive_plane plane_london}.to raise_error 'wrong location we cannot accept this plane'
         end
     end
@@ -98,6 +101,7 @@ end
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         airport = Airport.new "Paris"
+        allow(airport).to receive(:weather?).and_return(false) 
         airport.capacity.times{ airport.receive_plane Plane.new "Paris" } 
         expect {airport.receive_plane Plane.new "Paris"}.to raise_error 'airport is full' 
       end
@@ -118,14 +122,14 @@ end
         plane = Plane.new "Paris"
         airport = Airport.new "Paris"
         airport.receive_plane plane
-        allow(airport).to receive(:weather?) {true} 
+        allow(airport).to receive(:weather?).and_return(true) 
         expect {airport.release_plane plane}.to raise_error 'the weather does not allow to take off'  
       end
 
       it 'does not allow a plane to land' do
         plane = Plane.new "Paris"
         airport = Airport.new "Paris"
-        allow(airport).to receive(:weather?) {true} 
+        allow(airport).to receive(:weather?).and_return(true)  
         expect {airport.receive_plane plane}.to raise_error 'the weather does not allow to land'
       end
 

@@ -54,6 +54,7 @@ describe Plane do
   	expect {plane.can_take_off}.to raise_error 'the plane cannot take off if it is not landed'
   end
 
+#need to re do this method so it does not repeat the is fying when created test
   it 'is flying after take off' do
   	plane = Plane.new "Paris"
   	expect(plane).to be_flying

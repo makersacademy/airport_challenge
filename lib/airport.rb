@@ -22,6 +22,7 @@ DEFAULT_CAPACITY = 2
 	end
 
 	def release_plane plane
+		#change weather to another word explaining the status
 		raise 'the weather does not allow to take off' if weather?
 		raise 'wrong location we cannot release this plane' if self.location != plane.destination
 		@airport.delete(plane)
@@ -31,8 +32,8 @@ DEFAULT_CAPACITY = 2
 	end
 
 	def weather? 
-	arr = ["sunny", "stormy"]
-	return arr[rand(2)] == "stormy"	
+	arr = [:sunny, :stormy]
+	return arr[rand(2)] == :stormy	
 	end
 
 	def inst_landing 
