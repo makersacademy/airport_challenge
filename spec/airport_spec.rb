@@ -13,10 +13,12 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double(:airplane) }
+  let(:weather) { double(:weather) }
+  subject { Airport.new(weather)}
 
   describe '#request_take_off' do
     before(:each) do
-      allow(subject).to receive(:weather_report) { "sunny" }
+      allow(weather).to receive(:weather_report) { "sunny" }
       allow(plane).to receive(:land)
       subject.request_landing plane
       allow(plane).to receive(:fly)
@@ -44,7 +46,7 @@ describe Airport do
 
   describe '#request_landing' do
     before(:each) do
-      allow(subject).to receive(:weather_report) { "sunny" }
+      allow(weather).to receive(:weather_report) { "sunny" }
       allow(plane).to receive(:land)
     end
 
@@ -71,7 +73,7 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       before(:each) do
-        allow(subject).to receive(:weather_report) { "sunny" }
+        allow(weather).to receive(:weather_report) { "sunny" }
         allow(plane).to receive(:land)
       end
       it 'does not allow a plane to land' do
@@ -92,7 +94,7 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       before(:each) do
-        allow(subject).to receive(:weather_report) { "stormy" }
+        allow(weather).to receive(:weather_report) { "stormy" }
       end
       it 'does not allow a plane to take off' do
         expect { subject.request_take_off }.to raise_error
