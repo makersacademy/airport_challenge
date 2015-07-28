@@ -14,7 +14,7 @@ require 'airport'
 describe Airport do
   let(:plane) { double(:airplane) }
   let(:weather) { double(:weather) }
-  subject { Airport.new(weather)}
+  subject { Airport.new(weather) }
 
   describe '#request_take_off' do
     before(:each) do
