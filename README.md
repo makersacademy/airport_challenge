@@ -1,3 +1,5 @@
+https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+
 Description
 
 This is a small program that allows the user to create airports & aeroplanes, and fly the planes from one airport to another, subject to weather conditions of course!
