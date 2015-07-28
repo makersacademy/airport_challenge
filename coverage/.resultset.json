@@ -75,6 +75,7 @@
       ],
       "/Users/zdajani/projects/airport_challenge/lib/airport.rb": [
         1,
+        1,
         null,
         1,
         1,
@@ -108,10 +109,6 @@
         null,
         1,
         1,
-        null,
-        1,
-        0,
-        null,
         null,
         1,
         6,
@@ -153,6 +150,13 @@
         null,
         null,
         null,
+        null,
+        null
+      ],
+      "/Users/zdajani/projects/airport_challenge/lib/weather.rb": [
+        1,
+        1,
+        0,
         null,
         null
       ],
@@ -199,6 +203,6 @@
         null
       ]
     },
-    "timestamp": 1434323363
+    "timestamp": 1438092304
   }
 }

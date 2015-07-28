@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
@@ -32,10 +33,6 @@ class Airport
 
   private
   attr_reader :planes
-
-  def weather
-    [:sunny, :sunny, :sunny, :stormy].sample
-  end
 
   def full?
     planes.count >= DEFAULT_CAPACITY
