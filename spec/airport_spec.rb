@@ -1,33 +1,24 @@
 require 'airport'
+require 'plane' #This has to be substituted for a double!!!!!
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  it { is_expected.to respond_to(:landing).with(1).argument } 
+  #First test: to see that the airport allows planes to land
 
-    xit 'releases a plane'
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
+  #Second test: to see that the airport has a default capacity
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  it { is_expected.to respond_to(:take_off).with(1).argument } 
+  #Third test: to see that the airport allows planes to take off
 
-    xit 'receives a plane'
-  end
-
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+  it 'raises an error when the airport is full' do
+      expect do
+      subject.capacity.times { subject.landing Plane.new}
+    end.to raise_error 'The airport is full. No landings are possible.'
     end
 
     # Include a weather condition.
@@ -39,10 +30,9 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+    #context 'when weather conditions are stormy' do
+     # xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
+      #xit 'does not allow a plane to land'
+
     end
-  end
-end
