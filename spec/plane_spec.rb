@@ -18,23 +18,28 @@ require 'plane'
 describe Plane do
 
   it "responds to flying" do
-    expect(subject).to respond_to :flying?
+    expect(subject).to be_flying
   end
 
   it "responds to landed" do
-    expect(subject).to respond_to :landed?
+    subject.land
+    expect(subject).to be_landed
   end
 
   it "is flying when created" do
-    expect(Plane.new.status).to eq :flying  
+    instance = Plane.new
+    expect(instance.status).to eq :flying  
   end 
 
   it "can land" do
-    expect(subject).to respond_to :land
+    subject.land
+    expect(subject).to be_landed
   end
 
   it "can take off" do
-    expect(subject).to respond_to :take_off
+    subject.land
+    subject.take_off
+    expect(subject).to be_flying
   end
 
   it "changes status after landing" do

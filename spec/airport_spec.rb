@@ -17,12 +17,16 @@ describe Airport do
 
    describe "initial state of airport" do
 
-    it "will have a capacity of 20 planes" do
+    it "will have a capacity of 3 planes" do
       airport = Airport.new
-      expect(airport.capacity).to eq 20
+      expect(airport.capacity).to eq 3
     end
-   
-  end
+
+    it "is sunny on creation" do
+      new_airport = Airport.new
+      expect(new_airport.weather_status).to eq "sunny"
+    end
+
 
   describe 'take off' do
     it 'instructs a plane to take off and plane takes off' do
@@ -47,8 +51,8 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         plane = Plane.new
-        20.times { subject.instruct_landing(plane) }
-        expect{subject.instruct_landing(plane)}.to raise_error
+        3.times { subject.instruct_landing(plane) }
+        expect{subject.instruct_landing(plane)}.to raise_error 'Airport is full'
       end
     end
 
@@ -78,6 +82,7 @@ describe Airport do
         allow(subject).to receive(:weather) { 'stormy' }
         expect { subject.instruct_landing(plane) }.to raise_error 'It is stormy - you cannot land!'
       end
-    end
   end
+end
+end
 end
