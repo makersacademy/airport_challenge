@@ -14,29 +14,42 @@ require 'plane'
 # Think about your implementation - does it allow a plane to be "flying" and landed?
 # Are you testing that?
 
+
 describe Plane do
 
-  it 'is flying when created' do
-  	expect(subject.flying?).to eq true
+  it "responds to flying" do
+    expect(subject).to respond_to :flying?
   end
 
-  it 'can land' do
-  	expect(subject).to respond_to :land
+  it "responds to landed" do
+    expect(subject).to respond_to :landed?
   end
 
+  it "is flying when created" do
+    expect(Plane.new.status).to eq :flying  
+  end 
 
-  it 'is landed after landing' do
-  	subject.land
-  	expect(subject).to be_landed
+  it "can land" do
+    expect(subject).to respond_to :land
   end
 
-  it 'can take off' do
-  	expect(subject).to respond_to :take_off
-  end	
-
-  it 'is flying after take off' do
-  	subject.take_off
-  	expect(subject).to be_flying
+  it "can take off" do
+    expect(subject).to respond_to :take_off
   end
-  
+
+  it "changes status after landing" do
+    instance = Plane.new
+    instance.land
+    expect(instance.status).to eq :landed
+  end
+
+  it "changes status after take_off" do
+    instance = Plane.new
+    instance.land
+    instance.take_off
+    expect(instance.status).to eq :flying
+  end
+
 end
+
+
