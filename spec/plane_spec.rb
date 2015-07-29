@@ -20,32 +20,32 @@ describe Plane do
   it { is_expected.to respond_to :landed?}
 
 
-describe '#flying?' do
-   it 'is flying when created' do
-    subject.flying? Plane.new
-  end
+  describe '#flying?' do
+    it 'is flying when created' do
+      subject.flying? Plane.new
+    end
 
-    it 'can land'
+    it 'can land' do
       subject.reported_flying
       expect(subject).to be_flying
     end
   end
-end
 
-describe '#landed?' do
+
+  describe '#landed?' do
     it 'is landed after landing' do
-    subject.landed?
-    expect(subject).to be_landed
-  end
+      subject.landed?
+      expect(subject).to be_landed
+    end
 
-    it 'can take off'
-    subject.landed?
-    expect(subject).not_to be_flying
-  end
+    it 'can take off' do
+      subject.landed?
+      expect(subject).not_to be_flying
+    end
 
-    it 'is flying after take off'
-    subject.take_off
-    expect(subject).to be_flying
+    it 'is flying after take off' do
+      subject.take_off
+      expect(subject).to be_flying
     end
   end
 end

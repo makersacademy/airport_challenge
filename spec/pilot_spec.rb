@@ -5,5 +5,5 @@ class Pilot
 
   def arrive?
     @pilot
-
+  end
 end

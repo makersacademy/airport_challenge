@@ -25,6 +25,7 @@ attr_reader :planes
 
 def flying_planes
   @planes.select { | plane | plane.flying?}
+end
 
 def landed_planes
   @planes.reject { | plane | plane.flying?}

@@ -16,34 +16,38 @@ describe Airport do
   it { is_expected.to respond_to :take_off }
 
   describe '#take_off' do
-    it 'instructs a plane to take off'
-    subject.take_off
-    expect(@plane).to be_landed
+    it 'instructs a plane to take off' do
+      subject.take_off
+      expect(@plane).to be_landed
+    end
   end
 
-    xit 'releases a plane'
+    it 'releases a plane'
     it 'raises an error when plane is flying' do
       expect { subject.take_off }.to raise_error 'Plane is flying'
   end
 
   describe '#landing' do
-    xit 'instructs a plane to land'
-    subject.dock_plane Plane.new
-    plane = subject.dock_plane
-    expect(plane).to be_flying
-    xit 'receives a plane'
-      it 'raises an error when plane is landed' do
-        expect { subject.dock_plane }.to raise_error 'Plane is landed'
-      end
+    it 'instructs a plane to land' do
+      subject.dock_plane Plane.new
+      plane = subject.dock_plane
+      expect(plane).to be_flying
+    end
+
+    it 'raises an error when plane is landed' do
+      expect { subject.dock_plane }.to raise_error 'Plane is landed'
+    end
   end
 
   describe '#traffic_control' do
-    it 'Keeps plane from landing or departing'
+    it 'Keeps plane from landing or departing' do
       subject.traffic_control
+    end
 
     context 'when airport is full' do
-    xit 'does not allow a plane to land'
-        expect { subject.dock_plane }.to raise_error 'Airport full'
+      it 'does not allow a plane to land' do
+          expect { subject.dock_plane }.to raise_error 'Airport full'
+      end
     end
 
     # Include a weather condition.
@@ -56,12 +60,13 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
         expect { subject.take_off }.to raise_error 'Inclement weather, cannot take off'
+      end
 
-
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
         expect { subject.take_off }.to raise_error 'Inclement weather, cannot land'
+      end
     end
   end
 end
