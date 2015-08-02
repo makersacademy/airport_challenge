@@ -1,5 +1,6 @@
 Airport Challenge
 =================
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
 My thought process and how I broke down the challenge
 ---------
