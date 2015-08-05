@@ -13,6 +13,7 @@ require 'airport'
 
 describe Airport do
 
+
     context 'taking off and landing' do
         it { is_expected.to respond_to :land }
         it { is_expected.to respond_to :take_off }
@@ -20,10 +21,21 @@ describe Airport do
     xcontext 'traffic control'
 
     it 'airport tells plane to land' do
+        airport = Airport.new
         plane = double :plane
-        expect(plane).to receive(:lands!)
-        subject.land plane
+        allow(plane).to receive(:lands!) {true}
+        airport.land plane
+        expect(airport.planes.count).to eq 1
     end
+
+    it 'airport tells plane to take_off' do
+    airport = Airport.new
+    plane = double(:plane, :lands! => nil)
+    airport.land plane
+    allow(plane).to receive(:takes_off!) {true}
+    airport.take_off plane
+    expect(airport.planes.count).to eq 0
+end
 
 
     xit 'a plane cannot land if the airport is full'

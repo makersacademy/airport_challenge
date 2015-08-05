@@ -2,12 +2,19 @@ require_relative 'plane'
 
 class Airport
 
+  attr_accessor :planes
+
+  def initialize
+    @planes = []
+  end
+
   def land plane
+    @planes << plane
     plane.lands!
-    true
   end
 
   def take_off plane
-    true
+    @planes.delete plane
+    plane.takes_off!
   end
 end

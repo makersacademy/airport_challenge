@@ -25,6 +25,12 @@ describe Plane do
     expect(subject).to be_landed
   end
 
+  it 'plane changes the status when take_off' do
+    subject.lands!
+    subject.takes_off!
+    expect(subject).to be_flying
+  end
+
 
 
 
