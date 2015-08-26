@@ -1,0 +1,184 @@
+Style/MethodName:
+  Enabled: true
+
+Style/TrivialAccessors:
+  Enabled: true
+
+  # Align ends correctly.
+Lint/EndAlignment:
+  # The value `keyword` means that `end` should be aligned with the matching
+  # keyword (if, while, etc.).
+  # The value `variable` means that in assignments, `end` should be aligned
+  # with the start of the variable on the left hand side of `=`. In all other
+  # situations, `end` should still be aligned with the keyword.
+  AlignWith: keyword
+  SupportedStyles:
+    - keyword
+    - variable
+  AutoCorrect: false
+  Enabled: true
+
+Lint/AmbiguousOperator:
+  Description: >-
+                 Checks for ambiguous operators in the first argument of a
+                 method invocation without parentheses.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#parens-as-args'
+  Enabled: true
+
+Lint/AmbiguousRegexpLiteral:
+  Description: >-
+                 Checks for ambiguous regexp literals in the first argument of
+                 a method invocation without parenthesis.
+  Enabled: true
+
+Lint/AssignmentInCondition:
+  Description: "Don't use assignment in conditions."
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition'
+  Enabled: true
+
+Lint/BlockAlignment:
+  Description: 'Align block ends correctly.'
+  Enabled: true
+
+Lint/CircularArgumentReference:
+  Description: "Don't refer to the keyword argument in the default value."
+  Enabled: true
+
+Lint/ConditionPosition:
+  Description: >-
+                 Checks for condition placed in a confusing position relative to
+                 the keyword.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#same-line-condition'
+  Enabled: true
+
+Lint/Debugger:
+  Description: 'Check for debugger calls.'
+  Enabled: true
+
+Lint/DefEndAlignment:
+  Description: 'Align ends corresponding to defs correctly.'
+  Enabled: true
+
+Lint/DeprecatedClassMethods:
+  Description: 'Check for deprecated class method calls.'
+  Enabled: true
+
+Lint/DuplicateMethods:
+  Description: 'Check for duplicate methods calls.'
+  Enabled: true
+
+Lint/EachWithObjectArgument:
+  Description: 'Check for immutable argument given to each_with_object.'
+  Enabled: true
+
+Lint/ElseLayout:
+  Description: 'Check for odd code arrangement in an else block.'
+  Enabled: true
+
+Lint/EmptyEnsure:
+  Description: 'Checks for empty ensure block.'
+  Enabled: true
+
+Lint/EmptyInterpolation:
+  Description: 'Checks for empty string interpolation.'
+  Enabled: true
+
+Lint/EndAlignment:
+  Description: 'Align ends correctly.'
+  Enabled: true
+
+Lint/EndInMethod:
+  Description: 'END blocks should not be placed inside method definitions.'
+  Enabled: true
+
+Lint/DefEndAlignment:
+  # The value `def` means that `end` should be aligned with the def keyword.
+  # The value `start_of_line` means that `end` should be aligned with method
+  # calls like `private`, `public`, etc, if present in front of the `def`
+  # keyword on the same line.
+  AlignWith: start_of_line
+  SupportedStyles:
+    - start_of_line
+    - def
+  AutoCorrect: false
+  Enabled: true
+
+Lint/RescueException:
+  Description: 'Avoid rescuing the Exception class.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-blind-rescues'
+  Enabled: true
+
+Lint/StringConversionInInterpolation:
+  Description: 'Checks for Object#to_s usage in string interpolation.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-to-s'
+  Enabled: true
+
+Lint/UnusedBlockArgument:
+  Description: 'Checks for unused block arguments.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
+  Enabled: true
+
+Lint/UnusedMethodArgument:
+  Description: 'Checks for unused method arguments.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
+  Enabled: true
+
+Lint/UnreachableCode:
+  Description: 'Unreachable code.'
+  Enabled: true
+
+Lint/UselessAccessModifier:
+  Description: 'Checks for useless access modifiers.'
+  Enabled: true
+
+Lint/UselessAssignment:
+  Description: 'Checks for useless assignment to a local variable.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
+  Enabled: true
+
+Metrics/AbcSize:
+  Description: >-
+                 A calculated magnitude based on number of assignments,
+                 branches, and conditions.
+  Reference: 'http://c2.com/cgi/wiki?AbcMetric'
+  Enabled: true
+
+Metrics/BlockNesting:
+  Description: 'Avoid excessive block nesting'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#three-is-the-number-thou-shalt-count'
+  Enabled: true
+
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 100 lines of code.'
+  Enabled: true
+
+Metrics/ModuleLength:
+  Description: 'Avoid modules longer than 100 lines of code.'
+  Enabled: true
+
+Metrics/CyclomaticComplexity:
+  Description: >-
+                 A complexity metric that is strongly correlated to the number
+                 of test cases needed to validate a method.
+  Enabled: true
+
+Metrics/LineLength:
+  Description: 'Limit lines to 80 characters.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#80-character-limits'
+  Enabled: true
+
+Metrics/MethodLength:
+  Description: 'Avoid methods longer than 10 lines of code.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#short-methods'
+  Enabled: true
+
+Metrics/ParameterLists:
+  Description: 'Avoid parameter lists longer than three or four parameters.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#too-many-params'
+  Enabled: true
+
+Metrics/PerceivedComplexity:
+  Description: >-
+                 A complexity metric geared towards measuring complexity for a
+                 human reader.
+  Enabled: true
