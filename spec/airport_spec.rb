@@ -13,16 +13,22 @@ require 'airport'
 
 describe Airport do
 
-  context 'taking off and landing' do
+  describe 'take off' do
+    xit 'instructs a plane to take off'
 
-    xit 'a plane can land'
-
-    xit 'a plane can take off'
+    xit 'releases a plane'
   end
 
-  context 'traffic control' do
+  describe 'landing' do
+    xit 'instructs a plane to land'
 
-    xit 'a plane cannot land if the airport is full'
+    xit 'receives a plane'
+  end
+
+  describe 'traffic control' do
+    context 'when airport is full' do
+      xit 'does not allow a plane to land'
+    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -33,10 +39,10 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'weather conditions' do
-      xit 'a plane cannot take off when there is a storm brewing'
+    context 'when weather conditions are stormy' do
+      xit 'does not allow a plane to take off'
 
-      xit 'a plane cannot land in the middle of a storm'
+      xit 'does not allow a plane to land'
     end
   end
 end
