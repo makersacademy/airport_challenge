@@ -1,7 +1,9 @@
 Style/MethodName:
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#parens-no-spaces'
   Enabled: true
 
 Style/TrivialAccessors:
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#attr_family'
   Enabled: true
 
   # Align ends correctly.
