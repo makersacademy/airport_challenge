@@ -5,6 +5,7 @@ AllCops:
 
 inherit_from:
   - enabled.yml
+  - disabled.yml
 
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
