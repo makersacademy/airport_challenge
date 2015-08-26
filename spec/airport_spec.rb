@@ -15,9 +15,15 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    it 'a plane can land' do
+      expect { subject.land double :plane }.not_to raise_error
+    end
 
-    xit 'a plane can take off'
+    it 'a plane can take off' do
+      plane = double :plane
+      expect(plane).to receive :takeoff
+      subject.clear_for_takeoff plane
+    end
   end
 
   context 'traffic control' do

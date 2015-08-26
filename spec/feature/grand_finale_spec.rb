@@ -12,7 +12,17 @@ feature 'Grand Finale' do
 
   scenario 'all planes can land and all planes can take off' do
     airport = Airport.new
-    expect(airport).to eq airport
+    planes = []
+    6.times { planes << Plane.new }
+    planes.each do |plane|
+      airport.land(plane)
+      expect(plane).not_to be_flying
+    end
+    6.times { planes << Plane.new }
+    planes.each do |plane|
+      airport.clear_for_takeoff(plane)
+      expect(plane).to be_flying
+    end
   end
 
 end
