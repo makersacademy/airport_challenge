@@ -14,9 +14,17 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
+    it 'a plane can land' do
+      expect { subject.land double :plane }.not_to raise_error
+    end
+
+    it 'a plane can take off' do
+      plane = double :plane
+      expect(plane).to receive :takeoff
+      subject.clear_for_takeoff plane
+    end
+
   end
 
   describe 'landing' do
