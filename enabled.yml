@@ -6,6 +6,11 @@ Style/TrivialAccessors:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#attr_family'
   Enabled: true
 
+Style/VariableName:
+  Description: 'Use the configured style when naming variables.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars'
+  Enabled: true
+
   # Align ends correctly.
 Lint/EndAlignment:
   # The value `keyword` means that `end` should be aligned with the matching

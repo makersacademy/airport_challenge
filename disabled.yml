@@ -62,7 +62,7 @@ Style/Semicolon:
   AllowAsExpressionSeparator: false
 
 
-  Style/AccessModifierIndentation:
+Style/AccessModifierIndentation:
   Description: Check indentation of private/protected visibility modifiers.
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#indent-public-private-protected'
   Enabled: false
@@ -811,11 +811,6 @@ Style/VariableInterpolation:
                  Don't interpolate global, instance and class variables
                  directly in strings.
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#curlies-interpolate'
-  Enabled: false
-
-Style/VariableName:
-  Description: 'Use the configured style when naming variables.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars'
   Enabled: false
 
 Style/WhenThen:
