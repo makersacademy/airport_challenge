@@ -13,21 +13,43 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  let (:plane){double(:plane)}
 
-    xit 'releases a plane'
+  describe '#take_off' do
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to :take_off
+    end
+
+    it 'releases a plane' do
+      terminal = Airport.new
+      plane = :plane
+      terminal.land plane
+      expect(terminal.take_off).to eq plane
+    end
+
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  describe '#land' do
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      plane = :plane
+      expect(subject.land plane).not_to be_empty
+    end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        terminal = Airport.new
+        terminal.capacity.times { terminal.land :plane }
+        expect { terminal.land :plane }.to raise_error 'Airport is full'
+      end
+    end
+    it 'returns error if no planes available' do
+      expect { subject.take_off }.to raise_error 'No planes available'
     end
 
     # Include a weather condition.
@@ -40,9 +62,20 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+        terminal = Airport.new
+        plane = :plane
+        terminal.land plane
+        terminal.weather(4)
+        expect { terminal.take_off }.to raise_error 'Stormy, can not take off'
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        terminal = Airport.new
+        plane = :plane
+        terminal.weather(4)
+        expect { terminal.land plane }.to raise_error 'Stormy, can not land'
+      end
     end
   end
 end
