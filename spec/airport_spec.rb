@@ -14,14 +14,21 @@ require 'airport'
 describe Airport do
   let(:airport){Airport.new}
 
-  context 'taking off and landing' do
+  describe 'take off' do
+    xit 'instructs a plane to take off'
 
     it {is_expected.to respond_to(:land).with(1).argument}
     it {is_expected.to respond_to(:release)}
 
   end
 
-  context 'traffic control' do
+  describe 'landing' do
+    xit 'instructs a plane to land'
+
+    xit 'receives a plane'
+  end
+
+  context 'air traffic control' do
 
     it 'a plane cannot land if the airport is full' do
         plane = double(:plane)
@@ -57,6 +64,7 @@ describe Airport do
           allow(airport).to receive(:stormy?).and_return(true)
           expect{airport.land plane}.to raise_error "Weather is stormy"
       end
+
     end
   end
 end
