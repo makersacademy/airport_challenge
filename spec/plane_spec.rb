@@ -3,9 +3,6 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to :flying? }
-
-
   it 'is flying when created' do
     Plane.new
     expect(subject).to be_flying
