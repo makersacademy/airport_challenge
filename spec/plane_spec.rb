@@ -9,22 +9,35 @@ require 'plane'
 # When we land a plane at the airport, the plane in question should
 # be "landed"
 #
-# When the plane takes of from the airport, it should be "flying" again
+# When the plane takes off from the airport, it should be "flying" again
 #
 # Think about your implementation - does it allow a plane to be "flying"
 # and landed?
 # Are you testing that?
 
 describe Plane do
+  let(:port) { double(:airport) }
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    expect(subject.status).to eq(:flying)
+  end
 
-  xit 'can land'
+  it 'can land' do
+    expect(subject).to respond_to(:land)
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+    subject.land
+    expect(subject).to be_landed
+  end
 
-  xit 'can take off'
+  it 'can take off' do
+    expect(subject).to respond_to(:fly)
+  end
 
-  xit 'is flying after take off'
+  it 'is flying after take off' do
+    subject.fly
+    expect(subject).to be_flying
+  end
 
 end
