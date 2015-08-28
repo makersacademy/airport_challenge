@@ -13,17 +13,31 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+    context 'taking off and landing' do
+        it { is_expected.to respond_to :land }
+        it { is_expected.to respond_to :take_off }
+        #it { is_expected.to respond_to :take_off
+    end
+    xcontext 'traffic control'
 
-    xit 'releases a plane'
-  end
+    it 'airport tells plane to land' do
+        airport = Airport.new
+        plane = double :plane
+        allow(plane).to receive(:lands!) {true}
+        airport.land plane
+        expect(airport.planes.count).to eq 1
+    end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'airport tells plane to take_off' do
+      airport = Airport.new
+      plane = double(:plane, :lands! => nil)
+      airport.land plane
+      allow(plane).to receive(:takes_off!) {true}
+      airport.take_off plane
+      expect(airport.planes.count).to eq 0
+    end
 
-    xit 'receives a plane'
-  end
+
 
   describe 'traffic control' do
     context 'when airport is full' do
@@ -38,6 +52,7 @@ describe Airport do
     # This will require stubbing to stop the random return of the weather.
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
+
 
     context 'when weather conditions are stormy' do
       xit 'does not allow a plane to take off'
