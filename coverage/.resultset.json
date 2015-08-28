@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/annaklimas/Projects/Makers/airport_challenge/spec/airport_spec.rb": [
+      "/Users/tansaku/Documents/Github/MakersAcademy/airport_challenge/spec/airport_spec.rb": [
         1,
         null,
         null,
@@ -17,22 +17,13 @@
         null,
         1,
         null,
-        null,
-        1,
-        2,
-        2,
-        null,
-        1,
-        null,
-        1,
-        1,
         1,
         2,
-        1,
-        1,
+        2,
         null,
         null,
         1,
+        null,
         1,
         1,
         1,
@@ -41,7 +32,19 @@
         1,
         null,
         null,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
         null,
+        null,
+        null,
+        null,
+        1,
+        1,
         1,
         null,
         null,
@@ -53,14 +56,17 @@
         null,
         null,
         null,
+        null,
+        null,
         1,
         1,
         null,
         1,
+        null,
         null,
         null
       ],
-      "/Users/annaklimas/Projects/Makers/airport_challenge/lib/airport.rb": [
+      "/Users/tansaku/Documents/Github/MakersAcademy/airport_challenge/lib/airport.rb": [
         1,
         null,
         1,
@@ -82,7 +88,7 @@
         null,
         null
       ],
-      "/Users/annaklimas/Projects/Makers/airport_challenge/lib/plane.rb": [
+      "/Users/tansaku/Documents/Github/MakersAcademy/airport_challenge/lib/plane.rb": [
         1,
         null,
         1,
@@ -108,7 +114,7 @@
         null,
         null
       ],
-      "/Users/annaklimas/Projects/Makers/airport_challenge/spec/feature/grand_finale_spec.rb": [
+      "/Users/tansaku/Documents/Github/MakersAcademy/airport_challenge/spec/feature/grand_finale_spec.rb": [
         1,
         1,
         1,
@@ -140,8 +146,11 @@
         null,
         null
       ],
-      "/Users/annaklimas/Projects/Makers/airport_challenge/spec/plane_spec.rb": [
+      "/Users/tansaku/Documents/Github/MakersAcademy/airport_challenge/spec/plane_spec.rb": [
         1,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -184,15 +193,9 @@
         null,
         null,
         null,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
         null
       ]
     },
-    "timestamp": 1430816354
+    "timestamp": 1440759519
   }
 }
