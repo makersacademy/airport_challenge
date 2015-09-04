@@ -1,15 +1,9 @@
-require_relative "flying"
-
 class Plane
-  include Flying
 
+  attr_reader :flying
 
   def initialize
     @flying = true
-  end
-
-  def flying?
-    @flying
   end
 
   def landing
@@ -19,9 +13,5 @@ class Plane
   def take_off
     @flying = true
   end
-
-  private
-
-  attr_accessor :flying
 
 end

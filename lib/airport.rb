@@ -1,27 +1,12 @@
-require_relative flying.rb
+require_relative 'aircontroller.rb'
+require_relative 'plane.rb'
 
 class Airport
-  include Flying
-  DEFAULT_CAPACITY = 3
+  include AirController
 
-  attr_reader :capacity
-
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @planes = []
-    @capacity = capacity
+  def initialize(capacity = AirController::DEFAULT_CAPACITY)
+    self.capacity = capacity
+    self.planes
   end
 
-  def landed_planes(plane)
-    fail "The Airport is full" if full?
-    planes << plane
-  end
-
-
-  private
-
-  attr_reader :planes
-
-  def full?
-    planes.size >= capacity
-  end
 end

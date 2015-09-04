@@ -20,8 +20,10 @@ describe Plane do
   describe "#flying?" do
 
     context "when created" do
+      it { is_expected.to respond_to :flying }
+
       it "is flying" do
-        expect(subject).to be_flying
+        expect(subject.flying).to be_truthy
       end
     end
   end
@@ -30,11 +32,11 @@ describe Plane do
     it { is_expected.to respond_to :landing }
 
 
-    #create a new test that receives permission from airport
-    context "when permission received from airport" do
-      it "is landed after landing" do
+    #create a new test that receives permission from airport - double/spike
+    context "when permission to land is received from airport" do
+      it "is not flying" do
         subject.landing
-        expect(subject).not_to be_flying
+        expect(subject.flying).to be false
       end
     end
   end
@@ -42,11 +44,12 @@ describe Plane do
   describe "#take_off" do
     it { is_expected.to respond_to :take_off }
 
+    #add double/spike now ?
     context "when permission received to take off" do
       it "is flying" do
         subject.landing
         subject.take_off
-        expect(subject).to be_flying
+        expect(subject.flying).to be_truthy
       end
     end
   end
