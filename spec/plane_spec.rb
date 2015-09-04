@@ -17,14 +17,44 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  describe "#flying?" do
 
-  xit 'can land'
+    context "when created" do
+      it "is flying" do
+        expect(subject).to be_flying
+      end
+    end
+  end
 
-  xit 'is landed after landing'
+  describe "#landing" do
+    it { is_expected.to respond_to :landing }
 
-  xit 'can take off'
 
-  xit 'is flying after take off'
+    #create a new test that receives permission from airport
+    context "when permission received from airport" do
+      it "is landed after landing" do
+        subject.landing
+        expect(subject).not_to be_flying
+      end
+    end
+  end
 
+  describe "#take_off" do
+    it { is_expected.to respond_to :take_off }
+
+    context "when permission received to take off" do
+      it "is flying" do
+        subject.landing
+        subject.take_off
+        expect(subject).to be_flying
+      end
+    end
+  end
 end
+  # xit 'can land' ---- done
+  #
+  # xit 'is landed after landing' --- done
+  #
+  # xit 'can take off'
+  #
+  # xit 'is flying after take off'
