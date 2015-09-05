@@ -12,22 +12,45 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+let(:flying_plane){double(:flying_plane, {status: 'flying', land: nil, take_off: nil})}
+let(:landed_plane){double(:landed_plane, {status: 'landed', land: nil, take_off: nil})}
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+it 'has a capacity of 20 planes' do
+  expect(subject.capacity).to eq 20
+end
 
-    xit 'releases a plane'
+  describe 'allow_take_off' do
+    it 'gives permission for a plane to take off' do
+      expect(subject).to respond_to(:allow_take_off)
+    end
+
+    it 'releases a plane' do
+      subject.allow_land flying_plane
+      plane_count = subject.planes.count
+      subject.allow_take_off
+      expect(subject.planes.count).to eq (plane_count - 1)
+    end
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  describe 'allow_landing' do
+    it 'give permission for a plane to land' do
+      expect(subject).to respond_to(:allow_land).with(1).argument
+    end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      plane_count = subject.planes.count
+      subject.allow_land flying_plane
+      expect(subject.planes.count).to eq (plane_count + 1)
+    end
   end
 
-  describe 'traffic control' do
+
+  describe 'air traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times {subject.allow_land flying_plane}
+        expect {subject.allow_land flying_plane}.to raise_error "Airport is full pilot.."
+      end
     end
 
     # Include a weather condition.
@@ -40,9 +63,13 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      xit 'does not allow a plane to take off' do
+        
+      end
 
-      xit 'does not allow a plane to land'
+      xit 'does not allow a plane to land' do
+
+      end
     end
   end
 end

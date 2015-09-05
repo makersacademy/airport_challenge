@@ -17,14 +17,27 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    expect(subject.status).to eq 'flying'
+  end
 
-  xit 'can land'
+  it 'can land if flying' do
+    subject.instance_variable_set(:@status, 'landed')
+    expect {subject.land}.to raise_error "You're already on the ground pilot.."
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+    subject.land
+    expect(subject.status).to eq 'landed'
+  end
 
-  xit 'can take off'
+  it 'can take off if landed' do
+    expect {subject.take_off}.to raise_error "You're already in the air pilot.."
+  end
 
-  xit 'is flying after take off'
-
+  it 'is flying after take off' do
+    subject.instance_variable_set(:@status, 'landed')
+    subject.take_off
+    expect(subject.status).to eq 'flying'
+  end
 end
