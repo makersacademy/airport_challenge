@@ -12,7 +12,7 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-let(:plane){double(:flying_plane, land: nil, take_off: nil)}
+let(:plane){double(:plane, land: nil, take_off: nil)}
 
 it 'has a capacity of 20 planes' do
   expect(subject.capacity).to eq 20
