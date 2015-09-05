@@ -16,4 +16,7 @@ class Plane
   	not flying?
   end
 
+  def take_off
+  end
+
 end

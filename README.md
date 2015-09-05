@@ -155,7 +155,35 @@ Started to work on the first piece of the user story.
 
  9.2. Wrote the test, made it fail.
 
- 9.3. Wrote some code, made the test pass. At a refactor stage thought about introducing attr_accessor to get rid og @, decided not to.
+ 9.3. Wrote some code, made the test pass. At a refactor stage thought about introducing attr_accessor to get rid of @, decided not to.
+
+ 9.4. Commited, pushed.
+
+10. I think that main requirements from the first piece of the user story are covered now, except for an appropriate airport. Returnd to point 1, thought about "a diagram that shows how your Objects will use Messages to communicate with one another". Still not sure about appropriate airport (argument for landed? but what for? Return of landed? Again, what for?). Decided to move to the second piece of the user story and come back to the issue with an appropriate airport later.
+
+Started to work on the second piece of the user story.
+
+1. Make a plane to be able to take off from an appropriate airport
+
+ 1.1. Feature test in irb
+
+ ```
+ :001 > plane = Plane.new
+  => #<Plane:0x007fc1cb9ba520 @flying=true> 
+ :002 > plane.take_off
+ NoMethodError: undefined method `take_off' for #<Plane:0x007fc1cb9ba520 @flying=true>
+	from (irb):2
+	from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
+ :003 > 
+ ```
+
+ 1.2. Wrote the test, made it fail
+
+ 1.3. Wrote an empty #take_off, test passed.
+
+ 
+
+
  
 
 
