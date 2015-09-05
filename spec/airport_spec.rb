@@ -13,22 +13,38 @@ require 'airport'
 
 describe Airport do
 
+  let(:plane){double(:plane)}
+
+  it 'knows its capacity' do
+    expect(subject).to respond_to :capacity
+  end
+
   describe 'take off' do
     xit 'instructs a plane to take off'
+    
 
-    xit 'releases a plane'
+
+    it 'releases a plane' do
+      expect(subject).to respond_to :release_plane
+    end
   end
 
   describe 'landing' do
     xit 'instructs a plane to land'
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      expect(subject).to respond_to :receive_plane
   end
+
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land if at full capacity' do
+        subject.capacity.times {subject.receive_plane(double :plane)}
+        expect { subject.receive_plane (double :plane) }.to raise_error 'Airport full'
+      end
     end
+  end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
