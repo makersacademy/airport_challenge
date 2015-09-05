@@ -15,7 +15,7 @@
 require 'plane'
 
 describe Plane do
-  # it 'is flying when created'
+  xit 'is flying when created'
   context "when flying" do
     it { is_expected.to respond_to :flying? }
     it { is_expected.to respond_to :land    }
@@ -23,7 +23,6 @@ describe Plane do
 
   context "when landed" do
     xit 'is landed after landing'
-    # it 'can take off'
     it { is_expected.to respond_to :take_off }
   end
 
