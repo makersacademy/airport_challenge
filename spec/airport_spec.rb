@@ -12,22 +12,53 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  it 'initiates with default capacity' do
+    expect(subject.capacity).to eq Airport::D_CAPACITY
+  end
+
+  it 'takes custom capacity' do
+    random = Random.rand(100)
+    subject = described_class.new random
+    expect(subject.capacity).to eq random
+  end
+
+  it 'defaults to sunny weather' do
+    subject = described_class.new
+    expect(subject.weather).to eq 'sunny'
+  end
+
+  it 'can change weather' do
+    new_weather = subject.change_weather(50)
+    expect(subject.weather).to eq new_weather
+  end
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it { is_expected.to respond_to :take_off }
 
-    xit 'releases a plane'
+    it 'releases a plane' do
+      plane = double :plane, land: 'landed', off: 'flying'
+      subject.landing plane
+      expect(subject.take_off).to be plane
+    end
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it { is_expected.to respond_to(:landing).with(1).argument }
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      plane = double :plane, land: 'landed'
+      subject.landing plane
+      expect(subject).not_to be_empty
+    end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = double :plane, land: 'landed'
+        subject.capacity.times { subject.landing plane }
+        expect { subject.landing plane }.to raise_error('Airport full')
+      end
     end
 
     # Include a weather condition.
@@ -40,9 +71,18 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+        plane = double :plane, land: 'landed', off: 'flying'
+        subject.landing plane
+        subject.change_weather(25)
+        expect { subject.take_off }.to raise_error('Weather is bad for take off')
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = double :plane, land: 'landed'
+        subject.change_weather(29)
+        expect { subject.landing plane }.to raise_error('Weather is bad for landing')
+      end
     end
   end
 end
