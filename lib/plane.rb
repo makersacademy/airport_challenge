@@ -12,7 +12,7 @@ class Plane
   end
 
   def take_off
-    fail "You're already in the air pilot.." if @status == 'flying'
+    # fail "You're already in the air pilot.." if @status == 'flying'
     @status = 'flying'
   end
 

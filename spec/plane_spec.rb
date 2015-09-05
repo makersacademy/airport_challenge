@@ -21,7 +21,7 @@ describe Plane do
     expect(subject.status).to eq 'flying'
   end
 
-  it 'can land if flying' do
+  it 'can only land if flying' do
     subject.instance_variable_set(:@status, 'landed')
     expect {subject.land}.to raise_error "You're already on the ground pilot.."
   end
@@ -31,9 +31,9 @@ describe Plane do
     expect(subject.status).to eq 'landed'
   end
 
-  it 'can take off if landed' do
-    expect {subject.take_off}.to raise_error "You're already in the air pilot.."
-  end
+  # it 'can only take off if landed' do
+  #   expect {subject.take_off}.to raise_error "You're already in the air pilot.."
+  # end
 
   it 'is flying after take off' do
     subject.instance_variable_set(:@status, 'landed')
