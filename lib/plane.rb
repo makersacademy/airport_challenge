@@ -4,7 +4,7 @@ class Plane
 
   attr_accessor :destination
 
-  def initialize (destination)
+  def initialize(destination)
     @flying = true
     @destination = destination
   end

@@ -36,7 +36,7 @@ describe Plane do
   	plane.can_land
     plane.landed?
   	expect(plane).to be_landed
-	end
+  end
 
   #it 'can take off'
   it 'can take off' do
