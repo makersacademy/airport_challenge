@@ -22,5 +22,12 @@ describe Plane do
  	  	allow(airport).to receive(:is_a?).with(Airport).and_return(false)
 			expect{subject.land(airport)}.to raise_error 'Not an airport'
 	  end
+	  it 'raises error permission to land is not granted' do
+  	 	class Airport; end
+  	 	airport = double(:airport_object)
+ 	  	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
+			allow(airport).to receive(:land_permission).and_raise("Stormy weather")
+			expect{subject.land(airport)}.to raise_error "Stormy weather"
+	  end
 	end
 end
