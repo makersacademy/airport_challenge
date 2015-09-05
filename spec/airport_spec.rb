@@ -16,22 +16,19 @@ describe Airport do
   describe 'take off' do
     it { is_expected.to respond_to :take_off }
 
-    it { is_expected.to respond_to :release_plane }
   end
 
   describe 'landing' do
-    it { is_expected.to respond_to :land_now }
+    it { is_expected.to respond_to :land }
 
-    it { is_expected.to respond_to :receive_plane }
-
-    it { is_expected.to respond_to(:land_now).with(1).argument }
+    it { is_expected.to respond_to(:land).with(1).argument }
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow plane to land' do
-        subject.capacity.times { subject.land_now :planes }
-        expect{ subject.land_now :planes }.to raise_error 'Airport full. Can not receive more planes.'
+        subject.capacity.times { subject.land :planes }
+        expect{ subject.land :planes }.to raise_error 'Airport full. Can not receive more planes.'
       end
     end
 
@@ -48,13 +45,13 @@ describe Airport do
       it 'does not allow plane to take off' do
         expect(subject).to receive(:weather).and_return(:stormy)
         subject.weather
-        expect{subject.bad_weather_take_off}.to raise_error 'Planes can not take off in this weather'
+        expect{subject.take_off_bad_weather}.to raise_error 'Can not take off in this weather'
       end
 
       it 'does not allow plane to land' do
         expect(subject).to receive(:weather).and_return(:stormy)
         subject.weather
-        expect{subject.land_bad_weather}.to raise_error 'Planes can not take off in this weather'
+        expect{subject.land_bad_weather}.to raise_error 'Can not take off in this weather'
       end
     end
   end
