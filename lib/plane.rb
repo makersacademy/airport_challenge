@@ -4,4 +4,7 @@ class Plane
   	true
   end
 
+  def land
+  end
+
 end

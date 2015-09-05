@@ -73,8 +73,26 @@ Started to work on the first piece of the user story.
 
  Now the test passed.
 
- 
+ 5.4. Commited, pushed.
 
+6. Now back to the first piece of the user story. Time to teach the plane to land.
+ 
+ 6.1. Feature test in irb
+
+ ```
+ :001 > plane = Plane.new
+  => #<Plane:0x007fb982002920> 
+ :002 > plane.land
+ NoMethodError: undefined method `land' for #<Plane:0x007fb982002920>
+	from (irb):2
+	from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
+ :003 > 
+ ```
+ Does not land yet.
+
+ 6.2. Wrote the test, made it fail
+
+ 6.3. Wrote an empty method land in Plane, now the test pass.
 
 
 
