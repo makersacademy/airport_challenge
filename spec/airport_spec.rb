@@ -14,27 +14,35 @@ require 'airport'
 describe Airport do
 
   let(:plane){double(:plane)}
+  let(:weather){double(:weather, {:stormy=>true})}
 
-  it 'knows its capacity' do
-    expect(subject).to respond_to :capacity
-  end
+    it 'knows its capacity' do
+      expect(subject).to respond_to :capacity
+    end
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
-    
+  # describe 'take off' do
+  #   xit 'instructs a plane to take off'
 
 
     it 'releases a plane' do
       expect(subject).to respond_to :release_plane
     end
-  end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+
+  # describe 'landing' do
+  #   xit 'instructs a plane to land'
 
     it 'receives a plane' do
       expect(subject).to respond_to :receive_plane
-  end
+    end
+
+
+    it 'increases the number of planes within the airport when an aircraft lands' do
+      expect{subject.receive_plane(plane)}.to change{subject.planes.length}.by(1)
+      unless (subject.full?)
+      end
+    end
+
 
 
   describe 'traffic control' do
@@ -55,10 +63,15 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+    # context 'when weather conditions are stormy' do
+    #   it 'does not allow a plane to take off' do
+    #     subject.release_plane(plane)
+    #   expect(:weather).to raise_error "No take off allowed while stormy"
+    # end
+  # end
 
-      xit 'does not allow a plane to land'
-    end
-  end
+
+      # xit 'does not allow a plane to land'
+
+
 end

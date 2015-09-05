@@ -1,8 +1,11 @@
 require_relative "Plane"  # => true
+require_relative "weather"
 
 class Airport
 
-DEFAULT_CAPACITY = 10  # => 10
+DEFAULT_CAPACITY = 3  # => 10
+
+
 
 
   def initialize
@@ -10,9 +13,10 @@ DEFAULT_CAPACITY = 10  # => 10
     @planes = []
   end
 
-  attr_reader :capacity  # => nil
+  attr_reader :capacity, :planes  # => nil
 
-  def release_plane
+  def release_plane(plane)
+    fail "No take off allowed while stormy" if stormy
    planes.pop
    "Cleared for takeoff"
   end
@@ -32,7 +36,7 @@ DEFAULT_CAPACITY = 10  # => 10
 
   private
 
-  attr_reader :planes  # => nil
+  # attr_reader :planes  # => nil
 
 
 
