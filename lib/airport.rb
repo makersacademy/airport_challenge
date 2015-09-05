@@ -23,11 +23,7 @@ DEFAULT_CAPACITY = 10
 
   def stormy?
     forcast = rand(1..30)
-    if forcast < 10
-      'stormy'
-    else
-      'sunny'
-    end
+    forcast < 5 ? 'stormy' : 'sunny'
   end
 
   private
