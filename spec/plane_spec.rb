@@ -17,6 +17,7 @@ require 'plane'
 
 describe Plane do
   it { is_expected.to respond_to(:flying?) }
+
   describe "#flying?" do
     it "returns true when it's flying" do
       expect(subject).to be_flying

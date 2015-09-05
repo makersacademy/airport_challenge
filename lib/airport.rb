@@ -2,11 +2,15 @@ require_relative 'plane'
 
 class Airport
 
+  def initialize
+    @planes = []
+  end
+
   def clear_for_takeoff
-    Plane.new
+    @planes.pop
   end
 
   def clear_for_landing(plane)
-    @plane = plane
+    @planes << plane
   end
 end
