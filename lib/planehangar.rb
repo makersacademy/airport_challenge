@@ -12,10 +12,6 @@ module PlaneHangar
     @capacity ||= DEFAULT_CAPACITY
   end
 
-  def landed_planes
-    planes.length
-  end
-
   private
 
   def plane_hangar_full?
