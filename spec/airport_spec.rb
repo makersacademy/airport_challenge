@@ -13,7 +13,7 @@ require 'airport'
 
 describe Airport do
   let(:plane) do
-    double :plane, land: :landed # not sure about land: :landed
+    double :plane, land: :landed, fly: :flying # not sure
   end
 
   it { is_expected.to respond_to(:clear_for_takeoff) }
@@ -24,15 +24,11 @@ describe Airport do
       expect(subject.clear_for_takeoff).to eq(plane)
     end
 
-    xit "changes plane status to :flying" do
-      subject.clear_for_landing(plane)
-
+    it "changes plane status to :flying" do
+      my_plane = subject.clear_for_landing(plane).pop
+      allow(my_plane).to receive(:plane_status) { :flying }
+      expect(my_plane.plane_status).to eq(:flying)
     end
-    # it "changes the status of plane to flying" do
-    #   subject.clear_for_landing(plane)
-    #   allow(plane).to receive(:flying?) { true }
-    #   expect(subject.clear_for_takeoff).to be_flying
-    # end
   end
 
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
@@ -45,9 +41,9 @@ describe Airport do
 
     it "changes plane status to :landed" do
       #not sure
-      allow(plane).to receive(:land) { :landed }
-      allow(plane).to receive(:plane_status) { :landed }
-      expect(subject.clear_for_landing(plane).last.plane_status).to eq(:landed)
+      my_plane = subject.clear_for_landing(plane).last
+      allow(my_plane).to receive(:plane_status) { :landed }
+      expect(my_plane.plane_status).to eq(:landed)
     end
   end
 end
