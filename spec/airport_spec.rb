@@ -14,20 +14,20 @@ require 'airport'
 describe Airport do
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it { is_expected.to respond_to :take_off }
 
-    xit 'releases a plane'
+    it { is_expected.to respond_to :release_plane }
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it { is_expected.to respond_to :land }
 
-    xit 'receives a plane'
+    it { is_expected.to respond_to :receive_plane }
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it { is_expected.to respond_to :airport_full}
     end
 
     # Include a weather condition.
@@ -40,9 +40,10 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it { is_expected.to respond_to :stormy}
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land'
+      it { is_expected.to respond_to :stormy}
     end
   end
 end

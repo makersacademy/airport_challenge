@@ -1,26 +1,26 @@
 class Plane
+  def initialize
+    @flying == true
+  end
 
   def flying?
-    true
-  end
-
-  def create_plane
-    Plane.new
-  end
-
-  def plane
-    Plane.new
+    @flying unless @landed
+    return true
   end
 
   def landed?
-    true
+    false unless @land
+    return true
+  end
+
+  def can_land
   end
 
   def land
-    plane
+    @land == true
   end
 
   def take_off
-    plane
+    @take_off == true
   end
 end
