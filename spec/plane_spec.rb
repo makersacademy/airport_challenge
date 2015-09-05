@@ -26,19 +26,23 @@ describe Plane do
     expect(subject).to be_flying
   end
 
-  # it 'can land' do
-  #   expect(subject.flying?).to eq(true)
-  # end
+  it 'can land' do
+    is_expected.to respond_to(:landed).with(1).argument
+  end
 
   it 'has landed' do
-    allow(airport).to receive(plane).and_return(true)
-    expect(subject.flying?).to eq(false)
+    allow(airport).to receive(:dock).with(plane)
+    expect(subject).not_to be_flying
   end
 
   it 'can take off' do
+    is_expected.to respond_to(:taken_off).with(1).argument
   end
 
+  it 'is flying after take off' do
+    allow(airport).to receive(:release_plane).and_return(true)
+    expect(subject.flying?).to eq(true)
+  end
 
-  xit 'is flying after take off'
 
 end

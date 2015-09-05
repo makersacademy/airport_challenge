@@ -13,37 +13,46 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double :plane }
   let(:plane) { double :plane, flying?: true}
-  let (:airport) { Airport.new }
 
   describe 'take off' do
-    # take off test
-    # it { is_expected.to respond_to(:take_off) }
 
-    # releases a plane
     it { is_expected.to respond_to(:release_plane) }
 
     it "raises error when there are no planes available" do
       expect(subject.release_plane).to eq(false)
     end
+
+    it 'releases a plane' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.dock(plane)
+      subject.release_plane
+      expect(subject.planes.empty?).to eq(true)
+    end
   end
 
   describe 'landing' do
     it 'instructs a plane to land' do
-      expect(plane).to be_flying
+      is_expected.to respond_to(:dock).with(1).argument
     end
+
+    it 'receives a plane' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.dock(plane)
+      expect(subject.planes.any?).to eq(true)
+    end
+
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      it { is_expected.to respond_to(:dock).with(1).argument }
 
       it "has a default capacity" do
         expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
       end
 
       it "raises an error when airport is full" do
+        allow(subject).to receive(:stormy?).and_return(false)
         subject.capacity.times { subject.dock plane }
         expect { subject.dock plane }.to raise_error 'Airport unavailable'
       end
@@ -60,12 +69,12 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
-        allow(airport).to receive(:stormy?).and_return(true)
-        expect(airport.release_plane).to eq(false)
+        allow(subject).to receive(:stormy?).and_return(true)
+        expect(subject.release_plane).to eq(false)
       end
 
       it 'does not allow a plane to land' do
-        allow(airport).to receive(:stormy?).and_return(true)
+        allow(subject).to receive(:stormy?).and_return(true)
         expect{ subject.dock plane }.to raise_error 'Airport unavailable'
       end
     end
