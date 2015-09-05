@@ -48,7 +48,7 @@ describe Airport do
       it 'does not allow plane to take off' do
         expect(subject).to receive(:weather).and_return(:stormy)
         subject.weather
-        expect(subject.bad_weather_take_off).to raise_error 'Planes can not take off in this weather'
+        expect{subject.bad_weather_take_off}.to raise_error 'Planes can not take off in this weather'
       end
 
       it 'does not allow plane to land' do
@@ -59,6 +59,6 @@ describe Airport do
     end
   end
     it 'has a default capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 end
