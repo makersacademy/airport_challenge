@@ -1,5 +1,3 @@
-require 'plane'
-
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -14,20 +12,20 @@ require 'plane'
 # Think about your implementation - does it allow a plane to be "flying"
 # and landed?
 # Are you testing that?
+require 'plane'
 
 describe Plane do
+  # it 'is flying when created'
+  context "when flying" do
+    it { is_expected.to respond_to :flying? }
+    it { is_expected.to respond_to :land    }
+  end
 
-  xit 'is flying when created'
-
-  it { is_expected.to respond_to :land }
-
-  xit 'is landed after landing'
-
-  # it 'can take off' do
-  #   expect(subject).to respond_to :take_off
-  # end
-
-  it { is_expected.to respond_to :take_off }
+  context "when landed" do
+    xit 'is landed after landing'
+    # it 'can take off'
+    it { is_expected.to respond_to :take_off }
+  end
 
   xit 'is flying after take off'
 
