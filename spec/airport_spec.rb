@@ -65,6 +65,10 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
+      it 'creates stormy conditions' do
+        expect(subject).to respond_to(:stormy?)
+      end
+
       it 'does not allow a plane to land' do
         allow(subject).to receive(:stormy?).and_return(true)
         expect { subject.plane_land(plane) }.to raise_error

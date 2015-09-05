@@ -19,6 +19,11 @@ class Airport
     planes << plane
   end
 
+  def stormy?
+    weather = rand(10)
+    weather <= 2 ? true : false
+  end
+
   private
 
   def full?
@@ -27,10 +32,5 @@ class Airport
 
   def empty?
     planes.empty?
-  end
-
-  def stormy?
-    weather = rand(10)
-    weather <= 2 ? true : false
   end
 end
