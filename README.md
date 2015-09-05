@@ -134,7 +134,30 @@ Started to work on the first piece of the user story.
 
  8.3. Connected landed with flying (when landed not flying). Test pass.
 
+ 8.4. Commited, pushed.
+
+9. Now it makes more sense to check that plane is landed after landing.
+
+ 9.1. Feature test in irb
+
+ ```
+ :001 > plane = Plane.new
+  => #<Plane:0x007fe4ba9a00f0> 
+ :002 > plane.landed?
+  => false 
+ :003 > plane.land
+  => nil 
+ :004 > plane.landed?
+  => false 
+ :005 > 
+ ```
+ Expected to get true, got false
+
+ 9.2. Wrote the test, made it fail.
+
+ 9.3. Wrote some code, made the test pass. At a refactor stage thought about introducing attr_accessor to get rid og @, decided not to.
  
+
 
 	
 
