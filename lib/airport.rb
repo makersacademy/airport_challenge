@@ -21,6 +21,11 @@ DEFAULT_CAPACITY = 10
     @planes << plane
   end
 
+  def stormy?
+    forcast = rand(1..30)
+    forcast < 15 ? true : false
+  end
+
   private
 
   def full?
@@ -29,11 +34,6 @@ DEFAULT_CAPACITY = 10
 
   def empty?
     @planes.empty?
-  end
-
-  def stormy?
-    forcast = rand(1..30)
-    forcast < 15 ? true : false
   end
 
 end
