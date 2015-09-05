@@ -13,8 +13,26 @@ require 'airport'
 
 describe Airport do
 
+    it { is_expected.to respond_to :commence_take_off }
+    it { is_expected.to respond_to :planes }
+    it { is_expected.to respond_to :count_planes }
+
+
+    it 'count the number of planes in the aiport' do
+      airport = Airport.new
+      expect(airport.count_planes).to eql 1
+    end
+
+
+
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+    airport = Airport.new
+    planes = airport.planes
+    plane = planes.pop
+    expect(plane).to respond_to :take_off
+
+    end
 
     xit 'releases a plane'
   end
