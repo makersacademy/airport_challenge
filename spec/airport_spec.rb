@@ -20,7 +20,7 @@ describe Airport do
 
     it 'releases a plane' do
     plane = subject.take_off
-    expect(plane).to be_truthy  
+    expect(plane).to be_flying
     end
   end
 
