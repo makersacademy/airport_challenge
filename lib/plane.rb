@@ -23,8 +23,4 @@ class Plane
   def take_off
     plane
   end
-
-  def flying?
-    true
-  end
 end
