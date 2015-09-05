@@ -11,7 +11,7 @@ Started to work on the first piece of the user story.
  |	----			|			----				|		----	|
  |Pilot				|								|				|
  |Destination 		|								|(same as airoport?)|
- |Plane				|land (appropriate airport)		|not sure about use of appropriate airoport yet|	
+ |Plane				|land - appropriate airport		|not sure about use of appropriate airoport yet|	
  |Airport 			|								|					|
  
  Conclusion - probably will start to work from Plane class.
@@ -93,6 +93,29 @@ Started to work on the first piece of the user story.
  6.2. Wrote the test, made it fail
 
  6.3. Wrote an empty method land in Plane, now the test pass.
+
+ 6.4. Commited, pushed.
+
+7. Now it is time to think about status landed? 
+ 
+ 7.1. Feature irb test
+
+ ```
+ :001 > plane = Plane.new
+  => #<Plane:0x007fb2b398b940> 
+ :002 > plane landed?
+ NoMethodError: undefined method `landed?' for main:Object
+	from (irb):2
+	from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
+ :003 > 
+ ```
+ 7.2. Wrote the test, made it fail
+
+ 7.3. Wrote empty method landed? in Plane. Now the test pass.
+
+ 7.4. As a refactoring stage had a thought that may be methods should be not #flying? and #landed?, but one method #status returning 'flying' or 'landed'. But decided to stick to the logic of boris_bikes for now.
+	
+
 
 
 

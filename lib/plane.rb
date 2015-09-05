@@ -7,4 +7,7 @@ class Plane
   def land
   end
 
+  def landed?
+  end
+
 end

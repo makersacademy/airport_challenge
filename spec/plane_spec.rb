@@ -27,6 +27,8 @@ describe Plane do
   	expect(subject).to respond_to :land
   end
 
+  it { is_expected.to respond_to :landed?}
+
   xit 'is landed after landing'
 
   xit 'can take off'
