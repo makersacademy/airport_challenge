@@ -5,7 +5,7 @@ class Plane
     @plane_status = @status[0]
   end
 
-  def fly
+  def take_off
     @plane_status = @status[0]
   end
 

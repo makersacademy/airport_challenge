@@ -13,7 +13,7 @@ require 'airport'
 
 describe Airport do
   let(:plane) do
-    double :plane, land: :landed, fly: :flying # not sure
+    double :plane, land: :landed, take_off: :flying # not sure
   end
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
   it { is_expected.to respond_to(:clear_for_takeoff) }

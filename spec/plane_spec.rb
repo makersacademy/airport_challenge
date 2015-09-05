@@ -16,11 +16,11 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
-  it { is_expected.to respond_to(:fly) }
+  it { is_expected.to respond_to(:take_off) }
 
   describe "#fly" do
     it "changes plane status to :flying" do
-      expect(subject.fly).to eq(:flying)
+      expect(subject.take_off).to eq(:flying)
     end
   end
 

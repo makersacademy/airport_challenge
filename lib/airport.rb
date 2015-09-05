@@ -9,7 +9,7 @@ class Airport
 
   def clear_for_takeoff
     my_plane = @planes.pop
-    my_plane.fly
+    my_plane.take_off
     my_plane
   end
 
