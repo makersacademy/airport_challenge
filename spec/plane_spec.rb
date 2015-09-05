@@ -17,14 +17,36 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it 'is flying when created' do 
+  	expect(subject).to be_flying
+  end
 
-  xit 'can land'
+  describe '#land' do
+	  it 'can land' do
+	  	expect(subject).to respond_to(:land)
+	  end
+	  it 'raises error when not given a valid airport destination' do
+	  	airport = double(:none_airport_object)
+	  	allow(airport).to receive(:is_a?).with(Airport) {false}
+	  	expect{subject.land(airport)}.to raise_error 'Not an airport'
+	  end
+	  # it 'is landed after landing' do
+	  # 	subject.land
+	  # 	expect(subject).to_not be_flying
+	  # end
+	  # it 'can land at a specified Airport' do
+	  # 	expect(subject).to respond_to(:land).with(1).argument########
+	  # end
+	end
 
-  xit 'is landed after landing'
+  # it 'can take off' do
+  # 	expect(subject).to respond_to(:take_off)
+  # end
 
-  xit 'can take off'
-
-  xit 'is flying after take off'
+  # it 'is flying after take off' do
+  # 	subject.land
+  # 	subject.take_off
+  # 	expect(subject).to be_flying
+  # end
 
 end
