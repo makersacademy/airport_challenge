@@ -1,26 +1,30 @@
+require_relative 'airport'
+
 class Plane
+
+attr_reader :destination
+
   def initialize
-    @flying == true
+    @flying = true
+    @destination = destination
   end
 
   def flying?
-    @flying unless @landed
+    @flying
+  end
+
+  def can_land
+    raise 'the plane can not land if it is not flying' if landed?
+    @flying = false
     return true
   end
 
   def landed?
-    false unless @land
-    return true
+    !@flying
   end
 
-  def can_land
-  end
-
-  def land
-    @land == true
-  end
-
-  def take_off
-    @take_off == true
+  def can_take_off
+    raise 'The plane can not take off if it is not landed' if flying?
+    @flying = true
   end
 end
