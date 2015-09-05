@@ -44,8 +44,14 @@ Model
 | Airport             | weather(stormy/sunny)|
 
 Airport <-- take_off        --> Plane.taking_off --> Plane(status: flying)
+
+
 Airport <-- land            --> Plane.landing --> Plane(status: landed)
+
+
 Airport <-- capacity.full?  --> true/false
+
+
 Airport <-- weather         --> stormy/sunny
 
 Development
