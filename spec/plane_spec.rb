@@ -17,14 +17,24 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it 'has a flying status when created' do
+  	plane = Plane.new
+  	expect(plane).to be_flying
+	end
 
-  xit 'can land'
+  it 'is not flying when it is not in the air' do 
+  	plane = Plane.new
+  	plane.lands
+  	expect(plane).to_not be_flying
+  end
 
-  xit 'is landed after landing'
+  it {is_expected.to respond_to(:fly_again)}
 
-  xit 'can take off'
-
-  xit 'is flying after take off'
+  it 'changes its status to flying after taking off' do 
+  	plane = Plane.new
+  	plane.lands
+  	plane.fly_again
+  	expect(plane).to be_flying
+  end
 
 end
