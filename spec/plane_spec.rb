@@ -18,7 +18,6 @@ require 'plane'
 describe Plane do
 
   let(:airport) { double :airport }
-  let(:plane) { Plane.new }
 
   it { is_expected.to respond_to :flying? }
 
@@ -27,20 +26,20 @@ describe Plane do
   end
 
   it 'can land' do
-    is_expected.to respond_to(:landed).with(1).argument
+    is_expected.to respond_to(:landed)
   end
 
   it 'has landed' do
-    allow(airport).to receive(:dock).with(plane)
-    expect(subject).not_to be_flying
+    subject.landed
+    expect(subject.flying?).to eq(false)
   end
 
   it 'can take off' do
-    is_expected.to respond_to(:taken_off).with(1).argument
+    is_expected.to respond_to(:taken_off)
   end
 
   it 'is flying after take off' do
-    allow(airport).to receive(:release_plane).and_return(true)
+    subject.taken_off
     expect(subject.flying?).to eq(true)
   end
 

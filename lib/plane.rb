@@ -12,12 +12,12 @@ attr_reader :flying
     @flying
   end
 
-  def landed(airport)
-    @flying = false if airport.dock(self)
+  def landed
+    @flying = false
   end
 
-  def taken_off(airport)
-    @flying = true if airport.release(self)
+  def taken_off
+    @flying = true
   end
 
 end
