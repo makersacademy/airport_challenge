@@ -19,10 +19,10 @@ describe Plane do
 
   let(:airport) { double :airport }
 
-  it { is_expected.to respond_to :flying? }
+  it { is_expected.to respond_to :flying }
 
   it "has a flying status when created" do
-    expect(subject).to be_flying
+    expect(subject.flying).to eq(true)
   end
 
   it "can land" do
@@ -31,7 +31,7 @@ describe Plane do
 
   it "has landed" do
     subject.landed
-    expect(subject.flying?).to eq(false)
+    expect(subject.flying).to eq(false)
   end
 
   it "can take off" do
@@ -40,8 +40,7 @@ describe Plane do
 
   it "is flying after take off" do
     subject.taken_off
-    expect(subject.flying?).to eq(true)
+    expect(subject.flying).to eq(true)
   end
-
 
 end
