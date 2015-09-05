@@ -12,6 +12,7 @@ class Plane
 
 	def land airport
 		fail 'Not an airport' unless airport.is_a?(Airport)
+		fail "Can't land in stormy weather" if airport.is_stormy?
 		@flying = false
 	end
 
@@ -22,4 +23,5 @@ class Plane
 	private
 
 end
+
 
