@@ -24,7 +24,7 @@ describe Airport do
     end
 
     it 'releases a plane' do
-      allow(subject).to receive(:stormy?).and_return(false)
+      allow(subject).to receive(:stormy?){false}
       subject.dock(plane)
       subject.release_plane
       expect(subject.planes.empty?).to eq(true)
@@ -37,7 +37,7 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      allow(subject).to receive(:stormy?).and_return(false)
+      allow(subject).to receive(:stormy?){false}
       subject.dock(plane)
       expect(subject.planes.any?).to eq(true)
     end
@@ -52,7 +52,7 @@ describe Airport do
       end
 
       it "raises an error when airport is full" do
-        allow(subject).to receive(:stormy?).and_return(false)
+        allow(subject).to receive(:stormy?){false}
         subject.capacity.times { subject.dock plane }
         expect { subject.dock plane }.to raise_error 'Airport unavailable'
       end
