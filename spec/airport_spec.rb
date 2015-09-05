@@ -12,8 +12,7 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-let(:flying_plane){double(:flying_plane, status: 'flying', land: nil, take_off: nil)}
-let(:landed_plane){double(:landed_plane, status: 'landed', land: nil, take_off: nil)}
+let(:plane){double(:flying_plane, land: nil, take_off: nil)}
 
 it 'has a capacity of 20 planes' do
   expect(subject.capacity).to eq 20
@@ -26,7 +25,7 @@ end
 
     it 'releases a plane' do
       allow(subject).to receive(:forecast) {'sunny'}
-      subject.allow_land flying_plane
+      subject.allow_land plane
       plane_count = subject.planes.count
       subject.allow_take_off
       expect(subject.planes.count).to eq (plane_count - 1)
@@ -40,7 +39,7 @@ end
 
     it 'receives a plane' do
       plane_count = subject.planes.count
-      subject.allow_land flying_plane
+      subject.allow_land plane
       expect(subject.planes.count).to eq (plane_count + 1)
     end
   end
@@ -50,8 +49,8 @@ end
     context 'when airport is full' do
       it 'plane cannot land' do
         allow(subject).to receive(:forecast) {'sunny'}
-        subject.capacity.times {subject.allow_land flying_plane}
-        expect {subject.allow_land flying_plane}.to raise_error "Airport is full pilot.."
+        subject.capacity.times {subject.allow_land plane}
+        expect {subject.allow_land plane}.to raise_error "Airport is full pilot.."
       end
     end
 
@@ -66,14 +65,14 @@ end
 
     context 'when weather conditions are stormy' do
       it 'plane cannot take off' do
-        subject.allow_land flying_plane
+        subject.allow_land plane
         allow(subject).to receive(:forecast) {'stormy'}
         expect {subject.allow_take_off}.to raise_error "Sorry pilot, bad weather is forecast.."
       end
 
       it 'plane cannot land' do
         allow(subject).to receive(:forecast) {'stormy'}
-        expect {subject.allow_land flying_plane}.to raise_error "Sorry pilot, bad weather is forecast.."
+        expect {subject.allow_land plane}.to raise_error "Sorry pilot, bad weather is forecast.."
       end
     end
   end
