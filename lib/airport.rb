@@ -27,7 +27,7 @@ class Airport
   end
 
   def take_off
-    fail 'No planes at airport' if planes.empty?
+    fail 'No planes at airport' if empty?
     planes.pop
   end
 
@@ -35,5 +35,9 @@ class Airport
 
   def full?
     planes.count >= capacity
+  end
+
+  def empty?
+    planes.empty?
   end
 end
