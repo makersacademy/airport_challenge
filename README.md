@@ -41,14 +41,14 @@ Model
 | Air Traffic Control |                      |
 | Plane               | status(flying/landed)|
 | Airport             | capacity(full?)      |
-| Airport             | take_off             |
-| Airport             | land                 |
+| Airport             | allow_take_off       |
+| Airport             | allow_land           |
 | Airport             | weather(stormy/sunny)|
 
-Airport <-- take_off        --> Plane.taking_off --> Plane(status: flying)
+Airport <-- allow_take_off        --> Plane.take_off --> Plane(status: flying)
 
 
-Airport <-- land            --> Plane.landing --> Plane(status: landed)
+Airport <-- allow_land            --> Plane.land --> Plane(status: landed)
 
 
 Airport <-- capacity.full?  --> true/false

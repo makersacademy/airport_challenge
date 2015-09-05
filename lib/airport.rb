@@ -32,11 +32,8 @@ class Airport
 
   def forecast
     num = rand(10)
-    if num == 5
-      'stormy'
-    else
-      'sunny'
-    end
+    return 'stormy' if num == 5
+    'sunny'
   end
 
   private
