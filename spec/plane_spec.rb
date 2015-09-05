@@ -29,7 +29,11 @@ describe Plane do
 
   it { is_expected.to respond_to :landed?}
 
-  xit 'is landed after landing'
+  it 'is not landed when created (before landing)' do
+    expect(subject).not_to be_landed
+  end
+
+  xit 'is landed after landing' 
 
   xit 'can take off'
 

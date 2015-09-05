@@ -8,6 +8,7 @@ class Plane
   end
 
   def landed?
+  	not flying?
   end
 
 end

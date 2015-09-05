@@ -113,7 +113,29 @@ Started to work on the first piece of the user story.
 
  7.3. Wrote empty method landed? in Plane. Now the test pass.
 
- 7.4. As a refactoring stage had a thought that may be methods should be not #flying? and #landed?, but one method #status returning 'flying' or 'landed'. But decided to stick to the logic of boris_bikes for now.
+ 7.4. As a refactoring stage had a thought that may be methods should be not #flying? and #landed?, but one method #status returning 'flying' or 'landed'. Decided to stick to the logic of boris_bikes for now.
+
+ 7.5. Commited, pushed.
+
+8. Plane should be landed after landing. It also means that plane should not be landed before landing (otherwise we can not be sure that #land actually landed the plane, may be it was olready landed). I do not know if it is possible to check status of a subject before calling particular method (it seems strange). So I need another way to check that a plane is not landed before landing. Decided to start from the fact that a new plane is flying (so was not landed), new plane should not be landed.
+ 
+ 8.1. Feature test in irb
+
+ ```
+ :001 > plane = Plane.new
+  => #<Plane:0x007faff28c6938> 
+ :002 > plane.landed?
+  => nil 
+ :003 >
+ ```
+ Expected to be false, got nil.
+
+ 8.2. Wrote the test, made it fail.
+
+ 8.3. Connected landed with flying (when landed not flying). Test pass.
+
+ 
+
 	
 
 
