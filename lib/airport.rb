@@ -17,13 +17,13 @@ DEFAULT_CAPACITY = 10
   end
 
   def dock(plane)
-    fail 'Airport unavailable' if full? || stormy?
+    fail "Airport unavailable" if full? || stormy?
     @planes << plane
   end
 
   def stormy?
     forcast = rand(1..30)
-    forcast < 5 ? 'stormy' : 'sunny'
+    forcast < 5 ? "stormy" : "sunny"
   end
 
   private
