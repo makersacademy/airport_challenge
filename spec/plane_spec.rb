@@ -22,21 +22,20 @@ describe Plane do
   end
 
   describe '#land' do
-	  it 'can land' do
-	  	expect(subject).to respond_to(:land)
+		it 'can land at a specified Airport' do
+	  	expect(subject).to respond_to(:land).with(1).argument########
 	  end
 	  it 'raises error when not given a valid airport destination' do
 	  	airport = double(:none_airport_object)
 	  	allow(airport).to receive(:is_a?).with(Airport) {false}
 	  	expect{subject.land(airport)}.to raise_error 'Not an airport'
 	  end
-	  # it 'is landed after landing' do
-	  # 	subject.land
-	  # 	expect(subject).to_not be_flying
-	  # end
-	  # it 'can land at a specified Airport' do
-	  # 	expect(subject).to respond_to(:land).with(1).argument########
-	  # end
+	  it 'is landed after landing' do
+	  	airport = double(:airport_object)
+	  	allow(airport).to receive(:is_a?).with(Airport) {true}
+	  	subject.land(airport)
+	  	expect(subject).to_not be_flying
+	  end
 	end
 
   # it 'can take off' do

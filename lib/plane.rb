@@ -11,7 +11,7 @@ class Plane
 	end
 
 	def land airport
-		fail 'Not an airport' if airport.is_a?(Airport) == false
+		fail 'Not an airport' unless airport.is_a?(Airport)
 		@flying = false
 	end
 
@@ -19,7 +19,7 @@ class Plane
 		@flying = true
 	end
 
+	private
+
 end
 
-# ap = Airport.new
-# p ap.is_a?(Airport)
