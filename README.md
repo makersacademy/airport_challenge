@@ -1,3 +1,6 @@
+### Status
+[![Build Status](https://travis-ci.org/chn-challenger/airport_challenge.png)](https://travis-ci.org/chn-challenger/airport_challenge)
+
 Airport Challenge
 =================
 
