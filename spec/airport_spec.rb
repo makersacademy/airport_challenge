@@ -12,7 +12,9 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-  let(:plane) { double :plane }
+  let(:plane) do
+    double :plane, land: :landed # not sure about land: :landed
+  end
 
   it { is_expected.to respond_to(:clear_for_takeoff) }
 
@@ -22,6 +24,10 @@ describe Airport do
       expect(subject.clear_for_takeoff).to eq(plane)
     end
 
+    xit "changes plane status to :flying" do
+      subject.clear_for_landing(plane)
+
+    end
     # it "changes the status of plane to flying" do
     #   subject.clear_for_landing(plane)
     #   allow(plane).to receive(:flying?) { true }
@@ -37,9 +43,11 @@ describe Airport do
       expect(my_plane).to eq(plane)
     end
 
-    xit "changes plane status to 'landed'" do 
-      my_plane = subject.clear_for_landing(plane).last
-      expect(my_plane)
+    it "changes plane status to :landed" do
+      #not sure
+      allow(plane).to receive(:land) { :landed }
+      allow(plane).to receive(:plane_status) { :landed }
+      expect(subject.clear_for_landing(plane).last.plane_status).to eq(:landed)
     end
   end
 end

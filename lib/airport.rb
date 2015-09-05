@@ -11,6 +11,7 @@ class Airport
   end
 
   def clear_for_landing(plane)
+    plane.land
     @planes << plane
   end
 end
