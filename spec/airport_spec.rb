@@ -28,7 +28,8 @@ describe Airport do
     end
 
     it 'raises an error when no planes at the airport' do
-      expect { subject.plane_take_off }.to raise_error 'Cannot currently take off'
+      expect { subject.plane_take_off }.to raise_error
+      'Cannot currently take off'
     end
   end
 
@@ -49,7 +50,8 @@ describe Airport do
       it 'does not allow a plane to land' do
         allow(subject).to receive(:stormy?).and_return(false)
         subject.capacity.times { subject.plane_land(plane) }
-        expect { subject.plane_land(plane) }.to raise_error 'Plane cannot currently land at airport'
+        expect { subject.plane_land(plane) }.to raise_error
+        'Plane cannot currently land at airport'
       end
     end
 
@@ -65,14 +67,16 @@ describe Airport do
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to land' do
         allow(subject).to receive(:stormy?).and_return(true)
-        expect { subject.plane_land(plane) }.to raise_error 'Plane cannot currently land at airport'
+        expect { subject.plane_land(plane) }.to raise_error
+        'Plane cannot currently land at airport'
       end
 
       it 'does not allow a plane to take off' do
         allow(subject).to receive(:stormy?).and_return(false)
         subject.plane_land(plane)
         allow(subject).to receive(:stormy?).and_return(true)
-        expect { subject.plane_take_off}.to raise_error 'Cannot currently take off'
+        expect { subject.plane_take_off}.to raise_error
+        'Cannot currently take off'
       end
     end
   end

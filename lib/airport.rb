@@ -8,14 +8,17 @@ class Airport
     @planes = []
     @capacity = capacity
   end
+
   def plane_take_off
     fail 'Cannot currently take off' if empty? || stormy?
     planes.pop
   end
+
   def plane_land(plane)
     fail 'Plane cannot currently land at airport' if full? || stormy?
     planes << plane
   end
+
   private
 
   def full?
@@ -28,6 +31,6 @@ class Airport
 
   def stormy?
     weather = rand(10)
-    weather < 2 ? true : false
+    weather <= 2 ? true : false
   end
 end
