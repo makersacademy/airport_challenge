@@ -13,62 +13,7 @@ require 'airport'
 
 describe Airport do
 
-  class Plane;  end #necessary for testing plane_double is a Plane
-
-  # describe 'new/initialize' do
-
-  # end
-
-  describe 'method:is_stormy?' do
-    it do expect(subject).to respond_to(:is_stormy?).with(0).argument end
-    it 'returns true or false' do
-      boolean = subject.is_stormy?
-      expect(!!boolean).to eq(boolean)
-    end  
-  end
-
-  describe 'method:is_full?' do
-    it do expect(subject).to respond_to(:is_full?).with(0).argument end
-    it 'returns true or false' do
-      boolean = subject.is_full?
-      expect(!!boolean).to eq(boolean)
-    end  #### more work to be done
-  end
-
-  describe 'method:instruct_land' do
-    it do expect(subject).to respond_to(:instruct_land).with(1).argument end
-    it 'raises error when given a none-plane object to land with' do
-      plane = double(:non_plane_object)
-      allow(plane).to receive(:is_a?).with(Plane).and_return(false)
-      expect{subject.instruct_land(plane)}.to raise_error 'Not a plane'
-    end
-    it 'raises error when asked to land in stormy weather' do
-      plane = double(:plane_object)
-      allow(plane).to receive(:is_a?).with(Plane).and_return(true)
-      allow(subject).to receive(:is_stormy?).and_return(false)
-      expect{subject.instruct_land(plane)}.to raise_error "Can't land in stormy weather"
-    end
-
-    #xit 'receives a plane'
-  end
-
-
-
-
-
-
-  describe 'method:instruct_takeoff' do
-    it do expect(subject).to respond_to(:instruct_takeoff).with(1).argument end
-    it 'raises error when given a none-plane object to takeoff with' do
-      plane = double(:non_plane_object)
-      allow(plane).to receive(:is_a?).with(Plane).and_return(false)
-      expect{subject.instruct_takeoff(plane)}.to raise_error 'Not a plane'
-    end
-    it 'raises error when given a plane which is not at this airport to takeoff with' do
-      plane = double(:plane_object)
-      allow(plane).to receive(:is_a?).with(Plane).and_return(true)
-      expect{subject.instruct_takeoff(plane)}.to raise_error 'The plane is currently not at this airport'      
-    end     
+end
     # it 'allow plane take off when given a plane which is at the airport and weather is not stormy' do
     #   plane = double(:plane_object)
       
@@ -79,7 +24,75 @@ describe Airport do
   #   xit 'instructs a plane to take off'
 
   #   xit 'releases a plane'
-  end
+
+
+
+
+
+
+
+
+
+
+#   class Plane;  end #necessary for testing plane_double is a Plane
+
+#   # describe 'new/initialize' do
+
+#   # end
+
+#   describe 'method:is_stormy?' do
+#     it do expect(subject).to respond_to(:is_stormy?).with(0).argument end
+#     it 'returns true or false' do
+#       boolean = subject.is_stormy?
+#       expect(!!boolean).to eq(boolean)
+#     end  
+#   end
+
+#   describe 'method:is_full?' do
+#     it do expect(subject).to respond_to(:is_full?).with(0).argument end
+#     it 'returns true or false' do
+#       boolean = subject.is_full?
+#       expect(!!boolean).to eq(boolean)
+#     end  #### more work to be done
+#   end
+
+#   describe 'method:instruct_land' do
+#     it do expect(subject).to respond_to(:instruct_land).with(1).argument end
+#     it 'raises error when given a none-plane object to land with' do
+#       plane = double(:non_plane_object)
+#       allow(plane).to receive(:is_a?).with(Plane).and_return(false)
+#       expect{subject.instruct_land(plane)}.to raise_error 'Not a plane'
+#     end
+#     it 'raises error when asked to land in stormy weather' do
+#       plane = double(:plane_object)
+#       allow(plane).to receive(:is_a?).with(Plane).and_return(true)
+#       allow(subject).to receive(:is_stormy?).and_return(false)
+#       expect{subject.instruct_land(plane)}.to raise_error "Can't land in stormy weather"
+#     end
+
+#     #xit 'receives a plane'
+#   end
+
+#   describe 'method:instruct_takeoff' do
+#     it do expect(subject).to respond_to(:instruct_takeoff).with(1).argument end
+#     it 'raises error when given a none-plane object to takeoff with' do
+#       plane = double(:non_plane_object)
+#       allow(plane).to receive(:is_a?).with(Plane).and_return(false)
+#       expect{subject.instruct_takeoff(plane)}.to raise_error 'Not a plane'
+#     end
+#     it 'raises error when given a plane which is not at this airport to takeoff with' do
+#       plane = double(:plane_object)
+#       allow(plane).to receive(:is_a?).with(Plane).and_return(true)
+#       expect{subject.instruct_takeoff(plane)}.to raise_error 'The plane is currently not at this airport'      
+#     end     
+
+# end
+
+
+
+
+
+
 
 
 
@@ -103,7 +116,6 @@ describe Airport do
   #     xit 'does not allow a plane to land'
   #   end
   # end
-end
 
 
 
