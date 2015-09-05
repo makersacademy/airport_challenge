@@ -45,20 +45,20 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow plane to take off' do
-        airport = Airport.new
-        airport.land_bad_weather
-        expect(airport.land_bad_weather).to raise_error 'Planes can not take off in this weather'
+      it 'does not allow plane to take off' do
+        expect(subject).to receive(:weather).and_return(:stormy)
+        subject.weather
+        expect(subject.bad_weather_take_off).to raise_error 'Planes can not take off in this weather'
       end
 
-      xit 'does not allow plane to land' do
-        airport = Airport.new
-        airport.land_bad_weather
-        expect(airport.land_bad_weather).to raise_error 'Planes can not take off in this weather'
+      it 'does not allow plane to land' do
+        expect(subject).to receive(:weather).and_return(:stormy)
+        subject.weather
+        expect{subject.land_bad_weather}.to raise_error 'Planes can not take off in this weather'
       end
     end
   end
     it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
+    end
 end
