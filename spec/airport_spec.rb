@@ -39,6 +39,7 @@ end
     end
 
     it 'receives a plane' do
+      allow(subject).to receive(:forecast) {'sunny'}
       plane_count = subject.planes.count
       subject.allow_land flying_plane
       expect(subject.planes.count).to eq (plane_count + 1)

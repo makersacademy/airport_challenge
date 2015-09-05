@@ -4,7 +4,6 @@ class Airport
 
   attr_reader :capacity, :planes
 
-
   def initialize
     @capacity = 20
     @planes = []
@@ -33,7 +32,7 @@ class Airport
   def forecast
     num = rand(10)
     return 'stormy' if num == 5
-    return 'sunny'
+    'sunny'
   end
 
   private
