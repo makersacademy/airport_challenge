@@ -2,9 +2,9 @@ require_relative 'airport'
 
 class Plane
 
-attr_reader :destination
+  attr_accessor :destination
 
-  def initialize
+  def initialize (destination)
     @flying = true
     @destination = destination
   end
@@ -14,7 +14,7 @@ attr_reader :destination
   end
 
   def can_land
-    raise 'the plane can not land if it is not flying' if landed?
+    fail 'The plane can not land if it is not flying' if landed?
     @flying = false
     return true
   end
@@ -24,7 +24,7 @@ attr_reader :destination
   end
 
   def can_take_off
-    raise 'The plane can not take off if it is not landed' if flying?
+    fail 'The plane can not take off if it is not landed' if flying?
     @flying = true
   end
 end

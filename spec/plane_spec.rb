@@ -19,32 +19,36 @@ describe Plane do
 
   #it 'is flying when created'
   it 'is flying when created' do
-    subject
-    expect(subject).to be_flying
+    plane = Plane.new :destination
+    expect(plane).to be_flying
   end
 
   #it 'can land'
   it 'can land' do
-    subject.can_land
-    expect {subject.can_land}.to raise_error 'the plane can not land if it is not flying'
+    plane = Plane.new :destination
+    plane.can_land
+    expect {plane.can_land}.to raise_error 'The plane can not land if it is not flying'
   end
 
   #it 'is landed after landing'
   it 'is landed after landing' do
-  	subject.can_land
-    subject.landed?
-  	expect(subject).to be_landed
+    plane = Plane.new :destination
+  	plane.can_land
+    plane.landed?
+  	expect(plane).to be_landed
 	end
 
   #it 'can take off'
   it 'can take off' do
-    subject
-    expect {subject.can_take_off}.to raise_error 'The plane can not take off if it is not landed'
+    plane = Plane.new :destination
+    expect {plane.can_take_off}.to raise_error 'The plane can not take off if it is not landed'
   end
 
   #it 'is flying after take off'
-  xit 'is flying after take off' do
-    subject.can_take_off
-    expect(subject).to be_flying
+  it 'is flying after take off' do
+    plane = Plane.new :destination
+    plane.can_land
+    plane.can_take_off
+    expect(plane).to be_flying
   end
 end
