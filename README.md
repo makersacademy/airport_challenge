@@ -1,6 +1,6 @@
 
 I plan to do my best to make very little baby steps while working on this project.
-I plan to follow the steps, we used to complete challenges during the week.
+I plan to follow the steps we used to complete challenges during the week.
 I will write very detailed explanation of what I do, mainly for myself. When I feel more comfartable, explanation probably will become less detailed.
 
 Started to work on the first piece of the user story. 
@@ -45,6 +45,36 @@ Started to work on the first piece of the user story.
  4.2. Wrote the test, made it fail. 
  
  4.3 Wrote empty method flying? in Plane. Now the test pass. A plane responds to flying?
+
+ 4.4. Commited the changes, pushed them to github
+
+ 4.5. Had some problems with Markdown in README, added it to README, commited, pushed, now it looks nicer.
+
+5. Now I think it is time for the test xit 'is flying when created'
+
+ 5.1. Feature test in irb
+
+ ```
+ :001 > plane = Plane.new
+  => #<Plane:0x007fb0e98ffe20> 
+ :002 > plane.flying?
+  => nil 
+ :003 > 
+ ```
+
+ Expected true, got nil.
+
+ 5.2. Wrote the test, made it fail.
+
+ 5.3. Now I have several options to write a code.
+
+ First, I can just make flying? always return true, it will make the test pass (I checked!).
+ Second, I can write something more complicated involving writing method initialize and introducing new variable @status = true, and make flying? return status. Probably there are other better options. At this stage decided to take the first approach and see what happens next.
+
+ Now the test passed.
+
+ 
+
 
 
 
