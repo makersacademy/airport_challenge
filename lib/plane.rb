@@ -17,6 +17,7 @@ class Plane
   end
 
   def take_off
+  	@flying = true
   end
 
 end

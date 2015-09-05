@@ -181,6 +181,32 @@ Started to work on the second piece of the user story.
 
  1.3. Wrote an empty #take_off, test passed.
 
+ 1.4. Commited, pushed
+
+2. Make a plane flying after take off. Means plane should land first.
+ 
+ 2.1. Feature test in irb
+
+ ```
+ :001 > plane = Plane.new
+  => #<Plane:0x007ff32999e8b8 @flying=true> 
+ :002 > plane.land
+  => false 
+ :003 > plane.flying?
+  => false 
+ :004 > plane.take_off
+  => nil 
+ :005 > plane.flying?
+  => false 
+ :006 > 
+ ```
+
+ Expected to be true, got false.
+
+ 2.2. Wrote the test, made it fail.
+
+ 2.3. Wrote some code, test passed.
+
  
 
 
