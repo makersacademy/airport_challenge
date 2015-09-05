@@ -45,7 +45,7 @@ describe Airport do
 
     it "cannot accept planes more than its capacity" do
       50.times { subject.clear_for_landing(plane) }
-      expect { subject.clear_for_landing(plane) }.to raise_error('Airport is full')
+      expect{subject.clear_for_landing(plane)}.to raise_error('Airport full')
     end
   end
 

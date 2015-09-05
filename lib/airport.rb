@@ -15,7 +15,7 @@ class Airport
 
   def clear_for_landing(plane)
     plane.land
-    raise 'Airport is full' if full?
+    fail 'Airport full' if full?
     planes << plane
   end
 
