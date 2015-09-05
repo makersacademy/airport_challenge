@@ -1,5 +1,4 @@
 require 'plane'
-require 'airport'
 
 describe Plane do
 
@@ -21,8 +20,7 @@ describe Plane do
   # should be "landed"
 
   it 'is landed after landing' do
-    airport = Airport.new
-    subject.land_at(airport)
+    subject.land_at(double :airport)
     expect(subject).to be_landed
   end
 
@@ -37,7 +35,7 @@ describe Plane do
   # When the plane takes of from the airport, it should be "flying" again
 
   it 'is flying after take off' do
-    airport = Airport.new
+    airport = double :airport
     subject.land_at(airport)
     subject.take_off_from(airport)
     expect(subject).to be_flying
@@ -48,5 +46,5 @@ end
 # Think about your implementation - does it allow a plane to be "flying"
 # and landed? Are you testing that?
 
-# >> I'm not testing that but as it happens the way I've implemented
+# >> I'm not testing that, but as it happens the way I've implemented
 # >> Plane.flying? and Plane.landed? makes them mutually exclusive.

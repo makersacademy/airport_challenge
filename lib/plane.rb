@@ -16,7 +16,7 @@ class Plane
     self.status = airport
   end
 
-  def take_off_from(airport)
+  def take_off_from(_airport)
     self.status = :flying
   end
 
