@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+![image](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)
+
 Introduction
 ------------
 
