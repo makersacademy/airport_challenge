@@ -1,6 +1,6 @@
 class Plane
 
-attr_reader :flying, :permission
+attr_reader :flying
 
 def initialize
   @flying = true
