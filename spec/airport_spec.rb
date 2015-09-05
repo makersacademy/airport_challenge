@@ -12,25 +12,25 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-  # let(:plane) do
-  #   p = double :plane
-  #   allow(p).to receive(:clear_for_takeoff).and_return(:plane)
-  # end
+  let(:plane) do
+    p = double :plane
+    allow(p).to receive(:clear_for_landing(plane)).and_return([p])
+  end
+
   it { is_expected.to respond_to(:clear_for_takeoff) }
 
   describe "#clear_for_takeoff" do
     it "returns a plane" do
-      expect(subject.clear_for_takeoff).to be_an_instance_of(Plane)
+      expect(subject.clear_for_takeoff).to eq(plane)
     end
   end
 
   it { is_expected.to respond_to(:allow_landing).with(1).argument }
 
-  # recheck this test 
-  describe "#allow_landing(plane)" do
-    it "returns all planes at the airport including the one that recently landed" do
-      plane = Plane.new
-      expect(subject.allow_landing(plane)).to eq(plane)
+  # recheck this test
+  describe "#clear_for_landing(plane)" do
+    it "includes the plane that recently landed" do
+      expect(subject.clear_for_landing(plane).last).to eq(plane)
     end
   end
 end

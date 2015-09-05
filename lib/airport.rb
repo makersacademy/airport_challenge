@@ -6,7 +6,7 @@ class Airport
     Plane.new
   end
 
-  def allow_landing(plane)
+  def clear_for_landing(plane)
     @plane = plane
   end
 end
