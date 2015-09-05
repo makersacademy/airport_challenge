@@ -13,6 +13,7 @@ class Plane
 	def land airport
 		fail 'Not an airport' unless airport.is_a?(Airport)
 		fail "Can't land in stormy weather" if airport.is_stormy?
+		fail "Can't land at a full airport" if airport.is_full?
 		@flying = false
 	end
 

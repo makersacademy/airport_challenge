@@ -21,11 +21,11 @@ describe Plane do
   	expect(subject).to be_flying
   end
 
-  describe '#land' do
+  describe 'method:land' do
 		it 'can land at a specified Airport' do
 	  	expect(subject).to respond_to(:land).with(1).argument########
 	  end
-	  it 'raises error when not given a valid airport destination' do
+	  it 'raises error when not given a valid airport object as destination' do
 	  	airport = double(:none_airport_object)
 	  	allow(airport).to receive(:is_a?).with(Airport).and_return(false)
 	  	expect{subject.land(airport)}.to raise_error 'Not an airport'
@@ -36,18 +36,21 @@ describe Plane do
 	  	allow(airport).to receive(:is_stormy?).and_return(true)
 	  	expect{subject.land(airport)}.to raise_error "Can't land in stormy weather"
 	  end	
-		xit 'raises error when trying to land at a full airport' do
-	 #  	airport = double(:airport_object)
-	 #  	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
-		# 	expect{subject.land(airport)}.to raise_error "Can't land in stormy weather"
+		it 'raises error when trying to land at a full airport' do
+	  	airport = double(:airport_object)
+	  	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
+	  	allow(airport).to receive(:is_stormy?).and_return(false)
+	  	allow(airport).to receive(:is_full?).and_return(true)
+	  	expect{subject.land(airport)}.to raise_error "Can't land at a full airport"
 	  end	
-
-	  # it 'is landed after landing' do
-	  # 	airport = double(:airport_object)
-	  # 	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
-	  # 	subject.land(airport)
-	  # 	expect(subject).to_not be_flying
-	  # end
+	  it 'is landed after landing' do
+	  	airport = double(:airport_object)
+	  	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
+	  	allow(airport).to receive(:is_stormy?).and_return(false)
+	  	allow(airport).to receive(:is_full?).and_return(false)
+	  	subject.land(airport)
+	  	expect(subject).to_not be_flying
+	  end
   end
 
 
