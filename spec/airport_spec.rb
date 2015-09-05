@@ -1,5 +1,6 @@
 require 'airport'
 
+
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -13,23 +14,23 @@ require 'airport'
 
 describe Airport do
 
+    let(:glasgow) {Airport.new}
+    let(:pl101)   {double :plane, flying: 'flying'}
     it { is_expected.to respond_to :commence_take_off }
     it { is_expected.to respond_to :planes }
     it { is_expected.to respond_to :count_planes }
 
 
     it 'count the number of planes in the aiport' do
-      airport = Airport.new
-      expect(airport.count_planes).to eql 1
+      expect(glasgow.count_planes).to eql 1
     end
 
 
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-    airport = Airport.new
-    planes = airport.planes
-    plane = planes.pop
+    planes = glasgow.planes
+    plane =planes.pop
     expect(plane).to respond_to :take_off
 
     end
@@ -37,10 +38,19 @@ describe Airport do
     xit 'releases a plane'
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+   describe 'landing' do
+    xit 'instructs a plane to land' do
+     expect(pl101).to respond_to :land
+    end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+    planes  = (glasgow).planes
+    number_planes = planes.count
+    (pl101).land(glasgow)
+    expect(number_planes).to eql(planes.count - 1)
+
+    end
+
   end
 
   describe 'traffic control' do

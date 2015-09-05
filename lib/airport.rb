@@ -10,9 +10,14 @@ class Airport
     @planes << Plane.new("landed")
   end
 
-  def commence_take_off(destination)
-    plane = @plane.pop
-    plane.take_off(destination)
+  def commence_take_off
+    plane = @planes.pop
+    plane.take_off
+  end
+
+  def land(plane)
+  @planes << plane
+  plane.landed
   end
 
   def planes
