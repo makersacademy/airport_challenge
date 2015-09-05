@@ -13,36 +13,56 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  # describe 'new/initialize' do
 
-    xit 'releases a plane'
+  # end
+
+  describe 'method:is_stormy?' do
+    it do expect(subject).to respond_to(:is_stormy?).with(0).argument end
+    it 'returns true or false' do
+      boolean = subject.is_stormy?
+      expect(!!boolean).to eq(boolean)
+    end  
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
+  describe 'method:is_full?' do
+    it do expect(subject).to respond_to(:is_full?).with(0).argument end
+    it 'returns true or false' do
+      boolean = subject.is_full?
+      expect(!!boolean).to eq(boolean)
+    end  #### more work to be done
   end
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
-    end
+  # describe 'take off' do
+  #   xit 'instructs a plane to take off'
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  #   xit 'releases a plane'
+  # end
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+  # describe 'landing' do
+  #   xit 'instructs a plane to land'
 
-      xit 'does not allow a plane to land'
-    end
-  end
+  #   xit 'receives a plane'
+  # end
+
+  # describe 'traffic control' do
+  #   context 'when airport is full' do
+  #     xit 'does not allow a plane to land'
+  #   end
+
+  #   # Include a weather condition.
+  #   # The weather must be random and only have two states "sunny" or "stormy".
+  #   # Try and take off a plane, but if the weather is stormy,
+  #   # the plane can not take off and must remain in the airport.
+  #   #
+  #   # This will require stubbing to stop the random return of the weather.
+  #   # If the airport has a weather condition of stormy,
+  #   # the plane can not land, and must not be in the airport
+
+  #   context 'when weather conditions are stormy' do
+  #     xit 'does not allow a plane to take off'
+
+  #     xit 'does not allow a plane to land'
+  #   end
+  # end
 end
