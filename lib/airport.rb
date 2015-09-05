@@ -13,7 +13,7 @@ class Airport
     if forecast == 'stormy'
       fail "Sorry pilot, bad weather is forecast.."
     elsif @planes.empty?
-      fail "No planes at the airport.."
+      fail "No planes at the airport"
     else
       plane = @planes.pop
       plane.take_off
@@ -22,7 +22,7 @@ class Airport
 
   def allow_land(plane)
     if full?
-      fail "Airport is full pilot.."
+      fail "Airport is full pilot"
     elsif forecast == 'stormy'
       fail "Sorry pilot, bad weather is forecast.."
     else

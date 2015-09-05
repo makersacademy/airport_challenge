@@ -24,7 +24,7 @@ end
     end
 
     it 'cannot release plane if empty' do
-      expect {subject.allow_take_off}.to raise_error "No planes at the airport.."
+      expect {subject.allow_take_off}.to raise_error "No planes at the airport"
     end
 
     it 'releases plane' do
@@ -55,7 +55,7 @@ end
       it 'plane cannot land' do
         allow(subject).to receive(:forecast) {'sunny'}
         subject.capacity.times {subject.allow_land plane}
-        expect {subject.allow_land plane}.to raise_error "Airport is full pilot.."
+        expect {subject.allow_land plane}.to raise_error "Airport is full pilot"
       end
     end
 
