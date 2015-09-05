@@ -17,14 +17,13 @@ require 'plane'
 
 describe Plane do
   it { is_expected.to respond_to(:take_off) }
+  it { is_expected.to respond_to(:land) }
 
   describe "#take_off" do
     it "changes plane status to :flying" do
       expect(subject.take_off).to eq(:flying)
     end
   end
-
-  it { is_expected.to respond_to(:land) }
 
   describe "#land" do
     it "changes plane status to :landed" do
@@ -37,21 +36,6 @@ describe Plane do
     expect(subject.plane_status).to eq(:landed)
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
