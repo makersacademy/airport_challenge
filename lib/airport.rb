@@ -8,13 +8,22 @@ class Airport
   end
 
   def clear_for_takeoff
-    my_plane = @planes.pop
+    my_plane = planes.pop
     my_plane.take_off
     my_plane
   end
 
   def clear_for_landing(plane)
     plane.land
-    @planes << plane
+    raise 'Airport is full' if full?
+    planes << plane
   end
+
+  private
+  attr_reader :planes
+
+  def full?
+    planes.size >= capacity
+  end
+
 end

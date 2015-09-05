@@ -24,7 +24,7 @@ describe Airport do
       expect(subject.clear_for_takeoff).to eq(plane)
     end
 
-    it "changes plane status to :flying" do
+    it "changes plane status to :flying" do # not sure
       my_plane = subject.clear_for_landing(plane).pop
       allow(my_plane).to receive(:plane_status) { :flying }
       expect(my_plane.plane_status).to eq(:flying)
@@ -37,11 +37,15 @@ describe Airport do
       expect(my_plane).to eq(plane)
     end
 
-    it "changes plane status to :landed" do
-      #not sure
+    it "changes plane status to :landed" do # not sure
       my_plane = subject.clear_for_landing(plane).last
       allow(my_plane).to receive(:plane_status) { :landed }
       expect(my_plane.plane_status).to eq(:landed)
+    end
+
+    it "cannot accept planes more than its capacity" do
+      50.times { subject.clear_for_landing(plane) }
+      expect { subject.clear_for_landing(plane) }.to raise_error('Airport is full')
     end
   end
 
