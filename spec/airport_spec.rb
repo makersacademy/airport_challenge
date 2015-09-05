@@ -15,7 +15,7 @@ describe Airport do
   let(:plane) do
     double :plane, land: :landed, fly: :flying # not sure
   end
-
+  it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
   it { is_expected.to respond_to(:clear_for_takeoff) }
 
   describe "#clear_for_takeoff" do
@@ -31,8 +31,6 @@ describe Airport do
     end
   end
 
-  it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
-
   describe "#clear_for_landing(plane)" do
     it "accepts a plane" do
       my_plane = subject.clear_for_landing(plane).last
@@ -44,6 +42,12 @@ describe Airport do
       my_plane = subject.clear_for_landing(plane).last
       allow(my_plane).to receive(:plane_status) { :landed }
       expect(my_plane.plane_status).to eq(:landed)
+    end
+  end
+
+  describe "#capacity" do
+    it "returns capacity of airport" do
+      expect(Airport.new(67).capacity).to eq(67)
     end
   end
 end
