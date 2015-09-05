@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -13,18 +14,23 @@ require 'airport'
 
 describe Airport do
 
+  subject {Airport.new}
+  let(:plane) {Plane.new}
+
   describe 'take off' do
     it {is_expected.to respond_to(:take_off).with(1).argument} 
   end
 
   describe 'landing' do
-    it  {is_expected.to respond_to(:land_plane).with(1).argument}
+    it  {is_expected.to respond_to(:land).with(1).argument}
   end
 
   describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+    it 'does not allow a plane to land & raises an error' do
+      50.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error 'Unable to land plane, airport at capacity'
     end
+  end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -35,10 +41,10 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+  #   context 'when weather conditions are stormy' do
+  #     xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
-    end
-  end
+  #     xit 'does not allow a plane to land'
+  #   end
+  # end
 end
