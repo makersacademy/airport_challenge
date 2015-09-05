@@ -1,7 +1,9 @@
 class Plane
- def initialize
+  attr_reader :destination
+
+ def initialize destination
    @flying = true
-  #  @landed = false
+   @destination = destination
  end
 
  def flying?
@@ -9,9 +11,9 @@ class Plane
  end
 
  def can_land
-    raise 'the plane cannot land if it is not flying' if landed?
+    fail 'the plane cannot land if it is not flying' if landed?
     @flying = false
-    return true
+    true
   end
 
  def landed?
@@ -19,7 +21,7 @@ class Plane
  end
 
  def can_take_off
-   raise 'cant take off when already flying' if flying?
+   fail 'cant take off when already flying' if flying?
    @flying = true
  end
 end
