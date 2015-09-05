@@ -22,6 +22,7 @@ class Plane
   end
 
   def take_off
+    @flying = true
     "Buckle up folks I havent flown in a while"
   end
 
