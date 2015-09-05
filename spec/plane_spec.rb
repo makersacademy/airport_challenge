@@ -18,8 +18,7 @@ require 'plane'
 describe Plane do
 
   it 'is flying when created' do
-    plane = Plane.new
-    expect(plane).to be_flying
+    expect(subject).to be_flying
   end
 
   it 'can land' do
@@ -27,9 +26,8 @@ describe Plane do
   end
 
   it 'is landed after landing' do
-    plane = Plane.new
-    plane.land
-    expect(plane).not_to be_flying
+    subject.land
+    expect(subject).not_to be_flying
   end
 
   it 'can take off' do
@@ -37,9 +35,8 @@ describe Plane do
   end
 
   it 'is flying after take off' do
-    plane = Plane.new
-    plane.take_off
-    expect(plane).to be_flying
+    subject.take_off
+    expect(subject).to be_flying
   end
 
 end
