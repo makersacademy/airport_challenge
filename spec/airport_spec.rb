@@ -12,8 +12,8 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-let(:flying_plane){double(:flying_plane, {status: 'flying', land: nil, take_off: nil})}
-let(:landed_plane){double(:landed_plane, {status: 'landed', land: nil, take_off: nil})}
+let(:flying_plane) {double(:flying_plane, {status: 'flying', land: nil, take_off: nil})}
+let(:landed_plane) {double(:landed_plane, {status: 'landed', land: nil, take_off: nil})}
 
 it 'has a capacity of 20 planes' do
   expect(subject.capacity).to eq 20
@@ -25,6 +25,7 @@ end
     end
 
     it 'releases a plane' do
+      allow(subject).to receive(:forecast) {'sunny'}
       subject.allow_land flying_plane
       plane_count = subject.planes.count
       subject.allow_take_off
@@ -48,6 +49,7 @@ end
   describe 'air traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
+        allow(subject).to receive(:forecast) {'sunny'}
         subject.capacity.times {subject.allow_land flying_plane}
         expect {subject.allow_land flying_plane}.to raise_error "Airport is full pilot.."
       end
@@ -63,12 +65,15 @@ end
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off' do
-        
+      it 'does not allow a plane to take off' do
+        subject.allow_land flying_plane
+        allow(subject).to receive(:forecast) {'stormy'}
+        expect {subject.allow_take_off}.to raise_error "Sorry pilot, bad weather is forecast.."
       end
 
-      xit 'does not allow a plane to land' do
-
+      it 'does not allow a plane to land' do
+        allow(subject).to receive(:forecast) {'stormy'}
+        expect {subject.allow_land flying_plane}.to raise_error "Sorry pilot, bad weather is forecast.."
       end
     end
   end

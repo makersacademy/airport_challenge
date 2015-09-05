@@ -54,10 +54,9 @@ Airport <-- capacity.full?  --> true/false
 
 Airport <-- weather         --> stormy/sunny
 
-Development
+Development/Feedback
 ------------
 
-Need to implement weather story..
 
 Instructions
 ------------
