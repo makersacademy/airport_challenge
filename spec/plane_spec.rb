@@ -16,12 +16,25 @@ require 'plane'
 # Are you testing that?
 
 describe Plane do
-  it { is_expected.to respond_to(:flying?) }
+  it { is_expected.to respond_to(:fly) }
 
-  describe "#flying?" do
-    it "returns true when it's flying" do
-      expect(subject).to be_flying
+  describe "#fly" do
+    it "changes plane status to :flying" do
+      expect(subject.fly).to eq(:flying)
     end
+  end
+
+  it { is_expected.to respond_to(:land) }
+
+  describe "#land" do
+    it "changes plane status to :landed" do
+      expect(subject.land).to eq(:landed)
+    end
+  end
+
+  it 'can check plane status' do
+    subject.land
+    expect(subject.plane_status).to eq(:landed)
   end
 end
 
