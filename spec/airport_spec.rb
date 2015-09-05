@@ -13,21 +13,40 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  let(:plane) { double :plane }
+  let(:plane) { double :plane, flying?: true}
+  let (:airport) { Airport.new }
 
-    xit 'releases a plane'
+  describe 'take off' do
+    # take off test
+    # it { is_expected.to respond_to(:take_off) }
+
+    # releases a plane
+    it { is_expected.to respond_to(:release_plane) }
+
+    it "raises error when there are no planes available" do
+      expect(subject.release_plane).to eq(false)
+    end
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
+    it 'instructs a plane to land' do
+      expect(plane).to be_flying
+    end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it { is_expected.to respond_to(:dock).with(1).argument }
+
+      it "has a default capacity" do
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
+
+      it "raises an error when airport is full" do
+        subject.capacity.times { subject.dock plane }
+        expect { subject.dock plane }.to raise_error 'Airport unavailable'
+      end
     end
 
     # Include a weather condition.
@@ -40,9 +59,15 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to take off' do
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect(airport.release_plane).to eq(false)
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect{ subject.dock plane }.to raise_error 'Airport unavailable'
+      end
     end
   end
 end
