@@ -16,13 +16,10 @@ class Airport
   end
 
   def take_off(plane)
+  	fail 'Airport is empty' if empty?
   	plane.has_taken_off
   	@planes.pop
   end
-
-  private
-
-  attr_reader :planes
 
   def full? 
   	@planes.count == @capacity

@@ -1,17 +1,6 @@
 require 'airport'
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
   subject {Airport.new}
@@ -22,13 +11,18 @@ describe Airport do
   end
 
   describe 'landing' do
-    it  {is_expected.to respond_to(:land).with(1).argument}
+    it {is_expected.to respond_to(:land).with(1).argument}
   end
 
   describe 'traffic control' do
     it 'does not allow a plane to land & raises an error' do
-      50.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error 'Unable to land plane, airport at capacity'
+      50.times {subject.land(plane)}
+      expect {subject.land(plane)}.to raise_error 'Unable to land plane, airport at capacity'
+    end
+
+    it 'does not allow a plane to take off if airport is empty' do
+      subject.empty?
+      expect {subject.take_off(plane)}.to raise_error 'Airport is empty'
     end
   end
 
