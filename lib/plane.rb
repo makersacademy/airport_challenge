@@ -1,4 +1,4 @@
-require_relative 'airport'
+#require_relative 'airport'
 
 class Plane
 

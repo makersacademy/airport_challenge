@@ -1,7 +1,10 @@
 require 'plane'
 
+
+
 describe Plane do
 
+	class Airport;	end  #necessary to test for checking class of airport double
 	#setup airport double for unit tests, 
 	#default arguments allows for successful landing       
 	def airport_double(airport_class=true, storm=false, full=false)

@@ -13,6 +13,8 @@ require 'airport'
 
 describe Airport do
 
+  class Plane;  end #necessary for testing plane_double is a Plane
+
   # describe 'new/initialize' do
 
   # end
@@ -33,17 +35,53 @@ describe Airport do
     end  #### more work to be done
   end
 
-  # describe 'take off' do
+  describe 'method:instruct_land' do
+    it do expect(subject).to respond_to(:instruct_land).with(1).argument end
+    it 'raises error when given a none-plane object to land with' do
+      plane = double(:non_plane_object)
+      allow(plane).to receive(:is_a?).with(Plane).and_return(false)
+      expect{subject.instruct_land(plane)}.to raise_error 'Not a plane'
+    end
+    it 'raises error when asked to land in stormy weather' do
+      plane = double(:plane_object)
+      allow(plane).to receive(:is_a?).with(Plane).and_return(true)
+      allow(subject).to receive(:is_stormy?).and_return(false)
+      expect{subject.instruct_land(plane)}.to raise_error "Can't land in stormy weather"
+    end
+
+    #xit 'receives a plane'
+  end
+
+
+
+
+
+
+  describe 'method:instruct_takeoff' do
+    it do expect(subject).to respond_to(:instruct_takeoff).with(1).argument end
+    it 'raises error when given a none-plane object to takeoff with' do
+      plane = double(:non_plane_object)
+      allow(plane).to receive(:is_a?).with(Plane).and_return(false)
+      expect{subject.instruct_takeoff(plane)}.to raise_error 'Not a plane'
+    end
+    it 'raises error when given a plane which is not at this airport to takeoff with' do
+      plane = double(:plane_object)
+      allow(plane).to receive(:is_a?).with(Plane).and_return(true)
+      expect{subject.instruct_takeoff(plane)}.to raise_error 'The plane is currently not at this airport'      
+    end     
+    # it 'allow plane take off when given a plane which is at the airport and weather is not stormy' do
+    #   plane = double(:plane_object)
+      
+    #   allow(plane).to receive(:is_a?).with(Plane).and_return(true)
+       
+    # end     
+
   #   xit 'instructs a plane to take off'
 
   #   xit 'releases a plane'
-  # end
+  end
 
-  # describe 'landing' do
-  #   xit 'instructs a plane to land'
 
-  #   xit 'receives a plane'
-  # end
 
   # describe 'traffic control' do
   #   context 'when airport is full' do
@@ -66,3 +104,9 @@ describe Airport do
   #   end
   # end
 end
+
+
+
+
+
+
