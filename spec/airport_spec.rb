@@ -14,13 +14,27 @@ require 'plane.rb'
 
 describe Airport do
 
-  context "when full" do
-    it "raises an error" do
-      subject.capacity.times { subject.landed_planes(Plane.new) }
-      expect { subject.landed_planes(Plane.new) }.to raise_error "The Airport is full"
+  describe '#landing_plane' do
+    it { is_expected.to respond_to :landing_plane }
+
+    context "when the airport is full" do
+    # refactor with doubles
+      it "raises an error" do
+        subject.capacity.times { subject.landing_plane(Plane.new) }
+        expect { subject.landing_plane(Plane.new) }.to raise_error "The Airport is full"
+      end
     end
   end
 
+  describe '#taking_off_plane' do
+    it { is_expected.to respond_to :taking_off_plane }
+
+    context "when there are no planes at the airport" do
+      it 'raises an error' do
+        expect { subject.taking_off_plane }.to raise_error "No planes at the airport"
+      end
+    end
+  end
 
   # describe 'take off' do
   #   xit 'instructs a plane to take off'
