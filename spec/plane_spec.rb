@@ -15,16 +15,43 @@ require 'plane'
 # and landed?
 # Are you testing that?
 
+
 describe Plane do
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'can land'
+  it 'can land' do
+    expect(subject).to respond_to :land
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+    subject.land
+    expect(subject).to be_landed
+  end
 
-  xit 'can take off'
+  it 'can take off' do
+    expect(subject).to respond_to :take_off
+  end
 
-  xit 'is flying after take off'
+  it 'is flying after take off' do
+    subject.land
+    subject.take_off
+    expect(subject).to be_flying
+  end
+
+  it 'raises an error if the plane is already flying' do 
+    expect { subject.take_off }.to raise_error 'Plane is already flying'
+  end
+
+  it 'raises an error if the plane is already landed' do 
+    subject.land
+    expect { subject.land }.to raise_error 'Plane is already landed'
+  end
 
 end
+
+
+
+
