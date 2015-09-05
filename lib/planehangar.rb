@@ -14,11 +14,11 @@ module PlaneHangar
 
   private
 
-  def hangar_full?
+  def plane_hangar_full?
     planes.length >= capacity
   end
 
-  def hangar_empty?
+  def plane_hangar_empty?
     planes.empty?
   end
 
