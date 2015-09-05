@@ -12,37 +12,89 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  # let(:plane) do
+  #   p = double :plane
+  #   allow(p).to receive(:clear_for_takeoff).and_return(:plane)
+  # end
+  it { is_expected.to respond_to(:clear_for_takeoff) }
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
-
-    xit 'releases a plane'
-  end
-
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
-  end
-
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+  describe "#clear_for_takeoff" do
+    it "returns a plane" do
+      expect(subject.clear_for_takeoff).to be_an_instance_of(Plane)
     end
+  end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  it { is_expected.to respond_to(:allow_landing).with(1).argument }
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
-
-      xit 'does not allow a plane to land'
+  # recheck this test 
+  describe "#allow_landing(plane)" do
+    it "returns all planes at the airport including the one that recently landed" do
+      plane = Plane.new
+      expect(subject.allow_landing(plane)).to eq(plane)
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+# describe Airport do
+#
+#   describe 'take off' do
+#     xit 'instructs a plane to take off'
+#
+#     xit 'releases a plane'
+#   end
+#
+#   describe 'landing' do
+#     xit 'instructs a plane to land'
+#
+#     xit 'receives a plane'
+#   end
+#
+#   describe 'traffic control' do
+#     context 'when airport is full' do
+#       xit 'does not allow a plane to land'
+#     end
+#
+#     # Include a weather condition.
+#     # The weather must be random and only have two states "sunny" or "stormy".
+#     # Try and take off a plane, but if the weather is stormy,
+#     # the plane can not take off and must remain in the airport.
+#     #
+#     # This will require stubbing to stop the random return of the weather.
+#     # If the airport has a weather condition of stormy,
+#     # the plane can not land, and must not be in the airport
+#
+#     context 'when weather conditions are stormy' do
+#       xit 'does not allow a plane to take off'
+#
+#       xit 'does not allow a plane to land'
+#     end
+#   end
+# end
