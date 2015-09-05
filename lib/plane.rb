@@ -1,20 +1,25 @@
 class Plane
+ def initialize
+   @flying = true
+  #  @landed = false
+ end
 
-  def initialize
-    @flying = true
-    @is_landed = false
+ def flying?
+   @flying
+ end
+
+ def can_land
+    raise 'the plane cannot land if it is not flying' if landed?
+    @flying = false
+    return true
   end
 
-  def flying?
-    @flying unless @is_landed == true
-  end
+ def landed?
+   !@flying
+ end
 
-  def can_land?
-    true
-  end
-
-  def is_landed
-    !@is_landed unless @flying == false
-  end
-
+ def can_take_off
+   raise 'cant take off when already flying' if flying?
+   @flying = true
+ end
 end
