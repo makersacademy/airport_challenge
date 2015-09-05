@@ -14,7 +14,7 @@ class Plane
   end
 
   def can_land
-    fail 'The plane can not land if it is not flying' if landed?
+    fail 'Can not land if it is not flying' if landed?
     @flying = false
     return true
   end
@@ -24,7 +24,7 @@ class Plane
   end
 
   def can_take_off
-    fail 'The plane can not take off if it is not landed' if flying?
+    fail 'Can not take off if it is not landed' if flying?
     @flying = true
   end
 end

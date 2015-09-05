@@ -14,20 +14,20 @@ class Airport
   end
 
   def land_bad_weather
-    fail 'Can not take off in this weather' if weather = :stormy
+    fail 'Stormy weather' if weather = :stormy
   end
 
   def land(plane)
-    fail 'Airport full. Can not receive more planes.' if full?
+    fail 'Airport full.' if full?
     planes << plane
   end
 
   def take_off_bad_weather
-    fail 'Can not take off in this weather' if weather = :stormy
+    fail 'Stormy weather' if weather = :stormy
   end
 
   def take_off
-    fail 'No planes at airport' if empty?
+    fail 'No planes at airport' if planes.empty?
     planes.pop
   end
 
@@ -35,9 +35,5 @@ class Airport
 
   def full?
     planes.count >= capacity
-  end
-
-  def empty?
-    planes.empty?
   end
 end
