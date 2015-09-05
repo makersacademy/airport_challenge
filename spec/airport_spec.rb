@@ -13,51 +13,50 @@ require 'airport'
 
 describe Airport do
 
+  before(:example) do
+    @airport = Airport.new
+    @plane = double :plane
+    allow(@plane).to receive(:land)
+    allow(@plane).to receive(:take_off)
+  end
+
   it 'can pass capacity on initialization' do
     airport = Airport.new 50
     expect(airport.capacity).to eq(50)
   end
 
   it 'assigns a default capacity if none specified' do
-    airport = Airport.new
-    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    expect(@airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   it 'is empty when initialized' do
-    airport = Airport.new
-    expect(airport.planes).to eq([])
+    expect(@airport.planes).to eq([])
   end
 
   it 'releases a plane' do
-    airport = Airport.new
-    plane = Plane.new
-    allow(airport).to receive (:stormy) {false}
-    airport.instruct_to_land(plane)
-    airport.instruct_to_take_off(plane)
-    expect(airport.planes).to eq([])
+    allow(@airport).to receive (:stormy) {false}
+    @airport.instruct_to_land(@plane)
+    @airport.instruct_to_take_off(@plane)
+    expect(@airport.planes).to eq([])
   end
 
   it 'receives a plane' do
-    airport = Airport.new
-    plane = Plane.new
-    allow(airport).to receive (:stormy) {false}
-    airport.instruct_to_land(plane)
-    expect(airport.planes). to eq([plane])
+    allow(@airport).to receive (:stormy) {false}
+    @airport.instruct_to_land(@plane)
+    expect(@airport.planes). to eq([@plane])
   end
 
 
   it 'does not allow a plane to land when airport is full' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy) {false}
-      airport.capacity.times {airport.instruct_to_land Plane.new}
-      expect{ airport.instruct_to_land Plane.new }.to raise_error "Do not have permission to land"
+    allow(@airport).to receive(:stormy) {false}
+    @airport.capacity.times {@airport.instruct_to_land @plane}
+    expect{ @airport.instruct_to_land @plane }.to raise_error "Do not have permission to land"
   end
 
-      it 'does not allow a plane to take off unless it is currently docked in the airport' do
-        airport = Airport.new
-        allow(airport).to receive(:stormy) {false}
-        expect{ airport.instruct_to_take_off Plane.new}.to raise_error "Plane not in airport"
-      end
+  it 'does not allow a plane to take off unless it is currently docked in the airport' do
+      allow(@airport).to receive(:stormy) {false}
+      expect{ @airport.instruct_to_take_off @plane}.to raise_error "Plane not in airport"
+  end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -68,23 +67,19 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    it {is_expected.to respond_to :stormy}
+  it {is_expected.to respond_to :stormy}
 
 
-      it 'does not allow a plane to take off when weather is stormy' do
-        airport = Airport.new
-        plane = Plane.new
-        allow(airport).to receive(:stormy) {false}
-        airport.instruct_to_land(plane)
-        allow(airport).to receive(:stormy) {true}
-        expect{ airport.instruct_to_take_off(plane) }.to raise_error "Do not have permission to take off"
-      end
+  it 'does not allow a plane to take off when weather is stormy' do
+      allow(@airport).to receive(:stormy) {false}
+      @airport.instruct_to_land(@plane)
+      allow(@airport).to receive(:stormy) {true}
+      expect{ @airport.instruct_to_take_off(@plane) }.to raise_error "Do not have permission to take off"
+  end
 
-      it 'does not allow a plane to land when weather is stormy' do
-        airport = Airport.new
-        plane = Plane.new
-        allow(airport).to receive(:stormy) {true}
-        expect{ airport.instruct_to_land(plane) }.to raise_error "Do not have permission to land"
-    end
+  it 'does not allow a plane to land when weather is stormy' do
+      allow(@airport).to receive(:stormy) {true}
+      expect{ @airport.instruct_to_land(@plane) }.to raise_error "Do not have permission to land"
+  end
 
 end

@@ -17,26 +17,27 @@ require 'plane'
 
 describe Plane do
 
+  before(:example) do
+    @plane = Plane.new
+  end
+
   it 'is flying when created' do
-    plane = Plane.new
-    expect(plane.flying).to eq(true)
+    expect(@plane.flying).to eq(true)
   end
 
   it { is_expected.to respond_to :land }
 
   it 'is landed after landing' do
-    plane = Plane.new
-    plane.land
-    expect(plane.flying).to eq(false)
+    @plane.land
+    expect(@plane.flying).to eq(false)
   end
 
   it { is_expected.to respond_to :take_off }
 
   it 'is flying after take off' do
-    plane = Plane.new
-    plane.land
-    plane.take_off
-    expect(plane.flying).to eq(true)
+    @plane.land
+    @plane.take_off
+    expect(@plane.flying).to eq(true)
   end
 
 end
