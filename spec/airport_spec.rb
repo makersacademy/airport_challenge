@@ -19,15 +19,15 @@ describe Airport do
     end
 
     it 'releases a plane' do
-      airport = Airport.new
+      allow(subject).to receive(:stormy?).and_return(false)
       plane = Plane.new
-      airport.plane_land(plane)
-      airport.plane_take_off
-      expect(airport.planes.empty?).to eq(true)
+      subject.plane_land(plane)
+      subject.plane_take_off
+      expect(subject.planes.empty?).to eq(true)
     end
 
     it 'raises an error when no planes at the airport' do
-      expect { subject.plane_take_off }.to raise_error 'No Planes at the airport'
+      expect { subject.plane_take_off }.to raise_error 'Cannot currently take off'
     end
   end
 
@@ -37,19 +37,20 @@ describe Airport do
     end
 
     it 'receives a plane' do
+      allow(subject).to receive(:stormy?).and_return(false)
       plane = Plane.new
-      airport = Airport.new
-      airport.plane_land(plane)
-      expect(airport.planes.any?).to eq(true)
+      subject.plane_land(plane)
+      expect(subject.planes.any?).to eq(true)
     end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
+        allow(subject).to receive(:stormy?).and_return(false)
         plane = Plane.new
         subject.capacity.times { subject.plane_land(plane) }
-        expect { subject.plane_land(plane) }.to raise_error 'Airport is full'
+        expect { subject.plane_land(plane) }.to raise_error 'Plane cannot currently land at airport'
       end
     end
 
@@ -63,9 +64,19 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it 'does not allow a plane to land' do
+        allow(subject).to receive(:stormy?).and_return(true)
+        plane = Plane.new
+        expect { subject.plane_land(plane) }.to raise_error 'Plane cannot currently land at airport'
+      end
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to take off' do
+        allow(subject).to receive(:stormy?).and_return(false)
+        plane = Plane.new
+        subject.plane_land(plane)
+        allow(subject).to receive(:stormy?).and_return(true)
+        expect { subject.plane_take_off}.to raise_error 'Cannot currently take off'
+      end
     end
   end
 end
