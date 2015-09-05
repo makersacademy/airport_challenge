@@ -20,24 +20,28 @@ describe Plane do
   it { is_expected.to respond_to :status? }
 
   it 'is flying when created' do
-  expect(subject).to be_flying
-end
+    expect(subject).to be_flying
+  end
 
-  it 'its status is airborne when flying' do
-  subject.status?
-  expect(subject.status?).to eq("airborne")
-
-end
+  it 'its status is airborne when new' do
+    expect(subject.status?).to eq(:airborne)
+  end
 
 
   it 'can land' do
     expect(subject).to respond_to :land
   end
 
-  it 'is landed after landing'
+  it 'is landed after landing' do
+    subject.land
+    expect(subject.status?).to eq(:landed)
+  end
 
 
-  xit 'can take off'
+  it 'can take off' do
+    expect(subject).to respond_to :take_off  
+  end
+
 
   xit 'is flying after take off'
 
