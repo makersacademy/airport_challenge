@@ -25,7 +25,8 @@ This is my Domain Model:
 | Objects            | Messages         |
 | :---------------:  | :-------------- :|
 | Pilot              |                  |
-| Traffic Controller |                  |
-| Plane              | takes_off        |
-| Plane              | lands            |
+| Traffic Controller | allow landing    |
+| Plane              | flying/landed    |
 | Airport            | capacity         |
+| Airport            |  take_off        |
+| Airport            |  land            |
