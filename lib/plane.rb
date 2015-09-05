@@ -1,21 +1,26 @@
 require_relative 'airport'
 
 class Plane
+	def initialize
+		@flying = true
+		@current_airport = nil
+	end
 
+	def flying?
+		@flying
+	end
 
+	def current_airport
+		@current_airport
+	end
 end
 
 
 
 
-	# def initialize
-	# 	@flying = true
-	# 	@current_airport = nil
-	# end
 
-	# def flying?
-	# 	@flying
-	# end
+
+
 
 	# def land airport
 	# 	fail 'Not an airport' unless airport.is_a?(Airport)

@@ -1,9 +1,17 @@
 require 'plane'
 
-
-
 describe Plane do
-
+	describe 'method:new/initialize' do
+	  it 'is flying when created' do 
+	  	expect(subject).to be_flying
+	  end
+	end
+	describe 'method:flying?' do
+		it do expect(subject).to respond_to(:flying?).with(0).argument end
+	end
+	describe 'method:current_airport' do
+		it do expect(subject).to respond_to(:current_airport).with(0).argument end
+	end
 end
 
 
@@ -17,15 +25,7 @@ end
 	#   return airport
 	# end
 
-	# describe 'method:flying?' do
-	# 	it do expect(subject).to respond_to(:flying?).with(0).argument end
-	# end
 
-	# describe 'method:new/initialize' do
-	#   it 'is flying when created' do 
-	#   	expect(subject).to be_flying
-	#   end
-	# end
 
  #  describe 'method:land' do
 	# 	it 'can land at a specified Airport' do
