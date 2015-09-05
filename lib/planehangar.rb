@@ -2,7 +2,7 @@ module PlaneHangar
 
   attr_writer :capacity
 
-  DEFAULT_CAPACITY = 5
+  DEFAULT_CAPACITY = 6
 
   def planes
     @planes ||= []

@@ -8,12 +8,12 @@ module AirController
     plane_landed(plane)
   end
 
-  def taking_off_plane(plane = planes[0])
+  def taking_off_plane
     fail "No planes at the airport" if plane_hangar_empty?
     fail "Bad weather conditions" if weather_stormy?
-    plane_took_off(plane)
+    plane_took_off
   end
-  
+
   private
 
   def plane_landed(plane)
@@ -21,9 +21,8 @@ module AirController
     planes << plane
   end
 
-  def plane_took_off(plane)
-    plane.take_off
-    planes.shift
+  def plane_took_off
+    planes.shift.take_off
   end
 
   def weather_forecast
@@ -31,7 +30,7 @@ module AirController
   end
 
   def weather_stormy?
-    return true if weather_forecast == :stormy
+    weather_forecast == :stormy
   end
 
 end

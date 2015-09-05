@@ -33,7 +33,7 @@ describe Airport do
   end
 
   describe '#taking_off_plane' do
-    it { is_expected.to respond_to(:taking_off_plane).with(1).argument }
+    it { is_expected.to respond_to(:taking_off_plane) }
 
     it 'a plane has left the airport' do
       plane = double :plane
