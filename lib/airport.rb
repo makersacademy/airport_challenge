@@ -9,7 +9,7 @@ class Airport
     @capacity = capacity 
   end
 
-  def tell_to_land(plane)
+  def make_land(plane)
     fail 'Plane has already landed' if @planes.include? plane
     airport_full?
     too_stormy?
@@ -18,7 +18,7 @@ class Airport
     plane
   end
 
-  def tell_to_take_off(plane)
+  def make_take_off(plane)
     # fail 'Plane has already taken off' if !@planes.include? plane
     fail 'The weather is too stormy' if stormy?
     plane.take_off
