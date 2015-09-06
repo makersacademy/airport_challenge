@@ -50,6 +50,11 @@ describe Plane do
       expect{subject.land(airport_not_allow)}.to raise_error "Airport refuses landing request"
     end
 
+    it 'raises error when already landed' do
+      subject.land(airport_allow)
+      expect{subject.land(airport_allow)}.to raise_error "Already landed"
+    end
+
   end
 
   describe 'taking off' do

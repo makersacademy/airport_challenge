@@ -7,6 +7,7 @@ class Plane
   end
 
   def land(airport)
+    fail "Already landed" unless flying
     fail "Airport refuses landing request" unless airport.allow_landing?
     @flying = false
     @location = airport
