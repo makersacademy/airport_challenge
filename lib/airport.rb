@@ -11,12 +11,14 @@ class Airport
 
   def instruct_to_land(plane)
     fail 'Airport is full' if airport_full?
+    fail 'The weather is too stormy' if stormy?
     plane.land
     @planes << plane
     plane
   end
 
   def instruct_to_take_off(plane)
+    fail 'The weather is too stormy' if stormy?
     plane.take_off
     @planes.delete(plane)
     plane

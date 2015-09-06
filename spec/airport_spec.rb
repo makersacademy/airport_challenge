@@ -25,11 +25,13 @@ describe Airport do
 
   #describe 'take off' do
     it 'instructs a plane to take off' do 
+      allow(subject).to receive(:weather) { "sunny" }
       expect(plane).to receive(:take_off)
       subject.instruct_to_take_off(plane)
     end
 
     it 'releases a plane' do
+      allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       subject.instruct_to_land(plane)
@@ -39,11 +41,13 @@ describe Airport do
   #describe 'landing' do
 
     it 'instructs a plane to land' do 
+      allow(subject).to receive(:weather) { "sunny" }
       expect(plane).to receive(:land)
       subject.instruct_to_land(plane)
     end
 
     it 'receives a plane' do 
+      allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
       expect(subject.instruct_to_land(plane)).to be plane 
     end
@@ -54,6 +58,7 @@ describe Airport do
   #describe 'traffic control' do
     #context 'when airport is full' do
       it 'does not allow a plane to land when at capacity' do
+        allow(subject).to receive(:weather) { "sunny" }
         allow(plane).to receive(:land)
         subject.capacity.times { subject.instruct_to_land(plane) }
         expect { subject.instruct_to_land(plane) }.to raise_error 'Airport is full'
@@ -71,10 +76,22 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
-
-      xit 'does not allow a plane to land'
+    #context 'when weather conditions are stormy' do
+      it 'does not allow a plane to take off' do
+      allow(subject).to receive(:weather) { "sunny" }
+      allow(plane).to receive(:land)
+      subject.instruct_to_land(plane)
+      allow(subject).to receive(:weather) { "stormy" }
+      allow(plane).to receive(:take_off)
+      expect { subject.instruct_to_take_off(plane) }.to raise_error 'The weather is too stormy'
     end
+
+
+      it 'does not allow a plane to land' do
+        allow(subject).to receive(:weather) { "stormy" }
+        allow(plane).to receive(:land)
+        expect { subject.instruct_to_land(plane) }.to raise_error 'The weather is too stormy'
+      end
+    #end
   #end
 end
