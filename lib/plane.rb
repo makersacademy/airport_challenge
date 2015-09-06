@@ -1,4 +1,4 @@
-require '~/Projects/airport_challenge/lib/airport.rb'
+# require '~/Projects/airport_challenge/lib/airport.rb'
 class Plane
 
   # attr_reader :plane
