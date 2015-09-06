@@ -45,6 +45,13 @@ describe Airport do
       subject.instruct_to_land plane
       expect(subject.hanger.include?(plane)).to be true
     end
+
+    it 'can only land planes not in hanger' do
+      plane = Plane.new
+      subject.hanger << plane
+      expect{subject.instruct_to_land(plane)}.to raise_error
+        'Plane already in hanger'
+    end
   end
 
   describe 'traffic control' do

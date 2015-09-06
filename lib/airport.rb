@@ -24,6 +24,7 @@ class Airport
     weather = "stormy" if rand(21) == 1
     fail 'Cannot land in stormy weather' if weather == "stormy"
     fail 'Airport is full' if hanger.size == capacity
+    fail 'Plane already in hanger' if hanger.include?(plane) == true
     hanger << plane
     plane.status = "landed"
   end
