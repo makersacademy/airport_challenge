@@ -21,6 +21,7 @@ describe Airport do
 
   describe "#planes" do
     it "returns all the planes at the airport" do
+      # need to get rid of repetition
       allow(subject).to receive(:weather_report) { :sunny }
       subject.clear_for_landing(plane)
       expect(subject.planes).to contain_exactly(plane)
@@ -43,7 +44,7 @@ describe Airport do
     describe "#clear_for_landing(plane)" do
       it "cannot accept planes" do
         allow(subject).to receive(:weather_report) { :stormy }
-        expect{ subject.clear_for_landing(plane) == :stormy }.
+        expect{ subject.clear_for_landing(plane) }.
           to raise_error('Too stormy')
       end
     end
@@ -93,7 +94,6 @@ describe Airport do
       end
       describe "#clear_for_takeoff(plane)" do
         it "instructs a specific plane to take off" do
-          # find a way to prevent repetition
           allow(subject).to receive(:weather_report) { :sunny }
           subject.clear_for_landing(plane)
           subject.clear_for_landing(plane_2)
@@ -107,10 +107,9 @@ describe Airport do
         end
         it "removes the specific plane from airport" do
           allow(subject).to receive(:weather_report) { :sunny }
-          subject.clear_for_landing(plane_2)
           subject.clear_for_landing(plane)
-          subject.clear_for_takeoff(plane_2)
-          expect(subject.planes).to contain_exactly(plane)
+          subject.clear_for_takeoff(plane)
+          expect(subject.planes).not_to contain_exactly(plane)
         end
       end
     end
