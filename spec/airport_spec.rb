@@ -42,7 +42,8 @@ describe Airport do
 
     it 'releases a plane when the airport is full' do
       allow(subject).to receive(:weather_check) { "not stormy" }
-      subject.capacity.times { subject.plane_landing double :plane, land: 'smth', take_off: 'smth'}
+      plane = double :plane, land: 'smth', take_off: 'smth'
+      subject.capacity.times { subject.plane_landing plane}
       planes_in_airport = subject.planes.length
       subject.plane_take_off
       expect(subject.planes.length).to eq(planes_in_airport-1)
@@ -68,21 +69,20 @@ describe Airport do
 
     it 'raises a error when airport is full' do
       allow(subject).to receive(:weather_check) { "not stormy" }
-      subject.capacity.times { subject.plane_landing double :plane, land: 'smth' }
-      expect {subject.plane_landing double :plane, land: 'smth' }.to raise_error("The airport is full")
+      plane = double :plane,land:'smth'
+      subject.capacity.times { subject.plane_landing plane}
+      expect {subject.plane_landing plane}.to raise_error("FULL")
     end
 
   end
-
-
 
   it { is_expected.to respond_to :weather_check}
 
   describe 'weather_check' do
     it 'there is 20% possibility of storm' do
       srand(1)
-      rand()
-      rand()
+      rand
+      rand
       expect(subject.weather_check).to eq 'stormy'
     end
   end
