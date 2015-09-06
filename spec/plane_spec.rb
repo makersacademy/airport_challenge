@@ -19,6 +19,7 @@ describe Plane do
 
   let(:airport_allow){double(:airport_allow, allow_landing?: true, allow_take_off?: true, receive_plane: nil, release_plane: nil)}
   let(:airport_not_allow){double(:airport_not_allow, allow_landing?: false)}
+  let(:land_not_take_off){double(:land_not_take_off, allow_landing?: true, allow_take_off?: false, receive_plane: nil, release_plane: nil)}
 
   it 'flying when created' do
     expect(subject).to be_flying
@@ -88,6 +89,11 @@ describe Plane do
       subject.land(airport_allow)
       expect(subject.location).to receive :allow_take_off?
       subject.take_off
+    end
+
+    it 'raises error when taking off is not allowed' do
+      subject.land(land_not_take_off)
+      expect{subject.take_off}.to raise_error "Airport refuses take off"
     end
 
   end
