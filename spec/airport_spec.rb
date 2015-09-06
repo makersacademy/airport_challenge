@@ -86,12 +86,27 @@ describe Airport do
         subject.allow_landing?
       end
 
-      it 'doesn\'t allow landing in stormy weather' do
+      it 'doesn\'t allow landing' do
         expect(subject).not_to be_allow_landing
       end
 
-      it 'doesn\'t allow taking off in stormy weather' do
+      it 'doesn\'t receive planes' do
+        num_planes = subject.planes.count
+        subject.receive_plane(plane)
+        expect(subject.planes.count).to eq num_planes
+      end
+
+      it 'doesn\'t allow taking off' do
         expect(subject).not_to be_allow_take_off
+      end
+
+      it 'doesn\'t release planes' do
+        allow(subject.weather).to receive(:stormy?) {false}
+        subject.receive_plane(plane)
+        num_planes = subject.planes.count
+        allow(subject.weather).to receive(:stormy?) {true}
+        subject.release_plane(plane)
+        expect(subject.planes.count).to eq num_planes
       end
 
     end

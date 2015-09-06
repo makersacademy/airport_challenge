@@ -29,6 +29,7 @@ class Airport
 
   def release_plane(plane)
     fail 'Plane not at this airport' unless planes.include?(plane)
+    return unless allow_take_off?
     while planes.last != plane
       planes.rotate!
     end
