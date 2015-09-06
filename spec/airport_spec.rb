@@ -13,19 +13,11 @@ describe Airport do
   end
 
   context 'in any weather' do
-
     it { is_expected.to respond_to(:request_take_off).with(1).argument }
     it { is_expected.to respond_to(:request_landing).with(1).argument }
     it { is_expected.to respond_to(:permission_to_take_off) }
     it { is_expected.to respond_to(:permission_to_land) }
-    it { is_expected.to respond_to(:weather_report) }
     it { is_expected.to respond_to(:full?) }
-
-    it 'returns sunny or stormy when asked for weather report' do
-      report = subject.weather_report
-      expect(report == :sunny || report == :stormy).to be_truthy
-    end
-
   end
 
   context 'when full' do
@@ -60,10 +52,6 @@ describe Airport do
       ensure_sunny_weather
     end
 
-    it 'reports sunny weather' do
-      expect(subject.weather_report).to eq :sunny
-    end
-
     it 'releases a plane that it instructs to take off' do
       plane = double :plane, take_off_from: nil, landed_at?: false
       subject.request_take_off(plane)
@@ -82,10 +70,6 @@ describe Airport do
 
     before :each do
       ensure_stormy_weather
-    end
-
-    it 'reports stormy weather' do
-      expect(subject.weather_report).to eq :stormy
     end
 
     it 'denies permission to planes that want to take off' do

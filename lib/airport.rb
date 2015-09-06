@@ -35,10 +35,6 @@ class Airport
     full? ? :full : weather_report == :stormy ? :stormy : :ok
   end
 
-  def weather_report
-    Kernel.rand < STORM_CHANCE ? :stormy : :sunny
-  end
-
   private
 
   attr_reader :plane_count
@@ -49,6 +45,10 @@ class Airport
 
   def decrement_plane_count
     @plane_count -= 1
+  end
+
+  def weather_report
+    Kernel.rand < STORM_CHANCE ? :stormy : :sunny
   end
 
 end
