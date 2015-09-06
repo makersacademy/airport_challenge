@@ -13,7 +13,7 @@ require 'airport'
 
 describe Airport do
 
-  let (:plane) {double('plane', flying?: true) }
+  let (:plane) {double('plane', flying?: true, land: false, take_off: true) }
 
   describe 'take off' do
     it 'instructs a plane to take off' do
