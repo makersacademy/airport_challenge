@@ -2,17 +2,25 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  attr_reader :capacity, :planes, :allow_landing
+  attr_reader :capacity, :planes, :allow_landing, :weather
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
     @allow_landing = true
+    @weather = Weather.new
   end
 
   def allow_landing?
+    return false if weather.stormy?
     allow_landing
   end
+
+  def allow_take_off?
+    return false if weather.stormy?
+    true
+  end
+
 
   def receive_plane(plane)
     planes << plane if allow_landing?
