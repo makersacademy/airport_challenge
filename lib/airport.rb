@@ -24,9 +24,8 @@ class Airport
   def weather_report
     @current_weather = Weather.new.weather_report
   end
+  
   private
-
-
   def full?
     planes.size >= capacity
   end

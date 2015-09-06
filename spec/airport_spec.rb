@@ -20,6 +20,7 @@ describe Airport do
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
   it { is_expected.to respond_to(:clear_for_takeoff).with(1).argument }
   it { is_expected.to respond_to(:weather_report) }
+  it { is_expected.to respond_to(:planes) }
   # I don't need to test content of :weather_report
   # because it's been tested in the weather class?
   describe "#planes" do
