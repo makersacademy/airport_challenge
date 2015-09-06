@@ -66,7 +66,19 @@ describe Airport do
 
   context 'were private methods, made them public to pass the Coverage test' do
     it { is_expected.to respond_to :weather_stormy? }
+    it '#weather_stormy returns true' do
+      allow(subject).to receive(:weather_stormy) {true}
+      expect(subject.weather_stormy).to be_truthy
+    end
     it { is_expected.to respond_to :weather_forecast }
+    it '#weather_forecast returns sunny' do
+      allow(subject).to receive(:weather_forecast) {:sunny}
+      expect(subject.weather_forecast).to be :sunny
+    end
+    it '#weather_forecast returns stormy' do
+      allow(subject).to receive(:weather_forecast) {:stormy}
+      expect(subject.weather_forecast).to be :stormy
+    end
   end
 
 end
@@ -105,7 +117,7 @@ end
 #   end
 #
 # end
-# 
+#
 # describe Airport do
 #
 #   let(:plane) { double("plane", :landing) }
