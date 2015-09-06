@@ -11,8 +11,8 @@ class Airport
 
   def instruct_to_land(plane)
     fail 'Plane has already landed' if @planes.include? plane
-    fail 'Airport is full' if airport_full?
-    fail 'The weather is too stormy' if stormy?
+    airport_full?
+    too_stormy?
     plane.land
     @planes << plane
     plane
@@ -29,11 +29,7 @@ class Airport
   private 
 
   def airport_full?
-    @planes.count >= capacity
-  end
-
-  def already_landed?
-    @planes.include? plane
+    fail 'Airport is full' if @planes.count >= capacity
   end
 
   def weather
@@ -42,6 +38,10 @@ class Airport
 
   def stormy?
     weather == "stormy" ? true : false
+  end
+
+  def too_stormy?
+    fail 'The weather is too stormy' if stormy?
   end
 
 
