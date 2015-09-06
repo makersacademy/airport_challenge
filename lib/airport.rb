@@ -17,5 +17,9 @@ class Airport
     @hangar << plane
   end
 
+  def plane_take_off(plane)
+    plane.take_off
+    @hangar.pop
+  end
 
 end

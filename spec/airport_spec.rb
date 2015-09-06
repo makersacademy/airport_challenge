@@ -36,6 +36,24 @@ describe Airport do
     end
   end
 
+  describe "outgoing planes" do
+    context "when a plane leaves" do
+      it "it is flying" do
+        plane = Plane.new
+        allow(plane).to receive(:status).and_return(:flying)
+        subject.plane_take_off(plane)
+        expect(plane.status).to eq(:flying)
+      end
+
+      it "it is removed from the hangar" do
+        plane = Plane.new
+        subject.hangar = [plane]
+        subject.plane_take_off(plane)
+        expect(subject.hangar).to eq []
+      end
+    end
+  end
+
 
 end
 
