@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  Capacity = 5
+  CAPACITY = 5
 
   def initialize
     @plane_count = 0
@@ -23,7 +23,7 @@ class Airport
   end
 
   def full?
-    plane_count >= Capacity
+    plane_count >= CAPACITY
   end
 
   def permission_to_take_off?
@@ -31,7 +31,7 @@ class Airport
   end
 
   def permission_to_land?
-    not full?
+    !full?
   end
 
   private
