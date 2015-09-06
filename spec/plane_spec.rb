@@ -6,7 +6,7 @@ describe Plane do
 			expect(subject.flying).to eq(true)
 		end
 	end
-	describe 'method:flying?' do
+	describe 'method:flying' do
 		it {expect(subject).to respond_to(:flying).with(0).argument}
 	end
 	describe 'method:current_airport' do
