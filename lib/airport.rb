@@ -32,7 +32,7 @@ class Airport
 	end 
 
 	def stormy?
-		true if rand(1..100) >= 70
+		rand(1..100) >= 70
 	end
 
 end 
