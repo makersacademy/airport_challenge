@@ -13,16 +13,23 @@ require 'airport'
 
 describe Airport do
 
+  describe 'landing' do
+    it 'allows planes to land' do
+      expect(subject).to be_allow_landing
+    end
+
+    xit 'raises an error if the airport is full' do
+    end
+
+    xit 'instructs a plane to land'
+
+    xit 'receives a plane'
+  end
+
   describe 'take off' do
     xit 'instructs a plane to take off'
 
     xit 'releases a plane'
-  end
-
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
   end
 
   describe 'traffic control' do
