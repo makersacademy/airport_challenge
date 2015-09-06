@@ -1,6 +1,6 @@
 require 'plane'
 
-	describe Plane do
+describe Plane do
 
 	let(:plane) { Plane.new }
 
@@ -11,7 +11,7 @@ require 'plane'
 		it "plane lands at airport and stops flying" do 
 			plane.land
 			expect(plane.flying?).to eql(false)
-	    end
+	   	end
 
 	    it "plane takes off from airport and starts flying" do 
 			plane.land
@@ -28,4 +28,5 @@ require 'plane'
 		end 
 
 	end 
+
 

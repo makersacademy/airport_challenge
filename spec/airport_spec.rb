@@ -32,7 +32,7 @@ describe Airport do
 			expect{subject.instruct_to_land(plane)}.to raise_error "Plane cannot land. Wait until wind slows down"
 		end 
 
- 	end 
+	end 
 
 	describe 'take off' do
 
