@@ -1,5 +1,3 @@
-https://travis-ci.org/emilyworrall/airport_challenge.svg?branch=master
-
 Airport Challenge
 =================
 
