@@ -13,14 +13,15 @@ class Airport
     @capacity = capacity
   end
 
-  def plane_take_off
-    fail 'Cannot currently take off' if empty? || stormy?
-    (plane_left = planes.pop).take_off
-    plane_left
+  def plane_take_off(plane)
+    fail 'Cannot currently take off' if empty? || weather == :stormy
+    planes.delete(plane)
+    plane.take_off
+    plane
   end
 
   def plane_land(plane)
-    fail 'Plane cannot currently land at airport' if full? || stormy?
+    fail 'Plane cannot currently land at airport' if full? || weather == :stormy
     plane.land
     planes << plane
   end
