@@ -20,7 +20,20 @@ describe Airport do
   it "initializes with an empty hangar" do
     expect(subject.hangar).to eq []
   end
-  
+
+  describe "incoming planes" do
+    context "when a plane lands" do
+      it "is landed" do
+        plane = Plane.new
+        allow(plane).to receive(:status).and_return(:landed)
+        subject.land_plane(plane)
+        expect(plane.status).to eq (:landed)
+      end
+
+    end
+  end
+
+
 end
 
 
