@@ -11,7 +11,7 @@ class Airport
 
   def allow_take_off
     if forecast == 'stormy'
-      fail "Soz pilot, bad weather"
+      fail "Sorry, bad weather"
     elsif @planes.empty?
       fail "No planes at the airport"
     else
@@ -25,7 +25,7 @@ class Airport
     if full?
       fail "Airport is full pilot"
     elsif forecast == 'stormy'
-      fail "Soz, bad weather"
+      fail "Sorry, bad weather"
     else
       plane.land
       @planes << plane
@@ -34,7 +34,7 @@ class Airport
 
   def forecast
     num = rand(2) #assuming this airport is in the UK
-    return 'stormy' if num == 1
+    return 'stormy' if num == 0
     'sunny'
   end
 
