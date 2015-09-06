@@ -11,6 +11,9 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  it 'has a capacity of 10 planes' do
+    expect(subject.capacity).to eq 10
+  end
 
   describe 'take off' do
     xit 'instructs a plane to take off'
@@ -32,8 +35,8 @@ describe Airport do
     # end
     it { is_expected.to respond_to(:receive).with(1).argument }
     it 'raises an error when full' do
-        subject.receive(Plane.new)
-        expect { subject.receive(Plane.new) }.to raise_error 'Airport full'
+        10.times { subject.receive plane }
+        expect { subject.receive plane }.to raise_error 'airport full'
     end
 
     xit 'receives a plane'
