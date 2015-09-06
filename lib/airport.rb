@@ -16,17 +16,23 @@ class Airport
 
   def plane_landing(plane)
     traffic_control
-    fail "FULL" if planes.count >= capacity
+    fail "FULL" if full?
     plane.land
     planes << plane
   end
 
   def traffic_control
-    fail "The weather is stormy!" if weather_check == 'stormy'
+    fail "The weather is stormy!" if weather_stormy?
   end
 
-  def weather_check
-    rand <0.2 ? 'stormy' : 'not stormy'
+  def weather_stormy?
+    rand < 0.2
+  end
+
+  private
+
+  def full?
+    planes.count >= capacity
   end
 
 end

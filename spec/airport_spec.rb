@@ -15,9 +15,16 @@ describe Airport do
 
   it { is_expected.to respond_to :plane_take_off}
 
+
+
   describe 'plane take off' do
+
+    before :each do
+      allow(subject).to receive(:weather_stormy?) { false }
+    end
+
+
     it 'instructs a plane to take off' do
-      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth'
       subject.plane_landing(plane)
       expect(plane).to receive(:take_off)
@@ -25,7 +32,6 @@ describe Airport do
     end
 
     it 'releases something' do
-      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth', take_off: 'smth'
       subject.plane_landing(plane)
       planes_in_airport = subject.planes.length
@@ -34,14 +40,12 @@ describe Airport do
     end
 
     it 'releases a plane' do
-      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth', take_off: 'smth'
       subject.plane_landing(plane)
       expect(subject.plane_take_off).to be plane
     end
 
     it 'releases a plane when the airport is full' do
-      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth', take_off: 'smth'
       subject.capacity.times { subject.plane_landing plane}
       planes_in_airport = subject.planes.length
@@ -53,22 +57,24 @@ describe Airport do
   it { is_expected.to respond_to(:plane_landing).with(1).argument}
 
   describe 'plane_landing' do
+
+    before :each do
+      allow(subject).to receive(:weather_stormy?) { false }
+    end
+
     it 'instructs a plane to land' do
-      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane
       expect(plane).to receive(:land)
       subject.plane_landing(plane)
     end
 
     it 'receives a plane' do
-      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth'
       subject.plane_landing(plane)
       expect(subject.planes).to include(plane)
     end
 
     it 'raises a error when airport is full' do
-      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane,land:'smth'
       subject.capacity.times { subject.plane_landing plane}
       expect {subject.plane_landing plane}.to raise_error("FULL")
@@ -76,14 +82,14 @@ describe Airport do
 
   end
 
-  it { is_expected.to respond_to :weather_check}
+  it { is_expected.to respond_to :weather_stormy?}
 
-  describe 'weather_check' do
-    it 'there is 20% possibility of storm' do
+  describe 'weather_stormy?', skip_before: true do
+    it 'there is 20% possibility of storm', skip_before: true do
       srand(1)
       rand
       rand
-      expect(subject.weather_check).to eq 'stormy'
+      expect(subject.weather_stormy?).to be true
     end
   end
 
@@ -102,7 +108,7 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to land' do
-        allow(subject).to receive(:weather_check) { "stormy" }
+        allow(subject).to receive(:weather_stormy?) { true }
         expect{subject.traffic_control}.to raise_error("The weather is stormy!")
       end
     end
