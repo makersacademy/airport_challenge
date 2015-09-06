@@ -25,7 +25,7 @@ describe Plane do
 
   it 'can land and is in hangar after landing' do
     airport = Airport.new
-    # allow(airport).to receive(:weather) { "sunny" }
+    allow(airport).to receive(:weather) { "sunny" }
     airport.land subject
     expect(airport.hangar).to include(subject)
     # expect(subject).not_to be_flying
@@ -33,7 +33,7 @@ describe Plane do
 
   it 'can take off and is flying after take off' do
     airport = Airport.new
-    # allow(airport).to receive(:weather) { "sunny" }
+    allow(airport).to receive(:weather) { "sunny" }
     airport.land subject
     expect(airport.take_off).to eq(subject)
     expect(subject).to be_flying
