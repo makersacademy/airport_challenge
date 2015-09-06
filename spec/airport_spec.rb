@@ -52,10 +52,20 @@ describe Airport do
       ensure_sunny_weather
     end
 
+    it 'gives permission to planes that want to take off' do
+      plane = double :plane
+      expect(subject.permission_to_take_off).to eq :ok
+    end
+
     it 'releases a plane that it instructs to take off' do
       plane = double :plane, take_off_from: nil, landed_at?: false
       subject.request_take_off(plane)
       expect(subject).not_to have_plane(plane)
+    end
+
+    it 'gives permission to planes that want to land' do
+      plane = double :plane
+      expect(subject.permission_to_land).to eq :ok
     end
 
     it 'receives a plane that it instructs to land' do
