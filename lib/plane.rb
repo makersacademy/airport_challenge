@@ -9,7 +9,7 @@ class Plane
   end
 
   def take_off_from(airport)
-    fail 'Permission denied' unless airport.permission_to_take_off?
+    fail 'Too stormy' unless airport.permission_to_take_off?
     self.status = :flying
   end
 
