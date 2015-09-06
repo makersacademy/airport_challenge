@@ -15,7 +15,7 @@ class Airport
     landing_strip.pop unless stormy?
   end
 
-private
+  private
 
   def full?
     landing_strip.count == capacity
