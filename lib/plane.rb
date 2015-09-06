@@ -2,7 +2,7 @@ class Plane
 
  def initialize
    @flying = true
-   return "Plane is flying"
+   "Plane is flying"
  end
 
  def flying?

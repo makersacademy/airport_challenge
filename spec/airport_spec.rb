@@ -2,23 +2,22 @@ require 'airport'
 
 describe Airport do
 
-  let(:airport) {Airport.new}
-  let(:plane) {Plane.new}
+  let(:plane) { double :plane, flying?: true}
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-      is_expected.to respond_to(:plane_take_off).with(1).argument
+      is_expected.to respond_to(:plane_take_off)
     end
 
     it 'releases a plane' do
-      airport.plane_land(plane)
-      airport.plane_take_off(plane)
+      subject.plane_land(plane)
+      subject.plane_take_off(plane)
     end
   end
 
   describe 'landing' do
     it 'instructs a plane to land' do
-      is_expected.to respond_to(:plane_land).with(1).argument
+      is_expected.to respond_to(:plane_land)
     end
 
     it 'receives a plane' do
@@ -27,7 +26,8 @@ describe Airport do
 
      it 'can\'t land same plane twice' do
        subject.plane_land(plane)
-       expect { subject.plane_land(plane)}.to raise_error 'Plane has already landed'
+       expect { subject.plane_land(plane)}.to raise_error
+       'Plane has already landed'
      end
   end
 

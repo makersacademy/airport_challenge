@@ -1,6 +1,8 @@
 module Weather
   def weather
-    weather = rand(100)
-    weather <= 20 ? @stormy : @sunny
+    weather_rand <= 20 ? @stormy : @sunny
+  end
+  def weather_rand
+    rand(100)
   end
 end
