@@ -1,23 +1,23 @@
 class Plane
 
   def initialize
-  	@flying = true
+    @flying = true
   end
 
   def flying?
-  	@flying
+    @flying
   end
 
   def land
-  	@flying = false
+    @flying = false
   end
 
   def landed?
-  	not flying?
+    not flying?
   end
 
   def take_off
-  	@flying = true
+    @flying = true
   end
 
 end

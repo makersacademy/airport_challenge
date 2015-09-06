@@ -24,7 +24,7 @@ describe Plane do
   end
 
   it 'can land' do
-  	expect(subject).to respond_to :land
+    expect(subject).to respond_to :land
   end
 
   it { is_expected.to respond_to :landed?}
