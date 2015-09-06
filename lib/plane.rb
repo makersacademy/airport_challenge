@@ -10,5 +10,6 @@ class Plane
 	def land airport
 		fail 'Not an airport' unless airport.is_a?(Airport)
 		airport.land_permission
+		@flying = false
 	end
 end
