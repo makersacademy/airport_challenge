@@ -33,16 +33,10 @@ describe Airport do
   end
   describe "#weather_report" do
     it "gets weather report from the weather class when sunny" do
-      double :Weather, new: :weather, weather_report: :sunny, condition: 0,
-        storm_probability: 80
+      double :Weather, new: :weather, weather_report: :sunny || :stormy,
+        condition: 0, storm_probability: 80
       allow(subject).to receive(:weather_report) { :sunny }
-      expect(subject.weather_report).to eq(:sunny)
-    end
-    it "gets weather report from the weather class when stormy" do
-      double :Weather, new: :weather, weather_report: :stormy, condition: 1,
-        storm_probability: 99
-      allow(subject).to receive(:weather_report) { :stormy }
-      expect(subject.weather_report).to eq(:stormy)
+      expect(subject.weather_report).to eq(:sunny) || eq(:stormy)
     end
   end
   context "when the weather is stormy" do
