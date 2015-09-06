@@ -2,6 +2,9 @@ Airport Challenge
 =================
 
 David Bebb's submission for the airport challenge.
+
+
+![travis-cl](https://travis-ci.org/davidbebb/airport_challenge.svg?branch=master)
 ```
 A set of ruby libs and test were written to fulfill the following user stories:
 
