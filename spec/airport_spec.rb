@@ -31,17 +31,6 @@ describe Airport do
       expect(subject.planes.count).to eq num_planes+1
     end
 
-    it 'does not receive plane when full' do
-      subject.capacity.times {subject.receive_plane(plane)}
-      num_planes = subject.planes.count
-      subject.receive_plane(plane)
-      expect(subject.planes.count).to eq num_planes
-    end
-
-    xit 'raises an error if the airport is full' do
-    end
-
-    xit 'instructs a plane to land'
   end
 
   describe 'take off' do
@@ -59,9 +48,20 @@ describe Airport do
   end
 
   describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land' do
+    describe 'when airport is full' do
+
+      it 'does not allow a plane to land' do
+        subject.capacity.times {subject.receive_plane(plane)}
+        expect(subject).not_to be_allow_landing
       end
+
+      it 'does not receive plane' do
+        subject.capacity.times {subject.receive_plane(plane)}
+        num_planes = subject.planes.count
+        subject.receive_plane(plane)
+        expect(subject.planes.count).to eq num_planes
+      end
+
     end
 
     # Include a weather condition.
@@ -74,6 +74,7 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
+
       xit 'does not allow a plane to take off'
 
       xit 'does not allow a plane to land'
