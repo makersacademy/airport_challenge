@@ -1,9 +1,10 @@
 class Plane
+
+  def initialize
+    @flying = true
+  end
+
   def flying?
-    # if @hangar.include?(plane)
-    #   false
-    # else
-      true
-    # end
+    @flying
   end
 end

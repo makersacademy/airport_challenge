@@ -35,7 +35,7 @@ describe Plane do
     airport = Airport.new
     allow(airport).to receive(:weather) { "sunny" }
     airport.land subject
-    expect(airport.take_off).to eq(subject)
+    expect(airport.take_off subject ).to eq(subject)
     expect(subject).to be_flying
   end
 

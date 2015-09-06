@@ -17,12 +17,12 @@ describe Airport do
 
   describe 'take off' do
     it 'instructs a plane to take off' do
-      is_expected.to respond_to :take_off
+      is_expected.to respond_to(:take_off).with(1).argument
     end
 
     it 'releases a plane' do
       allow(subject).to receive(:weather) { "sunny" }
-      plane = subject.take_off
+      plane1 = subject.take_off(plane)
     end
     # doubles going here bro
   end
@@ -37,6 +37,12 @@ describe Airport do
       subject.land plane
       expect(subject.hangar).not_to be_empty
     end
+
+    it 'does not allow a plane to land that has already landed' do
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.land(plane)
+      expect { subject.land plane }.to raise_error "That plane is already in the hangar"
+    end
     # doubles going here bro
   end
 
@@ -44,7 +50,7 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         allow(subject).to receive(:weather) { "sunny" }
-        subject.capacity.times { subject.land(plane)}
+        subject.capacity.times { subject.land(Plane.new)}
         expect { subject.land(plane)}.to raise_error "Hangar full, no landing"
       end
     end
@@ -65,7 +71,7 @@ describe Airport do
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
         allow(subject).to receive(:weather) { "stormy" }
-        expect { subject.take_off }.to raise_error "It's stormy, no taking off"
+        expect { subject.take_off plane }.to raise_error "It's stormy, no taking off"
       end
 
       it 'does not allow a plane to land' do

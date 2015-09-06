@@ -9,12 +9,13 @@ class Airport
     # @plane = plane
   end
 
-  def take_off
+  def take_off(plane)
     fail "It's stormy, no taking off" if weather == "stormy"
     hangar.pop
   end
 
   def land(plane)
+    fail "That plane is already in the hangar" if hangar.include?(plane)
     fail "Hangar full, no landing" if full?
     fail "It's stormy, no landing" if weather == "stormy"
     hangar << plane
