@@ -1,5 +1,7 @@
 require 'plane'
 
+
+
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -23,7 +25,7 @@ describe Plane do
   end
 
   it 'can land' do
-    expect(subject).to respond_to :land
+    expect(subject).to respond_to(:land)
   end
 
   it 'is landed after landing' do
@@ -32,7 +34,7 @@ describe Plane do
   end
 
   it 'can take off' do
-    expect(subject).to respond_to :take_off
+    expect(subject).to respond_to(:take_off)
   end
 
   it 'is flying after take off' do
@@ -47,7 +49,7 @@ describe Plane do
 
   it 'raises an error if the plane is already landed' do 
     subject.land
-    expect { subject.land }.to raise_error 'Plane is already landed'
+    expect { subject.land }.to raise_error 'Plane has already landed'
   end
 
 end
