@@ -17,16 +17,29 @@ require 'plane'
 
 describe Plane do
 
+  let(:plane) { Plane.new }
+
   it 'is flying when created' do
-    expect(subject.flying?).to be true
+    expect(plane.flying?).to be true
   end
 
-  xit 'can land'
+    it 'is flying after take off' do
+      plane.flying?
+      expect(plane).to be_flying
+    end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+    plane.land!
+    expect(plane).to_not be_flying
+  end
 
   xit 'can take off'
 
-  xit 'is flying after take off'
+  xit 'can land' do
+
+  end
+
+
+
 
 end
