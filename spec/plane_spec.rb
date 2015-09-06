@@ -17,11 +17,18 @@ require 'plane'
 
 describe Plane do
 
+  let(:airport){double(:airport)}
+
   xit 'is flying when created'
 
-  xit 'can land'
+  it 'can land at given airport' do
+    expect(subject).to respond_to(:land).with(1).argument
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+    subject.land(airport)
+    expect(subject).to be_landed
+  end
 
   xit 'can take off'
 
