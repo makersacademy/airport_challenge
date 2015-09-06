@@ -14,6 +14,7 @@ class Plane
   end
 
   def take_off
+    location.release_plane(self)
     @flying = true
     @location = nil
   end

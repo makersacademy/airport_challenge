@@ -17,7 +17,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport_allow){double(:airport_allow, allow_landing?: true, receive_plane: nil)}
+  let(:airport_allow){double(:airport_allow, allow_landing?: true, receive_plane: nil, release_plane: nil)}
   let(:airport_not_allow){double(:airport_not_allow, allow_landing?: false)}
 
   describe 'landing' do
@@ -63,6 +63,12 @@ describe Plane do
       subject.land(airport_allow)
       subject.take_off
       expect(subject).to be_flying
+    end
+
+    it 'calls airport#release_plane method when taking off' do
+      subject.land(airport_allow)
+      expect(airport_allow).to receive :release_plane
+      subject.take_off
     end
 
   end
