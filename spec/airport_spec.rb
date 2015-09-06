@@ -30,7 +30,7 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         plane=double(:plane, land: :landed, take_off: :flying)
-        subject.read_capacity.times{subject.land_plane(plane)}
+        subject.capacity.times{subject.land_plane(plane)}
         expect { subject.land_plane(plane) }.to raise_error 'Do not land, airport is full'
       end
     end

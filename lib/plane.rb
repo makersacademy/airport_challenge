@@ -2,12 +2,10 @@
 
 class Plane
 
+  attr_reader :status
+
   def initialize
     @status = :flying
-  end
-
-  def get_status
-    @status
   end
 
   def land

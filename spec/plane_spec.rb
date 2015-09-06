@@ -18,7 +18,7 @@ require 'plane'
 describe Plane do
 
   it 'is flying when created' do
-      expect(subject.get_status).to eq(:flying)
+      expect(subject.status).to eq(:flying)
   end
 
   it 'can land' do
@@ -27,7 +27,7 @@ describe Plane do
 
   it 'is landed after landing' do
       subject.land
-      expect(subject.get_status).to eq(:landed)
+      expect(subject.status).to eq(:landed)
   end
 
   it 'can take off' do
@@ -37,7 +37,7 @@ describe Plane do
   it 'is flying after take off' do
       subject.land
       subject.take_off
-      expect(subject.get_status).to eq(:flying)
+      expect(subject.status).to eq(:flying)
   end
 
 end

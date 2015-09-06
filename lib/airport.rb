@@ -1,5 +1,7 @@
 class Airport
 
+  attr_reader :capacity
+
   def initialize
     @capacity=5
     @planes_at_airport=[]
@@ -17,10 +19,6 @@ class Airport
     fail 'Weather is stormy, do not take off' if report_weather==:stormy
     plane.take_off
     @planes_at_airport-[plane]
-  end
-
-  def read_capacity
-    @capacity
   end
 
   private
