@@ -32,9 +32,9 @@ class Airport
   end
 
   def permission_to_land
-     if full? then
+     if full?
        :full
-     elsif weather_report == :stormy then
+     elsif weather_report == :stormy
        :stormy
      else
        :ok
