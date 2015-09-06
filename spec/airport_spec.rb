@@ -16,8 +16,8 @@ describe Airport do
 
     it { is_expected.to respond_to(:request_take_off).with(1).argument }
     it { is_expected.to respond_to(:request_landing).with(1).argument }
-    it { is_expected.to respond_to(:permission_to_take_off?) }
-    it { is_expected.to respond_to(:permission_to_land?) }
+    it { is_expected.to respond_to(:permission_to_take_off) }
+    it { is_expected.to respond_to(:permission_to_land) }
     it { is_expected.to respond_to(:weather_report) }
     it { is_expected.to respond_to(:full?) }
 
@@ -35,15 +35,15 @@ describe Airport do
       subject.request_landing(plane) until subject.full?
     end
 
+    it 'denies permission to planes that want to land' do
+      plane = double :plane
+      expect(subject.permission_to_land).not_to eq :ok
+    end
+
     it 'cannot instruct a plane to land' do
       plane = double :plane
       allow(plane).to receive(:land_at).and_raise 'Airport is full'
       expect { subject.request_landing(plane) }.to raise_error 'Airport is full'
-    end
-
-    it 'denies permission to planes that want to land' do
-      plane = double :plane
-      expect(subject.permission_to_land?).not_to be_truthy
     end
 
     it 'can request a take-off to free up space' do
@@ -88,13 +88,28 @@ describe Airport do
       expect(subject.weather_report).to eq :stormy
     end
 
-  end
+    it 'denies permission to planes that want to take off' do
+      plane = double :plane
+      expect(subject.permission_to_take_off).not_to eq :ok
+    end
 
-  #   context 'when weather conditions are stormy' do
-  #     xit 'does not allow a plane to take off'
-  #
-  #     xit 'does not allow a plane to land'
-  #   end
-  #   end
+    it 'cannot instruct a plane to take off' do
+      plane = double :plane
+      allow(plane).to receive(:take_off_from).and_raise 'Too stormy'
+      expect { subject.request_take_off(plane) }.to raise_error 'Too stormy'
+    end
+
+    it 'denies permission to planes that want to land' do
+      plane = double :plane
+      expect(subject.permission_to_land).not_to eq :ok
+    end
+
+    it 'cannot instruct a plane to land' do
+      plane = double :plane
+      allow(plane).to receive(:land_at).and_raise 'Too stormy'
+      expect { subject.request_landing(plane) }.to raise_error 'Too stormy'
+    end
+
+  end
 
 end

@@ -27,12 +27,12 @@ class Airport
     plane_count >= CAPACITY
   end
 
-  def permission_to_take_off?
-    true
+  def permission_to_take_off
+    weather_report == :stormy ? :stormy : :ok
   end
 
-  def permission_to_land?
-    !full?
+  def permission_to_land
+    full? ? :full : weather_report == :stormy ? :stormy : :ok
   end
 
   def weather_report

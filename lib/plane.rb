@@ -9,7 +9,7 @@ class Plane
   end
 
   def take_off_from(airport)
-    fail 'Too stormy' unless airport.permission_to_take_off?
+    fail 'Too stormy' if airport.permission_to_take_off == :stormy
     self.status = :flying
   end
 
@@ -18,7 +18,8 @@ class Plane
   end
 
   def land_at(airport)
-    fail 'Airport is full' unless airport.permission_to_land?
+    fail 'Airport is full' if airport.permission_to_land == :full
+    fail 'Too stormy' if airport.permission_to_land == :stormy
     self.status = airport
   end
 
