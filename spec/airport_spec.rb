@@ -20,6 +20,7 @@ describe Airport do
   it "initializes with an empty hangar" do
     expect(subject.hangar).to eq []
   end
+  
 end
 
 
