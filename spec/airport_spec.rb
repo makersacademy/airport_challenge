@@ -38,6 +38,23 @@ describe Airport do
       expect(subject.instruct_to_take_off(plane)).to be plane
     end
 
+    # it 'should not be able to take off if already flying' do
+    #   allow(subject).to receive(:weather) { "sunny" }
+    #   allow(plane).to receive(:land)
+    #   allow(plane).to receive(:take_off)
+    #   subject.instruct_to_land(plane)
+    #   subject.instruct_to_take_off(plane)
+    #   expect { subject.instruct_to_take_off(plane) }.to raise_error 'Plane has already taken off'
+    # end
+
+    it 'should not land the same plane twice' do
+      allow(subject).to receive(:weather) { "sunny" }
+      allow(plane).to receive(:land)
+      subject.instruct_to_land(plane)
+      expect { subject.instruct_to_land(plane) }.to raise_error 'Plane has already landed'
+    end
+
+
   #describe 'landing' do
 
     it 'instructs a plane to land' do 
@@ -60,7 +77,7 @@ describe Airport do
       it 'does not allow a plane to land when at capacity' do
         allow(subject).to receive(:weather) { "sunny" }
         allow(plane).to receive(:land)
-        subject.capacity.times { subject.instruct_to_land(plane) }
+        subject.capacity.times { subject.instruct_to_land(Plane.new) }
         expect { subject.instruct_to_land(plane) }.to raise_error 'Airport is full'
       end
 

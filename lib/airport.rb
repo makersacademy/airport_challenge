@@ -10,6 +10,7 @@ class Airport
   end
 
   def instruct_to_land(plane)
+    fail 'Plane has already landed' if @planes.include? plane
     fail 'Airport is full' if airport_full?
     fail 'The weather is too stormy' if stormy?
     plane.land
@@ -18,6 +19,7 @@ class Airport
   end
 
   def instruct_to_take_off(plane)
+    # fail 'Plane has already taken off' if !@planes.include? plane
     fail 'The weather is too stormy' if stormy?
     plane.take_off
     @planes.delete(plane)
