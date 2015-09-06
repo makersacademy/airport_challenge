@@ -1,48 +1,45 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+	let(:airport) { Airport.new }
+  	let(:plane) { Plane.new }
 
-    xit 'releases a plane'
-  end
+	describe "landing" do 
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+	it { is_expected.to respond_to(:instruct_to_land).with(1).argument}
+	it { is_expected.to respond_to(:stormy?)}
 
-    xit 'receives a plane'
-  end
+	it "planes array increase by 1 for each landing" do 
+		airport.instruct_to_land(plane)
+		expect {subject.instruct_to_land(plane)}.to change{subject.plane_count.length}.by(1)
+		end 
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
-    end
+	it "Raise error when airport is full" do
+		subject.capacity.times{subject.instruct_to_land Plane.new}
+		expect {subject.instruct_to_land Plane.new}.to raise_error "Plane cannot land. Circle until capacity is released"
+		end 
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+	it "Raise error when trying to land same plane twice" do	
+		subject.instruct_to_land(plane)
+		expect {subject.instruct_to_land(plane)}.to raise_error "Plane has already landed"
+		end 
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+	it "Raise error when trying to land plane in stormy weather" do	
+		allow(subject).to receive(:stormy?).and_return true
+		expect{subject.instruct_to_land(plane)}.to raise_error "Plane cannot land. Wait until wind slows down"
+		end 
 
-      xit 'does not allow a plane to land'
-    end
-  end
+ 	end 
+
+	describe 'take off' do
+
+	it { is_expected.to respond_to(:instruct_to_take_off).with(1).argument}
+ 
+ 	it "planes array decrease by 1 for each take-off" do 
+		airport.instruct_to_take_off(plane)
+		end 
+
+	end 
+	
 end
