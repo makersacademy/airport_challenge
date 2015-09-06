@@ -1,58 +1,39 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
-    it 'instructs a plane to take off' do
-    expect(subject).to respond_to(:release_plane)
 
-    # xit 'releases a plane'
-  end
-
-  # describe 'landing' do
-  #   xit 'instructs a plane to land' # Test might not be neccessary
-
-
-    it 'receives a plane' do
-      expect(subject).to respond_to(:receive_plane).with(1).argument
+  describe "Take off" do
+ 
+    it 'Instructs a plane to take off' do
+       expect(subject).to respond_to(:take_off)
     end
 
-
-    it 'Traffic control does not allow a plane to land' do
-    subject.capacity.times {subject.receive_plane(Plane.new)}
-    expect{subject.receive_plane Plane.new}.to raise_error 'Airport at full capacity'
-    # context 'when airport is full' do
-
-    end
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
-    it 'does not allow a plane to take off when stormy' do
-
-      expect{subject.release_plane} 
-
-      
-    end
-
-
-
-      xit 'does not allow a plane to land'
+    it 'Does not allow a plane to take off when stormy' do
+      allow(subject).to receive(:weather).and_return("stormy")
+      expect{subject.take_off(Plane.new)}.to raise_error("There is a storm, the plane cannot land!")
     end
   end
+
+    describe "Landing" do
+
+    it 'Instructs a plane to land' do
+      expect(subject).to respond_to(:land_plane).with(1).argument
+    end
+
+    it 'Does not allow a plane to land during a storm' do
+      allow(subject).to receive(:weather).and_return("stormy")
+      expect{subject.land_plane Plane.new}.to raise_error("There is a storm, the plane cannot land!")
+    end
+
+    it 'Traffic control does not allow a plane to land at full capacity' do
+      allow(subject).to receive(:weather).and_return("sunny")
+      subject.capacity.times {subject.land_plane(Plane.new)}
+      expect{subject.land_plane Plane.new}.to raise_error 'Airport at full capacity'
+    end
+
+  end
+end
+
+
+    
