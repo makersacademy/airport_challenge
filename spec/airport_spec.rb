@@ -71,6 +71,11 @@ describe Airport do
 
     context "when weather conditions are stormy" do
 
+      it "tests the forecast method" do
+        subject.stub(:forecast) {5}
+        expect(subject.forecast).to eq(5)
+      end
+
       it "tests the stormy method" do
         subject.stub(:forecast) {5}
         expect(subject.stormy?).to eq("stormy")
