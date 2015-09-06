@@ -13,7 +13,7 @@ describe Airport do
   describe 'method:capacity' do
     it {expect(subject).to respond_to(:capacity).with(0).argument}
   end
-   describe 'method:plane_landed' do
+  describe 'method:plane_landed' do
     it {expect(subject).to respond_to(:plane_landed).with(1).argument}
     it 'lands plane inside the airport' do
       plane = double(:plane_object)
