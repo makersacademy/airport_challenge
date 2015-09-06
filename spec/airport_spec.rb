@@ -15,21 +15,20 @@ describe Airport do
   let(:plane){double(:plane, land: nil, take_off: nil)}
 
   before do
-    # allow(subject).to receive(:forecast) {"sunny"}
-    subject.stub(:num_rand).and_return(0)
+    allow(subject).to receive(:forecast) {"sunny"}
   end
 
   it 'has capacity of 20 planes' do
     expect(subject.capacity).to eq 20
   end
 
-  it 'responds to forecast' do
-    expect(subject).to respond_to(:forecast)
-  end
-
   describe 'forecast' do
+    # it 'has random number generator for weather' do
+    #
+    # end
+
     it 'can be stormy' do
-      subject.stub(:num_rand).and_return(1)
+      allow(subject).to receive(:forecast) {"stormy"}
       expect(subject.forecast).to eq "stormy"
     end
 
@@ -40,17 +39,14 @@ describe Airport do
 
   describe 'allow_take_off' do
     it 'gives permission for plane to take off' do
-      # allow(subject).to receive(:forecast) {'sunny'}
       expect(subject).to respond_to(:allow_take_off)
     end
 
     it 'cannot release plane if empty' do
-      # allow(subject).to receive(:forecast) {'sunny'}
       expect {subject.allow_take_off}.to raise_error "No planes at the airport"
     end
 
     it 'releases plane' do
-      # allow(subject).to receive(:forecast) {'sunny'}
       subject.allow_land plane
       plane_count = subject.planes.count
       subject.allow_take_off
@@ -60,12 +56,10 @@ describe Airport do
 
   describe 'allow_landing' do
     it 'give permission for a plane to land' do
-      # allow(subject).to receive(:forecast) {'sunny'}
       expect(subject).to respond_to(:allow_land).with(1).argument
     end
 
     it 'receives a plane' do
-      # allow(subject).to receive(:forecast) {'sunny'}
       plane_count = subject.planes.count
       subject.allow_land plane
       expect(subject.planes.count).to eq (plane_count + 1)
@@ -74,9 +68,8 @@ describe Airport do
 
 
   describe 'air traffic control' do
-    context 'airport is full' do
+    context 'when airport is full' do
       it 'plane cannot land' do
-        # allow(subject).to receive(:forecast) {'sunny'}
         subject.capacity.times {subject.allow_land plane}
         expect {subject.allow_land plane}.to raise_error "Airport is full pilot"
       end
@@ -94,14 +87,13 @@ describe Airport do
     context 'when weather conditions are stormy' do
 
       it 'plane cannot take off' do
-        # allow(subject).to receive(:forecast) {'sunny'}
         subject.allow_land plane
-        subject.stub(:num_rand).and_return(1)
+        allow(subject).to receive(:forecast) {'stormy'}
         expect {subject.allow_take_off}.to raise_error "Sorry, bad weather"
       end
 
       it 'plane cannot land' do
-        subject.stub(:num_rand).and_return(1)
+        allow(subject).to receive(:forecast) {'stormy'}
         expect {subject.allow_land plane}.to raise_error "Sorry, bad weather"
       end
     end

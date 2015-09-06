@@ -10,19 +10,20 @@ class Airport
   end
 
   def allow_take_off
-    if num_rand == 1
+    if forecast == "stormy"
       fail "Sorry, bad weather"
     elsif @planes.empty?
       fail "No planes at the airport"
     else
       plane = @planes.pop
+      @planes.delete(plane)
       plane.take_off
       plane
     end
   end
 
   def allow_land(plane)
-    if num_rand == 1
+    if forecast == "stormy"
       fail "Sorry, bad weather"
     elsif full?
       fail "Airport is full pilot"
@@ -33,16 +34,16 @@ class Airport
   end
 
   def forecast
-    return "stormy" if num_rand == 1
+    return "stormy" if rand_num == 1
     "sunny"
   end
 
-private
+  private
 
-  def num_rand
-    rand(2) #assuming this airport is in the UK
+  def rand_num
+    rand(2)
   end
-  
+
   def full?
     @planes.count >= 20
   end
