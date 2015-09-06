@@ -1,7 +1,8 @@
 module Weather
 
   def stormy?
-    rand(100) > 70
+    return true if rand(100) > 70
+    false
   end
 
 end
