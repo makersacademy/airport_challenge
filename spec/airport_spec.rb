@@ -7,10 +7,20 @@ describe Airport do
     end
 
     it 'releases a plane' do
-      plane=double(:plane, land: :landed, take_off: :flying)
+      plane=double(:plane, land: :landed, take_off: :flying, status: :flying)
+      allow(subject).to receive(:report_weather).and_return(:sunny)
       subject.land_plane(plane)
-      subject.launch_plane(plane)
+      allow(plane).to receive(:status).and_return(:landed)
       expect(subject.launch_plane(plane)).to eq([])
+    end
+
+    it 'does not release a plane that is not here' do
+      allow(subject).to receive(:report_weather).and_return(:sunny)
+      p1=double(:plane, land: :landed, take_off: :flying, status: :flying)
+      p2=double(:plane, land: :landed, take_off: :flying, status: :flying)
+      subject.land_plane(p1)
+      error_st='Plane is not here'
+      expect{subject.launch_plane(p2)}.to raise_error error_st
     end
   end
 
@@ -20,8 +30,16 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      plane=double(:plane, land: :landed, take_off: :flying)
-      expect(subject.land_plane(plane)).to eq([plane])
+      allow(subject).to receive(:report_weather).and_return(:sunny)
+      p=double(:plane, land: :landed, take_off: :flying, status: :flying)
+      expect(subject.land_plane(p)).to eq([p])
+    end
+
+    it 'does not land a landed plane' do
+      allow(subject).to receive(:report_weather).and_return(:sunny)
+      p=double(:plane, land: :landed, take_off: :flying, status: :landed)
+      error_st='Plane has already landed'
+      expect{subject.land_plane(p)}.to raise_error error_st
     end
   end
 
@@ -29,10 +47,10 @@ describe Airport do
 
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        plane=double(:plane, land: :landed, take_off: :flying)
-        subject.capacity.times{subject.land_plane(plane)}
-        error_st= 'Do not land, airport is full'
-        expect { subject.land_plane(plane) }.to raise_error error_st
+        p=double(:plane, land: :landed, take_off: :flying, status: :flying)
+        subject.capacity.times{subject.land_plane(p)}
+        error_st='Do not land, airport is full'
+        expect { subject.land_plane(p) }.to raise_error error_st
       end
     end
 
