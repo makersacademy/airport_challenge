@@ -18,6 +18,7 @@ class Airport
 	end 
 
 	def instruct_to_take_off(plane)
+		fail "Plane cannot take-off. Wait until wind slows down" if stormy? 
 		@planes.delete(plane)
 		plane.take_off 
 	end 

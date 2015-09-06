@@ -40,7 +40,12 @@ describe Airport do
 		it { is_expected.to respond_to(:instruct_to_take_off).with(1).argument}
 	 
 	 	it "planes array decrease by 1 for each take-off" do 
-			airport.instruct_to_take_off(plane)
+			expect {subject.instruct_to_land(plane)}.to change{subject.plane_count.length}.by(1)
+		end 
+
+		it "Raise error when trying to take-off in stormy weather" do	
+			allow(subject).to receive(:stormy?).and_return true
+			expect{subject.instruct_to_take_off(plane)}.to raise_error "Plane cannot take-off. Wait until wind slows down"
 		end 
 
 	end 
