@@ -52,7 +52,7 @@ describe Airport do
 
   describe 'traffic control' do
     context 'when airport is full' do
-      it 'does not allow a plane to land' do
+      xit 'does not allow a plane to land' do
       end
     end
 

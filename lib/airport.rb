@@ -16,7 +16,14 @@ class Airport
 
   def receive_plane(plane)
     planes << plane if allow_landing?
-    @allow_landing = false if planes.count == capacity
+    @allow_landing = false if full?
+  end
+
+private
+
+  def full?
+    return true if planes.count == capacity
+    false
   end
 
 end
