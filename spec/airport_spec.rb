@@ -1,5 +1,4 @@
 require 'airport'
-
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -32,13 +31,18 @@ describe Airport do
     #   expect(subject).to respond_to :receive
     # end
     it { is_expected.to respond_to(:receive).with(1).argument }
+    it 'raises an error when full' do
+        subject.receive(Plane.new)
+        expect { subject.receive(Plane.new) }.to raise_error 'Airport full'
+    end
 
     xit 'receives a plane'
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land'
+      it { is_expected.to respond_to(:full?) }
     end
 
     # Include a weather condition.

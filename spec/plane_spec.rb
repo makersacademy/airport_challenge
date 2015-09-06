@@ -1,3 +1,4 @@
+require 'plane'
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -12,7 +13,6 @@
 # Think about your implementation - does it allow a plane to be "flying"
 # and landed?
 # Are you testing that?
-require 'plane'
 
 describe Plane do
   it 'is flying when created' do
