@@ -17,14 +17,42 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    plane = Plane.new
+    expect(plane.flying?).to eql(true)
+  end
 
-  xit 'can land'
+  describe 'landing' do
 
-  xit 'is landed after landing'
+    it 'should take one argument' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
 
-  xit 'can take off'
+    it 'can land' do
+      plane = Plane.new
+      airport = Airport.new
+      plane.land(airport)
+      expect(plane.flying?).to eql(false)
+    end
+  end
 
-  xit 'is flying after take off'
+  it 'can take off' do
+    plane = Plane.new
+    plane.land
+    plane.take_off
+    expect(plane.flying?).to eql(true)
+  end
+
+  it 'flying plane cannot take_off' do
+    plane = Plane.new
+    expect{plane.take_off}.to raise_error "This plane is already airbourne"
+  end
+
+  it 'landed plane cannot land' do
+    plane = Plane.new
+    airport = Airport.new
+    plane.land(airport)
+    expect{plane.land(airport)}.to raise_error "This plane has already landed"
+  end
 
 end
