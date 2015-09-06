@@ -41,19 +41,13 @@ describe Airport do
   end
   describe 'method:weather?' do
     it {expect(subject).to respond_to(:weather).with(0).argument}
-    it 'is sometimes stormy sometimes sunny' do
-      stormy_days = 0; sunny_days = 0
-      100.times do
-        weather = subject.weather
-        stormy_days += 1 if weather == 'stormy'
-        sunny_days += 1 if weather == 'sunny'
-      end
-      if stormy_days >= 1 && sunny_days >= 1 && stormy_days+sunny_days == 100
-        working = true
-      else
-        working = false
-      end
-      expect(working).to eq(true)
+    before :each do srand(999) end
+    it 'is sometimes sunny' do
+      expect(subject.weather).to eq('sunny')
+    end
+    before :each do srand(9999) end
+    it 'is sometimes stormy' do
+      expect(subject.weather).to eq('sunny')
     end
   end
 end
