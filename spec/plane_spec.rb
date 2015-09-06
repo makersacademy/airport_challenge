@@ -1,30 +1,58 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# When we create a new plane, it should be "flying",
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# be "landed"
-#
-# When the plane takes of from the airport, it should be "flying" again
-#
-# Think about your implementation - does it allow a plane to be "flying"
-# and landed?
-# Are you testing that?
-
 describe Plane do
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'can land'
+  describe 'take-off behaviour:' do
 
-  xit 'is landed after landing'
+    it { is_expected.to respond_to(:take_off_from).with(1).argument }
 
-  xit 'can take off'
+    it 'can take off from an airport when given permission' do
+        airport = double :airport, permission_to_take_off: :ok
+        expect{ subject.take_off_from(airport) }.not_to raise_error
+    end
 
-  xit 'is flying after take off'
+    it 'cannot take off when denied permission because of storms' do
+        airport = double :airport, permission_to_take_off: :stormy
+        expect{ subject.take_off_from(airport) }.to raise_error 'Too stormy'
+    end
+
+    it 'is flying after take off' do
+      airport = double :airport, permission_to_take_off: :ok
+      subject.take_off_from(airport)
+      expect(subject).to be_flying
+    end
+
+  end
+
+  describe 'landing behaviour:' do
+
+    it { is_expected.to respond_to(:land_at).with(1).argument }
+
+    it 'can land at an airport when given permission' do
+        airport = double :airport, permission_to_land: :ok
+        expect{ subject.land_at(airport) }.not_to raise_error
+    end
+
+    it 'cannot land when denied permission because airport is full' do
+        airport = double :airport, permission_to_land: :full
+        expect{ subject.land_at(airport) }.to raise_error 'Airport is full'
+    end
+
+    it 'cannot land when denied permission because of storm' do
+        airport = double :airport, permission_to_land: :stormy
+        expect{ subject.land_at(airport) }.to raise_error 'Too stormy'
+    end
+
+    it 'is landed at an airport after landing' do
+      airport = double :airport, permission_to_land: :ok
+      subject.land_at(airport)
+      expect(subject).to be_landed_at(airport)
+    end
+
+  end
 
 end
