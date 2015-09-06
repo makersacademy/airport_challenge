@@ -21,9 +21,12 @@ DEFAULT_CAPACITY = 10
     @planes << plane
   end
 
+  def forecast
+    rand(40)
+  end
+
   def stormy?
-    forecast = rand(1..30)
-    forecast < 5 ? "stormy" : "sunny"
+    forecast == 5 ? "stormy" : "sunny"
   end
 
   private

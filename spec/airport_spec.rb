@@ -70,6 +70,12 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context "when weather conditions are stormy" do
+
+      it 'tests the stormy method' do
+        subject.stub(:forecast) {5}
+        allow(subject).to receive(:stormy?).and_return('stormy')
+      end
+
       it 'does not allow a plane to take off' do
         allow(subject).to receive(:stormy?).and_return(true)
         expect(subject.release_plane).to eq(false)
