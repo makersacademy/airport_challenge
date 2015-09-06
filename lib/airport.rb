@@ -16,6 +16,11 @@ class Airport
 		@planes.delete(plane) 
 	end
 
+	def land_permission
+		fail 'Airport full' if full?
+		fail 'Stormy weather' if weather == 'stormy'
+	end
+
 	def full?
 		@planes.length >= @capacity ? true : false 
 	end

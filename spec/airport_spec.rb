@@ -30,6 +30,23 @@ describe Airport do
       expect(subject.planes).to eq([])
     end
   end
+  describe 'method:land_permission' do
+    it {expect(subject).to respond_to(:land_permission).with(0).argument}
+    it 'raises error when airport full' do
+      subject.capacity.times do
+        plane = double(:plane_object)
+        subject.plane_landed(plane)
+      end
+      plane = double(:plane_object)
+      expect{subject.land_permission}.to raise_error "Airport full"
+    end
+    before :each do 
+      srand(9991) 
+    end
+    it 'raises error when weather is stormy' do  
+      expect{subject.land_permission}.to raise_error "Stormy weather"
+    end
+  end
   describe 'method:full?' do
     it {expect(subject).to respond_to(:full?).with(0).argument}   
     it 'returns false when airport is not at full capacity' do
