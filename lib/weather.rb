@@ -3,7 +3,7 @@ class Weather
   attr_reader :sunny
 
   def initialize
-    if rand(20) > 2
+    if Random.rand(20) > 2
       @sunny = true
     else
       @sunny = false
