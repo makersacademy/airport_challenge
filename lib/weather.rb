@@ -1,6 +1,8 @@
 module Weather
-  def weather
-    weather = rand(10)
-    weather <= 2 ? @stormy : @sunny
+  def stormy?
+    weather_randomiser <= 2 ? true : false
+  end
+  def weather_randomiser
+    rand(10)
   end
 end

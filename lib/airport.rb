@@ -14,14 +14,14 @@ class Airport
   end
 
   def plane_take_off(plane)
-    fail 'Cannot currently take off' if empty? || weather == :stormy
+    fail 'Cannot currently take off' if empty? || stormy?
     planes.delete(plane)
     plane.take_off
     plane
   end
 
   def plane_land(plane)
-    fail 'Plane cannot currently land at airport' if full? || weather == :stormy
+    fail 'Plane cannot currently land at airport' if full? || stormy?
     plane.land
     planes << plane
   end
