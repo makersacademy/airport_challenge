@@ -24,7 +24,7 @@ class Airport
   end
 
   def weather_report
-    @current_weather = Weather.new.weather_report
+    Weather.new.weather_report
   end
 
   private
@@ -32,7 +32,7 @@ class Airport
   def empty?
     planes.empty?
   end
-  
+
   def full?
     planes.size >= capacity
   end
