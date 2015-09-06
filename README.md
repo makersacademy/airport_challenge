@@ -225,6 +225,7 @@ Started to work on the third piece of the user story.
   from (irb):2
   from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
  :003 >
+
  ```
 
  1.2. Wrote test, made it fail.
@@ -237,6 +238,7 @@ Started to work on the third piece of the user story.
 
  2.1 Feature test
 
+ ```
  :001 > airport = Airport.new
   => #<Airport:0x007f9b731653f8>
  :002 > plane = Plane.new
@@ -246,6 +248,7 @@ Started to work on the third piece of the user story.
   from (irb):3
   from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
  :004 >
+ ```
 
  2.2. Wrote test, made it fail.
 
@@ -257,6 +260,7 @@ Started to work on the third piece of the user story.
 
  3.1 Feature test
 
+ ```
  :001 > airport = Airport.new
   => #<Airport:0x007fa3340d16f8>
  :002 > plane = Plane.new
@@ -265,6 +269,7 @@ Started to work on the third piece of the user story.
   => nil
  :005 > plane.landed?
   => false
+ ```
 
 Expexted to be true.
 
@@ -278,6 +283,7 @@ Expexted to be true.
 
  4.1. Feature test
 
+ ```
  :001 > airport = Airport.new
   => #<Airport:0x007fdc3c1acf50 @planes=[]>
  :002 > plane = Plane.new
@@ -286,6 +292,7 @@ Expexted to be true.
   => false
  :004 > airport.planes
  => []
+ ```
 
  Expect planes to include plane.
 
@@ -297,6 +304,7 @@ Expexted to be true.
 
  5.1. Feature test
 
+ ```
  :001 > airport = Airport.new
   => #<Airport:0x007ffe011ace38 @planes=[]>
  :002 > plane = Plane.new
@@ -307,6 +315,7 @@ Expexted to be true.
   => nil
  :005 > plane.flying?
   => false
+  ```
 
  Expect plane to receive message take_off, so expect it to be flying
 
@@ -320,6 +329,7 @@ Expexted to be true.
 
  6.1. Feature test
 
+ ```
  :001 > airport = Airport.new
   => #<Airport:0x007fce4906f878 @planes=[]>
  :002 > plane = Plane.new
@@ -331,6 +341,7 @@ Expexted to be true.
  :005 > airport.planes
   => []
  :006 >
+ ```
 
  WOW! I expected it to be empty and it is empty!
  And that is correct because to send a message to take off I need a plane, and I used shift method to take a plane from planes array.
@@ -340,6 +351,7 @@ Expexted to be true.
 
  6.3. Now feature test looks like this
 
+ ```
  :001 > airport = Airport.new
   => #<Airport:0x007fc23308e420 @planes=[]>
  :002 > plane = Plane.new
@@ -351,6 +363,7 @@ Expexted to be true.
  :005 > airport.planes
   => [#<Plane:0x007fc23307f010 @flying=true>]
  :006 >
+ ```
 
  So, expect to airport.planes to be one plane less, then before the release.
 
@@ -366,6 +379,7 @@ Expexted to be true.
 
  7.1. Feature test in irb
 
+ ```
  :001 > airport = Airport.new(2)
   => #<Airport:0x007f84019877e0 @planes=[], @capacity=2>
  :002 > 2.times {airport.plane_landing(Plane.new)}
@@ -375,9 +389,11 @@ Expexted to be true.
  :005 > airport.plane_landing(Plane.new)
   => [#<Plane:0x007f8402082cc0 @flying=false>, #<Plane:0x007f8402082c48 @flying=false>, #<Plane:0x007f840196eab0 @flying=false>]
  :006 >
+ ```
 
  Or, after some thinking:
 
+ ```
  :001 > airport = Airport.new
   => #<Airport:0x007ff07a1f7120 @planes=[], @capacity=10>
  :002 > airport.capacity.times {airport.plane_landing(Plane.new)}
@@ -387,6 +403,7 @@ Expexted to be true.
   from (irb):2
   from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
  :004 >
+ ```
 
  Trafic control should raise an error if full.
  This one is better.
