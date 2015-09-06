@@ -8,8 +8,7 @@ describe Airport do
   let(:plane) {Plane.new}
 
   before do
-    # allow(subject).to receive(:stormy?) {false}
-    subject.stub(:stormy?).and_return(false)
+    allow(subject).to receive(:stormy?) {false}
   end
 
   describe 'take off' do
