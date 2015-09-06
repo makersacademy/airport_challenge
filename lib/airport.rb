@@ -1,3 +1,5 @@
+require_relative './weather.rb'
+
 class Airport
   CAPACITY = 10
 
@@ -11,15 +13,17 @@ class Airport
     @planes
   end
 
-  def receive(plane)
+  def receive(plane, weather)
     fail 'The airport is full.' if full?
+    fail 'Plane cannot land due to bad weather conditions.' if weather.stormy?
 
     plane.land
     @planes << plane
   end
 
-  def release
+  def release(weather)
     fail 'No planes available.' if empty?
+    fail 'Plane cannot take off due to bad weather conditions.' if weather.stormy?
 
     plane = @planes.pop
     plane.take_off
