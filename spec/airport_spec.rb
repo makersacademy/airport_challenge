@@ -60,6 +60,19 @@ describe Airport do
 
   end
 
+
+
+  it { is_expected.to respond_to :weather_check}
+
+  describe 'weather_check' do
+    it 'there is 20% possibility of storm' do
+      srand(1)
+      rand()
+      rand()
+      expect(subject.weather_check).to eq 'stormy'
+    end
+  end
+
   it { is_expected.to respond_to :traffic_control}
 
   describe 'traffic control' do

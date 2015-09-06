@@ -6,6 +6,7 @@ class Airport
   def initialize (capacity = 10)
     @planes = []
     @capacity = capacity
+    @weather = 'not stormy'
   end
 
   def plane_take_off
@@ -21,6 +22,10 @@ class Airport
 
   def traffic_control
     fail "The airport is full" if planes.count >= capacity
+  end
+
+  def weather_check
+    rand()<0.2 ? 'stormy' : 'not stormy'
   end
 
 end

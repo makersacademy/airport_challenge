@@ -440,9 +440,32 @@ Expexted to be true.
 
  8.3. Wrote some code, test pass
 
+ 8.4. Commited, pushed
 
+9.0 I think I finished with the piece 3 of the user story.
 
+Started to work on the last piece of the user story.
 
+1. No landing or take off when the weather is stormy. Now I need to get info about the weather. It seems like a separate class. But I am not sure I can manage it. So after thinking for some time decided to provide weather directly to the airport. Weather should change, so I need separate method for that.
+
+ 1.1. Feature test
+
+ ```
+ :001 > airport = Airport.new
+  => #<Airport:0x007fcd4912e490 @planes=[], @capacity=10, @weather="not stormy">
+ :002 > airport.weather_check
+ NoMethodError: undefined method `weather_check' for #<Airport:0x007fcd4912e490>
+  from (irb):2
+  from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
+ :003 >
+ ```
+ Should return 'stormy' or 'not stormy'
+
+ 1.2. Wrote test to check airport responces to weather check, made it fail, then pass.
+
+ 1.3. Now the test to check if the weather is stormy. Did not know how to test random, so not sure this one is correct. Wrote test, made it fail.
+
+ 1.4 Wrote some code, test passes
 
 
 
