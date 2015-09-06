@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -13,10 +14,23 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  it 'Airport has a capacity' do
+    expect(subject.capacity).to eql Airport::DEFAULT_CAPACITY
+  end
 
-    xit 'releases a plane'
+  describe 'take off' do
+    it 'instructs a plane to take off' do
+      is_expected.to respond_to :instruct_to_take_off
+    end
+
+    it 'releases a plane and changes status to flying' do
+      plane = Plane.new
+      plane.status = "landed"
+      subject.hanger = [plane]
+      subject.instruct_to_take_off(plane)
+      expect(subject.hanger.include?(plane)).to be false
+    end
+
   end
 
   describe 'landing' do
