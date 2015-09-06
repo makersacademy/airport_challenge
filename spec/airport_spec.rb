@@ -15,6 +15,10 @@ describe Airport do
 
   let(:plane) { double :plane }
 
+  before do
+    allow(subject).to receive(:weather) { "sunny" }
+  end
+
   it { is_expected.to respond_to(:instruct_to_take_off).with(1).argument }
   it { is_expected.to respond_to(:instruct_to_land).with(1).argument }
 
@@ -25,13 +29,11 @@ describe Airport do
 
   #describe 'take off' do
     it 'instructs a plane to take off' do 
-      allow(subject).to receive(:weather) { "sunny" }
       expect(plane).to receive(:take_off)
       subject.instruct_to_take_off(plane)
     end
 
     it 'releases a plane' do
-      allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       subject.instruct_to_land(plane)
@@ -53,7 +55,6 @@ describe Airport do
     # instruct_to_take_off to take off method.
 
     it 'should not land the same plane twice' do
-      allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
       subject.instruct_to_land(plane)
       expect { subject.instruct_to_land(plane) }.to raise_error 'Plane has already landed'
@@ -63,13 +64,11 @@ describe Airport do
   #describe 'landing' do
 
     it 'instructs a plane to land' do 
-      allow(subject).to receive(:weather) { "sunny" }
       expect(plane).to receive(:land)
       subject.instruct_to_land(plane)
     end
 
     it 'receives a plane' do 
-      allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
       expect(subject.instruct_to_land(plane)).to be plane 
     end
@@ -80,7 +79,6 @@ describe Airport do
   #describe 'traffic control' do
     #context 'when airport is full' do
       it 'does not allow a plane to land when at capacity' do
-        allow(subject).to receive(:weather) { "sunny" }
         allow(plane).to receive(:land)
         subject.capacity.times { subject.instruct_to_land(Plane.new) }
         expect { subject.instruct_to_land(plane) }.to raise_error 'Airport is full'
@@ -100,7 +98,6 @@ describe Airport do
 
     #context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
-      allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
       subject.instruct_to_land(plane)
       allow(subject).to receive(:weather) { "stormy" }
