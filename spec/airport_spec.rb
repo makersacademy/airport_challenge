@@ -1,5 +1,4 @@
 require 'airport'
-
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -69,8 +68,9 @@ describe Airport do
 
   it {is_expected.to respond_to :stormy}
 
-  it 'assigns weather type to airport, stormy is either true or false' do
-      expect(@airport.stormy).to eq(true).or eq(false)
+  it 'assigns random weather type to airport' do
+      allow(Kernel).to receive(:rand) {0.99}
+      expect(@airport.stormy).to eq(false)
   end
 
   it 'does not allow plane to take off in stormy weather' do
