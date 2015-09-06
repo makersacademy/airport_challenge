@@ -4,8 +4,6 @@ class Airport
 
 DEFAULT_CAPACITY = 3  # => 10
 
-
-
   def initialize
     @capacity = DEFAULT_CAPACITY
     @planes = []
@@ -33,13 +31,13 @@ DEFAULT_CAPACITY = 3  # => 10
   end
 
   def stormy?
-    true if rand(0..9) > 7
+    if rand(0..9) > 7
+      true
+    else
+     false
+    end
   end
 
   private
-
-
-
-
 
 end
