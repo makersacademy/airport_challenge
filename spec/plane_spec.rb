@@ -41,18 +41,12 @@ describe Plane do
       subject.land(airport_allow)
     end
 
-    it 'lands if allowed' do
-      subject.land(airport_allow)
-      expect(subject).to be_landed
-    end
+    # it 'pilot informed when landing is not allowed' do
+    #   expect(subject.land(airport_not_allow)).to eq "Airport refuses landing request"
+    # end
 
-    it 'doesn\'t land when not allowed' do
-      subject.land(airport_not_allow)
-      expect(subject).to_not be_landed
-    end
-
-    it 'pilot informed when landing is not allowed' do
-      expect(subject.land(airport_not_allow)).to eq "Airport refuses landing request"
+    it 'raises error when landing not allowed' do
+      expect{subject.land(airport_not_allow)}.to raise_error "Airport refuses landing request"
     end
 
   end

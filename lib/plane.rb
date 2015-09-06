@@ -7,12 +7,9 @@ class Plane
   end
 
   def land(airport)
-    if airport.allow_landing?
-      @flying = false
-      @location = airport
-    else
-      "Airport refuses landing request"
-    end
+    fail "Airport refuses landing request" if !airport.allow_landing?
+    @flying = false
+    @location = airport
   end
 
   def take_off

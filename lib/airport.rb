@@ -19,7 +19,7 @@ class Airport
     @allow_landing = false if full?
   end
 
-private
+  private
 
   def full?
     return true if planes.count == capacity
