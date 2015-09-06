@@ -59,16 +59,17 @@ describe Airport do
 
     context 'when the airport is empty' do
 
-        it 'raises an error if a plane is requested for release' do
+      it 'raises an error if a plane is requested for release' do
         expect{ subject.release }.to raise_error 'No planes available.'
-        end
+      end
 
     end
 
     context 'when airport is full' do
 
-      xit 'does not allow a plane to land' do
-
+      it 'does not allow a plane to land' do
+        Airport::CAPACITY.times { subject.receive(Plane.new) }
+        expect { subject.receive(Plane.new) }.to raise_error 'The airport is full.'
       end
 
     end
@@ -86,6 +87,9 @@ describe Airport do
       xit 'does not allow a plane to take off'
 
       xit 'does not allow a plane to land'
+
     end
+
   end
+
 end

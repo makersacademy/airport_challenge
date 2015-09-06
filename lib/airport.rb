@@ -12,6 +12,8 @@ class Airport
   end
 
   def receive(plane)
+    fail 'The airport is full.' if full?
+
     plane.land
     @planes << plane
   end
