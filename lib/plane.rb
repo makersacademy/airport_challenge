@@ -1,4 +1,5 @@
 class Plane
+
   attr_accessor :status
 
   def initialize
@@ -12,5 +13,4 @@ class Plane
   def take_off
     @status = "flying"
   end
-
 end

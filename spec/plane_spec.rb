@@ -23,5 +23,4 @@ describe Plane do
     subject.take_off
     expect(subject.status).to eql "flying"
   end
-
 end

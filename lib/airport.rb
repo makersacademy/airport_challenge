@@ -26,7 +26,6 @@ class Airport
     fail 'Airport is full' if hanger.size == capacity
     fail 'Plane already in hanger' if hanger.include?(plane) == true
     hanger << plane
-    plane.status = "landed"
+    plane.status == "landed"
   end
-
 end
