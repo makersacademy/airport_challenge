@@ -34,8 +34,6 @@ describe Airport do
   end
   describe "#weather_report" do
     it "returns :sunny from the weather class" do
-      double :Weather, new: :weather, weather_report: :sunny,
-        condition: 0, storm_probability: 80
       allow(subject).to receive(:weather_report) { :sunny }
       expect(subject.weather_report).to eq(:sunny)
     end
