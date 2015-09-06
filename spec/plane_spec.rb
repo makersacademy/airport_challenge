@@ -17,7 +17,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport_allow){double(:airport_allow, allow_landing?: true)}
+  let(:airport_allow){double(:airport_allow, allow_landing?: true, receive_plane: nil)}
   let(:airport_not_allow){double(:airport_not_allow, allow_landing?: false)}
 
   describe 'landing' do
@@ -41,9 +41,10 @@ describe Plane do
       subject.land(airport_allow)
     end
 
-    # it 'pilot informed when landing is not allowed' do
-    #   expect(subject.land(airport_not_allow)).to eq "Airport refuses landing request"
-    # end
+    it 'calls airport#receive_plane method when landing is allowed' do
+      expect(airport_allow).to receive :receive_plane
+      subject.land(airport_allow)
+    end
 
     it 'raises error when landing not allowed' do
       expect{subject.land(airport_not_allow)}.to raise_error "Airport refuses landing request"

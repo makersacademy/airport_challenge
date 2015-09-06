@@ -10,6 +10,7 @@ class Plane
     fail "Airport refuses landing request" unless airport.allow_landing?
     @flying = false
     @location = airport
+    airport.receive_plane(self)
   end
 
   def take_off
@@ -26,3 +27,6 @@ class Plane
   end
 
 end
+
+
+
