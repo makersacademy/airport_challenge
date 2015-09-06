@@ -24,7 +24,11 @@ describe Airport do
   it { is_expected.to respond_to(:plane_landing).with(1).argument}
 
   describe 'plane_landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      plane = double :plane
+      expect(plane).to receive(:land)
+      subject.plane_landing(plane)
+    end
 
     xit 'receives a plane'
   end

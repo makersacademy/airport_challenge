@@ -5,7 +5,7 @@ class Airport
   end
 
   def plane_landing (plane)
-
+    plane.land
   end
 
 end

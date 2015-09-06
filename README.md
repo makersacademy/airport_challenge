@@ -251,6 +251,27 @@ Started to work on the third piece of the user story.
 
  2.3.Wrote empty method with argument plane, test passed.
 
+ 2.4. Commited, pushed
+
+3. Now plane shoul be instructed to land.
+
+ 3.1 Feature test
+
+ :001 > airport = Airport.new
+  => #<Airport:0x007fa3340d16f8>
+ :002 > plane = Plane.new
+  => #<Plane:0x007fa3340c2590 @flying=true>
+ :003 > airport.plane_landing(plane)
+  => nil
+ :005 > plane.landed?
+  => false
+
+Expexted to be true.
+
+ 3.2. Wrote test, used double the first time. I test that plane receives message land. Made the test fail.
+
+ 3.3. Wrote some code, the test passed. Checked that everything works in irb also (as the test was with double).
+
 
 
 
