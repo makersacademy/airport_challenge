@@ -80,7 +80,7 @@ describe Airport do
     #context 'when airport is full' do
       it 'does not allow a plane to land when at capacity' do
         allow(plane).to receive(:land)
-        subject.capacity.times { subject.instruct_to_land(Plane.new) }
+        subject.capacity.times { subject.instruct_to_land(Plane.new) } # i know i shouldn't have Plane.new here but can't work out what to replace it with so the test passes
         expect { subject.instruct_to_land(plane) }.to raise_error 'Airport is full'
       end
 
