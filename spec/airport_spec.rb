@@ -30,7 +30,8 @@ describe Airport do
 
     it 'can only instruct planes within hanger to take off' do
       plane = Plane.new
-      expect{subject.instruct_to_take_off(plane)}.to raise_error 'That plane is not in hanger'
+      expect{subject.instruct_to_take_off(plane)}.to raise_error
+       'That plane is not in hanger'
     end
   end
 
