@@ -17,6 +17,8 @@ class Airport
     fail 'The airport is full.' if full?
     fail 'Plane cannot land due to bad weather conditions.' if weather.stormy?
 
+    printf weather.stormy?
+
     plane.land
     @planes << plane
   end
