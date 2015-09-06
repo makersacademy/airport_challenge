@@ -7,18 +7,23 @@ class Airport
   def initialize (capacity=DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @planes << Plane.new("landed")
+    #@planes << Plane.new("landed")
   end
 
-  def commence_take_off
+  def clear_to_land(plane)
+    if @planes.count >= @capacity
+    raise 'Airport at Capacity'
+    else
+    plane.land
+    @planes << plane
+    end
+  end
+
+
+    def clear_to_take_off(plane)
     plane = @planes.pop
     plane.take_off
-  end
-
-  def land(plane)
-  @planes << plane
-  plane.landed
-  end
+    end
 
   def planes
     @planes

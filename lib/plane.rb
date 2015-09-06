@@ -1,7 +1,6 @@
 class Plane
-  def initialize(flying = 'flying', destinaton = 'Glasgow')
+  def initialize(flying = 'flying')
     @flying = flying
-    @destination = destination
   end
 
   def flying
@@ -18,10 +17,10 @@ class Plane
     @flying = "flying"
   end
 
-  def destination
-    fail 'you cannot have a plane in the air without a destination' if @destination == ''
-  @destination
-  end
+  # def destination
+  #   fail 'you cannot have a plane in the air without a destination' if @destination == ''
+  # @destination
+  # end
 
 
 end

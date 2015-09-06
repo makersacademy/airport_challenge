@@ -28,7 +28,7 @@ describe Plane do
   it { is_expected.to respond_to :land }
 
   it 'is landed after landing' do
-    plane = Plane.new(destination = "Glasgow")
+    plane = Plane.new
     plane.land
     expect(plane.flying).to eql "landed"
   end
@@ -38,7 +38,7 @@ describe Plane do
 
 
   it 'is flying after take off' do
-    plane = Plane.new(destination = "Glasgow")
+    plane = Plane.new
     plane.land
     plane.take_off
     expect(plane.flying).to eql "flying"
@@ -57,8 +57,8 @@ describe Plane do
       plane = Plane.new
       expect { plane.take_off }.to raise_error 'already flying'
     end
-    it { is_expected.to respond_to :destination }
-    
+    xit { is_expected.to respond_to :destination }
+
   end
 
 

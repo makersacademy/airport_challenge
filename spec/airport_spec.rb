@@ -14,49 +14,40 @@ require 'airport'
 
 describe Airport do
 
-    let(:glasgow) {Airport.new}
-    let(:pl101)   {double :plane, flying: 'flying'}
-    it { is_expected.to respond_to :commence_take_off }
+    #let(:glasgow) {Airport.new}
+
+    # let(:pl101)   {double :plane, flying: 'flying'}
     it { is_expected.to respond_to :planes }
     it { is_expected.to respond_to :count_planes }
 
 
-    it 'count the number of planes in the aiport' do
-      expect(glasgow.count_planes).to eql 1
+    it 'counts the number of planes in the aiport' do
+      expect(subject.count_planes).to eql 0
+    end
+
+    it 'should allow a plane to land' do
+      plane = Plane.new
+      subject.clear_to_land(plane)
+      puts plane.flying
+      expect(plane.flying).to eql("landed")
+    end
+
+    it 'should allow a plane to take off' do
+      plane = Plane.new
+      puts plane #why does this not show the flying variable
+      subject.clear_to_land(plane)
+      subject.clear_to_take_off(plane)
+      expect(plane.flying).to eql("flying")
+    end
+
+    it 'should prevent a plane from landing if the airport is full' do
+      subject.capacity.times {subject.clear_to_land Plane.new}
+
+      expect {subject.clear_to_land Plane.new}.to raise_error 'Airport at Capacity'
     end
 
 
 
-  describe 'take off' do
-    it 'instructs a plane to take off' do
-    planes = glasgow.planes
-    plane =planes.pop
-    expect(plane).to respond_to :take_off
-
-    end
-
-    xit 'releases a plane'
-  end
-
-   describe 'landing' do
-    xit 'instructs a plane to land' do
-     expect(pl101).to respond_to :land
-    end
-
-    it 'receives a plane' do
-    planes  = (glasgow).planes
-    number_planes = planes.count
-    (pl101).land(glasgow)
-    expect(number_planes).to eql(planes.count - 1)
-
-    end
-
-  end
-
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
-    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -68,9 +59,13 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
+
       xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
+
+      xit 'does not allow a plane to land' do
+      end
+
     end
-  end
+
 end
