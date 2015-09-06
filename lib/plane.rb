@@ -15,11 +15,11 @@ class Plane
     false if @flying == 'flying'
   end
   def land
-    fail 'already on the ground' if @flying == 'landed'
+    # fail 'already on the ground' if @flying == 'landed'
     @flying = 'landed'
   end
   def take_off
-    fail 'already in the air' if @flying == 'flying'
+    # fail 'already in the air' if @flying == 'flying'
     @flying = 'flying'
   end
 end

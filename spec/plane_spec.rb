@@ -19,16 +19,23 @@ describe Plane do
     expect(subject).to be_flying
   end
   it 'is landed when landed' do
-    expect { subject.land }.to change(subject, :flying).from('flying').to('landed')
+    expect {subject.land}.to change(subject,:flying).from('flying').to('landed')
   end
   context 'when flying' do
     it { is_expected.to respond_to :flying?  }
     it { is_expected.to respond_to :land     }
   end
+  # it 'errors' do
+  #   expect{actual}.to output('already in the air').to_stdout
+  #   expect{actual}.to output('already on the ground').to_stdout
+  # end
   context 'when landed' do
     it { is_expected.to respond_to :landed?  }
     it { is_expected.to respond_to :take_off }
   end
-  it 'is flying after take off'
-    it { is_expected.to respond_to :flying?  }
+  it 'is flying after take off' do
+    # expect {subject.take_off}.to change(subject,:flying).from('landed').to('flying')
+    # expect(subject).to eq("flying")
+    expect(subject).to respond_to :flying?
+  end
 end
