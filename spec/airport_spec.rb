@@ -1,7 +1,6 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
+
 
 # A plane currently in the airport can be requested to take off.
 #
@@ -13,20 +12,22 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  it 'instructs a plane to take off'
+  expect(subject).to respond_to :take_off("Plane")
+  end
+
 
     xit 'releases a plane'
   end
 
-  describe 'landing' do
     xit 'instructs a plane to land'
+
 
     xit 'receives a plane'
   end
 
   describe 'traffic control' do
-    context 'when airport is full' do
+    context ' trafwhen airport is full' do
       xit 'does not allow a plane to land'
     end
 
