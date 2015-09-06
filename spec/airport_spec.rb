@@ -23,20 +23,30 @@ describe Airport do
       is_expected.to respond_to :instruct_to_take_off
     end
 
-    it 'releases a plane and changes status to flying' do
+    it 'releases a plane' do
       plane = Plane.new
       plane.status = "landed"
       subject.hanger = [plane]
-      subject.instruct_to_take_off(plane)
+      subject.instruct_to_take_off plane
       expect(subject.hanger.include?(plane)).to be false
+    end
+
+    it 'changes status to flying' do
+      plane = Plane.new
+      plane.status = "landed"
+      subject.hanger = [plane]
+      subject.instruct_to_take_off plane
+      expect(plane.status).to eql "flying"
     end
 
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      (is_expected).to respond_to :instruct_to_land
+    end
 
-    xit 'receives a plane'
+    it 'receives a plane'
   end
 
   describe 'traffic control' do

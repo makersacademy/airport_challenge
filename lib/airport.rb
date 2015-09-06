@@ -10,9 +10,12 @@ class Airport
     @hanger = []
   end
 
-  def instruct_to_take_off(plane)
-    hanger.delete(plane)
+  def instruct_to_take_off plane
+    hanger.delete plane
     plane.status = "flying"
+  end
+
+  def instruct_to_land plane
   end
 
 end
