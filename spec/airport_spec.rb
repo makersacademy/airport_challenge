@@ -69,11 +69,9 @@ describe Airport do
 
   it {is_expected.to respond_to :stormy}
 
-  it 'assigns weather type to airport' do
-    allow(@airport).to receive(:stormy) {false}
-    expect(@airport.stormy).to eq(false)
+  it 'assigns weather type to airport, stormy is either true or false' do
+      expect(@airport.stormy).to eq(true).or eq(false)
   end
-
 
   it 'does not allow plane to take off in stormy weather' do
       allow(@airport).to receive(:stormy) {false}
