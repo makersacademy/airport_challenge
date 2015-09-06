@@ -4,8 +4,7 @@ class Plane
     @airborne = true
   end
 
-
-  def flying?
+  def take_off
     @airborne
   end
 
@@ -13,4 +12,11 @@ class Plane
     @airborne = false
   end
 
+  def flying_status
+    if @airborne
+      'flying'
+    else
+      'landed'
+    end
+  end
 end
