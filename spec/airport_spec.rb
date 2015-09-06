@@ -39,6 +39,23 @@ describe Airport do
       expect(subject).to be_full        
     end 
   end
+  describe 'method:weather?' do
+    it {expect(subject).to respond_to(:weather).with(0).argument}
+    it 'is sometimes stormy sometimes sunny' do
+      stormy_days = 0; sunny_days = 0
+      100.times do
+        weather = subject.weather
+        stormy_days += 1 if weather == 'stormy'
+        sunny_days += 1 if weather == 'sunny'
+      end
+      if stormy_days >= 1 && sunny_days >= 1 && stormy_days+sunny_days == 100
+        working = true
+      else
+        working = false
+      end
+      expect(working).to eq(true)
+    end
+  end
 end
 
 
