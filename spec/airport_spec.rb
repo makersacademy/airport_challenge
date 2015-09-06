@@ -14,34 +14,33 @@ require 'airport'
 describe Airport do
 
   describe 'landing' do
+
+    let(:plane)  { double :plane }
+
     it 'instructs a plane to land' do
-      expect(subject).to respond_to(:land)
+      expect(subject).to respond_to(:land).with(1).argument
     end
 
     it 'receives a plane' do
-      plane = subject.land
-      expect(plane).to be_truthy
+      subject.land plane
+      expect(subject.landing_strip).not_to be_empty
+    end
+
+    it 'returns a message when airport is full' do
+      subject.capacity.times { subject.land plane }
+      expect {subject.land plane}.to raise_error 'Landing not allowed'
     end
 
   end
 
 
   describe 'take off' do
-    xit 'instructs a plane to take off' do
-
+    it 'instructs a plane to take off' do
+      expect(subject).to respond_to(:take_off)
     end
 
     xit 'releases a plane' do
-
     end
-
-
-
-
-
-
-
-
   end
 
 
