@@ -1,10 +1,8 @@
 require_relative "Plane"  # => true
-require_relative "Weather"
 
 class Airport
 
 DEFAULT_CAPACITY = 3  # => 10
-
 
 
 
@@ -34,9 +32,13 @@ DEFAULT_CAPACITY = 3  # => 10
     end
   end
 
+  def stormy?
+    true if rand(0..9) > 7
+  end
+
   private
 
-  # attr_reader :planes  # => nil
+
 
 
 
