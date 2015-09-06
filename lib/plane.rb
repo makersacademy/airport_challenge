@@ -7,15 +7,15 @@ class Plane
   end
 
   def take_off
-    airborne
+    @airborne
   end
 
   def land!
-    airborne = false
+    @airborne = false
   end
 
   def flying_status
-    if airborne
+    if @airborne
       'flying'
     else
       'landed'
