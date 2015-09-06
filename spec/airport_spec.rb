@@ -47,6 +47,15 @@ describe Airport do
       expect{subject.land_permission}.to raise_error "Stormy weather"
     end
   end
+  describe 'method:take_off_permission' do
+    it {expect(subject).to respond_to(:take_off_permission).with(0).argument}
+    before :each do 
+      srand(111123) 
+    end
+    it 'raises error when weather is stormy' do  
+      expect{subject.take_off_permission}.to raise_error "Stormy"
+    end
+  end
   describe 'method:full?' do
     it {expect(subject).to respond_to(:full?).with(0).argument}   
     it 'returns false when airport is not at full capacity' do

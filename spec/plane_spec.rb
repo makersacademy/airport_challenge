@@ -54,7 +54,7 @@ describe Plane do
 		it 'raises error if already flying' do
 			expect{subject.take_off}.to raise_error "Already flying"
 		end
-		it 'raises error when permission to take off not granted' do
+		it 'raises error when trying to take off in stormy weather' do
 			class Airport; end
 			airport = double(:airport_object)
 			allow(airport).to receive(:is_a?).with(Airport).and_return(true)
