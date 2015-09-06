@@ -17,14 +17,26 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  let(:airport){double:airport}
 
-  xit 'can land'
+  it 'is flying when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'is landed after landing'
+  it 'can land and is in hangar after landing' do
+    airport = Airport.new
+    allow(airport).to receive(:weather) { "sunny" }
+    airport.land subject
+    expect(airport.hangar).to include(subject)
+    # expect(subject).not_to be_flying
+  end
 
-  xit 'can take off'
-
-  xit 'is flying after take off'
+  it 'can take off and is flying after take off' do
+    airport = Airport.new
+    allow(airport).to receive(:weather) { "sunny" }
+    airport.land subject
+    expect(airport.take_off).to eq(subject)
+    expect(subject).to be_flying
+  end
 
 end
