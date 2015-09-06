@@ -20,7 +20,7 @@ class Airport
     fail 'Weather is stormy, do not take off' if report_weather==:stormy
     fail 'Plane is not here' if @planes_at_airport == @planes_at_airport-[p]
     p.take_off
-    @planes_at_airport=@planes_at_airport-[p]
+    @planes_at_airport-=[p]
   end
 
   private
