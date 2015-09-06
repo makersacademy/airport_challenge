@@ -33,7 +33,7 @@ class Airport
   end
 
   def weather
-    ["stormy", ""].sample
+    ["stormy", "sunny"].sample #can't get this to pass the coveralls
   end
 
   def stormy?
