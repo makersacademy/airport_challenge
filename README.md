@@ -467,6 +467,29 @@ Started to work on the last piece of the user story.
 
  1.4 Wrote some code, test passes
 
+ 1.5 Commited, pushed
+
+2. Now no landing when the weather is stormy. Will change traffic_control to raise an error.
+
+ 2.1 Feature test in irb
+
+ ```
+ :001 > airport = Airport.new
+ => #<Airport:0x007fe043875c00 @planes=[], @capacity=10, @weather="not stormy">
+ :002 > airport.weather_check
+ => "stormy"
+ :003 > airport.traffic_control
+ => nil
+ :004 >
+ ```
+
+ 2.2 Wrote a test, made it fail
+
+ 2.3 Wrote some code, the test passed. But had to insert   allow(subject).to receive(:weather_check) { "not stormy" } to all tests.
+
+ 2.4 Can not figure out how to do except from before :each. Will do refactoring later.
+
+
 
 
 

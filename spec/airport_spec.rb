@@ -17,6 +17,7 @@ describe Airport do
 
   describe 'plane take off' do
     it 'instructs a plane to take off' do
+      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth'
       subject.plane_landing(plane)
       expect(plane).to receive(:take_off)
@@ -24,6 +25,7 @@ describe Airport do
     end
 
     it 'releases something' do
+      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth', take_off: 'smth'
       subject.plane_landing(plane)
       planes_in_airport = subject.planes.length
@@ -32,6 +34,7 @@ describe Airport do
     end
 
       it 'releases a plane' do
+      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth', take_off: 'smth'
       subject.plane_landing(plane)
       expect(subject.plane_take_off).to be plane
@@ -42,20 +45,23 @@ describe Airport do
 
   describe 'plane_landing' do
     it 'instructs a plane to land' do
+      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane
       expect(plane).to receive(:land)
       subject.plane_landing(plane)
     end
 
     it 'receives a plane' do
+      allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth'
       subject.plane_landing(plane)
       expect(subject.planes).to include(plane)
     end
 
     it 'raises a error when airport is full' do
-        subject.capacity.times { subject.plane_landing double :plane, land: 'smth' }
-        expect {subject.plane_landing double :plane, land: 'smth' }.to raise_error("The airport is full")
+      allow(subject).to receive(:weather_check) { "not stormy" }
+      subject.capacity.times { subject.plane_landing double :plane, land: 'smth' }
+      expect {subject.plane_landing double :plane, land: 'smth' }.to raise_error("The airport is full")
     end
 
   end
@@ -78,6 +84,7 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'raises error' do
+        allow(subject).to receive(:weather_check) { "not stormy" }
         subject.capacity.times { subject.plane_landing double :plane, land: 'smth' }
         expect {subject.traffic_control}.to raise_error("The airport is full")
       end
@@ -96,7 +103,10 @@ describe Airport do
     context 'when weather conditions are stormy' do
       xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        allow(subject).to receive(:weather_check) { "stormy" }
+        expect{subject.traffic_control}.to raise_error("The weather is stormy!")
+      end
     end
   end
 end

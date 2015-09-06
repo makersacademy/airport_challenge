@@ -22,6 +22,7 @@ class Airport
 
   def traffic_control
     fail "The airport is full" if planes.count >= capacity
+    fail "The weather is stormy!" if weather_check == 'stormy'
   end
 
   def weather_check
