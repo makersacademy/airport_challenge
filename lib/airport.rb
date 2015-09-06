@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :capacity
+  attr_reader :capacity, :planes
   def initialize(capacity = 50)
     @capacity = capacity
     @planes = []
@@ -10,6 +10,7 @@ class Airport
 
   def clear_for_takeoff(plane)
     plane.take_off
+    planes.delete(plane)
     plane
   end
 
@@ -24,7 +25,7 @@ class Airport
     @current_weather = Weather.new.weather_report
   end
   private
-  attr_reader :planes
+
 
   def full?
     planes.size >= capacity

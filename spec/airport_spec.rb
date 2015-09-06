@@ -15,23 +15,32 @@ describe Airport do
   let(:plane) do
     double :plane, land: :landed, take_off: :flying # not sure
   end
+  let(:plane_2) { double :plane_2, land: :landed, take_off: :flying }
 
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
   it { is_expected.to respond_to(:clear_for_takeoff).with(1).argument }
   it { is_expected.to respond_to(:weather_report) }
   # I don't need to test content of :weather_report
   # because it's been tested in the weather class?
+  describe "#planes" do
+    it "returns all the planes at the airport" do
+      allow(subject).to receive(:weather_report) { :sunny }
+      subject.clear_for_landing(plane)
+      expect(subject.planes).to contain_exactly(plane)
+    end
+  end
   describe "#capacity" do
     it "returns capacity of airport" do
       expect(Airport.new(67).capacity).to eq(67)
     end
   end
-  describe "#clear_for_takeoff" do
+
+  describe "#clear_for_takeoff(plane)" do
     it "instructs a specific plane to take off" do
       # find a way to prevent repetition
       allow(subject).to receive(:weather_report) { :sunny }
       subject.clear_for_landing(plane)
-      subject.clear_for_landing(double :plane_2, land: :landed, take_off: :flying)
+      subject.clear_for_landing(plane_2)
       expect(subject.clear_for_takeoff(plane)).to eq(plane)
     end
     it "changes plane status to :flying" do # not sure
@@ -39,6 +48,13 @@ describe Airport do
       my_plane = subject.clear_for_landing(plane).pop
       allow(my_plane).to receive(:plane_status) { :flying }
       expect(my_plane.plane_status).to eq(:flying)
+    end
+    it "removes the specific plane from airport" do
+      allow(subject).to receive(:weather_report) { :sunny }
+      subject.clear_for_landing(plane_2)
+      subject.clear_for_landing(plane)
+      subject.clear_for_takeoff(plane_2)
+      expect(subject.planes).to contain_exactly(plane)
     end
   end
   context "when the weather is stormy" do
