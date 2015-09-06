@@ -3,7 +3,7 @@ I plan to do my best to make very little baby steps while working on this projec
 I plan to follow the steps we used to complete challenges during the week.
 I will write very detailed explanation of what I do, mainly for myself. When I feel more comfartable, explanation probably will become less detailed.
 
-Started to work on the first piece of the user story.
+######Started to work on the first piece of the user story.
 
 1. First I organised the nouns and verbs into Objects and Messages
 
@@ -161,7 +161,7 @@ Started to work on the first piece of the user story.
 
 10. I think that main requirements from the first piece of the user story are covered now, except for an appropriate airport. Returnd to point 1, thought about "a diagram that shows how your Objects will use Messages to communicate with one another". Still not sure about appropriate airport (argument for landed? but what for? Return of landed? Again, what for?). Decided to move to the second piece of the user story and come back to the issue with an appropriate airport later.
 
-Started to work on the second piece of the user story.
+######Started to work on the second piece of the user story.
 
 1. Make a plane to be able to take off from an appropriate airport
 
@@ -211,7 +211,7 @@ Started to work on the second piece of the user story.
 
 3. Except for 'an appropriate airport' thing, I think I have finished the second piece of the user story.
 
-Started to work on the third piece of the user story.
+######Started to work on the third piece of the user story.
 
 1. So now to the Airport class. Prevent landing when the airport is full seems to early. First should set up basic functionality of the airport. Starting with plane take_off.
 
@@ -280,7 +280,7 @@ Expexted to be true.
  3.4. Commited, pushed
 
 
-4. Now airport should receive a plane, and I think it should not lose it after the plane is received. So before receiving a plane, I should make a place where planes will be kept, I add initialize to Airport, and set var 'planes' to an empty array and add respective attr_reader. We do not test initialize. So after this step aiport is ready to receive planes.
+4.0 Now airport should receive a plane, and I think it should not lose it after the plane is received. So before receiving a plane, I should make a place where planes will be kept, I add initialize to Airport, and set var 'planes' to an empty array and add respective attr_reader. We do not test initialize. So after this step aiport is ready to receive planes.
 
  4.1. Feature test
 
@@ -301,7 +301,7 @@ Expexted to be true.
 
  4.3. Wrote some code, the test pass.
 
-5. Now to another thing airoport does - instructs a plain to take off. Now the question is should airport send a message to take off to a particular plane, or whoever is first in a queue? At this point I decided that airport will send message to take off to the first in a queue, and the first in a queue is the first landed (so the first(zeroth) in an array). Will start with sending the message.
+5.0 Now to another thing airoport does - instructs a plain to take off. Now the question is should airport send a message to take off to a particular plane, or whoever is first in a queue? At this point I decided that airport will send message to take off to the first in a queue, and the first in a queue is the first landed (so the first(zeroth) in an array). Will start with sending the message.
 
  5.1. Feature test
 
@@ -326,7 +326,7 @@ Expexted to be true.
 
  5.4. Commit.
 
-6. Airport should release a plane when it takes off.
+6.0 Airport should release a plane when it takes off.
 
  6.1. Feature test
 
@@ -376,7 +376,7 @@ Expexted to be true.
 
  6.7. Commited, pushed. Travis is still happy)
 
-7. Now to the main point of the third piece of the user story. No landidng if the airport is full. For that I need to introduce var capacity. It is in initialize, so I do not test it. Now, no landidng if the airport is full.
+7.0 Now to the main point of the third piece of the user story. No landidng if the airport is full. For that I need to introduce var capacity. It is in initialize, so I do not test it. Now, no landidng if the airport is full.
 
  7.1. Feature test in irb
 
@@ -444,7 +444,7 @@ Expexted to be true.
 
 9.0 I think I finished with the piece 3 of the user story.
 
-Started to work on the last piece of the user story.
+######Started to work on the last piece of the user story.
 
 1. No landing or take off when the weather is stormy. Now I need to get info about the weather. It seems like a separate class. But I am not sure I can manage it. So after thinking for some time decided to provide weather directly to the airport. Weather should change, so I need separate method for that.
 
