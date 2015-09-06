@@ -17,6 +17,9 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it "initializes with an empty hangar" do
+    expect(subject.hangar).to eq []
+  end
 end
 
 
