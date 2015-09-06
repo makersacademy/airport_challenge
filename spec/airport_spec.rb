@@ -13,16 +13,25 @@ require 'airport'
 
 describe Airport do
 
-  #let(:airport) { Airport.new }
-  #let(:plane) { double(:plane) }
+  let(:plane) { double :plane }
+
+  it { is_expected.to respond_to(:instruct_to_take_off).with(1).argument }
+  it { is_expected.to respond_to(:instruct_to_land).with(1).argument }
+
+  it 'has a default capacity' do 
+    expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+  end
+
 
   #describe 'take off' do
     it 'instructs a plane to take off' do 
-      expect(subject).to respond_to(:instruct_to_take_off).with(1).argument
+      expect(plane).to receive(:take_off)
+      subject.instruct_to_take_off(plane)
     end
 
     it 'releases a plane' do
-      plane = Plane.new
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
       subject.instruct_to_land(plane)
       expect(subject.instruct_to_take_off(plane)).to be plane
     end
@@ -30,12 +39,13 @@ describe Airport do
   #describe 'landing' do
 
     it 'instructs a plane to land' do 
-      expect(subject).to respond_to(:instruct_to_land).with(1).argument
+      expect(plane).to receive(:land)
+      subject.instruct_to_land(plane)
     end
 
     it 'receives a plane' do 
-      plane = Plane.new
-      subject.instruct_to_land(plane)
+      allow(plane).to receive(:land)
+      expect(subject.instruct_to_land(plane)).to be plane 
     end
 
 
@@ -43,9 +53,10 @@ describe Airport do
 
   #describe 'traffic control' do
     #context 'when airport is full' do
-      it 'does not allow a plane to land when at capacity' do 
-        subject.capacity.times { subject.instruct_to_land(Plane.new) }
-        expect { subject.instruct_to_land(Plane.new) }.to raise_error 'Airport is full'
+      it 'does not allow a plane to land when at capacity' do
+        allow(plane).to receive(:land)
+        subject.capacity.times { subject.instruct_to_land(plane) }
+        expect { subject.instruct_to_land(plane) }.to raise_error 'Airport is full'
       end
 
 

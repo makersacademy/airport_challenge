@@ -32,5 +32,13 @@ class Airport
     @planes.include? plane
   end
 
+  def weather
+    ["stormy", "sunny"].sample
+  end
+
+  def stormy?
+    weather == "stormy" ? true : false
+  end
+
 
 end
