@@ -19,9 +19,9 @@ describe Airport do
   it { is_expected.to respond_to(:clear_for_takeoff).with(1).argument }
   it { is_expected.to respond_to(:weather_report) }
   it "gets weather report from the weather class" do
-    double :Weather, new: :weather, weather_report: :sunny, condition: 0,
+    double :Weather, new: :weather, weather_report: :sunny || :stormy, condition: 0,
       storm_probability: 80
-    expect(subject.weather_report).to eq(:sunny)  
+    expect(subject.weather_report).to eq(:sunny)
   end
   describe "#planes" do
     it "returns all the planes at the airport" do

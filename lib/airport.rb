@@ -32,6 +32,7 @@ class Airport
   def empty?
     planes.empty?
   end
+  
   def full?
     planes.size >= capacity
   end
