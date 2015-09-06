@@ -18,12 +18,7 @@ describe Airport do
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
   it { is_expected.to respond_to(:clear_for_takeoff).with(1).argument }
   it { is_expected.to respond_to(:weather_report) }
-  it "gets weather report from the weather class" do
-    double :Weather, new: :weather, weather_report: :sunny, condition: 0,
-      storm_probability: 80
-    allow(subject).to receive(:weather_report) { :sunny }
-    expect(subject.weather_report).to eq(:sunny)
-  end
+
   describe "#planes" do
     it "returns all the planes at the airport" do
       allow(subject).to receive(:weather_report) { :sunny }
@@ -36,14 +31,20 @@ describe Airport do
       expect(Airport.new(67).capacity).to eq(67)
     end
   end
-
-  # it "can get weather report" do
-  #   weather = class_double('Weather')
-  #   allow(weather).to receive(:new)
-  #   allow(weather.new).to receive(:weather_report) { :sunny }
-  #   expect(subject.get_weather_report).to receive (weather.new.weather_report)
-  # end
-
+  describe "#weather_report" do
+    it "gets weather report from the weather class when sunny" do
+      double :Weather, new: :weather, weather_report: :sunny, condition: 0,
+        storm_probability: 80
+      allow(subject).to receive(:weather_report) { :sunny }
+      expect(subject.weather_report).to eq(:sunny)
+    end
+    it "gets weather report from the weather class when stormy" do
+      double :Weather, new: :weather, weather_report: :stormy, condition: 1,
+        storm_probability: 99
+      allow(subject).to receive(:weather_report) { :stormy }
+      expect(subject.weather_report).to eq(:sunny)
+    end
+  end
   context "when the weather is stormy" do
     describe "#clear_for_landing(plane)" do
       it "cannot accept planes" do
