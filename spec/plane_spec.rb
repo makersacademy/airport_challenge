@@ -17,6 +17,10 @@ require 'plane'
 
 describe Plane do
 
+  it 'returns an instance of Plane' do
+    expect(Plane.new()).to be_an_instance_of Plane
+  end
+
   xit 'is flying when created'
 
   xit 'can land'
