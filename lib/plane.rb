@@ -8,10 +8,13 @@ class Plane
   end
 
   def land(airport)
-    airport.allow_landing?
-    @landed = true
-    @flying = false
-    @location = airport
+    if airport.allow_landing?
+      @landed = true
+      @flying = false
+      @location = airport
+    else
+      "Airport refuses landing request"
+    end
   end
 
   def landed?
