@@ -33,9 +33,8 @@ describe Airport do
     end
   end
   describe "#weather_report" do
-    it "returns :sunny from the weather class" do
-      allow(subject).to receive(:weather_report) { :sunny }
-      expect(subject.weather_report).to eq(:sunny)
+    it "calls a method from the weather class" do
+      expect(subject.weather_report).to eq(:stormy).or eq(:sunny)
     end
   end
   context "when the weather is stormy" do

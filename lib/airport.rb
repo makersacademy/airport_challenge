@@ -24,8 +24,7 @@ class Airport
   end
 
   def weather_report
-    @current_weather = Weather.new.weather_report
-    @current_weather
+    Weather.new.weather_report
   end
 
   private
