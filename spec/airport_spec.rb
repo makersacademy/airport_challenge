@@ -16,9 +16,10 @@ describe Airport do
   describe 'take off' do
     xit 'instructs a plane to take off'
 
-    it 'responds to release a plane' do
-      expect(subject).to respond_to :release
-    end
+    # it 'responds to release a plane' do
+    #   expect(subject).to respond_to (:release)
+    # end
+    it { is_expected.to respond_to(:release).with(1).argument }
 
     xit 'releases a plane' do
     end
@@ -27,9 +28,10 @@ describe Airport do
   describe 'landing' do
     xit 'instructs a plane to land'
 
-    it 'responds to receive a plane' do
-      expect(subject).to respond_to :receive
-    end
+    # it 'responds to receive a plane' do
+    #   expect(subject).to respond_to :receive
+    # end
+    it { is_expected.to respond_to(:receive).with(1).argument }
 
     xit 'receives a plane'
   end

@@ -1,9 +1,11 @@
+require_relative 'plane'
+
 class Airport
 
-def release
+def release(plane)
 end
 
-def receive
+def receive(plane)
 end
 
 end
