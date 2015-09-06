@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   let(:airport) {Airport.new}
-  let(:plane) {Plane.new :destination}
+  let(:plane) {Plane.new}
 
   describe 'take off' do
     it 'instructs a plane to take off' do
@@ -22,8 +22,7 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      airport.plane_land(plane)
-      # expect(airport.planes.any?).to eq true
+      subject.plane_land(plane)
     end
 
      it 'can\'t land same plane twice' do
@@ -35,8 +34,8 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        subject.capacity.times { subject.plane_land(plane)}
-        expect { subject.plane_land(plane)}.to raise_error 'Airport is full'
+        subject.capacity.times { subject.plane_land(Plane.new)}
+        expect { subject.plane_land(Plane.new)}.to raise_error 'Airport is full'
       end
     end
 

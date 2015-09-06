@@ -2,15 +2,15 @@ require 'plane'
 
 describe Plane do
 
-  let(:plane) {Plane.new :destination}
+  let(:plane) {Plane.new}
 
   it 'is flying when created' do
-    expect(plane).to be_flying
+    expect(subject).to be_flying
   end
 
  describe '#land' do
  it 'airport can_land plane' do
-   expect(plane).to respond_to :can_land
+   expect(subject).to respond_to :can_land
  end
 
  it 'can land' do
@@ -30,10 +30,10 @@ describe Plane do
  describe '#take_off'
 
  it 'can take off' do
-   expect{plane.can_take_off}.to raise_error 'cant take off when already flying'
+   expect{subject.can_take_off}.to raise_error 'cant take off when already flying'
  end
 
   it 'is flying after take off' do
-    expect(plane).to be_flying
+    expect(subject).to be_flying
   end
 end
