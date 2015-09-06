@@ -20,7 +20,16 @@ describe Airport do
       subject.plane_landed(plane)
       expect(subject.planes[0]).to eq(plane)
     end
-  end 
+  end
+  describe 'method:plane_taken_off' do
+    it {expect(subject).to respond_to(:plane_taken_off).with(1).argument}
+    it 'once a plane has taken off, it leaves the airport' do
+      plane = double(:plane_object)
+      subject.plane_landed(plane)
+      subject.plane_taken_off(plane)
+      expect(subject.planes).to eq([])
+    end
+  end
   describe 'method:full?' do
     it {expect(subject).to respond_to(:full?).with(0).argument}   
     it 'returns false when airport is not at full capacity' do

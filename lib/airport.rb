@@ -12,6 +12,10 @@ class Airport
 		@planes << plane
 	end
 
+	def plane_taken_off plane
+		@planes.delete(plane) 
+	end
+
 	def full?
 		@planes.length >= @capacity ? true : false 
 	end
