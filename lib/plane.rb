@@ -2,6 +2,9 @@ require_relative 'airport'
 
 class Plane
 
+  attr_accessor :flying
+  attr_accessor :current_airport
+
   def initialize
     @flying = true
     @current_airport = nil

@@ -38,7 +38,8 @@ describe Plane do
 
   it 'can take off' do
     plane = Plane.new
-    plane.land
+    airport = Airport.new
+    plane.land(airport)
     plane.take_off
     expect(plane.flying?).to eql(true)
   end

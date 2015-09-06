@@ -16,4 +16,11 @@ class Airport
     @planes.delete(plane)
   end
 
+  def instruct_landing(plane)
+    @planes << plane
+    plane.flying = false
+    plane.current_airport = self
+    return nil
+  end
+
 end
