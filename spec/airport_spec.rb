@@ -68,9 +68,8 @@ describe Airport do
 
   it {is_expected.to respond_to :stormy}
 
-  it 'assigns random weather type to airport' do
-      allow(Kernel).to receive(:rand) {0.99}
-      expect(@airport.stormy).to eq(false)
+  it 'weather is randomly assigned, either stormy or otherwise' do
+    expect(@airport.stormy).to eq(true).or eq(false)
   end
 
   it 'does not allow plane to take off in stormy weather' do
