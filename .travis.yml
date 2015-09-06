@@ -1,1 +1,3 @@
 script: bundle exec rspec spec
+service_name: travis-pro
+repo_token: NYcCvTWVLsFy84LX4yq4zo2OssHWrowSX
