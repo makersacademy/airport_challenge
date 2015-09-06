@@ -10,9 +10,7 @@ describe Plane do
 
   # I would like to land my plane at the appropriate airport
 
-  it 'can be landed at an airport' do
-    expect(subject).to respond_to(:land_at).with(1).argument
-  end
+  it { is_expected.to respond_to(:land_at).with(1).argument }
 
   # When we land a plane at the airport, it should be "landed"
 
@@ -24,9 +22,7 @@ describe Plane do
 
   # I would like to be able to take off from the appropriate airport
 
-  it 'can take off from an airport' do
-    expect(subject).to respond_to(:take_off_from).with(1).argument
-  end
+  it { is_expected.to respond_to(:take_off_from).with(1).argument }
 
   # When the plane takes of from the airport, it should be "flying" again
 
