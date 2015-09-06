@@ -39,6 +39,11 @@ describe Airport do
       expect(plane.status).to eql "flying"
     end
 
+    it 'can only instruct planes within hanger to take off' do
+      plane = Plane.new
+      expect{subject.instruct_to_take_off(plane)}.to raise_error 'That plane is not in hanger'
+    end
+
   end
 
   describe 'landing' do
@@ -46,12 +51,26 @@ describe Airport do
       (is_expected).to respond_to :instruct_to_land
     end
 
-    it 'receives a plane'
+    it 'receives a plane' do
+      plane = Plane.new
+      subject.instruct_to_land plane
+      expect(subject.hanger.include?(plane)).to be true
+    end
+
+    it 'can only land planes not in hanger' do
+      plane = Plane.new
+      subject.hanger << plane
+      expect{subject.instruct_to_land(plane)}.to raise_error 'Plane already in hanger'
+    end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        plane = Plane.new
+        subject.capacity.times {subject.hanger << :plane}
+        expect{subject.instruct_to_land(plane)}.to raise_error 'Airport is full'
+      end
     end
 
     # Include a weather condition.
