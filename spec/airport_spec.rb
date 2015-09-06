@@ -30,7 +30,11 @@ describe Airport do
       subject.plane_landing(plane)
     end
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      plane = double :plane, land: false
+      subject.plane_landing(plane)
+      expect(subject.planes).to include(plane)
+    end
   end
 
   describe 'traffic control' do

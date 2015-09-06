@@ -272,6 +272,29 @@ Expexted to be true.
 
  3.3. Wrote some code, the test passed. Checked that everything works in irb also (as the test was with double).
 
+ 3.4. Commited.
+
+4. Now airport should receive a plane, and I think it should not lose it after the plane is received. So before receiving a plane, I should make a place where planes will be kept, I add initialize to Airport, and set var 'planes' to an empty array and add respective attr_reader. We do not test initialize. So after this step aiport is ready to receive planes.
+
+ 4.1. Feature test
+
+ :001 > airport = Airport.new
+  => #<Airport:0x007fdc3c1acf50 @planes=[]>
+ :002 > plane = Plane.new
+  => #<Plane:0x007fdc3c19da50 @flying=true>
+ :003 > airport.plane_landing(plane)
+  => false
+ :004 > airport.planes
+ => []
+
+ Expect planes to include plane.
+
+ 4.2. Wrote test, made it fail.
+
+ 4.3. Wrote some code, the test pass.
+
+
+
 
 
 
