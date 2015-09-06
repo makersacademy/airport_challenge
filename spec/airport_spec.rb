@@ -2,44 +2,51 @@ require 'airport'
 
 describe Airport do
 
+  let(:airport) {Airport.new}
+  let(:plane) {Plane.new :destination}
+
   describe 'take off' do
     it 'instructs a plane to take off' do
-      is_expected.to respond_to(:plane_take_off)
+      is_expected.to respond_to(:plane_take_off).with(1).argument
     end
 
     it 'releases a plane' do
-      airport = Airport.new
-      plane = Plane.new :destination
       airport.plane_land(plane)
-      airport.plane_take_off
-      expect(airport.planes.empty?).to eq true
-    end
-    it 'raises an error when no planes at the airport' do
-      expect { subject.plane_take_off}.to raise_error 'Airport is empty'
+      airport.plane_take_off(plane)
     end
   end
 
   describe 'landing' do
     it 'instructs a plane to land' do
-      is_expected.to respond_to(:plane_land)
+      is_expected.to respond_to(:plane_land).with(1).argument
     end
 
     it 'receives a plane' do
-      airport = Airport.new
-      plane = Plane.new :destination
       airport.plane_land(plane)
-      expect(airport.planes.any?).to eq true
+      # expect(airport.planes.any?).to eq true
     end
+
+     it 'can\'t land same plane twice' do
+       subject.plane_land(plane)
+       expect { subject.plane_land(plane)}.to raise_error 'Plane has already landed'
+     end
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
-        plane = Plane.new :destination
         subject.capacity.times { subject.plane_land(plane)}
         expect { subject.plane_land(plane)}.to raise_error 'Airport is full'
       end
     end
+
+    context 'when airport is empty' do
+      it 'no planes can take off' do
+        subject.empty? { subject.plane_take_off(plane)}
+        expect { subject.plane_take_off(plane)}.to raise_error 'Airport is empty'
+      end
+    end
+
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".

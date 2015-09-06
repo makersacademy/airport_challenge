@@ -3,6 +3,7 @@ class Plane
 
  def initialize destination
    @flying = true
+   return "Plane is flying"
    @destination = destination
  end
 
