@@ -41,11 +41,15 @@ describe Airport do
   end
   describe 'method:weather?' do
     it {expect(subject).to respond_to(:weather).with(0).argument}
-    before :each do srand(999) end
-    it 'is sometimes sunny' do
+    before :each do
+      srand(999)
+    end
+    it 'is sometimes sunny' do 
       expect(subject.weather).to eq('sunny')
     end
-    before :each do srand(9999) end
+    before :each do 
+      srand(9999) 
+    end
     it 'is sometimes stormy' do
       expect(subject.weather).to eq('sunny')
     end
