@@ -50,7 +50,7 @@ describe Airport do
   describe 'method:take_off_permission' do
     it {expect(subject).to respond_to(:take_off_permission).with(0).argument}
     before :each do 
-      srand(111123) 
+      srand(111_123) 
     end
     it 'raises error when weather is stormy' do  
       expect{subject.take_off_permission}.to raise_error "Stormy"
