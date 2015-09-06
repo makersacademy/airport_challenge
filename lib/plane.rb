@@ -22,12 +22,12 @@ class Plane
     @location = nil
   end
 
-  def landed?
-    !flying
-  end
-
   def flying?
     flying
+  end
+
+  def landed?
+    !flying
   end
 
 end

@@ -32,6 +32,7 @@ class Airport
     while planes.last != plane
       planes.rotate!
     end
+    @allow_landing = true
     planes.pop
   end
 

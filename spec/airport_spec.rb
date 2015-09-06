@@ -1,16 +1,5 @@
 require 'airport'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
-
 describe Airport do
 
   let(:plane){double(:plane)}
@@ -18,6 +7,7 @@ describe Airport do
   it 'has a default capacity' do
     expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
   end
+
 
   describe 'landing' do
 
@@ -35,6 +25,7 @@ describe Airport do
 
   end
 
+
   describe 'take off' do
 
     it 'releases specific plane' do
@@ -48,9 +39,18 @@ describe Airport do
       expect(subject.release_plane(p2)).to eq p2
     end
 
+    it 'following take off from a full airport, allows another plane to land' do
+      allow(subject.weather).to receive(:stormy?) {false}
+      subject.capacity.times { subject.receive_plane(plane) }
+      subject.release_plane(plane)
+      expect(subject).to be_allow_landing
+    end
+
   end
 
+
   describe 'traffic control' do
+
     describe 'when airport is full' do
 
       it 'does not allow a plane to land' do
@@ -69,15 +69,6 @@ describe Airport do
 
     end
 
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
 
     describe 'stormy weather' do
 
