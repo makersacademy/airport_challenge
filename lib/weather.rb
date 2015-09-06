@@ -1,10 +1,14 @@
 class Weather
 
   def initialize
-  @number = rand(0..5)
+  @number
   end
 
+  def conditions
+    @number = rand(0..5)
+  end
   def stormy
+    conditions
     if @number == 5
     'stormy'
     else

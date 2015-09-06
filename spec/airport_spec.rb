@@ -14,9 +14,9 @@ require 'airport'
 
 describe Airport do
 
-    #let(:glasgow) {Airport.new}
+  let(:weather){double:weather, {conditions: 'stormy'}}
+  let(:weather1){double:weather1, {conditions: 'sunny'}}
 
-    # let(:pl101)   {double :plane, flying: 'flying'}
     it { is_expected.to respond_to :planes }
     it { is_expected.to respond_to :count_planes }
 
@@ -42,7 +42,6 @@ describe Airport do
 
     it 'should prevent a plane from landing if the airport is full' do
       subject.capacity.times {subject.clear_to_land Plane.new}
-
       expect {subject.clear_to_land Plane.new}.to raise_error 'Airport at Capacity'
     end
 
@@ -58,12 +57,25 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
+
     context 'when weather conditions are stormy' do
 
-      xit 'does not allow a plane to take off'
+
+      it 'does not allow a plane to take off' do
+        plane = Plane.new
+        subject.clear_to_land(plane)
+        if subject.weather_conditions == weather.conditions
+        expect  { subject.clear_to_take_off(plane) }.to raise_error 'Stormy!'
+        end
+      end
 
 
-      xit 'does not allow a plane to land' do
+      it 'does not allow a plane to land' do
+        plane = Plane.new
+        if subject.weather_conditions == 'stormy'
+        expect  { subject.clear_to_land(plane) }.to raise_error 'Stormy!'
+        end
+
       end
 
     end

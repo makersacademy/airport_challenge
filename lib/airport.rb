@@ -7,12 +7,15 @@ class Airport
   def initialize (capacity=DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    @today_weather
     #@planes << Plane.new("landed")
   end
 
   def clear_to_land(plane)
     if @planes.count >= @capacity
     raise 'Airport at Capacity'
+  elsif self.weather_conditions == 'stormy'
+    raise 'Stormy!'
     else
     plane.land
     @planes << plane
@@ -20,17 +23,23 @@ class Airport
   end
 
 
-    def clear_to_take_off(plane)
+  def clear_to_take_off(plane)
+
     plane = @planes.pop
     plane.take_off
-    end
+  end
 
   def planes
     @planes
   end
 
   def count_planes
-   @planes.count
+    @planes.count
   end
+
+  def weather_conditions
+  @today_weather = Weather.new.stormy
+  end
+
 
 end
