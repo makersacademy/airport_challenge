@@ -1,12 +1,14 @@
 
 class Plane
 
+  attr_reader :flying
+
   def initialize
     @flying = true
   end
 
   def land
-    fail 'Plane has already landed' if !@flying
+    fail 'Plane has already landed' unless @flying
     @flying = false
   end 
 

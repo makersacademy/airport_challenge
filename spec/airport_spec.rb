@@ -47,6 +47,11 @@ describe Airport do
     #   expect { subject.instruct_to_take_off(plane) }.to raise_error 'Plane has already taken off'
     # end
 
+    # ^^ can't work out how to include this test to make sure you can't 
+    # instruct a plane that's already taken off to take off again.
+    # i have a feeling it's to do with my guard condition in the 
+    # instruct_to_take_off to take off method.
+
     it 'should not land the same plane twice' do
       allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land)
