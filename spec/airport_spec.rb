@@ -44,7 +44,6 @@ describe Airport do
       plane = Plane.new
       subject.instruct_to_land plane
       expect(subject.hanger.include?(plane)).to be true
-      expect(plane.status).to eql "landed"
     end
 
     it 'can only land planes not in hanger' do
