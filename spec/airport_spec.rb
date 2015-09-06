@@ -42,7 +42,7 @@ describe Airport do
       double :Weather, new: :weather, weather_report: :stormy, condition: 1,
         storm_probability: 99
       allow(subject).to receive(:weather_report) { :stormy }
-      expect(subject.weather_report).to eq(:sunny)
+      expect(subject.weather_report).to eq(:stormy)
     end
   end
   context "when the weather is stormy" do
