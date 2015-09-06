@@ -31,7 +31,8 @@ describe Airport do
       it 'does not allow a plane to land' do
         plane=double(:plane, land: :landed, take_off: :flying)
         subject.capacity.times{subject.land_plane(plane)}
-        expect { subject.land_plane(plane) }.to raise_error 'Do not land, airport is full'
+        error_st='Do not land, airport is full'
+        expect { subject.land_plane(plane) }.to raise_error error_st
       end
     end
 
@@ -39,13 +40,15 @@ describe Airport do
       it 'does not allow a plane to take off' do
         plane=double(:plane, land: :landed, take_off: :flying)
         allow(subject).to receive(:report_weather).and_return(:stormy)
-        expect { subject.launch_plane(plane) }.to raise_error 'Weather is stormy, do not take off'
+        error_st='Weather is stormy, do not take off'
+        expect { subject.launch_plane(plane) }.to raise_error error_st
       end
 
       it 'does not allow a plane to land' do
         plane=double(:plane, land: :landed, take_off: :flying)
         allow(subject).to receive(:report_weather).and_return(:stormy)
-        expect { subject.land_plane(plane) }.to raise_error 'Weather is stormy, do not land'
+        error_st='Weather is stormy, do not land'
+        expect { subject.land_plane(plane) }.to raise_error error_st
       end
     end
   end
