@@ -8,7 +8,7 @@ class Plane
 
   def land(airport)
     @landed = true
-    @location = airport.name
+    @location = airport
   end
 
   def landed?
