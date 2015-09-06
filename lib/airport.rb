@@ -8,24 +8,30 @@ class Airport
   end
 
   def land(plane)
-    fail 'Landing not allowed' if full?
-    landing_strip << plane
+    landing_strip << plane unless full?
   end
 
   def take_off
-    landing_strip.pop
+    landing_strip.pop unless stormy?
   end
-
 
 private
 
   def full?
-    landing_strip.count >= capacity
+    landing_strip.count == capacity
   end
 
-  def empty?
-    landing_strip.empty?
+  def stormy?
+    self.weather_condition == 'stormy'
   end
 
+  # def landing_clear?
+  #   true if !full? && !stormy?
+  # end
 
+  def weather_condition
+    storm_index = Random.rand(1..10)
+    'sunny' if storm_index <= 8
+    'stormy'
+  end
 end
