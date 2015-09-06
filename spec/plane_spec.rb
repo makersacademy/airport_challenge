@@ -20,6 +20,10 @@ describe Plane do
   let(:airport_allow){double(:airport_allow, allow_landing?: true, receive_plane: nil, release_plane: nil)}
   let(:airport_not_allow){double(:airport_not_allow, allow_landing?: false)}
 
+  it 'flying when created' do
+    expect(subject).to be_flying
+  end
+
   describe 'landing' do
 
     it 'can land at given airport' do
@@ -74,6 +78,10 @@ describe Plane do
       subject.land(airport_allow)
       expect(airport_allow).to receive :release_plane
       subject.take_off
+    end
+
+    it 'raises error when already flying' do
+      expect{subject.take_off}.to raise_error "Already flying"
     end
 
   end

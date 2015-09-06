@@ -15,6 +15,7 @@ class Plane
   end
 
   def take_off
+    fail "Already flying" if flying
     location.release_plane(self)
     @flying = true
     @location = nil
