@@ -24,6 +24,7 @@ end
     end
 
     it 'cannot release plane if empty' do
+      allow(subject).to receive(:forecast) {'sunny'}
       expect {subject.allow_take_off}.to raise_error "No planes at the airport"
     end
 
@@ -70,14 +71,15 @@ end
 
     context 'when weather conditions are stormy' do
       it 'plane cannot take off' do
+        allow(subject).to receive(:forecast) {'sunny'}
         subject.allow_land plane
         allow(subject).to receive(:forecast) {'stormy'}
-        expect {subject.allow_take_off}.to raise_error "Sorry pilot, bad weather is forecast.."
+        expect {subject.allow_take_off}.to raise_error "Soz pilot, bad weather"
       end
 
       it 'plane cannot land' do
         allow(subject).to receive(:forecast) {'stormy'}
-        expect {subject.allow_land plane}.to raise_error "Sorry pilot, bad weather is forecast.."
+        expect {subject.allow_land plane}.to raise_error "Soz, bad weather"
       end
     end
   end

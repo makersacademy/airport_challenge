@@ -23,7 +23,7 @@ describe Plane do
 
   it 'can only land if flying' do
     subject.instance_variable_set(:@status, 'landed')
-    expect {subject.land}.to raise_error "You're already on the ground pilot.."
+    expect {subject.land}.to raise_error "You're already on the ground pilot"
   end
 
   it 'is landed after landing' do
@@ -32,7 +32,7 @@ describe Plane do
   end
 
   # it 'can only take off if landed' do
-  #   expect {subject.take_off}.to raise_error "You're already in the air pilot.."
+  #   expect {subject.take_off}.to raise_error "You're already in the air pilot"
   # end
 
   it 'is flying after take off' do

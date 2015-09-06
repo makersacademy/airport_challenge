@@ -1,13 +1,13 @@
 class Plane
 
-  attr_accessor :status
+  attr_reader :status
 
   def initialize
     @status = 'flying'
   end
 
   def land
-    fail "You're already on the ground pilot.." if @status == 'landed'
+    fail "You're already on the ground pilot" if @status == 'landed'
     @status = 'landed'
   end
 
