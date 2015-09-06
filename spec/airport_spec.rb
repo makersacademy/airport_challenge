@@ -45,7 +45,7 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land'
-      it { is_expected.to respond_to(:full?) }
+      # it { is_expected.to respond_to(:full?) }
     end
 
     # Include a weather condition.
