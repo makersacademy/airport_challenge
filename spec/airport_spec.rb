@@ -22,11 +22,16 @@ describe Airport do
     it 'releases a plane' do
       airport = Airport.new
       airport.receive(Plane.new)
-      plane = airport.release()
+      plane = airport.release
       expect(plane).to be_flying
     end
 
-    xit 'no longer contains the plane that was just released' do
+    it 'no longer contains the plane that was just released' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.receive(plane)
+      airport.release
+      expect(airport.planes?).to_not include(plane)
     end
 
   end
@@ -37,17 +42,35 @@ describe Airport do
       expect(subject).to respond_to(:receive)
     end
 
-    xit 'receives a plane' do
-    end
+    # it 'receives a plane' do
+    #   expect(subject).to respond_to(:receive).with(1).argument
+    # end
 
-    xit 'contains the plane it just received' do
+    it 'contains the plane it just received' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.receive(plane)
+      expect(airport.planes?).to include(plane)
     end
 
   end
 
   describe 'traffic control' do
+
+    context 'when the airport is empty' do
+
+        it 'raises an error if a plane is requested for release' do
+        expect{ subject.release }.to raise_error 'No planes available.'
+      end
+
+    end
+
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+
+      xit 'does not allow a plane to land' do
+
+      end
+
     end
 
     # Include a weather condition.

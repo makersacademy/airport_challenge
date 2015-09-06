@@ -41,7 +41,8 @@ describe Plane do
 
   it 'is flying after take off' do
     plane = Plane.new
-    plane.land # Planes are flying when created, we need to land this one first. We've already tested this works.
+    plane.land # Planes are flying when created, we need to land this one
+    # first. We've already tested this works.
     plane.take_off
     expect(plane).to be_flying
   end
