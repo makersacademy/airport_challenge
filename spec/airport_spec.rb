@@ -26,6 +26,16 @@ describe Airport do
     expect(subject).to respond_to(:forecast)
   end
 
+  it 'can be sunny' do
+    # allow(subject).to receive(:forecast) {"sunny"}
+    expect(subject.forecast).to eq "sunny"
+  end
+
+  it 'can be stormy' do
+    allow(subject).to receive(:forecast) {"stormy"}
+    expect(subject.forecast).to eq "stormy"
+  end
+
   describe 'allow_take_off' do
     it 'gives permission for plane to take off' do
       # allow(subject).to receive(:forecast) {'sunny'}
