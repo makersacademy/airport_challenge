@@ -11,4 +11,9 @@ class Airport
     @planes = []
   end
 
+  def instruct_takeoff(plane)
+    plane.take_off
+    @planes.delete(plane)
+  end
+
 end

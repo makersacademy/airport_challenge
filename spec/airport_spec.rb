@@ -15,7 +15,7 @@ describe Airport do
 
   describe 'capacity' do
     it 'should take one argument' do
-      expect(Airport).to respond_to(:new).with(1).argument
+    expect(Airport).to respond_to(:new).with(1).argument
     end
   end
 
@@ -24,9 +24,8 @@ describe Airport do
       plane = Plane.new
       plane.land
       subject.instruct_takeoff(plane)
-      expect(plane.flying?).to eql(true)
+      end
     end
-  end
 
   describe 'landing' do
     xit 'instructs a plane to land'
