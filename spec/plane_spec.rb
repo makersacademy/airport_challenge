@@ -16,7 +16,7 @@ describe Plane do
   describe "#landing" do
     it { is_expected.to respond_to :landing }
 
-    context "when the plane has landed at the airport" do
+    context "when the plane has landed" do
       it "it is not flying" do
         subject.landing
         expect(subject.flying).to be false

@@ -33,7 +33,7 @@ describe Airport do
   end
 
   describe '#permission_to_take_off' do
-    it { is_expected.to respond_to(:permission_to_take_off) }
+    it { is_expected.to respond_to(:permission_to_take_off).with(1).argument }
 
     it 'a plane has left the airport' do
       plane = double :plane
@@ -41,13 +41,13 @@ describe Airport do
       allow(plane).to receive(:landing)
       subject.permission_to_land(plane)
       allow(plane).to receive(:take_off)
-      subject.permission_to_take_off
+      subject.permission_to_take_off(plane)
       expect(subject.planes).to be_empty
     end
 
     context "when there are no planes at the airport" do
       it 'raises an error' do
-        expect { subject.permission_to_take_off }.to raise_error "No planes at the airport"
+        expect { subject.permission_to_take_off(:plane) }.to raise_error "No planes at the airport"
       end
     end
 
@@ -59,28 +59,10 @@ describe Airport do
         subject.permission_to_land(plane)
         allow(subject).to receive(:weather_stormy?) {true}
         allow(plane).to receive(:take_off)
-        expect { subject.permission_to_take_off }.to raise_error 'Bad weather conditions'
+        expect { subject.permission_to_take_off(plane) }.to raise_error 'Bad weather conditions'
       end
     end
   end
-
-  context 'were private methods, made them public to pass the Coverage test' do
-    it { is_expected.to respond_to :weather_stormy? }
-    it '#weather_stormy returns true' do
-      allow(subject).to receive(:weather_stormy) {true}
-      expect(subject.weather_stormy).to be_truthy
-    end
-    it { is_expected.to respond_to :weather_forecast }
-    it '#weather_forecast returns sunny' do
-      allow(subject).to receive(:weather_forecast) {:sunny}
-      expect(subject.weather_forecast).to be :sunny
-    end
-    it '#weather_forecast returns stormy' do
-      allow(subject).to receive(:weather_forecast) {:stormy}
-      expect(subject.weather_forecast).to be :stormy
-    end
-  end
-
 end
 
 # describe '#permission_to_take_off' do
