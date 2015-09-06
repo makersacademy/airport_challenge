@@ -17,7 +17,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport){double(:airport)}
+  let(:airport){double(:airport, {name: 'Heathrow'})}
 
   xit 'is flying when created'
 
@@ -28,6 +28,11 @@ describe Plane do
   it 'is landed after landing' do
     subject.land(airport)
     expect(subject).to be_landed
+  end
+
+  it 'is located at given airport after landing' do
+    subject.land(airport)
+    expect(subject.location).to eq airport.name
   end
 
   xit 'can take off'
