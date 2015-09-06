@@ -14,7 +14,6 @@ class Airport
   end
 
   def request_landing(plane)
-    fail 'Airport is full' if full?
     plane.land_at(self)
     increment_plane_count
   end
@@ -25,6 +24,14 @@ class Airport
 
   def full?
     plane_count >= Capacity
+  end
+
+  def permission_to_take_off?
+    true
+  end
+
+  def permission_to_land?
+    not full?
   end
 
   private

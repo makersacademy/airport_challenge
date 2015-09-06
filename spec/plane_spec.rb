@@ -8,32 +8,6 @@ describe Plane do
     expect(subject).to be_flying
   end
 
-  describe 'landing behaviour:' do
-
-    # I would like to land my plane at the appropriate airport
-
-    it { is_expected.to respond_to(:land_at).with(1).argument }
-
-    it 'can land at an airport when given permission' do
-        airport = double :airport, permission_to_land?: true
-        expect{subject.land_at(airport)}.not_to raise_error
-    end
-
-    it 'cannot land at an airport when denied permission' do
-        airport = double :airport, permission_to_land?: false
-        expect{subject.land_at(airport)}.to raise_error 'Permission denied'
-    end
-
-    # When we land a plane at the airport, it should be "landed"
-
-    it 'is landed at an airport after landing' do
-      airport = double :airport, permission_to_land?: true
-      subject.land_at(airport)
-      expect(subject).to be_landed_at(airport)
-    end
-
-  end
-
   describe 'take-off behaviour:' do
 
     # I would like to be able to take off from the appropriate airport
@@ -56,6 +30,32 @@ describe Plane do
       airport = double :airport, permission_to_take_off?: true
       subject.take_off_from(airport)
       expect(subject).to be_flying
+    end
+
+  end
+
+  describe 'landing behaviour:' do
+
+    # I would like to land my plane at the appropriate airport
+
+    it { is_expected.to respond_to(:land_at).with(1).argument }
+
+    it 'can land at an airport when given permission' do
+        airport = double :airport, permission_to_land?: true
+        expect{subject.land_at(airport)}.not_to raise_error
+    end
+
+    it 'cannot land at an airport when denied permission' do
+        airport = double :airport, permission_to_land?: false
+        expect{subject.land_at(airport)}.to raise_error 'Airport is full'
+    end
+
+    # When we land a plane at the airport, it should be "landed"
+
+    it 'is landed at an airport after landing' do
+      airport = double :airport, permission_to_land?: true
+      subject.land_at(airport)
+      expect(subject).to be_landed_at(airport)
     end
 
   end

@@ -26,6 +26,13 @@ describe Airport do
 
   end
 
+  describe 'permissions to take off or land:' do
+
+    it { is_expected.to respond_to(:permission_to_take_off?) }
+    it { is_expected.to respond_to(:permission_to_land?) }
+
+  end
+
   describe 'traffic control:' do
 
     it { is_expected.to respond_to(:full?) }
@@ -39,9 +46,15 @@ describe Airport do
 
       # If the airport is full then no planes can land
 
-      it 'does not allow a plane to land' do
-        plane = double :plane, land_at: nil
+      it 'cannot instruct a plane to land' do
+        # plane = double :plane, land_at: nil
+        plane = Plane.new
         expect {subject.request_landing(plane)}.to raise_error 'Airport is full'
+      end
+
+      it 'denies permission to planes that want to land' do
+        plane = double :plane
+        expect(subject.permission_to_land?).not_to be_truthy
       end
 
       # Airport is no longer full if a plane is instructed to take off
