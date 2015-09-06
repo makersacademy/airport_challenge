@@ -21,18 +21,18 @@ describe Plane do
     expect(subject.status).to eq(:flying)
   end
 
-  it 'can land' do
+  it 'is landed after landing' do
     subject.land
     expect(subject.status).to eq (:landed)
   end
 
-  xit 'is landed after landing'
+  xit 'can land'
 
-  it 'can take off' do
+  it 'is flying after take off' do
     subject.take_off
     expect(subject.take_off).to eq (:flying)
   end
 
-  xit 'is flying after take off'
+  xit 'can take off'
 
 end
