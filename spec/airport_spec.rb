@@ -45,7 +45,6 @@ describe Airport do
   end
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
 
     it 'releases specific plane' do
       p1 = double :p1
