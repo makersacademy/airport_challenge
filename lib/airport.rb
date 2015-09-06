@@ -8,10 +8,9 @@ class Airport
     @planes = []
   end
 
-  def clear_for_takeoff
-    my_plane = planes.pop
-    my_plane.take_off
-    my_plane
+  def clear_for_takeoff(plane)
+    plane.take_off
+    plane
   end
 
   def clear_for_landing(plane)

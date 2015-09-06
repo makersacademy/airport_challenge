@@ -17,7 +17,7 @@ describe Airport do
   end
 
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
-  it { is_expected.to respond_to(:clear_for_takeoff) }
+  it { is_expected.to respond_to(:clear_for_takeoff).with(1).argument }
   it { is_expected.to respond_to(:weather_report) }
   # I don't need to test content of :weather_report
   # because it's been tested in the weather class?
@@ -27,11 +27,12 @@ describe Airport do
     end
   end
   describe "#clear_for_takeoff" do
-    it "instructs a plane to take off" do
+    it "instructs a specific plane to take off" do
       # find a way to prevent repetition
       allow(subject).to receive(:weather_report) { :sunny }
       subject.clear_for_landing(plane)
-      expect(subject.clear_for_takeoff).to eq(plane)
+      subject.clear_for_landing(double :plane_2, land: :landed, take_off: :flying)
+      expect(subject.clear_for_takeoff(plane)).to eq(plane)
     end
     it "changes plane status to :flying" do # not sure
       allow(subject).to receive(:weather_report) { :sunny }
