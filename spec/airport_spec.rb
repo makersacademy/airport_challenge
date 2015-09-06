@@ -1,4 +1,5 @@
 require 'airport'
+require 'weatherservice'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -12,23 +13,64 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  subject {
+    weatherservice = instance_double 'Weatherservice'
+    allow(weatherservice).to receive(:weather) { 'sunny' }
+    Airport.new(weatherservice) }
+
 
   describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      plane = Plane.new
+      subject.apron << plane
+      subject.take_off plane
+      expect(plane).to be_airborne
+    end
 
-    xit 'releases a plane'
+    it 'only airplanes on the apron can take off' do
+      plane = Plane.new
+      expect{subject.take_off plane}.to raise_error "Plane not on apron"
+    end
+
+    it 'when a plane takes off it is airborne' do
+      leaving_plane = Plane.new
+      subject.apron << leaving_plane
+      subject.take_off leaving_plane
+      expect(leaving_plane).to be_airborne
+    end
+
   end
 
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      expect(subject).to respond_to :land
+    end
 
-    xit 'receives a plane'
+    it 'whan a plane lands it parks on the apron' do
+      landing_plane = Plane.new
+      subject.land landing_plane
+      expect(subject.apron[0]).to eq landing_plane
+    end
+
+    it 'when a plane lands it is not airborne' do
+      landing_plane = Plane.new
+      subject.land landing_plane
+      expect(landing_plane).not_to be_airborne
+    end
+
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        20.times {subject.land Plane.new}
+        expect {subject.land Plane.new}.to raise_error "Airport is full"
+
+      end
+
     end
+
+
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -40,9 +82,22 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      subject {
+        weatherservice = instance_double 'Weatherservice'
+        allow(weatherservice).to receive(:weather) { 'stormy' }
+        Airport.new(weatherservice) }
 
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to take off' do
+        leaving_plane = Plane.new
+        subject.apron << leaving_plane
+        expect{subject.take_off leaving_plane}.to raise_error 'Weather is stormy'
+      end
+
+      it 'does not allow a plane to land' do
+        landing_plane = Plane.new
+        expect{subject.land landing_plane}.to raise_error 'Weather is stormy'
+      end
+
     end
   end
 end
