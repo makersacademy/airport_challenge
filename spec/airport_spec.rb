@@ -31,7 +31,7 @@ describe Airport do
       it 'does not allow a plane to land' do
         plane=double(:plane, land: :landed, take_off: :flying)
         subject.capacity.times{subject.land_plane(plane)}
-        error_st='Do not land, airport is full'
+        error_st= 'Do not land, airport is full'
         expect { subject.land_plane(plane) }.to raise_error error_st
       end
     end
