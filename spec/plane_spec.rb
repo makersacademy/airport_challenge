@@ -18,6 +18,9 @@ describe Plane do
   it 'is flying when created' do
     expect(subject).to be_flying
   end
+  it 'is landed when landed' do
+    expect { subject.land }.to change(subject, :flying).from('flying').to('landed')
+  end
   context 'when flying' do
     it { is_expected.to respond_to :flying?  }
     it { is_expected.to respond_to :land     }
