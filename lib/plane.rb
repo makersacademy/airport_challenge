@@ -7,7 +7,7 @@ class Plane
   end
 
   def land(airport)
-    fail "Airport refuses landing request" if !airport.allow_landing?
+    fail "Airport refuses landing request" unless airport.allow_landing?
     @flying = false
     @location = airport
   end
