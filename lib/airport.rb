@@ -9,6 +9,7 @@ class Airport
   end
 
   def clear_for_takeoff(plane)
+    fail 'Too stormy' if weather_report == :stormy
     plane.take_off
     planes.delete(plane)
     plane
@@ -24,7 +25,7 @@ class Airport
   def weather_report
     @current_weather = Weather.new.weather_report
   end
-  
+
   private
   def full?
     planes.size >= capacity

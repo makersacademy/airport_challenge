@@ -36,33 +36,20 @@ describe Airport do
     end
   end
 
-  describe "#clear_for_takeoff(plane)" do
-    it "instructs a specific plane to take off" do
-      # find a way to prevent repetition
-      allow(subject).to receive(:weather_report) { :sunny }
-      subject.clear_for_landing(plane)
-      subject.clear_for_landing(plane_2)
-      expect(subject.clear_for_takeoff(plane)).to eq(plane)
-    end
-    it "changes plane status to :flying" do # not sure
-      allow(subject).to receive(:weather_report) { :sunny }
-      my_plane = subject.clear_for_landing(plane).pop
-      allow(my_plane).to receive(:plane_status) { :flying }
-      expect(my_plane.plane_status).to eq(:flying)
-    end
-    it "removes the specific plane from airport" do
-      allow(subject).to receive(:weather_report) { :sunny }
-      subject.clear_for_landing(plane_2)
-      subject.clear_for_landing(plane)
-      subject.clear_for_takeoff(plane_2)
-      expect(subject.planes).to contain_exactly(plane)
-    end
-  end
   context "when the weather is stormy" do
     describe "#clear_for_landing(plane)" do
       it "cannot accept planes when weather is stormy" do
         allow(subject).to receive(:weather_report) { :stormy }
         expect{ subject.clear_for_landing(plane) == :stormy }.
+          to raise_error('Too stormy')
+      end
+    end
+    describe "#clear_for_takeoff(plane)" do
+      it "doesn't allow plane to take off" do
+        allow(subject).to receive(:weather_report) { :sunny }
+        subject.clear_for_landing(plane)
+        allow(subject).to receive(:weather_report) { :stormy }
+        expect { subject.clear_for_takeoff(plane) }.
           to raise_error('Too stormy')
       end
     end
@@ -85,11 +72,33 @@ describe Airport do
           my_plane = subject.clear_for_landing(plane).last
           expect(my_plane).to eq(plane)
         end
-        it "changes plane status to :landed" do # not sure
+        it "changes plane status to :landed" do
           allow(subject).to receive(:weather_report) { :sunny }
           my_plane = subject.clear_for_landing(plane).last
           allow(my_plane).to receive(:plane_status) { :landed }
           expect(my_plane.plane_status).to eq(:landed)
+        end
+      end
+      describe "#clear_for_takeoff(plane)" do
+        it "instructs a specific plane to take off" do
+          # find a way to prevent repetition
+          allow(subject).to receive(:weather_report) { :sunny }
+          subject.clear_for_landing(plane)
+          subject.clear_for_landing(plane_2)
+          expect(subject.clear_for_takeoff(plane)).to eq(plane)
+        end
+        it "changes plane status to :flying" do
+          allow(subject).to receive(:weather_report) { :sunny }
+          subject.clear_for_landing(plane)
+          allow(plane).to receive(:plane_status) { :flying }
+          expect(plane.plane_status).to eq(:flying)
+        end
+        it "removes the specific plane from airport" do
+          allow(subject).to receive(:weather_report) { :sunny }
+          subject.clear_for_landing(plane_2)
+          subject.clear_for_landing(plane)
+          subject.clear_for_takeoff(plane_2)
+          expect(subject.planes).to contain_exactly(plane)
         end
       end
     end
