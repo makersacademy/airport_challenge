@@ -1,10 +1,10 @@
-require_relative 'planehangar.rb'
-require_relative 'aircontroller.rb'
-require_relative 'plane.rb'
+require_relative 'aircontroller'
+require_relative 'planehangar'
+require_relative 'plane'
 
 class Airport
-  include PlaneHangar
   include AirController
+  include PlaneHangar
 
   def initialize(capacity = PlaneHangar::DEFAULT_CAPACITY)
     self.capacity = capacity
