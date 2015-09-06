@@ -40,15 +40,15 @@ describe Plane do
   	 	class Airport; end
   	 	airport = double(:airport_object)
  	  	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
-        allow(airport).to receive(:land_permission).and_return(nil)
-        allow(airport).to receive(:plane_landed).with(subject).and_return(nil)
-        subject.land(airport)
-        expect(subject.flying).to eq(false)
-        expect(subject.current_airport).to eq(airport)
-      end
+      allow(airport).to receive(:land_permission).and_return(nil)
+      allow(airport).to receive(:plane_landed).with(subject).and_return(nil)
+      subject.land(airport)
+      expect(subject.flying).to eq(false)
+      expect(subject.current_airport).to eq(airport)
+    end
 	end
 	describe 'method:take_off' do
-      it 'can take_off from its current airport' do
+    it 'can take_off from its current airport' do
 	  	expect(subject).to respond_to(:take_off).with(0).argument
 	  end
 	  it 'raises error if already flying' do
@@ -58,26 +58,26 @@ describe Plane do
   	 	class Airport; end
   	 	airport = double(:airport_object)
  	  	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
-        allow(airport).to receive(:land_permission).and_return(nil)
-        allow(airport).to receive(:plane_landed).with(subject).and_return(nil)
-        allow(airport).to receive(:take_off_permission).and_raise('Stormy')
-        subject.land(airport)
-        expect{subject.take_off}.to raise_error "Stormy"
+      allow(airport).to receive(:land_permission).and_return(nil)
+      allow(airport).to receive(:plane_landed).with(subject).and_return(nil)
+      allow(airport).to receive(:take_off_permission).and_raise('Stormy')
+      subject.land(airport)
+      expect{subject.take_off}.to raise_error "Stormy"
       end
 	  it 'is flying and have left the airport after take-off' do
   	 	class Airport; end
   	 	airport = double(:airport_object)
  	  	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
-        allow(airport).to receive(:land_permission).and_return(nil)
-        allow(airport).to receive(:plane_landed).with(subject).and_return(nil)
-        allow(airport).to receive(:take_off_permission).and_return(nil)
-        allow(airport).to receive(:plane_taken_off).with(subject).and_return(nil)
-        subject.land(airport)
-        expect(subject.flying).to eq(false)
-        expect(subject.current_airport).to eq(airport)
-        subject.take_off
-        expect(subject.flying).to eq(true)
-        expect(subject.current_airport).to eq(nil)
-      end
+      allow(airport).to receive(:land_permission).and_return(nil)
+      allow(airport).to receive(:plane_landed).with(subject).and_return(nil)
+      allow(airport).to receive(:take_off_permission).and_return(nil)
+      allow(airport).to receive(:plane_taken_off).with(subject).and_return(nil)
+      subject.land(airport)
+      expect(subject.flying).to eq(false)
+      expect(subject.current_airport).to eq(airport)
+      subject.take_off
+      expect(subject.flying).to eq(true)
+      expect(subject.current_airport).to eq(nil)
+    end
 	end
 end
