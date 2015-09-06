@@ -3,6 +3,17 @@ I plan to do my best to make very little baby steps while working on this projec
 I plan to follow the steps we used to complete challenges during the week.
 I will write very detailed explanation of what I do, mainly for myself. When I feel more comfartable, explanation probably will become less detailed.
 
+I followed the user story, also read the Task in details, used most of the proposed tests, wrote several additional tests, have not made any new classes (was not sure I will be able to handle them), or new modules(do not think that planes and airports are so similar, on this stage could be more confusuion). Main thing was RGR of course.
+
+Travis passed.
+
+https://travis-ci.org/Proskurina/airport_challenge.svg?branch=master
+
+
+Below is very detailed explanation of what I did. No need to read. For myself mostly.
+
+--------
+
 ######Started to work on the first piece of the user story.
 
 1. First I organised the nouns and verbs into Objects and Messages
@@ -496,6 +507,8 @@ Expexted to be true.
  3.1 Wrote a test, to test that planes take off when the airport is full.
 
  3.2 Changed code, the test passed. Now error "Airport is full" raised only when plane is landing. So I deleted the test expecting traffic_control to raise this error. I had a test for this error in plane_landing, so do not have anything to add.
+
+ 3.3 Refactoring needed! Will try to do it today.
 
 
 
