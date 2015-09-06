@@ -268,7 +268,7 @@ Started to work on the third piece of the user story.
 
 Expexted to be true.
 
- 3.2. Wrote test, used double the first time. I test that plane receives message land. Made the test fail.
+ 3.2. Wrote test, used double the first time. I test that the plane receives message land. Made the test fail.
 
  3.3. Wrote some code, the test passed. Checked that everything works in irb also (as the test was with double).
 
@@ -292,6 +292,30 @@ Expexted to be true.
  4.2. Wrote test, made it fail.
 
  4.3. Wrote some code, the test pass.
+
+5. Now to another thing airoport does - instructs a plain to take off. Now the question is should airport send a message to take off to a particular plane, or whoever is first in a queue? At this point I decided that airport will send message to take off to the first in a queue, and the first in a queue is the first landed (so the first(zeroth) in an array). Will start with sending the message.
+
+ 5.1. Feature test
+
+ :001 > airport = Airport.new
+  => #<Airport:0x007ffe011ace38 @planes=[]>
+ :002 > plane = Plane.new
+  => #<Plane:0x007ffe0119d898 @flying=true>
+ :003 > airport.plane_landing(plane)
+  => [#<Plane:0x007ffe0119d898 @flying=false>]
+ :004 > airport.plane_take_off
+  => nil
+ :005 > plane.flying?
+  => false
+
+ Expect plane to receive message take_off, so expect it to be flying
+
+ 5.2. Wrote test, used double again. I test that the plane receives message take_off. Made the test fail.
+
+ 5.3. Wrote some code, the test pass.
+
+
+
 
 
 

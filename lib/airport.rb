@@ -7,6 +7,7 @@ class Airport
   end
 
   def plane_take_off
+    @planes.shift.take_off
 
   end
 

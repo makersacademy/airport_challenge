@@ -16,7 +16,12 @@ describe Airport do
   it { is_expected.to respond_to :plane_take_off}
 
   describe 'plane take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+      plane = double :plane, land: 'smth'
+      subject.plane_landing(plane)
+      expect(plane).to receive(:take_off)
+      subject.plane_take_off
+    end
 
     xit 'releases a plane'
   end
@@ -31,7 +36,7 @@ describe Airport do
     end
 
     it 'receives a plane' do
-      plane = double :plane, land: false
+      plane = double :plane, land: 'smth'
       subject.plane_landing(plane)
       expect(subject.planes).to include(plane)
     end
