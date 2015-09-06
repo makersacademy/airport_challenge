@@ -71,18 +71,18 @@ describe Airport do
 
     context "when weather conditions are stormy" do
 
-      it 'tests the stormy method' do
+      it "tests the stormy method" do
         subject.stub(:forecast) {5}
-        allow(subject).to receive(:stormy?).and_return('stormy')
+        expect(subject.stormy?).to eq("stormy")
       end
 
-      it 'does not allow a plane to take off' do
-        allow(subject).to receive(:stormy?).and_return(true)
+      it "does not allow a plane to take off" do
+        allow(subject).to receive(:stormy?).with(:forecast).and_return("stormy")
         expect(subject.release_plane).to eq(false)
       end
 
       it "does not allow a plane to land" do
-        allow(subject).to receive(:stormy?).and_return(true)
+        allow(subject).to receive(:stormy?).and_return("stormy")
         expect{ subject.dock plane }.to raise_error 'Airport unavailable'
       end
     end
