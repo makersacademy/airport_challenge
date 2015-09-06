@@ -16,13 +16,20 @@ describe Airport do
   describe 'take off' do
     xit 'instructs a plane to take off'
 
-    it 'releases a plane' do
+    it 'responds to release a plane' do
       expect(subject).to respond_to :release
+    end
+
+    xit 'releases a plane' do
     end
   end
 
   describe 'landing' do
     xit 'instructs a plane to land'
+
+    it 'responds to receive a plane' do
+      expect(subject).to respond_to :receive
+    end
 
     xit 'receives a plane'
   end
