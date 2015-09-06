@@ -33,7 +33,7 @@ class Airport
   end
 
   def weather
-    ["stormy", "sunny"].sample
+    ["stormy", ""].sample
   end
 
   def stormy?
