@@ -13,16 +13,14 @@ require 'airport'
 
 describe Airport do
   let(:plane) do
-    double :plane, land: :landed, take_off: :flying # not sure
+    double :plane, land: :landed, take_off: :flying
   end
   let(:plane_2) { double :plane_2, land: :landed, take_off: :flying }
 
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
   it { is_expected.to respond_to(:clear_for_takeoff).with(1).argument }
   it { is_expected.to respond_to(:weather_report) }
-  it { is_expected.to respond_to(:planes) }
-  # I don't need to test content of :weather_report
-  # because it's been tested in the weather class?
+
   describe "#planes" do
     it "returns all the planes at the airport" do
       allow(subject).to receive(:weather_report) { :sunny }
@@ -38,7 +36,7 @@ describe Airport do
 
   context "when the weather is stormy" do
     describe "#clear_for_landing(plane)" do
-      it "cannot accept planes when weather is stormy" do
+      it "cannot accept planes" do
         allow(subject).to receive(:weather_report) { :stormy }
         expect{ subject.clear_for_landing(plane) == :stormy }.
           to raise_error('Too stormy')
@@ -55,7 +53,7 @@ describe Airport do
     end
   end
   context "when the weather is sunny" do
-    context "when full" do
+    context "when it's full" do
       describe "#clear_for_landing(plane)" do
         it "cannot accept planes more than its capacity" do
           allow(subject).to receive(:weather_report) { :sunny }
@@ -65,7 +63,16 @@ describe Airport do
         end
       end
     end
-    context "when not full" do
+    context "when it's empty" do
+      describe "#clear_for_takeoff(plane)" do
+        it "cannot instruct a plane to take off" do
+          allow(subject).to receive(:weather_report) { :sunny }
+          expect { subject.clear_for_takeoff(plane) }.
+            to raise_error('Airport empty')
+        end
+      end
+    end
+    context "when it's not full" do
       describe "#clear_for_landing(plane)" do
         it "accepts a plane" do
           allow(subject).to receive(:weather_report) { :sunny }
