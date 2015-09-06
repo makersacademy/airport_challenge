@@ -314,6 +314,52 @@ Expexted to be true.
 
  5.3. Wrote some code, the test pass.
 
+ 5.4. Commit.
+
+6. Airport should release a plane when it takes off.
+
+ 6.1. Feature test
+
+ :001 > airport = Airport.new
+  => #<Airport:0x007fce4906f878 @planes=[]>
+ :002 > plane = Plane.new
+  => #<Plane:0x007fce488d0ce8 @flying=true>
+ :003 > airport.plane_landing(plane)
+  => [#<Plane:0x007fce488d0ce8 @flying=false>]
+ :004 > airport.plane_take_off
+  => true
+ :005 > airport.planes
+  => []
+ :006 >
+
+ WOW! I expected it to be empty and it is empty!
+ And that is correct because to send a message to take off I need a plane, and I used shift method to take a plane from planes array.
+ So now the question is should I change my code and first just to send a message to a plane to take off, and only then release it? At this point I think that I will do this.
+
+ 6.2. Changed the code slightly, checked that all tests still pass.
+
+ 6.3. Now feature test looks like this
+
+ :001 > airport = Airport.new
+  => #<Airport:0x007fc23308e420 @planes=[]>
+ :002 > plane = Plane.new
+  => #<Plane:0x007fc23307f010 @flying=true>
+ :003 > airport.plane_landing(plane)
+  => [#<Plane:0x007fc23307f010 @flying=false>]
+ :004 > airport.plane_take_off
+  => true
+ :005 > airport.planes
+  => [#<Plane:0x007fc23307f010 @flying=true>]
+ :006 >
+
+ So, expect to airport.planes to be one plane less, then before the release.
+
+ 6.4. Wrote the test to check that number of planes in the airport decreased by 1, made it fail.
+
+ 6.5. Wrote some code, the tests pass.
+
+ 6.6. Wrote one more test to be sure that the the airport releases a plane, test passed (as expexted, wrote it just to be sure all works)
+
 
 
 

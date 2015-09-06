@@ -23,7 +23,19 @@ describe Airport do
       subject.plane_take_off
     end
 
-    xit 'releases a plane'
+    it 'releases something' do
+      plane = double :plane, land: 'smth', take_off: 'smth'
+      subject.plane_landing(plane)
+      planes_in_airport = subject.planes.length
+      subject.plane_take_off
+      expect(subject.planes.length).to eq(planes_in_airport-1)
+    end
+
+      it 'releases a plane' do
+      plane = double :plane, land: 'smth', take_off: 'smth'
+      subject.plane_landing(plane)
+      expect(subject.plane_take_off).to be plane
+    end
   end
 
   it { is_expected.to respond_to(:plane_landing).with(1).argument}
