@@ -32,15 +32,17 @@ class Airport
     end
   end
 
-  def num_rand
-    rand(2) #assuming this airport is in the UK
-  end
-
   def forecast
     return "stormy" if num_rand == 1
     "sunny"
   end
 
+private
+
+  def num_rand
+    rand(2) #assuming this airport is in the UK
+  end
+  
   def full?
     @planes.count >= 20
   end
