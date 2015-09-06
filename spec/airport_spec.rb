@@ -52,15 +52,15 @@ describe Airport do
       end
 
       it 'does not allow a plane to land' do
-        allow(subject).to receive(:stormy?).and_return(:true)
+        allow(subject).to receive(:weather_randomiser).and_return(1)
         expect { subject.plane_land(plane) }.to raise_error
         'Plane cannot currently land at airport'
       end
 
       it 'does not allow a plane to take off' do
-        allow(subject).to receive(:stormy?).and_return(false)
+        allow(subject).to receive(:weather_randomiser).and_return(6)
         subject.plane_land(plane)
-        allow(subject).to receive(:stormy?).and_return(true)
+        allow(subject).to receive(:weather_randomiser).and_return(1)
         expect { subject.plane_take_off(plane)}.to raise_error
         'Cannot currently take off'
       end
