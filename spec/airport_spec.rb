@@ -13,10 +13,19 @@ describe Airport do
 
   describe 'take off' do
     it {is_expected.to respond_to(:take_off).with(1).argument}
+
+    it 'releases a plane' do
+      subject.land(plane)
+      expect {subject.take_off(plane)}.to change {subject.plane_total}.by (-1)
+    end
   end
 
   describe 'landing' do
     it {is_expected.to respond_to(:land).with(1).argument}
+
+    it 'receives a plane' do
+      expect {subject.land(plane)}.to change {subject.plane_total}.by (1)
+    end
   end
 
   describe 'traffic control' do

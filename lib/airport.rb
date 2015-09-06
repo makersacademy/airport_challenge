@@ -26,12 +26,16 @@ class Airport
     @planes.pop
   end
 
+  def plane_total
+    @planes.count
+  end
+
   def full?
-    @planes.count == @capacity
+    plane_total == @capacity
   end
 
   def empty?
-    @planes.count == 0
+    plane_total == 0
   end
 
 end
