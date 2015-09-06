@@ -1,5 +1,28 @@
 require 'plane'
 
+
+
+describe Plane do
+
+  it 'is flying when created' do
+  expect(subject).to be_flying
+end
+
+  it 'can land' do
+  expect(subject).to respond_to(:land)
+end
+
+  it 'is landed after landing' do
+  expect(subject.landed?).to eq(true)
+end
+
+  xit 'can take off'
+
+  xit 'is flying after take off'
+
+end
+
+
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -14,17 +37,3 @@ require 'plane'
 # Think about your implementation - does it allow a plane to be "flying"
 # and landed?
 # Are you testing that?
-
-describe Plane do
-
-  xit 'is flying when created'
-
-  xit 'can land'
-
-  xit 'is landed after landing'
-
-  xit 'can take off'
-
-  xit 'is flying after take off'
-
-end

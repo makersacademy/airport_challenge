@@ -13,21 +13,26 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+    it 'instructs a plane to take off' do
+    expect(subject).to respond_to(:release_plane)
 
-    xit 'releases a plane'
+    # xit 'releases a plane'
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  # describe 'landing' do
+  #   xit 'instructs a plane to land' # Test might not be neccessary
 
-    xit 'receives a plane'
-  end
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
+    it 'receives a plane' do
+      expect(subject).to respond_to(:receive_plane).with(1).argument
+    end
+
+
+    it 'Traffic control does not allow a plane to land' do
+    subject.capacity.times {subject.receive_plane(Plane.new)}
+    expect{subject.receive_plane Plane.new}.to raise_error 'Airport at full capacity'
+    # context 'when airport is full' do
+
     end
 
     # Include a weather condition.
@@ -39,10 +44,15 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+    it 'does not allow a plane to take off when stormy' do
+
+      expect{subject.release_plane} 
+
+      
+    end
+
+
 
       xit 'does not allow a plane to land'
     end
   end
-end
