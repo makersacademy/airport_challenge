@@ -66,12 +66,14 @@ describe Airport do
         subject.stub(:rand).and_return( 1 )
         plane = Plane.new
         subject.hanger << plane
-        expect{subject.instruct_to_take_off(plane)}.to raise_error 'Cannot take off in stormy weather'
+        expect{subject.instruct_to_take_off(plane)}.to raise_error
+          'Cannot take off in stormy weather'
       end
       it 'does not allow a plane to land' do
         subject.stub(:rand).and_return( 1 )
         plane = Plane.new
-        expect{subject.instruct_to_land(plane)}.to raise_error 'Cannot land in stormy weather'
+        expect{subject.instruct_to_land(plane)}.to raise_error
+         'Cannot land in stormy weather'
       end
     end
   end
