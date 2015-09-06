@@ -19,6 +19,14 @@ class Airport
     @allow_landing = false if full?
   end
 
+  def release_plane(plane)
+    fail 'Plane not at this airport' unless planes.include?(plane)
+    while planes.last != plane
+      planes.rotate!
+    end
+    planes.pop
+  end
+
   private
 
   def full?

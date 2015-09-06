@@ -47,7 +47,16 @@ describe Airport do
   describe 'take off' do
     xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
+    it 'releases specific plane' do
+      p1 = double :p1
+      p2 = double :p2
+      p3 = double :p3
+      subject.receive_plane (p1)
+      subject.receive_plane (p2)
+      subject.receive_plane (p3)
+      expect(subject.release_plane(p2)).to eq p2
+    end
+
   end
 
   describe 'traffic control' do
