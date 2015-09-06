@@ -18,8 +18,8 @@ describe Airport do
 
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
   it { is_expected.to respond_to(:clear_for_takeoff) }
-  it { is_expected.to respond_to(:get_weather_report) }
-  # I don't need to test content of :get_weather_report
+  it { is_expected.to respond_to(:weather_report) }
+  # I don't need to test content of :weather_report
   # because it's been tested in the weather class?
   describe "#capacity" do
     it "returns capacity of airport" do
@@ -29,11 +29,12 @@ describe Airport do
   describe "#clear_for_takeoff" do
     it "instructs a plane to take off" do
       # find a way to prevent repetition
-      allow(subject).to receive(:get_weather_report) { :sunny }
+      allow(subject).to receive(:weather_report) { :sunny }
       subject.clear_for_landing(plane)
       expect(subject.clear_for_takeoff).to eq(plane)
     end
     it "changes plane status to :flying" do # not sure
+      allow(subject).to receive(:weather_report) { :sunny }
       my_plane = subject.clear_for_landing(plane).pop
       allow(my_plane).to receive(:plane_status) { :flying }
       expect(my_plane.plane_status).to eq(:flying)
@@ -42,9 +43,9 @@ describe Airport do
   context "when the weather is stormy" do
     describe "#clear_for_landing(plane)" do
       it "cannot accept planes when weather is stormy" do
-        allow(subject).to receive(:get_weather_report) { :stormy }
+        allow(subject).to receive(:weather_report) { :stormy }
         expect{ subject.clear_for_landing(plane) == :stormy }.
-        to raise_error('Too stormy')
+          to raise_error('Too stormy')
       end
     end
   end
@@ -52,22 +53,22 @@ describe Airport do
     context "when full" do
       describe "#clear_for_landing(plane)" do
         it "cannot accept planes more than its capacity" do
-          allow(subject).to receive(:get_weather_report) { :sunny }
+          allow(subject).to receive(:weather_report) { :sunny }
           50.times { subject.clear_for_landing(plane) }
           expect { subject.clear_for_landing(plane) }.
-          to raise_error('Airport full')
+            to raise_error('Airport full')
         end
       end
     end
     context "when not full" do
       describe "#clear_for_landing(plane)" do
         it "accepts a plane" do
-          allow(subject).to receive(:get_weather_report) { :sunny }
+          allow(subject).to receive(:weather_report) { :sunny }
           my_plane = subject.clear_for_landing(plane).last
           expect(my_plane).to eq(plane)
         end
         it "changes plane status to :landed" do # not sure
-          allow(subject).to receive(:get_weather_report) { :sunny }
+          allow(subject).to receive(:weather_report) { :sunny }
           my_plane = subject.clear_for_landing(plane).last
           allow(my_plane).to receive(:plane_status) { :landed }
           expect(my_plane.plane_status).to eq(:landed)

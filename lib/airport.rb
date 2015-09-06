@@ -15,13 +15,13 @@ class Airport
   end
 
   def clear_for_landing(plane)
-    fail 'Too stormy' if get_weather_report == :stormy
+    fail 'Too stormy' if weather_report == :stormy
     fail 'Airport full' if full?
     plane.land
     planes << plane
   end
 
-  def get_weather_report
+  def weather_report
     @current_weather = Weather.new.weather_report
   end
   private
