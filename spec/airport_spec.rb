@@ -13,10 +13,13 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    it { is_expected.to respond_to :take_off}
-    xit 'releases a plane'
-  end
+  # describe 'take off' do
+  #   it { is_expected.to respond_to :take_off}
+  #   it 'releases a plane' do
+  #     plane = subject.take_off
+  #     expect(plane).to be_flying?
+  #   end
+  # end
 
   describe 'landing' do
     xit 'instructs a plane to land'

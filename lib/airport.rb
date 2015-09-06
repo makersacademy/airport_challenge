@@ -1,5 +1,8 @@
 class Airport
-	def take_off
 
-	end
+	# planes = []
+
+	# def take_off
+	# 	planes.pop
+	# end
 end

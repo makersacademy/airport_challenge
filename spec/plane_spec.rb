@@ -17,14 +17,18 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it { is_expected.to respond_to :flying?}
+
+  it 'is flying when created' do
+	plane = Plane.new
+	plane.flying?
+	expect(plane).to be_truthy
+  end
 
   xit 'can land'
 
   xit 'is landed after landing'
 
   xit 'can take off'
-
-  xit 'is flying after take off'
 
 end
