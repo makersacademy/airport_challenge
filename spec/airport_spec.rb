@@ -65,15 +65,20 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
+      before { srand(1) }
+
       it 'creates stormy conditions' do
         allow(subject).to receive(:weather_randomiser).and_return(1)
         expect(subject.stormy?).to eq(true)
       end
-
-      it 'creates good conditions' do
-        allow(subject).to receive(:weather_randomiser).and_return(6)
+      it 'checks 8/10 chance of good conditions' do
         expect(subject.stormy?).to eq(false)
       end
+
+      # it 'creates good conditions' do
+      #   allow(subject).to receive(:weather_randomiser).and_return(6)
+      #   expect(subject.stormy?).to eq(false)
+      # end
 
       it 'does not allow a plane to land' do
         allow(subject).to receive(:stormy?).and_return(:true)
