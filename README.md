@@ -1,4 +1,4 @@
-[![Travic CI](https://travis-ci.org/emilyworrall/airport_challenge.svg?branch=master)]
+![Travic CI](https://travis-ci.org/emilyworrall/airport_challenge.svg?branch=master)
 [![Code Climate](https://codeclimate.com/github/emilyworrall/airport_challenge/badges/gpa.svg)](https://codeclimate.com/github/emilyworrall/airport_challenge)
 
 Airport Challenge
