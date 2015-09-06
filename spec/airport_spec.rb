@@ -13,23 +13,38 @@ require 'airport'
 
 describe Airport do
 
-  # describe 'take off' do
-  #   it { is_expected.to respond_to :take_off}
-  #   it 'releases a plane' do
-  #     plane = subject.take_off
-  #     expect(plane).to be_flying?
-  #   end
-  # end
+  describe 'take off' do
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'releases a plane' do
+      plane = Plane.new
+      subject.touch_down plane
+      subject.depart
+      expect(plane.flying?).to be_truthy
+    end
+  end
 
-    xit 'receives a plane'
+  describe '#landing' do
+
+    it 'instructs a plane to touch_down' do
+      plane = Plane.new
+      subject.touch_down plane
+      expect(plane.landed?).to be_truthy
+    end
+
+    it 'receives a plane' do
+      plane = Plane.new
+      subject.touch_down Plane.new
+      expect(subject).to include(plane)
+    end
+
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times {subject.touch_down (Plane.new)}
+        expect{subject.touch_down (Plane.new)}.to raise_error("Airport is full")
+      end
     end
 
     # Include a weather condition.
