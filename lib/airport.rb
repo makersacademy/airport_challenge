@@ -3,6 +3,7 @@ require_relative 'plane'
 class Airport
 
   CAPACITY = 5
+  STORM_CHANCE = 0.1
 
   def initialize
     @plane_count = 0
@@ -32,6 +33,10 @@ class Airport
 
   def permission_to_land?
     !full?
+  end
+
+  def weather_report
+    Kernel.rand < STORM_CHANCE ? :stormy : :sunny
   end
 
   private

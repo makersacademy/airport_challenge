@@ -26,6 +26,30 @@ describe Airport do
 
   end
 
+  describe 'weather reporting:' do
+
+    it { is_expected.to respond_to(:weather_report) }
+
+    it 'returns sunny or stormy when asked for weather report' do
+      report = subject.weather_report
+      sunny_or_stormy = report == :sunny || report == :stormy
+      expect(sunny_or_stormy).to be_truthy
+    end
+
+    it 'is normally sunny' do
+      sunny_rand = subject.class::STORM_CHANCE / 2 + 0.5
+      allow(Kernel).to receive(:rand).and_return(sunny_rand)
+      expect(subject.weather_report).to eq :sunny
+    end
+
+    it 'is occasionally stormy' do
+      stormy_rand = subject.class::STORM_CHANCE / 2
+      allow(Kernel).to receive(:rand).and_return(stormy_rand)
+      expect(subject.weather_report).to eq :stormy
+    end
+
+  end
+
   describe 'permissions to take off or land:' do
 
     it { is_expected.to respond_to(:permission_to_take_off?) }
@@ -69,8 +93,6 @@ describe Airport do
 
   end
 
-  #   # Include a weather condition.
-  #   # The weather must be random and only have two states "sunny" or "stormy".
   #   # Try and take off a plane, but if the weather is stormy,
   #   # the plane can not take off and must remain in the airport.
   #   #
