@@ -233,7 +233,7 @@ Started to work on the third piece of the user story.
 
  1.4. Commited, pushed.
 
-2. #plane_take_off should instruct plane to #take_off. I need a plane for that, either as an argument, or one of the planes, already in the airport. So a plane should land first.
+2. plane_take_off should instruct plane to #take_off. I need a plane for that, either as an argument, or one of the planes, already in the airport. So a plane should land first.
 
  2.1 Feature test
 
@@ -359,6 +359,47 @@ Expexted to be true.
  6.5. Wrote some code, the tests pass.
 
  6.6. Wrote one more test to be sure that the the airport releases a plane, test passed (as expexted, wrote it just to be sure all works)
+
+ 6.7. Commited, pushed. Travis is still happy)
+
+7. Now to the main point of the third piece of the user story. No landidng if the airport is full. For that I need to introduce var capacity. It is in initialize, so I do not test it. Now, no landidng if the airport is full.
+
+ 7.1. Feature test in irb
+
+ :001 > airport = Airport.new(2)
+  => #<Airport:0x007f84019877e0 @planes=[], @capacity=2>
+ :002 > 2.times {airport.plane_landing(Plane.new)}
+  => 2
+ :003 > airport.planes
+  => [#<Plane:0x007f8402082cc0 @flying=false>, #<Plane:0x007f8402082c48 @flying=false>]
+ :005 > airport.plane_landing(Plane.new)
+  => [#<Plane:0x007f8402082cc0 @flying=false>, #<Plane:0x007f8402082c48 @flying=false>, #<Plane:0x007f840196eab0 @flying=false>]
+ :006 >
+
+ Or, after some thinking:
+
+ :001 > airport = Airport.new
+  => #<Airport:0x007ff07a1f7120 @planes=[], @capacity=10>
+ :002 > airport.capacity.times {airport.plane_landing(Plane.new)}
+ => 10
+ :003 > airport.traffic_control
+ NoMethodError: undefined method `traffic_control' for #<Airport:0x007ff07a1f7120 @planes=[], @capacity=10>
+  from (irb):2
+  from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
+ :004 >
+
+ Trafic control should raise an error if full.
+ This one is better.
+
+ 7.2. Wrote the test for airport to respond to traffic_control, made it fail, made it pass.
+
+ 7.3. Wrote the test for traffic control to raise an error if the airport is full.
+
+ 7.4. Wrote some code. The test pass.
+
+
+
+
 
 
 

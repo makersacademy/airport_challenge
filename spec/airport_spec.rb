@@ -54,9 +54,15 @@ describe Airport do
     end
   end
 
+  it { is_expected.to respond_to :traffic_control}
+
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'raises error' do
+        subject.capacity.times { subject.plane_landing double :plane, land: 'smth' }
+        expect {subject.traffic_control}.to raise_error("The airport is full")
+      end
+
     end
 
     # Include a weather condition.
