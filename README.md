@@ -489,6 +489,13 @@ Started to work on the last piece of the user story.
 
  2.4 Can not figure out how to do except from before :each. Will do refactoring later.
 
+ 2.5 Commited , pushed.
+
+3.0 Now, when I added traffic control to plane_take_off, planes do not take off when the airport is full. Checked it in irb. But they should.
+
+ 3.1 Wrote a test, to test that planes take off when the airport is full.
+
+ 3.2 Changed code, the test passed. Now error "Airport is full" raised only when plane is landing. So I deleted the test expecting traffic_control to raise this error. I had a test for this error in plane_landing, so do not have anything to add.
 
 
 

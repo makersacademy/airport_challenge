@@ -10,18 +10,19 @@ class Airport
   end
 
   def plane_take_off
+    traffic_control
     planes[0].take_off
     planes.shift
   end
 
   def plane_landing (plane)
     traffic_control
+    fail "The airport is full" if planes.count >= capacity
     plane.land
     planes << plane
   end
 
   def traffic_control
-    fail "The airport is full" if planes.count >= capacity
     fail "The weather is stormy!" if weather_check == 'stormy'
   end
 

@@ -33,11 +33,19 @@ describe Airport do
       expect(subject.planes.length).to eq(planes_in_airport-1)
     end
 
-      it 'releases a plane' do
+    it 'releases a plane' do
       allow(subject).to receive(:weather_check) { "not stormy" }
       plane = double :plane, land: 'smth', take_off: 'smth'
       subject.plane_landing(plane)
       expect(subject.plane_take_off).to be plane
+    end
+
+    it 'releases a plane when the airport is full' do
+      allow(subject).to receive(:weather_check) { "not stormy" }
+      subject.capacity.times { subject.plane_landing double :plane, land: 'smth', take_off: 'smth'}
+      planes_in_airport = subject.planes.length
+      subject.plane_take_off
+      expect(subject.planes.length).to eq(planes_in_airport-1)
     end
   end
 
@@ -82,14 +90,6 @@ describe Airport do
   it { is_expected.to respond_to :traffic_control}
 
   describe 'traffic control' do
-    context 'when airport is full' do
-      it 'raises error' do
-        allow(subject).to receive(:weather_check) { "not stormy" }
-        subject.capacity.times { subject.plane_landing double :plane, land: 'smth' }
-        expect {subject.traffic_control}.to raise_error("The airport is full")
-      end
-
-    end
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -101,8 +101,6 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
-
       it 'does not allow a plane to land' do
         allow(subject).to receive(:weather_check) { "stormy" }
         expect{subject.traffic_control}.to raise_error("The weather is stormy!")
