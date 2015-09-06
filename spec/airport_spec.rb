@@ -39,12 +39,12 @@ describe Airport do
   describe 'landing' do
 
     it 'instructs a plane to land' do
-      expect(subject).to respond_to(:receive)
-    end
-
-    it 'receives a plane' do
       expect(subject).to respond_to(:receive).with(1).argument
     end
+
+    # it 'receives a plane' do
+    #   expect(subject).to respond_to(:receive).with(1).argument
+    # end
 
     it 'contains the plane it just received' do
       airport = Airport.new
