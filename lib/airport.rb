@@ -1,6 +1,6 @@
 require '~/Projects/airport_challenge/lib/plane.rb'
 class Airport
-  HANGAR_CAPACITY = 5
+  HANGAR_CAPACITY = 10
   # attr_accessor :plane
   attr_reader :capacity, :hangar
   def initialize
