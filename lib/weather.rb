@@ -1,7 +1,11 @@
 module Weather
 
-  def stormy?
-    rand(10) > 7
+  def weather_cond
+    if rand(10) > 7
+      "stormy"
+    else
+      "sunny"
+    end
   end
 
 end
