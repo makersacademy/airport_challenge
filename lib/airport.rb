@@ -22,8 +22,8 @@ DEFAULT_CAPACITY = 10
   end
 
   def stormy?
-    forcast = rand(1..30)
-    forcast < 5 ? "stormy" : "sunny"
+    forecast = rand(1..30)
+    forecast < 5 ? "stormy" : "sunny"
   end
 
   private

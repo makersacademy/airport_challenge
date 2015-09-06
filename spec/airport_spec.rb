@@ -51,6 +51,8 @@ describe Airport do
         expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
       end
 
+       it { is_expected.to respond_to :stormy? }
+
       it "raises an error when airport is full" do
         allow(subject).to receive(:stormy?) { false }
         subject.capacity.times { subject.dock plane }
