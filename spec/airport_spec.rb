@@ -42,9 +42,9 @@ describe Airport do
       expect(subject).to respond_to(:receive)
     end
 
-    # it 'receives a plane' do
-    #   expect(subject).to respond_to(:receive).with(1).argument
-    # end
+    it 'receives a plane' do
+      expect(subject).to respond_to(:receive).with(1).argument
+    end
 
     it 'contains the plane it just received' do
       airport = Airport.new
@@ -61,7 +61,7 @@ describe Airport do
 
         it 'raises an error if a plane is requested for release' do
         expect{ subject.release }.to raise_error 'No planes available.'
-      end
+        end
 
     end
 
