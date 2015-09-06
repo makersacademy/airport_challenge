@@ -15,11 +15,15 @@ describe Airport do
   let(:plane){double(:plane, land: nil, take_off: nil)}
 
   before do
-    allow(subject).to receive(:forecast) {'sunny'}
+    allow(subject).to receive(:forecast) {"sunny"}
   end
 
   it 'has capacity of 20 planes' do
     expect(subject.capacity).to eq 20
+  end
+
+  it 'responds to forecast' do
+    expect(subject).to respond_to(:forecast)
   end
 
   describe 'allow_take_off' do
@@ -76,15 +80,16 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
+
       it 'plane cannot take off' do
         # allow(subject).to receive(:forecast) {'sunny'}
         subject.allow_land plane
-        allow(subject).to receive(:forecast) {'stormy'}
+        allow(subject).to receive(:forecast) {"stormy"}
         expect {subject.allow_take_off}.to raise_error "Sorry, bad weather"
       end
 
       it 'plane cannot land' do
-        allow(subject).to receive(:forecast) {'stormy'}
+        allow(subject).to receive(:forecast) {"stormy"}
         expect {subject.allow_land plane}.to raise_error "Sorry, bad weather"
       end
     end
