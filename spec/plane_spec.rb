@@ -10,7 +10,7 @@ describe Plane do
 
   describe 'landing' do
     it 'can land' do
-    	subject.has_taken_off
+    	subject.taken_off
     	subject.landed
     	expect(subject.flying?).to eql(false)
     end
@@ -24,12 +24,12 @@ describe Plane do
   describe 'taking off' do
     it 'can take off' do
     	subject.landed
-    	subject.has_taken_off
+    	subject.taken_off
     	expect(subject.flying?).to eql(true)
     end
 
     it 'shows flying status after take off' do
-    	subject.has_taken_off
+    	subject.taken_off
     	expect(subject.flying?).to eql(true)
     end
   end

@@ -22,7 +22,7 @@ describe Airport do
   describe 'traffic control' do
     it 'does not allow a plane to land when airport at capacity' do
       5.times {subject.land(plane)}
-      expect {subject.land(plane)}.to raise_error 'Unable to land plane, airport at capacity'
+      expect {subject.land(plane)}.to raise_error 'Airport at capacity'
     end
 
     it 'does not allow a plane to take off if airport is empty' do

@@ -12,7 +12,7 @@ class Plane
   	@flying = false
   end
 
-  def has_taken_off
+  def taken_off
   	@flying = true
   end
 
