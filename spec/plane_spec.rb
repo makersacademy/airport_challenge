@@ -36,13 +36,15 @@ describe Plane do
 			allow(airport).to receive(:land_permission).and_raise("Airport full")
 			expect{subject.land(airport)}.to raise_error "Airport full"
 	  end
-	  it 'is landed/not-flying after landing' do
+	  it 'is landed/not-flying after landing and set current airport' do
   	 	class Airport; end
   	 	airport = double(:airport_object)
  	  	allow(airport).to receive(:is_a?).with(Airport).and_return(true)
 			allow(airport).to receive(:land_permission).and_return(nil)
+			allow(airport).to receive(:plane_landed).with(subject).and_return(nil)
 			subject.land(airport)
 			expect(subject.flying).to eq(false)
+			expect(subject.current_airport).to eq(airport)
 		end
 	end
 end

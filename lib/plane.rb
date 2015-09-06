@@ -11,5 +11,7 @@ class Plane
 		fail 'Not an airport' unless airport.is_a?(Airport)
 		airport.land_permission
 		@flying = false
+		@current_airport = airport
+		airport.plane_landed(self)
 	end
 end
