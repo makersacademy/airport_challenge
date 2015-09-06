@@ -6,7 +6,6 @@ class Airport
   def initialize(capacity = 10)
     @planes = []
     @capacity = capacity
-    @weather = 'not stormy'
   end
 
   def plane_take_off
