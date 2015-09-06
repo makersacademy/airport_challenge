@@ -12,15 +12,17 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-  let(:plane) do
-    double :plane, land: :landed, take_off: :flying
-  end
+  let(:plane) { double :plane, land: :landed, take_off: :flying }
   let(:plane_2) { double :plane_2, land: :landed, take_off: :flying }
 
   it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
   it { is_expected.to respond_to(:clear_for_takeoff).with(1).argument }
   it { is_expected.to respond_to(:weather_report) }
-
+  it "gets weather report from the weather class" do
+    double :Weather, new: :weather, weather_report: :sunny, condition: 0,
+      storm_probability: 80
+    expect(subject.weather_report).to eq(:sunny)  
+  end
   describe "#planes" do
     it "returns all the planes at the airport" do
       allow(subject).to receive(:weather_report) { :sunny }
@@ -33,6 +35,13 @@ describe Airport do
       expect(Airport.new(67).capacity).to eq(67)
     end
   end
+
+  # it "can get weather report" do
+  #   weather = class_double('Weather')
+  #   allow(weather).to receive(:new)
+  #   allow(weather.new).to receive(:weather_report) { :sunny }
+  #   expect(subject.get_weather_report).to receive (weather.new.weather_report)
+  # end
 
   context "when the weather is stormy" do
     describe "#clear_for_landing(plane)" do
@@ -110,24 +119,7 @@ describe Airport do
       end
     end
   end
-
-  # it "can get weather report" do
-  #   weather = class_double('Weather')
-  #   allow(weather).to receive(:new)
-  #   allow(weather.new).to receive(:weather_report) { :sunny }
-  #   expect(subject.get_weather_report).to receive (weather.new.weather_report)
-  # end
 end
-
-
-
-
-
-
-
-
-
-
 
 #
 # describe Airport do
