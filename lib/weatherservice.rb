@@ -1,7 +1,11 @@
 class Weatherservice
 
+def initialize (random=Random.new)
+  @random = random
+end
+
 def weather
-  if rand(10) == 1
+  if @random.rand(10) == 5
     "stormy"
   else
     "sunny"
