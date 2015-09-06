@@ -13,8 +13,6 @@ require 'airport'
 
 describe Airport do
 
-  describe 'landing' do
-
     let(:plane)  { double :plane }
 
     it 'instructs a plane to land' do
@@ -31,17 +29,15 @@ describe Airport do
       expect {subject.land plane}.to raise_error 'Landing not allowed'
     end
 
-  end
-
-
-  describe 'take off' do
     it 'instructs a plane to take off' do
       expect(subject).to respond_to(:take_off)
     end
 
-    xit 'releases a plane' do
+    it 'releases a plane' do
+      subject.take_off
+      expect(subject.landing_strip).to be_empty
     end
-  end
+
 
 
 

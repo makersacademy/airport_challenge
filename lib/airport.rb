@@ -13,7 +13,7 @@ class Airport
   end
 
   def take_off
-    @plane = plane
+    landing_strip.pop
   end
 
 
