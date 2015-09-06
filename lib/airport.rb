@@ -10,13 +10,13 @@ class Airport
   end
 
   def take_off
-    fail "It's stormy, no taking off" if weather == "stormy"
+    # fail "It's stormy, no taking off" if weather == "stormy"
     hangar.pop
   end
 
   def land(plane)
     fail "Hangar full, no landing" if full?
-    fail "It's stormy, no landing" if weather == "stormy"
+    # fail "It's stormy, no landing" if weather == "stormy"
     hangar << plane
   end
 
@@ -26,7 +26,7 @@ class Airport
     hangar.count >= capacity
   end
 
-  def weather
-    ["stormy","sunny"].sample
-  end
+  # def weather
+  #   ["stormy","sunny"].sample
+  # end
 end
