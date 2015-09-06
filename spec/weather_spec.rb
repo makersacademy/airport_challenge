@@ -10,7 +10,7 @@ describe Weather do
 # I dont think I needed to do the two below tests because this isnt user interaction ????
 
    it 'should be able to be stormy' do
-     expect(subject).to respond_to :stormy
+     expect(subject).to respond_to :stormy?
    end
 
    it 'should be able to to be sunny ' do

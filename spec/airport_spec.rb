@@ -1,4 +1,5 @@
-require 'airport'
+require 'Airport'  # ~> LoadError: cannot load such file -- Airport
+require 'Weather'
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -14,7 +15,7 @@ require 'airport'
 describe Airport do
 
   let(:plane){double(:plane)}
-  let(:weather){double(:weather, {:stormy=>true})}
+  let(:weather){double(:weather, {:stormy=>false})}
 
     it 'knows its capacity' do
       expect(subject).to respond_to :capacity
@@ -63,15 +64,22 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    # context 'when weather conditions are stormy' do
-    #   it 'does not allow a plane to take off' do
-    #     subject.release_plane(plane)
-    #   expect(:weather).to raise_error "No take off allowed while stormy"
-    # end
-  # end
+    context 'when weather conditions are stormy' do
+      it 'does not allow a plane to take off' do
+        subject.release_plane(plane)
+      expect{:weather}.to raise_error("No take off allowed while stormy")
+    end
+  end
 
 
       # xit 'does not allow a plane to land'
 
 
 end
+
+# ~> LoadError
+# ~> cannot load such file -- Airport
+# ~>
+# ~> /Users/matt/.rvm/rubies/ruby-2.1.5/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+# ~> /Users/matt/.rvm/rubies/ruby-2.1.5/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+# ~> /Users/matt/Dropbox/Projects/airport_challenge/spec/airport_spec.rb:1:in `<main>'

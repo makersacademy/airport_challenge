@@ -1,5 +1,5 @@
 require_relative "Plane"  # => true
-require_relative "weather"
+require_relative "Weather"
 
 class Airport
 
@@ -16,7 +16,7 @@ DEFAULT_CAPACITY = 3  # => 10
   attr_reader :capacity, :planes  # => nil
 
   def release_plane(plane)
-    fail "No take off allowed while stormy" if stormy
+    fail "No take off allowed while stormy" if Weather.new.stormy?
    planes.pop
    "Cleared for takeoff"
   end

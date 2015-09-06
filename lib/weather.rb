@@ -4,16 +4,18 @@ class Weather
     @forecast = self.forecast
   end
 
-  attr_reader :status, :stormy, :sunny
+  attr_reader :status, :sunny
+
+  def stormy?
+    true
+  end
 
   def forecast
     scale = rand(1..9)
     if scale <= 7
       sunny
-      "Sunny today woohoo!"
     else
       stormy
-      "Stormy today, fasten those seatbelts!"
     end
   end
 
