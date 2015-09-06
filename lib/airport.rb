@@ -12,6 +12,7 @@ class Airport
   def take_off(plane)
     fail "It's stormy, no taking off" if weather == "stormy"
     hangar.pop
+    plane.taken_off
   end
 
   def land(plane)
@@ -19,6 +20,7 @@ class Airport
     fail "Hangar full, no landing" if full?
     fail "It's stormy, no landing" if weather == "stormy"
     hangar << plane
+    plane.has_landed
   end
 
   private
