@@ -231,6 +231,29 @@ Started to work on the third piece of the user story.
 
  1.3. Wrote empty method, test passed.
 
+ 1.4. Commited, pushed.
+
+2. #plane_take_off should instruct plane to #take_off. I need a plane for that, either as an argument, or one of the planes, already in the airport. So a plane should land first.
+
+ 2.1 Feature test
+
+ :001 > airport = Airport.new
+  => #<Airport:0x007f9b731653f8>
+ :002 > plane = Plane.new
+  => #<Plane:0x007f9b73156fb0 @flying=true>
+ :003 > airport.plane_landing(plane)
+ NoMethodError: undefined method `plane_landing' for #<Airport:0x007f9b731653f8>
+  from (irb):3
+  from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
+ :004 >
+
+ 2.2. Wrote test, made it fail.
+
+ 2.3.Wrote empty method with argument plane, test passed.
+
+
+
+
 
 
 
