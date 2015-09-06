@@ -52,6 +52,12 @@ describe Airport do
       subject.plane_landing(plane)
       expect(subject.planes).to include(plane)
     end
+
+    it 'raises a error when airport is full' do
+        subject.capacity.times { subject.plane_landing double :plane, land: 'smth' }
+        expect {subject.plane_landing double :plane, land: 'smth' }.to raise_error("The airport is full")
+    end
+
   end
 
   it { is_expected.to respond_to :traffic_control}

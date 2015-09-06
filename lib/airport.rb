@@ -14,6 +14,7 @@ class Airport
   end
 
   def plane_landing (plane)
+    traffic_control
     plane.land
     planes << plane
   end

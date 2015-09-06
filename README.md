@@ -277,7 +277,8 @@ Expexted to be true.
 
  3.3. Wrote some code, the test passed. Checked that everything works in irb also (as the test was with double).
 
- 3.4. Commited.
+ 3.4. Commited, pushed
+
 
 4. Now airport should receive a plane, and I think it should not lose it after the plane is received. So before receiving a plane, I should make a place where planes will be kept, I add initialize to Airport, and set var 'planes' to an empty array and add respective attr_reader. We do not test initialize. So after this step aiport is ready to receive planes.
 
@@ -414,6 +415,30 @@ Expexted to be true.
 
  7.4. Wrote some code. The test pass.
 
+ 7.5. Commited, pushed.
+
+8.0. Now planes should not be langing if the airport is full. Need to connect traffic_control with landing.
+
+ 8.1. Feature test irb
+
+ ```
+ :001 > airport = Airport.new
+  => #<Airport:0x007fbb6b1afaf8 @planes=[], @capacity=10>
+ :002 > airport.capacity.times {airport.plane_landing(Plane.new)}
+  => 10
+ :004 > airport.traffic_control
+ RuntimeError: The airport is full
+  from /Users/yana/Desktop/coding /makers/week1/airport_challenge/lib/airport.rb:22:in `traffic_control'
+  from (irb):4
+  from /Users/yana/.rvm/rubies/ruby-2.2.1/bin/irb:11:in `<main>'
+ :005 > airport.plane_landing(Plane.new)
+ => [#<Plane:0x007fbb6b195478 @flying=false>, #<Plane:0x007fbb6b195450 @flying=false>, #<Plane:0x007fbb6b195428 @flying=false>, #<Plane:0x007fbb6b195400 @flying=false>, #<Plane:0x007fbb6b1953d8 @flying=false>, #<Plane:0x007fbb6b1953b0 @flying=false>, #<Plane:0x007fbb6b195338 @flying=false>, #<Plane:0x007fbb6b1952c0 @flying=false>, #<Plane:0x007fbb6b195248 @flying=false>, #<Plane:0x007fbb6b195220 @flying=false>, #<Plane:0x007fbb6b17dee0 @flying=false>]
+ :006 >
+
+ ```
+ 8.2. Wrote the test, made it fail
+
+ 8.3. Wrote some code, test pass
 
 
 
