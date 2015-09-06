@@ -8,7 +8,7 @@ describe Airport do
   let(:plane) {Plane.new}
 
   before do
-    allow(subject).to receive(:weather_cond) {"sunny"}
+    allow(subject).to receive(:stormy?) {false}
   end
 
   describe 'take off' do
