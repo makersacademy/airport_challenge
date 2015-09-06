@@ -24,11 +24,6 @@ describe Airport do
       expect(subject.landing_strip).not_to be_empty
     end
 
-    it 'returns a message when airport is full' do
-      subject.capacity.times { subject.land plane }
-      expect {subject.land plane}.to raise_error 'Landing not allowed'
-    end
-
     it 'instructs a plane to take off' do
       expect(subject).to respond_to(:take_off)
     end
@@ -38,13 +33,14 @@ describe Airport do
       expect(subject.landing_strip).to be_empty
     end
 
-
-
-
-  describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land' do
+        subject.capacity.times { subject.land plane }
+        expect {subject.land plane}.to raise_error 'Landing not allowed'
+      end
     end
+
+
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -60,5 +56,5 @@ describe Airport do
 
       xit 'does not allow a plane to land'
     end
-  end
+
 end
