@@ -40,10 +40,11 @@ describe Airport do
       (is_expected).to respond_to :instruct_to_land
     end
 
-    it 'receives a plane' do
+    it 'receives a landed plane' do
       plane = Plane.new
       subject.instruct_to_land plane
       expect(subject.hanger.include?(plane)).to be true
+      expect(plane.status).to eql "landed"
     end
 
     it 'can only land planes not in hanger' do
