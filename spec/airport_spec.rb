@@ -13,17 +13,28 @@ require 'airport'
 
 describe Airport do
 
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+  end
+
   describe 'landing' do
+
+    let(:plane){double(:plane)}
+
     it 'allows planes to land' do
       expect(subject).to be_allow_landing
+    end
+
+    it 'receives a plane' do
+      num_planes = subject.planes.count
+      subject.receive_plane(plane)
+      expect(subject.planes.count).to eq num_planes+1
     end
 
     xit 'raises an error if the airport is full' do
     end
 
     xit 'instructs a plane to land'
-
-    xit 'receives a plane'
   end
 
   describe 'take off' do
@@ -34,7 +45,8 @@ describe Airport do
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      xit 'does not allow a plane to land' do
+      end
     end
 
     # Include a weather condition.
