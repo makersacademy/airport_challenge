@@ -23,13 +23,16 @@ describe Airport do
 
   describe "incoming planes" do
     context "when a plane lands" do
-      it "is landed" do
+      it "it is landed" do
         plane = Plane.new
         allow(plane).to receive(:status).and_return(:landed)
         subject.land_plane(plane)
         expect(plane.status).to eq (:landed)
       end
-
+      it "it is added to the hangar" do
+        subject.land_plane(Plane.new)
+        expect(subject.hangar).not_to eq []
+      end
     end
   end
 

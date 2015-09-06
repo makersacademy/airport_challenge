@@ -10,12 +10,11 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @hangar = []
-    @planes = []
   end
 
   def land_plane(plane)
     plane.land
-    @planes << plane
+    @hangar << plane
   end
 
 
