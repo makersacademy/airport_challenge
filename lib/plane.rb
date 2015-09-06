@@ -8,6 +8,7 @@ class Plane
   end
 
   def land(airport)
+    airport.allow_landing?
     @landed = true
     @flying = false
     @location = airport

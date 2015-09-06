@@ -17,33 +17,46 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport){double(:airport)}
+  let(:airport_allow){double(:airport_allow, allow_landing?: true)}
 
   xit 'is flying when created'
 
-  it 'can land at given airport' do
-    expect(subject).to respond_to(:land).with(1).argument
+  describe 'landing' do
+
+    it 'can land at given airport' do
+      expect(subject).to respond_to(:land).with(1).argument
+    end
+
+    it 'is landed after landing' do
+      subject.land(airport_allow)
+      expect(subject).to be_landed
+    end
+
+    it 'is located at given airport after landing' do
+      subject.land(airport_allow)
+      expect(subject.location).to eq airport_allow
+    end
+
+    it 'checks to see if airport allows landing' do
+      expect(airport_allow).to receive :allow_landing?
+      subject.land(airport_allow)
+    end
+
   end
 
-  it 'is landed after landing' do
-    subject.land(airport)
-    expect(subject).to be_landed
-  end
+  describe 'taking off' do
 
-  it 'is located at given airport after landing' do
-    subject.land(airport)
-    expect(subject.location).to eq airport
-  end
+    it 'can take off' do
+      subject.land(airport_allow)
+      expect(subject).to respond_to(:take_off)
+    end
 
-  it 'can take off' do
-    subject.land(airport)
-    expect(subject).to respond_to(:take_off)
-  end
+    it 'is flying after take off' do
+      subject.land(airport_allow)
+      subject.take_off
+      expect(subject).to be_flying
+    end
 
-  it 'is flying after take off' do
-    subject.land(airport)
-    subject.take_off
-    expect(subject).to be_flying
   end
 
 end
