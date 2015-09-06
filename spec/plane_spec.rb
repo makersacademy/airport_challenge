@@ -17,7 +17,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport){double:airport}
+  let(:airport) {double:airport}
 
   it 'is flying when created' do
     expect(subject).to be_flying
