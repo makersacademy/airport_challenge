@@ -69,15 +69,19 @@ describe Airport do
 
   it {is_expected.to respond_to :stormy}
 
+  it 'checks the weather' do
+    expect(@airport.stormy).to eq(true || false)
+  end
 
-  it 'does not allow a plane to take off when weather is stormy' do
+
+  it 'does not allow plane to take off in stormy weather' do
       allow(@airport).to receive(:stormy) {false}
       @airport.instruct_to_land(@plane)
       allow(@airport).to receive(:stormy) {true}
       expect{ @airport.instruct_to_take_off(@plane) }.to raise_error "Do not have permission to take off"
   end
 
-  it 'does not allow a plane to land when weather is stormy' do
+  it 'does not allow plane to land in stormy weather' do
       allow(@airport).to receive(:stormy) {true}
       expect{ @airport.instruct_to_land(@plane) }.to raise_error "Do not have permission to land"
   end
