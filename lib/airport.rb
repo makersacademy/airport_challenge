@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :capacity
@@ -14,11 +15,15 @@ class Airport
   end
 
   def clear_for_landing(plane)
-    plane.land
+    fail 'Too stormy' if get_weather_report == :stormy
     fail 'Airport full' if full?
+    plane.land
     planes << plane
   end
 
+  def get_weather_report
+    @current_weather = Weather.new.weather_report
+  end
   private
   attr_reader :planes
 
