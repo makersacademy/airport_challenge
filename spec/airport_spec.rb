@@ -1,13 +1,18 @@
-require 'airport'
-require 'plane'
+require './lib/airport.rb'
+require './lib/plane.rb'
+require './lib/weather.rb'
 
 describe Airport do
 
   subject {Airport.new}
   let(:plane) {Plane.new}
 
+  before do
+    allow(subject).to receive(:stormy?) {false}
+  end
+
   describe 'take off' do
-    it {is_expected.to respond_to(:take_off).with(1).argument} 
+    it {is_expected.to respond_to(:take_off).with(1).argument}
   end
 
   describe 'landing' do
@@ -15,8 +20,8 @@ describe Airport do
   end
 
   describe 'traffic control' do
-    it 'does not allow a plane to land & raises an error' do
-      50.times {subject.land(plane)}
+    it 'does not allow a plane to land when airport at capacity' do
+      5.times {subject.land(plane)}
       expect {subject.land(plane)}.to raise_error 'Unable to land plane, airport at capacity'
     end
 
@@ -25,20 +30,4 @@ describe Airport do
       expect {subject.take_off(plane)}.to raise_error 'Airport is empty'
     end
   end
-
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
-  #   context 'when weather conditions are stormy' do
-  #     xit 'does not allow a plane to take off'
-
-  #     xit 'does not allow a plane to land'
-  #   end
-  # end
 end
