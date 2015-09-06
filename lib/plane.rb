@@ -8,8 +8,8 @@ class Plane
     status == :flying
   end
 
-  def landed?
-    status != :flying
+  def landed_at?(airport)
+    status == airport
   end
 
   def land_at(airport)
