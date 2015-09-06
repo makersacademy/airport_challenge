@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  describe "#flying?" do
+  describe "#flying" do
 
     context "when created" do
       it { is_expected.to respond_to :flying }
