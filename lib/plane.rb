@@ -1,12 +1,12 @@
-require_relative 'airport'
-
 class Plane
+  attr_accessor :flying
+
   def initialize
     @flying = 'flying'
   end
-  def flying
-    @flying
-  end
+  # def flying
+  #   @flying
+  # end
   def flying?
     @flying
     true if @flying == 'flying'
