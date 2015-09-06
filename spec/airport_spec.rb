@@ -20,6 +20,7 @@ end
 
   describe 'allow_take_off' do
     it 'gives permission for plane to take off' do
+      allow(subject).to receive(:forecast) {'sunny'}
       expect(subject).to respond_to(:allow_take_off)
     end
 
@@ -39,6 +40,7 @@ end
 
   describe 'allow_landing' do
     it 'give permission for a plane to land' do
+      allow(subject).to receive(:forecast) {'sunny'}
       expect(subject).to respond_to(:allow_land).with(1).argument
     end
 

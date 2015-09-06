@@ -34,7 +34,7 @@ class Airport
 
   def forecast
     num = rand(2) #assuming this airport is in the UK
-    return 'stormy' if num == 0
+    return 'stormy' if num == 1
     'sunny'
   end
 
