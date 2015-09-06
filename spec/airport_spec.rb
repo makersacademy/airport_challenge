@@ -5,24 +5,25 @@ describe Airport do
 	let(:airport) { Airport.new }
   	let(:plane) { Plane.new }
 
+  	before do 
+  		allow(subject).to receive(:stormy?).and_return(false) #stubs out each method and keeps code DRY. 
+  	end 
+
 	describe "landing" do 
 
 		it { is_expected.to respond_to(:instruct_to_land).with(1).argument}
 		it { is_expected.to respond_to(:stormy?)}
 
 		it "planes array increase by 1 for each landing" do 
-			allow(subject).to receive(:stormy?).and_return false
 			expect {subject.instruct_to_land(plane)}.to change{subject.plane_count.length}.by(1)
 		end 
 
 		it "Raise error when airport is full" do
-			allow(subject).to receive(:stormy?).and_return false
 			subject.capacity.times{subject.instruct_to_land Plane.new}
 			expect {subject.instruct_to_land Plane.new}.to raise_error "Plane cannot land. Circle until capacity is released"
 		end 
 
 		it "Raise error when trying to land same plane twice" do	
-			allow(subject).to receive(:stormy?).and_return false
 			subject.instruct_to_land(plane)
 			expect {subject.instruct_to_land(plane)}.to raise_error "Plane has already landed"
 		end 
