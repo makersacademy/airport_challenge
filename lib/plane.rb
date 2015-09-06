@@ -8,11 +8,15 @@ attr_reader :flying
     @flying = true
   end
 
-  def landed
+  def land
     @flying = false
   end
 
-  def taken_off
+  def landed?
+    !@flying
+  end
+
+  def take_off
     @flying = true
   end
 

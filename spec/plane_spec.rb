@@ -24,21 +24,22 @@ describe Plane do
   end
 
   it "can land" do
-    is_expected.to respond_to(:landed)
+    is_expected.to respond_to(:land)
   end
 
   it "has landed" do
-    subject.landed
-    expect(subject.flying).to eq(false)
+    subject.land
+    subject.landed?
+    expect(subject).to be_landed
   end
 
   it "can take off" do
-    is_expected.to respond_to(:taken_off)
+    is_expected.to respond_to(:take_off)
   end
 
   it "is flying after take off" do
-    subject.landed
-    subject.taken_off
+    subject.landed?
+    subject.take_off
     expect(subject.flying).to eq(true)
   end
 
