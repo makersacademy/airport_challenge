@@ -20,8 +20,6 @@ describe Plane do
   let(:airport_allow){double(:airport_allow, allow_landing?: true)}
   let(:airport_not_allow){double(:airport_not_allow, allow_landing?: false)}
 
-  xit 'is flying when created'
-
   describe 'landing' do
 
     it 'can land at given airport' do
