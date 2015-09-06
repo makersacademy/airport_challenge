@@ -18,14 +18,22 @@ require 'plane'
 describe Plane do
 
   it 'returns an instance of Plane' do
-    expect(Plane.new()).to be_an_instance_of Plane
+    expect(Plane.new).to be_an_instance_of Plane
   end
 
-  xit 'is flying when created'
+  it 'is flying when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'can land'
+  it 'can land' do
+    expect(subject).to respond_to(:land)
+  end
 
-  xit 'is landed after landing'
+  it 'is landed after landing' do
+    plane = Plane.new
+    plane.land
+    expect(plane).to_not be_flying
+  end
 
   xit 'can take off'
 
