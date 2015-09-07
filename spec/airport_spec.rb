@@ -20,7 +20,7 @@ describe Airport do
         subject.land_plane(plane)
         expect(plane.status).to eq (:landed)
       end
-      
+
       it "it is added to the hangar" do
         allow(subject).to receive(:stormy?).and_return(false)
         subject.land_plane(Plane.new)
@@ -33,7 +33,7 @@ describe Airport do
 
       it "it is flying" do
         allow(subject).to receive(:stormy?).and_return(false)
-        subject.hangar = [Plane.new]  # bypass fail on first line of land_plane 
+        subject.hangar = [Plane.new]  # bypass fail on first line of land_plane
         plane = Plane.new
         allow(plane).to receive(:status).and_return(:flying)
         subject.plane_take_off(plane)
@@ -65,7 +65,7 @@ describe Airport do
       end
 
     context "when weather conditions are stormy" do
-        
+
       it "does not allow planes to land" do
       allow(subject).to receive(:stormy?).and_return(true)
       expect {subject.land_plane(Plane.new)}.to raise_error "unable to land"
@@ -78,5 +78,3 @@ describe Airport do
     end
   end
 end
-
-
