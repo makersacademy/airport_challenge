@@ -23,14 +23,16 @@ class Airport
     @planes_at_airport-=[p]
   end
 
+  def report_weather
+    if rand(0..99)==0 then @weather=:stormy else @weather=:sunny end
+  end
+
   private
 
   def full?
     if (@planes_at_airport.length+1)>@capacity then true else false end
   end
 
-  def report_weather
-    if rand(0..99)==0 then @weather=:stormy else @weather=:sunny end
-  end
+
 
 end

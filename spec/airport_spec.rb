@@ -42,6 +42,11 @@ describe Airport do
       expect{subject.land_plane(p)}.to raise_error error_st
     end
   end
+  describe 'met office reports weather' do
+    it 'report stormy or sunny' do
+      expect(subject.report_weather).to eq(:sunny).or eq(:stormy)
+    end
+  end
 
   describe 'traffic control' do
 
