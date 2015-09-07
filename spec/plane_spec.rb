@@ -2,9 +2,17 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport_allow){double(:airport_allow, allow_landing?: true, allow_take_off?: true, receive_plane: nil, release_plane: nil)}
-  let(:airport_not_allow){double(:airport_not_allow, allow_landing?: false)}
-  let(:land_not_take_off){double(:land_not_take_off, allow_landing?: true, allow_take_off?: false, receive_plane: nil, release_plane: nil)}
+  let(:airport_allow){double(:airport_allow,  allow_landing?: true,
+                                              allow_take_off?: true,
+                                              receive_plane: nil,
+                                              release_plane: nil)}
+
+  let(:airport_not_allow){double(:airport_not_allow,  allow_landing?: false)}
+
+  let(:land_not_take_off){double(:land_not_take_off,  allow_landing?: true,
+                                                      allow_take_off?: false,
+                                                      receive_plane: nil,
+                                                      release_plane: nil)}
 
   it 'flying when created' do
     expect(subject).to be_flying

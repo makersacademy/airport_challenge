@@ -48,7 +48,8 @@ describe Airport do
       expect(subject.release_plane(p2)).to eq p2
     end
 
-    it 'following take off from a full airport, allows another plane to land' do
+    it 'following take off from a full airport,
+          allows another plane to land' do
       subject.capacity.times { subject.receive_plane(plane) }
       subject.release_plane(plane)
       expect(subject).to be_allow_landing
@@ -89,7 +90,8 @@ describe Airport do
           @weather}
       end
 
-      it 'checks for stormy weather before allowing landing' do
+      it 'checks for stormy weather before allowing
+            landing' do
         expect(subject.weather).to receive :stormy?
         subject.allow_landing?
       end
