@@ -59,6 +59,10 @@ describe Airport do
         subject.weather
         expect{subject.land_bad_weather}.to raise_error 'Stormy weather'
       end
+      it 'makes the weather stormy' do
+        subject.weather
+        expect(subject.weather).to eq(:stormy).or eq(:sunny)
+      end
     end
   end
     it 'has a default capacity' do
