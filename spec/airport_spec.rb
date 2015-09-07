@@ -15,6 +15,12 @@ describe Airport do
 
   let(:plane) { double :plane, flying?: true }
 
+  #before(:each) do
+  #   allow(subject).to receive(:stormy?).and_return "sunny"
+  # end
+  # this will run this condition before each test. If you don't use :each, then
+  # it will only run before the first test.
+
   describe 'take off' do
 
     it { is_expected.to respond_to(:release_plane) }
@@ -71,13 +77,9 @@ describe Airport do
 
     context "when weather conditions are stormy" do
 
-      it "tests the forecast method" do
-        subject.stub(:forecast) {5}
-        expect(subject.forecast).to eq(5)
-      end
-
       it "tests the stormy method" do
-        subject.stub(:forecast) {5}
+        # subject.stub(:forecast) {5}
+        srand(40)
         expect(subject.stormy?).to eq("stormy")
       end
 
@@ -88,7 +90,7 @@ describe Airport do
 
       it "does not allow a plane to land" do
         allow(subject).to receive(:stormy?).and_return("stormy")
-        expect{ subject.dock plane }.to raise_error 'Airport unavailable'
+        expect{ subject.dock plane }.to raise_error "Airport unavailable"
       end
     end
   end
