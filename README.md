@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/timhyson/airport_challenge.svg?branch=master)](https://travis-ci.org/timhyson/airport_challenge)
+
 Airport Challenge
 =================
 
