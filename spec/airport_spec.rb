@@ -20,6 +20,7 @@ describe Airport do
         subject.land_plane(plane)
         expect(plane.status).to eq (:landed)
       end
+      
       it "it is added to the hangar" do
         allow(subject).to receive(:stormy?).and_return(false)
         subject.land_plane(Plane.new)
