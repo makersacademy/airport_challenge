@@ -3,6 +3,7 @@ require_relative 'plane'
 class Airport
 	CAPACITY = 100
 	attr_accessor :capacity
+	attr_reader :planes
 
 	def initialize
 		@planes = []
@@ -17,7 +18,7 @@ class Airport
 		planes << plane
 	end
 
-	def depart
+	def depart(plane)
 		fail 'Weather will not permit' if weather == false
 		fail 'Airport is empty' if empty?
 		plane = planes.pop
@@ -37,8 +38,6 @@ class Airport
 	end
 
 		private
-
-		attr_reader :planes
 
 		def full?
 			planes.count >= capacity

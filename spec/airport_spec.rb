@@ -8,7 +8,7 @@ describe Airport do
       allow(subject).to receive(:chance) {2}
       plane = Plane.new
       subject.touch_down plane
-      subject.depart
+      subject.depart plane
       expect(plane.flying?).to be_truthy
     end
   end
@@ -25,8 +25,8 @@ describe Airport do
     it 'receives a plane' do
       allow(subject).to receive(:chance) {2}
       plane = Plane.new
-      subject.touch_down Plane.new
-      expect(subject).to include(plane)
+      subject.touch_down plane
+      expect(subject.planes).to include(plane)
     end
 
   end
@@ -43,9 +43,9 @@ describe Airport do
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
         plane = Plane.new
+        subject.touch_down plane
         allow(subject).to receive(:chance) {1}
-        allow(plane).to receive(:touch_down)
-        expect{plane.depart}.to raise_error("Weather will not permit")
+        expect{subject.depart plane}.to raise_error("Weather will not permit")
       end
 
       it 'does not allow a plane to land' do
