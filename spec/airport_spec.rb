@@ -48,6 +48,7 @@ describe Airport do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
         p=double(:plane, land: :landed, take_off: :flying, status: :flying)
+        allow(subject).to receive(:report_weather).and_return(:sunny)
         subject.capacity.times{subject.land_plane(p)}
         error_st='Do not land, airport is full'
         expect { subject.land_plane(p) }.to raise_error error_st
