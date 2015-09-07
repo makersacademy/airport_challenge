@@ -19,6 +19,7 @@ class Airport
   end
 
   def plane_take_off(plane)
+    fail "airport hangar empty - unable to take off" if empty?
     plane.take_off
     @hangar.pop
   end
@@ -30,6 +31,7 @@ class Airport
   end
 
   def empty?
+    @hangar.empty?
   end
 
 end

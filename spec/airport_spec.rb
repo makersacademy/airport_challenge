@@ -45,6 +45,7 @@ describe Airport do
   describe "outgoing planes" do
     context "when a plane leaves" do
       it "it is flying" do
+        subject.hangar = [Plane.new]  # bypass fail on first line of land_plane 
         plane = Plane.new
         allow(plane).to receive(:status).and_return(:flying)
         subject.plane_take_off(plane)
@@ -56,6 +57,11 @@ describe Airport do
         subject.hangar = [plane]
         subject.plane_take_off(plane)
         expect(subject.hangar).to eq []
+      end
+
+      it "planes cannot leave if the hangar is empty" do
+        subject.hangar = []
+        expect{subject.plane_take_off(Plane.new)}.to raise_error "airport hangar empty - unable to take off"
       end
     end
   end
