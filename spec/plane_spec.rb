@@ -1,8 +1,5 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
 # When we create a new plane, it should be "flying",
 # thus planes can not be created in the airport.
 #
@@ -17,14 +14,12 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+	it 'is flying when created' do 
+  		plane = Plane.new
+  	end
+	
+	it { is_expected.to respond_to(:landed?) }
 
-  xit 'can land'
-
-  xit 'is landed after landing'
-
-  xit 'can take off'
-
-  xit 'is flying after take off'
+	it { is_expected.to respond_to(:flying?) }
 
 end
