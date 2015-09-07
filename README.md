@@ -1,6 +1,19 @@
-Airport Challenge
+**Airport_challenge**
 =================
+Makers Academy Week One Challenge.
 
+Description
+------------
+Personal submission of the Makers Academy week one challenge.
+
+Installation/Dependencies
+--------------------------
+- Ruby Version 2.2.0
+- Fully tested with Rspec 3.3.2
+- Coveralls & Travis CI tested
+
+Challenge Details:
+------------
 Instructions
 ---------
 
