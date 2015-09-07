@@ -2,35 +2,30 @@ require_relative 'plane'
 
 class Airport
 
+  Capacity = 20
+
   attr_reader :capacity, :planes
 
   def initialize
-    @capacity = 20
+    @capacity = Capacity
     @planes = []
   end
 
   def allow_take_off
-    if rand_num == 1
-      fail "Sorry, bad weather"
-    elsif @planes.empty?
-      fail "No planes at the airport"
-    else
-      plane = @planes.pop
-      @planes.delete(plane)
-      plane.take_off
-      plane
-    end
+    fail "Sorry, bad weather" if rand_num == 1
+    fail "No planes at the airport" if empty?
+
+    plane = @planes.pop
+    @planes.delete(plane)
+    plane.take_off
+    plane
   end
 
   def allow_land(plane)
-    if rand_num == 1
-      fail "Sorry, bad weather"
-    elsif full?
-      fail "Airport is full pilot"
-    else
-      plane.land
-      @planes << plane
-    end
+    fail "Sorry, bad weather" if rand_num == 1
+    fail "Airport is full pilot" if full?
+    plane.land
+    @planes << plane
   end
 
   def forecast
@@ -38,13 +33,17 @@ class Airport
     "sunny"
   end
 
-  private
-
   def rand_num
     rand(2)
   end
 
+  private
+
+  def empty?
+    @planes.empty?
+  end
+
   def full?
-    @planes.count >= 20
+    @planes.count >= Capacity
   end
 end

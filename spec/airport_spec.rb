@@ -19,7 +19,7 @@ describe Airport do
   end
 
   it 'has capacity of 20 planes' do
-    expect(subject.capacity).to eq 20
+    expect(subject.capacity).to eq Airport::Capacity
   end
 
   it 'responds to forecast' do
@@ -28,8 +28,8 @@ describe Airport do
 
   describe 'forecast' do
     # it 'has random number generator for forecast' do
-    #
-    # end
+    #srand()
+    #end
 
     it 'can be stormy' do
       subject.stub(:rand_num).and_return(1)
