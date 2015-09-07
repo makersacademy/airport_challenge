@@ -2,8 +2,6 @@ require 'plane'
 
 describe Plane do
 
-  # let(:plane) {Plane.new}
-
   it 'is flying when created' do
     expect(subject).to be_flying
   end
@@ -38,5 +36,11 @@ describe Plane do
     subject.can_land
     subject.can_take_off
     expect(subject).to be_flying
+  end
+
+  it 'is flying after take off' do
+    subject.can_land
+    subject.can_take_off
+    expect(subject.flying?).to eq true
   end
 end
