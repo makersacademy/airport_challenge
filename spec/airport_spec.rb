@@ -34,7 +34,10 @@ describe Airport do
   describe 'landing' do
     xit 'instructs a plane to land'
 
-    xit 'receives a plane'
+    it 'receives a plane' do
+      plane = subject.land Plane.new
+      expect(subject.planes).to include(plane)
+    end
 
     it 'raises and error when the airport is full' do
       20.times { subject.land Plane.new }
