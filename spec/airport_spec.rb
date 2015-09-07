@@ -55,7 +55,8 @@ describe Airport do
       context 'when airport is full' do
         it 'does not allow a plane to land' do
           subject.capacity.times {subject.hanger << :plane}
-          expect{subject.instruct_to_land(plane)}.to raise_error 'Airport is full'
+          expect{subject.instruct_to_land(plane)}.to raise_error
+           'Airport is full'
         end
       end
 
