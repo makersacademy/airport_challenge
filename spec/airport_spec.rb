@@ -13,10 +13,11 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double :plane }
+  let(:plane) { double :plane, flying?: false }
+  let(:plane_2) { double :plane }
 
   before do
-    allow(subject).to receive(:weather) { "sunny" }
+    allow(subject).to receive(:weather) { :sunny }
   end
 
   it { is_expected.to respond_to(:make_take_off).with(1).argument }
@@ -28,7 +29,8 @@ describe Airport do
 
 
   #describe 'take off' do
-    it 'instructs a plane to take off' do 
+    it 'instructs a plane to take off' do
+      allow(plane).to receive(:flying?) { false }
       expect(plane).to receive(:take_off)
       subject.make_take_off(plane)
     end
@@ -36,18 +38,21 @@ describe Airport do
     it 'releases a plane' do
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
+      allow(plane).to receive(:flying?) { false }
       subject.make_land(plane)
       expect(subject.make_take_off(plane)).to be plane
     end
 
-    # it 'should not be able to take off if already flying' do
-    #   allow(subject).to receive(:weather) { "sunny" }
-    #   allow(plane).to receive(:land)
-    #   allow(plane).to receive(:take_off)
-    #   subject.make_land(plane)
-    #   subject.make_take_off(plane)
-    #   expect { subject.make_take_off(plane) }.to raise_error 'Plane has already taken off'
-    # end
+    it 'should not be able to take off if already flying' do
+      allow(subject).to receive(:weather) { :sunny }
+      allow(plane).to receive(:land)
+      subject.make_land(plane)
+      allow(plane).to receive(:take_off)
+      allow(plane).to receive(:flying?) { false }
+      subject.make_take_off(plane)
+      allow(plane).to receive(:flying?) { true }
+      expect { subject.make_take_off(plane) }.to raise_error 'Plane has already taken off'
+    end
 
     # ^^ can't work out how to include this test to make sure you can't 
     # instruct a plane that's already taken off to take off again.
@@ -77,18 +82,21 @@ describe Airport do
   #end
 
   #describe 'traffic control' do
-    #context 'when airport is full' do
+    context 'when airport is full' do
       it 'does not allow a plane to land when at capacity' do
+        airport = Airport.new(1)
+        allow(airport).to receive(:weather) { :sunny }
         allow(plane).to receive(:land)
-        subject.capacity.times { subject.make_land(Plane.new) } # i know i shouldn't have Plane.new here but can't work out what to replace it with so the test passes
-        expect { subject.make_land(plane) }.to raise_error 'Airport is full'
+        airport.make_land(plane)
+        allow(plane_2).to receive(:land)
+        expect { airport.make_land(plane_2) }.to raise_error 'Airport is full'
       end
 
 
-    #end
+    end
 
     # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
+    # The weather must be random and only have two states :sunny or :stormy.
     # Try and take off a plane, but if the weather is stormy,
     # the plane can not take off and must remain in the airport.
     #
@@ -96,21 +104,23 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    #context 'when weather conditions are stormy' do
+    context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
       allow(plane).to receive(:land)
+      allow(plane).to receive(:flying?) { true }
       subject.make_land(plane)
-      allow(subject).to receive(:weather) { "stormy" }
+      allow(plane).to receive(:flying?) { false }
+      allow(subject).to receive(:weather) { :stormy }
       allow(plane).to receive(:take_off)
       expect { subject.make_take_off(plane) }.to raise_error 'The weather is too stormy'
     end
 
 
       it 'does not allow a plane to land' do
-        allow(subject).to receive(:weather) { "stormy" }
+        allow(subject).to receive(:weather) { :stormy }
         allow(plane).to receive(:land)
         expect { subject.make_land(plane) }.to raise_error 'The weather is too stormy'
       end
-    #end
+    end
   #end
 end

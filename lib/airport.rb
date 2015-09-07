@@ -11,15 +11,15 @@ class Airport
 
   def make_land(plane)
     fail 'Plane has already landed' if @planes.include? plane
-    airport_full?
-    too_stormy?
+    fail 'Airport is full' if @planes.count >= capacity
+    fail 'The weather is too stormy' if stormy?
     plane.land
     @planes << plane
     plane
   end
 
   def make_take_off(plane)
-    # fail 'Plane has already taken off' if !@planes.include? plane
+    fail 'Plane has already taken off' if plane.flying?
     fail 'The weather is too stormy' if stormy?
     plane.take_off
     @planes.delete(plane)
@@ -28,21 +28,21 @@ class Airport
 
   private 
 
-  def airport_full?
-    fail 'Airport is full' if @planes.count >= capacity
-  end
+  # def airport_full?
+  #   fail 'Airport is full' if @planes.count >= capacity
+  # end
 
   def weather
-    ["stormy", "sunny"].sample #can't get this to pass the coveralls
+    [:stormy, :sunny].sample #can't get this to pass the coveralls
   end
 
   def stormy?
-    weather == "stormy" ? true : false
+    weather == :stormy ? true : false
   end
 
-  def too_stormy?
-    fail 'The weather is too stormy' if stormy?
-  end
+  # def too_stormy?
+  #   fail 'The weather is too stormy' if stormy?
+  # end
 
 
 end
