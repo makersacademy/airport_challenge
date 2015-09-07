@@ -30,6 +30,12 @@ describe Airport do
         subject.capacity.times { subject.land :planes }
         expect{ subject.land :planes }.to raise_error 'Airport full.'
       end
+
+      it 'does not allow plane to take off' do
+        subject.land :planes
+        subject.take_off
+        expect{ subject.take_off }.to raise_error 'No planes at airport'
+      end
     end
 
     # Include a weather condition.
