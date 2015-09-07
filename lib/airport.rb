@@ -15,14 +15,14 @@ class Airport
   def land(plane)
     fail 'Airport at capacity' if full?
     fail 'Weather is stormy' if stormy?
-    plane.landed
+    plane.land
     @planes << plane
   end
 
   def take_off(plane)
     fail 'Weather is stormy' if stormy?
     fail 'Airport is empty'  if empty?
-    plane.taken_off
+    plane.take_off
     @planes.pop
   end
 

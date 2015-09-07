@@ -4,7 +4,7 @@ require './lib/weather.rb'
 
 describe Airport do
 
-  subject {Airport.new}
+  let(:subject) {Airport.new}
   let(:plane) {Plane.new}
 
   before do
@@ -37,6 +37,18 @@ describe Airport do
     it 'does not allow a plane to take off if airport is empty' do
       subject.empty?
       expect {subject.take_off(plane)}.to raise_error 'Airport is empty'
+    end
+
+    it 'will not let a plane land if stormy' do
+      allow(subject).to receive(:stormy?) {true}
+      plane.land
+      expect {subject.land(plane)}.to raise_error 'Weather is stormy'
+    end
+
+    it 'will not let a plane take off if stormy' do
+      plane.land
+      allow(subject).to receive(:stormy?) {true}
+      expect {subject.take_off(plane)}.to raise_error 'Weather is stormy'
     end
   end
 end

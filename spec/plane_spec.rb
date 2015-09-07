@@ -5,32 +5,32 @@ describe Plane do
   subject {Plane.new}
 
   it 'shows flying status when created' do
-  	expect(subject.flying?).to eql(true)
+    expect(subject.flying?).to eql(true)
   end
 
   describe 'landing' do
     it 'can land' do
-    	subject.taken_off
-    	subject.landed
-    	expect(subject.flying?).to eql(false)
+      subject.take_off
+      subject.land
+      expect(subject.flying?).to eql(false)
     end
 
     it 'shows landed status after landing' do
-    	subject.landed
-    	expect(subject.flying?).to eql(false)
+      subject.land
+      expect(subject.flying?).to eql(false)
     end
   end
 
   describe 'taking off' do
     it 'can take off' do
-    	subject.landed
-    	subject.taken_off
-    	expect(subject.flying?).to eql(true)
+      subject.land
+      subject.take_off
+      expect(subject.flying?).to eql(true)
     end
 
     it 'shows flying status after take off' do
-    	subject.taken_off
-    	expect(subject.flying?).to eql(true)
+      subject.take_off
+      expect(subject.flying?).to eql(true)
     end
   end
 end
