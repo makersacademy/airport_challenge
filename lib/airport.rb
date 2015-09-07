@@ -13,6 +13,7 @@ class Airport
   end
 
   def land_plane(plane)
+    fail "airport hangar full - unable to land" if empty?
     plane.land
     @hangar << plane
   end
@@ -20,6 +21,15 @@ class Airport
   def plane_take_off(plane)
     plane.take_off
     @hangar.pop
+  end
+
+  private
+
+  def full?
+  end
+
+  def empty?
+    @hangar.size >= capacity
   end
 
 end

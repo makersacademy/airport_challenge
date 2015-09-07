@@ -33,6 +33,12 @@ describe Airport do
         subject.land_plane(Plane.new)
         expect(subject.hangar).not_to eq []
       end
+
+      it "cannot land when the hangar is full" do
+        subject.capacity.times {subject.land_plane(Plane.new)}
+        expect{subject.land_plane(Plane.new)}.to raise_error "airport hangar full - unable to land"
+      end
+
     end
   end
 
