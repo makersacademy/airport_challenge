@@ -13,9 +13,10 @@ require 'airport'
 
 describe Airport do
 
+  let(:plane){ double :plane }
+  
   describe 'take off' do
     it { is_expected.to respond_to :take_off }
-
   end
 
   describe 'landing' do
@@ -27,12 +28,12 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow plane to land' do
-        subject.capacity.times { subject.land :planes }
-        expect{ subject.land :planes }.to raise_error 'Airport full.'
+        subject.capacity.times { subject.land(plane) }
+        expect{ subject.land(plane) }.to raise_error 'Airport full.'
       end
 
       it 'does not allow plane to take off' do
-        subject.land :planes
+        subject.land(plane)
         subject.take_off
         expect{ subject.take_off }.to raise_error 'No planes at airport'
       end
