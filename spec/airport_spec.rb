@@ -13,21 +13,57 @@ require 'airport'
 
 describe Airport do
 
+  let(:plane) { double :plane, flying?: true }
+
+  #before(:each) do
+  #   allow(subject).to receive(:stormy?).and_return "sunny"
+  # end
+  # this will run this condition before each test. If you don't use :each, then
+  # it will only run before the first test.
+
   describe 'take off' do
-    xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
+    it { is_expected.to respond_to(:release_plane) }
+
+    it "raises error when there are no planes available" do
+      expect(subject.release_plane).to eq(false)
+    end
+
+    it "releases a plane" do
+      allow(subject).to receive(:stormy?) { false }
+      subject.dock(plane)
+      subject.release_plane
+      expect(subject.planes.empty?).to eq(true)
+    end
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  describe "landing" do
+    it 'instructs a plane to land' do
+      is_expected.to respond_to(:dock).with(1).argument
+    end
 
-    xit 'receives a plane'
+    it "receives a plane" do
+      allow(subject).to receive(:stormy?) { false }
+      subject.dock(plane)
+      expect(subject.planes.any?).to eq(true)
+    end
+
   end
 
-  describe 'traffic control' do
+  describe "traffic control" do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+
+      it "has a default capacity" do
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
+
+       it { is_expected.to respond_to :stormy? }
+
+      it "raises an error when airport is full" do
+        allow(subject).to receive(:stormy?) { false }
+        subject.capacity.times { subject.dock plane }
+        expect { subject.dock plane }.to raise_error 'Airport unavailable'
+      end
     end
 
     # Include a weather condition.
@@ -39,10 +75,23 @@ describe Airport do
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+    context "when weather conditions are stormy" do
 
-      xit 'does not allow a plane to land'
+      it "tests the stormy method" do
+        # subject.stub(:forecast) {5}
+        srand(40)
+        expect(subject.stormy?).to eq("stormy")
+      end
+
+      it "does not allow a plane to take off" do
+        allow(subject).to receive(:stormy?).with(:forecast).and_return("stormy")
+        expect(subject.release_plane).to eq(false)
+      end
+
+      it "does not allow a plane to land" do
+        allow(subject).to receive(:stormy?).and_return("stormy")
+        expect{ subject.dock plane }.to raise_error "Airport unavailable"
+      end
     end
   end
 end
