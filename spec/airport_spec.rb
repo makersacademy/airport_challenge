@@ -1,5 +1,4 @@
 require 'airport'
-
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
 
@@ -12,22 +11,43 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  let(:plane) { double :plane }
+
+  it 'has a capacity of 10 planes' do
+    expect(subject.capacity).to eq 10
+  end
 
   describe 'take off' do
     xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
+    # it 'responds to release a plane' do
+    #   expect(subject).to respond_to (:release)
+    # end
+    it { is_expected.to respond_to(:release).with(1).argument }
+
+    xit 'releases a plane' do
+    end
   end
 
   describe 'landing' do
     xit 'instructs a plane to land'
+
+    # it 'responds to receive a plane' do
+    #   expect(subject).to respond_to :receive
+    # end
+    it { is_expected.to respond_to(:receive).with(1).argument }
+    it 'raises an error when full' do
+        10.times { subject.receive :plane }
+        expect { subject.receive :plane }.to raise_error 'airport full'
+    end
 
     xit 'receives a plane'
   end
 
   describe 'traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'does not allow a plane to land'
+      # it { is_expected.to respond_to(:full?) }
     end
 
     # Include a weather condition.
