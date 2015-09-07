@@ -13,13 +13,13 @@ class Airport
   end
 
   def land_plane(plane)
-    fail "airport hangar full - unable to land" if full?
+    fail "unable to land" if full? || stormy?
     plane.land
     @hangar << plane
   end
 
   def plane_take_off(plane)
-    fail "airport hangar empty - unable to take off" if empty?
+    fail "unable to take off" if empty? || stormy?
     plane.take_off
     @hangar.pop
   end
