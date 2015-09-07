@@ -1,48 +1,80 @@
-require 'airport'
-
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# A plane currently in the airport can be requested to take off.
-#
-# No more planes can be added to the airport, if it's full.
-# It is up to you how many planes can land in the airport
-# and how that is implemented.
-#
-# If the airport is full then no planes can land
+require_relative '../lib/airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
-
-    xit 'releases a plane'
+  it "initializes with preset capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
-
-    xit 'receives a plane'
+  it "initializes with an empty hangar" do
+    expect(subject.hangar).to eq []
   end
+
+
+  describe "when a plane lands" do
+
+      it "it is landed" do
+        plane = Plane.new
+        allow(subject).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:status).and_return(:landed)
+        subject.land_plane(plane)
+        expect(plane.status).to eq (:landed)
+      end
+
+      it "it is added to the hangar" do
+        allow(subject).to receive(:stormy?).and_return(false)
+        subject.land_plane(Plane.new)
+        expect(subject.hangar).not_to eq []
+      end
+  end
+
+
+  describe "when a plane takes off" do
+
+      it "it is flying" do
+        allow(subject).to receive(:stormy?).and_return(false)
+        subject.hangar = [Plane.new]  # bypass fail on first line of land_plane
+        plane = Plane.new
+        allow(plane).to receive(:status).and_return(:flying)
+        subject.plane_take_off(plane)
+        expect(plane.status).to eq(:flying)
+      end
+
+      it "it is removed from the hangar" do
+        allow(subject).to receive(:stormy?).and_return(false)
+        plane = Plane.new
+        subject.hangar = [plane]
+        subject.plane_take_off(plane)
+        expect(subject.hangar).to eq []
+      end
+  end
+
 
   describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
-    end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+      it "planes cannot land if the hangar is full" do
+        allow(subject).to receive(:stormy?).and_return(false)
+        subject.capacity.times {subject.land_plane(Plane.new)}
+        expect{subject.land_plane(Plane.new)}.to raise_error "unable to land"
+      end
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+      it "planes cannot leave if the hangar is empty" do
+        allow(subject).to receive(:stormy?).and_return(false)
+        subject.hangar = []
+        expect{subject.plane_take_off(Plane.new)}.to raise_error "unable to take off"
+      end
 
-      xit 'does not allow a plane to land'
+    context "when weather conditions are stormy" do
+
+      it "does not allow planes to land" do
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect {subject.land_plane(Plane.new)}.to raise_error "unable to land"
+      end
+
+      it "does not allow planes to take off" do
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect {subject.plane_take_off(Plane.new)}.to raise_error "unable to take off"
+      end
     end
   end
 end
