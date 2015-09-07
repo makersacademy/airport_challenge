@@ -12,15 +12,16 @@ class Airport
   end
 
   def allow_landing?
+    weather_update
     return false if weather.stormy?
     allow_landing
   end
 
   def allow_take_off?
+    weather_update
     return false if weather.stormy?
     true
   end
-
 
   def receive_plane(plane)
     planes << plane if allow_landing?
@@ -42,6 +43,10 @@ class Airport
   def full?
     return true if planes.count == capacity
     false
+  end
+
+  def weather_update
+    @weather = Weather.new
   end
 
 end

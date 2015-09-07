@@ -13,6 +13,8 @@ describe Airport do
 
     before(:each) do
       allow(subject.weather).to receive(:stormy?) {false}
+      allow(subject).to receive(:weather_update) {
+          @weather}
     end
 
     it 'allows planes to land' do
@@ -32,6 +34,8 @@ describe Airport do
 
     before(:each) do
       allow(subject.weather).to receive(:stormy?) {false}
+      allow(subject).to receive(:weather_update) {
+          @weather}
     end
 
     it 'releases specific plane' do
@@ -59,6 +63,8 @@ describe Airport do
 
       before(:each) do
         allow(subject.weather).to receive(:stormy?) {false}
+        allow(subject).to receive(:weather_update) {
+          @weather}
         subject.capacity.times {subject.receive_plane(plane)}
       end
 
@@ -79,6 +85,8 @@ describe Airport do
 
       before(:each) do
         allow(subject.weather).to receive(:stormy?) {true}
+        allow(subject).to receive(:weather_update) {
+          @weather}
       end
 
       it 'checks for stormy weather before allowing landing' do
@@ -107,6 +115,32 @@ describe Airport do
         allow(subject.weather).to receive(:stormy?) {true}
         subject.release_plane(plane)
         expect(subject.planes.count).to eq num_planes
+      end
+
+    end
+
+    describe 'updates weather' do
+
+      it 'checks weather update before allowing landing' do
+        expect(subject).to receive(:weather_update)
+        subject.allow_landing?
+      end
+
+      it 'updates the weather before allowing landing' do
+        w1 = subject.weather
+        subject.allow_landing?
+        expect(subject.weather).not_to eq w1
+      end
+
+      it 'checks weather update before allowing take off' do
+        expect(subject).to receive(:weather_update)
+        subject.allow_take_off?
+      end
+
+      it 'updates the weather before allowing take off' do
+        w1 = subject.weather
+        subject.allow_take_off?
+        expect(subject.weather).not_to eq w1
       end
 
     end
