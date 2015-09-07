@@ -35,6 +35,8 @@ describe Plane do
  end
 
   it 'is flying after take off' do
+    subject.can_land
+    subject.can_take_off
     expect(subject).to be_flying
   end
 end
