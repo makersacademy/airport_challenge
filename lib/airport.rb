@@ -13,7 +13,7 @@ class Airport
   end
 
   def land_plane(plane)
-    fail "airport hangar full - unable to land" if empty?
+    fail "airport hangar full - unable to land" if full?
     plane.land
     @hangar << plane
   end
@@ -26,10 +26,10 @@ class Airport
   private
 
   def full?
+    @hangar.size >= capacity
   end
 
   def empty?
-    @hangar.size >= capacity
   end
 
 end
