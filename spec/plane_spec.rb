@@ -26,7 +26,8 @@ describe Plane do
   #it 'can land'
   it 'can land' do
     plane.can_land
-    expect {plane.can_land}.to raise_error 'Can not land if it is not flying'
+    expect {plane.can_land}.to raise_error
+      'Can not land if it is not flying'
   end
 
   #it 'is landed after landing'
@@ -38,7 +39,8 @@ describe Plane do
 
   #it 'can take off'
   it 'can take off' do
-    expect {plane.can_take_off}.to raise_error 'Can not take off if it is not landed'
+    expect {plane.can_take_off}.to raise_error
+      'Can not take off if it is not landed'
   end
 
   #it 'is flying after take off'
