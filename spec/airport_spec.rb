@@ -2,7 +2,11 @@ require 'airport'
 
 describe Airport do
 
-  	let(:plane) { Plane.new }
+  	# let(:plane) { Plane.new }
+
+  	let(:plane) {double :plane}
+  	before(:each){ allow(plane).to receive(:land) }
+  	before(:each){ allow(plane).to receive(:take_off) }
 
   	before do 
   		allow(subject).to receive(:stormy?).and_return(false) #stubs out each method and keeps code DRY. 
@@ -18,8 +22,8 @@ describe Airport do
 		end 
 
 		it "Raise error when airport is full" do
-			subject.capacity.times{subject.instruct_to_land Plane.new}
-			expect {subject.instruct_to_land Plane.new}.to raise_error "Plane cannot land. Circle until capacity is released"
+			subject.capacity.times{subject.instruct_to_land double(:plane, land: nil)}
+			expect {subject.instruct_to_land double(:plane)}.to raise_error "Plane cannot land. Circle until capacity is released"
 		end 
 
 		it "Raise error when trying to land same plane twice" do	

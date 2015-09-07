@@ -10,11 +10,15 @@ class Airport
 	end 
 
 	def instruct_to_land(plane)
+		check_for_failure(plane)
+		@planes << plane 
+		plane.land
+	end 
+
+	def check_for_failure(plane)
 		fail "Plane has already landed" if @planes.include? plane 
 		fail "Plane cannot land. Circle until capacity is released" if full? 
 		fail "Plane cannot land. Wait until wind slows down" if stormy? 
-		@planes << plane 
-		plane.land
 	end 
 
 	def instruct_to_take_off(plane)
