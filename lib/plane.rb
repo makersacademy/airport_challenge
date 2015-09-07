@@ -21,5 +21,6 @@ class Plane
 		@current_airport.plane_taken_off(self)
 		@flying = true
 		@current_airport = nil
+		return self
 	end
 end

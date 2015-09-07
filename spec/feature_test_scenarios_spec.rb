@@ -32,12 +32,12 @@ feature 'Stormy City Airport Rush Hour' do
 		expect(all_flying).to eq(true)
 	end	
 
-	scenario "Can't land at the airport if weather is stormy" do
+	scenario "Planes can't land at the airport if weather is stormy" do
 		allow(airport).to receive(:weather).and_return('stormy')
 		expect{created_planes.first.land(airport)}.to raise_error 'Stormy weather'
 	end
 
-	scenario "Can't land at the airport if airport is full" do
+	scenario "Planes can't land at the airport if airport is full" do
 		allow(airport).to receive(:weather).and_return('sunny')
 		airport.capacity.times do
 			created_planes.last.land(airport)
@@ -45,4 +45,25 @@ feature 'Stormy City Airport Rush Hour' do
 		end
 		expect{created_planes.last.land(airport)}.to raise_error 'Airport full'
 	end
+
+	scenario "All planes landed at the airport are no longer flying" do
+		all_not_flying = true; i = 0
+		10.times do
+			all_not_flying = false if airport.planes[i].flying
+			i += 1		
+		end
+		expect(all_not_flying).to eq(true)
+	end
+
+	scenario "Planes can't take off from the airport if weather is stormy" do
+		allow(airport).to receive(:weather).and_return('stormy')		
+		expect{airport.planes.first.take_off}.to raise_error 'Stormy'
+	end
+
+	scenario "Five planes takes off from the airport in sunny weather" do
+		allow(airport).to receive(:weather).and_return('sunny')		
+		5.times{airport.planes.first.take_off}
+		expect(airport.planes.count).to eq(5)
+	end
+
 end
