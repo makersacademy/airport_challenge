@@ -1,4 +1,4 @@
-require 'plane'
+
 
 ## Note these are just some guidelines!
 ## Feel free to write more tests!!
@@ -14,17 +14,33 @@ require 'plane'
 # Think about your implementation - does it allow a plane to be "flying"
 # and landed?
 # Are you testing that?
+require 'plane'
+
+# describe Plane do
+#  it { is_expected.to respond_to :flying? }
+# end
 
 describe Plane do
+let(:plane) { Plane.new }
+  
+	it {is_expected.to respond_to(:land)}
+	it {is_expected.to respond_to(:take_off)}
+  
+  describe 'new' do
+  
+it 'Plane should be flying' do 
+    expect(Plane.new).to respond_to(:flying?)
+		end 
+	end 
+  
+it "landing plane" do 
+  plane.land
+  expect(plane.flying?).to eq(false)
+  end
 
-  xit 'is flying when created'
-
-  xit 'can land'
-
-  xit 'is landed after landing'
-
-  xit 'can take off'
-
-  xit 'is flying after take off'
-
+it "plane takes off" do 
+plane.take_off
+expect(plane.flying?).to eq(true)
 end
+end
+
