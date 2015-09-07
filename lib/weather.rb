@@ -1,9 +1,11 @@
 module Weather
 
-  def weather
-    weather_rand <= 10 ? @stormy : @sunny
-  end
-  def weather_rand
-    rand(100)
+  def stormy?
+    random = Random.rand(5)
+    if random == 0
+      true
+    else
+      false
+    end
   end
 end

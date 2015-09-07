@@ -11,6 +11,7 @@ describe Airport do
     end
 
     it 'releases a plane' do
+      allow(subject).to receive(:stormy?).and_return(false)
       subject.plane_land(plane)
       subject.plane_take_off(plane)
     end
@@ -23,10 +24,12 @@ describe Airport do
     end
 
     it 'receives a plane' do
+      allow(subject).to receive(:stormy?).and_return(false)
       subject.plane_land(plane)
     end
 
      it 'can\'t land same plane twice' do
+       allow(subject).to receive(:stormy?).and_return(false)
        subject.plane_land(plane)
        expect { subject.plane_land(plane)}.to raise_error
        'Plane has already landed'
@@ -37,6 +40,7 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow a plane to land' do
+        allow(subject).to receive(:stormy?).and_return(false)
         subject.capacity.times { subject.plane_land(Plane.new)}
         expect { subject.plane_land(Plane.new)}.to raise_error
         'Cannot currently land at airport'
@@ -45,7 +49,7 @@ describe Airport do
 
     context 'when airport is empty' do
       it 'no planes can take off' do
-        subject.empty? { subject.plane_take_off(plane)}
+        allow(subject).to receive(:stormy?).and_return(false)
         expect { subject.plane_take_off(plane)}.to raise_error
         'Cannot currently take off'
       end
@@ -53,21 +57,21 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'creates stormy conditions' do
-        expect(subject).to respond_to(:weather)
+        expect(subject).to respond_to(:stormy?)
       end
 
       it 'does not allow a plane to land' do
-        allow(subject).to receive(:weather).and_return(:stormy)
+        allow(subject).to receive(:stormy?).and_return(true)
         expect { subject.plane_land(plane) }.to raise_error
-        'Cannot currently land at airport'
+        'Cannot land if weather is stormy'
       end
 
       it 'does not allow a plane to take off' do
-        allow(subject).to receive(:weather).and_return(:sunny)
+        allow(subject).to receive(:stormy?).and_return(false)
         subject.plane_land(plane)
-        allow(subject).to receive(:weather).and_return(:stormy)
+        allow(subject).to receive(:stormy?).and_return(true)
         expect{subject.plane_take_off(plane)}.to raise_error
-        'Cannot currently take off'
+        'Cannot take off if weather is stormy'
       end
     end
   end
