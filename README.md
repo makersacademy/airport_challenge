@@ -69,7 +69,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 
-This is my description of the program.
+##This is my description of the program.
 
 We have 3 objects plane, airport, weather.
 The Plane - initially is flying (our var which describes plane -  flying = true) . Plane also  may be flying, landing, taking off, on the ground. it’s important that plane should be in the sky in the first 3 conditions (our condition  flying = true), when the plane is on the ground (our condition flying = false). 
