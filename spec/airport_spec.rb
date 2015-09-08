@@ -23,7 +23,7 @@ describe Airport do
 
       it 'instructs plane to take off' do
         expect(plane).to receive :take_off
-        subject.instruct_to_land(plane)
+        subject.instruct_to_land plane
         subject.instruct_to_take_off plane
       end
 
@@ -44,7 +44,7 @@ describe Airport do
       end
 
       it 'can only land planes not in hanger' do
-        subject.hanger << plane
+        subject.instruct_to_land plane
         expect{subject.instruct_to_land(plane)}.to raise_error
           'Plane already in hanger'
       end
@@ -63,8 +63,9 @@ describe Airport do
       context 'when weather conditions are stormy' do
 
         it 'does not allow a plane to take off' do
+          subject.stub(:weather).and_return('sunny')
+          subject.instruct_to_land plane
           subject.stub(:weather).and_return('stormy')
-          subject.hanger << plane
           expect{subject.instruct_to_take_off(plane)}.to raise_error
             'Cannot take off in stormy weather'
         end
