@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double :plane, land: nil, take_off: nil }
+  let(:plane) { double :plane, land: nil, take_off: nil, status: nil }
 
   context 'When weather is sunny' do
 
@@ -30,6 +30,13 @@ describe Airport do
       it 'can only instruct planes within hanger to take off' do
         expect{subject.instruct_to_take_off(plane)}.to raise_error
          'That plane is not in hanger'
+      end
+
+      it "can't take off if flying" do
+        subject.instruct_to_land plane
+        subject.instruct_to_take_off plane
+        expect{subject.instruct_to_take_off(plane)}.to raise_error
+          'That plane is flying already'
       end
     end
 

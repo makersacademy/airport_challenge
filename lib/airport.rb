@@ -25,6 +25,7 @@ class Airport
   def take_off_checks plane
     fail 'Cannot take off in stormy weather' if weather == "stormy"
     fail 'That plane is not in hanger' if hanger.include?(plane) == false
+    fail 'That plane is flying already' if plane.status == "flying"
   end
 
   def instruct_to_take_off plane
