@@ -80,7 +80,8 @@ feature 'Stormy City Airport Rush Hour' do
 	end
 
 	scenario "The 5 planes which took off are now flying" do
-		all_flying = truei = 0
+		all_flying = true
+		i = 0
 		5.times do 
 			all_flying = false unless taken_off_planes[i].flying
 			i += 1
@@ -102,7 +103,7 @@ feature 'Stormy City Airport Rush Hour' do
 		expect{created_planes.last.land(airport)}.to raise_error 'Airport full'
 	end
 
-	scenario "There are 5 created planes left yet to land at the airport" do
-		expect(created_planes.count).to eq(5)
-	end	
+scenario "There are 5 created planes left yet to land at the airport" do
+expect(created_planes.count).to eq(5)
+end	
 end
