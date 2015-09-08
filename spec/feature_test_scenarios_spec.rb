@@ -14,7 +14,8 @@ feature 'Stormy City Airport Rush Hour' do
 	20.times{created_planes << Plane.new}
 
 	scenario '20 Plane objects were created' do
-		all_planes = true; i = 0
+		all_planes = true
+		i = 0
 		20.times do
 			all_planes = false unless created_planes[i].class == Plane
 			i += 1		
@@ -53,7 +54,8 @@ feature 'Stormy City Airport Rush Hour' do
 	end
 
 	scenario "All planes landed at the airport are no longer flying" do
-		all_not_flying = true; i = 0
+		all_not_flying = true
+		i = 0
 		10.times do
 			all_not_flying = false if airport.planes[i].flying
 			i += 1		
@@ -78,7 +80,8 @@ feature 'Stormy City Airport Rush Hour' do
 	end
 
 	scenario "The 5 planes which took off are now flying" do
-		all_flying = true; i = 0
+		all_flying = true
+		i = 0
 		5.times do 
 			all_flying = false unless taken_off_planes[i].flying
 			i += 1
