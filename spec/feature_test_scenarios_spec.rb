@@ -80,8 +80,7 @@ feature 'Stormy City Airport Rush Hour' do
 	end
 
 	scenario "The 5 planes which took off are now flying" do
-		all_flying = true
-		i = 0
+		all_flying = truei = 0
 		5.times do 
 			all_flying = false unless taken_off_planes[i].flying
 			i += 1
