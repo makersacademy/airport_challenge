@@ -9,11 +9,11 @@ class Airport
 	end
 
 	def plane_landed plane
-		@planes << plane
+		planes << plane
 	end
 
 	def plane_taken_off plane
-		@planes.delete(plane) 
+		planes.delete(plane) 
 	end
 
 	def land_permission
@@ -26,7 +26,7 @@ class Airport
 	end
 
 	def full?
-		@planes.length >= @capacity ? true : false 
+		planes.length >= capacity ? true : false 
 	end
 
 	def weather

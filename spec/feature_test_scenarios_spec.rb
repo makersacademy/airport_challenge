@@ -24,7 +24,8 @@ feature 'Stormy City Airport Rush Hour' do
 	end
 
 	scenario 'All created planes are all flying' do
-		all_flying = true; i = 0
+		all_flying = true
+		i = 0
 		created_planes.length.times do
 			all_flying = false unless created_planes[i].flying
 			i += 1		
