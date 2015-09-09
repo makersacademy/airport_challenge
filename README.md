@@ -5,6 +5,7 @@ Airport Challenge
 
 Introduction
 ------------
+I'm a complete newbie to programming and this exercise took me a solid 12hrs.
 
 After the first week at Makers Academy, we were set a weekend challenge to create the common functionalities of an airport using OOD and TDD.
 
@@ -58,7 +59,9 @@ Airport <-- weather         --> stormy/sunny
 
 Development/Feedback
 ------------
+Need to include weather as a module or class and refactor Plane variable(:status) with (flying?)
 
+For plane forecast(return boolean instead of string)
 
 Instructions
 ------------
