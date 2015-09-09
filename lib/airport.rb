@@ -2,23 +2,19 @@ require_relative 'plane'
 
 class Airport
 
-  Capacity = 20
+  CAPACITY = 20
 
-  attr_reader :capacity, :planes
+  attr_reader :planes
 
   def initialize
-    @capacity = Capacity
     @planes = []
   end
 
   def allow_take_off
     fail "Sorry, bad weather" if rand_num == 1
     fail "No planes at the airport" if empty?
-
     plane = @planes.pop
-    @planes.delete(plane)
     plane.take_off
-    plane
   end
 
   def allow_land(plane)
@@ -33,7 +29,7 @@ class Airport
     "sunny"
   end
 
-  def rand_num
+  def rand_nam
     rand(2)
   end
 
@@ -44,6 +40,6 @@ class Airport
   end
 
   def full?
-    @planes.count >= Capacity
+    @planes.count >= CAPACITY
   end
 end
