@@ -18,4 +18,8 @@ Bananas is a land of one banana brain only and its airport is far from perfect. 
 
 * A message telling you that you can or can't land
 
-* Bananas' weather not be generated inside the airport, but outside as nature intended. 
+* Testing this airport will be more up to the current standards(*)
+
+
+
+(*) - Couldn't get the stubs to work with new Rspec syntax. 
