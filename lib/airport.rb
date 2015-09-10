@@ -1,4 +1,7 @@
+require_relative 'weather'
+
 class Airport
+include Weather
 
   attr_reader :landing_strip, :capacity
 
@@ -16,21 +19,15 @@ class Airport
     landing_strip.delete(plane) unless stormy?
   end
 
-  def weather_condition
-    storm_index = Random.rand(1..10)
-    storm_index <= 8 ? 'sunny' : 'stormy'
-  end
-
   def full?
     landing_strip.count == capacity
   end
 
   def stormy?
-    self.weather_condition == 'stormy'
+    weather_condition == 'stormy'
   end
 
   def landing_clear?
     true unless full? || stormy?
   end
-
 end
