@@ -13,14 +13,29 @@ require 'airport'
 
 describe Airport do
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
-
-    xit 'releases a plane'
+  describe 'capacity' do
+    it 'should take one argument' do
+    expect(Airport).to respond_to(:new).with(1).argument
+    end
   end
 
+  describe 'take off' do
+    it 'instructs a plane to take off' do
+      plane = Plane.new
+      airport = Airport.new
+      plane.land(airport)
+      subject.instruct_takeoff(plane)
+      expect(plane.flying?).to eql(true)
+      end
+    end
+
   describe 'landing' do
-    xit 'instructs a plane to land'
+    it 'instructs a plane to land' do
+      plane = Plane.new
+      airport = Airport.new
+      airport.instruct_landing(plane)
+      expect(plane.flying?).to eql(false)
+    end
 
     xit 'receives a plane'
   end
