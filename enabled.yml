@@ -336,7 +336,7 @@ Style/NumericLiterals:
   Enabled: true
 
 
-  Style/OpMethod:
+Style/OpMethod:
   Description: 'When defining binary operators, name the argument other.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#other-arg'
   Enabled: true
@@ -478,7 +478,7 @@ Style/VariableName:
   Enabled: true
 
 
-  Style/UnlessElse:
+Style/UnlessElse:
   Description: >-
                  Do not use unless with else. Rewrite these with the positive
                  case first.
