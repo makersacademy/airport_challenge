@@ -8,7 +8,7 @@ Our airport can only take 10 planes and you're welcome to land here if there's s
 
 #### What can I do in here?
 
-Bananas is a land of one banana brain only and its airport is far from perfect. So far you can:
+Bananas is a land of one banana brain only and its airport is far from perfect. This is what you can do at the moment:
 
 * Land your plane, as long as there's space and the weather allows it.
 
@@ -18,7 +18,7 @@ Bananas is a land of one banana brain only and its airport is far from perfect. 
 
 * A message telling you that you can or can't land
 
-* Testing this airport will be more up to the current standards(*)
+* Testing this airport will be up to the current standards(*)
 
 
 
