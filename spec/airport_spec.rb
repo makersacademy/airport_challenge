@@ -1,8 +1,9 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
-  let(:plane) { double :plane }
+  let(:plane) {Plane.new }
   let(:airport) { Airport.new { include Weather } }
 
   before(:each) do
