@@ -1,7 +1,7 @@
 Tech Test Submission Requirements/Guidelines
 ======
 
-Before submitting your test, please review the requirements/guidelines belows. Note that the requirements are mandatory and if you do not satisfy them we won't review your code (we don't mean to be harsh but this is based on the minimum expectations that our hiring partners require when you submit code for tech tests).
+Before submitting your test, please review the requirements/guidelines below. Note that the requirements are mandatory and if you do not satisfy them we won't review your code (we don't mean to be harsh but this is based on the minimum expectations that our hiring partners require when you submit code for tech tests).
 
 Requirements
 ------

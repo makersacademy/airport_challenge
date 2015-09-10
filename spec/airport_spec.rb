@@ -12,22 +12,71 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+let(:plane){double :plane, land: nil, take_off: nil}
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
-
-    xit 'releases a plane'
+  before do
+    allow(subject).to receive(:rand_num) {0}
   end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  # it 'has capacity' do
+  #   expect(subject.capacity).to eq Airport::CAPACITY
+  # end
 
-    xit 'receives a plane'
+  it 'responds to forecast' do
+    expect(subject).to respond_to(:forecast)
   end
 
-  describe 'traffic control' do
+  describe 'forecast' do
+    # it 'has random number generator for forecast' do
+    #srand()
+    #end
+
+    it 'can be stormy' do
+      allow(subject).to receive(:rand_num) {1}
+      expect(subject.forecast).to eq "stormy"
+    end
+
+    it 'can be sunny' do
+      expect(subject.forecast).to eq "sunny"
+    end
+  end
+
+  describe 'allow_take_off' do
+    it 'gives permission for plane to take off' do
+      expect(subject).to respond_to(:allow_take_off)
+    end
+
+    it 'cannot release plane if empty' do
+      expect {subject.allow_take_off}.to raise_error "No planes at the airport"
+    end
+
+    it 'releases plane' do
+      subject.allow_land plane
+      plane_count = subject.planes.count
+      subject.allow_take_off
+      expect(subject.planes.count).to eq (plane_count - 1)
+    end
+  end
+
+  describe 'allow_landing' do
+    it 'give permission for a plane to land' do
+      expect(subject).to respond_to(:allow_land).with(1).argument
+    end
+
+    it 'receives a plane' do
+      plane_count = subject.planes.count
+      subject.allow_land plane
+      expect(subject.planes.count).to eq (plane_count + 1)
+    end
+  end
+
+
+  describe 'air traffic control' do
     context 'when airport is full' do
-      xit 'does not allow a plane to land'
+      it 'plane cannot land' do
+        20.times {subject.allow_land plane}
+        expect {subject.allow_land plane}.to raise_error "Airport is full pilot"
+      end
     end
 
     # Include a weather condition.
@@ -40,9 +89,17 @@ describe Airport do
     # the plane can not land, and must not be in the airport
 
     context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
+      it 'plane cannot take off' do
+        subject.allow_land plane
+        allow(subject).to receive(:rand_num) {1}
+        expect {subject.allow_take_off}.to raise_error "Sorry, bad weather"
+      end
+
+      it 'plane cannot land' do
+        allow(subject).to receive(:rand_num) {1}
+        expect {subject.allow_land plane}.to raise_error "Sorry, bad weather"
+      end
     end
   end
 end
