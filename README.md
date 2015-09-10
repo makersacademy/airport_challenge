@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/chn-challenger/airport_challenge.png)](https://travis-ci.org/chn-challenger/airport_challenge)
+ 
+### To Do - Update the README
+
 Airport Challenge
 =================
 
