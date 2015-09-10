@@ -13,7 +13,7 @@ class Airport
   end
 
   def take_off(plane)
-    landing_strip.pop unless stormy?
+    landing_strip.delete(plane) unless stormy?
   end
 
   def weather_condition

@@ -43,7 +43,7 @@ describe Airport do
 
     it 'does not allow a plane to land' do
       subject.stub(:stormy?) { true }
-      expect{subject.land plane}.to raise_error "Conditions are not right for landing"
+      expect{ subject.land plane }.to raise_error "Conditions are not right for landing"
     end
   end
 end
