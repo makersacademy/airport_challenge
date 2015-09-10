@@ -1,12 +1,16 @@
-require '~/Projects/airport_challenge/lib/plane.rb'
+require_relative 'plane.rb'
+require_relative 'weather.rb'
+
 class Airport
   HANGAR_CAPACITY = 10
-  # attr_accessor :plane
+
   attr_reader :capacity, :hangar
+
+  include Weather
+
   def initialize
     @hangar = []
-    @capacity = HANGAR_CAPACITY #Why does this need to be in capitals?
-    # @plane = plane
+    @capacity = HANGAR_CAPACITY
   end
 
   def take_off(plane)
@@ -29,7 +33,4 @@ class Airport
     hangar.count >= capacity
   end
 
-  def weather
-    ["stormy","sunny"].sample
-  end
 end

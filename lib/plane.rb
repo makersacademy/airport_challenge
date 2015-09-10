@@ -1,11 +1,13 @@
 class Plane
 
+  attr_reader:flying
+
   def initialize
     @flying = true
   end
 
   def flying?
-    @flying
+    flying
   end
 
   def has_landed
