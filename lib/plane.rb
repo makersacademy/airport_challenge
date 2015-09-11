@@ -14,7 +14,7 @@ class Plane
   def can_land
     fail 'Can not land if it is not flying' if landed?
     @flying = false
-    return true
+    true
   end
 
   def landed?
