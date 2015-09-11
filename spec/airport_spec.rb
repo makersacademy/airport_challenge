@@ -32,7 +32,8 @@ describe Airport do
       allow(subject).to receive(:weather) { "sunny" }
       allow(plane).to receive(:land) { false }
       subject.land(plane)
-      expect { subject.land plane }.to raise_error "That plane is already in the hangar"
+      expect { subject.land plane }.to raise_error
+        "That plane is already in the hangar"
     end
   end
 
@@ -41,7 +42,8 @@ describe Airport do
       it 'does not allow a plane to land' do
         allow(subject).to receive(:weather) { "sunny" }
         subject.capacity.times { subject.land(Plane.new)}
-        expect { subject.land(plane)}.to raise_error "Hangar full, no landing"
+        expect { subject.land(plane)}.to raise_error
+          "Hangar full, no landing"
       end
     end
 
@@ -52,12 +54,14 @@ describe Airport do
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to take off' do
         allow(subject).to receive(:weather) { "stormy" }
-        expect { subject.take_off plane }.to raise_error "It's stormy, no taking off"
+        expect { subject.take_off plane }.to raise_error
+          "It's stormy, no taking off"
       end
 
       it 'does not allow a plane to land' do
         allow(subject).to receive(:weather) { "stormy" }
-        expect { subject.land(plane)}.to raise_error "It's stormy, no landing"
+        expect { subject.land(plane)}.to raise_error
+          "It's stormy, no landing"
       end
     end
   end
