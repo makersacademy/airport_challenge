@@ -17,9 +17,4 @@ Bananas is a land of one banana brain only and its airport is far from perfect. 
 #### What can I expect from Bananas International Airport in the future?
 
 * A message telling you that you can or can't land
-
-* Testing this airport will be up to the current standards(*)
-
-
-
-(*) - Couldn't get the stubs to work with new Rspec syntax. 
+ 
