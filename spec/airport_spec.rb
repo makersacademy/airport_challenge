@@ -20,12 +20,6 @@ describe Airport do
         subject.capacity.times { subject.land(plane) }
         expect{ subject.land(plane) }.to raise_error 'Airport full.'
       end
-
-      it 'does not allow plane to take off' do
-        subject.land(plane)
-        subject.take_off
-        expect{ subject.take_off }.to raise_error 'No planes at airport'
-      end
     end
 
     # Include a weather condition.
@@ -39,9 +33,10 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'does not allow plane to take off' do
+        subject.land(plane)
         expect(subject).to receive(:weather).and_return(:stormy)
         subject.weather
-        expect{subject.take_off_bad_weather}.to raise_error 'Stormy weather'
+        expect{subject.take_off}.to raise_error 'Stormy weather'
       end
 
       it 'does not allow plane to land' do

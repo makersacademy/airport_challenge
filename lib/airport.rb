@@ -1,5 +1,9 @@
 require_relative 'plane'
+require_relative 'weather'
+
 class Airport
+
+  include Weather
 
   DEFAULT_CAPACITY = 80
   attr_reader :capacity, :planes
@@ -7,10 +11,6 @@ class Airport
   def initialize
     @planes = []
     @capacity = DEFAULT_CAPACITY
-  end
-
-  def weather
-    [:sunny, :stormy].shuffle.first
   end
 
   def land_bad_weather
@@ -22,12 +22,9 @@ class Airport
     planes << plane
   end
 
-  def take_off_bad_weather
-    fail 'Stormy weather' if weather = :stormy
-  end
-
   def take_off
     fail 'No planes at airport' if empty?
+    fail 'Stormy weather' if weather = :stormy
     planes.pop
   end
 
