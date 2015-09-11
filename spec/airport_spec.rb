@@ -6,6 +6,13 @@ describe Airport do
 
   describe 'take off' do
     it { is_expected.to respond_to :take_off }
+
+    it 'should reduce a plane in the planes array' do
+      subject.land(plane)
+      allow(subject).to receive(:weather).and_return(:sunny)
+      subject.take_off
+      expect(subject.planes.count).to eq 0
+    end
   end
 
   describe 'landing' do
@@ -17,22 +24,15 @@ describe Airport do
   describe 'traffic control' do
     context 'when airport is full' do
       it 'does not allow plane to land' do
+        allow(subject).to receive(:weather).and_return(:sunny)
         subject.capacity.times { subject.land(plane) }
         expect{ subject.land(plane) }.to raise_error 'Airport full.'
       end
     end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
-
     context 'when weather conditions are stormy' do
       it 'does not allow plane to take off' do
+        allow(subject).to receive(:weather).and_return(:sunny)
         subject.land(plane)
         allow(subject).to receive(:weather).and_return(:stormy)
         subject.weather
@@ -42,7 +42,7 @@ describe Airport do
       it 'does not allow plane to land' do
         allow(subject).to receive(:weather).and_return(:stormy)
         subject.weather
-        expect{subject.land_bad_weather}.to raise_error 'Stormy weather'
+        expect{subject.land(plane)}.to raise_error 'Stormy weather'
       end
       it 'makes the weather stormy' do
         subject.weather

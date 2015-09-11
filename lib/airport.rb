@@ -13,18 +13,15 @@ class Airport
     @capacity = DEFAULT_CAPACITY
   end
 
-  def land_bad_weather
-    fail 'Stormy weather' if weather = :stormy
-  end
-
   def land(plane)
     fail 'Airport full.' if full?
+    fail 'Stormy weather' if weather == :stormy
     planes << plane
   end
 
   def take_off
     fail 'No planes at airport' if empty?
-    fail 'Stormy weather' if weather = :stormy
+    fail 'Stormy weather' if weather == :stormy
     planes.pop
   end
 
