@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) {double:plane}
+  let(:plane) { double:plane }
 
   describe 'take off' do
     it 'instructs a plane to take off' do
@@ -11,7 +11,7 @@ describe Airport do
 
     it 'releases a plane' do
       allow(subject).to receive(:weather) { "sunny" }
-      allow(plane).to receive(:taken_off) {true}
+      allow(plane).to receive(:take_off) { true }
       subject.take_off(plane)
     end
   end
@@ -23,14 +23,14 @@ describe Airport do
 
     it 'receives a plane' do
       allow(subject).to receive(:weather) { "sunny" }
-      allow(plane).to receive(:has_landed) {false}
+      allow(plane).to receive(:land) { false }
       subject.land plane
       expect(subject.hangar).not_to be_empty
     end
 
     it 'does not allow a plane to land that has already landed' do
       allow(subject).to receive(:weather) { "sunny" }
-      allow(plane).to receive(:has_landed) {false}
+      allow(plane).to receive(:land) { false }
       subject.land(plane)
       expect { subject.land plane }.to raise_error "That plane is already in the hangar"
     end
