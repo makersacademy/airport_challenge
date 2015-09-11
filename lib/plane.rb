@@ -2,8 +2,6 @@ require_relative 'airport'
 
 class Plane
 
-  attr_reader :destination
-
   def initialize(destination)
     @flying = true
     @destination = destination
