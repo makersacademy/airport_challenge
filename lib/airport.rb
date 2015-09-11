@@ -1,7 +1,6 @@
 require_relative 'weather'
 
 class Airport
-include Weather
 
   attr_reader :landing_strip, :capacity
 

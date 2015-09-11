@@ -3,11 +3,11 @@ require 'plane'
 
 describe Airport do
 
-  let(:plane) {Plane.new }
+  let(:plane) { double :plane, land!: true, take_off!: false }
   let(:airport) { Airport.new { include Weather } }
 
   before(:each) do
-    airport.stub(:stormy?) { false }
+    allow(airport).to receive(:stormy?) { false }
   end
 
   it 'instructs a plane to land' do
@@ -31,21 +31,23 @@ describe Airport do
   context 'when airport is full' do
     it 'does not allow a plane to land' do
       airport.capacity.times { airport.land plane }
-      expect{ airport.land plane }.to raise_error "Conditions are not right for landing"
+      expect{ airport.land plane }.to raise_error
+      "Conditions are not right for landing"
     end
   end
 
   context 'when weather conditions are stormy' do
     it 'does not allow a plane to take off' do
       airport.land plane
-      airport.stub(:stormy?) { true }
+      allow(airport).to receive(:stormy?) { true }
       airport.take_off(plane)
       expect(airport.landing_strip.count).to eq(1)
     end
 
     it 'does not allow a plane to land' do
-      airport.stub(:stormy?) { true }
-      expect{ airport.land plane }.to raise_error "Conditions are not right for landing"
+      allow(airport).to receive(:stormy?) { true }
+      expect{ airport.land plane }.to raise_error
+      "Conditions are not right for landing"
     end
   end
 end
