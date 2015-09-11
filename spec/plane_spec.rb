@@ -17,7 +17,13 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  it {is_expected.to respond_to :flying?}
+
+  it 'is flying when created' do
+  	plane = Plane.new
+  	expect(subject.flying?).to eq true
+  end
+
 
   xit 'can land'
 
