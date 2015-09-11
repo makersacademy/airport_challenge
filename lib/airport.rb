@@ -1,6 +1,7 @@
 require_relative 'weather'
 
 class Airport
+include Weather
 
   attr_reader :landing_strip, :capacity
 
@@ -19,6 +20,8 @@ class Airport
     plane.take_off!
     landing_strip.delete(plane) unless stormy?
   end
+
+  private
 
   def full?
     landing_strip.count == capacity

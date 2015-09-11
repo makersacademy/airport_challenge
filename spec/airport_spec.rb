@@ -4,7 +4,7 @@ require 'plane'
 describe Airport do
 
   let(:plane) { double :plane, land!: true, take_off!: false }
-  let(:airport) { Airport.new { include Weather } }
+  let(:airport) { Airport.new }
 
   before(:each) do
     allow(airport).to receive(:stormy?) { false }
