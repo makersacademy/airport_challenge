@@ -8,8 +8,8 @@ describe Airport do
     it { is_expected.to respond_to :take_off }
 
     it 'should reduce a plane in the planes array' do
-      subject.land(plane)
       allow(subject).to receive(:weather).and_return(:sunny)
+      subject.land(plane)
       subject.take_off
       expect(subject.planes.count).to eq 0
     end
