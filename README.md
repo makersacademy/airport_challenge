@@ -1,6 +1,5 @@
 Airport Challenge
 =================
-
 Instructions
 ---------
 
@@ -67,4 +66,20 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
 
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
+* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+##This is my description of the program.
+
+We have 3 objects plane, airport, weather.
+The Plane - initially is flying (our var which describes plane -  flying = true) . Plane also  may be flying, landing, taking off, on the ground. it’s important that plane should be in the sky in the first 3 conditions (our condition  flying = true), when the plane is on the ground (our condition flying = false). 
+The Airport can be described by 2 vars landing and taking off (it’s main functions)  initially taking off = false (airport doesn’t have any plane, and landing = true (if the weather is good), or false (if the weather is bad)     
+The Airport 1) should have capacity . The airport must reject to plane landing 2) if it’s capacity  is overweighted or 3) the weather is bad. The airport must deny to plane taking off if there isn’t any plane or the weather is bad.  
+The weather may be sunny or may be stormy   
+So we have two instructions for plane's landing  and for taking off.
+One method weather which return to us weither the weather is stormy or sunny.
+
+
+
+
+
