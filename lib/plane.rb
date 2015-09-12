@@ -1,21 +1,21 @@
 class Plane
 
-attr_accessor :airborne
+  attr_accessor :airborne
 
-def initialize
-  @airborne = true
-end
+  def initialize
+    @airborne = true
+  end
 
-def airborne?
-  @airborne
-end
+  def airborne?
+    @airborne
+  end
 
-def land!
-  @airborne = false
-end
+  def land!
+    @airborne = false
+  end
 
-def take_off!
-  @airborne = true
-end
+  def take_off!
+    @airborne = true
+  end
 
 end
