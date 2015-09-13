@@ -2,7 +2,7 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  attr_accessor :capacity
+  attr_reader :capacity
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
@@ -11,7 +11,7 @@ class Airport
 
   def make_land(plane)
     fail 'Plane has already landed' if @planes.include? plane
-    fail 'Airport is full' if @planes.count >= capacity
+    fail 'Airport is full' if airport_full?
     fail 'The weather is too stormy' if stormy?
     plane.land
     @planes << plane
@@ -28,21 +28,19 @@ class Airport
 
   private 
 
-  # def airport_full?
-  #   fail 'Airport is full' if @planes.count >= capacity
-  # end
+  attr_writer :capacity
+
+  def airport_full?
+    @planes.count >= capacity
+  end
 
   def weather
-    [:stormy, :sunny].sample #can't get this to pass the coveralls
+    [:stormy, :sunny].sample 
   end
 
   def stormy?
     weather == :stormy ? true : false
   end
-
-  # def too_stormy?
-  #   fail 'The weather is too stormy' if stormy?
-  # end
 
 
 end
