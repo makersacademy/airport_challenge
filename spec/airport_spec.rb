@@ -6,6 +6,10 @@ describe Airport do
 
   context 'When weather is sunny' do
 
+    before(:each) do
+     allow(subject).to receive(:stormy?) { false }
+    end
+
     it 'Airport has a capacity' do
       expect(subject.capacity).to eql Airport::DEFAULT_CAPACITY
     end
@@ -69,15 +73,15 @@ describe Airport do
 
       context 'when weather conditions are stormy' do
 
+        before(:each) do
+         allow(subject).to receive(:stormy?) { true }
+        end
+
         it 'does not allow a plane to take off' do
-          subject.stub(:weather).and_return('sunny')
-          subject.instruct_to_land plane
-          subject.stub(:weather).and_return('stormy')
           expect{subject.instruct_to_take_off(plane)}.to raise_error
             'Cannot take off in stormy weather'
         end
         it 'does not allow a plane to land' do
-          subject.stub(:weather).and_return('stormy')
           expect{subject.instruct_to_land(plane)}.to raise_error
            'Cannot land in stormy weather'
         end
