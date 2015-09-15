@@ -73,20 +73,9 @@ describe Airport do
         allow(subject).to receive(:today_weather) {'stormy'}
         expect{ subject.clear_to_take_off(plane) }.to raise_error 'Stormy!'
         end
-      end
+    end
 
-
-      # it 'does not allow a plane to land' do
-      #   allow(subject).to receive(:weather) {'stormy'}
-      #   allow(double_plane).to receive()
-      #   expect{ subject.clear_to_land(double_plane) }.to raise_error 'Stormy'
-      #
-      # end
 
 
 
 end
-
-
-# glasgow = Airport.new
-# p glasgow

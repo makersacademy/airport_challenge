@@ -45,7 +45,6 @@ class Airport
     @planes.count
   end
 
-
   def capacity
   @capacity
   end
