@@ -4,16 +4,10 @@ class Weather
   @number
   end
 
-  def conditions
-    @number = rand(0..5)
-  end
   def stormy
-    conditions
-    if @number == 5
-    'stormy'
-    else
+    @number = rand(0..5)
+    return 'stormy' if @number == 5
     'sunny'
-    end
   end
 
 end

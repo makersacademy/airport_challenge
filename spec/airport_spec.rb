@@ -1,4 +1,6 @@
 require 'airport'
+require 'weather'
+require'plane'
 
 
 ## Note these are just some guidelines!
@@ -14,39 +16,43 @@ require 'airport'
 
 describe Airport do
 
-  let(:weather){double:weather, {conditions: 'stormy'}}
-  let(:weather1){double:weather1, {conditions: 'sunny'}}
+    let(:weather){double(:weather, stormy: 'sunny')}
+    let(:double_plane){double(:plane, flying: 'flying')}
+
 
     it { is_expected.to respond_to :planes }
     it { is_expected.to respond_to :count_planes }
 
-
-    it 'counts the number of planes in the aiport' do
-      expect(subject.count_planes).to eql 0
+    it 'gives the airport capacity' do
+      expect(subject.capacity).to eql 5
     end
 
+
     it 'should allow a plane to land' do
+      glasgow = Airport.new
+      allow(glasgow).to receive(:today_weather) {'sunny'}
       plane = Plane.new
-      subject.clear_to_land(plane)
-      puts plane.flying
-      expect(plane.flying).to eql("landed")
+      glasgow.clear_to_land(plane)
+      expect(glasgow.planes.count).to eql(1)
     end
 
     it 'should allow a plane to take off' do
+      glasgow = Airport.new
+      allow(glasgow).to receive(:today_weather) {'sunny'}
       plane = Plane.new
-      puts plane #why does this not show the flying variable
-      subject.clear_to_land(plane)
-      subject.clear_to_take_off(plane)
-      expect(plane.flying).to eql("flying")
+      glasgow.clear_to_land(plane)
+      allow(glasgow).to receive(:today_weather) {'sunny'}
+      glasgow.clear_to_take_off(plane)
+      expect(glasgow.planes.count).to eql(0)
     end
 
     it 'should prevent a plane from landing if the airport is full' do
-      subject.capacity.times {subject.clear_to_land Plane.new}
-      expect {subject.clear_to_land Plane.new}.to raise_error 'Airport at Capacity'
+      glasgow = Airport.new
+      plane = Plane.new
+      allow(glasgow).to receive(:today_weather) {'sunny'}
+      5.times {glasgow.clear_to_land(plane)}
+      expect {glasgow.clear_to_land(plane)}.to raise_error 'Airport at Capacity'
     end
-
-
-
 
     # Include a weather condition.
     # The weather must be random and only have two states "sunny" or "stormy".
@@ -60,24 +66,29 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
 
-
       it 'does not allow a plane to take off' do
         plane = Plane.new
+        allow(subject).to receive(:today_weather) {'sunny'}
         subject.clear_to_land(plane)
-        if subject.weather_conditions == weather.conditions
-        expect  { subject.clear_to_take_off(plane) }.to raise_error 'Stormy!'
+        allow(subject).to receive(:today_weather) {'sunny'}
+        allow(plane).to receive(:flying) {'landed'}
+        allow(subject).to receive(:today_weather) {'stormy'}
+        expect{ subject.clear_to_take_off(plane) }.to raise_error 'Stormy!'
         end
       end
 
 
-      it 'does not allow a plane to land' do
-        plane = Plane.new
-        if subject.weather_conditions == 'stormy'
-        expect  { subject.clear_to_land(plane) }.to raise_error 'Stormy!'
-        end
+      # it 'does not allow a plane to land' do
+      #   allow(subject).to receive(:weather) {'stormy'}
+      #   allow(double_plane).to receive()
+      #   expect{ subject.clear_to_land(double_plane) }.to raise_error 'Stormy'
+      #
+      # end
 
-      end
 
-    end
 
 end
+
+
+# glasgow = Airport.new
+# p glasgow

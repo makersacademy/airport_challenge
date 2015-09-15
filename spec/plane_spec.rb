@@ -17,20 +17,19 @@ require 'plane'
 
 describe Plane do
 
+
   it { is_expected.to respond_to :flying }
 
   it 'is flying when created' do
-    plane = Plane.new
-    expect(plane.flying).to eql "flying"
+    expect(subject.flying).to eql "flying"
   end
 
 
   it { is_expected.to respond_to :land }
 
   it 'is landed after landing' do
-    plane = Plane.new
-    plane.land
-    expect(plane.flying).to eql "landed"
+    subject.land
+    expect(subject.flying).to eql "landed"
   end
 
 
@@ -38,29 +37,10 @@ describe Plane do
 
 
   it 'is flying after take off' do
-    plane = Plane.new
-    plane.land
-    plane.take_off
-    expect(plane.flying).to eql "flying"
+    subject.land
+    subject.take_off
+    expect(subject.flying).to eql "flying"
   end
-
-  describe '#land' do
-    it 'raises an error if you request a landed plane to land' do
-      plane = Plane.new
-      plane.land
-      expect { plane.land }.to raise_error 'already landed'
-    end
-  end
-
-  describe '#take_off' do
-    it 'raises an error if you ask a flying plane to take off' do
-      plane = Plane.new
-      expect { plane.take_off }.to raise_error 'already flying'
-    end
-    xit { is_expected.to respond_to :destination }
-
-  end
-
 
 
 end

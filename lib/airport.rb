@@ -1,32 +1,40 @@
 require_relative 'plane'
+require_relative 'weather'
+
 class Airport
 
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 5
 
-  attr_reader :capacity
+  attr_reader :capacity, :today_weather
   def initialize (capacity=DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @today_weather
-    #@planes << Plane.new("landed")
+  end
+
+  def today_weather
+  Weather.new.stormy
+
   end
 
   def clear_to_land(plane)
     if @planes.count >= @capacity
-    raise 'Airport at Capacity'
-  elsif self.weather_conditions == 'stormy'
-    raise 'Stormy!'
+      raise 'Airport at Capacity'
+    elsif today_weather == 'stormy'
+      raise 'Stormy!'
     else
-    plane.land
-    @planes << plane
+      plane.land
+      @planes << plane
     end
   end
 
 
   def clear_to_take_off(plane)
-
-    plane = @planes.pop
-    plane.take_off
+    if today_weather == 'stormy'
+      raise 'Stormy!'
+    else
+      plane = @planes.pop
+      plane.take_off
+    end
   end
 
   def planes
@@ -37,9 +45,16 @@ class Airport
     @planes.count
   end
 
-  def weather_conditions
-  @today_weather = Weather.new.stormy
+
+  def capacity
+  @capacity
   end
 
 
 end
+# plane = Plane.new
+# glasgow = Airport.new
+# p glasgow
+# p glasgow.weather
+# glasgow.clear_to_land(plane)
+# p glasgow
