@@ -52,9 +52,3 @@ class Airport
 
 
 end
-# plane = Plane.new
-# glasgow = Airport.new
-# p glasgow
-# p glasgow.weather
-# glasgow.clear_to_land(plane)
-# p glasgow
