@@ -10,7 +10,6 @@ describe Plane do
 
   describe 'landing' do
     it 'can land' do
-      subject.take_off
       subject.land
       expect(subject.flying?).to eql(false)
     end

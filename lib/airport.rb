@@ -37,5 +37,4 @@ class Airport
   def empty?
     plane_total == 0
   end
-
 end
