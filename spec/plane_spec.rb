@@ -19,22 +19,17 @@ describe Plane do
 
 
   it { is_expected.to respond_to :flying }
+  it { is_expected.to respond_to :take_off }
+  it { is_expected.to respond_to :land }
 
   it 'is flying when created' do
     expect(subject.flying).to eql "flying"
   end
 
-
-  it { is_expected.to respond_to :land }
-
   it 'is landed after landing' do
     subject.land
     expect(subject.flying).to eql "landed"
   end
-
-
-  it { is_expected.to respond_to :take_off }
-
 
   it 'is flying after take off' do
     subject.land

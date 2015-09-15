@@ -16,14 +16,12 @@ require'plane'
 
 describe Airport do
 
-    let(:weather){double(:weather, stormy: 'sunny')}
     let(:double_plane){double(:plane, flying: 'flying')}
-
 
     it { is_expected.to respond_to :planes }
     it { is_expected.to respond_to :count_planes }
 
-    it 'gives the airport capacity' do
+    it 'has a capacity' do
       expect(subject.capacity).to eql 5
     end
 
