@@ -12,8 +12,7 @@ class Airport
   end
 
   def today_weather
-  Weather.new.stormy
-
+  today_weather = Weather.weather_stormy
   end
 
   def clear_to_land(plane)
