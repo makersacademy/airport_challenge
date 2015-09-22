@@ -1,6 +1,7 @@
 require_relative 'airport'
 
 class Plane
+  attr_reader :flying
 
   def initialize(destination)
     @flying = true
@@ -8,20 +9,20 @@ class Plane
   end
 
   def flying?
-    @flying
+    flying
   end
 
-  def can_land
+  def land
     fail 'Can not land if it is not flying' if landed?
     @flying = false
     true
   end
 
   def landed?
-    !@flying
+    not flying
   end
 
-  def can_take_off
+  def take_off
     fail 'Can not take off if it is not landed' if flying?
     @flying = true
   end
