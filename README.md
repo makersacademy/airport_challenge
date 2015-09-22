@@ -1,4 +1,4 @@
-Airport Control System
+Airport Control System		![](https://travis-ci.org/UsmanJ/airport_challenge.svg?branch=master)
 ======================
 
 Steps
