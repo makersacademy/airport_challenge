@@ -1,5 +1,3 @@
-[![Build Status][BS img]][Build Status]
-
 Airport Control System
 ======================
 
