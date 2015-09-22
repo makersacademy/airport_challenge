@@ -1,1 +1,7 @@
 script: bundle exec rspec spec
+
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.2.3p173
+  - jruby-1.7.9

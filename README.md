@@ -1,3 +1,5 @@
+[![Build Status][BS img]][Build Status]
+
 Airport Control System
 ======================
 
@@ -13,7 +15,7 @@ Steps
 Approach towards solving the challenge
 --------------------------------------
 
-This challenge was solved by firstly deciding on how many classes were needed. Two classes and one module was used in this project as it felt like the best option. 
+This challenge was solved by firstly deciding on how many classes were needed. Two classes and one module was used in this project as it felt like the best option.
 
 RSpec tests were written first followed by the code to make them pass. As the project developed; some tests had to be altered or deleted altogether to compliment the progress of the project.
 
