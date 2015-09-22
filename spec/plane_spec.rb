@@ -15,7 +15,6 @@ describe Plane do
 
   it 'is landed after landing' do
     plane.land
-    plane.landed?
     expect(plane).to be_landed
   end
 
