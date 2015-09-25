@@ -1,39 +1,39 @@
+require_relative 'weather'
+
 class Airport
 
-  attr_reader :planes
-  attr_reader :capacity
+  include Weather
 
-  def initialize(capacity = 10, weather=Weather.new)
-    @planes = []
+  attr_reader :hangar, :capacity
+
+  DEFAULT_CAPACITY = 10
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @hangar = []
     @capacity = capacity
-    @weather = weather
   end
 
   def plane_take_off
     traffic_control
-    planes[0].take_off
-    planes.shift
+    hangar.first.take_off
+    hangar.shift
   end
 
   def plane_landing(plane)
     traffic_control
-    fail "FULL" if full?
+    fail "Airport is full" if full?
     plane.land
-    planes << plane
+    hangar << plane
   end
 
   def traffic_control
-    fail "The weather is stormy!" if weather_stormy?
-  end
-
-  def weather_stormy?
-    @weather.stormy?
+    fail "The weather is stormy!" if stormy?
   end
 
   private
 
   def full?
-    planes.count >= capacity
+    hangar.count >= capacity
   end
 
 end

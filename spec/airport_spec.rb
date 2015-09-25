@@ -20,7 +20,7 @@ describe Airport do
   describe 'plane take off' do
 
     before :each do
-      allow(subject).to receive(:weather_stormy?) { false }
+      allow(subject).to receive(:stormy?) { false }
     end
 
 
@@ -34,9 +34,9 @@ describe Airport do
     it 'releases something' do
       plane = double :plane, land: 'smth', take_off: 'smth'
       subject.plane_landing(plane)
-      planes_in_airport = subject.planes.length
+      planes_in_airport = subject.hangar.length
       subject.plane_take_off
-      expect(subject.planes.length).to eq(planes_in_airport-1)
+      expect(subject.hangar.length).to eq(planes_in_airport-1)
     end
 
     it 'releases a plane' do
@@ -48,9 +48,9 @@ describe Airport do
     it 'releases a plane when the airport is full' do
       plane = double :plane, land: 'smth', take_off: 'smth'
       subject.capacity.times { subject.plane_landing plane}
-      planes_in_airport = subject.planes.length
+      planes_in_airport = subject.hangar.length
       subject.plane_take_off
-      expect(subject.planes.length).to eq(planes_in_airport-1)
+      expect(subject.hangar.length).to eq(planes_in_airport-1)
     end
   end
 
@@ -59,7 +59,7 @@ describe Airport do
   describe 'plane_landing' do
 
     before :each do
-      allow(subject).to receive(:weather_stormy?) { false }
+      allow(subject).to receive(:stormy?) { false }
     end
 
     it 'instructs a plane to land' do
@@ -71,25 +71,25 @@ describe Airport do
     it 'receives a plane' do
       plane = double :plane, land: 'smth'
       subject.plane_landing(plane)
-      expect(subject.planes).to include(plane)
+      expect(subject.hangar).to include(plane)
     end
 
     it 'raises a error when airport is full' do
       plane = double :plane,land:'smth'
       subject.capacity.times { subject.plane_landing plane}
-      expect {subject.plane_landing plane}.to raise_error("FULL")
+      expect {subject.plane_landing plane}.to raise_error("Airport is full")
     end
 
   end
 
-  it { is_expected.to respond_to :weather_stormy?}
+  it { is_expected.to respond_to :stormy?}
 
   describe 'weather_stormy?', skip_before: true do
     it 'there is 20% possibility of storm', skip_before: true do
       srand(1)
       rand
       rand
-      expect(subject.weather_stormy?).to be true
+      expect(subject.stormy?).to be true
     end
   end
 
@@ -108,7 +108,7 @@ describe Airport do
 
     context 'when weather conditions are stormy' do
       it 'does not allow a plane to land' do
-        allow(subject).to receive(:weather_stormy?) { true }
+        allow(subject).to receive(:stormy?) { true }
         expect{subject.traffic_control}.to raise_error("The weather is stormy!")
       end
     end
