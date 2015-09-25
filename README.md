@@ -7,7 +7,7 @@ I followed the user story, also read the Task in details, used most of the propo
 
 Travis passed.
 
-https://travis-ci.org/Proskurina/airport_challenge.svg?branch=master
+![alt text] (https://travis-ci.org/Proskurina/airport_challenge.svg?branch=master)
 
 
 Below is very detailed explanation of what I did. No need to read. For myself mostly.
