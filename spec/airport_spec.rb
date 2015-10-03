@@ -6,9 +6,12 @@ require'plane'
 describe Airport do
 
     let(:double_plane){double :plane, flying: 'flying'}
+    let(:double_weather) {double :weather, false }
 
     it { is_expected.to respond_to :planes }
     it { is_expected.to respond_to :count_planes }
+    it { is_expected.to respond_to :now_weather }
+
 
     it 'has a capacity with a maximum number of planes' do
       expect(subject.capacity).to eql 5
