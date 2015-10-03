@@ -1,10 +1,9 @@
 class Plane
+
+  attr_accessor :flying
+
   def initialize(flying = 'flying')
     @flying = 'flying'
-  end
-
-  def flying
-    @flying
   end
 
   def land

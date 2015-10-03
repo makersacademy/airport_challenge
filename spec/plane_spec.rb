@@ -17,24 +17,25 @@ require 'plane'
 
 describe Plane do
 
+  let(:double_plane) {Plane.new}
 
   it { is_expected.to respond_to :flying }
   it { is_expected.to respond_to :take_off }
   it { is_expected.to respond_to :land }
 
   it 'is flying when created' do
-    expect(subject.flying).to eql "flying"
+    expect(double_plane.flying).to eql "flying"
   end
 
   it 'is landed after landing' do
-    subject.land
-    expect(subject.flying).to eql "landed"
+    double_plane.land
+    expect(double_plane.flying).to eql "landed"
   end
 
   it 'is flying after take off' do
-    subject.land
-    subject.take_off
-    expect(subject.flying).to eql "flying"
+    double_plane.land
+    double_plane.take_off
+    expect(double_plane.flying).to eql "flying"
   end
 
 

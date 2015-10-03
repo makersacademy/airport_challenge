@@ -6,34 +6,28 @@ class Airport
   DEFAULT_CAPACITY = 5
 
   attr_reader :capacity, :today_weather
+
   def initialize (capacity=DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
+    # @today_weather = Weather.weather_stormy
   end
 
   def today_weather
-  today_weather = Weather.weather_stormy
+    today_weather = Weather.weather_stormy
   end
 
   def clear_to_land(plane)
-    if @planes.count >= @capacity
-      raise 'Airport at Capacity'
-    elsif today_weather == 'stormy'
-      raise 'Stormy!'
-    else
-      plane.land
-      @planes << plane
-    end
+    raise 'Airport at Capacity' if @planes.count >= @capacity
+    raise 'Stormy!' if today_weather == 'stormy'
+    plane.land
+    @planes << plane
   end
 
-
   def clear_to_take_off(plane)
-    if today_weather == 'stormy'
-      raise 'Stormy!'
-    else
-      plane = @planes.pop
-      plane.take_off
-    end
+    raise 'Stormy!' if today_weather == 'stormy'
+    plane = @planes.pop
+    plane.take_off
   end
 
   def planes
