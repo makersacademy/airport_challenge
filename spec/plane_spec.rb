@@ -21,7 +21,8 @@ describe Plane do
 	it 'can take off' do
 		plane.land
 		plane.take_off
-		expect { plane.take_off }.to raise_error 'Can not take off if plane is already flying'
+		expect { plane.take_off }.to raise_error
+		'Can not take off if plane is already flying'
 	end
 
 	it 'is flying after take off' do

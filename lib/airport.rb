@@ -29,11 +29,11 @@ class Airport
 
 	private
 
-	def full?
-		planes.count >= capacity
-	end
+		def full?
+			planes.count >= capacity
+		end
 
-	def empty?
-		planes.empty?
-	end
+		def empty?
+			planes.empty?
+		end
 end

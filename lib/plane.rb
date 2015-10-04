@@ -1,4 +1,5 @@
 class Plane
+	attr_reader :flying
 
 	def initialize(destination)
 		@flying = true

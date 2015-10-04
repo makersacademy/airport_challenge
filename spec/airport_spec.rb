@@ -37,28 +37,28 @@ describe Airport do
         allow(subject).to receive(:weather).and_return(:sunny)
         subject.capacity.times { subject.land(plane) }
         expect{ subject.land(plane) }.to raise_error 'Airport is full'
+      end
     end
-  end
 
-  context 'when airport is empty' do
-    it "raises an error 'no planes available'" do
-      subject.planes.empty?
-      expect{ subject.take_off(plane) }.to raise_error 'No planes at airport'
+    context 'when airport is empty' do
+      it "raises an error 'no planes available'" do
+        subject.planes.empty?
+        expect{ subject.take_off(plane) }.to raise_error 'No planes at airport'
+      end
     end
-  end
 
-  context 'when weather conditions are stormy' do
-    it 'does not allow a plane to take off' do
-      allow(subject).to receive(:weather).and_return(:sunny)
-      subject.land(plane)
-      allow(subject).to receive(:weather).and_return(:stormy)
-      expect { subject.take_off(plane) }.to raise_error 'Stormy weather'
+    context 'when weather conditions are stormy' do
+      it 'does not allow a plane to take off' do
+        allow(subject).to receive(:weather).and_return(:sunny)
+        subject.land(plane)
+        allow(subject).to receive(:weather).and_return(:stormy)
+        expect { subject.take_off(plane) }.to raise_error 'Stormy weather'
+      end
     end
-  end
 
-    it 'does not allow a plane to land' do
-      allow(subject).to receive(:weather).and_return(:stormy)
-      expect { subject.land(plane) }.to raise_error 'Stormy weather'
+      it 'does not allow a plane to land' do
+        allow(subject).to receive(:weather).and_return(:stormy)
+        expect { subject.land(plane) }.to raise_error 'Stormy weather'
+      end
     end
-  end
 end
