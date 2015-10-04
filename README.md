@@ -1,6 +1,30 @@
 Airport Challenge
 =================
 
+Approach
+--------
+
+You can find instructions for this project below including a full customer story.
+
+To run this code please use IRB from the directory root.  The key commands are as follows
+
+airport = Airport.new (to create a new airport)
+plane = Plane.new (to create a new plane)
+
+To land a plane use "airport.clear_to_land(plane)"
+To get a plane to take off use "airport.clear_to_take_off(plane)"
+
+The capacity of the airport is set to five planes by default - you cannot land a plane if the airport is full
+
+The airport checks the weather before a plane takes off or lands.  If the weather is "stormy" the airport will not allow the plane to do either.
+
+A have used two classes, airport and planes.  The weather is included as a module set to return false one time in five.  The airport takes this information from the module as an api and translates into true = stormy and false = sunny.
+
+There is a complete set of passing tests with 94% coverage.  The tests use doubles to stub out the random aspects of the weather and simulate both sunny and stormy conditions.
+
+Using weather as a module helps with the separation of concerns between the airport and the weather - the airport does not 'have weather' - instead it checks to see what the weather is when each plane takes off.  Weather is incorporated into the airport via lines 17 to 23 of Airport.rb - these lines convert the weather returned by the module into sunny or stormy as specified by the User Story.  We have anticipated that the generation of weather conditions would be the most likely area to evolve in future and have therefore made Airport's dependency on the weather module as simple as possible.
+
+
 Instructions
 ---------
 
@@ -42,7 +66,7 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing or taking off when the weather is stormy
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
+Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed.
 
 The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests. It is up to you to implement the tests and create additional tests as necessary.
 
@@ -50,20 +74,20 @@ For overriding random weather behaviour, please read the documentation to learn 
 
 As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
 
-Please create separate files for every class, module and test suite. 
+Please create separate files for every class, module and test suite.
 
 The submission will be judged on the following criteria:
 
 * Tests pass
 * Tests coverage is good
 * The code is elegant: every class has a clear responsibility, methods are short etc.
- 
+
 BONUS
 * Write an RSpec **feature** test that lands and takes off a number of planes...
 
 Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
+Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
 
