@@ -1,4 +1,3 @@
-
 As a pilot
 So that I can arrive at my specified destination
 I would like to land my plane at the appropriate airport
@@ -25,9 +24,9 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing or taking off when the weather is stormy
 
 
-|      Objects               |           Messages               |
-      _________                         __________
+|      Objects               |      Messages       |
+      _________                   __________
 
-|   Air Traffic Controller   |   								|
-|   Plane                    |  weather_stormy?                 | 
-|   Airport                  |  airport_full?                   |
+|   Air Traffic Controller   |   								   |
+|   Plane                    |  weather_stormy?    |
+|   Airport                  |  airport_full?      |
