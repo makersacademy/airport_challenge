@@ -14,7 +14,7 @@ plane = Plane.new (to create a new plane)
 To land a plane use "airport.clear_to_land(plane)"
 To get a plane to take off use "airport.clear_to_take_off(plane)"
 
-The capacity of the aiport is set to five planes by default - you cannot land a plane if the airport is full
+The capacity of the airport is set to five planes by default - you cannot land a plane if the airport is full
 
 The airport checks the weather before a plane takes off or lands.  If the weather is "stormy" the airport will not allow the plane to do either.
 
@@ -22,6 +22,7 @@ A have used two classes, airport and planes.  The weather is included as a modul
 
 There is a complete set of passing tests with 94% coverage.  The tests use doubles to stub out the random aspects of the weather and simulate both sunny and stormy conditions.
 
+Using weather as a module helps with the separation of concerns between the airport and the weather - the airport does not 'have weather' - instead it checks to see what the weather is when each plane takes off.  Weather is incorporated into the airport via lines 17 to 23 of Airport.rb - these lines convert the weather returned by the module into sunny or stormy as specified by the User Story.  We have anticipated that the generation of weather conditions would be the most likely area to evolve in future and have therefore made Airport's dependency on the weather module as simple as possible.
 
 
 Instructions
