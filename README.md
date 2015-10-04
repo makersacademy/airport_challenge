@@ -32,9 +32,12 @@ I want to be able to prevent airplanes landing or taking off when the weather is
 2. Rspec
 3. Github
 
+### Approach I will use:
+I will start by breaking down each user story and outlining possible classes and methods. I will then experiment using irb to see how I would like my classes/objects to interact with one another and what method names to call. Next, I will take a RED -> GREEN -> REFACTOR approach and write each test first, watch it fail, make it pass and then refactor if needed.
+
 ### New things I learnt/improved on:
 
 1. Single Responsibility Principle
-2. Test Doubles
+2. Test Doubles/mocks and stubbing
 3. Test Driven Development
 4. Object Orientated Programming
