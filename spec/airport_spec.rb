@@ -6,12 +6,23 @@ require'plane'
 describe Airport do
 
     let(:double_plane){double :plane, flying: 'flying'}
-    let(:double_weather) {double :weather, false }
+    let(:double_weather_false) {double :weather, weather_stormy?: false }
 
     it { is_expected.to respond_to :planes }
     it { is_expected.to respond_to :count_planes }
     it { is_expected.to respond_to :now_weather }
 
+    it 'responds to a weather reading of false with sunny' do
+      glasgow = Airport.new
+      allow(glasgow).to receive(:weather_stormy?) {false}
+      expect(glasgow.now_weather).to eql('sunny')
+    end
+
+    it 'responds to a weather reading of true with stormy' do
+      glasgow = Airport.new
+      allow(glasgow).to receive(:weather_stormy?) {true}
+      expect(glasgow.now_weather).to eql('stormy')
+    end
 
     it 'has a capacity with a maximum number of planes' do
       expect(subject.capacity).to eql 5
