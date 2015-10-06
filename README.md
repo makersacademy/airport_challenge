@@ -28,16 +28,52 @@ So that I can avoid accidents
 I want to be able to prevent airplanes landing or taking off when the weather is stormy
 ```
 
-### Technologies Used:
+## Technologies Used:
 
 1. Ruby
-2. Rspec
+2. RSpec
 3. Github
 
-### Approach I will use:
-I will start by breaking down each user story and outlining possible classes and methods. I will then experiment using irb to see how I would like my classes/objects to interact with one another and what method names to call. Next, I will take a RED -> GREEN -> REFACTOR approach and write each test first, watch it fail, make it pass and then refactor if needed.
+## Approach I used:
 
-### New things I learnt/improved on:
+I started by breaking down each user story and outlining possible classes and methods. I then experimented using irb to see how I would like classes/objects to interact with one another and what method were required. I then took a RED -> GREEN -> REFACTOR approach and wrote each test first, watched it fail, made it pass and then refactored if needed.
+
+## How the app works:
+
+```ruby
+→ irb
+2.2.3 :001 > require './lib/airport'
+ => true
+2.2.3 :002 > airport = Airport.new
+ => #<Airport:0x007fe1ba918248 @planes=[], @capacity=20>
+2.2.3 :003 > plane1 = Plane.new
+ => #<Plane:0x007fe1ba920970 @flying=true>
+2.2.3 :004 > airport.land(plane1)
+ => [#<Plane:0x007fe1ba920970 @flying=true>]
+2.2.3 :005 > plane1.landed?
+ => false
+2.2.3 :006 > plane1.land
+ => false
+2.2.3 :007 > plane1.landed?
+ => true
+2.2.3 :008 > airport.take_off(plane1)
+RuntimeError: Stormy weather
+	from /Users/catherinestevenson/Desktop/Projects/Week1/airport_challenge/lib/airport.rb:27:in `take_off'
+	from (irb):8
+	from /Users/catherinestevenson/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :009 > airport.take_off(plane1)
+ => #<Plane:0x007fe1ba920970 @flying=false>
+2.2.3 :010 > plane1.take_off
+ => true
+2.2.3 :011 > plane1.flying?
+ => true
+```
+
+## Progress
+
+App completed and all tests passing
+
+## New things I learnt/improved on:
 
 1. Single Responsibility Principle
 2. Test Doubles/mocks and stubbing
