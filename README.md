@@ -40,7 +40,7 @@ I started by breaking down each user story and outlining possible classes and me
 
 ## How the app works:
 
-```ruby
+```
 → irb
 2.2.3 :001 > require './lib/airport'
  => true
@@ -62,7 +62,7 @@ RuntimeError: Stormy weather
 	from (irb):8
 	from /Users/catherinestevenson/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
 2.2.3 :009 > airport.take_off(plane1)
- => #<Plane:0x007fe1ba920970 @flying=false>
+ => [#<Plane:0x007fe1ba920970 @flying=false>]
 2.2.3 :010 > plane1.take_off
  => true
 2.2.3 :011 > plane1.flying?
