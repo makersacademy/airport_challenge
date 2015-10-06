@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-	let (:plane) {Plane.new :destination}
+	let (:plane) {Plane.new}
 
 	it 'is flying when created' do
 		expect(plane).to be_flying
@@ -15,7 +15,7 @@ describe Plane do
 
 	it 'is landed after landing' do
 		plane.land
-		expect(plane).to be_landed
+		expect(plane.flying?).to be false
 	end
 
 	it 'can take off' do
