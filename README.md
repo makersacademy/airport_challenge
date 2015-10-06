@@ -1,13 +1,17 @@
 Airport Control System		![](https://travis-ci.org/UsmanJ/airport_challenge.svg?branch=master)	[![Coverage Status](https://coveralls.io/repos/makersacademy/airport_challenge/badge.svg?branch=master&service=github)](https://coveralls.io/github/makersacademy/airport_challenge?branch=master)
 ======================
 
-Steps
+Synopsis
 -----
 
-1. Fork this repo and clone it to your local machine
-2. Run the command 'gem install bundle'
-3. After installation, run 'bundle'
-4. Use the airport control system.
+The task set was to build an air traffic controller. The purpose of this controller is to let the planes know whether to land /take off or not. Some conditions had to be met such as:
+
+- Plane can not land when the weather is stormy
+- Plane can not land when the airport is full
+- Plane can not take off when weather is stormy
+
+Other conditions exist but they are more common sense i.e. plane can't land if it has already landed.
+The maximum capacity of this airport was set to 80 planes. 
 
 
 Approach towards solving the challenge
