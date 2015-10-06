@@ -1,70 +1,55 @@
-Airport Challenge
-=================
+Airport Control System		![](https://travis-ci.org/UsmanJ/airport_challenge.svg?branch=master)	[![Coverage Status](https://coveralls.io/repos/makersacademy/airport_challenge/badge.svg?branch=master&service=github)](https://coveralls.io/github/makersacademy/airport_challenge?branch=master)
+======================
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_september2015 (start by forking this repo, then edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
-
-Task
+Synopsis
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client.
+The task set was to build an air traffic controller. The purpose of this controller is to let the planes know whether to land /take off or not. Some conditions had to be met such as:
 
+- Plane can not land when the weather is stormy
+- Plane can not land when the airport is full
+- Plane can not take off when weather is stormy
+
+Other conditions exist but they are more common sense i.e. plane can't land if it has already landed.
+The maximum capacity of this airport was set to 80 planes. 
+
+
+Approach towards solving the challenge
+--------------------------------------
+
+This challenge was solved by firstly deciding on how many classes were needed. Two classes and one module was used in this project as it felt like the best option.
+
+RSpec tests were written first followed by the code to make them pass. As the project developed; some tests had to be altered or deleted altogether to compliment the progress of the project.
+
+The airport control system is fully functional; however if you feel that their are any errors please let me know.
+
+
+Steps of using the control system
+---------------------------------
 ```
-As a pilot
-So that I can arrive at my specified destination
-I would like to land my plane at the appropriate airport
-
-As a pilot
-So that I can set off for my specified destination
-I would like to be able to take off from the appropriate airport
-
-As an air traffic controller
-So that I can avoid collisions
-I want to be able to prevent airplanes landing when the airport if full
-
-As an air traffic controller
-So that I can avoid accidents
-I want to be able to prevent airplanes landing or taking off when the weather is stormy
+irb(main):008:0> airport = Airport.new
+=> #<Airport:0x007f90042ecd68 @planes=[], @capacity=80>
+irb(main):009:0> plane = Plane.new :Paris
+=> #<Plane:0x007f90042f4cc0 @flying=true, @destination=:Paris>
+irb(main):010:0> airport.land plane
+=> [#<Plane:0x007f90042f4cc0 @flying=true, @destination=:Paris>]
+irb(main):011:0> plane
+=> #<Plane:0x007f90042f4cc0 @flying=true, @destination=:Paris>
+irb(main):012:0> plane.landed?
+=> false
+irb(main):013:0> plane.land
+=> true
+irb(main):014:0> plane.landed?
+=> true
+irb(main):015:0> airport.take_off
+RuntimeError: Stormy weather
+	from /Users/UsmaanJ/Desktop/Projects/airport_challenge/lib/airport.rb:24:in `take_off'
+	from (irb):15
+	from /Users/UsmaanJ/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+irb(main):016:0> airport.take_off
+=> #<Plane:0x007f90042f4cc0 @flying=false, @destination=:Paris>
+irb(main):017:0> plane.take_off
+=> true
+irb(main):018:0> plane.flying?
+=> true
 ```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. Finally, every plane must have a status indicating whether it's flying or landed. 
-
-The existing tests in the spec folder, and base classes in the lib folder are provided merely as a general guide.  Please create more classes, unit and/or feature tests as appropriate.  The existing specs provide the layout of a set of pending unit tests. It is up to you to implement the tests and create additional tests as necessary.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-As mentioned above the existing tests are there just for the inspiration if you need it. You don’t have to implement every single test there and you aren’t limited by the tests there either. Feel free to modify the tests as you see fit.
-
-Please create separate files for every class, module and test suite. 
-
-The submission will be judged on the following criteria:
-
-* Tests pass
-* Tests coverage is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
- 
-BONUS
-* Write an RSpec **feature** test that lands and takes off a number of planes...
-
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
-
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
