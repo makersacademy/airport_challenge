@@ -36,7 +36,7 @@ I want to be able to prevent airplanes landing or taking off when the weather is
 
 ## Approach I used:
 
-I started by breaking down each user story and outlining possible classes and methods. I then experimented using irb to see how I would like classes/objects to interact with one another and what method were required. I then took a RED -> GREEN -> REFACTOR approach and wrote each test first, watched it fail, made it pass and then refactored if needed.
+I started by breaking down each user story and outlining possible classes and methods. I then experimented using irb to see how I would like classes/objects to interact with one another and what methods were required. Next, I took a test driven development approach and wrote each test first, watched it fail, made it pass and then refactored if needed.
 
 ## How the app works:
 
@@ -72,10 +72,3 @@ RuntimeError: Stormy weather
 ## Progress
 
 App completed and all tests passing
-
-## New things I learnt/improved on:
-
-1. Single Responsibility Principle
-2. Test Doubles/mocks and stubbing
-3. Test Driven Development
-4. Object Orientated Programming
