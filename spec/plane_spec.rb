@@ -1,30 +1,38 @@
 require 'plane'
 
-## Note these are just some guidelines!
-## Feel free to write more tests!!
-
-# When we create a new plane, it should be "flying",
-# thus planes can not be created in the airport.
-#
-# When we land a plane at the airport, the plane in question should
-# be "landed"
-#
-# When the plane takes of from the airport, it should be "flying" again
-#
-# Think about your implementation - does it allow a plane to be "flying"
-# and landed?
-# Are you testing that?
-
 describe Plane do
+  airport = Airport.new
 
-  xit 'is flying when created'
+  it 'Plane is flying when created' do
+    expect(subject).to be_flying
+  end
 
-  xit 'can land'
+  it 'Plane can respond to land' do
+    expect(subject).to respond_to(:land)
+  end
 
-  xit 'is landed after landing'
+  it 'Plane can take off' do
+    expect(subject).to respond_to(:take_off)
+  end
 
-  xit 'can take off'
+  context "when landed at an airport" do
+    before { allow(airport).to receive(:weather).and_return "sunny" }
 
-  xit 'is flying after take off'
+    it 'the plane is landed' do
+      airport.land_plane(subject)
+      expect(subject.flying?).to eq false
+    end
+
+    it 'expects land to set a plane\'s flying status to false' do
+      subject.land
+      expect(subject.flying?).to eq(false)
+    end
+
+    it 'Plane is flying after take off' do
+      subject.take_off
+      expect(subject.flying?).to eq(true)
+    end
+
+  end
 
 end
