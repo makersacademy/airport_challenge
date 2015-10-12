@@ -12,6 +12,7 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
+  subject(:airport) { Airport.new }
 
   # describe '#land' do
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -19,6 +20,12 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
+  describe 'land' do
+    it 'fails when the airport is full' do
+      allow(airport).to receive(:full?).and_return true
+      expect{airport.land(double :plane)}.to raise_error 'Cannot land since airport is full'
+    end
+  end
 
   describe 'take off' do
     xit 'instructs a plane to take off'
