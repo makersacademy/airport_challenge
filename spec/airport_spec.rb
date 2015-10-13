@@ -12,7 +12,9 @@ require 'airport'
 # If the airport is full then no planes can land
 
 describe Airport do
-  subject(:airport) { Airport.new }
+  let(:weather) { Weather.new }
+  before { allow(weather).to receive(:stormy?).and_return false }
+  subject(:airport) { Airport.new(weather: weather) }
   let(:plane) { double :plane }
 
   # describe '#land' do
@@ -29,7 +31,7 @@ describe Airport do
     end
 
     it 'fails when the airport is full to a given capacity' do
-      airport = Airport.new(capacity: 2)
+      airport = Airport.new(capacity: 2, weather: weather)
       2.times { airport.land double :plane }
       error = 'Cannot land since airport is full'
       expect{ airport.land(plane) }.to raise_error error
