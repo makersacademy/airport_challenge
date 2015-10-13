@@ -23,11 +23,19 @@ describe Airport do
 
   it { is_expected.to respond_to(:initialize).with(1).argument }
 
+
   describe 'land' do
     it 'fails when the airport is full' do
       airport.land(plane)
       error = 'Cannot land since airport is full'
       expect { airport.land(double :plane) }.to raise_error error
+    end
+
+    it 'fails when the airport is full to a given capacity' do
+      airport = Airport.new(capacity: 2)
+      2.times { airport.land double :plane }
+      error = 'Cannot land since airport is full'
+      expect{ airport.land(plane) }.to raise_error error
     end
   end
 
