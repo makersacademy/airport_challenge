@@ -13,6 +13,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { Airport.new }
+  let(:plane) { double :plane }
 
   # describe '#land' do
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -22,9 +23,22 @@ describe Airport do
 
   describe 'land' do
     it 'fails when the airport is full' do
-      airport.land(double :plane)
+      airport.land(plane)
       error = 'Cannot land since airport is full'
       expect { airport.land(double :plane) }.to raise_error error
+    end
+  end
+
+  it { is_expected.to respond_to(:report_storm) }
+
+  context 'when stormy' do
+    before do
+      airport.report_storm
+    end
+
+    it 'does not allow a plane to land' do
+      error = 'Unable to land due to stormy weather'
+      expect{ airport.land(plane) }.to raise_error error
     end
   end
 

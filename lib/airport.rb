@@ -7,4 +7,8 @@ class Airport
   def take_off(plane)
 
   end
+
+  def report_storm
+
+  end
 end
