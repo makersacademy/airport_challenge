@@ -42,10 +42,12 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error error
     end
   end
-  
+
   context 'when stormy' do
+    let(:weather) { double :weather }
+    subject(:airport) { Airport.new weather: weather }
     before do
-      allow(airport).to receive(:stormy?).and_return true
+      allow(weather).to receive(:stormy?).and_return true
     end
 
     it 'does not allow a plane to land' do
