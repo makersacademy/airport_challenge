@@ -21,6 +21,8 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
+  it { is_expected.to respond_to(:initialize).with(1).argument }
+
   describe 'land' do
     it 'fails when the airport is full' do
       airport.land(plane)

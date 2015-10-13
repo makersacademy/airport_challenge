@@ -7,9 +7,16 @@ class Airport
 
   def take_off(plane)
     fail 'Unable to take off due to stormy weather' if @stormy
+    fail 'The plane is not currently landed at this airport' unless has?(plane)
   end
 
   def report_storm
     @stormy = true
+  end
+
+  private
+
+  def has?(plane)
+    @plane == plane
   end
 end

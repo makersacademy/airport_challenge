@@ -7,6 +7,7 @@ describe 'Airport Challenge' do
   end
 
   specify 'a pilot can take off from an airport' do
+    airport.land(plane)
     airport.take_off(plane)
   end
 
@@ -15,6 +16,16 @@ describe 'Airport Challenge' do
     airport.land(plane)
     message = 'Cannot land since airport is full'
     expect { airport.land(plane2) }.to raise_error message
+  end
+
+  context 'airport with capacity 2' do
+    subject(:airport) { Airport.new(capacity: 2)}
+    specify 'two planes can land at an airport with capacity 2' do
+      plane2 = Plane.new
+      airport.land(plane)
+      message = 'Cannot land since airport is full'
+      expect { airport.land(plane2) }.not_to raise_error message
+    end
   end
 
   specify 'a plane cannot land when weather is stormy' do
@@ -30,7 +41,7 @@ describe 'Airport Challenge' do
     expect { airport.take_off(plane) }.to raise_error message
   end
 
-  specify 'a plane can only take off from an airport it is currently landed at' do
+  specify 'a plane can only take off from an airport it is at' do
     message = 'The plane is not currently landed at this airport'
     expect{ airport.take_off(plane) }.to raise_error message
   end
