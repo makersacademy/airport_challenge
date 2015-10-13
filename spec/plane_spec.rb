@@ -17,14 +17,14 @@ require 'plane'
 
 describe Plane do
 
-  xit 'is flying when created'
+  # xit 'is flying when created'
 
-  xit 'can land'
+  # xit 'can land'
 
-  xit 'is landed after landing'
+  # xit 'is landed after landing'
 
-  xit 'can take off'
+  # xit 'can take off'
 
-  xit 'is flying after take off'
+  # xit 'is flying after take off'
 
 end

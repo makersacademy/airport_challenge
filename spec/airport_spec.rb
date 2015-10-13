@@ -22,41 +22,42 @@ describe Airport do
 
   describe 'land' do
     it 'fails when the airport is full' do
-      allow(airport).to receive(:full?).and_return true
-      expect{airport.land(double :plane)}.to raise_error 'Cannot land since airport is full'
+      airport.land(double :plane)
+      error = 'Cannot land since airport is full'
+      expect { airport.land(double :plane) }.to raise_error error
     end
   end
 
-  describe 'take off' do
-    xit 'instructs a plane to take off'
+  # describe 'take off' do
+  #   xit 'instructs a plane to take off'
 
-    xit 'releases a plane'
-  end
+  #   xit 'releases a plane'
+  # end
 
-  describe 'landing' do
-    xit 'instructs a plane to land'
+  # describe 'landing' do
+  #   xit 'instructs a plane to land'
 
-    xit 'receives a plane'
-  end
+  #   xit 'receives a plane'
+  # end
 
-  describe 'traffic control' do
-    context 'when airport is full' do
-      xit 'does not allow a plane to land'
-    end
+  # describe 'traffic control' do
+  #   context 'when airport is full' do
+  #     xit 'does not allow a plane to land'
+  #   end
 
-    # Include a weather condition.
-    # The weather must be random and only have two states "sunny" or "stormy".
-    # Try and take off a plane, but if the weather is stormy,
-    # the plane can not take off and must remain in the airport.
-    #
-    # This will require stubbing to stop the random return of the weather.
-    # If the airport has a weather condition of stormy,
-    # the plane can not land, and must not be in the airport
+  #   # Include a weather condition.
+  #   # The weather must be random and only have two states "sunny" or "stormy".
+  #   # Try and take off a plane, but if the weather is stormy,
+  #   # the plane can not take off and must remain in the airport.
+  #   #
+  #   # This will require stubbing to stop the random return of the weather.
+  #   # If the airport has a weather condition of stormy,
+  #   # the plane can not land, and must not be in the airport
 
-    context 'when weather conditions are stormy' do
-      xit 'does not allow a plane to take off'
+  #   context 'when weather conditions are stormy' do
+  #     xit 'does not allow a plane to take off'
 
-      xit 'does not allow a plane to land'
-    end
-  end
+  #     xit 'does not allow a plane to land'
+  #   end
+  # end
 end
