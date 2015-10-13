@@ -1,6 +1,7 @@
 class Airport
   def land(plane)
     fail 'Cannot land since airport is full' if @plane
+    fail 'Unable to land due to stormy weather' if @stormy
     @plane = plane
   end
 
@@ -9,6 +10,6 @@ class Airport
   end
 
   def report_storm
-
+    @stormy = true
   end
 end

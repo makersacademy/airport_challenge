@@ -23,9 +23,9 @@ describe 'Airport Challenge' do
     expect { airport.land(plane) }.to raise_error message
   end
 
-  xspecify 'a plane cannot take off when weather is stormy' do
-    # set weather to stormy
+  specify 'a plane cannot take off when weather is stormy' do
     airport.land(plane)
+    airport.report_storm
     message = 'Unable to take off due to stormy weather'
     expect { airport.take_off(plane) }.to raise_error message
   end
