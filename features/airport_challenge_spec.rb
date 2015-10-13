@@ -12,33 +12,45 @@ describe 'Airport Challenge' do
   end
 
   specify 'a plane cannot be landed if the airport is full' do
-    plane2 = Plane.new
     airport.land(plane)
     message = 'Cannot land since airport is full'
-    expect { airport.land(plane2) }.to raise_error message
+    expect { airport.land(Plane.new) }.to raise_error message
   end
 
   context 'airport with capacity 2' do
     subject(:airport) { Airport.new(capacity: 2)}
-    specify 'two planes can land at an airport with capacity 2' do
-      plane2 = Plane.new
+    specify 'third plane cannot land at an airport with capacity 2' do
       airport.land(plane)
+      airport.land(Plane.new)
       message = 'Cannot land since airport is full'
-      expect { airport.land(plane2) }.not_to raise_error message
+      expect { airport.land(Plane.new) }.to raise_error message
     end
   end
 
   specify 'a plane cannot land when weather is stormy' do
-    airport.report_storm
+    allow(airport).to receive(:stormy?).and_return true
     message = 'Unable to land due to stormy weather'
     expect { airport.land(plane) }.to raise_error message
   end
 
   specify 'a plane cannot take off when weather is stormy' do
     airport.land(plane)
-    airport.report_storm
+    allow(airport).to receive(:stormy?).and_return true
     message = 'Unable to take off due to stormy weather'
     expect { airport.take_off(plane) }.to raise_error message
+  end
+
+  context do
+    let(:weather) { Weather.new }
+    subject(:airport) { Airport.new(capacity: 2, weather: weather)}
+    specify 'a plane can take off after storm has cleared' do
+      airport.land(plane)
+      allow(weather).to receive(:stormy?).and_return true
+      message = 'Unable to take off due to stormy weather'
+      expect { airport.take_off(plane) }.to raise_error message
+      allow(weather).to receive(:stormy?).and_return false
+      expect { airport.take_off(plane) }.not_to raise_error
+    end
   end
 
   specify 'a plane can only take off from an airport it is at' do

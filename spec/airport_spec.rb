@@ -21,9 +21,6 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
-  it { is_expected.to respond_to(:initialize).with(1).argument }
-
-
   describe 'land' do
     it 'fails when the airport is full' do
       airport.land(plane)
@@ -45,12 +42,10 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error error
     end
   end
-
-  it { is_expected.to respond_to(:report_storm) }
-
+  
   context 'when stormy' do
     before do
-      airport.report_storm
+      allow(airport).to receive(:stormy?).and_return true
     end
 
     it 'does not allow a plane to land' do
