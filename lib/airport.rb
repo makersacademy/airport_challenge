@@ -6,7 +6,7 @@ class Airport
   end
 
   def take_off(plane)
-
+    fail 'Unable to take off due to stormy weather' if @stormy
   end
 
   def report_storm
