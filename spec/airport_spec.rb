@@ -29,6 +29,13 @@ describe Airport do
     end
   end
 
+  describe 'take off' do
+    it 'does not take off a plane that is not in the airport' do
+      error = 'The plane is not currently landed at this airport'
+      expect { airport.take_off(plane) }.to raise_error error
+    end
+  end
+
   it { is_expected.to respond_to(:report_storm) }
 
   context 'when stormy' do

@@ -29,4 +29,9 @@ describe 'Airport Challenge' do
     message = 'Unable to take off due to stormy weather'
     expect { airport.take_off(plane) }.to raise_error message
   end
+
+  specify 'a plane can only take off from an airport it is currently landed at' do
+    message = 'The plane is not currently landed at this airport'
+    expect{ airport.take_off(plane) }.to raise_error message
+  end
 end
