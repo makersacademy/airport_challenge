@@ -31,34 +31,10 @@ $ irb
 
 # Step 2: Tests and \*\_spec.rb files  
 
-* [ ] Use named subject with `described_class`
+* [ ] [Use named subject with `described_class`](tests/named_subject_described_class.md)
 
-It's easy to use `let` or `subject` or to create a local variable to refer to the class under test.  However, prefer instead to [name the subject explicitly](https://www.relishapp.com/rspec/rspec-core/docs/subject/explicit-subject), using `described_class` to refer to the class:
+* [ ] [Use `context` and `describe` blocks to create test scopes](tests/context_describe_test_scopes.md)
 
-```ruby
-describe Airport do
-  subject(:airport) { described_class.new }
-end
-```
-
-Instead of:
-
-```ruby
-describe Airport do
-  let(:airport) { Airport.new }
-
-  # or:
-  it 'does something' do
-    airport = Airport.new
-  end
-end
-```
-
-## Use `context` and `describe` blocks to create test scopes
-
-If a group of tests share the same setup or are related logically, group them in a `context` block or a `describe` block.  Use `describe` when the tests are related by a subset of behaviour (e.g 'landing') and use `context` when the tests are related by program state (e.g. 'when it is stormy').
-
-`let`, `subject` and `before` statements inside a context or describe block will only run for tests inside the block and will override similar statements in an outer block.
 
 ## Vacuous tests
 
