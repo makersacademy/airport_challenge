@@ -89,7 +89,7 @@ it 'has the plane after landing' do
 end
 ```
 
-## Use before blocks to set up objects rather than repeat code
+## Use `before` blocks to set up objects rather than repeat code
 For example, to set up stubbing behaviour that is shared across a number of tests:
 ```ruby
 describe 'a group of tests that need to call #land on a plane double' do
