@@ -101,7 +101,7 @@ describe 'a group of tests that need to call #land on a plane double' do
 end
 ```
 
-## Incomplete unit tests
+## Insufficient unit tests (test coverage)
 The following test on its own is not sufficient for testing the landing of planes:
 ```ruby
 describe Airport do
@@ -143,7 +143,7 @@ end
 
 And the airport has multiple planes, does it test that the _correct_ plane is removed from the airport?
 
-## Multiple Expects in `it` block
+## Multiple `expect`s in `it` block
 
 The above example _could_ be combined into one test, but this is not good practice:
 ```ruby
