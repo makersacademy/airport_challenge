@@ -31,7 +31,7 @@ $ irb
 
 # Step 2: Tests and \*\_spec.rb files  
 
-* [ ] Use named subject with `described_class`
+* [x] Use named subject with `described_class`
 
 It's easy to use `let` or `subject` or to create a local variable to refer to the class under test.  However, prefer instead to [name the subject explicitly](https://www.relishapp.com/rspec/rspec-core/docs/subject/explicit-subject), using `described_class` to refer to the class:
 
