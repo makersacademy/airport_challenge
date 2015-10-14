@@ -172,7 +172,7 @@ it 'does not allow plane to take off' do
 end
 ```
 
-## Handling Randomness in Tests
+## Handling randomness in tests
 
 It's important that tests don't fail randomly, so it's critical that any randomness in your application is stubbed out to ensure tests pass reliably, e.g.
 
@@ -186,7 +186,7 @@ specify 'a plane can land after storm has cleared' do
 end
 ```
 
-## Getting rid of redundant respond_to methods
+## Getting rid of redundant `respond_to` expectations
 
 note that tests like this:
 
@@ -214,7 +214,7 @@ The `respond_to` tests are an initial step you go through using the tests to dri
 
 # Step 3: Application code and \*.rb files
 
-## Naming conventions, and matching the domain model
+## Naming conventions and matching the domain model
 
 In general it's critical for maintainability that code is readable.  We want to ensure that other developers (and ourself in the future) can come to the codebase and make sense of what's going on.  That's supported by having the naming conventions match that of the ruby community and of the domain model (in this case 'air traffic control').
 
