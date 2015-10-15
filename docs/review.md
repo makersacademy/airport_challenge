@@ -247,6 +247,9 @@ $ airport = Airport.new
 $ airport.land(plane)
 ```
 
+* [Ruby Style Guide: CamelCase for classes and modules](https://github.com/bbatsov/ruby-style-guide#camelcase-classes)
+* [Ruby Style Guide: snake_case for symbols, methods and variables](https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars)
+
 ## Commented-out code
 
 When submitting delete all "commented out" code.  You may not yet trust git to store all your old code, and you might not feel confident about rolling back to old commits to see that code, but that shouldn't be an excuse for leaving big chunks of commented out code in your files.  Make sure you commit to git (and push to GitHub) regularly, and start to get familiar with how to check out previous versions of your code.  If you are still worried store old versions of code in other files that you don't check in.  What we're trying to get you into the habit of, is polishing your submission so that it would be acceptable as a submission to a company as a technical test. So we don't want to see any of this:
@@ -303,6 +306,9 @@ fail 'Airport full' if full?
 # logic
 # in method body
 ```
+
+* [Style Guide: No Nested Conditionals](https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals)
+* [Style Guide: Is as a modifier](https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier)
 
 ### Implicit return of booleans
 
