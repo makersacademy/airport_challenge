@@ -5,7 +5,7 @@ Instructions
 ---------
 
 * Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
+* Feel free to use google, your notes, books, etc. but work on your own
 * If you have a partial solution, **still check in a partial solution**
 * You must submit a pull request to this repo with your code by 9am Monday morning
 * If you do not submit a pull request, we will not be able to see your progress
@@ -35,7 +35,7 @@ I would like to be able to instruct a plane to take off from my airport
 
 As an air traffic controller
 So that I can avoid collisions
-I want to be able to prevent airplanes landing when my airport if full
+I want to be able to prevent airplanes landing when my airport is full
 
 As an air traffic controller
 So that I can avoid accidents
@@ -51,7 +51,7 @@ I would like a default airport capacity that can be overridden as appropriate
 
 As an air traffic controller
 So that I can adapt to weather conditions
-I want to be able to give the all clear after a storm has passed and allow planes to land and take off again
+I want to be able to give the all-clear after a storm has passed and allow planes to land and take off again
 
 As an air traffic controller
 So that we always have a consistent system that correctly reports plane status and location
@@ -75,13 +75,14 @@ Please create separate files for every class, module and test suite.
 The submission will be judged on the following criteria:
 
 * Tests pass
-* [Tests coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) is good
+* [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) is good
 * The code is elegant: every class has a clear responsibility, methods are short etc.
  
-BONUS
-* Write an RSpec **feature** test that lands and takes off a number of planes ...
+**BONUS**
 
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+* Write an RSpec **feature** test that lands and takes off a number of planes
+
+Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
 
