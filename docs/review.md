@@ -308,7 +308,7 @@ fail 'Airport full' if full?
 ```
 
 * [Style Guide: No Nested Conditionals](https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals)
-* [Style Guide: Is as a modifier](https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier)
+* [Style Guide: If as a modifier](https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier)
 
 ### Implicit return of booleans
 
