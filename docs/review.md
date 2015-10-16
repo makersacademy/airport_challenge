@@ -5,6 +5,8 @@ If you don't feel comfortable giving technical feedback at this stage, try going
 
 At the very least, please checkout your reviewee's code and run the tests.  Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code?  How readable is their code?  Did you need to make any cognitive leaps to 'get it'?
 
+Please use [this form](https://docs.google.com/forms/d/1_QJxz8Twnc28e5wyVpB6xmXCvP3M_HPUXk65EGLhiZw/viewform) to record each of the following issues as they occur.  This form helps us get an overall picture of how the whole cohort is doing - it's not an assessment of an individual student.
+
 # Step 1: Structure and supporting files
 
 ## README not updated
