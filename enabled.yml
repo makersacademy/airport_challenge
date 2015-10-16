@@ -449,6 +449,9 @@ Style/SingleLineBlockParams:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#reduce-blocks'
   Enabled: true
 
+Style/SpaceAfterMethodName:
+  Enabled: true
+
 Style/SpecialGlobalVars:
   Description: 'Avoid Perl-style global variables.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-cryptic-perlisms'
@@ -616,9 +619,16 @@ Lint/DefEndAlignment:
   AutoCorrect: false
   Enabled: true
 
+Lint/ParenthesesAsGroupedExpression:
+  # Details: 'not clear how Lint/ParenthesesAsGroupedExpression is different from Style/SpaceAfterMethodName.  See raphlevy'
+  Enabled: true
+
 Lint/RescueException:
   Description: 'Avoid rescuing the Exception class.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-blind-rescues'
+  Enabled: true
+
+Lint/ShadowingOuterLocalVariable:
   Enabled: true
 
 Lint/StringConversionInInterpolation:
@@ -648,6 +658,15 @@ Lint/UselessAssignment:
   Description: 'Checks for useless assignment to a local variable.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
   Enabled: true
+
+Lint/UselessElseWithoutRescue:
+  Enabled: true
+
+Lint/Void:
+  Enabled: true
+  Description: 'a variable, operator or literal used in a void context'
+  # Details: 'an example of this issue can be found in the MA link below'
+  # StyleGuide: 'https://github.com/makersacademy/airport_challenge/blob/master/docs/review.md#instance-variable-redundancy'
 
 Metrics/AbcSize:
   Description: >-
@@ -694,4 +713,7 @@ Metrics/PerceivedComplexity:
   Description: >-
                  A complexity metric geared towards measuring complexity for a
                  human reader.
+  Enabled: true
+
+Performance/Sample:
   Enabled: true
