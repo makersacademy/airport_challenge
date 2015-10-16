@@ -5,7 +5,7 @@ Instructions
 ---------
 
 * Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc but work on your own
+* Feel free to use google, your notes, books, etc. but work on your own
 * If you have a partial solution, **still check in a partial solution**
 * You must submit a pull request to this repo with your code by 9am Monday morning
 * If you do not submit a pull request, we will not be able to see your progress
@@ -62,24 +62,25 @@ So the system is consistent and correctly reports plane status and location
 I want to ensure a plane that has taken off from an airport is no longer in that airport
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. 
+Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
 For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite. 
+Please create separate files for every class, module and test suite.
 
 The submission will be judged on the following criteria:
 
 * Tests pass
-* [Tests coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) is good
+* [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) is good
 * The code is elegant: every class has a clear responsibility, methods are short etc.
- 
-BONUS
-* Write an RSpec **feature** test that lands and takes off a number of planes ...
 
-Note that is a practice 'Tech Test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+**BONUS**
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
+* Write an RSpec **feature** test that lands and takes off a number of planes
+
+Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+
+Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
 
