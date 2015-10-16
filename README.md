@@ -26,65 +26,61 @@ We have a request from a client to write the software to control the flow of pla
 
 ```
 As an air traffic controller
-So that I can have planes land safely at my airport
-I would like to be able to instruct a plane to land at my airport
+So planes can land safely at my airport
+I would like to instruct a plane to land
 
 As an air traffic controller
-So that I can have planes take off safely from my airport
-I would like to be able to instruct a plane to take off from my airport
+So planes can take off safely from my airport
+I would like to instruct a plane to take off
 
 As an air traffic controller
 So that I can avoid collisions
-I want to be able to prevent airplanes landing when my airport is full
+I want to prevent airplanes landing when my airport if full
 
 As an air traffic controller
 So that I can avoid accidents
-I want to be able to prevent airplanes landing or taking off when the weather is stormy
+I want to prevent airplanes landing or taking off when the weather is stormy
 
 As an air traffic controller
 So that I can ensure safe take off procedures
-I want planes to only be able to take off from the airport they are at
+I want planes only to take off from the airport they are at
 
-As the software designer
+As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
 As an air traffic controller
-So that I can adapt to weather conditions
-I want to be able to give the all-clear after a storm has passed and allow planes to land and take off again
+So the system is consistent and correctly reports plane status and location
+I want to ensure a flying plane cannot take off and cannot be in an airport
 
 As an air traffic controller
-So that we always have a consistent system that correctly reports plane status and location
-I want to ensure that a plane that is flying cannot be instructed to take off AND must NOT be in an airport 
+So the system is consistent and correctly reports plane status and location
+I want to ensure a plane that is not flying cannot land and must be in an airport
 
 As an air traffic controller
-So that we always have a consistent system that correctly reports plane status and location
-I want to ensure that a plane that is not flying cannot land AND must be in an airport
-
-As an air traffic controller
-So that we always have a consistent system that correctly reports plane status and location
-I want to ensure that a plane that has taken off from an airport is no longer in that airport
+So the system is consistent and correctly reports plane status and location
+I want to ensure a plane that has taken off from an airport is no longer in that airport
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour. 
+Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
 For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite. 
+Please create separate files for every class, module and test suite.
 
 The submission will be judged on the following criteria:
 
 * Tests pass
 * [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) is good
 * The code is elegant: every class has a clear responsibility, methods are short etc.
- 
+
 **BONUS**
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
 Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first. 
+Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
 
