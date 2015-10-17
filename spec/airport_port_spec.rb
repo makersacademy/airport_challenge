@@ -27,7 +27,6 @@ let(:plane1) {Plane.new}
   end
 
   describe '#weather_good?' do
-
     context 'when stormy' do
       let(:weather) { double("weather", :current => "stormy") }
       it 'weather_good? false' do
@@ -58,9 +57,23 @@ let(:plane1) {Plane.new}
         expect(subject.lands(plane1).last).to eq plane1
       end
     end
-
   end
 
-
+  describe '#capacity=' do
+    context 'when capacity set during initialize' do
+      subject { Airport.new 10 }
+      it 'given initialize' do
+        10.times {subject.lands(plane1)}
+        expect {subject.lands(plane1)}.to raise_error("Airport is full")
+      end
+    end
+    context 'when capacity set using capacity= method' do
+      it 'given capacity' do
+        subject.capacity = 15
+        15.times {subject.lands(plane1)}
+        expect {subject.lands(plane1).to raise_error("Airport is full")}
+      end
+    end
+  end
 
 end

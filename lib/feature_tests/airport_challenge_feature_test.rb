@@ -116,6 +116,11 @@ end
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
+airport5 = Airport(7)
+airport5.capacity = 10
+10.times {airport5.lands(Plane.new)}
+
+
 
 
 
