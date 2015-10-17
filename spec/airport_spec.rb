@@ -23,7 +23,7 @@ describe Airport do
     end
 
     it 'does not land a plane when airport is full' do
-    subject.land(plane)
+    described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
     expect{subject.land(plane)}.to raise_error 'Airport is full!'
     end
 
@@ -42,7 +42,7 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
 
-    it 'does not take off a plane when weather is stormy' do
+    it 'does not take-off a plane when weather is stormy' do
       subject.land(plane)
       subject.weather
       if subject.good_weather == false
@@ -50,8 +50,15 @@ describe Airport do
       end
     end
 
-    it 'only takes off a plane from the airport they are at' do
-      expect{subject.take_off}.to raise_error 'No plane at airport'
+    it 'only takes-off a plane from the airport they are at' do
+      subject.land(plane)
+      expect(subject.take_off).to eq plane
+    end
+
+    it 'does not take-off a flying plane' do
+      subject.land(plane)
+      subject.take_off
+      expect{subject.take_off}.to raise_error 'Cannot take-off an already flying plane'
     end
 
   end
