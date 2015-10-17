@@ -1,8 +1,9 @@
 class Airport
   DEFAULT_CAPACITY = 10
-  attr_reader :hangar, :capacity
+  attr_reader :hangar, :capacity, :name
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(name, capacity = DEFAULT_CAPACITY)
+    @name = name
     @hangar = []
     @capacity = capacity
   end
@@ -11,6 +12,7 @@ class Airport
     raise "Plane #{plane.id} Cannot Land. Airport Full!" if full?
     raise "Plane #{plane.id} Cannot Land. Bad Weather!" if bad_weather?
     plane.flying = false
+    plane.location = name
     @hangar << plane
     in_airport? plane.id
   end
@@ -18,6 +20,7 @@ class Airport
     raise "Plane #{plane.id} Cannot Take Off. Bad Weather!" if bad_weather?
     raise "Plane #{plane.id} Cannot Take Off. Already Taken Off!" if already_flying? plane
     raise "Plane #{plane.id} Cannot Take Off. Unknown Plane!" if !in_airport? plane.id
+    plane.location = nil
     remove plane
   end
   def weather_conditions
