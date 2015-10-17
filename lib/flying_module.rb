@@ -1,6 +1,6 @@
-class Plane
+module Flying
 
-  #attr_reader :flying
+attr_reader :flying
 
   def flying?
     @flying = true
@@ -10,5 +10,4 @@ class Plane
     @flying
   end
 
-
- end
+end

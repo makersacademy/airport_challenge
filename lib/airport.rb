@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :plane, :planes, :capacity, :stormy
+  attr_reader :plane, :planes, :capacity, :stormy, :flying
 
 
   def initialize (capacity = 10)
@@ -11,13 +11,14 @@ class Airport
   end
 
   def land (plane)
-    fail 'if full' if full?
-    fail 'if stormy' if stormy
+    fail 'is full' if full?
+    fail 'is stormy' if stormy
     @planes << plane
     plane
   end
 
   def take_off
+    fail 'is stormy' if stormy
     @planes.pop
   end
 
@@ -26,8 +27,9 @@ class Airport
   end
 
   def stormy?
-    @stormy = true
-  end
+      @stormy = true
+    end
+
 
   def stormy
     @stormy
