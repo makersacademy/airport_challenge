@@ -2,11 +2,16 @@ require './lib/plane'
 
 class Airport
 
+  def initialize
+    @planes = []
+  end
+
   def land(plane)
-    plane
+    raise "This airport is full" if @planes.length >= 1
+    @planes << plane
   end
 
   def takeoff(plane)
-    plane
+    @planes.pop
   end
 end
