@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/DeathRay1977/airport_challenge.svg)](https://travis-ci.org/DeathRay1977/airport_challenge)
 Airport Challenge
 =================
 
