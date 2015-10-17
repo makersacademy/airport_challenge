@@ -14,7 +14,7 @@ class Airport
   attr_writer :weather
 
   def initialize(capacity=DEFAULT_CAPACITY)
-    @weather = rand(1..100)
+    @weather = rand(1..100) 
     @planes = []
     @capacity = capacity
     @location = self.object_id

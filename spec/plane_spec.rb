@@ -56,6 +56,7 @@ describe Plane do
     context 'when a plane is not flying' do
       it 'cannot land' do
         airport = Airport.new
+        airport.weather = 80
         subject.land(airport)
         expect { subject.land(airport) }.to raise_error 'You are not flying'
       end
