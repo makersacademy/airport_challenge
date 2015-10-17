@@ -5,18 +5,7 @@ describe Airport do
   subject { Airport.new(airport_name) }
   let(:flying_plane) { double(:plane, :id => 'BA535', :flying => true) }
   let(:grounded_plane) { double(:plane, :id => 'BA535', :flying => false) }
-  let(:plane1) { double(:plane, :id => 'BA501', :flying => true )}
-  let(:plane2) { double(:plane, :id => 'BA502', :flying => true )}
-  let(:plane3) { double(:plane, :id => 'BA503', :flying => true )}
-  let(:plane4) { double(:plane, :id => 'BA504', :flying => true )}
-  let(:plane5) { double(:plane, :id => 'BA505', :flying => true )}
-  let(:plane6) { double(:plane, :id => 'BA506', :flying => true )}
-  let(:plane7) { double(:plane, :id => 'BA507', :flying => true )}
-  let(:plane8) { double(:plane, :id => 'BA508', :flying => true )}
-  let(:plane9) { double(:plane, :id => 'BA509', :flying => true )}
-  let(:plane0) { double(:plane, :id => 'BA500', :flying => true )}
-  let(:ten_planes) { [plane1, plane2, plane3, plane4, plane5,
-                      plane6, plane7, plane8, plane9, plane0] }
+
   before(:each) do
       allow(subject).to receive(:weather_conditions).and_return(:sunny)
       allow(flying_plane).to receive(:flying=).with(anything).and_return(anything)
@@ -74,12 +63,13 @@ describe Airport do
       expect { subject.land(grounded_plane) }.to raise_error "Plane #{grounded_plane.id} Cannot Land. Already Landed!"
     end
     it 'should not land a plane if the airport is full' do
-      ten_planes.each do |p|
-        allow(p).to receive(:flying=).with(anything).and_return(anything)
-        allow(p).to receive(:location=).with(anything).and_return(anything)
-        subject.land(p)
+      subject.capacity.times do |index|
+        current_plane = double(:plane, :id => 'BA5' + index.to_s, :flying => true)
+        allow(current_plane).to receive(:flying=).with(anything).and_return(anything)
+        allow(current_plane).to receive(:location=).with(anything).and_return(anything)
+        subject.land(current_plane)
       end
-      expect(subject.hangar.count).to eq Airport::DEFAULT_CAPACITY
+      expect(subject.hangar.count).to eq subject.capacity
       expect { subject.land(flying_plane) }.to raise_error "Plane #{flying_plane.id} Cannot Land. Airport Full!"
     end
     it 'should not land a plane if it is stormy' do
