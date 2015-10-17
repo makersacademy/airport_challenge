@@ -1,16 +1,31 @@
-require 'plane'
+require_relative 'plane'
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 50
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @weather = 'sunny'
     @planes = []
+    raise 'capacity must be an integer' if !(capacity.is_a? Integer)
+    @capacity = capacity
   end
 
   def plane_land (plane)
     raise 'the plane cannot land as the weather is stormy' if weather?(rand(6)) == 'stormy'
-    @planes << plane
+    raise 'the plane cannot land because the airport is full' if planes.length >= capacity
+    plane.flying_status = false
+    plane.in_airport = true
+    planes << plane
+  end
+
+  def plane_take_off
+    raise 'the plane cannot take off as the weather is stormy' if weather?(rand(6)) == 'stormy'
+    raise 'there are no planes in the airport' if planes.empty?
+    planes.last.flying_status = true
+    planes.last.in_airport = false
+    planes.pop
   end
 
   private
