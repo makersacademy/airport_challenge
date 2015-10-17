@@ -5,12 +5,14 @@ describe Airport do
   let (:plane2) { double(:plane, id: 'secondplane') }
   let (:test_capacity_30) { Airport.new(30) }
   let (:test_full) { Airport.new(-1) }
+
 # As an air traffic controller
 # So planes can land safely at my airport
 # I would like to instruct a plane to land
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1) }
     it 'lands a plane and adds to the hangar' do
+      allow(subject).to receive(:stormy_weather?).and_return(false)
       expect(subject.land(:plane1)).to eq [:plane1]
     end
   end
@@ -21,6 +23,7 @@ describe Airport do
   describe '#takeoff' do
     it { is_expected.to respond_to(:takeoff).with(1) }
     it 'instructs a plane to take off and removes plane from hangar' do
+      allow(subject).to receive(:stormy_weather?).and_return(false)
       subject.land(:plane1); subject.land(:plane2)
       expect(subject.takeoff(:plane1)).to eq [:plane2]
     end
@@ -55,16 +58,34 @@ describe Airport do
       allow(Random).to receive(:rand).and_return(0)
       expect(subject.stormy_weather?).to eq true
     end
-
     it 'should stop planes from landing' do
-      allow(Random).to receive(:rand).and_return(0)
+      allow(subject).to receive(:stormy_weather?).and_return(true)
       expect{subject.land(:plane)}.to raise_error "Stormy weather!  Try again later."
     end
-
     it 'should stop planes from taking off' do
-      allow(Random).to receive(:rand).and_return(0)
+      allow(subject).to receive(:stormy_weather?).and_return(true)
       expect{subject.takeoff(:plane)}.to raise_error "Stormy weather!  Try again later."
     end
   end
+
+# As an air traffic controller
+# So that I can ensure safe take off procedures
+# I want planes only to take off from the airport they are at
+  describe 'location tests' do
+    it 'does not let the plane take off from '
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end
