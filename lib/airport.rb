@@ -24,8 +24,7 @@ DEFAULT_CAPACITY = 20
   end
 
   def weather
-    random = rand(2)
-    random == 0 ? good_weather = true : good_weather = false
+    rand(2) == 0 ? good_weather = true : good_weather = false
   end
 
   private
