@@ -26,6 +26,12 @@ describe 'Airport Simulator' do
     end
   end
 
+  context 'The weather' do
+    it 'The weather is either stormy or sunny' do
+      expect(@airport.weather_conditions).to satisfy {|value| [:stormy, :sunny].include? value }
+    end
+  end
+
   context 'Landing Planes' do
     it 'lands a plane in sunny weather' do
       expect(@airport.land(@plane)).to be true
