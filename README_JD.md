@@ -1,4 +1,7 @@
+My domain model:
+
 Objects		Messages
+
 Airport		instruct_to_land
 Airport		instruct_to_take_off
 Airport		full?
