@@ -8,12 +8,19 @@ describe Airport do
 	 	end
 	end
 
-	describe '#host' do
-		#let(:plane) { double(:plane) }
-		it 'refuses to host planes if the airport is full' do
-			plane = double(:plane, land: true)
-			described_class::DEFAULT_CAPACITY.times { subject.host(plane) }
-			expect {subject.host(plane)}.to raise_error("The airport is full")
+	describe '#land' do
+		let(:plane) { double(:plane) }
+		
+		it {is_expected.to respond_to :land }
+		
+		it 'refuses to land planes if the airport is full' do
+			described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
+			expect {subject.land(plane)}.to raise_error("The airport is full")
 		end	
 	end
+	
+	describe '#take_off' do
+		it {is_expected.to respond_to :take_off }
+	end
+
 end

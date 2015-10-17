@@ -7,7 +7,8 @@ require './lib/airport'
 #I would like to instruct a plane to land"
 
 p plane = Plane.new
-p plane.land
+p airport = Airport.new
+p airport.land(plane)
 
 #puts "--------------"
 
@@ -15,7 +16,7 @@ p plane.land
 # So planes can take off safely from my airport
 # I would like to instruct a plane to take off"
 
-p plane.takeoff
+p airport.take_off
 
 #puts "--------------"
 
@@ -23,8 +24,8 @@ p plane.takeoff
 # So that I can avoid collisions I want to prevent 
 # airplanes landing when my airport if full"
 
-p airport = Airport.new
-p airport.host(plane)
+50.times { airport.land(plane) } #the airport is now full
+p airport.planes_array.length
 
 #puts "--------------"
 

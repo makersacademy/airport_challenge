@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 	attr_reader :capacity, :planes_array
 	DEFAULT_CAPACITY = 50
@@ -8,9 +10,12 @@ class Airport
 		@planes_array = [] # we can hold 50 planes in this array	
 	end
 
-	def host(plane)
+	def land(plane)
 		fail "The airport is full" if @planes_array.length >= capacity
-		plane.land
 		@planes_array << plane
+	end
+
+	def take_off
+		planes_array.pop
 	end
 end
