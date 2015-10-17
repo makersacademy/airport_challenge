@@ -30,8 +30,22 @@ describe Plane do
         another_airport = Airport.new
         another_airport.weather = 80
         subject.land(airport)
-        subject.location = airport.object_id
         expect { subject.take_off(another_airport) }.to raise_error 'You cannot take off from that airport'
+      end
+    end
+
+    context 'when a plane is flying' do
+      it 'cannot take_off' do
+        airport = Airport.new
+        expect { subject.take_off(airport) }.to raise_error 'You are already flying'
+      end
+
+      it 'cannot be in an airport' do
+        airport = Airport.new
+        airport.weather = 80
+        subject.land(airport)
+        subject.take_off(airport)
+        expect(subject.location).to_not eq(airport.location)
       end
     end
 end
