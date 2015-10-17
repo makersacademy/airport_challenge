@@ -1,4 +1,4 @@
-# airport_challenge
+# airport challenge
 
 airports and planes and stuff
 
@@ -28,14 +28,14 @@ I want planes only to take off from the airport they are at -->  ALREADY IMPLEME
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate -->
 
-As an air traffic controller
+<!-- As an air traffic controller
 So the system is consistent and correctly reports plane status and location
-I want to ensure a flying plane cannot take off and cannot be in an airport
+I want to ensure a flying plane cannot take off and cannot be in an airport -->
 
-As an air traffic controller
+<!-- As an air traffic controller
 So the system is consistent and correctly reports plane status and location
-I want to ensure a plane that is not flying cannot land and must be in an airport
+I want to ensure a plane that is not flying cannot land and must be in an airport --> ALREADY IMPLEMENTED THIS?
 
-As an air traffic controller
+<!-- As an air traffic controller
 So the system is consistent and correctly reports plane status and location
-I want to ensure a plane that has taken off from an airport is no longer in that airport
+I want to ensure a plane that has taken off from an airport is no longer in that airport --> ALREADY IMPLEMENTED THIS?

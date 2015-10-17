@@ -11,11 +11,13 @@ DEFAULT_CAPACITY = 20
 
   def land(plane)
     fail "Stormy weather!  Try again later." if stormy_weather?
+    plane.land
     @hangar << plane
   end
 
   def takeoff(plane)
     fail "Stormy weather!  Try again later." if stormy_weather?
+    plane.takeoff
     @hangar.delete_if {|elem| elem == plane }
   end
 
