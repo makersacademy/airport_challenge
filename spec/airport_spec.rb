@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
-  subject { Airport.new("LHR") }
+  let(:airport_name) { "LHR" }
+  subject { Airport.new(airport_name) }
   let(:flying_plane) { double(:plane, :id => 'BA535', :flying => true) }
   let(:grounded_plane) { double(:plane, :id => 'BA535', :flying => false) }
   let(:plane1) { double(:plane, :id => 'BA501', :flying => true )}
@@ -102,6 +103,7 @@ describe Airport do
       allow(flying_plane).to receive(:location=).with(anything).and_return(anything)
       subject.land(flying_plane)
       allow(flying_plane).to receive(:flying).and_return(false)
+      allow(flying_plane).to receive(:location).and_return(airport_name)
       expect(subject.take_off(flying_plane)).to be true
     end
     it 'Once a plane has taken off, it should decrease the number of landed planes by 1' do
@@ -110,6 +112,7 @@ describe Airport do
       allow(flying_plane).to receive(:location=).with(anything).and_return(anything)
       subject.land(flying_plane)
       allow(flying_plane).to receive(:flying).and_return(false)
+      allow(flying_plane).to receive(:location).and_return(airport_name)
       number_landed_planes = subject.hangar.count
       subject.take_off(flying_plane)
       expect(subject.hangar.count).to eq number_landed_planes - 1
@@ -120,8 +123,19 @@ describe Airport do
       allow(flying_plane).to receive(:location=).with(anything).and_return(anything)
       subject.land(flying_plane)
       allow(flying_plane).to receive(:flying).and_return(false)
+      allow(flying_plane).to receive(:location).and_return(airport_name)
       subject.take_off(flying_plane)
       expect(subject.hangar).not_to include(flying_plane)
+    end
+    it 'Raises an error when trying to instruct a plane to take off from another airport' do
+      allow(subject).to receive(:weather_conditions).and_return(:sunny)
+      allow(flying_plane).to receive(:flying=).with(anything).and_return(anything)
+      allow(flying_plane).to receive(:location=).with(anything).and_return(anything)
+      subject.land(flying_plane)
+      allow(flying_plane).to receive(:flying).and_return(false)
+      allow(flying_plane).to receive(:location).and_return("NYC")
+      expect { subject.take_off(flying_plane) }.to raise_error "Plane #{flying_plane.id} Cannot Take Off. Wrong Airport #{flying_plane.location}"
+
     end
     it 'Raises an error when trying to instruct an unknown plane to take off' do
       allow(subject).to receive(:weather_conditions).and_return(:sunny)

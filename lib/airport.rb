@@ -20,6 +20,7 @@ class Airport
     raise "Plane #{plane.id} Cannot Take Off. Bad Weather!" if bad_weather?
     raise "Plane #{plane.id} Cannot Take Off. Already Taken Off!" if already_flying? plane
     raise "Plane #{plane.id} Cannot Take Off. Unknown Plane!" if !in_airport? plane.id
+    raise "Plane #{plane.id} Cannot Take Off. Wrong Airport #{plane.location}" if wrong_airport? plane
     plane.location = nil
     remove plane
   end
@@ -50,5 +51,8 @@ class Airport
   end
   def bad_weather?
     weather_conditions == :stormy
+  end
+  def wrong_airport? plane
+    plane.location != name
   end
 end
