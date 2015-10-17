@@ -38,7 +38,6 @@ describe Airport do
       2.times { subject.land(Plane.new) }
       expect{subject.land(subject.planes[0])}.to raise_error 'Plane has already landed and is in airport'
     end
-
   end
 
   describe '#take_off' do
@@ -66,6 +65,10 @@ describe Airport do
       expect{subject.take_off}.to raise_error 'Cannot take-off an already flying plane'
     end
 
+    it 'plane is no longer in airport after take-off' do
+      subject.land(plane)
+      subject.take_off
+      expect(subject.planes).to be_empty
+    end
   end
-
 end
