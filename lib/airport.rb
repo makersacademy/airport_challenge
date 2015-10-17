@@ -10,11 +10,12 @@ class Airport
 
   def land(plane)
     raise 'Airport is full!' if @plane                                                          # => nil
-    @good_weather ? (@plane = plane) : (raise 'Denied. Weather is stormy!')  # ~> RuntimeError: Permission to land denied. Weather is stormy!
+    @good_weather ? (@plane = plane) : (raise 'Landing denied. Weather is stormy!')  # ~> RuntimeError: Permission to land denied. Weather is stormy!
   end
 
-  def take_off(plane)
-    @good_weather ? (plane) : (raise 'Denied. Weather is stormy!')
+  def take_off
+    raise 'No plane at airport' unless @plane
+    @good_weather ? @plane : (raise 'Take-off denied. Weather is stormy!')
   end
 
   def weather

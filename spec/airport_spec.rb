@@ -18,7 +18,7 @@ describe Airport do
     it 'does not land a plane when weather is stormy' do
       subject.weather
       if subject.good_weather == false
-        expect{subject.land(plane)}.to raise_error 'Denied. Weather is stormy!'
+        expect{subject.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
       end
     end
 
@@ -27,15 +27,21 @@ describe Airport do
   describe '#take_off' do
 
     it 'takes off a plane' do
-      expect(subject).to respond_to(:take_off).with(1).argument
+      expect(subject).to respond_to(:take_off)
     end
 
     it 'does not take off a plane when weather is stormy' do
+      subject.land(plane)
       subject.weather
       if subject.good_weather == false
-        expect{subject.take_off(plane)}.to raise_error 'Denied. Weather is stormy!'
+        expect{subject.take_off}.to raise_error 'Take-off denied. Weather is stormy!'
       end
     end
+
+    it 'only takes off a plane from the airport they are at' do
+      expect{subject.take_off}.to raise_error 'No plane at airport'
+    end
+
   end
 
 end
