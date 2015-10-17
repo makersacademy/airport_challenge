@@ -114,3 +114,14 @@ end                      # => "Error: Cannot take-off an already flying plane"
 airport.planes           # => []
 
 ################################################################################
+
+# Feature test: 8
+# ----------------
+# As an air traffic controller
+# So the system is consistent and correctly reports plane status and location
+# I want to ensure a plane that is not flying cannot land and must be in an airport
+
+
+
+
+################################################################################
