@@ -29,6 +29,15 @@ describe Airport do
         expect { subject.land(Plane.new) }.to raise_error
       end
 
+      it 'override airport capacity' do
+        capacity = 20
+        airport = Airport.new(capacity)
+        expect(airport.capacity).to eq capacity
+      end
 
+      it 'no land or take off if stormy' do
+        plane = Plane.new
+        expect{subject.land(plane, true)}.to raise_error
+      end
 
     end
