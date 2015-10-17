@@ -93,4 +93,19 @@ describe 'Airport Simulator' do
       expect { @airport.take_off(@plane) }.to raise_error "Plane #{@plane.id} Cannot Take Off. Unknown Plane!"
     end
   end
+  context 'Taking off and landing ALL the things!' do
+    it 'handles the taking off and landing of a maximum capacity of planes' do
+      planes = []
+      @airport.capacity.times do |i|
+        id = "BA50" + i.to_s
+        p = Plane.new id
+        p.flying = true
+        planes << p
+      end
+      planes.each {|airplane| @airport.land(airplane)}
+      expect(@airport.hangar.count).to eq @airport.capacity
+      planes.each {|airplane| @airport.take_off(airplane)}
+      expect(@airport.hangar.count).to eq 0
+    end
+  end
 end
