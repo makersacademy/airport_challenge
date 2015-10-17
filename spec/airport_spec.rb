@@ -18,12 +18,15 @@ describe Airport do
   describe '#land' do
     it 'prevents planes landing when airport is full' do
       allow(subject).to receive(:stormy?) {false}
-      subject.land(plane1)
+      10.times{subject.land(Plane.new)}
       expect{subject.land(plane)}.to raise_error("This airport is full")
     end
+    it 'does not land an already landed plane' do
+
   end
 
   it "prevents use when stormy" do
+    allow(subject).to receive(:stormy?) {false}
     subject.land(plane1)
     allow(subject).to receive(:stormy?) {true}
     expect{subject.land(plane)}.to raise_error("It is stormy")
@@ -31,11 +34,16 @@ describe Airport do
   end
 
   describe '#takeoff' do
-    it 'only takeoff present planes' do
+    it 'only allow planes at the airport to takeoff' do
       allow(subject).to receive(:stormy?) {false}
       subject.land(plane)
       expect(bad_airport.takeoff(plane)).to be nil
       expect(subject.planes.last).to eq(subject.takeoff(plane))
+    end
+    it 'does not allow flying planes to takeoff' do
+      subject.land(plane)
+      subject.takeoff(plane)
+      expect(subject.takeoff(plane)).to eq nil
     end
   end
 
