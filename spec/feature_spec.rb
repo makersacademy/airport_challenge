@@ -25,7 +25,7 @@ describe 'Airport Simulator' do
     it 'lands a plane in sunny weather' do
       expect(@airport.land(@plane)).to be true
     end
-    it 'Updates the location of a landed plane' do
+    it 'A landed plane now has a location set to that airport' do
       @airport.land(@plane)
       expect(@plane.location).to eq airport_name
     end
@@ -52,7 +52,7 @@ describe 'Airport Simulator' do
       @airport.land(@plane)
       expect(@airport.take_off(@plane)).to be true
     end
-    it 'Updates the location of a plane once it has taken off' do
+    it 'A plane that has taken off no longer has a location set to the airport it has left' do
       @airport.land(@plane)
       @airport.take_off(@plane)
       expect(@plane.location).to be nil
