@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double :plane }
+  let(:plane) { double(Plane.new) }
 
   describe '#initializing capacity' do
 
@@ -23,8 +23,8 @@ describe Airport do
     end
 
     it 'does not land a plane when airport is full' do
-    described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
-    expect{subject.land(plane)}.to raise_error 'Airport is full!'
+    described_class::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+    expect{subject.land(Plane.new)}.to raise_error 'Airport is full!'
     end
 
     it 'does not land a plane when weather is stormy' do
@@ -32,6 +32,11 @@ describe Airport do
       if subject.good_weather == false
         expect{subject.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
       end
+    end
+
+    it 'does not land a plane that is not flying' do
+      2.times { subject.land(Plane.new) }
+      expect{subject.land(subject.planes[0])}.to raise_error 'Plane has already landed and is in airport'
     end
 
   end

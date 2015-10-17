@@ -14,6 +14,7 @@ DEFAULT_CAPACITY = 20
 
   def land(plane)
     raise 'Airport is full!' if full?
+    raise 'Plane has already landed and is in airport' if @planes.include?(plane)
     @good_weather ? (@planes << plane) : (raise 'Landing denied. Weather is stormy!')
   end
 
