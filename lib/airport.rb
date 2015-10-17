@@ -8,13 +8,16 @@ class Airport
 
   public
 
-  attr_reader :capacity, :planes
+  DEFAULT_CAPACITY = 1
+
+  attr_reader :capacity, :planes, :location
   attr_writer :weather
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @weather = rand(1..100)
     @planes = []
-    @capacity = 1
+    @capacity = capacity
+    @location = self.object_id
   end
 
   def full?
@@ -25,7 +28,7 @@ class Airport
     return @weather <= 90 ? 'sunny' : 'stormy'
   end
 
-  def set_weather=(weather)
+  def weather=(weather)
     @weather = weather
   end
 

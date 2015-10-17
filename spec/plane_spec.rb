@@ -1,13 +1,14 @@
 require 'plane'
 
 describe Plane do
-    it { is_expected.to respond_to(:land) }
+    it { is_expected.to respond_to(:land).with(1).argument }
 
-    it { is_expected.to respond_to(:take_off) }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     context 'when the airport is full' do
       it 'does not allow planes to land' do
         airport = Airport.new
+        airport.weather = 80
         subject.land(airport)
         airport.full?
         expect { subject.land(airport) }.to raise_error 'The airport is currently full'
@@ -19,6 +20,18 @@ describe Plane do
         airport = Airport.new
         airport.weather = 95
         expect { subject.land(airport) }.to raise_error 'Cannot land in stormy weather'
+      end
+    end
+
+    context 'when a plane is attempting to take off from an airport it is not currently stationed at' do
+      it 'does not take off' do
+        airport = Airport.new
+        airport.weather = 80
+        another_airport = Airport.new
+        another_airport.weather = 80
+        subject.land(airport)
+        subject.location = airport.object_id
+        expect { subject.take_off(another_airport) }.to raise_error 'You cannot take off from that airport'
       end
     end
 end
