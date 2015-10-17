@@ -20,7 +20,7 @@ let(:plane1) {Plane.new}
 
   describe '#takes_off' do
     context 'when plane not at airport' do
-      it 'takes_off a plane' do
+      it 'takes_off a plane gets error' do
         expect { subject.takes_off(plane1)}.to raise_error("This plane is not at this airport")
       end
     end
@@ -50,6 +50,7 @@ let(:plane1) {Plane.new}
       let(:weather) { double("weather", :current => "sunny") }
       it 'takes_off a plane' do
         subject.weather_good?(weather.current)
+        subject.lands(plane1)
         expect(subject.takes_off(plane1)).to eq plane1
       end
       it 'lands a plane' do

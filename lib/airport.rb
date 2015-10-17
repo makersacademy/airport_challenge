@@ -18,8 +18,8 @@ class Airport
   end
 
   def takes_off plane
-    raise "This plane is not at this airport" if !@planes.include? plane
     raise "Weather not good cannot take-off" if !weather_good
+    raise "This plane is not at this airport" if !@planes.include? plane
     planes.delete_if {|item| item == plane}
     plane
   end

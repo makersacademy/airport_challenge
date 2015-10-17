@@ -99,12 +99,22 @@ end
 # As an air traffic controller
 # So that I can ensure safe take off procedures
 # I want planes only to take off from the airport they are at
+begin
+  p airport5 = Airport.new
+  p plane2 = Plane.new
+  puts "landing a plane at airport returns planes at airport"
+  airport5.lands(plane2)
+  puts "plane taking off from airport returns plane that takes off"
+  airport5.takes_off(plane2)
+  puts "plane taking off that not at airport returns error"
+  airport5.takes_off(plane2)
+rescue Exception => e4
+  puts "raised error: #{e4}"
+end
 
-airport5 = Airport.new
-plane2 = Plane.new
-airport5.lands(plane2) returns planes at airport
-airport5.takes_off(plane2) returns plane2
-airport.takes_off(plane2) error this plane is not at this airport
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
 
 
 
