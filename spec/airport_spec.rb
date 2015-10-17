@@ -1,22 +1,26 @@
 require 'airport'
 
 describe Airport do
+  let (:stormy) { double :stormy}
 
   it 'airport gives plane permission to land' do
     my_plane = Plane.new
     my_array = []
-    expect(Airport.new.land(my_plane)).to eq (my_array << my_plane)
+    allow(subject).to receive(:stormy).and_return(false)
+    expect(subject.land(my_plane)).to eq (my_array << my_plane)
   end
 
   it 'airport gives plane permission to takeoff' do
     my_airport = Airport.new
     my_plane = Plane.new
+    allow(my_airport).to receive(:stormy).and_return(false)
     my_airport.land(my_plane)
     expect(my_airport.takeoff(my_plane)).to eq true
   end
 
   it 'plane requests landing and controller returns full' do
     my_airport = Airport.new
+    allow(my_airport).to receive(:stormy).and_return(false)
     3.times {my_airport.land(Plane.new)}
     expect {my_airport.land(Plane.new)}.to raise_error 'the airport is full'
   end
@@ -25,7 +29,8 @@ describe Airport do
     my_airport = Airport.new
     my_airport1 = Airport.new
     my_plane = Plane.new
-
+    allow(my_airport1).to receive(:stormy).and_return(false)
+    allow(my_airport).to receive(:stormy).and_return(false)
     my_airport.land(my_plane)
     expect { my_airport1.takeoff(my_plane) }.to raise_error 'Plane not at this airport'
 
@@ -39,6 +44,7 @@ describe Airport do
   it 'removes airport id when taking off' do
     my_airport = Airport.new
     my_plane = Plane.new
+    allow(my_airport).to receive(:stormy).and_return(false)
     my_airport.land(my_plane)
     my_airport.takeoff(my_plane)
 
@@ -49,6 +55,7 @@ describe Airport do
   it 'on takeoff change flying status to true' do
     my_airport = Airport.new
     my_plane = Plane.new
+    allow(my_airport).to receive(:stormy).and_return(false)
     my_airport.land(my_plane)
     my_airport.takeoff(my_plane)
 
@@ -58,6 +65,7 @@ describe Airport do
   it 'when landing change flying? to false' do
     my_airport = Airport.new
     my_plane = Plane.new
+    allow(my_airport).to receive(:stormy).and_return(false)
     my_airport.land(my_plane)
     my_airport.takeoff(my_plane)
     my_airport.land(my_plane)
@@ -68,6 +76,7 @@ describe Airport do
   it 'checks flying? status is false before airport allows takeoff' do
     my_plane = Plane.new
     my_airport = Airport.new
+  allow(my_airport).to receive(:stormy).and_return(false)
     my_airport.land(my_plane)
     my_plane.flying?(true)
 
@@ -77,13 +86,16 @@ describe Airport do
   it 'checks when a plane takes off it is removed from the airport list' do
     my_airport = Airport.new
     my_plane = Plane.new
-
+    allow(my_airport).to receive(:stormy).and_return(false)
     my_airport.land(my_plane)
     my_airport.takeoff(my_plane)
 
     expect(my_airport.planes).to eq []
+  end
 
-
+  it 'checks the airport can see if there is stormy weather' do
+    allow(subject).to receive(:stormy).and_return(true)
+    expect(subject.stormy).to be true
   end
 
 
