@@ -66,6 +66,15 @@ describe Plane do
         subject.land(airport)
         expect(subject.location).to eq(airport.location)
       end
+    end
 
+    context 'when a plane has taken off from an airport' do
+      it 'is no longer in that airport' do
+        airport = Airport.new
+        airport.weather = 80
+        subject.land(airport)
+        subject.take_off(airport)
+        expect(subject.location).not_to eq(airport.location)
+      end
     end
 end
