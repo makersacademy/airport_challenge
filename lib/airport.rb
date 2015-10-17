@@ -1,16 +1,19 @@
-require_relative 'plane'  # => true
+require_relative 'plane'
 
 class Airport
 
-  attr_reader :good_weather  # => nil
+  attr_reader :good_weather, :capacity
 
-  def initialize
-    @good_weather = true  # => true
+DEFAULT_CAPACITY = 20
+
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @good_weather = true
+    @capacity = capacity
   end
 
   def land(plane)
-    raise 'Airport is full!' if @plane                                                          # => nil
-    @good_weather ? (@plane = plane) : (raise 'Landing denied. Weather is stormy!')  # ~> RuntimeError: Permission to land denied. Weather is stormy!
+    raise 'Airport is full!' if @plane
+    @good_weather ? (@plane = plane) : (raise 'Landing denied. Weather is stormy!')
   end
 
   def take_off
@@ -19,8 +22,8 @@ class Airport
   end
 
   def weather
-    random = rand(2)                                            # => 1
-    random == 0 ? @good_weather = true : @good_weather = false  # => false
+    random = rand(2)
+    random == 0 ? @good_weather = true : @good_weather = false
   end
 
 end
