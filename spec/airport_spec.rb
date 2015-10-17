@@ -11,9 +11,20 @@ describe AirPort do
 
  describe '#land_safely' do
    it 'raises a error when theres no room to land' do
-    10.times {subject.land_safely Planes.new}
+    AirPort::DEFAULT_CAPACITY.times do
+    subject.land_safely Planes.new
+    end
+
     expect {subject.land_safely Planes.new }.to raise_error 'airport is full'
+
    end
  end
+
+ # describe 'bad_weather' do
+ #   it 'raises a error when there is weather conditions' do
+ #     expect(subject.take_off_safely).to respond_to :bad_weather
+ #   end
+ #
+ # end
 
 end

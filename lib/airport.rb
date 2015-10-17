@@ -1,9 +1,10 @@
 class AirPort
+  DEFAULT_CAPACITY = 10
   def initialize
     @planes = []
 
   def land_safely(planes)
-    fail 'airport is full' if @planes.count >= 10
+    fail 'airport is full' if @planes.count >= DEFAULT_CAPACITY
     @planes << planes
    end
   end
