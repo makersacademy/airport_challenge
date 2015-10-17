@@ -24,6 +24,6 @@ DEFAULT_CAPACITY = 20
   end
 
   def stormy_weather?
-    Random.rand(10).zero?  # 10% chance of storms
+    Random.rand(10).zero?  # 10% chance of storms?
   end
 end

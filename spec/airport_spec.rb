@@ -84,8 +84,4 @@ describe Airport do
 
 
 
-
-
-
-
 end
