@@ -2,10 +2,14 @@ require_relative 'plane'
 
 class Airport
 
-  def safe_to_land
+  def land?
+    fail 'The weather is stormy, cannot land.' if stormy
   end
 
-  def take_off
+  def take_off?
+    fail 'The weather is stormy, cannot take_off.' if stormy
   end
 
+  def stormy
+  end
 end
