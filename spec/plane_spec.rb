@@ -17,7 +17,7 @@ describe Plane do
     context 'when the weather is stormy' do
       it 'does not allow planes to land' do
         airport = Airport.new
-        airport.weather = 'stormy'
+        airport.weather = 95
         expect { subject.land(airport) }.to raise_error 'Cannot land in stormy weather'
       end
     end
