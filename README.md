@@ -2,6 +2,31 @@
 Airport Challenge
 =================
 
+My approach to the challenge was pretty much like the Boris Bikes Challenge. The Airport was the main class of the system that heald a collection of planes which are derived from the Plane class. The Airport Class is responsible for making planes take off and land adding them or taking them out of the collection and changing their 'flight' status and location. The Airport class also takes care of the edge cases such as:
+
+* Planes not being able to operate in bad weather.
+* Planes cannot land if already landed.
+* Planes cannot land if landed at another airport.
+* Planes cannot land if the airport is full.
+* Planes cannot take off if already in the air.
+* Planes cannot take off if not landed at your airport.
+
+Airports have the following internal state:
+
+* A name - Read Only
+* A Maximum Capacity (defaulted to a value if not supplied) - Read Only
+* A Hangar (Collection of Planes). - Read only (but writable via public methods)
+
+Planes are very things. They have the following internal state.
+
+* An ID - Such as "BA535" - Read Only.
+* A current location. Set to the name of the airport it has landed at or nil if in flight. Read/Write through attr_accessor.
+* A flying status. Set to true if in the air, false otherwise. Read/Write through attr_accessor.
+
+The feature spec contains one test for each User Story. Some of these tests are replicated from airport_spec.rb but the tests for the Airport class uses doubles and mocks and not real planes. 
+
+I have attempted the bonus challenge by landing and taking off the maximum amount of planes from an airport with the default capacity. 
+
 Instructions
 ---------
 
