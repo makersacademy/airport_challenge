@@ -35,5 +35,4 @@ class Airport
     @stormy
   end
 
-
 end
