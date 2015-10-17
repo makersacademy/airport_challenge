@@ -45,6 +45,12 @@ describe Airport do
       expect(subject.name).to eq airport_name
     end
   end
+  context 'Weather Conditions' do
+    it { is_expected.to respond_to(:weather_conditions) }
+    it 'Weather conditions are either sunny or stormy' do
+      expect(subject.weather_conditions).to satisfy {|value| [:stormy, :sunny].include? value}
+    end
+  end
   context 'Landing Planes' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
