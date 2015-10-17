@@ -1,5 +1,3 @@
-https://travis-ci.org/DeathRay1977/airport_challenge.svg
-
 Airport Challenge
 =================
 
