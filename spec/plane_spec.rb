@@ -2,7 +2,6 @@ require 'plane'
 
 describe Plane do 
 
-  let(:plane) { double(:plane) }
   describe '#land' do
     it { is_expected.to respond_to (:land)} 
   
