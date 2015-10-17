@@ -41,9 +41,9 @@ describe Airport do
           expect{subject.take_off}.to raise_error
         end
 
-      it 'the plane cannot take off if it\'s flying' do
-        plane = Plane.new
-        plane.flying?
-        expect{ subject.land(plane)}.to raise_error('cannot fly')
-      end
+      # it 'the plane cannot take off if it\'s flying' do
+      #   plane = Plane.new
+      #   plane.flying?
+      #   expect{ subject.land(plane)}.to raise_error('cannot fly')
+      # end
     end
