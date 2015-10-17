@@ -9,6 +9,7 @@ class Plane
   end
 
   def land(airport)
+    raise 'You are not flying' if self.status == 'docked'
     raise 'The airport is currently full' if airport.full?
     raise 'Cannot land in stormy weather' if airport.weather == 'stormy'
     airport.planes << self

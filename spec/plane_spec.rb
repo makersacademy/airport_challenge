@@ -9,7 +9,10 @@ describe Plane do
       it 'does not allow planes to land' do
         airport = Airport.new
         airport.weather = 80
-        subject.land(airport)
+        airport.capacity.times do
+          plane = Plane.new
+          plane.land(airport)
+        end
         airport.full?
         expect { subject.land(airport) }.to raise_error 'The airport is currently full'
       end
@@ -40,6 +43,7 @@ describe Plane do
         expect { subject.take_off(airport) }.to raise_error 'You are already flying'
       end
 
+
       it 'cannot be in an airport' do
         airport = Airport.new
         airport.weather = 80
@@ -47,5 +51,21 @@ describe Plane do
         subject.take_off(airport)
         expect(subject.location).to_not eq(airport.location)
       end
+    end
+
+    context 'when a plane is not flying' do
+      it 'cannot land' do
+        airport = Airport.new
+        subject.land(airport)
+        expect { subject.land(airport) }.to raise_error 'You are not flying'
+      end
+
+      it 'must be in an airport' do
+        airport = Airport.new
+        airport.weather = 80
+        subject.land(airport)
+        expect(subject.location).to eq(airport.location)
+      end
+
     end
 end
