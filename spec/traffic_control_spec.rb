@@ -23,6 +23,13 @@ describe TrafficControl do
         expect( subject.take_off(plane1,airport1)).to eq "in-air"
       end
     end
+    context "when plane take_off" do
+      it "plane should be located in air" do
+        subject.land(plane1,airport1)
+        subject.take_off(plane1,airport1)
+        expect(plane1.location).to eq "in-air"
+      end
+    end
   end
 
   describe "#land" do
