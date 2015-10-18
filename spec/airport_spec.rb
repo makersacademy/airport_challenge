@@ -46,6 +46,7 @@ describe Airport do
     end
 
     it 'does not allow flying planes to takeoff' do
+      allow(subject).to receive(:stormy?) {false}
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.takeoff(plane)).to eq nil
