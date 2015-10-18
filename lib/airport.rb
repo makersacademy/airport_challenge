@@ -16,7 +16,7 @@ class Airport
     plane
   end
 
-  def take_off plane
+  def take_off (plane)
     fail 'is stormy' if stormy
     fail 'is flaying' if plane.flying
     @planes.delete(plane)
