@@ -20,6 +20,7 @@ class Airport
 
   def clear_for_takeoff plane
     raise 'Weather is stormy' if stormy?
+    raise 'Plane not registered at this airport' if unregistered? plane
   end
 
   private
@@ -31,4 +32,7 @@ class Airport
     conditions == :stormy
   end
 
+  def unregistered? plane
+    @plane != plane
+  end
 end

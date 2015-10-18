@@ -3,17 +3,19 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
-  before do
-    # standard weather condition
+
+  before do # override random weather behaviour
     allow(airport).to receive(:stormy?).and_return(false)
   end
-  context 'when full' do
+
+  context '#full?' do
     it 'prevent planes from landing' do
       airport.clear_for_landing plane
       expect{ airport.clear_for_landing plane }.to raise_error 'Airport is full'
     end
+  end
 
-  context 'when conditions are stormy' do
+  context '#stormy?' do
     before { allow(airport).to receive(:stormy?).and_return(true) }
 
     it 'prevent planes from landing' do
@@ -24,5 +26,10 @@ describe Airport do
       expect { airport.clear_for_landing plane }.to raise_error 'Weather is stormy'
     end
   end
+
+  context '#unregistered?' do
+    it 'plane cannot take off' do
+      expect { airport.clear_for_takeoff plane }.to raise_error 'Plane not registered at this airport'
+    end
   end
 end

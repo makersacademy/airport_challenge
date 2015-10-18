@@ -30,4 +30,8 @@ feature 'a traffic controller can prevent planes from' do
     allow(airport).to receive(:stormy?).and_return(true)
     expect { airport.clear_for_takeoff plane }.to raise_error 'Weather is stormy'
   end
+
+  scenario 'taking off when not registered at airport' do
+    expect { airport.clear_for_takeoff plane }.to raise_error 'Plane not registered at this airport'
+  end
 end
