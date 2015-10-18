@@ -21,9 +21,8 @@ describe Airport do
       10.times{subject.land(Plane.new)}
       expect{subject.land(plane)}.to raise_error("This airport is full")
     end
-    it 'does not land an already landed plane' do
-
   end
+
 
   it "prevents use when stormy" do
     allow(subject).to receive(:stormy?) {false}
@@ -54,5 +53,4 @@ describe Airport do
   it 'capacity can be overridden' do
     expect(subject.new_capacity = 40).to eq(subject.capacity)
   end
-
 end
