@@ -70,6 +70,48 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 My Approach
 ------------
 
+Throughout this task I made sure that I consistently stuck to the routine of Red-Green-Refactor.
+Below is a step-by-step list which shows how I attempted each user story:
+
+1) Distinguish nouns (objects) and verbs (messages/methods) from user story.
+2) Create Domain Model to illustrate how the objects and messages would interact.
+3) Do a Feature Test (usally in irb) and make it fail (red).
+4) Create a Unit Test (in RSpec) and make it fail (red).
+5) Implement code to lib/ files to make unit test pass (green).
+5) Make feature test pass (green).
+6) Refactor code.
+7) Move to next user story and repeat above steps.
+
+For this task my aim was to have a very simple approach as the user stories were simple in their own way.
+As a result, I had created two classes:
+
+* [Airport](https://github.com/hsheikhm/airport_challenge/blob/master/lib/airport.rb)
+* [Plane](https://github.com/hsheikhm/airport_challenge/blob/master/lib/plane.rb)
+
+Starting with the Airport class, I built it so that it would be initialized with an empty planes array and a
+default capacity (which can be overridden). It has two main methods, 'land' and 'take_off' to control the landing and taking-off of planes. It also has two predicate methods, 'full?' and 'stormy?' to monitor airport capacity and check
+for stormy weather. Stormy weather results in no planes being landed or taken-off.
+
+As for the Plane class, I kept it as simple as possible. It has been built with the mindset that the user
+can always check the 'status' and 'location' of a plane at anytime. The status and location of a plane
+changes depending on whether it is 'flying' or has 'landed'. I decided that it would be best to initialize a plane
+with a status of 'flying' and location of 'air' since this would prevent an airport from landing a plane that
+is simply not flying i.e. a plane that has landed already.
+
+Lastly, my [spec](https://github.com/hsheikhm/airport_challenge/tree/master/spec) files have been separated into two,
+one for Airport and the other for Plane. Whilst using the RSpec framework I made sure to keep both tests isolated
+by the use of doubles and method stubs. This way I could achieve consistent test behaviour.
+
+Below is my directory tree structure:
+
+lib/
+  - airport.rb
+  - plane.rb
+spec/
+  - airport_spec.rb
+  - plane_spec.rb
+  - spec_helper.rb
+
 
 Feature Test Sample
 --------------------
@@ -119,3 +161,5 @@ Feature Test Sample
   2.2.3 :007 > airport.planes
     => []
 ```
+
+Author: [Hamza Sheikh](https://github.com/hsheikhm)
