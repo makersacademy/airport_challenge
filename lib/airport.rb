@@ -14,8 +14,7 @@ DEFAULT_CAPACITY = 20
   def land(plane)
     raise 'Airport is full!' if full?
     raise 'Landing denied. Weather is stormy!' if stormy?
-    planes << plane
-    plane.landed
+    plane.flying? ? (planes << plane; plane.landed) : 'Plane has already landed'
   end
 
   def take_off
@@ -24,13 +23,14 @@ DEFAULT_CAPACITY = 20
     planes.pop.flying
   end
 
+  def full?
+    planes.length >= capacity
+  end
+
   private
 
   def stormy?
     rand(0..1.0) > 0.95
   end
 
-  def full?
-    planes.length >= capacity
-  end
 end

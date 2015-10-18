@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double(:plane, :flying => :plane, :landed => :plane) }
+  let(:plane) { double(:plane, :flying => :plane, :landed => :plane, :flying? => true) }
 
   describe '#initializing capacity' do
 
@@ -34,12 +34,12 @@ describe Airport do
         allow(subject).to receive(:stormy?) { true }
         expect{subject.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
       end
-    end
 
-    it 'planes landed already are in the airport' do
+    it 'plane is already landed and is in the airport' do
       allow(subject).to receive(:stormy?) { false }
-      subject.land(plane)
-      expect(subject.planes).to include plane
+      allow(plane).to receive(:flying?) { false }
+      expect(subject.land(plane)).to eq 'Plane has already landed'
+    end
     end
   end
 
