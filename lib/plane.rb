@@ -9,6 +9,7 @@ class Plane
   end
 
   def land(airport)
+    raise 'Already landed.' unless flying?
     raise 'Too stormy.' if Weather.stormy?
     airport.land(self)
     @location, @flying = airport, false

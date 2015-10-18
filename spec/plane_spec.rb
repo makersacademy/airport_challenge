@@ -40,4 +40,16 @@ describe Plane do
     expect(subject.location).to eq nil
   end
 
+  it 'a plane that is not flying must be in an airport' do
+    allow(Weather).to receive(:stormy?).and_return(false)
+    subject.land(airport)
+    expect(subject.location).to eq airport
+  end
+
+  it 'a plane that is not flying cannot land' do
+    allow(Weather).to receive(:stormy?).and_return(false)
+    subject.land(airport)
+    expect { subject.land(airport) }.to raise_error 'Already landed.'
+  end
+
 end
