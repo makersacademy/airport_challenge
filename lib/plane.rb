@@ -1,4 +1,8 @@
+require_relative './weather.rb'
+
 class Plane
+
+  include Weather
 
   attr_reader :location
   attr_accessor :flying

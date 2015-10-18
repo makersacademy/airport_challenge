@@ -1,4 +1,8 @@
+require_relative './weather.rb'
+
 class Airport
+
+  include Weather
 
   attr_reader :name, :planes, :capacity
 
@@ -12,11 +16,6 @@ class Airport
 
   def full
     full=false
-  end
-
-  def weather
-    weather=rand(4)
-    weather==1 ? 'Stormy' : 'Sunny'
   end
 
 end
