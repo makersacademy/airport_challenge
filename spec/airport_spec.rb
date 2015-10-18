@@ -21,21 +21,17 @@ describe Airport do
     expect(subject).to respond_to(:stormy?)
   end
 
+  it 'airport has a limited capacity' do
+    expect(subject).to respond_to(:capacity)
+  end
+
   describe "#instruct_to_land" do
 
   context "when plane has landed" do
   it "reports parked plane" do
     plane
     subject.instruct_to_land(plane)
-    expect(subject.plane).to eq plane
-  end
-  end
-
-  context "when airport (with a capacity of one plane) is full" do
-  it "informs plane cannot land" do
-    plane
-    subject.instruct_to_land(plane)
-    expect{subject.instruct_to_land(plane)}.to raise_error("The airport is full")
+    expect(subject.planes).to eq [plane]
   end
   end
 
@@ -55,6 +51,33 @@ describe Airport do
   end
   end
 
+  context "when airport is full" do
+  it "informs plane cannot land" do
+    subject.capacity.times do
+    plane
+    subject.instruct_to_land(plane)
+    end
+    expect{subject.instruct_to_land(plane)}.to raise_error("The airport is full")
+  end
+  end
+
 end
+
+  describe "#capacity" do
+
+  context 'when no capacity is mentioned' do
+    it 'airport has default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
+  context 'when capacity is mentioned' do
+    it 'default capacity is overriden' do
+      airport = Airport.new(30)
+      expect(airport.capacity).to eq(30)
+    end
+  end
+
+  end
 
 end

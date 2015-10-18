@@ -7,8 +7,7 @@ Airport		instruct_to_take_off
 Airport		full?
 Airport		stormy?
 Airport		initialize(capacity)
-Airport		initialize(name)
-Plane		initialize(airport_location)
+Plane		take off(airport_location)
 Plane		at_my_airport?
 Plane 		flying?
 
