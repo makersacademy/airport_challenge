@@ -1,6 +1,6 @@
 Airport Challenge
 =================
-
+[![Build Status](https://travis-ci.org/dearshrewdwit/airport_challenge.svg?branch=master)](https://travis-ci.org/dearshrewdwit/airport_challenge)
 My approach to solving this challenge was to start with an Airport class, build it as much as I could until I needed to start understanding how one class object would change another. I did pretty well with a TDD approach until the last few problems arose where I didn't know how to write the tests to get what I wanted to happen. Because I didn't know how to even make the code work. It involved a lot of playing around in pry and tweaking until there was some semblance of satisying the user stories.
 
 My approach could definitely be improved upon, but I found this challenge immensely interesting. The most difficult thing I found was keeping the tests in isolation with mocks and stubs because of the way I solved this challenge. I think there was definitely an easier way.
@@ -23,7 +23,7 @@ Land method
 Take_off method
 * Airports couldn't tell planes to take off that were flying, not at the airport, or when it was stormy.
 * For me that was 3 guard conditions and a way to modify the attribute of a plane upon a successful take off.
----------
+
 
 Planes
 ---------
