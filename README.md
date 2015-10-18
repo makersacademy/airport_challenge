@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/samover/airport_challenge.svg?branch=master)](https://travis-ci.org/samover/airport_challenge)  Airport Challenge
 =================
-
+* [The task](#task)
+* [My Approach](#my-approach)
 
 Task
 -----
@@ -47,8 +48,6 @@ I want to ensure a plane that has taken off from an airport is no longer in that
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
 Please create separate files for every class, module and test suite.
 
 The submission will be judged on the following criteria:
@@ -65,5 +64,25 @@ Note that is a practice 'tech test' of the kinds that employers use to screen de
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-Solution
+My approach
 --------
+The files in this repo are the result of my second attempt at solving the set task. The first attempt was not bad, but I felt it could be more elegant and simple.
+
+My approach has been methodic. I took every user story, made a domain model, wrote feature tests and made them fail. Then I wrote unit tests and made them fail. Only then would I start writing code, taking care to write only the minimal code in order to pass my tests. The resulting file structure is as follows:
+```
+lib/
+    - airport.rb
+    - plane.rb
+spec/
+  feature/
+      - airport_features_spec.rb
+      - plane_features_spec.rb
+      - traff_contr_features_spec.rb
+      - bonus_spec.rb
+  - airport_spec.rb
+  - plane_spec.rb
+```
+
+I made two major changes in comparison with my first attempt:
+  1. I pulled the weather conditions method in a separate class, following SOLID guidelines
+  2.
