@@ -21,7 +21,11 @@ airport.cloud_seeding
 aiport.take_off(grounded_plane)
 airport.land(flying_plane)
 
-#
+#feature test 5: checks plane was grounded at the airport
+airport1 = Airport.new
+airport2 = Airport.new
+airport1.land(plane)
+airport2.take_off(plane)
 
 #feature test 6: variable capacity for airport
 airport = Airport.new(20)
