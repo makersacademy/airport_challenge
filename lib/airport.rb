@@ -9,6 +9,7 @@ class Airport
 
 
   def take_off(plane)
+    raise 'Plane not at airport.' unless @plane == plane
     @plane = nil
   end
 

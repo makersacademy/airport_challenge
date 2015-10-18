@@ -20,5 +20,12 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error 'Airport full.'
   end
 
+  it 'refuses to allow a plane to take off it is in a different airport' do
+    second_airport = Airport.new
+    subject.land(plane)
+    expect { second_airport.take_off(plane) }
+        .to raise_error 'Plane not at airport.'
+  end
+
 
 end
