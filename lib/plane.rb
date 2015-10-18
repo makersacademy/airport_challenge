@@ -1,11 +1,11 @@
 class Plane
 
-attr_reader :status, :location  # => nil
+attr_reader :status, :location
 
 def flying
-  @status = :flying  # => :flying
-  @location = :air   # => :air
-  self               # => #<Plane:0x007fe6791500d8 @status=:flying, @location=:air>
+  @status = :flying
+  @location = :air
+  self
 end
 
 def landed
@@ -15,7 +15,7 @@ def landed
 end
 
 def flying?
-  @status == :flying  # => true
+  @status == :flying
 end
 
 end

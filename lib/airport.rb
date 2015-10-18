@@ -34,7 +34,3 @@ DEFAULT_CAPACITY = 20
   end
 
 end
-
-airport = Airport.new
-airport.land(Plane.new)
-airport.take_off

@@ -22,15 +22,18 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
     end
 
-    it 'does not land a plane when airport is full' do
-      allow(subject).to receive(:stormy?) { false }
-      described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
-      expect{subject.land(plane)}.to raise_error 'Airport is full!'
-    end
+    context 'does not land a plane when:' do
 
-    it 'does not land a plane when weather is stormy' do
-      allow(subject).to receive(:stormy?) { true }
-      expect{subject.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
+      it 'airport is full' do
+        allow(subject).to receive(:stormy?) { false }
+        described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
+        expect{subject.land(plane)}.to raise_error 'Airport is full!'
+      end
+
+      it 'weather is stormy' do
+        allow(subject).to receive(:stormy?) { true }
+        expect{subject.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
+      end
     end
 
     it 'planes landed already are in the airport' do
@@ -46,19 +49,22 @@ describe Airport do
       expect(subject).to respond_to(:take_off)
     end
 
-    it 'does not take-off a plane when weather is stormy' do
-      allow(subject).to receive(:stormy?) { false }
-      subject.land(plane)
-      allow(subject).to receive(:stormy?) { true }
-      expect{subject.take_off}.to raise_error 'Take-off denied. Weather is stormy!'
-    end
+    context 'does not take off a plane when:' do
 
-    it 'a flying plane cannot take-off and is not in an airport' do
-      allow(subject).to receive(:stormy?) { false }
-      allow(plane).to receive(:location) { :air }
-      subject.land(plane)
-      subject.take_off
-      expect(plane.location).to be :air
+      it 'weather is stormy' do
+        allow(subject).to receive(:stormy?) { false }
+        subject.land(plane)
+        allow(subject).to receive(:stormy?) { true }
+        expect{subject.take_off}.to raise_error 'Take-off denied. Weather is stormy!'
+      end
+
+      it 'it is already flying' do
+        allow(subject).to receive(:stormy?) { false }
+        allow(plane).to receive(:location) { :air }
+        subject.land(plane)
+        subject.take_off
+        expect(plane.location).to be :air
+      end
     end
 
     it 'plane is no longer in airport after take-off' do
