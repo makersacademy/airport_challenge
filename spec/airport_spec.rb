@@ -21,6 +21,10 @@ describe Airport do
       10.times{subject.land(Plane.new)}
       expect{subject.land(plane)}.to raise_error("This airport is full")
     end
+    it 'prevents landed planes from landing again' do
+      subject.land(plane)
+      expect{subject.land(plane)}.to raise_error("This plane is landed")
+    end
   end
 
 

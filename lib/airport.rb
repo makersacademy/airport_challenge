@@ -24,6 +24,8 @@ class Airport
       fail "It is stormy"
     elsif @planes.length >= DEFAULT_CAPACITY
       fail "This airport is full"
+    elsif @planes.include?(plane)
+      fail "This plane is landed"
     else
       @planes << plane
     end
