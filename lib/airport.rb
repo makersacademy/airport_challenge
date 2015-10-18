@@ -1,5 +1,11 @@
 class Airport
 
+  attr_reader :name
+
+  def initialize name
+    @name = name
+  end
+
   def full
     full=false
   end
