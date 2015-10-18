@@ -21,6 +21,7 @@ Land method
 * Which meant that an airport needed to tell the plane where it had landed by having its own name attribute and changing the plane's location attribute upon a successful landing.
 
 Take_off method
+---------
 * Airports couldn't tell planes to take off that were flying, not at the airport, or when it was stormy.
 * For me that was 3 guard conditions and a way to modify the attribute of a plane upon a successful take off.
 
