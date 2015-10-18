@@ -39,8 +39,8 @@ describe Airport do
 
   it 'should only allow planes to take off if they are in airport' do
     allow(subject.weather).to receive(:stormy?).and_return(false, false)
-    message = 'The plane is not here'
-    expect(subject.take_off Plane.new).to raise_error(message)
+    pl = Plane.new
+    expect(subject.take_off(pl)).to raise_error('The plane is not in this airport')
   end
 
   it 'should have a default capacity' do

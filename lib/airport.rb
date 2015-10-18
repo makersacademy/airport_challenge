@@ -18,7 +18,7 @@ class Airport
 
   def take_off plane
     raise StandardError,'Weather is stormy' if @weather.stormy?
-    raise StandardError,'The plane is not here' unless @planes.include?(plane)
+    raise StandardError,'The plane is not in this airport' unless @planes.include?(plane)
     @planes.pop
   end
 end
