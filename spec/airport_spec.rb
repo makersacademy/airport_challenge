@@ -2,56 +2,68 @@ require 'airport'
 
 describe Airport do
 
-
-#subject(:airport){Airport.new}
-
-  #context 'airport' do
+  context 'challenge 1-2' do
     it 'Airport to land a plane' do
-      plane = Plane.new
+      plane = double('plane')
       expect(subject.land(plane)).to eq plane
     end
-
       it 'plane can take off the airport' do
-        plane = Plane.new
+        plane = double('Plane', flying: nil)
         subject.land(plane)
         expect(subject.take_off(plane)).to eq plane
       end
+    end
 
-
+  context 'challenge 3' do
       it 'not land if full' do
-        subject.capacity.times { subject.land(Plane.new) }
-        expect { subject.land(Plane.new) }.to raise_error
+        plane = double('plane')
+        subject.capacity.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error
+      end
+    end
+
+  context 'challenge 4' do
+      it 'planes cannot land if stormy' do
+        subject.stormy?
+        expect{subject.land(plane)}.to raise_error
+      end
+      it 'planes cannot take_off if stormy' do
+          subject.stormy?
+          expect{subject.take_off}.to raise_error
+        end
       end
 
+  context 'challenge 5' do
+        it 'planes can only take off from the airport they are at' do
+          plane = double('plane', flying: nil)
+          subject.land plane
+          subject.take_off plane
+          expect(subject.planes).not_to include plane
+        end
+      end
+
+  context 'challenge 6' do
       it 'override airport capacity' do
         capacity = 20
         airport = Airport.new(capacity)
         expect(airport.capacity).to eq capacity
       end
+    end
 
-      it 'planes cannot land if stormy' do
-        plane = Plane.new
-        subject.stormy?
-        expect{subject.land(plane)}.to raise_error
-      end
-
-      it 'planes cannot take_off if stormy' do
-          plane = Plane.new
-          subject.stormy?
-          expect{subject.take_off}.to raise_error
-        end
-
+  context 'challenge 7' do
        it 'the plane cannot take off if it\'s flying' do
-         plane = Plane.new
-         plane.flying?
+         plane = double('plane', receive: true)
          subject.land(plane)
          expect{ subject.take_off(plane) }.to raise_error
        end
+     end
 
+  context 'challenge 9' do
        it 'the plane who took off is no longer in the airport' do
-         plane = Plane.new
+         plane = double('plane', flying: nil)
          subject.land plane
          subject.take_off plane
          expect(subject.planes).not_to include plane
        end
-    end
+     end
+end
