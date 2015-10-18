@@ -9,6 +9,10 @@ describe Airport do
       expect(subject.name).to eq 'airport'
     end
 
+    it 'can contain planes' do
+      expect(subject.planes.class==Array).to be true
+    end
+
     it {is_expected.to respond_to (:capacity) }
 
     it 'has a default capacity' do
@@ -23,6 +27,22 @@ describe Airport do
 
   describe '#full' do
     it {is_expected.to respond_to (:full) }
+
+    it 'is full when it has reached capacity' do
+      Airport::DEFAULT_CAPACITY.times do 
+        plane=Plane.new
+        plane.complete_landing(subject)
+      end
+      expect(subject.full).to eq true
+    end
   end
+
+  describe '#weather' do
+    it 'is expected to be sunny or stormy' do
+      weather_options=[:sunny, :stormy]
+      expect((weather_options).include?(subject.weather)).to be true
+    end
+  end
+
 
 end

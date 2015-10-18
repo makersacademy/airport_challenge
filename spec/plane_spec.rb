@@ -64,4 +64,22 @@ describe Plane do
     end
   end
 
+  describe '#flying' do
+    it 'can be read' do
+      expect(subject.flying).to eq true
+    end
+
+    it 'can be written' do
+      subject.flying='test'
+      expect(subject.flying).to eq 'test'
+    end
+  end
+
+  describe '#weather' do
+    it 'is expected to be sunny or stormy' do
+      weather_options=[:sunny, :stormy]
+      expect((weather_options).include?(subject.weather)).to be true
+    end
+  end
+
 end
