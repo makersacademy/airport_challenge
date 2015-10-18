@@ -28,4 +28,12 @@ describe Plane do
     expect { subject.land(airport) }.to raise_error 'Too stormy.'
   end
 
+  it 'planes are created flying' do
+    expect(subject).to be_flying
+  end
+
+  it 'cannot take-off an already flying plane' do
+    expect { subject.take_off }.to raise_error 'Already flying.'
+  end
+
 end

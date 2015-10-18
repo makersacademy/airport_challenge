@@ -2,6 +2,10 @@ require_relative 'weather'
 
 class Plane
 
+  def initialize
+    @flying = true
+  end
+
   def land(airport)
     raise 'Too stormy.' if Weather.stormy?
     airport.land(self)
@@ -9,6 +13,7 @@ class Plane
   end
 
   def take_off
+    raise 'Already flying.' if flying?
     raise 'Too stormy.' if Weather.stormy?
     @location.take_off(self)
     @location, @flying = nil, true
