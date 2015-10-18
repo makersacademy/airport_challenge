@@ -1,4 +1,4 @@
 script: bundle exec rspec spec
-sudo: false
+sudo: required
 rvm:
  - 2.2.3
