@@ -1,0 +1,13 @@
+Guide to general approach:
+
+Domain Model:
+
+Objects:          Messages:
+Plane             location
+                  status
+
+Airport           land
+                  take-off
+                  full?
+                  stormy?
+                  capacity
