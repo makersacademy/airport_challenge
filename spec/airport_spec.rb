@@ -14,7 +14,7 @@ describe Airport do
       it 'plane can take off the airport' do
         plane = Plane.new
         subject.land(plane)
-        expect(subject.take_off).to eq plane
+        expect(subject.take_off(plane)).to eq plane
       end
 
 
@@ -44,7 +44,7 @@ describe Airport do
        it 'the plane cannot take off if it\'s flying' do
          plane = Plane.new
          plane.flying?
-         subject.take_off
-         expect(subject).to raise_error
+         subject.land(plane)
+         expect{ subject.take_off(plane) }.to raise_error
        end
     end

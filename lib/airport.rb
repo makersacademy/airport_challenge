@@ -12,14 +12,14 @@ class Airport
   def land (plane)
     fail 'is full' if full?
     fail 'is stormy' if stormy
-    fail 'is flaying' if plane.flying
     @planes << plane
     plane
   end
 
-  def take_off
+  def take_off plane
     fail 'is stormy' if stormy
-    @planes.pop
+    fail 'is flaying' if plane.flying
+    @planes.delete(plane)
   end
 
   def full?
@@ -34,11 +34,4 @@ class Airport
     @stormy
   end
 
-  def flying?
-    @flying = true
-  end
-
-  def flying
-    @flying
-  end
 end

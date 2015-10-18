@@ -1,14 +1,13 @@
 class Plane
 
-  #attr_reader :flying
+  attr_reader :flying
 
-  # def flying?
-  #   @flying = true
-  # end
-  #
-  # def flying
-  #   @flying
-  # end
+  def flying?
+    @flying = true
+  end
 
+  def flying
+    @flying
+  end
 
  end
