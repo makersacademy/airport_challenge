@@ -1,14 +1,33 @@
 require 'capybara/rspec'
 
 feature 'a traffic controller can instruct a plane' do
+  let(:plane) { Plane.new }
+
   scenario 'to land' do
-    airport = Airport.new
-    plane = Plane.new
     expect(plane).to respond_to(:land)
   end
   scenario 'to take off' do
-    airport = Airport.new
-    plane = Plane.new
     expect(plane).to respond_to(:take_off)
+  end
+end
+
+feature 'a traffic controller can prevent planes from' do
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
+
+  scenario 'landing when airport is full' do
+    allow(airport).to receive(:stormy?).and_return(false)
+    airport.clear_for_landing plane
+    expect { airport.clear_for_landing plane }.to raise_error 'Airport is full'
+  end
+
+  scenario 'landing when weather is stormy' do
+    allow(airport).to receive(:stormy?).and_return(true)
+    expect { airport.clear_for_landing plane }.to raise_error 'Weather is stormy'
+  end
+
+  scenario 'taking off when weather is stormy' do
+    allow(airport).to receive(:stormy?).and_return(true)
+    expect { airport.clear_for_takeoff plane }.to raise_error 'Weather is stormy'
   end
 end
