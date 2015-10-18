@@ -33,5 +33,4 @@ DEFAULT_CAPACITY = 20
   def full?
     planes.length >= capacity
   end
-
 end
