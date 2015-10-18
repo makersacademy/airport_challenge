@@ -12,22 +12,22 @@ a) Air traffic controller should be able to
 
   instruct a plane to take off, provided
     weather is not stormy
-    So that all planes land and take off safely, the air traffic controller will make sure
+    So that all planes land and take off safely, the air traffic controller will make sure that
 
-    allow a plane takes of from the airport where it is located currently
+      a plane takes off from the airport where it is located currently
 
-    check plane's status and
-    allow only planes with status 'flying' to land,
-    and planes with status 'landed' to take off
+      check plane's status
+        allow those planes with status 'flying' to land,
+        allow those planes with status 'landed' to take off
 
 b) Plane should report their status
 
   as flying
-  at airport
+  as landed
 
 c) Airports should have following
 
-  default airport capacity can be overridden
+  default airport capacity and can be overridden
 
 I plan to start rspec test first and then on to code with above specs.
 
