@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby ‘1.9.03’
+ruby '2.2.3'
 
 gem 'rspec'
 gem 'capybara'
