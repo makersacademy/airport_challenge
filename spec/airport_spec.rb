@@ -7,6 +7,7 @@ describe Airport do
   before do # override random weather behaviour
     allow(airport).to receive(:stormy?).and_return(false)
     allow(plane).to receive(:land)
+    allow(plane).to receive(:take_off)
   end
 
   context 'when initializing' do
@@ -41,6 +42,14 @@ describe Airport do
   context 'when unregistered?' do
     it 'plane cannot take off' do
       expect { airport.clear_for_takeoff plane }.to raise_error 'Plane not registered at this airport'
+    end
+  end
+
+  context 'a plane that takes off' do
+    it 'is no longer registered' do
+      airport.clear_for_landing plane
+      airport.clear_for_takeoff plane
+      expect(airport.planes).not_to include plane
     end
   end
 end

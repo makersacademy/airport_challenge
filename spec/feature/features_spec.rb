@@ -93,6 +93,17 @@ feature 'a traffic controller can prevent planes from' do
   end
 end
 
+feature 'airport no longer lists plane as registered' do
+  scenario 'after take off' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return(false)
+    airport.clear_for_landing plane
+    airport.clear_for_takeoff plane
+    expect(airport.planes).not_to include plane
+  end
+end
+
 feature 'airport has a default capacity' do
   scenario 'when initialized' do
     airport = Airport.new
