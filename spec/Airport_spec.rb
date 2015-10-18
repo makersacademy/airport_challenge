@@ -10,6 +10,7 @@ describe Airport do
 	it "return can not land, airport is full!" do
 		allow(subject.weather).to receive(:stormy?).and_return false
 		plane = Plane.new
+		allow(plane).to receive(:landed).and_return false
 		subject.capacity.times { subject.land(plane) }
 		expect { subject.land(plane) }.to raise_error "Can not land, airport is full!"
 	end
@@ -36,9 +37,9 @@ describe Airport do
 		allow(subject.weather).to receive(:stormy?).and_return false
 		airport = Airport.new(30)
 		plane = Plane.new
+		allow(plane).to receive(:landed).and_return false
 		subject.capacity.times { subject.land(plane) }
 		expect { subject.land(plane) }.to raise_error "Can not land, airport is full!"
 	end
-
 
 end

@@ -15,18 +15,22 @@ class Airport
 
 	def land(plane)
 		raise "Can not land, airport is full!" if full?
-		raise "Can not land, weather is too bad." if weather.stormy?
-		planes << plane
+		raise "Can not land, weather is too bad." if @weather.stormy?
+		raise "Can not land, plane has already landed!" if plane.landed == true
+		@planes << plane
+		plane.land
 	end
 
 	def take_off(plane)
-		raise "Can not take off, weather is too bad." if weather.stormy?
-		raise "Can not take off, plane is not at this airport." unless planes.include?(plane)
-		planes.pop
+		raise "Can not take off, weather is too bad." if @weather.stormy?
+		raise "Can not take off, plane is not at this airport." unless @planes.include?(plane)
+		plane.flying
+		@planes.pop
+
 	end
 
 	def full?
-		planes.length >= capacity
+		@planes.length >= @capacity
 	end
 
 
