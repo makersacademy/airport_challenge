@@ -46,6 +46,12 @@ describe Airport do
     end
   end
 
+  it 'does not store flying planes' do
+    allow(subject).to receive(:stormy?) {false}
+    subject.land(plane)
+    expect(subject.takeoff(plane)).not_to eq(subject.takeoff(plane))
+  end
+
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
