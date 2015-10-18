@@ -3,8 +3,9 @@ require 'plane'
 
 describe Plane do
 
-  it 'is flying' do
-    expect(subject).to respond_to(:flying?)
+  it 'can be reported to be flying' do
+    subject.report_flying
+    expect(subject).to be_flying
   end
 
   it 'is at an airport' do

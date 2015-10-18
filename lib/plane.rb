@@ -8,8 +8,13 @@ def at_airport(airport)
   @airport = airport
 end
 
-def flying?
+def report_flying
   @airport = nil
+  @flying = true
+end
+
+def flying?
+  @flying
 end
 
 end

@@ -55,6 +55,12 @@ describe Airport do
   end
   end
 
+  context "when plane is landed" do
+  it "informs plane cannot land" do
+
+  end
+  end
+
 end
 
   describe "#instruct_to_take_off" do
@@ -69,9 +75,10 @@ end
 
   context "when plane is flying" do
   it "informs plane cannot take off" do
+    allow(plane).to receive(:report_flying).and_return(true)
     allow(plane).to receive(:flying?).and_return(true)
     plane
-    plane.flying?
+    plane.report_flying
     expect{subject.instruct_to_take_off(plane)}.to raise_error("Plane flying cannot take off")
   end
   end
