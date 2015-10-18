@@ -1,6 +1,7 @@
 class Weather
+  OUTLOOKS = [:stormy, :cloudy, :sunny, :rainy]
   def forecast
-    [:stormy, :cloudy, :sunny, :rainy].sample
+    OUTLOOKS.sample
   end
 end
 

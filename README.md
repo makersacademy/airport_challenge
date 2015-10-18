@@ -2,6 +2,7 @@
 =================
 * [The task](#task)
 * [My Approach](#my-approach)
+* [Usage instructions](#usage-instructions)
 
 Task
 -----
@@ -73,7 +74,7 @@ My approach has been methodic. I took every user story, made a domain model, wro
 lib/
     - airport.rb
     - plane.rb
-spec/
+<!-- spec/ -->
   feature/
       - airport_features_spec.rb
       - plane_features_spec.rb
@@ -89,4 +90,36 @@ I made two changes in comparison with my first attempt:
 
 The latter change had as a result that the unit tests became much clearer to define and ultimately to read. Delegating the right methods to the right class simplified the coding process as well.
 
+One thing I am not sure off, and might well change in a later update, is that every plane also has a location variable set either to `:air` or an instance of Airport. I asked myself: how can I test whether a plane is in an airport or not? Given that there are possibly many airports, it seemed better to add a location tag to the plane rather than check every airport for the registered plane. However, it is implied that when a plane has landed, it is actually in an airport and it doesn't matter for the running of the program that the instance of plane knows where it is.
+
 The last step was to write the `bonus_spec`, in order to test the landing and taking off of a number of planes. A simple enumeration (i.e. `planes.each { |plane| airport.clear_for_landing plane }`) does not land all the planes, since averse weather conditions sometimes raise error. These had to be encapsulated in a `begin/rescue` clause and the landing had to go on until **all** planes had landed.
+
+Usage Instructions
+------------------
+```
+2.2.3 :003 > airport = Airport.new
+ => #<Airport:0x007fee7412a9c0 @capacity=20, @planes=[]>
+2.2.3 :004 > plane = Plane.new
+ => #<Plane:0x007fee7395af10 @location=:air, @status=:flying>
+2.2.3 :005 > airport.clear_for_landing(plane)
+ => :landed
+2.2.3 :006 > another_plane = Plane.new
+ => #<Plane:0x007fee73930210 @location=:air, @status=:flying>
+2.2.3 :007 > airport.clear_for_landing(another_plane)
+ => :landed
+2.2.3 :008 > airport.planes
+ => [#<Plane:0x007fee7395af10 @location=#<Airport:0x007fee7412a9c0 @capacity=20, @planes=[...]>, @status=:landed>, #<Plane:0x007fee73930210 @location=#<Airport:0x007fee7412a9c0 @capacity=20, @planes=[...]>, @status=:landed>]
+2.2.3 :009 > airport.capacity
+ => 20
+2.2.3 :010 > airport.clear_for_takeoff(plane)
+ => :flying
+2.2.3 :011 > airport.planes
+ => [#<Plane:0x007fee73930210 @location=#<Airport:0x007fee7412a9c0 @capacity=20, @planes=[...]>, @status=:landed>]
+2.2.3 :012 > airport.clear_for_takeoff(another_plane)
+RuntimeError: Weather is stormy
+	from .../airport_challenge/lib/airport.rb:25:in `clear_for_takeoff'
+	from (irb):12
+	from .../.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :017 > airport.clear_for_takeoff(another_plane)
+ => :flying
+ ```

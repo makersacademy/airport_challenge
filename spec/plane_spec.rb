@@ -4,9 +4,6 @@ describe Plane do
   subject(:plane) { described_class.new }
   let(:airport) { double :airport }
 
-  it { is_expected.to respond_to(:land)}
-  it { is_expected.to respond_to(:take_off)}
-
   context 'when initialized' do
     it 'has a status of :flying' do
       expect(plane.status).to eq :flying
