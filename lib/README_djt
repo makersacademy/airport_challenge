@@ -11,3 +11,22 @@ Airport           land
                   full?
                   stormy?
                   capacity
+
+Feature tests:
+
+#Test that Plane class exists
+plane = Plane.new
+#Test for Airport class
+airport = Airport.new
+#feature test 1 - plane lands at airport
+#feature test 2 - plane takes off from airport
+
+#feature test 3: full airport safety feature
+
+#feature test 4: stormy weather safety feature
+#feature test 6: variable capacity for airport
+
+
+Randomised weather includes two logic gates in order to enable fixing of the weather. Calling cloud_seeding forces the logic equation to always evaluate to stormy? == true. Calling sunny_weather forces the logic equation to evaluate to true. Under default settings (@cloud_seeding == false and @bad_weather == true) the weather is determined by the random generator and is bad 33% of the time.
+
+Rigging was required to enable the unit tests based on capacity to not fail based on random weather conditions.

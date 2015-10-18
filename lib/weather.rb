@@ -1,7 +1,7 @@
 module Weather
   @bad_weather = true
   @cloud_seeding = false
-  def stormy? #(simulation=false)
+  def stormy?
     (@cloud_seeding || (@bad_weather && rand(3)+1 == 1)) #returns true or false
   end
 rand(3)+1 == 1

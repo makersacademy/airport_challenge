@@ -23,7 +23,11 @@ describe Airport do
   end
 
   describe "#take_off" do
+    before(:each) do
+      subject.sunny_weather
+    end
     it "expects to see a plane has left its hangar after telling it to take-off" do
+      subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
 
@@ -32,6 +36,14 @@ describe Airport do
       subject.cloud_seeding
       expect {subject.take_off(double(:plane))}.to raise_error "Unable to take-off: weather is stormy."
     end
+
+    it "only allows planes that are in the aiport to take-off from that airport" do
+      airport = Airport.new
+      airport.sunny_weather
+      airport.land(plane)
+      expect {subject.take_off(plane)}.to raise_error "Unable to take-off: this plane is not in this airport!"
+    end
+
   end
 
 end

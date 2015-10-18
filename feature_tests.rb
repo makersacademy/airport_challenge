@@ -21,6 +21,8 @@ airport.cloud_seeding
 aiport.take_off(grounded_plane)
 airport.land(flying_plane)
 
+#
+
 #feature test 6: variable capacity for airport
 airport = Airport.new(20)
 20.times airport.land(Plane.new)

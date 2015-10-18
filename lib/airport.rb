@@ -8,7 +8,6 @@ class Airport
   def initialize
     @capacity = 30
     @hangar = []
-    # @weather = stormy?
   end
 
   def land(plane)
@@ -19,6 +18,7 @@ class Airport
 
   def take_off(plane)
     raise "Unable to take-off: weather is stormy." if stormy?
+    raise "Unable to take-off: this plane is not in this airport!" if @hangar.none? {|planes_in_hangar| planes_in_hangar == plane}
     @hangar.delete_if{|plane_in_hangar| plane_in_hangar == plane}
     plane
   end
