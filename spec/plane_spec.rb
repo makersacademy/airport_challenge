@@ -21,6 +21,8 @@ describe Plane do
       airport=double(:airport, name: 'airport', planes: [], full: false, weather: :sunny)  
       expect(subject.take_off(airport)).to eq 'The plane is already flying'
     end
+
+    it { is_expected.to respond_to (:complete_take_off) }
   end
 
   describe '#land' do
@@ -43,6 +45,8 @@ describe Plane do
       subject.flying=true
       expect {subject.land(airport)}.to raise_error 'Cannot land while weather is stormy.'
     end
+
+    it { is_expected.to respond_to (:complete_landing) }
   end
 
   describe '#location' do
