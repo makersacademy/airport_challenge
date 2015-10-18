@@ -1,9 +1,9 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) {double(:plane)}
-  let(:plane1){double(:plane1)}
+  let(:plane) {double(:plane, :flying => true)}
   let(:bad_airport){Airport.new}
+
   it 'allows planes to land' do
     allow(subject).to receive(:stormy?) {false}
     expect(subject.land(plane)).to eq([plane])
@@ -21,13 +21,14 @@ describe Airport do
       10.times{subject.land(Plane.new)}
       expect{subject.land(plane)}.to raise_error("This airport is full")
     end
+    let(:plane2) {double(:plane2, :flying => false)}
     it 'prevents landed planes from landing again' do
       allow(subject).to receive(:stormy?) {false}
-      subject.land(plane)
-      expect{subject.land(plane)}.to raise_error("This plane is landed")
+      expect{subject.land(plane2)}.to raise_error("This plane is landed")
     end
   end
 
+  let(:plane1){double(:plane1, :flying => true)}
   it "prevents use when stormy" do
     allow(subject).to receive(:stormy?) {false}
     subject.land(plane1)
@@ -43,11 +44,13 @@ describe Airport do
       expect(bad_airport.takeoff(plane)).to be nil
       expect(subject.planes.last).to eq(subject.takeoff(plane))
     end
+
     it 'does not allow flying planes to takeoff' do
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.takeoff(plane)).to eq nil
     end
+
     it 'makes sure the plane has left the airport' do
       subject.land(plane)
       expect(subject.takeoff(plane)).not_to eq (:planes)
