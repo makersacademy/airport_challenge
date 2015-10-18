@@ -11,7 +11,7 @@ class Airport
   end
 
   def land plane
-    raise StandardError, 'Airport is full' unless @planes.length < 1
+    raise StandardError, 'Airport is full' unless !full?
     raise StandardError,'Weather is stormy' if @weather.stormy?
     @planes << plane
   end
@@ -20,5 +20,11 @@ class Airport
     raise StandardError,'Weather is stormy' if @weather.stormy?
     raise StandardError,'The plane is not in this airport' unless @planes.include?(plane)
     @planes.pop
+  end
+
+  private
+
+  def full?
+    @planes.length == @capacity
   end
 end

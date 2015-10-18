@@ -18,7 +18,7 @@ describe Airport do
   it 'should prevent planes landiing when full' do
     allow(subject.weather).to receive(:stormy?).and_return(false)
     pl = Plane.new
-    subject.land(pl)
+    8.times{subject.land(pl)}
     message = 'Airport is full'
     expect{subject.land(Plane.new)}.to raise_error(message)
   end
@@ -38,9 +38,9 @@ describe Airport do
   end
 
   it 'should only allow planes to take off if they are in airport' do
-    allow(subject.weather).to receive(:stormy?).and_return(false, false)
+    allow(subject.weather).to receive(:stormy?).and_return(false)
     pl = Plane.new
-    expect(subject.take_off(pl)).to raise_error('The plane is not in this airport')
+    expect { subject.take_off(pl) }.to raise_error('The plane is not in this airport')
   end
 
   it 'should have a default capacity' do
