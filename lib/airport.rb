@@ -22,7 +22,7 @@ DEFAULT_CAPACITY = 20
 
   def takeoff(plane)
     raise "Stormy weather!  Try again later." if stormy_weather?
-    raise "Plane not in this airport, either land here first or add a new plane to the airport!" unless @hangar.include?(plane)
+    raise "Plane is not in this airport, either land here first or add a new plane to the airport!" unless @hangar.include?(plane)
     plane.takeoff
     @hangar.delete_if {|elem| elem == plane }
   end

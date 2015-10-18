@@ -3,12 +3,8 @@ require 'airport'
 describe Airport do
   let (:plane1) { double(:plane, land: false, takeoff: true, update_location: "undefined")}
   let (:plane2) { double(:plane, land: false, takeoff: true, update_location: "undefined")}
-  let (:plane3) { double(:plane, land: false, takeoff: true, update_location: "undefined")}
-  let (:plane4) { double(:plane, land: false, takeoff: true, update_location: "undefined")}
-  let (:plane5) { double(:plane, land: false, takeoff: true, update_location: "undefined")}
-  let (:plane6) { double(:plane, land: false, takeoff: true, update_location: nil)}
   let (:test_capacity_30) { Airport.new('test_capacity', 30) }
-  let (:test_full) { Airport.new('test_full',-1) }
+  let (:test_full) { Airport.new('test_full',0) }
 
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1) }
@@ -26,13 +22,13 @@ describe Airport do
     it { is_expected.to respond_to(:takeoff).with(1) }
     it 'instructs a plane to take off and removes plane from hangar' do
       allow(subject).to receive(:stormy_weather?).and_return(false)
-      subject.land(plane3); subject.land(plane4)
-      expect(subject.takeoff(plane3)).to eq [plane4]
+      subject.land(plane1); subject.land(plane2)
+      expect(subject.takeoff(plane1)).to eq [plane2]
     end
     it 'shouldnt allow a plane to take off if not in the hangar' do
       allow(subject).to receive(:stormy_weather?).and_return(false)
       subject.land(plane2)
-      expect{subject.takeoff(plane1)}.to raise_error "Plane not in this airport, either land here first or add a new plane to the airport!"
+      expect{subject.takeoff(plane1)}.to raise_error "Plane is not in this airport, either land here first or add a new plane to the airport!"
     end
   end
 
@@ -40,7 +36,7 @@ describe Airport do
     it 'should equal default capacity on creation when not passed an arg' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
-    it 'should modify the capacity on created when passed an arg' do
+    it 'should modify the capacity on creation when passed an arg' do
       expect(test_capacity_30.capacity).to eq 30
     end
   end

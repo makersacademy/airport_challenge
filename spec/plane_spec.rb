@@ -24,7 +24,7 @@ let(:airport1) {double(:airport1, airport_name: "London Heathrow")}
   end
 
   describe '#update_location' do
-    it 'correctly updates the updated location' do
+    it 'correctly updates the location' do
       subject.update_location("My House")
       expect(subject.location).to eq "My House"
     end
