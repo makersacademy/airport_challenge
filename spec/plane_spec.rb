@@ -2,6 +2,12 @@ require 'plane'
 
 describe Plane do 
 
+  describe 'initialization' do
+    it { is_expected.to respond_to (:location) }
+
+    it { is_expected.to respond_to (:flying) }
+  end
+
   describe '#take_off' do
     it { is_expected.to respond_to (:take_off) } 
     

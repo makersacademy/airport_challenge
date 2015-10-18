@@ -14,6 +14,11 @@ describe Airport do
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
+
+    let(:larger_airport) { Airport.new('airport',100) }
+    it 'can have a different capacity when created' do
+      expect(larger_airport.capacity).to eq 100
+    end
   end
 
   describe '#full' do
