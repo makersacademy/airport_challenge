@@ -11,7 +11,7 @@ describe Weather do
   describe '#weather' do
   
     it 'is expected to be sunny or stormy' do
-      weather_options=['Sunny', 'Stormy']
+      weather_options=[:sunny, :stormy]
       expect((weather_options).include?(@dummy.weather)).to be true
     end 
   end

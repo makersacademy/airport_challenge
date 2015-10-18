@@ -14,38 +14,39 @@ class Plane
 
   def land airport
     if @flying==true
-      if airport.full
-        'Cannot land while airport is full'
-      elsif airport.weather=='Stormy'
-        'Cannot land while weather is stormy.'
-      else
-        @location=airport.name
-        @flying=false
-        airport.planes << self
-        "The plane has landed at #{airport.name}"
-      end
+      raise 'Cannot land while airport is full' if airport.full
+      raise 'Cannot land while weather is stormy.' if airport.weather==:stormy
+      complete_landing(airport)
     else 
       'This plane is already on the ground.'
     end 
   end
 
+  def complete_landing airport
+    @location=airport.name
+    @flying=false
+    airport.planes << self
+    "The plane has landed at #{airport.name}"
+  end
+
   def take_off airport
     if @flying==false
       if airport.planes.include?(self)
-        if airport.weather=='Stormy'
-          'Cannot take off while weather is stormy.'
-        else
-          @location=nil
-          @flying=true
-          airport.planes.delete(self)
-          "The plane has taken off from #{airport.name}"
-        end
+        raise 'Cannot take off while weather is stormy.' if airport.weather==:stormy
+        complete_take_off(airport)
       else
         'The plane is not at this airport.'
       end
     else  
     'The plane is already flying'
     end  
+  end
+
+  def complete_take_off airport
+    @location=nil
+    @flying=true
+    airport.planes.delete(self)
+    "The plane has taken off from #{airport.name}"
   end
 
 end
