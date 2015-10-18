@@ -1,7 +1,10 @@
 class Planes
-
+  attr_writer :working
+   def initialize
+     @working = true
+   end
  def working?
-   working?
+   working
  end
 
 end

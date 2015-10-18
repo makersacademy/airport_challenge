@@ -1,13 +1,14 @@
 require 'airport'
+require 'planes'
 
 describe AirPort do
-  let(:plane) { double :plane}
   it "lands planes safely at airport" do
     expect(subject).to respond_to :land_safely
   end
   it "takes off safely at airport" do
-    expect(subject).to respond_to :take_off_safely
+   expect(subject).to respond_to :take_off_safely
   end
+
   it { is_expected.to respond_to(:land_safely).with(1).argument }
 
  describe '#land_safely' do
@@ -27,14 +28,27 @@ describe AirPort do
 
  describe 'bad_weather' do
    it 'stops planes landing and taking off' do
-   expect(subject).to  be_stormy
+   expect(subject).to be_stormy
    end
-
  end
 
- # it 'flying plane cannot take off and cannot be in an airport' do
- #   expect(subject.take_off_safely
- # end
+describe 'flying' do
+ it 'flying plane cannot take off' do
+   subject.flying?
+   expect(subject).to be_flying
+  end
+ end
+
+ describe 'non_flying' do
+  it 'non flying plane cannot land' do
+    subject.non_flying?
+    expect(subject).to be_non_flying
+   end
+  end
+
+
+
+
 
 
 end

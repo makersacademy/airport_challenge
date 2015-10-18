@@ -1,3 +1,4 @@
+require 'planes'
 class AirPort
 
   DEFAULT_CAPACITY = 10
@@ -5,24 +6,35 @@ class AirPort
   attr_reader :capacity
 
   def initialize(capacity=DEFAULT_CAPACITY)
-    @planes = []
-    @capacity = DEFAULT_CAPACITY
+   @planes = []
+   @capacity = DEFAULT_CAPACITY
+
   end
 
-  def land_safely(planes)
-    fail 'airport is full' if full? || @stormy
-    @planes << planes
+  def land_safely(planes, working=true)
+   fail 'airport is full' if full?
+   @planes << planes
   end
 
   def full?
-    @planes.count >= @capacity
+   @planes.count >= @capacity
   end
 
-  def take_off_safely
-    fail 'can not take off' if @stormy?
+  def take_off_safely(plane)
+   fail 'can not take off' if stormy?
+   @planes.delelte(planes)
   end
 
   def stormy?
-    @stormy = true
+   true
   end
+
+  def flying?
+    true
+  end
+
+  def non_flying?
+    true
+  end
+
 end
