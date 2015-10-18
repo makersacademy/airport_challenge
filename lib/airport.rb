@@ -24,11 +24,12 @@ DEFAULT_CAPACITY = 20
     planes.pop.flying
   end
 
+  private
+
   def stormy?
     rand(0..1.0) > 0.95
   end
 
-  private
   def full?
     planes.length >= capacity
   end
