@@ -41,10 +41,16 @@ describe '#initialize' do
    expect{subject.land(plane1)}.to raise_error("plane is already grounded")
  end
  #
+ it 'raises an error if flying plane instructed to take off' do
+   subject.take_off(plane)
+   expect{subject.take_off(plane)}.to raise_error("plane is already flying")
+ end
+
+ #
  # it 'raises an error if flying plane instructed to take off' do
- #   subject.land(plane)
- #   subject.take_off(plane)
- #   expect{subject.take_off(plane)}.to raise_error("plane is already flying")
+ #   weather = Weather.new
+ #   weather.stormy?
+ #   expect{subject.take_off(plane)}.to raise_error("cannot take off in a storm")
  # end
 
  end

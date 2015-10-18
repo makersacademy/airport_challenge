@@ -1,8 +1,9 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
-  attr_accessor :plane, :capacity, :weather, :landed
+  attr_accessor :plane, :capacity, :stormy, :landed
 
   def initialize(capacity = 50)
     @capacity = capacity
@@ -13,13 +14,14 @@ class Airport
     def land(plane)
       fail "the airport is full" if full?
       fail "plane is already grounded" if plane.landed
-      plane.land
+      #plane.land
       @planes << plane
     end
 
 #this instructs specific plane to take off
     def take_off(plane)
-  #    fail "plane is already flying" if @flying == true
+     fail "plane is already flying" if plane.flying
+     plane.flying
       @planes.delete(plane)
     end
 
