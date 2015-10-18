@@ -12,13 +12,13 @@ class Airport
     @capacity = capacity
   end
 
-  def lands plane
+  def land plane
     raise "Airport is full" if planes.length >= @capacity
     raise "Weather not good cannot land" if !weather_good
     planes << plane
   end
 
-  def takes_off plane
+  def take_off plane
     raise "Weather not good cannot take-off" if !weather_good
     raise "This plane is not at this airport" if !@planes.include? plane
     planes.delete_if {|item| item == plane}
