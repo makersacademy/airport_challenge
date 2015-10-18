@@ -8,11 +8,11 @@ describe Airport do
 
     it 'lands a plane' do
       subject.land(plane)
-      expect(subject.plane).to eq(plane)
+      expect(subject.planes.last).to eq(plane)
     end
 
-    it 'refuses to land a plane if airport full' do
-      subject.land(plane)
+    it 'refuses to land a plane if default capacity reached' do
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }
           .to raise_error 'Landing not possible, airport full.'
     end
@@ -21,6 +21,13 @@ describe Airport do
       allow(subject).to receive(:stormy?) { true }
       expect { subject.land(plane) }
           .to raise_error 'Landing not possible, too stormy.'
+    end
+
+    it 'allows a custom capacity to be set' do
+      subject.set_capacity(50)
+      50.times { subject.land(plane) }
+      expect { subject.land(plane) }
+        .to raise_error 'Landing not possible, airport full.'
     end
 
   end
