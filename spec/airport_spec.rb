@@ -11,11 +11,21 @@ describe Airport do
       expect(subject.plane).to eq(plane)
     end
 
+    it 'refuses to land a plane if airport full' do
+      subject.land(plane)
+      expect { subject.land(plane) }
+        .to raise_error 'Landing not possible, airport full.'
+    end
+
+    it 'refuses to land a plane if weather is stormy' do
+      
+    end
+
   end
 
   describe '#take_off' do
 
-    it '#take_off returns a previously landed plane' do
+    it 'returns a previously landed plane' do
       subject.land(plane)
       expect(subject.take_off).to eq(plane)
     end
