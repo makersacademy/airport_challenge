@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 	
 	describe '#initialize' do
-	 	it 'has a capacity of 50 planes' do
+	 	it 'has a default capacity of 50 planes' do
 	 		expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
 	 	end
 	end

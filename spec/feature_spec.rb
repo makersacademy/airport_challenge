@@ -55,3 +55,11 @@ require './lib/airport'
 # p airport.take_off(plane2)
 
 #puts "--------------"
+
+# puts "6th user story: As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate"
+
+p airport = Airport.new(100)
+
+#puts "--------------"

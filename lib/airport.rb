@@ -5,8 +5,8 @@ class Airport
 	DEFAULT_CAPACITY = 50
 
 	
-	def initialize
-		@capacity = DEFAULT_CAPACITY
+	def initialize(capacity=DEFAULT_CAPACITY)
+		@capacity = capacity
 		@planes_array = [] # we can hold 50 planes in this array	
 	end
 
