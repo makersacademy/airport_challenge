@@ -35,3 +35,14 @@ feature 'a traffic controller can prevent planes from' do
     expect { airport.clear_for_takeoff plane }.to raise_error 'Plane not registered at this airport'
   end
 end
+
+feature 'airport has a default capacity' do
+  scenario 'when initialized' do
+    airport = Airport.new
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+  scenario 'which a system designer can override when building a new airport' do
+    airport = Airport.new(50)
+    expect(airport.capacity).to eq 50
+  end
+end

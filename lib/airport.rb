@@ -5,11 +5,13 @@ class Weather
 end
 
 class Airport
+  attr_reader :conditions, :capacity
 
-  attr_reader :conditions
-
-  def initialize
+  DEFAULT_CAPACITY = 20
+  
+  def initialize(capacity=DEFAULT_CAPACITY)
     @conditions = Weather.new.forecast
+    @capacity = capacity
   end
 
   def clear_for_landing plane

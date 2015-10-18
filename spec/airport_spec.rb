@@ -8,6 +8,16 @@ describe Airport do
     allow(airport).to receive(:stormy?).and_return(false)
   end
 
+  context 'when initializing' do
+    it 'has a default capacity' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    it 'which can be overridden' do
+      airport = Airport.new(50)
+      expect(airport.capacity).to eq 50
+    end
+  end
+
   context '#full?' do
     it 'prevent planes from landing' do
       airport.clear_for_landing plane
