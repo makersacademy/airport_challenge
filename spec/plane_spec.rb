@@ -8,6 +8,19 @@ describe Plane do
 
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
+    it { is_expected.to respond_to(:location) }
+
+    it { is_expected.to respond_to(:location=) }
+
+    it { is_expected.to respond_to(:status) }
+
+    it { is_expected.to respond_to(:status=) }
+
+    it 'is expected to be a plane upon initialization' do
+      plane = Plane.new
+      expect(plane).to be_instance_of(Plane)
+    end
+
     context 'when the airport is full' do
       it 'does not allow planes to land' do
         allow(airport).to receive(:weather=)
@@ -96,11 +109,7 @@ describe Plane do
 
     context 'when a plane has taken off from an airport' do
       it 'is no longer in that airport' do
-        allow(airport).to receive(:weather=)
-        allow(airport).to receive(:weather).and_return 'sunny'
-        allow(airport).to receive(:full?).and_return false
-        allow(airport).to receive(:planes).and_return Array.new
-        allow(airport).to receive(:location).and_return airport.object_id
+        airport = Airport.new
         airport.weather = 'sunny'
         subject.land(airport)
         subject.take_off(airport)
