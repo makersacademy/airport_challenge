@@ -22,6 +22,7 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error("This airport is full")
     end
     it 'prevents landed planes from landing again' do
+      allow(subject).to receive(:stormy?) {false}
       subject.land(plane)
       expect{subject.land(plane)}.to raise_error("This plane is landed")
     end
