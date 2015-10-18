@@ -48,6 +48,12 @@ describe Airport do
           .to raise_error stormy_error
     end
 
+    it 'plane that has taken off is no longer in the airport' do
+      subject.land(plane)
+      subject.take_off
+      expect(subject.planes.include?(plane)).to eq false
+    end
+
   end
 
 end

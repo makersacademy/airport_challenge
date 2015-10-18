@@ -17,7 +17,7 @@ class Airport
     planes <<  plane
   end
 
-  def take_off
+  def take_off(plane)
     fail 'Landing and take-off not possible, too stormy.' if stormy?
     planes.pop
   end
