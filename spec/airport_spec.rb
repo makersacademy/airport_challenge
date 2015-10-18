@@ -34,4 +34,16 @@ describe '#initialize' do
        expect(airport.capacity).to eq 25
    end
  end
-end
+
+ # it 'raises an error if grounded plane instructed to land' do
+ #   subject.land(plane)
+ #   expect{subject.land(plane)}.to raise_error("plane is already grounded")
+ # end
+ #
+ # it 'raises an error if flying plane instructed to take off' do
+ #   subject.land(plane)
+ #   subject.take_off(plane)
+ #   expect{subject.take_off(plane)}.to raise_error("plane is already flying")
+ # end
+
+ end
