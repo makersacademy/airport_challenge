@@ -10,23 +10,23 @@ class Airport
 
   def instruct_to_land(plane)
     fail 'The airport is full.' if full? == true
-    # fail 'The weather is stormy, cannot land.' if stormy
+    fail 'The weather is stormy, landing is not allowed.' if weather == :stormy
     @planes << plane
     @planes.last
   end
 
   def instruct_to_take_off(plane)
+    fail 'The weather is stormy, taking off is not allowed.' if weather == :stormy
     @planes << plane
     @planes.pop
-  #   fail 'The weather is stormy, cannot take_off.' if stormy
   end
 
   def full?
     @planes.count >= 50 ? true : false
   end
 
-  # def stormy
-  #
-  # end
+  def weather
+    [:sunny, :stormy, :sunny, :sunny, :sunny, :stormy].shuffle.first
+  end
 
 end
