@@ -44,3 +44,9 @@ Plane     land
           take_off
 Airport   full?
           stormy?
+
+
+Airport <-- full? --> true / false
+Airport <-- stormy? --> true / false
+Plane <-- land
+Plane <-- take_off
