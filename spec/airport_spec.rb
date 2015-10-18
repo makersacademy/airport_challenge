@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+  let(:plane) { Plane.new }
 
   describe '#land' do
     it 'lands a plane' do
@@ -8,8 +9,8 @@ describe Airport do
     end
 
     it 'raise an error when an airport is full' do
-      25.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error 'Plane can\'t land. Airport is full!'
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error 'Plane can\'t land. Airport is full!'
     end
   end
 
