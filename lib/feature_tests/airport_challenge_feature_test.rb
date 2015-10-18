@@ -8,6 +8,7 @@
 # airport1.lands(plane1) returns plane object
 require './lib/airport'
 require './lib/weather'
+require './lib/traffic_control'
 
 
 puts "new airport "
@@ -116,9 +117,77 @@ end
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
-airport5 = Airport(7)
-airport5.capacity = 10
-10.times {airport5.lands(Plane.new)}
+puts "Initialise airport with capcity of 7"
+airport5 = Airport.new(7)
+p 7.times {airport5.lands(Plane.new)}
+puts "set airport capacity to 10"
+airport6 = Airport.new(6)
+airport6.capacity = 10
+p 10.times {airport6.lands(Plane.new)}
+
+# As an air traffic controller
+# So the system is consistent and correctly reports plane status and location
+# I want to ensure a flying plane cannot take off and cannot be in an airport
+
+# verbs = land,take-off, ensure
+# nouns = plane, aiport, system
+
+# messages = fly, take-off, land
+# objects = plane, airport, system
+
+puts "new air traffic system ******"
+p airtraffic1 = TrafficControl.new
+puts "new airport"
+p airport1 = Airport.new
+begin
+  puts "take-off plane while flying gives error"
+  p airtraffic1.take_off(plane1,airport1)
+rescue Exception => e5
+  puts "error #{e5}"
+end
+
+puts "land plane1 at airport1 and set location and status"
+p airport1.lands(plane1)
+p plane1.location = airport1
+p plane1.status = "not_flying"
+puts "take-off plane that is on ground"
+p airtraffic1.take_off(plane1,airport1)
+
+
+# As an air traffic controller
+# So the system is consistent and correctly reports plane status and location
+# I want to ensure a plane that is not flying cannot land and must be in an airport
+
+p airtraffic1.land(plane1,airport1)
+
+# responds with "plane not flying so cannot land" if plane not flying
+
+# plane.location = airport1 not in-air
+
+
+
+
+
+
+
+
+
+
+
+# airtraffic1.land(plane1,airport1) responds with plane location
+# airport1.lands(plane1)
+# plane1.status = "not_flying"
+# plane1.location = airport1
+
+
+
+
+
+
+# airtraffic1.report(plane1)
+# plane1.status
+# plane1.location
+
 
 
 
