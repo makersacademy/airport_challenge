@@ -1,4 +1,4 @@
-require 'planes'
+
 class AirPort
 
   DEFAULT_CAPACITY = 10
@@ -7,12 +7,12 @@ class AirPort
 
   def initialize(capacity=DEFAULT_CAPACITY)
    @planes = []
-   @capacity = DEFAULT_CAPACITY
+   @capacity = capacity
 
   end
 
   def land_safely(planes, working=true)
-   fail 'airport is full' if full?
+   raise 'airport is full' if full? || stormy?
    @planes << planes
   end
 
@@ -21,12 +21,18 @@ class AirPort
   end
 
   def take_off_safely(plane)
-   fail 'can not take off' if stormy?
-   @planes.delelte(planes)
+   raise 'can not take off' if stormy?
+   @planes.pop
   end
 
   def stormy?
-   true
+   r = Random.new
+   r.rand(10...20)
+   if r == 12
+     true
+   else
+   false
+   end
   end
 
   def flying?
