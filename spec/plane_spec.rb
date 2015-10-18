@@ -36,4 +36,8 @@ describe Plane do
     expect { subject.take_off }.to raise_error 'Already flying.'
   end
 
+  it 'a flying plane does not have an airport' do
+    expect(subject.location).to eq nil
+  end
+
 end

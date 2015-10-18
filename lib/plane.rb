@@ -2,6 +2,8 @@ require_relative 'weather'
 
 class Plane
 
+  attr_reader :location
+
   def initialize
     @flying = true
   end
