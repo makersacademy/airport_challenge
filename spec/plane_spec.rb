@@ -2,8 +2,6 @@ require 'plane'
 
   describe Plane do
 
-    # let(:plane) { double()}
-
     it { is_expected.to respond_to(:lands) }
     it { is_expected.to respond_to(:takes_off) }
     it { is_expected.to respond_to(:update_location) }
