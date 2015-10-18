@@ -73,14 +73,14 @@ My Approach
 Throughout this task I made sure that I consistently stuck to the routine of Red-Green-Refactor.
 Below is a step-by-step list which shows how I attempted each user story:
 
-*1 Distinguish nouns (objects) and verbs (messages/methods) from user story.
-*2 Create Domain Model to illustrate how the objects and messages would interact.
-*3 Do a Feature Test (usally in irb) and make it fail (red).
-*4 Create a Unit Test (in RSpec) and make it fail (red).
-*5 Implement code to lib/ files to make unit test pass (green).
-*6 Make feature test pass (green).
-*7 Refactor code.
-*8 Move to next user story and repeat above steps.
+1. Distinguish nouns (objects) and verbs (messages/methods) from user story.
+2. Create Domain Model to illustrate how the objects and messages would interact.
+3. Do a Feature Test (usally in irb) and make it fail (red).
+4. Create a Unit Test (in RSpec) and make it fail (red).
+5. Implement code to lib/ files to make unit test pass (green).
+6. Make feature test pass (green).
+7. Refactor code.
+8. Move to next user story and repeat above steps.
 
 For this task my aim was to have a very simple approach as the user stories were simple in their own way.
 As a result, I had created two classes:
