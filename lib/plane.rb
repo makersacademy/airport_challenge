@@ -26,5 +26,4 @@ class Plane
   def update_location(location)
     @location = location
   end
-
 end
