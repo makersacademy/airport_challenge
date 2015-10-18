@@ -1,4 +1,4 @@
-https://travis-ci.org/hsheikhm/airport_challenge.svg?branch=master
+!https://travis-ci.org/hsheikhm/airport_challenge.svg?branch=master!:https://travis-ci.org/hsheikhm/airport_challenge
 
 Airport Challenge
 =================
