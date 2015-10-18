@@ -6,17 +6,24 @@ describe Airport do
 
   it 'lands a plane on command' do
     subject.land(plane)
-    expect(subject.plane).to eq plane
+    expect(subject.planes.last).to eq plane
   end
 
   it 'takes-off a plane on command' do
     subject.land(plane)
     subject.take_off(plane)
-    expect(subject.plane).to eq nil
+    expect(subject.planes.include?(plane)).to eq false
   end
 
-  it 'refuses to land a plane if full (capacity of one)' do
-    subject.land(plane)
+  it 'refuses to land a plane if the default capacity is reached' do
+    Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error 'Airport full.'
+  end
+
+  it 'allows capacity to be modified and reports when full accordingly' do
+    new_capacity = (Airport::DEFAULT_CAPACITY + 2)
+    subject.set_capacity(new_capacity)
+    new_capacity.times { subject.land(plane) }
     expect { subject.land(plane) }.to raise_error 'Airport full.'
   end
 
