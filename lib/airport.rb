@@ -19,7 +19,7 @@ class Airport
     raise 'Airport is full' if full?
     raise 'Weather is stormy' if stormy?
     planes << plane
-    plane.land
+    plane.land(self)
   end
 
   def clear_for_takeoff plane
