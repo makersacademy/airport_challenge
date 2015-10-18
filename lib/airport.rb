@@ -1,6 +1,6 @@
 class Weather
   def forecast
-    [:stormy, :cloudy, :sunny, :rainy].sample #, :sunny, :rainy, :cloudy, :windy].sample
+    [:stormy, :cloudy, :sunny, :rainy].sample
   end
 end
 
@@ -10,20 +10,20 @@ class Airport
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity=DEFAULT_CAPACITY)
-    #@conditions = Weather.new.forecast
-    @capacity, @planes = capacity, []
+    @capacity = capacity
+    @planes = []
   end
 
   def clear_for_landing plane
-    raise 'Airport is full' if full?
-    raise 'Weather is stormy' if stormy?
+    fail 'Airport is full' if full?
+    fail 'Weather is stormy' if stormy?
     planes << plane
     plane.land(self)
   end
 
   def clear_for_takeoff plane
-    raise 'Weather is stormy' if stormy?
-    raise 'Plane not registered at this airport' unless registered? plane
+    fail 'Weather is stormy' if stormy?
+    fail 'Plane not registered at this airport' unless registered? plane
     planes.delete(plane)
     plane.take_off
   end

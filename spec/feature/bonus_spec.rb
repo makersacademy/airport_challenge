@@ -11,7 +11,7 @@ feature 'mega busy airport' do
     airport = Airport.new
     planes = Array.new(10, Plane.new)
 
-    until planes.sort == airport.planes.sort do
+    until planes.sort == airport.planes.sort
       planes.each do |plane|
         begin
           airport.clear_for_landing plane
@@ -23,7 +23,7 @@ feature 'mega busy airport' do
 
     planes.each { |plane| expect(plane.status).to eq :landed }
 
-    until airport.planes.empty? do
+    until airport.planes.empty?
       planes.each do |plane|
         begin
           airport.clear_for_takeoff plane
@@ -32,7 +32,7 @@ feature 'mega busy airport' do
         end
       end
     end
-    
+
     planes.each { |plane| expect(plane.status).to eq :flying }
   end
 end
