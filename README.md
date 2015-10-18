@@ -103,7 +103,7 @@ one for Airport and the other for Plane. Whilst using the **RSpec** framework I 
 by the use of **doubles** and **method stubs**. This way I could achieve consistent test behaviour.
 
 Below is my directory tree structure:
-
+```
 lib/
     - airport.rb
     - plane.rb
@@ -111,6 +111,7 @@ spec/
     - airport_spec.rb
     - plane_spec.rb
     - spec_helper.rb
+```
 
 
 Feature Test Sample
