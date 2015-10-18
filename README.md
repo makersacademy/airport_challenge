@@ -1,4 +1,4 @@
-Airport Challenge [![Build Status](https://travis-ci.org/samover/airport_challenge.svg?branch=master)](https://travis-ci.org/samover/airport_challenge)
+[![Build Status](https://travis-ci.org/samover/airport_challenge.svg?branch=master)](https://travis-ci.org/samover/airport_challenge)  Airport Challenge
 =================
 
 
