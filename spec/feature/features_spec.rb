@@ -22,6 +22,19 @@ feature 'a plane has a status' do
   end
 end
 
+feature 'a plane\'s actions are limited: ' do
+  let(:plane) { Plane.new }
+
+  scenario 'a flying plane cannot take off' do
+    expect { plane.take_off }.to raise_error 'A flying plane cannot take off'
+  end
+
+  scenario 'a landed plane cannot land' do
+    plane.land
+    expect { plane.land}.to raise_error 'A landed plane cannot land'
+  end
+end
+
 feature 'a traffic controller can instruct a plane' do
   let(:plane) { Plane.new }
 
@@ -42,7 +55,7 @@ feature 'a traffic controller can prevent planes from' do
   end
 
   scenario 'landing when airport is full' do
-    Airport::DEFAULT_CAPACITY.times { airport.clear_for_landing plane }
+    Airport::DEFAULT_CAPACITY.times { airport.clear_for_landing Plane.new }
     expect { airport.clear_for_landing plane }.to raise_error 'Airport is full'
   end
 
