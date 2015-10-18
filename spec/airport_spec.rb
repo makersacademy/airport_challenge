@@ -26,5 +26,11 @@ describe Airport do
     expect{subject.take_off(plane)}.to raise_error('Is stormy so cannot take off')
   end
 
+  it 'change default capacity' do
+    subject = Airport.new(20)
+    subject2 = Airport.new(30)
+    expect(subject.capacity).to eq(20)
+    expect(subject2.capacity).to eq(30)
+  end
 
 end

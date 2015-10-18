@@ -10,4 +10,11 @@ describe Plane do
     subject.take_off
     expect(subject.taken_off?).to eq true
   end
+
+  it 'cannot take off if the plane is flying' do
+    plane = subject
+    plane.take_off
+    expect{ subject.take_off }.to raise_error
+    #expect(plane.taken_off?).to eq false
+  end
 end
