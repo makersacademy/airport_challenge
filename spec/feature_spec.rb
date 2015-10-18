@@ -1,12 +1,15 @@
 require 'plane'
 require 'airport'
 
+airport = Airport.new()
+plane = Plane.new()
+
 p "Instruct a plane to land at an airport"
-plane = Plane.new
-airport = Airport.new
-plane.instructed_to_land
-airport.plane_has_landed plane
+plane.land(airport)
 
 p "Instruct a plane to take off"
-plane.instructed_to_take_off
-airport.plane_has_taken_off plane
+print "Plane #{plane}"
+plane.take_off(airport)
+
+
+
