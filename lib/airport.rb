@@ -10,12 +10,12 @@ class Airport
 
   def landing(plane)
     raise 'airport is full' if @airport.length == 1
-    raise 'too stormy to land' if weather?(Weather.new.stormy) == true
+    raise 'too stormy to land' if weather?(Weather.new.stormy?) == true
     @airport << plane
   end
 
   def taking_off(plane)
-    
+
   end
 
   def weather?(stormy)

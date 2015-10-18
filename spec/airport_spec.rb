@@ -23,7 +23,5 @@ describe Airport do
     subject.weather?(weather.stormy?)
     expect{subject.landing(plane)}.to raise_error 'too stormy to land'
   end
-  
-  it 'checks if the plane is the same plane '
 
 end
