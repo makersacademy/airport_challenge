@@ -83,6 +83,10 @@ spec/
   - plane_spec.rb
 ```
 
-I made two major changes in comparison with my first attempt:
+I made two changes in comparison with my first attempt:
   1. I pulled the weather conditions method in a separate class, following SOLID guidelines
-  2.
+  2. I started developing the Plane class first, as my understanding of the first two user stories evolved
+
+The latter change had as a result that the unit tests became much clearer to define and ultimately to read. Delegating the right methods to the right class simplified the coding process as well.
+
+The last step was to write the `bonus_spec`, in order to test the landing and taking off of a number of planes. A simple enumeration (i.e. `planes.each { |plane| airport.clear_for_landing plane }`) does not land all the planes, since averse weather conditions sometimes raise error. These had to be encapsulated in a `begin/rescue` clause and the landing had to go on until **all** planes had landed.
