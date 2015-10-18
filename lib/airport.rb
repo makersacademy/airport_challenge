@@ -15,7 +15,7 @@ class Airport
   end
 
   def take_off(airplane)
-    @airplane=airplane
+    @airplane.pop
   end
 
   private
