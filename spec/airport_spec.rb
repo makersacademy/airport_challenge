@@ -19,8 +19,8 @@ end
   end
 
 it 'raises an error when the airport is at full capacity' do
-  50.times{subject.land(plane)}
-  expect{subject.land(plane)}.to raise_error("the airport is full")
+  subject.capacity.times{subject.land(Plane.new)}
+  expect{subject.land(Plane.new)}.to raise_error("the airport is full")
 end
 
 describe '#initialize' do
@@ -35,10 +35,10 @@ describe '#initialize' do
    end
  end
 
- # it 'raises an error if grounded plane instructed to land' do
- #   subject.land(plane)
- #   expect{subject.land(plane)}.to raise_error("plane is already grounded")
- # end
+ it 'raises an error if grounded plane instructed to land' do
+   plane1 = Plane.new
+   expect{subject.land(plane1.flying(false))}.to raise_error("plane is already grounded")
+ end
  #
  # it 'raises an error if flying plane instructed to take off' do
  #   subject.land(plane)
