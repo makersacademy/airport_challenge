@@ -73,7 +73,7 @@ My Approach
 
 Feature Test Sample
 --------------------
-'''
+```
 <!-- Airport object: -->
 2.2.3 :002 > airport = Airport.new
  => #<Airport:0x007fb92a89c9a8 @planes=[], @capacity=20>
@@ -118,4 +118,4 @@ RuntimeError: Take-off denied. Weather is stormy!
  => #<Plane:0x007ff0ca13bf10 @status=:flying, @location=:air>
 2.2.3 :007 > airport.planes
  => []
-'''
+```
