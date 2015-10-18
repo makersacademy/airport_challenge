@@ -7,7 +7,7 @@ class Plane
   end
 
   def take_off
-    @location.take_off
+    @location.take_off(self)
     @location = nil
     @flying = true
   end
