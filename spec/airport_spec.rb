@@ -17,11 +17,12 @@ describe Airport do
   end
 
   it 'should prevent planes landiing when full' do
-    allow(subject.weather).to receive(:stormy?).and_return(false)
+    a = Airport.new(1)
+    allow(a.weather).to receive(:stormy?).and_return(false)
     pl = Plane.new
-    8.times{subject.land(pl)}
+    a.land(pl)
     message = 'Airport is full'
-    expect{subject.land(Plane.new)}.to raise_error(message)
+    expect{a.land(Plane.new)}.to raise_error(message)
   end
 
   it 'should prevent planes from landing when weather is stormy' do

@@ -7,6 +7,7 @@ describe Plane do
     allow(a.weather).to receive(:stormy?).and_return(false)
     subject.fly
     a.land(subject)
+    allow(subject).to receive(:flying).and_return(true)
     expect {a.take_off(subject)}.to raise_error 'Plane is already flying'
   end
 
