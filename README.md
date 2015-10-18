@@ -74,7 +74,7 @@ My approach has been methodic. I took every user story, made a domain model, wro
 lib/
     - airport.rb
     - plane.rb
-<!-- spec/ -->
+spec/
   feature/
       - airport_features_spec.rb
       - plane_features_spec.rb
