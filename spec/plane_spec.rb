@@ -4,10 +4,15 @@ describe Plane do
 
   describe '#take_off' do
     it { is_expected.to respond_to (:take_off)} 
-
+    
     it 'will not take off while the weather is stormy' do
-      airport=double(:airport, name: 'airport', full: false, weather: 'Stormy')
+      airport=double(:airport, name: 'airport', planes: [subject], full: false, weather: 'Stormy')
       expect(subject.take_off(airport)).to eq 'Cannot take off while weather is stormy.'
+    end
+
+    it 'cannot take off from an airport where it is not located' do
+      airport=double(:airport, name: 'airport', planes: [], full: false, weather: 'Sunny')
+      expect(subject.take_off(airport)).to eq 'The plane is not at this airport.'
     end
   end
 
@@ -27,9 +32,9 @@ describe Plane do
 
   describe '#location' do
     it 'should know its location once it has landed' do
-      airport=double(:airport, name: 'airport', full: false, weather: 'Sunny')
+      airport=double(:airport, name: 'airport', planes: [], full: false, weather: 'Sunny')
       subject.land(airport)
-      expect(subject.location).to eq airport
+      expect(subject.location).to eq airport.name
     end
   end
 

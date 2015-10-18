@@ -1,9 +1,10 @@
 class Airport
 
-  attr_reader :name
+  attr_reader :name, :planes
 
   def initialize name
     @name = name
+    @planes = []
   end
 
   def full
