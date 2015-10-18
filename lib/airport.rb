@@ -3,8 +3,10 @@ require_relative 'plane'
 class Airport
 
   attr_accessor :planes
+  attr_accessor :capacity
 
-  def initialize
+  def initialize (capacity = 50)
+    @capacity = capacity
     @planes = []
   end
 
@@ -15,18 +17,18 @@ class Airport
     @planes.last
   end
 
-  def instruct_to_take_off(plane)
+  def instruct_to_take_off
     fail 'The weather is stormy, taking off is not allowed.' if weather == :stormy
-    @planes << plane
     @planes.pop
   end
 
   def full?
-    @planes.count >= 50 ? true : false
+    @planes.count >= @capacity ? true : false
   end
 
   def weather
     [:sunny, :stormy, :sunny, :sunny, :sunny, :stormy].shuffle.first
+        # [:sunny, :sunny, :sunny, :sunny,].shuffle.first
   end
 
 end

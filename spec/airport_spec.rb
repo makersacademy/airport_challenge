@@ -5,7 +5,7 @@ describe Airport do
 
       it {is_expected.to(respond_to(:instruct_to_land).with(1).argument)}
 
-      it {is_expected.to(respond_to(:instruct_to_take_off).with(1).argument)}
+      it {is_expected.to(respond_to(:instruct_to_take_off))}
 
   describe '#instruct_to_land' do
 
@@ -32,20 +32,22 @@ describe Airport do
 
       it 'allows planes to take off' do
         allow(subject).to receive(:weather) {:sunny}
-        subject.instruct_to_take_off(:plane)
-        expect(subject.instruct_to_take_off(:plane)).to eq :plane
+        subject.instruct_to_land(:plane)
+        expect(subject.instruct_to_take_off).to eq :plane
       end
 
       it 'does not allow planes to take off if the weather is stormy' do
           allow(subject).to receive(:weather) {:stormy}
-          expect {subject.instruct_to_take_off(plane)}.to raise_error 'The weather is stormy, taking off is not allowed.'
+          expect {subject.instruct_to_take_off}.to raise_error 'The weather is stormy, taking off is not allowed.'
       end
 
     end
 
-end
+    describe '#initialize' do
+      it 'is allowed to change airport capacity' do
+        airport = Airport.new(100)
+        expect(airport.capacity).to eq 100
+      end
+    end
 
-  #
-  # it 'does not allow planes to take off when the weather is stormy' do
-  #   expect {subject.take_off?}.to raise_error 'The weather is stormy, cannot take_off.'
-  # end
+end
