@@ -8,7 +8,7 @@ describe Airport do
     end
 
     it 'raise an error when an airport is full' do
-      subject.land(Plane.new)
+      25.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error 'Plane can\'t land. Airport is full!'
     end
   end
