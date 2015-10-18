@@ -1,5 +1,6 @@
 require 'airport'
 
+
 describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument}
 
@@ -12,8 +13,16 @@ describe Airport do
   end
 
   it 'should raise an error when airport is full do' do
-    20.times { subject.land(Plane.new) }
+    Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
     expect {subject.land(Plane.new)}.to raise_error 'Airport is full'
   end
+
+  it 'should raise an error for landing if weather is stormy' do
+
+  end
+
+  # it 'should raise an error for taking off if weather is stormy' do
+  #
+  # end
 
 end
