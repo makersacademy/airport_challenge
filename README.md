@@ -75,47 +75,47 @@ Feature Test Sample
 --------------------
 ```
 <!-- Airport object: -->
-2.2.3 :002 > airport = Airport.new
- => #<Airport:0x007fb92a89c9a8 @planes=[], @capacity=20>
+  2.2.3 :002 > airport = Airport.new
+    => #<Airport:0x007fb92a89c9a8 @planes=[], @capacity=20>
 <!-- Plane object: -->
-2.2.3 :003 > plane = Plane.new
- => #<Plane:0x007fb92a88ec18 @status=:flying, @location=:air>
+  2.2.3 :003 > plane = Plane.new
+    => #<Plane:0x007fb92a88ec18 @status=:flying, @location=:air>
 <!-- Airport can land a plane. Plane status = 'landed' and location = 'airport' -->
-2.2.3 :004 > airport.land(plane)
- => #<Plane:0x007fb92a88ec18 @status=:landed, @location=:airport>
+  2.2.3 :004 > airport.land(plane)
+    => #<Plane:0x007fb92a88ec18 @status=:landed, @location=:airport>
 <!-- Airport can take-off a plane. Plane status = 'flying' and location = 'air' -->
-2.2.3 :005 > airport.take_off
- => #<Plane:0x007fb92a88ec18 @status=:flying, @location=:air>
+  2.2.3 :005 > airport.take_off
+    => #<Plane:0x007fb92a88ec18 @status=:flying, @location=:air>
 <!-- Plane cannot land if the airport is full: -->
-2.2.3 :028 > airport.land(plane)
-RuntimeError: Airport is full!
-2.2.3 :027 > airport.full?
- => true
+  2.2.3 :028 > airport.land(plane)
+    RuntimeError: Airport is full!
+  2.2.3 :027 > airport.full?
+    => true
 <!-- Plane cannot land if weather is stormy: -->
-2.2.3 :042 > airport.land(plane)
-RuntimeError: Landing denied. Weather is stormy!
+  2.2.3 :042 > airport.land(plane)
+    RuntimeError: Landing denied. Weather is stormy!
 <!-- Plane cannot take-off if weather is stormy: -->
-2.2.3 :052 > airport.take_off
-RuntimeError: Take-off denied. Weather is stormy!
+  2.2.3 :052 > airport.take_off
+    RuntimeError: Take-off denied. Weather is stormy!
 <!-- Airport can have a specific capacity: -->
-2.2.3 :053 > airport = Airport.new(50)
- => #<Airport:0x007f9604181630 @planes=[], @capacity=50>
+  2.2.3 :053 > airport = Airport.new(50)
+    => #<Airport:0x007f9604181630 @planes=[], @capacity=50>
 <!-- Plane cannot land if it has already landed: -->
-2.2.3 :003 > plane = Plane.new
- => #<Plane:0x007fdeaa1e5ad8 @status=:flying, @location=:air>
-2.2.3 :004 > airport.land(plane)
- => #<Plane:0x007fdeaa1e5ad8 @status=:landed, @location=:airport>
-2.2.3 :005 > airport.land(plane)
- => "Plane has already landed"
+  2.2.3 :003 > plane = Plane.new
+    => #<Plane:0x007fdeaa1e5ad8 @status=:flying, @location=:air>
+  2.2.3 :004 > airport.land(plane)
+    => #<Plane:0x007fdeaa1e5ad8 @status=:landed, @location=:airport>
+  2.2.3 :005 > airport.land(plane)
+    => "Plane has already landed"
 <!-- A plane taken-off from an airport is no longer in that airport: -->
-2.2.3 :003 > plane = Plane.new
- => #<Plane:0x007ff0ca13bf10 @status=:flying, @location=:air>
-2.2.3 :004 > airport.land(plane)
- => #<Plane:0x007ff0ca13bf10 @status=:landed, @location=:airport>
-2.2.3 :005 > airport.planes
- => [#<Plane:0x007ff0ca13bf10 @status=:landed, @location=:airport>]
-2.2.3 :006 > airport.take_off
- => #<Plane:0x007ff0ca13bf10 @status=:flying, @location=:air>
-2.2.3 :007 > airport.planes
- => []
+  2.2.3 :003 > plane = Plane.new
+    => #<Plane:0x007ff0ca13bf10 @status=:flying, @location=:air>
+  2.2.3 :004 > airport.land(plane)
+    => #<Plane:0x007ff0ca13bf10 @status=:landed, @location=:airport>
+  2.2.3 :005 > airport.planes
+    => [#<Plane:0x007ff0ca13bf10 @status=:landed, @location=:airport>]
+  2.2.3 :006 > airport.take_off
+    => #<Plane:0x007ff0ca13bf10 @status=:flying, @location=:air>
+  2.2.3 :007 > airport.planes
+    => []
 ```
