@@ -22,8 +22,9 @@ describe Airport do
 
   context '#full?' do
     it 'prevent planes from landing' do
+      msg = 'Airport is full'
       Airport::DEFAULT_CAPACITY.times { airport.clear_for_landing plane }
-      expect{ airport.clear_for_landing plane }.to raise_error 'Airport is full'
+      expect{ airport.clear_for_landing plane }.to raise_error(msg)
     end
   end
 
@@ -31,22 +32,25 @@ describe Airport do
     before { allow(airport).to receive(:stormy?).and_return(true) }
 
     it 'prevent planes from landing' do
-      expect { airport.clear_for_landing plane }.to raise_error 'Weather is stormy'
+      msg = 'Weather is stormy'
+      expect { airport.clear_for_landing plane }.to raise_error(msg)
     end
 
     it 'prevent planes from taking off' do
-      expect { airport.clear_for_landing plane }.to raise_error 'Weather is stormy'
+      msg = 'Weather is stormy'
+      expect { airport.clear_for_landing plane }.to raise_error(msg)
     end
   end
 
-  context 'when unregistered?' do
+  context 'not #registered?' do
     it 'plane cannot take off' do
-      expect { airport.clear_for_takeoff plane }.to raise_error 'Plane not registered at this airport'
+      msg = 'Plane not registered at this airport'
+      expect { airport.clear_for_takeoff plane }.to raise_error(msg)
     end
   end
 
-  context 'a plane that takes off' do
-    it 'is no longer registered' do
+  context 'removes a plane from the register' do
+    it 'after takeoff' do
       airport.clear_for_landing plane
       airport.clear_for_takeoff plane
       expect(airport.planes).not_to include plane
