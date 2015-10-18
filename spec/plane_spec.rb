@@ -17,4 +17,13 @@ describe Plane do
     expect{a.land(subject)}.to raise_error 'Plane is not flying'
   end
 
+  it 'is no longer in the airport after taking off' do
+    allow(subject).to receive(:flying).and_return(true, false)
+    a = Airport.new
+    allow(a.weather).to receive(:stormy?).and_return(false)
+    a.land(subject)
+    a.take_off(subject)
+    expect(a.planes).not_to include(subject)
+  end
+
 end

@@ -23,17 +23,12 @@ class Airport
     raise StandardError,'The plane is not in this airport' unless @planes.include?(plane)
     raise StandardError,'Plane is already flying'if plane.flying == true
     plane.fly
-    find_plane(plane)
+    @planes.pop
   end
 
   private
 
   def full?
     @planes.length == @capacity
-  end
-
-  def find_plane plane
-    a = @planes.select{ |x| x == plane}
-    a.pop
   end
 end

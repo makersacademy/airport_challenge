@@ -45,6 +45,6 @@ describe Airport do
   end
 
   it 'should have a default capacity' do
-  expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 end
