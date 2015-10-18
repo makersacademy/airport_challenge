@@ -12,10 +12,19 @@ class Airport
 
 	def land(plane)
 		fail "The airport is full" if @planes_array.length >= capacity
+		# weather = stormy
+		# fail "There is a storm" if weather == true
 		@planes_array << plane
 	end
 
-	def take_off
-		planes_array.pop
+	def take_off(plane)
+		fail "The plane did not land on this airport" if !@planes_array.include?(plane)
+		@planes_array.select { |i| i == plane }.pop
 	end
+
+	# def stormy
+	# 	random = Random.new
+	# 	num = random.rand(1..100)
+	# 	num >= 95
+	# end
 end
