@@ -17,7 +17,7 @@ feature 'a traffic controller can prevent planes from' do
 
   scenario 'landing when airport is full' do
     allow(airport).to receive(:stormy?).and_return(false)
-    airport.clear_for_landing plane
+    Airport::DEFAULT_CAPACITY.times { airport.clear_for_landing plane }
     expect { airport.clear_for_landing plane }.to raise_error 'Airport is full'
   end
 

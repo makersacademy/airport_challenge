@@ -5,36 +5,38 @@ class Weather
 end
 
 class Airport
-  attr_reader :conditions, :capacity
+  attr_reader :conditions, :capacity, :planes
 
   DEFAULT_CAPACITY = 20
-  
+
   def initialize(capacity=DEFAULT_CAPACITY)
     @conditions = Weather.new.forecast
     @capacity = capacity
+    @planes = []
   end
 
   def clear_for_landing plane
     raise 'Airport is full' if full?
     raise 'Weather is stormy' if stormy?
-    @plane = plane
+    @planes << plane
   end
 
   def clear_for_takeoff plane
     raise 'Weather is stormy' if stormy?
-    raise 'Plane not registered at this airport' if unregistered? plane
+    raise 'Plane not registered at this airport' unless registered? plane
+    @planes.delete(plane)
   end
 
   private
   def full?
-    @plane
+    @planes.length >= DEFAULT_CAPACITY
   end
 
   def stormy?
     conditions == :stormy
   end
 
-  def unregistered? plane
-    @plane != plane
+  def registered? plane
+    @planes.include?(plane)
   end
 end

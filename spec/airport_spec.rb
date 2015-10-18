@@ -20,7 +20,7 @@ describe Airport do
 
   context '#full?' do
     it 'prevent planes from landing' do
-      airport.clear_for_landing plane
+      Airport::DEFAULT_CAPACITY.times { airport.clear_for_landing plane }
       expect{ airport.clear_for_landing plane }.to raise_error 'Airport is full'
     end
   end
@@ -37,7 +37,7 @@ describe Airport do
     end
   end
 
-  context '#unregistered?' do
+  context 'when unregistered?' do
     it 'plane cannot take off' do
       expect { airport.clear_for_takeoff plane }.to raise_error 'Plane not registered at this airport'
     end
