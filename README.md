@@ -1,40 +1,35 @@
-Build Status Airport Challenge
-==============================
+Airport Challenge
+=================
 
-One of our clients has requested us to design and develop software which will help in managing planes at an airport.  Here is a summary of the requirement:
+One of our clients has requested us to design and develop software which will help in managing planes at an airport. Here is a summary of the requirement:
 
 a) Air traffic controller should be able to
 
-  - instruct an incoming plane to land, provided
-    - weather is not stormy
-    - airport has spare landing space (airport not full)
+  instruct an incoming plane to land, provided
 
-  - instruct a plane to take off, provided
-    - weather is not stormy
+    weather is not stormy
+    airport has spare landing space (airport not full)
 
-So that all planes land and take off safely, the air traffic controller will make sure
+  instruct a plane to take off, provided
+    weather is not stormy
+    So that all planes land and take off safely, the air traffic controller will make sure
 
-   - allow a plane takes of from the airport where it is located currently
+    allow a plane takes of from the airport where it is located currently
 
-   - check plane's status and allow only
-     planes with status 'flying' to land, and
-     planes with status 'landed' to take off
-
+    check plane's status and
+    allow only planes with status 'flying' to land,
+    and planes with status 'landed' to take off
 
 b) Plane should report their status
-   - as flying
-   - at airport
 
+  as flying
+  at airport
 
-b) Airports should have following
-   - default airport capacity can be overridden
+c) Airports should have following
 
-I plan to start feature tests and then on to code with above specs.
+  default airport capacity can be overridden
 
-I expect to create three feature tests
-  - airport
-  - plane
-  - air traffic controller
+I plan to start rspec test first and then on to code with above specs.
 
 Will, update README as I make further progress
 
