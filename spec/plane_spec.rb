@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-
+let(:airport1) {double(:airport1, airport_name: "London Heathrow")}
 # As an air traffic controller
 # So the system is consistent and correctly reports plane status and location
 # I want to ensure a flying plane cannot take off and cannot be in an airport
@@ -20,6 +20,9 @@ describe Plane do
     it 'should raise an error when attempting to takeoff when already flying' do
       subject.takeoff
       expect{subject.takeoff}.to raise_error "Already flying!"
+    end
+    it 'location method correctly outputs the updated location' do
+      expect(subject.update_location("My House")).to eq "My House"
     end
   end
 end
