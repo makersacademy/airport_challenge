@@ -15,13 +15,11 @@ describe Plane do
     plane = subject
     plane.take_off
     expect{ subject.take_off }.to raise_error
-    #expect(plane.taken_off?).to eq false
   end
 
   it 'cannot land if the plane is not flying' do
     plane = subject
     plane.land
     expect{ subject.land }.to raise_error
-    #expect(plane.taken_off?).to eq false
   end
 end
