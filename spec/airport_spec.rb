@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double(Plane.new) }
+  let(:plane) { double :plane }
 
   describe '#initializing capacity' do
 
@@ -28,10 +28,8 @@ describe Airport do
     end
 
     it 'does not land a plane when weather is stormy' do
-      subject.weather
-      if subject.good_weather == false
+      allow(subject).to receive(:stormy?) { true }
         expect{subject.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
-      end
     end
 
     it 'does not land a plane that is not flying' do
@@ -47,11 +45,9 @@ describe Airport do
     end
 
     it 'does not take-off a plane when weather is stormy' do
-      subject.land(plane)
-      subject.weather
-      if subject.good_weather == false
+      subject.land(Plane.new)
+      allow(subject).to receive(:stormy?) { true }
         expect{subject.take_off}.to raise_error 'Take-off denied. Weather is stormy!'
-      end
     end
 
     it 'only takes-off a plane from the airport they are at' do
