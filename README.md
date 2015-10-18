@@ -70,7 +70,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 My Approach
 ------------
 
-Throughout this task I made sure that I consistently stuck to the routine of Red-Green-Refactor.
+Throughout this task I made sure that I consistently stuck to the routine of **Strong text**Red-Green-Refactor**Strong text**.
 Below is a step-by-step list which shows how I attempted each user story:
 
 1. Distinguish nouns (objects) and verbs (messages/methods) from user story.
