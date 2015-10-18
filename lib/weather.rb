@@ -1,7 +1,7 @@
 class Weather
 
   def stormy?
-    condition == stormy
+    condition == :stormy
   end
 
   private
