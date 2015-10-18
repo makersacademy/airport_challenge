@@ -37,7 +37,8 @@ describe '#initialize' do
 
  it 'raises an error if grounded plane instructed to land' do
    plane1 = Plane.new
-   expect{subject.land(plane1.flying(false))}.to raise_error("plane is already grounded")
+   plane.landed
+   expect{subject.land(plane1)}.to raise_error("plane is already grounded")
  end
  #
  # it 'raises an error if flying plane instructed to take off' do
