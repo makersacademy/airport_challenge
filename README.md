@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/samover/airport_challenge.svg?branch=master)](https://travis-ci.org/samover/airport_challenge)  Airport Challenge
 =================
-* [The task](#task)
+* [Task](#task)
 * [My Approach](#my-approach)
-* [Usage instructions](#usage-instructions)
+* [Usage Instructions](#usage-instructions)
 
 Task
 -----
