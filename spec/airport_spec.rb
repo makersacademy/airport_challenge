@@ -3,11 +3,13 @@ require 'airport'
 describe Airport do
   
   let(:subject) { Airport.new 'airport' }
-  
+
   describe 'inititialization' do
     it 'is created with a name' do
       expect(subject.name).to eq 'airport'
     end
+
+    it {is_expected.to respond_to (:capacity)}
   end
 
   describe '#full' do
