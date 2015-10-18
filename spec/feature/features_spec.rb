@@ -1,5 +1,27 @@
 require 'capybara/rspec'
 
+feature 'a plane has a status' do
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
+
+  before do
+    allow(airport).to receive(:stormy?).and_return(false)
+  end
+
+  scenario 'of :flying when created' do
+    expect(plane.status).to eq :flying
+  end
+  scenario 'when landed' do
+    airport.clear_for_landing plane
+    expect(plane.status).to eq :landed
+  end
+  scenario 'when flying' do
+    airport.clear_for_landing plane
+    airport.clear_for_takeoff plane
+    expect(plane.status).to eq :flying
+  end
+end
+
 feature 'a traffic controller can instruct a plane' do
   let(:plane) { Plane.new }
 
@@ -15,8 +37,11 @@ feature 'a traffic controller can prevent planes from' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new }
 
-  scenario 'landing when airport is full' do
+  before do
     allow(airport).to receive(:stormy?).and_return(false)
+  end
+
+  scenario 'landing when airport is full' do
     Airport::DEFAULT_CAPACITY.times { airport.clear_for_landing plane }
     expect { airport.clear_for_landing plane }.to raise_error 'Airport is full'
   end

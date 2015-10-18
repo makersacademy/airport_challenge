@@ -6,6 +6,7 @@ describe Airport do
 
   before do # override random weather behaviour
     allow(airport).to receive(:stormy?).and_return(false)
+    allow(plane).to receive(:land)
   end
 
   context 'when initializing' do
