@@ -3,6 +3,8 @@ require 'airport'
 describe Airport do
 
   let(:plane) { double('plane') }
+  let(:full_error) { 'Landing not possible, airport full.'}
+  let(:stormy_error) { 'Landing and take-off not possible, too stormy.'}
 
   describe '#land' do
 
@@ -14,20 +16,20 @@ describe Airport do
     it 'refuses to land a plane if default capacity reached' do
       Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }
-          .to raise_error 'Landing not possible, airport full.'
+          .to raise_error full_error
     end
 
     it 'refuses to land a plane if weather is stormy' do
       allow(subject).to receive(:stormy?) { true }
       expect { subject.land(plane) }
-          .to raise_error 'Landing not possible, too stormy.'
+          .to raise_error stormy_error
     end
 
     it 'allows a custom capacity to be set' do
       subject.set_capacity(50)
       50.times { subject.land(plane) }
       expect { subject.land(plane) }
-        .to raise_error 'Landing not possible, airport full.'
+        .to raise_error full_error
     end
 
   end
@@ -43,7 +45,7 @@ describe Airport do
       subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
       expect {subject.take_off}
-          .to raise_error 'Take-off not possible, too stormy.'
+          .to raise_error stormy_error
     end
 
   end
