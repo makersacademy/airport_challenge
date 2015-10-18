@@ -15,5 +15,10 @@ describe Airport do
     expect(subject.plane).to eq nil
   end
 
+  it 'refuses to land a plane if full (capacity of one)' do
+    subject.land(plane)
+    expect { subject.land(plane) }.to raise_error 'Airport full.'
+  end
+
 
 end

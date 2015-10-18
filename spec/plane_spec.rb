@@ -15,7 +15,9 @@ describe Plane do
     expect(subject).to be_flying
   end
 
-
-
+  it 'refuses to land if airport full' do
+    allow(airport).to receive(:land).and_raise('Airport full.')
+    expect { subject.land(airport) }.to raise_error 'Airport full.'
+  end
 
 end
