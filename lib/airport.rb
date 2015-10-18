@@ -18,20 +18,20 @@ class Airport
   def clear_for_landing plane
     raise 'Airport is full' if full?
     raise 'Weather is stormy' if stormy?
-    @planes << plane
+    planes << plane
     plane.land
   end
 
   def clear_for_takeoff plane
     raise 'Weather is stormy' if stormy?
     raise 'Plane not registered at this airport' unless registered? plane
-    @planes.delete(plane)
+    planes.delete(plane)
     plane.take_off
   end
 
   private
   def full?
-    @planes.length >= DEFAULT_CAPACITY
+    planes.length >= DEFAULT_CAPACITY
   end
 
   def stormy?
@@ -39,6 +39,6 @@ class Airport
   end
 
   def registered? plane
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 end
