@@ -29,7 +29,7 @@ describe Airport do
         expect(airport.capacity).to eq capacity
       end
 
-      it 'planes cannot land land if stormy' do
+      it 'planes cannot land if stormy' do
         plane = Plane.new
         subject.stormy?
         expect{subject.land(plane)}.to raise_error
@@ -41,9 +41,10 @@ describe Airport do
           expect{subject.take_off}.to raise_error
         end
 
-      # it 'the plane cannot take off if it\'s flying' do
-      #   plane = Plane.new
-      #   plane.flying?
-      #   expect{ subject.land(plane)}.to raise_error('cannot fly')
-      # end
+       it 'the plane cannot take off if it\'s flying' do
+         plane = Plane.new
+         plane.flying?
+         subject.take_off
+         expect(subject).to raise_error
+       end
     end

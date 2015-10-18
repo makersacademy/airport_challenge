@@ -4,7 +4,6 @@ class Airport
 
   attr_reader :plane, :planes, :capacity, :stormy, :flying
 
-
   def initialize (capacity = 10)
     @planes = []
     @capacity = capacity
@@ -13,6 +12,7 @@ class Airport
   def land (plane)
     fail 'is full' if full?
     fail 'is stormy' if stormy
+    fail 'is flaying' if plane.flying
     @planes << plane
     plane
   end
@@ -30,9 +30,15 @@ class Airport
       @stormy = true
     end
 
-
   def stormy
     @stormy
   end
 
+  def flying?
+    @flying = true
+  end
+
+  def flying
+    @flying
+  end
 end
