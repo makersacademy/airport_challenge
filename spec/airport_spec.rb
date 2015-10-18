@@ -79,6 +79,4 @@ require 'airport'
       expect(test_airport.take_off(landing_plane)).to eq landing_plane
     end
 
-
-
   end
