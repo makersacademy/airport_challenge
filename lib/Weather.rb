@@ -7,7 +7,7 @@ class Weather
   private
 
   def condition
-    condition = rand (0 .. 10)
+    condition = rand(11)
   end
 
 end
