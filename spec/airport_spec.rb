@@ -29,6 +29,7 @@ describe Airport do
 
   context "when plane has landed" do
   it "reports parked plane" do
+    expect(plane).to receive(:at_airport).with(subject)
     plane
     subject.instruct_to_land(plane)
     expect(subject.planes).to eq [plane]
@@ -43,6 +44,21 @@ describe Airport do
   end
   end
 
+  context "when airport is full" do
+  it "informs plane cannot land" do
+    subject.capacity.times do
+    expect(plane).to receive(:at_airport).with(subject)
+    plane
+    subject.instruct_to_land(plane)
+    end
+    expect{subject.instruct_to_land(plane)}.to raise_error("The airport is full")
+  end
+  end
+
+end
+
+  describe "#instruct_to_take_off" do
+
   context "when airport is stormy" do
   it "informs plane cannot take off" do
     subject.report_stormy
@@ -51,13 +67,12 @@ describe Airport do
   end
   end
 
-  context "when airport is full" do
-  it "informs plane cannot land" do
-    subject.capacity.times do
+  context "when plane is flying" do
+  it "informs plane cannot take off" do
+    allow(plane).to receive(:flying?).and_return(true)
     plane
-    subject.instruct_to_land(plane)
-    end
-    expect{subject.instruct_to_land(plane)}.to raise_error("The airport is full")
+    plane.flying?
+    expect{subject.instruct_to_take_off(plane)}.to raise_error("Plane flying cannot take off")
   end
   end
 
