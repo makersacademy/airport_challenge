@@ -3,10 +3,14 @@ require_relative 'plane'
 class Airport
   attr_reader :plane, :capacity, :stormy
 
-  def initialize(capacity=1)
+  def initialize(capacity=10)
     @planes = []
     @stormy = false
     @capacity = capacity
+  end
+
+  def inventory
+    @planes
   end
 
   def land_plane plane
@@ -18,6 +22,7 @@ class Airport
 
   def take_off plane
     fail 'Is stormy so cannot take off' if @stormy
+    plane.take_off
     @planes.pop
   end
 
