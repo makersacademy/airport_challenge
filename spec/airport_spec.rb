@@ -27,7 +27,6 @@ describe Airport do
     end
   end
 
-
   it "prevents use when stormy" do
     allow(subject).to receive(:stormy?) {false}
     subject.land(plane1)
@@ -47,6 +46,10 @@ describe Airport do
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.takeoff(plane)).to eq nil
+    end
+    it 'makes sure the plane has left the airport' do
+      subject.land(plane)
+      expect(subject.takeoff(plane)).not_to eq (:planes)
     end
   end
 
