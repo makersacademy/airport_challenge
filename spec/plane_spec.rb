@@ -10,4 +10,11 @@ describe Plane do
     expect {a.take_off(subject)}.to raise_error 'Plane is already flying'
   end
 
+  it 'cannot land at an airport if it is not flying' do
+    a = Airport.new
+    allow(a.weather).to receive(:stormy?).and_return(false)
+    allow(subject).to receive(:flying).and_return(false)
+    expect{a.land(subject)}.to raise_error 'Plane is not flying'
+  end
+
 end

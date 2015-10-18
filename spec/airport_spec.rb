@@ -11,6 +11,7 @@ describe Airport do
   it 'should instruct a plane to take off' do
     allow(subject.weather).to receive(:stormy?).and_return(false, false)
     plane = Plane.new
+    allow(plane).to receive(:flying).and_return(true, false)
     subject.land(plane)
     expect(subject.take_off(plane)).to eq plane
   end

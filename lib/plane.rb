@@ -3,15 +3,15 @@ require_relative 'weather'
 class Plane
   attr_reader :flying
 
-  def initialize(flying = false)
+  def initialize(flying = true)
     @flying = flying
   end
 
   def landed
-    @flying = false
+    flying = false
   end
 
   def fly
-    @flying = true
+    flying = true
   end
 end
