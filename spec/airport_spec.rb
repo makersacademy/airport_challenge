@@ -20,11 +20,11 @@ describe AirPort do
    end
  end
 
- # describe 'bad_weather' do
- #   it 'raises a error when there is weather conditions' do
- #     expect(subject.take_off_safely).to respond_to :bad_weather
- #   end
- #
- # end
+ describe 'bad_weather' do
+   it 'stops planes landing and taking off' do
+     expect(subject).to respond_to :bad_weather
+   end
+
+ end
 
 end

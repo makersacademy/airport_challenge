@@ -13,4 +13,7 @@ class AirPort
     Plane.new
   end
 
+  def bad_weather
+  end
+
 end
