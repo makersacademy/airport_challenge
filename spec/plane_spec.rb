@@ -16,11 +16,6 @@ describe Plane do
       plane.take_off
       expect(plane.status).to eq :flying
     end
-    it 'is not located in an airport' do
-      plane.land airport
-      plane.take_off
-      expect(plane.location).to eq :air
-    end
     it 'cannot take off' do
       msg = 'A flying plane cannot take off'
       expect { plane.take_off }.to raise_error(msg)
@@ -31,10 +26,6 @@ describe Plane do
     it 'has a status of :landed' do
       plane.land airport
       expect(plane.status).to eq :landed
-    end
-    it 'is located in an airport' do
-      plane.land airport
-      expect(plane.location).to eq airport
     end
     it 'cannot land' do
       plane.land airport
