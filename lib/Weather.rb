@@ -1,10 +1,10 @@
 module Weather
 
 def stormy?
-  weather == 1
+  weather_randomizer? <= 2 ? true : false
 end
 
-def weather
+def weather_randomizer?
   rand(10)
 end
 

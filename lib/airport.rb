@@ -1,6 +1,9 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+  include Weather
+
 
   attr_reader :planes, :capacity
 
@@ -9,7 +12,6 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @stormy = false
   end
 
   def instruct_to_land(plane)
@@ -27,14 +29,6 @@ class Airport
     raise "Must be the correct airport" if plane.airport != self
     plane.take_off
     planes.delete(plane)
-  end
-
-  def report_stormy
-    @stormy = true
-  end
-
-  def stormy?
-    @stormy
   end
 
   private

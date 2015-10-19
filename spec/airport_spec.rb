@@ -12,15 +12,6 @@ describe Airport do
     expect(subject).to respond_to(:instruct_to_take_off).with(1).argument
   end
 
-  it 'airport has to take into account stormy weather' do
-    subject.report_stormy
-    expect(subject).to be_stormy
-  end
-
-  it 'airport adapts instructions when weather is stormy' do
-    expect(subject).to respond_to(:stormy?)
-  end
-
   it 'airport has a limited capacity' do
     expect(subject).to respond_to(:capacity)
   end
@@ -29,6 +20,7 @@ describe Airport do
 
   context "when plane has landed" do
     it "reports parked plane" do
+    allow(subject).to receive(:stormy?).and_return(false)
     expect(plane).to receive(:at_airport).with(subject)
     plane
     subject.instruct_to_land(plane)
@@ -38,7 +30,8 @@ describe Airport do
 
   context "when airport is stormy" do
   it "informs plane cannot land" do
-    subject.report_stormy
+    allow(subject).to receive(:stormy?).and_return(true)
+    subject.stormy?
     plane
     expect{subject.instruct_to_land(plane)}.to raise_error("Weather is too stormy to land")
   end
@@ -46,6 +39,7 @@ describe Airport do
 
   context "when airport is full" do
   it "informs plane cannot land" do
+    allow(subject).to receive(:stormy?).and_return(false)
     subject.capacity.times do
     expect(plane).to receive(:at_airport).with(subject)
     plane
@@ -55,19 +49,14 @@ describe Airport do
   end
   end
 
-  context "when plane is landed" do
-  it "informs plane cannot land" do
-
-  end
-  end
-
 end
 
   describe "#instruct_to_take_off" do
 
   context "when airport is stormy" do
   it "informs plane cannot take off" do
-    subject.report_stormy
+    allow(subject).to receive(:stormy?).and_return(true)
+    subject.stormy?
     plane
     expect{subject.instruct_to_take_off(plane)}.to raise_error("Weather is too stormy to take off")
   end
@@ -75,6 +64,7 @@ end
 
   context "when plane is flying" do
   it "informs plane cannot take off" do
+    allow(subject).to receive(:stormy?).and_return(false)
     allow(plane).to receive(:report_flying).and_return(true)
     allow(plane).to receive(:flying?).and_return(true)
     plane
