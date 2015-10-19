@@ -68,4 +68,4 @@ Elenis-MacBook:airport_challenge eleniskouroupathi$ irb
 => [#<Plane:0x007fe3208ba550 @flying=false>] 
 
 2.2.3 :005 > airport.take_off plane
-$ #<Plane:0x007fe3208ba550 @flying=true>
+$ <Plane:0x007fe3208ba550 @flying=true>
