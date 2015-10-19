@@ -49,3 +49,18 @@ I want to ensure a plane that is not flying cannot land and must be in an airpor
 As an air traffic controller
 So the system is consistent and correctly reports plane status and location
 I want to ensure a plane that has taken off from an airport is no longer in that airport
+
+Instructions
+---------
+
+Elenis-MacBook:airport_challenge eleniskouroupathi$ irb
+2.2.3 :001 > require './lib/airport.rb'
+=> true 
+2.2.3 :002 > plane = Plane.new
+=> #<Plane:0x007fe3208ba550 @flying=true> 
+2.2.3 :003 > airport = Airport.new
+=> #<Airport:0x007fe3208a2888 @planes=[], @weather=#<Weather:0x007fe3208a2860>, @capacity=6> 
+2.2.3 :004 > airport.land plane
+=> [#<Plane:0x007fe3208ba550 @flying=false>] 
+2.2.3 :005 > airport.take_off plane
+=> #<Plane:0x007fe3208ba550 @flying=true>
