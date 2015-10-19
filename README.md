@@ -4,12 +4,12 @@ Airport Challenge
 [![Build Status](https://travis-ci.org/forty9er/airport_challenge.svg?branch=master)](https://travis-ci.org/forty9er/airport_challenge)
 
 
-### Usage
+# Usage
 
 Navigate to the root directory of the project in terminal. 
 Ensure that you have required the files contained within the 'lib' directory in your Ruby environment.
 
-# Airports
+### Airports
 
 Airports are containers for planes. 
 They must be passed a string defining their name when creating them. 
@@ -33,7 +33,7 @@ my_airport.planes
 ```
 
 
-# Planes
+### Planes
 
 Most of the work is done by Plane objects. 
 Plane objects are created very simply:
@@ -65,7 +65,7 @@ my_plane.take_off(my_airport)
 HOWEVER: You cannot land or take off at an airport if the weather is stormy. Which brings me neatly on to....
 
 
-# Weather
+### Weather
 
 Weather is a module which is included in the Plane and Airport classes.
 Most of the time it is sunny, but occasionally it is stormy.
@@ -78,7 +78,7 @@ my_plane.weather
 ```
 
 
-### Todo
+# Todo
 
 * Name subject explicitly with 'described_class'.
 * Incorporate 'before' blocks.
@@ -95,7 +95,7 @@ my_plane.weather
 * In retrospect, looking at the user stories I think I should have implemented the 'land' and 'take-off' methods in the airport class. This is because the user stories have been written from the point-of-view of the air-traffic controller, rather than the pilot of the plane. Perhaps in time I can re-write the challenge this way round.
 
 
-### Technologies used
+# Technologies used
 
 * Ruby
 * TDD (via RSpec)
@@ -104,7 +104,7 @@ my_plane.weather
 
 
 
-###Original challenge instructions
+# Original challenge instructions
 
 Instructions
 ---------
