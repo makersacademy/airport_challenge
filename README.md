@@ -1,6 +1,11 @@
 # Andrew Dowell - Airport Challenge (Week 1)
 
-airports and planes and stuff
+How to use:
+
+1) Create an airport airport = Airport.new
+2) Create some planes plane = Plane.new
+3) Add the planes to an airport  airport.add_new_planes(plane)
+4) Send them off flying about! airport.takeoff(plane)/airport.land(plane)
 
 # USER STORIES
 
