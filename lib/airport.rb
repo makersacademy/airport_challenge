@@ -1,6 +1,9 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
+
+include Weather
 
   DEFAULT_CAPACITY = 10
 
@@ -28,10 +31,6 @@ class Airport
   end
 
   private
-
-  def stormy?
-    (rand(50) == 25) ? @stormy = true : @stormy = false
-  end
 
   def full?
     @planes.length >= DEFAULT_CAPACITY
