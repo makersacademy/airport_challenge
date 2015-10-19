@@ -75,17 +75,6 @@ describe Airport do
   end
 
     context '#stormy? returns:' do
-    #
-    #   it "'true' when greater than 0.95" do
-    #   allow(airport).to receive(:stormy?) { true }
-    #   allow(airport).to receive(:probability) { 0.96 }
-    #   expect(airport.stormy?).to eq true
-    # end
-    #
-    # it "'false' when less than 0.95" do
-    #   allow(airport).to receive(:probability) { 0.94 }
-    #   expect(airport.stormy?).to eq false
-    # end
 
       it "'true' when greater than 0.95" do
         x = rand(0.96..1.0)
