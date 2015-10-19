@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { Plane.new }
+  let(:plane) { double :plane }
 
   describe '#initialization' do
     it 'has a default capacity' do
