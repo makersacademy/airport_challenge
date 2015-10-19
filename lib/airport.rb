@@ -32,13 +32,7 @@ class Airport
   end
 
   def stormy?
-    probability(0..1.0) > 0.95
-  end
-
-  private
-
-  def probability(x)
-    rand(x)
+    rand(0..1.0) > 0.95
   end
 
 end
