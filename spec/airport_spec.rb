@@ -41,13 +41,12 @@ describe Airport do
 
   it 'raises an error if grounded plane instructed to land' do
     plane1 = Plane.new
-    plane.ground?
+    plane1.ground?
     expect{subject.land(plane1)}.to raise_error("plane is already grounded")
   end
 
   it 'raises an error if flying plane instructed to take off' do
     allow(plane).to receive(:where_is_it?).and_return(false)
-    #  subject.take_off(plane)
     expect{subject.take_off(plane)}.to raise_error("plane is already flying")
   end
 

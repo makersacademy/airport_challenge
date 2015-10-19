@@ -11,6 +11,91 @@ Finally, I created the weather class, which allowed me to introduce stormy weath
 
 Please have a look, and let me know if you have any suggestions. Many thanks!
 
+Example of the IRB functionality:
+
+mateja@Matejas-MacBook-Pro:~/Projects/airport_challenge$ irb
+2.2.3 :001 > require './lib/airport.rb'
+ => true
+2.2.3 :002 > a = Airport.new
+ => #<Airport:0x007f80390a3e38 @capacity=50, @planes=[], @weather=#<Weather:0x007f80390a3de8>>
+2.2.3 :003 > p1 = Plane.new
+ => #<Plane:0x007f803909aef0 @location=:grounded>
+2.2.3 :004 > p2 = Plane.new
+ => #<Plane:0x007f80390916c0 @location=:grounded>
+2.2.3 :005 > p3 = Plane.new
+ => #<Plane:0x007f8039081248 @location=:grounded>
+2.2.3 :006 > p4 = Plane.new
+ => #<Plane:0x007f8039071cd0 @location=:grounded>
+2.2.3 :007 > p5 = Plane.new
+ => #<Plane:0x007f80390634a0 @location=:grounded>
+2.2.3 :008 > p1.flying?
+ => :air
+2.2.3 :009 > p2.flying?
+ => :air
+2.2.3 :010 > p3.flying?
+ => :air
+2.2.3 :011 > a.land(p1)
+ => [#<Plane:0x007f803909aef0 @location=:grounded>]
+2.2.3 :012 > a.land(p2)
+ => [#<Plane:0x007f803909aef0 @location=:grounded>, #<Plane:0x007f80390916c0 @location=:grounded>]
+2.2.3 :013 > a.land(p3)
+ => [#<Plane:0x007f803909aef0 @location=:grounded>, #<Plane:0x007f80390916c0 @location=:grounded>, #<Plane:0x007f8039081248 @location=:grounded>]
+2.2.3 :014 > a.take_off(p4)
+RuntimeError: plane is already flying
+	from /Users/mateja/Projects/airport_challenge/lib/airport.rb:25:in `take_off'
+	from (irb):10
+	from /Users/mateja/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :015 > a.take_off(p5)
+from /Users/mateja/Projects/airport_challenge/lib/airport.rb:25:in `take_off'
+from (irb):10
+from /Users/mateja/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :016 > a.land(p1)
+RuntimeError: plane is already grounded
+	from /Users/mateja/Projects/airport_challenge/lib/airport.rb:17:in `land'
+	from (irb):16
+	from /Users/mateja/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :017 > a.land(p2)
+RuntimeError: plane is already grounded
+	from /Users/mateja/Projects/airport_challenge/lib/airport.rb:17:in `land'
+	from (irb):17
+	from /Users/mateja/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :018 > a.land(p3)
+RuntimeError: plane is already grounded
+	from /Users/mateja/Projects/airport_challenge/lib/airport.rb:17:in `land'
+	from (irb):18
+	from /Users/mateja/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :019 > a.land(p4)
+ => [#<Plane:0x007f803909aef0 @location=:grounded>, #<Plane:0x007f80390916c0 @location=:grounded>, #<Plane:0x007f8039081248 @location=:grounded>, #<Plane:0x007f8039071cd0 @location=:grounded>]
+2.2.3 :020 > a.take_off(p4)
+RuntimeError: cannot take off in a storm
+	from /Users/mateja/Projects/airport_challenge/lib/airport.rb:26:in `take_off'
+	from (irb):20
+	from /Users/mateja/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :021 > a.take_off(p4)
+ => #<Plane:0x007f8039071cd0 @location=:air>
+2.2.3 :022 > a.take_off(p3)
+ => #<Plane:0x007f8039081248 @location=:air>
+2.2.3 :023 > a.take_off(p2)
+ => #<Plane:0x007f80390916c0 @location=:air>
+2.2.3 :024 > a.take_off(p1)
+RuntimeError: cannot take off in a storm
+	from /Users/mateja/Projects/airport_challenge/lib/airport.rb:26:in `take_off'
+	from (irb):24
+	from /Users/mateja/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :025 > a.take_off(p1)
+ => #<Plane:0x007f803909aef0 @location=:air>
+2.2.3 :026 > p1
+ => #<Plane:0x007f803909aef0 @location=:air>
+2.2.3 :027 > p2
+ => #<Plane:0x007f80390916c0 @location=:air>
+2.2.3 :028 > p3
+ => #<Plane:0x007f8039081248 @location=:air>
+2.2.3 :029 > p4
+ => #<Plane:0x007f8039071cd0 @location=:air>
+2.2.3 :030 > p5
+ => #<Plane:0x007f80390634a0 @location=:air>
+2.2.3 :031 >
+
 
 
 Instructions

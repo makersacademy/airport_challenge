@@ -8,7 +8,7 @@ class Plane
   def where_is_it?
     @location == :grounded
   end
-  
+
 
   def ground?
     @location = :grounded

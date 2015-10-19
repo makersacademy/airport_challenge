@@ -22,7 +22,7 @@ class Airport
 
 #this instructs specific plane to take off
   def take_off(plane)
-    fail "plane is already flying" if !plane.where_is_it?
+    fail "plane is already flying" if (plane.where_is_it? == false)
     fail "cannot take off in a storm" if bad_weather?
     plane.flying?
     @planes.delete(plane)
