@@ -1,5 +1,5 @@
 require_relative 'plane'  # => true
-
+require_relative 'stormy'
 class Airport
 
   attr_reader :plane, :planes, :capacity, :stormy  # => nil
@@ -20,14 +20,14 @@ class Airport
     @planes.delete(plane)
   end
 
-  def stormy?
-    @stormy = true
-  end
+  # def stormy?
+  #   @stormy = true
+  # end
 
   private
   def fail_landing(plane)
     fail 'is full' if full?
-    fail 'is stormy' if stormy
+    fail 'is stormy' if stormy == true
     fail 'plane on ground' if plane.flying == false
   end
 

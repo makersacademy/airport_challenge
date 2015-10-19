@@ -24,11 +24,11 @@ describe Airport do
 
   context 'challenge 4' do
       it 'planes cannot land if stormy' do
-        subject.stormy?
+        stormy = double('stormy', stormy: true)
         expect{subject.land(plane)}.to raise_error
       end
       it 'planes cannot take_off if stormy' do
-          subject.stormy?
+        stormy = double('stormy', stormy: true)
           expect{subject.take_off}.to raise_error
         end
       end
