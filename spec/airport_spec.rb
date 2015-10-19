@@ -31,10 +31,10 @@ describe Airport do
           expect {subject.instruct_to_land(plane)}.to raise_error 'The weather is stormy, landing is not allowed.'
       end
 
-      # it 'ensures that the status of plane is changed to landed when it is at the airport and cannot be landed again' do
-      #     plane = double(:plane)
-      #     allow(plane).to receive(:landed?).and_return(true)
-      #     allow(plane).to receive(:landed).and_return(true)
+      # it 'ensures that only flying planes can land' do
+      #     allow(plane).to receive(:flying?).and_return false
+      #     allow(plane).to receive(:flying).and_return false
+      #     expect {subject.instruct_to_land(:plane)}.to raise_error 'Only flying planes can land.'
       # end
 
   end
