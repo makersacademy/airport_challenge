@@ -2,58 +2,36 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double('plane') }
-  let(:full_error) { 'Landing not possible, airport full.'}
-  let(:stormy_error) { 'Landing and take-off not possible, too stormy.'}
+  let(:plane) { double('plane')}
 
-  describe '#land' do
-
-    it 'lands a plane' do
-      subject.land(plane)
-      expect(subject.planes.last).to eq(plane)
-    end
-
-    it 'refuses to land a plane if default capacity reached' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-      expect { subject.land(plane) }
-          .to raise_error full_error
-    end
-
-    it 'refuses to land a plane if weather is stormy' do
-      allow(subject).to receive(:stormy?) { true }
-      expect { subject.land(plane) }
-          .to raise_error stormy_error
-    end
-
-    it 'allows a custom capacity to be set' do
-      subject.set_capacity(50)
-      50.times { subject.land(plane) }
-      expect { subject.land(plane) }
-        .to raise_error full_error
-    end
-
+  it 'lands a plane on command' do
+    subject.land(plane)
+    expect(subject.planes.last).to eq plane
   end
 
-  describe '#take_off' do
+  it 'takes-off a plane on command' do
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.planes.include?(plane)).to eq false
+  end
 
-    it 'takes-off (and returns) a previously landed plane' do
-      subject.land(plane)
-      expect(subject.take_off).to eq(plane)
-    end
+  it 'refuses to land a plane if the default capacity is reached' do
+    Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error 'Airport full.'
+  end
 
-    it 'refuses to take-off if weather is stormy' do
-      subject.land(plane)
-      allow(subject).to receive(:stormy?) { true }
-      expect {subject.take_off}
-          .to raise_error stormy_error
-    end
+  it 'allows capacity to be modified and reports when full accordingly' do
+    new_capacity = (Airport::DEFAULT_CAPACITY + 2)
+    subject.set_capacity(new_capacity)
+    new_capacity.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error 'Airport full.'
+  end
 
-    it 'plane that has taken off is no longer in the airport' do
-      subject.land(plane)
-      subject.take_off
-      expect(subject.planes.include?(plane)).to eq false
-    end
-
+  it 'refuses to allow a plane to take off it is in a different airport' do
+    second_airport = Airport.new
+    subject.land(plane)
+    expect { second_airport.take_off(plane) }
+        .to raise_error 'Plane not at airport.'
   end
 
 end

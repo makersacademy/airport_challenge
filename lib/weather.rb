@@ -1,7 +1,7 @@
 class Weather
 
-  def stormy?
-
+  def self.stormy?
+    rand > 0.9
   end
 
 end

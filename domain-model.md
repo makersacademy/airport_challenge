@@ -1,7 +1,8 @@
-DOMAIN MODEL
+Domain Model
 ============
 User stories
 ------------
+```
 As an air traffic controller
 So planes can land safely at my airport
 I would like to instruct a plane to land
@@ -37,16 +38,18 @@ I want to ensure a plane that is not flying cannot land and must be in an airpor
 As an air traffic controller
 So the system is consistent and correctly reports plane status and location
 I want to ensure a plane that has taken off from an airport is no longer in that airport
+```
 
-Objects   Messages
--------   --------
-Plane     land
-          take_off
-Airport   full?
-          stormy?
+Objects & Messages
+------------------
 
-
-Airport <-- full? --> true / false
-Airport <-- stormy? --> true / false
-Plane <-- land
-Plane <-- take_off
+|Object  |      Messages      |
+|--------|--------------------|
+|plane   |      take_off      |
+|        |      land          |
+|        |      flying?       |
+|        |      get_location  |
+|airport |      full?         |
+|        |      get_planes    |
+|        |      set_capacity  |
+|weather |      stormy?       |
