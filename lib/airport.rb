@@ -13,16 +13,20 @@ class Airport
   end
 
   def instruct_to_land(plane)
-    raise "The airport is full" if @planes.length >= @capacity
+    raise "The airport is full" if full?
     raise "Weather is too stormy to land" if stormy?
+    raise "Plane already landed" if !plane.flying?
     plane.at_airport(self)
-    @planes << plane
+    plane.land
+    planes << plane
   end
 
   def instruct_to_take_off(plane)
     raise "Weather is too stormy to take off" if stormy?
     raise "Plane flying cannot take off" if plane.flying?
-    @planes.delete(plane)
+    raise "Must be the correct airport" if plane.airport != self
+    plane.take_off
+    planes.delete(plane)
   end
 
   def report_stormy
@@ -31,6 +35,12 @@ class Airport
 
   def stormy?
     @stormy
+  end
+
+  private
+
+  def full?
+    planes.length >= capacity
   end
 
 end

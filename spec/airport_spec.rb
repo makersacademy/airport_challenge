@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) {double(:plane)}
+  let(:plane) {double(:plane, flying?: true, land: false)}
 
   it 'airport instructs plane to land' do
     expect(subject).to respond_to(:instruct_to_land).with(1).argument
@@ -28,7 +28,7 @@ describe Airport do
   describe "#instruct_to_land" do
 
   context "when plane has landed" do
-  it "reports parked plane" do
+    it "reports parked plane" do
     expect(plane).to receive(:at_airport).with(subject)
     plane
     subject.instruct_to_land(plane)
