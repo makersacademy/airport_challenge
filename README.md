@@ -9,8 +9,7 @@ Airport Challenge
 Navigate to the root directory of the project in terminal. 
 Ensure that you have required the files contained within the 'lib' directory in your Ruby environment.
 
-Airports
---------
+## Airports
 
 Airports are containers for planes. 
 They must be passed a string defining their name when creating them. 
@@ -34,8 +33,7 @@ my_airport.planes
 ```
 
 
-Planes
-------
+## Planes
 
 Most of the work is done by Plane objects. 
 Plane objects are created very simply:
@@ -67,8 +65,7 @@ my_plane.take_off(my_airport)
 HOWEVER: You cannot land or take off at an airport if the weather is stormy. Which brings me neatly on to....
 
 
-Weather
-------
+## Weather
 
 Weather is a module which is included in the Plane and Airport classes.
 Most of the time it is sunny, but occasionally it is stormy.
@@ -107,8 +104,7 @@ my_plane.weather
 
 
 
-Original challenge instructions
--------------------------------
+###Original challenge instructions
 
 Instructions
 ---------
