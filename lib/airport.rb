@@ -13,6 +13,7 @@ class Airport
 
   def take_off(plane)
     fail 'Plane can\'t take off. Weather is stormy!' if stormy?
+    fail 'Plane can\'t take off. Wrong airport!' unless wrong_airport?(plane)
     @planes.pop
   end
 
@@ -24,5 +25,9 @@ class Airport
 
   def stormy?
     rand(0..100) > 95
+  end
+
+  def wrong_airport?(plane)
+    @planes.include?(plane)
   end
 end

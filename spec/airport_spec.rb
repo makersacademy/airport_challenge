@@ -29,5 +29,9 @@ describe Airport do
       allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(plane) }.to raise_error 'Plane can\'t take off. Weather is stormy!'
     end
+
+    it 'raises an error when a plane tries to take off from another airport' do
+      expect { subject.take_off(plane) }.to raise_error 'Plane can\'t take off. Wrong airport!'
+    end
   end
 end
