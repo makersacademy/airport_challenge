@@ -1,6 +1,19 @@
 Airport Challenge
 =================
 
+[![Build Status](https://travis-ci.org/forty9er/airport_challenge.svg?branch=master)](https://travis-ci.org/forty9er/airport_challenge)
+
+* I have implemented all the user stories in some way and endeavoured to cover all edge test scenarios.
+
+* Most of the work is done by Plane objects. They are created with 'flying' and 'location' instance variables, and have 'land' and 'take off' methods.
+
+* Airports are containers for planes. They have a default capacity which can be over-ridden on creating an Airport instance. They also have a name and they know when they are full to capacity.
+
+* The weather is controlled by a module, 'Weather'. This is included in both the Plane class and the Airport class, and they can both experience weather variations at any time.
+
+* In retrospect, looking at the user stories I think I should have implemented the 'land' and 'take-off' methods in the airport class. This is because the user stories have been written from the point-of-view of the air-traffic controller, rather than the pilot of the plane. Perhaps in time I can re-write the challenge this way round.
+
+
 Instructions
 ---------
 
