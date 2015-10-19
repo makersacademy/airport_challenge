@@ -5,11 +5,16 @@ class Plane
     @location = :grounded
   end
 
-  def ground?
+  def where_is_it?
     @location == :grounded
+  end
+  
+
+  def ground?
+    @location = :grounded
   end
 
   def flying?
-    @location == :air
+    @location = :air
   end
 end

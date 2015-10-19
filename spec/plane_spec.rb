@@ -6,10 +6,10 @@ describe Plane do
   end
 
   it 'flying is true when plane flying' do
-    expect(subject.ground?).to eq true
+    expect(subject.ground?).to eq :grounded
   end
 
   it 'flying is false when plane grounded' do
-    expect(subject.flying?).to eq false
+    expect(subject.flying?).to eq :air
   end
 end

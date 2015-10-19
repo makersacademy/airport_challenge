@@ -14,7 +14,7 @@ class Airport
 #this instructs particular plane to land
   def land(plane)
     fail "the airport is full" if full?
-    fail "plane is already grounded" if plane.ground?
+    fail "plane is already grounded" if plane.where_is_it?
     fail "cannot land in a storm" if bad_weather?
     plane.ground?
     @planes << plane
@@ -22,7 +22,7 @@ class Airport
 
 #this instructs specific plane to take off
   def take_off(plane)
-    fail "plane is already flying" if plane.flying?
+    fail "plane is already flying" if !plane.where_is_it?
     fail "cannot take off in a storm" if bad_weather?
     plane.flying?
     @planes.delete(plane)

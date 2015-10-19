@@ -13,14 +13,15 @@ describe Airport do
   end
 
   it 'checks that a plane is removed from airport when it takes off' do
-    allow(plane).to receive(:ground?).and_return(false)
+    allow(plane).to receive(:where_is_it?).and_return(false)
     allow(subject.weather).to receive(:stormy?).and_return(false)
     subject.land(plane)
+    allow(plane).to receive(:where_is_it?).and_return(true)
     expect{subject.take_off(plane)}.to change {subject.planes.length}.by(-1)
   end
 
   it 'raises an error when the airport is at full capacity' do
-    allow(plane).to receive(:ground?).and_return(false)
+    allow(plane).to receive(:where_is_it?).and_return(false)
     allow(subject.weather).to receive(:stormy?).and_return(false)
     subject.capacity.times{subject.land(plane)}
     expect{subject.land(Plane.new)}.to raise_error("the airport is full")
@@ -45,20 +46,21 @@ describe Airport do
   end
 
   it 'raises an error if flying plane instructed to take off' do
-    allow(plane).to receive(:flying?).and_return(true)
+    allow(plane).to receive(:where_is_it?).and_return(false)
     #  subject.take_off(plane)
     expect{subject.take_off(plane)}.to raise_error("plane is already flying")
   end
 
   it 'raises an error if take off in bad weather' do
-    allow(plane).to receive(:ground?).and_return(false)
+    allow(plane).to receive(:where_is_it?).and_return(false)
     subject.land(plane)
+    allow(plane).to receive(:where_is_it?).and_return(true)
     allow(subject.weather).to receive(:stormy?).and_return(true)
     expect{subject.take_off(plane)}.to raise_error("cannot take off in a storm")
   end
 
   it 'raises an error if land in bad weather' do
-    allow(plane).to receive(:ground?).and_return(false)
+    allow(plane).to receive(:where_is_it?).and_return(false)
     allow(subject.weather).to receive(:stormy?).and_return(true)
     expect{subject.land(plane)}.to raise_error("cannot land in a storm")
   end
