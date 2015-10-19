@@ -11,7 +11,12 @@ Airport Challenge
 
 * The weather is controlled by a module, 'Weather'. This is included in both the Plane class and the Airport class, and they can both experience weather variations at any time.
 
+* As it stands, I'm sure there is more refractoring to be done, the Plane.flying method is exposed and probably shouldn't be, in short a full review bearing in mind SOLID and DRY principles should be undertaken.
+
 * In retrospect, looking at the user stories I think I should have implemented the 'land' and 'take-off' methods in the airport class. This is because the user stories have been written from the point-of-view of the air-traffic controller, rather than the pilot of the plane. Perhaps in time I can re-write the challenge this way round.
+
+* I haven't attemped the bonus feature test yet.
+
 
 
 Instructions
