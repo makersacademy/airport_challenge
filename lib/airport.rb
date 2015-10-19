@@ -16,20 +16,15 @@ class Airport
   end
 
   def land(plane)
-    case
-    when stormy? then fail "It is stormy"
-    when full? then fail "This airport is full"
-    when plane.flying == false then fail "This plane is landed"
-    else @planes << plane
-    end
+    fail "It is stormy" if stormy?
+    fail "This airport is full" if full?
+    fail "This plane is landed" if plane.flying == false
+    @planes << plane
   end
 
   def takeoff(_plane)
-    if stormy?
-      fail "It is stormy"
-    else
-      @planes.pop
-    end
+    fail "It is stormy" if stormy?
+    @planes.pop
   end
 
   private
