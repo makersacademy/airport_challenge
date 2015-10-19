@@ -24,8 +24,9 @@ shared_examples_for TravelRecord do
   end
   describe '#take_off' do
     it 'records a take_off' do
-      subject.land double(:element)
-      subject.take_off double(:element)
+      element = double(:element)
+      subject.land element
+      subject.take_off element
       expect(subject).to be_empty
     end
     it 'raises error when element not present' do

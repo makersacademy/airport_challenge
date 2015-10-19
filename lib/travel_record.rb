@@ -15,7 +15,9 @@ module TravelRecord
   end
 
   def take_off element
-    @elements.pop
+    raise "Not at #{self.class.name}" if !@elements.include? element
+    @elements.delete_if {|item| item == element}
+    element
   end
 
   def empty?
