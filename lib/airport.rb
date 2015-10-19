@@ -4,9 +4,11 @@ include Weather
 
 class Airport
 
-  attr_reader :airport
+  attr_reader :airport, :capacity
 
-  def initialize(capacity = 1)
+  DEFAULT_CAPACITY = 1
+
+  def initialize(capacity=DEFAULT_CAPACITY)
     @airport = []
     @capacity = capacity
   end

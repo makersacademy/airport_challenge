@@ -45,4 +45,8 @@ describe Airport do
     expect(subject.taking_off(plane)).to eq(plane)
   end
 
+  it 'expect to overridden the capacity' do
+      capacity = Airport.new(10)
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 end
