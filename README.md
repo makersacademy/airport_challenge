@@ -1,23 +1,8 @@
-Airport Challenge
+[![Build Status](https://travis-ci.org/samover/airport_challenge.svg?branch=master)](https://travis-ci.org/samover/airport_challenge)  Airport Challenge
 =================
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_october2015 (edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+* [Task](#task)
+* [My Approach](#my-approach)
+* [Usage Instructions](#usage-instructions)
 
 Task
 -----
@@ -64,8 +49,6 @@ I want to ensure a plane that has taken off from an airport is no longer in that
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
 Please create separate files for every class, module and test suite.
 
 The submission will be judged on the following criteria:
@@ -82,6 +65,61 @@ Note that is a practice 'tech test' of the kinds that employers use to screen de
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
+My approach
+--------
+The files in this repo are the result of my second attempt at solving the set task. The first attempt was not bad, but I felt it could be more elegant and simple.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+My approach has been methodic. I took every user story, made a domain model, wrote feature tests and made them fail. Then I wrote unit tests and made them fail. Only then would I start writing code, taking care to write only the minimal code in order to pass my tests. The resulting file structure is as follows:
+```
+lib/
+    - airport.rb
+    - plane.rb
+spec/
+  feature/
+      - airport_features_spec.rb
+      - plane_features_spec.rb
+      - traff_contr_features_spec.rb
+      - bonus_spec.rb
+  - airport_spec.rb
+  - plane_spec.rb
+```
+
+I made two changes in comparison with my first attempt:
+  1. I pulled the weather conditions method in a separate class, following SOLID guidelines
+  2. I started developing the Plane class first, as my understanding of the first two user stories evolved
+
+The latter change had as a result that the unit tests became much clearer to define and ultimately to read. Delegating the right methods to the right class simplified the coding process as well.
+
+One thing I am not sure off, and might well change in a later update, is that every plane also has a location variable set either to `:air` or an instance of Airport. I asked myself: how can I test whether a plane is in an airport or not? Given that there are possibly many airports, it seemed better to add a location tag to the plane rather than check every airport for the registered plane. However, it is implied that when a plane has landed, it is actually in an airport and it doesn't matter for the running of the program that the instance of plane knows where it is.
+
+The last step was to write the `bonus_spec`, in order to test the landing and taking off of a number of planes. A simple enumeration (i.e. `planes.each { |plane| airport.clear_for_landing plane }`) does not land all the planes, since averse weather conditions sometimes raise error. These had to be encapsulated in a `begin/rescue` clause and the landing had to go on until **all** planes had landed.
+
+Usage Instructions
+------------------
+```
+2.2.3 :003 > airport = Airport.new
+ => #<Airport:0x007fee7412a9c0 @capacity=20, @planes=[]>
+2.2.3 :004 > plane = Plane.new
+ => #<Plane:0x007fee7395af10 @location=:air, @status=:flying>
+2.2.3 :005 > airport.clear_for_landing(plane)
+ => :landed
+2.2.3 :006 > another_plane = Plane.new
+ => #<Plane:0x007fee73930210 @location=:air, @status=:flying>
+2.2.3 :007 > airport.clear_for_landing(another_plane)
+ => :landed
+2.2.3 :008 > airport.planes
+ => [#<Plane:0x007fee7395af10 @location=#<Airport:0x007fee7412a9c0 @capacity=20, @planes=[...]>, @status=:landed>, #<Plane:0x007fee73930210 @location=#<Airport:0x007fee7412a9c0 @capacity=20, @planes=[...]>, @status=:landed>]
+2.2.3 :009 > airport.capacity
+ => 20
+2.2.3 :010 > airport.clear_for_takeoff(plane)
+ => :flying
+2.2.3 :011 > airport.planes
+ => [#<Plane:0x007fee73930210 @location=#<Airport:0x007fee7412a9c0 @capacity=20, @planes=[...]>, @status=:landed>]
+2.2.3 :012 > airport.clear_for_takeoff(another_plane)
+RuntimeError: Weather is stormy
+	from .../airport_challenge/lib/airport.rb:25:in `clear_for_takeoff'
+	from (irb):12
+	from .../.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :017 > airport.clear_for_takeoff(another_plane)
+ => :flying
+ ```
