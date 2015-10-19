@@ -27,8 +27,6 @@ class Airport
     planes.pop
   end
 
-  private
-
   def full?
     planes.length == @capacity
   end
