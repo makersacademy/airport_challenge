@@ -1,13 +1,11 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new }
-  let(:plane) { double :plane }
+  let(:airport) { described_class.new }
+  let(:plane) { double(:plane, land: true, take_off: true) }
 
   before do # override random weather behaviour
-    allow(airport).to receive(:stormy?).and_return(false)
-    allow(plane).to receive(:land)
-    allow(plane).to receive(:take_off)
+    allow(airport.weather).to receive(:stormy?).and_return(false)
   end
 
   context 'when initializing' do
@@ -29,7 +27,7 @@ describe Airport do
   end
 
   context '#stormy?' do
-    before { allow(airport).to receive(:stormy?).and_return(true) }
+    before { allow(airport.weather).to receive(:stormy?).and_return(true) }
 
     it 'prevent planes from landing' do
       msg = 'Weather is stormy'

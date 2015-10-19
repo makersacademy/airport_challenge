@@ -16,7 +16,7 @@ feature 'a traffic controller can prevent planes from' do
   let(:airport) { Airport.new }
 
   before do
-    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport.weather).to receive(:stormy?).and_return(false)
   end
 
   scenario 'landing when airport is full' do
@@ -27,13 +27,13 @@ feature 'a traffic controller can prevent planes from' do
 
   scenario 'landing when weather is stormy' do
     msg = 'Weather is stormy'
-    allow(airport).to receive(:stormy?).and_return(true)
+    allow(airport.weather).to receive(:stormy?).and_return(true)
     expect { airport.clear_for_landing plane }.to raise_error(msg)
   end
 
   scenario 'taking off when weather is stormy' do
     msg = 'Weather is stormy'
-    allow(airport).to receive(:stormy?).and_return(true)
+    allow(airport.weather).to receive(:stormy?).and_return(true)
     expect { airport.clear_for_takeoff plane }.to raise_error(msg)
   end
 

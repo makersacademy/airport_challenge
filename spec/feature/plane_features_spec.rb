@@ -1,5 +1,3 @@
-require 'capybara/rspec'
-
 feature 'a new plane' do
   let(:plane) { Plane.new }
 
@@ -16,7 +14,7 @@ feature 'a flying plane' do
   let(:airport) { Airport.new }
 
   before do
-    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport.weather).to receive(:stormy?).and_return(false)
   end
 
   scenario 'has :flying status' do
@@ -38,7 +36,7 @@ feature 'a landed plane' do
   let(:airport) { Airport.new }
 
   before do
-    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport.weather).to receive(:stormy?).and_return(false)
   end
 
   scenario 'has :landed status' do

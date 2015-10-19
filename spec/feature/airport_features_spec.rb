@@ -4,7 +4,7 @@ feature 'airport no longer lists plane as registered' do
   scenario 'after take off' do
     airport = Airport.new
     plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport.weather).to receive(:stormy?).and_return(false)
     airport.clear_for_landing plane
     airport.clear_for_takeoff plane
     expect(airport.planes).not_to include plane
