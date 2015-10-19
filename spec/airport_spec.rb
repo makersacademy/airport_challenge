@@ -2,12 +2,16 @@ require 'airport'
 
 describe Airport do
 
+  subject(:airport) { described_class.new }
+
   let(:plane) { double(:plane, :flying => :plane, :landed => :plane, :flying? => true) }
+
+  before { allow(airport).to receive(:stormy?) { false } }
 
   describe '#initializing capacity' do
 
     it 'has a #DEFAULT_CAPACITY of 20' do
-      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+      expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
     end
 
     it 'has an overridden capacity when specified' do
@@ -19,26 +23,24 @@ describe Airport do
   describe '#land' do
 
     it 'lands a plane' do
-    expect(subject).to respond_to(:land).with(1).argument
+    expect(airport).to respond_to(:land).with(1).argument
     end
 
     context 'does not land a plane when:' do
 
       it 'airport is full' do
-        allow(subject).to receive(:stormy?) { false }
-        described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
-        expect{subject.land(plane)}.to raise_error 'Airport is full!'
+        described_class::DEFAULT_CAPACITY.times { airport.land(plane) }
+        expect{airport.land(plane)}.to raise_error 'Airport is full!'
       end
 
       it 'weather is stormy' do
-        allow(subject).to receive(:stormy?) { true }
-        expect{subject.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
+        allow(airport).to receive(:stormy?) { true }
+        expect{airport.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
       end
 
     it 'plane is already landed and is in the airport' do
-      allow(subject).to receive(:stormy?) { false }
       allow(plane).to receive(:flying?) { false }
-      expect(subject.land(plane)).to eq 'Plane has already landed'
+      expect(airport.land(plane)).to eq 'Plane has already landed'
     end
     end
   end
@@ -46,45 +48,57 @@ describe Airport do
   describe '#take_off' do
 
     it 'takes off a plane' do
-      expect(subject).to respond_to(:take_off)
+      expect(airport).to respond_to(:take_off)
     end
 
     context 'does not take off a plane when:' do
 
       it 'weather is stormy' do
-        allow(subject).to receive(:stormy?) { false }
-        subject.land(plane)
-        allow(subject).to receive(:stormy?) { true }
-        expect{subject.take_off}.to raise_error 'Take-off denied. Weather is stormy!'
+        airport.land(plane)
+        allow(airport).to receive(:stormy?) { true }
+        expect{airport.take_off}.to raise_error 'Take-off denied. Weather is stormy!'
       end
 
       it 'it is already flying' do
-        allow(subject).to receive(:stormy?) { false }
         allow(plane).to receive(:location) { :air }
-        subject.land(plane)
-        subject.take_off
+        airport.land(plane)
+        airport.take_off
         expect(plane.location).to be :air
       end
     end
 
     it 'plane is no longer in airport after take-off' do
-      allow(subject).to receive(:stormy?) { false }
-      subject.land(plane)
-      subject.take_off
-      expect(subject.planes).to be_empty
+      airport.land(plane)
+      airport.take_off
+      expect(airport.planes).to be_empty
     end
   end
 
     context '#stormy? returns:' do
 
       it "'true' when greater than 0.95" do
-        x = rand(0.96..1.0)
-        expect(x > 0.95).to eq true
+      allow(airport).to receive(:stormy?) { true }
+      allow(airport).to receive(:probability) { 0.96 }
+      expect(airport.stormy?).to eq true
     end
 
-      it "'false' when less than 0.95" do
-        x = rand(0..0.95)
-        expect(x > 0.95).to eq false
-      end
+    it "'false' when less than 0.95" do
+      allow(airport).to receive(:probability) { 0.94 }
+      expect(airport.stormy?).to eq false
+    end
+
+
+
+
+
+    #   it "'true' when greater than 0.95" do
+    #     x = rand(0.96..1.0)
+    #     expect(x > 0.95).to eq true
+    # end
+    #
+    #   it "'false' when less than 0.95" do
+    #     x = rand(0..0.95)
+    #     expect(x > 0.95).to eq false
+    #   end
     end
 end

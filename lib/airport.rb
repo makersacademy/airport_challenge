@@ -4,7 +4,7 @@ class Airport
 
   attr_reader :planes, :capacity
 
-DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
@@ -18,7 +18,7 @@ DEFAULT_CAPACITY = 20
   end
 
   def take_off
-    raise 'No planes at airport' unless planes.length > 0
+    raise 'No planes at airport' unless planes_available?
     raise 'Take-off denied. Weather is stormy!' if stormy?
     planes.pop.flying
   end
@@ -27,10 +27,18 @@ DEFAULT_CAPACITY = 20
     planes.length >= capacity
   end
 
-  private
+  def planes_available?
+    planes.length > 0
+  end
 
   def stormy?
-    rand(0..1.0) > 0.95
+    probability(0..1.0) > 0.95
+  end
+
+  private
+
+  def probability(x)
+    rand(x)
   end
 
 end
