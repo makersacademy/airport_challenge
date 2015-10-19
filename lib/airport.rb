@@ -11,7 +11,7 @@ class Airport
   end
 
   def land plane
-    raise StandardError, 'Airport is full' unless !full?
+    raise StandardError, 'Airport is full' unless full?
     raise StandardError,'Weather is bad' if @weather.stormy?
     raise StandardError, 'Plane is not flying' if plane.flying == false
     plane.landed
