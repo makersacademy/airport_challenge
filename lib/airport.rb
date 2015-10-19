@@ -13,7 +13,7 @@ class Airport
 
 	def land plane
 		raise 'Plane is not flying' if !plane.is_flying?
-		raise 'Airport is full' if full? #not working?????
+		raise 'Airport is full' if full?
 		raise 'Too stormy to land' if stormy_weather?
 		plane.has_landed; @planes << plane
 	end
@@ -27,17 +27,16 @@ class Airport
 	private
 
 	attr_reader :planes
-
+			
 		def full?
-    		true if @planes.count >= @capacity
+    		@planes.count >= @capacity
     	end
 
     	def stormy_weather?
-    		weather = Weather.new
-    		true if weather.stormy? == true
+    		Weather.new.stormy? == true
     	end
 
     	def airport_is_holding plane
-    		true if @planes.include? plane
+    		@planes.include? plane
     	end
 end

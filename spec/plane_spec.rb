@@ -1,6 +1,7 @@
 require 'plane'
 
 describe Plane do
+	
 	context "On initialise" do
 		it 'the plane starts flying' do
 		    expect(subject.is_flying?).to eq true

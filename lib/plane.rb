@@ -4,6 +4,10 @@ class Plane
 		@flying = true
 	end
 
+	def is_flying?
+		@flying
+	end
+
 	def has_landed
 		@flying = false 
 	end
@@ -11,9 +15,4 @@ class Plane
 	def has_taken_off
 		@flying  = true
 	end
-
-	def is_flying?
-		@flying
-	end
-
 end
