@@ -1,5 +1,3 @@
-require 'capybara/rspec'
-
 feature 'a traffic controller can instruct a plane' do
   let(:plane) { Plane.new }
 
