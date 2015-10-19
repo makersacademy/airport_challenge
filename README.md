@@ -5,13 +5,15 @@ Airport Challenge
 
 * I have implemented all the user stories in some way and endeavoured to cover all edge test scenarios.
 
-* Most of the work is done by Plane objects. They are created with 'flying' and 'location' instance variables, and have 'land' and 'take off' methods.
+* Most of the work is done by Plane objects. They are created with 'flying' and 'location' instance variables, and have 'land' and 'take off' methods. When a new instance of a Plane is created it is flying and needs to land before it can take off.
 
 * Airports are containers for planes. They have a default capacity which can be over-ridden on creating an Airport instance. They also have a name and they know when they are full to capacity.
 
 * The weather is controlled by a module, 'Weather'. This is included in both the Plane class and the Airport class, and they can both experience weather variations at any time.
 
 * As it stands, I'm sure there is more refractoring to be done, the Plane.flying method is exposed and probably shouldn't be, in short a full review bearing in mind SOLID and DRY principles should be undertaken.
+
+* It seems that I need to work on TDD. I would have liked 100% coverage on every commit but I wasn't seeing that. I'm not sure if that's how Coveralls works but in any case I'm sure that I need to improve my 'test-first' approach. 
 
 * In retrospect, looking at the user stories I think I should have implemented the 'land' and 'take-off' methods in the airport class. This is because the user stories have been written from the point-of-view of the air-traffic controller, rather than the pilot of the plane. Perhaps in time I can re-write the challenge this way round.
 
