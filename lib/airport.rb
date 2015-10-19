@@ -30,10 +30,6 @@ class Airport
     planes.length >= DEFAULT_CAPACITY
   end
 
-  # def stormy?
-  #   Weather.new.forecast == :stormy
-  # end
-
   def registered? plane
     planes.include?(plane)
   end
