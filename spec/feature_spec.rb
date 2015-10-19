@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe 'Airport Simulator' do
 
@@ -9,26 +10,21 @@ describe 'Airport Simulator' do
 
   before(:each) do
     @plane = Plane.new id
-    @airport = Airport.new(airport_name, capacity)
-    allow(@airport).to receive(:weather_conditions).and_return(:sunny)
+    @weather = Weather.new
+    @airport = Airport.new(airport_name, @weather, capacity)
+    allow(@weather).to receive(:stormy?).and_return(false)
     @plane.flying = true
   end
 
   context 'Airport Capacity' do
     it 'Has the default capacity when no argument is given' do
-      airport = Airport.new("NYC")
+      airport = Airport.new("NYC", Weather.new)
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
     it 'Has a different capacity when a argument is given' do
-      airport = Airport.new("NYC", Airport::DEFAULT_CAPACITY+1)
+      airport = Airport.new("NYC", Weather.new, Airport::DEFAULT_CAPACITY+1)
       expect(airport.capacity).not_to eq Airport::DEFAULT_CAPACITY
-    end
-  end
-
-  context 'The weather' do
-    it 'The weather is either stormy or sunny' do
-      expect(@airport.weather_conditions).to satisfy {|value| [:stormy, :sunny].include? value }
     end
   end
 
@@ -43,7 +39,7 @@ describe 'Airport Simulator' do
     end
 
     it 'Raises an error when trying to land a plane in stormy weather' do
-      allow(@airport).to receive(:weather_conditions).and_return(:stormy)
+      allow(@weather).to receive(:stormy?).and_return(true)
       expect { @airport.land(@plane) }.to raise_error "Plane #{@plane.id} Cannot Land. Bad Weather!"
     end
 
@@ -84,7 +80,7 @@ describe 'Airport Simulator' do
 
     it 'Raises an error when trying to instruct a plane to take off in bad weather' do
       @airport.land(@plane)
-      allow(@airport).to receive(:weather_conditions).and_return(:stormy)
+      allow(@weather).to receive(:stormy?).and_return(true)
       expect { @airport.take_off(@plane) }.to raise_error "Plane #{@plane.id} Cannot Take Off. Bad Weather!"
     end
 

@@ -1,13 +1,13 @@
 require 'weather'
 class Airport
   DEFAULT_CAPACITY = 10
-  attr_reader :hangar, :capacity, :name
+  attr_reader :capacity, :name
 
-  def initialize(name, capacity = DEFAULT_CAPACITY)
+  def initialize(name, weather, capacity = DEFAULT_CAPACITY)
     @name = name
     @hangar = []
     @capacity = capacity
-    @weather = Weather.new
+    @weather = weather
   end
   def land plane
     raise "Plane #{plane.id} Cannot Land. Already Landed!" if already_landed? plane
@@ -26,8 +26,8 @@ class Airport
     plane.location = nil
     remove plane
   end
-  def weather_conditions
-    @weather.weather_conditions
+  def hangar
+    @hangar.dup.freeze
   end
 
   private
@@ -52,7 +52,7 @@ class Airport
     plane.flying
   end
   def bad_weather?
-    weather_conditions == :stormy
+    @weather.stormy?
   end
   def wrong_airport? plane
     plane.location != name

@@ -3,20 +3,20 @@ require 'airport'
 describe Airport do
 
   let(:airport_name) { "LHR" }
-  subject { Airport.new(airport_name) }
+  let(:weather) { double(:weather) }
+  subject { Airport.new(airport_name, weather) }
   let(:flying_plane) { double(:plane, :id => 'BA535', :flying => true) }
   let(:grounded_plane) { double(:plane, :id => 'BA535', :flying => false) }
-
   before(:each) do
-      allow(subject).to receive(:weather_conditions).and_return(:sunny)
       allow(flying_plane).to receive(:flying=).with(anything).and_return(anything)
       allow(flying_plane).to receive(:location=).with(anything).and_return(anything)
+      allow(weather).to receive(:stormy?).and_return(false)
   end
 
   context 'Showing the contents of the Hangar' do
     it { is_expected.to respond_to(:hangar)}
 
-    it 'should return an array when asked for the contents of the hangat' do
+    it 'should return an array when asked for the contents of the hangar' do
       expect(subject.hangar).to be_instance_of Array
     end
   end
@@ -28,7 +28,7 @@ describe Airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
     it 'Can have a different capacity than the default if configured' do
-      airport = Airport.new("NYC", Airport::DEFAULT_CAPACITY+1)
+      airport = Airport.new("NYC", weather, Airport::DEFAULT_CAPACITY+1)
       expect(airport.capacity).not_to eq Airport::DEFAULT_CAPACITY
     end
   end
@@ -38,14 +38,6 @@ describe Airport do
 
     it 'Returns its name when asked' do
       expect(subject.name).to eq airport_name
-    end
-  end
-
-  context 'Weather Conditions' do
-    it { is_expected.to respond_to(:weather_conditions) }
-
-    it 'Weather conditions are either sunny or stormy' do
-      expect(subject.weather_conditions).to satisfy {|value| [:stormy, :sunny].include? value}
     end
   end
 
@@ -88,7 +80,7 @@ describe Airport do
     end
 
     it 'should not land a plane if it is stormy' do
-      allow(subject).to receive(:weather_conditions).and_return(:stormy)
+      allow(weather).to receive(:stormy?).and_return(true)
       expect { subject.land(flying_plane) }.to raise_error "Plane #{flying_plane.id} Cannot Land. Bad Weather!"
     end
   end
@@ -137,7 +129,7 @@ describe Airport do
     end
 
     it 'Raises an error when trying to instruct a plane that is in the airport to take off in bad weather' do
-      allow(subject).to receive(:weather_conditions).and_return(:stormy)
+      allow(weather).to receive(:stormy?).and_return(true)
       expect { subject.take_off(grounded_plane) }.to raise_error "Plane #{grounded_plane.id} Cannot Take Off. Bad Weather!"
     end
   end
