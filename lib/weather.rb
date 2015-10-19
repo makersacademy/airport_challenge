@@ -1,5 +1,5 @@
 class Weather
-  PERCENT_CHANCE_OF_STORMS = 100
+  PERCENT_CHANCE_OF_STORMS = 10
 
   attr_reader :current_weather
 
