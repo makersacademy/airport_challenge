@@ -1,6 +1,111 @@
 Airport Challenge
 =================
 
+[![Build Status](https://travis-ci.org/forty9er/airport_challenge.svg?branch=master)](https://travis-ci.org/forty9er/airport_challenge)
+
+
+# Usage
+
+Navigate to the root directory of the project in terminal. 
+Ensure that you have required the files contained within the 'lib' directory in your Ruby environment.
+
+### Airports
+
+Airports are containers for planes. 
+They must be passed a string defining their name when creating them. 
+
+```
+my_airport = Airport.new('My Airport')
+```
+
+They have a default capacity which can be overridden on creating an Airport instance. 
+
+```
+my_airport = Airport.new('My Airport',2000)
+```
+
+They know when they are full to capacity and will not let any further planes land. Infact, attempting to do so will raise an error.
+
+You can query what planes are located at an airport, which will return an array containing the plane objects.
+
+```
+my_airport.planes
+```
+
+
+### Planes
+
+Most of the work is done by Plane objects. 
+Plane objects are created very simply:
+
+```
+my_plane = Plane.new
+```
+
+Initially, planes are flying. They do not know their location while they are flying.
+Their location and flying status can be queried at any time.
+
+```
+my_plane.location
+my_plane.flying
+```
+
+To land at 'my_airport', you can call the land method on the plane.
+
+```
+my_plane.land(my_airport)
+```
+
+Taking off is similar to landing:
+
+```
+my_plane.take_off(my_airport)
+```
+
+HOWEVER: You cannot land or take off at an airport if the weather is stormy. Which brings me neatly on to....
+
+
+### Weather
+
+Weather is a module which is included in the Plane and Airport classes.
+Most of the time it is sunny, but occasionally it is stormy.
+
+The 'weather' method can be called on both airports and planes at any time, and it will report the weather in that location. Note though, that the weather can change during the time between checking it and trying to land or take off! It is checked in the background every time you try to do either of these.
+
+```
+my_airport.weather
+my_plane.weather
+```
+
+
+# Todo
+
+* Name subject explicitly with 'described_class'.
+* Incorporate 'before' blocks.
+* Remove redundant 'respond_to' tests.
+* Refractor conditionals.
+* Ensure errors are returned and not strings.
+* Review public/private methods and adjust accordingly.
+* Ensure no methods/variables are exposed where they should not be (eg. Plane.flying)
+* Consider moving the 'land' and 'take_off' methods from the Plane class to the Airport class (see below)
+* Consider sometimes stubbing subject in tests rather than doubles.
+* Check that all edge tests have been covered.
+* Write the bonus feature test.
+
+* In retrospect, looking at the user stories I think I should have implemented the 'land' and 'take-off' methods in the airport class. This is because the user stories have been written from the point-of-view of the air-traffic controller, rather than the pilot of the plane. Perhaps in time I can re-write the challenge this way round.
+
+
+# Technologies used
+
+* Ruby
+* TDD (via RSpec)
+
+
+
+
+
+# Original challenge instructions
+
 Instructions
 ---------
 
