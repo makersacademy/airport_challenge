@@ -40,13 +40,13 @@ So the system is consistent and correctly reports plane status and location
 I want to ensure a plane that has taken off from an airport is no longer in that airport
 
 
-Object        Messages
-------        --------
-plane         take_off
-              land
-              flying?
-              get_location
-airport       full?
-              get_planes
-              set_capacity
-weather       stormy?
+|Object  |      Messages      |
+|--------|--------------------|
+|plane   |      take_off      |
+|        |      land          |
+|        |      flying?       |
+|        |      get_location  |
+|airport |      full?         |
+|        |      get_planes    |
+|        |      set_capacity  |
+|weather |      stormy?       |
