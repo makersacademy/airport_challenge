@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/rochester234/airport_challenge.svg?branch=master)](https://travis-ci.org/rochester234/airport_challenge)
 Introduction
 
 Evaluated what the domain model was based on the various user stories. Established that initially there needed to be two classes; one for airport and one for plane.
