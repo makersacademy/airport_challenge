@@ -1,0 +1,6 @@
+.DS_Store
+coverage/
+.rubocop-upgraded.yml
+disabled-upgraded.yml
+enabled-upgraded.yml
+
