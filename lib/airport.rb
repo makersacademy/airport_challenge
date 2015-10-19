@@ -1,4 +1,5 @@
 require './lib/weather.rb'
+require './lib/plane.rb'
 class Airport
 
   include Weather
@@ -13,12 +14,15 @@ class Airport
 
   def land(plane)
     raise 'This airport is full' if full?
+    raise 'It is too stormy to land' if stormy?
+    raise 'This plane has already landed' if plane.flying == false
     planes << plane
   end
 
   def release(plane)
-    raise 'It is too stormy to fly' if conditions :stormy
-    planes.pop
+    raise 'It is too stormy to fly' if stormy?
+    raise 'This plane is already flying' if plane.flying == true
+    planes.delete(plane)
   end
 
   private

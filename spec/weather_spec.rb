@@ -7,7 +7,7 @@ describe Weather do
   let(:stormy_weather) {double :weather}
 
     it "is often fine but occasionaly stormy" do
-      allow(stormy_weather).to receive(:conditions) {:stormy}
-      expect(stormy_weather.conditions).to be :stormy
+      allow(stormy_weather).to receive(:stormy?) {true}
+      expect(stormy_weather.stormy?).to be true
     end
  end

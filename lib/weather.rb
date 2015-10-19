@@ -1,14 +1,15 @@
 module Weather
 
-  def conditions
-    random_weather
+  def stormy?
+    random_weather == :stormy
   end
 
 private
 
   def random_weather
-    type_of_weather = [:fine, :fine, :fine, :fine, :fine, :stormy]
-    type_of_weather.sample
+    incidence = rand(364)
+    return :sunny if incidence <= 340
+    return :stormy
   end
 
 end
