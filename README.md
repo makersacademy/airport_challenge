@@ -19,7 +19,7 @@ They must be passed a string defining their name when creating them.
 my_airport = Airport.new('My Airport')
 ```
 
-They have a default capacity which can be over-ridden on creating an Airport instance. 
+They have a default capacity which can be overridden on creating an Airport instance. 
 
 ```
 my_airport = Airport.new('My Airport',2000)
@@ -52,7 +52,7 @@ my_plane.location
 my_plane.flying
 ```
 
-To land at a 'my_airport', you can call the land method on the plane.
+To land at 'my_airport', you can call the land method on the plane.
 
 ```
 my_plane.land(my_airport)
@@ -64,7 +64,8 @@ Taking off is similar to landing:
 my_plane.take_off(my_airport)
 ```
 
-HOWEVER: You cannot land or take off at an airport if the weather is stormy. 
+HOWEVER: You cannot land or take off at an airport if the weather is stormy. Which brings me neatly on to....
+
 
 Weather
 ------
@@ -72,7 +73,7 @@ Weather
 Weather is a module which is included in the Plane and Airport classes.
 Most of the time it is sunny, but occasionally it is stormy.
 
-The 'weather' method can be called on both airports and planes at any time, and it will report the weather in that location. Note though, that the weather can change during the time between checking it and trying to land/take off! It is checked in the background every time you try to land or take off.
+The 'weather' method can be called on both airports and planes at any time, and it will report the weather in that location. Note though, that the weather can change during the time between checking it and trying to land or take off! It is checked in the background every time you try to do either of these.
 
 ```
 my_airport.weather
@@ -84,7 +85,7 @@ my_plane.weather
 
 * Name subject explicitly with 'described_class'.
 * Incorporate 'before' blocks.
-* Remove redundant 'respont_to' tests.
+* Remove redundant 'respond_to' tests.
 * Refractor conditionals.
 * Ensure errors are returned and not strings.
 * Review public/private methods and adjust accordingly.
@@ -99,11 +100,15 @@ my_plane.weather
 
 ### Technologies used
 
-Ruby
-TDD (via RSpec)
+* Ruby
+* TDD (via RSpec)
 
 
-### Original challenge instructions
+
+
+
+Original challenge instructions
+-------------------------------
 
 Instructions
 ---------
