@@ -1,5 +1,5 @@
 class Plane
-  # attr_reader :flying, :location
+  attr_accessor :location
   def initialize
     @location = "Airborne"
     @flying_status = true
@@ -17,6 +17,4 @@ class Plane
     @flying_status = !@flying_status
   end
 
-  def location
-  end
 end
