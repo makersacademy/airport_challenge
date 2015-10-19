@@ -22,5 +22,15 @@ shared_examples_for TravelRecord do
       expect {subject.land double(:element)}.to raise_error "#{described_class} full"
     end
   end
+  describe '#take_off' do
+    it 'records a take_off' do
+      subject.land double(:element)
+      subject.take_off double(:element)
+      expect(subject).to be_empty
+    end
+    it 'raises error when element not present' do
+      expect {subject.take_off double(:elelment)}.to raise_error "Not at #{described_class}"
+    end
+  end
 
 end

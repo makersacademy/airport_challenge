@@ -14,6 +14,10 @@ module TravelRecord
     @elements << element
   end
 
+  def take_off element
+    @elements.pop
+  end
+
   def empty?
     @elements.empty?
   end
