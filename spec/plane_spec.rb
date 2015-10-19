@@ -12,4 +12,8 @@ describe Plane do
   it 'plane is not flying' do
     expect(subject.landed).to eq false
   end
+
+  it'plane is initialize as a flying' do
+    expect(subject).to respond_to(:flying)
+  end
 end
