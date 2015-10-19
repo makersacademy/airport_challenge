@@ -1,5 +1,17 @@
 Airport Challenge
 =================
+Objective
+
+This challenge involved creating planes (plane objects) that could take off and land at airports.
+
+Model description
+
+Planes have been given a status of landed or flying and airports can order a plane to land and take off. Airports have a capacity though and so a plane cannot land in a full airport.  The model also includes a random weather generator, when the weather is stormy a plane cannot take off from any airport.
+
+----------------------------------------------------------------------------------
+
+
+
 
 Instructions
 ---------
