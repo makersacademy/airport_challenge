@@ -31,9 +31,9 @@ describe Airport do
 		
 		it {is_expected.to respond_to(:take_off).with(1) }
 		
-		# it 'refuses to take off planes that are not at the airport' do 
-		# 	expect {subject.take_off(plane)}.to raise_error("The plane did not land on this airport")
-		# end
+		it 'refuses to take off planes that are not at the airport' do 
+			expect {subject.take_off(plane)}.to raise_error("The plane did not land on this airport")
+		end
 
 		it 'refuses to land planes if weather is stormy' do
 		 	plane = double(:plane, landed: false)
