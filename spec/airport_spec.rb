@@ -3,6 +3,17 @@ require 'airport'
 describe Airport do
   let(:plane) { Plane.new }
 
+  describe '#initialization' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it 'has a variable capacity when specified' do
+      airport = Airport.new(50)
+      expect(airport.capacity).to eq 50
+    end
+  end
+
   describe '#land' do
     it 'lands a plane' do
       expect(subject).to respond_to(:land).with(1).argument
@@ -31,6 +42,7 @@ describe Airport do
     end
 
     it 'raises an error when a plane tries to take off from another airport' do
+      allow(subject).to receive(:stormy?) { false }
       expect { subject.take_off(plane) }.to raise_error 'Plane can\'t take off. Wrong airport!'
     end
   end
