@@ -11,19 +11,19 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  # it 'raise an error if airport is full' do
-  #   allow(plane).to receive(:flying).and_return(false)
-  #   subject.capacity.times { subject.land_plane(plane) }
-  #   expect{subject.land_plane(plane)}.to raise_error('The airport is full')
-  # end
+  xit 'raise an error if airport is full' do
+    allow(plane).to receive(:flying).and_return(false)
+    subject.capacity.times { subject.land_plane(plane) }
+    expect{subject.land_plane(plane)}.to raise_error('The airport is full')
+  end
 
   it 'raise an error if weather is stormy when landing' do
-    subject.stormy
+    allow(subject).to receive(:stormy) {true}
     expect{subject.land_plane(plane)}.to raise_error('Is stormy so cannot land')
   end
 
   it 'raise an error if weather is stormy when taking off' do
-    subject.stormy
+    allow(subject).to receive(:stormy) {true}
     expect{subject.take_off(plane)}.to raise_error('Is stormy so cannot take off')
   end
 
@@ -35,7 +35,7 @@ describe Airport do
   end
 
   it 'plane that has taken off should no longer be in the airport' do
-    # plane = Plane.new
+    allow(subject).to receive(:stormy) {false}
     allow(plane).to receive(:land).and_return(true)
     allow(plane).to receive(:take_off).and_return(true)
     subject.land_plane(plane)

@@ -1,25 +1,26 @@
 require 'plane'
 
 describe Plane do
+
+  subject(:plane) { described_class.new }
+
   it 'changes its status to true after landing' do
-    subject.land
-    expect(subject.landed?).to eq true
+    plane.land
+    expect(plane.flying).to eq false
   end
 
   it 'changes its status to true after taking off' do
-    subject.take_off
-    expect(subject.taken_off?).to eq true
+    plane.land
+    plane.take_off
+    expect(plane.taken_off?).to eq true
   end
 
   it 'cannot take off if the plane is flying' do
-    plane = subject
-    plane.take_off
-    expect{ subject.take_off }.to raise_error
+    expect{ plane.take_off }.to raise_error 'You are already flying'
   end
 
   it 'cannot land if the plane is not flying' do
-    plane = subject
     plane.land
-    expect{ subject.land }.to raise_error
+    expect{ plane.land }.to raise_error 'You are not flying'
   end
 end
