@@ -1,3 +1,5 @@
+# this should be a module really
+
 class Weather
 
   def initialize
@@ -12,6 +14,7 @@ class Weather
     @weather_condition >= 3
   end
 
+  # this will always return 'true'
   def weather
     sunny || stormy
   end

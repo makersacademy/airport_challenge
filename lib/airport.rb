@@ -2,20 +2,25 @@ require_relative 'plane'
 class Airport
 
   DEFAULT_CAPACITY = 20
-  attr_reader :plane
 
-  def initialize
+  # use 'attr_reader :planes' instead, or better,
+  # create a custom method to
+  # check whether or not a plane has landed
+  attr_reader :planes, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
+
   def land(plane)
-    @plane = plane
     fail 'Airport is full' if full?
     @planes << plane
   end
 
   def take_off(plane)
-    Plane.new
+    @planes.pop
   end
 
 private
