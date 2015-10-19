@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -10,10 +11,11 @@ DEFAULT_CAPACITY = 20
     @hangar = []
     @capacity = capacity
     @airport_name = airport_name
+    @conditions = Weather.new
   end
 
   def land(plane)
-    raise "Stormy weather!  Try again later." if stormy_weather?
+    raise "Stormy weather!  Try again later." if condition_check == :stormy
     raise "Airport is full!" if full?
     plane.land
     plane.update_location @airport_name
@@ -21,14 +23,10 @@ DEFAULT_CAPACITY = 20
   end
 
   def takeoff(plane)
-    raise "Stormy weather!  Try again later." if stormy_weather?
+    raise "Stormy weather!  Try again later." if condition_check == :stormy
     raise "Plane is not in this airport, either land here first or add a new plane to the airport!" unless @hangar.include?(plane)
     plane.takeoff
     @hangar.delete_if {|elem| elem == plane }
-  end
-
-  def stormy_weather?
-    Random.rand(10).zero?  # 10% chance of storms?
   end
 
   def add_new_planes(plane)
@@ -39,5 +37,9 @@ DEFAULT_CAPACITY = 20
   private
   def full?
     @hangar.length >= @capacity
+  end
+
+  def condition_check
+    @conditions.weather_check
   end
 end
