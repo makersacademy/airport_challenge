@@ -16,17 +16,17 @@ Ensure you open `irb`, or `pry` from the project directory.
 
 ```ruby
 $ irb # from project directory
-require './lib/airport'
-heathrow = Airport.new('LHR')
-jfk = Airport.new('JFK', 5)
-plane1 = Plane.new
-plane2 = Plane.new
-heathrow.move_to_hangar(plane1)
-heathrow.move_to_hangar(plane2)
-heathrow.take_off(plane1)
-heathrow.take_off(plane2)
-jfk.land(plane1)
-jfk.land(plane2)
+> require './lib/airport'
+> heathrow = Airport.new('LHR')
+> jfk = Airport.new('JFK', 5)
+> plane1 = Plane.new
+> plane2 = Plane.new
+> heathrow.move_to_hangar(plane1)
+> heathrow.move_to_hangar(plane2)
+> heathrow.take_off(plane1)
+> heathrow.take_off(plane2)
+> jfk.land(plane1)
+> jfk.land(plane2)
 ```
 
 Approach
