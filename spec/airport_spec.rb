@@ -2,8 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  #let(:weather) { double :weather }
-
   before(:each) do
     @plane = Plane.new
     @plane2 = Plane.new
@@ -27,6 +25,6 @@ describe Airport do
   end
 
   it "make weather stormy" do
-    expect(subject.weather_warning).to eq(:stormy).or eq(:Fine)
+    expect(subject.weather_warning).to eq(:Stormy).or eq(:Fine)
   end
 end

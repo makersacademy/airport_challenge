@@ -24,8 +24,8 @@ class Airport
     fail "Airport empty - cannot take off" if landed.empty?
     fail "Stormy weather - cannot take off" if weather_warning == "Stormy"
     fail "This plane isn't at the airport" unless landed.include?(plane)
-    plane.flying = true
-    landed.delete(plane)
+      plane.flying = true
+      landed.delete(plane)
   end
 
   private

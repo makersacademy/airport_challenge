@@ -17,9 +17,9 @@ The "take off" method returns error messages if (i) the airport is empty, and / 
 
 ---
 
-This implementation of the problem does not adhere to the Single Responsibility Principle, as the take_off and land methods (1) change the @flying status of a plane and (2) modify the landed array associated with the airport. To change this, I should separate the concerns of these methods so that they stipulate whether a plane is clear to land / take off, i.e. determine whether the weather conditions are fine and whether there is room at the airport / whether the plane is currently at the airport. These methods should not require any plane as an argument.
+This implementation of the problem does not adhere to the Single Responsibility Principle, as the take_off and land methods (1) change the @flying status of a plane and (2) modify the landed array associated with the airport. To change this, I should separate the concerns of these methods so that they only stipulate whether a plane is clear to land / take off, i.e. determine whether the weather conditions are fine and whether there is room at the airport / whether the plane is currently at the airport. These methods should not require any plane as an argument.
 
-Upon these conditions being satisfied, a plane should then be able to call land and take_off methods taking an airport as an argument. This method would change the @flying status of the plane, and call another (new) method on the airport to modify the airport's landed array as necessary. This method would, I believe, adhere to the SRP.
+Upon these conditions being satisfied, a plane should then be able to call land and take_off methods taking an airport as an argument. This method would change the @flying status of the plane, and call another (new) method on the airport to modify the airport's landed array as necessary. This approach would, I believe, adhere to the SRP.
 
 My implementation appears to be concise and satisfy all the tasks set out, but not necessarily adhering to "good code" principles. I'm a week into this course so will revisit when I know a bit more.
 
