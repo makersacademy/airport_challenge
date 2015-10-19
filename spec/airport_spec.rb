@@ -10,9 +10,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:location) }
 
-  it { is_expected.to respond_to(:weather) }
-
-  it { is_expected.to respond_to(:weather=) }
+  it { is_expected.to respond_to(:stormy?) }
 
 
   it 'creates a default capacity' do
@@ -22,6 +20,15 @@ describe Airport do
   it 'lets us over-ride the default capacity' do
     airport = Airport.new(20)
     expect(airport.capacity).to eq(20)
+  end
+
+  context 'when a plane has taken off from an airport' do
+      it 'is no longer in that airport' do
+        plane = Plane.new
+        plane.land(subject)
+        plane.take_off(subject)
+        expect(subject.planes).not_to include(plane)
+      end
   end
 
 
