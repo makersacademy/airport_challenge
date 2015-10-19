@@ -4,8 +4,7 @@ describe Plane do
 
   context 'plane is flying' do
     it 'plane is flying' do
-      plane = Plane.new
-      expect(subject.flying).to eq true
+      expect(subject.took_off).to eq true
     end
   end
 
@@ -16,4 +15,5 @@ describe Plane do
   it'plane is initialize as a flying' do
     expect(subject).to respond_to(:flying)
   end
+
 end

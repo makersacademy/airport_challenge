@@ -1,7 +1,7 @@
 module Stormy
 
   def stormy
-    rand(10) > 7 ? true : false
+    rand(20) > 4 ? true : false
   end
 
 end

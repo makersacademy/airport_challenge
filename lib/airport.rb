@@ -11,13 +11,13 @@ class Airport
 
   def land (plane)
     fail_landing(plane)
-    @planes << plane
+    planes << plane
     plane
   end
 
   def take_off (plane)
-     fail_take_off(plane)
-    @planes.delete(plane)
+    fail_take_off(plane)
+    planes.delete(plane)
   end
 
   # def stormy?
@@ -33,7 +33,7 @@ class Airport
 
   def fail_take_off(plane)
     fail 'is stormy' if stormy
-    fail 'is flying' if plane.flying == false
+    fail 'is flying' if plane.flying == true
   end
 
   def full?
