@@ -65,7 +65,7 @@ Elenis-MacBook:airport_challenge eleniskouroupathi$ irb
 => #<Airport:0x007fe3208a2888 @planes=[], @weather=#<Weather:0x007fe3208a2860>, @capacity=6> 
 
 2.2.3 :004 > airport.land plane
-=> [#<Plane:0x007fe3208ba550 @flying=false>] 
+$ [#<Plane:0x007fe3208ba550 @flying=false>] 
 
 2.2.3 :005 > airport.take_off plane
 => #<Plane:0x007fe3208ba550 @flying=true>
