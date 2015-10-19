@@ -38,4 +38,16 @@ describe Airport do
 		expect { subject.land(plane) }.to raise_error "Can not land, airport is full!"
 	end
 
+	it "plane can not land if already landed" do
+    allow(subject.weather).to receive(:stormy?).and_return false
+    expect { subject.land(plane1) }.to raise_error "Can not land, plane has already landed!"
+    end
+
+  it "plane can land and then take off" do
+    allow(subject.weather).to receive(:stormy?).and_return false
+		allow(plane).to receive(:flying)
+		subject.land(plane)
+		subject.take_off(plane)
+		expect(plane.landed).to eq false
+  end
 end
