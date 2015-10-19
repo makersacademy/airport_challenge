@@ -2,6 +2,10 @@ class Plane
 
   attr_reader :landed, :flying
 
+  def initialize
+    @flying = true
+  end
+
   def land
     fail 'You are not flying' if @flying == false
     @landed = true
@@ -22,7 +26,4 @@ class Plane
     @flying
   end
 
-  def landed?
-    @landed
-  end
 end
