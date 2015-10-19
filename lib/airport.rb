@@ -2,30 +2,30 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
+  include Weather
 
+  attr_reader :landed
   DEFAULT_CAPACITY = 10
 
   def initialize
-    @landed = Array.new
-    @weather = Weather.new
+    @landed = []
   end
 
-  attr_reader :landed, :weather
 
   def land(plane)
-    raise "Cannot land - plane is already landed" if !plane.flying
-      raise "Airport full - cannot land plane" if full?
-        raise "Stormy weather - cannot land plane" if weather.weather_warning == "Stormy"
-          plane.flying = false
-          landed << plane
+    fail "Cannot land - plane is already landed" unless plane.flying
+    fail "Airport full - cannot land plane" if full?
+    fail "Stormy weather - cannot land plane" if weather_warning == "Stormy"
+      plane.flying = false
+      landed << plane
   end
 
   def take_off(plane)
-    raise "Airport empty - cannot take off" unless !landed.empty?
-      raise "Stormy weather - cannot take off" if weather.weather_warning == "Stormy"
-        raise "This plane isn't at the airport" unless landed.include?(plane)
-          plane.flying = true
-          landed.delete(plane)
+    fail "Airport empty - cannot take off" if landed.empty?
+    fail "Stormy weather - cannot take off" if weather_warning == "Stormy"
+    fail "This plane isn't at the airport" unless landed.include?(plane)
+    plane.flying = true
+    landed.delete(plane)
   end
 
   private
