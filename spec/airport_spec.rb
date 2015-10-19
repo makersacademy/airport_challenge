@@ -22,7 +22,14 @@ describe '#take_off' do
   end
 end
 
-  it 'should raise an error when airport is full do' do
+describe '#initializing capacity' do
+  it 'has a #DEFAULT_CAPACITY of 20' do
+    expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+  end
+end
+
+
+  it 'should raise an error when airport is full' do
     described_class::DEFAULT_CAPACITY.times { subject.land(double :plane) }
     expect {subject.land(double :plane)}.to raise_error 'Airport is full'
   end

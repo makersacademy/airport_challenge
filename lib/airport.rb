@@ -6,7 +6,7 @@ class Airport
   # use 'attr_reader :planes' instead, or better,
   # create a custom method to
   # check whether or not a plane has landed
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
