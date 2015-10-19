@@ -4,7 +4,7 @@ describe Airport do
 
   context 'challenge 1-2' do
     it 'Airport to land a plane' do
-      plane = double('plane')
+      plane = double('plane', flying: nil)
       expect(subject.land(plane)).to eq plane
     end
       it 'plane can take off the airport' do
@@ -16,7 +16,7 @@ describe Airport do
 
   context 'challenge 3' do
       it 'not land if full' do
-        plane = double('plane')
+        plane = double('plane', flying: nil)
         subject.capacity.times { subject.land(plane) }
         expect { subject.land(plane) }.to raise_error
       end
@@ -51,17 +51,23 @@ describe Airport do
     end
 
   context 'challenge 7' do
-       it 'the plane cannot take off if it\'s flying' do
-         plane = double('plane', receive: true)
-         subject.land(plane)
+       it 'the plane cannot take off if flying' do
+         plane = double('plane')
          expect{ subject.take_off(plane) }.to raise_error
        end
      end
 
+  context 'challenge 8' do
+    it 'plane cannot land if flying' do
+      plane = double('plane')
+      expect{subject.land plane}.to raise_error
+    end
+  end
+
   context 'challenge 9' do
        it 'the plane who took off is no longer in the airport' do
          plane = double('plane', flying: nil)
-         subject.land plane
+        #  subject.land plane
          subject.take_off plane
          expect(subject.planes).not_to include plane
        end

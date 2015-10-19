@@ -1,8 +1,8 @@
-require_relative 'plane'
+require_relative 'plane'  # => true
 
 class Airport
 
-  attr_reader :plane, :planes, :capacity, :stormy, :flying
+  attr_reader :plane, :planes, :capacity, :stormy  # => nil
 
   def initialize (capacity = 10)
     @planes = []
@@ -10,28 +10,34 @@ class Airport
   end
 
   def land (plane)
-    fail 'is full' if full?
-    fail 'is stormy' if stormy
+    fail_landing(plane)
     @planes << plane
     plane
   end
 
   def take_off (plane)
-    fail 'is stormy' if stormy
-    fail 'is flaying' if plane.flying
+     fail_take_off(plane)
     @planes.delete(plane)
   end
 
-  def full?
-      @planes.count >= capacity
+  def stormy?
+    @stormy = true
   end
 
-  def stormy?
-      @stormy = true
-    end
+  private
+  def fail_landing(plane)
+    fail 'is full' if full?
+    fail 'is stormy' if stormy
+    fail 'plane on ground' if plane.flying == false
+  end
 
-  def stormy
-    @stormy
+  def fail_take_off(plane)
+    fail 'is stormy' if stormy
+    fail 'is flying' if plane.flying == false
+  end
+
+  def full?
+    @planes.count >= capacity
   end
 
 end
