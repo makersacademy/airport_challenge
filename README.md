@@ -1,6 +1,36 @@
 Airport Challenge
 =================
 [![Build Status](https://travis-ci.org/dearshrewdwit/airport_challenge.svg?branch=master)](https://travis-ci.org/dearshrewdwit/airport_challenge)
+
+Instructions
+--------
+1. Fork this repo, and clone to your local machine `git clone <url>`
+2. Run the command `gem install bundle`
+3. When the installation completes, run `bundle`
+4. In the Gemfile, ensure ruby version is 2.2.3 in order to run RSpec tests (from project root directory)
+
+Ensure you open `irb`, or `pry` from the project directory.
+* Only Airports are allowed to instruct Planes to land or take off
+* Remember to park newly created planes at your chosen airport before instructing them to take off
+* There is a 20% chance bad weather will prevent landing and taking off
+
+```ruby
+$ irb # from project directory
+require './lib/airport'
+heathrow = Airport.new('LHR')
+jfk = Airport.new('JFK', 5)
+plane1 = Plane.new
+plane2 = Plane.new
+heathrow.move_to_hangar(plane1)
+heathrow.move_to_hangar(plane2)
+heathrow.take_off(plane1)
+heathrow.take_off(plane2)
+jfk.land(plane1)
+jfk.land(plane2)
+```
+
+Approach
+------
 My approach to solving this challenge was to start with an Airport class, build it as much as I could until I needed to start understanding how one class object would change another. I did pretty well with a TDD approach until the last few problems arose where I didn't know how to write the tests to get what I wanted to happen. Because I didn't know how to even make the code work. It involved a lot of playing around in pry and tweaking until there was some semblance of satisying the user stories.
 
 My approach could definitely be improved upon, but I found this challenge immensely interesting. The most difficult thing I found was keeping the tests in isolation with mocks and stubs because of the way I solved this challenge. I think there was definitely an easier way.
