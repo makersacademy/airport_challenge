@@ -26,6 +26,11 @@ describe '#initializing capacity' do
   it 'has a #DEFAULT_CAPACITY of 20' do
     expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
   end
+
+  it 'has an overridden capacity when specified' do
+      subject = Airport.new(50)
+      expect(subject.capacity).to eq 50
+  end
 end
 
 
