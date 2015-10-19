@@ -32,7 +32,7 @@ class Airport
     		@planes.count >= @capacity
     	end
 
-    	def stormy_weather?
+    	def stormy_weather? 
     		Weather.new.stormy? == true
     	end
 
