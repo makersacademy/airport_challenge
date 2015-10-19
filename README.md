@@ -49,6 +49,7 @@ block which would have been preferable (i.e. once in the Describe block only).
 Instructions
 ------------
 To use this on a local machine:
+
 1. Fork this repo and clone
 2. run `gem install bundle` in the cloned base directory
 3. run `bundle`
