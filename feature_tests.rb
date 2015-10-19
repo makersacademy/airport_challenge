@@ -34,3 +34,24 @@ airport.land (Plane.new)
 airport.capacity = 30
 10.times airport.land(Plane.new)
 airport.land(Plane.new)
+
+#feature test 7: planes that are flying or not in the airport cannot take off
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+airport.take_off(plane)
+airport.take_off(plane)
+
+#feature test 8: planes that are not flying cannot land must be in an airport
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+airport.land(plane)
+
+#feature test 9: planes that take-off from the airport are no longer in the hanger
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)
+airport.hangar
+airport.take_off(plane)
+airport.hangar
