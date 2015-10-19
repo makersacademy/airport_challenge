@@ -1,26 +1,43 @@
+[![Build Status](https://travis-ci.org/DeathRay1977/airport_challenge.svg)](https://travis-ci.org/DeathRay1977/airport_challenge)
 Airport Challenge
 =================
+
+My approach to the challenge was pretty much like the Boris Bikes Challenge. The Airport was the main class of the system that heald a collection of planes which are derived from the Plane class. The Airport Class is responsible for making planes take off and land adding them or taking them out of the collection and changing their 'flight' status and location. The Airport class also takes care of the edge cases such as:
+
+* Planes not being able to operate in bad weather.
+* Planes cannot land if already landed.
+* Planes cannot land if landed at another airport.
+* Planes cannot land if the airport is full.
+* Planes cannot take off if already in the air.
+* Planes cannot take off if not landed at your airport.
+
+Airports have the following internal state:
+
+* A name - Read Only
+* A Maximum Capacity (defaulted to a value if not supplied) - Read Only
+* A Hangar (Collection of Planes). - Read only (but writable via public methods)
+
+Planes are very things. They have the following internal state.
+
+* An ID - Such as "BA535" - Read Only.
+* A current location. Set to the name of the airport it has landed at or nil if in flight. Read/Write through attr_accessor.
+* A flying status. Set to true if in the air, false otherwise. Read/Write through attr_accessor.
+
+The feature spec contains one test for each User Story. Some of these tests are replicated from airport_spec.rb but the tests for the Airport class uses doubles and mocks and not real planes. 
+
+I have attempted the bonus challenge by landing and taking off the maximum amount of planes from an airport with the default capacity. 
 
 Instructions
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_october2015 (edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+* Create an instance of the Airport class passing the name of the airport, a weather object and an [optional] capacity.
+* Create instances of the Plane class passing its ID.
+* Pass the plane objects to the take_off or land method on the airport object to make them fly of land.
 
 Task
 -----
+
+Below is an outline of the task given to us.
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
