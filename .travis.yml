@@ -1,1 +1,2 @@
 script: bundle exec rspec spec
+ruby '2.2.3'
