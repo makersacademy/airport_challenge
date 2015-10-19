@@ -9,6 +9,5 @@ class Weather
 
   def random_outlook
     OUTLOOKS.sample
-end
-
+  end
 end

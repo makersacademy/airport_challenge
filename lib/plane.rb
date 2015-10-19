@@ -1,17 +1,15 @@
 class Plane
-
-  attr_accessor :flying, :landed
+  attr_accessor :grounded, :air
 
   def initialize
-    @landed = true
+    @location = :grounded
   end
 
-    def landed
-      @landed = true
-    end
+  def ground?
+    @location == :grounded
+  end
 
-    def flying
-      @landed = false
-    end
-
+  def flying?
+    @location == :air
+  end
 end

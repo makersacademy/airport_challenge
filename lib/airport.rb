@@ -3,38 +3,38 @@ require_relative 'weather'
 
 class Airport
 
-  attr_accessor :plane, :capacity, :stormy, :landed
+  attr_accessor :planes, :capacity, :weather
 
-  def initialize(capacity = 50)
+  def initialize(capacity = 50, weather = Weather.new)
     @capacity = capacity
     @planes = []
+    @weather = weather
   end
 
 #this instructs particular plane to land
-    def land(plane)
-      fail "the airport is full" if full?
-      fail "plane is already grounded" if plane.landed
-      #plane.land
-      @planes << plane
-    end
+  def land(plane)
+    fail "the airport is full" if full?
+    fail "plane is already grounded" if plane.ground?
+    fail "cannot land in a storm" if bad_weather?
+    plane.ground?
+    @planes << plane
+  end
 
 #this instructs specific plane to take off
-    def take_off(plane)
-     fail "plane is already flying" if plane.flying
-     plane.flying
-      @planes.delete(plane)
-    end
+  def take_off(plane)
+    fail "plane is already flying" if plane.flying?
+    fail "cannot take off in a storm" if bad_weather?
+    plane.flying?
+    @planes.delete(plane)
+  end
 
+  private
 
-private
+  def full?
+    @planes.length >= @capacity
+  end
 
-def full?
-  @planes.length >= @capacity
-end
-
-def stormy?
-  weather == :stormy
-end
-
-
+  def bad_weather?
+    @weather.stormy?
+  end
 end
