@@ -1,10 +1,14 @@
 require 'airport'
+require '~/Documents/week-1/airport_challenge/spec/support/shared_examples_for_weather'
 
 describe Airport do
+
+  it_behaves_like Weather
 
   it 'initializes with a default capacity of 50' do
     expect(subject.capacity).to eq 50
   end
+
 
   context 'When using a different capacity from the default' do
     subject {Airport.new(30)}
