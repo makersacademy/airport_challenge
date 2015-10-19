@@ -25,4 +25,8 @@ describe Airport do
     subject.land(@plane)
     expect { subject.take_off(@plane2) }.to raise_error "This plane isn't at the airport"
   end
+
+  it "make weather stormy" do
+    expect(subject.weather_warning).to eq(:stormy).or eq(:Fine)
+  end
 end
