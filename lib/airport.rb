@@ -7,11 +7,11 @@ DEFAULT_CAPACITY = 20
 
   attr_reader :capacity, :airport_name
 
-  def initialize(airport_name='undefined', capacity=DEFAULT_CAPACITY)
+  def initialize(airport_name='undefined', capacity=DEFAULT_CAPACITY,conditions=Weather.new)
     @hangar = []
     @capacity = capacity
     @airport_name = airport_name
-    @conditions = Weather.new
+    @conditions = conditions
   end
 
   def land(plane)

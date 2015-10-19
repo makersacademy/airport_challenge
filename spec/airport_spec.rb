@@ -6,7 +6,10 @@ describe Airport do
   let (:weather) { double(:weather, weather_check: :sunny)}
   let (:test_capacity_30) { Airport.new('test_capacity', 30) }
   let (:test_full) { Airport.new('test_full',0) }
-  before (:each) {allow(subject).to receive(:condition_check).and_return(:sunny)}
+  before (:each) { allow(subject).to receive(:condition_check).and_return(:sunny)}
+  before (:each) { allow(test_capacity_30).to receive(:condition_check).and_return(:sunny)}
+  before (:each) { allow(test_full).to receive(:condition_check).and_return(:sunny)}
+
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1) }
     it 'lands a plane and adds to the hangar' do
@@ -40,11 +43,11 @@ describe Airport do
 
   describe '#stormy_weather?' do
     it 'prevents planes from landing' do
-      allow(subject).to receive(:weather_check).and_return(:stormy)
+      allow(subject).to receive(:condition_check).and_return(:stormy)
       expect{subject.land(:test)}.to raise_error "Stormy weather!  Try again later."
     end
     it 'prevents planes from taking off' do
-      allow(subject).to receive(:weather_check).and_return(:stormy)
+      allow(subject).to receive(:condition_check).and_return(:stormy)
       expect{subject.takeoff(:test)}.to raise_error "Stormy weather!  Try again later."
     end
   end
