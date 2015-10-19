@@ -1,5 +1,17 @@
-Airport Challenge
+Airport Challenge [![Build Status](https://travis-ci.org/mateja683/airport_challenge.svg?branch=master)](https://travis-ci.org/mateja683/airport_challenge)
 =================
+
+UPDATED README
+
+Attached are all the files associated with my airport challenge.
+
+I started by creating a Plane class, and created methods to allow them to be either flying or grounded. From there, I set the Airport class, which could instruct for specific planes to take off and land. Within these two methods, I built up several features which allowed for errors, including when the airport was too full, and preventing flying planes from taking off and grounded planes from landing.
+
+Finally, I created the weather class, which allowed me to introduce stormy weather into the airport class. I did this by sampling through a series of weather types, and creating a stormy variable for when the variable was stormy. In the airport class, I then created a bad weather variable for when the weather was stormy.
+
+Please have a look, and let me know if you have any suggestions. Many thanks!
+
+
 
 Instructions
 ---------
