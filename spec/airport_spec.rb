@@ -75,19 +75,15 @@ describe Airport do
   end
 
     context '#stormy? returns:' do
-      it 'true or false as random' do
-      expect([true, false]).to include airport.stormy?
+
+      it "'true' when greater than 0.95" do
+        x = rand(0.96..1.0)
+        expect(x > 0.95).to eq true
     end
 
-
-    #   it "'true' when greater than 0.95" do
-    #     x = rand(0.96..1.0)
-    #     expect(x > 0.95).to eq true
-    # end
-    #
-    #   it "'false' when less than 0.95" do
-    #     x = rand(0..0.95)
-    #     expect(x > 0.95).to eq false
-    #   end
+      it "'false' when less than 0.95" do
+        x = rand(0..0.95)
+        expect(x > 0.95).to eq false
+      end
     end
 end
