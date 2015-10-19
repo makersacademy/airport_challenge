@@ -49,4 +49,3 @@ I want to ensure a plane that is not flying cannot land and must be in an airpor
 As an air traffic controller
 So the system is consistent and correctly reports plane status and location
 I want to ensure a plane that has taken off from an airport is no longer in that airport
-
