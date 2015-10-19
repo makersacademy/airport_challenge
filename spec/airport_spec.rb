@@ -1,5 +1,5 @@
 require 'airport'
-require '~/Documents/week-1/airport_challenge/spec/support/shared_examples_for_weather'
+require 'support/shared_examples_for_weather'
 
 describe Airport do
 
