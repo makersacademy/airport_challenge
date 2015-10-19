@@ -1,5 +1,9 @@
 module Weather
   def weather?
-    rand(6) + 1 < 6 ? :sunny : :stormy
+    chance + 1 < 6 ? :sunny : :stormy
+  end
+
+  def chance
+    rand(6)
   end
 end
