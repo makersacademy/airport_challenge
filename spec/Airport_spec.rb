@@ -13,7 +13,7 @@ describe Airport do
 	context "Weather is stormy" do
 
 		before do
-			allow(subject.weather).to receive(:stormy?).and_return true
+			allow(subject).to receive(:stormy?).and_return true
 		end
 
 
@@ -30,7 +30,7 @@ describe Airport do
 	context "Weather is normal" do
 
 		before do
-			allow(subject.weather).to receive(:stormy?).and_return false
+			allow(subject).to receive(:stormy?).and_return false
 		end
 
 		it "return can not land, airport is full!" do
