@@ -1,3 +1,4 @@
+require 'weather'
 class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :hangar, :capacity, :name
@@ -6,6 +7,7 @@ class Airport
     @name = name
     @hangar = []
     @capacity = capacity
+    @weather = Weather.new
   end
   def land plane
     raise "Plane #{plane.id} Cannot Land. Already Landed!" if already_landed? plane
@@ -25,7 +27,7 @@ class Airport
     remove plane
   end
   def weather_conditions
-    [:sunny, :stormy].shuffle.first
+    @weather.weather_conditions
   end
 
   private
