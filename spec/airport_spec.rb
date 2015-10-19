@@ -23,7 +23,7 @@ describe Airport do
 
       it 'plane requests landing and controller returns full' do
         allow(@my_airport).to receive(:stormy).and_return(false)
-        3.times {@my_airport.land(Plane.new)}
+        21.times {@my_airport.land(Plane.new)}
         expect {@my_airport.land(Plane.new)}.to raise_error 'the airport is full'
       end
 

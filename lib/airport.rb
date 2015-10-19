@@ -10,7 +10,7 @@ attr_accessor :takeoff
 attr_accessor :capacity
 attr_accessor :planes
 
-  def initialize(capacity=2)
+  def initialize(capacity=20)
     @capacity = capacity
     @planes =[]
   end
