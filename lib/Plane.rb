@@ -2,15 +2,17 @@ class Plane
   attr_reader :status
 
   def initialize
-    @status = false #true for in the air, false for on the ground
+    @status = :flying
   end
 
   def land
-    @status = false
+    fail 'Plane is already on the ground!' unless @status == :flying
+    @status = :grounded
   end
 
   def take_off
-    @status = true
+    fail 'Plane already in flight!' unless @status == :grounded
+    @status = :flying
   end
 
 end
