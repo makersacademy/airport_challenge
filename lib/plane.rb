@@ -1,8 +1,16 @@
 class Plane
-  attr_accessor :flying_status, :in_airport
+  attr_reader :flying_status
 
   def initialize
     @flying_status = true
-    @in_airport = false
   end
+
+  def fly
+    @flying_status = true
+  end
+
+  def dont_fly
+    @flying_status = false
+  end
+
 end
