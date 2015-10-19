@@ -1,6 +1,24 @@
 Airport Challenge
 =================
 
+My approach to the challenge was similar to the Boris Bikes Challenge. The Airport was the main class of the system that heald a collection of planes which are derived from the Plane class. I created a weather class to control teh weather. The Airport Class is responsible for making planes take off and land adding them or taking them out of the collection and changing their 'flight' status. The Airport class also takes care of the edge cases such as:
+
+Planes not being able to operate in bad weather.
+Planes cannot land if already landed.
+Planes cannot land if landed at another airport.
+Planes cannot land if the airport is full.
+Planes cannot take off if already in the air.
+Planes cannot take off if not landed at your airport.
+
+Airports have the following internal state:
+
+A Maximum Capacity (defaulted to a value if not supplied) - Read Only
+A Hangar (Collection of Planes). - Read only (but writable via public methods)
+
+Planes have the following internal state:
+
+A flying status - set to true if in the air, false otherwise.
+
 Instructions
 ---------
 
