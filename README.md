@@ -1,87 +1,172 @@
 Airport Challenge
 =================
 
-Instructions
----------
+One of our clients has requested us to design and develop software which will help in managing planes at an airport. Here is a summary of the requirement:
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
+a) Air traffic controller should be able to
 
-Steps
--------
+  instruct an incoming plane to land, provided
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_october2015 (edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+    weather is not stormy
+    airport has spare landing space (airport not full)
 
-Task
------
+  instruct a plane to take off, provided
+    weather is not stormy
+    So that all planes land and take off safely, the air traffic controller will make sure that
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+      a plane takes off from the airport where it is located currently
 
-```
-As an air traffic controller
-So planes can land safely at my airport
-I would like to instruct a plane to land
+      check plane's status
+        allow those planes with status 'flying' to land,
+        allow those planes with status 'landed' to take off
 
-As an air traffic controller
-So planes can take off safely from my airport
-I would like to instruct a plane to take off
+b) Plane should report their status
 
-As an air traffic controller
-So that I can avoid collisions
-I want to prevent airplanes landing when my airport if full
+  as flying
+  as landed
 
-As an air traffic controller
-So that I can avoid accidents
-I want to prevent airplanes landing or taking off when the weather is stormy
+c) Airports should have following
 
-As an air traffic controller
-So that I can ensure safe take off procedures
-I want planes only to take off from the airport they are at
+  default airport capacity and can be overridden
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+I plan to start rspec test first and then on to code with above specs.
 
-As an air traffic controller
-So the system is consistent and correctly reports plane status and location
-I want to ensure a flying plane cannot take off and cannot be in an airport
+Will, update README as I make further progress
 
-As an air traffic controller
-So the system is consistent and correctly reports plane status and location
-I want to ensure a plane that is not flying cannot land and must be in an airport
+PS - Sorry for the delay, as was extremely tied up with some personal matter
 
-As an air traffic controller
-So the system is consistent and correctly reports plane status and location
-I want to ensure a plane that has taken off from an airport is no longer in that airport
-```
+I have been having rspec erros when testing raise_error.  Have attached the errors below.  I also have added irb output of testing the code.  This is after the errors below.
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+===============================================================================
+rspec errors  (They probably are due to version issue). Will seek help tomorrow
+===============================================================================
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+[rajeevhejib:...y/wc-wk01/airport_challenge]$ rspec                                                                      (master✱)
+[Coveralls] Set up the SimpleCov formatter.
+[Coveralls] Using SimpleCov's default settings.
 
-Please create separate files for every class, module and test suite.
+Airport
+  should respond to #land with 1 argument
+  should respond to #take_off
+  has a default capacity
+  plane cannot land as airport capacity is full (FAILED - 1)
+  plane cannot land as weather now is stormy (FAILED - 2)
+  plane cannot take off as weather now is stormy (FAILED - 3)
 
-The submission will be judged on the following criteria:
+Plane
+  should respond to #log with 1 argument
+  should respond to #unlog
+  already at the airport (FAILED - 4)
+  already flying
 
-* Tests pass
-* [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
+Failures:
 
-**BONUS**
+  1) Airport plane cannot land as airport capacity is full
+     Failure/Error: expect{subject.land(plane)}.to raise_error("Cannot land, capacity full")
+       expected Exception with "Cannot land, capacity full", got #<RSpec::Mocks::MockExpectationError: Double :plane received unexpected message :log with (#<Airport:0x007ffa61eb9700 @planes=[], @capacity=1>)> with backtrace:
+         # ./lib/airport.rb:15:in `land'
+         # ./spec/airport_spec.rb:15:in `block (3 levels) in <top (required)>'
+         # ./spec/airport_spec.rb:15:in `block (2 levels) in <top (required)>'
+     # ./spec/airport_spec.rb:15:in `block (2 levels) in <top (required)>'
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+  2) Airport plane cannot land as weather now is stormy
+     Failure/Error: expect{subject.land(plane)}.to raise_error("Cannot land, weather is stormy")
+       expected Exception with "Cannot land, weather is stormy", got #<RSpec::Mocks::MockExpectationError: Double :plane received unexpected message :log with (#<Airport:0x007ffa61ec30c0 @planes=[], @capacity=1>)> with backtrace:
+         # ./lib/airport.rb:15:in `land'
+         # ./spec/airport_spec.rb:19:in `block (3 levels) in <top (required)>'
+         # ./spec/airport_spec.rb:19:in `block (2 levels) in <top (required)>'
+     # ./spec/airport_spec.rb:19:in `block (2 levels) in <top (required)>'
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+  3) Airport plane cannot take off as weather now is stormy
+     Failure/Error: expect{subject.take_off(plane)}.to raise_error("Cannot take off, weather is stormy")
+       expected Exception with "Cannot take off, weather is stormy", got #<RuntimeError: No planes to take off> with backtrace:
+         # ./lib/airport.rb:21:in `take_off'
+         # ./spec/airport_spec.rb:23:in `block (3 levels) in <top (required)>'
+         # ./spec/airport_spec.rb:23:in `block (2 levels) in <top (required)>'
+     # ./spec/airport_spec.rb:23:in `block (2 levels) in <top (required)>'
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+  4) Plane already at the airport
+     Failure/Error: expect {subject.log airport }.to raise_error("Plane already at airport")
+       expected Exception with "Plane already at airport" but nothing was raised
+     # ./spec/plane_spec.rb:11:in `block (2 levels) in <top (required)>'
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
+Finished in 0.00518 seconds (files took 0.2302 seconds to load)
+10 examples, 4 failures
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Failed examples:
+
+rspec ./spec/airport_spec.rb:14 # Airport plane cannot land as airport capacity is full
+rspec ./spec/airport_spec.rb:18 # Airport plane cannot land as weather now is stormy
+rspec ./spec/airport_spec.rb:22 # Airport plane cannot take off as weather now is stormy
+rspec ./spec/plane_spec.rb:10 # Plane already at the airport
+
+[Coveralls] Outside the CI environment, not sending data.
+[rajeevhejib:...y/wc-wk01/airport_challenge]$
+
+
+
+===============================================================================
+IRB output
+===============================================================================
+2.2.3 :001 >
+2.2.3 :002 >
+2.2.3 :003 >   a1=Airport.new
+ => #<Airport:0x007f8a31039478 @planes=[], @capacity=1>
+2.2.3 :004 > a2=Airport.new(2)
+ => #<Airport:0x007f8a31028cb8 @planes=[], @capacity=2>
+2.2.3 :005 > p1=Plane.new
+ => #<Plane:0x007f8a3101a898 @status="Flying">
+2.2.3 :006 > p2=Plane.new
+ => #<Plane:0x007f8a308a7110 @status="Flying">
+2.2.3 :007 > p3=Plane.new
+ => #<Plane:0x007f8a3089e858 @status="Flying">
+2.2.3 :008 > p4=Plane.new
+ => #<Plane:0x007f8a308964f0 @status="Flying">
+2.2.3 :009 >
+2.2.3 :010 >
+2.2.3 :011 >   a1.land(p1)
+ => [#<Plane:0x007f8a3101a898 @status="Not Flying", @where=#<Airport:0x007f8a31039478 @planes=[...], @capacity=1>>]
+2.2.3 :012 > a1.land(p2)
+RuntimeError: Cannot land, capacity full
+	from /Users/rajeevhejib/Projects/MakersAcademy/wc-wk01/airport_challenge/lib/airport.rb:13:in `land'
+	from (irb):12
+	from /Users/rajeevhejib/.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :013 >
+2.2.3 :014 >
+2.2.3 :015 >   a2.land(p2)
+ => [#<Plane:0x007f8a308a7110 @status="Not Flying", @where=#<Airport:0x007f8a31028cb8 @planes=[...], @capacity=2>>]
+2.2.3 :016 > a2.land(p3)
+ => [#<Plane:0x007f8a308a7110 @status="Not Flying", @where=#<Airport:0x007f8a31028cb8 @planes=[...], @capacity=2>>, #<Plane:0x007f8a3089e858 @status="Not Flying", @where=#<Airport:0x007f8a31028cb8 @planes=[...], @capacity=2>>]
+2.2.3 :017 > a2.land(p4)
+RuntimeError: Cannot land, capacity full
+	from /Users/rajeevhejib/Projects/MakersAcademy/wc-wk01/airport_challenge/lib/airport.rb:13:in `land'
+	from (irb):17
+	from /Users/rajeevhejib/.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :018 >
+2.2.3 :019 >   a1.land(p2)
+RuntimeError: Cannot land, capacity full
+	from /Users/rajeevhejib/Projects/MakersAcademy/wc-wk01/airport_challenge/lib/airport.rb:13:in `land'
+	from (irb):19
+	from /Users/rajeevhejib/.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :020 > a2.land(p1)
+RuntimeError: Cannot land, capacity full
+	from /Users/rajeevhejib/Projects/MakersAcademy/wc-wk01/airport_challenge/lib/airport.rb:13:in `land'
+	from (irb):20
+	from /Users/rajeevhejib/.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :021 >
+2.2.3 :022 >   a2.take_off(p3)
+ => #<Plane:0x007f8a3089e858 @status="Flying", @where="In Air">
+2.2.3 :023 >
+2.2.3 :024 >
+2.2.3 :025 >   a2.land(p1)
+RuntimeError: Plane already at airport
+	from /Users/rajeevhejib/Projects/MakersAcademy/wc-wk01/airport_challenge/lib/plane.rb:10:in `log'
+	from /Users/rajeevhejib/Projects/MakersAcademy/wc-wk01/airport_challenge/lib/airport.rb:15:in `land'
+	from (irb):25
+	from /Users/rajeevhejib/.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :026 > a2.take_off(p1)
+RuntimeError: this plane not at this airport
+	from /Users/rajeevhejib/Projects/MakersAcademy/wc-wk01/airport_challenge/lib/airport.rb:22:in `take_off'
+	from (irb):26
+	from /Users/rajeevhejib/.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :027 >
