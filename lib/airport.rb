@@ -19,8 +19,8 @@ attr_accessor :planes
     fail 'the weather is too stormy' if self.stormy == true
     fail 'the airport is full' if full?
     fail 'already in airport' if (plane.flying == false)
-    plane.airport_location(self.object_id)
-    plane.flying?(false)
+      plane.airport_location(self.object_id)
+      plane.flying?(false)
     @planes << plane
 
   end
@@ -29,18 +29,11 @@ attr_accessor :planes
     fail 'the weather is too stormy' if self.stormy == true
     fail 'Plane not at this airport' if (plane.airport != self.object_id)
     fail 'Plane is already flying' if (plane.flying == true)
-    plane.airport = nil
-    plane.flying?(true)
-    planes.delete(plane)
-
-
-    true
+      plane.airport = nil
+      plane.flying?(true)
+      planes.delete(plane)
+      true
   end
-
-  # def full?(capacity)
-  #   @capacity = capacity
-  # end
-
 
     def full?
       @planes.count > @capacity ? true : false
