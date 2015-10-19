@@ -1,23 +1,11 @@
-Airport Challenge
+
+
+Airport Challenge [![Build Status](https://travis-ci.org/hsheikhm/airport_challenge.svg?branch=master)](https://travis-ci.org/hsheikhm/airport_challenge)
 =================
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_october2015 (edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+* [Task](#task)
+* [My Approach](#my-approach)
+* [Feature Test Sample](#feature-test-sample)
 
 Task
 -----
@@ -64,8 +52,6 @@ I want to ensure a plane that has taken off from an airport is no longer in that
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
 Please create separate files for every class, module and test suite.
 
 The submission will be judged on the following criteria:
@@ -78,10 +64,103 @@ The submission will be judged on the following criteria:
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+My Approach
+------------
+
+Throughout this task I made sure that I consistently stuck to the routine of **Red-Green-Refactor**.
+Below is a step-by-step list which shows how I attempted each user story:
+
+1. Distinguish nouns (objects) and verbs (messages/methods) from user story.
+2. Create Domain Model to illustrate how the objects and messages would interact.
+3. Do a Feature Test (usally in irb) and make it fail (**red**).
+4. Create a Unit Test (in RSpec) and make it fail (**red**).
+5. Implement code to lib/ files to make unit test pass (**green**).
+6. Make feature test pass (**green**).
+7. **Refactor** code.
+8. Move to next user story and repeat above steps.
+
+For this task my aim was to have a very simple approach as the user stories were simple in their own way.
+As a result, I had created two classes:
+
+* [Airport](https://github.com/hsheikhm/airport_challenge/blob/master/lib/airport.rb)
+* [Plane](https://github.com/hsheikhm/airport_challenge/blob/master/lib/plane.rb)
+
+Starting with the **Airport** class, I built it so that it would be *initialized* with an empty planes array and a
+default capacity (which can be overridden). It has two main methods, *'land'* and *'take_off'* to control the landing and taking-off of planes. It also has two predicate methods, *'full?'* and *'stormy?'* to monitor airport capacity and check
+for stormy weather. Stormy weather results in no planes being landed or taken-off.
+
+As for the **Plane** class, I kept it as simple as possible. It has been built with the mindset that the user
+can always check the *'status'* and *'location'* of a plane at anytime. The status and location of a plane
+changes depending on whether it is *'flying'* or has *'landed'*. I decided that it would be best to *initialize* a plane
+with a status of 'flying' and location of 'air' since this would prevent an airport from landing a plane that
+is simply not flying i.e. a plane that has landed already.
+
+Lastly, my [spec](https://github.com/hsheikhm/airport_challenge/tree/master/spec) files have been separated into two,
+one for Airport and the other for Plane. Whilst using the **RSpec** framework I made sure to keep both tests isolated
+by the use of **doubles** and **method stubs**. This way I could achieve consistent test behaviour.
+
+Below is my directory tree structure:
+```
+lib/
+    - airport.rb
+    - plane.rb
+spec/
+    - airport_spec.rb
+    - plane_spec.rb
+    - spec_helper.rb
+```
+
+
+Feature Test Sample
+--------------------
+```
+<!-- Airport object: -->
+  2.2.3 :002 > airport = Airport.new
+    => #<Airport:0x007fb92a89c9a8 @planes=[], @capacity=20>
+<!-- Plane object: -->
+  2.2.3 :003 > plane = Plane.new
+    => #<Plane:0x007fb92a88ec18 @status=:flying, @location=:air>
+<!-- Airport can land a plane. Plane status = 'landed' and location = 'airport' -->
+  2.2.3 :004 > airport.land(plane)
+    => #<Plane:0x007fb92a88ec18 @status=:landed, @location=:airport>
+<!-- Airport can take-off a plane. Plane status = 'flying' and location = 'air' -->
+  2.2.3 :005 > airport.take_off
+    => #<Plane:0x007fb92a88ec18 @status=:flying, @location=:air>
+<!-- Plane cannot land if the airport is full: -->
+  2.2.3 :028 > airport.land(plane)
+    RuntimeError: Airport is full!
+  2.2.3 :027 > airport.full?
+    => true
+<!-- Plane cannot land if weather is stormy: -->
+  2.2.3 :042 > airport.land(plane)
+    RuntimeError: Landing denied. Weather is stormy!
+<!-- Plane cannot take-off if weather is stormy: -->
+  2.2.3 :052 > airport.take_off
+    RuntimeError: Take-off denied. Weather is stormy!
+<!-- Airport can have a specific capacity: -->
+  2.2.3 :053 > airport = Airport.new(50)
+    => #<Airport:0x007f9604181630 @planes=[], @capacity=50>
+<!-- Plane cannot land if it has already landed: -->
+  2.2.3 :003 > plane = Plane.new
+    => #<Plane:0x007fdeaa1e5ad8 @status=:flying, @location=:air>
+  2.2.3 :004 > airport.land(plane)
+    => #<Plane:0x007fdeaa1e5ad8 @status=:landed, @location=:airport>
+  2.2.3 :005 > airport.land(plane)
+    => "Plane has already landed"
+<!-- A plane taken-off from an airport is no longer in that airport: -->
+  2.2.3 :003 > plane = Plane.new
+    => #<Plane:0x007ff0ca13bf10 @status=:flying, @location=:air>
+  2.2.3 :004 > airport.land(plane)
+    => #<Plane:0x007ff0ca13bf10 @status=:landed, @location=:airport>
+  2.2.3 :005 > airport.planes
+    => [#<Plane:0x007ff0ca13bf10 @status=:landed, @location=:airport>]
+  2.2.3 :006 > airport.take_off
+    => #<Plane:0x007ff0ca13bf10 @status=:flying, @location=:air>
+  2.2.3 :007 > airport.planes
+    => []
+```
+
+Author: [Hamza Sheikh](https://github.com/hsheikhm)
