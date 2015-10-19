@@ -24,12 +24,14 @@ class Airport
     @planes.delete(plane)
   end
 
+  def set_capacity cap #use attr_accessor
+    @capacity = cap
+  end
+
+  private
+
   def full?
     @planes.count == @capacity
   end
-
-  def set_capacity cap
-    @capacity = cap
-  end  
 
 end
