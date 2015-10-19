@@ -30,23 +30,14 @@ I have attempted the bonus challenge by landing and taking off the maximum amoun
 Instructions
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_october2015 (edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+* Create an instance of the Airport class passing the name of the airport, a weather object and an [optional] capacity.
+* Create instances of the Plane class passing its ID.
+* Pass the plane objects to the take_off or land method on the airport object to make them fly of land.
 
 Task
 -----
+
+Below is an outline of the task given to us.
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
