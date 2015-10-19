@@ -60,6 +60,18 @@ require './lib/airport'
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate"
 
-p airport = Airport.new(100)
+# p airport = Airport.new(100)
 
 #puts "--------------"
+
+# puts "7th user story: As an air traffic controller
+# So the system is consistent and correctly reports plane status and location
+# I want to ensure a flying plane cannot take off and cannot be in an airport"
+
+# p plane = Plane.new
+# p airport = Airport.new
+# p plane2 =Plane.new
+
+# p airport.land(plane)
+# p airport.take_off(plane)
+# p airport.take_off(plane2)
