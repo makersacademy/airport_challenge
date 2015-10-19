@@ -54,7 +54,7 @@ Instructions
 ---------
 
 Elenis-MacBook:airport_challenge eleniskouroupathi$ irb
-
+```
 2.2.3 :001 > require './lib/airport.rb'
 => true 
 
@@ -69,3 +69,4 @@ Elenis-MacBook:airport_challenge eleniskouroupathi$ irb
 
 2.2.3 :005 > airport.take_off plane
 $ <Plane:0x007fe3208ba550 @flying=true>
+```
