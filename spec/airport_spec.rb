@@ -25,14 +25,18 @@ describe Airport do
 	end
 	
 	describe '#take_off' do
-		#let(:plane) { double(:plane) }
+		let(:plane) { double(:plane) }
 		it {is_expected.to respond_to(:take_off).with(1) }
-
-		it 'refuses to take off a plane that is flying' do
-			#plane = double(:plane, fly: true)
-			allow(plane).to receive(:fly).and_return(true)
-			expect {subject.take_off(plane)}.to raise_error("A flying plane cannot take off as it is not in this airport")
+		
+		it 'refuses to take off planes that are not at the airport' do 
+			expect {subject.take_off(plane)}.to raise_error("The plane did not land on this airport")
 		end
+		
+		# it 'refuses to take off a plane that is flying' do
+		# 	#plane = double(:plane, fly: true)
+		# 	allow(plane).to receive(:fly).and_return(true)
+		# 	expect {subject.take_off(plane)}.to raise_error("A flying plane cannot take off as it is not in this airport")
+		# end
 	end
 
 end

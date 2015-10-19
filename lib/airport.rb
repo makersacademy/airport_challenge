@@ -19,6 +19,7 @@ class Airport
 	end
 
 	def take_off(plane)
+		fail "The plane did not land on this airport" if !@planes_array.include?(plane)
 		fail "A flying plane cannot take off as it is not in this airport" if plane.flying
 		plane.fly
 		@planes_array.select { |i| i == plane }.pop
