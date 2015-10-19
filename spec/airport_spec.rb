@@ -14,6 +14,17 @@ describe Airport do
     expect(subject.planes).to_not include plane
   end
 
+  it 'does not allow plane to land in stormy weather' do
+    weather = double(:weather, :status => 'stormy')
+    expect { subject.land plane }.to raise_error "Weather is stormy!"
+  end
+
+  it 'does not allow plane to take_off in stormy weather' do
+    weather = double(:weather, :status => 'sunny')
+    subject.land plane
+    expect { subject.launch plane }.to raise_error "Weather is stormy!"
+  end
+
   it 'does not allow plane to land if airport full' do
     subject.capacity.times { subject.land plane }
     expect { subject.land plane }.to raise_error 'Airport is full'
@@ -24,7 +35,7 @@ describe Airport do
   end
 
   it 'allows capacity setting' do
-    subject.set_capacity(10)
+    subject.capacity = 10
     expect(subject.capacity).to eq 10
   end
 
