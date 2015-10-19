@@ -1,4 +1,5 @@
 require_relative 'airplane'
+require_relative 'weather'
 
 class Airport
   attr_accessor :airplane, :capacity
