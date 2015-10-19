@@ -50,7 +50,7 @@ describe Airport do
 
 		it "plane can not land if already landed" do
 	    expect { subject.land(plane1) }.to raise_error "Can not land, plane has already landed!"
-	    end
+	  end
 
 	  it "plane can land and then take off" do
 			allow(plane).to receive(:flying)
