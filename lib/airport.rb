@@ -1,27 +1,38 @@
 require_relative 'weather.rb'
+require_relative 'plane'
+include Weather
 
 class Airport
 
+  attr_reader :airport
 
-  def initialize
+  def initialize(capacity = 1)
     @airport = []
-    @bad_weather = nil
+    @capacity = capacity
   end
 
   def landing(plane)
-    raise 'airport is full' if @airport.length == 1
-    raise 'too stormy to land' if weather?(Weather.new.stormy?) == true
+    raise 'airport is full' if full?
+    raise 'too stormy to land' if stormy? == true
     @airport << plane
+    plane.land
   end
 
   def taking_off(plane)
-
+    raise 'too stormy to take off' if stormy? == true
+    raise 'airport is empty' if empty?
+    plane.take_off
+    @airport.pop
   end
 
-  def weather?(stormy)
-    @bad_weather = stormy
-    @bad_weather
+  private
+
+  def full?
+    @airport.length >= @capacity
   end
 
+  def empty?
+    @airport.length == 0
+  end
 
 end

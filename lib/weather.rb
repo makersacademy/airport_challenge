@@ -1,6 +1,5 @@
 
-
-class Weather
+module Weather
 
   attr_reader :stormy
 
@@ -9,10 +8,9 @@ class Weather
   end
 
   def stormy?
-    #n = rand(10)
-    #@stormy = true if n > 7
-    #@stormy = false if n <= 7
-    @stormy = true
+    n = rand(10)
+    @stormy = true if n > 7
+    @stormy = false if n <= 7
     @stormy
   end
 
