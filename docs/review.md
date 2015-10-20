@@ -3,8 +3,6 @@ Welcome to doing your first code review!  Firstly, don't worry - you are not exp
 
 If you don't feel comfortable giving technical feedback at this stage, try going through this guide with your reviewee and review the code together.
 
-At the very least, please checkout your reviewee's code and run the tests.  Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code?  How readable is their code?  Did you need to make any cognitive leaps to 'get it'?
-
 Please use [this form](http://goo.gl/forms/kFRD3a9Dlg) to record each of the following issues as they occur.  This form helps us get an overall picture of how the whole cohort is doing - it's not an assessment of an individual student.
 
 # Step 0: Checkout and Run tests
