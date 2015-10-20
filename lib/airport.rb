@@ -1,7 +1,6 @@
 class Airport
 
   attr_reader :planes
-  attr_accessor :capacity
   DEFAULT_CAPACITY = 50
 
   def initialize
@@ -26,7 +25,7 @@ class Airport
   private
 
   def full?
-    planes.length >= capacity
+    planes.length >= @capacity
   end
 
 end
