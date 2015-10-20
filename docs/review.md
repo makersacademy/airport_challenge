@@ -3,7 +3,11 @@ Welcome to doing your first code review!  Firstly, don't worry - you are not exp
 
 If you don't feel comfortable giving technical feedback at this stage, try going through this guide with your reviewee and review the code together.
 
-At the very least, please checkout your reviewee's code and run the tests.  Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code?  How readable is their code?  Did you need to make any cognitive leaps to 'get it'?
+Please use [this form](http://goo.gl/forms/kFRD3a9Dlg) to record each of the following issues as they occur.  This form helps us get an overall picture of how the whole cohort is doing - it's not an assessment of an individual student.
+
+# Step 0: Checkout and Run tests
+
+Please checkout your reviewee's code and run their tests. Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code? How readable is their code? Did you need to make any cognitive leaps to 'get it'?
 
 # Step 1: Structure and supporting files
 
@@ -89,7 +93,7 @@ it 'has the plane after landing' do
 end
 ```
 
-## Use before blocks to set up objects rather than repeat code
+## Use `before` blocks to set up objects rather than repeat code
 For example, to set up stubbing behaviour that is shared across a number of tests:
 ```ruby
 describe 'a group of tests that need to call #land on a plane double' do
@@ -101,7 +105,7 @@ describe 'a group of tests that need to call #land on a plane double' do
 end
 ```
 
-## Incomplete unit tests
+## Insufficient unit tests (test coverage)
 The following test on its own is not sufficient for testing the landing of planes:
 ```ruby
 describe Airport do
@@ -143,7 +147,7 @@ end
 
 And the airport has multiple planes, does it test that the _correct_ plane is removed from the airport?
 
-## Multiple Expects in `it` block
+## Multiple `expect`s in `it` block
 
 The above example _could_ be combined into one test, but this is not good practice:
 ```ruby
@@ -172,7 +176,7 @@ it 'does not allow plane to take off' do
 end
 ```
 
-## Handling Randomness in Tests
+## Handling randomness in tests
 
 It's important that tests don't fail randomly, so it's critical that any randomness in your application is stubbed out to ensure tests pass reliably, e.g.
 
@@ -186,7 +190,7 @@ specify 'a plane can land after storm has cleared' do
 end
 ```
 
-## Getting rid of redundant respond_to methods
+## Getting rid of redundant `respond_to` expectations
 
 note that tests like this:
 
@@ -214,7 +218,7 @@ The `respond_to` tests are an initial step you go through using the tests to dri
 
 # Step 3: Application code and \*.rb files
 
-## Naming conventions, and matching the domain model
+## Naming conventions and matching the domain model
 
 In general it's critical for maintainability that code is readable.  We want to ensure that other developers (and ourself in the future) can come to the codebase and make sense of what's going on.  That's supported by having the naming conventions match that of the ruby community and of the domain model (in this case 'air traffic control').
 
@@ -246,6 +250,9 @@ This allows us to write readable code like so:
 $ airport = Airport.new
 $ airport.land(plane)
 ```
+
+* [Ruby Style Guide: CamelCase for classes and modules](https://github.com/bbatsov/ruby-style-guide#camelcase-classes)
+* [Ruby Style Guide: snake_case for symbols, methods and variables](https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars)
 
 ## Commented-out code
 
@@ -303,6 +310,9 @@ fail 'Airport full' if full?
 # logic
 # in method body
 ```
+
+* [Style Guide: No Nested Conditionals](https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals)
+* [Style Guide: If as a modifier](https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier)
 
 ### Implicit return of booleans
 

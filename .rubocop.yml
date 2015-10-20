@@ -1,8 +1,9 @@
 AllCops:
-  DisabledByDefault: true
+  DisabledByDefault: false
   DisplayCopNames: true
   DisplayStyleGuide: true
-
+  RunRailsCops: false
+  
 inherit_from:
   - enabled.yml
   - disabled.yml
