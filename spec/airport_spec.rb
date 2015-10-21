@@ -49,4 +49,14 @@ describe Airport do
       capacity = Airport.new(10)
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
+
+  it 'expect that a landed plane is in the airport' do
+    allow(subject).to receive(:stormy?).and_return(false)
+    subject.landing(plane)
+    expect(subject.airport).to include(plane)
+  end
+
+  it 'expect that a not flying plane cant land' do
+    
+  end
 end
