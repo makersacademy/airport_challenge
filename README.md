@@ -1,29 +1,39 @@
 Airport Challenge
 =================
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+
+[![Build Status](https://travis-ci.org/dearshrewdwit/airport_challenge.svg?branch=master)](https://travis-ci.org/dearshrewdwit/airport_challenge)
 
 Instructions
----------
+--------
+1. Fork this repo, and clone to your local machine `git clone <url>`
+2. Run the command `gem install bundle`
+3. When the installation completes, run `bundle`
+4. In the Gemfile, ensure ruby version is 2.2.3 in order to run RSpec tests (from project root directory)
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-* If you do not submit a pull request, we will not be able to see your progress
+Ensure you open `irb`, or `pry` from the project directory.
+* Only Airports are allowed to instruct Planes to land or take off
+* Remember to park newly created planes at your chosen airport before instructing them to take off
+* There is a 20% chance bad weather will prevent landing and taking off
 
-Steps
--------
+```ruby
+$ irb # from project directory
+> require './lib/airport'
+> heathrow = Airport.new('LHR')
+> jfk = Airport.new('JFK', 5)
+> plane1 = Plane.new
+> plane2 = Plane.new
+> heathrow.move_to_hangar(plane1)
+> heathrow.move_to_hangar(plane2)
+> heathrow.take_off(plane1)
+> heathrow.take_off(plane2)
+> jfk.land(plane1)
+> jfk.land(plane2)
+```
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_october2015 (edit week 1 - you can edit directly on Github)
-2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
-4. When the installation completes, run `bundle`
-3. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
+User Stories
+----
+Here are the user stories that we worked out in collaboration with the client:
 ```
 As an air traffic controller
 So planes can land safely at my airport
@@ -61,27 +71,35 @@ As an air traffic controller
 So the system is consistent and correctly reports plane status and location
 I want to ensure a plane that has taken off from an airport is no longer in that airport
 ```
+Approach
+------
+My approach to solving this challenge was to start with an Airport class, build it as much as I could until I needed to start understanding how one class object would change another. I did pretty well with a TDD approach until the last few problems arose where I didn't know how to write the tests to get what I wanted to happen. Because I didn't know how to even make the code work. It involved a lot of playing around in pry and tweaking until there was some semblance of satisying the user stories.
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+My approach could definitely be improved upon, but I found this challenge immensely interesting. The most difficult thing I found was keeping the tests in isolation with mocks and stubs because of the way I solved this challenge. I think there was definitely an easier way.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
+Weather
+---------
+* I found it conceptually simpler to have weather be simply a true/false airport attribute labelled 'stormy'.
+* The User Story indicated this was acceptable by saying only prevent take_off and land when it is stormy.
+* This also allows different airports to generate their own weather
 
-The submission will be judged on the following criteria:
+Airport
+=======
+Land method
+---------
+* Airports couldn't land planes that were already at an airport.
+* This meant a plane would have to have a location attribute which the airport checked before allowing it to land.
+* Which meant that an airport needed to tell the plane where it had landed by having its own name attribute and changing the plane's location attribute upon a successful landing.
 
-* Tests pass
-* [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) is good
-* The code is elegant: every class has a clear responsibility, methods are short etc.
+Take_off method
+---------
+* Airports couldn't tell planes to take off that were flying, not at the airport, or when it was stormy.
+* For me that was 3 guard conditions and a way to modify the attribute of a plane upon a successful take off.
 
-**BONUS**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Planes
+---------
+* I didn't want the in_flight attribute to be writeable, just readable. In which case I couldn't set it from the Airport class, and I couldn't call a private plane method from the airport class, so I decided to have public methods to access from Airport, but with guard conditions to ensure a plane couldn't call a lands or a takes_off method on itself, only an airport could do so successfully.
+* Interestingly a problem developed when instantiating a Plane because an Airport couldn't immediately give it a location. And thus an airport couldn't give land it and tell it to takes_off. So I used a workaround solution that involved an airport method to park a newly created plane in an airport. And then it could take off.
+* As a result every plane has a location and a flight status attribute that is modified when an Airport tells it to land or take off. It can never be in more than one place.
