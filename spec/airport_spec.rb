@@ -5,7 +5,7 @@ describe Airport do
   let(:weather){double :weather, stormy?: false}
   subject(:airport) {described_class.new weather}
 
-  context 'airport default capacity' do
+  context 'airport at default capacity' do
 
     it 'does not exceed default capacity' do
       allow(plane).to receive(:land)
@@ -17,7 +17,7 @@ describe Airport do
   context 'airport default capacity overridden' do
     NEW_AIRPORT_CAPACITY = 20
     subject(:airport) {described_class.new weather, NEW_AIRPORT_CAPACITY }
-    it 'airport default capacity can be overridden' do
+    it 'airport default capacity is overridden' do
       allow(plane).to receive(:land)
       NEW_AIRPORT_CAPACITY.times{airport.land(plane)}
       expect{ airport.land(plane)}.to raise_error 'Airport is full'
@@ -31,7 +31,7 @@ describe Airport do
   end
 
   context 'land plane in good weather' do
-    it 'a plane can land at the airport' do
+    it 'a plane can land in good weather' do
       allow(plane).to receive(:land)
       airport.land(plane)
       expect(airport.planes).to include plane
@@ -39,7 +39,7 @@ describe Airport do
   end
 
   context 'land plane in bad weather' do
-    it 'a plane cannot land at the airport in bad weather' do
+    it 'a plane cannot land in bad weather' do
       allow(plane).to receive(:land)
       allow(weather).to receive(:stormy?) {true}
       expect{ airport.land(plane)}.to raise_error 'Weather is stormy'
