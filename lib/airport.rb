@@ -6,7 +6,7 @@ class Airport
 
   attr_reader :planes
 
-  def initialize(weather, capacity=DEFAULT_CAPACITY)
+  def initialize( weather, capacity=DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
     @weather = weather
@@ -20,7 +20,7 @@ class Airport
   end
 
   def dispatch( plane)
-    raise "Plane is not at airport" if !@planes.include?plane
+    raise "Plane is not at airport" unless @planes.include?plane
     raise "Weather is stormy" if @weather.stormy?
     plane.take_off
     @planes.delete(plane)
