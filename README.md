@@ -1,3 +1,53 @@
+Begin Update
+============
+
+Author : Rob Youngman
+
+Three classes have been implemented to solve the challenge.
+
+Class Airport
+  * initialize(weather, capacity=NEW_DEFAULT_CAPACITY)
+    * optional capacity argument which overrides the airport's default capacity
+  * land(plane)
+    * fails if airport full
+    * fails if weather stormy
+  * dispatch(plane)
+    * fails if plane not at airport
+    * fails if weather stormy
+  * planes
+    * array of planes currently landed at the airport
+
+Class Weather
+  *initialize
+    * creates a random number generator used for generating the state of the weather
+  * stormy?
+    * returns true or false based on the generated random number
+
+Class Plane
+  * initialize
+    * set flying = true
+  * land
+    * fails if plane not flying
+    * set flying = false
+  * take_off
+    * fails if plane flying
+    * set flying = true
+
+IMPORTANT - design decision to create planes with state flying so planes have to land BEFORE they can take off!
+
+Instructions
+============
+
+weather = Weather.new
+airport = Airport.new weather
+plane = Plane.new
+
+airport.land(plane)
+airport.dispatch(plane)
+
+End of Update
+=============
+
 Airport Challenge
 =================
 
