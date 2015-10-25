@@ -1,6 +1,4 @@
-
-
-Airport Challenge [![Build Status](https://travis-ci.org/hsheikhm/airport_challenge.svg?branch=master)](https://travis-ci.org/hsheikhm/airport_challenge)
+Airport Challenge [![Build Status](https://travis-ci.org/hsheikhm/airport_challenge.svg?branch=master)](https://travis-ci.org/hsheikhm/airport_challenge) [![Coverage Status](https://coveralls.io/repos/hsheikhm/airport_challenge/badge.svg?branch=master&service=github)](https://coveralls.io/github/hsheikhm/airport_challenge?branch=master)
 =================
 
 * [Task](#task)
