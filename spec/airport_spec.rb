@@ -4,7 +4,7 @@ describe Airport do
 
   subject(:airport) { described_class.new }
 
-  let(:plane) { double(:plane, :flying => :plane, :landed => :plane, :flying? => true) }
+  let(:plane) { double(:plane, flying: :plane, landed: :plane, flying?: true) }
 
   before { allow(airport).to receive(:stormy?) { false } }
 
@@ -35,7 +35,8 @@ describe Airport do
 
       it 'weather is stormy' do
         allow(airport).to receive(:stormy?) { true }
-        expect{airport.land(plane)}.to raise_error 'Landing denied. Weather is stormy!'
+        error_msg = 'Landing denied. Weather is stormy!'
+        expect{airport.land(plane)}.to raise_error error_msg
       end
 
     it 'plane is already landed and is in the airport' do
@@ -56,7 +57,8 @@ describe Airport do
       it 'weather is stormy' do
         airport.land(plane)
         allow(airport).to receive(:stormy?) { true }
-        expect{airport.take_off}.to raise_error 'Take-off denied. Weather is stormy!'
+        error_msg = 'Take-off denied. Weather is stormy!'
+        expect{airport.take_off}.to raise_error error_msg
       end
 
       it 'it is already flying' do
