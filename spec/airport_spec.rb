@@ -29,20 +29,20 @@ describe Airport do
     context 'does not land a plane when:' do
 
       it 'airport is full' do
-        described_class::DEFAULT_CAPACITY.times { airport.land(plane) }
-        expect{airport.land(plane)}.to raise_error 'Airport is full!'
+          described_class::DEFAULT_CAPACITY.times { airport.land(plane) }
+          expect{airport.land(plane)}.to raise_error 'Airport is full!'
       end
 
       it 'weather is stormy' do
-        allow(airport).to receive(:stormy?) { true }
-        error_msg = 'Landing denied. Weather is stormy!'
-        expect{airport.land(plane)}.to raise_error error_msg
+          allow(airport).to receive(:stormy?) { true }
+          error_msg = 'Landing denied. Weather is stormy!'
+          expect{airport.land(plane)}.to raise_error error_msg
       end
 
-    it 'plane is already landed and is in the airport' do
-      allow(plane).to receive(:flying?) { false }
-      expect(airport.land(plane)).to eq 'Plane has already landed'
-    end
+      it 'plane is already landed and is in the airport' do
+        allow(plane).to receive(:flying?) { false }
+        expect(airport.land(plane)).to eq 'Plane has already landed'
+      end
     end
   end
 
@@ -52,22 +52,22 @@ describe Airport do
       expect(airport).to respond_to(:take_off)
     end
 
-    context 'does not take off a plane when:' do
+      context 'does not take off a plane when:' do
 
-      it 'weather is stormy' do
+        it 'weather is stormy' do
         airport.land(plane)
         allow(airport).to receive(:stormy?) { true }
         error_msg = 'Take-off denied. Weather is stormy!'
         expect{airport.take_off}.to raise_error error_msg
-      end
+        end
 
-      it 'it is already flying' do
+        it 'it is already flying' do
         allow(plane).to receive(:location) { :air }
         airport.land(plane)
         airport.take_off
         expect(plane.location).to be :air
+        end
       end
-    end
 
     it 'plane is no longer in airport after take-off' do
       airport.land(plane)
@@ -76,16 +76,16 @@ describe Airport do
     end
   end
 
-    context '#stormy? returns:' do
+      context '#stormy? returns:' do
 
-      it "'true' when greater than 0.95" do
+        it "'true' when greater than 0.95" do
         x = rand(0.96..1.0)
         expect(x > 0.95).to eq true
-    end
+        end
 
-      it "'false' when less than 0.95" do
+        it "'false' when less than 0.95" do
         x = rand(0..0.95)
         expect(x > 0.95).to eq false
       end
     end
-end
+  end

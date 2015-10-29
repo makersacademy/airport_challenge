@@ -12,14 +12,14 @@ class Airport
   end
 
   def land(plane)
-    raise 'Airport is full!' if full?
-    raise 'Landing denied. Weather is stormy!' if stormy?
+    fail 'Airport is full!' if full?
+    fail 'Landing denied. Weather is stormy!' if stormy?
     plane.flying? ? (planes << plane; plane.landed) : 'Plane has already landed'
   end
 
   def take_off
-    raise 'No planes at airport' unless planes_available?
-    raise 'Take-off denied. Weather is stormy!' if stormy?
+    fail 'No planes at airport' unless planes_available?
+    fail 'Take-off denied. Weather is stormy!' if stormy?
     planes.pop.flying
   end
 
