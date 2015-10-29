@@ -86,6 +86,6 @@ describe Airport do
         it "'false' when less than 0.95" do
         x = rand(0..0.95)
         expect(x > 0.95).to eq false
+        end
       end
-    end
-  end
+end
