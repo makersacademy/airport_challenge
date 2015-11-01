@@ -39,9 +39,16 @@ describe Airport do
       before do
         allow(weather).to receive(:stormy?).and_return false
       end
+
       it 'instruct a plane to take off' do
         expect(airport).to respond_to(:take_off).with(1).argument
       end
+
+      it 'return the plane that took off' do
+        airport.land(plane)
+        expect(airport.take_off(plane)) .to eq plane 
+      end
+
       it 'raise and error if plain not at the airport' do
         airport_2 = described_class.new(weather, 20)
         airport_2.land(plane)
