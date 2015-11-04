@@ -16,7 +16,8 @@ class Airport
   def instruct_to_land(plane)
     fail 'The airport is full.' if full?
     fail 'The weather is stormy, landing is not allowed.' if stormy?
-    # fail 'Only flying planes can land.' if plane.flying == false
+    fail 'Only flying planes can land.' if :flying? == false
+    :land
     @planes << plane
     @planes.last
   end
