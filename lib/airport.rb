@@ -1,47 +1,45 @@
-require './lib/plane.rb'
 class Airport
-  attr_reader :planes, :capacity, :where
+  DEFAULT_CAPACITY = 20
+  attr_reader :planes
 
-  CAPACITY = 1
-
-  def initialize(capacity=CAPACITY)
+  def initialize(opts)
+    @capacity = opts.fetch(:capacity, DEFAULT_CAPACITY)
+    @weather_reporter = opts[:weather_reporter]
     @planes = []
-    @capacity = capacity
   end
 
   def land(plane)
-    raise "Cannot land, capacity full" if full?
-    raise "Cannot land, weather is stormy" if stormy?
-    plane.log(self)
-    @planes << plane
+    raise 'Cannot land plane: airport full' if full?
+    raise 'Cannot land plane: weather is stormy' if stormy?
+    plane.land(self)
+    planes << plane
   end
 
   def take_off(plane)
-    fail "Cannot take off, weather is stormy" if stormy?
-    fail "No planes to take off" if planes.empty?
-    fail 'this plane not at this airport' if  !plane_logged?(plane)
-    plane.unlog
-    @planes.delete(plane)
+    raise 'Cannot take off plane: weather is stormy' if stormy?
+    raise 'Cannot take off plane: plane not at this airport' unless at_airport?(plane)
+    plane.take_off
+    remove_plane(plane)
+    plane
   end
 
   private
 
-  def full?
-    @planes.count == @capacity
-  end
+  attr_reader :capacity, :weather_reporter
 
-  def weather_stormy?
-    weather = ["sunny", "cold", "fog", "raining", "stormy"]
-    index=rand(4)
-    weather[index] == "stormy"? true : false
+  def full?
+    planes.length >= capacity
   end
 
   def stormy?
-    weather_stormy?
+    weather_reporter.stormy?
   end
 
-  def plane_logged?(plane)
-    @planes.include? plane
+  def at_airport?(plane)
+    planes.include? plane
   end
 
+  def remove_plane(plane)
+    planes.delete_if { | landed_plane | landed_plane == plane }
+  end
 end

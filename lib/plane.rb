@@ -1,20 +1,31 @@
 class Plane
 
-attr_reader :status, :where
-
   def initialize
-    @status = "Flying"
+    @flying = true
+    @airport = nil
   end
 
-  def log(airport)
-    fail "Plane already at airport" if status == "Not Flying"
-    @where = airport
-    @status = "Not Flying"
+  def take_off
+    raise 'Plane cannot take off: plane already flying' if flying
+    @flying = true
   end
 
-  def unlog
-    fail "Plane already flying" if status == "Flying"
-    @where = "In Air"
-    @status = "Flying"
+  def land(airport)
+    raise 'Plane cannot land: plane already landed' if landed
+    @airport = airport
+    @flying = false
+  end
+
+  def airport
+    raise 'Plane cannot be at an airport: plane already flying' if flying
+    @airport
+  end
+
+  private
+
+  attr_reader :flying
+
+  def landed
+    !flying
   end
 end

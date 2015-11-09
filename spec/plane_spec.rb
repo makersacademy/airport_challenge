@@ -1,18 +1,36 @@
 require 'plane'
 
 describe Plane do
+  subject(:plane) { described_class.new }
+  let(:airport) { double :airport }
 
-  let(:airport) {double(:airport)}
+  describe '#take_off' do
+    it { is_expected.to respond_to :take_off }
 
-  it { is_expected.to respond_to(:log).with(1).argument}
-  it { is_expected.to respond_to(:unlog)}
-
-  it "already at the airport" do
-    expect {subject.log airport }.to raise_error("Plane already at airport")
+    it 'raises an error if already flying' do
+      expect { plane.take_off }.to raise_error 'Plane cannot take off: plane already flying'
+    end
   end
 
-  it "already flying" do
-    expect {subject.unlog}.to raise_error("Plane already flying")
+  describe '#land' do
+    it { is_expected.to respond_to :land }
+
+    it 'raises an error if already landed' do
+      plane.land(airport)
+      expect { plane.land(airport) }.to raise_error 'Plane cannot land: plane already landed'
+    end
   end
 
+  describe '#airport' do
+    it { is_expected.to respond_to :airport }
+
+    it 'raises an error if already flying' do
+      expect { plane.airport }.to raise_error 'Plane cannot be at an airport: plane already flying'
+    end
+
+    it 'returns the airport the plane is landed at' do
+      plane.land(airport)
+      expect(plane.airport).to eq airport
+    end
+  end
 end
