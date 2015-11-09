@@ -1,4 +1,4 @@
-rrequire 'airport'
+require 'airport'
 
 describe Airport do
   let(:weather_reporter) { double :weather_reporter }
