@@ -1,7 +1,8 @@
-module Weather
+class Weather
 
   def stormy?
-    rand(100) > 50
+    # Kernel is used for stubbing randomness
+    Kernel.rand(10) > 5
   end
 
 end
