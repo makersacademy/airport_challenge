@@ -1,9 +1,5 @@
-module Weather
-  def storm?
-    weather_randomizer <= 1? true : false
-  end
-
-  def weather_randomizer
-    rand(0..10)
+class Weather
+  def stormy?
+    Kernel.rand(1..6)> 4
   end
 end
