@@ -70,17 +70,17 @@ The submission will be reviewed using the following criteria:
 * Testing set up:
   * [ ] Uses named subject with `described_class`
   * [ ] Uses `context` and `describe` blocks to create test scopes
-  * [ ] Avoids vacuous tests
-  * [ ] Sufficient [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md)
+  * [ ] Avoids Vacuous tests
   * [ ] Use `before` blocks to set up objects rather than repeat code
+  * [ ] Sufficient [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md)
   * [ ] Avoids multiple `expect`s in `it` block
   * [ ] Handles randomness in tests
-  * [ ] Gets rid of redundant `respond_to` expectations
+  * [ ] Eliminates redundant `respond_to` expectations
   * [ ] Tests all green
 * Application Code:
   * [ ] Naming conventions match the domain model
   * [ ] Has no commented out code
-  * [ ] Conditionals are refactored
+  * [ ] Conditionals are refactored to minimum possible
   * [ ] Uses implicit return of booleans
   * [ ] Does not expose internal implementation
   * [ ] Classes and methods have clear single responsibilities
@@ -88,6 +88,7 @@ The submission will be reviewed using the following criteria:
   * [ ] Avoids magic numbers
   * [ ] Prefers symbols to strings
   * [ ] Methods are named as commands OR queries
+  * [ ] Makes correct use of attr_* methods
   * [ ] Avoids redundant lines of code 
 
 
