@@ -1,17 +1,35 @@
 # Introduction
 Welcome to doing your first code review!  Firstly, don't worry - you are not expected to have all the answers. The following is a code-review scaffold for Airport Challenge that you can follow if you want to.  These are common issues to look out for in this challenge - but you may decide to take your own route.
 
-If you don't feel comfortable giving technical feedback at this stage, try going through this guide with your reviewee and review the code together.
+Either way we'd very much appreciate you submitting the form, even if it's just to say that you didn't use it :-)
 
-Please use [this form](http://goo.gl/forms/kFRD3a9Dlg) to record each of the following issues as they occur.  This form helps us get an overall picture of how the whole cohort is doing - it's not an assessment of an individual student.
+Please use [this form](http://goo.gl/forms/kFRD3a9Dlg) to tick off where your reviewee has successfully has successfully incorporated these guidelines!  This form helps us get an overall picture of how the whole cohort is doing - it's not an assessment of an individual student.
 
 # Step 0: Checkout and Run tests
 
 Please checkout your reviewee's code and run their tests. Read the code and try some manual feature tests in IRB. How easy is it to understand the structure of their code? How readable is their code? Did you need to make any cognitive leaps to 'get it'?
 
-# Step 1: Structure and supporting files
+# Step 1:  How far did they get?
 
-## README not updated
+* Features
+  * [ ] Plane status
+  * [ ] Plane landing
+  * [ ] Plane takeoff
+  * [ ] Storms prevent landing
+  * [ ] Storms prevent takeoff
+  * [ ] Full airport cannot land planes
+  * [ ] Variable and default capacity
+  * [ ] Errors raised for inconsistent actions
+
+* Bonus Features
+  * [ ] RSpec Feature test
+
+The relevance of the subsequent steps may depend on how far the reviewee got with their challenge
+
+
+# Step 2: Structure and supporting files
+
+## README is updated
 
 Please do update your README following the [contribution notes](https://github.com/makersacademy/airport-challenge/blob/master/CONTRIBUTING.md), i.e.
 * Make sure you have written your own README that briefly explains your approach to solving the challenge.
@@ -28,7 +46,7 @@ $ irb
  => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
 2.2.3 :002 > plane = Plane.new
  => #<Plane:0x007fafdb0041b8>
-2.2.3 :003 > airport.land plane
+2.2.3 :003 > plane.land(airport)
  => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
 2.2.3 :004 >
 ```
@@ -36,6 +54,7 @@ $ irb
 # Step 2: Tests and \*\_spec.rb files  
 
 ## Use named subject with `described_class`
+
 It's easy to use `let` or `subject` or to create a local variable to refer to the class under test.  However, prefer instead to [name the subject explicitly](https://www.relishapp.com/rspec/rspec-core/docs/subject/explicit-subject), using `described_class` to refer to the class:
 
 ```ruby
@@ -63,7 +82,7 @@ If a group of tests share the same setup or are related logically, group them in
 
 `let`, `subject` and `before` statements inside a context or describe block will only run for tests inside the block and will override similar statements in an outer block.
 
-## Vacuous tests
+## Avoid Vacuous Tests
 
 Sometimes you are not really testing anything in your application code e.g.
 
@@ -73,12 +92,13 @@ subject(:plane) { described_class.new }
 let(:airport) { double: airport }
 
 it 'is in the airport after landing' do
-  allow(airport).to receive(:land)
+  allow(airport).to receive(:clear_for_landing)
   allow(airport).to receive(:planes).and_return [plane]
-  airport.land(plane)
+  airport.clear_for_landing(plane)
   expect(airport.planes).to include plane
 end
 ```
+
 All this does is test the stubbing behaviour of the `airport` double - it's not testing any of the actual application code.  This is often caused by a test being in the wrong place.  Since the expectation is on the state of `airport`, this is a strong indication that this test should be in `airport_spec.rb`:
 
 ```ruby
@@ -87,78 +107,81 @@ subject(:airport) { described_class.new }
 let(:plane) { double :plane }
 
 it 'has the plane after landing' do
-  allow(:plane).to receive(:land)
-  airport.land(plane)
+  airport.clear_for_landing(plane)
   expect(airport.planes).to include plane
 end
 ```
 
 ## Use `before` blocks to set up objects rather than repeat code
+
 For example, to set up stubbing behaviour that is shared across a number of tests:
 ```ruby
-describe 'a group of tests that need to call #land on a plane double' do
+describe 'a group of tests that need to call #clear_for_landing on a plane double' do
   before do
-    allow(plane).to receive(:land)
+    allow(plane).to receive(:clear_for_landing)
   end
 
   it ...
 end
 ```
 
-## Insufficient unit tests (test coverage)
+## Ensure Sufficient Unit Tests
+
 The following test on its own is not sufficient for testing the landing of planes:
-```ruby
-describe Airport do
-  subject(:airport) { described_class.new }
-  let(:plane) { double :plane }
 
-  it 'can land planes' do
-    allow(plane).to receive(:land)
-    subject.land plane
-    expect(subject.planes).to include plane
+```ruby
+describe Plane do
+  subject(:plane) { described_class.new }
+  let(:airport) { double :airport }
+
+  it 'can land at an airport' do
+    allow(airport).to receive(:clear_for_landing)
+    subject.land airport
+    expect(subject.location).to eq airport
   end
 end
 ```
 
-We are not testing that the `land` method of `plane` is called.  This should be included in a further test:
+We are not testing that the `clear_for_landing` method of `airport` is called.  This should be included in a further test:
 
 ```ruby
-describe 'landing planes' do
-  it 'instructs the plane to land' do
-    expect(plane).to receive(:land)
-    subject.land plane
+describe Plane do
+  it 'clears landing with the airport' do
+    expect(airport).to receive(:clear_for_landing)
+    plane.land airport
   end
 
-  it 'has the plane after it has landed' do
-    allow(plane).to receive(:land)
-    subject.land plane
-    expect(subject.planes).to include plane
+  it 'location is airport after landing' do
+    allow(airport).to receive(:clear_for_landing)
+    subject.land airport
+    expect(subject.location).to eq airport
   end
 end
 ```
 
-Does every implementation in the code have associated unit tests?  For example, if you take off a specific plane:
+Does every implementation in the code have associated unit tests?  For example, if you clear a specific plane for take off:
 
 ```ruby
-def take_off(plane)
+def clear_for_take_off(plane)
   ...
 end
 ```
 
 And the airport has multiple planes, does it test that the _correct_ plane is removed from the airport?
 
-## Multiple `expect`s in `it` block
+## Avoid multiple `expect`s in `it` block
 
-The above example _could_ be combined into one test, but this is not good practice:
+The previous example _could_ be combined into one test, but this is not good practice for unit tests:
+
 ```ruby
-it 'instructs the plane to land and then has the plane' do
-  expect(plane).to receive(:land)
-  subject.land plane
-  expect(subject.planes).to include plane
+it 'requests landing clearance and location is airport after landing' do
+  expect(airport).to receive(:clear_for_landing)
+  subject.land airport
+  expect(subject.location).to eq airport
 end
 ```
 
-Also, avoid additional `expect`s when stubbing.  Use `allow` instead:
+Also, avoid additional `expect`s when stubbing.  Prefer `allow`.  Avoid the following double expect:
 
 ```ruby
 it 'does not allow plane to take off' do
@@ -176,69 +199,72 @@ it 'does not allow plane to take off' do
 end
 ```
 
-## Handling randomness in tests
+## Stub Randomness in Tests
 
 It's important that tests don't fail randomly, so it's critical that any randomness in your application is stubbed out to ensure tests pass reliably, e.g.
 
 ```ruby
-specify 'a plane can land after storm has cleared' do
+describe 'storm blocks landing' do
   allow(weather).to receive(:stormy?).and_return true
   message = 'Unable to land due to stormy weather'
-  expect { airport.land(plane) }.to raise_error message
+  expect { plane.clear_for_landing(airport) }.to raise_error message
+end
+
+describe 'a plane can land after storm has cleared' do
   allow(weather).to receive(:stormy?).and_return false
-  expect { airport.land(plane) }.not_to raise_error
+  expect { plane.clear_for_landing(airport) }.not_to raise_error
 end
 ```
 
-## Getting rid of redundant `respond_to` expectations
+## Eliminate Redundant `respond_to` expectations
 
-note that tests like this:
+Note that tests like this:
 
 ```ruby
-it 'can land a plane' do
-  is_expected.to respond_to(:land).with(1).argument
+it 'can clear a plane for landing' do
+  is_expected.to respond_to(:clear_for_landing).with(1).argument
 end
 ```
 can be collapsed to one liners like this
 
 ```ruby
-it { is_expected.to respond_to(:land).with(1).argument }
+it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
 ```
 
 and also that these become somewhat redundant once you are actively testing the method like so:
 
 ```ruby
 it 'fails when the airport is full' do
-  airport.land(plane)
+  airport.clear_for_landing(plane)
   error = 'Cannot land since airport is full'
-  expect { airport.land(double :plane) }.to raise_error error
+  expect { airport.clear_for_landing(double :plane) }.to raise_error error
 end
 ```
 The `respond_to` tests are an initial step you go through using the tests to drive the creation of an objects public interface, and can safely be deleted once you have more sophisticated tests that check both the interface methods and their responses (and associated changes in state)  
 
 # Step 3: Application code and \*.rb files
 
-## Naming conventions and matching the domain model
+## Naming Convention Matching the Domain Model
 
 In general it's critical for maintainability that code is readable.  We want to ensure that other developers (and ourself in the future) can come to the codebase and make sense of what's going on.  That's supported by having the naming conventions match that of the ruby community and of the domain model (in this case 'air traffic control').
 
 So for example we might have the following:
 
 ```ruby
-class air_port
+class my_plane
 
-  def ExtractEntityFromSky(747-400)
+  def DescendToZeroAltitude(GATWICK)
     ...
   end
 end
 ```
 
-This breaks several [ruby coding conventions](https://github.com/bbatsov/ruby-style-guide).  If we don't follow these we will confuse other Ruby programmers.  Critical fails in the above are that in Ruby class names should be in CamelCase and method names should be in snake_case, and that variables (such as method parameters) can't start with a sequence of numbers.  We also have domain model issues here, in that `747-400` is too specific, and `ExtractEntityFromSky` is a convoluted way to say `land`.  So we would prefer the following:
+This breaks several [ruby coding conventions](https://github.com/bbatsov/ruby-style-guide).  If we don't follow these we will confuse other Ruby programmers.  Critical fails in the above are that in Ruby class names should be in CamelCase and method names should be in snake_case, and that variables (such as method parameters) should not be all caps.  We also have domain model issues here, in that `GATWICK` is too specific, and `DescendToZeroAltitude` is a convoluted way to say `land`.  So we would prefer the following:
 
 ```ruby
-class Airport
+class Plane
 
-  def land(plane)
+  def land(airport)
     ...
   end
 end
@@ -248,13 +274,14 @@ This allows us to write readable code like so:
 
 ```
 $ airport = Airport.new
-$ airport.land(plane)
+$ plane = Plane.new
+$ plane.land(airport)
 ```
 
 * [Ruby Style Guide: CamelCase for classes and modules](https://github.com/bbatsov/ruby-style-guide#camelcase-classes)
 * [Ruby Style Guide: snake_case for symbols, methods and variables](https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars)
 
-## Commented-out code
+## Remove all Commented-out code
 
 When submitting delete all "commented out" code.  You may not yet trust git to store all your old code, and you might not feel confident about rolling back to old commits to see that code, but that shouldn't be an excuse for leaving big chunks of commented out code in your files.  Make sure you commit to git (and push to GitHub) regularly, and start to get familiar with how to check out previous versions of your code.  If you are still worried store old versions of code in other files that you don't check in.  What we're trying to get you into the habit of, is polishing your submission so that it would be acceptable as a submission to a company as a technical test. So we don't want to see any of this:
 
@@ -270,7 +297,7 @@ end
 Just delete commented out lines in your final submission.  Descriptive comments are just about okay, but please prefer to try and make the code describe itself, e.g.
 
 ```ruby  
-  def land(plane) # this lands the plane at the airport
+  def clear_for_landing(plane) # checks for landing permission
     fail 'Cannot land since airport is full' if full?
     fail 'Unable to land due to stormy weather' if weather.stormy?
     planes << plane # this adds the plane to the planes at the airport
@@ -278,7 +305,7 @@ Just delete commented out lines in your final submission.  Descriptive comments 
   end
 ```
 
-Are the above comments really necessary? Comments like this aren't tested, can do out of date.  Prefer to name your methods so they describe exactly what they do.
+Are the above comments really necessary? Comments like this aren't tested, and so can easily go out of date.  Prefer to name your methods so they describe exactly what they do.
 
 ## Refactoring conditionals
 
@@ -292,10 +319,7 @@ if stormy?
 elsif full?
   fail 'Airport full'
 else
-  # normal
-  # programme
-  # logic
-  # in else block
+  planes << plane
 end
 ```
 
@@ -304,17 +328,13 @@ With:
 ```ruby
 fail 'Bad weather' if stormy?
 fail 'Airport full' if full?
-
-# normal
-# programme
-# logic
-# in method body
+planes << plane
 ```
 
 * [Style Guide: No Nested Conditionals](https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals)
 * [Style Guide: If as a modifier](https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier)
 
-### Implicit return of booleans
+### Use Implicit Return of Booleans
 
 Avoid ternaries and if/else to return booleans that can be returned implicitly:
 
@@ -344,7 +364,7 @@ def stormy?
 end
 ```
 
-## Do not expose internal implementation
+## Do not Expose Internal Implementation
 
 Be careful not to give 'public' access to objects and methods that are should only be accessed internally.  E.g.:
 
@@ -390,7 +410,7 @@ class Airport
     ...
   end
 
-  def take_off(plane)
+  def clear_for_take_off(plane)
     fail 'Unable to take off due to stormy weather' if weather.stormy?
     ...
   end
@@ -437,7 +457,7 @@ end
 ```
 Note: Ruby already handles the responsibility of choosing randomly from and array with the `sample` method.
 
-## Use of magic numbers (e.g. on capacity)
+## Avoid Magic Numbers (e.g. on capacity)
 
 ```ruby
 def initialize
@@ -455,11 +475,11 @@ def initialize
 end
 ```
 
-## Use of strings instead of symbols
+## Prefer Symbols over Strings
 
 Each time a string literal (e.g. `'flying'`) is interpreted by Ruby, a new string object is created in memory.  Therefore, every time a method is called that contains a string literal (e.g. `'sunny'`) a new object is created.  This can lead to lots of unnecessary objects being created when we're not interested in the _object identity_ of a string, just its _value_.  To overcome this, use symbols instead e.g.: `:flying`, `:sunny`.
 
-## Command/Query naming and separation
+## Separately name Command and Query methods
 
 Methods should be _either_ **commands** or **queries**, not both.  As a general rule:
 
@@ -470,9 +490,9 @@ Methods should be _either_ **commands** or **queries**, not both.  As a general 
 - Avoid depending on the return value of a command method (this rule is often broken!).
 - Never have query methods that alter program state.
 
-## Improper use of `attr_*`
+## Correctly use `attr_*`
 
-### Defining `attr_reader` then accessing the instance variable directly.
+### Avoid defining `attr_reader` then accessing the instance variable directly.
 
 ```ruby
 attr_reader :capacity
@@ -484,12 +504,12 @@ end
 
 Prefer delegating to the reader method (`planes.count >= capacity`) if it is defined, instead of accessing the instance variable.
 
-### Defining `attr_accessor` instead of `attr_reader`
+### Prefer `attr_reader` over `attr_accessor`
 
 `attr_accessor` allows a caller to change the attribute to any object they like.  In general, `attr_accessor` is a code smell.
 
 
-### Defining `attr_accessor` then defining another mutator (do one or the other)
+### Avoid using `attr_accessor` and then defining another mutator (do one or the other)
 
 ```ruby
 class Plane
@@ -514,7 +534,7 @@ plane.land
 ```
 *Prefer the custom method (`land`) for more control over the value of `@landed` and use `attr_reader` instead.*
 
-## Redundant lines of code
+## Avoid Redundant lines of code
 
 It's easy to have redundant lines of code hanging around.  Anything you think might be redundant can be checked by deleting it and re-running your tests.  If still green you didn't need that code.  If you think you really did then you need a test to match it - and you should have written that first before writing the code.
 
@@ -537,7 +557,7 @@ Note that by breaking some long lines (to go below 80 chars) in:
 
 ```ruby
   it 'a plane can only take off from an airport it is at' do
-    expect { airport.take_off(plane) }.to raise_error
+    expect { airport.clear_for_take_off(plane) }.to raise_error
     'The plane is not currently landed at this airport'
   end
 ```
@@ -547,6 +567,6 @@ creates two separate lines that are interpreted separately.  The expect now chec
 ```ruby
   it 'a plane can only take off from an airport it is at' do
     message = 'The plane is not currently landed at this airport'
-    expect { airport.take_off(plane) }.to raise_error message
+    expect { airport.clear_for_take_off(plane) }.to raise_error message
   end
 ```
