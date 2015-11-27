@@ -46,7 +46,7 @@ $ irb
  => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
 2.2.3 :002 > plane = Plane.new
  => #<Plane:0x007fafdb0041b8>
-2.2.3 :003 > plane.land(airport)
+2.2.3 :003 > airport.land(land)
  => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
 2.2.3 :004 >
 ```
@@ -92,9 +92,9 @@ subject(:plane) { described_class.new }
 let(:airport) { double: airport }
 
 it 'is in the airport after landing' do
-  allow(airport).to receive(:clear_for_landing)
+  allow(airport).to receive(:land)
   allow(airport).to receive(:planes).and_return [plane]
-  airport.clear_for_landing(plane)
+  airport.land(plane)
   expect(airport.planes).to include plane
 end
 ```
@@ -107,7 +107,8 @@ subject(:airport) { described_class.new }
 let(:plane) { double :plane }
 
 it 'has the plane after landing' do
-  airport.clear_for_landing(plane)
+  allow(:plane).to receive(:land)
+  airport.land(plane)
   expect(airport.planes).to include plane
 end
 ```
@@ -115,10 +116,11 @@ end
 ## Use `before` blocks to set up objects rather than repeat code
 
 For example, to set up stubbing behaviour that is shared across a number of tests:
+
 ```ruby
-describe 'a group of tests that need to call #clear_for_landing on a plane double' do
+describe 'a group of tests that need to call #land on a plane double' do
   before do
-    allow(plane).to receive(:clear_for_landing)
+    allow(plane).to receive(:land)
   end
 
   it ...
@@ -130,39 +132,39 @@ end
 The following test on its own is not sufficient for testing the landing of planes:
 
 ```ruby
-describe Plane do
-  subject(:plane) { described_class.new }
-  let(:airport) { double :airport }
+describe Airport do
+  subject(:airport) { described_class.new }
+  let(:plane) { double :plane }
 
-  it 'can land at an airport' do
-    allow(airport).to receive(:clear_for_landing)
-    subject.land airport
-    expect(subject.location).to eq airport
+  it 'can land planes' do
+    allow(plane).to receive(:land)
+    subject.land plane
+    expect(subject.planes).to include plane
   end
 end
 ```
 
-We are not testing that the `clear_for_landing` method of `airport` is called.  This should be included in a further test:
+We are not testing that the `land` method of `plane` is called.  This should be included in a further test:
 
 ```ruby
-describe Plane do
-  it 'clears landing with the airport' do
-    expect(airport).to receive(:clear_for_landing)
-    plane.land airport
+describe 'landing planes' do
+  it 'instructs the plane to land' do
+    expect(plane).to receive(:land)
+    subject.land plane
   end
 
-  it 'location is airport after landing' do
-    allow(airport).to receive(:clear_for_landing)
-    subject.land airport
-    expect(subject.location).to eq airport
+  it 'has the plane after it has landed' do
+    allow(plane).to receive(:land)
+    subject.land plane
+    expect(subject.planes).to include plane
   end
 end
 ```
 
-Does every implementation in the code have associated unit tests?  For example, if you clear a specific plane for take off:
+Does every implementation in the code have associated unit tests?  For example, if you take off a specific plane:
 
 ```ruby
-def clear_for_take_off(plane)
+def take_off(plane)
   ...
 end
 ```
@@ -174,10 +176,10 @@ And the airport has multiple planes, does it test that the _correct_ plane is re
 The previous example _could_ be combined into one test, but this is not good practice for unit tests:
 
 ```ruby
-it 'requests landing clearance and location is airport after landing' do
-  expect(airport).to receive(:clear_for_landing)
-  subject.land airport
-  expect(subject.location).to eq airport
+it 'instructs the plane to land and then has the plane' do
+  expect(plane).to receive(:land)
+  subject.land plane
+  expect(subject.planes).to include plane
 end
 ```
 
@@ -207,12 +209,12 @@ It's important that tests don't fail randomly, so it's critical that any randomn
 describe 'storm blocks landing' do
   allow(weather).to receive(:stormy?).and_return true
   message = 'Unable to land due to stormy weather'
-  expect { plane.clear_for_landing(airport) }.to raise_error message
+  expect { airport.land(plane) }.to raise_error message
 end
 
 describe 'a plane can land after storm has cleared' do
   allow(weather).to receive(:stormy?).and_return false
-  expect { plane.clear_for_landing(airport) }.not_to raise_error
+  expect { airport.land(plane) }.not_to raise_error
 end
 ```
 
@@ -221,25 +223,26 @@ end
 Note that tests like this:
 
 ```ruby
-it 'can clear a plane for landing' do
-  is_expected.to respond_to(:clear_for_landing).with(1).argument
+it 'can land a plane' do
+  is_expected.to respond_to(:land).with(1).argument
 end
 ```
 can be collapsed to one liners like this
 
 ```ruby
-it { is_expected.to respond_to(:clear_for_landing).with(1).argument }
+it { is_expected.to respond_to(:land).with(1).argument }
 ```
 
 and also that these become somewhat redundant once you are actively testing the method like so:
 
 ```ruby
 it 'fails when the airport is full' do
-  airport.clear_for_landing(plane)
+  airport.land(plane)
   error = 'Cannot land since airport is full'
-  expect { airport.clear_for_landing(double :plane) }.to raise_error error
+  expect { airport.land(double :plane) }.to raise_error error
 end
 ```
+
 The `respond_to` tests are an initial step you go through using the tests to drive the creation of an objects public interface, and can safely be deleted once you have more sophisticated tests that check both the interface methods and their responses (and associated changes in state)  
 
 # Step 3: Application code and \*.rb files
@@ -251,15 +254,15 @@ In general it's critical for maintainability that code is readable.  We want to 
 So for example we might have the following:
 
 ```ruby
-class my_plane
+class air_port
 
-  def DescendToZeroAltitude(GATWICK)
+  def ExtractEntityFromSky(747-400)
     ...
   end
 end
 ```
 
-This breaks several [ruby coding conventions](https://github.com/bbatsov/ruby-style-guide).  If we don't follow these we will confuse other Ruby programmers.  Critical fails in the above are that in Ruby class names should be in CamelCase and method names should be in snake_case, and that variables (such as method parameters) should not be all caps.  We also have domain model issues here, in that `GATWICK` is too specific, and `DescendToZeroAltitude` is a convoluted way to say `land`.  So we would prefer the following:
+This breaks several [ruby coding conventions](https://github.com/bbatsov/ruby-style-guide).  If we don't follow these we will confuse other Ruby programmers. Critical fails in the above are that in Ruby class names should be in CamelCase and method names should be in snake_case, and that variables (such as method parameters) can't start with a sequence of numbers. We also have domain model issues here, in that `747-400` is too specific, and `ExtractEntityFromSky` is a convoluted way to say `land`. So we would prefer the following:
 
 ```ruby
 class Plane
@@ -274,8 +277,7 @@ This allows us to write readable code like so:
 
 ```
 $ airport = Airport.new
-$ plane = Plane.new
-$ plane.land(airport)
+$ airport.land(plane)
 ```
 
 * [Ruby Style Guide: CamelCase for classes and modules](https://github.com/bbatsov/ruby-style-guide#camelcase-classes)
@@ -297,7 +299,7 @@ end
 Just delete commented out lines in your final submission.  Descriptive comments are just about okay, but please prefer to try and make the code describe itself, e.g.
 
 ```ruby  
-  def clear_for_landing(plane) # checks for landing permission
+  def land(plane) # this lands the plane at the airport
     fail 'Cannot land since airport is full' if full?
     fail 'Unable to land due to stormy weather' if weather.stormy?
     planes << plane # this adds the plane to the planes at the airport
@@ -410,7 +412,7 @@ class Airport
     ...
   end
 
-  def clear_for_take_off(plane)
+  def take_off(plane)
     fail 'Unable to take off due to stormy weather' if weather.stormy?
     ...
   end
@@ -557,7 +559,7 @@ Note that by breaking some long lines (to go below 80 chars) in:
 
 ```ruby
   it 'a plane can only take off from an airport it is at' do
-    expect { airport.clear_for_take_off(plane) }.to raise_error
+    expect { airport.take_off(plane) }.to raise_error
     'The plane is not currently landed at this airport'
   end
 ```
@@ -567,6 +569,6 @@ creates two separate lines that are interpreted separately.  The expect now chec
 ```ruby
   it 'a plane can only take off from an airport it is at' do
     message = 'The plane is not currently landed at this airport'
-    expect { airport.clear_for_take_off(plane) }.to raise_error message
+    expect { airport.take_off(plane) }.to raise_error message
   end
 ```
