@@ -15,7 +15,7 @@ Steps
 
 1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan_november2015 (edit week 1 - you can edit directly on Github)
 2. Fork this repo, and clone to your local machine
-3. run the command `gem install bundle`
+3. Run the command `gem install bundle` (if you don't have bundle already)
 4. When the installation completes, run `bundle`
 3. Complete the following task:
 
@@ -74,6 +74,6 @@ Note that is a practice 'tech test' of the kinds that employers use to screen de
 
 Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **You should pay attention to these - the results will be added to your pull request**.  Green is good.
+* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
