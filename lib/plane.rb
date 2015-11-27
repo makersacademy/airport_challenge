@@ -6,6 +6,6 @@ class Plane
   end
 
   def land
-
+    @status = :landed
   end
 end
