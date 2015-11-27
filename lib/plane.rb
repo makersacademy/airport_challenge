@@ -4,5 +4,8 @@ class Plane
   def initialize
     @status = :flying
   end
-  
+
+  def land
+
+  end
 end

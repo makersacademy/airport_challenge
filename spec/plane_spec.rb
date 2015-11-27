@@ -1,6 +1,7 @@
 require 'plane'
 
 describe Plane do
+  
   subject(:plane) { described_class.new }
 
   it { is_expected.to respond_to(:status) }
@@ -10,6 +11,15 @@ describe Plane do
 
     it 'is expected to respond with flying upon Plane initialization' do
       expect(plane.status).to eq(:flying)
+    end
+
+  end
+
+  describe '#land' do
+
+    it 'is expected to change the current @status of the plane to :landed' do
+      plane.land
+      expect(plane.status).to eq(:landed)
     end
 
   end
