@@ -1,8 +1,16 @@
 require 'plane'
 
 describe Plane do
-  subject(:airport) { described_class.new }
+  subject(:plane) { described_class.new }
 
   it { is_expected.to respond_to(:status) }
+
+  describe '#status' do
+
+    it 'is expected to respond with flying upon Plane initialization' do
+      expect(plane.status).to eq(:flying)
+    end
+
+  end
 
 end
