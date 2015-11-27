@@ -4,6 +4,7 @@ describe Plane do
   subject(:plane) { described_class.new }
 
   it { is_expected.to respond_to(:status) }
+  it { is_expected.to respond_to(:land) }
 
   describe '#status' do
 
