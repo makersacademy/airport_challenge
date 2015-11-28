@@ -16,11 +16,12 @@ describe Airport do
     end
 
     it 'Airport has a default capacity attribute(instance_variable)' do
-      expect(Airport.new).to have_attributes(:default_capacity=> 20)
+      expect(Airport.new).to have_attributes(:default_capacity => 20)
     end
 
-    it '[KEY BEHAVIOUR] Airport has a default capacity that can be over-ridden' do
-      expect(Airport.new(30).instance_variable_get(:@default_capacity)).to eq(30)
+    it '[KEY BEHAVIOUR]Airport has a default capacity & can be over-ridden' do
+      expect(Airport.new(30).instance_variable_get(:@default_capacity))
+      .to eq(30)
     end
 
   end
@@ -31,7 +32,8 @@ describe Airport do
     end
 
     it 'Airport can store/accept planes as array' do
-      expect(Airport.new.instance_variable_get(:@planes).class.name).to eq('Array')
+      expect(Airport.new.instance_variable_get(:@planes).class.name).
+      to eq('Array')
     end
 
   end
@@ -43,7 +45,8 @@ describe Airport do
     end
 
     it 'instruct_plane_to_land exists takes Plane as argument' do
-      expect(Airport.new).to respond_to(:instruct_plane_to_land).with(1).arguments
+      expect(Airport.new).to respond_to(:instruct_plane_to_land).
+      with(1).arguments
     end
 
     it 'planes in flight attribute/state can be changed to false(landed)' do
@@ -63,14 +66,16 @@ describe Airport do
     it 'confirmation message on landing' do
       a = Airport.new
       plane = Plane.new
-      expect {a.instruct_plane_to_land(plane)}.to output("Plane: #{plane} has landed. Status: Landed\n").to_stdout
+      expect {a.instruct_plane_to_land(plane)}.
+      to output("Plane: #{plane} has landed. Status: Landed\n").to_stdout
     end
 
     it '[Key Behaviour] Refuse landing if airport full' do
       a = Airport.new
       plane = Plane.new
       20.times { a.instruct_plane_to_land(Plane.new) }
-      expect {a.instruct_plane_to_land(plane)}.to raise_error("Airport full: Landing not possible")
+      expect {a.instruct_plane_to_land(plane)}.
+      to raise_error("Airport full: Landing Denied")
     end
   end
 
@@ -81,10 +86,11 @@ describe Airport do
     end
 
     it 'instruct_plane_to_take_off exists takes Plane as argument' do
-      expect(Airport.new).to respond_to(:instruct_plane_to_take_off).with(1).arguments
+      expect(Airport.new).to respond_to(:instruct_plane_to_take_off).
+      with(1).arguments
     end
 
-    it 'airport can command plane in flight attribute/state to be changed to in flight' do
+    it 'airport can tell @plane_in_flight to be changed to In-Flight' do
       a = Airport.new
       plane = Plane.new
       a.instruct_plane_to_land(plane)
@@ -104,7 +110,8 @@ describe Airport do
       a = Airport.new
       plane = Plane.new
       a.instruct_plane_to_land(plane)
-      expect {a.instruct_plane_to_take_off(plane)}.to output("Plane: #{plane} has departed. Status: In-Flight\n").to_stdout
+      expect {a.instruct_plane_to_take_off(plane)}.
+      to output("Plane: #{plane} has departed. Status: In-Flight\n").to_stdout
     end
   end
 
