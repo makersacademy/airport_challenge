@@ -7,6 +7,7 @@ class Airport
 
 
   def land(plane)
+    raise "Can't land in storm" if Weather.stormy?
     @landed_planes = plane
     plane.report_landed
   end

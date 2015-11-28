@@ -8,6 +8,7 @@ describe 'FEATURE TESTS' do
     let(:plane) {Plane.new}
 
     it 'allows planes to land and confirms that they are landed' do
+      allow(Weather).to receive(:stormy?).and_return(false)
       airport.land(plane)
       expect(plane.status).to eq :on_the_ground
     end
@@ -23,6 +24,12 @@ describe 'FEATURE TESTS' do
       allow(Weather).to receive(:stormy?).and_return(true)
       message = "Can't take off in storm"
       expect{airport.take_off(plane)}.to raise_error message
+    end
+
+    it 'prevents planes from landing if stormy' do
+      allow(Weather).to receive(:stormy?).and_return(true)
+      message = "Can't land in storm"
+      expect{airport.land(plane)}.to raise_error message
     end
 
     end

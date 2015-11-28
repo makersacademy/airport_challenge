@@ -15,6 +15,7 @@ describe Airport do
 
   describe '#land' do
     it 'allows a plane to land' do
+      allow(Weather).to receive(:stormy?).and_return(false)
       allow(plane).to receive(:report_landed)
       airport.land(plane)
       expect(airport.landed_planes).to eq plane
@@ -32,14 +33,24 @@ describe Airport do
       expect(airport.landed_planes).to eq nil
     end
 
+  end
+
+  context 'IN A STORM' do
+
     it 'prevents take off in stormy weather' do
+      allow(plane).to receive(:report_taken_off)
       allow(Weather).to receive(:stormy?).and_return(true)
       message = "Can't take off in storm"
       expect{airport.take_off(plane)}.to raise_error message
     end
 
+    it 'prevents planes from landing if stormy' do
+      allow(plane).to receive(:report_landed)
+      allow(Weather).to receive(:stormy?).and_return(true)
+      message = "Can't land in storm"
+      expect{airport.land(plane)}.to raise_error message
+    end
+
   end
 
-
-
-end
+  end
