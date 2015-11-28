@@ -1,4 +1,4 @@
-This is the repo containing the airport challenge.
+This is the repo containing the airport challenge. It will contain separate classes and spec files for the plane and airport. Each of these will have individual instances which will be the individual airports and planes.
 
 Author: Jonathan Gardiner
 
