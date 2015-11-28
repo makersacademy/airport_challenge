@@ -1,8 +1,9 @@
 require 'plane'
 
+
 class Airport
 
-  attr_reader :landed_planes
+  attr_reader :landed_planes, :current_weather
 
 
   def land(plane)
@@ -11,16 +12,14 @@ class Airport
   end
 
   def take_off(plane)
-
+    raise "Can't take off in storm" if Weather.stormy?
     @landed_planes = nil
     plane.report_taken_off
   end
 
 
 
-  def get_weather
 
-  end
 
 
 end
