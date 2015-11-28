@@ -63,10 +63,43 @@ describe Airport do
     it 'confirmitaion message on landing' do
       a = Airport.new
       plane = Plane.new
-      a.instruct_plane_to_land(plane)
-      expect {a.instruct_plane_to_land(plane)}.to output("Plane: #{plane} has landed. Status: #{plane.instance_variable_get(:@plane_in_flight)}").to_stdout
+      expect {a.instruct_plane_to_land(plane)}.to output("Plane: #{plane} has landed. Status: Landed\n").to_stdout
     end
 
+  end
+
+  describe 'Taking Off' do
+
+    it 'Airport method instruct_plane_to_take_off exists' do
+      expect(Airport.new).to respond_to(:instruct_plane_to_take_off)
+    end
+
+    it 'instruct_plane_to_take_off exists takes Plane as argument' do
+      expect(Airport.new).to respond_to(:instruct_plane_to_take_off).with(1).arguments
+    end
+
+    it 'airport can command plane in flight attribute/state to be changed to in flight' do
+      a = Airport.new
+      plane = Plane.new
+      a.instruct_plane_to_land(plane)
+      a.instruct_plane_to_take_off(plane)
+      expect(plane.instance_variable_get(:@plane_in_flight)).to eq "In-Flight"
+    end
+
+    it 'once plane has taken off is not in airport (@planes array)' do
+      a = Airport.new
+      plane = Plane.new
+      a.instruct_plane_to_land(plane)
+      a.instruct_plane_to_take_off(plane)
+      expect(a.instance_variable_get(:@planes)).not_to include(plane)
+    end
+
+    it 'confirmitaion message on take off' do
+      a = Airport.new
+      plane = Plane.new
+      a.instruct_plane_to_land(plane)
+      expect {a.instruct_plane_to_take_off(plane)}.to output("Plane: #{plane} has departed. Status: In-Flight\n").to_stdout
+    end
   end
 
 end

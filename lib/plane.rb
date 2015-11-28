@@ -8,6 +8,8 @@ class Plane
     @plane_in_flight = "Landed"
   end
 
-
+  def plane_taking_off
+    @plane_in_flight = "In-Flight"
+  end
 
 end

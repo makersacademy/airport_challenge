@@ -10,4 +10,12 @@ describe Plane do
     expect(Plane.new.instance_variable_get(:@plane_in_flight)).to be
   end
 
+  it 'plane method plane landing exists' do
+    expect(Plane.new).to respond_to(:plane_landing)
+  end
+
+  it 'plane method plane taking off exists' do
+    expect(Plane.new).to respond_to(:plane_taking_off)
+  end
+
 end
