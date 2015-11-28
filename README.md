@@ -8,7 +8,7 @@ Solution to [airport challenge](https://github.com/makersacademy/airport_challen
 | Object        | Messages         |
 
 | Passengers    | destination?     |
-|               |                  |
+| ------------- | ---------------: |
 | Plane         | land             |
 |               | take off         |
 |               |                  |
