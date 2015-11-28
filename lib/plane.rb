@@ -1,9 +1,9 @@
 class Plane
 
-  attr_reader :landed
+  attr_accessor :landed
 
-  def landed?(landed = true)
-    @landed = landed
+  def initialize
+    @landed = false
   end
 
 end

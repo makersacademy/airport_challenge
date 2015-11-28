@@ -10,8 +10,8 @@
  # airport = Airport.new
  # plane = Plane.new
  # airport.landing(plane)
- # plane.landed?
- #
+ # plane.landed
+
 
  # As an air traffic controller
  # So I can get passengers on the way to their destination
@@ -22,8 +22,7 @@
 # plane = Plane.new
 # airport.landing(plane)
 # airport.take_off(plane)
-# plane.landed?(false)
-
+# plane.landed
 
  # Airport <-- take_off --> Plane
  # Plane <-- landed? --> true/false

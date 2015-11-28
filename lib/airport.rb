@@ -6,11 +6,12 @@ class Airport
 
   def landing(plane)
     @plane = plane
+    @plane.landed = true
   end
 
   def take_off(plane)
     @plane = plane
-    @plane.landed?(false)
+    @plane.landed = false
   end
 
 
