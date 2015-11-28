@@ -14,7 +14,11 @@ describe Airport do
     expect(Airport::DEFAULT_CAPACITY).to eq(20)
   end
 
-  
+  it 'Airport has a default capacity attribute(instance_variable)' do
+    expect(Airport.new).to have_attributes(:default_capacity=> 20)
+  end
+
+
 
 
 
