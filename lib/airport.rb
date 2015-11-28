@@ -15,8 +15,9 @@ class Airport
   def land(plane)
     raise "Can't land, the airport is full" if @landed_planes.count >= capacity
     raise "Can't land in storm" if Weather.stormy?
+    plane.land(self)
     @landed_planes << plane
-    plane.report_landed
+
   end
 
   def take_off(plane)
