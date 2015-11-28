@@ -32,6 +32,13 @@ describe 'FEATURE TESTS' do
       expect{airport.land(plane)}.to raise_error message
     end
 
+    it 'prevents landing when the airport is full' do
+      allow(Weather).to receive(:stormy?).and_return(false)
+      airport.land(plane)
+      message = "Can't land, the airport is full"
+      expect {airport.land(plane)}.to raise_error message
+    end
+
     end
 
   end
