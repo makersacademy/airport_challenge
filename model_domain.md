@@ -1,4 +1,4 @@
-#USER STORIES
+##USER STORIES
 
 ```
 
@@ -34,7 +34,7 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 
 
-# DOMAIN MODEL
+## DOMAIN MODEL
     Objects         |    Messages                                                             
  -------------------| ------------------------------------------------------------------------
  Plane              | Land_at(airport) with confirm                                          
