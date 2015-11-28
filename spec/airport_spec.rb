@@ -6,4 +6,7 @@ describe Airport do
     expect(Airport).to be
   end
 
+  it 'Airport has a DEFAULT_CAPACITY(constant)' do
+    expect(Airport::DEFAULT_CAPACITY).to be
+  end
 end
