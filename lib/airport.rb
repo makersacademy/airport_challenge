@@ -1,12 +1,10 @@
 require 'plane'
 
-
 class Airport
 
   DEFAULT_CAPACITY = 100
 
   attr_reader :landed_planes, :capacity
-
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity

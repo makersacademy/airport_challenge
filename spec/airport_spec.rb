@@ -32,25 +32,16 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.landed_planes).to eq []
     end
-  end
 
-  it 'removes planes from airport after takeoff' do
-    allow(plane).to receive(:land)
-    allow(plane).to receive(:take_off)
-    allow(Weather).to receive(:stormy?).and_return(false)
-    airport.land(plane)
-    airport.take_off(plane)
-    expect(airport.landed_planes).to eq []
-  end
-
-  it 'removes the correct plane from the airport after take off' do
-    plane1 = double(:plane, land: nil, take_off: nil)
-    plane2 = double(:plane, land: nil, take_off: nil)
-    allow(Weather).to receive(:stormy?).and_return(false)
-    airport.land(plane1)
-    airport.land(plane2)
-    airport.take_off(plane1)
-    expect(airport.landed_planes).to eq [plane2]
+    it 'removes the correct plane from the airport after take off' do
+      plane1 = double(:plane, land: nil, take_off: nil)
+      plane2 = double(:plane, land: nil, take_off: nil)
+      allow(Weather).to receive(:stormy?).and_return(false)
+      airport.land(plane1)
+      airport.land(plane2)
+      airport.take_off(plane1)
+      expect(airport.landed_planes).to eq [plane2]
+    end
   end
 
   describe '#capactiy' do
