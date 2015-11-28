@@ -34,11 +34,27 @@ describe 'FEATURE TESTS' do
 
     it 'prevents landing when the airport is full' do
       allow(Weather).to receive(:stormy?).and_return(false)
-      airport.land(plane)
+      Airport::DEFAULT_CAPACITY.times{airport.land(plane)}
       message = "Can't land, the airport is full"
       expect {airport.land(plane)}.to raise_error message
     end
 
+    it 'has a default capacity ' do
+      allow(Weather).to receive(:stormy?).and_return(false)
+      expect(airport.capacity).to eq 100
+      100.times{airport.land(plane)}
+      message = "Can't land, the airport is full"
+      expect{airport.land(plane)}.to raise_error message
     end
 
-  end
+    it 'it\'s default capacity can be overridden' do
+      allow(Weather).to receive(:stormy?).and_return(false)
+      airport.update_capacity(150)
+      150.times{airport.land(plane)}
+      message = "Can't land, the airport is full"
+      expect{airport.land(plane)}.to raise_error message
+    end
+
+    end
+
+    end
