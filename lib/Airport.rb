@@ -1,10 +1,11 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :landed_planes
+  attr_reader :landed_planes, :weather_condition
 
   def initialize
     @landed_planes = []
+    @weather_condition = rand(1..5)
   end
 
   def instruct_to_land(plane)
@@ -14,12 +15,13 @@ class Airport
   end
 
   def instruct_take_off
+    raise "No planes can take off as it is stormy" if @weather_condition == 5
     raise "There are no planes in the airport" if @landed_planes == []
     plane = @landed_planes.pop
     plane.take_off
   end
 
   def weather
-    weather_condition = rand(1..5)
+    @weather_condition = rand(1..5)
   end
 end

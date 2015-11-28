@@ -40,7 +40,15 @@ describe Airport do
 
     it 'should raise an error if no planes are available to take off' do
       landed_planes = []
+      weather_condition = 1
       expect { subject.instruct_take_off }.to raise_error "There are no planes in the airport"
+    end
+
+    it 'should raise an error if the weather is stormy' do
+      plane = double(:plane, in_airport_status: false, land: true, take_off: false)
+      subject.instruct_to_land(plane)
+      weather_condition = 5
+      expect { subject.instruct_take_off }.to raise_error "No planes can take off as it is stormy"
     end
 
     it "should change the plane's status to not in airport" do
@@ -50,11 +58,10 @@ describe Airport do
   end
 
   describe '#weather' do
-    it 'should generate a number to indicate weather' do
+    it 'should set a weather condition' do
       subject.weather
-      test_values = [1,2,3,4,5]
-      Kernel.stub!(:rand).and_return(*test_values)
-  #    Kernel.expects(:rand).with(4).returns(1)
+      expect(subject.weather_condition).not_to be_nil
     end
+
   end
 end
