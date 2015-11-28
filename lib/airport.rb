@@ -23,8 +23,7 @@ class Airport
   def take_off(plane)
     fail "Can't take off in storm" if Weather.stormy?
     plane.take_off(self)
-    @landed_planes.delete(plane)
-
+    remove_planes_from_landed_planes(plane)
   end
 
   def update_capacity(capacity)
@@ -37,5 +36,9 @@ class Airport
 
   def at_capacity?
     landed_planes.count >= capacity
+  end
+
+  def remove_planes_from_landed_planes(plane)
+    @landed_planes.delete(plane)
   end
 end
