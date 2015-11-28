@@ -8,14 +8,13 @@ context 'airport'do
   it 'instructs a plane to land'do
     airport = Airport.new
     plane = Plane.new
-    expect(airport.land(plane)).to eq plane
+    expect(airport).to respond_to(:land).with(1).arguments
   end
   it 'instructs a plane to take off' do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
-    expect(airport.take_off(plane)).to eq plane
-  end
+    expect(airport).to respond_to(:take_off).with(1).arguments  end
 end
 
 context 'plane' do
@@ -23,15 +22,24 @@ context 'plane' do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
-    expect(plane.landed?).to eq true
+    expect(plane).to respond_to(:landed?)
   end
   it 'confirms plane is in the air' do
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
-    airport.take_off(plane)
-    expect(plane.in_air?).to eq true
+    expect(plane).to respond_to(:in_air?)
   end
+
+  # context 'weather'do
+  #   it 'prevents take off if stormy' do
+  #     airport = Airport.new
+  #     plane = Plane.new
+  #     airport.land(plane)
+  #     allow(airport).to receive(:stormy?).and_return true
+  #     expect { airport.take_off(plane) }.to raise_error 'cannot take of, weather is stormy'
+  #   end
+  # end
 end
 
 # As an air traffic controller
