@@ -9,5 +9,11 @@ describe Plane do
     end
   end
 
-
+  describe '#take_off' do
+    it { is_expected.to respond_to(:take_off) }
+    it 'set flying status to true' do
+      subject.take_off
+      expect(subject.flying?).to eq true
+    end
+  end
 end

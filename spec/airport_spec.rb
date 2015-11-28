@@ -1,4 +1,4 @@
 require 'airport'
 
-describe 'Airport' do
+describe Airport do
 end
