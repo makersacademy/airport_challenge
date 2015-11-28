@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   attr_reader :planes
@@ -7,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'Cannot land. Plane is not flying.' if plane.flying? == false
     @planes << plane
   end
 
