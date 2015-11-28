@@ -6,6 +6,10 @@ describe Weather do
     it{is_expected.to respond_to :report}
   end
 
+    it 'should report the current weather conditons' do
+      expect(subject.report).to eq @conditons
+    end
+
   describe '#forecast'do
     it{is_expected.to respond_to :forecast}
 
