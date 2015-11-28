@@ -9,14 +9,14 @@ class Airport
   end
 
   def instruct_to_land(plane)
-    raise "The plane is already in the airport" if plane.in_airport_status == true
+    fail "The plane is already in the airport" if plane.in_airport_status == true
     landed_planes << plane
     plane.land
   end
 
   def instruct_take_off
-    raise "No planes can take off as it is stormy" if @weather_condition == 5
-    raise "There are no planes in the airport" if @landed_planes == []
+    fail "No planes can take off as it is stormy" if @weather_condition == 5
+    fail "There are no planes in the airport" if @landed_planes == []
     plane = @landed_planes.pop
     plane.take_off
   end
