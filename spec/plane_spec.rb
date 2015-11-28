@@ -34,4 +34,11 @@ let(:airport) {double(:airport)}
     expect{plane.take_off(airport)}.to raise_error message
   end
 
+  it 'cannot take off if already flying' do
+    allow(plane).to receive(:airport_at).and_return(airport)
+    allow(plane).to receive(:status).and_return(:in_the_air)
+    message = "Can't take off, already in the air."
+    expect{plane.take_off(airport)}.to raise_error message
+  end
+
 end
