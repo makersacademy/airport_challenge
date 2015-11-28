@@ -6,7 +6,8 @@ describe Plane do
   end
 
   it 'checks plane has landed' do
-    expect(subject.land).to eq true
+    subject.land
+    expect(subject.landed).to eq true
   end
 
 end
