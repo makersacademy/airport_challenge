@@ -41,4 +41,10 @@ let(:airport) {double(:airport)}
     expect{plane.take_off(airport)}.to raise_error message
   end
 
+  it 'cannot land if already on the ground' do
+    allow(plane).to receive(:status).and_return(:on_the_ground)
+    message = "Can't land, already on the ground."
+    expect{plane.land(airport)}.to raise_error message
+  end
+
 end
