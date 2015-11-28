@@ -58,6 +58,6 @@ describe 'FEATURE TESTS' do
       expect{airport.land(plane)}.to raise_error message
     end
 
-    end
+  end
 
-    end
+end

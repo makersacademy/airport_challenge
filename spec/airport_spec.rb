@@ -35,7 +35,7 @@ describe Airport do
   end
 
   describe '#capactiy' do
-    it {is_expected.to respond_to (:capacity)}
+    it {is_expected.to respond_to(:capacity)}
 
     it 'has a default capacity' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -94,4 +94,4 @@ describe Airport do
     end
   end
 
-  end
+end

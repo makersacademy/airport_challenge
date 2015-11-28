@@ -25,7 +25,7 @@ let(:airport) {double(:airport)}
     plane.land(airport)
     plane.take_off(airport)
     expect(plane.status).to eq :in_the_air
-   end
+  end
 
   it 'can\'t take off from an airport it\'s not in' do
     airport2 = double(:airport)
