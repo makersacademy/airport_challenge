@@ -17,8 +17,6 @@ describe Plane do
       subject.in_flight
       expect(subject).to_not be_landed
     end
-
-
   end
 
 end
