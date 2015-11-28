@@ -1,4 +1,5 @@
 require_relative '../lib/airport.rb'
+require_relative '../lib/plane.rb'
 describe Airport do
 
   describe 'Default Capacity with Override' do
@@ -21,6 +22,51 @@ describe Airport do
     it '[KEY BEHAVIOUR] Airport has a default capacity that can be over-ridden' do
       expect(Airport.new(30).instance_variable_get(:@default_capacity)).to eq(30)
     end
+
+  end
+
+  describe 'Planes at Airport' do
+    it 'Airport planes attr @planes exists' do
+      expect(Airport.new.instance_variable_get(:@planes)).to be
+    end
+
+    it 'Airport can store/accept planes as array' do
+      expect(Airport.new.instance_variable_get(:@planes).class.name).to eq('Array')
+    end
+
+  end
+
+  describe 'Landing behaviour' do
+
+    it 'Airport method instruct_plane_to_land exists' do
+      expect(Airport.new).to respond_to(:instruct_plane_to_land)
+    end
+
+    it 'instruct_plane_to_land exists takes Plane as argument' do
+      expect(Airport.new).to respond_to(:instruct_plane_to_land).with(1).arguments
+    end
+
+    it 'planes in flight attribute/state can be changed to false(landed)' do
+      a = Airport.new
+      plane = Plane.new
+      a.instruct_plane_to_land(plane)
+      expect(plane.instance_variable_get(:@plane_in_flight)).to eq "Landed"
+    end
+
+    it 'once plane has landed it is in airport @planes array' do
+      a = Airport.new
+      plane = Plane.new
+      a.instruct_plane_to_land(plane)
+      expect(a.instance_variable_get(:@planes)).to eq [plane]
+    end
+
+    it 'confirmitaion message on landing' do
+      a = Airport.new
+      plane = Plane.new
+      a.instruct_plane_to_land(plane)
+      expect {a.instruct_plane_to_land(plane)}.to output("Plane: #{plane} has landed. Status: #{plane.instance_variable_get(:@plane_in_flight)}").to_stdout
+    end
+
   end
 
 end
