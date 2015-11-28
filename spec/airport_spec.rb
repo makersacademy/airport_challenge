@@ -26,7 +26,7 @@ describe Airport do
   describe '#take_off' do
     it 'allows a plane to take off' do
       allow(plane).to receive(:land)
-      allow(plane).to receive(:report_taken_off)
+      allow(plane).to receive(:take_off)
       allow(Weather).to receive(:stormy?).and_return(false)
       airport.land(plane)
       airport.take_off(plane)
@@ -68,7 +68,7 @@ describe Airport do
   context 'IF THERE IS A STORM' do
 
     it 'prevents take off in stormy weather' do
-      allow(plane).to receive(:report_taken_off)
+      allow(plane).to receive(:take_off)
       allow(Weather).to receive(:stormy?).and_return(true)
       message = "Can't take off in storm"
       expect{airport.take_off(plane)}.to raise_error message

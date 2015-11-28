@@ -22,8 +22,9 @@ class Airport
 
   def take_off(plane)
     raise "Can't take off in storm" if Weather.stormy?
+    plane.take_off(self)
     @landed_planes = nil
-    plane.report_taken_off
+
   end
 
   def update_capacity(capacity)

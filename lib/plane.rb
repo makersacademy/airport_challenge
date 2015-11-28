@@ -7,7 +7,9 @@ class Plane
     @airport_at = airport
   end
 
-  def report_taken_off
+  def take_off(airport)
+    message =  "Can't take off from an airport the plane isn't at."
+    raise message if self.airport_at != airport
     @status = :in_the_air
   end
 
