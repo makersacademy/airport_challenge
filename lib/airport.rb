@@ -1,18 +1,26 @@
+require 'plane'
+
 class Airport
 
-  attr_reader :planes
+  attr_reader :landed_planes
+
 
   def land(plane)
-    @planes = plane
+    @landed_planes = plane
+    plane.report_landed
   end
 
   def take_off(plane)
-    raise "Can't take off due to stormy weather!" if stormy?
-    @planes = nil
+
+    @landed_planes = nil
+    plane.report_taken_off
   end
 
-  def stormy?
-    
-    weather.currently == :stormy
+
+
+  def get_weather
+
   end
+
+
 end
