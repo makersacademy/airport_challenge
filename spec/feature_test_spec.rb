@@ -13,7 +13,7 @@ describe 'FEATURE TESTS' do
       expect(plane.status).to eq :on_the_ground
     end
 
-    it 'allows planes to take off and confirm they are no longer in the airport' do
+    it 'allows planes to take off and confirm they have left the airport' do
       allow(Weather).to receive(:stormy?).and_return(false)
       airport.land(plane)
       airport.take_off(plane)
