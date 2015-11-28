@@ -60,12 +60,18 @@ describe Airport do
       expect(a.instance_variable_get(:@planes)).to eq [plane]
     end
 
-    it 'confirmitaion message on landing' do
+    it 'confirmation message on landing' do
       a = Airport.new
       plane = Plane.new
       expect {a.instruct_plane_to_land(plane)}.to output("Plane: #{plane} has landed. Status: Landed\n").to_stdout
     end
 
+    it '[Key Behaviour] Refuse landing if airport full' do
+      a = Airport.new
+      plane = Plane.new
+      20.times { a.instruct_plane_to_land(Plane.new) }
+      expect {a.instruct_plane_to_land(plane)}.to raise_error("Airport full: Landing not possible")
+    end
   end
 
   describe 'Taking Off' do

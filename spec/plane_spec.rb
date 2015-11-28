@@ -14,8 +14,21 @@ describe Plane do
     expect(Plane.new).to respond_to(:plane_landing)
   end
 
+  it 'plane method plane_landing changes @plane_in_flight to Landed ' do
+    plane = Plane.new
+    plane.plane_landing
+    expect(plane.instance_variable_get(:@plane_in_flight)).to eq('Landed')
+  end
+
   it 'plane method plane taking off exists' do
     expect(Plane.new).to respond_to(:plane_taking_off)
+  end
+
+  it 'plane method plane_taking_off changes @plane_in_flight to In-Flight ' do
+    plane = Plane.new
+    plane.plane_landing
+    plane.plane_taking_off
+    expect(plane.instance_variable_get(:@plane_in_flight)).to eq('In-Flight')
   end
 
 end
