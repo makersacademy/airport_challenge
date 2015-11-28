@@ -4,6 +4,7 @@ require_relative 'plane'
 class AirTrafficControl
 
   def instruct_landing(plane, airport)
+    raise "The weather is too bad to land at #{airport}!" if airport.weather_is_stormy?
     airport.planes << plane
     "Plane #{plane.object_id} landed at #{airport}!"
   end
