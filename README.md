@@ -6,9 +6,9 @@ Solution to [airport challenge](https://github.com/makersacademy/airport_challen
 ###Object/Messages Table
 
 | Object        | Messages         |
-
-| Passengers    | destination?     |
 | ------------- | ---------------: |
+| Passengers    | destination?     |
+|               |                  |
 | Plane         | land             |
 |               | take off         |
 |               |                  |
