@@ -4,6 +4,7 @@ require 'weather'
 describe 'FEATURE TESTS' do
 
   it 'allows a number of planes to land and take off' do
+    allow(Weather).to receive(:stormy?).and_return(false)
     heathrow = Airport.new
     easyjet = Plane.new
     virgin = Plane.new
@@ -18,5 +19,5 @@ describe 'FEATURE TESTS' do
     heathrow.take_off(british_airways)
     expect(heathrow.landed_planes).to eq [ryan_air]
   end
-  
+
 end
