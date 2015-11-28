@@ -1,8 +1,11 @@
 class Plane
 
+  def initialize(plane_status = true)
+    @plane_in_flight = plane_status
+  end
 
-  def initialize
-    @plane_in_flight = true
+  def plane_landing
+    @plane_in_flight = false
   end
 
 end
