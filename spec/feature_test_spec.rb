@@ -20,7 +20,8 @@ describe 'Airport feature tests' do
   it 'prevents take off if the weather is stormy' do
     weather = double(:weather, stormy?: true)
     airport.land(plane)
-    expect {airport.take_off(plane)}.to raise "Can't take off due to stormy weather!"
+    message = "Can't take off due to stormy weather!"
+    expect {airport.take_off(plane)}.to raise_error message
   end
 
 end
