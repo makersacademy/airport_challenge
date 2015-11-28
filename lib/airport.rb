@@ -1,7 +1,14 @@
 require_relative 'plane'
 
 class Airport
-  def land_plane
-    Plane.new
+  attr_reader :planes
+
+  def initialize
+    @planes = []
   end
+
+  def tell_plane_to_land(plane)
+    planes << plane
+  end
+
 end
