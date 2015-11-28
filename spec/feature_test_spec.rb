@@ -4,6 +4,7 @@ require 'airport'
 describe 'Airport feature tests' do
   let(:airport) {Airport.new}
   let(:plane) {double(:plane)}
+  let(:weather) {double(:weather)}
 
   it 'allows planes to land and confirms that they are landed' do
     airport.land(plane)
@@ -16,5 +17,10 @@ describe 'Airport feature tests' do
     expect(airport.planes).to eq nil
   end
 
+  it 'prevents take off if the weather is stormy' do
+    weather = double(:weather, stormy?: true)
+    airport.land(plane)
+    expect {airport.take_off(plane)}.to raise "Can't take off due to stormy weather!"
+  end
 
 end
