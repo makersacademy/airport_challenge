@@ -20,8 +20,8 @@ describe Airport do
     end
 
     it '[KEY BEHAVIOUR]Airport has a default capacity & can be over-ridden' do
-      expect(Airport.new(30).instance_variable_get(:@default_capacity))
-      .to eq(30)
+      expect(Airport.new(30).instance_variable_get(:@default_capacity)).
+        to eq(30)
     end
 
   end
@@ -33,7 +33,7 @@ describe Airport do
 
     it 'Airport can store/accept planes as array' do
       expect(Airport.new.instance_variable_get(:@planes).class.name).
-      to eq('Array')
+        to eq('Array')
     end
 
   end
@@ -46,7 +46,7 @@ describe Airport do
 
     it 'instruct_plane_to_land exists takes Plane as argument' do
       expect(Airport.new).to respond_to(:instruct_plane_to_land).
-      with(1).arguments
+        with(1).arguments
     end
 
     it 'planes in flight attribute/state can be changed to false(landed)' do
@@ -67,7 +67,7 @@ describe Airport do
       a = Airport.new
       plane = Plane.new
       expect {a.instruct_plane_to_land(plane)}.
-      to output("Plane: #{plane} has landed. Status: Landed\n").to_stdout
+        to output("Plane: #{plane} has landed. Status: Landed\n").to_stdout
     end
 
     it '[Key Behaviour] Refuse landing if airport full' do
@@ -75,7 +75,7 @@ describe Airport do
       plane = Plane.new
       20.times { a.instruct_plane_to_land(Plane.new) }
       expect {a.instruct_plane_to_land(plane)}.
-      to raise_error("Airport full: Landing Denied")
+        to raise_error("Airport full: Landing Denied")
     end
   end
 
@@ -87,7 +87,7 @@ describe Airport do
 
     it 'instruct_plane_to_take_off exists takes Plane as argument' do
       expect(Airport.new).to respond_to(:instruct_plane_to_take_off).
-      with(1).arguments
+        with(1).arguments
     end
 
     it 'airport can tell @plane_in_flight to be changed to In-Flight' do
@@ -106,12 +106,12 @@ describe Airport do
       expect(a.instance_variable_get(:@planes)).not_to include(plane)
     end
 
-    it 'confirmitaion message on take off' do
+    it 'confirmation message on take off' do
       a = Airport.new
       plane = Plane.new
       a.instruct_plane_to_land(plane)
       expect {a.instruct_plane_to_take_off(plane)}.
-      to output("Plane: #{plane} has departed. Status: In-Flight\n").to_stdout
+        to output("Plane: #{plane} has departed. Status: In-Flight\n").to_stdout
     end
   end
 
