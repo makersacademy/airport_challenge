@@ -6,6 +6,7 @@ I used TDD to complete this challenge. The full instructions provided to complet
 
 Below is a pry transcript to show how it works.
 
+```
 [1] pry(main)> require './lib/airport.rb'
 => true
 [2] pry(main)> airport = Airport.new
@@ -22,6 +23,7 @@ Below is a pry transcript to show how it works.
 => 200
 [8] pry(main)> airport.take_off(plane)
 RuntimeError: Can't take off in storm
+```
 
 
 
