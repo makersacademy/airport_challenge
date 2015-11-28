@@ -1,12 +1,10 @@
-require 'plane'
-require 'airport'
 require 'air_traffic_control'
 
 describe AirTrafficControl do
 
   let(:plane) {double(:plane,
-                :has_landed= => false,
-                :has_landed => false)}
+                :is_flying= => true,
+                :is_flying => true)}
   let(:airport) {double(:airport,
                 :name => "JFK",
                 :weather_is_stormy? => false,
@@ -30,8 +28,8 @@ describe AirTrafficControl do
     end
 
     it 'should prevent landing if the plane is already landed' do
-      allow(plane).to receive_messages(:has_landed => true)
-      expect{subject.instruct_landing(plane, airport)}.to raise_error "This plane is not flying!"
+      allow(plane).to receive_messages(:is_flying => false)
+      expect{subject.instruct_landing(plane, airport)}.to raise_error "This plane is already landed!"
     end
 
     it 'should confirm landing has happened' do
@@ -47,6 +45,7 @@ describe AirTrafficControl do
     end
 
     it 'should prevent take off if the weather is stormy' do
+      subject.instruct_landing(plane, airport)
       allow(airport).to receive_messages(:weather_is_stormy? => true)
       expect{subject.instruct_takeoff(plane, airport)}.to raise_error "The weather is too bad to take off from #{airport.name}!"
     end
