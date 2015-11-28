@@ -4,7 +4,7 @@ describe 'Airport feature tests' do
   it 'allows planes to land and confirms that they are landed' do
     airport = Airport.new
     airport.land(plane)
-    expect(airport.planes).to include plane
+    expect(airport.planes).to eq plane
 
   end
 
