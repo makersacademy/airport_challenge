@@ -8,6 +8,7 @@ class Airport
   end
 
   def tell_plane_to_land(plane)
+    plane.land
     planes << plane
   end
 
