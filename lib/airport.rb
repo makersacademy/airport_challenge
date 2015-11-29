@@ -8,30 +8,34 @@ class Airport
 
   DEFAULT_CAPACITY = 34
 
-  def initialize(max_capacity: DEFAULT_CAPACITY, name: "NoName")
+  def initialize(max_capacity: DEFAULT_CAPACITY, name: "NoNameAirport")
     @planes = []
     @max_capacity = max_capacity
     @name = name
   end
 
   def approve_landing?(plane)
-    check_capacity
-    check_weather
+    fail "#{name} is full" if full?
+    fail bad_weather_message if bad_weather
     planes << plane
   end
 
   def approve_takeoff?(plane)
     fail "The plane is not at this airport" unless planes.include?(plane)
-    check_weather
+    fail bad_weather_message if bad_weather
     planes.delete(plane)
   end
 
-  def check_capacity
-    fail "#{name} is full" if planes.count >= @max_capacity
+  def full?
+    planes.count >= @max_capacity
   end
 
-  def check_weather
-    fail "Bad weather at #{name}, try again later" if rand(1..5) == 1
+  def bad_weather
+    true if rand(1..5) == 1
+  end
+
+  def bad_weather_message
+    "Bad weather, try again later"
   end
 
 end
