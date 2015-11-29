@@ -37,4 +37,10 @@ describe Plane do
     end
   end
 
+  context 'when the airport is full' do
+    it 'is not able to land' do
+      expect{subject.land}.to raise_error("The airport is full") if Airport.new.full?
+    end
+  end
+
 end

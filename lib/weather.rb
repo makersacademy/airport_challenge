@@ -8,4 +8,5 @@ class Weather
       @current_weather = :sunny
     end
   end
+  
 end
