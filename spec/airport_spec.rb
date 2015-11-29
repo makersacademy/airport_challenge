@@ -86,5 +86,4 @@ describe Airport do
     it{is_expected.to respond_to(:storm_forecast)}
   end
 
-
 end
