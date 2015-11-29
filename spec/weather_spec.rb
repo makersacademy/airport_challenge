@@ -2,25 +2,17 @@ require 'weather'
 
 describe Weather do
 
-  describe '#report' do
-    it{is_expected.to respond_to :report}
+  describe '#stormy'do
+    it{is_expected.to respond_to :stormy?}
 
-    it 'should report the current weather conditions' do
-      expect(subject.report).to eq subject.forecast
-    end
-  end
-
-  describe '#forecast'do
-    it{is_expected.to respond_to :forecast}
-
-    it 'should report the weather as sunny when atmos is 7 or less' do
+    it 'should report the stormy as false when atmos is 7 or less' do
       allow(subject).to receive(:atmosphere) { atmos = 6 }
-      expect(subject.forecast).to eq 'sunny'
+      expect(subject.stormy?).to eq false
     end
 
-    it 'should report the weather as stormy when atmos over 8' do
+    it 'should report stormy as true when atmos over 8' do
       allow(subject).to receive(:atmosphere) { atmos = 9 }
-      expect(subject.forecast).to eq 'stormy'
+      expect(subject.stormy?).to eq true
     end
   end
 

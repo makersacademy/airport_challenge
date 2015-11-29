@@ -22,6 +22,12 @@ describe Airport do
       subject.land_plane(plane)
       expect{subject.land_plane(plane)}.to raise_error "This plane has already landed"
     end
+
+    it 'should not land planes when stormy' do
+      plane = Plane.new
+      subject.stormy = true
+      expect{subject.land_plane(plane)}.to raise_error "Too stormy to land"
+    end
   end
 
   describe '#take_off' do
@@ -45,6 +51,22 @@ describe Airport do
       plane = Plane.new
       expect{subject.take_off(plane)}.to raise_error "This plane is not in the airport"
     end
+
+    it 'should not allow planes to fly when stormy' do
+      plane = Plane.new
+      subject.stormy = true
+      expect{subject.land_plane(plane)}.to raise_error "Too stormy to land"
+    end
+  end
+
+  describe '#forecast' do
+    it{is_expected.to respond_to(:forecast).with(1).argument}
+
+    it 'should update be the weather to match the forecast' do
+        weather = Weather.new
+        result = subject.forecast(weather)
+        expect(result).to eq subject.stormy
+      end
   end
 
 end
