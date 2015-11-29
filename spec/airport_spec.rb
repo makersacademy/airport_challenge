@@ -30,7 +30,8 @@ describe Airport do
   describe '#take_off' do
 
     it 'is expected to raise an error if plane isn\'t at airport' do
-
+      error = 'Plane is not at this airport'
+      expect { airport.take_off(plane) }.to raise_error error
     end
 
   end
