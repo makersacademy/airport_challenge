@@ -1,20 +1,23 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to(:tell_plane_to_land).with(1).argument }
 
-  it 'has a default capacity' do
+  it 'should check the airport has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-  it 'has a variable default capacity' do
+  it 'should check the airport can have a variable capacity' do
     airport = Airport.new(50)
+    airport.clear
     50.times { airport.tell_plane_to_land(Plane.new) }
     expect{ airport.tell_plane_to_land(Plane.new) }.to raise_error 'Airport full'
   end
 
+  describe '#tell_plane_to_land' do
+
     it 'should land a plane' do
       plane = Plane.new
+      subject.clear
       subject.tell_plane_to_land(plane)
       expect(subject.planes.include?(plane)).to eq true
     end
@@ -31,7 +34,9 @@ describe Airport do
       expect { subject.tell_plane_to_land(Plane.new) }.to raise_error 'Airport full'
     end
 
-    it { is_expected.to respond_to(:tell_plane_to_take_off).with(1).argument }
+  end
+
+  describe '#tell_plane_to_take_off' do
 
     it 'should let a plane take off' do
       plane = Plane.new
@@ -47,5 +52,7 @@ describe Airport do
       subject.storm
       expect{subject.tell_plane_to_take_off(plane)}.to raise_error "Plane can't take off in a storm"
     end
+
+  end
 
 end
