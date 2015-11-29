@@ -11,6 +11,7 @@ class Airport
 
 attr_reader :planes
 attr_reader :capacity
+attr_reader :weather
 
   def land(plane)
     fail 'Airport is full' if full?
@@ -19,6 +20,7 @@ attr_reader :capacity
 
   def take_off(plane)
     fail 'Airport is empty' if empty?
+    fail 'Planes are not allowed to take off in stormy weather' if stormy?
     planes.pop
   end
 
@@ -33,6 +35,17 @@ private
    planes.empty?
  end
 
+ def weather
+   ['sunny', 'sunny', 'stormy'].shuffle.first
+ end
+
+def stormy?
+  if weather == 'stormy'
+    return true
+  else
+    return false
+  end
+end
 
 
 end
