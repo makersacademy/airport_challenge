@@ -1,12 +1,12 @@
 require 'plane'
 
 describe Plane do
-  let(:airport) {double(:airport, full?: false, stored_planes: [])}
+  let(:airport) {double(:airport, full?: false, stored_planes: [], stormy?: false)}
+  let(:plane) {described_class.new}
 
   context 'no storm' do
 
     let(:weather) {double(:weather, stormy?: false)}
-    let(:plane) {described_class.new(weather)}
 
     describe '#airborne?' do
 
@@ -32,7 +32,7 @@ describe Plane do
       end
 
       it 'is prevented when the airport is full' do
-        airport = double(:airport, full?: true, stored_planes: [])
+        allow(airport).to receive(:full?){true}
         expect{plane.land(airport)}.to raise_error 'Airport full'
       end
 
@@ -67,10 +67,9 @@ describe Plane do
   end
 
   context 'storm' do
-    let(:weather) {double(:weather, stormy?: true)}
-    let(:plane) {described_class.new(weather)}
 
     it 'prevents landing' do
+      allow(airport).to receive(:stormy?){true}
       expect{plane.land(airport)}.to raise_error 'Stormy weather prevents landing'
     end
 

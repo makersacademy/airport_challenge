@@ -1,12 +1,10 @@
-require_relative 'weather'
 require_relative 'airport'
 
 class Plane
 
-  def initialize(weather=Weather.new)
+  def initialize
     @airborne = true
     @airport_id = :airborne
-    @weather = weather
   end
 
   def airborne?
@@ -14,7 +12,7 @@ class Plane
   end
 
   def land(airport)
-    fail 'Stormy weather prevents landing' if @weather.stormy?
+    fail 'Stormy weather prevents landing' if airport.stormy?
     fail 'Plane is already in an airport' if !airborne?
     fail 'Airport full' if airport.full?
     @airport_id = airport.object_id
