@@ -18,7 +18,7 @@ describe Plane do
       expect(plane).not_to be_airborne
     end
 
-    it 'returns self' do
+    it 'returns plane' do
       plane.land(airport)
       expect(plane).to eq plane
     end
