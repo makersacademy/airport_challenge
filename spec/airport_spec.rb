@@ -5,6 +5,17 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
 
+  describe '#initialize' do
+    it 'creates a airport with default capacity if not specified' do
+      expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it 'allows to set a random capacity from 1 to 100' do
+      random = rand(100) + 1
+      expect(described_class.new(random).capacity).to eq random
+    end
+  end
+
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
     before do
