@@ -2,13 +2,14 @@
 
 My solution to [airport challenge](https://github.com/makersacademy/airport_challenge).
 
-User stories covered with unit and feature testing using BDD process.  
 Uses three classes: `Plane`, `Airport` and `Weather`.  
+All user stories covered with unit and feature testing using BDD process.   
+Unit tests are isolated using doubles. In feature testing, random weather is fixed using srand.
 
 Airport class controls takeoffs and landings, instructing planes to update their status.  
 for example:  
 `airport.land plane` - the airport will instruct the plane to land if possible, adding it to the plane storeage  
-triggers:  
+will trigger:  
 `plane.land airport` - updating the status of the plane to grounded at that airport
 
 ####Object/Messages Table
