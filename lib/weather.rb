@@ -1,14 +1,20 @@
 class Weather
 
+attr_reader :conditions
+
+  def initialize
+    @conditions = 'sunny'
+  end
+
   def report
     @conditions
   end
 
   def forecast
-    atmosphere < 9 ? @conditions = 'sunny' : @conditions = 'stormy'
+    atmosphere <= 7 ? @conditions = 'sunny' : @conditions = 'stormy'
   end
 
   def atmosphere
-    rand(10)
+    atmos = rand(10)
   end
 end
