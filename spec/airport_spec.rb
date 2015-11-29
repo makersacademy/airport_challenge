@@ -32,10 +32,9 @@ describe Airport do
       end
 
       it 'is expected to not allow a landing if the airport is full' do
-        airport.land(plane)
-        plane2 = double(:plane, land: nil)
+        airport.capacity.times { airport.land(double(:plane, land: nil)) }
         airport_full = "Cannot land, the airport is full"
-        expect { airport.land(plane2) }.to raise_error airport_full
+        expect { airport.land(plane) }.to raise_error airport_full
       end
     end
 
