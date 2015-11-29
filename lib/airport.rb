@@ -3,17 +3,20 @@ require_relative 'weather'
 
 class Airport
 
-  attr_accessor :runway, :stormy
+  attr_accessor :stormy, :capacity
+  attr_reader :runway
 
 
   def initialize
     @runway = []
     @stormy = false
+    @capacity = 10
   end
 
   def land_plane(inbound_plane)
     fail "This plane has already landed" if already_landed(inbound_plane)
     fail "Too stormy to land" if @stormy
+    fail "The airport is full" if reached_capacity
     inbound_plane.touch_down
     runway << inbound_plane
   end
@@ -37,6 +40,10 @@ class Airport
 
   def already_landed(inbound_plane)
     runway.include?(inbound_plane)
+  end
+
+  def reached_capacity
+    @runway.count == @capacity
   end
 
 end

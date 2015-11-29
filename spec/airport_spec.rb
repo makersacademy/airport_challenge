@@ -2,6 +2,17 @@ require 'airport'
 
 describe Airport do
 
+  describe 'airport capacity' do
+    it 'should have a default capacity of 10' do
+      expect(subject.capacity).to eq 10
+    end
+
+    it 'should not let landing planes exceed airport capacity' do
+      10.times {subject.land_plane(Plane.new)}
+      expect{subject.land_plane(Plane.new)}.to raise_error "The airport is full"
+    end
+  end
+
   describe '#land_plane' do
     it {is_expected.to respond_to(:land_plane).with(1).argument}
 
@@ -63,10 +74,10 @@ describe Airport do
     it{is_expected.to respond_to(:forecast).with(1).argument}
 
     it 'should update be the weather to match the forecast' do
-        weather = Weather.new
-        result = subject.forecast(weather)
-        expect(result).to eq subject.stormy
-      end
+      weather = Weather.new
+      result = subject.forecast(weather)
+      expect(result).to eq subject.stormy
+    end
   end
 
 end
