@@ -14,13 +14,13 @@ class Plane
   def land(airport)
     @airport_id = airport.object_id
     @airborne = false
-    airport.landed_planes << self
+    airport.stored_planes << self
     self
   end
 
   def take_off
     @airborne = true
-    ObjectSpace._id2ref(airport_id).landed_planes.pop
+    ObjectSpace._id2ref(airport_id).stored_planes.pop
     @airport_id = :airborne
   end
 

@@ -1,10 +1,10 @@
 
 class Airport
 
-attr_reader :landed_planes
+attr_reader :stored_planes
 
 def initialize
-  @landed_planes = []
+  @stored_planes = []
 end
 
 end
