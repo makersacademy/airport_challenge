@@ -18,6 +18,18 @@ let (:plane) {double :plane}
       expect(subject.planes).to eq [plane]
     end
 
+    it "Won't land the same plane twice" do
+
+    end
+
+    it "Confirms a plane has landed" do
+      
+    end
+
+    it "Can land multiple planes" do
+      subject.land(plane)
+    end
+
     it "Raises an error when at capacity" do
         subject.land(plane)
         expect {Airport::MAX_CAPACITY.times do
