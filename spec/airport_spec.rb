@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   let (:plane) { double :plane, landed: false, in_flight: true}
-  let (:plane_land) {double :plane, landed: true, in_flight: false}
+
 
   describe 'airport capacity' do
     it 'should have a default capacity of 10' do
