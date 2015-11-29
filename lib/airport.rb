@@ -16,13 +16,13 @@ class Airport
 
   def approve_landing?(plane)
     fail "#{name} is full" if full?
-    fail bad_weather_message if bad_weather
+    bad_weather_check
     planes << plane
   end
 
   def approve_takeoff?(plane)
     fail "The plane is not at this airport" unless planes.include?(plane)
-    fail bad_weather_message if bad_weather
+    bad_weather_check
     planes.delete(plane)
   end
 
@@ -34,8 +34,8 @@ class Airport
     true if rand(1..5) == 1
   end
 
-  def bad_weather_message
-    "Bad weather, try again later"
+  def bad_weather_check
+    fail "Bad weather, try again later" if bad_weather
   end
 
 end
