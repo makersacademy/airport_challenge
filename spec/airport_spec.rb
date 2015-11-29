@@ -94,6 +94,16 @@ describe Airport do
       subject.weather
       expect(subject.weather_condition).not_to be_nil
     end
+  end
 
+  describe '#full?' do
+    it 'should return true if airport is full' do
+      plane = double(:plane, in_airport?: false, land: true)
+      allow(subject).to receive(:stormy?).and_return false
+      Airport::DEFAULT_CAPACITY.times do
+        subject.instruct_to_land(plane)
+      end
+      expect(subject.full?).to eq true
+    end
   end
 end
