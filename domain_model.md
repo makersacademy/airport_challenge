@@ -38,10 +38,10 @@ I would like a default airport capacity that can be overridden as appropriate
 
     Objects         |    Messages                                                             
  -------------------| ------------------------------------------------------------------------
- Plane              | is_flying                                          
-AirTrafficControl  | lands a plane with confirm                                          
-                    | takes off a plane from airport with confirm  , and it is removed from airport
-                    | fails landing if weather is stormy                                      
+ Plane              | is_flying
+                    | lands at airport                                          
+                    | takes off from airport                                          
+AirTrafficControl   | fails landing if weather is stormy                                      
                     | fails take off if weather is stormy                                    
                     | fails take off if airport is full                                   
  Weather            | 20% chances is stormy                      

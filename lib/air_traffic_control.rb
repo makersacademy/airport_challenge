@@ -3,30 +3,22 @@ require_relative 'plane'
 
 class AirTrafficControl
 
-  def land(plane, airport)
-    if !plane.is_flying
-      fail "This plane is already landed!"
-    elsif airport.bad_weather?
-      fail "Bad weather; can't land at #{airport.name}!"
-    elsif airport.full?
-      fail "#{airport.name} is full!"
-    else
-      plane.is_flying = false
-      airport.planes << plane
-      "Plane #{plane.object_id} landed at #{airport.name}!"
+  def approve_landing?(plane, destination_airport)
+    if destination_airport.bad_weather?
+      fail bad_weather_message
+    elsif destination_airport.full?
+      fail "#{destination_airport.name} is full!"
     end
+    true
   end
 
-  def take_off(plane, airport)
-    if !airport.planes.include?(plane)
-      fail "This plane is not at #{airport.name}!"
-    elsif airport.bad_weather?
-      fail "Bad weather; the plane can't take off!"
-    else
-      plane.is_flying = true
-      airport.planes.delete(plane)
-      "Plane #{plane.object_id} just left #{airport.name}!"
-    end
+  def approve_takeoff?(plane, airport)
+    fail bad_weather_message if airport.bad_weather?
+    true
+  end
+
+  def bad_weather_message
+    "Bad weather, try again later!"
   end
 
 end

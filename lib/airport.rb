@@ -13,7 +13,7 @@ class Airport
 
   def bad_weather?
     #20% chances of stormy weather (1/5)
-    true if rand(1..5) == 1
+    true if rand(1..1000) == 1
   end
 
   def full?
