@@ -1,4 +1,5 @@
 class Plane
+
   attr_reader :status
 
   def initialize
@@ -6,6 +7,14 @@ class Plane
   end
 
   def land
+    fail "This plane is already landed" if landed?
     @status = :landed
   end
+
+  private
+
+  def landed?
+    status == :landed
+  end
+
 end

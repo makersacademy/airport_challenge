@@ -6,6 +6,7 @@ describe Plane do
 
   it { is_expected.to respond_to(:status) }
   it { is_expected.to respond_to(:land) }
+  it { is_expected.to respond_to(:take_off) }
 
   describe '#status' do
 
@@ -24,7 +25,7 @@ describe Plane do
 
     it 'is expected to raise an error if already landed' do
       plane.land
-      expect(plane.land).to raise_error "This plane is already landed"
+      expect { plane.land }.to raise_error "This plane is already landed"
     end
 
   end
