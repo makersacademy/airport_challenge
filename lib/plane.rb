@@ -2,8 +2,6 @@ require_relative 'airport'
 
 class Plane
 
-  attr_reader :airport_id
-
   def initialize
     @landed = false
     @airport_id = :airborne
@@ -25,5 +23,9 @@ class Plane
     ObjectSpace._id2ref(airport_id).landed_planes.pop
     @airport_id = :airborne
   end
+
+private
+
+attr_reader :airport_id
 
 end
