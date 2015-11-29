@@ -30,8 +30,8 @@ class Airport
     weather_condition = rand(1..5)
   end
 
-private
-attr_reader :weather_condition, :landed_planes
+  private
+  attr_reader :weather_condition, :landed_planes
 
   def stormy?
     weather_condition == 5
