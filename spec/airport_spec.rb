@@ -13,6 +13,7 @@ describe Airport do
     end
 
     it 'should not let landing planes exceed airport capacity' do
+      allow(subject).to receive(:storm_forecast) {false}
       Airport::STANDARD_CAPACITY.times {subject.land_plane(Plane.new)}
       expect{subject.land_plane(Plane.new)}.to raise_error "The airport is full"
     end
@@ -23,33 +24,29 @@ describe Airport do
 
     it 'should note that landed planes are landed' do
       plane = Plane.new
+      allow(subject).to receive(:storm_forecast) {false}
       subject.land_plane(plane)
       expect(plane.landed).to eq true
     end
 
     it 'should place planes on the [runway] when landing' do
       plane = Plane.new
+      allow(subject).to receive(:storm_forecast) {false}
       subject.land_plane(plane)
       expect(subject.runway.include?(plane)).to eq true
     end
 
     it 'should not allow planes already on the [runway] to land again' do
       plane = Plane.new
+      allow(subject).to receive(:storm_forecast) {false}
       subject.land_plane(plane)
       expect{subject.land_plane(plane)}.to raise_error "Plane already landed"
     end
 
     it 'should not land planes when stormy' do
       plane = Plane.new
-      subject.stormy = true
+      allow(subject).to receive(:storm_forecast) {true}
       expect{subject.land_plane(plane)}.to raise_error "Too stormy to land"
-    end
-
-    it 'should not land planes if they are landed elsewhere' do
-      plane = Plane.new
-      airport = Airport.new
-      airport.land_plane(plane)
-      expect{subject.land_plane(plane)}.to raise_error "Plane landed elsewhere"
     end
   end
 
@@ -58,6 +55,7 @@ describe Airport do
 
     it 'should note that in-flight planes are not landed' do
       plane = Plane.new
+      allow(subject).to receive(:storm_forecast) {false}
       subject.land_plane(plane)
       subject.take_off(plane)
       expect(plane.landed).to eq false
@@ -65,6 +63,7 @@ describe Airport do
 
     it 'should remove planes from the [runway] on #take_off' do
       plane = Plane.new
+      allow(subject).to receive(:storm_forecast) {false}
       subject.land_plane(plane)
       subject.take_off(plane)
       expect(subject.runway.include?(plane)).to eq false
@@ -72,36 +71,20 @@ describe Airport do
 
     it 'should only allow planes to take off if they are on the [runway]' do
       plane = Plane.new
+      allow(subject).to receive(:storm_forecast) {false}
       expect{subject.take_off(plane)}.to raise_error "Plane not in this airport"
     end
 
     it 'should not allow planes to fly when stormy' do
       plane = Plane.new
-      subject.stormy = true
+      allow(subject).to receive(:storm_forecast) {true}
       expect{subject.land_plane(plane)}.to raise_error "Too stormy to land"
     end
   end
 
-  describe '#forecast' do
-    it{is_expected.to respond_to(:forecast).with(1).argument}
+  describe 'forecast' do
+    it{is_expected.to respond_to(:storm_forecast)}
   end
-  #  it 'should update be the weather to not be stormy' do
-  #    subject.stormy = true
-  #    weather = Weather.new
-  #    allow(weather).to receive(:stormy?) { false}
-  #    subject.forecast(weather)
-  #    expect(subject.stormy).to eq false
-  #  end
-
-  #  it 'should update be the weather to be stormy' do
-  #    subject.stormy = false
-  #    weather = Weather.new
-  #    allow(weather).to receive(:atmosphere) { atmos = 9}
-  #    subject.forecast(weather)
-  #    expect(subject.stormy).to eq true
-  #  end
-
-#not yet working
 
 
 end

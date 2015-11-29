@@ -7,12 +7,12 @@ class Plane
     @landed = false
   end
 
-
   def in_flight
     @landed = false
   end
 
   def touch_down
+    fail "This plane is landed elsewhere" if @landed
     @landed = true
   end
 

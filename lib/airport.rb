@@ -10,14 +10,13 @@ class Airport
 
   def initialize(capacity = STANDARD_CAPACITY)
     @runway = []
-    @stormy = false
+    @stormy = Weather.new
     @capacity = capacity
   end
 
   def land_plane(inbound_plane)
-    fail "Plane landed elsewhere" if in_other_airport(inbound_plane)
     fail "Plane already landed" if already_landed(inbound_plane)
-    fail "Too stormy to land" if stormy
+    fail "Too stormy to land" if storm_forecast
     fail "The airport is full" if reached_capacity
     inbound_plane.touch_down
     runway << inbound_plane
@@ -25,13 +24,13 @@ class Airport
 
   def take_off(departing_plane)
     fail "Plane not in this airport" if not_in_airport(departing_plane)
-    fail "Too stormy to fly" if stormy
+    fail "Too stormy to fly" if storm_forecast
     departing_plane.in_flight
     runway.delete(departing_plane)
   end
 
-  def forecast(weather)
-    stormy = weather.stormy?
+  def storm_forecast
+    @stormy.stormy?
   end
 
   private
