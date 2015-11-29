@@ -15,8 +15,8 @@ describe Plane do
     end
     it 'can not land when is not flying' do
       plane.land
-      message = 'Unable to land cause is not flying'
-      expect { plane.land }.to raise_error message
+      msg = 'Unable to land cause is not flying'
+      expect { plane.land }.to raise_error msg
     end
   end
 
@@ -28,8 +28,8 @@ describe Plane do
     end
     it 'can not take off when is already flying' do
       plane.take_off
-      message = 'Unable to take off cause is already flying'
-      expect { plane.take_off }.to raise_error message
+      msg = 'Unable to take off cause is already flying'
+      expect { plane.take_off }.to raise_error msg
     end
   end
 end

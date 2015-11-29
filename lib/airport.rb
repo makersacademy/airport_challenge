@@ -12,6 +12,12 @@ class Airport
     @capacity = capacity
   end
 
+  def generate_new_plane
+    fail 'Unable to generate a new plane cause airport is full' if full?
+    planes << new_plane = Plane.new
+    new_plane
+  end
+
   def land plane
     fail 'Unable to land due to stormy weather' if weather.stormy?
     fail 'Unable to land cause airport is full' if full?
@@ -20,8 +26,8 @@ class Airport
   end
 
   def take_off plane
-    message = "Unable to instruct #{plane} to take off cause is not in the airport"
-    fail message unless has? plane
+    msg = "Unable to instruct #{plane} to take off cause is not in the airport"
+    fail msg unless has? plane
     fail 'Unable to take off due to stormy weather' if weather.stormy?
     plane.take_off
     planes.delete(plane)

@@ -20,6 +20,19 @@ describe Airport do
     end
   end
 
+  describe '#generate_new_plane' do
+    it { is_expected.to respond_to(:generate_new_plane) }
+    it 'has the generated plane' do
+      new_plane = airport.generate_new_plane
+      expect(airport.planes).to include new_plane
+    end
+    it 'does not allow to generate a new plane when the airport is full' do
+      airport.capacity.times{ airport.generate_new_plane }
+      msg = 'Unable to generate a new plane cause airport is full'
+      expect { airport.generate_new_plane }.to raise_error msg
+    end
+  end
+
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
     it 'instructs the plane to land' do
@@ -32,13 +45,13 @@ describe Airport do
     end
     it 'does not allow the plane to land when weather is stormy' do
       allow(airport.send(:weather)).to receive(:stormy?) { true }
-      message = 'Unable to land due to stormy weather'
-      expect { airport.land plane }.to raise_error message
+      msg = 'Unable to land due to stormy weather'
+      expect { airport.land plane }.to raise_error msg
     end
     it 'does not allow the plane to land when the airport is full' do
-      airport.capacity.times{ airport.land plane }
-      message = 'Unable to land cause airport is full'
-      expect { airport.land plane }.to raise_error message
+      airport.capacity.times{ airport.generate_new_plane }
+      msg = 'Unable to land cause airport is full'
+      expect { airport.land plane }.to raise_error msg
     end
   end
 
@@ -49,8 +62,8 @@ describe Airport do
     it { is_expected.to respond_to(:take_off).with(1).argument }
     it 'can not instructs a plane to take off if it is not in the airport' do
       airport.take_off plane
-      message = "Unable to instruct #{plane} to take off cause is not in the airport"
-      expect { airport.take_off plane }.to raise_error message
+      msg = "Unable to instruct #{plane} to take off cause is not in the airport"
+      expect { airport.take_off plane }.to raise_error msg
     end
     it 'instructs the plane to take off' do
       expect(plane).to receive(:take_off)
@@ -62,8 +75,8 @@ describe Airport do
     end
     it 'does not allow the plane to take off when weather is stormy' do
       allow(airport.send(:weather)).to receive(:stormy?) { true }
-      message = 'Unable to take off due to stormy weather'
-      expect { airport.take_off plane }.to raise_error message
+      msg = 'Unable to take off due to stormy weather'
+      expect { airport.take_off plane }.to raise_error msg
     end
   end
 
