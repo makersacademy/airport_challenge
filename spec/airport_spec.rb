@@ -13,7 +13,8 @@ describe Airport do
   end
 
   it 'should check for plane landed' do
-    expect(subject.land(plane)).to eq([plane])
+    subject.land(plane)
+    expect(subject.planes).to include plane
   end
 
   it 'should check for plane takeoff' do
@@ -73,6 +74,6 @@ describe Airport do
     subject.land(plane)
     expect(subject.take_off(plane)).not_to eq (:planes)
   end
-
+  
 
 end
