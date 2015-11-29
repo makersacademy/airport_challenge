@@ -1,6 +1,71 @@
 Airport Challenge
 =================
 
+INTRODUCTION
+------------
+This is a program written by Sara Tateno in response to Makers Academy's weekend
+challenge for Week 1.
+
+These are the User Stories that it is designed to meet:-
+
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
+
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+
+
+
+
+
+FURTHER BUILDS
+------
+
+I would have liked to:
+
+1) Built a test that checks the flying status of a plane changes to false after
+landing at an airport.
+
+e.g.:-
+  it 'changes the flying status of the plane to false after landing'
+    airport.land(plane)
+    expect(plane.flying?).to eq false
+
+The implementation would then require the airport.land(plane) method to call
+`plane.landplane`
+I couldn't work out how to write the test using doubles (without trivialising the test.)
+
+
+2) Changed the takeoff functionality such that any landed plane could be instructed
+to take off, not just the last one.
+
+The implementation would require takeoff to have 1 argument (plane) and for the
+instructed plane to be deleted from the @planes array.
+
+
+
+
 Instructions
 ---------
 
@@ -25,25 +90,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -62,7 +127,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 

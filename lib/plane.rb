@@ -1,9 +1,14 @@
 class Plane
-  def flying?
-      false
+
+  attr_reader :flying
+  alias_method :flying?, :flying
+
+  def initialize
+    @flying = true
   end
 
-  def land
+  def landplane
+    @flying = false
   end
 
 end

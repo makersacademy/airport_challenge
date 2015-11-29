@@ -9,8 +9,20 @@ class Airport
   end
 
   def land(plane)
-    fail 'Cannot land. Plane is not flying.' if plane.flying? == false
+    fail 'Cannot land. Plane has already landed.' if landed(plane)
+    plane.landplane
     @planes << plane
+  end
+
+  def takeoff
+    @planes.pop
+  end
+
+
+private
+
+  def landed(plane)
+    !plane.flying
   end
 
 end
