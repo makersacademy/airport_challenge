@@ -16,6 +16,13 @@ describe Airport do
         weather = double(:weather, condition: true)
         expect {subject.land(plane, weather)}.to raise_error 'cannot land, too stormy'
       end
+
+      it 'prevents landing when airport is full' do
+        plane = Plane.new
+        weather = double(:weather, condition: false)
+        20.times {subject.land(plane, weather)}
+        expect {subject.land(plane, weather)}.to raise_error 'cannot land plane, airport full'
+      end
   end
 
   describe '#take_off' do
