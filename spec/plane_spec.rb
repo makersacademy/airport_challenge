@@ -2,11 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport) {double(:airport,
-                :name => "JFK",
-                :bad_weather? => false,
-                :planes => [],
-                :full? => false)}
+  let(:airport) {double(:airport, name: "JFK", bad_weather?: false, planes: [], full?: false)}
 
   it 'returns false if plane has already landed into an airport' do
     air_control = AirTrafficControl.new

@@ -2,14 +2,8 @@ require 'air_traffic_control'
 
 describe AirTrafficControl do
 
-  let(:plane) {double(:plane,
-                :is_flying= => true,
-                :is_flying => true)}
-  let(:airport) {double(:airport,
-                :name => "JFK",
-                :bad_weather? => false,
-                :planes => [],
-                :full? => false)}
+  let(:plane) {double(:plane,:is_flying= => true,is_flying: true)}
+  let(:airport) {double(:airport,name: "JFK",bad_weather?: false,planes: [],full?: false)}
 
   context '<> Landing <>' do
     it 'should land a plane into an airport' do
@@ -18,17 +12,17 @@ describe AirTrafficControl do
     end
 
     it 'should prevent landing if the weather is stormy' do
-      allow(airport).to receive_messages(:bad_weather? => true)
+      allow(airport).to receive_messages(bad_weather?: true)
       expect{subject.land(plane, airport)}.to raise_error "Bad weather; can't land at #{airport.name}!"
     end
 
     it 'should prevent landing if the airport is full' do
-      allow(airport).to receive_messages(:full? => true)
+      allow(airport).to receive_messages(full?: true)
       expect{subject.land(plane, airport)}.to raise_error "#{airport.name} is full!"
     end
 
     it 'should prevent landing if the plane is already landed' do
-      allow(plane).to receive_messages(:is_flying => false)
+      allow(plane).to receive_messages(is_flying: false)
       expect{subject.land(plane, airport)}.to raise_error "This plane is already landed!"
     end
 
@@ -46,7 +40,7 @@ describe AirTrafficControl do
 
     it 'should prevent take off if the weather is stormy' do
       subject.land(plane, airport)
-      allow(airport).to receive_messages(:bad_weather? => true)
+      allow(airport).to receive_messages(bad_weather?: true)
       expect{subject.take_off(plane, airport)}.to raise_error "Bad weather; the plane can't take off!"
     end
 
