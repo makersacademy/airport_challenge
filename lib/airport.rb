@@ -12,10 +12,8 @@ class Airport
   def land plane
     fail 'It is too stormy!' if stormy?
     fail 'The airport is full!' if full?
-    fail 'That is not a plane!' if not_a? plane
     plane.land self
     planes << plane
-    self
   end
 
   def take_off plane
@@ -23,7 +21,6 @@ class Airport
     fail 'Plane not found!' unless contain? plane
     plane.take_off 
     planes.delete plane
-    self
   end
 
   def contain? plane
@@ -37,10 +34,6 @@ class Airport
   private
 
   attr_reader :planes, :weather, :capacity
-
-  def not_a? plane
-    plane.class.to_s != 'Plane'
-  end
 
   def full?
     planes.count >= capacity

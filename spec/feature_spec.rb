@@ -5,7 +5,7 @@ describe 'Feature Test' do
   let(:plane) { Plane.new }
   let(:airport) { Airport.new weather, 10 }
   let(:weather) { Weather.new}
-  storm_seed = (1..100).select { |n| srand(n); rand(Weather::DEFAULT) == 0 }[0]
+  storm_seed = (1..100).select { |n| srand(n); rand(Weather::SUNNINESS) == 0 }[0]
   sun_seed = storm_seed - 1
 
   it 'can land and take off multiple planes' do

@@ -19,10 +19,6 @@ describe Airport do
         expect(subject.contain? plane).to eq true
       end
       
-      it 'only accepts planes for landing' do
-        expect{subject.land 'not a plane'}.to raise_error 'That is not a plane!'
-      end
-      
       context 'when airport full' do
         it 'will not allow landing' do
           Airport::DEFAULT_CAPACITY.times { subject.land plane }
