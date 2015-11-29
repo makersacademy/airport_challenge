@@ -45,13 +45,13 @@ describe Airport do
   let(:airbourne_plane){double(:airbourne_plane, flying:true)}
   it "planes cant land when stormy" do
     allow(subject).to receive(:stormy?) {true}
-    expect{subject.land(plane)}.to raise_error("Adverse weather conditions, preventing landing")
+    expect{subject.land(plane)}.to raise_error("Adverse weather conditions")
   end
 
   it "planes cant take off when stormy" do
     subject.land(plane)
     allow(subject).to receive(:stormy?) {true}
-    expect{subject.take_off(plane)}.to raise_error("Adverse weather conditions, preventing landing")
+    expect{subject.take_off(plane)}.to raise_error("Adverse weather conditions")
   end
 
 
