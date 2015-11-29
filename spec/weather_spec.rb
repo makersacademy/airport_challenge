@@ -8,6 +8,4 @@ describe Weather do
     subject.change
     expect(subject.is_stormy).to eq true
   end
-
-
 end

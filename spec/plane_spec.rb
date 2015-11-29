@@ -12,5 +12,4 @@ describe Plane do
     subject.takeoff_plane
     expect(subject.flying?).to eq true
   end
-
 end

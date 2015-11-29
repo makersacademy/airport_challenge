@@ -29,7 +29,7 @@ class Airport
   end
 
 
-private
+  private
 
   def landed(plane)
     !plane.flying

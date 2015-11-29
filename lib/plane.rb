@@ -15,5 +15,4 @@ class Plane
     @flying = true
   end
 
-
 end
