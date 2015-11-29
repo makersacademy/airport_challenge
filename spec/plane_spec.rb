@@ -67,16 +67,23 @@ describe Plane do
   end
 
   context 'storm' do
+    before(:example) do
+      plane.land(airport)
+      allow(airport).to receive(:stormy?){true}
+    end
+
 
     it 'prevents landing' do
-      allow(airport).to receive(:stormy?){true}
+      plane = described_class.new
       expect{plane.land(airport)}.to raise_error 'Stormy weather prevents landing'
     end
 
-    it 'prevents take_off' do
-      plane.land(airport)
-      allow(airport).to receive(:stormy?){true}
+    it 'prevents take off' do
       expect{plane.take_off}.to raise_error 'Stormy weather prevents take off'
+    end
+
+    it 'causes plane to have stormy weather' do
+      expect(plane).to have_weather_stormy
     end
 
   end
