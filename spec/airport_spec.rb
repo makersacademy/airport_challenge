@@ -64,10 +64,5 @@ describe Airport do
       expect{subject.land_plane(:plane_land)}.to raise_error "Too stormy to land"
     end
   end
-  
-  describe 'forecast' do
-    it{is_expected.to respond_to(:storm_forecast)}
-  end
-
 
 end
