@@ -1,8 +1,13 @@
 require_relative 'plane'
 
 class Airport
+  DEFAULT_CAPACITY = 50
+
+  attr_reader :planes
+  attr_reader :capacity
 
   def initialize
+    @capacity = DEFAULT_CAPACITY
     @planes = []
   end
 
@@ -13,8 +18,4 @@ class Airport
   def takeoff
     @planes.pop
   end
-
-  private
-
-  attr_reader :planes
 end
