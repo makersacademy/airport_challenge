@@ -7,9 +7,11 @@ class Airport
 
   def initialize
     @planes = []
+    @weather = Weather.new
   end
 
   def land(plane)
+    fail 'Weather too stormy to land' if too_stormy?
     plane.land
     planes << plane
   end
@@ -22,8 +24,14 @@ class Airport
 
   private
 
+  attr_reader :weather
+
   def plane_not_present?(plane)
     !planes.include?(plane)
+  end
+
+  def too_stormy?
+    weather.stormy?
   end
 
 end

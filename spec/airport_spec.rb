@@ -13,7 +13,7 @@ describe Airport do
   context 'while weather is fine' do
 
     before do
-      allow(weather).to receive(:stormy?).and_return(false)
+      allow(airport).to receive(:too_stormy?).and_return(false)
     end
 
     describe '#land' do
@@ -56,13 +56,13 @@ describe Airport do
   context 'while weather is stormy' do
 
     before do
-      allow(weather).to receive(:stormy?).and_return(false)
+      allow(airport).to receive(:too_stormy?).and_return(true)
     end
 
     describe '#land' do
-      it 'is expected to raise an error due to weather' do
-        stormy_error = 'Weather too stormy to land'
-        expect { airport.land(plane) }.to raise_error stormy_error
+      it 'is expected to raise an error due to storm' do
+        too_stormy = 'Weather too stormy to land'
+        expect { airport.land(plane) }.to raise_error too_stormy
       end
     end
 

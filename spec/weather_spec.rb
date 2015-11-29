@@ -4,8 +4,6 @@ describe Weather do
 
   subject(:weather) { described_class.new }
 
-  it { is_expected.to respond_to(:stormy?) }
-
   describe '#stormy?' do
 
     it "is expected to be able to return true" do
@@ -17,7 +15,7 @@ describe Weather do
       allow(weather).to receive(:rand).and_return(0.2)
       expect(weather.stormy?).to be false
     end
-    
+
   end
 
 end
