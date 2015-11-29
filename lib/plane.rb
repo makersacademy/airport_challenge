@@ -11,6 +11,9 @@ class Plane
     @status = :landed
   end
 
+  def take_off
+  end
+
   private
 
   def landed?

@@ -30,4 +30,14 @@ describe Plane do
 
   end
 
+  describe '#take_off' do
+
+    it 'is expected to change the current @status of the plane to :flying' do
+      plane.land
+      plane.take_off
+      expect(plane.status).to eq(:flying)
+    end
+
+  end
+
 end
