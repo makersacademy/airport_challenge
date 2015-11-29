@@ -73,6 +73,12 @@ describe Plane do
       expect{plane.land(airport)}.to raise_error 'Stormy weather prevents landing'
     end
 
+    it 'prevents take_off' do
+      plane.land(airport)
+      allow(airport).to receive(:stormy?){true}
+      expect{plane.take_off}.to raise_error 'Stormy weather prevents take off'
+    end
+
   end
 
 

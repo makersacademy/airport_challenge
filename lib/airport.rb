@@ -16,4 +16,8 @@ def full?
   stored_planes.count >= capacity
 end
 
+def stormy?
+  weather == :storm
+end
+
 end

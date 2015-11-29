@@ -22,11 +22,16 @@ class Plane
   end
 
   def take_off
-    fail "Plane is already airborne" if airborne?
+    fail 'Plane is already airborne' if airborne?
+    fail 'Stormy weather prevents take off' if stormy?
     @airborne = true
     plane = ObjectSpace._id2ref(airport_id).stored_planes.pop
     @airport_id = :airborne
     plane
+  end
+
+  def stormy?
+    ObjectSpace._id2ref(airport_id).stormy?
   end
 
 private
