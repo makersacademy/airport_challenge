@@ -5,26 +5,35 @@ describe Airport do
     it {is_expected.to respond_to :instruct_to_land}
 
     it 'should land a plane' do
-      plane = double(:plane, in_airport_status: false, land: true)
+      plane = double(:plane, in_airport?: false, land: true)
+      weather_condition = 1
       subject.instruct_to_land(plane)
       expect(subject.landed_planes).to eq [plane]
     end
 
     it 'should check that the plane is in the airport' do
-      plane = double(:plane, in_airport_status: false, land: true)
+      plane = double(:plane, in_airport?: false, land: true)
+      subject.weather_condition != 5
       subject.instruct_to_land(plane)
       expect(subject.landed_planes).to eq [plane]
     end
 
     it "it should change the plane's status to 'in airport'" do
-      plane = double(:plane, in_airport_status: true, land: true)
+      plane = double(:plane, in_airport?: true, land: true)
       plane.land
-      expect(plane.in_airport_status).to eq true
+      expect(plane.in_airport?).to eq true
     end
 
-    it "it should raise an error if the plane is in the airport" do
-      plane = double(:plane, in_airport_status: true)
+    it "it should raise an error if the plane is already in the airport" do
+      plane = double(:plane, in_airport?: true)
+      weather_condition = 1
       expect{ subject.instruct_to_land(plane) }.to raise_error "The plane is already in the airport"
+    end
+
+    it 'should raise an error if the weather is stormy' do
+      plane = double(:plane, in_airport?: false, land: false)
+      allow(subject).to receive(:is_stormy?).and_return true
+      expect { subject.instruct_to_land(plane) }.to raise_error "No planes can land as it is stormy"
     end
   end
 
@@ -32,7 +41,7 @@ describe Airport do
     it {is_expected.to respond_to :instruct_take_off}
 
     it 'should let a plane take off' do
-      plane = double(:plane, in_airport_status: false, take_off: false)
+      plane = double(:plane, in_airport?: false, take_off: true)
       subject.landed_planes << plane
       subject.instruct_take_off
       expect(subject.landed_planes).not_to eq [plane]
@@ -45,15 +54,15 @@ describe Airport do
     end
 
     it 'should raise an error if the weather is stormy' do
-      plane = double(:plane, in_airport_status: false, land: true, take_off: false)
+      plane = double(:plane, in_airport?: false, land: true, take_off: false)
       subject.instruct_to_land(plane)
-      weather_condition = 5
+      allow(subject).to receive(:is_stormy?).and_return true
       expect { subject.instruct_take_off }.to raise_error "No planes can take off as it is stormy"
     end
 
     it "should change the plane's status to not in airport" do
-      plane = double(:plane, in_airport_status: false)
-      expect(plane.in_airport_status).to eq false
+      plane = double(:plane, in_airport?: false)
+      expect(plane.in_airport?).to eq false
     end
   end
 
