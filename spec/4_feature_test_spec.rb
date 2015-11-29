@@ -2,9 +2,11 @@ require 'airport'
 require 'weather'
 
 describe 'Feature tests' do
+
+  before{allow(Weather).to receive(:stormy?).and_return(false)}
+
   context 'Weather is clear' do
     it 'allows a number of planes to land and take off' do
-      allow(Weather).to receive(:stormy?).and_return(false)
       heathrow = Airport.new
       easyjet = Plane.new
       virgin = Plane.new
@@ -21,7 +23,6 @@ describe 'Feature tests' do
     end
 
     it 'planes know which airport they are at' do
-      allow(Weather).to receive(:stormy?).and_return(false)
       heathrow = Airport.new
       gatwick = Airport.new
       easyjet = Plane.new
@@ -36,7 +37,6 @@ describe 'Feature tests' do
     end
 
     it 'has a capacity which can be changed and won\'t breach it' do
-      allow(Weather).to receive(:stormy?).and_return(false)
       heathrow = Airport.new
       heathrow.update_capacity(5)
       easyjet = Plane.new
@@ -58,7 +58,6 @@ describe 'Feature tests' do
 
   context 'Weather is stormy' do
     it 'prevents planes from taking off if the weather becomes stormy' do
-      allow(Weather).to receive(:stormy?).and_return(false)
       heathrow = Airport.new
       easyjet = Plane.new
       virgin = Plane.new
@@ -76,7 +75,6 @@ describe 'Feature tests' do
     end
 
     it 'prevents planes from landing if the weather becomes stormy' do
-      allow(Weather).to receive(:stormy?).and_return(false)
       heathrow = Airport.new
       easyjet = Plane.new
       virgin = Plane.new
