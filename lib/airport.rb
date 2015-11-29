@@ -6,6 +6,7 @@ class Airport
 
   def initialize
     @planes = []
+    @weather = Weather.new
   end
 
   def land plane
@@ -14,8 +15,13 @@ class Airport
   end
 
   def take_off plane
+    fail 'Unable to take off due to stormy weather' if weather.stormy?
     plane.take_off
     planes.delete(plane)
   end
 
+  private
+
+  attr_reader :weather
+  
 end
