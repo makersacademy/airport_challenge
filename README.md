@@ -10,7 +10,7 @@ Airport class controls takeoffs and landings, instructing planes to update their
 for example:  
 `airport.land plane` - the airport will instruct the plane to land if possible, adding it to the plane storeage  
 will trigger:  
-`plane.land airport` - updating the status of the plane to grounded at that airport
+`plane.land airport` - updating the status of the plane to be grounded at that airport
 
 ####Object/Messages Table
 
