@@ -12,6 +12,7 @@ class Plane
   end
 
   def take_off
+    fail "This plane is already flying" if flying?
     @status = :flying
   end
 
@@ -19,6 +20,10 @@ class Plane
 
   def landed?
     status == :landed
+  end
+
+  def flying?
+    status == :flying
   end
 
 end
