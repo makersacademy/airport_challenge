@@ -122,6 +122,21 @@ describe Airport do
       expect(subject.weather_check.class).to be(String)
     end
 
+    it 'raises error when take off attempted udner stormy conditions' do
+      a = Airport.new
+      plane = (double(:Plane,:plane_landing => "Landed"))
+      a.instruct_plane_to_land(plane)
+      a.stub(:weather_check).and_return("stormy")
+      expect{a.instruct_plane_to_take_off(plane)}.to raise_error
+    end
+
+    it 'raises error when landing attempted udner stormy conditions' do
+      a = Airport.new
+      plane = (double(:Plane,:plane_landing => "Landed"))
+      a.stub(:weather_check).and_return("stormy")
+      expect{a.instruct_plane_to_land(plane)}.to raise_error
+    end
+
   end
 
 end
