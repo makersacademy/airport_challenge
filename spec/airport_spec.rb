@@ -2,6 +2,17 @@ require 'airport'
 
 describe Airport do
 
+  describe '#initialize' do
+    it 'sets capacity to argument passed' do
+      expect(Airport.new(30).capacity).to eq(30)
+    end
+
+    it 'if no argument passed, set\'s capacity to default capacity' do
+      expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+    end
+  end
+
+
   context 'behaviour when the weather is fine' do
     describe '#land' do
       it { is_expected.to respond_to(:land).with(2).arguments }
@@ -10,6 +21,13 @@ describe Airport do
         plane = double(:plane, flying: false)
         weather = double(:weather, change: false, is_stormy: false)
         expect { subject.land(plane, weather) }.to raise_error 'Cannot land. Plane has already landed.'
+      end
+
+      it 'raises an error when the airport is full' do
+        plane = double(:plane, landplane: false, flying: true)
+        weather = double(:weather, change: false, is_stormy: false)
+        subject.capacity.times {subject.land(plane, weather)}
+        expect { subject.land(plane, weather) }.to raise_error 'Cannot land. Airport is full.'
       end
 
       it 'tells the plane to follow its landing procedures upon landing' do
