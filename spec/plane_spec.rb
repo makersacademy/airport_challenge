@@ -12,23 +12,30 @@ describe Plane do
 
   end
 
-describe '#land' do
-  it 'leads to plane being landed' do
-    plane.land(airport)
-    expect(plane).to be_landed
+  describe '#land' do
+    it 'leads to plane being landed' do
+      plane.land(airport)
+      expect(plane).to be_landed
+    end
+
+    it 'returns self' do
+      plane.land(airport)
+      expect(plane).to eq plane
+    end
+
+    it 'stores plane in airport' do
+      plane.land(airport)
+      expect(airport.landed_planes).to eq [plane]
+    end
   end
 
-  it 'returns self' do
-    plane.land(airport)
-    expect(plane).to eq plane
+  describe '#take_off' do
+    it 'leads to plane not being landed' do
+      plane.take_off
+      expect(plane).not_to be_landed
+    end
   end
 
-  it 'stores plane in airport' do
-    plane.land(airport)
-    expect(airport.landed_planes).to eq [plane]
-  end
-
-end
 
 
 end

@@ -9,8 +9,5 @@ describe Airport do
     it 'is an empty array by default' do
       expect(airport.landed_planes).to be_empty
     end
-
-    
-
   end
 end
