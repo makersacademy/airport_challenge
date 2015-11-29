@@ -2,18 +2,16 @@ require_relative '../lib/plane.rb'
 
 class Airport
 
-  def land(plane)
+  def land(plane, weather)
+    @plane = plane
+    @plane.status("landed")
 
   end
 
-  def take_off(plane)
-    raise 'cannot take off, weather is stormy' if stormy?
-
+  def take_off(plane, weather)
+    @plane = plane
+    @plane.status("on air")
   end
 
-private
 
-  def stormy?
-    [:sunny, :overcast, :stormy].shuffle.first
-  end
 end

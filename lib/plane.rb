@@ -1,11 +1,9 @@
 class Plane
 
-  def landed?
-    true
-  end
+  attr_reader :confirmation
 
-  def in_air?
-    true
+  def status(status = "")
+    @confirmation = status
   end
 
 end

@@ -1,27 +1,25 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new }
-  let(:plane) { double :plane }
-  it 'instructs a plane to land' do
-    # airport = Airport.new
-    # plane = Plane.new
-  expect(airport).to respond_to(:land).with(1).arguments
-  end
 
-  it 'instructs a plane to take off' do
-    # airport = Airport.new
-    # plane = Plane.new
-    subject.land(plane)
-    expect(subject).to respond_to(:take_off).with(1).arguments
-  end
+  describe '#landing' do
 
-  # it 'prevents take off if stormy' do
-  #   # airport = Airport.new
-  #   # plane = Plane.new
-  #   subject.land(plane)
-  #   allow(airport).to receive(:stormy?).and_return true
-  #   expect { subject.take_off(plane) }.to raise_error 'cannot take of, weather is stormy'
-  # end
+      it 'allows to land and confirm landing' do
+        plane = Plane.new
+        weather = double(:weather, condition: false)
+        subject.land(plane, weather)
+        expect(plane.confirmation).to eq "landed"
+      end
+    end
 
+  describe '#take_off' do
+
+      it 'allows to take off and confirm taking off' do
+        plane = Plane.new
+        weather = double(:weather, condition: false)
+        subject.land(plane, weather)
+        subject.take_off(plane, weather)
+        expect(plane.confirmation).to eq "on air"
+      end
+    end
 end
