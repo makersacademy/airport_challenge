@@ -1,8 +1,8 @@
-# class Weather
-#
-#     def bad?
-#       #20% chances of bad weather
-#       true if rand(1..1000) == 1
-#     end
-#
-# end
+class Weather
+
+    def bad?
+      #20% chances of bad weather
+      true if rand(1..5) == 1
+    end
+
+end

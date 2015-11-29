@@ -21,19 +21,17 @@ class Airport
   end
 
   def approve_takeoff?(plane)
-    fail "The plane is not at this airport" if !planes.include?(plane)
+    fail "The plane is not at this airport" unless planes.include?(plane)
     check_weather
     planes.delete(plane)
   end
-
-private
 
   def check_capacity
     fail "#{name} is full" if planes.count >= @max_capacity
   end
 
   def check_weather
-    fail "Bad weather at #{name}, try again later" if rand(1..1000) == 1
+    fail "Bad weather at #{name}, try again later" if rand(1..5) == 1
   end
 
 end

@@ -11,6 +11,7 @@ describe Airport do
     end
 
     it 'should prevent landing if the weather at airport is bad' do
+      subject.check_weather.stub(:check_weather).and_return(true)
       expect{subject.approve_landing?(plane)}.to raise_error "Bad weather, try again later"
     end
 
