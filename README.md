@@ -1,12 +1,14 @@
-#Airport Challenge
+#Airport Challenge    [![Build Status](https://travis-ci.org/hibreez/airport_challenge.svg?branch=master)](https://travis-ci.org/hibreez/airport_challenge)
 
 Solution to [airport challenge](https://github.com/makersacademy/airport_challenge).
-All user stories covered and fully unit / feature tested. 
+User stories covered and unit / feature tested. 
 Uses three classes: `Plane`, `Airport` and `Weather`.
 
 Airport class controls takeoffs and landings, instructing planes to update their status.
+
 e.g.: 
 `airport.land plane` - the airport will instruct the plane to land if possible, adding it to the plane storeage
+
 will trigger:
 `plane.land airport` - updating the status of the plane to grounded at that airport
 
