@@ -1,26 +1,29 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
+
+  subject(:airport) { described_class.new }
+  let(:plane) { double :plane }
 
   describe '#land(plane)' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'should allow a plane to land' do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.planes).to include plane
+      allow(plane).to receive(:land).and_return(:landed)
+      airport.land(plane)
+      expect(airport.planes).to include plane
     end
   end
 
   describe '#takeoff(plane)' do
-    it { is_expected.to respond_to(:takeoff).with(1).argument }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'should allow a plane to takeoff' do
-      plane = Plane.new
-      subject.land(plane)
-      subject.takeoff(plane)
-      expect(subject.planes).not_to include plane
+      allow(plane).to receive(:land).and_return(:landed)
+      allow(plane).to receive(:take_off).and_return(:taken_off)
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes).not_to include plane
     end
   end
 end
