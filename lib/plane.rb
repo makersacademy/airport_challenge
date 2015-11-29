@@ -24,5 +24,4 @@ class Plane
     fail 'Plane is currently flying!' if flying
     @airport
   end
-
 end

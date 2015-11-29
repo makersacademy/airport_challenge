@@ -1,22 +1,22 @@
+require_relative 'weather'
+
 class Airport
-
-  attr_reader :planes
-
-  def initialize
+  def initialize weather
     @planes = []
+    @weather = weather
   end
 
   def land plane
-    fail 'That is not a plane!' if plane.class.to_s != 'Plane'
-    fail 'Weather is too stormy!' if stormy?
+    fail 'Weather too stormy!' if stormy?
+    fail 'That is not a plane!' if not_a? plane
     plane.land self
     planes << plane
     self
   end
 
   def take_off plane
+    fail 'Weather too stormy!' if stormy?
     fail 'Plane not found!' unless contain? plane
-    fail 'Weather is too stormy!' if stormy?
     plane.take_off 
     planes.delete plane
     self
@@ -27,7 +27,14 @@ class Airport
   end
 
   def stormy?
-    rand(20) == 0 ? true : false
+    weather.stormy?
   end
 
+  private
+
+  attr_reader :planes, :weather
+
+  def not_a? plane
+    plane.class.to_s != 'Plane'
+  end
 end

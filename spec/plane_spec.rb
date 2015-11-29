@@ -1,7 +1,6 @@
 require 'plane'
 
 describe Plane do
-
   subject(:plane) { described_class.new }
   let(:airport) { double :airport }
 
