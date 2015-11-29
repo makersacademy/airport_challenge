@@ -14,7 +14,8 @@ end
 def  instruct_plane_to_land(landing_plane)
   full_airport_landing_refusal_check
   landing_status_check(landing_plane)
-  fail 'Storm Warning : Cannot permit take off or landing'  if weather_check == "stormy"
+  fail 'Storm Warning : Cannot permit take off'/
+    ' or landing' if weather_check == "stormy"
   landing_plane.plane_landing
   @planes << landing_plane
   landing_confirmation(landing_plane)
@@ -36,14 +37,13 @@ end
   private
 
   def full_airport_landing_refusal_check
-    fail 'Airport full: Landing Denied' if @planes.length >= @default_capacity
+    fail 'Airport full: Landing Denied' if @planes.
+      length >= @default_capacity
   end
 
   def take_off_any_planes_check
     fail 'No Planes In Airport' if @planes.empty?
   end
-
-
 
   def take_off_status_check(departing_plane)
     fail 'Plane is already in flight' if departing_plane.
@@ -56,13 +56,11 @@ end
   end
 
   def landing_confirmation(landing_plane)
-    puts "Plane: #{landing_plane} has landed."
-      #" Status: #{landing_plane.instance_variable_get(:@plane_in_flight)}"
+    puts "Plane: #{landing_plane} has landed."    
   end
 
   def take_off_confirmation(departing_plane)
     puts "Plane: #{departing_plane} has departed."
-      #" Status: #{departing_plane.instance_variable_get(:@plane_in_flight)}"
   end
 
 end
