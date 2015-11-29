@@ -13,6 +13,11 @@ describe Weather do
       expect(weather.stormy?).to be true
     end
 
+    it 'is expected to be able to return false' do
+      allow(weather).to receive(:rand).and_return(0.2)
+      expect(weather.stormy?).to be false
+    end
+    
   end
 
 end
