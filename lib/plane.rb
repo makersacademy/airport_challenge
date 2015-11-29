@@ -1,25 +1,28 @@
 class Plane
-  attr_reader :flying
 
   def initialize
     @flying = true
     @airport = nil
   end
 
-  def land airport
-    fail 'Plane already landed!' unless flying
+  def land! airport
+    fail 'Plane already landed!' unless flying?
     @airport = airport
     @flying = false
   end
 
-  def take_off
-    fail 'Plane already flying!' if flying
+  def take_off!
+    fail 'Plane already flying!' if flying?
     @airport = nil
     @flying = true
   end
 
+  def flying?
+    @flying
+  end
+  
   def airport
-    fail 'Plane is currently flying!' if flying
+    fail 'Plane is currently flying!' if flying?
     @airport
   end
 end

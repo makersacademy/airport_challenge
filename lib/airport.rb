@@ -9,17 +9,17 @@ class Airport
     @capacity = capacity
   end
 
-  def land plane
+  def land! plane
     fail 'It is too stormy!' if stormy?
     fail 'The airport is full!' if full?
-    plane.land self
+    plane.land! self
     planes << plane
   end
 
-  def take_off plane
+  def take_off! plane
     fail 'It is too stormy!' if stormy?
     fail 'Plane not found!' unless contain? plane
-    plane.take_off 
+    plane.take_off! 
     planes.delete plane
   end
 
@@ -36,6 +36,6 @@ class Airport
   attr_reader :planes, :weather, :capacity
 
   def full?
-    planes.count >= capacity
+    planes.size >= capacity
   end
 end

@@ -11,13 +11,13 @@ describe 'Feature Test' do
   it 'can land and take off multiple planes' do
     planes = []
     10.times { planes << Plane.new }
-    planes.each { |plane| srand(sun_seed); airport.land plane }
+    planes.each { |plane| srand(sun_seed); airport.land! plane }
     expect(airport.contain? planes[0]).to eq true
     srand(sun_seed)
-    expect{airport.land plane}.to raise_error 'The airport is full!'
+    expect{airport.land! plane}.to raise_error 'The airport is full!'
     srand(storm_seed)
-    expect{airport.land plane}.to raise_error 'It is too stormy!'
-    planes.each { |plane| srand(sun_seed); airport.take_off plane}
+    expect{airport.land! plane}.to raise_error 'It is too stormy!'
+    planes.each { |plane| srand(sun_seed); airport.take_off! plane}
     expect(airport.contain? planes[0]).to eq false
   end
 
