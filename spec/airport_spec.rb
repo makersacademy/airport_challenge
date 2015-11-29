@@ -21,14 +21,23 @@ describe Airport do
 
     it 'raises an error when trying to takeoff a plane that is already flying' do
       plane = double(:plane, flying: true)
-      expect { subject.takeoff(plane) }.to raise_error 'Cannot takeoff. Plane is already flying.'
+      allow(subject).to receive(:badweather?) {false}
+      expect { subject.takeoff(plane) }.to raise_error 'Cannot instruct takeoff. Plane is already flying.'
     end
 
     it 'tells the plane to follow its takeoff procedures upon takeoff' do
       plane = double(:plane, flying: false)
+      allow(subject).to receive(:badweather?) {false}
       expect(plane).to receive(:takeoff_plane)
       subject.takeoff(plane)
     end
+
+    it 'raises an error when trying to takeoff in stormy weather' do
+      plane = double(:plane, flying: false)
+      allow(subject).to receive(:badweather?) { true }
+      expect { subject.takeoff(plane) }.to raise_error 'Cannot instruct takeoff. Stormy weather.'
+    end
+
   end
 
 
@@ -46,14 +55,4 @@ describe Airport do
     end
   end
 
-    # it 'allows a plane to leave the airport when it has taken off' do
-    #   planes_array = []
-    #   2.times do
-    #      plane = double(:plane, flying: true)
-    #      planes_array << plane
-    #      subject.land(plane)
-    #   end
-    #   subject.takeoff
-    #   expect(subject.planes).to match_array(planes_array[0])
-    # end
-  end
+end
