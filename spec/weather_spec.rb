@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do
   subject(:weather) { described_class.new }
-  storm_seed = (1..100).select{ |n| srand(n); rand(Weather::DEFAULT) == 0 }[0]
+  storm_seed = (1..100).select { |n| srand(n); rand(Weather::DEFAULT) == 0 }[0]
   sun_seed = storm_seed - 1
 
   describe '#stormy?' do
