@@ -9,4 +9,5 @@ describe Weather do
   it 'is expected to initialize with weather set to :fine' do
     expect(weather.weather).to eq(:fine)
   end
+
 end
