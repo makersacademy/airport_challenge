@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new }
-  let(:plane) { double(:plane, land: nil) }
+  let(:plane) { double(:plane, land: nil, take_off: nil) }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -38,6 +38,12 @@ describe Airport do
       airport.land(plane)
       expect(plane).to receive(:take_off)
       airport.take_off(plane)
+    end
+
+    it 'is expected to remove the plane from the @planes array' do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes).not_to include plane
     end
 
   end
