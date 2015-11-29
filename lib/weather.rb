@@ -1,6 +1,5 @@
 class Weather
   DEFAULT = 10
-  attr_reader :niceness
 
   def initialize niceness=DEFAULT
     @niceness = limit_to_range niceness.to_i  
@@ -11,6 +10,8 @@ class Weather
   end
 
   private
+  
+  attr_reader :niceness
 
   def limit_to_range number
     [number, 1, 100].sort[1]
