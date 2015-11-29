@@ -10,6 +10,7 @@ class Airport
 
   def land(plane)
     fail 'plane cannot take land in a storm' if stormy?
+    fail 'Airport is full and cannot land' if full?
     @planes << plane
     plane.landing
   end
@@ -20,14 +21,13 @@ class Airport
     plane.taking_off
   end
 
-  def air_control
-
-  end
-
   private
 
   def stormy?
     rand > 0.9
   end
 
+  def full?
+    return true if @planes.size >= 10
+  end
 end
