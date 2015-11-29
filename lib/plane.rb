@@ -15,6 +15,7 @@ class Plane
     message = "Can't take off, already in the air."
     fail message if already_in_the_air?(self)
     @status = :in_the_air
+    @airport_at = :not_in_airport
   end
 
   private

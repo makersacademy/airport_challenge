@@ -75,7 +75,7 @@ describe Airport do
     end
   end
 
-  context 'IF THERE IS A STORM' do
+  context 'If the weather is stormy' do
 
     it 'prevents take off in stormy weather' do
       allow(plane).to receive(:take_off)
@@ -93,7 +93,7 @@ describe Airport do
 
   end
 
-  context 'IF THE AIRPORT IS FULL' do
+  context 'If the airport is at capacity' do
 
     it 'prevents landing' do
       allow(plane).to receive(:land)

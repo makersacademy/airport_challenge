@@ -25,6 +25,12 @@ let(:airport) {double(:airport)}
       plane.land(airport)
       expect(plane.airport_at).to eq airport
     end
+
+    it 'knows it is not at an airport after take off' do
+      plane.land(airport)
+      plane.take_off(airport)
+      expect(plane.airport_at).to eq :not_in_airport
+    end
   end
 
   context 'edge cases' do
