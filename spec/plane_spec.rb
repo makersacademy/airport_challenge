@@ -10,4 +10,12 @@ describe Plane do
     end
   end
 
+  describe '#taken_off' do
+    it { is_expected.to respond_to(:taken_off?) }
+    it 'should take off the plane' do
+      subject.take_off
+      expect(subject.taken_off?).to eq true
+    end
+  end
+
 end
