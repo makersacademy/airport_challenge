@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-let (:plane) {double :plane}
+let (:plane) {double :plane, flying!: true}
 
     it { is_expected.to respond_to(:land).with(1).argument }
     it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -13,7 +13,8 @@ let (:plane) {double :plane}
       expect(subject.land(plane)).to eq [plane]
     end
 
-    it "Can tell us which planes have landed" do
+
+    it "Can confirm a plane has landed" do
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
@@ -23,7 +24,7 @@ let (:plane) {double :plane}
     end
 
     it "Confirms a plane has landed" do
-      
+
     end
 
     it "Can land multiple planes" do
@@ -38,8 +39,9 @@ let (:plane) {double :plane}
 
 
   describe "#take off" do
-    it "Allow a plane to take off" do
-    expect(subject.take_off(plane)).to eq plane
+    it "Allows a plane to take off" do
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq [plane]
     end
   end
 end
