@@ -1,7 +1,10 @@
+require_relative = 'plane'
+require = 'weather'
+
 class Airport
 
   attr_accessor :planes
-  attr_reader :name
+  attr_reader :name, :max_capacity
 
   DEFAULT_CAPACITY = 34
 
@@ -11,13 +14,27 @@ class Airport
     @name = name
   end
 
-  def bad_weather?
-    #20% chances of stormy weather (1/5)
-    true if rand(1..1000) == 1
+  def approve_landing?(plane)
+    check_capacity
+    check_weather
+    planes << plane
   end
 
-  def full?
-    planes.count >= @max_capacity
+  def approve_takeoff?(plane)
+    fail "The plane is not at this airport" if !planes.include?(plane)
+    check_weather
+    planes.delete(plane)
+  end
+
+private
+
+  def check_capacity
+    fail "#{name} is full" if planes.count >= @max_capacity
+  end
+
+  def check_weather
+    weather = Weather.new
+    fail "Bad weather at #{name}, try again later" if weather.bad?
   end
 
 end
