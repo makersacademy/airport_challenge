@@ -2,7 +2,7 @@
 
 #Airport Challenge
 
-This is my solutions for the [airport challenge](https://github.com/michaellennox/airport_challenge) carried out while at Makers' Academy.
+This is my solution for the [airport challenge](https://github.com/michaellennox/airport_challenge) carried out at the end of my first week at Makers' Academy.
 
 ##How I worked
 
