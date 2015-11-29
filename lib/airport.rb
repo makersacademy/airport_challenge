@@ -13,8 +13,7 @@ end
 
 def  instruct_plane_to_land(landing_plane)
   full_airport_landing_refusal_check
-  fail 'Plane has already landed' if
-    landing_status_check(landing_plane) == 'Landed'
+  fail 'Plane has already landed' if landing_status_check(landing_plane)
   fail 'Storm Warning : Cannot permit take off'/
     ' or landing' if weather_check == "stormy"
   landing_plane.plane_landing
@@ -25,14 +24,15 @@ end
 def instruct_plane_to_take_off(departing_plane)
   fail 'Plane is already in flight' if take_off_status_check(departing_plane)
   take_off_any_planes_check
-  weather_check
+  fail 'Storm Warning : Cannot permit take off'/
+    ' or landing' if weather_check == "stormy"
   departing_plane.plane_taking_off
   @planes.delete(departing_plane)
   take_off_confirmation(departing_plane)
 end
 
 def weather_check
-  Weather.new.weather_report
+  Weather.new.weather_report 
 end
 
   private
