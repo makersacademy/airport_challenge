@@ -11,7 +11,7 @@ class Airport
     @name = name
   end
 
-  def weather_is_stormy?
+  def bad_weather?
     #20% chances of stormy weather (1/5)
     true if rand(1..5) == 1
   end

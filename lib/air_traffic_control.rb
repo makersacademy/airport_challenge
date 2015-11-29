@@ -3,13 +3,13 @@ require_relative 'plane'
 
 class AirTrafficControl
 
-  def instruct_landing(plane, airport)
+  def land(plane, airport)
     if !plane.is_flying
       fail "This plane is already landed!"
-    elsif airport.weather_is_stormy?
-      fail "The weather is too bad to land at #{airport.name}!"
+    elsif airport.bad_weather?
+      fail "Bad weather; can't land at #{airport.name}!"
     elsif airport.full?
-      fail "Can't land at #{airport.name}, it is full!"
+      fail "#{airport.name} is full!"
     else
       plane.is_flying = false
       airport.planes << plane
@@ -17,11 +17,11 @@ class AirTrafficControl
     end
   end
 
-  def instruct_takeoff(plane, airport)
+  def take_off(plane, airport)
     if !airport.planes.include?(plane)
       fail "This plane is not at #{airport.name}!"
-    elsif airport.weather_is_stormy?
-      fail "The weather is too bad to take off from #{airport.name}!"
+    elsif airport.bad_weather?
+      fail "Bad weather; the plane can't take off!"
     else
       plane.is_flying = true
       airport.planes.delete(plane)
