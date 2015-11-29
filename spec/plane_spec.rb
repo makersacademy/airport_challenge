@@ -11,7 +11,9 @@ describe Plane do
 
   context 'when the weather is fine' do
     it 'is able to land' do
-      expect(subject.land).to be true
+      jet = double("Plane")
+      allow(jet).to receive(:land).and_return(true)
+      expect(jet.land).to be true
     end
 
     it 'is able to take-off' do
@@ -22,7 +24,10 @@ describe Plane do
   end
 
   context 'when the weather is stormy' do
-    xit 'is not able to land' do
+    it 'is not able to land' do
+      jet = double("Plane")
+      allow(jet).to receive(:land).and_raise("It's too stormy to land today")
+      expect{jet.land}.to raise_error "It's too stormy to land today"
     end
 
     it 'is not able to take-off' do

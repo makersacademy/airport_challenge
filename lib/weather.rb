@@ -2,11 +2,10 @@ class Weather
   attr_reader :current_weather
 
   def initialize
-    @current_weather = :stormy
+    if rand(10) == 4
+      @current_weather = :stormy
+    else
+      @current_weather = :sunny
+    end
   end
-
-  #def weather_report
-    #@current_weather
-  #end
-
 end
