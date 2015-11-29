@@ -18,7 +18,7 @@ include Weather
   def land(plane)
     fail "Airport full" if full?
     fail "Adverse weather conditions" if stormy?
-    fail "Plane is already on the ground" if plane.airbourne == false
+    fail "Plane grounded" if plane.airbourne == false
     @planes << plane
   end
 

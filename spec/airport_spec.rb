@@ -29,7 +29,7 @@ describe Airport do
 
   let(:landed_plane) {double(:landed_plane, airbourne:false)}
   it 'grounded planes cant land' do
-    expect{subject.land(landed_plane)}.to raise_error("Plane is already on the ground")
+    expect{subject.land(landed_plane)}.to raise_error("Plane grounded")
   end
 
   it 'has a default capacity' do
@@ -74,6 +74,6 @@ describe Airport do
     subject.land(plane)
     expect(subject.take_off(plane)).not_to eq (:planes)
   end
-  
+
 
 end
