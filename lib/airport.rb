@@ -29,9 +29,10 @@ def instruct_plane_to_take_off(departing_plane)
   take_off_confirmation(departing_plane)
 end
 
-  def weather_check
-    Weather.new.weather_report
-  end
+def weather_check
+  Weather.new.weather_report
+end
+
   private
 
   def full_airport_landing_refusal_check
