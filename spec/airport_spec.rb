@@ -5,7 +5,6 @@ describe Airport do
 
     it 'should land a plane' do
       plane = Plane.new
-
       subject.tell_plane_to_land(plane)
       expect(subject.planes.include?(plane)).to eq true
     end
@@ -19,5 +18,11 @@ describe Airport do
       expect(subject.planes.include?(plane)).to eq false
     end
 
+    it 'should raise an error if a plane tries to take off when it\'s stormy' do
+      plane = Plane.new
+      subject.tell_plane_to_land(plane)
+      subject.storm
+      expect{subject.tell_plane_to_take_off(plane)}.to raise_error "Plane can't take off in a storm"
+    end
 
 end
