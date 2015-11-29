@@ -19,6 +19,11 @@ describe Airport do
   describe '#takeoff' do
     it { is_expected.to respond_to(:takeoff) }
 
+    it 'raises an error when trying to takeoff a plane that is already flying' do
+      plane = double(:plane, flying: true)
+      expect { subject.takeoff(plane) }.to raise_error 'Cannot takeoff. Plane is already flying.'
+    end
+
     it 'tells the plane to follow its takeoff procedures upon takeoff' do
       plane = double(:plane, flying: false)
       expect(plane).to receive(:takeoff)
