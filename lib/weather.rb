@@ -7,4 +7,5 @@ class Weather
   def atmosphere
     atmos = rand(10)
   end
+
 end

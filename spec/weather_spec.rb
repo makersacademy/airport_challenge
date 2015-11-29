@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do
 
-  describe '#stormy'do
+  describe '#stormy?'do
     it{is_expected.to respond_to :stormy?}
 
     it 'should report the stormy as false when atmos is 7 or less' do
