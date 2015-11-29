@@ -1,4 +1,5 @@
 class Airport
+
   attr_reader :planes
 
   def initialize
@@ -6,16 +7,18 @@ class Airport
   end
 
   def land plane
-    fail 'That is not a plane!' if plane.class != Plane
+    fail 'That is not a plane!' if plane.class.to_s != 'Plane'
     fail 'The weather is too stormy!' if stormy?
+    plane.land self
     planes << plane
     self
   end
 
-  def takeoff plane
+  def take_off plane
     fail 'Plane not found!' unless contain? plane
     fail 'The weather is too stormy!' if stormy?
-    planes.delete(plane)
+    plane.take_off 
+    planes.delete plane
     self
   end
 
