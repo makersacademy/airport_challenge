@@ -16,10 +16,10 @@ attr_reader :in_airport_status
 private
 
   def landed?
-    @in_airport_status
+    in_airport_status
   end
 
   def in_airport?
-    @in_airport_status
+    in_airport_status
   end
 end

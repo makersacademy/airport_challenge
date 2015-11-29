@@ -10,14 +10,14 @@ describe Plane do
   describe '#take_off' do
     it 'should make a plane take off' do
       subject.take_off
-      expect(subject.in_airport_status). to eq false
+      expect(subject.in_airport_status).to eq false
     end
   end
 
   describe '#land' do
     it 'should land a plane' do
       subject.land
-      expect(subject.in_airport_status). to eq true
+      expect(subject.in_airport_status).to eq true
     end
   end
 
