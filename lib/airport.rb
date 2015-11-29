@@ -9,8 +9,8 @@ class Airport
   end
 
   def land(plane)
-    fail "This plane is already landed" if plane.status == :landed
-    @planes << plane
+    plane.land
+    planes << plane
   end
 
 end

@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  
+
   subject(:plane) { described_class.new }
 
   it { is_expected.to respond_to(:status) }
@@ -20,6 +20,11 @@ describe Plane do
     it 'is expected to change the current @status of the plane to :landed' do
       plane.land
       expect(plane.status).to eq(:landed)
+    end
+
+    it 'is expected to raise an error if already landed' do
+      plane.land
+      expect(plane.land).to raise_error "This plane is already landed"
     end
 
   end

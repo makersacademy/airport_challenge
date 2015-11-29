@@ -19,11 +19,6 @@ describe Airport do
       expect(airport.planes).to include plane
     end
 
-    it 'is expected to not accept a plane that is already landed' do
-      allow(plane).to receive(:status).and_return :landed
-      expect{airport.land(plane)}.to raise_error "This plane is already landed"
-    end
-
     it 'is expected to instruct the plane to make a landing' do
       expect(plane).to receive(:land)
       airport.land(plane)
