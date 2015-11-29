@@ -19,8 +19,7 @@ describe Plane do
     end
 
     it 'returns plane' do
-      plane.land(airport)
-      expect(plane).to eq plane
+      expect(plane.land(airport)).to eq plane
     end
 
     it 'stores plane in airport' do
@@ -31,6 +30,11 @@ describe Plane do
     it 'is prevented when the airport is full' do
       airport = double(:airport, full?: true, stored_planes: [])
       expect{plane.land(airport)}.to raise_error 'Airport full'
+    end
+
+    it 'is prevented when plane has already landed' do
+      plane.land(airport)
+      expect{plane.land(airport)}.to raise_error "Plane is already in an airport"
     end
   end
 
@@ -45,6 +49,15 @@ describe Plane do
     it 'leads airport to lose plane' do
       plane.take_off
       expect(airport.stored_planes).to be_empty
+    end
+
+    it 'returns plane' do
+      expect(plane.take_off).to eq plane
+    end
+
+    it 'is prevented when plane already airbone' do
+      plane = Plane.new
+      expect{plane.take_off}.to raise_error "Plane is already airborne"
     end
   end
 

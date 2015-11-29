@@ -12,6 +12,7 @@ class Plane
   end
 
   def land(airport)
+    fail 'Plane is already in an airport' if !airborne?
     fail 'Airport full' if airport.full?
     @airport_id = airport.object_id
     @airborne = false
@@ -20,9 +21,11 @@ class Plane
   end
 
   def take_off
+    fail "Plane is already airborne" if airborne?
     @airborne = true
-    ObjectSpace._id2ref(airport_id).stored_planes.pop
+    plane = ObjectSpace._id2ref(airport_id).stored_planes.pop
     @airport_id = :airborne
+    plane
   end
 
 private
