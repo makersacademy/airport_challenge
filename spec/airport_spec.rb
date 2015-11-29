@@ -36,6 +36,12 @@ describe Airport do
       message = 'Unable to land due to stormy weather'
       expect { airport.land plane }.to raise_error message
     end
+    it 'does not allow the plane to land when the airport is full' do
+      allow(plane).to receive(:land)
+      airport.capacity.times{ airport.land plane }
+      message = 'Unable to land cause airport is full'
+      expect { airport.land plane }.to raise_error message
+    end
   end
 
   describe '#take_off' do

@@ -14,6 +14,7 @@ class Airport
 
   def land plane
     fail 'Unable to land due to stormy weather' if weather.stormy?
+    fail 'Unable to land cause airport is full' if full?
     plane.land
     planes << plane
   end
@@ -27,5 +28,9 @@ class Airport
   private
 
   attr_reader :weather
+
+  def full?
+    planes.size >= capacity
+  end
 
 end
