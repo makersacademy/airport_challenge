@@ -3,10 +3,7 @@ require 'plane'
 describe Plane do
 
   subject(:plane) { described_class.new }
-
-  it { is_expected.to respond_to(:land) }
-  it { is_expected.to respond_to(:take_off) }
-
+  
   it 'is expected to initialize already flying' do
     expect { plane.take_off }.to raise_error "This plane is already flying"
   end
