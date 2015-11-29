@@ -3,7 +3,6 @@ require 'airport'
 describe Airport do
 
   context 'behaviour of the airport when the weather is fine' do
-
     describe '#land' do
       it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -52,7 +51,6 @@ describe Airport do
         expect(subject.planes).to match_array(planes_array)
       end
     end
-
   end
 
   context 'behaviour in stormy weather' do
@@ -64,7 +62,6 @@ describe Airport do
       end
     end
 
-
     describe '#takeoff' do
       it 'raises an error when trying to takeoff in stormy weather' do
         plane = double(:plane, flying: false)
@@ -72,11 +69,6 @@ describe Airport do
         expect { subject.takeoff(plane) }.to raise_error 'Cannot instruct takeoff. Stormy weather.'
       end
     end
-
-
   end
-
-
-
 
 end
