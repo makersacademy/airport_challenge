@@ -29,7 +29,7 @@ describe Airport do
     
     context 'in stormy weather' do
       it 'will not allow landing' do
-        expect{stormy_airport.land! plane}.to raise_error 'It is too stormy!'
+        expect{stormy_airport.land! plane}.to raise_error 'Too stormy!'
       end
     end
   end
@@ -57,7 +57,7 @@ describe Airport do
 
     context 'in stormy weather' do
       it 'will not allow takeoff' do
-        expect{stormy_airport.take_off! plane}.to raise_error 'It is too stormy!'
+        expect{stormy_airport.take_off! plane}.to raise_error 'Too stormy!'
       end
     end
   end

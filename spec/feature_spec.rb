@@ -16,7 +16,7 @@ describe 'Feature Test' do
     srand(sun_seed)
     expect{airport.land! plane}.to raise_error 'The airport is full!'
     srand(storm_seed)
-    expect{airport.land! plane}.to raise_error 'It is too stormy!'
+    expect{airport.land! plane}.to raise_error 'Too stormy!'
     planes.each { |plane| srand(sun_seed); airport.take_off! plane}
     expect(airport.contain? planes[0]).to eq false
   end
