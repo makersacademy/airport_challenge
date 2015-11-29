@@ -30,7 +30,7 @@ class Airport
   end
 
   def stormy?
-    @weather_condition == 5 ? true : false
+    @weather_condition == 5
   end
 
   def full?
