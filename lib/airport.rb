@@ -31,8 +31,6 @@ class Airport
 
   private
 
-  attr_reader :current_weather
-
   def at_capacity?
     landed_planes.count >= capacity
   end
