@@ -16,9 +16,9 @@ class Airport
     @planes << plane
   end
 
-  def takeoff
+  def takeoff(plane)
     fail 'Airport is empty' if empty?
-    @planes.pop
+    @planes.delete(plane)
   end
 
   private

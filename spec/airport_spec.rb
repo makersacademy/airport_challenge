@@ -36,16 +36,16 @@ describe Airport do
   end
 
   describe '#takeoff' do
-    it { is_expected.to respond_to(:takeoff) }
+    it { is_expected.to respond_to(:takeoff).with(1).argument }
 
     it 'causes a plane to takeoff' do
       # plane = double(:plane)
       subject.land(plane)
-      expect(subject.takeoff).to eq plane
+      expect(subject.takeoff(plane)).to eq plane
     end
 
     it 'raises an error if the airport is empty' do
-      expect { subject.takeoff }.to raise_error 'Airport is empty'
+      expect { subject.takeoff(plane) }.to raise_error 'Airport is empty'
     end
   end
 end
