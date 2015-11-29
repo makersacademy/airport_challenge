@@ -52,10 +52,6 @@ it "has a default capacity of MAX_CAPACITY" do
         allow(subject).to receive(:stormy?).and_return(true)
         expect{subject.take_off(plane)}.to raise_error "Conditions too stormy. No planes can take off."
       end
-
     end
-end
-
-
-
+  end
 end
