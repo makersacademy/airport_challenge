@@ -26,7 +26,7 @@ class Airport
   end
 
   def take_off plane
-    msg = "Unable to instruct #{plane} to take off cause is not in the airport"
+    msg = "Unable to instruct plane to take off cause is not in the airport"
     fail msg unless has? plane
     fail 'Unable to take off due to stormy weather' if weather.stormy?
     plane.take_off

@@ -62,7 +62,7 @@ describe Airport do
     it { is_expected.to respond_to(:take_off).with(1).argument }
     it 'can not instructs a plane to take off if it is not in the airport' do
       airport.take_off plane
-      msg = "Unable to instruct #{plane} to take off cause is not in the airport"
+      msg = "Unable to instruct plane to take off cause is not in the airport"
       expect { airport.take_off plane }.to raise_error msg
     end
     it 'instructs the plane to take off' do
