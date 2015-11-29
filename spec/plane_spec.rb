@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
   let(:plane) {described_class.new}
-  let(:airport) {double(:airport)}
+  let(:airport) {double(:airport, landed_planes: [])}
 
   describe '#landed?' do
 
@@ -17,6 +17,17 @@ describe '#land' do
     plane.land(airport)
     expect(plane).to be_landed
   end
+
+  it 'returns self' do
+    plane.land(airport)
+    expect(plane).to eq plane
+  end
+
+  it 'stores plane in airport' do
+    plane.land(airport)
+    expect(airport.landed_planes).to eq [plane]
+  end
+
 end
 
 
