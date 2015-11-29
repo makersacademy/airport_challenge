@@ -24,7 +24,7 @@ describe Airport do
     it 'should note that landed planes are landed' do
       plane = Plane.new
       subject.land_plane(plane)
-      expect(plane).to be_landed
+      expect(plane.landed).to eq true
     end
 
     it 'should place planes on the [runway] when landing' do
@@ -36,7 +36,7 @@ describe Airport do
     it 'should not allow planes already on the [runway] to land again' do
       plane = Plane.new
       subject.land_plane(plane)
-      expect{subject.land_plane(plane)}.to raise_error "This plane has already landed"
+      expect{subject.land_plane(plane)}.to raise_error "Plane already landed"
     end
 
     it 'should not land planes when stormy' do
@@ -60,7 +60,7 @@ describe Airport do
       plane = Plane.new
       subject.land_plane(plane)
       subject.take_off(plane)
-      expect(plane).to_not be_landed
+      expect(plane.landed).to eq false
     end
 
     it 'should remove planes from the [runway] on #take_off' do
@@ -72,7 +72,7 @@ describe Airport do
 
     it 'should only allow planes to take off if they are on the [runway]' do
       plane = Plane.new
-      expect{subject.take_off(plane)}.to raise_error "This plane is not in the airport"
+      expect{subject.take_off(plane)}.to raise_error "Plane not in this airport"
     end
 
     it 'should not allow planes to fly when stormy' do

@@ -3,7 +3,7 @@ require 'plane'
 describe Plane do
 
   describe 'plane status' do
-    it{is_expected.to respond_to :landed?}
+    it{is_expected.to respond_to :landed}
   end
 
   describe '#in_flight' do
@@ -11,7 +11,7 @@ describe Plane do
 
     it 'should not be landed when in flight' do
       subject.in_flight
-      expect(subject).to_not be_landed
+      expect(subject.landed).to eq false
     end
   end
 
@@ -21,7 +21,7 @@ describe Plane do
     it 'should be landed when it touches down' do
       subject.in_flight
       subject.touch_down
-      expect(subject).to be_landed
+      expect(subject.landed).to eq true
     end
   end
 
