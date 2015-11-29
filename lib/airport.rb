@@ -7,7 +7,7 @@ class Airport
   end
 
   def land plane
-    fail 'Weather too stormy!' if stormy?
+    fail 'It is too stormy!' if stormy?
     fail 'That is not a plane!' if not_a? plane
     plane.land self
     planes << plane
@@ -15,7 +15,7 @@ class Airport
   end
 
   def take_off plane
-    fail 'Weather too stormy!' if stormy?
+    fail 'It is too stormy!' if stormy?
     fail 'Plane not found!' unless contain? plane
     plane.take_off 
     planes.delete plane
