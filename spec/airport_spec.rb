@@ -35,13 +35,17 @@ describe Airport do
     end
 
     describe '#takeoff' do
-      it { is_expected.to respond_to(:takeoff) }
-
       it 'raises an error when trying to takeoff a plane that is already flying' do
         expect { subject.takeoff(airborne_plane, weather) }.to raise_error 'Cannot instruct takeoff. Plane is already flying.'
       end
 
+      it 'raises an error if instructing a plane that is not in the current airport' do
+        missing_plane = double(:plane, takeoff_plane: false, flying: false)
+        expect { subject.takeoff(missing_plane, weather) }.to raise_error 'Cannot takeoff. Plane is not in airport'
+      end
+
       it 'tells the plane to follow its takeoff procedures upon takeoff' do
+        allow(subject).to receive(:missing).and_return(false)
         expect(landed_plane).to receive(:takeoff_plane)
         subject.takeoff(landed_plane, weather)
       end

@@ -34,34 +34,17 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
+There are three classes stored in ./lib/
+  * Airport: instructs planes to `land` and `takeoff`. Stores the `@planes` that
+  have landed in an array, and has a defined `@capacity` when initialized.
+  * Plane: tracks whether a plane object is `flying`
+  * Weather: contains `:change` which randomly assigns whether it `is_stormy`
 
+It defends against the following edge cases:-
+  * Planes which are already flying cannot takeoff
+  * Planes which have already landed cannot land
+  * Only planes which are in the current airport can be instructed to takeoff
 
-
-
-
-FURTHER BUILDS
-------
-
-I would have liked to:
-
-1) Built a test that checks the flying status of a plane changes to false after
-landing at an airport.
-
-e.g.:-
-  it 'changes the flying status of the plane to false after landing'
-    airport.land(plane)
-    expect(plane.flying?).to eq false
-
-The implementation would then require the airport.land(plane) method to call
-`plane.landplane`
-I couldn't work out how to write the test using doubles (without trivialising the test.)
-
-
-2) Changed the takeoff functionality such that any landed plane could be instructed
-to take off, not just the last one.
-
-The implementation would require takeoff to have 1 argument (plane) and for the
-instructed plane to be deleted from the @planes array.
 
 
 
