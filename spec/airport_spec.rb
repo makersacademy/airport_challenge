@@ -1,6 +1,18 @@
 require 'airport'
 
 describe Airport do
+
+  describe '#initialize' do
+    it 'should have a default capacity' do
+      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it 'should allow the capacity to be overridden' do
+      subject = Airport.new(20)
+      expect(subject.capacity).to eq 20
+    end
+  end
+
   describe '#instruct_to_land' do
     it {is_expected.to respond_to :instruct_to_land}
 
@@ -50,8 +62,10 @@ describe Airport do
     it {is_expected.to respond_to :instruct_take_off}
 
     it 'should let a plane take off' do
-      plane = double(:plane, in_airport?: false, take_off: true)
-      subject.landed_planes << plane
+      plane = double(:plane, in_airport?: false, take_off: true, land: true)
+      allow(subject).to receive(:stormy?).and_return false
+      allow(subject).to receive(:full?).and_return false
+      subject.instruct_to_land(plane)
       subject.instruct_take_off
       expect(subject.landed_planes).not_to eq [plane]
     end
@@ -65,7 +79,6 @@ describe Airport do
     it 'should raise an error if the weather is stormy' do
       plane = double(:plane, in_airport?: false, land: true, take_off: false)
       allow(subject).to receive(:full?).and_return false
-      subject.instruct_to_land(plane)
       allow(subject).to receive(:stormy?).and_return true
       expect { subject.instruct_take_off }.to raise_error "No planes can take off as it is stormy"
     end
