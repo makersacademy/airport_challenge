@@ -14,6 +14,13 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'Plane is not at this airport' if plane_not_present?(plane)
+  end
+
+  private
+
+  def plane_not_present?(plane)
+    !planes.include?(plane)
   end
 
 end

@@ -34,6 +34,12 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error error
     end
 
+    it 'is expected to instruct the plane to take off' do
+      airport.land(plane)
+      expect(plane).to receive(:take_off)
+      airport.take_off(plane)
+    end
+
   end
 
 end
