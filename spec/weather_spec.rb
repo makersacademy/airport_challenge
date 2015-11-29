@@ -15,7 +15,5 @@ describe Weather do
       allow(weather).to receive(:rand).and_return(0.2)
       expect(weather.stormy?).to be false
     end
-
   end
-
 end

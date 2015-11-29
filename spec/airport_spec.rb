@@ -27,7 +27,6 @@ describe Airport do
         expect(plane).to receive(:land)
         airport.land(plane)
       end
-
     end
 
     describe '#take_off' do
@@ -48,9 +47,7 @@ describe Airport do
         airport.take_off(plane)
         expect(airport.planes).not_to include plane
       end
-
     end
-
   end
 
   context 'while weather is stormy' do
@@ -66,6 +63,11 @@ describe Airport do
       end
     end
 
+    describe '#take_off' do
+      it 'is expected to raise an error due to storm' do
+        too_stormy = 'Weather too stormy to take off'
+        expect { airport.take_off(plane) }.to raise_error too_stormy
+      end
+    end
   end
-
 end
