@@ -11,8 +11,8 @@ describe Airport do
       expect(Airport::DEFAULT_CAPACITY).to be
     end
 
-    it 'Airport has a DEFAULT_CAPACITY == 20 ' do
-      expect(Airport::DEFAULT_CAPACITY).to eq(1)
+    it 'Airport has a DEFAULT_CAPACITY that is type FixNum' do
+      expect(Airport::DEFAULT_CAPACITY).to be_a_kind_of(Fixnum)
     end
 
     it 'Airport has a default capacity attribute(instance_variable)' do
@@ -107,6 +107,18 @@ describe Airport do
       expect {a.instruct_plane_to_take_off(plane)}.
         to output("Plane: #{plane} has departed.\n").
           to_stdout
+    end
+
+  end
+
+  describe 'weather check' do
+
+    it 'weather method exists' do
+      expect(subject.weather_check).to be
+    end
+
+    it 'returns a string' do
+      expect(subject.weather_check.class).to be(String)
     end
 
   end

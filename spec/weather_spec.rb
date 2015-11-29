@@ -10,10 +10,8 @@ describe Weather do
     expect(Weather.new).to respond_to(:weather_report)
   end
 
-  it 'weather report method returns sunny' do
-     w = Weather.new
-     w.stub(:weather_report).and_return("sunny")
-     expect(w.weather_report).to eq("sunny")
+  it 'weather report method returns string' do
+    expect(subject.weather_report.class).to be(String)
   end
 
   it 'weather report method can return stormy' do
