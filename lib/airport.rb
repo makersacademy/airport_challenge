@@ -16,8 +16,8 @@ class Airport
 
   def takeoff(plane)
     fail 'Cannot takeoff. Plane is already flying.' if plane.flying
-    plane.takeoff
-    @planes.pop
+    plane.takeoff_plane
+    @planes.delete(plane)
   end
 
 

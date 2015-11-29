@@ -26,7 +26,7 @@ describe Airport do
 
     it 'tells the plane to follow its takeoff procedures upon takeoff' do
       plane = double(:plane, flying: false)
-      expect(plane).to receive(:takeoff)
+      expect(plane).to receive(:takeoff_plane)
       subject.takeoff(plane)
     end
   end
