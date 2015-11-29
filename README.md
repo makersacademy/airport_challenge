@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/michaellennox/airport_challenge.svg?branch=master)](https://travis-ci.org/michaellennox/airport_challenge)
+
 #Airport Challenge
 
 This is my solutions for the [airport challenge](https://github.com/michaellennox/airport_challenge) carried out while at Makers' Academy.
