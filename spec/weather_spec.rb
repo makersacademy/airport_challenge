@@ -11,8 +11,8 @@ describe Weather do
     expect(weather.stormy?).to eq true
   end
 
-  it 'should NOT be stormy when rand returns 2, 3, 4, 5' do
-    allow(weather).to receive(:rand) { (2..5) }
+  it 'should NOT be stormy when rand returns 2 to 10' do
+    allow(weather).to receive(:rand) { (2..10) }
     expect(weather.stormy?).to eq false
   end
 end
