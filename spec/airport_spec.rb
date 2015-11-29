@@ -13,6 +13,11 @@ describe Airport do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it 'is expected to initialize with a @capacity equal to argument' do
+    heathrow = Airport.new 50
+    expect(heathrow.capacity).to eq(50)
+  end
+
   context 'while weather is fine' do
 
     before do

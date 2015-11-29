@@ -40,6 +40,6 @@ class Airport
   end
 
   def airport_full?
-    !planes.empty?
+    planes.size >= capacity
   end
 end
