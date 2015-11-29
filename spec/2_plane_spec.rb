@@ -5,6 +5,16 @@ describe Plane do
 subject(:plane) {described_class.new}
 let(:airport) {double(:airport)}
 
+  describe '#initialize' do
+    it 'by default plane\'s are in the air' do
+      expect(plane.status).to eq :in_the_air
+    end
+
+    it 'by default plane\'s are not at an airport' do
+      expect(plane.airport_at).to eq :not_in_airport
+    end
+  end
+
   describe '#land' do
     it 'allows confirmation that the plane has landed' do
       plane.land(airport)

@@ -2,6 +2,11 @@ class Plane
 
   attr_reader :status, :airport_at
 
+  def initialize
+    @status = :in_the_air
+    @airport_at = :not_in_airport
+  end
+
   def land(airport)
     message = "Can't land, already on the ground."
     fail message if already_on_the_ground?(self)
