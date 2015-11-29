@@ -17,6 +17,7 @@ class Airport
   end
 
   def takeoff
+    fail 'Airport is empty!' if empty?
     @planes.pop
   end
 
@@ -24,5 +25,9 @@ class Airport
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def empty?
+    @planes.empty?
   end
 end
