@@ -32,7 +32,7 @@ describe Airport do
     context 'in stormy weather' do
       it 'will not allow landing in stormy weather' do
         srand(storm_seed)
-        expect{subject.land plane}.to raise_error 'The weather is too stormy!'
+        expect{subject.land plane}.to raise_error 'Weather is too stormy!'
       end
     end
   end
@@ -65,7 +65,7 @@ describe Airport do
         srand(sun_seed)
         subject.land plane
         srand(storm_seed)
-        expect{subject.take_off plane}.to raise_error 'The weather is too stormy!'
+        expect{subject.take_off plane}.to raise_error 'Weather is too stormy!'
       end
     end
   end

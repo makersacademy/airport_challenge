@@ -11,7 +11,7 @@ describe Plane do
     end
 
     it 'is not flying after landing' do
-      expect(subject).to_not be_flying
+      expect(subject.flying).to eq false
     end
 
     it 'raises error if plane not flying' do
@@ -23,7 +23,7 @@ describe Plane do
     it 'is flying after take off' do 
       subject.land airport
       subject.take_off
-      expect(subject).to be_flying
+      expect(subject.flying).to eq true
     end
 
     it 'raises error if plane already flying' do
