@@ -10,4 +10,14 @@ describe Airport do
       expect(subject.land(plane)).to eq [plane]
     end
   end
+
+  describe '#takeoff' do
+    it { is_expected.to respond_to(:takeoff) }
+
+    it 'causes a plane to takeoff' do
+      plane = double(:plane)
+      subject.land(plane)
+      expect(subject.takeoff).to eq plane
+    end
+  end
 end
