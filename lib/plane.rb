@@ -1,16 +1,10 @@
 class Plane
+  attr_reader :flying, :airport
+  alias_method :flying?, :flying
+
   def initialize
     @flying = true
     @airport = nil
-  end
-
-  def flying?
-    @flying
-  end
-  
-  def airport
-    fail 'Plane is currently flying!' if flying?
-    @airport
   end
 
   def land! airport

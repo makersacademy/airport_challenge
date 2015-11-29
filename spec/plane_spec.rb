@@ -36,8 +36,8 @@ describe Plane do
       expect(subject.airport).to eq airport
     end
 
-    it 'raises error if plane flying' do
-      expect{subject.airport}.to raise_error 'Plane is currently flying!'
+    it 'nil if plane flying' do
+      expect(subject.airport).to eq nil
     end
   end
 end
