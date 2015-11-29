@@ -9,7 +9,6 @@ describe Airport do
     it 'creates a airport with default capacity if not specified' do
       expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
     end
-
     it 'allows to set a random capacity from 1 to 100' do
       random = rand(100) + 1
       expect(described_class.new(random).capacity).to eq random

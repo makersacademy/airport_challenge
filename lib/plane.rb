@@ -12,6 +12,7 @@ class Plane
   end
 
   def take_off
+    fail 'Unable to take off cause is already flying' if flying?
     @flying = true
   end
 end
