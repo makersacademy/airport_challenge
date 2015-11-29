@@ -15,6 +15,7 @@ let (:plane) {double :plane, flying!: false}
     end
 
     it "Can confirm a plane has landed" do
+      allow(subject).to receive(:stormy?).and_return(false)
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
@@ -31,19 +32,17 @@ let (:plane) {double :plane, flying!: false}
     end
 
 
-  describe "#take off" do
+  describe "#take_off" do
     it "Allows a plane to take off" do
       allow(subject).to receive(:stormy?).and_return(false)
+      allow(subject).to receive(:present?).and_return(true)
       expect(subject.take_off(plane)).to eq plane
     end
 
-
-
-  #  it "Won't take off a plane that isn't in the airport" do
-
-
-  #    expect {subject.take_off(plane)}.to raise_error "That plane isn't here!"
-#    end
+    it "Won't take off a plane that isn't in the airport" do
+    allow(plane).to receive(:flying!).and_return(true)
+    expect {subject.take_off(plane)}.to raise_error "That plane isn't here!"
+    end
 
 
   end

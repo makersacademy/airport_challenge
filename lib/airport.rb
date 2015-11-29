@@ -30,10 +30,17 @@ def makes_flying(plane)
 end
 
 def take_off(plane)
+    fail "That plane isn't here!" unless present?(plane)
     removes_plane_from_airport(plane)
     makes_flying(plane)
     plane
 end
+
+
+def present?(plane)
+  @planes.include?(plane)
+end
+
 
 private
 
