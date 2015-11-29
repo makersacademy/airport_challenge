@@ -20,6 +20,8 @@ class Airport
   end
 
   def take_off plane
+    message = "Unable to instruct #{plane} to take off cause is not in the airport"
+    fail message unless has? plane
     fail 'Unable to take off due to stormy weather' if weather.stormy?
     plane.take_off
     planes.delete(plane)
@@ -31,6 +33,10 @@ class Airport
 
   def full?
     planes.size >= capacity
+  end
+
+  def has? plane
+    planes.include? plane
   end
 
 end
