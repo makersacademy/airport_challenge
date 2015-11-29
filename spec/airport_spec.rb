@@ -18,6 +18,12 @@ describe Airport do
 
   describe '#takeoff' do
     it { is_expected.to respond_to(:takeoff) }
+
+    it 'tells the plane to follow its takeoff procedures upon takeoff' do
+      plane = double(:plane, flying: false)
+      expect(plane).to receive(:takeoff)
+      subject.takeoff(plane)
+    end
   end
 
 
