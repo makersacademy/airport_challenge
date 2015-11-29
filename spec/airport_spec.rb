@@ -4,7 +4,6 @@ describe Airport do
 
   subject(:airport) { described_class.new }
   let(:plane) { double(:plane, land: nil, take_off: nil) }
-  let(:weather) { double(:weather) }
 
   it 'is expected to initialize with @planes set to an empty array' do
     expect(airport.planes).to eq []
@@ -26,6 +25,13 @@ describe Airport do
       it 'is expected to instruct the plane to make a landing' do
         expect(plane).to receive(:land)
         airport.land(plane)
+      end
+
+      it 'is expected to not allow a landing if the airport is full' do
+        airport.land(plane)
+        plane2 = double(:plane, land: nil)
+        airport_full = "Cannot land, the airport is full"
+        expect { airport.land(plane2) }.to raise_error airport_full
       end
     end
 

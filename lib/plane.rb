@@ -25,5 +25,4 @@ class Plane
   def flying?
     status == :flying
   end
-
 end
