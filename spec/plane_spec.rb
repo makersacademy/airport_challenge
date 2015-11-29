@@ -4,8 +4,8 @@ require 'plane'
 describe Plane do
 
   it {is_expected.to respond_to(:airbourne)}
-  it {should respond_to(:landed)}
-  it {should respond_to(:taken_off)}
+  it {is_expected.to respond_to(:landed)}
+  it {is_expected.to respond_to(:taken_off)}
   it 'plane is airbourne' do
     expect(subject.taken_off).to eq(subject.airbourne)
   end

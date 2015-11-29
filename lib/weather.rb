@@ -5,7 +5,7 @@ module Weather
       @stormy = true
     else
       @stormy = false
-    end 
+    end
   end
 
 end
