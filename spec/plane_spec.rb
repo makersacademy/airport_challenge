@@ -28,7 +28,6 @@ describe Plane do
       subject.landed = true
       expect{subject.touch_down}.to raise_error "This plane is landed elsewhere"
     end
-    
   end
 
 end
