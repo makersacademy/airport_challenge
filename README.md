@@ -1,13 +1,13 @@
 Airport Challenge
 =================
 
-What is this
+What is this?
 ---------
 
 This is the first of 12 weekend challenges during my course at Makers Academy.
-The original repo and readme file are [here](https://github.com/makersacademy/airport_challenge).
+Find original repo and challenge description [here](https://github.com/makersacademy/airport_challenge).
 
-Domain model for Solution 1
+Domain model
 --------------------------
 
     Objects         |    Messages                                                             
