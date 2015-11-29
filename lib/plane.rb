@@ -12,6 +12,7 @@ class Plane
   end
 
   def land(airport)
+    fail 'Airport full' if airport.full?
     @airport_id = airport.object_id
     @airborne = false
     airport.stored_planes << self

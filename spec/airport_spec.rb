@@ -12,11 +12,23 @@ describe Airport do
   end
 
   describe '#full?' do
-
     it 'returns true if airport is full' do
       plane = double(:plane, land: plane)
-      Airport::DEFAULT_CAPACITY.times{airport.stored_planes<<plane}
+      airport.capacity.times{airport.stored_planes<<plane}
       expect(airport).to be_full
+    end
+  end
+
+  describe 'capacity' do
+
+    it 'has a default' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'can be overridden on initialize' do
+      random_capacity = Random.rand(100)
+      airport = described_class.new random_capacity
+      expect(airport.capacity).to eq random_capacity
     end
   end
 

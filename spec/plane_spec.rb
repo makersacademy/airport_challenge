@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
   let(:plane) {described_class.new}
-  let(:airport) {double(:airport, stored_planes: [])}
+  let(:airport) {double(:airport, full?: false, stored_planes: [])}
 
   describe '#airborne?' do
 
@@ -26,6 +26,11 @@ describe Plane do
     it 'stores plane in airport' do
       plane.land(airport)
       expect(airport.stored_planes).to eq [plane]
+    end
+
+    it 'is prevented when the airport is full' do
+      airport = double(:airport, full?: true, stored_planes: [])
+      expect{plane.land(airport)}.to raise_error 'Airport full'
     end
   end
 
