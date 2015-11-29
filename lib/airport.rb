@@ -22,7 +22,7 @@ include Weather
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off(*)
     fail "Adverse weather conditions" if stormy?
     @planes.pop
   end
