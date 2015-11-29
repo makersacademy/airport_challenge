@@ -4,7 +4,7 @@ class Plane
   alias_method :flying?, :flying
 
   def initialize
-    @flying = true
+    @flying = false
   end
 
   def landplane
@@ -13,6 +13,7 @@ class Plane
   end
 
   def fly
+    fail 'Plane is already flying' if flying?
     @flying = true
   end
 
