@@ -3,23 +3,23 @@ require_relative 'airport'
 class Plane
 
   def initialize
-    @landed = false
+    @airborne = true
     @airport_id = :airborne
   end
 
-  def landed?
-    @landed
+  def airborne?
+    @airborne
   end
 
   def land(airport)
     @airport_id = airport.object_id
-    @landed = true
+    @airborne = false
     airport.landed_planes << self
     self
   end
 
   def take_off
-    @landed = false
+    @airborne = true
     ObjectSpace._id2ref(airport_id).landed_planes.pop
     @airport_id = :airborne
   end

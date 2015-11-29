@@ -4,18 +4,18 @@ describe Plane do
   let(:plane) {described_class.new}
   let(:airport) {double(:airport, landed_planes: [])}
 
-  describe '#landed?' do
+  describe '#airborne?' do
 
-    it 'by default plane is in air' do
-      expect(plane).not_to be_landed
+    it 'by default plane is airborne' do
+      expect(plane).to be_airborne
     end
 
   end
 
   describe '#land' do
-    it 'leads to plane being landed' do
+    it 'leads to plane being no longer airborne' do
       plane.land(airport)
-      expect(plane).to be_landed
+      expect(plane).not_to be_airborne
     end
 
     it 'returns self' do
@@ -32,9 +32,9 @@ describe Plane do
   describe '#take_off' do
     before(:example) {plane.land(airport)}
 
-    it 'leads to plane not being landed' do
+    it 'leads to plane being airborne' do
       plane.take_off
-      expect(plane).not_to be_landed
+      expect(plane).to be_airborne
     end
 
     it 'leads airport to lose plane' do
