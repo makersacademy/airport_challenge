@@ -6,6 +6,7 @@ describe Airport do
 
   context '<> Landing handling <>' do
     it 'should add the landed plane' do
+      allow(subject).to receive(:bad_weather) { false }
       subject.planes << plane
       expect(subject.planes.include?(plane)).to eq true
     end
@@ -30,6 +31,7 @@ describe Airport do
 
     it 'should remove the plane from the airport after take off' do
       plane = Plane.new
+      allow(subject).to receive(:bad_weather) { false }
       plane.land(subject)
       plane.take_off(subject)
       expect(subject.planes.include?(subject)).to eq false
