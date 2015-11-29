@@ -6,6 +6,10 @@ describe Airport do
     it 'creates an airport with a default capacity' do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end
+    it 'has a capacity that can be set on initialization' do
+      airport = described_class.new(100)
+      expect(airport.capacity).to eq 100
+    end
   end
 
   describe '#land' do
