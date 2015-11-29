@@ -5,10 +5,6 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double(:plane, land: nil, take_off: nil) }
 
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:take_off).with(1).argument }
-  it { is_expected.to respond_to(:planes) }
-
   it 'is expected to initialize with @planes set to an empty array' do
     expect(airport.planes).to eq []
   end
@@ -30,8 +26,8 @@ describe Airport do
   describe '#take_off' do
 
     it 'is expected to raise an error if plane isn\'t at airport' do
-      error = 'Plane is not at this airport'
-      expect { airport.take_off(plane) }.to raise_error error
+      not_here = 'Plane is not at this airport'
+      expect { airport.take_off(plane) }.to raise_error not_here
     end
 
     it 'is expected to instruct the plane to take off' do
