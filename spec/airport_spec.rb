@@ -7,15 +7,19 @@ describe Airport do
 
   it 'lands the plane at the airport' do
     plane = Plane.new
-    subject.land(plane)
     expect(subject.land(plane)).to eq [plane]
   end
 
-  it 'confirms plane has landed' do
-    plane = Plane.new
+  it 'raise error when airport is full' do
     subject.land(plane)
-    expect(subject.plane.landed).to eq true
+    expect {Airport::DEFAULT_CAPACITY.times do
+    subject.land(plane) end }.to raise_error 'Airport is full'
   end
+
+  it 'Has a default capacity of DEFAULT_CAPACITY' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
 end
 
   describe '#take_off' do
@@ -24,16 +28,7 @@ end
     it 'allows plane to take off from airport' do
       plane = Plane.new
       subject.land(plane)
-      plane.landed = true
-      subject.take_off(plane)
-      expect(subject.plane).to eq plane
+      expect(subject.take_off(plane)).to eq plane
     end
-
-    it 'confirms plane has taken off from airport' do
-      plane = Plane.new
-      subject.land(plane)
-      plane.landed = false
-      subject.take_off(plane)
-      expect(subject.plane.landed).to eq false
-    end
-  end
+end
+end
