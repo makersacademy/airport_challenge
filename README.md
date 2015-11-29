@@ -4,9 +4,9 @@ Software for basic control of airplane traffic.
 
 Lib Contains: 
 
-A. airport.rb
-B. plane.rb
-C. weather.rb
+A. airport.rb,
+B. plane.rb,
+C. weather.rb,
 
 A.Airport.rb :
 Contains the Airport class
