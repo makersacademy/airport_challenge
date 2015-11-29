@@ -9,14 +9,15 @@ class Airport
   end
 
   def instruct_to_land(plane)
-    fail "No planes can land as it is stormy" if is_stormy?
+    fail "No planes can land as it is stormy" if stormy?
     fail "The plane is already in the airport" if plane.in_airport?
+    fail "The airport is full, so no more planes can land" if full?
     landed_planes << plane
     plane.land
   end
 
   def instruct_take_off
-    fail "No planes can take off as it is stormy" if is_stormy?
+    fail "No planes can take off as it is stormy" if stormy?
     fail "There are no planes in the airport" if @landed_planes == []
     plane = @landed_planes.pop
     plane.take_off
@@ -26,8 +27,12 @@ class Airport
     @weather_condition = rand(1..5)
   end
 
-  def is_stormy?
+  def stormy?
     @weather_condition == 5 ? true : false
+  end
+
+  def full?
+    true
   end
 
 end
