@@ -33,8 +33,7 @@ private
   end
 
   def check_weather
-    weather = Weather.new
-    fail "Bad weather at #{name}, try again later" if weather.bad?
+    fail "Bad weather at #{name}, try again later" if rand(1..1000) == 1
   end
 
 end

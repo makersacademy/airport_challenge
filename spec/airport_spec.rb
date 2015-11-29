@@ -5,8 +5,12 @@ describe Airport do
   let(:plane) {double(:plane)}
 
   context '<> Landing handling <>' do
+    it 'should add the landed plane' do
+      subject.planes << plane
+      expect(subject.planes.include?(plane)).to eq true
+    end
+
     it 'should prevent landing if the weather at airport is bad' do
-      subject.stub(:check_weather).with(true)
       expect{subject.approve_landing?(plane)}.to raise_error "Bad weather, try again later"
     end
 
@@ -19,7 +23,6 @@ describe Airport do
   context '<> Take off handling <>' do
     it 'should prevent take off if the weather is bad' do
       subject.planes << plane
-      subject.stub(:check_weather).with(true)
       expect{subject.approve_takeoff?(plane)}.to raise_error "Bad weather, try again later"
     end
 
