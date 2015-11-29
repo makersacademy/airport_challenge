@@ -33,13 +33,15 @@ describe Airport do
     it "it should raise an error if the plane is already in the airport" do
       plane = double(:plane, in_airport?: true)
       allow(subject).to receive(:stormy?).and_return false
-      expect{ subject.instruct_to_land(plane) }.to raise_error "The plane is already in the airport"
+      message = "The plane is already in the airport"
+      expect{ subject.instruct_to_land(plane) }.to raise_error message
     end
 
     it 'should raise an error if the weather is stormy' do
       plane = double(:plane, in_airport?: false, land: false)
       allow(subject).to receive(:stormy?).and_return true
-      expect { subject.instruct_to_land(plane) }.to raise_error "No planes can land as it is stormy"
+      message = "No planes can land as it is stormy"
+      expect { subject.instruct_to_land(plane) }.to raise_error message
     end
 
   end
@@ -59,14 +61,16 @@ describe Airport do
     it 'should raise an error if no planes are available to take off' do
       landed_planes = []
       allow(subject).to receive(:stormy?).and_return false
-      expect { subject.instruct_take_off }.to raise_error "There are no planes in the airport"
+      message = "There are no planes in the airport"
+      expect { subject.instruct_take_off }.to raise_error message
     end
 
     it 'should raise an error if the weather is stormy' do
       plane = double(:plane, in_airport?: false, land: true, take_off: false)
       allow(subject).to receive(:full?).and_return false
       allow(subject).to receive(:stormy?).and_return true
-      expect { subject.instruct_take_off }.to raise_error "No planes can take off as it is stormy"
+      message = "No planes can take off as it is stormy"
+      expect { subject.instruct_take_off }.to raise_error message
     end
 
     it "should change the plane's status to not in airport" do
@@ -86,7 +90,8 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times do
         subject.instruct_to_land(plane)
       end
-      expect { subject.instruct_to_land(plane) }.to raise_error "The airport is full, so no more planes can land"
+      message = "The airport is full, so no more planes can land"
+      expect { subject.instruct_to_land(plane) }.to raise_error message
     end
   end
 end
