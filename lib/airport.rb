@@ -21,24 +21,24 @@ class Airport
 
   def instruct_take_off
     fail "No planes can take off as it is stormy" if stormy?
-    fail "There are no planes in the airport" if @landed_planes == []
-    plane = @landed_planes.pop
+    fail "There are no planes in the airport" if landed_planes == []
+    plane = landed_planes.pop
     plane.take_off
   end
 
   def weather
-    @weather_condition = rand(1..5)
+    weather_condition = rand(1..5)
   end
 
 private
 attr_reader :weather_condition, :landed_planes
 
   def stormy?
-    @weather_condition == 5
+    weather_condition == 5
   end
 
   def full?
-    @landed_planes.count >= DEFAULT_CAPACITY
+    landed_planes.count >= DEFAULT_CAPACITY
   end
 
 end
