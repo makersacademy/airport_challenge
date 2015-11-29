@@ -9,6 +9,10 @@ describe Airport do
     expect(airport.planes).to eq []
   end
 
+  it 'is expected to initialize with a @capacity equal to DEFAULT_CAPACITY' do
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   context 'while weather is fine' do
 
     before do

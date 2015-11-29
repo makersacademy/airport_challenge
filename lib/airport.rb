@@ -11,6 +11,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Cannot land, the airport is full" if airport_full?
     fail 'Weather too stormy to land' if too_stormy?
     plane.land
     planes << plane
@@ -33,5 +34,9 @@ class Airport
 
   def too_stormy?
     weather.stormy?
+  end
+
+  def airport_full?
+    !planes.empty?
   end
 end
