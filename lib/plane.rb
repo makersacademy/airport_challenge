@@ -19,6 +19,6 @@ class Plane
 
   def taken_off?
     @flying
-  end
+  end    
 
 end
