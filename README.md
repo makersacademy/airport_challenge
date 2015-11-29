@@ -10,6 +10,8 @@ I aimed to complete this challenge in a test driven manner, using manual feature
 
 I have tried to encapsulate my code as much as possible throughout and the end user should only ever be interacting with an instance of the Airport class.
 
+eg to land a plane, the end user would call land on the airport they are at, passing the plane they want to land as an argument `airport.land(plane)` and vice-versa for taking-off `airport.take_off(plane)`. They should never directly interact with either a plane or a weather instance.
+
 ##Contributors:
 
 * Michael Lennox, [github](https://github.com/michaellennox) michael@michaellennox.me
