@@ -8,4 +8,13 @@ describe Plane do
       expect(subject.flying).to eq(false)
     end
   end
+
+  describe '#taking_off' do
+    it 'can confirm that is has took off' do
+      airport = Airport.new
+      airport.land(subject)
+      airport.take_off(subject)
+      expect(subject.flying).to eq(true)
+    end
+  end
 end
