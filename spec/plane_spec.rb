@@ -38,6 +38,10 @@ describe Plane do
       expect(plane.status).to eq(:flying)
     end
 
+    it 'is expected to raise an error if already flying' do
+      expect { plane.take_off }.to raise_error "This plane is already flying"
+    end
+
   end
 
 end
