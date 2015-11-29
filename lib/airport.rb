@@ -14,17 +14,17 @@ class Airport
   end
 
   def land(plane, weather)
-    raise 'Cannot land. Stormy weather.' if weather.is_stormy
-    raise 'Cannot land. Plane has already landed.' if landed(plane)
-    raise 'Cannot land. Airport is full.' if full?
+    fail 'Cannot land. Stormy weather.' if weather.is_stormy
+    fail 'Cannot land. Plane has already landed.' if landed(plane)
+    fail 'Cannot land. Airport is full.' if full?
     plane.landplane
     @planes << plane
   end
 
   def takeoff(plane, weather)
-    raise 'Cannot instruct takeoff. Stormy weather.' if weather.is_stormy
-    raise 'Cannot instruct takeoff. Plane is already flying.' if plane.flying
-    raise 'Cannot takeoff. Plane is not in airport' if missing(plane)
+    fail 'Cannot instruct takeoff. Stormy weather.' if weather.is_stormy
+    fail 'Cannot instruct takeoff. Plane is already flying.' if plane.flying
+    fail 'Cannot takeoff. Plane is not in airport' if missing(plane)
     plane.takeoff_plane
     @planes.delete(plane)
   end
