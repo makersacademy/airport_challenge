@@ -3,7 +3,7 @@ class Weather
   attr_reader :niceness
 
   def initialize niceness=DEFAULT
-    @niceness = limit niceness.to_i  
+    @niceness = limit_to_range niceness.to_i  
   end
 
   def stormy?
@@ -12,7 +12,7 @@ class Weather
 
   private
 
-  def limit number
+  def limit_to_range number
     [number, 1, 100].sort[1]
   end
 end
