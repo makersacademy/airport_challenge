@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -8,30 +9,25 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
-    fail 'Cannot land. Stormy weather.' if badweather?
+  def land(plane, weather)
+    fail 'Cannot land. Stormy weather.' if weather.is_stormy
     fail 'Cannot land. Plane has already landed.' if landed(plane)
     plane.landplane
     @planes << plane
   end
 
-  def takeoff(plane)
-    fail 'Cannot instruct takeoff. Stormy weather.' if badweather?
+  def takeoff(plane, weather)
+    fail 'Cannot instruct takeoff. Stormy weather.' if weather.is_stormy
     fail 'Cannot instruct takeoff. Plane is already flying.' if plane.flying
     plane.takeoff_plane
     @planes.delete(plane)
   end
 
 
-  def badweather?
-    true
-  end
-
 private
 
   def landed(plane)
     !plane.flying
   end
-
 
 end
