@@ -13,11 +13,13 @@ class Airport
 
   def land(plane)
     fail 'Airport is full' if full?
+    plane.landplane
     @planes << plane
   end
 
   def takeoff(plane)
     fail 'Airport is empty' if empty?
+    plane.fly
     @planes.delete(plane)
   end
 
