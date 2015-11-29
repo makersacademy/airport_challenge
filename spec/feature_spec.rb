@@ -1,5 +1,5 @@
- require './lib/airport'
- require './lib/plane'
+ # require './lib/airport'
+ # require './lib/plane'
  #
  #
  # # As an air traffic controller
@@ -26,3 +26,14 @@
 
  # Airport <-- take_off --> Plane
  # Plane <-- landed? --> true/false
+
+
+
+ # As an air traffic controller
+ # To ensure safety
+ # I want to prevent takeoff when weather is stormy
+
+ # airport = Airport.new
+ # plane = Plane.new
+ # airport.landing(plane)
+# airport.take_off(plane)

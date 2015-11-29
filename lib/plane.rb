@@ -1,9 +1,9 @@
 class Plane
 
-  attr_accessor :landed
+  attr_reader :confirmation
 
-  def initialize
-    @landed = false
+  def status(status = "")
+    @confirmation = status
   end
 
 end
