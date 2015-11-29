@@ -1,5 +1,5 @@
 class Plane
-  attr_reader :in_airport_status
+attr_reader :in_airport_status
 
   def initialize
     @in_airport_status = nil
@@ -12,6 +12,8 @@ class Plane
   def land
     @in_airport_status = true
   end
+
+private
 
   def landed?
     @in_airport_status
