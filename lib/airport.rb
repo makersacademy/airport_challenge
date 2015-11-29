@@ -1,5 +1,4 @@
 require_relative 'plane'
-require_relative 'weather'
 
 class Airport
 
@@ -10,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'Cannot land. Stormy weather.' if badweather?
     fail 'Cannot land. Plane has already landed.' if landed(plane)
     plane.landplane
     @planes << plane
