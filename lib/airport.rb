@@ -12,12 +12,12 @@ class Airport
   end
 
   def land(plane)
-    fail 'Airport is full!' if full?
+    fail 'Airport is full' if full?
     @planes << plane
   end
 
   def takeoff
-    fail 'Airport is empty!' if empty?
+    fail 'Airport is empty' if empty?
     @planes.pop
   end
 
