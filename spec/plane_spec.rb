@@ -30,12 +30,33 @@ describe Plane do
   end
 
   describe '#take_off' do
+    before(:example) {plane.land(airport)}
+
     it 'leads to plane not being landed' do
       plane.take_off
       expect(plane).not_to be_landed
     end
+
+    it 'leads airport to lose plane' do
+      plane.take_off
+      expect(airport.landed_planes).to be_empty
+    end
+
+    it 'leads plane to lose airport_id' do
+      plane.take_off
+      expect(plane.airport_id).to be :airborne
+    end
   end
 
+describe '#airport_id' do
+  it 'has default value :airborne' do
+    expect(plane.airport_id).to eq :airborne
+  end
+  it 'describes airport plane in' do
+    plane.land(airport)
+    expect(plane.airport_id).to eq airport.object_id
+  end
+end
 
 
 end
