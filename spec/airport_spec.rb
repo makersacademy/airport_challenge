@@ -25,7 +25,7 @@ describe Airport do
 
   context '#land' do
 
-    it 'lands a plane at the airport' do
+    it 'lands a plane at the airport and confirm plane is landed' do
       expect(airport.land(plane)).to eq [plane]
     end
 
