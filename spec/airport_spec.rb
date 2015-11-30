@@ -13,41 +13,42 @@ describe Airport do
   end
 
   context 'behaviour when the weather is fine' do
-    let(:weather) {double :weather, is_stormy: false}
+    before {allow(Kernel).to receive(:rand).with(100) {99}}
+
     let(:airborne_plane) {double :plane, flying: true}
     let(:landed_plane) {double :plane, flying: false}
 
     describe '#land' do
       it 'raises an error when trying to land a plane that is not flying' do
-        expect { subject.land(landed_plane, weather) }.to raise_error 'Cannot land. Plane has already landed.'
+        expect { subject.land(landed_plane) }.to raise_error 'Cannot land. Plane has already landed.'
       end
 
       it 'raises an error when the airport is full' do
         plane = double(:plane, landplane: false, flying: true)
-        subject.capacity.times {subject.land(plane, weather)}
-        expect { subject.land(plane, weather) }.to raise_error 'Cannot land. Airport is full.'
+        subject.capacity.times {subject.land(plane)}
+        expect { subject.land(plane) }.to raise_error 'Cannot land. Airport is full.'
       end
 
       it 'tells the plane to follow its landing procedures upon landing' do
         expect(airborne_plane).to receive(:landplane)
-        subject.land(airborne_plane, weather)
+        subject.land(airborne_plane)
       end
     end
 
     describe '#takeoff' do
       it 'raises an error when trying to takeoff a plane that is already flying' do
-        expect { subject.takeoff(airborne_plane, weather) }.to raise_error 'Cannot instruct takeoff. Plane is already flying.'
+        expect { subject.takeoff(airborne_plane) }.to raise_error 'Cannot instruct takeoff. Plane is already flying.'
       end
 
       it 'raises an error if instructing a plane that is not in the current airport' do
         missing_plane = double(:plane, takeoff_plane: false, flying: false)
-        expect { subject.takeoff(missing_plane, weather) }.to raise_error 'Cannot takeoff. Plane is not in airport'
+        expect { subject.takeoff(missing_plane) }.to raise_error 'Cannot takeoff. Plane is not in airport'
       end
 
       it 'tells the plane to follow its takeoff procedures upon takeoff' do
         allow(subject).to receive(:missing).and_return(false)
         expect(landed_plane).to receive(:takeoff_plane)
-        subject.takeoff(landed_plane, weather)
+        subject.takeoff(landed_plane)
       end
     end
 
@@ -57,7 +58,7 @@ describe Airport do
         plane = double(:plane, landplane: false, flying: true)
         2.times do
            planes_array << plane
-           subject.land(plane, weather)
+           subject.land(plane)
         end
         expect(subject.planes).to match_array(planes_array)
       end
@@ -65,19 +66,26 @@ describe Airport do
   end
 
   context 'behaviour in stormy weather' do
-    let(:weather) {double :weather, is_stormy: true}
+    before {allow(Kernel).to receive(:rand).with(100) {1}}
     let(:plane) {double :plane, flying: false}
 
     describe '#land' do
       it 'raises an error when trying to land a plane in stormy weather' do
-        expect { subject.land(plane, weather) }.to raise_error 'Cannot land. Stormy weather.'
+        expect { subject.land(plane) }.to raise_error 'Cannot land. Stormy weather.'
       end
     end
 
     describe '#takeoff' do
       it 'raises an error when trying to takeoff in stormy weather' do
-        expect { subject.takeoff(plane, weather) }.to raise_error 'Cannot instruct takeoff. Stormy weather.'
+        expect { subject.takeoff(plane) }.to raise_error 'Cannot instruct takeoff. Stormy weather.'
       end
+    end
+  end
+
+  describe '#weather' do
+    it 'changes the weather to stormy with a random function' do
+      allow(Kernel).to receive(:rand).with(100) {1}
+      expect(subject.is_stormy?).to eq true
     end
   end
 

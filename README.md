@@ -34,11 +34,13 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-There are three classes stored in ./lib/
+There are two classes stored in ./lib/
   * Airport: instructs planes to `land` and `takeoff`. Stores the `@planes` that
   have landed in an array, and has a defined `@capacity` when initialized.
   * Plane: tracks whether a plane object is `flying`
-  * Weather: contains `:change` which randomly assigns whether it `is_stormy`
+
+There is also one module in ./lib/
+  * Weather: randomly assigns whether it `is_stormy?`
 
 It defends against the following edge cases:-
   * Planes which are already flying cannot takeoff
