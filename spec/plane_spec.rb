@@ -33,7 +33,7 @@ describe Plane do
       end
 
       it 'is prevented when the airport is full' do
-        allow(airport).to receive(:full?){true}
+        allow(airport).to receive(:full?).and_return true
         expect{plane.land(airport)}.to raise_error 'Airport full'
       end
 
@@ -70,7 +70,7 @@ describe Plane do
   context 'storm' do
     before(:example) do
       plane.land(airport)
-      allow(airport).to receive(:stormy?){true}
+      allow(airport).to receive(:stormy?).and_return true
     end
 
 

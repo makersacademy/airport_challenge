@@ -6,7 +6,7 @@ attr_reader :stored_planes, :capacity, :weather
 
 DEFAULT_CAPACITY = 20
 
-def initialize(capacity=DEFAULT_CAPACITY, weather=Weather.new.weather)
+def initialize(capacity=DEFAULT_CAPACITY, weather=Weather.new)
   @stored_planes = []
   @capacity = capacity
   @weather = weather
@@ -17,7 +17,7 @@ def full?
 end
 
 def stormy?
-  weather == :storm
+  weather.stormy?
 end
 
 end

@@ -34,7 +34,7 @@ describe Airport do
 
   context 'Storm' do
     it 'means airport has storm' do
-      airport = described_class.new 20, :storm
+      airport = described_class.new 20, double(:weather, stormy?: true)
       expect(airport).to be_stormy
     end
   end
