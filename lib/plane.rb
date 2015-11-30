@@ -19,5 +19,7 @@ class Plane
     @is_flying = true
     "Taking off!"
   end
+
   
+
 end

@@ -2,7 +2,9 @@ require 'plane'
 
 describe Plane do
 
+  
   let(:airport) {double(:airport,name: "JFK",planes: [],approve_landing?: true,approve_takeoff?: true)}
+
 
   context '<><> Plane state <><>' do
     it 'returns false if plane is not flying' do
