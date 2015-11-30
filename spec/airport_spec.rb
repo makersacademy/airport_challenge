@@ -3,6 +3,7 @@ require './docs/airport.rb'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {double :plane, flying: true}
+  let(:landed_plane) {double :landed_plane, flying: false}
 
   before(:each) do
     allow(plane).to receive(:landed).and_return(flying = false)
@@ -55,15 +56,8 @@ describe Airport do
   end
 
   it "Should not be able to land a plane that's already landed" do
-    airport.land(plane)
-    allow(plane).to receive(:flying).and_return(false)
-    expect{airport.land(plane)}.to raise_error "That plane has already landed!"
+    expect{airport.land(landed_plane)}.to raise_error "That plane has already landed!"
   end
 
-  it "A landed plane should not be able to land in another airport" do
-    airport.land(plane)
-    allow(plane).to receive(:flying).and_return(false)
-    expect(airport.planes[0].flying).to equal(false)
-  end
 
 end
