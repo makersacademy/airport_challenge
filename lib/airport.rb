@@ -6,13 +6,10 @@ class Airport
 
   MAXCAPACITY = 5
 
-  def initialize
+  def initialize(capacity=MAXCAPACITY)
+    @capacity = capacity
     @hangar = []
     @full = false
-  end
-
-  def capacity(capacity=MAXCAPACITY)
-    @capacity = capacity
   end
 
   def full?
