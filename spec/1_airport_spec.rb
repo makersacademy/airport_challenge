@@ -100,10 +100,6 @@ describe Airport do
       expect{airport.take_off(plane)}.to raise_error take_off_stormy_error
     end
 
-    it 'prevents planes from landing if stormy' do
-      expect{airport.land(plane)}.to raise_error land_stormy_error
-    end
-
   end
 
   context 'If the airport is at capacity' do

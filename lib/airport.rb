@@ -22,7 +22,6 @@ class Airport
 
   def land(plane)
     fail LAND_FULL_ERROR if at_capacity?
-    fail LAND_STORMY_ERROR if weather.stormy?
     @landed_planes << plane
   end
 
