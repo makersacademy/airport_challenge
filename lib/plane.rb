@@ -1,7 +1,5 @@
 class Plane
 
-  attr_reader :flying
-
   def initialize
     @flying = true
   end
@@ -10,15 +8,23 @@ class Plane
     raise 'plane already in the air' if flying
   end
 
-  def land
-    @flying = false
+  def land(airport)
     raise 'plane already landed' if landed
+    @flying = false
+    @airport = airport
   end
 
-end
+  def airport
+    raise 'plane already in the air' if flying
+    @airport
+  end
 
 private
 
-def landed?
-  !flying?
+attr_reader :flying
+
+def landed
+  !flying
+end
+
 end
