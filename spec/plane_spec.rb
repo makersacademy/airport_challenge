@@ -1,4 +1,4 @@
-require 'airport'
+require './docs/airport.rb'
 
 describe Plane do
 

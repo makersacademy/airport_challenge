@@ -1,4 +1,4 @@
-require './lib/plane.rb'
+require './docs/plane.rb'
 
 class Airport
 
