@@ -1,6 +1,9 @@
 require 'airport'
 
 describe Airport do
+
+  let (:luton) { double("Airport") }
+
   it 'can respond to #land' do
     expect(subject).to respond_to(:land).with(1).argument
   end
@@ -19,13 +22,11 @@ describe Airport do
 
   context 'the weather is sunny' do
     it 'allows planes to take-off' do
-      luton = double("Airport")
       allow(luton).to receive(:take_off).and_return(:hangar)
       expect(luton.take_off).to eq :hangar
     end
 
     it 'allows planes to land' do
-      luton = double("Airport")
       allow(luton).to receive(:land).and_return(:hangar)
       expect(luton.land).to eq :hangar
     end
@@ -33,13 +34,11 @@ describe Airport do
 
   context 'the weather is stormy' do
     it 'will not allow planes to take-off' do
-      luton = double("Airport")
       allow(luton).to receive(:take_off).and_raise("It's too stormy for take-off")
       expect{luton.take_off}.to raise_error "It's too stormy for take-off"
     end
 
     it 'will not allow planes to land' do
-      luton = double("Airport")
       allow(luton).to receive(:land).and_raise("It's too stormy for landing")
       expect{luton.land}.to raise_error "It's too stormy for landing"
     end
@@ -47,7 +46,6 @@ describe Airport do
 
   context 'the airport is full' do
     it 'will not allow planes to land' do
-      luton = double("Airport")
       allow(luton).to receive(:land).and_raise("The airport is full")
       expect{luton.land}.to raise_error "The airport is full"
     end
