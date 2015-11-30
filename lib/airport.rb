@@ -16,4 +16,7 @@ class Airport
     @planes.delete(plane)
   end
 
+  def full?
+  end
+
 end
