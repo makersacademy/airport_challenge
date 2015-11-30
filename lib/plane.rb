@@ -4,12 +4,12 @@ class Plane
     @status = :flying
   end
 
-  def land
+  def landed
     fail "This plane is already landed" if landed?
     @status = :landed
   end
 
-  def take_off
+  def took_off
     fail "This plane is already flying" if flying?
     @status = :flying
   end

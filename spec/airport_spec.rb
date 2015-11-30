@@ -3,7 +3,8 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new }
-  let(:plane) { double(:plane, land: nil, take_off: nil) }
+  subject(:heathrow) { described_class.new 50 }
+  let(:plane) { double(:plane, landed: nil, took_off: nil) }
 
   it 'is expected to initialize with @planes set to an empty array' do
     expect(airport.planes).to eq []
@@ -14,7 +15,6 @@ describe Airport do
   end
 
   it 'is expected to initialize with a @capacity equal to argument' do
-    heathrow = Airport.new 50
     expect(heathrow.capacity).to eq(50)
   end
 
@@ -32,12 +32,12 @@ describe Airport do
       end
 
       it 'is expected to instruct the plane to make a landing' do
-        expect(plane).to receive(:land)
+        expect(plane).to receive(:landed)
         airport.land(plane)
       end
 
       it 'is expected to not allow a landing if the airport is full' do
-        airport.capacity.times { airport.land(double(:plane, land: nil)) }
+        airport.capacity.times { airport.land(double(:plane, landed: nil)) }
         airport_full = "Cannot land, the airport is full"
         expect { airport.land(plane) }.to raise_error airport_full
       end
@@ -52,7 +52,7 @@ describe Airport do
 
       it 'is expected to instruct the plane to take off' do
         airport.land(plane)
-        expect(plane).to receive(:take_off)
+        expect(plane).to receive(:took_off)
         airport.take_off(plane)
       end
 
