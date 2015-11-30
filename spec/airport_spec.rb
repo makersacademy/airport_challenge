@@ -16,11 +16,11 @@ describe Airport do
     it 'only accepts the capacity of planes' do
       capacity = rand(1..50)
       airport = Airport.new(capacity)
-      allow(airport).to receive_messages(:stormy? => false)
+      allow(airport).to receive(:stormy?).and_return(false)
 
       capacity.times {
         plane = double(:plane)
-        allow(plane).to receive_messages(:landing => false)
+        allow(plane).to receive(:landing).and_return(false)
         airport.land(plane)
        }
       plane = double(:plane)
@@ -33,16 +33,16 @@ describe Airport do
   subject(:airport) { described_class.new }
     it 'can land a plane' do
       plane = double(:plane)
-      allow(plane).to receive_messages(:landing => false)
-      allow(airport).to receive_messages(:stormy? => false)
+      allow(plane).to receive(:landing).and_return(false)
+      allow(airport).to receive(:stormy?).and_return(false)
       airport.land(plane)
       expect(airport.planes).to eq [plane]
     end
 
     it 'it has the plane stored after is has landed' do
       plane = double(:plane)
-      allow(plane).to receive_messages(:landing => false)
-      allow(airport).to receive_messages(:stormy? => false)
+      allow(plane).to receive(:landing).and_return(false)
+      allow(airport).to receive(:stormy?).and_return(false)
       airport.land(plane)
       expect(airport.planes).to include plane
     end
@@ -50,8 +50,8 @@ describe Airport do
    context 'when weather is stormy' do
      it 'prevents landing' do
        plane = double(:plane)
-       allow(airport).to receive_messages(:stormy? => true)
-       allow(plane).to receive_messages(:landing => true)
+       allow(airport).to receive(:stormy?).and_return(true)
+       allow(plane).to receive(:landing).and_return(true)
        expect{airport.land(plane)}.to raise_error('plane cannot take land in a storm')
      end
    end
@@ -60,17 +60,17 @@ describe Airport do
     it 'prevents landing when airport is full' do
       plane = double(:plane)
       plane2 = double(:plane)
-      allow(plane).to receive_messages(:landing => false)
-      allow(plane2).to receive_messages(:landing => false)
-      allow(airport).to receive_messages(:stormy? => false)
+      allow(plane).to receive(:landing).and_return(false)
+      allow(plane2).to receive(:landing).and_return(false)
+      allow(airport).to receive(:stormy?).and_return(false)
       subject.land(plane)
       expect{airport.land(plane2)}.to raise_error('Airport is full and cannot land')
     end
    end
     it 'can only land planes that have not already been landed' do
       plane = double(:plane)
-      allow(plane).to receive_messages(:landing => false)
-      allow(airport).to receive_messages(:stormy? => false)
+      allow(plane).to receive(:landing).and_return(false)
+      allow(airport).to receive(:stormy?).and_return(false)
       airport.land(plane)
       expect{airport.land(plane)}.to raise_error('plane is already in airport')
     end
@@ -82,8 +82,9 @@ describe Airport do
 
     it 'takes off from the airport' do
       plane = double(:plane)
-      allow(plane).to receive_messages(:landing => false, :taking_off => true)
-      allow(airport).to receive_messages(:stormy? => false)
+      allow(plane).to receive(:landing).and_return(false)
+      allow(plane).to receive(:taking_off).and_return(true)
+      allow(airport).to receive(:stormy?).and_return(false)
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes).to eq []
@@ -91,10 +92,10 @@ describe Airport do
     context 'when weather is stormy' do
       it 'prevents take off' do
         plane = double(:plane)
-        allow(airport).to receive_messages(:stormy? => false)
-        allow(plane).to receive_messages(:landing => false)
+        allow(airport).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:landing).and_return(false)
         airport.land(plane)
-        allow(airport).to receive_messages(:stormy? => true)
+        allow(airport).to receive(:stormy?).and_return(true)
         expect{airport.take_off(plane)}.to raise_error('plane cannot take off in a storm')
       end
     end
