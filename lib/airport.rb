@@ -1,43 +1,25 @@
-require_relative 'planes'
-require_relative 'weather'
 class Airport
+  def initialize(capacity)
+    @capacity = capacity
+    @planes = []
+  end
 
-	attr_reader :planes
+  def land(plane)
+    raise 'Cannot land plane: airport full' if full?
+    raise 'Cannot land plane: weather is stormy' if stormy?
+    @planes << plane
+  end
 
-	def initialize(capacity) 
-		@planes = []
-		@stormy = false
-		@capacity = capacity
-	end
-	
-	def land(plane)
-		fail "Cannot land plane: airport is full!" if @planes.length >= @capacity
-		fail "plane cannot land in a storm" if @stormy
-		fail "Plane has already landed!" if exists?(plane)
-		planes << plane
-		plane.landed
-	end
+  def take_off(plane)
+  end
 
-	def takeoff(plane)
-		fail "Plane cannot takeoff in a storm" if @stormy
-		fail "Plane not in airport" unless exists?(plane)
-		@planes.delete(plane)
-		plane.flying
-	end
+  private
 
-private
+  def full?
+    @planes.length >= @capacity
+  end
 
-
-	def exists?(plane)
-		planes.include?(plane)
-	end
-
-	def forcast(weather)
-		stormy = weather.stormy?
-	end
-
-
-
-	
-
-end 
+  def stormy?
+    rand(1..6) > 4
+  end
+end
