@@ -1,8 +1,7 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :planes, :storm_level
-  attr_accessor :capacity
+  attr_reader :planes, :storm_level, :capacity
 
   DEFAULT_CAPACITY = 20
 
@@ -14,7 +13,7 @@ class Airport
 
   def tell_plane_to_land(plane)
     fail "Airport full" if full?
-    fail "Plane can't land in a storm" if (plane.taken_off? == nil) && storm_level == 10
+    fail "Plane can't land in a storm" if storm_level == 10
     plane.land
     planes << plane
   end

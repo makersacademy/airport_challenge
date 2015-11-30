@@ -2,8 +2,10 @@ require 'airport'
 
 describe Airport do
 
+  subject(:airport) { described_class.new }
+
   it 'should check the airport has a default capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   it 'should check the airport can have a variable capacity' do
@@ -17,21 +19,21 @@ describe Airport do
 
     it 'should land a plane' do
       plane = Plane.new
-      subject.clear
-      subject.tell_plane_to_land(plane)
-      expect(subject.planes.include?(plane)).to eq true
+      airport.clear
+      airport.tell_plane_to_land(plane)
+      expect(airport.planes.include?(plane)).to eq true
     end
 
     it 'should raise an error if a plane tries to land when it\'s stormy' do
       plane = Plane.new
-      subject.storm
-      expect{subject.tell_plane_to_land(plane)}.to raise_error "Plane can't land in a storm"
+      airport.storm
+      expect{airport.tell_plane_to_land(plane)}.to raise_error "Plane can't land in a storm"
     end
 
     it 'should raise an error if the airport is full' do
-      subject.clear
-      Airport::DEFAULT_CAPACITY.times { subject.tell_plane_to_land(Plane.new) }
-      expect { subject.tell_plane_to_land(Plane.new) }.to raise_error 'Airport full'
+      airport.clear
+      Airport::DEFAULT_CAPACITY.times { airport.tell_plane_to_land(Plane.new) }
+      expect { airport.tell_plane_to_land(Plane.new) }.to raise_error 'Airport full'
     end
 
   end
@@ -40,17 +42,17 @@ describe Airport do
 
     it 'should let a plane take off' do
       plane = Plane.new
-      subject.clear
-      subject.tell_plane_to_land(plane)
-      subject.tell_plane_to_take_off(plane)
-      expect(subject.planes.include?(plane)).to eq false
+      airport.clear
+      airport.tell_plane_to_land(plane)
+      airport.tell_plane_to_take_off(plane)
+      expect(airport.planes.include?(plane)).to eq false
     end
 
     it 'should raise an error if a plane tries to take off when it\'s stormy' do
       plane = Plane.new
-      subject.tell_plane_to_land(plane)
-      subject.storm
-      expect{subject.tell_plane_to_take_off(plane)}.to raise_error "Plane can't take off in a storm"
+      airport.tell_plane_to_land(plane)
+      airport.storm
+      expect{airport.tell_plane_to_take_off(plane)}.to raise_error "Plane can't take off in a storm"
     end
 
   end
