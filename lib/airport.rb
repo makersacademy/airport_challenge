@@ -12,6 +12,8 @@ def initialize(capacity=DEFAULT_CAPACITY, weather=Weather.new)
   @weather = weather
 end
 
+
+
 def full?
   stored_planes.count >= capacity
 end

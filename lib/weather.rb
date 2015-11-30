@@ -2,12 +2,10 @@
 class Weather
   attr_reader :weather
 
-  def initialize
-    @weather = [:storm,:no_storm,:no_storm,:no_storm].sample
-  end
-
   def stormy?
-    @weather == :storm
+    weather_possibilities = [:storm,:no_storm,:no_storm,:no_storm]
+    possibility = Kernel.rand(0..3)
+    weather_possibilities[possibility] == :storm
 
   end
 end
