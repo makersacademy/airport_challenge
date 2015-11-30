@@ -45,5 +45,12 @@ describe Airport do
     end
   end
 
+  context 'the airport is full' do
+    it 'will not allow planes to land' do
+      luton = double("Airport")
+      allow(luton).to receive(:land).and_raise("The airport is full")
+      expect{luton.land}.to raise_error "The airport is full"
+    end
+  end
 
 end

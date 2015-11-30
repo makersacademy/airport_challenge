@@ -13,16 +13,13 @@ class Airport
   end
 
   def full?
-    if @hangar.empty? || (@hangar.length < @capacity)
-      @full = false
-    else
-      @full = true
-    end
+    @full = true if (@hangar.length >= @capacity)
   end
 
   def land(arg)
     fail "It's too stormy for landing" if Weather.new.stormy
     fail "That plane has already landed" if @hangar.include?(arg)
+    fail "The airport is full" if @full
     arg.landed = true
     @hangar << arg
   end

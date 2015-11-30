@@ -4,5 +4,4 @@ class Plane
   def initialize
     @landed = false
   end
-
 end
