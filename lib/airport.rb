@@ -24,7 +24,7 @@ class Airport
   end
 
   def land(arg)
-    if Weather.new.current_weather == :stormy
+    if Weather.new.stormy
       fail "It's too stormy for landing"
     elsif @hangar.include?(arg)
       fail "That plane has already landed"
@@ -35,7 +35,7 @@ class Airport
   end
 
   def take_off(arg)
-    if Weather.new.current_weather == :stormy
+    if Weather.new.stormy
       fail "It's too stormy for take-off"
     elsif @hangar.include?(arg)
       arg.landed = false

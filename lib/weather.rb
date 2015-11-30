@@ -1,12 +1,11 @@
 class Weather
-  attr_reader :current_weather
+  attr_reader :stormy
 
   def initialize
     if rand(10) == 4
-      @current_weather = :stormy
+      @stormy = true
     else
-      @current_weather = :sunny
+      @stormy = false
     end
   end
-
 end
