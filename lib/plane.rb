@@ -4,7 +4,6 @@ class Plane
 
   def initialize
     @flying = true
-    @airport = nil
   end
 
   def land! airport
