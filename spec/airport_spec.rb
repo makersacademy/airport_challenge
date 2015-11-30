@@ -18,11 +18,11 @@ describe Airport do
       airport = Airport.new(capacity)
       allow(airport).to receive(:stormy?).and_return(false)
 
-      capacity.times {
+      capacity.times do
         plane = double(:plane)
         allow(plane).to receive(:landing).and_return(false)
         airport.land(plane)
-       }
+      end
       plane = double(:plane)
       expect{airport.land(plane)}.to raise_error('Airport is full and cannot land')
     end
