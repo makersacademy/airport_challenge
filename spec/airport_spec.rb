@@ -17,6 +17,16 @@ it "has a default capacity of MAX_CAPACITY" do
       expect(subject.land(plane)).to eq [plane]
     end
 
+    it "Adds a landed plane to the total list of planes" do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(subject).to receive(:stormy?).and_return(false)
+      plane1 = Plane.new
+      plane2 = Plane.new
+      subject.land(plane1)
+      subject.land(plane2)
+      expect(subject.planes).to eq [plane1, plane2]
+    end
+
     it "Can confirm a plane has landed" do
       allow(subject).to receive(:stormy?).and_return(false)
       subject.land(plane)
