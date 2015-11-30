@@ -2,11 +2,11 @@ require 'airport'
 
 describe Airport do
 
-  #let(:plane) {double :plane}
+    let(:plane) {double(:plane)}
 
   describe 'initialization' do
     it 'has a variable capacity' do
-      plane = Plane.new
+      allow(plane).to receive(:status).and_return("landed")
       weather = double(:weather, condition: false)
       airport = Airport.new(50)
       50.times {airport.landing(plane, weather)}
@@ -18,20 +18,20 @@ describe Airport do
     describe '#landing' do
 
       it 'allows to land and confirm landing' do
-        plane = Plane.new
+        plane = double(:plane, status: "landed", confirmation: "landed")
         weather = double(:weather, condition: false)
         subject.landing(plane, weather)
         expect(plane.confirmation).to eq "landed"
       end
 
       it 'denies landing when stormy' do
-        plane = Plane.new
+        plane = double(:plane, status: "")
         weather = double(:weather, condition: true)
         expect {subject.landing(plane, weather)}.to raise_error "Cannot land due to storm"
       end
 
       it 'denies landings when airport full' do
-        plane = Plane.new
+        plane = double(:plane, status: "")
         weather = double(:weather, condition: false)
         20.times {subject.landing(plane, weather)}
         expect {subject.landing(plane, weather)}.to raise_error "Landing denied airport full"
@@ -42,7 +42,7 @@ describe Airport do
     describe '#take_off' do
 
       it 'allows to take off and confirm taking off' do
-        plane = Plane.new
+        plane = double(:plane, status: "in air", confirmation: "on air")
         weather = double(:weather, condition: false)
         subject.landing(plane, weather)
         subject.take_off(plane, weather)
@@ -50,7 +50,7 @@ describe Airport do
       end
 
       it 'denies take off if stormy' do
-        plane = Plane.new
+        plane = double(:plane, status: "landed")
         weather = double(:weather, condition: false)
         subject.landing(plane, weather)
         weather = double(:weather, condition: true)
