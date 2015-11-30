@@ -1,13 +1,9 @@
 Airport Challenge
 =================
 
-This challenge is incomplete. In order to finish it, I would need to do the following:
-  Make the full? method for the Airport class work
-  Stop planes from landing if the airport is full
-  Improve/change a lot of the tests
-  Refactor the Ruby a lot (methods in the Airport class should not be so long)
+This challenge is mostly complete, but the tests for the airport spec need improving and adding to.
 
-My 3 earliest commits were the first version I wrote. I then had to completely rewrite it all, so later commits are version 2.
+My 3 earliest commits were the first version I wrote. I then had to completely rewrite the project, so later commits are version 2.
 
 Instructions
 ---------

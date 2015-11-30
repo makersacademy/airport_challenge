@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :hangar, :capacity, :full
+  attr_reader :hangar, :capacity
 
   MAXCAPACITY = 5
 
@@ -19,7 +19,7 @@ class Airport
   def land(arg)
     fail "It's too stormy for landing" if Weather.new.stormy
     fail "That plane has already landed" if @hangar.include?(arg)
-    fail "The airport is full" if @full
+    fail "The airport is full" if self.full?
     arg.landed = true
     @hangar << arg
   end
