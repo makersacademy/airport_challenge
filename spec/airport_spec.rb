@@ -33,6 +33,14 @@ describe Airport do
         end
       end
 
+ # specify 'a plane can land after storm has cleared' do
+ #    allow(weather).to receive(:stormy?).and_return true
+ #    message = 'Unable to land due to stormy weather'
+ #    expect { airport.land(plane) }.to raise_error message
+ #    allow(weather).to receive(:stormy?).and_return false
+ #    expect { airport.land(plane) }.not_to raise_error
+ #  end
+
   context 'challenge 5' do
         it 'planes can only take off from the airport they are at' do
           plane = double('plane', flying: false)
