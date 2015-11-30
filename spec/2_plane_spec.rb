@@ -4,6 +4,11 @@ describe Plane do
 
 subject(:plane) {described_class.new}
 let(:airport) {double(:airport)}
+before do
+  allow(airport).to receive(:clear_to_land?).and_return(true)
+  allow(airport).to receive(:land)
+
+end
 
   describe '#initialize' do
     it 'by default plane\'s are in the air' do
@@ -16,7 +21,14 @@ let(:airport) {double(:airport)}
   end
 
   describe '#land' do
+    it 'won\'t land if it\'s not clear' do
+      allow(airport).to receive(:clear_to_land?).and_return(false)
+      message = 'Not clear to land'
+      expect{plane.land(airport)}.to raise_error message
+    end
+
     it 'allows confirmation that the plane has landed' do
+      allow(airport).to receive(:land)
       plane.land(airport)
       expect(plane.status).to eq :on_the_ground
     end
@@ -47,6 +59,8 @@ let(:airport) {double(:airport)}
 
     it 'can\'t take off from an airport it\'s not in' do
       airport2 = double(:airport)
+      allow(airport2).to receive(:clear_to_land?).and_return(true)
+      allow(airport2).to receive(:land)
       plane.land(airport2)
       message = "Can't take off from an airport the plane isn't at."
       expect{plane.take_off(airport)}.to raise_error message

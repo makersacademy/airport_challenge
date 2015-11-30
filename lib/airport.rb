@@ -13,10 +13,13 @@ class Airport
     @landed_planes = []
   end
 
+  def clear_to_land?
+    !weather.stormy?
+  end
+
   def land(plane)
     fail "Can't land, the airport is full" if at_capacity?
     fail "Can't land in storm" if weather.stormy?
-    plane.land(self)
     @landed_planes << plane
   end
 

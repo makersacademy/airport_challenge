@@ -18,9 +18,16 @@ describe Airport do
     end
   end
 
+
   describe '#land' do
     it 'allows a plane to land' do
       airport.land(plane)
+      expect(airport.landed_planes).to eq [plane]
+    end
+
+    it 'knows if a plane that has been told to land is in the airport' do
+      allow(plane).to receive(:land).and_return(airport.land(plane))
+      plane.land(airport)
       expect(airport.landed_planes).to eq [plane]
     end
   end
@@ -41,6 +48,21 @@ describe Airport do
       expect(airport.landed_planes).to eq [plane2]
     end
   end
+
+  describe '#clear_to_land'do
+    it {is_expected.to respond_to(:clear_to_land?)}
+
+    it 'responds with true if the weather is clear' do
+      expect(airport.clear_to_land?).to eq true
+    end
+    
+    it 'responds with true if the weather is stormy' do
+      allow(Weather).to receive(:stormy?).and_return(true)
+      expect(airport.clear_to_land?).to eq false
+    end
+  end
+
+
 
   describe '#capactiy' do
     it {is_expected.to respond_to(:capacity)}

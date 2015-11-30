@@ -10,6 +10,9 @@ class Plane
   def land(airport)
     message = "Can't land, already on the ground."
     fail message if already_on_the_ground?(self)
+    message = 'Not clear to land'
+    fail message if !airport.clear_to_land?
+    airport.land(self)
     @status = :on_the_ground
     @airport_at = airport
   end
@@ -24,6 +27,10 @@ class Plane
   end
 
   private
+
+  def clear_to_land?
+    !airport.clear_to_land?
+  end
 
   def already_on_the_ground?(plane)
     plane.status == :on_the_ground

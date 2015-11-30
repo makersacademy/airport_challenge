@@ -17,44 +17,44 @@ describe 'Feature tests' do
 
   context 'Weather is clear' do
     it 'allows a number of planes to land and take off' do
-      heathrow.land(easyjet)
-      heathrow.land(virgin)
-      heathrow.land(british_airways)
+      easyjet.land(heathrow)
+      virgin.land(heathrow)
+      british_airways.land(heathrow)
       heathrow.take_off(easyjet)
-      heathrow.land(ryan_air)
+      ryan_air.land(heathrow)
       heathrow.take_off(virgin)
       heathrow.take_off(british_airways)
       expect(heathrow.landed_planes).to eq [ryan_air]
     end
 
     it 'planes know which airport they are at' do
-      heathrow.land(easyjet)
-      heathrow.land(virgin)
-      gatwick.land(british_airways)
-      gatwick.land(ryan_air)
+      easyjet.land(heathrow)
+      virgin.land(heathrow)
+      british_airways.land(gatwick)
+      ryan_air.land(gatwick)
       expect(british_airways.airport_at).to eq gatwick
     end
 
     it 'has a capacity which can be changed and won\'t breach it' do
       heathrow.update_capacity(5)
-      heathrow.land(easyjet)
-      heathrow.land(virgin)
-      heathrow.land(british_airways)
-      heathrow.land(ryan_air)
-      heathrow.land(icelandic_air)
+      easyjet.land(heathrow)
+      virgin.land(heathrow)
+      british_airways.land(heathrow)
+      ryan_air.land(heathrow)
+      icelandic_air.land(heathrow)
       message = "Can't land, the airport is full"
-      expect{heathrow.land(monarch)}.to raise_error message
+      expect{monarch.land(heathrow)}.to raise_error message
     end
 
   end
 
   context 'Weather is stormy' do
     it 'prevents planes from taking off if the weather becomes stormy' do
-      heathrow.land(easyjet)
-      heathrow.land(virgin)
-      heathrow.land(british_airways)
+      easyjet.land(heathrow)
+      virgin.land(heathrow)
+      british_airways.land(heathrow)
       heathrow.take_off(easyjet)
-      heathrow.land(ryan_air)
+      ryan_air.land(heathrow)
       heathrow.take_off(virgin)
       allow(Weather).to receive(:stormy?).and_return(true)
       message = "Can't take off in storm"
@@ -62,13 +62,12 @@ describe 'Feature tests' do
     end
 
     it 'prevents planes from landing if the weather becomes stormy' do
-      heathrow.land(easyjet)
-      heathrow.land(virgin)
-      heathrow.land(british_airways)
-      heathrow.take_off(easyjet)
+      easyjet.land(heathrow)
+      virgin.land(heathrow)
+      british_airways.land(heathrow)
       allow(Weather).to receive(:stormy?).and_return(true)
-      message = "Can't land in storm"
-      expect{heathrow.land(ryan_air)}.to raise_error message
+      message = "Not clear to land"
+      expect{ryan_air.land(heathrow)}.to raise_error message
 
     end
   end
