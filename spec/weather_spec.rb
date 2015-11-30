@@ -5,7 +5,7 @@ describe Weather do
   describe '#stormy?'do
     it{is_expected.to respond_to :stormy?}
 
-    it 'should report the stormy as false when rand is 7 or less' do
+    it 'should report stormy as false when rand is 7 or less' do
       allow(subject).to receive(:rand) { 7 }
       expect(subject.stormy?).to eq false
     end
