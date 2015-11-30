@@ -6,6 +6,18 @@ Uses classes `Plane` and `Airport` and a `Weather` module.
 All user stories covered with unit and feature testing, following BDD process.   
 Unit tests are isolated using doubles. 
 
+####Installation  
+`git clone git@github.com:hibreez/airport_challenge.git`  
+`cd airport_challenge`  
+`gem install bundle`  
+`bundle`  
+
+####Useage  
+`airport = Airport.new`  
+`airport.stormy?`  
+`airport.land! Plane.new`  
+`plane.flying?`  
+
 Airport class controls takeoffs and landings,
 instructing planes to update their status accordingly.  
 for example:  
@@ -15,7 +27,7 @@ triggering:
 `plane.land! airport` - updating the status of the plane to be grounded at the 
 airport
 
-Weather module provides method `stormy?` which returns a boolean
+Weather module provides method `.stormy?` which returns a boolean
 based on a random number.
 
 ####Object/Messages Table
