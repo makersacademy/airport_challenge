@@ -8,9 +8,8 @@ class Plane
     @status = :flying
   end
 
-  def land()
+  def land
     @status = :landed
-    # self
   end
 
   def take_off
