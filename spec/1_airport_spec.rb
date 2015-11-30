@@ -3,6 +3,9 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {double(:plane)}
+  let(:airport_full_error) {Airport::LAND_FULL_ERROR}
+  let(:take_off_stormy_error) {Airport::TAKE_OFF_STORMY_ERROR}
+  let(:land_stormy_error) {Airport::LAND_STORMY_ERROR}
 
   before do
     allow(plane).to receive(:land)
@@ -40,11 +43,10 @@ describe Airport do
     end
 
     it 'removes the correct plane from the airport after take off' do
-      plane1 = double(:plane, land: nil, take_off: nil)
-      plane2 = double(:plane, land: nil, take_off: nil)
-      airport.land(plane1)
+      plane2 = double(:plane)
+      airport.land(plane)
       airport.land(plane2)
-      airport.take_off(plane1)
+      airport.take_off(plane)
       expect(airport.landed_planes).to eq [plane2]
     end
   end
@@ -55,7 +57,7 @@ describe Airport do
     it 'responds with true if the weather is clear' do
       expect(airport.clear_to_land?).to eq true
     end
-    
+
     it 'responds with true if the weather is stormy' do
       allow(Weather).to receive(:stormy?).and_return(true)
       expect(airport.clear_to_land?).to eq false
@@ -86,8 +88,7 @@ describe Airport do
     it 'will prevent the updated capacity from being breached' do
       airport.update_capacity(Airport::DEFAULT_CAPACITY + 50)
       (Airport::DEFAULT_CAPACITY + 50).times{airport.land(plane)}
-      message = "Can't land, the airport is full"
-      expect{airport.land(plane)}.to raise_error message
+      expect{airport.land(plane)}.to raise_error airport_full_error
     end
   end
 
@@ -96,13 +97,11 @@ describe Airport do
     before {allow(Weather).to receive(:stormy?).and_return(true)}
 
     it 'prevents take off in stormy weather' do
-      message = "Can't take off in storm"
-      expect{airport.take_off(plane)}.to raise_error message
+      expect{airport.take_off(plane)}.to raise_error take_off_stormy_error
     end
 
     it 'prevents planes from landing if stormy' do
-      message = "Can't land in storm"
-      expect{airport.land(plane)}.to raise_error message
+      expect{airport.land(plane)}.to raise_error land_stormy_error
     end
 
   end
@@ -111,8 +110,7 @@ describe Airport do
 
     it 'prevents landing' do
       Airport::DEFAULT_CAPACITY.times{airport.land(plane)}
-      message = "Can't land, the airport is full"
-      expect {airport.land(plane)}.to raise_error message
+      expect {airport.land(plane)}.to raise_error airport_full_error
     end
   end
 

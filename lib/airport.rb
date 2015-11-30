@@ -4,6 +4,9 @@ require_relative 'weather'
 class Airport
 
   DEFAULT_CAPACITY = 100
+  LAND_FULL_ERROR = "Can't land, the airport is full"
+  LAND_STORMY_ERROR = "Can't land in storm"
+  TAKE_OFF_STORMY_ERROR = "Can't take off in storm"
 
   attr_reader :landed_planes, :capacity, :weather
 
@@ -18,13 +21,13 @@ class Airport
   end
 
   def land(plane)
-    fail "Can't land, the airport is full" if at_capacity?
-    fail "Can't land in storm" if weather.stormy?
+    fail LAND_FULL_ERROR if at_capacity?
+    fail LAND_STORMY_ERROR if weather.stormy?
     @landed_planes << plane
   end
 
   def take_off(plane)
-    fail "Can't take off in storm" if weather.stormy?
+    fail TAKE_OFF_STORMY_ERROR if weather.stormy?
     plane.take_off(self)
     remove_planes_from_landed_planes(plane)
   end

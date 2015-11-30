@@ -58,8 +58,8 @@ end
   context 'edge cases' do
 
     it 'can\'t take off if already flying' do
-      allow(plane).to receive(:airport_at).and_return(airport)
-      allow(plane).to receive(:flying?).and_return(true)
+      plane.land(airport)
+      plane.take_off(airport)
       message = "Can't take off, already in the air."
       expect{plane.take_off(airport)}.to raise_error message
     end

@@ -4,25 +4,39 @@ The aim of the challenge was to model an airport and planes, and to allow planes
 
 I used TDD to complete this challenge. The full instructions provided to complete this challenge can be seen at the bottom of this readme.
 
-Below is a pry transcript to show how it works.
+UPDATE: The implementation of the application has been changed such that planes are now instructed to land, instead of airports telling planes to land.
+
+Below is an updated pry transcript to show how it works.
 
 ```
 [1] pry(main)> require './lib/airport.rb'
 => true
-[2] pry(main)> airport = Airport.new
-=> #<Airport:0x007ff78140d0c8 @capacity=100, @landed_planes=[]>
-[3] pry(main)> plane = Plane.new
-=> #<Plane:0x007ff7813c66c8>
-[4] pry(main)> airport.land(plane)
-=> [#<Plane:0x007ff7813c66c8 @airport_at=#<Airport:0x007ff78140d0c8 @capacity=100, @landed_planes=[...]>, @status=:on_the_ground>]
-[5] pry(main)> plane.status
-=> :on_the_ground
-[6] pry(main)> plane.airport_at
-=> #<Airport:0x007ff78140d0c8 @capacity=100, @landed_planes=[#<Plane:0x007ff7813c66c8 @airport_at=#<Airport:0x007ff78140d0c8 ...>, @status=:on_the_ground>]>
-[7] pry(main)> airport.update_capacity(200)
-=> 200
-[8] pry(main)> airport.take_off(plane)
+[2] pry(main)> plane = Plane.new
+=> #<Plane:0x007fac594b6740 @airport_at=:not_in_airport, @flying=true>
+[3] pry(main)> airport = Airport.new
+=> #<Airport:0x007fac594748e0 @capacity=100, @landed_planes=[], @weather=Weather>
+[4] pry(main)> airport.landed_planes
+=> []
+[5] pry(main)> plane.land(airport)
+RuntimeError: Not clear to land
+from /Users/chriswynne/Projects/airport_challenge/lib/plane.rb:14:in `land'
+[6] pry(main)> plane.land(airport)
+RuntimeError: Can't land in storm
+from /Users/chriswynne/Projects/airport_challenge/lib/airport.rb:25:in `land'
+[7] pry(main)> plane.land(airport)
+=> #<Airport:0x007fac594748e0 @capacity=100, @landed_planes=[#<Plane:0x007fac594b6740 @airport_at=#<Airport:0x007fac594748e0 ...>, @flying=false>], @weather=Weather>
+[8] pry(main)> airport.landed_planes
+=> [#<Plane:0x007fac594b6740 @airport_at=#<Airport:0x007fac594748e0 @capacity=100, @landed_planes=[...], @weather=Weather>, @flying=false>]
+[9] pry(main)> airport.take_off(plane)
 RuntimeError: Can't take off in storm
+from /Users/chriswynne/Projects/airport_challenge/lib/airport.rb:30:in `take_off'
+[10] pry(main)> airport.take_off(plane)
+RuntimeError: Can't take off in storm
+from /Users/chriswynne/Projects/airport_challenge/lib/airport.rb:30:in `take_off'
+[11] pry(main)> airport.take_off(plane)
+=> #<Plane:0x007fac594b6740 @airport_at=:not_in_airport, @flying=true>
+[12] pry(main)> airport.landed_planes
+=> []
 ```
 
 
