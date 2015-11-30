@@ -31,14 +31,10 @@ class Airport
   end
 
   def take_off(arg)
-    if Weather.new.stormy
-      fail "It's too stormy for take-off"
-    elsif @hangar.include?(arg)
-      arg.landed = false
-      @hangar.delete(arg)
-    else
-      fail "That plane has already taken off"
-    end
+    fail "It's too stormy for take-off" if Weather.new.stormy
+    fail "That plane has already taken off" unless @hangar.include?(arg)
+    arg.landed = false
+    @hangar.delete(arg)
   end
 
 end
