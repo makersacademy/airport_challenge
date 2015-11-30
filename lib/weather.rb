@@ -1,7 +1,7 @@
 class Weather
 
   def self.stormy?
-    Kernel.rand(10) < 3
+    Kernel.rand < 0.3
   end
 
 end

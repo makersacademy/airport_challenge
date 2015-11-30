@@ -8,13 +8,13 @@ describe Weather do
       expect([true, false]).to include Weather.stormy?
     end
 
-    it 'returns true if rand is less than 3' do
-      allow(Kernel).to receive(:rand).and_return(2)
+    it 'returns true if rand is less than 0.3' do
+      allow(Kernel).to receive(:rand).and_return(0.2)
       expect(weather.stormy?).to eq true
     end
 
-    it 'returns false if rand is 3 or greater' do
-      allow(Kernel).to receive(:rand).and_return(3)
+    it 'returns false if rand is 0.33 or greater' do
+      allow(Kernel).to receive(:rand).and_return(0.3)
       expect(weather.stormy?).to eq false
     end
   end
