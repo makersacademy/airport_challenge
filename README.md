@@ -2,7 +2,7 @@
 
 My solution to [airport challenge](https://github.com/makersacademy/airport_challenge).
 
-Uses three classes: `Plane`, `Airport` and `Weather`.  
+Uses two classes, `Plane` and `Airport` and a `Weather` module.  
 All user stories covered with unit and feature testing, following BDD process.   
 Unit tests are isolated using doubles. 
 
@@ -12,9 +12,10 @@ for example:
 `airport.land! plane` - the airport will instruct the plane to land if possible,
 adding it to the plane storeage  
 triggering:  
-`plane.land! airport` - updating the status of the plane to be grounded at that airport
+`plane.land! airport` - updating the status of the plane to be grounded at that 
+airport
 
-Weather class reports whether `weather.stormy?` based on random number.
+Weather module provides method `stormy?`, a boolean based on a random number.
 
 ####Object/Messages Table
 
