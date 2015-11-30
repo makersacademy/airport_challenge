@@ -2,32 +2,28 @@ require 'plane'
 
 describe Plane do
 
-  describe 'plane status' do
-    it{is_expected.to respond_to :landed}
+  let(:plane) {described_class.new}
+
+  describe '#touch_down' do
+    context 'when a plane touches_down it' do
+      it 'should update status to be landed' do
+        plane.touch_down
+        expect(plane.landed).to eq true
+      end
+
+    it 'should fail if it is already landed' do
+        plane.touch_down
+        expect{plane.touch_down}.to raise_error "This plane is landed elsewhere"
+      end
+    end
   end
 
   describe '#in_flight' do
-    it{is_expected.to respond_to :in_flight}
-
-    it 'should not be landed when in flight' do
-      subject.in_flight
-      expect(subject.landed).to eq false
+    context 'when a plane is in flight it' do
+      it 'should update status to not be landed' do
+        plane.in_flight
+        expect(plane.landed).to eq false
+      end
     end
   end
-
-  describe '#touch_down' do
-    it{is_expected.to respond_to :touch_down}
-
-    it 'should be landed when it touches down' do
-      subject.in_flight
-      subject.touch_down
-      expect(subject.landed).to eq true
-    end
-
-    it 'should not touch_down if it is already landed' do
-      subject.landed = true
-      expect{subject.touch_down}.to raise_error "This plane is landed elsewhere"
-    end
-  end
-
 end

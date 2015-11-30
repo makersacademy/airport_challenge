@@ -2,18 +2,18 @@ require 'weather'
 
 describe Weather do
 
+  let(:weather) {described_class.new}
+
   describe '#stormy?'do
-    it{is_expected.to respond_to :stormy?}
 
     it 'should report stormy as false when rand is 7 or less' do
-      allow(subject).to receive(:rand) { 7 }
-      expect(subject.stormy?).to eq false
+      allow(weather).to receive(:rand) { 7 }
+      expect(weather.stormy?).to eq false
     end
 
     it 'should report stormy as true when rand over 8' do
-      allow(subject).to receive(:rand) { 9 }
-      expect(subject.stormy?).to eq true
+      allow(weather).to receive(:rand) { 9 }
+      expect(weather.stormy?).to eq true
     end
   end
-
 end
