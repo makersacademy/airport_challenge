@@ -11,7 +11,7 @@ describe Plane do
         expect(plane.landed).to eq true
       end
 
-    it 'should fail if it is already landed' do
+      it 'should fail if it is already landed' do
         plane.touch_down
         expect{plane.touch_down}.to raise_error "This plane is landed elsewhere"
       end
