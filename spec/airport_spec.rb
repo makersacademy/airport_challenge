@@ -43,12 +43,9 @@ describe Airport do
       message = "No planes can land as it is stormy"
       expect{ airport.instruct_to_land(plane) }.to raise_error message
     end
-
   end
 
   describe '#instruct_take_off' do
-    it {is_expected.to respond_to :instruct_take_off}
-
     it 'should let a plane take off' do
       plane = double(:plane, in_airport_status: false, take_off: true, land: true)
       allow(airport).to receive(:stormy?).and_return false
@@ -91,4 +88,5 @@ describe Airport do
       expect { airport.instruct_to_land(plane) }.to raise_error message
     end
   end
+
 end
