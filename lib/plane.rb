@@ -2,7 +2,7 @@ class Plane
 
   attr_reader :confirmation
 
-  def status(status = "")
+  def status(status = 'flying')
     @confirmation = status
   end
 

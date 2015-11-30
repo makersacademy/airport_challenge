@@ -25,6 +25,7 @@ class Airport
     fail 'cannot take off, too stormy' if @weather.condition == true
     @plane = plane
     @plane.status('flying')
+    @planes.delete(plane)
   end
 
   private
