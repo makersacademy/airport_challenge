@@ -56,15 +56,16 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return false
       allow(subject).to receive(:full?).and_return false
       subject.instruct_to_land(plane)
-      subject.instruct_take_off
+      subject.instruct_take_off(plane)
       expect(plane.take_off).to eq true
     end
 
     it 'should raise an error if no planes are available to take off' do
+      plane = double(:plane, in_airport_status: true)
       landed_planes = []
       allow(subject).to receive(:stormy?).and_return false
       message = "There are no planes in the airport"
-      expect { subject.instruct_take_off }.to raise_error message
+      expect { subject.instruct_take_off(plane) }.to raise_error message
     end
 
     it 'should raise an error if the weather is stormy' do
@@ -72,7 +73,7 @@ describe Airport do
       allow(subject).to receive(:full?).and_return false
       allow(subject).to receive(:stormy?).and_return true
       message = "No planes can take off as it is stormy"
-      expect { subject.instruct_take_off }.to raise_error message
+      expect { subject.instruct_take_off(plane) }.to raise_error message
     end
 
     it "should change the plane's status to not in airport" do

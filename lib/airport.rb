@@ -19,11 +19,11 @@ class Airport
     plane.land
   end
 
-  def instruct_take_off
+  def instruct_take_off(plane)
     fail "No planes can take off as it is stormy" if stormy?
     fail "There are no planes in the airport" if landed_planes == []
-    plane = landed_planes.pop
     plane.take_off
+    landed_planes.delete(plane)
   end
 
   def weather
