@@ -13,4 +13,5 @@ describe Weather do
     allow(weather).to receive(:bad?) {true}
     expect(weather.bad?).to eq true
   end
+  
 end

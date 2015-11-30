@@ -1,13 +1,13 @@
 require 'airport'
 
 describe Airport do
-
+  
+  subject(:airport) {described_class.new(weather: weather)}
   let(:plane) {double(:plane)}
   let(:weather) {double(:weather, bad?: false)}
-  subject(:airport) {described_class.new(weather: weather)}
 
-  describe '#approve_landing? and #approve_takeoff?' do
-    context 'bad weather' do
+  describe '<><> Handling takeoff and landing <><>' do
+    context '=> if bad weather' do
       before do
         allow(weather).to receive(:bad?) { true }
       end
@@ -21,7 +21,7 @@ describe Airport do
     end
   end
 
-  describe '#approve_landing?' do
+  describe '<><> Handling landing <><>' do
     it 'should add the landed plane' do
       airport.planes << plane
       expect(airport.planes.include?(plane)).to eq true
@@ -32,7 +32,7 @@ describe Airport do
     end
   end
 
-  describe '#approve_takeoff?' do
+  describe '<><> Handling takeoff <><>' do
     it 'should remove the plane from the airport after take off' do
       plane = Plane.new
       plane.land(airport)

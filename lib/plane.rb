@@ -9,17 +9,18 @@ class Plane
   def land(airport)
     fail "This plane is already landed" unless is_flying
     airport.approve_landing?(self)
-    @is_flying = false
+    self.is_flying = false
     "Landed at #{airport.name}!"
   end
 
   def take_off(airport)
     fail "This plane is already flying" if is_flying
     airport.approve_takeoff?(self)
-    @is_flying = true
+    self.is_flying = true
     "Taking off!"
   end
 
-  
+  private
+  attr_writer :is_flying
 
 end
