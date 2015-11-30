@@ -3,68 +3,104 @@ require 'airport.rb'
 describe Airport do
 
   describe '#initialize' do
+    subject(:airport) { described_class.new }
     it 'sets capacity to argument passed' do
       airp = Airport.new(30)
       expect(airp.capacity).to eq(30)
     end
 
     it 'if no argument passed, set\'s capacity to default capacity' do
-      expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+      expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
+
+    it 'only accepts the capacity of planes' do
+      capacity = rand(1..50)
+      airport = Airport.new(capacity)
+      allow(airport).to receive_messages(:stormy? => false)
+
+      capacity.times {
+        plane = double(:plane)
+        allow(plane).to receive_messages(:landing => false)
+        airport.land(plane)
+       }
+      plane = double(:plane)
+      expect{airport.land(plane)}.to raise_error('Airport is full and cannot land')
+    end
+
   end
 
   describe '#land' do
-
-    it { is_expected.to respond_to(:land).with(1).argument }
-
+  subject(:airport) { described_class.new }
     it 'can land a plane' do
       plane = double(:plane)
       allow(plane).to receive_messages(:landing => false)
-      allow(subject).to receive_messages(:stormy? => false)
-      subject.land(plane)
-      expect(subject.planes).to eq [plane]
+      allow(airport).to receive_messages(:stormy? => false)
+      airport.land(plane)
+      expect(airport.planes).to eq [plane]
     end
 
-    it 'prevents landing in stormy conditions' do
-      allow(subject).to receive_messages(:stormy => true)
-      expect{subject.land(double(:plane))}.to raise_error
-    end
-
-    it 'prevents landing when airport is full' do
+    it 'it has the plane stored after is has landed' do
       plane = double(:plane)
       allow(plane).to receive_messages(:landing => false)
-      allow(subject).to receive_messages(:stormy? => false)
-      10.times do
-        subject.land(plane)
-      end
-      expect{subject.land(plane)}.to raise_error
+      allow(airport).to receive_messages(:stormy? => false)
+      airport.land(plane)
+      expect(airport.planes).to include plane
     end
+
+   context 'when weather is stormy' do
+     it 'prevents landing' do
+       plane = double(:plane)
+       allow(airport).to receive_messages(:stormy? => true)
+       allow(plane).to receive_messages(:landing => true)
+       expect{airport.land(plane)}.to raise_error('plane cannot take land in a storm')
+     end
+   end
+
+   context 'when airport is full' do
+    it 'prevents landing when airport is full' do
+      plane = double(:plane)
+      plane2 = double(:plane)
+      allow(plane).to receive_messages(:landing => false)
+      allow(plane2).to receive_messages(:landing => false)
+      allow(airport).to receive_messages(:stormy? => false)
+      subject.land(plane)
+      expect{airport.land(plane2)}.to raise_error('Airport is full and cannot land')
+    end
+   end
+    it 'can only land planes that have not already been landed' do
+      plane = double(:plane)
+      allow(plane).to receive_messages(:landing => false)
+      allow(airport).to receive_messages(:stormy? => false)
+      airport.land(plane)
+      expect{airport.land(plane)}.to raise_error('plane is already in airport')
+    end
+
   end
 
   describe '#take_off' do
-
-    it { is_expected.to respond_to(:take_off).with(1).argument }
+  subject(:airport) { described_class.new }
 
     it 'takes off from the airport' do
       plane = double(:plane)
       allow(plane).to receive_messages(:landing => false, :taking_off => true)
-      allow(subject).to receive_messages(:stormy? => false)
-      subject.land(plane)
-      subject.take_off(plane)
-      expect(subject.planes).to eq []
+      allow(airport).to receive_messages(:stormy? => false)
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes).to eq []
     end
-
-    it 'prevents take off in stormy conditions' do
-      plane = double(:plane)
-      allow(subject).to receive_messages(:stormy? => true)
-      expect{subject.take_off(plane)}.to raise_error
+    context 'when weather is stormy' do
+      it 'prevents take off' do
+        plane = double(:plane)
+        allow(airport).to receive_messages(:stormy? => false)
+        allow(plane).to receive_messages(:landing => false)
+        airport.land(plane)
+        allow(airport).to receive_messages(:stormy? => true)
+        expect{airport.take_off(plane)}.to raise_error('plane cannot take off in a storm')
+      end
     end
-
     it 'can only take_off planes that have already landed' do
       plane = double(:plane)
-      expect{subject.take_off(plane)}.to raise_error('plan cannot take off from somewhere it hasnt landed')
+      expect{airport.take_off(plane)}.to raise_error('plane cannot take off from somewhere it hasnt landed')
     end
   end
-
-
 end
