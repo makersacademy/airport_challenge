@@ -12,7 +12,7 @@ end
 
   describe '#initialize' do
     it 'by default plane\'s are in the air' do
-      expect(plane.status).to eq :in_the_air
+      expect(plane.flying?).to eq true
     end
 
     it 'by default plane\'s are not at an airport' do
@@ -30,7 +30,7 @@ end
     it 'allows confirmation that the plane has landed' do
       allow(airport).to receive(:land)
       plane.land(airport)
-      expect(plane.status).to eq :on_the_ground
+      expect(plane.flying?).to eq false
     end
   end
 
@@ -38,7 +38,7 @@ end
     it 'allows confirmation that the plane has taken off' do
       plane.land(airport)
       plane.take_off(airport)
-      expect(plane.status).to eq :in_the_air
+      expect(plane.flying?).to eq true
     end
   end
 
@@ -68,13 +68,13 @@ end
 
     it 'can\'t take off if already flying' do
       allow(plane).to receive(:airport_at).and_return(airport)
-      allow(plane).to receive(:status).and_return(:in_the_air)
+      allow(plane).to receive(:flying?).and_return(true)
       message = "Can't take off, already in the air."
       expect{plane.take_off(airport)}.to raise_error message
     end
 
     it 'can\'t land if already on the ground' do
-      allow(plane).to receive(:status).and_return(:on_the_ground)
+      allow(plane).to receive(:flying?).and_return(false)
       message = "Can't land, already on the ground."
       expect{plane.land(airport)}.to raise_error message
     end
