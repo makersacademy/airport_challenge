@@ -1,5 +1,6 @@
 class Plane
   attr_reader :flying, :airport
+  alias_method :flying?, :flying
 
   def initialize
     @flying = true
@@ -15,9 +16,5 @@ class Plane
     fail 'Plane already flying!' if flying?
     @airport = nil
     @flying = true
-  end
-
-  def flying?
-    flying
   end
 end
