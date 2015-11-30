@@ -2,24 +2,21 @@ require 'airport'
 
 describe Airport do
   let(:plane) {double(:plane, airbourne:true)}
-  let(:airport){ Airport.new}
-
-  it {should respond_to(:land).with(1).arguments }
-  it {should respond_to(:take_off)}
-  it {should respond_to(:stormy?)}
+  let(:airport) {Airport.new}
 
   before do
     allow(subject).to receive(:stormy?) {false}
   end
 
   it 'should check for plane landed' do
+    allow(subject).to receive(:stormy?) {false}
     subject.land(plane)
     expect(subject.planes).to include plane
   end
 
   it 'should check for plane takeoff' do
-    subject.land(plane)
-    expect(subject.take_off(plane)).to eq(plane)
+    airport.land(plane)
+    expect(airport.take_off(plane)).to eq(plane)
   end
 
   it 'plane cant land if airports full' do
@@ -43,7 +40,7 @@ describe Airport do
     expect{airport.land(Plane.new)}.to raise_error 'Airport full'
   end
 
-  let(:airbourne_plane){double(:airbourne_plane, flying:true)}
+  let(:airbourne_plane){double(:airbourne_plane, airbourne:true)}
   it "planes cant land when stormy" do
     allow(subject).to receive(:stormy?) {true}
     expect{subject.land(plane)}.to raise_error("Adverse weather conditions")
@@ -55,13 +52,10 @@ describe Airport do
     expect{subject.take_off(plane)}.to raise_error("Adverse weather conditions")
   end
 
-
   it 'checks planes at airport before takeoff' do
-    airport = Airport.new
-    allow(airport).to receive(:stormy?) {false}
+    allow(subject).to receive(:stormy?) {false}
     subject.land(plane)
-    expect(airport.take_off(plane)).to be nil
-    expect(subject.planes.last).to eq(subject.take_off(plane))
+    expect(subject.planes).to include plane
   end
 
   it 'airbourne planes cant take off' do
@@ -72,8 +66,7 @@ describe Airport do
 
   it 'checks plane leaves airport after take off' do
     subject.land(plane)
-    expect(subject.take_off(plane)).not_to eq (:planes)
+    subject.take_off(plane)
+    expect(subject.planes).not_to include plane
   end
-
-
 end

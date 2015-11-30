@@ -18,20 +18,21 @@ include Weather
   def land(plane)
     fail "Airport full" if full?
     fail "Adverse weather conditions" if stormy?
-    fail "Plane grounded" if plane.airbourne == false
+    fail "Plane grounded" if !plane.airbourne
+
     @planes << plane
   end
 
-  def take_off(*)
+  def take_off(_plane)
     fail "Adverse weather conditions" if stormy?
+    
     @planes.pop
   end
+
+ private
 
   def full?
     @planes.size >= capacity
   end
 
-  def empty?
-    @planes.size == 0
-  end
 end
