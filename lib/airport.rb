@@ -1,12 +1,22 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+attr_accessor :planes_landed
 
-  attr_accessor :planes
-
-  def def initialize
-    # @planes = []
+  def initialize
+    @planes_landed = []
   end
+
+  def landing_order(plane)
+    planes_landed << plane
+  end
+
+  def take_off_order(plane)
+    planes_landed.delete_if{|x| x == plane.take_off}
+  end
+
+
 
 
 end

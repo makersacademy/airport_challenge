@@ -1,12 +1,20 @@
+require_relative 'weather'
+
 class Plane
-  attr_accessor :landed
+
+  attr_reader :status
 
   def initialize
-    @landed = false
+    @status = :flying
   end
 
-  def land
-    @landed = true
+  def land()
+    @status = :landed
+    # self
+  end
+
+  def take_off
+    @status = :flying
   end
 
 end
