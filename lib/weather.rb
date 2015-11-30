@@ -1,4 +1,4 @@
-class Weather
+module Weather
   SUNNINESS = 10
 
   def stormy?

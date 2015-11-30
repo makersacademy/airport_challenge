@@ -1,14 +1,15 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new(sunny_weather) }
-  let(:stormy_airport) { described_class.new(stormy_weather)}
+  subject(:airport) { described_class.new }
   let(:plane) { double :plane, land!: nil, take_off!: nil }
-  let(:sunny_weather) { double :weather, stormy?: false }
-  let(:stormy_weather) { double :weather, stormy?: true }
 
   describe '#land' do
     context 'in sunny weather' do
+      before do
+        allow(subject).to receive(:stormy?).and_return false
+      end
+
       it 'can instruct plane to land' do
         expect(plane).to receive(:land!)
         subject.land! plane
@@ -17,7 +18,7 @@ describe Airport do
       it 'has a plane after it lands' do
         subject.land! plane
         expect(subject.contain? plane).to eq true
-      end
+    end
       
       context 'when airport full' do
         it 'will not allow landing' do
@@ -29,13 +30,15 @@ describe Airport do
     
     context 'in stormy weather' do
       it 'will not allow landing' do
-        expect{stormy_airport.land! plane}.to raise_error 'Too stormy!'
+        allow(subject).to receive(:stormy?).and_return true
+        expect{subject.land! plane}.to raise_error 'Too stormy!'
       end
     end
   end
 
   describe '#takeoff' do
     before do
+      allow(subject).to receive(:stormy?).and_return false
       subject.land! plane
     end
 
@@ -51,19 +54,21 @@ describe Airport do
       end
 
       it 'only accepts take off for planes it contains' do
-        expect{airport.take_off! Plane.new}.to raise_error 'Plane not found!'
+        expect{subject.take_off! Plane.new}.to raise_error 'Plane not found!'
       end
     end
 
     context 'in stormy weather' do
       it 'will not allow takeoff' do
-        expect{stormy_airport.take_off! plane}.to raise_error 'Too stormy!'
+        allow(subject).to receive(:stormy?).and_return true
+        expect{subject.take_off! plane}.to raise_error 'Too stormy!'
       end
     end
   end
 
   describe '#contain' do
     it 'can confirm contains plane' do
+      allow(subject).to receive(:stormy?).and_return false
       subject.land! plane
       expect(subject.contain? plane).to eq true
     end
