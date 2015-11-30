@@ -18,8 +18,8 @@ describe Airport do
       end
 
       it 'raises an error when the airport is full' do
-        allow(airport).to receive(:full?) { true }
         allow(plane).to receive(:land)
+        100.times {airport.land(plane)}
         expect { airport.land(plane) }.to raise_error 'airport is full'
       end
     end

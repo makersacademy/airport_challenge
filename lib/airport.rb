@@ -4,9 +4,11 @@ class Airport
 
   def initialize
     @planes = []
+    @capacity = 100
   end
 
   def land(plane)
+    fail 'airport is full' if full?
     plane.land
     @planes << plane
   end
@@ -17,6 +19,7 @@ class Airport
   end
 
   def full?
+    @planes.length >= @capacity
   end
 
 end
