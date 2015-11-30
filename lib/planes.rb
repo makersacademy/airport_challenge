@@ -1,6 +1,8 @@
 require_relative 'airport'
 class Plane
 
+	attr_reader :landed
+
 	def initialize
 		@landed = false
 	end
@@ -8,10 +10,6 @@ class Plane
 	def landed
 		@landed = true
 	
-	end
-
-	def landed?
-		@landed
 	end
 
 	def flying
