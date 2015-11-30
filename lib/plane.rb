@@ -1,20 +1,19 @@
 class Plane
 
-  attr_reader :flying
-  alias_method :flying?, :flying
+  attr_reader :flying_status
 
   def initialize
-    @flying = false
+    @flying_status = false
   end
 
-  def landplane
-    fail 'Plane is not flying' unless flying?
-    @flying = false
+  def not_flying
+    fail 'Plane is not flying' unless flying_status
+    @flying_status = false
   end
 
-  def fly
-    fail 'Plane is already flying' if flying?
-    @flying = true
+  def flying
+    fail 'Plane is already flying' if flying_status
+    @flying_status = true
   end
 
 end
