@@ -9,7 +9,6 @@ class Airport
   def initialize(capacity=MAXCAPACITY)
     @capacity = capacity
     @hangar = []
-    @full = false
   end
 
   def full?
