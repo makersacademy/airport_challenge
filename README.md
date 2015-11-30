@@ -12,31 +12,21 @@ Below is an updated pry transcript to show how it works.
 [1] pry(main)> require './lib/airport.rb'
 => true
 [2] pry(main)> plane = Plane.new
-=> #<Plane:0x007fac594b6740 @airport_at=:not_in_airport, @flying=true>
+=> #<Plane:0x007fad222a6dc8 @airport_at=:not_in_airport, @flying=true>
 [3] pry(main)> airport = Airport.new
-=> #<Airport:0x007fac594748e0 @capacity=100, @landed_planes=[], @weather=Weather>
+=> #<Airport:0x007fad22265f30 @capacity=100, @landed_planes=[], @weather=Weather>
 [4] pry(main)> airport.landed_planes
 => []
 [5] pry(main)> plane.land(airport)
-RuntimeError: Not clear to land
-from /Users/chriswynne/Projects/airport_challenge/lib/plane.rb:14:in `land'
-[6] pry(main)> plane.land(airport)
-RuntimeError: Can't land in storm
-from /Users/chriswynne/Projects/airport_challenge/lib/airport.rb:25:in `land'
-[7] pry(main)> plane.land(airport)
-=> #<Airport:0x007fac594748e0 @capacity=100, @landed_planes=[#<Plane:0x007fac594b6740 @airport_at=#<Airport:0x007fac594748e0 ...>, @flying=false>], @weather=Weather>
-[8] pry(main)> airport.landed_planes
-=> [#<Plane:0x007fac594b6740 @airport_at=#<Airport:0x007fac594748e0 @capacity=100, @landed_planes=[...], @weather=Weather>, @flying=false>]
+=> #<Airport:0x007fad22265f30 @capacity=100, @landed_planes=[#<Plane:0x007fad222a6dc8 @airport_at=#<Airport:0x007fad22265f30 ...>, @flying=false>], @weather=Weather>
+[6] pry(main)> airport.landed_planes
+=> [#<Plane:0x007fad222a6dc8 @airport_at=#<Airport:0x007fad22265f30 @capacity=100, @landed_planes=[...], @weather=Weather>, @flying=false>]
+[7] pry(main)> airport.capacity
+=> 100
+[8] pry(main)> airport.update_capacity(150)
+=> 150
 [9] pry(main)> airport.take_off(plane)
-RuntimeError: Can't take off in storm
-from /Users/chriswynne/Projects/airport_challenge/lib/airport.rb:30:in `take_off'
-[10] pry(main)> airport.take_off(plane)
-RuntimeError: Can't take off in storm
-from /Users/chriswynne/Projects/airport_challenge/lib/airport.rb:30:in `take_off'
-[11] pry(main)> airport.take_off(plane)
-=> #<Plane:0x007fac594b6740 @airport_at=:not_in_airport, @flying=true>
-[12] pry(main)> airport.landed_planes
-=> []
+=> #<Plane:0x007fad222a6dc8 @airport_at=:not_in_airport, @flying=true>
 ```
 
 
