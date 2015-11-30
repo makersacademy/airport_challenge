@@ -24,14 +24,10 @@ class Airport
   end
 
   def land(arg)
-    if Weather.new.stormy
-      fail "It's too stormy for landing"
-    elsif @hangar.include?(arg)
-      fail "That plane has already landed"
-    else
-      arg.landed = true
-      @hangar << arg
-    end
+    fail "It's too stormy for landing" if Weather.new.stormy
+    fail "That plane has already landed" if @hangar.include?(arg)
+    arg.landed = true
+    @hangar << arg
   end
 
   def take_off(arg)
