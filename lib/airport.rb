@@ -14,38 +14,32 @@ attr_reader :capacity
 attr_reader :weather
 
   def land(plane)
-    fail 'Airport is full' if full?
+    raise 'Airport is full' if full?
+    raise 'planes are not allowed to land in stormy weather' if stormy?
      planes << plane
   end
 
   def take_off(plane)
-    fail 'Airport is empty' if empty?
-    fail 'Planes are not allowed to take off in stormy weather' if stormy?
+    raise 'Airport is empty' if empty?
+    raise 'Planes are not allowed to take off in stormy weather' if stormy? 
     planes.pop
   end
 
 
 private
 
- def full?
-   planes.length >= capacity
- end
+   def stormy?
+     rand(1..6)>4
+   end
 
- def empty?
-   planes.empty?
- end
+   def full?
+     planes.length >= capacity
+   end
 
- def weather
-   ['sunny', 'sunny', 'stormy'].shuffle.first
- end
+   def empty?
+     planes.empty?
+   end
 
-def stormy?
-  if weather == 'stormy'
-    return true
-  else
-    return false
-  end
-end
 
 
 end
