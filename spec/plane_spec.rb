@@ -1,25 +1,23 @@
 require "plane.rb"
 
 describe Plane do
+subject(:plane) { described_class.new }
+let(:airport) {double :airport}
   describe '#landed' do
     it 'can confirm that is has landed' do
-      airport = double(:airport)
-      allow(airport).to receive(:land).and_return(subject.landing)
-      airport.land(subject)
-      expect(subject.flying).to eq(false)
+      allow(airport).to receive(:land).and_return(plane.landing)
+      airport.land(plane)
+      expect(plane.flying).to eq(false)
     end
   end
 
   describe '#taking_off' do
     it 'can confirm that is has took off' do
-      airport = double(:airport)
-      allow(airport).to receive_messages(
-      :land => subject.landing,
-      :take_off => subject.taking_off
-      )
-      airport.land(subject)
-      airport.take_off(subject)
-      expect(subject.flying).to eq(true)
+      allow(airport).to receive(:land).and_return(plane.landing)
+      allow(airport).to receive(:take_off).and_return(plane.taking_off)
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(plane.flying).to eq(true)
     end
   end
 end
