@@ -4,8 +4,8 @@ describe Airport do
 
     let(:plane) {double(:plane)}
 
-  describe 'initialization' do
-    it 'has a variable capacity' do
+  context 'when initial capacity is changed' do
+    it 'overrides default capacity' do
       allow(plane).to receive(:status).and_return("landed")
       weather = double(:weather, condition: false)
       airport = Airport.new(50)
@@ -35,7 +35,7 @@ describe Airport do
 
   context 'when airport is full' do
 
-      it 'denies landings when airport full' do
+      it 'denies landings' do
         plane = double(:plane, status: "")
         weather = double(:weather, condition: false)
         20.times {subject.landing(plane, weather)}
