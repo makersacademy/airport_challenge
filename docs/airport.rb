@@ -16,51 +16,35 @@ class Airport
   end
 
   def land(plane)
-    if plane.flying == false
-        raise "That plane has already landed!"
-    else
-      if @sunny
-        if full?
-          raise "This airport is full, please redirect to closest airport"
-        else
-          if planes.include?(plane)
-            raise "That plane has already landed!"
-          else
-            plane.flying = false
-            planes << plane
-          end
-        end
-      else
-        raise "Weather is too dangerous to land!"
-      end
-    end
+    raise "That plane has already landed!" unless plane.flying
+    raise "This airport is full, please redirect to closest airport" if full?
+    raise "Weather is too dangerous to land!" unless sunny
+      plane.landed
+      planes << plane
   end
 
   def take_off(x)
-    if @sunny
-      if empty?
-        raise "There are no planes in the airport!"
-      else
-        planes[x - 1].flying = true
+      raise "There are no planes in the airport!" if empty?
+      raise "Weather is too dangerous to depart!" unless sunny
+        planes[x - 1].depart
         planes.delete(planes[x - 1])
-      end
-    else
-      raise "Weather is too dangerous to depart!"
-    end
   end
 
   def weather_report
-    @report = rand(5)
-    if @report < 2
-      @sunny = false
-      "Looks like there's a storm a-brewin'!"
-    else
-      @sunny = true
-      "Sky's all clear from here"
-    end
+    rand(5) < 2 ? stormy : clear
   end
 
 private
+
+  def stormy
+    @sunny = false
+    "Looks like there's a storm a-brewin'!"
+  end
+
+  def clear
+    @sunny = true
+    "Sky's all clear from here"
+  end
 
   def full?
     planes.length >= capacity ? true : false

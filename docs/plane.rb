@@ -5,4 +5,12 @@ class Plane
     @flying = true
   end
 
+  def landed
+    @flying = false
+  end
+
+  def depart
+    @flying = true
+  end
+
 end

@@ -1,15 +1,14 @@
 require './docs/airport.rb'
 
 describe Plane do
-
+  subject(:plane) {described_class.new}
   it "Checks if a plane is flying" do
-    expect(subject.flying).to eq true
+    expect(plane.flying).to eq true
   end
 
   it "Checks if a plane is landed" do
-    airport = Airport.new
-    airport.land(subject)
-    expect(subject.flying).to eq false
+    plane.landed
+    expect(plane.flying).to eq false
   end
 
 end
