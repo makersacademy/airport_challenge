@@ -18,15 +18,11 @@ class Plane
   end
 
   def take_off(airport)
-    message =  "Can't take off from an airport the plane isn't at."
-    fail message if not_at_that_airport?(self, airport)
     message = "Can't take off, already in the air."
     fail message if flying?
     @flying = true
     @airport_at = :not_in_airport
   end
-
-
 
   def flying?
     @flying
@@ -37,12 +33,5 @@ class Plane
   def clear_to_land?
     !airport.clear_to_land?
   end
-
-
-  def not_at_that_airport?(plane, airport)
-    plane.airport_at != airport
-  end
-
-
 
 end
