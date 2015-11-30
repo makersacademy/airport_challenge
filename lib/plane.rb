@@ -28,10 +28,4 @@ class Plane
     @flying
   end
 
-  private
-
-  def clear_to_land?
-    !airport.clear_to_land?
-  end
-
 end
