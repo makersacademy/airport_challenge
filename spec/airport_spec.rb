@@ -83,6 +83,13 @@ describe '#take_off' do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 end
+
+ describe 'Override capacity' do
+    it 'can override the default capacity' do
+    airport = Airport.new(10)
+    expect(airport.capacity).to eq 10
+  end
+end
 end
 end
 end
