@@ -7,17 +7,17 @@ describe Weather do
 
   it 'gives random weather' do
     wx = double("Weather")
-    allow(wx).to receive(:stormy).and_return(false, false, false, false, false, true, false, false, false, false)
-    expect(wx.stormy).to eq(false)
-    expect(wx.stormy).to eq(false)
-    expect(wx.stormy).to eq(false)
-    expect(wx.stormy).to eq(false)
-    expect(wx.stormy).to eq(false)
+    allow(wx).to receive(:stormy).and_return(nil, nil, nil, nil, nil, true, nil, nil, nil, nil)
+    expect(wx.stormy).to eq(nil)
+    expect(wx.stormy).to eq(nil)
+    expect(wx.stormy).to eq(nil)
+    expect(wx.stormy).to eq(nil)
+    expect(wx.stormy).to eq(nil)
     expect(wx.stormy).to eq(true)
-    expect(wx.stormy).to eq(false)
-    expect(wx.stormy).to eq(false)
-    expect(wx.stormy).to eq(false)
-    expect(wx.stormy).to eq(false)
+    expect(wx.stormy).to eq(nil)
+    expect(wx.stormy).to eq(nil)
+    expect(wx.stormy).to eq(nil)
+    expect(wx.stormy).to eq(nil)
   end
 
 end

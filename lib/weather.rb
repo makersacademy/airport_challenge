@@ -2,10 +2,7 @@ class Weather
   attr_reader :stormy
 
   def initialize
-    if rand(10) == 4
-      @stormy = true
-    else
-      @stormy = false
-    end
+    @stormy = true if rand(10) == 7
   end
+
 end
