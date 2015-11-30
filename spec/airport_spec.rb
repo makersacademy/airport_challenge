@@ -2,18 +2,7 @@ require_relative '../lib/airport.rb'
 
 describe Airport do
 
-  describe 'Default Capacity with Override' do  # vacuous
-    it 'checks Airport(class) exists (is Airport == true)' do
-      expect(subject).to be
-    end
-
-    it 'Airport has a DEFAULT_CAPACITY(constant)' do  # vacuous
-      expect(Airport::DEFAULT_CAPACITY).to be
-    end
-
-    it 'Airport has a DEFAULT_CAPACITY that is type FixNum' do # vacuous
-      expect(Airport::DEFAULT_CAPACITY).to be_a_kind_of(Fixnum)
-    end
+  describe 'Default Capacity with Override' do
 
     it 'Airport has a default capacity attribute(instance_variable)' do
       expect(subject).
@@ -53,12 +42,12 @@ describe Airport do
 
     it 'once plane has landed it is in airport @planes array' do
       plane = (double(:Plane, plane_landing: "Landed" ))
-      allow(subject).to receive(:weather_check).and_return("sunny")# dont use stub - deprecated.
+      allow(subject).to receive(:weather_check).and_return("sunny")#
       subject.instruct_plane_to_land(plane)
       expect(subject.instance_variable_get(:@planes)).to eq [plane]
     end
 
-    xit 'confirmation message on landing' do # is this required if no puts? think about confirming in a different way.
+    xit 'confirmation message on landing' do
 
       allow(subject).to receive(:weather_check).and_return("sunny")
       plane = (double(:Plane, :plane_landing => "Landed"))
@@ -90,7 +79,8 @@ describe Airport do
 
     it 'once plane has taken off is not in airport (@planes array)' do
       allow(subject).to receive(:weather_check) {"sunny"}
-      plane = (double(:Plane, :plane_landing => "In-Flight", :plane_taking_off => "Landed" ))
+      plane = (double(:Plane, plane_landing: "In-Flight",
+        plane_taking_off: "Landed" ))
       subject.instruct_plane_to_land(plane)
       subject.instruct_plane_to_take_off(plane)
       expect(subject.planes).not_to include(plane)
