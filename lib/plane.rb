@@ -10,9 +10,10 @@ class Plane
     @flying
   end
 
-  def flying!
-    @flying = true
-  end
 
+
+def flying=(value)
+  @flying = value
+end
 
 end

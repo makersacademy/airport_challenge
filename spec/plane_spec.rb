@@ -2,35 +2,36 @@ require "plane"
 
 describe Plane do
 
+let(:airport) {double :airport, land: nil, take_off: nil }
+subject(:plane) { described_class.new}
 
-  it { is_expected.to respond_to :flying!}
+  context "When not stormy" do
+      before do
+        allow(airport).to receive(:stormy?).and_return(false)
+      end
 
+      it "Is not flying when it lands" do
+        airport.land(plane)
+        expect(plane.flying?).to eq false
+      end
+
+      it "Makes flying true after take off." do
+        airport.take_off(plane)
+        expect(plane.flying?).to eq true
+      end
+
+      it "Is not flying when landed" do
+        airport.land(plane)
+        airport.take_off(plane)
+        airport.land(plane)
+        expect(plane.flying?).to eq false
+      end
+
+
+  end
 
   it "Is not flying by default" do
-    expect(subject.flying?).to eq false
-  end
-
-  it "Is not flying when it lands" do
-    airport = Airport.new
-    allow(airport).to receive(:stormy?).and_return(false)
-    airport.land(subject)
-    expect(subject.flying?).to eq false
-  end
-
-  it "Makes flying true when flying." do
-    airport = Airport.new
-    allow(airport).to receive(:stormy?).and_return(false)
-    airport.land(subject)
-    airport.take_off(subject)
-    expect(subject.flying?).to eq true
-  end
-
-  it "Is flying after it takes off" do
-    airport = Airport.new
-    allow(airport).to receive(:stormy?).and_return(false)
-    airport.land(subject)
-    airport.take_off(subject)
-    expect(subject.flying?).to eq true
+    expect(plane.flying?).to eq false
   end
 
 
