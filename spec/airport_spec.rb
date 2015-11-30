@@ -3,6 +3,8 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new }
+  let(:plane) { double :plane, land: nil }
+  let(:plane1) { double :plane, land: nil, take_off: nil, landed?: true }
 
   it 'should check the airport has a default capacity' do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -18,14 +20,12 @@ describe Airport do
   describe '#tell_plane_to_land' do
 
     it 'should land a plane' do
-      plane = Plane.new
       airport.clear
       airport.tell_plane_to_land(plane)
       expect(airport.planes.include?(plane)).to eq true
     end
 
     it 'should raise an error if a plane tries to land when it\'s stormy' do
-      plane = Plane.new
       airport.storm
       expect{airport.tell_plane_to_land(plane)}.to raise_error "Plane can't land in a storm"
     end
@@ -41,18 +41,16 @@ describe Airport do
   describe '#tell_plane_to_take_off' do
 
     it 'should let a plane take off' do
-      plane = Plane.new
       airport.clear
-      airport.tell_plane_to_land(plane)
-      airport.tell_plane_to_take_off(plane)
-      expect(airport.planes.include?(plane)).to eq false
+      airport.tell_plane_to_land(plane1)
+      airport.tell_plane_to_take_off(plane1)
+      expect(airport.planes.include?(plane1)).to eq false
     end
 
     it 'should raise an error if a plane tries to take off when it\'s stormy' do
-      plane = Plane.new
-      airport.tell_plane_to_land(plane)
+      airport.tell_plane_to_land(plane1)
       airport.storm
-      expect{airport.tell_plane_to_take_off(plane)}.to raise_error "Plane can't take off in a storm"
+      expect{airport.tell_plane_to_take_off(plane1)}.to raise_error "Plane can't take off in a storm"
     end
 
   end
