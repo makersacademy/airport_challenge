@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do 
 
-	subject(:airport) { described_class.new }
+	subject(:airport) { described_class.new(20) }
 	let(:plane) { double :plane }
 	let(:plane1) { double :plane }
 
@@ -53,8 +53,16 @@ describe Airport do
 		expect { airport.takeoff(plane) }.to raise_error "Plane not in airport"
 	end
 
-	
 
+	it  "does not allow landing when at capacity" do
+		allow(plane).to receive(:landed).and_return(true)
+		20.times do 
+			airport.land(plane)
+		end
+		expect { aiport.land(plane) }.to raise_error "Cannot land plane: airport is full!"
+	end
+
+	
 
 
 

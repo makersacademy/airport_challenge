@@ -4,15 +4,17 @@ class Airport
 
 	attr_reader :planes
 
-	def initialize 
+	def initialize(capacity) 
 		@planes = []
 		@stormy = false
+		@capacity = capacity
 	end
 	
 	def land(plane)
+		fail "Cannot land plane: airport is full!" if @planes.length >= @capacity
 		fail "plane cannot land in a storm" if @stormy
 		fail "Plane has already landed!" if exists?(plane)
-		@planes << plane
+		planes << plane
 		plane.landed
 	end
 
@@ -25,7 +27,6 @@ class Airport
 
 private
 
-	
 
 	def exists?(plane)
 		planes.include?(plane)
