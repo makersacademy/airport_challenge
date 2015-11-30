@@ -11,7 +11,9 @@ Ruby and some other tools.
 
 One assumption from my side was the fact that every `plane` instances I create is `in air`.
 
-I could concluded this challenge without viewing any solution posted on the web, it could be more elegant ways to solve it, but this was my own approach. 
+I could concluded this challenge without viewing any solution posted on the web, it should be more elegant ways to solve it, but this was my own approach. 
+
+Thanks to Makers Academy for all its support on this learning process
 
 Is a public repo and can be found on:
 
