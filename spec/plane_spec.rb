@@ -1,8 +1,8 @@
 require 'plane'
 
 describe Plane do
-  let(:airport) {double(:airport, stored_planes: [], full?: false,
-                                                    stormy?: false)}
+  let(:airport) do
+    double(:airport, stored_planes: [], full?: false, stormy?: false) end
   let(:plane) {described_class.new}
 
   context 'no storm' do
