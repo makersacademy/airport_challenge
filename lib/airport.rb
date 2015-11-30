@@ -19,18 +19,18 @@ class Airport
   end
 
   def land plane
-    fail 'Unable to land due to stormy weather' if weather.stormy?
+    fail 'Unable to land due to stormy weather' if stormy?
     fail 'Unable to land cause airport is full' if full?
     plane.land
-    planes << plane
+    add_plane(plane)
   end
 
   def take_off plane
     msg = "Unable to instruct plane to take off cause is not in the airport"
     fail msg unless has? plane
-    fail 'Unable to take off due to stormy weather' if weather.stormy?
+    fail 'Unable to take off due to stormy weather' if stormy?
     plane.take_off
-    planes.delete(plane)
+    remove_plane(plane)
   end
 
   private
@@ -43,6 +43,18 @@ class Airport
 
   def has? plane
     planes.include? plane
+  end
+
+  def add_plane(plane)
+    planes << plane
+  end
+
+  def remove_plane(plane)
+    planes.delete(plane)
+  end
+
+  def stormy?
+    weather.stormy?
   end
 
 end
