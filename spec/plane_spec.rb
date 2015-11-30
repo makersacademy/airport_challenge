@@ -5,7 +5,6 @@ describe Plane do
   subject(:plane) { described_class.new }
 
   describe '#land' do
-    it { is_expected.to respond_to(:land) }
     before do
       plane.take_off
     end
@@ -21,7 +20,6 @@ describe Plane do
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off) }
     it 'sets flying status to true' do
       plane.take_off
       expect(plane.flying?).to be true
