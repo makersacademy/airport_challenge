@@ -13,7 +13,7 @@ class Plane
 
   def land(airport)
     fail 'Stormy weather prevents landing' if airport.stormy?
-    fail 'Plane is already in an airport' if !airborne?
+    fail 'Plane is already in an airport' unless airborne?
     fail 'Airport full' if airport.full?
     @airport_id = airport.object_id
     @airborne = false
