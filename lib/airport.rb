@@ -13,7 +13,7 @@ class Airport
 
   def instruct_to_land(plane)
     fail "No planes can land as it is stormy" if stormy?
-    fail "The plane is already in the airport" if plane.in_airport?
+    fail "The plane is already in the airport" if plane.in_airport_status
     fail "The airport is full, so no more planes can land" if full?
     landed_planes << plane
     plane.land
@@ -27,7 +27,7 @@ class Airport
   end
 
   def weather
-    weather_condition = rand(1..5)
+    weather_condition = rand(1..5) > 4
   end
 
   private

@@ -17,7 +17,7 @@ describe Airport do
     it {is_expected.to respond_to :instruct_to_land}
 
     it 'should check that the plane is in the airport' do
-      plane = double(:plane, in_airport?: false, land: true)
+      plane = double(:plane, in_airport_status: false, land: true)
       allow(subject).to receive(:stormy?).and_return false
       allow(subject).to receive(:full?).and_return false
       subject.instruct_to_land(plane)
@@ -31,7 +31,7 @@ describe Airport do
     end
 
     it "it should raise an error if the plane is already in the airport" do
-      plane = double(:plane, in_airport?: true)
+      plane = double(:plane, in_airport_status: true)
       allow(subject).to receive(:stormy?).and_return false
       message = "The plane is already in the airport"
       expect{ subject.instruct_to_land(plane) }.to raise_error message
@@ -50,7 +50,7 @@ describe Airport do
     it {is_expected.to respond_to :instruct_take_off}
 
     it 'should let a plane take off' do
-      plane = double(:plane, in_airport?: false, take_off: true, land: true)
+      plane = double(:plane, in_airport_status: false, take_off: true, land: true)
       allow(subject).to receive(:stormy?).and_return false
       allow(subject).to receive(:full?).and_return false
       subject.instruct_to_land(plane)
@@ -85,7 +85,7 @@ describe Airport do
 
   describe '#full?' do
     it 'should raise an error if airport is full' do
-      plane = double(:plane, in_airport?: false, land: true)
+      plane = double(:plane, in_airport_status: false, land: true)
       allow(subject).to receive(:stormy?).and_return false
       Airport::DEFAULT_CAPACITY.times do
         subject.instruct_to_land(plane)
