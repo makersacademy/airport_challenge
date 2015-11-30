@@ -34,9 +34,17 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
+Approach
+---------
+I approached this challenge using the Test-Driven Development process.  The programme has been tested using Rspec, and I have made use of doubles to reduce dependency on other classes.
+
 How to run the programme
 -------------------------
 * Launch pry or irb
 * Require './lib/airport.rb'
 * airport = Airport.new => Creates an airport
 * plane = Plane.new => Creates a plane
+
+Further Work
+----------------
+To build this programme further I would like to write an Rspec feature test that lands and takes off a number of planes.
