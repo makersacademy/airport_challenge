@@ -31,8 +31,6 @@ class Airport
 
   private
 
-  attr_reader :stormy
-
   def storm_forecast
     @stormy.stormy?
   end
