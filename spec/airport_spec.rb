@@ -1,4 +1,4 @@
-require './lib/airport.rb'
+require_relative './docs/airport.rb'
 
 describe Airport do
 
