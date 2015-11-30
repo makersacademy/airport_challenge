@@ -10,14 +10,14 @@ class Airport
   end
 
   def land! plane
-    fail 'Too stormy!' if stormy?
+    fail 'Too stormy!' if weather.stormy?
     fail 'The airport is full!' if full?
     plane.land! self
     planes << plane
   end
 
   def take_off! plane
-    fail 'Too stormy!' if stormy?
+    fail 'Too stormy!' if weather.stormy?
     fail 'Plane not found!' unless contain? plane
     plane.take_off! 
     planes.delete plane
@@ -25,10 +25,6 @@ class Airport
 
   def contain? plane
     planes.include? plane
-  end
-
-  def stormy?
-    weather.stormy?
   end
 
   private

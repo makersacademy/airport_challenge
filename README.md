@@ -9,10 +9,10 @@ Unit tests are isolated using doubles.
 Airport class controls takeoffs and landings,
 instructing planes to update their status accordingly.  
 for example:  
-`airport.land plane` - the airport will instruct the plane to land if possible,
+`airport.land! plane` - the airport will instruct the plane to land if possible,
 adding it to the plane storeage  
 triggering:  
-`plane.land airport` - updating the status of the plane to be grounded at that airport
+`plane.land! airport` - updating the status of the plane to be grounded at that airport
 
 Weather class reports whether `weather.stormy?` based on random number.
 
