@@ -15,20 +15,25 @@ describe Airport do
     end
   end
 
-    describe '#landing' do
+  context 'when stormy' do
 
-      it 'allows to land and confirm landing' do
-        plane = double(:plane, status: "landed", confirmation: "landed")
-        weather = double(:weather, condition: false)
-        subject.landing(plane, weather)
-        expect(plane.confirmation).to eq "landed"
-      end
-
-      it 'denies landing when stormy' do
+      it 'denies landing' do
         plane = double(:plane, status: "")
         weather = double(:weather, condition: true)
         expect {subject.landing(plane, weather)}.to raise_error "Cannot land due to storm"
       end
+
+      it 'denies take off' do
+        plane = double(:plane, status: "landed")
+        weather = double(:weather, condition: false)
+        subject.landing(plane, weather)
+        weather = double(:weather, condition: true)
+        expect {subject.take_off(plane, weather)}.to raise_error "Cannot take off due to storm"
+      end
+
+  end
+
+  context 'when airport is full' do
 
       it 'denies landings when airport full' do
         plane = double(:plane, status: "")
@@ -37,9 +42,17 @@ describe Airport do
         expect {subject.landing(plane, weather)}.to raise_error "Landing denied airport full"
       end
 
-    end
+  end
 
-    describe '#take_off' do
+
+    context 'when good weather' do
+
+      it 'allows to land and confirm landing' do
+        plane = double(:plane, status: "landed", confirmation: "landed")
+        weather = double(:weather, condition: false)
+        subject.landing(plane, weather)
+        expect(plane.confirmation).to eq "landed"
+      end
 
       it 'allows to take off and confirm taking off' do
         plane = double(:plane, status: "in air", confirmation: "on air")
@@ -47,14 +60,6 @@ describe Airport do
         subject.landing(plane, weather)
         subject.take_off(plane, weather)
         expect(plane.confirmation).to eq "on air"
-      end
-
-      it 'denies take off if stormy' do
-        plane = double(:plane, status: "landed")
-        weather = double(:weather, condition: false)
-        subject.landing(plane, weather)
-        weather = double(:weather, condition: true)
-        expect {subject.take_off(plane, weather)}.to raise_error "Cannot take off due to storm"
       end
 
     end
