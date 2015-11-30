@@ -3,7 +3,6 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {double(:plane)}
-  let(:weather) {double(:weather)}
 
   before do
     allow(plane).to receive(:land)
@@ -25,7 +24,6 @@ describe Airport do
       expect(airport.landed_planes).to eq [plane]
     end
   end
-
 
   describe '#take_off' do
     it 'allows a plane to take off' do

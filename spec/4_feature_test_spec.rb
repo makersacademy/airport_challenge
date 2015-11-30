@@ -3,15 +3,20 @@ require 'weather'
 
 describe 'Feature tests' do
 
+
+  let(:weather) {double(:weather)}
+  let(:heathrow) {Airport.new}
+  let(:gatwick) {Airport.new}
+  let(:easyjet) {Plane.new}
+  let(:virgin) {Plane.new}
+  let(:british_airways) {Plane.new}
+  let(:ryan_air) {Plane.new}
+  let(:icelandic_air) {Plane.new}
+  let(:monarch) {Plane.new}
   before{allow(Weather).to receive(:stormy?).and_return(false)}
 
   context 'Weather is clear' do
     it 'allows a number of planes to land and take off' do
-      heathrow = Airport.new
-      easyjet = Plane.new
-      virgin = Plane.new
-      british_airways = Plane.new
-      ryan_air = Plane.new
       heathrow.land(easyjet)
       heathrow.land(virgin)
       heathrow.land(british_airways)
@@ -23,12 +28,6 @@ describe 'Feature tests' do
     end
 
     it 'planes know which airport they are at' do
-      heathrow = Airport.new
-      gatwick = Airport.new
-      easyjet = Plane.new
-      virgin = Plane.new
-      british_airways = Plane.new
-      ryan_air = Plane.new
       heathrow.land(easyjet)
       heathrow.land(virgin)
       gatwick.land(british_airways)
@@ -37,14 +36,7 @@ describe 'Feature tests' do
     end
 
     it 'has a capacity which can be changed and won\'t breach it' do
-      heathrow = Airport.new
       heathrow.update_capacity(5)
-      easyjet = Plane.new
-      virgin = Plane.new
-      british_airways = Plane.new
-      ryan_air = Plane.new
-      icelandic_air = Plane.new
-      monarch = Plane.new
       heathrow.land(easyjet)
       heathrow.land(virgin)
       heathrow.land(british_airways)
@@ -58,11 +50,6 @@ describe 'Feature tests' do
 
   context 'Weather is stormy' do
     it 'prevents planes from taking off if the weather becomes stormy' do
-      heathrow = Airport.new
-      easyjet = Plane.new
-      virgin = Plane.new
-      british_airways = Plane.new
-      ryan_air = Plane.new
       heathrow.land(easyjet)
       heathrow.land(virgin)
       heathrow.land(british_airways)
@@ -75,11 +62,6 @@ describe 'Feature tests' do
     end
 
     it 'prevents planes from landing if the weather becomes stormy' do
-      heathrow = Airport.new
-      easyjet = Plane.new
-      virgin = Plane.new
-      british_airways = Plane.new
-      ryan_air = Plane.new
       heathrow.land(easyjet)
       heathrow.land(virgin)
       heathrow.land(british_airways)
