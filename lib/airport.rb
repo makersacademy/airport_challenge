@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-  attr_accessor :stormy, :capacity
+  attr_accessor :capacity
   attr_reader :runway
 
   STANDARD_CAPACITY = 10
@@ -29,11 +29,13 @@ class Airport
     runway.delete(departing_plane)
   end
 
+  private
+
+  attr_reader :stormy
+
   def storm_forecast
     @stormy.stormy?
   end
-
-  private
 
   def not_in_airport(departing_plane)
     !runway.include?(departing_plane)
