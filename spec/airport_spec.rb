@@ -17,11 +17,12 @@ describe Airport do
     it {is_expected.to respond_to :instruct_to_land}
 
     it 'should check that the plane is in the airport' do
-      plane = double(:plane, in_airport_status: false, land: true)
+      plane = double(:plane, land: true, in_airport_status: true)
       allow(subject).to receive(:stormy?).and_return false
       allow(subject).to receive(:full?).and_return false
       subject.instruct_to_land(plane)
-      expect(plane.land).to eq true
+      allow(subject).to receive(:landed?).and_return true
+      expect(plane.in_airport_status).to eq true
     end
 
     it "it should change the plane's status to 'in airport'" do
@@ -31,17 +32,18 @@ describe Airport do
     end
 
     it "it should raise an error if the plane is already in the airport" do
-      plane = double(:plane, in_airport_status: true)
+      plane = double(:plane, in_airport_status: true, land: true)
       allow(subject).to receive(:stormy?).and_return false
+      allow(subject).to receive(:landed?).and_return true
       message = "The plane is already in the airport"
       expect{ subject.instruct_to_land(plane) }.to raise_error message
     end
 
     it 'should raise an error if the weather is stormy' do
-      plane = double(:plane, in_airport?: false, land: false)
+      plane = double(:plane, in_airport_status: false, land: false)
       allow(subject).to receive(:stormy?).and_return true
       message = "No planes can land as it is stormy"
-      expect { subject.instruct_to_land(plane) }.to raise_error message
+      expect{ subject.instruct_to_land(plane) }.to raise_error message
     end
 
   end
