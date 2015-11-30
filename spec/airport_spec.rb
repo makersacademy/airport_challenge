@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-
+subject(:airport) { described_class.new}
 let(:plane) {double :plane, confirmation: 'landed'}
 
   describe 'landing' do
@@ -9,15 +9,15 @@ let(:plane) {double :plane, confirmation: 'landed'}
       it 'lands plane and confirms landing' do
         plane = double(:plane, status: 'landed', confirmation: 'landed')
         weather = double(:weather, condition: false)
-        subject.land(plane, weather)
+        airport.land(plane, weather)
         expect(plane.confirmation).to eq "landed"
       end
 
       it 'prevents landing when airport is full' do
         plane = double(:plane, status: "")
         weather = double(:weather, condition: false)
-        20.times {subject.land(plane, weather)}
-        expect {subject.land(plane, weather)}.to raise_error 'cannot land plane, airport full'
+        described_class::DEFAULT_CAPACITY.times {airport.land(plane, weather)}
+        expect {airport.land(plane, weather)}.to raise_error 'cannot land plane, airport full'
       end
   end
 
@@ -26,8 +26,8 @@ let(:plane) {double :plane, confirmation: 'landed'}
       it 'allows and confirms take off' do
         plane = double(:plane, status: 'flying', confirmation: 'flying')
         weather = double(:weather, condition: false)
-        subject.land(plane, weather)
-        subject.take_off(plane, weather)
+        airport.land(plane, weather)
+        airport.take_off(plane, weather)
         expect(plane.confirmation).to eq 'flying'
       end
 
@@ -35,15 +35,15 @@ let(:plane) {double :plane, confirmation: 'landed'}
         it 'prevents landing' do
           plane = double(:plane, status: "")
           weather = double(:weather, condition: true)
-          expect {subject.land(plane, weather)}.to raise_error 'cannot land, too stormy'
+          expect {airport.land(plane, weather)}.to raise_error 'cannot land, too stormy'
         end
 
         it 'prevents take off' do
           plane = double(:plane, status: 'landed')
           weather = double(:weather, condition: false)
-          subject.land(plane, weather)
+          airport.land(plane, weather)
           weather = double(:weather, condition: true)
-          expect {subject.take_off(plane, weather)}.to raise_error 'cannot take off, too stormy'
+          expect {airport.take_off(plane, weather)}.to raise_error 'cannot take off, too stormy'
       end
     end
 
@@ -54,8 +54,7 @@ let(:plane) {double :plane, confirmation: 'landed'}
       it 'has a variable capacity' do
         plane = double(:plane, status: 'flying')
         weather = double(:weather, condition: false)
-        airport = Airport.new(30)
-        30.times {airport.land(plane, weather)}
+        described_class::DEFAULT_CAPACITY.times {airport.land(plane, weather)}
         expect {airport.land(plane, weather)}.to raise_error 'cannot land plane, airport full'
       end
     end

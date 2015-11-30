@@ -4,33 +4,45 @@ class Airport
 
   attr_reader :plane, :status, :weather, :planes, :capacity
 
-  CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
   end
 
   def land(plane, weather)
     @weather = weather
-    fail 'cannot land, too stormy' if @weather.condition == true
+    fail 'cannot land, too stormy' if stormy?
     fail 'cannot land plane, airport full' if full?
     @plane = plane
     @plane.status('landed')
-    @planes << plane
+    hanger
   end
 
   def take_off(plane, weather)
     @weather = weather
-    fail 'cannot take off, too stormy' if @weather.condition == true
+    fail 'cannot take off, too stormy' if stormy?
     @plane = plane
     @plane.status('flying')
-    @planes.delete(plane)
+    remove_plane
   end
 
   private
 
     def full?
       planes.length >= @capacity
+    end
+
+    def stormy?
+      @weather.condition == true
+    end
+
+    def hanger
+      @planes << plane
+    end
+
+    def remove_plane
+      @planes.delete(plane)
     end
 end

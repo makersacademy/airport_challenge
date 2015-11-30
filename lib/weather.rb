@@ -3,7 +3,13 @@ class Weather
   attr_reader :condition
 
   def stormy?
-    @condition = ['sunny', 'overcast', 'stormy'].shuffle.first
+    random_weather ==  :stormy
+  end
+
+private
+
+  def random_weather
+    @condition = [:sunny, :overcast, :stormy].shuffle.first
   end
 
 end
