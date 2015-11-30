@@ -1,7 +1,7 @@
 require "plane"
 
 describe Plane do
-let (:airport) { double :airport, take_off: subject, land: subject }
+
 
   it { is_expected.to respond_to :flying!}
 
@@ -11,6 +11,7 @@ let (:airport) { double :airport, take_off: subject, land: subject }
   end
 
   it "Is not flying when it lands" do
+    airport = Airport.new
     airport.land(subject)
     expect(subject.flying?).to eq false
   end
@@ -20,7 +21,9 @@ let (:airport) { double :airport, take_off: subject, land: subject }
     expect(subject.flying?).to eq true
   end
 
-  it "Is flying when it takes off" do
+  it "Is flying after it takes off" do
+    airport = Airport.new
+    airport.land(subject)
     airport.take_off(subject)
     expect(subject.flying?).to eq true
   end

@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-let (:plane) {double :plane, flying!: false}
+let (:plane) {double :plane, flying!: false, landed!: true}
 
 it { is_expected.to respond_to(:land).with(1).argument }
 it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -33,6 +33,12 @@ it "has a default capacity of MAX_CAPACITY" do
         expect {subject.land(plane)}.to raise_error "Airport full! No Planes can land!"
     end
 
+    it "Won't land a plane that has already been landed" do
+        allow(subject).to receive(:stormy?).and_return(false)
+        subject.land(plane)
+        expect {subject.land(plane)}.to raise_error "That plane is already on the ground!"
+
+    end
 
   describe "#take_off" do
       it "Allows a plane to take off" do

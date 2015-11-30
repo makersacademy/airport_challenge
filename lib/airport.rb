@@ -3,17 +3,20 @@ require_relative 'plane'
 class Airport
 MAX_CAPACITY = 40
 
-attr_reader :planes
-attr_reader :capacity
+
 
 def initialize(capacity=MAX_CAPACITY)
   @capacity = capacity
   @planes = []
 end
 
+attr_reader :planes
+attr_reader :capacity
+
 def land(plane)
     fail "Airport full! No Planes can land!" if full?
     fail "Conditions too stormy. No planes can land." if stormy?
+    fail "That plane is already on the ground!" if present?(plane)
     plane.landed!
     planes << plane
 end
