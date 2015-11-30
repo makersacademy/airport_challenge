@@ -26,16 +26,8 @@ class Airport
     landed_planes.delete(plane)
   end
 
-  def weather
-    weather_condition = rand(1..5) > 4
-  end
-
   private
-  attr_reader :weather_condition, :landed_planes
-
-  def stormy?
-    weather_condition == 5
-  end
+  attr_reader :landed_planes
 
   def full?
     landed_planes.count >= DEFAULT_CAPACITY

@@ -82,10 +82,6 @@ describe Airport do
     end
   end
 
-  describe '#weather' do
-    it {is_expected.to respond_to :weather}
-  end
-
   describe '#full?' do
     it 'should raise an error if airport is full' do
       plane = double(:plane, in_airport_status: false, land: true)
