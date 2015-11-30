@@ -2,8 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new(weather: weather) }
-
-  let(:plane) { double(:plane, takeoff: true) }
+  let(:plane) { double(:plane, takeoff: true, land: false) }
   let(:weather) { double(:weather, stormy?: false) }
 
   describe '#initialize' do
@@ -17,7 +16,7 @@ describe '#takeoff' do
   it  'instructs plane to takeoff' do
     airport.land plane
     airport.takeoff plane
-    expect(airport.planes).to be_empty
+    expect(airport.planes).to eq []
   end
 
   it 'prevents takeoff when stormy' do
