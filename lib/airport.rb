@@ -15,23 +15,21 @@ class Airport
     @weather = weather
     fail 'cannot land, too stormy' if stormy?
     fail 'cannot land plane, airport full' if full?
-    @plane = plane
-    @plane.status('landed')
+    plane.status('landed')
     hanger
   end
 
   def take_off(plane, weather)
     @weather = weather
     fail 'cannot take off, too stormy' if stormy?
-    @plane = plane
-    @plane.status('flying')
+    plane.status('flying')
     remove_plane
   end
 
   private
 
     def full?
-      planes.length >= @capacity
+      planes.length >= capacity
     end
 
     def stormy?
@@ -39,10 +37,10 @@ class Airport
     end
 
     def hanger
-      @planes << plane
+      planes << plane
     end
 
     def remove_plane
-      @planes.delete(plane)
+      planes.delete(plane)
     end
 end
