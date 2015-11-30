@@ -2,20 +2,21 @@
 
 My solution to [airport challenge](https://github.com/makersacademy/airport_challenge).
 
-Uses two classes, `Plane` and `Airport` and a `Weather` module.  
+Uses classes `Plane` and `Airport` and a `Weather` module.  
 All user stories covered with unit and feature testing, following BDD process.   
 Unit tests are isolated using doubles. 
 
 Airport class controls takeoffs and landings,
 instructing planes to update their status accordingly.  
 for example:  
-`airport.land! plane` - the airport will instruct the plane to land if possible,
-adding it to the plane storeage  
+`airport.land! plane` - the airport will instruct the plane to land,
+if possible, adding it to the plane storage  
 triggering:  
-`plane.land! airport` - updating the status of the plane to be grounded at that 
+`plane.land! airport` - updating the status of the plane to be grounded at the 
 airport
 
-Weather module provides method `stormy?`, a boolean based on a random number.
+Weather module provides method `stormy?` which returns a boolean
+based on a random number.
 
 ####Object/Messages Table
 
@@ -24,6 +25,7 @@ Weather module provides method `stormy?`, a boolean based on a random number.
 |               |                  |
 | Plane         | land             |
 |               | take off         |
+|               | flying?          |
 |               | at airport?      |
 |               |                  |
 | Airport/      | instruct land    |
@@ -36,3 +38,5 @@ Weather module provides method `stormy?`, a boolean based on a random number.
 |               | check weather?   |
 |               | default capacity |
 |               | set capacity     |
+|               |                  |
+| Weather       | stormy?          |

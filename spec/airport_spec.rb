@@ -18,12 +18,21 @@ describe Airport do
       it 'has a plane after it lands' do
         subject.land! plane
         expect(subject.contain? plane).to eq true
-    end
+      end
       
-      context 'when airport full' do
+      context 'when airport full with defauly capcity' do
         it 'will not allow landing' do
           Airport::DEFAULT_CAPACITY.times { subject.land! plane }
           expect{subject.land! plane}.to raise_error 'The airport is full!'
+        end
+      end
+      
+      context 'when airport full with custom capacity' do
+        it 'will not allow landing' do
+          airport = Airport.new 3
+          allow(airport).to receive(:stormy?).and_return false
+          3.times { airport.land! plane }
+          expect{airport.land! plane}.to raise_error 'The airport is full!'
         end
       end
     end
