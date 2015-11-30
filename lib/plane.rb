@@ -34,8 +34,8 @@ class Plane
     ObjectSpace._id2ref(airport_id).stormy?
   end
 
-private
+  private
 
-attr_reader :airport_id
+  attr_reader :airport_id
 
 end
