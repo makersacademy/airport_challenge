@@ -12,11 +12,14 @@ Unit tests are isolated using doubles.
 `gem install bundle`  
 `bundle`  
 
-####Useage  
-`airport = Airport.new`  
-`airport.stormy?`  
-`airport.land! Plane.new`  
-`plane.flying?`  
+####Useage
+```ruby
+airport = Airport.new       #==> #<Airport:0x007f... @capacity=20, @planes=[]>
+airport.stormy?             #==> false
+plane = Plane.new           #==> #<Plane:0x007ff84c85fbf0 @flying=true>
+airport.land! plane         #==> [#<Plane:0x007... @airport=#<Airport:0x007... @capacity=20, @planes=[...]>, @flying=false>]
+plane.flying?               #==> false
+```
 
 Airport class controls takeoffs and landings,
 instructing planes to update their status accordingly.  
