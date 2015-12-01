@@ -3,7 +3,7 @@ require_relative '../lib/plane.rb'
 describe Plane do
 
   it 'plane has a state plane_in_flight(instance variable)' do
-    expect(subject.instance_variable_get(:@plane_in_flight)).to be # test should be  testing flying when created.
+    expect(subject.instance_variable_get(:@plane_in_flight)).to be 
   end
 
   it 'plane method plane landing exists' do
