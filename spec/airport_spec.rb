@@ -47,14 +47,6 @@ describe Airport do
       expect(subject.instance_variable_get(:@planes)).to eq [plane]
     end
 
-    xit 'confirmation message on landing' do
-
-      allow(subject).to receive(:weather_check).and_return("sunny")
-      plane = (double(:Plane, :plane_landing => "Landed"))
-      expect {subject.instruct_plane_to_land(plane)}.
-        to output("Plane: #{plane} has landed.\n").to_stdout
-    end
-
     it '[Key Behaviour] Refuse landing if airport full' do
 
       plane = (double(:Plane,:plane_landing => "Landed"))
@@ -86,27 +78,9 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
 
-    xit 'confirmation message on take off' do
-
-      allow(subject).to receive(:weather_check) {"sunny"}
-      plane = (double(:Plane, plane_landing: "Landed" ))
-      subject.instruct_plane_to_land(plane)
-      plane = (double(:Plane, plane_taking_off: "Landed" ))
-      expect {subject.instruct_plane_to_take_off(plane)}.
-        to output("Plane: #{plane} has departed.\n").to_stdout
-    end
-
   end
 
   describe 'weather check' do
-
-    xit 'weather method exists' do
-      expect(subject.weather_check(weather_report)).to be
-    end
-
-    xit 'returns a string' do
-      expect(subject.weather_check(weather_report).class).to be(String)
-    end
 
     it 'raises error when take off attempted udner stormy conditions' do
       allow(subject).to receive(:weather_check).and_return("sunny")

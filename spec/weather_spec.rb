@@ -2,7 +2,7 @@ require_relative '../lib/weather.rb'
 
 describe Weather do
 
-  xit 'Weather object exists' do
+  it 'Weather object exists' do
     expect(subject).to be
   end
 
@@ -14,9 +14,11 @@ describe Weather do
     expect(subject.weather_report().class).to be(String)
   end
 
-  xit 'weather report method can return stormy' do
+  it 'weather report method can return stormy' do
      allow(subject).to receive(:weather_check).and_return("stormy")
      expect(subject.weather_check).to eq("stormy")
   end
+
+
 
 end
