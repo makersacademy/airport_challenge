@@ -84,14 +84,14 @@ describe Airport do
 
     it 'raises error when take off attempted udner stormy conditions' do
       allow(subject).to receive(:weather_check).and_return("sunny")
-      plane = (double(:Plane, :plane_landing => "Landed"))
+      plane = (double(:Plane, plane_landing: "Landed"))
       subject.instruct_plane_to_land(plane)
       allow(subject).to receive(:weather_check).and_return("stormy")
       expect{subject.instruct_plane_to_take_off(plane)}.to raise_error
     end
 
     it 'raises error when landing attempted udner stormy conditions' do
-      plane = (double(:Plane, :plane_landing => "Landed"))
+      plane = (double(:Plane, plane_landing: "Landed"))
       allow(subject).to receive(:weather_check).and_return("stormy")
       expect{subject.instruct_plane_to_land(plane)}.to raise_error
     end
