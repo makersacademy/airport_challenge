@@ -24,7 +24,7 @@ def  instruct_plane_to_land(landing_plane)
 end
 
 def instruct_plane_to_take_off(departing_plane)
-  fail 'Plane not at this airport' if  !@planes.include? departing_plane
+  fail 'Plane not at this airport' unless @planes.include? departing_plane
   take_off_status_check(departing_plane)
   take_off_any_planes_check
   if weather_check(weather_report) == "stormy"

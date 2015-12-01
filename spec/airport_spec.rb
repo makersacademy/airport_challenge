@@ -6,7 +6,7 @@ describe Airport do
 
     it 'Airport has a default capacity attribute(instance_variable)' do
       expect(subject).
-        to have_attributes(:default_capacity => Airport::DEFAULT_CAPACITY)
+        to have_attributes(default_capacity: Airport::DEFAULT_CAPACITY)
     end
 
     it '[KEY BEHAVIOUR]Airport has a default capacity & can be over-ridden' do
