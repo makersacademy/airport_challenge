@@ -14,12 +14,7 @@ subject(:plane) { described_class.new}
         airport.land(plane)
         expect(plane.flying?).to eq false
       end
-
-      it "Makes flying true after take off." do
-        airport.take_off(plane)
-        expect(plane.flying?).to eq true
-      end
-
+      
       it "Is not flying when landed" do
         airport.land(plane)
         airport.take_off(plane)

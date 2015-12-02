@@ -39,11 +39,11 @@ class Airport
     end
 
      def makes_flying(plane)
-        plane.flying = true
+        plane.flying=(true)
      end
 
      def makes_landed(plane)
-       plane.flying = false
+       plane.flying=(false)
      end
 
     def stormy?
