@@ -47,4 +47,4 @@ How to run the programme
 
 Further Work
 ----------------
-To build this programme further I would like to write an Rspec feature test that lands and takes off a number of planes.
+To build this programme further I would like to write an Rspec feature test that lands and takes off a number of planes.  I would also like to change @in_airport_status to @airborne - this will require an inversion of current booleans.
