@@ -6,6 +6,7 @@ class Plane
   end
 
   def take_off
+    raise 'Plane is already flying' if in_airport? == false
     @in_airport_status = false
   end
 
