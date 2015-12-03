@@ -14,33 +14,35 @@ describe Airport do
   end
 
   describe '#instruct_to_land' do
-    context 'the weather is fine' do
+    context 'when the weather is not stormy' do
       before do
         allow(airport).to receive(:stormy?).and_return false
+        allow(airport).to receive(:full?).and_return false
       end
 
       it 'should check that the plane is in the airport' do
         plane = double(:plane, land: true, in_airport_status: true)
-        allow(airport).to receive(:full?).and_return false
         airport.instruct_to_land(plane)
         expect(plane.in_airport_status).to eq true
       end
 
-      it "it should change the plane's status to 'in airport'" do
+      it "should change the plane's status to 'in airport'" do
         plane = double(:plane, in_airport_status: true, land: true)
         plane.land
         expect(plane.in_airport_status).to eq true
       end
 
-      it "it should raise an error if the plane is already in the airport" do
-        plane = double(:plane, in_airport_status: true, land: true)
-        allow(airport).to receive(:landed?).and_return true
-        message = "The plane is already in the airport"
-        expect{ airport.instruct_to_land(plane) }.to raise_error message
+      context 'when the airport is full' do
+        it "should raise an error" do
+          plane = double(:plane, in_airport_status: true, land: true)
+          allow(airport).to receive(:landed?).and_return true
+          message = "The plane is already in the airport"
+          expect{ airport.instruct_to_land(plane) }.to raise_error message
+        end
       end
     end
 
-    context 'the weather is stormy' do
+    context 'when the weather is stormy' do
       it 'should raise an error if the weather is stormy' do
         plane = double(:plane, in_airport_status: false, land: false)
         allow(airport).to receive(:stormy?).and_return true
@@ -56,7 +58,7 @@ describe Airport do
       allow(airport).to receive(:full?).and_return false
     end
 
-    context 'the weather is fine' do
+    context 'when the weather is not stormy' do
       before do
         allow(airport).to receive(:stormy?).and_return false
       end
@@ -81,12 +83,12 @@ describe Airport do
       end
     end
 
-    context 'the weather is stormy' do
+    context 'when the weather is stormy' do
       before do
         allow(airport).to receive(:stormy?).and_return true
       end
 
-      it 'should raise an error if the weather is stormy' do
+      it 'should raise an error' do
         plane = double(:plane, in_airport?: false, land: true, take_off: false)
         message = "No planes can take off as it is stormy"
         expect { airport.instruct_take_off(plane) }.to raise_error message

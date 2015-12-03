@@ -28,14 +28,14 @@ class Airport
   end
 
   private
-  attr_reader :landed_planes
+  attr_reader :landed_planes, :in_airport_status
 
   def full?
     landed_planes.count >= DEFAULT_CAPACITY
   end
 
   def landed?
-    @in_airport_status
+    in_airport_status
   end
 
   def stormy?
