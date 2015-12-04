@@ -37,6 +37,8 @@ Please do update your README following the [contribution notes](https://github.c
 
 The above is a relatively straightforward thing to do that doesn't involve much programming - I'll often get it done while thinking about other problems in the back of my mind :-)
 
+* http://stackoverflow.com/questions/2304863/how-to-write-a-good-readme
+
 ## Instructions in README
 It's a great idea to show the full story of how your app is used (from a user's perspective) in the README, i.e. a code example or irb transcript
 
