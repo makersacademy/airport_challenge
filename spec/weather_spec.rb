@@ -5,11 +5,11 @@ describe Weather do
 
 
   it "can be stormy" do
-    allow(Kernel).to receive(:rand).and_return 0
+    srand(0)
     expect(weather).to be_stormy
   end
   it "can be not stormy" do
-    allow(Kernel).to receive(:rand).and_return 1
+    srand(1)
     expect(weather).not_to be_stormy
   end
 end
