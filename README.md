@@ -12,7 +12,7 @@ Unit tests are isolated using doubles.
 `gem install bundle`  
 `bundle`  
 
-####Useage
+####Usage
 ```ruby
 airport = Airport.new       #==> #<Airport:0x007f... @capacity=20, @planes=[]>
 airport.stormy?             #==> false
