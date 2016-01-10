@@ -1,35 +1,29 @@
 require 'airport'
-# require 'plane'
 
 describe Airport do
 
-  let(:airport){described_class.new}
-  let(:plane){double :plane, flying?: true, land: false}
+  subject(:airport){described_class.new}
+  let(:plane) {double :plane}
+  let(:weather) {double :weather}
 
-  it 'can instruct plane to land' do
-      expect(airport).to respond_to(:landing_order).with(1).argument
+  it 'instruct plane to land' do
+    expect(airport).to receive(:land)
+    airport.land(plane)
   end
 
-  describe '#landing_order' do
-    it 'landing plane increase plane count' do
-      airport.landing_order(plane)
-      expect(airport.planes_landed.count).to eq 1
-    end
-
-    it 'landing plane causes plane to land at airport' do
-      expect(plane).to receive(:land).with(airport)
-      airport.landing_order(plane)
-    end
+  it 'instruct plane to take off' do
+    expect(airport).to receive(:take_off)
+    airport.take_off(plane)
   end
 
-  describe '#take_off_order' do
-    it 'has plane taken off' do
-      airport.landing_order(plane)
-      airport.take_off_order(plane)
-      expect(airport.planes_landed.count).to eq 0
+  context 'when stormy' do
+    before do
+      allow(airport).to receive(:stormy?).and_return true
     end
+
+    it 'cannot take off when stormy' do
+      expect{airport.take_off(plane)}.to raise_error("Cannot take off: weather stormy")
+    end
+
   end
-
-
-
 end

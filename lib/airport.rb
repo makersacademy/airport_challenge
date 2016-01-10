@@ -1,23 +1,25 @@
-require_relative 'plane'
 require_relative 'weather'
 
 class Airport
 
-  attr_reader :planes_landed
-
-  def initialize
-    @planes_landed = []
+  attr_reader :planes
+  def initialize()
+    @planes = []
   end
 
-  def landing_order(plane)
-    planes_landed << plane
+  def land(plane)
     plane.land(self)
+    @planes << plane
   end
 
-  def take_off_order(plane)
-    planes_landed.delete(plane)
+  def take_off(plane)
+    raise "Cannot take off: weather stormy" if stormy? true
     plane.take_off
   end
 
-
+  private
+  
+  def stormy?
+    weather.stormy?
+  end
 end

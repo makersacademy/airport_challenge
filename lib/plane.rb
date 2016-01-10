@@ -1,27 +1,19 @@
-require_relative 'airport'
-require_relative 'weather'
-
 class Plane
 
-  attr_reader :at_airport
+
+  attr_reader :flying, :airport
 
   def initialize
-    @flying = true
-    @at_airport = nil
+    @flying = false
   end
 
   def land(airport)
     @flying = false
-    @at_airport = airport
-    @at_airport
+    @airport = airport
   end
 
-  def take_off
+  def take_off(airport)
     @flying = true
+    @airport = nil
   end
-
-  def flying?
-    @flying
-  end
-
 end
