@@ -2,7 +2,7 @@
 
 **week 1 / weekend challenge**
 
-# The challenge
+# Airport challenge
 
 This is the first of our weekend challenges! We have Saturday and Sunday to create - using our newly learnt skills in Ruby - a simple airport/planes control system.
 
@@ -42,7 +42,7 @@ I would like a default airport capacity that can be overridden as appropriate
 
  First, clone down this repo to your local machine
  ```
- $ git clone git@github.com:allimac/airport_challenge.git
+ $ git clone git@github.com:allimac/ma-airport-challenge.git
  ```
 To check the tests run rspec
 ```
