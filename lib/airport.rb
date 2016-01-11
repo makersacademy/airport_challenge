@@ -7,7 +7,7 @@ class Airport
 
   DEFAULT_CAPACITY = 34
 
-  def initialize(max_capacity: DEFAULT_CAPACITY, name: "NoNameAirport", weather: weather)
+  def initialize(max_capacity: DEFAULT_CAPACITY, name: "JFK", weather: Weather.new)
     @planes = []
     @max_capacity = max_capacity
     @name = name
@@ -15,7 +15,7 @@ class Airport
   end
 
   def approve_landing?(plane)
-    fail "#{name} is full" if full?
+    fail "#{@name} is full" if full?
     weather_check
     planes << plane
   end

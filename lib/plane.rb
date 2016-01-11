@@ -13,7 +13,7 @@ class Plane
     "Landed at #{airport.name}!"
   end
 
-  def take_off(airport)
+  def takeoff(airport)
     fail "This plane is already flying" if is_flying
     airport.approve_takeoff?(self)
     self.is_flying = true
