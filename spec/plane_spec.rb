@@ -7,8 +7,7 @@ describe Plane do
     it {expect(subject).to respond_to(:land).with(1).argument}
     
     it 'lands at an airport' do
-      airport = double(:airport)
-      allow(airport).to receive(:landed?).and_return('Plane has touched down!!')
+      airport = double(:landed? => 'Plane has touched down!!')
       expect(subject.land(airport)).to eq 'Plane has touched down!!'
     end
   end
