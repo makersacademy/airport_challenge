@@ -9,6 +9,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "This plane is not at the airport." unless planes.include?(plane)
   end
 
   def docked(plane)
