@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 describe Airport do
 
 it { is_expected.to respond_to(:land).with(1).argument }
@@ -18,12 +19,22 @@ it { is_expected.to respond_to :capacity }
 
 	it '#depart' do
 	airport = described_class.new
-	plane = double(:plane)
+	plane = Plane.new
 	allow(airport).to receive(:stormy?) {false}
 	airport.land(plane)
 	airport.depart(plane)
 	expect(airport.planes).to_not include plane
 	end	
+
+	it '#depart changes a planes status to flying' do
+	airport = described_class.new
+	plane = Plane.new
+	allow(airport).to receive(:stormy?) {false}	
+	airport.land(plane)
+	airport.depart(plane)
+	expect(plane.flying).to eq (true)
+	end
+
 
 	it '#stormy?' do 
 	airport = described_class.new
@@ -32,7 +43,7 @@ it { is_expected.to respond_to :capacity }
 	end
 
 	it "raises an error when plans are departed and its stormy" do
-	plane = double(:plane)
+	plane = Plane.new
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {false}
 	airport.land(plane)
@@ -70,6 +81,17 @@ it { is_expected.to respond_to :capacity }
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {false}
 	expect{airport.depart(plane)}.to raise_error "plane can only take off from airports it is in"
+	end
+
+
+	it "changes a planes status from flying to landed" do
+	plane = Plane.new
+	airport = described_class.new
+	allow(airport).to receive(:stormy?) {false}
+	airport.land(plane)
+	allow(plane).to receive(:flying) {true}	
+	expect{airport.depart(plane)}.to raise_error "plane is already flying an cannot take off"
+	
 	end
 
 
