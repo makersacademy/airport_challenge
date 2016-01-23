@@ -13,7 +13,7 @@ describe Airport do
   end
 
   (1..10).each do |n|
-    it 'has a capacity that can be changed'do
+    it "capacity can be set as #{n}"do
       airport = Airport.new(n)
       expect(airport.capacity).to eq n
     end
