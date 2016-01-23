@@ -13,20 +13,20 @@ describe Airport do
     end
 
     it 'allows Plane objects to land by adding them to @landing_strip' do
-      allow(plane).to receive(:land).and_return (subject.land_plane(plane))
+      allow(plane).to receive(:land).and_return subject.land_plane(plane)
       plane.land(subject)
       expect(subject.landing_strip).to eq [plane]
     end
 
-    it 'allows stored Plane objects to takeoff by removing them from @landing_strip' do
-      allow(plane).to receive(:land).and_return (subject.land_plane(plane))
-      allow(plane).to receive(:takeoff).and_return (subject.remove_plane(plane))
+    it 'allows planes to takeoff by removing them from @landing_strip' do
+      allow(plane).to receive(:land).and_return subject.land_plane(plane)
+      allow(plane).to receive(:takeoff).and_return subject.remove_plane(plane)
       plane.land subject
       plane.takeoff
       expect(subject.landing_strip).to eq []
     end
 
-    it 'allows airport managers to set a maximum storage capacity for landed planes' do
+    it 'allows setting maximum storage capacity for landed planes' do
       expect(subject.capacity).to eq 50
     end
 
