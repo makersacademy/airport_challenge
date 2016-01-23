@@ -8,5 +8,9 @@ describe Airport do
 		expect(plane).to be_airborne
 	end
 
+	it {is_expected.to respond_to(:land).with(1).argument}
+
+	it {is_expected.to respond_to(:plane)}
+
 end
 	
