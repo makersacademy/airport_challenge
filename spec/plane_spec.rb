@@ -90,6 +90,8 @@ describe Plane do
 
     let(:airport) { double(:airport, :planes => []) }
 
+    it {is_expected.to respond_to(:airborne)}
+
     it 'should check whether the plane is on the ground or not' do
       allow(airport).to receive(:at_capacity?).and_return(false)
       allow(airport).to receive(:weather_conditions).and_return(50)
