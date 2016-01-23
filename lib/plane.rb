@@ -6,6 +6,8 @@ class Plane
     @clearance = false
   end
 
-
+  def request_clearance(airport)
+    airport.clearance?
+  end
 
 end
