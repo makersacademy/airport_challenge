@@ -1,6 +1,15 @@
 object		    	| message
 
+
+USER STORY 1
 at_controller   
 passengers
 plane             landed?, land(airport)
 airport           
+
+USER STORY 2
+at_controller
+passengers
+plane             takeoff(airport), landed?
+airport
+
