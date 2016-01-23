@@ -1,8 +1,9 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new }
+  subject(:airport) { described_class.new(weather) }
   let(:plane) { double(:plane) }
+  let(:weather) { double(:weather, stormy?: false) }
 
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
