@@ -17,4 +17,9 @@ describe Airport do
     airport.take_off(plane)
     expect(airport.docked(plane)).to eq false
   end
+
+  it "can't have a plane land twice" do
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error "This plane has already landed."
+  end
 end
