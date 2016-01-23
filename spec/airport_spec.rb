@@ -29,7 +29,7 @@ describe Airport do
       it "Can #land(plane) in airport and then see it in the holding_bay" do
         expect(subject.holding_bay).to eq [plane]
       end
-
+    end
 
 
 
@@ -48,10 +48,17 @@ describe Airport do
         it "Releases a plane from the holding_bay" do
           expect(subject.take_off).to eq plane
         end
-      end
-    end
-      #capacity questions here.
 
+        it "Removes a plane from the holding_bay" do
+          subject.take_off
+          expect(airport.holding_bay).to eq []
+        end
+
+        it "Changes the plane's status to 'Flying'" do
+          expect(subject.take_off).to eq(plane.change_status)
+        end
+
+      end
     end
   end
 end

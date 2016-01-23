@@ -15,39 +15,53 @@ describe Plane do
 
   end
 
-  context "Flying and Landing"
+  context "Flying and Landing" do
 
       describe "#landed?" do
         it {is_expected.to respond_to(:landed?)}
+        it "Returns true when landed" do
+          subject.change_status
+          expect(subject.landed?).to be true
+        end
+        it "Returns false when not landed" do
+          expect(subject.landed?). to be false
+        end
+        it "Returns true when status == 'Landed'" do
+          subject.status = "Landed"
+          expect(subject.landed?).to be true
+        end
+        it "Returns false when status == 'Flying'" do
+          subject.status = "Flying"
+          expect(subject.landed?).to be false
+        end
+      end
 
       describe "#flying?" do
         it {is_expected.to respond_to(:flying?)}
+        it "Returns true when flying" do
+          expect(subject.flying?).to be true
+        end
+        it "Returns false when not flying" do
+          subject.change_status
+          expect(subject.flying?).to be false
+        end
+        it "Returns false when status == 'Landed'" do
+          subject.status = "Landed"
+          expect(subject.flying?).to be false
+        end
+        it "Returns true when status == 'Flying'" do
+          subject.status = "Flying"
+          expect(subject.flying?).to be true
+        end
       end
 
       describe "#change_status" do
-        let(:viola_plane) {xx}
-
           it {is_expected.to respond_to(:change_status)}
 
           it "Will change the plane's status from 'Flying' to 'Landed'." do
             expect {subject.change_status}.to change {plane.status}.to("Landed")
           end
-
-          before do
-            allow(airport).to receive(:land).with(viola_plane)
-            airport.land(viola_plane)
-          end
-
-          it "Returns true when we check the plane is #landed? after we have landed" do
-            expect(viola_plane.landed?).to be true
-          end
-
-          it "Will change the plane's status to 'Landed' when you land the plane at the airport." do
-            expect(viola_plane.status).to be "Landed"
-          end
-
       end
     end
   end
-
 end

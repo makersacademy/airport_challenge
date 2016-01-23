@@ -20,5 +20,3 @@ attr_accessor :status
   end
 
 end
-
-#can you see this? yes

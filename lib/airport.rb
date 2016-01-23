@@ -2,10 +2,11 @@ require_relative 'plane'
 
 class Airport
 
-attr_reader :holding_bay
+attr_reader :holding_bay, :weather
 
   def initialize
     @holding_bay = []
+    @weather = weather
   end
 
   def land(plane)
@@ -14,7 +15,14 @@ attr_reader :holding_bay
   end
 
   def take_off
-    @holding_bay.last
+    plane = @holding_bay.pop
+    plane.change_status
+    plane
+  end
+
+
+  def weather_generator
+
   end
 
 #   def setup_holding_bay(capacity)
