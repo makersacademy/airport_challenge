@@ -6,7 +6,7 @@ class Airport
     @planes = []
   end
 
-  #encapsulated planes array 
+  #encapsulated planes array
   def planes
     @planes.dup
   end
@@ -16,7 +16,7 @@ class Airport
   end
 
   def takeoff
-
+    @planes.shift
   end
 
 end
