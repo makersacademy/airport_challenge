@@ -6,6 +6,9 @@ describe "Airport" do
   before(:example) do
     @airport = Airport.new("luton")
   end
+  before(:example) do
+    @airplane = Airplane.new('1')
+  end
 
   it "can create instance of airport" do
     expect(@airport.name).to start_with("l") & end_with("n")
@@ -20,38 +23,31 @@ describe "Airport" do
   end
 
   it "plane can land" do
-    airplane = Airplane.new('1')
-    allow(@airport).to receive(:stormz) {false}
-    @airport.tell_to_land(airplane)
-    expect(@airport.planes_at_airport).to include(airplane)
+    allow(@airport).to receive(:stormy) {false}
+    @airport.tell_to_land(@airplane)
+    expect(@airport.planes_at_airport).to include(@airplane)
   end
 
   it "plane can take off" do
-    airplane = Airplane.new('1')
-    @airport.tell_to_take_off(airplane)
+    @airport.tell_to_take_off(@airplane)
     expect(@airport.planes_at_airport).to eq([])
   end
 
-  it "airport_capacity and cap_used are equal, should return true" do
+  it "cant land when full is true" do
     @airport.set_used_capacity(10)
-    expect(@airport.full).to eq true
+    expect(@airport.tell_to_land(@airplane)).to eq "luton is full or its too stormy, no land bro"
   end
 
-  it 'stormy is true or false' do
-    expect(@airport.stormy).to eq(true) | eq(false)
-  end
 
   it 'does not allow plane to take off in stormy weather' do
-    airplane = Airplane.new('1')
-    allow(@airport).to receive(:stormz) {true}
-    @airport.tell_to_land(airplane)
-    expect(@airport.tell_to_take_off(airplane)).to eq "too stormy to fly bro"
+    allow(@airport).to receive(:stormy) {true}
+    @airport.tell_to_land(@airplane)
+    expect(@airport.tell_to_take_off(@airplane)).to eq "too stormy to fly bro"
   end
 
   it 'doesn\'t allow plane to land in stormz' do
-    allow(@airport).to receive(:stormz) {true}
-    airplane = Airplane.new('1')
-    expect(@airport.tell_to_land(airplane)).to eq "#{@airport.name} is full or its too stormy, no land bro"
+    allow(@airport).to receive(:stormy) {true}
+    expect(@airport.tell_to_land(@airplane)).to eq "#{@airport.name} is full or its too stormy, no land bro"
   end
 end
 
