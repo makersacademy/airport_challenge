@@ -17,7 +17,7 @@ describe Airport do
   end
 
   describe 'clear_to_takeoff' do
-    it 'instructs a plane to takeoff' do
+    it 'instructs a plane to takeoff and removes it from the landed planes array' do
       subject.clear_to_takeoff(plane)
       expect(subject.landed_planes).not_to include plane
     end
