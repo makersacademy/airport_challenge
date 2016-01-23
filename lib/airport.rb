@@ -15,6 +15,7 @@ class Airport
     raise "This plane is not at this airport." unless planes.include?(plane)
     planes.delete(plane)
     plane.landed = false
+    plane
   end
 
   private

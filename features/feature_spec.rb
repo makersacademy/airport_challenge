@@ -47,3 +47,21 @@ describe "full airport" do
   end
 end
 
+#Feature 4: Default Capacity that can be overridden as appropriate
+describe "capacity" do
+  it "has default capacity" do
+    airport = Airport.new
+    airport.capacity.times { airport.land(Plane.new) }
+    expect {airport.land(Plane.new) }.to raise_error "This airport is full"
+  end
+
+  it "can have default capacity overwritten" do
+    airport = Airport.new
+    airport.capacity = 30
+    airport.capacity.times { airport.land(Plane.new) }
+    expect {airport.land(Plane.new) }.to raise_error "This airport is full"
+  end
+end
+
+
+
