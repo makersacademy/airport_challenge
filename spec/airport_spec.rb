@@ -16,5 +16,7 @@ describe Airport do
 		expect(subject.plane).to eq(plane)
 	end
 
+	it {is_expected.to respond_to(:stormy_weather?)}
+
 end
 	

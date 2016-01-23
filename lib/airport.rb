@@ -11,4 +11,8 @@ class Airport
 	def allow_landing(plane)
 		@plane = plane
     end
+
+    def stormy_weather?
+
+    end
 end
