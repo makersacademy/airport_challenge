@@ -1,7 +1,7 @@
 
 module Weather
 
-  def weather
+  def conditions
     rand(100)
   end
 
