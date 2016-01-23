@@ -37,3 +37,13 @@ describe "multiple airports" do
     expect { airport_2.land(plane) }.to raise_error "This plane is already landed at another airport."
   end
 end
+
+#Feature 3: Want to prevent landing when the airport is full
+describe "full airport" do
+  it "can't have more planes" do
+    airport = Airport.new
+    10.times { airport.land(Plane.new) }
+    expect {airport.land(Plane.new) }.to raise_error "This airport is full"
+  end
+end
+
