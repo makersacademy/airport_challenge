@@ -1,10 +1,8 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   subject(:airport) { Airport.new }
   let(:plane) { double(:plane, :landed => false, :landed= => true)}
-
   #redundant because this method tested in later tests
   #it "can land a plane" do
   #  expect(airport).to respond_to(:land).with(1).argument
@@ -44,8 +42,8 @@ describe Airport do
   end
 
   it "prevents landing when airport full" do
-    Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-    expect { airport.land(Plane.new) }.to raise_error "This airport is full"
+    Airport::DEFAULT_CAPACITY.times { airport.land(double(:plane, :landed => false, :landed= => false)) }
+    expect { airport.land(double(:plane, :landed => false, :landed= => false))  }.to raise_error "This airport is full"
   end
 
   #redundant test (with the default capacity constant used above) it "has a default capacity" do
@@ -60,5 +58,16 @@ describe Airport do
   it "can have capacity overwritten when needed" do
     airport.capacity = 30
     expect(airport.capacity).to eq 30
+  end
+
+  it "can't have a plane take-off in stormy weather" do
+    airport.land(plane)
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+    expect { airport.take_off(plane) }.to raise_error "Can't take off due to stormy weather"
+  end
+
+  it "can't have a plane land in stormy weather" do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+    expect { airport.land(plane) }.to raise_error "Can't land due to stormy weather"
   end
 end

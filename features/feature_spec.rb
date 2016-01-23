@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 #Feature 1: Want to instruct plane to land at airport and confirm that it has landed.
 
@@ -60,6 +61,23 @@ describe "capacity" do
     airport.capacity = 30
     airport.capacity.times { airport.land(Plane.new) }
     expect {airport.land(Plane.new) }.to raise_error "This airport is full"
+  end
+end
+
+describe "weather dependency" do
+  it "can't take off when stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    airport.land(plane)
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+    expect { airport.take_off(plane) }.to raise_error "Can't take off due to stormy weather"
+  end
+
+  it "can't land when stormy" do
+    airport = Airport.new
+    plane = Plane.new
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+    expect { airport.land(plane) }.to raise_error "Can't land due to stormy weather"
   end
 end
 
