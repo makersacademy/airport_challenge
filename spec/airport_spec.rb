@@ -4,12 +4,12 @@ describe Airport do
   let(:plane) { double :plane }
 
   describe '#clear_to_land' do
-    it 'instructs a plane to land at the airport' do
+    it 'gives clearance for a plane to land at the airport' do
       expect(subject.clear_to_land).to eq true
     end
   end
 
-  
+
 
 
 
