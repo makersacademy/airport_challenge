@@ -1,4 +1,4 @@
-require 'plane'
+require './lib/plane'
 class Airport
 	attr_accessor :planes, :capacity
 	def initialize
@@ -18,8 +18,8 @@ class Airport
 	raise "plane is already flying an cannot take off" if plane.flying == true
 	raise "unsafe flying conditions to depart" if stormy?
 	raise "plane can only take off from airports it is in" if @planes.include?(plane)==false
-	plane.flying=true
 	@planes.delete(plane)	
+	plane.flying=true
 	end
 
 	def stormy?

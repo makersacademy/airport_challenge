@@ -106,15 +106,23 @@ describe "land if they are already in an airport" do
 	allow(airport).to receive(:stormy?) {false}
 	airport.land(plane)
 	expect{airport.land(plane)}.to raise_error "plane is already landed and cannot land"
-
-
 end
 end
 
 
-#planes that are already flying cannot takes off and/or be in an airport; 
-#raise "plane cannot take off as already flying" if airport.planes.exclude?(plane) 
 
+describe "multiple planes depart and land" do
+	it "departs and lands multiple planes" do
+	fleet = []
+	airport = Airport.new
+	allow(airport).to receive(:stormy?) {false}
+	5.times {fleet<<Plane.new}
+	fleet.each {|jet| airport.land(jet)}
+	fleet.each do |jet|
+	allow(airport).to receive(:stormy?) {false}
+	airport.depart(jet)
+	end
+	expect(airport.planes.length).to eq 0
+end
+end
 
-#planes that are landed cannot land again and must be in an airport, etc.
-#raise "plane cannot land as already at airport" if airport.planes.include?(plane)
