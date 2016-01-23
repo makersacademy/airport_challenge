@@ -3,14 +3,6 @@ require 'airport.rb'
 describe Airport do
   let(:plane) { double :plane }
 
-  describe '#clear_to_land' do
-    it 'gives clearance for a plane to land at the airport' do
-      plane = Plane.new
-      subject.clear_to_land(plane)
-      expect(plane.clearance?).to eq true
-    end
-  end
-
   describe '#plane_lands' do
     it 'lets a plane lane when it has clearance' do
       landed_planes = [plane]
