@@ -12,12 +12,17 @@ describe Plane do
     end
   end
   
-  describe 'Plane can take off from an airport' do
+  describe 'can take off from an airport' do
+    let(:take_off) {double(leave_gate: 'Plane has taken off!!')}
     it {expect(subject).to respond_to(:take_off)}
     
     it 'leaves an airport' do
-      airport = double(leave_gate: 'Plane has taken off!!')
-      expect(subject.take_off(airport)).to eq 'Plane has taken off!!'
+      expect(subject.take_off(take_off)).to eq 'Plane has taken off!!'
+    end
+    
+    it "can't take off in stormy weather" do
+      stormy_take_off = double(leave_gate: "It is too stormy to take off now. Wait until it is calmer")
+      expect(subject.take_off(stormy_take_off)).to eq "It is too stormy to take off now. Wait until it is calmer"
     end
   end
 end

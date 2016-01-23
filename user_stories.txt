@@ -11,3 +11,7 @@ Airport           landed?
 User Story 2    
 Plane             take_off
 Airport           leave_gate
+
+
+User Story 3
+Airport            weather
