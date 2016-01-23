@@ -20,6 +20,12 @@ describe Airport do
       20.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error 'Airport is full!'
     end
+
+    it 'raises an error when plane has already arrived' do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'Plane has already arrived.'
+    end
   end
 
   describe '#takeoff' do
@@ -40,5 +46,6 @@ describe Airport do
       plane = Plane.new
       expect { subject.takeoff(plane) }.to raise_error 'Plane is not at this airport.'
     end
+
   end
 end

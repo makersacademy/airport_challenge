@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     fail 'Airport is full!' if @planes.count >= 20
+    fail 'Plane has already arrived.' if @planes.include?(plane)
     plane.arrived
     @planes << plane
     plane
