@@ -5,7 +5,6 @@ describe Airport do
   subject(:airport){Airport.new}
   let(:plane) {double("plane")}
 
-
   it 'allows a plane to land' do
     airport.land(plane)
   end
