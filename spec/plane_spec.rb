@@ -15,10 +15,14 @@ describe Plane do
   end
 
   describe "#landed?" do
-    it "returns true when landed? is called" do
+    it "returns nil as default value" do
+      expect(subject.landed?).to eq nil
+    end
+
+    it "returns true after land and landed? are called" do
+      subject.land(airport)
       expect(subject.landed?).to eq true
     end
-  
   end
 
 end
