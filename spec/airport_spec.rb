@@ -8,13 +8,13 @@ describe Airport do
       expect(subject.clearance?).to eq true
     end
   end
-  # describe '#plane_lands' do
-  #   it 'lets a plane land when it has clearance' do
-  #     landed_planes = [Plane.new]
-  #     plane
-  #     expect(subject.plane_lands(plane)).to eq landed_planes
-  #   end
-  # end
+  describe '#plane_lands' do
+    it 'a plane lands and it stored at the airport' do
+      pl = Plane.new
+      pl.request_clearance(subject)
+      expect(subject.plane_lands(plane)).to eq landed_planes
+    end
+  end
 
 
 

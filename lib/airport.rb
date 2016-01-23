@@ -10,8 +10,6 @@ class Airport
     true
   end
 
-  # def plane_lands(plane)
-  #   @landed_planes << plane
-  # end
+  
 
 end
