@@ -16,9 +16,6 @@ describe Plane do
   end
 
   context "Flying and Landing"
-      before do
-        allow(airport).to receive(:land)
-      end
 
       describe "#landed?" do
         it {is_expected.to respond_to(:landed?)}
@@ -28,6 +25,7 @@ describe Plane do
       end
 
       describe "#change_status" do
+        let(:viola_plane) {xx}
 
           it {is_expected.to respond_to(:change_status)}
 
@@ -36,16 +34,16 @@ describe Plane do
           end
 
           before do
-            allow(airport).to receive(:land).with(subject)
-            airport.land(subject)
+            allow(airport).to receive(:land).with(viola_plane)
+            airport.land(viola_plane)
           end
 
           it "Returns true when we check the plane is #landed? after we have landed" do
-            expect(plane.landed?).to be true
+            expect(viola_plane.landed?).to be true
           end
 
-          it "Will change the plane's status to 'Landed' when you land the plane at the aiport." do
-            expect(plane.status).to be "Landed"
+          it "Will change the plane's status to 'Landed' when you land the plane at the airport." do
+            expect(viola_plane.status).to be "Landed"
           end
 
       end

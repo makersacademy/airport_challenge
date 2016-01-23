@@ -1,0 +1,16 @@
+it "Will change the plane's status to 'Landed' when you land the plane at the aiport." do
+  allow(plane).to receive(:status)
+  expect(plane.status).to eq "Landed"
+end
+
+before do
+  allow(airport).to receive(:land).with(viola_plane)
+  airport.land(viola_plane)
+end
+
+it "Returns true when we check the plane is #landed? after we have landed" do
+  expect(viola_plane.landed?).to be true
+end
+
+it "Will change the plane's status to 'Landed' when you land the plane at the airport." do
+  expect(viola_plane.status).to be "Landed"
