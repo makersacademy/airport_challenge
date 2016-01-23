@@ -26,8 +26,8 @@ describe Plane do
     end
     
     it "can't take off in stormy weather" do
-      stormy_take_off = double(leave_gate: "It is too stormy to take off.")
-      expect(subject.take_off(stormy_take_off)).to eq "It is too stormy to take off."
+      stormy = double(leave_gate: "It is too stormy to take off.")
+      expect(subject.take_off(stormy)).to eq "It is too stormy to take off."
     end
   end
 end

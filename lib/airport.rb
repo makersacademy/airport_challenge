@@ -1,19 +1,21 @@
 class Airport
+  DEFAULT_CAPACITY = 15
   attr_reader :planes
   
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
   
   def landed(plane)
-    raise "It is too stormy to land now." if weather == "Stormy"
-    raise "Airport is full." if full?
+    fail "It is too stormy to land." if weather == "Stormy"
+    fail "Airport is full." if full?
     planes << plane
     "Plane has touched down!!"
   end
   
   def leave_gate
-    raise "It is too stormy to take off." if weather == "Stormy"
+    fail "It is too stormy to take off." if weather == "Stormy"
     planes.pop
     "Plane has taken off!!"
   end
@@ -26,6 +28,6 @@ class Airport
   end
   
   def full?
-    @planes.count >= 15
+    @planes.count >= @capacity
   end
 end

@@ -2,17 +2,16 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double(:plane) }
-    
+  
   it {expect(subject).to be_a Airport}  
       
   describe 'landing' do
-    let(:land_plane) { double(land:  subject.landed(self)) }
     
     it {expect(subject).to respond_to(:landed).with(1).argument}
     
     it 'returns string if plane has landed' do
       allow(subject).to receive(:weather) {"Sunny"}
-      expect(subject.landed(land_plane)).to eq 'Plane has touched down!!'
+      expect(subject.landed(plane)).to eq 'Plane has touched down!!'
     end
     
     it 'adds a plane to the airport' do
@@ -23,7 +22,7 @@ describe Airport do
     
     it 'prevents landing if weather is stormy' do
       allow(subject).to receive(:weather) {"Stormy"}
-      expect {subject.landed(plane)}.to raise_error "It is too stormy to land now."
+      expect {subject.landed(plane)}.to raise_error "It is too stormy to land."
     end
   end
   
@@ -46,11 +45,19 @@ describe Airport do
     end
   end
   
-  describe 'can only hold 15 planes' do
+  describe 'has limited capacity for planes' do
+    
     it 'raises an error if full' do
       allow(subject).to receive(:weather) {"Sunny"}
       15.times { subject.landed(plane) }
       expect {subject.landed(plane)}.to raise_error "Airport is full."
+    end
+    
+    it 'can change capacity' do
+      airport = Airport.new(40)
+      allow(airport).to receive(:weather) {"Sunny"}
+      40.times { airport.landed(plane) }
+      expect { airport.landed(plane) }.to raise_error "Airport is full."
     end
   end
 end
