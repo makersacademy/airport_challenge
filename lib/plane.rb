@@ -1,4 +1,7 @@
+require_relative 'airport'
+
 class Plane
-  def arrived?
+  def status
+    "arrived"
   end
 end
