@@ -9,6 +9,8 @@ class Plane
   end
 
   def takeoff(airport)
+    airport.planes.delete(self)
+    self
     @airborne = true
   end
 

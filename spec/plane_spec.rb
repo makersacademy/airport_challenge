@@ -15,9 +15,9 @@ describe Plane do
 
     it {is_expected.to respond_to(:airborne)}
 
-    let(:airport) {double :airport}
+    let(:airport) { double(:airport, :planes => []) }
     it 'should be able to be airborne' do
-      expect(subject.takeoff(airport)).to be true
+      expect(subject.takeoff(airport)).to be_truthy
     end
 
   end
@@ -26,7 +26,7 @@ describe Plane do
 
     it {is_expected.to respond_to(:airborne)}
 
-    let(:airport) {double :airport}
+    let(:airport) { double(:airport, :planes => []) }
     it 'should be able to land' do
       expect(subject.land(airport)).to be false
     end
