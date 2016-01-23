@@ -1,12 +1,7 @@
 class Plane
 
-
   def to_land
     @on_ground = true
-  end
-
-  def confirm_landed
-    landed?
   end
 
   def landed?
