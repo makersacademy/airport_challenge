@@ -53,4 +53,9 @@ describe Airport do
     airport_2 = Airport.new(15)
     expect(airport_2.capacity).to eq 15
   end
+
+  it "can have capacity overwritten when needed" do
+    airport.capacity = 30
+    expect(airport.capacity).to eq 30
+  end
 end
