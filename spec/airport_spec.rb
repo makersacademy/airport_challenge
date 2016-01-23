@@ -28,6 +28,12 @@ describe Airport do
       end
       expect(subject.planes).to eq array
     end
+
+    it "returns an array of 1 plane after 2 have landed and 1 has taken off" do
+      plane = Plane.new.land(subject, weather).takeoff(subject, weather)
+      plane2 = Plane.new.land(subject, weather)
+      expect(subject.planes).to eq [plane2]
+    end
   end
 
   describe "#full" do

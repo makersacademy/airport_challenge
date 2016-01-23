@@ -23,6 +23,7 @@ attr_reader :airport
     raise "error: cannot take off from a different airport" if airport != @airport
     raise "error: cannot take off when weather is stormy" if weather.condition == "stormy"
     @landed = false
+    airport.planes.delete(self)
   end
 
 end
