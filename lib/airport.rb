@@ -4,11 +4,11 @@ class Airport
 
 	attr_reader :plane
 
-	def release_plane
+	def allow_takeoff
       Plane.new
 	end
 
-	def land(plane)
+	def allow_landing(plane)
 		@plane = plane
     end
 end
