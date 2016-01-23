@@ -49,3 +49,14 @@ describe 'prevent landing when airport is full' do
 
 	end
 end
+
+describe  "default airport capacity that can be overridden" do 
+	it "allows default airport capacity that can be overridden" do
+	airport = Airport.new
+	plane = Plane.new 
+	airport.capacity=15
+	airport.capacity.times { airport.land(plane) }
+	expect{airport.land(plane)}.to raise_error("airport at capacity")
+	end
+end
+

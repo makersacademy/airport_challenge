@@ -4,8 +4,8 @@ let(:airport) {double(:airport, :stormy => false)}
 
 it { is_expected.to respond_to(:land).with(1).argument }
 it { is_expected.to respond_to(:depart).with(1).argument }
-it { is_expected.to respond_to :stormy?  }
-it { is_expected.to respond_to :capacity  }
+it { is_expected.to respond_to :stormy?}
+it { is_expected.to respond_to :capacity }
 
 	
 	it '#land' do
@@ -45,6 +45,14 @@ it { is_expected.to respond_to :capacity  }
 	it 'prevents landing when airport is full' do 
 	plane = double(:plane)
 	airport = described_class.new
+	airport.capacity.times { airport.land(plane) }
+	expect{airport.land(plane)}.to raise_error("airport at capacity")
+	end
+
+	it "#capacity can be overridden" do
+	airport = Airport.new
+	plane = double(:plane)
+	airport.capacity=15
 	airport.capacity.times { airport.land(plane) }
 	expect{airport.land(plane)}.to raise_error("airport at capacity")
 	end

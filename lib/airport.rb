@@ -1,14 +1,14 @@
 require 'plane'
 class Airport
 	attr_accessor :planes, :capacity
-	def initialize 
+	def initialize
     @planes = []
     @capacity = 10
 	end
 
 	def land(plane)
 	raise "unsafe flying conditions to land" if stormy?
-	raise "airport at capacity" if @planes.size >=10
+	raise "airport at capacity" if @planes.size >=@capacity
 	@planes << plane	
 	end
 
