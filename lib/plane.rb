@@ -9,11 +9,3 @@ class Plane
     airport.leave_gate
   end
 end
-
-#
-#plane = Plane.new
-#airport = Airport.new
-#plane.take_off(airport)
-#plane.take_off(airport)
-#plane.take_off(airport)
-#plane.take_off(airport)

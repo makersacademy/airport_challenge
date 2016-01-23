@@ -6,14 +6,14 @@ class Airport
   end
   
   def landed(plane)
-    raise "It is too stormy to land now. You will have to fly around a little longer" if weather == "Stormy"
-    
+    raise "It is too stormy to land now." if weather == "Stormy"
+    raise "Airport is full." if full?
     planes << plane
     "Plane has touched down!!"
   end
   
   def leave_gate
-    raise "It is too stormy to take off now. Wait until it is calmer" if weather == "Stormy"
+    raise "It is too stormy to take off." if weather == "Stormy"
     planes.pop
     "Plane has taken off!!"
   end
@@ -23,5 +23,9 @@ class Airport
   def weather
     @weather = ["Sunny", "Raining", "Snow", "Hail", "Stormy"]
     @weather[rand(0..4)]
+  end
+  
+  def full?
+    @planes.count >= 15
   end
 end

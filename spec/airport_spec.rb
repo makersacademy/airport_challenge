@@ -18,12 +18,12 @@ describe Airport do
     it 'adds a plane to the airport' do
       allow(subject).to receive(:weather) {"Sunny"}
       subject.landed(plane)
-      expect(subject.planes.length).to eq 1
+      expect(subject.planes.count).to eq 1
     end
     
     it 'prevents landing if weather is stormy' do
       allow(subject).to receive(:weather) {"Stormy"}
-      expect {subject.landed(plane)}.to raise_error "It is too stormy to land now. You will have to fly around a little longer"
+      expect {subject.landed(plane)}.to raise_error "It is too stormy to land now."
     end
   end
   
@@ -42,7 +42,15 @@ describe Airport do
     
     it 'prevents take off when stormy' do
       allow(subject).to receive(:weather) {"Stormy"}
-      expect{subject.leave_gate}.to raise_error "It is too stormy to take off now. Wait until it is calmer"
+      expect{subject.leave_gate}.to raise_error "It is too stormy to take off."
+    end
+  end
+  
+  describe 'can only hold 15 planes' do
+    it 'raises an error if full' do
+      allow(subject).to receive(:weather) {"Sunny"}
+      15.times { subject.landed(plane) }
+      expect {subject.landed(plane)}.to raise_error "Airport is full."
     end
   end
 end

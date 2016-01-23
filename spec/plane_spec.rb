@@ -10,6 +10,11 @@ describe Plane do
       airport = double(landed: 'Plane has touched down!!')
       expect(subject.land(airport)).to eq 'Plane has touched down!!'
     end
+    
+    it "can't land in stormy weather" do
+      stormy_landing = double(landed: "It is too stormy to land now.")
+      expect(subject.land(stormy_landing)).to eq 'It is too stormy to land now.'
+    end
   end
   
   describe 'can take off from an airport' do
@@ -21,8 +26,8 @@ describe Plane do
     end
     
     it "can't take off in stormy weather" do
-      stormy_take_off = double(leave_gate: "It is too stormy to take off now. Wait until it is calmer")
-      expect(subject.take_off(stormy_take_off)).to eq "It is too stormy to take off now. Wait until it is calmer"
+      stormy_take_off = double(leave_gate: "It is too stormy to take off.")
+      expect(subject.take_off(stormy_take_off)).to eq "It is too stormy to take off."
     end
   end
 end
