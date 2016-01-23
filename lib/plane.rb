@@ -3,7 +3,8 @@ require_relative 'weather'
 
 class Plane
 
-  def land(airport)
+  def land(airport, weather)
+    raise "Too stormy to land!" if weather.stormy?
     @airport = airport
   end
 

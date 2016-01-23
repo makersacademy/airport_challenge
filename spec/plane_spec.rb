@@ -5,16 +5,17 @@ describe Plane do
 
     describe '#land' do
       let(:airport) { double :airport }
+      let(:weather) { double( "weather", :stormy? => nil) }
 
-      it { is_expected.to respond_to(:land).with(1).argument}
+      it { is_expected.to respond_to(:land).with(2).argument}
 
       it 'is expected to be landed' do
-        plane.land(airport)
+        plane.land(airport, weather)
         expect(plane).to be_landed
       end
 
       it 'is expected to be landed at an airport' do
-        plane.land(airport)
+        plane.land(airport, weather)
         expect(plane.at_what_airport).to eq airport
       end
 
@@ -27,7 +28,7 @@ describe Plane do
       it { is_expected.to respond_to(:takeoff).with(2).arguments}
 
       it 'is expected to no longer be at an airport' do
-        plane.land(airport)
+        plane.land(airport, weather)
         plane.takeoff(airport, weather)
         expect(plane.at_what_airport).to be_falsey
       end
@@ -40,6 +41,10 @@ describe Plane do
 
       it 'is not able to takeoff in stormy weather' do
         expect {plane.takeoff(airport, weather)}.to raise_error("Too stormy to takeoff!")
+      end
+
+      it 'is not able to land in stormy weather' do
+        expect {plane.land(airport, weather)}.to raise_error("Too stormy to land!")
       end
 
     end
