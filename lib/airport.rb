@@ -1,9 +1,9 @@
 require_relative 'plane'
-require_relative 'weather'
-require_relative 'errors'
+require_relative './modules/weather'
+require_relative './modules/errors'
 
 class Airport
-  include Weather, Errors
+  include Errors
   attr_reader :planes
 
   CAPACITY = 10
@@ -34,7 +34,7 @@ class Airport
   private
 
   def pre_takeoff_checks(plane)
-    stormy_error {"take off"} if weather_status == "stormy"
+    stormy_error {"takeoff"} if weather_status == "stormy"
     plane_flying_error if plane.status == "flying"
     plane_exist_error unless @planes.include?(plane)
   end
@@ -46,7 +46,7 @@ class Airport
   end
 
   def weather_status
-    WEATHER.sample
+    Weather::WEATHER.sample
   end
 
 end

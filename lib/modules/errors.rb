@@ -5,7 +5,7 @@ module Errors
   end
 
   def stormy_error
-    fail "Can't #{yield} now, it's stormy!"
+    fail "Can't #{yield}, it's stormy!"
   end
 
   def plane_landed_error

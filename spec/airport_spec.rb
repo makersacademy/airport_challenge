@@ -23,12 +23,14 @@ describe Airport do
       allow(plane).to receive(:landed).and_return("landed")
       allow(plane).to receive(:status).and_return("")
       11.times {subject.land(plane)}
-      expect {subject.land(plane)}.to raise_error("The airport is full")
+      error = "The airport is full"
+      expect {subject.land(plane)}.to raise_error(error)
     end
 
     it "denies landing if the weather is stormy" do
       allow(subject).to receive(:weather_status).and_return("stormy")
-      expect {subject.land(plane)}.to raise_error("Can't land now, it's stormy!")
+      error = "Can't land, it's stormy!"
+      expect {subject.land(plane)}.to raise_error(error)
     end
 
   end
@@ -46,7 +48,8 @@ describe Airport do
 
     it "denies takeoff if the weather is stormy" do
       allow(subject).to receive(:weather_status).and_return("stormy")
-      expect {subject.takeoff(plane)}.to raise_error("Can't take off now, it's stormy!")
+      error = "Can't takeoff, it's stormy!"
+      expect {subject.takeoff(plane)}.to raise_error(error)
     end
 
   end

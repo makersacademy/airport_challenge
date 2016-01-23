@@ -5,6 +5,10 @@ class Plane
     @status = ""
   end
 
+  def status
+    @status.dup
+  end
+
   def fly
     status = "flying"
   end
