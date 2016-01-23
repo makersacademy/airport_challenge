@@ -1,4 +1,8 @@
 class Plane
+
+attr_reader :landed
+attr_reader :airport
+
   def initialize
     @landed
     @airport
@@ -10,6 +14,7 @@ class Plane
     raise "error: cannot land when airport is full" if airport.full
     @landed = true
     @airport = airport
+    airport.planes << self
     self
   end
 
@@ -19,10 +24,5 @@ class Plane
     raise "error: cannot take off when weather is stormy" if weather.current == "stormy"
     @landed = false
   end
-
-
-attr_reader :landed
-attr_reader :airport
-
 
 end
