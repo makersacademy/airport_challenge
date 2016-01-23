@@ -2,5 +2,5 @@ object		    	| message
 
 at_controller   
 passengers
-plane             landed?
-airport           land(plane)
+plane             landed?, land(airport)
+airport           
