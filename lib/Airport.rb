@@ -2,9 +2,17 @@ require'./lib/plane.rb'
 
 class Airport
 
-def land plane
-  plane
-end
+  def initialize
+    @planes = []
+  end
+
+  def land plane
+     @planes << plane
+  end
+
+  def planes_landed
+    @planes
+  end
 
 
 end
