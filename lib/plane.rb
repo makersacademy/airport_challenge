@@ -1,6 +1,9 @@
 require_relative 'airport'
+require_relative 'weather'
 
 class Plane
+
+  include Weather
 
   attr_reader :airborne
 
@@ -15,7 +18,8 @@ class Plane
   end
 
   def land(airport)
-    raise "Airport at capacity" if airport.at_capacity?
+    fail "Airport at capacity" if airport.at_capacity?
+    fail "Weather is too stormy!" if airport.weather > 85
     airport.planes << self
     @airborne = false
   end

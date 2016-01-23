@@ -1,5 +1,6 @@
 
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -14,6 +15,10 @@ class Airport
 
   def at_capacity?
     @planes.count >= capacity
+  end
+
+  def weather_conditions
+    weather
   end
 
 end

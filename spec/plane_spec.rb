@@ -26,6 +26,7 @@ describe Plane do
 
     it 'should no longer be in the airport once it has taken off' do
       allow(airport).to receive(:at_capacity?).and_return(false)
+      allow(airport).to receive(:weather).and_return(50)
       subject.land(airport)
       subject.takeoff(airport)
       expect(airport.planes).not_to include subject
@@ -41,17 +42,26 @@ describe Plane do
 
     it 'should be able to land' do
       allow(airport).to receive(:at_capacity?).and_return(false)
+      allow(airport).to receive(:weather).and_return(50)
       expect(subject.land(airport)).to be false
     end
 
     it 'should be in the airport it landed in' do
       allow(airport).to receive(:at_capacity?).and_return(false)
+      allow(airport).to receive(:weather).and_return(50)
       subject.land(airport)
       expect(airport.planes).to include subject
     end
 
     it 'should not be able to land if the airport is at capacity' do
       allow(airport).to receive(:at_capacity?).and_return(true)
+      allow(airport).to receive(:weather).and_return(50)
+      expect{subject.land(airport)}.to raise_error(RuntimeError)
+    end
+
+    it 'should not be able to land if the weather is stormy' do
+      allow(airport).to receive(:at_capacity?).and_return(false)
+      allow(airport).to receive(:weather).and_return(99)
       expect{subject.land(airport)}.to raise_error(RuntimeError)
     end
 
@@ -63,6 +73,7 @@ describe Plane do
 
     it 'should check whether the plane is on the ground or not' do
       allow(airport).to receive(:at_capacity?).and_return(false)
+      allow(airport).to receive(:weather).and_return(50)
       subject.land(airport)
       subject.takeoff(airport)
       expect(subject.landed?).to be false
