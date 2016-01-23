@@ -13,3 +13,6 @@ passengers
 plane             takeoff(airport), landed?
 airport
 
+USER STORY 3
+plane             takeoff(airport, weather)
+weather

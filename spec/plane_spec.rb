@@ -3,6 +3,8 @@ require 'plane'
 describe Plane do
   let(:airport) { double :airport }
   let(:airport2) { double :airport }
+  let(:weather) { double :weather, :current => "sunny"}
+  let(:weather2) { double :weather, :current => "stormy"}
 
   describe "#land" do 
     it "responds to land with 1 arg" do 
@@ -31,32 +33,33 @@ describe Plane do
 
     it "returns false if successfully taken off" do
       subject.land(airport)
-      subject.takeoff(airport)
+      subject.takeoff(airport, weather)
       expect(subject.landed).to eq false
     end
 
   end
 
   describe "#takeoff" do
-    it "responds to takeoff with 1 arg" do
-      expect(subject).to respond_to(:takeoff).with(1).arguments
+    it "responds to takeoff with 2 args" do
+      expect(subject).to respond_to(:takeoff).with(2).arguments
     end
 
-    it "takes off from the airport that it is landed at" do
-      subject.land(airport)
-      expect(subject.takeoff(airport)).to eq airport
-      end
 
     it "raises an error if already taken off" do
       subject.land(airport)
-      subject.takeoff(airport)
-      expect {subject.takeoff(airport)}.to raise_error("error: already taken off")
+      subject.takeoff(airport, weather)
+      expect {subject.takeoff(airport, weather)}.to raise_error("error: already taken off")
     end
 
     it "raises an error if told to take off from wrong airport" do
       subject.land(airport)
-      expect {subject.takeoff(airport2)}.to raise_error("error: cannot take off from a different airport")
+      expect {subject.takeoff(airport2, weather)}.to raise_error("error: cannot take off from a different airport")
 
+    end
+
+    it "can't take off if the weather is stormy" do
+      subject.land(airport)
+      expect {subject.takeoff(airport, weather2)}.to raise_error("error: cannot take off when weather is stormy")
     end
   end
 end
