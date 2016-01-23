@@ -2,17 +2,11 @@ require 'plane'
 
 describe Plane do
 
-  describe '#instruct_to_land' do
-    it "respond to instruct_to_land" do
-      plane = Plane.new
-      expect(plane).to respond_to :instruct_to_land
-    end
-  end
+  let(:plane) { Plane.new }
 
-  describe '#has_landed' do
-    it "respond to has_landed" do
-      plane = Plane.new
-      expect(plane).to respond_to :has_landed
+  describe '#land_at' do
+    it "respond to instruct_to_land with 1 argument" do
+      expect(plane).to respond_to(:land_at).with(1).argument
     end
   end
 

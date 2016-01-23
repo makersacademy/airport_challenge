@@ -1,8 +1,4 @@
 Objects                   Messages
 air traffic controller
-plane                     landed
-airport                   instruct_to_land
-
-
-plane <- instruct_to_land <- airport
-      ->    landed        ->
+airport                   has_landed
+plane                     land_at
