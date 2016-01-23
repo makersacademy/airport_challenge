@@ -1,17 +1,16 @@
 
 class Airplane
-  attr_reader :name_or_number, :flying
+  attr_reader :flying
 
-  def initialize(name_or_number)
-    @name_or_number = name_or_number
+  def initialize
     @flying = true
   end
 
-  def plane_land
+  def plane_landed
     @flying = false
   end
 
-  def plane_take_off
+  def plane_taken_off
     @flying = true
   end
 end

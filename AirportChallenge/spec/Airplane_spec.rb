@@ -3,22 +3,25 @@ require 'airplane'
 describe 'airplane' do
 
   before(:example) do
-    @airplane = Airplane.new("airplane")
+    @airplane = Airplane.new
   end
 
-  it 'flying = true' do
-    expect(@airplane.flying).to eq(true)
+  describe 'flying' do
+    it 'plane flyyyyy' do
+      @airplane.plane_landed
+      @airplane.plane_taken_off
+      expect(@airplane.flying).to eq(true)
+    end
+
+    it 'flying = true' do
+      expect(@airplane.flying).to eq(true)
+    end
   end
 
-  it 'plane lands' do
-    @airplane.plane_land
-    expect(@airplane.flying).to eq(false)
-  end
-
-
-  it 'plane flyyyyy' do
-    @airplane.plane_land
-    @airplane.plane_take_off
-    expect(@airplane.flying).to eq(true)
+  describe 'landing' do
+    it 'plane lands' do
+      @airplane.plane_landed
+      expect(@airplane.flying).to eq(false)
+    end
   end
 end
