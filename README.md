@@ -1,23 +1,10 @@
-Airport Challenge
+Russell Vaughan - Airport Challenge
 =================
 
-Instructions
----------
+Learning Objectives:
+---------------------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+The purpose of this challenge is to expand on the learnings from the Boris Bikes challenge. At the heart those challenges was learning Test Driven Development and Effective Pairing, although this challenge will be undertaken solely by me.
 
 Task
 -----
@@ -50,15 +37,14 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Create a set of classes modules for the above user stories.
+Use Random number generator to set the weather.
+Use a stub to override random ewather to ensure consitent test behaviour
+defend edge cases (planes can only take off from aiports that they are in, planes that are already flying cannot take off or be in an aiport, planes that are landed cannot land again and must be in an aiport)
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+----------------------------
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
+Expectations:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
