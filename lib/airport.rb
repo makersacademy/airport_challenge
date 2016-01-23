@@ -20,11 +20,12 @@ class Airport
   def land(plane)
     raise "This airport is full!" if full?
     @planes << plane
-    @planes.flatten
+    "#{plane} has landed."
   end
 
   def take_off(plane)
-    @planes.pop
+    @planes.delete(plane)
+    "#{plane} has taken off."
   end
 
   private
