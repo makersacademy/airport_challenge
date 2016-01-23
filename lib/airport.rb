@@ -6,8 +6,12 @@ class Airport
     @landed_planes = []
   end
 
-  def plane_lands(plane)
-    @landed_planes << plane
+  def clearance?
+    true
   end
+
+  # def plane_lands(plane)
+  #   @landed_planes << plane
+  # end
 
 end
