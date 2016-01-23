@@ -6,8 +6,12 @@ class Plane
     @airborne = false
   end
 
-  def takeoff
+  def takeoff(airport)
     @airborne = true
+  end
+
+  def land(airport)
+    @airborne = false
   end
 
 end
