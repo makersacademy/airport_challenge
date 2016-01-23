@@ -9,6 +9,7 @@ class Plane
   end
 
   def takeoff(airport)
+    fail "Weather is too stormy!" if airport.weather_conditions > 85
     airport.planes.delete(self)
     self
     @airborne = true

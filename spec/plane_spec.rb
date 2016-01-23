@@ -21,6 +21,7 @@ describe Plane do
     let(:airport) { double(:airport, :planes => []) }
 
     it 'should be able to be airborne' do
+      allow(airport).to receive(:weather_conditions).and_return(50)
       expect(subject.takeoff(airport)).to be_truthy
     end
 
@@ -30,6 +31,12 @@ describe Plane do
       subject.land(airport)
       subject.takeoff(airport)
       expect(airport.planes).not_to include subject
+    end
+
+    it 'should not be able to take off if the weather is stormy' do
+      allow(airport).to receive(:at_capacity?).and_return(false)
+      allow(airport).to receive(:weather_conditions).and_return(99)
+      expect{subject.takeoff(airport)}.to raise_error(RuntimeError)
     end
 
   end
@@ -66,12 +73,15 @@ describe Plane do
       expect{subject.land(airport)}.to raise_error(RuntimeError)
     end
 
-    let(:airport) { double(:airport, :planes => [subject]) }
+    let(:airport_2) { double(:airport, :planes => []) }
 
     it 'should not be able to land if it\'s already in an airport' do
       allow(airport).to receive(:at_capacity?).and_return(false)
-      allow(airport).to receive(:weather_conditions).and_return(99)
-      expect{subject.land(airport)}.to raise_error(RuntimeError)
+      allow(airport).to receive(:weather_conditions).and_return(50)
+      allow(airport_2).to receive(:at_capacity?).and_return(false)
+      allow(airport_2).to receive(:weather_conditions).and_return(50)
+      subject.land(airport)
+      expect{subject.land(airport_2)}.to raise_error(RuntimeError)
     end
 
   end
