@@ -13,6 +13,7 @@ class Airport
   end
 
   def clear_to_takeoff
+    raise 'There are no planes at the airport' if landed_planes.empty?
     @landed_planes.pop
   end
 end
