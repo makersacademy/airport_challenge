@@ -30,7 +30,14 @@ it { is_expected.to respond_to :stormy?  }
 	plane = double(:plane)
 	subject.land(plane)
 	allow(subject).to receive(:stormy?) {true}
-	expect{subject.depart(plane)}.to raise_error("unsafe flying conditions")
+	expect{subject.depart(plane)}.to raise_error("unsafe flying conditions to depart")
+	end
+
+	it "raises an error when plans try to land and its stormy" do
+	plane = double(:plane)
+	subject.land(plane)
+	allow(subject).to receive(:stormy?) {true}
+	expect{subject.land(plane)}.to raise_error("unsafe flying conditions to land")
 	end
 
 end

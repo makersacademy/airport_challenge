@@ -6,11 +6,12 @@ class Airport
 	end
 
 	def land(plane)
+	raise "unsafe flying conditions to land" if stormy?
 	@planes << plane	
 	end
 
 	def depart(plane)
-	raise "unsafe flying conditions" if stormy?	
+	raise "unsafe flying conditions to depart" if stormy?	
 	@planes.delete(plane)	
 	end
 
