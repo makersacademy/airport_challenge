@@ -13,14 +13,14 @@ class Airport
   end
 
   def land(plane)
-    raise 'Landing is not allowed in stormy weather' if stormy?
-    raise 'Landing is not permitted as airport is full' if full?
+    fail 'Landing is not allowed in stormy weather' if stormy?
+    fail 'Landing is not permitted as airport is full' if full?
     plane.to_land
     planes << plane
   end
 
   def take_off(specific_plane)
-    raise 'Take-off is not allowed in stormy weather' if stormy?
+    fail 'Take-off is not allowed in stormy weather' if stormy?
     departing = planes.select{|plane| plane == specific_plane}
     planes.select!{|plane| plane != specific_plane}
     departing[0].took_off
@@ -37,7 +37,7 @@ class Airport
 
 
   def change_capacity(new_capacity)
-    raise 'New capacity is lower than number of planes in airport' if new_capacity < planes.length
+    fail 'Number of planes is higher than new capacity' if new_capacity < planes.length
     @capacity = new_capacity
   end
 

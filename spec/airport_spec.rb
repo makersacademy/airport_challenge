@@ -22,7 +22,7 @@ describe Airport do
       allow(plane).to receive(:to_land)
       nr = rand(0..100)
       subject = Airport.new nr
-      allow(subject).to receive(:stormy?) { false }
+      allow(subject).to receive(:stormy?) {false}
       nr.times{subject.land(plane)}
       msg = 'Landing is not permitted as airport is full'
       expect{subject.land(plane)}.to raise_error msg
@@ -34,18 +34,16 @@ describe Airport do
         subject = Airport.new 30
         subject.change_capacity(50)
         expect(subject.capacity).to eq(50)
-      end
+    end
 
     it 'cannot change capacity if new capacity is lower than num of planes' do
       allow(plane).to receive(:to_land)
       subject = Airport.new 30
-      allow(subject).to receive(:stormy?) { false }
+      allow(subject).to receive(:stormy?) {false}
       30.times{subject.land(plane)}
       msg = 'New capacity is lower than number of planes in airport'
       expect{subject.change_capacity(20)}.to raise_error msg
-
     end
-
   end
 
   context 'landing a plane' do
@@ -85,7 +83,6 @@ describe Airport do
       msg = 'Landing is not permitted as airport is full'
       expect{subject.land(plane)}.to raise_error msg
     end
-
   end
 
   context 'take-off' do
@@ -93,9 +90,8 @@ describe Airport do
       allow(plane).to receive(:to_land)
       allow(plane).to receive(:take_off)
       allow(plane).to receive(:took_off)
-      allow(subject).to receive(:stormy?) { false }
+      allow(subject).to receive(:stormy?) {false}
       subject.land(plane)
-
     end
 
     it 'instructs plane to take_off' do
@@ -123,10 +119,9 @@ describe Airport do
     end
 
     it 'plane is prevented from taking off in stormy weather' do
-      allow(subject).to receive(:stormy?) { true }
+      allow(subject).to receive(:stormy?) {true}
       expect{subject.take_off(plane)}.to raise_error('Take-off is not allowed in stormy weather')
     end
-
   end
 
   context 'weater' do
@@ -136,7 +131,4 @@ describe Airport do
     it 'can be not stormy' do
     end
   end
-
-
-
 end
