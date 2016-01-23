@@ -1,7 +1,10 @@
 class Airport
-  def initialize
+  def initialize(capacity=10)
     @planes = []
+    @capacity = capacity
   end
+
+  attr_reader :capacity
 
   def land(plane)
     raise "This airport is full" if planes.length >= 10

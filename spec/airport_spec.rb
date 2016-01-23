@@ -44,4 +44,13 @@ describe Airport do
     10.times { airport.land(Plane.new) }
     expect { airport.land(Plane.new) }.to raise_error "This airport is full"
   end
+
+  it "has a default capacity" do
+    expect(airport.capacity).to eq 10
+  end
+
+  it "can have capacity set when airport created" do
+    airport_2 = Airport.new(15)
+    expect(airport_2.capacity).to eq 15
+  end
 end
