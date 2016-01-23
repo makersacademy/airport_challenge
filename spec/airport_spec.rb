@@ -15,6 +15,13 @@ describe Airport do
       expect(subject.landed_planes).to include plane
     end
   end
+
+  describe 'clear_to_takeoff' do
+    it 'instructs a plane to takeoff' do
+      subject.clear_to_takeoff(plane)
+      expect(subject.landed_planes).not_to include plane
+    end
+  end
 end
 
 
