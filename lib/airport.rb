@@ -19,4 +19,8 @@ class Airport
     @landed_planes << plane
   end
 
+  def reset_clearance
+    @landed_planes.each {|plane| plane.request_clearance(self)}
+  end
+
 end

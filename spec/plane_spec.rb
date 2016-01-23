@@ -15,6 +15,13 @@ describe Plane do
       subject.request_clearance(airport)
       expect(subject.clearance).to eq true
     end
+
+    it 'resets clearance to false if clearance is currently true' do
+      allow(airport).to receive(:clearance?).and_return(true)
+      subject.request_clearance(airport)
+      subject.request_clearance(airport)
+      expect(subject.clearance).to eq false
+    end
   end
 
 end
