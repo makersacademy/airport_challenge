@@ -22,7 +22,7 @@ describe "airport" do
 
   describe 'capacity' do
     it "can set capacity when set_capacity is called" do
-      expect(@airport.set_capacity(100)).to eq(100)
+      expect(@airport.assign_capacity(100)).to eq(100)
     end
   end
 
@@ -35,7 +35,7 @@ describe "airport" do
 
     it "plane can take off" do
       @airport.tell_to_take_off(@airplane)
-      expect(@airport.planes_at_airport).to eq([])
+      expect(@airport.planes_at_airport).to eq []
     end
   end
 

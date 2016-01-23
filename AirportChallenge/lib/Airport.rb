@@ -40,7 +40,7 @@ class Airport
     end
   end
 
-  def set_capacity(cap)
+  def assign_capacity(cap)
     airport_capacity = cap
     if cap_used > airport_capacity
       airport_capacity = 0
