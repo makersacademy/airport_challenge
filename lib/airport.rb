@@ -26,12 +26,9 @@ class Airport
   def takeoff(plane)
     fail "Can't take off now, it's stormy" if weather_status == "stormy"
     fail "This plane is already flying" if plane.status == "flying"
-    if @planes.include?(plane)
-      plane.fly
-      @planes.reject {|p| p == plane}
-    else
-      fail "This plane doesn't exist here"
-    end
+    fail "This plane doesn't exist here" if !(@planes.include?(plane))
+    plane.fly
+    @planes.reject {|p| p == plane}
     plane
   end
 
