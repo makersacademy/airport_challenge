@@ -1,6 +1,7 @@
-require "./lib/Air_traffic_controller.rb"
+require "./lib/air_traffic_controller.rb"
 
 describe Airport do
+  subject(:airport) { described_class.new }
 
   describe "#defult maximum capacity" do
     let(:plane) {double :plane}

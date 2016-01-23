@@ -1,6 +1,7 @@
-require "./lib/Plane.rb"
+require "./lib/plane.rb"
 
 describe Plane do
+  subject(:plane) { described_class.new }
 
   describe "#landing" do
 
