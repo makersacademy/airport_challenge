@@ -15,8 +15,8 @@ describe Plane do
     end
     
     it "can't land in stormy weather" do
-      subject.take_off(leave)
       stormy_landing = double(landed: "It is too stormy to land now.")
+      subject.take_off(leave)
       expect(subject.land(stormy_landing)).to eq 'It is too stormy to land now.'
     end
     
