@@ -8,6 +8,13 @@ describe Airport do
       expect(subject.clear_to_land(plane)).to include plane
     end
   end
+
+  describe '#landed_planes' do
+    it 'keeps track of planes that have landed at the airport' do
+      subject.clear_to_land(plane)
+      expect(subject.landed_planes).to include plane
+    end
+  end
 end
 
 

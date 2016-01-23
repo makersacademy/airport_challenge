@@ -1,10 +1,10 @@
 class Airport
 
   def initialize
-    @planes = []
+    @landed_planes = []
   end
 
   def clear_to_land(plane)
-    @planes << plane
+    @landed_planes << plane
   end
 end
