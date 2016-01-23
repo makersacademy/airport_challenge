@@ -1,6 +1,8 @@
+require 'airport'
+
 #Feature 1: Want to instruct plane to land at airport and confirm that it has landed.
 
-describe "planes can land at airport"
+describe "planes can land at airport" do
   it "can land at airport" do
     airport = Airport.new
     plane = Plane.new
