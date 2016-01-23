@@ -1,16 +1,11 @@
 
 shared_examples_for Weather do
 
-  it 'should return a random number to indicate weather conditions' do
-    expect(subject.conditions).to be_a(Integer)
-  end
+  it {is_expected.to respond_to :weather_conditions}
 
-  it 'should be a positive integer' do
-    expect(subject.conditions).to be >= 0
-  end
 
-  it 'should be an integer less than 100' do
-    expect(subject.conditions).to be <= 100
-  end
+  # it 'should return a boolean to indicate weather conditions' do
+  #   expect(subject.weather_conditions).to be_a(Boolean)
+  # end
 
 end

@@ -1,6 +1,6 @@
 
-require_relative 'plane'
 require_relative 'weather'
+require_relative 'plane'
 
 class Airport
 
@@ -15,12 +15,26 @@ class Airport
     @capacity = capacity
   end
 
+  def land_plane(plane)
+    fail "The airport is full" if at_capacity?
+    fail "The plane is already on the ground" unless plane.airborne
+    fail "It's too stormy to land" if stormy?
+    @planes << plane
+    plane.landed
+  end
+
+  def send_plane(plane)
+    fail "It's too stormy to take off" if stormy?
+    @planes.delete(plane)
+    plane.departed
+  end
+
   def at_capacity?
     @planes.count >= capacity
   end
 
-  def weather_conditions
-    conditions
+  def stormy?
+    weather_conditions
   end
 
 end
