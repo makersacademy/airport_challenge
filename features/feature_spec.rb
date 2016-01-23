@@ -12,3 +12,15 @@ describe "landing" do
     expect(plane).to be_landed
   end
 end
+
+#Feature 2: Want to instruct a plane to take-off from airport and confirm that it is no longer at airport.
+
+describe "take off" do
+  it "planes can take off from airport" do
+    airport = Airport.new
+    plane = Plane.new
+    #plane takes off
+    airport.take_off(plane)
+    expect(airport.docked(plane)).to eq false
+  end
+end
