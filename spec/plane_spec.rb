@@ -9,4 +9,10 @@ describe Plane do
     expect(subject.status).to eq "arrived"
   end
 
+  it 'shows status of taken off plane to be departed' do
+    airport = Airport.new
+    airport.land subject
+    airport.takeoff subject
+    expect(subject.status).to eq "departed"
+  end
 end

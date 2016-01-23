@@ -11,6 +11,7 @@ class Airport
 
   def takeoff(plane)
     fail 'Plane is not at this airport.' unless @plane
+    plane.departed
     @plane = nil
     plane
   end
