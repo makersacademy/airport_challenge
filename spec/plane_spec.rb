@@ -1,8 +1,8 @@
 require 'plane'
 
 describe Plane do
-  let(:weather) { double :weather, :current => "sunny"}
-  let(:weather2) { double :weather, :current => "stormy"}
+  let(:weather) { double :weather, :condition => "sunny"}
+  let(:weather2) { double :weather, :condition => "stormy"}
   airport1 = Airport.new
   airport2 = Airport.new
 

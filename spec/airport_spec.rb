@@ -1,9 +1,9 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane}
-  
 
+  let(:weather) { double :weather, :condition => "sunny"}
+  let(:weather2) { double :weather, :condition => "stormy"}
 
   describe "#capacity" do
     it "responds to capacity method" do
@@ -21,12 +21,10 @@ describe Airport do
 
   describe "#planes" do
     it "returns array of 10 planes which have landed" do
-      allow(plane).to receive(:land).with(subject).and_return(plane)
       array = []
       10.times do
-        landed_plane = plane.land(subject)
+        landed_plane = Plane.new.land(subject, weather)
         array << landed_plane
-       subject.planes << landed_plane
       end
       expect(subject.planes).to eq array
     end
@@ -34,9 +32,8 @@ describe Airport do
 
   describe "#full" do
     it "changes airport status to full if capacity is reached" do
-      allow(plane).to receive(:land).with(subject).and_return(plane)
       subject.capacity.times do
-        subject.planes << plane.land(subject)
+        Plane.new.land(subject, weather)
       end
       expect(subject.full).to eq true
     end
