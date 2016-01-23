@@ -6,8 +6,8 @@ class Airport
 	end
 
 	def land(plane)
-
-	end
+		plane
+    end
 
 	def plane
 
