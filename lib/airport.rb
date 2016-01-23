@@ -5,7 +5,8 @@ class Airport
 
   CAPACITY = 10
 
-  def initialize
+  def initialize(capacity = CAPACITY)
+    @capacity= capacity
     @planes = []
   end
 
@@ -15,7 +16,7 @@ class Airport
   end
 
   def land(plane)
-    fail "The airport is full" if @planes.size > CAPACITY
+    fail "The airport is full" if @planes.size > @capacity
     fail "Can't land now, it's stormy!" if weather_status == "stormy"
     fail "This plane has already been landed" if plane.status == "landed"
     plane.landed
