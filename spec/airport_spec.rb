@@ -1,9 +1,11 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
+  let(:weather) { double :weather }
 
   describe '#landing' do
 
@@ -28,9 +30,19 @@ describe Airport do
     it 'confirm plane is no longer in the airport' do
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
-      # airport.land(plane)
-      # airport.take_off(plane)
+      allow(weather).to receive(:weather_conditions).and_return(5)
+      airport.land(plane)
+      airport.take_off(plane)
       expect(airport.landed_planes).not_to include plane
+    end
+
+  end
+
+  context 'bad weather' do
+
+    it 'prevents take off when weather is stormy' do
+      allow(weather).to receive(:weather_conditions).and_return(1)
+      expect{airport.take_off(plane)}.to raise_error 'Cannot take off due to stormy weather'
     end
 
   end
