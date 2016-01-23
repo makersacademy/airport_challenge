@@ -6,18 +6,25 @@ describe Airport do
   let(:weather) { double(:weather, stormy?: false) }
 
   describe '#land' do
-    it { is_expected.to respond_to(:land).with(1).argument }
+    before(:each) do
+      allow(plane).to receive(:land)
+    end
 
     it 'has the plane that is instructed to land' do
-      allow(plane).to receive(:land)
       airport.land(plane)
       expect(airport.planes).to include plane
     end
 
     it 'raises error, prevent land on stormy weather' do
       allow(weather).to receive(:stormy?).and_return(true)
-      allow(plane).to receive(:land)
       expect { airport.land(plane) }.to raise_error('Cannot land on a storm!')
+    end
+
+    it 'raises error, prevent land if it is full' do
+      airport = Airport.new(weather, 2)
+      2.times { airport.land(plane) }
+      message = 'Cannot land on full airport!'
+      expect { airport.land(plane) }.to raise_error(message)
     end
   end
 
@@ -26,8 +33,6 @@ describe Airport do
       allow(plane).to receive(:land)
       airport.land(plane)
     end
-
-    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'no longer has the plane that is instructed to take off' do
       allow(plane).to receive(:take_off)
