@@ -13,7 +13,8 @@ class Airport
 	end
 
 	def depart(plane)
-	raise "unsafe flying conditions to depart" if stormy?	
+	raise "unsafe flying conditions to depart" if stormy?
+	raise "plane can only take off from airports it is in" if @planes.include?(plane)==false
 	@planes.delete(plane)	
 	end
 

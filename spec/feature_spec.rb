@@ -64,3 +64,19 @@ describe  "default airport capacity that can be overridden" do
 	end
 end
 
+describe "planes can only take off from airports they are in" do 
+	it "allows plane to only depart from airport it is in" do  
+	airport = Airport.new
+	plane = Plane.new
+	allow(airport).to receive(:stormy?) {false}
+	expect{airport.depart(plane)}.to raise_error "plane can only take off from airports it is in"
+	end
+end
+#raise "plane can only take off from airports it is in" if airport.planes.include?(plane)
+
+
+#planes that are already flying cannot takes off and/or be in an airport; 
+#raise "plane cannot take off as already flying" if airport.planes.exclude?(plane) 
+
+#planes that are landed cannot land again and must be in an airport, etc.
+#raise "plane cannot land as already at airport" if airport.planes.include?(plane)

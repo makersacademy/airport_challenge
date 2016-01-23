@@ -56,12 +56,21 @@ it { is_expected.to respond_to :capacity }
 	end
 
 	it "#capacity can be overridden" do
-	airport = Airport.new
+	airport = described_class.new
 	plane = double(:plane)
 	airport.capacity=15
 	allow(airport).to receive(:stormy?) {false}
 	airport.capacity.times { airport.land(plane) }
 	expect{airport.land(plane)}.to raise_error("airport at capacity")
 	end
+
+
+	it "allows plane to only depart from airport it is in" do  
+	plane = Plane.new
+	airport = described_class.new
+	allow(airport).to receive(:stormy?) {false}
+	expect{airport.depart(plane)}.to raise_error "plane can only take off from airports it is in"
+	end
+
 
 end
