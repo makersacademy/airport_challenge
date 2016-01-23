@@ -1,11 +1,16 @@
 require_relative 'weather.rb'
+require_relative 'plane.rb'
 class Plane
 
   def land(airport, weather = Weather.new.check_weather)
-    if weather == "sunny"
+    if weather == "sunny" && airport.full? == false
       @landed = true
+    elsif weather == "stormy"
+      @landed = false
+      #"Weather is too bad to land"
     else
       @landed = false
+      #"The airport is full"
     end
   end
 
