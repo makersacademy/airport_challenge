@@ -4,13 +4,18 @@ describe Airport do
 
   subject(:airport){ described_class.new }
   let(:plane){ Plane.new}
+  let(:weather){ Weather.new}
 
   context "status of the airport" do
 
     it {is_expected.to respond_to :planes}
 
-    it "when initialize has no planes(planes is an empty array)" do
+    it "when initialized has no planes(planes is an empty array)" do
       expect(subject.planes).to eq []
+    end
+
+    it "when initialized the current weather is set" do
+      expect(subject.weather).to_not be_nil
     end
 
   end
@@ -35,15 +40,28 @@ describe Airport do
     it {is_expected.to respond_to :takeoff}
 
     it "- give a confirmation that particular plane took off" do
-      expect(subject.takeoff(plane)).to eq "#{plane} has taken off"
+      weather = double()
+      allow(weather).to receive(:stormy?).and_return false
+      airport = Airport.new weather
+      expect(airport.takeoff(plane)).to eq "#{plane} has taken off"
     end
 
     it "- update it's info about plane if it took off" do
+      weather = double()
+      allow(weather).to receive(:stormy?).and_return false
       plane1 = Plane.new
-      subject.land(plane)
-      subject.land(plane1)
-      subject.takeoff(plane)
-      expect(subject.planes).to eq [plane1]
+      airport = Airport.new weather
+      airport.land(plane)
+      airport.land(plane1)
+      airport.takeoff(plane)
+      expect(airport.planes).to eq [plane1]
+    end
+
+    it "- prevent plane to take off if weather is stormy" do
+      weather = double()
+      allow(weather).to receive(:stormy?).and_return true
+      airport = Airport.new weather
+      expect {airport.takeoff(plane) }.to raise_error "Storm! Takeoff is not allowed!"
     end
 
   end
