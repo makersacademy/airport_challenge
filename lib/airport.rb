@@ -10,6 +10,7 @@ class Airport
 	end
 
 	def depart(plane)
+	@planes.delete(plane)	
 	end
 
 end

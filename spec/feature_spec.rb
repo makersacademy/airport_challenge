@@ -11,6 +11,7 @@ describe 'depart plane' do
 	it 'takes off a plane' do 
 		plane = Plane.new
 		airport = Airport.new
+		airport.land(plane)
 		airport.depart(plane)
 		expect(airport.planes).not_to include plane
 	end
