@@ -41,12 +41,12 @@ describe Airport do
   end
 
   it "prevents landing when airport full" do
-    10.times { airport.land(Plane.new) }
+    Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
     expect { airport.land(Plane.new) }.to raise_error "This airport is full"
   end
 
   it "has a default capacity" do
-    expect(airport.capacity).to eq 10
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   it "can have capacity set when airport created" do
