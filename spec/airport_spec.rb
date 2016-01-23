@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new(weather) }
+  subject(:airport) { described_class.new(Airport::DEF_CAPACITY, weather) }
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather, stormy?: false) }
 
@@ -17,11 +17,12 @@ describe Airport do
 
     it 'raises error, prevent land on stormy weather' do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect { airport.land(plane) }.to raise_error('Cannot land on a storm!')
+      message = 'Cannot land on a storm!'
+      expect { airport.land(plane) }.to raise_error(message)
     end
 
     it 'raises error, prevent land if it is full' do
-      airport = Airport.new(weather, 2)
+      airport = Airport.new(2, weather)
       2.times { airport.land(plane) }
       message = 'Cannot land on full airport!'
       expect { airport.land(plane) }.to raise_error(message)
