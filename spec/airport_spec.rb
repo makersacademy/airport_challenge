@@ -10,9 +10,10 @@ describe Airport do
 
 	it {is_expected.to respond_to(:land).with(1).argument}
 
-	it 'comfirms plane has landed' do
+	it 'returns landed planes' do
 		plane = Plane.new
-		expect(subject.land(plane)).to eq(plane)
+		subject.land(plane)
+		expect(subject.plane).to eq(plane)
 	end
 
 end
