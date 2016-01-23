@@ -40,28 +40,28 @@ describe Airport do
     it {is_expected.to respond_to :takeoff}
 
     it "- give a confirmation that particular plane took off" do
-      weather = double()
+      weather = double
       allow(weather).to receive(:stormy?).and_return false
-      airport = Airport.new weather
-      expect(airport.takeoff(plane)).to eq "#{plane} has taken off"
+      port = Airport.new weather
+      expect(port.takeoff(plane)).to eq "#{plane} has taken off"
     end
 
     it "- update it's info about plane if it took off" do
-      weather = double()
+      weather = double
       allow(weather).to receive(:stormy?).and_return false
       plane1 = Plane.new
-      airport = Airport.new weather
-      airport.land(plane)
-      airport.land(plane1)
-      airport.takeoff(plane)
-      expect(airport.planes).to eq [plane1]
+      port = Airport.new weather
+      port.land(plane)
+      port.land(plane1)
+      port.takeoff(plane)
+      expect(port.planes).to eq [plane1]
     end
 
     it "- prevent plane to take off if weather is stormy" do
-      weather = double()
+      weather = double
       allow(weather).to receive(:stormy?).and_return true
-      airport = Airport.new weather
-      expect {airport.takeoff(plane) }.to raise_error "Storm! Takeoff is not allowed!"
+      port = Airport.new weather
+      expect{port.takeoff(plane)}.to raise_error "Storm!Takeoff is not allowed!"
     end
 
   end

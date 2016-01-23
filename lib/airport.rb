@@ -17,7 +17,7 @@ class Airport
   end
 
   def takeoff plane
-    raise "Storm! Takeoff is not allowed!" if weather.stormy?
+    fail "Storm!Takeoff is not allowed!" if weather.stormy?
     planes.delete(plane)
     "#{plane} has taken off"
   end
