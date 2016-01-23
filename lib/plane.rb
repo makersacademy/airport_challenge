@@ -18,14 +18,5 @@ class Plane
     airport.plane_lands(self)
   end
 
-  private
-
-  def clearance_true
-    @clearance = true
-  end
-
-  def reset_clearance
-    @clearance = false
-  end
 
 end
