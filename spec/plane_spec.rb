@@ -5,6 +5,9 @@ describe Plane do
   describe '#initialize' do
 
     it {is_expected.to respond_to(:airborne)}
+
+    let(:airport) { double(:airport)}
+
     it 'should initialize as not airborne' do
       expect(subject.airborne).to be false
     end
@@ -16,8 +19,16 @@ describe Plane do
     it {is_expected.to respond_to(:airborne)}
 
     let(:airport) { double(:airport, :planes => []) }
+
     it 'should be able to be airborne' do
       expect(subject.takeoff(airport)).to be_truthy
+    end
+
+    it 'should no longer be in the airport once it has taken off' do
+      allow(airport).to receive(:at_capacity?).and_return(false)
+      subject.land(airport)
+      subject.takeoff(airport)
+      expect(airport.planes).not_to include subject
     end
 
   end
@@ -27,15 +38,34 @@ describe Plane do
     it {is_expected.to respond_to(:airborne)}
 
     let(:airport) { double(:airport, :planes => []) }
+
     it 'should be able to land' do
+      allow(airport).to receive(:at_capacity?).and_return(false)
       expect(subject.land(airport)).to be false
     end
 
-    let(:airport) { double(:airport, :planes => []) }
-    airport = Airport.new
     it 'should be in the airport it landed in' do
+      allow(airport).to receive(:at_capacity?).and_return(false)
       subject.land(airport)
       expect(airport.planes).to include subject
+    end
+
+    it 'should not be able to land if the airport is at capacity' do
+      allow(airport).to receive(:at_capacity?).and_return(true)
+      expect{subject.land(airport)}.to raise_error(RuntimeError)
+    end
+
+  end
+
+  describe '#landed?' do
+
+    let(:airport) { double(:airport, :planes => []) }
+
+    it 'should check whether the plane is on the ground or not' do
+      allow(airport).to receive(:at_capacity?).and_return(false)
+      subject.land(airport)
+      subject.takeoff(airport)
+      expect(subject.landed?).to be false
     end
 
   end

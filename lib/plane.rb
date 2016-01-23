@@ -15,8 +15,13 @@ class Plane
   end
 
   def land(airport)
+    raise "Airport at capacity" if airport.at_capacity?
     airport.planes << self
     @airborne = false
+  end
+
+  def landed?
+    @airborne? false : true
   end
 
 end
