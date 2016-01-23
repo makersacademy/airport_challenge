@@ -15,6 +15,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail 'Cannot take off on a storm!' if @weather.stormy?
     plane.take_off
     @planes.delete(plane)
   end
