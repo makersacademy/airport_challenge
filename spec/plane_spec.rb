@@ -3,7 +3,7 @@ require 'plane.rb'
 describe Plane do
   let(:airport) { double :airport }
 
-  describe 'clearance' do
+  describe '#clearance' do
     it 'returns planes clearance' do
       expect(subject.clearance).to eq false
     end

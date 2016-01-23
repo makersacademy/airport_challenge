@@ -9,10 +9,16 @@ describe Airport do
     end
   end
   describe '#plane_lands' do
-    it 'a plane lands and it stored at the airport' do
-      pl = Plane.new
-      pl.request_clearance(subject)
+    it 'a plane lands and it is stored at the airport' do
+      # pl = Plane.new
+      # pl.request_clearance(subject)
+      landed_planes = [plane]
       expect(subject.plane_lands(plane)).to eq landed_planes
+    end
+
+    it 'returns an error if a plane does not have clearance to land' do
+      allow(plane).to receive(:clearance).and_return(false)
+      expect{subject.plane_lands(plane)}.to raise_error "Plane does not have clearance to land"
     end
   end
 
