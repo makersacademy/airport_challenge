@@ -8,4 +8,5 @@ describe Plane do
     airport.land subject
     expect(subject.status).to eq "arrived"
   end
+
 end
