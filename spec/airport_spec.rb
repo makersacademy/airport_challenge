@@ -2,11 +2,28 @@ require 'airport'
 
 describe Airport do
 
-  let(:planes) {double("planes")}
+  subject(:airport){Airport.new}
   let(:plane) {double("plane")}
 
+
   it 'allows a plane to land' do
-    expect(subject.instruct_to_land(plane)).to eq [plane]
+    airport.land(plane)
   end
+
+  it 'confirms a landed plane is there' do
+    airport.land(plane)
+    expect(airport.planes).to include plane
+  end
+
+  it "allows a plane to take off" do
+    airport.take_off(plane)
+  end
+
+  it "confirms a departed plane has departed" do
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.planes).to_not include plane
+  end
+
 
 end
