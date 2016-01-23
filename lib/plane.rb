@@ -1,8 +1,7 @@
 class Plane
 
-  message = 'Plane cannot complete action: '
-
   def land airport
+    message = 'Plane cannot complete action: '
     fail message + 'bad weather' unless airport.sunny?
     fail message + 'landing strip full' if airport.full?
     airport.land_plane self
@@ -11,8 +10,11 @@ class Plane
   end
 
   def takeoff
+    message = 'Plane cannot complete action: '
+    fail message + 'not currently at airport' if @airport.nil?
     fail message + 'bad weather' unless @airport.sunny?
     @airport.remove_plane self
+    @airport = nil
     'Plane has taken off successfully'
   end
 
