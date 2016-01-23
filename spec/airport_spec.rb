@@ -3,21 +3,6 @@ require 'airport'
 describe Airport do
   subject(:airport) { Airport.new }
   let(:plane) { double(:plane, :landed => false, :landed= => true)}
-  #redundant because this method tested in later tests
-  #it "can land a plane" do
-  #  expect(airport).to respond_to(:land).with(1).argument
-  #end
-
-  # redundant because responding to the method take-off is tested in other tests
-  #it "can have a plane take-off" do
-   # expect(airport).to respond_to(:take_off).with(1).argument
-  #end
-
-  #redundant - tested again when testing a plane can't take off twice it "can confirm a plane is no longer in the airport" do
-    # airport.land(plane)
-    # airport.take_off(plane)
-    # not testing airport. just the double expect(plane.landed).to eq false
-  #end
 
   it "can't have a plane land twice" do
     airport.land(plane)
@@ -45,10 +30,6 @@ describe Airport do
     Airport::DEFAULT_CAPACITY.times { airport.land(double(:plane, :landed => false, :landed= => false)) }
     expect { airport.land(double(:plane, :landed => false, :landed= => false))  }.to raise_error "This airport is full"
   end
-
-  #redundant test (with the default capacity constant used above) it "has a default capacity" do
-  #  expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
-  #end
 
   it "can have capacity set when airport created" do
     airport_2 = Airport.new(15)
