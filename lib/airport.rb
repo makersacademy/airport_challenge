@@ -5,15 +5,14 @@ class Airport
 
   def land(plane)
     raise "This plane has already landed." if planes.include?(plane)
+    plane.landed = true
     planes << plane
   end
 
   def take_off(plane)
     raise "This plane is not at the airport." unless planes.include?(plane)
-  end
-
-  def docked(plane)
-    false
+    planes.delete(plane)
+    plane.landed = false
   end
 
   private

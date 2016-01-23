@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { Airport.new }
-  let(:plane) {double(:plane)}
+  let(:plane) {double(:plane, :landed= => false, :landed => false) }
 
   it "can land a plane" do
     expect(airport).to respond_to(:land).with(1).argument
@@ -15,7 +15,7 @@ describe Airport do
   it "can confirm a plane is no longer in the airport" do
     airport.land(plane)
     airport.take_off(plane)
-    expect(airport.docked(plane)).to eq false
+    expect(plane.landed).to eq false
   end
 
   it "can't have a plane land twice" do
