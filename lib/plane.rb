@@ -1,7 +1,7 @@
 require_relative 'airport'
 
 class Plane
-  attr_accessor :status
+  attr_reader :status
 
   def arrived
     @status = "arrived"
