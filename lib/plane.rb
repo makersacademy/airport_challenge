@@ -4,10 +4,10 @@ class Plane
   attr_reader :status
 
   def arrived
-    @status = "arrived"
+    @status = :arrived
   end
 
   def departed
-    @status = "departed"
+    @status = :departed
   end
 end
