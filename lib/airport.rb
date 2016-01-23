@@ -1,12 +1,14 @@
 require_relative 'airplane.rb'
+require_relative 'weather.rb'
 
 class Airport
   attr_reader :planes
 
   DEFAULT_CAPACITY = 10
 
-  def initialize
+  def initialize(weather: Weather.new)
     @planes = []
+    @storm = weather.stormy?
   end
 
   def set_capacity(capacity = DEFAULT_CAPACITY)
@@ -19,6 +21,7 @@ class Airport
 
   def land(plane)
     raise "This airport is full!" if full?
+    raise "Your flight has been delayed due to a storm" if @storm
     @planes << plane
     "#{plane} has landed."
   end
@@ -29,7 +32,11 @@ class Airport
   end
 
   private
+
   def full?
     @planes.count >= set_capacity
   end
 end
+
+
+
