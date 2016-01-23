@@ -22,7 +22,7 @@ describe Airport do
     it 'removes the plane from the airport' do
       airport.land(plane)
       airport.takeoff(plane)
-      expect(airport.planes).not_to include(plane)
+      expect(airport.planes_in_airport).not_to include(plane)
     end
 
   end
