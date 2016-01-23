@@ -3,7 +3,12 @@ require_relative 'plane'
 class Airport
   attr_reader :planes
 
-  def land(plane)
+  def initialize
+    @planes = []
+  end
 
+  def land(plane)
+    plane.land
+    @planes << plane
   end
 end
