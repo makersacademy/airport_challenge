@@ -20,3 +20,7 @@ weather
 USER STORY 4
 plane             land(airport, weather)
 weather
+
+USER STORY 5
+plane
+airport           full

@@ -1,10 +1,12 @@
 require 'plane'
 
 describe Plane do
-  let(:airport) { double :airport }
-  let(:airport2) { double :airport }
+  let(:airport) { double :airport, :full => false }
+  let(:airport2) { double :airport, :full => false }
+  let(:airport3) { double :airport, :full => true}
   let(:weather) { double :weather, :current => "sunny"}
   let(:weather2) { double :weather, :current => "stormy"}
+
 
   describe "#land" do 
     it "responds to land with 2 args" do 
@@ -22,6 +24,14 @@ describe Plane do
 
     it "prevents landing when weather is stormy" do
       expect {subject.land(airport, weather2)}.to raise_error("error: cannot land when weather is stormy")
+    end
+
+    it "prevents landing when airport is full" do
+      expect {subject.land(airport3, weather)}.to raise_error("error: cannot land when airport is full")
+    end
+
+    it "prevents landing when weather is bad and airport is full" do
+      expect {subject.land(airport3, weather2)}.to raise_error("error: cannot land when weather is stormy")
     end
   end
 

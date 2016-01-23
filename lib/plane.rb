@@ -7,6 +7,7 @@ class Plane
   def land(airport, weather)
     raise "error: plane already landed" if landed
     raise "error: cannot land when weather is stormy" if weather.current == "stormy"
+    raise "error: cannot land when airport is full" if airport.full
     @landed = true
     @airport = airport
   end
