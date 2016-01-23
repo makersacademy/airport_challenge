@@ -2,7 +2,12 @@ ATC = Air Traffic Controller
 
 User Story 1
 Object            Message
+-------           --------
 ATC 
 Passengers        destination
 Plane             land
-Airport           landed?              
+Airport           landed?          
+
+User Story 2    
+Plane             take_off
+Airport           leave_gate
