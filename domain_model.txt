@@ -16,3 +16,7 @@ airport
 USER STORY 3
 plane             takeoff(airport, weather)
 weather
+
+USER STORY 4
+plane             land(airport, weather)
+weather

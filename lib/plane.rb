@@ -4,8 +4,9 @@ class Plane
     @airport
   end
 
-  def land(airport)
+  def land(airport, weather)
     raise "error: plane already landed" if landed
+    raise "error: cannot land when weather is stormy" if weather.current == "stormy"
     @landed = true
     @airport = airport
   end
