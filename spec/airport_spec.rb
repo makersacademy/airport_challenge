@@ -19,5 +19,17 @@ describe Airport do
     end
   end
 
+  describe '#departed' do
+    it "respond to departed" do
+      expect(airport).to respond_to(:departed).with(1).argument
+    end
+    it "deletes departed plane from planes when departed" do
+      airport.has_landed("plane") # must be an plane on the airport
+      old_number = airport.planes.length
+      airport.departed("plane") # using double
+      expect(airport.planes.length).to eq old_number -= 1
+    end
+  end
+
 
 end

@@ -10,4 +10,10 @@ describe Plane do
     end
   end
 
+  describe '#take_off' do
+    it "respond to take_off" do
+      expect(plane).to respond_to(:take_off).with(1).argument
+    end
+  end
+
 end
