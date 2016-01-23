@@ -40,4 +40,12 @@ describe 'prevent landing when weather is stormy' do
 end
 
 
+describe 'prevent landing when airport is full' do
+	it 'prevents landing when airport is full' do 
+		plane = Plane.new
+		airport = Airport.new
+		airport.capacity.times { airport.land(plane) }
+		expect{airport.land(plane)}.to raise_error("airport at capacity")
 
+	end
+end
