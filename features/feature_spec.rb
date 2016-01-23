@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 #Feature 1: Want to instruct plane to land at airport and confirm that it has landed.
 
