@@ -1,3 +1,5 @@
+require_relative 'airport'
+
 class Plane
 
   attr_reader :airborne
@@ -11,6 +13,7 @@ class Plane
   end
 
   def land(airport)
+    airport.planes << self
     @airborne = false
   end
 

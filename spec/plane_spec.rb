@@ -31,6 +31,13 @@ describe Plane do
       expect(subject.land(airport)).to be false
     end
 
+    let(:airport) { double(:airport, :planes => []) }
+    airport = Airport.new
+    it 'should be in the airport it landed in' do
+      subject.land(airport)
+      expect(airport.planes).to include subject
+    end
+
   end
 
 end
