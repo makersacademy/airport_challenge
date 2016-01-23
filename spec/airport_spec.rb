@@ -13,11 +13,11 @@ describe Airport do
     it 'returns landed planes' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.plane).to eq plane
+      expect(subject.planes).to eq [plane]
     end
 
     it 'raises an error when airport is full' do
-      subject.land(Plane.new)
+      20.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error 'Airport is full!'
     end
   end
@@ -33,7 +33,7 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       subject.takeoff(plane)
-      expect(subject.plane).to eq nil
+      expect(subject.planes).to eq []
     end
 
     it 'raises an error when plane is not at airport' do
