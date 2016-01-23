@@ -18,8 +18,13 @@ describe Airport do
 
   describe 'clear_to_takeoff' do
     it 'instructs a plane to takeoff and removes it from the landed planes array' do
-      subject.clear_to_takeoff(plane)
+      subject.clear_to_land(plane)
+      subject.clear_to_takeoff
       expect(subject.landed_planes).not_to include plane
+    end
+
+    it 'raises an error if there are no planes to takeoff' do
+      expect{subject.clear_to_takeoff}.to raise_error 'There are no planes at the airport'
     end
   end
 end
