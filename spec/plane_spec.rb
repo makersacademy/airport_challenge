@@ -16,4 +16,10 @@ describe Plane do
     end
   end
 
+  describe '#cleared_to_land' do
+  it 'sets planes clearance to land to true' do
+    subject.cleared_to_land
+    expect(subject.clearance?).to eq true
+    end
+  end
 end

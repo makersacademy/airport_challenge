@@ -11,4 +11,8 @@ class Plane
   def clearance?
     @clearance
   end
+
+  def cleared_to_land
+    @clearance = true
+  end
 end
