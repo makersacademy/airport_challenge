@@ -22,8 +22,7 @@ describe Airport do
       allow(subject).to receive(:weather_status).and_return("sunny")
       allow(plane).to receive(:landed).and_return("landed")
       allow(plane).to receive(:status).and_return("")
-      Airport::CAPACITY.times {subject.land(plane)}
-      subject.land(plane)
+      11.times {subject.land(plane)}
       expect {subject.land(plane)}.to raise_error("The airport is full")
     end
 
