@@ -16,7 +16,7 @@ class Airport
     @full = true if @planes_in_airport.length > @capacity
   end
 
-  def is_full?
+  def full?
     full_check
     @full
   end
