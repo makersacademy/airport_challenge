@@ -1,6 +1,6 @@
-require 'Airplane'
+require 'airplane'
 
-describe 'Airplane' do
+describe 'airplane' do
 
   before(:example) do
     @airplane = Airplane.new("airplane")

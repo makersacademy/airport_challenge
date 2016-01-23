@@ -1,30 +1,7 @@
 
-# As an air traffic controller
-# So I can get passengers to a destination
-# I want to instruct a plane to land at an airport and confirm that it has landed
-#
-# As an air traffic controller
-# So I can get passengers on the way to their destination
-# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-#
-# As an air traffic controller
-# To ensure safety
-# I want to prevent takeoff when weather is stormy
-#
-# As an air traffic controller
-# To ensure safety
-# I want to prevent landing when weather is stormy
-#
-# As an air traffic controller
-# To ensure safety
-# I want to prevent landing when the airport is full
-#
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
 
-require "Airplane"
-require "Weather"
+require "airplane"
+require "weather"
 #register which planes are in the airport
 #and when taken off, remove from airport
 #stop planes landing twice by putting into array then deleting plane
@@ -82,7 +59,8 @@ class Airport
     @airport_capacity = cap
     if @cap_used > @airport_capacity
       @airport_capacity = 0
-      "too many planes, if setting cap for new airport, please reset airport_capacity and cap_used"
+      "too many planes, if setting cap for new airport,
+       please reset airport_capacity and cap_used"
     else
       @airport_capacity = cap
     end

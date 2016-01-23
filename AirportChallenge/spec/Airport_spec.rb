@@ -1,7 +1,7 @@
-require "Airport"
-require "Airplane"
+require "airport"
+require "airplane"
 
-describe "Airport" do
+describe "airport" do
 
   before(:example) do
     @airport = Airport.new("luton")
