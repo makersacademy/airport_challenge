@@ -13,8 +13,8 @@ describe Plane do
       expect(subject).to respond_to(:land).with(2).arguments
     end
 
-    it "returns the airport object when landed" do 
-      expect(subject.land(airport, weather)).to eq airport
+    it "returns plane when plane successfully landed" do 
+      expect(subject.land(airport, weather)).to eq subject
     end
 
     it "raises an error if already landed" do
@@ -40,7 +40,7 @@ describe Plane do
       expect(subject.landed).to eq nil
     end
 
-    it "returns true after land and landed? are called" do
+    it "returns true after land and landed are called" do
       subject.land(airport, weather)
       expect(subject.landed).to eq true
     end

@@ -10,6 +10,7 @@ class Plane
     raise "error: cannot land when airport is full" if airport.full
     @landed = true
     @airport = airport
+    self
   end
 
   def takeoff(airport, weather)
@@ -17,7 +18,6 @@ class Plane
     raise "error: cannot take off from a different airport" if airport != @airport
     raise "error: cannot take off when weather is stormy" if weather.current == "stormy"
     @landed = false
-    airport
   end
 
 

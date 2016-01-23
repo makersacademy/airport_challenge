@@ -24,3 +24,6 @@ weather
 USER STORY 5
 plane
 airport           full
+
+USER STORY 6
+airport           capacity
