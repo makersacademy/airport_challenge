@@ -7,8 +7,10 @@ class Airport
 	end
 
 	def land(plane)
+	raise "plane is already landed and cannot land" if @planes.include?(plane)==true
 	raise "unsafe flying conditions to land" if stormy?
 	raise "airport at capacity" if @planes.size >=@capacity
+	plane.flying=false
 	@planes << plane	
 	end
 

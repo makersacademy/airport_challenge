@@ -11,7 +11,7 @@ it { is_expected.to respond_to :capacity }
 	
 	it '#land' do
 	airport = described_class.new
-	plane = double(:plane)
+	plane = Plane.new
 	allow(airport).to receive(:stormy?) {false}
 	airport.land(plane)
 	expect(airport.planes).to include plane
@@ -52,26 +52,26 @@ it { is_expected.to respond_to :capacity }
 	end
 
 	it "raises an error when plans try to land and its stormy" do
-	plane = double(:plane)
+	plane = Plane.new
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {true}
 	expect{airport.land(plane)}.to raise_error("unsafe flying conditions to land")
 	end
 
 	it 'prevents landing when airport is full' do 
-	plane = double(:plane)
+	plane = Plane.new
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {false}
-	airport.capacity.times { airport.land(plane) }
+	airport.capacity.times { airport.land(Plane.new) }
 	expect{airport.land(plane)}.to raise_error("airport at capacity")
 	end
 
 	it "#capacity can be overridden" do
 	airport = described_class.new
-	plane = double(:plane)
+	plane = Plane.new
 	airport.capacity=15
 	allow(airport).to receive(:stormy?) {false}
-	airport.capacity.times { airport.land(plane) }
+	airport.capacity.times { airport.land(Plane.new) }
 	expect{airport.land(plane)}.to raise_error("airport at capacity")
 	end
 
@@ -91,8 +91,15 @@ it { is_expected.to respond_to :capacity }
 	airport.land(plane)
 	allow(plane).to receive(:flying) {true}	
 	expect{airport.depart(plane)}.to raise_error "plane is already flying an cannot take off"
-	
 	end
 
+
+	it "prevents a plane from landing if already landed" do
+	plane = Plane.new
+	airport = Airport.new
+	allow(airport).to receive(:stormy?) {false}
+	airport.land(plane)
+	expect{airport.land(plane)}.to raise_error "plane is already landed and cannot land"
+	end
 
 end
