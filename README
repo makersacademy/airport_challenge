@@ -3,3 +3,8 @@ Airport Challenge Author README
 Author: arnoldmanzano
 
 #TODO add approach to solving challenge
+#Current framework so far
+Plane is a class
+Airport is a class
+Interaction between Airport and Plane are the methods on airport, taking plane as argument
+
