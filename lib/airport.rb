@@ -15,7 +15,7 @@ class Airport
   end
 
   def plane_lands(plane)
-    raise "Plane does not have clearance to land" if plane.clearance == false
+    fail "Plane does not have clearance to land" if plane.clearance == false
     @landed_planes << plane
   end
 
