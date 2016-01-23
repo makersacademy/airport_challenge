@@ -11,7 +11,7 @@ describe Airport do
   #LANDING
   describe "#land" do
     it "lands a plane and stores it in the array" do
-      allow(subject).to receive(:weather_status).and_return("sunny")
+      allow(subject).to receive(:weather_status).and_return(100)
       allow(plane).to receive(:landed).and_return("landed")
       allow(plane).to receive(:status).and_return("")
       subject.land(plane)
@@ -19,7 +19,7 @@ describe Airport do
     end
 
     it "denies landing if there are more than 10 planes" do
-      allow(subject).to receive(:weather_status).and_return("sunny")
+      allow(subject).to receive(:weather_status).and_return(100)
       allow(plane).to receive(:landed).and_return("landed")
       allow(plane).to receive(:status).and_return("")
       11.times {subject.land(plane)}
@@ -27,7 +27,7 @@ describe Airport do
     end
 
     it "denies landing if the weather is stormy" do
-      allow(subject).to receive(:weather_status).and_return("stormy")
+      allow(subject).to receive(:weather_status).and_return(10)
       expect {subject.land(plane)}.to raise_error("Can't land now, it's stormy!")
     end
 
@@ -36,7 +36,7 @@ describe Airport do
   #TAKEOFF
   describe "#takeoff" do
     it "takes off a plane and removes it from the array" do
-      allow(subject).to receive(:weather_status).and_return("sunny")
+      allow(subject).to receive(:weather_status).and_return(100)
       allow(plane).to receive(:landed).and_return("landed")
       allow(plane).to receive(:fly).and_return("flying")
       allow(plane).to receive(:status).and_return("")
@@ -45,7 +45,7 @@ describe Airport do
     end
 
     it "denies takeoff if the weather is stormy" do
-      allow(subject).to receive(:weather_status).and_return("stormy")
+      allow(subject).to receive(:weather_status).and_return(10)
       expect {subject.takeoff(plane)}.to raise_error("Can't take off now, it's stormy")
     end
 
