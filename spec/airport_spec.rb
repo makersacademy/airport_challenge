@@ -46,7 +46,7 @@ describe Airport do
 
     it "denies takeoff if the weather is stormy" do
       allow(subject).to receive(:weather_status).and_return("stormy")
-      expect {subject.takeoff(plane)}.to raise_error("Can't take off now, it's stormy")
+      expect {subject.takeoff(plane)}.to raise_error("Can't take off now, it's stormy!")
     end
 
   end

@@ -1,6 +1,9 @@
 require_relative 'plane'
+require_relative 'weather'
+require_relative 'errors'
 
 class Airport
+  include Weather, Errors
   attr_reader :planes
 
   CAPACITY = 10
@@ -16,17 +19,13 @@ class Airport
   end
 
   def land(plane)
-    fail "The airport is full" if @planes.size > @capacity
-    fail "Can't land now, it's stormy!" if weather_status == "stormy"
-    fail "This plane has already been landed" if plane.status == "landed"
+    pre_landing_checks(plane)
     plane.landed
     @planes << plane
   end
 
   def takeoff(plane)
-    fail "Can't take off now, it's stormy" if weather_status == "stormy"
-    fail "This plane is already flying" if plane.status == "flying"
-    fail "This plane doesn't exist here" unless @planes.include?(plane)
+    pre_takeoff_checks(plane)
     plane.fly
     @planes.reject {|p| p == plane}
     plane
@@ -34,10 +33,20 @@ class Airport
 
   private
 
+  def pre_takeoff_checks(plane)
+    stormy_error {"take off"} if weather_status == "stormy"
+    plane_flying_error if plane.status == "flying"
+    plane_exist_error unless @planes.include?(plane)
+  end
+
+  def pre_landing_checks(plane)
+    full_airport_error if @planes.size > @capacity
+    stormy_error {"land"} if weather_status == "stormy"
+    plane_landed_error if plane.status == "landed"
+  end
+
   def weather_status
-    weather = ["sunny","sunny","sunny","sunny","stormy",
-               "sunny","sunny","stormy","sunny","sunny"]
-    weather.sample
+    WEATHER.sample
   end
 
 end
