@@ -15,6 +15,7 @@ class Airport
   def land(plane)
     fail 'Landing is not allowed in stormy weather' if stormy?
     fail 'Landing is not permitted as airport is full' if full?
+    fail 'Only planes can land' unless plane.kind_of?(Plane)
     plane.to_land
     planes << plane
   end

@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) {double(:plane)}
-  let(:plane2) {double(:plane)}
+  let(:plane) {double(:plane, kind_of?: Plane)}
+  let(:plane2) {double(:plane, kind_of?: Plane)}
   #let(:storm_weather) {double(:weather, stormy?: true)}
   #let(:calm_weather) {double(:weather, stormy?: false)}
 
@@ -36,13 +36,15 @@ describe Airport do
         expect(subject.capacity).to eq(50)
     end
 
-    it 'cannot change capacity if new capacity is lower than num of planes' do
-      allow(plane).to receive(:to_land)
-      subject = Airport.new 30
-      allow(subject).to receive(:stormy?) {false}
-      30.times{subject.land(plane)}
-      msg = 'New capacity is lower than number of planes in airport'
-      expect{subject.change_capacity(20)}.to raise_error msg
+    context 'egde cases' do
+      it 'cannot change capacity if new capacity is lower than num of planes' do
+        allow(plane).to receive(:to_land)
+        subject = Airport.new 30
+        allow(subject).to receive(:stormy?) {false}
+        30.times{subject.land(plane)}
+        msg = 'Number of planes is higher than new capacity'
+        expect{subject.change_capacity(20)}.to raise_error msg
+      end
     end
   end
 
@@ -67,10 +69,7 @@ describe Airport do
       expect(subject.contains?(plane)).to eq true
     end
 
-    it 'will only land if it is in the air' do
-      pending('edge case')
-      edgecase
-    end
+
 
     it 'plane is prevented from landing in stormy weather' do
       allow(subject).to receive(:stormy?) { true }
@@ -82,6 +81,20 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
       msg = 'Landing is not permitted as airport is full'
       expect{subject.land(plane)}.to raise_error msg
+    end
+
+    context 'edge cases' do
+      it 'only planes can land in an airport' do
+        fake_plane = 'Plane'
+        allow(fake_plane).to receive(:to_land)
+        msg = 'Only planes can land'
+        expect{subject.land(fake_plane)}.to raise_error msg
+      end
+
+      it 'will only land if it is in the air' do
+        pending('edge case')
+        edgecase
+      end
     end
   end
 
@@ -122,13 +135,36 @@ describe Airport do
       allow(subject).to receive(:stormy?) {true}
       expect{subject.take_off(plane)}.to raise_error('Take-off is not allowed in stormy weather')
     end
+
+    context 'edge cases' do
+      it 'cannot take of if not in that airport' do
+        pending('edge')
+        tbc
+      end
+    end
   end
 
   context 'weater' do
     it 'can be stormy' do
+      test_result = false
+      300.times do
+        if subject.stormy?
+          test_result = true
+          break
+        end
+      end
+      expect(test_result).to eq(true)
     end
 
     it 'can be not stormy' do
+      test_result = false
+      300.times do
+        unless subject.stormy?
+          test_result = true
+          break
+        end
+      end
+      expect(test_result).to eq(true)
     end
   end
 end
