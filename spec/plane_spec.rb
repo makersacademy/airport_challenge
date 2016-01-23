@@ -11,6 +11,12 @@ describe Plane do
 
   context '...and those methods do what they are supposed to' do
 
+    it 'the .land method raises an error when the landing strip at the target Airport is full' do
+      allow(airport).to receive(:sunny?).and_return(true)
+      allow(airport).to receive(:full?).and_return(true)
+      expect{subject.land(airport)}.to raise_error
+    end
+
     it 'the .land method raises an error when the weather at the landing Airport is not sunny' do
       allow(airport).to receive(:sunny?).and_return(false)
       expect{subject.land(airport)}.to raise_error

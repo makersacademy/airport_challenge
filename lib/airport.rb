@@ -1,9 +1,10 @@
-require 'weather'
-
 class Airport
+
+  DEFAULT_CAPACITY = 100
+
   include Weather
 
-  def initialize capacity=100
+  def initialize capacity=DEFAULT_CAPACITY
     @capacity = capacity
     @landing_strip = []
   end
@@ -12,8 +13,12 @@ class Airport
     @capacity
   end
 
+  def full?
+    @capacity == @landing_strip.length
+  end
+
   def landing_strip
-    @landing_strip.clone # cloned for security
+    @landing_strip.clone
   end
 
   def land_plane plane
