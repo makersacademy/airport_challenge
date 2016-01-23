@@ -6,11 +6,11 @@ class Plane
   end
 
   def fly
-    @status = "flying"
+    status = "flying"
   end
 
   def landed
-    @status = "landed"
+    status = "landed"
   end
 
 end
