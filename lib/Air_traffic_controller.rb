@@ -19,7 +19,7 @@ class Air_traffic_controller
       raise "Plane cannot land, the airport is full"
     else
       plane.land
-      airport.new_plane_land(plane)
+      airport.new_plane_landed(plane)
     end
   end
 

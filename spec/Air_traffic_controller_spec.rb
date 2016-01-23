@@ -18,7 +18,7 @@ describe Air_traffic_controller do
         allow(weather).to receive(:is_bad?).and_return(false)
         allow(airport).to receive(:is_full?).and_return(false)
         allow(airport).to receive(:list_landed_planes).and_return([plane])
-        allow(airport).to receive(:new_plane_land)
+        allow(airport).to receive(:new_plane_landed)
         subject.land_plane(plane, airport, weather)
         expect(subject.landed_planes(airport)).to eq [plane]
       end
@@ -38,7 +38,7 @@ describe Air_traffic_controller do
       it "returns the list of planes in flight" do
         allow(plane).to receive(:takeoff).and_return(true)
         allow(weather).to receive(:is_bad?).and_return(false)
-        allow(airport).to receive(:list_planes_in_flight).and_return([plane])
+        #allow(airport).to receive(:list_planes_in_flight).and_return([plane])
         allow(airport).to receive(:new_plane_takeoff)
         subject.takeoff_plane(plane, airport, weather)
         subject.add_to_in_flight(plane)
@@ -69,7 +69,7 @@ describe Air_traffic_controller do
         allow(plane).to receive(:land).and_return(true)
         allow(weather).to receive(:is_bad?).and_return(true)
         #allow(airport).to receive(:is_full?).and_return(false)
-        allow(airport).to receive(:new_plane_land)
+        allow(airport).to receive(:new_plane_landed)
         expect{subject.land_plane(plane, airport, weather)}.to raise_error(RuntimeError)
       end
   end
@@ -83,7 +83,7 @@ describe Air_traffic_controller do
         allow(plane).to receive(:land).and_return(true)
         allow(weather).to receive(:is_bad?).and_return(false)
         allow(airport).to receive(:is_full?).and_return(true)
-        allow(airport).to receive(:new_plane_land)
+        allow(airport).to receive(:new_plane_landed)
         expect{subject.land_plane(plane, airport, weather)}.to raise_error(RuntimeError)
       end
   end
