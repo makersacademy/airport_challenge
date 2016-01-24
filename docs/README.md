@@ -28,6 +28,13 @@ Configuration
 
 The module has no menu or modifiable settings. There is no configuration.
 
+Directories
+###########
+
+->doc directory - contains project set up, instructions
+->lib directory - contains code (plane.rb + airport.rb)
+->spec directory - contains rspec tests (plane_spec.rb + airport_spec.rb)
+
 Copyright and Licensing
 #######################
 
