@@ -38,4 +38,11 @@ subject(:Airport) {described_class.new weather}
     expect {subject.request_land(plane)}.to raise_error("Planes cannot land as the airport is full.")
   end
 
+  it 'can override the default airport capacity' do
+    airport = Airport.new(weather,30)
+    allow(weather).to receive(:storm).and_return(false)
+    30.times {airport.request_land(plane)}
+    expect {airport.request_land(plane)}.to raise_error("Planes cannot land as the airport is full.")
+  end
+
 end
