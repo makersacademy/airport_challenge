@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   let(:plane) {double(:plane)}
@@ -19,7 +20,7 @@ describe Airport do
   end
 
   it 'prevents take off if weather is stormy' do
-    allow(subject).to receive(:weather) {:fine}
+  allow(subject).to receive(:weather) {:fine}
   subject.land(plane)
   allow(subject).to receive(:weather) {:stormy}
   expect {subject.take_off(plane)}.to raise_error('weather is stormy')

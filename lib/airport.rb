@@ -1,16 +1,18 @@
+require_relative 'plane.rb'
+require_relative 'weather.rb'
+
 class Airport
 
-attr_accessor :planes
+attr_reader :planes
 attr_reader :capacity
-WEATHER = [:fine, :cloudy, :windy, :stormy]
+
 
 DEFAULT_CAPACTITY = 20
 
 def initialize(capacity=DEFAULT_CAPACTITY)
+
   @planes = []
   @capacity = capacity
-
-
 end
 
 def land(plane)
@@ -25,14 +27,11 @@ def take_off(plane)
   planes.pop
 end
 
+private
+
 
 def at_capacity?
     planes.count == @capacity
-end
-
-
-def weather
-  WEATHER.sample
 end
 
 end
