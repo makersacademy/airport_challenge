@@ -1,5 +1,5 @@
 require 'air_traffic_control'
-require_relative 'plane_container_spec'
+require_relative './support/shared_examples_for_plane_container'
 require_relative 'weather_spec'
 
 describe AirTrafficControl do

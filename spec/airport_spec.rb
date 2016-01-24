@@ -1,5 +1,5 @@
 require 'airport'
-require_relative 'plane_container_spec'
+require_relative './support/shared_examples_for_plane_container'
 
 describe Airport do
   subject(:Airport) {described_class.new}
