@@ -21,7 +21,7 @@ describe Airport do
     it 'lands a plane and confirms landing' do
       # airport = Airport.new
       plane = Plane.new
-      allow(weather).to receive(:stormy?).and_return false
+      allow(subject).to receive(:stormy?).and_return false
       subject.land(plane)
       expect(subject.land(plane)).to eq plane
     end
@@ -30,7 +30,7 @@ describe Airport do
     it 'doesn\'t allow landing if the airport is full' do
       # airport = Airport.new
       plane = Plane.new
-      allow(weather).to receive(:stormy?).and_return false
+      allow(subject).to receive(:stormy?).and_return false
       subject.capacity.times do
         subject.land(plane)
       end
@@ -40,7 +40,7 @@ describe Airport do
     it 'doesn\'t allow landing if weather is stormy' do
       # airport = Airport
       plane = double("plane", :in_air? => true)
-      allow(weather).to receive(:stormy?).and_return true
+      allow(subject).to receive(:stormy?).and_return true
       expect{ subject.land(plane) }.to raise_error "Cannot land in stormy conditions"
     end
   end
@@ -52,17 +52,21 @@ describe Airport do
     it 'takes off a plane and confirms it is no longer in the airport' do
       # airport = Airport.new
       plane = Plane.new
-      allow(weather).to receive(:stormy?).and_return false
+      allow(subject).to receive(:stormy?).and_return false
       subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
     it 'doesn\'t allow landing if weather is stormy' do
       # airport = Airport
       plane = double("plane", :in_air? => false)
-      allow(weather).to receive(:stormy?).and_return true
+      allow(subject).to receive(:stormy?).and_return true
       expect{ subject.take_off(plane) }.to raise_error "Cannot take off in stormy conditions"
     end
     #Confirm landing? Check if plane is included in array of planes at airport
 
+    it 'doesn\'t allow a plane to take off if it is not at the airport' do
+
+
+    end
   end
 end

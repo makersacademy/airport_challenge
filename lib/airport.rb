@@ -1,9 +1,9 @@
-require_relative 'weather.rb'
+require_relative 'weather'
 
 class Airport
   attr_reader :capacity
   attr_reader :planes_landed
-  # attr_reader :weather
+  attr_reader :weather
 
   DEFAULT_CAPACITY = 20
 
@@ -21,25 +21,28 @@ class Airport
   end
 
   def land(plane)
-    fail "Cannot land in stormy conditions" if stormy?
     fail "Airport Full" if full?
+    fail "Cannot land in stormy conditions" if stormy?
     @plane = plane
     @planes_landed << plane
     puts "#{plane} has landed"
     @plane
   end
 
+  #
+
+
+
   private
 
-  attr_reader :weather
+  # attr_reader :weather
 
   def full?
     planes_landed.count >= capacity ? true : false
   end
 
   def stormy?
-    @weather.stormy?
+    Weather.new.stormy?
   end
-
 
 end
