@@ -1,11 +1,9 @@
-# require 'airport'
-
 shared_examples_for PlaneContainer do
 
 # describe PlaneContainerTest do
   subject(:PlaneContainer) {described_class.new}
 	let(:plane) { double :plane }
-  let(:control) { double :control }
+  # let(:control) { double :control }
 
   #responds to methods in module
   it { is_expected.to respond_to(:plane_in).with(1).argument }
@@ -13,7 +11,7 @@ shared_examples_for PlaneContainer do
 
   #logged into module list
   describe '#plane_in' do
-    it 'check plane in airport' do
+    it 'check plane into list' do
       subject.plane_in(plane)
       expect(subject.list_planes).to include(plane)
     end
@@ -21,19 +19,26 @@ shared_examples_for PlaneContainer do
 
   #logged out of module list
   describe '#plane_out' do
-    it 'returns plane removed from airport' do
+    it 'returns plane removed from list' do
       subject.plane_in(plane)
       expect(subject.plane_out(plane)).to eq plane
     end
   end
 
   describe '#plane_out' do
-    it 'check plane no longer at airport' do
+    it 'check plane no longer in list' do
       subject.plane_in(plane)
       subject.plane_out(plane)
       expect(subject.list_planes).not_to include(plane)
     end
   end
+
+  # describe 'list_planes' do
+  #   it 'list contains planes' do
+  #     subject.plane_in(plane)
+  #     expect(subject.list_planes.last).to be_an_instance_of Airplane
+  #   end
+  # end
 
   describe '#initialize' do
     it 'has a default capacity when initialized' do

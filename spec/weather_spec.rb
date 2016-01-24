@@ -1,6 +1,6 @@
 require 'weather'
 
-shared_examples_for Weather do
+describe Weather do
   subject(:Weather) {described_class.new}
 
   it 'should return both true and false' do

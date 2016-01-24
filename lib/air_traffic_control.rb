@@ -4,7 +4,7 @@ require_relative 'weather'
 require_relative 'plane_container'
 
 class AirTrafficControl
-  include Weather
+  # include Weather
   include PlaneContainer
 
   DEFAULT_CAPACITY = 500
@@ -23,7 +23,7 @@ class AirTrafficControl
 
   def instruct_land(plane, airport)
     raise 'Plane already landed' if airplane_status_check(plane, true)
-    raise 'Too stormy to land' if stormy?
+    raise 'Too stormy to land' if bad_weather?
     raise 'Airport is full' if airport.full?
     airport.land(plane)
     # plane.report_landed(airport)
@@ -34,7 +34,7 @@ class AirTrafficControl
   def instruct_takeoff(plane, airport)
     raise 'Plane already inflight' if airplane_status_check(plane,false)
     raise 'Plane is not located here' if airport_match(plane, airport) == false
-    raise 'Too stormy to take-off' if stormy?
+    raise 'Too stormy to take-off' if bad_weather?
     airport.takeoff(plane)
     # plane.report_inflight
     # @inflight << plane
@@ -51,5 +51,8 @@ class AirTrafficControl
     plane.landed == status
   end
 
+  def bad_weather?
+    Weather.new.stormy?
+  end
 
 end

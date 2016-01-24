@@ -1,4 +1,3 @@
-
 class Airplane
   attr_reader :landed, :plane, :location
 
