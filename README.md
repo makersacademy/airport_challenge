@@ -4,7 +4,7 @@ Airport Challenge
 Makers Academy weekend challenge 1 - 24 Jan 2016
 ------------------------------------------------
 
-https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 Includes: gems, ruby classes & rspec unit tests
 
 Requirements:
