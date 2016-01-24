@@ -2,15 +2,15 @@ require 'airport'
 
 describe Airport do
 
-  let(:weather) { double :weather, :condition => "sunny"}
-  let(:weather2) { double :weather, :condition => "stormy"}
+  let(:weather) { double :weather, condition: "sunny"}
+  let(:weather2) { double :weather, condition: "stormy"}
 
   describe "#capacity" do
     it "responds to capacity method" do
       expect(subject).to respond_to(:capacity)
     end
 
-    it "tests that the default capacity is set to #{Airport::DEFAULT_CAPACITY}" do 
+    it "tests default capacity is set to #{Airport::DEFAULT_CAPACITY}" do 
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
 
