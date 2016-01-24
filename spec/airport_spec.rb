@@ -80,7 +80,7 @@ describe Airport do
 
   describe '#confirm_landed' do
     it 'accepts a plane and confirms if it has landed' do
-      allow(plane).to receive(:landed?) {true}
+      allow(plane).to receive(:landed) {true}
       expect(airport.confirm_landed(plane)).to eq true
     end
   end

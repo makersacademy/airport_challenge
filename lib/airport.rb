@@ -31,7 +31,7 @@ class Airport
   end
 
   def confirm_landed(plane)
-    plane.landed?
+    plane.landed
   end
 
   def stormy?
