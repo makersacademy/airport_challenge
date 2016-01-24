@@ -2,9 +2,13 @@ require 'plane'
 
 describe Plane do
 
+  subject(:plane) { described_class.new }
+
   describe '#initialize' do
 
-    it {is_expected.to respond_to :airborne}
+    it 'initializes as airborne' do
+      expect(subject.airborne).to eq true
+    end
 
   end
 

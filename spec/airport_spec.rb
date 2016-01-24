@@ -2,10 +2,9 @@ require 'airport'
 
 describe Airport do
 
-  describe '#initialize' do
+  subject(:airport) { described_class.new }
 
-    it {is_expected.to respond_to :planes}
-    it {is_expected.to respond_to :capacity}
+  describe '#initialize' do
 
     it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -34,16 +33,14 @@ describe Airport do
       allow(airport).to receive(:stormy?).and_return(false)
     end
 
-    it {is_expected.to respond_to :land_plane}
-
     it 'will add a plane to its array' do
-      airport.land_plane(plane_1)
-      expect(airport.planes).to include plane_1
+      subject.land_plane(plane_1)
+      expect(subject.planes).to include plane_1
     end
 
     it 'will not land a plane if the weather is stormy' do
-      allow(airport).to receive(:stormy?).and_return(true)
-      expect{airport.land_plane(plane_1)}.to raise_error(RuntimeError)
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect{subject.land_plane(plane_1)}.to raise_error(RuntimeError)
     end
 
     it 'will not land a plane if the airport is full' do
@@ -54,7 +51,7 @@ describe Airport do
 
     it 'will not land a grounded plane' do
       allow(plane_1).to receive(:airborne).and_return(false)
-      expect{airport.land_plane(plane_1)}.to raise_error(RuntimeError)
+      expect{subject.land_plane(plane_1)}.to raise_error(RuntimeError)
     end
 
   end
@@ -68,8 +65,6 @@ describe Airport do
       allow(plane).to receive(:landed)
       allow(plane).to receive(:departed)
     end
-
-    it {is_expected.to respond_to :send_plane}
 
     it 'will allow a plane to take off' do
       allow(plane).to receive(:airborne).and_return true
@@ -101,8 +96,6 @@ describe Airport do
       allow(plane_2).to receive(:landed)
     end
 
-    it {is_expected.to respond_to :at_capacity?}
-
     it 'returns true if the airport is at capacity' do
       airport.land_plane(plane_1)
       airport.land_plane(plane_2)
@@ -112,22 +105,6 @@ describe Airport do
     it 'returns false if the airport is not at capacity' do
       airport.land_plane(plane_1)
       expect(airport.at_capacity?).to be false
-    end
-
-  end
-
-  describe 'stormy?' do
-
-    it {is_expected.to respond_to :stormy?}
-
-    it 'returns false if the weather is not stormy' do
-      allow(subject).to receive(:stormy?).and_return(false)
-      expect(subject.stormy?).to be false
-    end
-
-    it 'returns true if the weather is stormy' do
-      allow(subject).to receive(:stormy?).and_return(true)
-      expect(subject.stormy?).to be true
     end
 
   end
