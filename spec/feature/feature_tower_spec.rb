@@ -3,9 +3,9 @@ require 'control_tower'
 
 describe "Feature Tests - " do
   
-  before(:all) do 
+  before(:each) do 
     @tower = ControlTower.new
-    @plane = Plane.new
+    @plane_test = Plane.new
     @stansted = Airport.new "Stansted"
     @heatrow = Airport.new "Heatrow"
   end
@@ -13,14 +13,21 @@ describe "Feature Tests - " do
   describe 'Control Tower:' do
   
   it "Instructs a plane to land at an airport" do
-    @tower.take_off(@plane, @heatrow)
-    expect(@tower.land(@plane, @stansted)).to include("Stansted")
+    
+    allow(@stansted).to receive(:clear?) {true}
+    allow(@heatrow).to receive(:clear?) {true}
+    @plane_test.dock(@heatrow)
+    @tower.take_off(@plane_test, @heatrow)
+    expect(@tower.land(@plane_test, @stansted)).to eq "737-1 landed in Stansted"
   end
   
   it "Instructs a plane to take-off from an airport" do
-    expect(@tower.take_off(@plane, @heatrow)).to include("Heatrow")
+    allow(@heatrow).to receive(:clear?) {true}
+    allow(@plane_test).to receive(:name) {"737-1"}
+    @plane_test.dock(@heatrow)
+    expect(@tower.take_off(@plane_test, @heatrow)).to eq "737-1 took-off from Heatrow"
   end
-end
+ end
   
   describe "Airport: " do
     

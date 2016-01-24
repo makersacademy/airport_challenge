@@ -32,12 +32,14 @@ describe ControlTower do
     allow(@heatrow).to receive(:check_weather).and_return(:stormy)
     allow(@heatrow).to receive(:clear?).and_return(false)
     allow(@heatrow).to receive(:name).and_return("Heatrow")
+    allow(@heatrow).to receive(:planes).and_return([@plane])
     expect(@tower.take_off(@plane, @heatrow)).to eq "Cannot operate in Heatrow, stormy weather"
   end
   
   it "Does not clear for landing in stormy weather" do
     allow(@heatrow).to receive(:check_weather).and_return(:stormy)
     allow(@heatrow).to receive(:clear?).and_return(false)
+    allow(@plane).to receive(:flying).and_return(true)
     allow(@heatrow).to receive(:name).and_return("Heatrow")
     allow(@heatrow).to receive(:full?).and_return(false)
     expect(@tower.land(@plane, @heatrow)).to eq "Cannot operate in Heatrow, stormy weather"
@@ -57,6 +59,7 @@ describe ControlTower do
       allow(@heatrow).to receive(:check_weather).and_return(:rainy)
       expect(@heatrow.check_weather).to be_a Symbol
     end
+    
   end
   
   describe "#land" do
@@ -64,6 +67,14 @@ describe ControlTower do
     it "receives information about the weather" do
       allow(@heatrow).to receive(:check_weather).and_return(:rainy)
       expect(@heatrow.check_weather).to be_a Symbol
+    end
+    
+    it "cannot be instructed if a plane is not flying" do
+      allow(@heatrow).to receive(:check_weather).and_return(:rainy)
+      allow(@heatrow).to receive(:full?).and_return(false)
+      allow(@heatrow).to receive(:name).and_return("Heatrow")
+      expect(@tower.land(@plane, @heatrow)).to eq "737-11 is not flying" 
+      
     end
   end
   

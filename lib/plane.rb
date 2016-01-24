@@ -1,3 +1,4 @@
+require "./lib/airport.rb"
 
 class Plane
   
@@ -12,6 +13,9 @@ class Plane
     @@total_planes += 1
   end
   
-  
+
+   def dock(airport)
+     airport.planes << self
+   end
   
 end
