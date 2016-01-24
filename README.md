@@ -1,4 +1,4 @@
-Airport - Controlling the flow of planes: V1.0.1 [![Build Status](https://travis-ci.org/MatDrake/airport_challenge.svg?branch=master)](https://travis-ci.org/MatDrake/airport_challenge)
+Airport - Controlling the flow of planes: V1.0.4 [![Build Status](https://travis-ci.org/MatDrake/airport_challenge.svg?branch=master)](https://travis-ci.org/MatDrake/airport_challenge)
 
 Author: Mat Drake
 
