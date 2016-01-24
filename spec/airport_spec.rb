@@ -40,6 +40,12 @@ describe Airport do
     end
   end
 
+  describe '#stormy?' do
+    it 'randomly returns true or false if the weather is stormy' do
+      airport = double(:airport, stormy?: true)
+      expect(airport.stormy?).to eq true
+    end
+  end
 
 
 

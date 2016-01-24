@@ -24,6 +24,10 @@ class Airport
     plane.landed?
   end
 
+  def stormy?
+    @number = rand(1..13)
+    @number == 13 ? true:false
+  end
 
 
 
