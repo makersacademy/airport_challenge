@@ -1,5 +1,9 @@
-# require 'airport'
+require 'airport'
 
-# describe airport do 
+describe Airport do 
 
-# end
+	it 'returns an instance of airport' do
+		airport = Airport.new
+		expect(airport).to be_a(Airport)
+	end
+end
