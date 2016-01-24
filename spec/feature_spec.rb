@@ -55,13 +55,13 @@ describe 'prevent landing when airport is full' do
 	end
 end
 
-describe  "default airport capacity that can be overridden" do 
-	it "allows default airport capacity that can be overridden" do
+describe  "allows capacity that can be overridden" do 
+	it "allows capacity that can be overridden" do
 	airport = Airport.new
 	plane = Plane.new 
 	airport.capacity=15
 	allow(airport).to receive(:stormy?) {false}
-	airport.capacity.times { airport.land (Plane.new) }
+	airport.capacity.times { airport.land Plane.new }
 	expect{airport.land(plane)}.to raise_error("airport at capacity")
 	end
 end
