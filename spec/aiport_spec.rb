@@ -23,12 +23,12 @@ describe Airport do
     expect(airport.capacity).to eq(new_capacity)
   end
 
-  it 'can respond to \'landed_planes\' method' do
-    expect(subject).to respond_to(:landed_planes)
+  it 'has an array to store planes' do
+    expect(subject.instance_variable_get(:@stored_planes)).to be_a(Array)
   end
 
-  # it 'can store Planes' do
-  #
-  # end
+  it 'can display stored planes array' do
+    expect(subject.instance_variable_get(:@stored_planes)).to eq(subject.stored_planes)
+  end
 
 end
