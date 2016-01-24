@@ -1,7 +1,7 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :planes, :capacity
+  attr_reader :capacity
   #attr_accessor :capacity
 
   DEFAULT_CAPACITY = 50
@@ -20,7 +20,7 @@ class Airport
     planes << plane
   end
 
-  def take_off(specific_plane) #refractor!!
+  def take_off(specific_plane)
     fail 'Take-off is not allowed in stormy weather' if stormy?
     fail 'Plane not at airport' unless contains?(specific_plane)
     specific_plane.take_off
@@ -42,10 +42,11 @@ class Airport
 
   private
 
+  attr_reader :planes
+
   def full?
     planes.length >= capacity
   end
-
 
 
 end

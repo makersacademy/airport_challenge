@@ -59,12 +59,12 @@ describe Airport do
 
     it 'lands a plane' do
       subject.land(plane)
-      expect(subject.planes).to include plane
+      expect(subject.contains?(plane)).to be true
     end
 
     it 'confirms that plane is at airport' do
       subject.land(plane)
-      expect(subject.contains?(plane)).to eq true
+      expect(subject.contains?(plane)).to be true
     end
 
     it 'plane is prevented from landing in stormy weather' do
@@ -105,21 +105,21 @@ describe Airport do
 
     it 'plane not at airport after takeoff' do
       subject.take_off(plane)
-      expect(subject.planes).not_to include plane
+      expect(subject.contains?(plane)).to be false
     end
 
     it 'a specific plane takes-off' do
       allow(plane2).to receive(:to_land)
       subject.land(plane2)
       subject.take_off(plane)
-      expect(subject.planes).not_to include plane
+      expect(subject.contains?(plane)).to be false
     end
 
     it 'confirmed that specific plane is not at airport' do
       allow(plane2).to receive(:to_land)
       subject.land(plane2)
       subject.take_off(plane)
-      expect(subject.contains?(plane)).to eq false
+      expect(subject.contains?(plane)).to be false
     end
 
     it 'plane is prevented from taking off in stormy weather' do
@@ -130,7 +130,9 @@ describe Airport do
     context 'edge cases' do
       it 'cannot take of if not in that airport' do
         heath = Airport.new
+        allow(heath).to receive(:stormy?) {false}
         gat = Airport.new
+        allow(gat).to receive(:stormy?) {false}
         heath.land(plane)
         expect{gat.take_off(plane)}.to raise_error('Plane not at airport')
       end
@@ -146,7 +148,7 @@ describe Airport do
           break
         end
       end
-      expect(test_result).to eq(true)
+      expect(test_result).to be true
     end
 
     it 'can be not stormy' do
@@ -157,7 +159,7 @@ describe Airport do
           break
         end
       end
-      expect(test_result).to eq(true)
+      expect(test_result).to be true
     end
   end
 end
