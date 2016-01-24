@@ -1,6 +1,6 @@
 require_relative 'Plane'
 
-class Airport < Plane
+class Airport
     
     attr_accessor = :plane_list
     
@@ -8,21 +8,22 @@ class Airport < Plane
         @plane_list = []
     end
    
-    def whos_in_airport(n)
-        if @plane_list.empty?
-            fail "All planes are airborne"
-        end
-    end
-   
     def park(n)
-        if plane_to_land == true && confirm_landed == true
-            @plane_list << n
-        elsif plane_to_land == false
-            fail "This plane is yet to be called to land"
-        elsif confirm_landed == false
-            fail "This plane has not landed"
+        if @plane_list.include? n
+            return "#{n} is already parked at the airport"
+        elsif n.plane_landed == true && n.plane_instructed_to_land == true
+            return @plane_list << n
+            
         end
+        return "#{n} is yet to be instructed to land" if n.plane_instructed_to_land == false
+        return "#{n} has been instructed to land but not yet landed" if n.plane_landed == false
+    end
+    
+    def show_planes
+        
+       @plane_list.last
         
     end
+    
     
 end
