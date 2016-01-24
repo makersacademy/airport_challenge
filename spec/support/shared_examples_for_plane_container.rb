@@ -3,7 +3,6 @@ shared_examples_for PlaneContainer do
 # describe PlaneContainerTest do
   subject(:PlaneContainer) {described_class.new}
 	let(:plane) { double :plane }
-  # let(:control) { double :control }
 
   #responds to methods in module
   it { is_expected.to respond_to(:plane_in).with(1).argument }
@@ -46,13 +45,6 @@ shared_examples_for PlaneContainer do
     end
   end
 
-  # describe 'list_planes' do
-  #   it 'list contains planes' do
-  #     subject.plane_in(plane)
-  #     expect(subject.list_planes.last).to be_an_instance_of Airplane
-  #   end
-  # end
-
   describe '#initialize' do
     it 'has a default capacity when initialized' do
       expect(subject.capacity).to eq subject.class::DEFAULT_CAPACITY
@@ -74,5 +66,4 @@ shared_examples_for PlaneContainer do
       expect(subject.full?).to be true
     end
   end
-
 end

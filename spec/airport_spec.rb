@@ -12,14 +12,6 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:takeoff).with(1).argument }
 
-  # #list_planes is made up of planes
-  # describe 'list_planes' do
-  #   it 'are planes' do
-  #     subject.land(plane)
-  #     expect(subject.airport_planes.pop).to be_an_instance_of(Airplane)
-  #   end
-  # end
-
 #wrap in reporting condition
   describe 'stub conditions to allow plane reporting' do
     before do

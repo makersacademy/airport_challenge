@@ -8,7 +8,6 @@ describe AirTrafficControl do
   let(:airport) { double :airport }
 
   it_behaves_like PlaneContainer
-  # it_behaves_like Weather
 
 #responds to methods in class
   it { is_expected.to respond_to(:instruct_land).with(2).argument }
@@ -34,22 +33,6 @@ describe AirTrafficControl do
       it 'check weather stubbed when called' do
         expect(subject.bad_weather?).to eq false
       end
-
-    # #instruct a plane to land
-    #   describe '#instruct_land' do
-    #     it 'returns plane removed from inflight' do
-    #       subject.instruct_takeoff(plane, airport)
-    #       expect(subject.instruct_land(plane, airport)).to eq plane
-    #     end
-    #   end
-    #
-    #   describe '#instruct_land' do
-    #     it 'check plane no longer inflight' do
-    #       subject.instruct_takeoff(plane, airport)
-    #       subject.instruct_land(plane, airport)
-    #  	    expect(subject.display_inflight).not_to include(plane)
-    #     end
-      # end
 
       describe '#instruct_land' do
         it 'check plane class receives instruction to land' do

@@ -8,16 +8,8 @@ class AirTrafficControl
   include PlaneContainer
 
   DEFAULT_CAPACITY = 500
-  # def default_capacity
-  #   500
-  # end
-  # def initialize
-  #   # @inflight = []
-  #   setup_plane_list
-  # end
 
   def display_inflight
-    # @inflight.dup
     @list_planes.dup
   end
 
@@ -26,8 +18,6 @@ class AirTrafficControl
     raise 'Too stormy to land' if bad_weather?
     raise 'Airport is full' if airport.full?
     airport.land(plane)
-    # plane.report_landed(airport)
-    # @inflight.delete(plane)
     plane_out(plane)
   end
 
@@ -36,8 +26,6 @@ class AirTrafficControl
     raise 'Plane is not located here' if airport_match(plane, airport) == false
     raise 'Too stormy to take-off' if bad_weather?
     airport.takeoff(plane)
-    # plane.report_inflight
-    # @inflight << plane
     plane_in(plane)
   end
 
@@ -54,5 +42,4 @@ class AirTrafficControl
   def bad_weather?
     Weather.new.stormy?
   end
-
 end

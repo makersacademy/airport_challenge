@@ -8,7 +8,6 @@ module PlaneContainer
   def initialize(capacity = self.class::DEFAULT_CAPACITY)
     @capacity = capacity
     setup_plane_list
-    # @list_planes = []
   end
 
   def plane_in(plane)
@@ -20,7 +19,6 @@ module PlaneContainer
   end
 
   def full?
-    # @ground_planes.length >= @capacity ? true : false
     @list_planes.length >= @capacity ? true : false
   end
 end
