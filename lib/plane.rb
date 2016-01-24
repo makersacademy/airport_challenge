@@ -14,5 +14,9 @@ class Plane
   def departed
     @airborne = true
   end
+
+  def airborne?
+    airborne
+  end
   
 end

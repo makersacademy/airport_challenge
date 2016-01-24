@@ -21,6 +21,7 @@ class Airport
     fail "It's too stormy to land" if stormy?
     @planes << plane
     plane.landed
+    self
   end
 
   def send_plane(plane)
@@ -28,6 +29,7 @@ class Airport
     fail "It's too stormy to take off" if stormy?
     @planes.delete(plane)
     plane.departed
+    self
   end
 
   def at_capacity?
