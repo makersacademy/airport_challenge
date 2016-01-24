@@ -1,11 +1,11 @@
-Airport Challenge Makers Academy weekend challenge 1) - 24 Jan 2016
+Airport Challenge
 =================
 Makers Academy weekend challenge 1 - 24 Jan 2016
 ------------------------------------------------
 
-https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+[![Build Status](https://travis-ci.org/CraftAcademy/airport_challenge.svg?branch=master)](https://travis-ci.org/CraftAcademy/airport_challenge)
 Includes: gems, ruby classes & rspec unit tests
----------
+
 Requirements:
 ------------
 Create a Ruby programme to allow air traffic control to instruct planes to land
@@ -32,6 +32,7 @@ one place (hence landing/take-off actions undertaken by the air traffic control
 have automatic knock-on to check planes in/out of an airport). This is a little
 more complicated than necessary, but I wanted to test how this might work and  
 be unit/feature tested.
+
 
 
 Contact: Lou Franklin, l.j.franklin85@googlemail.com
