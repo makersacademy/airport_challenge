@@ -80,7 +80,7 @@ it { is_expected.to respond_to :capacity }
 	plane = Plane.new
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {false}
-	expect{airport.depart(plane)}.to raise_error "plane can only take off from airports it is in"
+	expect{airport.depart(plane)}.to raise_error "can only take off from current airport"
 	end
 
 

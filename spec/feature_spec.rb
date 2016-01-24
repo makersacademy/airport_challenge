@@ -49,7 +49,7 @@ describe 'prevent landing when airport is full' do
 		plane = Plane.new
 		airport = Airport.new
 		allow(airport).to receive(:stormy?) {false}
-		airport.capacity.times { airport.land (Plane.new) }
+		airport.capacity.times { airport.land Plane.new }
 		expect{airport.land(plane)}.to raise_error("airport at capacity")
 
 	end
@@ -61,7 +61,7 @@ describe  "default airport capacity that can be overridden" do
 	plane = Plane.new 
 	airport.capacity=15
 	allow(airport).to receive(:stormy?) {false}
-	airport.capacity.times { airport.land(Plane.new) }
+	airport.capacity.times { airport.land (Plane.new) }
 	expect{airport.land(plane)}.to raise_error("airport at capacity")
 	end
 end
@@ -71,7 +71,7 @@ describe "planes only depart airports they are in" do
 	airport = Airport.new
 	plane = Plane.new
 	allow(airport).to receive(:stormy?) {false}
-	expect{airport.depart(plane)}.to raise_error "plane can only take off from airports it is in"
+	expect{airport.depart(plane)}.to raise_error "can only take off from current airport"
 	end
 end
 
