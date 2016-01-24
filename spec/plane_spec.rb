@@ -2,7 +2,12 @@ require 'plane'
 
 describe Plane do
 
-  let(:plane) { Plane.new }
+  let(:plane) { Plane.new("airport") }
+
+  it "gets initialized with an airports object_id" do
+    expect(plane.where_abouts).to eq "airport"
+  end
+
 
 
   describe '#to_land_at' do
