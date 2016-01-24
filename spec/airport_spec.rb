@@ -29,17 +29,20 @@ describe Airport do
 
     it 'prevents a plane from landing if it is already at the airport' do
       allow(plane).to receive(:landed?) { true }
-      expect{airport.clear_to_land(plane)}.to raise_error 'The plane has already landed at the airport'
+      msg = 'The plane has already landed at the airport'
+      expect{airport.clear_to_land(plane)}.to raise_error msg
     end
 
     it 'landing is prevented when weather is stormy' do
       allow(airport).to receive(:stormy?) { true }
-      expect{airport.clear_to_land(plane)}.to raise_error 'Stormy weather is preventing landing'
+      msg = 'Stormy weather is preventing landing'
+      expect{airport.clear_to_land(plane)}.to raise_error msg
     end
 
     it 'prevents landing whent he airport is full' do
       allow(airport).to receive(:full?) { true }
-      expect{airport.clear_to_land(plane)}.to raise_error 'The airport is full'
+      msg = 'The airport is full'
+      expect{airport.clear_to_land(plane)}.to raise_error msg
     end
 
   end
@@ -69,11 +72,13 @@ describe Airport do
     it 'prevents takeoff if weather is stormy' do
       allow(airport).to receive(:stormy?) { true }
       allow(airport).to receive(:empty?) { false }
-      expect{airport.clear_to_takeoff}.to raise_error 'Stormy weather is preventing takeoff'
+      msg = 'Stormy weather is preventing takeoff'
+      expect{airport.clear_to_takeoff}.to raise_error msg
     end
 
     it 'raises an error if there are no planes to takeoff' do
-      expect{airport.clear_to_takeoff}.to raise_error 'There are no planes at the airport'
+      msg = 'There are no planes at the airport'
+      expect{airport.clear_to_takeoff}.to raise_error msg
     end
 
   end
