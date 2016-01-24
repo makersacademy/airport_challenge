@@ -5,7 +5,7 @@ describe 'Feature testing' do
   let (:plane) {Plane.new}
 
   before(:each) do
-    allow(airport).to receive(:stormy?) {false}
+    allow(airport.weather).to receive(:stormy?) {false}
   end
 
   context 'Plane can land in airport' do

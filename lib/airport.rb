@@ -1,19 +1,19 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  attr_reader :capacity
-  #attr_accessor :capacity
+  attr_reader :capacity, :weather
 
   DEFAULT_CAPACITY = 50
-  STORM_PERCENTAGE = 15
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+    @weather = Weather.new
   end
 
   def land(plane)
-    fail 'Landing is not allowed in stormy weather' if stormy?
+    fail 'Landing is not allowed in stormy weather' if weather.stormy?
     fail 'Landing is not permitted as airport is full' if full?
     fail 'Only planes can land' unless plane.kind_of?(Plane)
     plane.to_land(self)
@@ -22,19 +22,15 @@ class Airport
   end
 
   def take_off(specific_plane)
-    fail 'Take-off is not allowed in stormy weather' if stormy?
+    fail 'Take-off is not allowed in stormy weather' if weather.stormy?
     fail 'Plane not at airport' unless contains?(specific_plane)
     specific_plane.take_off(self)
-    planes.select!{|plane| plane != specific_plane}
+    planes.delete(specific_plane)
     specific_plane.confirm('took-off',self)
   end
 
   def contains?(specific_plane)
     planes.include?(specific_plane)
-  end
-
-  def stormy?
-    true if rand(1..100) <= STORM_PERCENTAGE
   end
 
   def change_capacity(new_capacity)

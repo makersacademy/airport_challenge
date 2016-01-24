@@ -26,7 +26,7 @@ describe Airport do
       allow(plane).to receive(:to_land)
       nr = rand(0..100)
       subject = Airport.new nr
-      allow(subject).to receive(:stormy?) {false}
+      allow(subject.weather).to receive(:stormy?) {false}
       nr.times{subject.land(plane)}
       msg = 'Landing is not permitted as airport is full'
       expect{subject.land(plane)}.to raise_error msg
@@ -44,7 +44,7 @@ describe Airport do
       it 'cannot change capacity if new capacity is lower than num of planes' do
         allow(plane).to receive(:to_land)
         subject = Airport.new 30
-        allow(subject).to receive(:stormy?) {false}
+        allow(subject.weather).to receive(:stormy?) {false}
         30.times{subject.land(plane)}
         msg = 'Number of planes is higher than new capacity'
         expect{subject.change_capacity(20)}.to raise_error msg
@@ -54,7 +54,7 @@ describe Airport do
 
   context 'landing a plane' do
     before (:each) do
-      allow(subject).to receive(:stormy?) { false }
+      allow(subject.weather).to receive(:stormy?) {false}
     end
 
     it 'instructs plane to land' do
@@ -73,7 +73,7 @@ describe Airport do
     end
 
     it 'plane is prevented from landing in stormy weather' do
-      allow(subject).to receive(:stormy?) { true }
+      allow(subject.weather).to receive(:stormy?) {true}
       msg = 'Landing is not allowed in stormy weather'
       expect{subject.land(plane)}.to raise_error msg
     end
@@ -97,7 +97,7 @@ describe Airport do
 
   context 'take-off' do
     before (:each) do
-      allow(subject).to receive(:stormy?) { false }
+      allow(subject.weather).to receive(:stormy?) {false}
       subject.land(plane)
       allow(plane).to receive(:confirm)
     end
@@ -129,43 +129,21 @@ describe Airport do
     end
 
     it 'plane is prevented from taking off in stormy weather' do
-      allow(subject).to receive(:stormy?) {true}
+      allow(subject.weather).to receive(:stormy?) {true}
       expect{subject.take_off(plane)}.to raise_error('Take-off is not allowed in stormy weather')
     end
 
     context 'edge cases' do
       it 'cannot take of if not in that airport' do
         heath = Airport.new
-        allow(heath).to receive(:stormy?) {false}
+        allow(heath.weather).to receive(:stormy?) {false}
         gat = Airport.new
-        allow(gat).to receive(:stormy?) {false}
+        allow(gat.weather).to receive(:stormy?) {false}
         heath.land(plane)
         expect{gat.take_off(plane)}.to raise_error('Plane not at airport')
       end
     end
   end
 
-  context 'weater' do
-    it 'can be stormy' do
-      test_result = false
-      300.times do
-        if subject.stormy?
-          test_result = true
-          break
-        end
-      end
-      expect(test_result).to be true
-    end
 
-    it 'can be not stormy' do
-      test_result = false
-      300.times do
-        unless subject.stormy?
-          test_result = true
-          break
-        end
-      end
-      expect(test_result).to be true
-    end
-  end
 end

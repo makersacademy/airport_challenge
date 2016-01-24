@@ -5,7 +5,7 @@ class Plane
   end
 
   def to_land(airport=false)
-    fail 'cannot land without aiport' unless airport.kind_of?(Airport)
+    fail 'Cannot land without being instructed to' unless airport.is_a?(Airport)
     fail 'Plane already landed' unless in_air?
   end
 
@@ -20,7 +20,7 @@ class Plane
   end
 
   def take_off(airport=false)
-    fail 'cannot take-off without aiport' unless airport.kind_of?(Airport)
+    fail 'Cannot take-off without being instructed to' unless airport.is_a?(Airport)
     fail 'Plane already in the air' if in_air?
   end
 
