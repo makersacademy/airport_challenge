@@ -13,8 +13,20 @@ describe Airport do
     end
 
     it 'confirms plane has landed' do
-      expect{subject.land(plane)}.to change{subject.landed_planes.length}.by(1)
+      expect{airport.land(plane)}.to change{airport.landed_planes.length}.by(1)
     end
+
+  describe '#take off' do
+
+    it 'tells a plane to take off' do
+      expect(airport).to respond_to(:take_off).with(1).argument
+    end 
+
+    it 'confirms a plane has taken off' do
+      expect{airport.take_off(plane)}.to change{airport.flying_planes.length}.by(1)
+    end 
+
+  end 
 
 
 
