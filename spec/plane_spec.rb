@@ -8,6 +8,7 @@ describe Plane do
   let(:airport){ double :airport }
 
   describe '#landed'do
+
     it 'responds "true"(weather = sunny, airport != full) after receiving "land" method'do
       allow(airport).to receive(:full?).and_return(false)
       allow(airport).to receive(:planes).and_return([])
