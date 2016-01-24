@@ -6,30 +6,36 @@ class Airport
 
   attr_reader :planes, :capacity, :weather
 
-  def initialize
+  def initialize(weather = Weather.new)
     @planes = []
     @capacity = DEFAULT_CAPACITY
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land(plane)
-    fail 'Airport is full!' if @planes.count >= DEFAULT_CAPACITY
     fail 'Plane has already arrived.' if include?(plane)
-    #fail 'Plane cannot land in stormy weather.' if @weather.stormy?
-    plane.arrived
-    @planes << plane
+    fail 'Plane cannot land due to stormy weather.' if weather.stormy?
+    fail 'Airport is full!' if full?
+    plane.arrive
+    planes << plane
     plane
   end
 
   def takeoff(plane)
     fail 'Plane is not at this airport.' unless include?(plane)
-    plane.departed
-    @planes.delete(plane)
+    fail 'Plane cannot takeoff due to stormy weather.' if weather.stormy?
+    plane.depart
+    planes.delete(plane)
     plane
   end
 
   private
+
   def include?(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
+  end
+
+  def full?
+    planes.count >= DEFAULT_CAPACITY
   end
 end
