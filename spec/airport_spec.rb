@@ -95,6 +95,11 @@ describe Airport do
       allow(airport).to receive(:stormy?) { true }
       expect(airport.stormy?).to eq true
     end
+
+    it 'returns false if the weather is not stormy' do
+      allow(airport).to receive(:stormy?) { false }
+      expect(airport.stormy?).to eq false
+    end
   end
 
   describe '#full?' do
