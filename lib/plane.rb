@@ -1,6 +1,6 @@
 class Plane
 
-attr_reader :landed, :airport
+  attr_reader :landed, :airport
 
   def initialize
     @airport
@@ -12,7 +12,7 @@ attr_reader :landed, :airport
     fail "Can't land when airport is at capacity" if airport.full
     @landed = true
     @airport = airport
-    airport.planes << self
+    airport.planes.push(self)
     self
   end
 

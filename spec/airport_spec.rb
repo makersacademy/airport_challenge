@@ -4,6 +4,7 @@ describe Airport do
 
   let(:weather) { double :weather, condition: "sunny"}
   let(:weather2) { double :weather, condition: "stormy"}
+  let(:plane) { double :plane}
 
   describe "#capacity" do
     it "responds to capacity method" do
@@ -14,20 +15,15 @@ describe Airport do
       expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
 
-    it "tests that the default capacity is set to 30 with passed argument" do
-      expect(Airport.new(30).capacity).to eq 30
+    it "tests that the capacity can be changed to 30 with passed argument" do
+      subject.capacity = 30
+      expect(subject.capacity).to eq 30
     end
   end
 
+
   describe "#planes" do
-    it "returns array of 10 planes which have landed" do
-      array = []
-      10.times do
-        landed_plane = Plane.new.land(subject, weather)
-        array << landed_plane
-      end
-      expect(subject.planes).to eq array
-    end
+
 
     it "returns an array of 1 plane after 2 have landed and 1 has taken off" do
       plane = Plane.new.land(subject, weather).takeoff(subject, weather)

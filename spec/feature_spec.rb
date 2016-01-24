@@ -5,6 +5,17 @@ require 'weather'
 describe "feature testing" do
   let(:weather) { double :weather, condition: "sunny"}
 
+  
+  it "returns array of 10 planes which have landed" do
+    airport = Airport.new
+    array = []
+    10.times do
+      landed_plane = Plane.new.land(airport, weather)
+      array << landed_plane
+    end
+    expect(airport.planes).to eq array
+  end
+
 
   it "15 land & 7 take off successfully, reports back 8 planes grounded" do
     airport = Airport.new
