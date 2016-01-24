@@ -6,7 +6,7 @@ describe Airport do
   let(:plane) {double :plane}
 
 
-    describe "#initialize" do
+  describe "#initialize" do
 
       context "All airports have holding bay for planes to be stored" do
 
@@ -71,7 +71,7 @@ describe Airport do
 
       it "Cannot land a plane that has already landed" do
         allow(plane).to receive(:flying?).and_return(false)
-        expect(airport.land plane ).to eq "Plane has already landed"
+        expect(airport.land(plane)).to eq "Plane has already landed"
       end
     end
 
@@ -89,8 +89,8 @@ describe Airport do
 
           it "Will not land a plane if the airport is #full?" do
             allow(plane).to receive(:flying?).and_return(true)
-            expect(small_airport.land plane).to eq("The airport is full")
-        end
+            expect(small_airport.land(plane)).to eq("The airport is full")
+          end
 
       end
     end
@@ -143,10 +143,10 @@ describe Airport do
           it "Will not allow plane to land if not sunny" do
             allow(plane).to receive(:change_status)
             allow(plane).to receive(:flying?).and_return(true)
-            expect(airport2.land plane ).to eq("Unsafe to land plane whilst stormy")
+            expect(airport2.land(plane)).to eq("Unsafe to land plane whilst stormy")
           end
 
-          it "Will not add another plane to the holding bay if landing whilst not sunny" do
+          it "Will not add plane to holding bay if landing whilst not sunny" do
             before = airport2.holding_bay.size
             airport2.land plane
             expect(airport2.holding_bay.size).to eq (before)

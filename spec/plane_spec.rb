@@ -6,16 +6,16 @@ describe Plane do
 
   describe "#initialize" do
 
-    context "All planes have a status that tells us if they are flying or landed" do
+    context "All planes have a status, flying or landed" do
       it {is_expected.to respond_to(:status)}
 
-    it "Ensures that when airtraffic control first detect a Plane.new, it is always flying" do
-      expect(subject.status).to eq "Flying"
+      it "Ensures that, for Airtraffic control, Plane.new is initially flying" do
+        expect(subject.status).to eq "Flying"
+      end
     end
-
   end
 
-  context "Flying and Landing" do
+    context "Flying and Landing" do
 
       describe "#landed?" do
         it {is_expected.to respond_to(:landed?)}
@@ -63,5 +63,4 @@ describe Plane do
           end
       end
     end
-  end
 end
