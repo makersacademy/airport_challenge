@@ -1,7 +1,7 @@
 
 module Weather
 
-  def weather_conditions
+  def stormy?
     rand(100) > 85 ? true : false
   end
 

@@ -34,8 +34,4 @@ class Airport
     @planes.count >= capacity
   end
 
-  def stormy?
-    weather_conditions
-  end
-
 end
