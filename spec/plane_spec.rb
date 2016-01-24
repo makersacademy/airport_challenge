@@ -18,18 +18,20 @@ describe Plane do
   describe '#land' do
     context 'when the plane is in flight' do
       let(:destination) { double :airport }
+      subject(:plane_in_flight) { described_class.new }
 
       it { is_expected.to respond_to(:land).with(1).argument }
 
       it 'lands at an airport and confirms' do
         allow(destination).to receive(:stormy?) { false }
-        expect(subject.land(destination)).to be_truthy
+        expect(destination).to receive(:inbound).with(plane_in_flight)
+        expect(plane_in_flight.land(destination)).to be_truthy
       end
 
       it 'raises exception and does not land if destination weather is stormy' do
         allow(destination).to receive(:stormy?) { true }
-        expect{ subject.land(destination) }.to raise_exception("Unable to land plane in stormy weather")
-        # TODO: expect subject location to remain airport
+        expect{ plane_in_flight.land(destination) }.to raise_exception("Unable to land plane in stormy weather")
+        expect(plane_in_flight.in_flight?).to be_truthy
       end
 
       # TODO: test that landing sets location
@@ -42,7 +44,7 @@ describe Plane do
 
       it 'takes off from the airport and confirms' do
         allow(airport).to receive(:stormy?) { false }
-
+        expect(airport).to receive(:outbound).with(subject)
         expect(subject.take_off).to be_truthy
       end
 
@@ -88,6 +90,7 @@ describe Plane do
     context 'when the plane has taken off' do
       it 'returns true' do
         allow(airport).to receive(:stormy?) { false }
+        allow(airport).to receive(:outbound) { subject }
         subject.take_off
         expect(subject.in_flight?).to be_truthy
       end

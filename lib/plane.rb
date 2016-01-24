@@ -1,7 +1,7 @@
 require_relative 'airport'
 
 class Plane
-  # NOTE: new planes should always be instantiated from an airport
+  # NOTE: should new planes always be instantiated from an airport?
   def initialize(airport=nil)
     @airport = airport
   end
@@ -9,14 +9,18 @@ class Plane
   # TODO: guard against landing if not in_flight
   def land(destination)
     raise "Unable to land plane in stormy weather" if destination.stormy?
+    destination.inbound self
     set_location destination
+    # NOTE: consider changing this to a string
     return true
   end
 
   # TODO: guard against taking off if in_flight
   def take_off
     raise "Unable to take off in stormy weather" if airport.stormy?
+    airport.outbound self
     set_location nil
+    # NOTE: consider changing this to a string
     return true
   end
 
@@ -33,6 +37,8 @@ class Plane
   def in_flight?
     airport.nil?
   end
+
+  # NOTE: consider overwriting #inspect
 
   private
   attr_reader :airport
