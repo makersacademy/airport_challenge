@@ -25,7 +25,7 @@ describe Airport do
 
 		it 'raises error when there are no planes in airport' do
 	    expect {subject.allow_takeoff}.to raise_error("No planes available for takeoff")
-    end
+        end
     end
  #    	it 'allows takeoff' do
 	# 	plane = (double :plane)
