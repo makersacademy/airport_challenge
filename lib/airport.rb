@@ -28,7 +28,7 @@ class Airport
   private 
   def condition
     condition = [:sunny, :windy, :rainy, :stormy]
-    condition[(rand(4))]
+    condition[rand(4)]
   end
   
 

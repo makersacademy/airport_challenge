@@ -12,7 +12,7 @@ class ControlTower
   end
   
   def take_off(plane, airport) 
-    return "#{plane.plane_id} is not in #{airport.name}" if !airport.planes.include?(plane)
+    return "#{plane.plane_id} is not in #{airport.name}" unless airport.planes.include?(plane)
     airport.check_weather
     return "Cannot operate in #{airport.name}, stormy weather" unless airport.clear?
     plane.flying = true
