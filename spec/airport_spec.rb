@@ -9,6 +9,10 @@ describe Airport do
     it { is_expected.to respond_to(:planes) }
     it { is_expected.to respond_to(:capacity) }
 
+    it 'initializes with an airport code' do
+      expect(airport.code).to eq :LAX
+    end
+
     it 'initializes with default capacity' do
       expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
     end
@@ -16,6 +20,10 @@ describe Airport do
     let(:small_airport) { described_class.new("LCY", 5) }
     it 'initializes with custom capacity' do
       expect(small_airport.capacity).to eq 5
+    end
+
+    it 'initializes with no planes' do
+      expect(airport.planes.size).to eq 0
     end
   end
 
