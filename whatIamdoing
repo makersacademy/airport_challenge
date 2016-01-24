@@ -1,11 +1,14 @@
-get passenger    move them to somewhere  <— I will create a airplane and passenger (2 classes)
+get passenger    move them to somewhere  <— I will create a airplane class
 
 
 
-instruct a plane     airport  <———— I will create an airport . I will give permission to land
+instruct a plane     airport  <———— I will create an airport class
 
 
-ensure safety no land when weather is bad.
+the airport will  give permission to land
+
+
+whether generator
 
 
 
