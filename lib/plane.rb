@@ -1,22 +1,22 @@
-require_relative "airport"
+require_relative 'airport'
 
 class Plane
-  # New planes should always be instantiated from an airport
-  def initialize(airport)
+  # NOTE: new planes should always be instantiated from an airport
+  def initialize(airport=nil)
     @airport = airport
   end
 
   # TODO: guard against landing if not in_flight
   def land(destination)
     raise "Unable to land plane in stormy weather" if destination.stormy?
-    arrive_at destination
+    set_location destination
     return true
   end
 
   # TODO: guard against taking off if in_flight
   def take_off
     raise "Unable to take off in stormy weather" if airport.stormy?
-    depart_airport
+    set_location nil
     return true
   end
 
@@ -37,11 +37,7 @@ class Plane
   private
   attr_reader :airport
 
-  def depart_airport
-    @airport = nil
-  end
-
-  def arrive_at(destination)
-    @airport = destination
+  def set_location(location)
+    @airport = location
   end
 end
