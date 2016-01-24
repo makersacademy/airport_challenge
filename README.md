@@ -4,7 +4,7 @@ Airport Challenge
 Build Status
 ---------
 
-[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+[![Build Status](https://travis-ci.org/ggwc82/airport_challenge.svg?branch=master)](https://travis-ci.org/ggwc82/airport_challenge)
 
 Approach
 -------
