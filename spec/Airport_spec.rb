@@ -13,9 +13,9 @@ describe Airport do
     end
 
     it 'confirms plane has landed' do
-      airport.land(plane)
-      expect(airport.landed_planes).to include(plane)
+      expect{subject.land(plane)}.to change{subject.landed_planes.length}.by(1)
     end
+
 
 
 

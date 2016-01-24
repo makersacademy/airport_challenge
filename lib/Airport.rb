@@ -10,6 +10,7 @@ class Airport
 
 
 	def land(plane)
+		landed_planes.push(plane)
 	end 
 
 end 
