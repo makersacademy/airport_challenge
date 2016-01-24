@@ -12,21 +12,21 @@ class Airport
     @weather = weather
   end
 
-  def set_capacity(capacity = DEFAULT_CAPACITY)
+  def capacity(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
   end
 
   def land(plane)
-    raise "This airport is full!" if full?
-    raise "This plane has already landed!" if planes.include?(plane)
-    raise "Your flight has been delayed due to a storm" if @weather.new.stormy?
+    fail "This airport is full!" if full?
+    fail "Plane has already landed" if planes.include?(plane)
+    fail "Flight delayed due to a storm" if @weather.new.stormy?
     @planes << plane
     "#{plane} has landed."
   end
 
   def take_off(plane)
-    raise "This plane isn't in this airport" if !planes.include?(plane)
-    raise "Your flight has been delayed due to a storm" if @weather.new.stormy?
+    fail "Plane isn't in the airport" if !planes.include?(plane)
+    fail "Flight delayed due to a storm" if @weather.new.stormy?
     @planes.delete(plane)
     "#{plane} has taken off."
   end
@@ -34,6 +34,6 @@ class Airport
   private
 
   def full?
-    @planes.count >= set_capacity
+    @planes.count >= capacity
   end
 end

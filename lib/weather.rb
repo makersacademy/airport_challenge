@@ -14,7 +14,7 @@ class Weather
 
   private
 
-  WEATHER_CONDITIONS = [:stormy, :sunny, :sunny, :sunny]
+  WEATHER_CONDITIONS = [:stormy, :sunny, :sunny, :sunny].freeze
 
   def set_weather
     WEATHER_CONDITIONS.sample
