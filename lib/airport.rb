@@ -1,6 +1,6 @@
 require_relative 'plane'
-require_relative './modules/weather'
-require_relative './modules/errors'
+require_relative 'modules/weather'
+require_relative 'modules/errors'
 
 class Airport
   include Errors
@@ -27,7 +27,7 @@ class Airport
   def takeoff(plane)
     pre_takeoff_checks(plane)
     plane.fly
-    @planes.reject {|p| p == plane}
+    @planes.reject! {|p| p == plane}
     plane
   end
 

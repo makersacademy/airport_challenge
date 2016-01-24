@@ -10,11 +10,18 @@ class Plane
   end
 
   def fly
-    status = "flying"
+    change_status("flying")
   end
 
   def landed
-    status = "landed"
+    change_status("landed")
   end
+
+  private
+
+  def change_status(arg)
+    @status = arg
+  end
+
 
 end
