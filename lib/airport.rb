@@ -17,8 +17,9 @@ class Airport
     @planes.delete(plane)
   end
 
-  def ready_for_take_off
-    
+  def ready_for_take_off?
+    return false if stormy? == true
+    true
   end
 
 end
