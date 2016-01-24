@@ -8,19 +8,17 @@ describe Plane do
     describe '#land' do
       let(:airport) { double :airport }
       let(:weather) { double( "weather", :stormy? => nil) }
+      before {plane.land(airport, weather)}
 
       it 'is expected to be landed' do
-        plane.land(airport, weather)
         expect(plane).to be_landed
       end
 
       it 'is expected to be landed at an airport' do
-        plane.land(airport, weather)
         expect(plane.at_what_airport).to eq airport
       end
 
       it 'cannot land if it is already landed' do
-        allow(plane).to receive(:landed?).and_return(true)
         expect {plane.land(airport, weather)}.to raise_error("Plane has already landed!")
       end
 
@@ -48,10 +46,6 @@ describe Plane do
         plane.land(airport, weather)
         expect{plane.takeoff(airport2, weather)}.to raise_error('Plane cannot take off from an airport it is not in!')
       end
-
-
-
-
 
     end
 

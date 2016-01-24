@@ -1,10 +1,16 @@
 class Weather
 
-attr_reader :stormy
+  attr_reader :stormy
 
-def stormy?
-  @stormy = true if rand(0..50) == 5
+  def stormy?
+    @stormy = true if storms_coming
+  end
+
+
 end
 
+  private
 
-end
+  def storms_coming
+    (rand(0..50)) == 5
+  end

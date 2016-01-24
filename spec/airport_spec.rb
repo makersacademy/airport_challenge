@@ -9,8 +9,6 @@ describe Airport do
     let(:plane) {double(:plane)}
     let(:weather) {double("weather", :stormy? => nil)}
 
-    it {is_expected.to respond_to(:land).with(2).argument}
-
     it 'lands the plane at the airport' do
       expect(airport.land(plane, weather)).to include plane
     end
@@ -38,11 +36,11 @@ describe Airport do
   describe '#takeoff' do
     let(:plane) {double(:plane)}
     let(:weather) {double("weather", :stormy? => nil)}
+    before {airport.land(plane, weather)}
 
     it {is_expected.to respond_to(:takeoff).with(2).arguments}
 
     it 'removes the plane from the airport' do
-      airport.land(plane, weather)
       airport.takeoff(plane, weather)
       expect(airport.planes_in_airport).not_to include(plane)
     end

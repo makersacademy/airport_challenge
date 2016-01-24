@@ -13,9 +13,9 @@ class Airport
   end
 
   def land(plane, weather)
-    raise "The airport is full!" if full?
+    error_if_full
     landed_plane = landing(plane, weather)
-    @planes << landed_plane
+    planes << landed_plane
   end
 
   def takeoff(plane, weather)
@@ -35,6 +35,10 @@ class Airport
 private
 
   attr_reader :planes, :capacity
+
+  def error_if_full
+    raise "The airport is full!" if full?
+  end
 
   def full?
     @planes.length >= capacity
