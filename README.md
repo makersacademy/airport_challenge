@@ -22,7 +22,7 @@ My first step was to work through the user stories, isolate the objects and mess
 
 I then worked through the table step-by-step, aiming to write the whole program using TDD - first running a feature test in IRB, then writing a failing unit test in RSpec, then writing the classes and methods to pass the test, before moving on to the next set of failing tests. There were a few times when my code was passing the feature test, but not the unit test - on these occasions I had to refactor the unit tests to make sure everything was working and passing (I'm hoping this will improve as I learn RSpec syntax more thoroughly).
 
-I chose to write Weather as a module rather than a class or method - partly because it seems more like a behaviour than a object, partly to make sure my Airport class adhered to the Single Responsibility Principle, and partly because I wanted to practice how to make, use and test Modules.
+I chose to write Weather as a module rather than a class or method - partly because it seems more like a behaviour than an object, partly to make sure my Airport class adhered to the Single Responsibility Principle, and partly because I wanted to practice how to make, use and test Modules.
 
 I aimed to write all the unit tests using mocks and stubs to ensure my tests were isolated within classes.
 
@@ -141,4 +141,4 @@ Ideas / To do
 Notes
 -------
 
-The loops for testing random weather were inspired by Sir Rufus the Clever - https://github.com/rufusraghunath/
+The loops for testing random weather were inspired by Rufus the Clever - https://github.com/rufusraghunath/
