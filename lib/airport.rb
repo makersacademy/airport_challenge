@@ -16,15 +16,17 @@ class Airport
     fail 'Landing is not allowed in stormy weather' if stormy?
     fail 'Landing is not permitted as airport is full' if full?
     fail 'Only planes can land' unless plane.kind_of?(Plane)
-    plane.to_land
+    plane.to_land(self)
     planes << plane
+    plane.confirm('landed', self)
   end
 
   def take_off(specific_plane)
     fail 'Take-off is not allowed in stormy weather' if stormy?
     fail 'Plane not at airport' unless contains?(specific_plane)
-    specific_plane.take_off
+    specific_plane.take_off(self)
     planes.select!{|plane| plane != specific_plane}
+    specific_plane.confirm('took-off',self)
   end
 
   def contains?(specific_plane)

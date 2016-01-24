@@ -5,6 +5,12 @@ describe Airport do
   let(:plane) {double(:plane, kind_of?: Plane)}
   let(:plane2) {double(:plane, kind_of?: Plane)}
 
+  before(:each) do
+    allow(plane).to receive(:to_land)
+    allow(plane).to receive(:take_off)
+    allow(plane).to receive(:confirm)
+  end
+
   describe '#initialize' do
 
     it 'initializes with a default capacity' do
@@ -48,7 +54,6 @@ describe Airport do
 
   context 'landing a plane' do
     before (:each) do
-      allow(plane).to receive(:to_land)
       allow(subject).to receive(:stormy?) { false }
     end
 
@@ -92,10 +97,9 @@ describe Airport do
 
   context 'take-off' do
     before (:each) do
-      allow(plane).to receive(:to_land)
-      allow(plane).to receive(:take_off)
-      allow(subject).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) { false }
       subject.land(plane)
+      allow(plane).to receive(:confirm)
     end
 
     it 'instructs plane to take_off' do
@@ -110,6 +114,7 @@ describe Airport do
 
     it 'a specific plane takes-off' do
       allow(plane2).to receive(:to_land)
+      allow(plane2).to receive(:confirm)
       subject.land(plane2)
       subject.take_off(plane)
       expect(subject.contains?(plane)).to be false
@@ -117,6 +122,7 @@ describe Airport do
 
     it 'confirmed that specific plane is not at airport' do
       allow(plane2).to receive(:to_land)
+      allow(plane2).to receive(:confirm)
       subject.land(plane2)
       subject.take_off(plane)
       expect(subject.contains?(plane)).to be false
