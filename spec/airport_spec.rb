@@ -14,8 +14,8 @@ describe Airport do
 
 	it 'returns landed planes' do
 		plane = (double :plane)
-		a =  subject.allow_landing(plane)
-		expect(subject.instance_variable_get(:@planes)).to eq(a)
+		x =  subject.allow_landing(plane)
+		expect(subject.instance_variable_get(:@planes)).to eq(x)
 	end
 
 

@@ -1,7 +1,7 @@
 class Weather
 
 	def stormy?
-
-	end
-
+		y = rand(1..5) 
+		y == 1 ? true : false
+    end
 end

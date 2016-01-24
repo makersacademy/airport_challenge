@@ -1,5 +1,5 @@
 class Plane
-	def airborne?
+    def airborne?
 		true
     end
 end
