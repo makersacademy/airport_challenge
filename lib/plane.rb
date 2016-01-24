@@ -8,4 +8,12 @@ class Plane
     true if @on_ground
   end
 
+  def took_off
+    @on_ground = false
+  end
+
+  def in_air?
+    true unless @on_ground
+  end
+
 end
