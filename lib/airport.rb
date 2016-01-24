@@ -17,16 +17,16 @@ class Airport
 
   def stormy?
     generate_weather
-    return stormy
+    stormy
   end
 
   def inbound(plane)
-    raise "Permission to land denied, #{self} is full" if full?
+    fail "Permission to land denied, #{self} is full" if full?
     dock plane
   end
 
   def outbound(plane)
-    raise "#{plane} is not currently at #{self}" if planes.include?(plane)
+    fail "#{plane} is not currently at #{self}" if planes.include?(plane)
     remove plane
   end
 

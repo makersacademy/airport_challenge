@@ -61,7 +61,9 @@ describe Airport do
       let(:full_airport) { described_class.new("LHW", 0) }
 
       it 'raises an exception and does not accept inbound planes' do
-        expect{ full_airport.inbound(plane) }.to raise_exception("Permission to land denied, #{full_airport} is full")
+        expect do
+          full_airport.inbound(plane)
+        end.to raise_exception("Permission to land denied, #{full_airport} is full")
         expect(subject.planes).to_not include plane
       end
     end

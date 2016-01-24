@@ -7,21 +7,22 @@ class Plane
   end
 
   def land_at(destination)
-    raise "Plane is not in flight!" if !in_flight?
-    raise "Unable to land plane in stormy weather" if destination.stormy?
+    # TODO: guard against destination not being an airport
+    fail "Plane is not in flight!" unless in_flight?
+    fail "Unable to land plane in stormy weather" if destination.stormy?
     destination.inbound self
-    set_location destination
+    new_location destination
     # NOTE: consider changing this to a string
-    return true
+    true
   end
 
   def take_off
-    raise "Plane is in flight!" if in_flight?
-    raise "Unable to take off in stormy weather" if airport.stormy?
+    fail "Plane is in flight!" if in_flight?
+    fail "Unable to take off in stormy weather" if airport.stormy?
     airport.outbound self
-    set_location nil
+    new_location nil
     # NOTE: consider changing this to a string
-    return true
+    true
   end
 
   # NOTE: consider alternative implementation of #location and #in_flight?
@@ -42,7 +43,7 @@ class Plane
   private
   attr_reader :airport
 
-  def set_location(location)
+  def new_location(location)
     @airport = location
   end
 end

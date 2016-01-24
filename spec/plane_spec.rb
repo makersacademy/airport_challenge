@@ -21,20 +21,24 @@ describe Plane do
 
     context 'when the plane is not in flight' do
       it 'raises an exception' do
-        expect{ docked_plane.land_at airport }.to raise_exception("Plane is not in flight!")
+        expect do
+          docked_plane.land_at airport
+        end.to raise_exception("Plane is not in flight!")
       end
     end
 
     context 'when the plane is in flight' do
       it 'lands at an airport and confirms' do
         expect(airport).to receive(:inbound) { in_flight_plane }
-        expect(in_flight_plane).to receive(:set_location) { airport }
+        expect(in_flight_plane).to receive(:new_location) { airport }
         expect(in_flight_plane.land_at airport).to be_truthy
       end
 
       it 'raises exception and does not land if destination weather is stormy' do
         allow(airport).to receive(:stormy?) { true }
-        expect{ in_flight_plane.land_at airport }.to raise_exception("Unable to land plane in stormy weather")
+        expect do
+          in_flight_plane.land_at airport
+        end.to raise_exception("Unable to land plane in stormy weather")
         expect(in_flight_plane.in_flight?).to be_truthy
       end
     end
@@ -46,20 +50,24 @@ describe Plane do
     context 'when the plane is in flight' do
 
       it 'raises an exception' do
-        expect{ in_flight_plane.take_off }.to raise_exception("Plane is in flight!")
+        expect do
+          in_flight_plane.take_off
+        end.to raise_exception("Plane is in flight!")
       end
     end
 
     context 'when the plane is stationed at an airport' do
       it 'takes off from the airport and confirms' do
         expect(airport).to receive(:outbound) { docked_plane }
-        expect(docked_plane).to receive(:set_location) { nil }
+        expect(docked_plane).to receive(:new_location) { nil }
         expect(docked_plane.take_off).to be_truthy
       end
 
       it 'raises an exception if weather is stormy' do
         allow(airport).to receive(:stormy?) { true }
-        expect{ docked_plane.take_off }.to raise_exception("Unable to take off in stormy weather")
+        expect do
+          docked_plane.take_off
+        end.to raise_exception("Unable to take off in stormy weather")
       end
 
       it 'sets plane state to in_flight' do
