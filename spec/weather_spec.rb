@@ -1,7 +1,11 @@
 require 'weather'
 
 describe Weather do
+  it 'generates weather' do
+    expect(subject.weather).to satisfy { |v| v == :sunny || v == :stormy }
+  end
   it 'shows if weather is stormy' do
-    expect(subject.stormy?).not_to eq nil
+    allow(subject).to receive(:weather).and_return :stormy
+    expect(subject).to be_stormy
   end
 end

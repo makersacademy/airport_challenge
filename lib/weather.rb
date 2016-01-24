@@ -1,10 +1,19 @@
 class Weather
+  attr_reader :weather
+
+  def initialize
+    @weather = random_outlook
+  end
+
   def stormy?
-    random_generator
+    weather == :stormy
   end
 
   private
-  def random_generator
-    rand(10) == 0
+
+  OUTLOOKS = [:stormy, :sunny, :sunny, :sunny]
+
+  def random_outlook
+    OUTLOOKS.sample
   end
 end
