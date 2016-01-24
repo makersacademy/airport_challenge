@@ -9,19 +9,15 @@ class Plane
   end
 
   def land(destination)
-    # TODO: use guard clause and raise exception
-    unless destination.stormy?
-      arrive_at destination
-      return true
-    end
+    raise "Unable to land plane in stormy weather" if destination.stormy?
+    arrive_at destination
+    return true
   end
 
   def take_off
-    # TODO: use guard clause and raise exception
-    unless airport.stormy?
-      depart_airport
-      return true
-    end
+    raise "Unable to take off in stormy weather" if airport.stormy?
+    depart_airport
+    return true
   end
 
   # TODO: implement #location to provide info on in_flight or airport

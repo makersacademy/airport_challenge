@@ -26,9 +26,10 @@ describe Plane do
         expect(subject.land(destination)).to be_truthy
       end
 
-      it 'does not land if destination weather is stormy' do
+      it 'raises exception and does not land if destination weather is stormy' do
         allow(destination).to receive(:stormy?) { true }
-        expect(subject.land(destination)).to be_falsy
+        expect{ subject.land(destination) }.to raise_exception("Unable to land plane in stormy weather")
+        # TODO: expect subject location to remain airport
       end
 
       # TODO: test that landing sets location
@@ -45,35 +46,34 @@ describe Plane do
         expect(subject.take_off).to be_truthy
       end
 
-      it 'does not take off if weather is stormy' do
+      it 'raises an exception and does not take off if weather is stormy' do
         allow(airport).to receive(:stormy?) { true }
-        expect(STDOUT).not_to receive(:puts)
-
-        subject.take_off
+        expect{ subject.take_off }.to raise_exception("Unable to take off in stormy weather")
+        # TODO: expect subject location to remain airport
       end
 
       it 'sets plane state to in_flight' do
         # TODO: return in_flight status
       end
     end
+  end
 
-    describe '#in_flight?' do
-      it { is_expected.to respond_to(:in_flight?) }
+  describe '#in_flight?' do
+    it { is_expected.to respond_to(:in_flight?) }
 
-      context 'when the plane is stationed at an airport' do
-        it 'returns false' do
-          # Plane is not in flight by default because it is associated with
-          # an airport at initialization
-          expect(subject.in_flight?).to be_falsy
-        end
+    context 'when the plane is stationed at an airport' do
+      it 'returns false' do
+        # Plane is not in flight by default because it is associated with
+        # an airport at initialization
+        expect(subject.in_flight?).to be_falsy
       end
+    end
 
-      context 'when the plane has taken off' do
-        it 'returns true' do
-          allow(airport).to receive(:stormy?) { false }
-          subject.take_off
-          expect(subject.in_flight?).to be_truthy
-        end
+    context 'when the plane has taken off' do
+      it 'returns true' do
+        allow(airport).to receive(:stormy?) { false }
+        subject.take_off
+        expect(subject.in_flight?).to be_truthy
       end
     end
   end
