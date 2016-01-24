@@ -8,7 +8,7 @@ class Security
   end
 
   def securitypassed
-
+  
   end
 
   def securityfailed

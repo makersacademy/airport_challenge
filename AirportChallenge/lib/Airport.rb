@@ -2,7 +2,7 @@
 
 require 'airplane'
 require "weather"
-
+require 'security'
 
 
 class Airport
@@ -15,6 +15,8 @@ class Airport
     @planes_at_airport = []
   end
 
+  def securitycheck
+  end
 
   def tell_to_land(plane)
     if stormy? == false && full? == false
