@@ -1,0 +1,17 @@
+get passenger    move them to somewhere  <— I will create a airplane and passenger (2 classes)
+
+
+
+instruct a plane     airport  <———— I will create an airport . I will give permission to land
+
+
+ensure safety no land when weather is bad.
+
+
+
+change the airport capacity when is given, otherwise default.
+
+
+
+
+
