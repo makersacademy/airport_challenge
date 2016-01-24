@@ -17,7 +17,7 @@ describe Plane do
 
   describe "take off" do
 
-    before (:each) do
+    before(:each) do
       subject.land
     end
 

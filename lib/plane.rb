@@ -7,12 +7,12 @@ class Plane
   end
 
   def land
-    raise "This plane has already landed" if @landed
+    fail "This plane has already landed" if @landed
     @landed = true
   end
 
   def take_off
-    raise "This plane has already left" unless @landed
+    fail "This plane has already left" unless @landed
     @landed = false
   end
 
