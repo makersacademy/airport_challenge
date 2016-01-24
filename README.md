@@ -35,10 +35,17 @@ The plane takes off!
 
 ###User Stories:
 
+
  Instruct a plane to land at an airport and confirm that it has landed
+ 
  Instruct a plane to take off from an airport and confirm that it is no longer in the airport
+ 
  Prevent takeoff when weather is stormy
+ 
  Prevent landing when weather is stormy
+ 
  Prevent landing when the airport is full
+ 
  Create a default airport capacity that can be overridden as appropriate
+ 
  Raise errors for inconsistent system states.
