@@ -1,8 +1,8 @@
 
 
-require 'airplane'
-require "weather"
-require 'security'
+require_relative 'airplane'
+require_relative "weather"
+require_relative 'customs'
 
 
 class Airport
