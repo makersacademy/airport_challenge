@@ -2,44 +2,42 @@
 
 --- 1. Program Instructions ---
 
-IRB EXAMPLE
+Irb example
 ------------------------------------------
 2.2.3 :001 > require './lib/airport.rb'
  => true
-
 2.2.3 :002 > heathrow = Airport.new
  => #<Airport:0x007f866200b3c0 @planes=[], @weather=#<Weather:0x007f866200b398>
  , @capacity=70>
-
 2.2.3 :003 > luton = Airport.new(20)
  => #<Airport:0x007f8662000628 @planes=[], @weather=#<Weather:0x007f8662000600>
  , @capacity=20>
-
 2.2.3 :004 > plane = Plane.new
  => #<Plane:0x007f86610ab3d0 @landed=false>
-
 2.2.3 :005 > heathrow.land(plane)
  => [#<Plane:0x007f86610ab3d0 @landed=true>]
-
 2.2.3 :006 > heathrow.take_off(plane)
  => #<Plane:0x007f86610ab3d0 @landed=false>
-
 2.2.3 :007 > luton.land(plane)
  => [#<Plane:0x007f86610ab3d0 @landed=true>]
-
 2.2.3 :008 > luton.take_off(plane)
  => #<Plane:0x007f86610ab3d0 @landed=false>
 --------------------------------------------
 
-BASIC COMMANDS & INFO
+Basic commands and info
 
-your_airport = Airport.new(capacity)        # creates your new airport with a
-                                            # random weather status and lets
-                                            # you set capacity (defaults to
-                                            # 70 if unanswered)
-your_plane = Plane.new                      # creates your new plane
-your_airport.land(your_plane)               # lands your plane
-your_airport.take_off(your plane)           # takes off your plane
+your_airport = Airport.new(capacity)        
+- creates your new airport with a random weather status and lets you set capacity
+(defaults to 70 if unanswered)
+
+your_plane = Plane.new                      
+- creates your new plane
+
+your_airport.land(your_plane)         
+- lands your plane
+
+your_airport.take_off(your plane)
+- takes off your plane
 
 These commands are prevented when the weather is stormy. Landing can also be
 prevented when the airport is over its capacity. Airport taffic control may
