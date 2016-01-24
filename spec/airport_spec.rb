@@ -3,7 +3,6 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:small_airport) {described_class.new 2}
-  let(:weather) {double :weather}
   let(:plane) {double :plane}
 
 
@@ -14,11 +13,11 @@ describe Airport do
         it {is_expected.to respond_to(:holding_bay)}
 
         it "Initializes new Airports with a holding bay Array" do
-          expect(subject.holding_bay).to be_a Array
+          expect(airport.holding_bay).to be_a Array
         end
 
         it "Initializes new Airports with no planes in it" do
-          expect(subject.holding_bay).to eq []
+          expect(airport.holding_bay).to eq []
         end
       end
 
@@ -27,12 +26,12 @@ describe Airport do
       it {is_expected.to respond_to(:capacity)}
 
       it "Initializes new Airports with a capacity" do
-        expect(subject.capacity).to be_a Integer
+        expect(airport.capacity).to be_a Integer
       end
 
       it "Intializes all new Airports with the same default capacity" do
-        airport1 = subject
-        airport2 = subject
+        airport1 = airport
+        airport2 = airport
         expect(airport1.capacity).to eq airport2.capacity
       end
 
@@ -54,25 +53,25 @@ describe Airport do
     before do
       allow(plane).to receive(:change_status)
       allow(plane).to receive(:flying?).and_return(true)
-      allow(weather).to receive(:sunny?).and_return(true)
+      allow(airport).to receive(:sunny).and_return(true)
     end
 
     context "Can #land plane  in airport" do
 
       before do
         allow(airport).to receive(:full?).and_return(false)
-        subject.land plane
+        airport.land plane
       end
 
       it {is_expected.to respond_to(:land).with(1).argument}
 
       it "Can #land plane  in airport and then see it in the holding_bay" do
-        expect(subject.holding_bay).to eq [plane]
+        expect(airport.holding_bay).to eq [plane]
       end
 
       it "Cannot land a plane that has already landed" do
         allow(plane).to receive(:flying?).and_return(false)
-        expect(subject.land plane ).to eq "Plane has already landed"
+        expect(airport.land plane ).to eq "Plane has already landed"
       end
     end
 
@@ -83,7 +82,7 @@ describe Airport do
       before do
         plane1 = double("plane1", :flying? => true, :change_status => "Landed")
         plane2 = double("plane2", :flying? => true, :change_status => "Landed")
-        allow(weather).to receive(:sunny?).and_return(true)
+        allow(airport).to receive(:sunny).and_return(true)
         small_airport.land plane1
         small_airport.land plane2
       end
@@ -107,29 +106,29 @@ describe Airport do
         before do
           allow(plane).to receive(:change_status)
           allow(plane).to receive(:flying?).and_return(true)
-          allow(weather).to receive(:sunny?).and_return(true)
+          allow(airport).to receive(:sunny).and_return(true)
           allow(airport).to receive(:full?).and_return(false)
-          subject.land(plane)
+          airport.land(plane)
           allow(plane).to receive(:landed?).and_return(true)
         end
 
         it "Releases a plane from the holding bay" do
-          expect(subject.take_off).to eq plane
+          expect(airport.take_off).to eq plane
         end
 
         it "Removes a plane from the holding bay" do
-          subject.take_off
+          airport.take_off
           expect(airport.holding_bay).to eq []
         end
 
         it "Will not release a plane from the holding bay if it is empty" do
-          subject.take_off
-          expect(subject.take_off).to eq "The airport is empty"
+          airport.take_off
+          expect(airport.take_off).to eq "The airport is empty"
         end
 
         it "Will not let a plane take off if it isn't landed" do
           allow(plane).to receive(:landed?).and_return(false)
-          expect(subject.take_off).to eq "This plane is already flying"
+          expect(airport.take_off).to eq "This plane is already flying"
         end
 
       end
@@ -138,44 +137,41 @@ describe Airport do
 
     context "Behaviour due to bad/not sunny weather" do
 
-      before do
-        allow(plane).to receive(:flying?).and_return(false)
-        allow(plane).to receive(:change_status)
-        allow(weather).to receive(:sunny?).and_return(false)
-      end
-
         context "#landing whilst not sunny" do
+          subject(:airport2) {described_class.new(10, false)}
 
           it "Will not allow plane to land if not sunny" do
-            expect(subject.land plane ).to eq("Unsafe to land plane whilst stormy")
+            allow(plane).to receive(:change_status)
+            allow(plane).to receive(:flying?).and_return(true)
+            expect(airport2.land plane ).to eq("Unsafe to land plane whilst stormy")
           end
 
           it "Will not add another plane to the holding bay if landing whilst not sunny" do
-            before = subject.holding_bay.size
-            subject.land plane
-            expect(subject.holding_bay.size).to eq (before)
+            before = airport2.holding_bay.size
+            airport2.land plane
+            expect(airport2.holding_bay.size).to eq (before)
           end
 
         end
 
         describe "#taking_off whilst not sunny" do
+          subject(:airport2) {described_class.new(10, false)}
 
           before do
+            allow(plane).to receive(:change_status)
             allow(plane).to receive(:flying?).and_return(true)
-            allow(airport).to receive(:empty?).and_return(false)
-            airport.land plane
-            allow(plane).to receive(:landed?).and_return(true)
-            allow(weather).to receive(:sunny?).and_return(false)
+            airport2.land(plane)
           end
 
           it "Will not allow plane to take off if not sunny" do
-            expect(subject.take_off).to eq("Unsafe to take off plane whilst stormy")
+            allow(airport2).to receive(:empty?).and_return(false)
+            expect(airport2.take_off).to eq("Unsafe to take off plane whilst stormy")
           end
 
           it "Will not take off a plane from the holding bay whilst not sunny" do
-            before = subject.holding_bay.size
-            subject.take_off
-            expect(subject.holding_bay.size).to eq (before)
+            before = airport2.holding_bay.size
+            airport2.take_off
+            expect(airport2.holding_bay.size).to eq (before)
           end
 
         end
