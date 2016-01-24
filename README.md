@@ -9,7 +9,7 @@ Build Status
 Approach
 -------
 
-I first broke down each user story into a domain model [domain_model.txt](https://github.com/ggwc82/airport_challenge/commit/9ea2d9f065ed0b9ded5e155c243b6f4cce8acaf7) to allow me to make clear decisions regarding state and behaviour of each object:
+I first broke down each user story into a domain model (see domain_model.txt) to allow me to make clear decisions regarding state and behaviour of each object:
 
 ```
 Class: Airport
