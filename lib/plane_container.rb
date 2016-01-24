@@ -1,4 +1,5 @@
 module PlaneContainer
+  attr_reader :list_planes
 
   def setup_plane_list
     @list_planes = []
