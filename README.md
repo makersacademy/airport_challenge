@@ -1,4 +1,6 @@
-Airport Challenge          https://travis-ci.org/MarcoCode/airport_challenge.svg?branch=master
+
+
+Airport Challenge         [![Build Status](https://travis-ci.org/MarcoCode/airport_challenge.svg?branch=master)](https://travis-ci.org/MarcoCode/airport_challenge)  
 =================
 
 What is it?
