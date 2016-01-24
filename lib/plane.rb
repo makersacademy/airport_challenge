@@ -26,7 +26,6 @@ class Plane
 
   # NOTE: consider alternative implementation of #location and #in_flight?
   def location
-    # NOTE: consider using guard statements over conditionals
     if in_flight?
       "In flight"
     else
