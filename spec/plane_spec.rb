@@ -47,6 +47,7 @@ describe Plane do
       expect(subject.landed).to eq true
     end
   end
+
   it 'raises an error when landing a landed plane'do
     allow(airport).to receive(:full?).and_return(false)
     allow(airport).to receive(:planes).and_return([])
@@ -57,4 +58,5 @@ describe Plane do
     allow(airport).to receive(:planes).and_return([])
     expect{ subject.takeoff(airport, "sunny") }.to raise_error("Not At Airport")
   end
+
 end
