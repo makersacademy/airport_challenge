@@ -8,11 +8,11 @@ class Plane
       airport.planes << self
       @landed = true
     elsif weather == "stormy"
+      puts "Could not land due to bad weather"
       @landed = false
-      #"Weather is too bad to land"
     else
       @landed = false
-      #"The airport is full"
+      puts "The airport is full. Couldn't land"
     end
   end
 
@@ -21,6 +21,7 @@ class Plane
     if weather == "sunny"
       @landed = false
     else
+      puts "Could not take off due to bad weather"
       @landed = true
     end
   end
