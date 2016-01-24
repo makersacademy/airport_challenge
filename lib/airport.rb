@@ -13,12 +13,11 @@ class Airport
 	def take_off(stormy)
 		if stormy
 			puts "It's stormy, I cannot take off"
-			@plane
 		else
 			@plane = nil
 			puts "Plane has taken off"
-			@plane
 		end
+		@plane
 	end
 
 	def full?
