@@ -23,9 +23,9 @@ Methods/State: condition
 
 ```
 
-During the exercise I took to using pry to spike my feature test, and then proceed to Red, Green, Refactor with each user story. The earlier user stories modelled the behaviour of the plane objects with doubles and mocks used as substitutes for writing out the airport and weather classes.
+During the exercise I took to using pry to spike my feature test, and then proceed to Red, Green, Refactor with each user story. The earlier user stories modelled the behaviour of the plane objects with doubles and mocks used as substitutes for the airport and weather classes.
 
-Plane class was then created and tested, with doubles and mocks removed from plane_spec.rb, and finally a weather class was modelled, to produce a fully working system. Further spiking in pry to attempt to test edge cases was performed, and a feature test also written.
+Airport class was then created and tested, with doubles and mocks removed from plane_spec.rb, and finally a weather class was modelled and integrated, to produce a fully working system. Further spiking in pry to attempt to test edge cases was performed, and a feature test also written.
 
 TravisCI checks advise of 100% coverage of test case scenarios, and all houndci suggestions were acted upon and completed. 
 
