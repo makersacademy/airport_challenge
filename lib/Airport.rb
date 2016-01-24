@@ -1,4 +1,4 @@
-require_relative 'Aircraft'
+require_relative 'aircraft'
 
 class Airport
 
@@ -10,7 +10,6 @@ class Airport
 
   def land(plane)
     @planes << plane
-    puts "CONFIRMATION: Flight #{plane} has landed successfully."
   end
 
 end
