@@ -5,12 +5,15 @@ describe Airplane do
 	let(:control) { double :control }
   let(:airport) { double :airport }
 
-#airplane check-in
+  it { is_expected.to respond_to(:report_landed).with(1).argument }
 
-#confirm plane has landed
-
-#airplane check-out
-
-#confirm plane has taken off
+	it 'plane can be reported as landed' do
+		subject.report_landed(airport)
+		expect(subject.landed).to be true
+	end
+  it 'plane can be reported as inflight' do
+		subject.report_inflight
+		expect(subject.landed).to be false
+	end
 
 end
