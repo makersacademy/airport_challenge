@@ -6,8 +6,8 @@ class Plane
     @airport = airport
   end
 
-  # TODO: guard against landing if not in_flight
-  def land(destination)
+  def land_at(destination)
+    raise "Plane is not in flight!" if !in_flight?
     raise "Unable to land plane in stormy weather" if destination.stormy?
     destination.inbound self
     set_location destination
@@ -15,8 +15,8 @@ class Plane
     return true
   end
 
-  # TODO: guard against taking off if in_flight
   def take_off
+    raise "Plane is in flight!" if in_flight?
     raise "Unable to take off in stormy weather" if airport.stormy?
     airport.outbound self
     set_location nil
