@@ -1,4 +1,4 @@
-require "./lib/weather.rb"
+require "./lib/Weather.rb"
 
 describe Weather do
   subject(:weather) { described_class.new }

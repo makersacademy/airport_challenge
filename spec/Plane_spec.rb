@@ -1,4 +1,4 @@
-require "./lib/plane.rb"
+require "./lib/Plane.rb"
 
 describe Plane do
   subject(:plane) { described_class.new }

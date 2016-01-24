@@ -1,4 +1,4 @@
-require "./lib/air_traffic_controller.rb"
+require "./lib/Air_traffic_controller.rb"
 
 describe Air_traffic_controller do
   subject(:air_traffic_controller) { described_class.new }

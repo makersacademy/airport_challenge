@@ -1,6 +1,6 @@
-require "./lib/airport.rb"
-require "./lib/plane.rb"
-require "./lib/weather.rb"
+require "./lib/Airport.rb"
+require "./lib/Plane.rb"
+require "./lib/Weather.rb"
 
 class Air_traffic_controller
 
