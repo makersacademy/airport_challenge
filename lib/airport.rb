@@ -9,14 +9,16 @@ class Airport
   end
 
   def land(plane)
-    fail 'Cannot land due to stormy weather'
-      if weather_conditions < 3
+    if weather_conditions < 3
+      raise 'Cannot land due to stormy weather'
+    end
     landed_planes << plane
   end
 
   def take_off(plane)
-    fail 'Cannot take off due to stormy weather' 
-      if weather_conditions < 3
+    if weather_conditions < 3
+      raise 'Cannot take off due to stormy weather'
+    end
     departing_flights = []
     departing_flights << plane
     landed_planes.delete plane

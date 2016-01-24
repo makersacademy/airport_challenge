@@ -12,7 +12,6 @@ describe Airport do
     end
 
     it 'confirm that plane has landed' do
-      allow(plane).to receive(:land)
       allow(airport).to receive(:weather_conditions).and_return(8)
       airport.land(plane)
       expect(airport.landed_planes).to include plane
@@ -27,8 +26,6 @@ describe Airport do
     end
 
     it 'confirm plane is no longer in the airport' do
-      allow(plane).to receive(:land)
-      allow(plane).to receive(:take_off)
       allow(airport).to receive(:weather_conditions).and_return(8)
       expect(airport.landed_planes).not_to include plane
     end
