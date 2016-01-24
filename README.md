@@ -20,7 +20,7 @@ My Approach
 
 My first step was to work through the user stories, isolate the objects and messages the program required, and put them in a table.
 
-I then worked through the table step-by-step, aiming to write the whole program using TDD - first running a feature test in IRB, then writing a failing unit test in RSpec, then writing the Classes and Methods to pass the test, before moving on to the next set of failing tests. There were a few times when my code was passing the feature test, but not the unit test - on these occasions I had to refactor the unit tests to make sure everything was working and passing (I'm hoping this will improve as I learn RSpec syntax and how to analyse the stack trace more thoroughly).
+I then worked through the table step-by-step, aiming to write the whole program using TDD - first running a feature test in IRB, then writing a failing unit test in RSpec, then writing the Classes and Methods to pass the test, before moving on to the next set of failing tests. There were a few times when my code was passing the feature test, but not the unit test - on these occasions I had to refactor the unit tests to make sure everything was working and passing (I'm hoping this will improve as I learn RSpec syntax more thoroughly).
 
 I aimed to write all the unit tests using mocks and stubs to ensure my tests were isolated within classes.
 
@@ -130,7 +130,7 @@ from /Users/seanhawkridge/Dropbox/Dev/airport_challenge/lib/airport.rb:19:in `la
 
 ```
 
-IDEAS / TO DO
+Ideas / To do
 ---------
 
 * Planes currently initialize in mid-air - it might make sense to refactor the code so that they initialize in an airport.
