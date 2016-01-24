@@ -37,4 +37,10 @@ describe Plane do
     airport.weather = 'stormy'
     expect { subject.land(airport) }.to raise_error 'Unable to land during stormy weather'
   end
+
+  it 'cannot take off from an airport experiencing stormy weather' do
+    airport = Airport.new
+    airport.weather = 'stormy'
+    expect { subject.take_off(airport) }.to raise_error 'Unable to take off during stormy weather'
+  end
 end
