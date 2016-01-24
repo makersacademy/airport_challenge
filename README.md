@@ -11,7 +11,7 @@ Three classes
 (3) Weather - Randomly generates a weather condition, with a 75% chance of sunny weather and a 25% chance of stormy weather.
 
 Example:
-'''
+```
 $ irb
 2.2.3 :001 > require './lib/plane.rb'
  => true 
@@ -28,7 +28,7 @@ Could not take off due to bad weather
 2.2.3 :006 > plane.takeoff(airport)
 The plane takes off!
  => false 
-'''
+```
 
 
  User Stories:
