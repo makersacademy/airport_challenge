@@ -33,6 +33,7 @@ class Air_traffic_controller
     raise "Plane cannot take off, the weather is stormy" if weather.bad?
     plane.takeoff
     airport.new_plane_takeoff(plane)
+    add_to_in_flight(plane)
   end
 
   def add_to_in_flight(plane)

@@ -24,4 +24,17 @@ describe Airport do
 
   end
 
+  describe "#aftertakeoff plane deleted from at airport list" do
+    let(:plane1) {double :plane1}
+    let(:plane2) {double :plane2}
+
+    it "deletes the plane from the at airport list after takeoff" do
+      subject.new_plane_landed(plane1)
+      subject.new_plane_landed(plane2)
+      subject.new_plane_takeoff(plane1)
+      expect(subject.list_landed_planes).to eq ([plane2])
+    end
+
+  end
+
 end

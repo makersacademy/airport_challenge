@@ -24,15 +24,26 @@ describe Air_traffic_controller do
     let(:airport) {double :airport}
     let(:weather) {double :weather}
 
+      it "can ask a plane to take off" do
+        allow(plane).to receive(:takeoff).and_return(true)
+        allow(weather).to receive(:bad?).and_return(false)
+        allow(airport).to receive(:new_plane_takeoff)
+        allow(airport).to receive(:list_landed_planes).and_return([plane])
+        allow(airport).to receive(:check_list).and_return(true)
+        subject.takeoff_plane(plane, airport, weather)
+
+      end
+
       it "returns the list of planes in flight" do
         allow(plane).to receive(:takeoff).and_return(true)
         allow(weather).to receive(:bad?).and_return(false)
         allow(airport).to receive(:new_plane_takeoff)
         allow(airport).to receive(:list_landed_planes).and_return([plane])
+        allow(airport).to receive(:check_list).and_return(true)
         subject.takeoff_plane(plane, airport, weather)
-        subject.add_to_in_flight(plane)
         expect(subject.list_planes_in_flight).to eq [plane]
       end
+
   end
 
   describe "#cannot takeoff_planes during bad weather" do

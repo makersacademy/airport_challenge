@@ -12,5 +12,5 @@ describe Weather do
   #     expect(array.length).to be < 100
   #   end
 
-  end
+  #end
 end

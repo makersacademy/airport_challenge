@@ -25,6 +25,10 @@ class Airport
     @planes_in_airport.push(plane)
   end
 
+  def new_plane_takeoff(plane)
+    @planes_in_airport.delete(plane)
+  end
+
   def list_landed_planes
     list_of_planes = @planes_in_airport.clone
   end
