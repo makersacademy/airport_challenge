@@ -11,12 +11,12 @@ describe Plane do
     end
 
     it 'shows status of landed plane to be arrived' do
-      expect(subject.status).to eq :arrive
+      expect(subject.status).to eq :arrived
     end
 
     it 'shows status of taken off plane to be departed' do
       @airport.takeoff subject
-      expect(subject.status).to eq :depart
+      expect(subject.status).to eq :departed
     end
   end
 end

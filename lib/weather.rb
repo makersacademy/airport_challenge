@@ -1,7 +1,6 @@
 class Weather
   def stormy?
-    #random_generator
-    true
+    random_generator
   end
 
   private
