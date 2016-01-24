@@ -1,9 +1,18 @@
 module Weather
 
+  def weather_options
+    @weather.dup
+  end
+
   def weather_status
-    weather = ["sunny","sunny","sunny","sunny","stormy",
+    weather_options.sample
+  end
+
+  private
+
+  def weather
+    @weather = ["sunny","sunny","sunny","sunny","stormy",
                "sunny","sunny","stormy","sunny","sunny"]
-    weather.sample
   end
 
 end
