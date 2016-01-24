@@ -1,16 +1,20 @@
-Airport Challenge (Makers Academy weekend challenge 1) - 24 Jan 2016
+Airport Challenge Makers Academy weekend challenge 1) - 24 Jan 2016
 =================
+Makers Academy weekend challenge 1 - 24 Jan 2016
+------------------------------------------------
 
 https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
 Includes: gems, ruby classes & rspec unit tests
-
+---------
 Requirements:
+------------
 Create a Ruby programme to allow air traffic control to instruct planes to land
 and take-off from airports unless the weather is stormy. Airports should have a
 fixed capacity which can be set and should not accept additional planes landing
 when full.
 
 Approach:
+--------
 This programme uses a number of different classes;
 AirTrafficControl - which carries all inflight planes and is responsible for
 instructing landing and take-off sequences.
