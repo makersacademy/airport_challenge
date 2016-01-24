@@ -5,12 +5,13 @@ class Plane
     #airport.landed_planes << self
   end
 
-  def land(airport)
+  def land(airport, weather)
     @landed = true
     add_to_airport_list_of_landed_planes(airport)
   end
 
-  def take_off(airport)
+  def take_off(airport, weather)
+    fail 'The weather is too stormy to take-off' if weather.stormy?
     @landed = false
     remove_from_airport_list_of_landed_planes(airport)
   end
@@ -19,7 +20,7 @@ class Plane
 
   def add_to_airport_list_of_landed_planes(airport)
     airport.landed_planes << self
-end
+  end
 
   def remove_from_airport_list_of_landed_planes(airport)
     airport.landed_planes.delete(self)
