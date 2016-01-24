@@ -62,10 +62,11 @@ describe Airport do
 
     it 'does not let planes takeoff when the weather is stormy' do
     airport.add_plane(plane)
-    expect {(airport.takeoff(plane, weather))}.to raise_error("Too stormy to takeoff!")
+    expect {airport.takeoff(plane, weather)}.to raise_error("Too stormy to takeoff!")
     end
 
   end
+
 
 
 

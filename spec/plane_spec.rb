@@ -2,8 +2,9 @@ require 'plane'
 require 'support/shared_examples_for_takeoff_land.rb'
 
 describe Plane do
+
   it_behaves_like TakeoffLand
-  subject (:plane) {described_class.new}
+  subject(:plane) {described_class.new}
 
     describe '#land' do
       let(:airport) { double("airport", :add_plane => plane)}
@@ -52,7 +53,7 @@ describe Plane do
 
     end
 
-    describe 'stormy weather' do
+    context 'stormy weather' do
       let(:weather) {double("weather", :stormy? => true)}
       let(:airport) {double("airport", :planes_in_airport => [plane], :add_plane => plane)}
 
@@ -68,7 +69,5 @@ describe Plane do
       end
 
     end
-
-    # planes that are already flying cannot takes off and/or be in an airport;
 
 end
