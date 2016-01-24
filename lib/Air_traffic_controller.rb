@@ -14,9 +14,9 @@ class Air_traffic_controller
 
   def land_plane(plane, airport, weather)
     if weather.bad?
-      fail "Plane cannot land, the weather is stormy"
+      raise "Plane cannot land, the weather is stormy"
     elsif airport.full?
-      fail "Plane cannot land, the airport is full"
+      raise "Plane cannot land, the airport is full"
     else
       plane.land
       airport.new_plane_landed(plane)
@@ -29,7 +29,7 @@ class Air_traffic_controller
 
   def takeoff_plane(plane, airport, weather)
     if weather.bad?
-      fail "Plane cannot take off, the weather is stormy"
+      raise "Plane cannot take off, the weather is stormy"
     else
       plane.takeoff
       airport.new_plane_takeoff(plane)
