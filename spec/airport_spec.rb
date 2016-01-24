@@ -22,39 +22,38 @@ describe Airport do
     let(:plane_1) { double(:plane_1)}
     let(:plane_2) { double(:plane_2)}
     let(:plane_3) { double(:plane_3)}
+    let(:airport) {Airport.new(2)}
+
+    before do
+      allow(plane_1).to receive(:airborne).and_return(true)
+      allow(plane_2).to receive(:airborne).and_return(true)
+      allow(plane_3).to receive(:airborne).and_return(true)
+      allow(plane_1).to receive(:landed)
+      allow(plane_2).to receive(:landed)
+      allow(plane_3).to receive(:landed)
+      allow(airport).to receive(:stormy?).and_return(false)
+    end
 
     it {is_expected.to respond_to :land_plane}
 
     it 'will add a plane to its array' do
-      allow(plane_1).to receive(:landed)
-      allow(plane_1).to receive(:airborne).and_return(true)
-      allow(subject).to receive(:stormy?).and_return(false)
-      subject.land_plane(plane_1)
-      expect(subject.planes).to include plane_1
+      airport.land_plane(plane_1)
+      expect(airport.planes).to include plane_1
     end
 
     it 'will not land a plane if the weather is stormy' do
-      allow(plane_1).to receive(:landed)
-      allow(plane_1).to receive(:airborne)
-      allow(subject).to receive(:stormy?).and_return(true)
-      expect{subject.land_plane(plane_1)}.to raise_error(RuntimeError)
+      allow(airport).to receive(:stormy?).and_return(true)
+      expect{airport.land_plane(plane_1)}.to raise_error(RuntimeError)
     end
 
     it 'will not land a plane if the airport is full' do
-      allow(plane_1).to receive(:airborne).and_return(true)
-      allow(plane_2).to receive(:airborne).and_return(true)
-      allow(plane_1).to receive(:landed)
-      allow(plane_2).to receive(:landed)
-      airport = Airport.new(1)
-      allow(airport).to receive(:stormy?).and_return(false)
       airport.land_plane(plane_1)
-      expect{airport.land_plane(plane_2)}.to raise_error(RuntimeError)
+      airport.land_plane(plane_2)
+      expect{airport.land_plane(plane_3)}.to raise_error(RuntimeError)
     end
 
     it 'will not land a grounded plane' do
       allow(plane_1).to receive(:airborne).and_return(false)
-      allow(plane_1).to receive(:landed)
-      airport = Airport.new(2)
       expect{airport.land_plane(plane_1)}.to raise_error(RuntimeError)
     end
 
@@ -64,28 +63,27 @@ describe Airport do
 
     let(:plane) { double(:plane)}
 
+    before do
+      allow(subject).to receive(:stormy?).and_return false
+      allow(plane).to receive(:landed)
+      allow(plane).to receive(:departed)
+    end
+
     it {is_expected.to respond_to :send_plane}
 
     it 'will allow a plane to take off' do
-      allow(plane).to receive(:landed)
-      allow(plane).to receive(:departed)
       allow(plane).to receive(:airborne).and_return true
-      allow(subject).to receive(:stormy?).and_return false
       subject.land_plane(plane)
       subject.send_plane(plane)
       expect(subject.planes).not_to include plane
     end
 
     it 'is not able to send a plane that isn\'t there' do
-      allow(plane).to receive(:departed)
-      allow(plane).to receive(:airborne)
-      allow(subject).to receive(:stormy?).and_return false
       expect{subject.send_plane(plane)}.to raise_error(RuntimeError)
     end
 
     it 'will not let a plane take off if it\'s stormy' do
-      allow(plane).to receive(:departed)
-      allow(subject).to receive(:stormy?).and_return(true)
+      allow(subject).to receive(:stormy?).and_return true
       expect{subject.send_plane(plane)}.to raise_error(RuntimeError)
     end
 
@@ -93,23 +91,26 @@ describe Airport do
 
   describe '#at_capacity?' do
 
-    let(:plane) { double(:plane, :airborne => true)}
+    let(:airport) {Airport.new(2)}
+    let(:plane_1) {double(:plane_1, :airborne => true)}
+    let(:plane_2) {double(:plane_2, :airborne => true)}
+
+    before do
+      allow(airport).to receive(:stormy?).and_return false
+      allow(plane_1).to receive(:landed)
+      allow(plane_2).to receive(:landed)
+    end
 
     it {is_expected.to respond_to :at_capacity?}
 
     it 'returns true if the airport is at capacity' do
-      airport = Airport.new(2)
-      p1 = double(:plane, :airborne => false)
-      p2 = double(:plane, :airborne => false)
-      airport.planes << p1
-      airport.planes << p2
+      airport.land_plane(plane_1)
+      airport.land_plane(plane_2)
       expect(airport.at_capacity?).to be true
     end
 
     it 'returns false if the airport is not at capacity' do
-      airport = Airport.new(2)
-      p1 = double(:plane, :airborne => false)
-      airport.planes << p1
+      airport.land_plane(plane_1)
       expect(airport.at_capacity?).to be false
     end
 

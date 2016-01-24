@@ -3,6 +3,8 @@ shared_examples_for Weather do
 
   it {is_expected.to respond_to :stormy?}
 
+  #inspired by Rufus
+
   def test_for_stormy_weather
 
       count = 0
