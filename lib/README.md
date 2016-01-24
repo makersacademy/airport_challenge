@@ -38,6 +38,9 @@ As the users are the airport controllers, I decided to let the airports control 
 
 I've fixed that by checking the plane controls - to ensure they have to initiated by an airport object for them to be acted upon.
 
+irb
+
+```
 2.2.3 :001 > require './lib/airport'
  => true
 2.2.3 :002 > gatwick = Airport.new
@@ -93,3 +96,4 @@ RuntimeError: Plane already landed
 NameError: uninitialized constant Task
 	from (irb):16
 	from /Users/eirikwiig/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+```
