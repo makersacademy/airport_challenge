@@ -5,6 +5,10 @@ module PlaneContainer
     @list_planes = []
   end
 
+  # def list_planes
+  #   @plane_container.dup
+  # end
+
   def initialize(capacity = self.class::DEFAULT_CAPACITY)
     @capacity = capacity
     setup_plane_list

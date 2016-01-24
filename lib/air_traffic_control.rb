@@ -4,7 +4,6 @@ require_relative 'weather'
 require_relative 'plane_container'
 
 class AirTrafficControl
-  # include Weather
   include PlaneContainer
 
   DEFAULT_CAPACITY = 500
