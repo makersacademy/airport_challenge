@@ -48,4 +48,17 @@ describe Airport do
     airport = Airport.new(30)
     expect(airport.capacity).to eq 30
   end
+
+  it 'it lands five planes' do
+    allow(subject).to receive(:weather) {:fine}
+    5.times {subject.land(Plane.new)}
+    expect(subject.planes.count).to eq 5
+  end
+
+  it 'takes off and lands five planes' do
+    allow(subject).to receive(:weather) {:fine}
+    5.times {subject.land(Plane.new)}
+    4.times {subject.take_off(plane)}
+    expect(subject.planes.count).to eq 1
+  end
 end

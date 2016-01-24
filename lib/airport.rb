@@ -3,7 +3,7 @@ require_relative 'weather.rb'
 
 class Airport
 
-  attr_reader :planes
+  attr_accessor :planes
   attr_reader :capacity
 
 
