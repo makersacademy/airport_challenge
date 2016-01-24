@@ -14,4 +14,9 @@ describe Airport do
     expect(subject.land_plane(plane)).to include plane
   end
 
+  it "confirms if a plane has taken off" do
+    expect(plane).to receive(:take_off)
+    expect(subject.plane_takes_off(plane)).to_not include plane
+  end
+
 end
