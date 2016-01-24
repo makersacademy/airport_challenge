@@ -1,9 +1,12 @@
 require 'airport'
+require_relative 'plane_container_spec'
 
 describe Airport do
   subject(:Airport) {described_class.new}
 	let(:plane) { double :plane }
   let(:control) { double :control }
+
+  it_behaves_like PlaneContainer
 
   #responds to methods in class
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -24,7 +27,7 @@ describe Airport do
       allow_any_instance_of(Airport).to receive(:report_landed)
       allow(plane).to receive(:report_inflight)
       allow_any_instance_of(Airport).to receive(:report_inflight)
-      end
+    end
     #airport has defaul capacity
     describe '#initialize' do
       it 'initialize should set default capacity' do

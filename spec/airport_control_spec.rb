@@ -1,9 +1,12 @@
 require 'air_traffic_control'
+require_relative 'plane_container_spec'
 
 describe AirTrafficControl do
   subject(:AirTrafficControl) {described_class.new}
 	let(:plane) { double :plane }
   let(:airport) { double :airport }
+
+  it_behaves_like PlaneContainer
 
 #responds to methods in class
   it { is_expected.to respond_to(:instruct_land).with(2).argument }

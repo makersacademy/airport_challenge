@@ -1,9 +1,15 @@
-require 'airport'
+# require 'airport'
 
-describe Airport do
+shared_examples_for PlaneContainer do
+
+# describe PlaneContainerTest do
   subject(:Airport) {described_class.new}
 	let(:plane) { double :plane }
   let(:control) { double :control }
+
+  #responds to methods in module
+  it { is_expected.to respond_to(:plane_in).with(1).argument }
+  it { is_expected.to respond_to(:plane_out).with(1).argument }
 
   #logged into module list
   describe '#plane_in' do
