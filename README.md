@@ -3,28 +3,36 @@
 --- 1. Program Instructions ---
 
 Irb example
-------------------------------------------
+
 2.2.3 :001 > require './lib/airport.rb'
  => true
+
 2.2.3 :002 > heathrow = Airport.new
  => #<Airport:0x007f866200b3c0 @planes=[], @weather=#<Weather:0x007f866200b398>
  , @capacity=70>
+
 2.2.3 :003 > luton = Airport.new(20)
  => #<Airport:0x007f8662000628 @planes=[], @weather=#<Weather:0x007f8662000600>
  , @capacity=20>
+
 2.2.3 :004 > plane = Plane.new
  => #<Plane:0x007f86610ab3d0 @landed=false>
+
 2.2.3 :005 > heathrow.land(plane)
  => [#<Plane:0x007f86610ab3d0 @landed=true>]
+
 2.2.3 :006 > heathrow.take_off(plane)
  => #<Plane:0x007f86610ab3d0 @landed=false>
+
 2.2.3 :007 > luton.land(plane)
  => [#<Plane:0x007f86610ab3d0 @landed=true>]
+
 2.2.3 :008 > luton.take_off(plane)
  => #<Plane:0x007f86610ab3d0 @landed=false>
---------------------------------------------
 
-Basic commands and info
+
+-Basic Commands and Info-
+
 
 your_airport = Airport.new(capacity)        
 - creates your new airport with a random weather status and lets you set capacity
