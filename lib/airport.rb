@@ -15,7 +15,8 @@ class Airport
 
   def take_off(plane)
     fail "Cannot take off in stormy conditions" if stormy?
-    @planes_landed.delete(plane)
+    plane.plane_take_off(self)
+    remove_planes(plane)
     puts "#{plane} has taken off"
     @plane = plane
   end
@@ -23,7 +24,7 @@ class Airport
   def land(plane)
     fail "Airport Full" if full?
     fail "Cannot land in stormy conditions" if stormy?
-    plane.plane_landed
+    plane.plane_landed(self)
     @plane = plane
     @planes_landed << plane
     puts "#{plane} has landed"
@@ -40,6 +41,10 @@ class Airport
 
   def stormy?
     Weather.new.stormy?
+  end
+
+  def remove_planes(plane)
+    @planes_landed.delete(plane)
   end
 
 end
