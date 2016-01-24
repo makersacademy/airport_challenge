@@ -22,17 +22,17 @@ describe Airport do
 	end
 
 
-	# describe '#takeoff' do
-	# 	let(:plane) {double(:plane)}
+	describe '#takeoff' do
+		let(:plane) {double(:plane)}
 
-	# 	it {is_expected.to respond_to(:takeoff).with(1).argument}
+		it {is_expected.to respond_to(:takeoff).with(1).argument}
 
 		# it 'removes plane from airport' do
 		# 	airport.land(plane)
 		# 	airport.takeoff(plane)
 		# 	expect(airport.planes).not_to include(plane)
 		# end
-	# end
+	end
 
 end
 

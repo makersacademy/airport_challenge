@@ -12,8 +12,9 @@ class Airport
 		@landed_planes << plane 
 	end
 
-	# def takeoff(plane)
-	# 	@landed_planes.pop
-	# end
+	def takeoff(weather)
+		raise 'Too stormy to takeoff' if weather.stormy?
+		@airport = false
+	end
 
 end

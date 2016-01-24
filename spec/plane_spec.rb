@@ -19,18 +19,7 @@ describe Plane do
 			expect(plane.airport?).to eq airport
 		end
 	end
-
-	# describe '#takeoff' do
-	# 	let(:airport) {double :airport}
-
-	# 	it {is_expected.to respond_to(:takeoff).with(1).argument}
-
-	# 	it 'is will be deleted from airport' do
-	# 		plane.land(airport)
-	# 		plane.takeoff(airport)
-	# 		expect(plane.new_airport).to eq false
-	# 	end
-	end
+end
 
 
 
