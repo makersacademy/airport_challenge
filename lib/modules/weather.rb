@@ -1,10 +1,9 @@
 module Weather
 
-  WEATHER = ["sunny","sunny","sunny","sunny","stormy",
-             "sunny","sunny","stormy","sunny","sunny"].freeze
-
   def weather_status
-    WEATHER.sample
+    weather = ["sunny","sunny","sunny","sunny","stormy",
+               "sunny","sunny","stormy","sunny","sunny"]
+    weather.sample
   end
 
 end
