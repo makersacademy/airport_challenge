@@ -6,13 +6,13 @@ class Plane
   end
 
   def land
-    fail 'Cannot land again, plane already landed!' if @landed
+    fail 'Plane in land, cannot land again!' if @landed
     @landed = true
     self
   end
 
   def take_off
-    fail 'Cannot take off again, plane already took off!' unless @landed
+    fail 'Plane in flight, cannot take off again!' unless @landed
     @landed = false
     self
   end

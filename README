@@ -2,6 +2,9 @@ Airport Challenge Author README
 =================
 Author: arnoldmanzano
 
+Travis CI status
+https://travis-ci.org/arnoldmanzano/airport_challenge.svg?branch=master
+
 #TODO add approach to solving challenge
 #Current framework so far
 Plane is a class

@@ -17,7 +17,7 @@ describe Airport do
 
     it 'raises error, prevent land on stormy weather' do
       allow(weather).to receive(:stormy?).and_return(true)
-      message = 'Cannot land on a storm!'
+      message = 'Cannot land on a storm! Try again!'
       expect { airport.land(plane) }.to raise_error(message)
     end
 
@@ -31,12 +31,12 @@ describe Airport do
 
   describe '#take_off' do
     before(:each) do
-      allow(plane).to receive(:land)
+      allow(plane).to receive(:land).and_return(plane)
       airport.land(plane)
     end
 
     it 'no longer has the plane that is instructed to take off' do
-      allow(plane).to receive(:take_off)
+      allow(plane).to receive(:take_off).and_return(plane)
       airport.take_off(plane)
       expect(airport.planes).not_to include plane
     end
@@ -44,8 +44,14 @@ describe Airport do
     it 'raises error, prevent take off on stormy weather' do
       allow(weather).to receive(:stormy?).and_return(true)
       allow(plane).to receive(:take_off)
-      message = 'Cannot take off on a storm!'
+      message = 'Cannot take off on a storm! Try again!'
       expect { airport.take_off(plane) }.to raise_error(message)
+    end
+
+    it 'raises error if plane is not in the airport' do
+      other_plane = double(:other_plane)
+      message = 'Plane not in the airport!'
+      expect { airport.take_off(other_plane) }.to raise_error(message)
     end
   end
 end

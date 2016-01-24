@@ -10,7 +10,7 @@ describe Plane do
 
     it 'raises error if plane already landed' do
       subject.land
-      message = 'Cannot land again, plane already landed!'
+      message = 'Plane in land, cannot land again!'
       expect { subject.land }.to raise_error(message)
     end
   end
@@ -27,7 +27,7 @@ describe Plane do
 
     it 'raises error if plane already took off' do
       subject.take_off
-      message = 'Cannot take off again, plane already took off!'
+      message = 'Plane in flight, cannot take off again!'
       expect { subject.take_off }.to raise_error(message)
     end
   end
