@@ -13,8 +13,9 @@ describe Plane do
     
     it 'instructs plane to land'do
         plane1 = Plane.new
+        weather1 = Weather.new
         plane1.instruct_to_land
-        expect(subject.instruct_to_land).to eq true
+        expect(subject.instruct_to_land(weather1)).to eq true
     end
     
     
