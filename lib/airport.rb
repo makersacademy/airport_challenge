@@ -4,17 +4,17 @@ class Airport
 
 	attr_accessor :planes
 
-	def initialize
-		@planes = Array.new
-	end
+    def initialize
+		@planes = []
+    end
 
-	def allow_takeoff
-      raise "No planes available for takeoff" if @planes.empty?
+    def allow_takeoff
+      fail "No planes available for takeoff" if @planes.empty?
       @planes.pop
-	end
+    end
 
-	def allow_landing(plane)
-		 raise "Airport is full, cannot allow plane to land" if @planes.count >=20   
+    def allow_landing(plane)
+		 fail "Airport is full, cannot allow plane to land" if @planes.count >=20   
         @planes << plane
     end
 

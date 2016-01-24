@@ -6,7 +6,7 @@ describe Airport do
     it 'raises error message when airport full' do
 		plane = (double :plane)
 		20.times {subject.allow_landing(plane)}
-		expect {(subject.allow_landing(plane))}.to raise_error("Airport is full, cannot allow plane to land")
+		expect {subject.allow_landing(plane)}.to raise_error("Airport is full, cannot allow plane to land")
 	end
 
 
@@ -23,13 +23,13 @@ describe Airport do
 	describe '#allows takeoff' do
 
 		it 'raises error when there are no planes in airport' do
-	expect {(subject.allow_takeoff)}.to raise_error("No planes available for takeoff")
+	expect {subject.allow_takeoff}.to raise_error("No planes available for takeoff")
     end
  #    	it 'allows takeoff' do
 	# 	plane = subject.allow_takeoff
 	# 	expect(plane).to be_airborne
 
 	# end
-end
+    end
 end
 	
