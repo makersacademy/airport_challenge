@@ -45,4 +45,4 @@ In the example above, we create our airport (london) as well as a specific weath
 
 --------------------------------
 
-https://travis-ci.org/MatDrake/airport_challenge.svg?branch=master
+[![Build Status](https://travis-ci.org/MatDrake/airport_challenge.svg?branch=master)](https://travis-ci.org/MatDrake/airport_challenge)
