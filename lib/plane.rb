@@ -2,16 +2,11 @@ require './lib/airport.rb'
 require './lib/weather.rb'
 
 class Plane
+  attr_reader :fly
 
   def initialize
     @fly = true
   end
-
-
-  def flying?
-    @fly
-  end
-
   
   def land
     @fly = false
