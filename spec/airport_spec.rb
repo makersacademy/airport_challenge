@@ -5,7 +5,7 @@ describe Airport do
   
   it {expect(subject).to be_a Airport}  
       
-  describe 'landing' do
+  describe '#landed' do
     
     it {expect(subject).to respond_to(:landed).with(1).argument}
     
@@ -26,7 +26,7 @@ describe Airport do
     end
   end
   
-  describe 'Planes can leave airport' do
+  describe '#leave_gate' do
     it {expect(subject).to respond_to(:leave_gate)}
     
     it 'Removes a plane from the airport' do
@@ -37,7 +37,7 @@ describe Airport do
     end
   end
   
-  describe 'checks the weather before take off' do
+  describe '#weather' do
     
     it 'prevents take off when stormy' do
       allow(subject).to receive(:weather) {:stormy}
@@ -45,7 +45,7 @@ describe Airport do
     end
   end
   
-  describe 'has limited capacity for planes' do
+  describe '#capacity' do
     
     it 'raises an error if full' do
       allow(subject).to receive(:weather) {:sunny}
