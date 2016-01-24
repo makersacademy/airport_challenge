@@ -1,4 +1,4 @@
-# require_relative 'airplane'
+require_relative 'airplane'
 require_relative 'airport'
 require_relative 'weather'
 require_relative 'plane_container'
@@ -27,6 +27,7 @@ class AirTrafficControl
   end
 
   def instruct_takeoff(plane, airport)
+    raise 'Plane is not located here' if airport_match == false
     raise 'Too stormy to take-off' if stormy?
     airport.takeoff(plane)
     # plane.report_inflight
@@ -36,7 +37,8 @@ class AirTrafficControl
 
   private
 
-  def airport_match(plane, airport)
+  def airport_match#(plane, airport)
+    plane.location == airport_match ? true : false
   end
 
 

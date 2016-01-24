@@ -1,8 +1,7 @@
 
 class Airplane
-  attr_reader :landed, :plane
+  attr_reader :landed, :plane, :location
   def initialize
-    @plane = plane
     @landed = true
   end
 

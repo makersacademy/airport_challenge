@@ -17,6 +17,8 @@ describe AirTrafficControl do
       allow(airport).to receive(:land)
       allow(airport).to receive(:takeoff)
       allow(airport).to receive(:full?).and_return(false)
+      allow(AirTrafficControl).to receive(:airport_match).and_return(true)
+      allow_any_instance_of(AirTrafficControl).to receive(:airport_match).and_return(true)
 
     end
 
@@ -91,25 +93,37 @@ describe AirTrafficControl do
         subject.instruct_takeoff(plane, airport)
       end
     end
-  end
+
+    describe'#instruct_takeoff' do
+      it 'error if plane is not at correct airport' do
+        allow(AirTrafficControl).to receive(:airport_match).and_return(false)
+        allow_any_instance_of(AirTrafficControl).to receive(:airport_match).and_return(false)
+        expect(subject.instruct_takeoff(plane, airport)).to raise_error('Plane is not located here')
+      end
+    end
+  # end
 #end weather stub
 
 #wrap in non-stormy waether condition
-  describe 'stub weather to never be stormy' do
-    before do
-      allow(AirTrafficControl).to receive(:stormy?).and_return(true)
-      allow_any_instance_of(AirTrafficControl).to receive(:stormy?).and_return(true)
-      allow(airport).to receive(:land)
-      allow(airport).to receive(:takeoff)
-      allow(airport).to receive(:full?).and_return(false)
+  # describe 'stub weather to never be stormy' do
+  #   before do
+      # allow(AirTrafficControl).to receive(:stormy?).and_return(true)
+      # allow_any_instance_of(AirTrafficControl).to receive(:stormy?).and_return(true)
+      # allow(airport).to receive(:land)
+      # allow(airport).to receive(:takeoff)
+      # allow(airport).to receive(:full?).and_return(false)
+      # allow(AirTrafficControl).to receive(:airport_match).and_return(true)
+      # allow_any_instance_of(AirTrafficControl).to receive(:airport_match).and_return(true)
 
-    end
+    # end
   #prevent landing if stormy
     describe '#instruct_land' do
       it 'display error if stormy' do
         # allow(subject).to receive(:stormy?).and_return(true)
         # allow(airport).to receive(:land)
         # allow(airport).to receive(:full?).and_return(false)
+        allow(AirTrafficControl).to receive(:stormy?).and_return(true)
+        allow_any_instance_of(AirTrafficControl).to receive(:stormy?).and_return(true)
         expect { subject.instruct_land(plane, airport) }.to raise_error('Too stormy to land')
       end
     end
@@ -119,6 +133,8 @@ describe AirTrafficControl do
         # allow(subject).to receive(:stormy?).and_return(true)
         # allow(airport).to receive(:takeoff)
         # allow(airport).to receive(:full?).and_return(false)
+        allow(AirTrafficControl).to receive(:stormy?).and_return(true)
+        allow_any_instance_of(AirTrafficControl).to receive(:stormy?).and_return(true)
         expect { subject.instruct_takeoff(plane, airport) }.to raise_error('Too stormy to take-off')
       end
     end
