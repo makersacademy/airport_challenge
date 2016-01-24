@@ -9,7 +9,4 @@ module Weather
 	def stormy?
 		!sunny?
 	end
-
-end 
-
-
+end

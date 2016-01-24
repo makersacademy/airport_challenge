@@ -7,7 +7,6 @@ describe Airport do
   let(:plane) { double :plane }
   let(:weather) { double :weather }
 
-
   describe '#landing' do
 
     it 'tells a plane to land' do
@@ -50,9 +49,7 @@ describe Airport do
       @maximum_capacity = 10
       expect(airport.capacity).to eq(@maximum_capacity)
     end
-
   end 
-
 end
 
 

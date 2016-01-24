@@ -16,5 +16,4 @@ class Plane
 	def land
 		@fly = false  
 	end 
-
 end 
