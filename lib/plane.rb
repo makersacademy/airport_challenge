@@ -2,6 +2,7 @@ class Plane
 
   def land airport
     message = 'Plane cannot complete action: '
+    fail message + 'already at airport' unless @airport.nil?
     fail message + 'bad weather' unless airport.sunny?
     fail message + 'landing strip full' if airport.full?
     airport.land_plane self

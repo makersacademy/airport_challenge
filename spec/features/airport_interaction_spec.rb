@@ -7,6 +7,7 @@ describe 'Airport Challenge feature tests' do
   let(:plane2) {Plane.new}
   let(:plane3) {Plane.new}
   let(:airport) {Airport.new 2}
+  let(:new_airport) {Airport.new}
   before do
     allow(airport).to receive(:sunny?).and_return true
     # have to stub .sunny? to prevent randomizer from failing test
@@ -29,6 +30,11 @@ describe 'Airport Challenge feature tests' do
 
   it 'planes not in an airport are not able to takeoff' do
     expect{plane3.takeoff}.to raise_error
+  end
+
+  it 'planes in an airport are not able to land' do
+    allow(new_airport).to receive(:sunny?).and_return true
+    expect{plane2.land(new_airport)}.to raise_error
   end
 
 end
