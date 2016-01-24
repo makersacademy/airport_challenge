@@ -4,7 +4,7 @@ require 'airport'
 describe Airport do
 
 
-  subject(:airport){Airport.new(weather)}
+  subject(:airport){Airport.new(Airport::DEFAULT_CAPACITY, weather)}
   let(:plane) {double(:plane)}
   let(:weather){double(:weather, :stormy? => false)}
 
@@ -21,6 +21,15 @@ describe Airport do
     it "doesn't let planes land in stormy weather" do
       allow(weather).to receive(:stormy?).and_return true
       expect{airport.land(plane)}.to raise_error("Piss off, it's too stormy")
+    end
+
+    it "doesn't let planes land when the airport is full" do
+      allow(airport).to receive(:full?). and_return true
+      expect{airport.land(plane)}.to raise_error("Bugger off, we're full")
+    end
+
+    it "allows for a default capacity" do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 

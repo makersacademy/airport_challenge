@@ -11,9 +11,9 @@ class Weather
     [true,false,false,false,false].sample
   end
 
+end
 
-
-  # This was my initial plan before a class mate
+  # This was the initial plan before a class mate
   # gave me a better idea!
 
   # --------------
@@ -27,6 +27,3 @@ class Weather
   #   WEATHER_OPTIONS.sample
   # end
   # --------------
-
-
-end
