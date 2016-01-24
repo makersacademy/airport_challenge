@@ -8,21 +8,25 @@ describe Airport do
 
   it "instructs a plane to land" do
     allow(subject).to receive(:too_stormy?).and_return false
+    allow(plane).to receive(:land).and_return true
     subject.land_plane(plane)
   end
 
   it "confirms if a plane has landed" do
     allow(subject).to receive(:too_stormy?).and_return false
+    allow(plane).to receive(:land).and_return true
     expect(subject.land_plane(plane)).to include plane
   end
 
   it "instructs a plane to take off" do
     allow(subject).to receive(:too_stormy?).and_return false
+    allow(plane).to receive(:fly).and_return false
     subject.plane_takes_off(plane)
   end
 
   it "confirms if a plane has taken off" do
     allow(subject).to receive(:too_stormy?).and_return false
+    allow(plane).to receive(:fly).and_return false
     expect(subject.plane_takes_off(plane)).to_not include plane
   end
 
@@ -36,6 +40,7 @@ describe Airport do
 
   it "stops a plane from landing if the airport is full" do
     allow(subject).to receive(:too_stormy?).and_return false
+    allow(plane).to receive(:land).and_return true
     subject.capacity.times { subject.land_plane(plane) }
     expect{subject.land_plane(plane)}.to raise_error("Airport full!")
   end

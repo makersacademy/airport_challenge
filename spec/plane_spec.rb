@@ -5,7 +5,7 @@ require "plane"
     let(:airport) {double :airport}
 
     it "confirms status landed" do
-      subject.land(airport)
+      subject.land
       expect(subject.landed).to eq true
     end
 
