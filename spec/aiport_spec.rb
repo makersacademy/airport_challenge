@@ -2,6 +2,9 @@ require 'airport'
 
 describe Airport do
 
+  let(:plane) { double (:plane) }
+  let(:weather) { double (:weather) }
+
   it 'has an Airport class' do
     expect(subject).to be_a(Airport)
   end
@@ -31,8 +34,27 @@ describe Airport do
     expect(subject.instance_variable_get(:@stored_planes)).to eq(subject.stored_planes)
   end
 
-  it "won't accept planes landing once at capacity" do
+  it "can call 'take_off' with an arguement" do
+    expect(subject).to respond_to(:take_off).with(2).argument
+  end
 
+  it 'removes a plane from stored_planes once it takes off' do
+    allow(weather).to receive(:stormy?)
+    (subject.stored_planes) << plane
+    expect(subject.stored_planes.length).to eq(1)
+    subject.take_off(plane, weather)
+    expect(subject.stored_planes.length).to eq(0)
+  end
+
+  it 'can only remove planes that are at the airport' do
+    allow(weather).to receive(:stormy?)
+    expect{subject.take_off(plane, weather)}.to raise_error('Plane not at airport')
+  end
+
+  it 'can only take off when weather isn\'t stormy' do
+    allow(weather).to receive(:stormy?) { true }
+    (subject.stored_planes) << plane
+    expect{subject.take_off(plane, weather)}.to raise_error('Unsafe to take off')
   end
 
 end
