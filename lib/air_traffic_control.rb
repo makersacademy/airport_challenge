@@ -18,6 +18,7 @@ class AirTrafficControl
   end
 
   def instruct_land(plane, airport)
+    raise 'Plane already landed' if airplane_status_check(plane, true)
     raise 'Too stormy to land' if stormy?
     raise 'Airport is full' if airport.full?
     airport.land(plane)
@@ -27,7 +28,8 @@ class AirTrafficControl
   end
 
   def instruct_takeoff(plane, airport)
-    raise 'Plane is not located here' if airport_match == false
+    raise 'Plane already inflight' if airplane_status_check(plane,false)
+    raise 'Plane is not located here' if airport_match(plane, airport) == false
     raise 'Too stormy to take-off' if stormy?
     airport.takeoff(plane)
     # plane.report_inflight
@@ -37,10 +39,13 @@ class AirTrafficControl
 
   private
 
-  def airport_match#(plane, airport)
+  def airport_match(plane, airport)
     plane.location == airport_match ? true : false
   end
 
+  def airplane_status_check(plane, status)
+    plane.landed == status
+  end
 
 
 end

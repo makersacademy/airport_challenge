@@ -48,6 +48,13 @@ describe Airport do
       end
     end
 
+    describe '#land' do
+      it 'calls report_landed' do
+        expect(plane).to receive(:report_landed)
+        subject.land(plane)
+      end
+    end
+
     #takeoff releases plane from airport
     describe '#takeoff' do
       it 'returns plane removed from airport' do
@@ -61,6 +68,13 @@ describe Airport do
         subject.land(plane)
         subject.takeoff(plane)
         expect(subject.airport_planes).not_to include(plane)
+      end
+    end
+
+    describe '#takeoff' do
+      it 'calls report_inflight' do
+        expect(plane).to receive(:report_inflight)
+        subject.takeoff(plane)
       end
     end
   end
