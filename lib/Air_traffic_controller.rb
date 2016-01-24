@@ -28,11 +28,15 @@ class Air_traffic_controller
   end
 
   def takeoff_plane(plane, airport, weather)
-    if weather.bad?
-      raise "Plane cannot take off, the weather is stormy"
+    if airport.list_landed_planes.include?(plane)
+      if weather.bad?
+        raise "Plane cannot take off, the weather is stormy"
+      else
+        plane.takeoff
+        airport.new_plane_takeoff(plane)
+      end
     else
-      plane.takeoff
-      airport.new_plane_takeoff(plane)
+      raise "That plane is not at this airport"
     end
   end
 
