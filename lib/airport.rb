@@ -18,9 +18,10 @@ class Airport
     @planes << plane
   end
 
-  def clear_plane_for_take_off
+  def clear_plane_for_take_off(plane)
     raise denied if check_weather(sky)
-    @planes.pop
+    plane.cleared
+    @planes.delete(plane)
   end
 
   def check_weather(weather)
