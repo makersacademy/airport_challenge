@@ -1,6 +1,7 @@
 Objects                   Messages
 air traffic controller
-airport                   has_landed
+airport                   landed_at
                           departed
-plane                     land_at
+plane                     to_land_at
                           take_off
+weather                   stormy?

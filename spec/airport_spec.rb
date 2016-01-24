@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -11,7 +12,6 @@ describe Airport do
 
   describe '#landed_at' do
     it "respond to landed_at" do
-
       expect(airport).to respond_to(:landed_at).with(1).argument
     end
     it "adds landing plane to planes when landed" do
@@ -34,6 +34,13 @@ describe Airport do
       expect(airport.planes.length).to eq old_number -= 1
     end
   end
+
+  describe '#stormy?' do
+    it "returns a boolean when called" do
+      expect(airport.stormy?).to eq true || false
+    end
+  end
+
 
 
 end
