@@ -13,7 +13,7 @@ describe Plane do
   it { is_expected.to respond_to(:plane_id)}
   
   it "has a unique plane_id" do
-    expect(@plane.plane_id).to eq "737-5"
+    expect(@plane.plane_id).to eq "737-15"
   end
   
   

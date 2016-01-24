@@ -3,7 +3,7 @@ require "control_tower"
 
 describe ControlTower do
   before(:each) do
-    @plane = double(:plane)
+    @plane = Plane.new
     @heatrow = double(:airport)
     @tower = ControlTower.new
   end
@@ -28,6 +28,29 @@ describe ControlTower do
     expect(@tower.take_off(@plane, @airport)).to eq "737-1 took-off from Stansted"
   end
   
+  it "Does not clear for take-off in stormy weather" do
+    allow(@heatrow).to receive(:check_weather).and_return(:stormy)
+    allow(@heatrow).to receive(:clear?).and_return(false)
+    allow(@heatrow).to receive(:name).and_return("Heatrow")
+    expect(@tower.take_off(@plane, @heatrow)).to eq "Cannot operate in Heatrow, stormy weather"
+  end
+  
+  it "Does not clear for landing in stormy weather" do
+    allow(@heatrow).to receive(:check_weather).and_return(:stormy)
+    allow(@heatrow).to receive(:clear?).and_return(false)
+    allow(@heatrow).to receive(:name).and_return("Heatrow")
+    allow(@heatrow).to receive(:full?).and_return(false)
+    expect(@tower.land(@plane, @heatrow)).to eq "Cannot operate in Heatrow, stormy weather"
+  end
+  
+  it "Does not clear for landing if the airport is full" do
+     allow(@heatrow).to receive(:check_weather).and_return(:rainy)
+     allow(@heatrow).to receive(:full?).and_return(true)
+     allow(@heatrow).to receive(:name).and_return("Heatrow")
+    expect(@tower.land(@plane, @heatrow)).to eq "Cannot land in Heatrow, the airport is full" 
+  end
+  
+  
   describe "#take-off" do
   
     it "receives information about the weather" do
@@ -44,17 +67,5 @@ describe ControlTower do
     end
   end
   
-  describe "#report" do
-    
-    it "triggers Plane's flying state" do
-      allow(@plane).to receive(:flying).and_return(true)
-      allow(@plane).to receive(:flying=).with(false)
-      allow(@heatrow).to receive(:check_weather).and_return(:rainy)
-      allow(@heatrow).to receive(:clear?).and_return(true)
-      allow(@heatrow).to receive(:name)
-      @tower.take_off(@plane, @heatrow)
-      expect(@plane.flying).to eq true
-    end
-  end
   
 end

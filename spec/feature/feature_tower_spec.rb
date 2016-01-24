@@ -14,12 +14,11 @@ describe "Feature Tests - " do
   
   it "Instructs a plane to land at an airport" do
     @tower.take_off(@plane, @heatrow)
-    expect(@tower.land(@plane, @stansted)).to satisfy {|x| x.is_a?(String)}
+    expect(@tower.land(@plane, @stansted)).to include("Stansted")
   end
   
   it "Instructs a plane to take-off from an airport" do
-    expect(@tower.take_off(@plane, @heatrow)).to satisfy {|x| x.is_a?(String)}
-    expect(@heatrow.planes).to eq [] 
+    expect(@tower.take_off(@plane, @heatrow)).to include("Heatrow")
   end
 end
   

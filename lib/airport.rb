@@ -1,12 +1,14 @@
 class Airport
   
-  attr_reader :name, :planes
+  attr_reader :name, :planes, :capacity
   attr_accessor :weather
   
-  def initialize(name="test")
+  DEFAULT_CAPACITY = 3
+  
+  def initialize(name, capacity=DEFAULT_CAPACITY)
     @name = name
+    @capacity = capacity
     @weather = :sunny
-    @capacity = 1
     @planes = []
   end
   
@@ -15,16 +17,19 @@ class Airport
     self.weather = condition
   end
   
+  def full?
+    @planes.size == DEFAULT_CAPACITY
+  end
 
   def clear?
-     @weather != :stormy
+    @weather != :stormy 
   end
   
   private 
-  
   def condition
     condition = [:sunny, :windy, :rainy, :stormy]
     condition[(rand(4))]
   end
+  
 
 end
