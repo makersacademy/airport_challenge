@@ -18,7 +18,8 @@ shared_examples_for PlaneContainer do
 
   describe '#plane_in' do
     it 'check plane added to list' do
-      expect { subject.plane_in(plane) }.to change{ subject.list_planes.count }.from(0).to(1)
+      expect { subject.plane_in(plane) }.to change{ subject.list_planes.count
+}.from(0).to(1)
     end
   end
 
@@ -41,7 +42,8 @@ shared_examples_for PlaneContainer do
   describe '#plane_out' do
     it 'check plane deleted from list' do
       subject.plane_in(plane)
-      expect { subject.plane_out(plane) }.to change{ subject.list_planes.count }.from(1).to(0)
+      expect { subject.plane_out(plane) }.to change{ subject.list_planes.count
+  }.from(1).to(0)
     end
   end
 
