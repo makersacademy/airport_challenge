@@ -4,7 +4,7 @@ describe Airport do
   it { is_expected.to respond_to(:full?)}
 
   it "reports full when it has reached its capacity"do
-    (subject.capacity).times{ subject.planes << "plane" }
+    subject.capacity.times{ subject.planes << "plane" }
     expect(subject.full?).to eq true
   end
 
