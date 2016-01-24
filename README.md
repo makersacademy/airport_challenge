@@ -5,7 +5,7 @@ What is it?
 ---------
 
 Airport challenge is an airport simulation program made in ruby using OOP and
-BDD/TDD methodologies using Rspec. The User story was the following:
+BDD/TDD methodologies. The User story was the following:
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -38,7 +38,7 @@ Design Process
 
 I followed the BDD life cycle.
 * First I isolated the different user stories, eg.:
-* **So I can get passengers to a destination
+  **So I can get passengers to a destination
   I want to instruct a plane to land at an airport and confirm that it has landed**
 * I created the acceptance tests (or feature tests):
   **Airport, planes, weather**
