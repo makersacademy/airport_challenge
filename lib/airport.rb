@@ -8,16 +8,16 @@ class Airport
   end
 
   def confirm_plane_landed(plane)
-    is_plane_at_airport?(plane)
+    plane_at_airport?(plane)
   end
 
   def confirm_plane_taken_off(plane)
-    !is_plane_at_airport?(plane)
+    !plane_at_airport?(plane)
   end
 
   private
 
-  def is_plane_at_airport?(plane)
+  def plane_at_airport?(plane)
     @landed_planes.include?(plane)
   end
 end
