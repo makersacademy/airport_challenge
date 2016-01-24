@@ -1,32 +1,50 @@
 require 'airport'
-# require 'plane'
+
 
 describe Airport do 
+	subject(:airport) {described_class.new}
 
-airport = Airport.new
-
-	it 'returns an instance of airport' do	
+	describe '#returns new instance of airport' do
+		it 'returns an instance of airport' do	
 		expect(airport).to be_a(Airport)
+		end
 	end
 
-	describe '#landing' do
+
+	describe '#land' do
+		let(:plane) {double(:plane)}
 
 		it {is_expected.to respond_to(:land).with(1).argument}
 
-		it 'lands a plane at the airport' do
-			plane = double(:plane)
-			expect(subject.land(plane)).to eq [plane] #and to eq ('the plane has landed'), but can't make this work (spent hours trying to!!)
+		it 'lands plane' do
+			expect(airport.land(plane)).to include plane
 		end
 	end
 
-	describe '#takeoff' do
 
-		it {is_expected.to respond_to(:takeoff)}
+	# describe '#takeoff' do
+	# 	let(:plane) {double(:plane)}
 
-		it 'expects plane to takeoff' do
-			plane = double(:plane)
-			expect(subject.takeoff).to eq [plane] #and to eq ('the plane has taken off'), but can't make this work!
-		end
-	end
+	# 	it {is_expected.to respond_to(:takeoff).with(1).argument}
+
+		# it 'removes plane from airport' do
+		# 	airport.land(plane)
+		# 	airport.takeoff(plane)
+		# 	expect(airport.planes).not_to include(plane)
+		# end
+	# end
 
 end
+
+# airport = Airport.new
+
+
+
+
+
+
+
+	# it 'returns true after land' do
+	# 	subject.land(airport)
+	# 	expect(subject.landed?).to eq true
+	# end
