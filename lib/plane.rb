@@ -4,10 +4,12 @@ class Plane
   # Planes must always be instantiated from an airport
   def initialize(airport)
     @airport = airport
+    airport.inbound(self)
   end
 
   def land_at(destination)
-    fail "#{destination} is not a valid airport" unless destination.method_defined? :code
+    # NOTE: assumes destination is an Airport object. See comment on line 31 in
+    # spec/plane_spec.rb
     fail "Plane is not in flight!" unless in_flight?
     fail "Unable to land at #{destination} due to stormy weather" if destination.stormy?
     destination.inbound self
