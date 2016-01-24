@@ -3,22 +3,23 @@ class Plane
 attr_reader :landed, :airport
 
   def initialize
-    @landed; @airport
+    @airport
   end
 
   def land(airport, weather)
-    raise "Plane already landed" if landed
-    raise "Can't land when weather is stormy" if weather.condition == "stormy"
-    raise "Can't land when airport is at capacity" if airport.full
-    @landed, @airport = true, airport
+    fail "Plane already landed" if landed
+    fail "Can't land when weather is stormy" if weather.condition == "stormy"
+    fail "Can't land when airport is at capacity" if airport.full
+    @landed = true
+    @airport = airport
     airport.planes << self
     self
   end
 
   def takeoff(airport, weather)
-    raise "Plane already airborne" unless landed
-    raise "Plane not at this airport" unless airport == @airport
-    raise "Can't take off when weather is stormy" if weather.condition == "stormy"
+    fail "Plane already airborne" unless landed
+    fail "Plane not at this airport" unless airport == @airport
+    fail "Can't take off - weather is stormy" if weather.condition == "stormy"
     @landed = false
     airport.planes.delete(self)
   end

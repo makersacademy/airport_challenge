@@ -88,7 +88,7 @@ describe Plane do
       subject.land(airport1, weather1)
       expect do
         subject.takeoff(airport1, weather2)
-      end.to raise_error("Can't take off when weather is stormy")
+      end.to raise_error("Can't take off - weather is stormy")
     end
   end
 end
