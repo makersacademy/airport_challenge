@@ -7,9 +7,10 @@ class Airport
   DEFAULT_CAPACITY = 100
 
   # Airport must be initialized with a three-letter code string
-  # or symbol, e.g. "LAX", :LAX
+  # or symbol, e.g. "LAX" or :LAX
   def initialize(code, capacity=DEFAULT_CAPACITY)
-    @code = code.upcase.to_sym
+    fail "Please provide a three-letter code for this airport" unless code.length >= 3
+    @code = code[0..2].upcase.to_sym
     @planes = []
     @capacity = capacity
     @stormy = false
@@ -26,17 +27,22 @@ class Airport
   end
 
   def outbound(plane)
+    fail "There are no planes at #{self}" if empty?
     fail "Plane is not currently at #{self}" unless include? plane
     remove plane
   end
 
+  # Ensures encapsulation by not exposing @planes#include?
   def include?(plane)
     planes.include? plane
   end
 
+  # Improves readability for Plane#location and error messages
   def to_s
     code.to_s
   end
+
+  # NOTE: consider overwriting #inspect
 
   private
   attr_reader :stormy, :planes
@@ -45,7 +51,6 @@ class Airport
     @planes.size >= @capacity
   end
 
-  # NOTE: potentially redundant
   def empty?
     @planes.size <= 0
   end
