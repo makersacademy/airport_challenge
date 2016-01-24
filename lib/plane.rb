@@ -7,7 +7,9 @@ class Plane
   end
 
   def land_at(destination)
-    # TODO: guard against destination not being an airport
+    # NOTE: how to guard against argument not being an airport using doubles?
+    # e.g. fail "#{destination} is not a valid airport"
+    # unless destination.class == Airport
     fail "Plane is not in flight!" unless in_flight?
     fail "Unable to land plane in stormy weather" if destination.stormy?
     destination.inbound self

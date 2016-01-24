@@ -6,7 +6,6 @@ describe Airport do
 
   describe '#initialize' do
     it { is_expected.to respond_to(:code) }
-    it { is_expected.to respond_to(:planes) }
     it { is_expected.to respond_to(:capacity) }
 
     it 'initializes with an airport code' do
@@ -22,9 +21,10 @@ describe Airport do
       expect(small_airport.capacity).to eq 5
     end
 
-    it 'initializes with no planes' do
-      expect(airport.planes.size).to eq 0
-    end
+    # NOTE: how to test this without attr_reader or public method?
+    # it 'initializes with no planes' do
+    #   expect(airport).to be_empty
+    # end
   end
 
   describe '#stormy?' do
@@ -53,7 +53,7 @@ describe Airport do
     context 'when airport is not full' do
       it 'accepts inbound planes' do
         airport.inbound plane
-        expect(airport.planes).to include plane
+        expect(airport).to include plane
       end
     end
 
@@ -64,7 +64,7 @@ describe Airport do
         expect do
           full_airport.inbound(plane)
         end.to raise_exception("Permission to land denied, #{full_airport} is full")
-        expect(subject.planes).to_not include plane
+        expect(subject).to_not include plane
       end
     end
   end

@@ -1,9 +1,9 @@
 require_relative 'plane'
 
 class Airport
-  # NOTE: consider removing attr_accessors for encapsulation
-  attr_reader :code, :capacity, :planes
-  # Override default capacity
+  # Read permission for value types
+  attr_reader :code, :capacity
+  # Set default capacity
   DEFAULT_CAPACITY = 100
 
   # Airport must be initialized with a three-letter code string
@@ -26,22 +26,28 @@ class Airport
   end
 
   def outbound(plane)
-    fail "#{plane} is not currently at #{self}" if planes.include?(plane)
+    fail "Plane is not currently at #{self}" unless include? plane
     remove plane
   end
 
-  # NOTE: consider overwriting #inspect instead of providing read access
-  # to @code
+  def include?(plane)
+    planes.include? plane
+  end
 
   def to_s
     code.to_s
   end
 
   private
-  attr_reader :stormy
+  attr_reader :stormy, :planes
 
   def full?
     @planes.size >= @capacity
+  end
+
+  # NOTE: potentially redundant
+  def empty?
+    @planes.size <= 0
   end
 
   def dock(plane)
