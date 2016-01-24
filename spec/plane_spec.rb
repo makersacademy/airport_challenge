@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  let(:weather) { double :weather, :condition => "sunny"}
+  let(:weather1) { double :weather, :condition => "sunny"}
   let(:weather2) { double :weather, :condition => "stormy"}
   airport1 = Airport.new
   airport2 = Airport.new
@@ -12,27 +12,27 @@ describe Plane do
     end
 
     it "returns plane when plane successfully landed" do 
-      expect(subject.land(airport1, weather)).to eq subject
+      expect(subject.land(airport1, weather1)).to eq subject
     end
 
     it "raises an error if already landed" do
-      subject.land(airport1, weather)
-      expect {subject.land(airport1, weather)}.to raise_error("error: plane already landed")
+      subject.land(airport1, weather1)
+      expect {subject.land(airport1, weather1)}.to raise_error("Plane already landed")
     end
 
     it "prevents landing when weather is stormy" do
-      expect {subject.land(airport1, weather2)}.to raise_error("error: cannot land when weather is stormy")
+      expect {subject.land(airport1, weather2)}.to raise_error("Can't land when weather is stormy")
     end
 
-    it "prevents landing when airport is full" do
+    it "prevents landing when airport is at capacity" do
       20.times do
-        Plane.new.land(airport2, weather)
+        Plane.new.land(airport2, weather1)
       end
-      expect {subject.land(airport2, weather)}.to raise_error("error: cannot land when airport is full")
+      expect {subject.land(airport2, weather1)}.to raise_error("Can't land when airport is at capacity")
     end
 
     it "prevents landing when weather is bad and airport is full" do
-      expect {subject.land(airport2, weather2)}.to raise_error("error: cannot land when weather is stormy")
+      expect {subject.land(airport2, weather2)}.to raise_error("Can't land when weather is stormy")
     end
   end
 
@@ -42,13 +42,13 @@ describe Plane do
     end
 
     it "returns true after land and landed are called" do
-      subject.land(airport1, weather)
+      subject.land(airport1, weather1)
       expect(subject.landed).to eq true
     end
 
     it "returns false if successfully taken off" do
-      subject.land(airport1, weather)
-      subject.takeoff(airport1, weather)
+      subject.land(airport1, weather1)
+      subject.takeoff(airport1, weather1)
       expect(subject.landed).to eq false
     end
 
@@ -61,20 +61,20 @@ describe Plane do
 
 
     it "raises an error if already taken off" do
-      subject.land(airport1, weather)
-      subject.takeoff(airport1, weather)
-      expect {subject.takeoff(airport1, weather)}.to raise_error("error: already taken off")
+      subject.land(airport1, weather1)
+      subject.takeoff(airport1, weather1)
+      expect {subject.takeoff(airport1, weather1)}.to raise_error("Plane already airborne")
     end
 
     it "raises an error if told to take off from wrong airport" do
-      subject.land(airport1, weather)
-      expect {subject.takeoff(airport2, weather)}.to raise_error("error: cannot take off from a different airport")
+      subject.land(airport1, weather1)
+      expect {subject.takeoff(airport2, weather1)}.to raise_error("Plane not at this airport")
 
     end
 
     it "can't take off if the weather is stormy" do
-      subject.land(airport1, weather)
-      expect {subject.takeoff(airport1, weather2)}.to raise_error("error: cannot take off when weather is stormy")
+      subject.land(airport1, weather1)
+      expect {subject.takeoff(airport1, weather2)}.to raise_error("Can't take off when weather is stormy")
     end
   end
 end

@@ -10,7 +10,7 @@ airport
 USER STORY 2
 at_controller
 passengers
-plane             takeoff(airport), landed?
+plane             takeoff(airport), landed
 airport
 
 USER STORY 3
