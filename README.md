@@ -10,3 +10,4 @@ Airport Class:
  - The weather is checked before a plane can land or take off, to ensure it is safe to do so. 
  - Planes are not able to land if the airport has reached it's maximum capacity.
 
+https://travis-ci.org/tcpickard94/airport_challenge.svg?branch=master
