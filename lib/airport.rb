@@ -24,6 +24,7 @@ class Airport
   end
 
   def send_plane(plane)
+    fail "That plane isn't in this airport" unless @planes.include?(plane)
     fail "It's too stormy to take off" if stormy?
     @planes.delete(plane)
     plane.departed

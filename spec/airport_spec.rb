@@ -4,16 +4,16 @@ describe Airport do
 
   describe '#initialize' do
 
-      it {is_expected.to respond_to :planes}
-      it {is_expected.to respond_to :capacity}
+    it {is_expected.to respond_to :planes}
+    it {is_expected.to respond_to :capacity}
 
-      it 'has a default capacity' do
+    it 'has a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-      end
+    end
 
-      it 'has a default capacity that can be changed' do
-        expect(Airport.new(6).capacity).to eq 6
-      end
+    it 'has a default capacity that can be changed' do
+      expect(Airport.new(6).capacity).to eq 6
+    end
 
   end
 
@@ -43,15 +43,12 @@ describe Airport do
     it 'will not land a plane if the airport is full' do
       allow(plane_1).to receive(:airborne).and_return(true)
       allow(plane_2).to receive(:airborne).and_return(true)
-      allow(plane_3).to receive(:airborne).and_return(true)
       allow(plane_1).to receive(:landed)
       allow(plane_2).to receive(:landed)
-      allow(plane_3).to receive(:landed)
-      airport = Airport.new(2)
+      airport = Airport.new(1)
       allow(airport).to receive(:stormy?).and_return(false)
       airport.land_plane(plane_1)
-      airport.land_plane(plane_2)
-      expect{airport.land_plane(plane_3)}.to raise_error(RuntimeError)
+      expect{airport.land_plane(plane_2)}.to raise_error(RuntimeError)
     end
 
     it 'will not land a grounded plane' do
@@ -70,10 +67,20 @@ describe Airport do
     it {is_expected.to respond_to :send_plane}
 
     it 'will allow a plane to take off' do
+      allow(plane).to receive(:landed)
       allow(plane).to receive(:departed)
+      allow(plane).to receive(:airborne).and_return true
       allow(subject).to receive(:stormy?).and_return false
+      subject.land_plane(plane)
       subject.send_plane(plane)
       expect(subject.planes).not_to include plane
+    end
+
+    it 'is not able to send a plane that isn\'t there' do
+      allow(plane).to receive(:departed)
+      allow(plane).to receive(:airborne)
+      allow(subject).to receive(:stormy?).and_return false
+      expect{subject.send_plane(plane)}.to raise_error(RuntimeError)
     end
 
     it 'will not let a plane take off if it\'s stormy' do
