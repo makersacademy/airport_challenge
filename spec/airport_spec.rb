@@ -39,12 +39,14 @@ describe Airport do
 
     it 'prevents take off when weather is stormy' do
       allow(airport).to receive(:weather_conditions).and_return(1)
-      expect{airport.take_off(plane)}.to raise_error 'Cannot take off due to stormy weather'
+      message = 'Cannot take off due to stormy weather'
+      expect{airport.take_off(plane)}.to raise_error message
     end
 
     it 'prevents landing when weather is stormy' do
       allow(airport).to receive(:weather_conditions).and_return(1)
-      expect{airport.land(plane)}.to raise_error 'Cannot land due to stormy weather'
+      message = 'Cannot land due to stormy weather'
+      expect{airport.land(plane)}.to raise_error message
     end
 
   end
