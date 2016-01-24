@@ -8,16 +8,8 @@ module Errors
     fail "Can't #{yield}, it's stormy!"
   end
 
-  def plane_landed_error
-    fail "This plane has already been landed"
-  end
-
-  def plane_flying_error
-    fail "This plane is already flying"
-  end
-
-  def plane_exist_error
-    fail "This plane doesn't exist here"
+  def plane_error
+    fail "This plane #{yield}"
   end
 
 end

@@ -35,14 +35,14 @@ class Airport
 
   def pre_takeoff_checks(plane)
     stormy_error {"takeoff"} if weather_status == "stormy"
-    plane_flying_error if plane.status == "flying"
-    plane_exist_error unless @planes.include?(plane)
+    plane_error {"This plane is already flying"} if plane.status == "flying"
+    plane_error {"This plane doesn't exist here"} unless @planes.include?(plane)
   end
 
   def pre_landing_checks(plane)
     full_airport_error if @planes.size > @capacity
     stormy_error {"land"} if weather_status == "stormy"
-    plane_landed_error if plane.status == "landed"
+    plane_error {"has already been landed"} if plane.status == "landed"
   end
 
   def weather_status
