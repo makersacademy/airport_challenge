@@ -31,7 +31,7 @@ class Airport
   end
 
   def confirmation(plane)
-    puts "#{plane} has taken off and is no longer at #{self}"
+    p "#{plane} has taken off and is no longer at #{self}"
   end
 
 end
