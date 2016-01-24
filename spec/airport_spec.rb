@@ -15,10 +15,11 @@ describe Airport do
 
     it 'expects not to let planes land if the airport is at full capacity' do
     airport.set_capacity.times do
-    plane = Plane.new
+    plane = double(:plane)
     airport.land(plane, weather)
     end
-    expect {airport.land(plane, weather)}.to raise_error "The airport is full!"
+    message = "The airport is full!"
+    expect {airport.land(plane, weather)}.to raise_error(message)
     end
 
   end
@@ -57,12 +58,14 @@ describe Airport do
     let(:weather) {double("weather", :stormy? => true)}
 
     it 'does not land planes when the weather is stormy' do
-    expect {(airport.land(plane, weather))}.to raise_error("Too stormy to land!")
+      message = "Too stormy to land!"
+      expect {(airport.land(plane, weather))}.to raise_error(message)
     end
 
     it 'does not let planes takeoff when the weather is stormy' do
-    airport.add_plane(plane)
-    expect {airport.takeoff(plane, weather)}.to raise_error("Too stormy to takeoff!")
+      airport.add_plane(plane)
+      message = "Too stormy to takeoff!"
+      expect {airport.takeoff(plane, weather)}.to raise_error(message)
     end
 
   end

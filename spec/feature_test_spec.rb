@@ -20,13 +20,15 @@ describe 'FeatureTest' do
       it 'expects not to be able to land a plane twice' do
         plane = planes.pop
         plane.land(airport, weather)
-        expect {plane.land(airport, weather)}.to raise_error("Plane has already landed!")
+        message = "Plane has already landed!"
+        expect {plane.land(airport, weather)}.to raise_error(message)
       end
 
       it 'expects that airports should not be able to land planes that have landed' do
         plane = planes.pop
         plane.land(airport, weather)
-        expect {airport.land(plane, weather)}.to raise_error("Plane has already landed!")
+        message = "Plane has already landed!"
+        expect {airport.land(plane, weather)}.to raise_error(message)
       end
 
 
@@ -46,14 +48,16 @@ describe 'FeatureTest' do
         plane = planes.pop
         plane.land(airport, weather)
         plane.takeoff(airport, weather)
-        expect {plane.takeoff(airport, weather)}.to raise_error("Plane cannot takeoff if it is not in an airport!")
+        message = "Plane cannot takeoff if it is not in an airport!"
+        expect {plane.takeoff(airport, weather)}.to raise_error(message)
       end
 
       it 'expects that airports should not be able to takeoff planes that have already taken off' do
         plane = planes.pop
         plane.land(airport, weather)
         plane.takeoff(airport, weather)
-        expect{airport.takeoff(plane, weather)}.to raise_error("Plane cannot takeoff if it is not in an airport!")
+        message = "Plane cannot takeoff if it is not in an airport!"
+        expect{airport.takeoff(plane, weather)}.to raise_error(message)
       end
 
     end

@@ -21,7 +21,7 @@ class Airport
   def takeoff(plane, weather)
     plane_not_in_airport_error(plane)
     flying_plane = taking_off(plane, weather)
-    planes.delete(flying_plane)
+    remove_plane(flying_plane)
   end
 
   def planes_in_airport
@@ -33,7 +33,7 @@ class Airport
   end
 
   def add_plane(plane)
-    raise "Plane has already landed!" if planes.include?(plane)
+    plane_in_airport_error(plane)
     planes << plane
   end
 
@@ -41,7 +41,7 @@ class Airport
     planes.delete(plane)
   end
 
-private
+  private
 
   attr_reader :planes, :capacity
 
@@ -55,6 +55,10 @@ private
 
   def plane_not_in_airport_error(plane)
     raise 'Plane cannot takeoff if it is not in an airport!' unless planes.include?(plane)
+  end
+
+  def plane_in_airport_error(plane)
+    raise "Plane has already landed!" if planes.include?(plane)
   end
 
 end
