@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   # Read permission for value types
@@ -8,17 +9,18 @@ class Airport
 
   # Airport must be initialized with a three-letter code string
   # or symbol, e.g. "LAX" or :LAX
-  def initialize(code, capacity=DEFAULT_CAPACITY)
+  def initialize(code, weather=Weather.new, capacity=DEFAULT_CAPACITY)
     fail "Please provide a three-letter code for this airport" unless code.length >= 3
     @code = code[0..2].upcase.to_sym
     @planes = []
     @capacity = capacity
+    @weather = weather
     @stormy = false
   end
 
+  # NOTE: how to test this without allowing weather to be set at initialization?
   def stormy?
-    generate_weather
-    stormy
+    stormy = weather.stormy?
   end
 
   def inbound(plane)
@@ -45,7 +47,8 @@ class Airport
   # NOTE: consider overwriting #inspect
 
   private
-  attr_reader :stormy, :planes
+  attr_reader :planes, :weather
+  attr_accessor :stormy
 
   def full?
     @planes.size >= @capacity
@@ -61,11 +64,5 @@ class Airport
 
   def remove(plane)
     @planes.delete plane
-  end
-
-  # FIXME: extract as module or class
-  def generate_weather
-    # 1 in 20 chance of weather being stormy
-    @stormy = (rand(20) == 0)
   end
 end

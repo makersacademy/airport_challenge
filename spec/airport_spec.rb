@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new("LAX") }
+  let(:weather) { double(:weather, :stormy? => false) }
+  subject(:airport) { described_class.new("LAX", weather) }
   let(:plane) { double :plane }
 
   describe '#initialize' do
@@ -14,7 +15,7 @@ describe Airport do
       end.to raise_exception("Please provide a three-letter code for this airport")
     end
 
-    let(:small_airport) { described_class.new("LCY", 5) }
+    let(:small_airport) { described_class.new("LCY", weather, 5) }
     it 'initializes with custom capacity' do
       expect(small_airport.capacity).to eq 5
     end
@@ -29,20 +30,9 @@ describe Airport do
   describe '#stormy?' do
     it { is_expected.to respond_to(:stormy?) }
 
-    it 'calls Kernel#rand to determine chance of storms' do
-      expect(airport).to receive(:rand).with(20)
+    it 'calls Weather#stormy?' do
+      expect(weather).to receive(:stormy?)
       airport.stormy?
-    end
-
-    it 'returns true (1 in 20 chance)' do
-      expect(airport).to receive(:rand).with(20) { 0 }
-      expect(airport.stormy?).to be_truthy
-    end
-
-    it 'returns false (19 in 20 chances)' do
-      # FIXME: unsure if using rand() in test is appropriate
-      expect(airport).to receive(:rand).with(20) { rand(1..20) }
-      expect(airport.stormy?).to be_falsy
     end
   end
 
@@ -55,7 +45,7 @@ describe Airport do
         expect(airport).to include plane
       end
 
-      let(:full_airport) { described_class.new("LHW", 1) }
+      let(:full_airport) { described_class.new("LHW", weather, 1) }
       let(:other_plane) { double :plane }
       it 'raises an exception when full' do
         full_airport.inbound(plane)
