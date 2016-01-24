@@ -8,8 +8,16 @@ class Airport
     @planes = []
   end
 
+  def take_off(plane)
+    plane.report_take_off
+    @planes.delete(plane)
+    plane.status
+  end
+
   def land(plane)
+    plane.report_landed
     @planes << plane
+    plane.status
   end
 
 end
