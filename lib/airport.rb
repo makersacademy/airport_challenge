@@ -15,10 +15,11 @@ class Airport
   def land(plane, weather)
     error_if_full
     landed_plane = landing(plane, weather)
-    planes << landed_plane
+    add_plane(plane)
   end
 
   def takeoff(plane, weather)
+    plane_not_in_airport_error(plane)
     flying_plane = taking_off(plane, weather)
     planes.delete(flying_plane)
   end
@@ -31,6 +32,14 @@ class Airport
     @capacity = capacity
   end
 
+  def add_plane(plane)
+    raise "Plane has already landed!" if planes.include?(plane)
+    planes << plane
+  end
+
+  def remove_plane(plane)
+    planes.delete(plane)
+  end
 
 private
 
@@ -42,6 +51,10 @@ private
 
   def full?
     @planes.length >= capacity
+  end
+
+  def plane_not_in_airport_error(plane)
+    raise 'Plane cannot takeoff if it is not in an airport!' unless planes.include?(plane)
   end
 
 end

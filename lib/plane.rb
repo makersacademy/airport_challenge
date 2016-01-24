@@ -8,6 +8,7 @@ class Plane
 
   def land(airport, weather)
     plane_landed_error
+    airport.add_plane(self)
     @airport = landing(airport, weather)
   end
 
@@ -15,6 +16,7 @@ class Plane
     plane_not_in_an_airport_error
     plane_not_in_right_airport_error(airport)
     taking_off(airport, weather)
+    airport.remove_plane(self)
     @airport = nil
   end
 

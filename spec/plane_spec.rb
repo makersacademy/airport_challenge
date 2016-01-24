@@ -6,7 +6,7 @@ describe Plane do
   subject (:plane) {described_class.new}
 
     describe '#land' do
-      let(:airport) { double :airport }
+      let(:airport) { double("airport", :add_plane => plane)}
       let(:weather) { double( "weather", :stormy? => nil) }
       before {plane.land(airport, weather)}
 
@@ -27,7 +27,7 @@ describe Plane do
     end
 
     describe '#takeoff' do
-      let(:airport) {double("airport", :planes_in_airport => [plane])}
+      let(:airport) {double("airport", :planes_in_airport => [plane], :add_plane => plane, :remove_plane => plane )}
       let(:weather) { double( "weather", :stormy? => nil) }
 
       it 'is expected to no longer be at an airport' do
@@ -42,7 +42,7 @@ describe Plane do
         expect {plane.takeoff(airport, weather)}.to raise_error(message)
       end
 
-      let(:airport2){double("airport", :planes_in_airport => [])}
+      let(:airport2){double("airport", :planes_in_airport => [], :add_plane => plane)}
 
       it 'can only takeoff from an airport it is in' do
         plane.land(airport, weather)
@@ -54,7 +54,7 @@ describe Plane do
 
     describe 'stormy weather' do
       let(:weather) {double("weather", :stormy? => true)}
-      let(:airport) {double("airport", :planes_in_airport => [plane])}
+      let(:airport) {double("airport", :planes_in_airport => [plane], :add_plane => plane)}
 
       it 'is not able to takeoff in stormy weather' do
         allow(plane).to receive(:at_what_airport).and_return(airport)

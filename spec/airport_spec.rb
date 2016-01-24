@@ -14,7 +14,10 @@ describe Airport do
     end
 
     it 'expects not to let planes land if the airport is at full capacity' do
-    airport.set_capacity.times {airport.land(plane, weather)}
+    airport.set_capacity.times do
+    plane = Plane.new
+    airport.land(plane, weather)
+    end
     expect {airport.land(plane, weather)}.to raise_error "The airport is full!"
     end
 
@@ -58,6 +61,7 @@ describe Airport do
     end
 
     it 'does not let planes takeoff when the weather is stormy' do
+    airport.add_plane(plane)
     expect {(airport.takeoff(plane, weather))}.to raise_error("Too stormy to takeoff!")
     end
 
