@@ -39,7 +39,7 @@ describe Plane do
         expect{plane.land(airport, weather)}.to raise_error("Airport full")
       end
 
-      context "when an airport isn't full" do
+      context "and an airport isn't full" do
 
         before do
           allow(airport).to receive(:full?) { false }
