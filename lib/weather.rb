@@ -1,5 +1,5 @@
 class Weather
   def stormy?
-    rand(10) != 1
+    rand(5) == 1
   end
 end

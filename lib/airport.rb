@@ -12,6 +12,7 @@ class Airport
   end
 
   def land plane
+    fail "Storm!Landing is not allowed!" if weather.stormy?
     planes << plane
     "#{plane} has landed"
   end

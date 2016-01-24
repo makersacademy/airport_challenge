@@ -4,7 +4,8 @@ describe Airport do
 
   subject(:airport){ described_class.new }
   let(:plane){ Plane.new}
-  let(:weather){ Weather.new}
+  let(:weather){ double}
+  let(:port){ Airport.new weather}
 
   context "status of the airport" do
 
@@ -25,12 +26,19 @@ describe Airport do
     it {is_expected.to respond_to :land}
 
     it "- give a confirmation that particular plane landed" do
-      expect(subject.land(plane)).to eq "#{plane} has landed"
+      allow(weather).to receive(:stormy?).and_return false
+      expect(port.land(plane)).to eq "#{plane} has landed"
     end
 
     it "- keeps info about landed planes" do
-      subject.land(plane)
-      expect(subject.planes).to eq [plane]
+      allow(weather).to receive(:stormy?).and_return false
+      port.land(plane)
+      expect(port.planes).to eq [plane]
+    end
+
+    it "- prevent plane to land if weather is stormy" do
+      allow(weather).to receive(:stormy?).and_return true
+      expect{port.land(plane)}.to raise_error "Storm!Landing is not allowed!"
     end
 
   end
@@ -40,17 +48,13 @@ describe Airport do
     it {is_expected.to respond_to :takeoff}
 
     it "- give a confirmation that particular plane took off" do
-      weather = double
       allow(weather).to receive(:stormy?).and_return false
-      port = Airport.new weather
       expect(port.takeoff(plane)).to eq "#{plane} has taken off"
     end
 
     it "- update it's info about plane if it took off" do
-      weather = double
       allow(weather).to receive(:stormy?).and_return false
       plane1 = Plane.new
-      port = Airport.new weather
       port.land(plane)
       port.land(plane1)
       port.takeoff(plane)
@@ -58,9 +62,7 @@ describe Airport do
     end
 
     it "- prevent plane to take off if weather is stormy" do
-      weather = double
       allow(weather).to receive(:stormy?).and_return true
-      port = Airport.new weather
       expect{port.takeoff(plane)}.to raise_error "Storm!Takeoff is not allowed!"
     end
 
