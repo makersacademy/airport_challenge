@@ -78,7 +78,7 @@ plane.land(airport)
 8. Once the order to land the plane has been given, you can confirm that it has successfully landed using...
 
 ```
-airport.,confirm_plane_landed(plane)
+airport.confirm_plane_landed(plane)
 ```
 
 ...which will return ```true``` if the plane has landed at the specified airport, or ```false``` if the plane is still flying.
