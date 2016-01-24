@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) {described_class.new}
+  let(:small_airport) {described_class.new 2}
   let(:plane) {double :plane}
 
 
@@ -66,20 +67,26 @@ describe Airport do
 
     context "Capacity constraints" do
 
-      # describe "#full? do"
-      # let(:plane2) {double :plane}
-      #
-      #   before do
-      #     airport.stub(:capacity).and_return(1)
-      #     allow(plane2).to receive(:change_status)
-      #     allow(plane2).to receive(:flying?).and_return(true)
-      #     subject.land(plane2)
-      #   end
-      #
-      # it "Will not land a plane if the airport is #full?" do
-      #   expect(subject.land(plane)).to eq "The airport is full"
-      # end
+      describe "#full?" do
 
+      before do
+        plane1 = double("plane1", :flying? => true, :change_status => "Landed")
+        plane2 = double("plane2", :flying? => true, :change_status => "Landed")
+        small_airport.stub(:sunny?).and_return(true)
+        small_airport.land plane1
+        small_airport.land plane2
+      end
+
+          it "Will not land a plane if the airport is #full?" do
+            allow(plane).to receive(:flying?).and_return(true)
+            expect(small_airport.land plane).to eq("The airport is full")
+          end
+
+          # it "Allows the system designer to set a default capacity for a new Airport" do
+          #   expect{small_airport.land plane}.to raise_error("The airport is full")
+          # end
+
+      end
     end
   end
 
@@ -109,7 +116,8 @@ describe Airport do
         end
 
         it "Will not release a plane from the holding bay if it is empty" do
-
+          subject.take_off
+          expect(subject.take_off).to eq "The airport is empty"
         end
 
         it "Will not let a plane take off if it isn't landed" do
@@ -161,8 +169,9 @@ describe Airport do
 
           before do
             allow(plane).to receive(:flying?).and_return(true)
-            airport.stub(:full?).and_return(false)
+            airport.stub(:empty?).and_return(false)
             airport.land(plane)
+            allow(plane).to receive(:landed?).and_return(true)
             airport.stub(:sunny?).and_return(false)
           end
 
@@ -172,7 +181,6 @@ describe Airport do
 
           it "Will not take off a plane from the holding bay whilst not sunny" do
             before = subject.holding_bay.size
-            allow(plane).to receive(:landed?).and_return(true)
             subject.take_off
             expect(subject.holding_bay.size).to eq (before)
           end
