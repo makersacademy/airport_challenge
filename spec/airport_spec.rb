@@ -5,10 +5,21 @@ describe Airport do
 
   let(:airport) { Airport.new}
 
-
-  it "respond to planes" do
-    expect(airport).to respond_to :planes
+  it "has a default capacity of 20" do
+    expect(airport.capacity).to eq Airport::CAPACITY
   end
+
+  it "can be initialized with an different capacity" do
+    airport2 = Airport.new(25)
+    expect(airport2.capacity).to eq 25
+  end
+  
+  describe '#planes' do
+    it "respond to planes" do
+      expect(airport).to respond_to :planes
+    end
+  end
+
 
   describe '#landed_at' do
     it "respond to landed_at" do
@@ -43,7 +54,6 @@ describe Airport do
       dbl = double("stormy?")
       expect(dbl).to receive(:stormy?)
       dbl.stormy?
-
     end
   end
 
@@ -59,7 +69,6 @@ describe Airport do
   end
 
   describe '#ready_for_landing?' do
-
     it "responds to ready_for_landing?" do
       expect(airport).to respond_to :ready_for_landing?
     end
@@ -68,9 +77,6 @@ describe Airport do
       expect(dbl).to receive(:ready_for_landing?)
       dbl.ready_for_landing?
     end
-
-
-
   end
 
   describe "#full?" do
@@ -81,8 +87,9 @@ describe Airport do
       expect(airport.full?).to eq false
     end
     it "returns true when airport is full" do
-      5.times {airport.landed_at("plane") }
+      20.times {airport.landed_at("plane") }
       expect(airport.full?).to eq true
     end
   end
+
 end

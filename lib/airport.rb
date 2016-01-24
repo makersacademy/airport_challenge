@@ -4,10 +4,11 @@ require_relative 'weather'
 class Airport
   include Weather
   attr_reader :planes
-  MAX = 5
-
-  def initialize
+  attr_accessor :capacity
+  CAPACITY = 20
+  def initialize(capacity=CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def landed_at(plane)
@@ -29,7 +30,7 @@ class Airport
   end
 
   def full?
-    return true if @planes.length >= MAX
+    return true if @planes.length >= @capacity
     false
   end
 
