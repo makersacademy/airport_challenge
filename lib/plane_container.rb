@@ -1,13 +1,17 @@
 module PlaneContainer
-  attr_reader :list_planes, :capacity
-  DEFAULT_CAPACITY = 100
+  attr_reader :capacity, :list_planes
 
   def setup_plane_list
     @list_planes = []
   end
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @capacity = DEFAULT_CAPACITY
+  # def default_capacity
+  #   100 if self.class.name == Airport
+  #   500 if self.class.name == AirTrafficControl
+  # end
+
+  def initialize(capacity = self.class::DEFAULT_CAPACITY)
+    @capacity = capacity
     setup_plane_list
     # @list_planes = []
   end

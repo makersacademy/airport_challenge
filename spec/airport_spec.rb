@@ -28,20 +28,6 @@ describe Airport do
       allow(plane).to receive(:report_inflight)
       allow_any_instance_of(Airport).to receive(:report_inflight)
     end
-    #airport has defaul capacity
-    describe '#initialize' do
-      it 'initialize should set default capacity' do
-        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-      end
-    end
-
-    #airport is full at capacity
-    describe 'full?' do
-      it 'reaches full at capacity' do
-        subject.capacity.times { subject.land(plane) }
-        expect(subject.full?).to be true
-      end
-    end
 
     #land docks plane in airport
     describe '#land' do

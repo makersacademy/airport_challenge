@@ -3,7 +3,7 @@
 shared_examples_for PlaneContainer do
 
 # describe PlaneContainerTest do
-  # subject(:Airport) {described_class.new}
+  subject(:PlaneContainer) {described_class.new}
 	let(:plane) { double :plane }
   let(:control) { double :control }
 
@@ -35,20 +35,16 @@ shared_examples_for PlaneContainer do
     end
   end
 
-  # has default capacity
-  # describe '#initialize' do
-  #   it 'initialize should set default capacity' do
-  #     expect(subject.capacity).to eq PlaneContainer::DEFAULT_CAPACITY
-  #   end
-  # end
-
-  # #instance takes set capacity
-  # describe '#initialize' do
-  #   it ''
-  # end
-
   it 'has a default capacity when initialized' do
-    expect(subject.capacity).to eq PlaneContainer::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq subject.class::DEFAULT_CAPACITY
+  end
+
+  #is full at capacity
+  describe 'full?' do
+    it 'reaches full at capacity' do
+      subject.capacity.times { subject.plane_in(plane) }
+      expect(subject.full?).to be true
+    end
   end
 
 end

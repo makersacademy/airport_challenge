@@ -7,8 +7,10 @@ class AirTrafficControl
   include Weather
   include PlaneContainer
 
-  # DEFAULT_CAPACITY = 500
-
+  DEFAULT_CAPACITY = 500
+  # def default_capacity
+  #   500
+  # end
   # def initialize
   #   # @inflight = []
   #   setup_plane_list

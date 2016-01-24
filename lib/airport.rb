@@ -3,11 +3,14 @@ require_relative 'plane_container'
 require_relative 'airplane'
 
 class Airport
-  attr_reader :capacity, :airport_planes
+  attr_reader :capacity, :airport_planes, :DEFAULT_CAPACITY
   include Weather
   include PlaneContainer
 
-  # DEFAULT_CAPACITY = 100
+  DEFAULT_CAPACITY = 100
+  # def default_capacity
+  #   100
+  # end
 
   # def initialize#(capacity = DEFAULT_CAPACITY)
   #   # @ground_planes = []
