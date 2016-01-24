@@ -6,6 +6,8 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
+  attr_reader :capacity
+
   def initialize (capacity = DEFAULT_CAPACITY)
     @planes_on_the_ground = []
     @planes_in_the_air = []
@@ -28,6 +30,7 @@ class Airport
   def land plane
     raise "this plane has already landed" if @planes_on_the_ground.include?(plane)
     raise "plane cannot land due to stormy conditions" if current_weather == true
+    raise "plane cannot land as airport is at capacity" if current_capacity <= 0
      @capacity -= 1
      @planes_on_the_ground << plane
   end

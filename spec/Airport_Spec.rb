@@ -1,5 +1,6 @@
 require 'Airport.rb'
 
+
 describe Airport do
 
 it { is_expected.to respond_to(:land).with(1).argument }
@@ -38,7 +39,7 @@ it "shows plane has landed" do
   airport.land(plane)
   expect(airport.planes_landed).to eq [(plane)]
   end
-
+=begin
 it 'takes a unit off capacity when a plane lands' do
   plane = double(plane)
   airport = Airport.new
@@ -53,10 +54,11 @@ it 'adds a unit onto capacity when a plane takes off' do
   airport = Airport.new
   allow(airport).to receive(:current_weather).and_return(false)
   airport.land(plane)
+  allow(airport).to receive(:current_weather).and_return(false)
   current_capacity = airport.current_capacity
   expect(airport.current_capacity).to eq current_capacity + 1
 end
-
+=end
 =begin
 it 'lets a plane takeoff' do
   plane = double(:plane)
@@ -100,5 +102,14 @@ it 'prevents landing when weather is stormy' do
    allow(airport).to receive(:current_weather).and_return(true)
    expect {airport.land(plane)}.to raise_error ("plane cannot land due to stormy conditions")
  end
+
+it 'prevents landing if the airport is at capacity' do
+   plane = double (:plane)
+   airport = Airport.new
+   allow(airport).to receive(:current_weather).and_return(false)
+   allow(airport).to receive(:current_capacity).and_return(0)
+   expect(airport.land(plane)).to raise_error ("plane cannot land as airport is at capacity")
+end
+
 
 end
