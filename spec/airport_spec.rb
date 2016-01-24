@@ -33,6 +33,13 @@ describe Airport do
       expect {subject.land(plane)}.to raise_error(error)
     end
 
+    it "can't land the same plane twice" do
+      allow(subject).to receive(:weather_status).and_return("sunny")
+      allow(plane).to receive(:status).and_return("landed")
+      error = "This plane has already been landed"
+      expect {subject.land(plane)}.to raise_error(error)
+    end
+
   end
 
   #TAKEOFF
@@ -49,6 +56,13 @@ describe Airport do
     it "denies takeoff if the weather is stormy" do
       allow(subject).to receive(:weather_status).and_return("stormy")
       error = "Can't takeoff, it's stormy!"
+      expect {subject.takeoff(plane)}.to raise_error(error)
+    end
+
+    it "can't take off the same plane twice" do
+      allow(subject).to receive(:weather_status).and_return("sunny")
+      allow(plane).to receive(:status).and_return("flying")
+      error = "This plane is already flying"
       expect {subject.takeoff(plane)}.to raise_error(error)
     end
 

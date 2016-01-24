@@ -1,9 +1,7 @@
 require_relative 'plane'
 require_relative 'modules/weather'
-require_relative 'modules/errors'
 
 class Airport
-  include Errors
   attr_reader :planes
 
   CAPACITY = 10
@@ -34,15 +32,19 @@ class Airport
   private
 
   def pre_takeoff_checks(plane)
-    stormy_error {"takeoff"} if weather_status == "stormy"
-    plane_error {"This plane is already flying"} if plane.status == "flying"
-    plane_error {"This plane doesn't exist here"} unless @planes.include?(plane)
+    plane_error("Can't takeoff, it's stormy!") if weather_status == "stormy"
+    plane_error("This plane is already flying") if plane.status == "flying"
+    plane_error("This plane doesn't exist here") unless @planes.include?(plane)
   end
 
   def pre_landing_checks(plane)
-    full_airport_error if @planes.size > @capacity
-    stormy_error {"land"} if weather_status == "stormy"
-    plane_error {"has already been landed"} if plane.status == "landed"
+    plane_error("The airport is full") if @planes.size > @capacity
+    plane_error("Can't land, it's stormy!") if weather_status == "stormy"
+    plane_error("This plane has already been landed") if plane.status == "landed"
+  end
+
+  def plane_error(error_message)
+    fail "#{error_message}"
   end
 
   def weather_status
