@@ -9,7 +9,7 @@ class Plane
   def land(airport, weather)
     raise 'Plane already landed' unless self.in_flight
     raise 'Airport full' if airport.full?
-    raise 'Unsafe to land' if weather.stormy?
+    raise 'Weather is stormy: unsafe to take off' if weather.stormy?
     airport.stored_planes.push(self)
     confirmation(airport)
     land_status

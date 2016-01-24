@@ -61,7 +61,7 @@ describe Airport do
     allow(weather).to receive(:stormy?) { true }
     allow(plane).to receive(:in_flight) { false }
     (subject.stored_planes) << plane
-    expect{subject.take_off(plane, weather)}.to raise_error('Unsafe to take off')
+    expect{subject.take_off(plane, weather)}.to raise_error('Weather is stormy: unsafe to take off')
   end
 
   it 'cannot take off if already in flight' do
