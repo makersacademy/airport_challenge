@@ -49,6 +49,20 @@ describe Air_traffic_controller do
       end
   end
 
+  describe "#cannot takeoff_planes if not at the airport" do
+    let(:plane) {double :plane}
+    let(:airport) {double :airport}
+    let(:weather) {double :weather}
+
+      it "checks on takeoff and returns error if the plane is not at airport" do
+        allow(plane).to receive(:takeoff).and_return(true)
+        allow(weather).to receive(:bad?).and_return(false)
+        allow(airport).to receive(:list_landed_planes).and_return([nil])
+        allow(airport).to receive(:new_plane_takeoff)
+        expect{subject.takeoff_plane(plane, airport, weather)}.to raise_error(RuntimeError)
+      end
+  end
+
   describe "#cannot land_planes during bad weather" do
     let(:plane) {double :plane}
     let(:airport) {double :airport}
