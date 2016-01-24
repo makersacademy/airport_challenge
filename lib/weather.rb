@@ -1,6 +1,10 @@
 class Weather
 
   def stormy?
-	  rand(1..5) == 1 ? true : false
+	  value == 1 ? true : false
+  end
+
+  def value
+ 	rand(1..10)
   end
 end
