@@ -7,21 +7,32 @@ This is a software to control the flow of planes at an airport. The planes can l
 
 Plane
 -------
-* has landed
-* is flying
+
+* landed?
+* flying?
+
 
 Weather
 -------
-* is sunny (normal status)
+
+* sunny (normal status)
 * is stormy (rare occasions)
 
 <!-- For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test. -->
 
+
 Airport
 -------
+
 * landing possible (weather condition)
 * landing possible (capacity)
 * takeoff possible (weather condition)
+
+Domain Model
+-------
+
+* A detailed view of the underlying Domain Model derived from User Stories: https://docs.google.com/spreadsheets/d/1To2KRcizbrMYTPcU9RAWpIlG1LTZGfBzoP4Pwok4OeQ
+
 
 User stories
 ------------
