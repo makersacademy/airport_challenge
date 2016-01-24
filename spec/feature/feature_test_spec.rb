@@ -26,7 +26,7 @@ describe "Feature test" do
     
     it "can't take off in stormy weather" do
       allow(airport).to receive(:weather) {:stormy}
-      expect{plane.take_off(airport)}.to raise_error "It is too stormy to take off."
+      expect{plane.take_off(airport)}.to raise_error
     end
     
     it "can take off in other weather" do
@@ -66,6 +66,6 @@ describe "Feature test" do
       plane.land(jfk)
     end
     expect(jfk.planes.count).to eq 10
-  end
+    end
   end
 end
