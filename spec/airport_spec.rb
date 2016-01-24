@@ -34,6 +34,16 @@ describe Airport do
         airport2 = subject
         expect(airport1.capacity).to eq airport2.capacity
       end
+
+      it "Allows system designer to override the default capacity with 1" do
+          tiny_airport = Airport.new 1
+          expect(tiny_airport.capacity).to eq 1
+      end
+
+      it "Allows the system designer to override the default capacity with 5" do
+          little_airport = Airport.new 5
+          expect(little_airport.capacity).to eq 5
+      end
     end
   end
 
@@ -80,11 +90,7 @@ describe Airport do
           it "Will not land a plane if the airport is #full?" do
             allow(plane).to receive(:flying?).and_return(true)
             expect(small_airport.land plane).to eq("The airport is full")
-          end
-
-          # it "Allows the system designer to set a default capacity for a new Airport" do
-          #   expect{small_airport.land plane}.to raise_error("The airport is full")
-          # end
+        end
 
       end
     end
