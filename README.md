@@ -43,7 +43,7 @@ I followed the BDD life cycle.
 * I created the acceptance tests (or feature tests):
   **Airport, planes, weather**
 * Then multiple unit tests for every acceptance test eg.:
-  **Airport: inbound_planes, outbound_planes unit tests**
+  **Airport: inbound_planes, outbound_planes **
 * And last the implementation:
   **class Airport end, class Plane end**
 
