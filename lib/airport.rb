@@ -4,11 +4,20 @@ class Airport
 
   def initialize(code)
     @stormy = false
-    @code = code
+    @code = code.upcase.to_sym
   end
 
   def stormy?
-    @stormy
+    generate_weather
+    return stormy
   end
-  # TODO: private method to calculate chances of storm
+
+  private
+  attr_reader :stormy
+
+  def generate_weather
+    # 1 in 20 chance of weather being stormy
+    rand_num = rand(20)
+    @stormy = (rand_num == 0)
+  end
 end
