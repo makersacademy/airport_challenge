@@ -5,7 +5,7 @@ describe Plane do
   subject { described_class.new(airport) }
 
   # FIXME: cannot to test for initialization without attr_reader
-  # describe '#initialize' do
+  # describe '#initialize' do => use new built-in methods
   #   # it { is_expected.to respond_to(:airport) }
   #   it { is_expected.to have_attributes(:airport => airport) }
   #
@@ -26,7 +26,12 @@ describe Plane do
         expect(subject.land(destination)).to be_truthy
       end
 
-      # TODO: does not land if destination.stormy
+      it 'does not land if destination weather is stormy' do
+        allow(destination).to receive(:stormy?) { true }
+        expect(subject.land(destination)).to be_falsy
+      end
+
+      # TODO: test that landing sets location
     end
   end
 
@@ -48,7 +53,7 @@ describe Plane do
       end
 
       it 'sets plane state to in_flight' do
-
+        # TODO: return in_flight status
       end
     end
 

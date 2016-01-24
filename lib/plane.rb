@@ -9,6 +9,7 @@ class Plane
   end
 
   def land(destination)
+    # TODO: use guard clause and raise exception
     unless destination.stormy?
       arrive_at destination
       return true
@@ -16,6 +17,7 @@ class Plane
   end
 
   def take_off
+    # TODO: use guard clause and raise exception
     unless airport.stormy?
       depart_airport
       return true
