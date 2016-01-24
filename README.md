@@ -1,9 +1,9 @@
 AIRPORT CHALLENGE
 =================
 
-Author:       Alain Lemaire (jaxdid@gmail.com)
-Created on:   24/01/16 @ 6:10PM
-Last updated: 24/01/16 @ 6:11PM
+- Author:       Alain Lemaire (jaxdid@gmail.com)
+- Created on:   24/01/16 @ 6:10PM
+- Last updated: 24/01/16 @ 6:11PM
 
 ***
 
@@ -20,7 +20,7 @@ This project aims to create a basic airport and air traffic control management s
 Instructions
 ------------
 * Run the program by loading or requiring 'lib/airport.rb' in any REPL environment that supports Ruby (e.g., irb)
-* Run Rspec tests by entering the 'rspec' command in your command line interface.
+* Run Rspec tests by entering the `rspec` command in your command line interface.
 
 Licensing
 ---------
