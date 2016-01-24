@@ -7,4 +7,8 @@ class Airport
 		"Plane has landed"
 	end
 
+	def take_off
+		@plane
+	end
+
 end
