@@ -21,7 +21,7 @@ describe 'depart plane' do
 	end
 end
 
-describe 'prevent departure when weather is stormy' do
+describe 'error when plans depart and stormy' do
 	it 'prevents departure' do 
 		plane = Plane.new
 		airport = Airport.new
@@ -49,7 +49,7 @@ describe 'prevent landing when airport is full' do
 		plane = Plane.new
 		airport = Airport.new
 		allow(airport).to receive(:stormy?) {false}
-		airport.capacity.times { airport.land(Plane.new) }
+		airport.capacity.times { airport.land (Plane.new) }
 		expect{airport.land(plane)}.to raise_error("airport at capacity")
 
 	end
@@ -66,7 +66,7 @@ describe  "default airport capacity that can be overridden" do
 	end
 end
 
-describe "planes can only take off from airports they are in" do 
+describe "planes only depart airports they are in" do 
 	it "allows plane to only depart from airport it is in" do  
 	airport = Airport.new
 	plane = Plane.new
@@ -86,7 +86,7 @@ describe "departing an airport changes a planes status to flying" do
 	end
 	end
 
-describe "planes that are already flying cannot takes off and/or be in an airport" do 
+describe "planes flying cannot depart"  do 
 	it "changes a planes status from flying to landed" do
 	plane = Plane.new
 	airport = Airport.new
@@ -94,19 +94,17 @@ describe "planes that are already flying cannot takes off and/or be in an airpor
 	airport.land(plane)
 	allow(plane).to receive(:flying) {true}	
 	expect{airport.depart(plane)}.to raise_error "plane is already flying an cannot take off"
-
-
-end
+	end
 end
 
-describe "land if they are already in an airport" do 
+describe "fail land if already in an airport" do 
 	it "prevents a plane from landing if already landed" do
 	plane = Plane.new
 	airport = Airport.new
 	allow(airport).to receive(:stormy?) {false}
 	airport.land(plane)
 	expect{airport.land(plane)}.to raise_error "plane is already landed and cannot land"
-end
+	end
 end
 
 
@@ -123,6 +121,6 @@ describe "multiple planes depart and land" do
 	airport.depart(jet)
 	end
 	expect(airport.planes.length).to eq 0
-end
+	end
 end
 

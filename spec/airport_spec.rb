@@ -26,13 +26,13 @@ it { is_expected.to respond_to :capacity }
 	expect(airport.planes).to_not include plane
 	end	
 
-	it '#depart changes a planes status to flying' do
+	it '#depart changes status to flying' do
 	airport = described_class.new
 	plane = Plane.new
 	allow(airport).to receive(:stormy?) {false}	
 	airport.land(plane)
 	airport.depart(plane)
-	expect(plane.flying).to eq (true)
+	expect(plane.flying).to eq true
 	end
 
 
@@ -42,7 +42,7 @@ it { is_expected.to respond_to :capacity }
 	expect(airport.stormy?).to eq false
 	end
 
-	it "raises an error when plans are departed and its stormy" do
+	it "error when plans depart and stormy" do
 	plane = Plane.new
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {false}
@@ -51,7 +51,7 @@ it { is_expected.to respond_to :capacity }
 	expect{airport.depart(plane)}.to raise_error("unsafe flying conditions to depart")
 	end
 
-	it "raises an error when plans try to land and its stormy" do
+	it "error when planes land stormy" do
 	plane = Plane.new
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {true}
@@ -76,7 +76,7 @@ it { is_expected.to respond_to :capacity }
 	end
 
 
-	it "allows plane to only depart from airport it is in" do  
+	it "planes only depart airports they are in" do  
 	plane = Plane.new
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {false}
@@ -84,7 +84,7 @@ it { is_expected.to respond_to :capacity }
 	end
 
 
-	it "changes a planes status from flying to landed" do
+	it "changes a planes status landed" do
 	plane = Plane.new
 	airport = described_class.new
 	allow(airport).to receive(:stormy?) {false}
