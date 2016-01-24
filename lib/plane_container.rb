@@ -1,12 +1,13 @@
 module PlaneContainer
   attr_reader :list_planes, :capacity
+  DEFAULT_CAPACITY = 100
 
   def setup_plane_list
     @list_planes = []
   end
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @capacity = capacity
+  def initialize#(capacity = DEFAULT_CAPACITY)
+    @capacity = DEFAULT_CAPACITY
     setup_plane_list
     # @list_planes = []
   end

@@ -9,11 +9,11 @@ class Airport
 
   # DEFAULT_CAPACITY = 100
 
-  def initialize#(capacity = DEFAULT_CAPACITY)
-    # @ground_planes = []
-    # @capacity = capacity
-    setup_plane_list
-  end
+  # def initialize#(capacity = DEFAULT_CAPACITY)
+  #   # @ground_planes = []
+  #   # @capacity = capacity
+  #   setup_plane_list
+  # end
 
   def airport_planes
     # @ground_planes.dup

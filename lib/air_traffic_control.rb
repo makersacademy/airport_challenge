@@ -9,10 +9,10 @@ class AirTrafficControl
 
   # DEFAULT_CAPACITY = 500
 
-  def initialize
-    # @inflight = []
-    setup_plane_list
-  end
+  # def initialize
+  #   # @inflight = []
+  #   setup_plane_list
+  # end
 
   def display_inflight
     # @inflight.dup
