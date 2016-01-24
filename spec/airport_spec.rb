@@ -1,6 +1,8 @@
 require 'airport'
+require 'support/shared_examples_for_takeoff_land.rb'
 
 describe Airport do
+  it_behaves_like TakeoffLand
   subject(:airport) {described_class.new}
 
   describe '#land' do
@@ -20,6 +22,19 @@ describe Airport do
 
   end
 
+  describe '#set_capacity' do
+
+    it 'expects a capacity to be set' do
+      random = rand(1..60)
+      expect(airport.set_capacity(random)).to eq(random)
+    end
+
+    it 'expects DEFAULT_CAPACITY to be set if no capacity specified' do
+      expect(airport.set_capacity).to eq(Airport::DEFAULT_CAPACITY)
+    end
+
+  end
+
   describe '#takeoff' do
     let(:plane) {double(:plane)}
     let(:weather) {double("weather", :stormy? => nil)}
@@ -32,18 +47,20 @@ describe Airport do
       expect(airport.planes_in_airport).not_to include(plane)
     end
 
+    # it removes the plane from the airport when there are multiple planes
+
   end
 
-  describe 'stormy weather' do
+  context 'stormy weather' do
     let(:plane) {double(:plane)}
     let(:weather) {double("weather", :stormy? => true)}
 
     it 'does not land planes when the weather is stormy' do
-    expect {(airport.land(plane, weather))}.to raise_error("Too stormy to land planes!")
+    expect {(airport.land(plane, weather))}.to raise_error("Too stormy to land!")
     end
 
     it 'does not let planes takeoff when the weather is stormy' do
-    expect {(airport.takeoff(plane, weather))}.to raise_error("Too stormy to let planes takeoff!")
+    expect {(airport.takeoff(plane, weather))}.to raise_error("Too stormy to takeoff!")
     end
 
   end

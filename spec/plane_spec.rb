@@ -1,6 +1,8 @@
 require 'plane'
+require 'support/shared_examples_for_takeoff_land.rb'
 
 describe Plane do
+  it_behaves_like TakeoffLand
   subject (:plane) {described_class.new}
 
     describe '#land' do
@@ -58,6 +60,7 @@ describe Plane do
       let(:airport) {double("airport", :planes_in_airport => [plane])}
 
       it 'is not able to takeoff in stormy weather' do
+        allow(plane).to receive(:at_what_airport).and_return(airport)
         expect {plane.takeoff(airport, weather)}.to raise_error("Too stormy to takeoff!")
       end
 

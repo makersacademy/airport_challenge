@@ -1,6 +1,9 @@
 require_relative 'plane'
+require_relative 'takeoff_land'
 
 class Airport
+
+  include TakeoffLand
 
   DEFAULT_CAPACITY = 20
 
@@ -10,14 +13,14 @@ class Airport
   end
 
   def land(plane, weather)
-    raise "Too stormy to land planes!" if weather.stormy?
-    raise "The airport is full!" if @planes.length >= 20
-    @planes << plane
+    raise "The airport is full!" if full?
+    landed_plane = landing(plane, weather)
+    @planes << landed_plane
   end
 
   def takeoff(plane, weather)
-    raise "Too stormy to let planes takeoff!" if weather.stormy?
-    planes.delete(plane)
+    flying_plane = taking_off(plane, weather)
+    planes.delete(flying_plane)
   end
 
   def planes_in_airport
@@ -31,6 +34,10 @@ class Airport
 
 private
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
+
+  def full?
+    @planes.length >= capacity
+  end
 
 end
