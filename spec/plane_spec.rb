@@ -4,9 +4,9 @@ describe Plane do
 
   let(:plane) { Plane.new }
 
-  describe '#land_at' do
-    it "respond to instruct_to_land with 1 argument" do
-      expect(plane).to respond_to(:land_at).with(1).argument
+  describe '#to_land_at' do
+    it "respond to to_land_at with 1 argument" do
+      expect(plane).to respond_to(:to_land_at).with(1).argument
     end
   end
 

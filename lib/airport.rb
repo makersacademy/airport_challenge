@@ -8,7 +8,7 @@ class Airport
     @planes = []
   end
 
-  def has_landed(plane)
+  def landed_at(plane)
     @planes << plane
   end
 

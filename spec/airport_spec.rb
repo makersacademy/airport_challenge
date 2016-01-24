@@ -4,17 +4,20 @@ describe Airport do
 
   let(:airport) { Airport.new}
 
+
   it "respond to planes" do
     expect(airport).to respond_to :planes
   end
 
-  describe '#has_landed' do
-    it "respond to has_landed" do
-      expect(airport).to respond_to(:has_landed).with(1).argument
+  describe '#landed_at' do
+    it "respond to landed_at" do
+
+      expect(airport).to respond_to(:landed_at).with(1).argument
     end
     it "adds landing plane to planes when landed" do
+      plane = double("plane")
       old_number = airport.planes.length
-      airport.has_landed("plane")  # using double
+      airport.landed_at(plane)  # using double
       expect(airport.planes.length).to eq old_number += 1
     end
   end
@@ -24,9 +27,10 @@ describe Airport do
       expect(airport).to respond_to(:departed).with(1).argument
     end
     it "deletes departed plane from planes when departed" do
-      airport.has_landed("plane") # must be an plane on the airport
+      plane = double("plane")
+      airport.landed_at(plane) # must be an plane on the airport
       old_number = airport.planes.length
-      airport.departed("plane") # using double
+      airport.departed(plane) # using double
       expect(airport.planes.length).to eq old_number -= 1
     end
   end
