@@ -36,11 +36,22 @@ describe Airport do
   end
 
   describe '#stormy?' do
+    it "responds to stormy?" do
+      expect(airport).to respond_to :stormy?
+    end
     it "returns a boolean when called" do
-      expect(airport.stormy?).to eq true || false
+      dbl = double("stormy?")
+      expect(dbl).to receive(:stormy?)
+      dbl.stormy?
+
     end
   end
 
+  describe '#ready_for_take_off?' do
+    it "respond to ready_for_take_off" do
+      expect(airport).to respond_to :ready_for_take_off
+    end
+  end
 
 
 end
