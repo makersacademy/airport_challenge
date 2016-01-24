@@ -1,79 +1,144 @@
 Airport Challenge
 =================
 
-Instructions
+````
+        ______
+        _\____\___
+=  = ==(____MA____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
+
+````
+
+[![Build Status](https://travis-ci.org/seanhawkridge/airport_challenge.svg?branch=master)](https://travis-ci.org/seanhawkridge/airport_challenge)
+
+My Approach
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+My first step was to work through the user stories, isolate the objects and messages the program required, and put them in a table.
 
-Steps
+I then worked through the table step-by-step, aiming to write the whole program using TDD - first running a feature test in IRB, then writing a failing unit test in RSpec, then writing the classes and methods to pass the test, before moving on to the next set of failing tests. There were a few times when my code was passing the feature test, but not the unit test - on these occasions I had to refactor the unit tests to make sure everything was working and passing (I'm hoping this will improve as I learn RSpec syntax more thoroughly).
+
+I chose to write Weather as a module rather than a class or method - partly because it seems more like a behaviour than an object, partly to make sure my Airport class adhered to the Single Responsibility Principle, and partly because I wanted to practice how to make, use and test Modules.
+
+I aimed to write all the unit tests using mocks and stubs to ensure my tests were isolated within classes.
+
+Once all the unit tests were passing, and I could run through a thorough feature test in IRB, I wrote an RSpec feature test to make sure the classes were interacting with each other properly. It was still necessary to stub in the radomised weather to make sure the tests passed properly with no unexpected storms.
+
+The program can be run thoroughly in IRB/PRY:
+
+```
+[1] pry(main)> require './lib/airport.rb'
+=> true
+[2] pry(main)> gatwick = Airport.new
+=> #<Airport:0x007fd992a94fc0 @capacity=25, @planes=[]>
+[3] pry(main)> luton = Airport.new(3)
+=> #<Airport:0x007fd992a56400 @capacity=3, @planes=[]>
+[4] pry(main)> p1 = Plane.new
+=> #<Plane:0x007fd992a168f0 @airborne=true>
+[5] pry(main)> p2 = Plane.new
+=> #<Plane:0x007fd9929c95f0 @airborne=true>
+[6] pry(main)> p3 = Plane.new
+=> #<Plane:0x007fd99304be28 @airborne=true>
+[7] pry(main)> p4 = Plane.new
+=> #<Plane:0x007fd993a26b50 @airborne=true>
+[8] pry(main)> gatwick.land_plane(p1)
+=> #<Airport:0x007fd992a94fc0
+ @capacity=25,
+ @planes=[#<Plane:0x007fd992a168f0 @airborne=false>]>
+[9] pry(main)> gatwick.land_plane(p2)
+=> #<Airport:0x007fd992a94fc0
+ @capacity=25,
+ @planes=
+  [#<Plane:0x007fd992a168f0 @airborne=false>,
+   #<Plane:0x007fd9929c95f0 @airborne=false>]>
+[10] pry(main)> gatwick.send_plane(p2)
+=> #<Airport:0x007fd992a94fc0
+ @capacity=25,
+ @planes=[#<Plane:0x007fd992a168f0 @airborne=false>]>
+ [12] pry(main)> p2.airborne
+=> true
+[13] pry(main)> luton.send_plane(p2)
+RuntimeError: That plane isn't in this airport
+from /Users/seanhawkridge/Dropbox/Dev/airport_challenge/lib/airport.rb:28:in `send_plane'
+[14] pry(main)> luton.planes
+=> []
+[15] pry(main)> gatwick.send_plane(p2)
+RuntimeError: That plane isn't in this airport
+from /Users/seanhawkridge/Dropbox/Dev/airport_challenge/lib/airport.rb:28:in `send_plane'
+[16] pry(main)> gatwick.planes
+=> [#<Plane:0x007fd992a168f0 @airborne=false>]
+[17] pry(main)> luton.land_plane(p2)
+=> #<Airport:0x007fd992a56400
+ @capacity=3,
+ @planes=[#<Plane:0x007fd9929c95f0 @airborne=false>]>
+[18] pry(main)> luton.land_plane(p3)
+=> #<Airport:0x007fd992a56400
+ @capacity=3,
+ @planes=
+  [#<Plane:0x007fd9929c95f0 @airborne=false>,
+   #<Plane:0x007fd99304be28 @airborne=false>]>
+[19] pry(main)> luton.land_plane(p4)
+=> #<Airport:0x007fd992a56400
+ @capacity=3,
+ @planes=
+  [#<Plane:0x007fd9929c95f0 @airborne=false>,
+   #<Plane:0x007fd99304be28 @airborne=false>,
+   #<Plane:0x007fd993a26b50 @airborne=false>]>
+[20] pry(main)> p1.airborne
+=> false
+[21] pry(main)> gatwick.send_plane(p1)
+=> #<Airport:0x007fd992a94fc0 @capacity=25, @planes=[]>
+[22] pry(main)> luton.land_plane(p1)
+RuntimeError: The airport is full
+from /Users/seanhawkridge/Dropbox/Dev/airport_challenge/lib/airport.rb:19:in `land_plane'
+[23] pry(main)> luton.send_plane(p4)
+=> #<Airport:0x007fd992a56400
+ @capacity=3,
+ @planes=
+  [#<Plane:0x007fd9929c95f0 @airborne=false>,
+   #<Plane:0x007fd99304be28 @airborne=false>]>
+[24] pry(main)> luton.land_plane(p1)
+=> #<Airport:0x007fd992a56400
+ @capacity=3,
+ @planes=
+  [#<Plane:0x007fd9929c95f0 @airborne=false>,
+   #<Plane:0x007fd99304be28 @airborne=false>,
+   #<Plane:0x007fd992a168f0 @airborne=false>]>
+[25] pry(main)> luton.stormy?
+=> false
+[26] pry(main)> luton.stormy?
+=> false
+[27] pry(main)> luton.stormy?
+=> false
+[28] pry(main)> luton.stormy?
+=> false
+[29] pry(main)> luton.stormy?
+=> false
+[30] pry(main)> luton.stormy?
+=> false
+[31] pry(main)> luton.stormy?
+=> false
+[32] pry(main)> luton.stormy?
+=> false
+[33] pry(main)> luton.stormy?
+=> true
+[34] pry(main)> luton.stormy?
+=> false
+[35] pry(main)>
+
+```
+
+Ideas / To do
+---------
+
+* Planes currently initialize in mid-air - it might make sense to refactor the code so that they initialize in an airport.
+* It would be nice to give airports and planes `name` variables to make the IRB/PRY session clearer.
+
+Notes
 -------
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+The loops for testing random weather were inspired by Rufus the Clever - https://github.com/rufusraghunath/
