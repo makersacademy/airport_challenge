@@ -18,5 +18,12 @@ Features modeled include the following:
 Instructions
 ---------
 
-1. Firstly open Terminal, cd in to the directory containing this project and run ```irb```.
-2. Test...
+1. Firstly open Terminal, ```cd``` in to the directory containing this project and run ```irb```.
+2. Require the necessary files using:
+
+```
+require './lib/airport'
+require './lib/plane'
+require './lib/weather'
+```
+3. Test
