@@ -38,4 +38,12 @@ describe Plane do
     expect(subject.instance_variable_get(:@in_flight)).to eq(true)
   end
 
+  it 'can not land a plane if plane is already landed' do
+  allow(airport).to receive(:full?) { false }
+  allow(weather).to receive(:stormy?) { false }
+  allow(airport).to receive(:stored_planes).and_return(Array.new)
+  subject.land_status
+  expect{subject.land(airport, weather)}.to raise_error("Plane already landed")
+  end
+
 end

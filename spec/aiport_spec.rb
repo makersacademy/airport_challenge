@@ -38,23 +38,35 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(2).argument
   end
 
-  it 'removes a plane from stored_planes once it takes off' do
-    allow(weather).to receive(:stormy?)
+  it 'stores planes that land' do
     (subject.stored_planes) << plane
-    expect(subject.stored_planes.length).to eq(1)
+    expect(subject.stored_planes.pop).to eq (plane)
+  end
+
+  it 'removes a plane from stored_planes once it takes off' do
+    (subject.stored_planes) << plane
+    allow(plane).to receive(:in_flight) { false }
+    allow(weather).to receive(:stormy?) { false }
+    allow(plane).to receive(:flight_status)
     subject.take_off(plane, weather)
     expect(subject.stored_planes.length).to eq(0)
   end
 
   it 'can only remove planes that are at the airport' do
-    allow(weather).to receive(:stormy?)
+    allow(plane).to receive(:in_flight) { false }
     expect{subject.take_off(plane, weather)}.to raise_error('Plane not at airport')
   end
 
   it 'can only take off when weather isn\'t stormy' do
     allow(weather).to receive(:stormy?) { true }
+    allow(plane).to receive(:in_flight) { false }
     (subject.stored_planes) << plane
     expect{subject.take_off(plane, weather)}.to raise_error('Unsafe to take off')
+  end
+
+  it 'cannot take off if already in flight' do
+    allow(plane).to receive(:in_flight) { true }
+    expect{subject.take_off(plane, weather)}.to raise_error('Plane already in flight')
   end
 
 end

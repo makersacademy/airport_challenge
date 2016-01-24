@@ -14,10 +14,12 @@ class Airport
   end
 
   def take_off(plane, weather)
+    raise 'Plane already in flight' if plane.in_flight
     raise 'Plane not at airport' unless stored?(plane)
     raise 'Unsafe to take off' if weather.stormy?
     @stored_planes.delete(plane)
     confirmation(plane)
+    plane.flight_status
   end
 
   def full?
