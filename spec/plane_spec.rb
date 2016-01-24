@@ -3,8 +3,14 @@ require 'plane.rb'
 describe Plane do
   let(:airport) { double :airport }
 
+  describe 'initialize' do
+    it 'it initializes in the air' do
+      expect(subject.landed?).to eq false
+    end
+  end
   describe 'landed?' do
-    it 'returns true is the plane has landed and is on the ground ' do
+    it 'returns true is the plane has landed and is on the ground' do
+      subject.land
       expect(subject.landed?).to eq true
     end
   end

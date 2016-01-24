@@ -8,6 +8,12 @@ describe Airport do
       allow(plane).to receive(:land).and_return(true)
       expect(subject.clear_to_land(plane)).to include plane
     end
+
+    it 'landing is prevented when weather is stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      allow(plane).to receive(:land)
+      expect{subject.clear_to_land(plane)}.to raise_error 'Stormy weather is preventing landing'
+    end
   end
 
   describe '#landed_planes' do
@@ -21,14 +27,21 @@ describe Airport do
   describe '#clear_to_takeoff' do
     it 'instructs a plane to takeoff and removes it from the landed planes array' do
       allow(plane).to receive(:land)
+      allow(plane).to receive(:takeoff)
       subject.clear_to_land(plane)
       subject.clear_to_takeoff
       expect(subject.landed_planes).not_to include plane
     end
 
+    it 'prevents takeoff if weather is stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      expect{subject.clear_to_takeoff}.to raise_error 'Stormy weather is preventing takeoff'
+    end
+
     it 'raises an error if there are no planes to takeoff' do
       expect{subject.clear_to_takeoff}.to raise_error 'There are no planes at the airport'
     end
+
   end
 
   describe '#confirm_landed' do

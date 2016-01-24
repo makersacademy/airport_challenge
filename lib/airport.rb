@@ -11,13 +11,17 @@ class Airport
   end
 
   def clear_to_land(plane)
+    fail 'Stormy weather is preventing landing' if stormy?
     plane.land
     @landed_planes << plane
   end
 
   def clear_to_takeoff
-    raise 'There are no planes at the airport' if landed_planes.empty?
-    @landed_planes.pop
+    fail 'Stormy weather is preventing takeoff' if stormy?
+    fail 'There are no planes at the airport' if landed_planes.empty?
+    plane = @landed_planes[0]
+    plane.takeoff
+    @landed_planes.delete_at(0)
   end
 
   def confirm_landed(plane)
@@ -25,8 +29,7 @@ class Airport
   end
 
   def stormy?
-    @number = rand(1..13)
-    @number == 13 ? true:false
+    rand(1..3) == 13 ? true:false
   end
 
 
