@@ -46,9 +46,21 @@ describe Plane do
           expect(airport.stored_planes).to eq([plane])
         end
 
-        it 'can not land a plane if plane is already landed' do
-          plane.land_status
-          expect{plane.land(airport, weather)}.to raise_error("Plane already landed")
+        context "when planes are landed" do
+
+          before do
+            plane.land_status
+          end
+
+          it 'can not land a plane if plane is already landed' do
+            expect{plane.land(airport, weather)}.to raise_error("Plane already landed")
+          end
+
+          it "can be changed to 'in_flight'" do
+            plane.flight_status
+            expect(plane.in_flight).to eq(true)
+          end
+
         end
 
       end

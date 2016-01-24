@@ -35,6 +35,11 @@ describe Airport do
     expect(airport.instance_variable_get(:@stored_planes)).to eq airport.stored_planes
   end
 
+  it "full? returns true once capacity is reached" do
+    5.times { airport.stored_planes << plane }
+    expect(airport.full?).to eq(true)
+  end
+
   context "when planes aren't in flight" do
 
     before do
