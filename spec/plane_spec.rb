@@ -16,7 +16,7 @@ describe Plane do
 
   describe '#initialize' do
     it 'initializes at the specified airport' do
-      expect(plane.location).to eq "#{airport}"
+      expect(plane.location).to eq airport.to_s
     end
 
     it 'adds plane instance to specified airport' do
@@ -56,7 +56,7 @@ describe Plane do
         plane.take_off
         expect(destination).to receive(:inbound) { plane }
         expect(plane).to receive(:new_location) { destination }
-        expect(plane.land_at destination).to be_truthy
+        expect(plane.land_at(destination)).to be_truthy
       end
 
       it 'raises exception and does not land if destination weather is stormy' do
@@ -107,8 +107,7 @@ describe Plane do
   describe '#location' do
     context 'when plane is stationed at an airport' do
       it 'returns the airport code' do
-        # allow(airport).to receive(:to_s) { "LAX" }
-        expect(plane.location).to eq "#{airport}"
+        expect(plane.location).to eq airport.to_s
       end
     end
 
