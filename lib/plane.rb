@@ -1,12 +1,17 @@
+
 class Plane
   
   attr_accessor :flying
-  attr_reader :name
+  attr_reader :name, :plane_id
+  
+  @@total_planes = 0
   
   def initialize
-    @name = "737-" + "#{1}" #will be @planes.size maybe?
+    @plane_id = "737-" + "#{@@total_planes + 1}"
     @flying = false
+    @@total_planes += 1
   end
+  
   
   
 end

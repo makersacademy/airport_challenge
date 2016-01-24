@@ -1,5 +1,6 @@
 class ControlTower
   
+  
   def land(plane, airport)
     airport.check_weather
     report(plane, airport)

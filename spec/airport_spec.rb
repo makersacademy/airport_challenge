@@ -20,18 +20,6 @@ describe Airport do
   end
   
   it { is_expected.to respond_to(:weather=) }
-  it { is_expected.to respond_to(:check_weather)}
-  
-  it "Allows to land in clear weather" do
-    allow(@tower).to receive(:land) do |plane, airport|
-      "737-1 landed in Stansted"
-    end
-    expect(@tower.land(@plane, @airport)).to eq "737-1 landed in Stansted"
-  end
-  it "Allows to take-off in clear weather" do
-    allow(@tower).to receive(:take_off) do |plane, airport|
-      "737-1 took-off from Stansted"
-    end
-    expect(@tower.take_off(@plane, @airport)).to eq "737-1 took-off from Stansted"
-  end
+  it { is_expected.to respond_to(:check_weather)} 
+    
 end
