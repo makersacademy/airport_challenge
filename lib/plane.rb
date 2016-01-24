@@ -7,7 +7,7 @@ class Plane
   end
   
   def land(airport) 
-    fail "Already on the ground" if !flying
+    fail "Already on the ground" unless flying
     @flying = false
     airport.landed(self)
   end
