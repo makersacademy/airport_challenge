@@ -1,14 +1,16 @@
 class Plane
 
+  def initialize
+    @on_ground = false
+  end
+
   def to_land
+    fail 'Plane already landed' unless in_air?
     @on_ground = true
   end
 
-  def landed?
-    true if @on_ground
-  end
-
-  def took_off
+  def take_off
+    fail 'Plane already in the air' if in_air?
     @on_ground = false
   end
 

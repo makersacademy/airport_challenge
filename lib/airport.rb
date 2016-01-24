@@ -20,11 +20,11 @@ class Airport
     planes << plane
   end
 
-  def take_off(specific_plane)
+  def take_off(specific_plane) #refractor!!
     fail 'Take-off is not allowed in stormy weather' if stormy?
     departing = planes.select{|plane| plane == specific_plane}
     planes.select!{|plane| plane != specific_plane}
-    departing[0].took_off
+    departing[0].take_off
     departing
   end
 

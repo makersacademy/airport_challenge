@@ -4,8 +4,6 @@ describe Airport do
 
   let(:plane) {double(:plane, kind_of?: Plane)}
   let(:plane2) {double(:plane, kind_of?: Plane)}
-  #let(:storm_weather) {double(:weather, stormy?: true)}
-  #let(:calm_weather) {double(:weather, stormy?: false)}
 
   describe '#initialize' do
 
@@ -51,6 +49,7 @@ describe Airport do
   context 'landing a plane' do
     before (:each) do
       allow(plane).to receive(:to_land)
+      allow(plane).to receive(:landed?)
       allow(subject).to receive(:stormy?) { false }
     end
 
@@ -91,10 +90,6 @@ describe Airport do
         expect{subject.land(fake_plane)}.to raise_error msg
       end
 
-      it 'will only land if it is in the air' do
-        pending('edge case')
-        edgecase
-      end
     end
   end
 
@@ -102,13 +97,12 @@ describe Airport do
     before (:each) do
       allow(plane).to receive(:to_land)
       allow(plane).to receive(:take_off)
-      allow(plane).to receive(:took_off)
       allow(subject).to receive(:stormy?) {false}
       subject.land(plane)
     end
 
     it 'instructs plane to take_off' do
-      expect(plane).to respond_to(:took_off)
+      expect(plane).to respond_to(:take_off)
       subject.take_off(plane)
     end
 
@@ -119,6 +113,7 @@ describe Airport do
 
     it 'a specific plane takes-off' do
       allow(plane2).to receive(:to_land)
+      allow(plane2).to receive(:landed?)
       subject.land(plane2)
       subject.take_off(plane)
       expect(subject.planes).not_to include plane
