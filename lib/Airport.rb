@@ -20,7 +20,7 @@ class Airport
   end
 
   def flying(plane)
-    @grounded_planes.delete(plane)
+    @grounded_planes.pop
   end
 
   def full?
