@@ -2,6 +2,9 @@
 
 --- 1. Program Instructions ---
 
+
+
+
 Irb example
 
 2.2.3 :001 > require './lib/airport.rb'
@@ -31,6 +34,10 @@ Irb example
  => #<Plane:0x007f86610ab3d0 @landed=false>
 
 
+
+
+
+
 -Basic Commands and Info-
 
 
@@ -47,12 +54,20 @@ your_airport.land(your_plane)
 your_airport.take_off(your plane)
 - takes off your plane
 
+
+
 These commands are prevented when the weather is stormy. Landing can also be
 prevented when the airport is over its capacity. Airport taffic control may
 swear at you if you try.
 
 Random weather conditions are created every time an airport is created. There
 is a 20% chance of storms.
+
+
+
+
+
+
 
 --- 2. Progress Log ---
 
