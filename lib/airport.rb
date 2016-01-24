@@ -17,6 +17,7 @@ class Airport
     raise 'Plane not at airport' unless stored?(plane)
     raise 'Unsafe to take off' if weather.stormy?
     @stored_planes.delete(plane)
+    confirmation(plane)
   end
 
   def full?
@@ -25,6 +26,10 @@ class Airport
 
   def stored?(plane)
     @stored_planes.include?(plane)
+  end
+
+  def confirmation(plane)
+    puts "#{plane} has taken off and is no longer at #{self}"
   end
 
 end

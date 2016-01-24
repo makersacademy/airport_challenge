@@ -34,4 +34,8 @@ describe Plane do
     expect{subject.land(airport, weather)}.to raise_error("Airport full")
   end
 
+  it 'stores whether a plane is in flight (true by default)' do
+    expect(subject.instance_variable_get(:@in_flight)).to eq(true)
+  end
+
 end
