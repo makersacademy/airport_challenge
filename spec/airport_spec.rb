@@ -1,8 +1,7 @@
 require 'airport'
 
 describe Airport do
-  # TODO: alias subject
-  subject { described_class.new("LAX") }
+  subject(:airport) { described_class.new("LAX") }
   let(:plane) { Plane.new }
 
   describe '#initialize' do
@@ -11,7 +10,7 @@ describe Airport do
     it { is_expected.to respond_to(:capacity) }
 
     it 'initializes with default capacity' do
-      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+      expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
     end
 
     let(:small_airport) { described_class.new("LCY", 5) }
@@ -24,19 +23,19 @@ describe Airport do
     it { is_expected.to respond_to(:stormy?) }
 
     it 'calls Kernel#rand to determine chance of storms' do
-      expect(subject).to receive(:rand).with(20)
-      subject.stormy?
+      expect(airport).to receive(:rand).with(20)
+      airport.stormy?
     end
 
     it 'returns true (1 in 20 chance)' do
-      expect(subject).to receive(:rand).with(20) { 0 }
-      expect(subject.stormy?).to be_truthy
+      expect(airport).to receive(:rand).with(20) { 0 }
+      expect(airport.stormy?).to be_truthy
     end
 
     it 'returns false (19 in 20 chances)' do
       # FIXME: unsure if using rand() in test is appropriate
-      expect(subject).to receive(:rand).with(20) { rand(1..20) }
-      expect(subject.stormy?).to be_falsy
+      expect(airport).to receive(:rand).with(20) { rand(1..20) }
+      expect(airport.stormy?).to be_falsy
     end
   end
 
@@ -45,8 +44,8 @@ describe Airport do
 
     context 'when airport is not full' do
       it 'accepts inbound planes' do
-        subject.inbound plane
-        expect(subject.planes).to include plane
+        airport.inbound plane
+        expect(airport.planes).to include plane
       end
     end
 
