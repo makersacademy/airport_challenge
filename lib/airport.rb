@@ -11,19 +11,13 @@ DEFAULT_CAPACITY = 200
   end
 
   def land(plane)
-    if full?
-      raise 'Runway is full, unable to land'
-    end
-    if weather_conditions < 3
-      raise 'Cannot land due to stormy weather'
-    end
+    fail 'Runway is full, unable to land' if full?
+    fail 'Cannot land due to stormy weather' if weather_conditions < 3
     landed_planes << plane
   end
 
   def take_off(plane)
-    if weather_conditions < 3
-      raise 'Cannot take off due to stormy weather'
-    end
+    fail 'Cannot take off due to stormy weather' if weather_conditions < 3
     departing_flights = []
     departing_flights << plane
     landed_planes.delete plane
