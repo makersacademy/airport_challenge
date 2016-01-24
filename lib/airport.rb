@@ -12,11 +12,15 @@ DEFAULT_CAPACITY = 20
   end
 
   def land(plane)
-    if sunny? && plane.flying? && (full? == false)
-      plane.change_status
-      @holding_bay << plane
+    if full?
+      "The airport is full"
     else
-      sunny? == false ? "Unsafe to land plane whilst stormy" : plane.flying? == false ? "Plane has already landed" : "The airport is full"
+      if sunny? && plane.flying?
+        plane.change_status
+        @holding_bay << plane
+      else
+        sunny? == false ? "Unsafe to land plane whilst stormy" : "Plane has already landed"
+      end
     end
   end
 
@@ -25,22 +29,17 @@ DEFAULT_CAPACITY = 20
       "The airport is empty"
     else
         plane = @holding_bay.pop
-      if sunny? && plane.landed?
-        plane.change_status
-        plane
-      else
-        @holding_bay << plane
-        sunny? == false ? "Unsafe to take off plane whilst stormy" : "This plane is already flying"
-      end
+        if sunny? && plane.landed?
+          plane.change_status
+          plane
+        else
+          @holding_bay << plane
+          sunny? == false ? "Unsafe to take off plane whilst stormy" : "This plane is already flying"
+        end
     end
   end
 
-#private - check scope
-  def sunny?
-    rand*100 > 10 ? true : false
-  end
-
-private
+  private
 
   def full?
     @holding_bay.size >= @capacity
