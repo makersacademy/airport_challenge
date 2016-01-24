@@ -6,8 +6,10 @@ describe Airport do
   let(:plane) { double :plane }
 
   describe '#initialize' do
-    it { is_expected.to have_attributes(:code => :LAX,
-                                        :capacity => described_class::DEFAULT_CAPACITY) }
+    it do
+      is_expected.to have_attributes( :code => :LAX,
+                                      :capacity => described_class::DEFAULT_CAPACITY)
+    end
 
     it 'raises an error if invalid code is passed' do
       expect do

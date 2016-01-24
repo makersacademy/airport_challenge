@@ -1,13 +1,17 @@
 require 'plane'
 
 describe Plane do
-  let(:airport) { double( :airport,
-                          :stormy? => false,
-                          :outbound => nil,
-                          :inbound => nil) }
-  let(:destination) { double( :airport,
-                              :stormy? => false,
-                              :method_defined? => true) }
+  let(:airport) do
+    double( :airport,
+            :stormy? => false,
+            :outbound => nil,
+            :inbound => nil)
+  end
+  let(:destination) do
+    double( :airport,
+            :stormy? => false,
+            :method_defined? => true)
+  end
   subject(:plane) { described_class.new(airport) }
 
   describe '#initialize' do
