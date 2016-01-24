@@ -8,7 +8,17 @@ describe Plane do
     expect(plane.where_abouts).to eq "airport"
   end
 
+  it "returns 'flying' after take_off" do
+    dbl = double("airport")
+    allow(dbl).to receive(:take_off) {"flying"}
+    expect(dbl.take_off).to eq "flying"
+  end
 
+  it "returns 'flying' before landing" do
+    dbl = double("airport")
+    allow(dbl).to receive(:to_land_at) {"flying"}
+    expect(dbl.to_land_at).to eq "flying"
+  end
 
   describe '#to_land_at' do
     it "respond to to_land_at with 1 argument" do
