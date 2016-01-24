@@ -19,8 +19,7 @@ class Airport
   end
 
   def full?
-    true if @ground_planes >= @capacity
-    false
+    @ground_planes.length >= @capacity ? true : false
   end
 
   def land(plane)

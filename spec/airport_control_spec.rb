@@ -6,8 +6,8 @@ describe AirTrafficControl do
   let(:airport) { double :airport }
 
 #responds to methods in class
-  it { is_expected.to respond_to :instruct_land }
-  it { is_expected.to respond_to :instruct_takeoff }
+  it { is_expected.to respond_to(:instruct_land).with(2).argument }
+  it { is_expected.to respond_to(:instruct_takeoff).with(2).argument }
 
 #wrap in non-stormy waether condition
   describe 'stub weather to never be stormy' do
@@ -23,7 +23,6 @@ describe AirTrafficControl do
   #instruct a plane to land
     describe '#instruct_land' do
       it 'returns plane removed from inflight' do
-        allow(subject).to receive(:stormy?).and_return(false)
         allow(airport).to receive(:land)
         allow(airport).to receive(:takeoff)
         allow(airport).to receive(:full?).and_return(false)
@@ -34,7 +33,6 @@ describe AirTrafficControl do
 
     describe '#instruct_land' do
       it 'check plane no longer inflight' do
-        allow(subject).to receive(:stormy?).and_return(false)
         allow(airport).to receive(:land)
         allow(airport).to receive(:takeoff)
         allow(airport).to receive(:full?).and_return(false)
@@ -56,10 +54,9 @@ describe AirTrafficControl do
   #prevent landing if airport is full
     describe '#instruct_land' do
       it 'display error if airport is full' do
-        allow(subject).to receive(:stormy?).and_return(true)
         allow(airport).to receive(:land)
         allow(airport).to receive(:full?).and_return(true)
-        expect { subject.instruct_land(plane, airport) }.to raise_error('Too stormy to land')
+        expect { subject.instruct_land(plane, airport) }.to raise_error('Airport is full')
       end
     end
 
@@ -75,7 +72,6 @@ describe AirTrafficControl do
   #instruct plane to take-off
     describe '#instruct_takeoff' do
       it 'check plane is inflight' do
-        allow(subject).to receive(:stormy?).and_return(false)
         allow(airport).to receive(:takeoff)
         allow(airport).to receive(:full?).and_return(false)
         subject.instruct_takeoff(plane, airport)
@@ -89,16 +85,6 @@ describe AirTrafficControl do
         allow(airport).to receive(:full?).and_return(false)
         expect(airport).to receive(:takeoff)
         subject.instruct_takeoff(plane, airport)
-      end
-    end
-
-    #prevent take-off if stormy
-    describe '#instruct_takeoff' do
-      it 'display error if stormy' do
-        allow(subject).to receive(:stormy?).and_return(true)
-        allow(airport).to receive(:takeoff)
-        allow(airport).to receive(:full?).and_return(false)
-        expect { subject.instruct_takeoff(plane, airport) }.to raise_error('Too stormy to take-off')
       end
     end
   end

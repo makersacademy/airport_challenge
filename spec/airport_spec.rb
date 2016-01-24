@@ -6,13 +6,21 @@ describe Airport do
   let(:control) { double :control }
 
 #responds to methods in class
-  it { is_expected.to respond_to :land }
-  it { is_expected.to respond_to :takeoff }
+  it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:takeoff).with(1).argument }
 
   #airport has defaul capacity
   describe '#initialize' do
     it 'initialize should set default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
+  #airport is full at capacity
+  describe 'full?' do
+    it 'reaches full at capacity' do
+      subject.capacity.times { subject.land(plane) }
+      expect(subject.full?).to be true
     end
   end
 
