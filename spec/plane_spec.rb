@@ -19,7 +19,8 @@ describe Plane do
       end
 
       it 'cannot land if it is already landed' do
-        expect {plane.land(airport, weather)}.to raise_error("Plane has already landed!")
+        message = "Plane has already landed!"
+        expect {plane.land(airport, weather)}.to raise_error(message)
       end
 
 
@@ -37,14 +38,16 @@ describe Plane do
 
       it 'cannot takeoff if it is not at an airport' do
         allow(plane).to receive(:at_what_airport).and_return(nil)
-        expect {plane.takeoff(airport, weather)}.to raise_error("Plane cannot takeoff if it is not in an airport!")
+        message = 'Plane cannot takeoff if it is not in an airport!'
+        expect {plane.takeoff(airport, weather)}.to raise_error(message)
       end
 
       let(:airport2){double("airport", :planes_in_airport => [])}
 
       it 'can only takeoff from an airport it is in' do
         plane.land(airport, weather)
-        expect{plane.takeoff(airport2, weather)}.to raise_error('Plane cannot take off from an airport it is not in!')
+        message = 'Plane cannot take off from an airport it is not in!'
+        expect{plane.takeoff(airport2, weather)}.to raise_error(message)
       end
 
     end
@@ -55,11 +58,13 @@ describe Plane do
 
       it 'is not able to takeoff in stormy weather' do
         allow(plane).to receive(:at_what_airport).and_return(airport)
-        expect {plane.takeoff(airport, weather)}.to raise_error("Too stormy to takeoff!")
+        message = "Too stormy to takeoff!"
+        expect {plane.takeoff(airport, weather)}.to raise_error(message)
       end
 
       it 'is not able to land in stormy weather' do
-        expect {plane.land(airport, weather)}.to raise_error("Too stormy to land!")
+        message = "Too stormy to land!"
+        expect {plane.land(airport, weather)}.to raise_error(message)
       end
 
     end

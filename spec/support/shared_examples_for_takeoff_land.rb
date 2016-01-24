@@ -1,8 +1,8 @@
 require './lib/takeoff_land.rb'
 
 shared_examples_for TakeoffLand do
-  let (:weather) {double("weather", :stormy? => false)}
-  let (:flyer_lander) {double(:flyer_lander)}
+  let(:weather) {double("weather", :stormy? => false)}
+  let(:flyer_lander) {double(:flyer_lander)}
 
   describe '#taking_off' do
 
