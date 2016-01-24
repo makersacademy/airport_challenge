@@ -15,15 +15,10 @@ class Airport
     @planes_at_airport = []
   end
 
-  def securitycheck(person)
-    if securityfailed?
-
-    end
-  end
 
   def tell_to_land(plane)
     if stormy? == false && full? == false
-      @cap_used += 1s
+      @cap_used += 1
       planes_at_airport << plane
       plane.plane_landed
       "#{plane} landed in #{@name} #{@planes_at_airport} is/are in the airport"

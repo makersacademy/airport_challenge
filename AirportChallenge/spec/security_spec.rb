@@ -1,9 +1,9 @@
 
 require 'security'
-describe Security do
+describe Customs do
 
   before(:example) do
-    @security = Security.new("Scott",50000)
+    @security = Customs.new("Scott",50000)
   end
 
   describe 'passport checks' do
