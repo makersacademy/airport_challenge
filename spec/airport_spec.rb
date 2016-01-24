@@ -36,15 +36,3 @@ describe Airport do
 
 end
 
-# airport = Airport.new
-
-
-
-
-
-
-
-	# it 'returns true after land' do
-	# 	subject.land(airport)
-	# 	expect(subject.landed?).to eq true
-	# end

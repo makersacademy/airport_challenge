@@ -24,32 +24,6 @@ private
 
 end
 
-#class Plane
-
-	# attr_reader :land, :landed?, :airport
-
-	# def initialize
-	# 	@landed
-	# 	@airport
-	# end
-
-	# def land(airport)
-	# 	raise 'ERROR: plane already landed' if landed
-	# 	@landed = true
-	# 	@airport = airport
-	# end
-
-	# def landed?  #confirm landing
-	# 	true
-	# end
-
-	# def takeoff
-	# 	raise 'ERROR: plane already takenoff' unless landed
-	# 	@landed = false
-	# 	airport
-	# end
-
-#end
 
 
 	
