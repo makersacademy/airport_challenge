@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  subject { described_class.new(airport) }
+  subject(:docked_plane) { described_class.new(airport) }
   let(:airport) { double :airport }
   let(:in_flight_plane) { described_class.new }
 
@@ -11,7 +11,7 @@ describe Plane do
   #   it { is_expected.to have_attributes(:airport => airport) }
   #
   #   it 'initializes with the airport it is stationed at' do
-  #     # expect(subject.airport).to eq airport
+  #     # expect(docked_plane.airport).to eq airport
   #   end
   # TODO: test that plane is not in_flight by default
   # end
@@ -22,7 +22,7 @@ describe Plane do
 
     context 'when the plane is not in flight' do
       it 'raises an exception' do
-        expect{ subject.land_at destination }.to raise_exception("Plane is not in flight!")
+        expect{ docked_plane.land_at destination }.to raise_exception("Plane is not in flight!")
       end
     end
 
@@ -56,14 +56,14 @@ describe Plane do
     context 'when the plane is stationed at an airport' do
       it 'takes off from the airport and confirms' do
         allow(airport).to receive(:stormy?) { false }
-        expect(airport).to receive(:outbound).with(subject)
-        expect(subject.take_off).to be_truthy
+        expect(airport).to receive(:outbound).with(docked_plane)
+        expect(docked_plane.take_off).to be_truthy
       end
 
       it 'raises an exception and does not take off if weather is stormy' do
         allow(airport).to receive(:stormy?) { true }
-        expect{ subject.take_off }.to raise_exception("Unable to take off in stormy weather")
-        # TODO: expect subject location to remain airport
+        expect{ docked_plane.take_off }.to raise_exception("Unable to take off in stormy weather")
+        # TODO: expect docked_plane location to remain airport
       end
 
       it 'sets plane state to in_flight' do
@@ -76,14 +76,14 @@ describe Plane do
     context 'when plane is stationed at an airport' do
       it 'returns the airport code' do
         allow(airport).to receive(:code) { :LAX }
-        expect(subject.location).to eq :LAX
+        expect(docked_plane.location).to eq :LAX
       end
     end
 
     context 'when a plane is in flight' do
       it 'returns nil' do
-        allow(subject).to receive(:in_flight?) { true }
-        expect(subject.location).to be_nil
+        allow(docked_plane).to receive(:in_flight?) { true }
+        expect(docked_plane.location).to be_nil
       end
     end
   end
@@ -95,16 +95,16 @@ describe Plane do
       it 'returns false' do
         # Plane is not in flight by default because it is associated with
         # an airport at initialization
-        expect(subject.in_flight?).to be_falsy
+        expect(docked_plane.in_flight?).to be_falsy
       end
     end
 
     context 'when the plane has taken off' do
       it 'returns true' do
         allow(airport).to receive(:stormy?) { false }
-        allow(airport).to receive(:outbound) { subject }
-        subject.take_off
-        expect(subject.in_flight?).to be_truthy
+        allow(airport).to receive(:outbound) { docked_plane }
+        docked_plane.take_off
+        expect(docked_plane.in_flight?).to be_truthy
       end
     end
   end
