@@ -1,8 +1,6 @@
 require_relative "airport"
 
 class Plane
-  # FIXME: remove for encapsulation
-  # attr_reader :airport
   # New planes should always be instantiated from an airport
   def initialize(airport)
     @airport = airport
@@ -20,7 +18,9 @@ class Plane
     return true
   end
 
+  # NOTE: consider alternative implementation of #location and #in_flight?
   def location
+    # NOTE: consider using guard statements over conditionals
     if in_flight?
       return nil
     else

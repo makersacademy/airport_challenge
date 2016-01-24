@@ -1,10 +1,14 @@
 class Airport
-  # Airport must be initialized with a three-letter code symbol, e.g. LAX
-  attr_reader :code
+  # NOTE: consider removing attr_accessors for encapsulation
+  attr_reader :code, :capacity
+  # Override default capacity
+  DEFAULT_CAPACITY = 100
 
-  def initialize(code)
-    @stormy = false
+  # Airport must be initialized with a three-letter code symbol or string, e.g. LAX
+  def initialize(code, capacity=DEFAULT_CAPACITY)
     @code = code.upcase.to_sym
+    @capacity = capacity
+    @stormy = false
   end
 
   def stormy?
@@ -17,7 +21,6 @@ class Airport
 
   def generate_weather
     # 1 in 20 chance of weather being stormy
-    rand_num = rand(20)
-    @stormy = (rand_num == 0)
+    @stormy = (rand(20) == 0)
   end
 end
