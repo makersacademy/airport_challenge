@@ -8,4 +8,6 @@ Plane is a class
 Airport is a class
 Interaction between Airport and Plane are the methods on airport, taking plane as argument
 Airport will have an array variable to store planes
+Weather uses sample method of array.
+Weather test uses srand get fixed output from .sample method.
 
