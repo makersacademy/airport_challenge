@@ -32,19 +32,15 @@ class Airport
   private
 
   def pre_takeoff_checks(plane)
-    plane_error("Can't takeoff, it's stormy!") if weather_status == "stormy"
-    plane_error("This plane is already flying") if plane.status == "flying"
-    plane_error("This plane doesn't exist here") unless @planes.include?(plane)
+    fail "Can't takeoff, it's stormy!" if weather_status == "stormy"
+    fail "This plane is already flying" if plane.status == "flying"
+    fail "This plane doesn't exist here" unless @planes.include?(plane)
   end
 
   def pre_landing_checks(plane)
-    plane_error("The airport is full") if @planes.size > @capacity
-    plane_error("Can't land, it's stormy!") if weather_status == "stormy"
-    plane_error("This plane has already been landed") if plane.status == "landed"
-  end
-
-  def plane_error(error_message)
-    fail "#{error_message}"
+    fail "The airport is full" if @planes.size > @capacity
+    fail "Can't land, it's stormy!" if weather_status == "stormy"
+    fail "This plane has already been landed" if plane.status == "landed"
   end
 
   def weather_status
