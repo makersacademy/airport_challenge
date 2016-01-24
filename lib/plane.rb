@@ -20,7 +20,13 @@ class Plane
     return true
   end
 
-  # TODO: implement #location to provide info on in_flight or airport
+  def location
+    if in_flight?
+      return nil
+    else
+      return airport.code
+    end
+  end
 
   def in_flight?
     airport.nil?

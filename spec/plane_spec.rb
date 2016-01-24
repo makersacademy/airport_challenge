@@ -58,6 +58,22 @@ describe Plane do
     end
   end
 
+  describe '#location' do
+    context 'when plane is stationed at an airport' do
+      it 'returns the airport code' do
+        allow(airport).to receive(:code) { :LAX }
+        expect(subject.location).to eq :LAX
+      end
+    end
+
+    context 'when a plane is in flight' do
+      it 'returns nil' do
+        allow(subject).to receive(:in_flight?) { true }
+        expect(subject.location).to be_nil
+      end
+    end
+  end
+
   describe '#in_flight?' do
     it { is_expected.to respond_to(:in_flight?) }
 
