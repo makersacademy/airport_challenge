@@ -33,6 +33,15 @@ describe AirTrafficControl do
         expect(subject.stormy?).to eq false
       end
 
+    # #instance takes set capacity
+    #   describe '#initialize' do
+    #     it 'sets random capacity' do
+    #       random = rand(1..AirTrafficControl::DEFAULT_CAPACITY)
+    #       control = AirTrafficControl.new(random)
+    #       expect(control.capacity).to eq random
+    #     end
+    #   end
+
     #instruct a plane to land
       describe '#instruct_land' do
         it 'returns plane removed from inflight' do

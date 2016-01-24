@@ -3,7 +3,7 @@
 shared_examples_for PlaneContainer do
 
 # describe PlaneContainerTest do
-  subject(:Airport) {described_class.new}
+  # subject(:Airport) {described_class.new}
 	let(:plane) { double :plane }
   let(:control) { double :control }
 
@@ -34,5 +34,17 @@ shared_examples_for PlaneContainer do
       expect(subject.list_planes).not_to include(plane)
     end
   end
+
+  # has default capacity
+  # describe '#initialize' do
+  #   it 'initialize should set default capacity' do
+  #     expect(subject.capacity).to eq PlaneContainer::DEFAULT_CAPACITY
+  #   end
+  # end
+
+  # #instance takes set capacity
+  # describe '#initialize' do
+  #   it ''
+  # end
 
 end

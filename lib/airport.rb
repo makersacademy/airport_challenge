@@ -20,10 +20,10 @@ class Airport
     @list_planes.dup
   end
 
-  def full?
-    # @ground_planes.length >= @capacity ? true : false
-    @list_planes.length >= @capacity ? true : false
-  end
+  # def full?
+  #   # @ground_planes.length >= @capacity ? true : false
+  #   @list_planes.length >= @capacity ? true : false
+  # end
 
   def land(plane)
     # @ground_planes << plane
