@@ -1,15 +1,13 @@
 class Plane
+  attr_reader :name, :in_air, :location
+  def initialize(name="Plane1")
+    @name = name
+  end
 
-def in_air(in_air = false)
-  @in_air = in_air
-end
+  def in_air(in_air=false)
+    @in_air = in_air
+  end
 
-def write_name(name)
-  @name = name
-end
-
-def read_name
-  @name
-end
-
+  # def location
+  # end
 end
