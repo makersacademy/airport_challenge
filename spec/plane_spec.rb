@@ -21,7 +21,9 @@ describe Plane do
   end
   
   it 'lands at an airport and confirms it has landed' do
-    subject.land(Airport.new)
+    airport = Airport.new
+    airport.weather = 'sunny'
+    subject.land(airport)
     expect(subject).to be_landed
   end
 
