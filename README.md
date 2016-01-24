@@ -32,10 +32,13 @@ A Weather class must be instantiated before planes can land or take off, as this
 An example of setting up this program for use would be:
 
 london_weather = Weather.new
+
 london = Airport.new
+
 plane = Plane.new
 
 plane.land(london, london_weather)
+
 london.take_off(plane, london_weather)
 
 In the example above, we create our airport (london) as well as a specific weather for that part of the world (weather_london). We then create our plane that we will be landing. By calling 'land' on a plane and passing it the airport and related weather, we can attempt to land our plane (so long as the safe conditions are met). By calling 'take_off' on our airport and passing it the plane we want to take off and the related weather, our plane can attempt to take off (so long as the safe conditions are met).
