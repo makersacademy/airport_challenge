@@ -12,20 +12,26 @@ let(:plane2){double :plane2}
 
 it 'lands a plane' do
   plane = double(:plane)
-  expect(subject.land(plane)).to eq [plane]
+  airport = Airport.new
+  allow(airport).to receive(:current_weather).and_return(false)
+  expect(airport.land(plane)).to eq [plane]
 end
 
 it 'cannot land a plane more than once' do
   plane = double(:plane)
-  subject.land(plane)
-  expect {subject.land(plane)}.to raise_error ("this plane has already landed")
+  airport = Airport.new
+  allow(airport).to receive(:current_weather).and_return(false)
+  airport.land(plane)
+  expect {airport.land(plane)}.to raise_error ("this plane has already landed")
 end
 
 
 it "shows plane has landed" do
   plane = double(:plane)
-  subject.land(plane)
-  expect(subject.planes_landed).to eq [(plane)]
+  airport = Airport.new
+  allow(airport).to receive(:current_weather).and_return(false)
+  airport.land(plane)
+  expect(airport.planes_landed).to eq [(plane)]
   end
 
 =begin
@@ -59,10 +65,17 @@ end
 it 'prevents takeoff when weather is stormy' do
   plane = double (:plane)
   airport = Airport.new
-  allow(airport).to receive(:current_weather).and_return(true)
+  allow(airport).to receive(:current_weather).and_return(false)
   airport.land(plane)
+  allow(airport).to receive(:current_weather).and_return(true)
   expect {airport.takeoff(plane)}.to raise_error ("plane cannot take off due to stormy weather")
 end
 
+it 'prevents landing when weather is stormy' do
+   plane = double (:plane)
+   airport = Airport.new
+   allow(airport).to receive(:current_weather).and_return(true)
+   expect {airport.land(plane)}.to raise_error ("plane cannot land due to stormy conditions")
+ end
 
 end

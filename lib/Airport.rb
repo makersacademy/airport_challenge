@@ -21,6 +21,7 @@ class Airport
 
   def land plane
     raise "this plane has already landed" if @planes_on_the_ground.include?(plane)
+    raise "plane cannot land due to stormy conditions" if current_weather == true
      @planes_on_the_ground << plane
 
   end
