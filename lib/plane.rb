@@ -18,6 +18,8 @@ class Plane
   def take_off(airport)
     if airport.class != Airport
       fail 'Must take off from a valid airport'
+    elsif airport.weather == 'stormy'
+      fail 'Unable to take off during stormy weather'
     else
       @landed = false  
     end

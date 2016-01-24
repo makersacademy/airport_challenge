@@ -28,7 +28,9 @@ describe Plane do
   end
 
   it 'takes off from an airport and confirms it is no longer landed' do
-    subject.take_off(Airport.new)
+    airport = Airport.new
+    airport.weather = 'sunny'
+    subject.take_off(airport)
     expect(subject).not_to be_landed
   end
 
