@@ -22,10 +22,9 @@ class Airport
 
   def take_off(specific_plane) #refractor!!
     fail 'Take-off is not allowed in stormy weather' if stormy?
-    departing = planes.select{|plane| plane == specific_plane}
+    fail 'Plane not at airport' unless contains?(specific_plane)
+    specific_plane.take_off
     planes.select!{|plane| plane != specific_plane}
-    departing[0].take_off
-    departing
   end
 
   def contains?(specific_plane)
@@ -35,7 +34,6 @@ class Airport
   def stormy?
     true if rand(1..100) <= STORM_PERCENTAGE
   end
-
 
   def change_capacity(new_capacity)
     fail 'Number of planes is higher than new capacity' if new_capacity < planes.length

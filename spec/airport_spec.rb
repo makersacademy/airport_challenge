@@ -49,7 +49,6 @@ describe Airport do
   context 'landing a plane' do
     before (:each) do
       allow(plane).to receive(:to_land)
-      allow(plane).to receive(:landed?)
       allow(subject).to receive(:stormy?) { false }
     end
 
@@ -67,8 +66,6 @@ describe Airport do
       subject.land(plane)
       expect(subject.contains?(plane)).to eq true
     end
-
-
 
     it 'plane is prevented from landing in stormy weather' do
       allow(subject).to receive(:stormy?) { true }
@@ -113,7 +110,6 @@ describe Airport do
 
     it 'a specific plane takes-off' do
       allow(plane2).to receive(:to_land)
-      allow(plane2).to receive(:landed?)
       subject.land(plane2)
       subject.take_off(plane)
       expect(subject.planes).not_to include plane
@@ -133,8 +129,10 @@ describe Airport do
 
     context 'edge cases' do
       it 'cannot take of if not in that airport' do
-        pending('edge')
-        tbc
+        heath = Airport.new
+        gat = Airport.new
+        heath.land(plane)
+        expect{gat.take_off(plane)}.to raise_error('Plane not at airport')
       end
     end
   end
