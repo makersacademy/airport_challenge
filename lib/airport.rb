@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :weather
+  attr_accessor :weather
 
   def initialize
     @weather = 'stormy'
