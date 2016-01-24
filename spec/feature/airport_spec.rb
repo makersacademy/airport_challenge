@@ -28,9 +28,9 @@ describe Airport do
   end
 
   it 'prevents landing if weather is stormy' do
-  allow(subject).to receive(:weather) {:stormy}
-  expect {subject.land(plane)}. to raise_error('weather is too stormy to land')
-end
+    allow(subject).to receive(:weather) {:stormy}
+    expect {subject.land(plane)}. to raise_error('weather is too stormy to land')
+  end
 
   it 'prevents planes that have already landed to land again!' do
     allow(subject).to receive(:weather) {:fine}
@@ -48,5 +48,4 @@ end
     airport = Airport.new(30)
     expect(airport.capacity).to eq 30
   end
-
 end

@@ -12,26 +12,26 @@ describe Airport do
   end
 
   it 'instructs planes to take off' do
-  allow(subject).to receive(:weather) {:fine}
-  subject.land(plane)
-  allow(subject).to receive(:weather) {:fine}
-  subject.take_off(plane)
-  expect(subject.planes).to eq []
+    allow(subject).to receive(:weather) {:fine}
+    subject.land(plane)
+    allow(subject).to receive(:weather) {:fine}
+    subject.take_off(plane)
+    expect(subject.planes).to eq []
   end
 
   it 'prevents take off if weather is stormy' do
-  allow(subject).to receive(:weather) {:fine}
-  subject.land(plane)
-  allow(subject).to receive(:weather) {:stormy}
-  expect {subject.take_off(plane)}.to raise_error('weather is stormy')
+    allow(subject).to receive(:weather) {:fine}
+    subject.land(plane)
+    allow(subject).to receive(:weather) {:stormy}
+    expect {subject.take_off(plane)}.to raise_error('weather is stormy')
   end
 
   it 'prevents landing if weather is stormy' do
-  allow(subject).to receive(:weather) {:stormy}
-  expect {subject.land(plane)}. to raise_error('weather is too stormy to land')
-end
+    allow(subject).to receive(:weather) {:stormy}
+    expect {subject.land(plane)}. to raise_error('weather is too stormy to land')
+ end
 
-it 'prevents planes that have already landed to land again!' do
+  it 'prevents planes that have already landed to land again!' do
     allow(subject).to receive(:weather) {:fine}
     subject.land(plane)
     expect {subject.land(plane)}.to raise_error('plane is already in the airport')
