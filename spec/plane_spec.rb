@@ -16,6 +16,10 @@ describe Plane do
   end
 
   describe '#take_off' do
+    before(:each) do
+      subject.land
+    end
+
     it 'is no longer in land' do
       subject.take_off
       expect(subject.landed).to eq false
