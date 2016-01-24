@@ -9,8 +9,7 @@ describe Airport do
 		expect {subject.allow_landing(plane)}.to raise_error("Airport is full")
 	end
 
-
-	it {is_expected.to respond_to(:allow_landing).with(1).argument}
+    it {is_expected.to respond_to(:allow_landing).with(1).argument}
 
 	it 'returns landed planes' do
 		plane = (double :plane)
@@ -18,8 +17,7 @@ describe Airport do
 		expect(subject.instance_variable_get(:@planes)).to eq(x)
 	end
 
-
-	it {is_expected.to respond_to(:full?)}
+    it {is_expected.to respond_to(:full?)}
 
 	describe '#allows takeoff' do
 
@@ -27,17 +25,15 @@ describe Airport do
 	    expect {subject.allow_takeoff}.to raise_error("No planes available for takeoff")
         end
     end
- #    	it 'allows takeoff' do
-	# 	plane = (double :plane)
-	# 	subject.allow_takeoff
-	# 	expect(plane).to be_airborne
 
-	# end
 	context "when a default is specified" do
 		it 'has a default capacity' do
 			expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
 		end
+		it 'uses that default' do
+			capacity = 20
+			expect(subject.capacity).to eq(capacity)
+		end
 	end
-
 end
 	
