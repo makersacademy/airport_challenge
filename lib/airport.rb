@@ -20,7 +20,7 @@ class Airport
     @planes_at_airport.delete(plane)
   end
 
-  def set_weather(weather="Storm")
+  def set_weather(weather="Clear")
     @weather = weather
   end
 

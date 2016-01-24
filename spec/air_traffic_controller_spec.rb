@@ -16,9 +16,15 @@ describe AirTrafficController do
   describe "#land?" do
     it 'checks the weather at the airport to see if landing is possible' do
       dummy_airport = Airport.new
-      dummy_airport.set_weather
+      dummy_airport.set_weather("Storm")
       dummy_plane = double(:plane)
-      expect(subject.land?(dummy_plane, dummy_airport)).to eq "The conditions are too bad to land"
+      expect { subject.land?(dummy_plane, dummy_airport) }.to raise_error "The conditions are too bad to land"
+    end
+
+    it 'lands the plane at the airport' do
+      dummy_airport = Airport.new
+      dummy_plane = double(:plane)
+      expect(subject.land?(dummy_plane, dummy_airport)).to eq dummy_airport.planes_at_airport
     end
   end
 

@@ -8,7 +8,9 @@ class AirTrafficController
 
   def land?(plane, airport)
     if airport.weather == "Storm"
-      puts "The conditions are too bad to land"
+      raise "The conditions are too bad to land"
+    else
+      airport.land_plane(plane)
     end
     #airport.land_plane(plane)
   end
