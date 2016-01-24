@@ -38,7 +38,7 @@ describe 'prevent landing when weather is stormy' do
 		plane = Plane.new
 		airport = Airport.new
 		allow(airport).to receive(:stormy?) {true}
-		expect{airport.land(plane)}.to raise_error("unsafe flying conditions to land")
+		expect{airport.land (plane)}.to raise_error("unsafe flying conditions to land")
 
 	end
 end
