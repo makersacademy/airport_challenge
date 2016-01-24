@@ -7,7 +7,7 @@ describe Weather do
   it "the weather can be stormy" do
     weather = Weather.new
     test_array = []
-    500.times {test_array << weather.stormy?}
+    500.times { test_array << weather.stormy? }
     expect(test_array).to include true && false
   end
 

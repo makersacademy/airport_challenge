@@ -1,9 +1,17 @@
-require 'plane'
+require "plane"
 
-describe Plane do
+  describe Plane do
 
-  it {is_expected.to respond_to :land}
+    let(:airport) {double :airport}
 
-  it {is_expected.to respond_to :take_off}
+    it "confirms status landed" do
+      subject.land(airport)
+      expect(subject.landed).to eq true
+    end
+
+    it "confirms status flying" do
+      subject.fly
+      expect(subject.landed).to eq false
+    end
 
 end
