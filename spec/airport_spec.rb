@@ -28,13 +28,13 @@ describe Airport do
 
   it 'prevents landing if weather is stormy' do
     allow(subject).to receive(:weather) {:stormy}
-    expect {subject.land(plane)}. to raise_error('weather is too stormy to land')
+    expect {subject.land(plane)}. to raise_error('weather too stormy to land')
  end
 
   it 'prevents planes that have already landed to land again!' do
     allow(subject).to receive(:weather) {:fine}
     subject.land(plane)
-    expect {subject.land(plane)}.to raise_error('plane is already in the airport')
+    expect {subject.land(plane)}.to raise_error('plane already in the airport')
   end
 
   it 'prevents planes landing if airport is at max capacity' do

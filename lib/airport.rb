@@ -16,8 +16,8 @@ def initialize(capacity=DEFAULT_CAPACTITY)
 end
 
 def land(plane)
-  raise 'plane is already in the airport' if planes.include?(plane)
-  raise "weather is too stormy to land" if weather == :stormy
+  raise 'plane already in the airport' if planes.include?(plane)
+  raise "weather too stormy to land" if weather == :stormy
   raise "airport at max capacity" if at_capacity?
    planes << plane
 end
