@@ -17,6 +17,7 @@ describe Airport do
   describe '#clear_to_land' do
     it 'instructs a plane to land at the airport' do
       allow(subject).to receive(:stormy?) { false }
+      allow(plane).to receive(:landed?) { false }
       allow(plane).to receive(:land).and_return(true)
       expect(subject.clear_to_land(plane)).to include plane
     end
@@ -31,11 +32,18 @@ describe Airport do
       allow(subject).to receive(:full?) { true }
       expect{subject.clear_to_land(plane)}.to raise_error 'The airport is full'
     end
+
+    it 'prevents a plane from landing if it is already at the airport' do
+      allow(subject).to receive(:stormy?) { false }
+      allow(plane).to receive(:landed?) { true }
+      expect{subject.clear_to_land(plane)}.to raise_error 'The plane has already landed at the airport'
+    end
   end
 
   describe '#landed_planes' do
     it 'keeps track of planes that have landed at the airport' do
       allow(subject).to receive(:stormy?) { false }
+      allow(plane).to receive(:landed?) { false }
       allow(plane).to receive(:land)
       subject.clear_to_land(plane)
       expect(subject.landed_planes).to include(plane)
@@ -47,6 +55,7 @@ describe Airport do
       allow(subject).to receive(:stormy?) { false }
       allow(subject).to receive(:empty?) { false }
       allow(plane).to receive(:land)
+      allow(plane).to receive(:landed?) { false }
       allow(plane).to receive(:takeoff)
       subject.clear_to_land(plane)
       subject.clear_to_takeoff
@@ -67,11 +76,8 @@ describe Airport do
 
   describe '#confirm_landed' do
     it 'accepts a plane and confirms if it has landed' do
-      allow(subject).to receive(:stormy?) { false }
-      allow(plane).to receive(:land)
-      allow(plane).to receive(:landed?).and_return(true)
-      subject.clear_to_land(plane)
-      expect(subject.confirm_landed(plane)).to eq plane.landed?
+      allow(plane).to receive(:landed?) {true}
+      expect(subject.confirm_landed(plane)).to eq true
     end
   end
 
@@ -89,6 +95,7 @@ describe Airport do
 
     it 'returns true when the airport has reached its capacity' do
       allow(subject).to receive(:stormy?) { false }
+      allow(plane).to receive(:landed?) { false }
       allow(plane).to receive(:land)
       described_class::DEFAULT_CAPACITY.times do
         subject.clear_to_land(plane)

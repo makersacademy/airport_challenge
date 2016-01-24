@@ -16,6 +16,7 @@ class Airport
   def clear_to_land(plane)
     fail 'The airport is full' if full?
     fail 'Stormy weather is preventing landing' if stormy?
+    fail 'The plane has already landed at the airport' if plane.landed?
     plane.land
     @landed_planes << plane
   end
@@ -24,6 +25,7 @@ class Airport
     fail 'There are no planes at the airport' if empty?
     fail 'Stormy weather is preventing takeoff' if stormy?
     @landed_planes.each_with_index do |plane, i|
+      plane.takeoff
       return @landed_planes.delete_at(i)
     end
   end
@@ -41,7 +43,7 @@ class Airport
   end
 
   def empty?
-    @landed_planes.size <= capacity
+    @landed_planes.size <= 0
   end
 
 
