@@ -1,79 +1,106 @@
-Airport Challenge
-=================
+===Airport Challenge===
 
-Instructions
----------
+--- 1. Program Instructions ---
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
--------
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
 
-Task
------
+Irb example
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+2.2.3 :001 > require './lib/airport.rb'
+ => true
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+2.2.3 :002 > heathrow = Airport.new
+ => #<Airport:0x007f866200b3c0 @planes=[], @weather=#<Weather:0x007f866200b398>
+ , @capacity=70>
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+2.2.3 :003 > luton = Airport.new(20)
+ => #<Airport:0x007f8662000628 @planes=[], @weather=#<Weather:0x007f8662000600>
+ , @capacity=20>
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+2.2.3 :004 > plane = Plane.new
+ => #<Plane:0x007f86610ab3d0 @landed=false>
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+2.2.3 :005 > heathrow.land(plane)
+ => [#<Plane:0x007f86610ab3d0 @landed=true>]
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+2.2.3 :006 > heathrow.take_off(plane)
+ => #<Plane:0x007f86610ab3d0 @landed=false>
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
+2.2.3 :007 > luton.land(plane)
+ => [#<Plane:0x007f86610ab3d0 @landed=true>]
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+2.2.3 :008 > luton.take_off(plane)
+ => #<Plane:0x007f86610ab3d0 @landed=false>
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
 
-In code review we'll be hoping to see:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+--Basic Commands and Info--
 
-**BONUS**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+your_airport = Airport.new(capacity)        
+- creates your new airport with a random weather status and lets you set capacity
+(defaults to 70 if unanswered)
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+your_plane = Plane.new                      
+- creates your new plane
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+your_airport.land(your_plane)         
+- lands your plane
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+your_airport.take_off(your plane)
+- takes off your plane
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+These commands are prevented when the weather is stormy. Landing can also be
+prevented when the airport is over its capacity.
+
+Random weather conditions are created every time an airport is created. There
+is a 20% chance of storms.
+
+
+
+
+
+
+
+--- 2. Progress Log ---
+
+(also visible in my github commits)
+
+1. Started with a planes array to be popped and added to. My tests checked
+   whether specific planes I created were in the planes array before/after
+   landing/take off.
+
+2. It hadn't yet crossed my mind that I'd need to reflect the state of landed
+   planes (i.e taken off or landed) in my plane class.
+
+3. I moved on to creating a weather class, on the basis of SRP, to create
+   random weather conditions. I used sample to create a 1/5 chance of rain
+   and assigned that to the stormy? method, which all new weather instances
+   would be initialized with. I tested for randomness by 'rolling the dice'
+   a certain amount times (in a loop) and checking the value I wanted was
+   there.
+
+4. I then realised my planes would need a landed state and I need to
+   allow the Airport and plane class to interact properly. I also realised I
+   shouldn't let the same plane land/take-off twice. Ended here for first day.
+   My weather tests (i.e mocking randomness) were also failing due
+   to my incorrect Rspec test structure.
+
+5. After reviewing the tests, it was clear I had not structured properly,
+   so after careful revision, I isolated each method test from each other and
+   segregated the conditions of each test according to what I wanted done.
+   Felt much more confident after getting the storm tests passing by allowing
+   them to receive certain weather conditions.
+
+6. I found default capacity part fun as we had done this exact same thing with
+   the Boris Bikes exercise and I understand the use of constants well.
+
+7. I had to leave the test here, in successful working condition, but I know
+   I could have implemented some modules perhaps. Didn't get to that stage of
+   Boris Bikes either so didn't have time or know-how to start implementing.
