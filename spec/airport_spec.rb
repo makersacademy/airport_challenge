@@ -5,12 +5,33 @@ describe Airport do
   let(:plane) {double :plane}
 
 
-  describe "#initialize" do
-    context "All airports have holding bay for planes to be stored" do
-      it {is_expected.to respond_to(:holding_bay)}
+    describe "#initialize" do
 
-      it "Initializes new Airports with a holding bay Array" do
-        expect(subject.holding_bay).to be_a Array
+      context "All airports have holding bay for planes to be stored" do
+
+        it {is_expected.to respond_to(:holding_bay)}
+
+        it "Initializes new Airports with a holding bay Array" do
+          expect(subject.holding_bay).to be_a Array
+        end
+
+        it "Initializes new Airports with no planes in it" do
+          expect(subject.holding_bay).to eq []
+        end
+      end
+
+    context "All Aiports have a capacity" do
+
+      it {is_expected.to respond_to(:capacity)}
+
+      it "Initializes new Airports with a capacity" do
+        expect(subject.capacity).to be_a Integer
+      end
+
+      it "Intializes all new Airports with the same default capacity" do
+        airport1 = subject
+        airport2 = subject
+        expect(airport1.capacity).to eq airport2.capacity
       end
     end
   end
@@ -18,69 +39,108 @@ describe Airport do
 
   describe "#land(plane)" do
 
-    it {is_expected.to respond_to(:land).with(1).argument}
+    before do
+      allow(plane).to receive(:change_status)
+      allow(plane).to receive(:flying?).and_return(true)
+      airport.stub(:sunny?).and_return(true)
+    end
 
     context "Can #land(plane) in airport" do
 
       before do
-        allow(plane).to receive(:change_status)
-        airport.stub(:sunny?).and_return(true)
+        airport.stub(:full?).and_return(false)
         subject.land(plane)
       end
+
+      it {is_expected.to respond_to(:land).with(1).argument}
 
       it "Can #land(plane) in airport and then see it in the holding_bay" do
         expect(subject.holding_bay).to eq [plane]
       end
+
+      it "Cannot land a plane that has already landed" do
+        allow(plane).to receive(:flying?).and_return(false)
+        expect(subject.land(plane)).to eq "Plane has already landed"
+      end
     end
 
+    context "Capacity constraints" do
+
+      # describe "#full? do"
+      # let(:plane2) {double :plane}
+      #
+      #   before do
+      #     airport.stub(:capacity).and_return(1)
+      #     allow(plane2).to receive(:change_status)
+      #     allow(plane2).to receive(:flying?).and_return(true)
+      #     subject.land(plane2)
+      #   end
+      #
+      # it "Will not land a plane if the airport is #full?" do
+      #   expect(subject.land(plane)).to eq "The airport is full"
+      # end
+
+    end
+  end
 
 
+    describe "#take_off" do
 
-    context "Can #take_off plane from airport" do
-
-      describe "#take_off" do
+      context "Can #take_off plane from airport" do
 
         it {is_expected.to respond_to(:take_off)}
 
         before do
           allow(plane).to receive(:change_status)
+          allow(plane).to receive(:flying?).and_return(true)
           airport.stub(:sunny?).and_return(true)
+          airport.stub(:full?).and_return(false)
           subject.land(plane)
+          allow(plane).to receive(:landed?).and_return(true)
         end
 
-        it "Releases a plane from the holding_bay" do
+        it "Releases a plane from the holding bay" do
           expect(subject.take_off).to eq plane
         end
 
-        it "Removes a plane from the holding_bay" do
+        it "Removes a plane from the holding bay" do
           subject.take_off
           expect(airport.holding_bay).to eq []
         end
 
-        it "Will not release a plane from the holding_bay if it is empty" do
+        it "Will not release a plane from the holding bay if it is empty" do
 
         end
+
+        it "Will not let a plane take off if it isn't landed" do
+          allow(plane).to receive(:landed?).and_return(false)
+          expect(subject.take_off).to eq "This plane is already flying"
+        end
+
       end
     end
+
+  describe "#sunny?" do
+
+      it {is_expected.to respond_to(:sunny?)}
+
+      it "Will be Sunny roughly 90% of the time" do
+        true_false_array = []
+        100.times do
+          subject.sunny? ? true_false_array << "sunny" : nil
+        end
+        expect(true_false_array.size).to satisfy{|x| x >= 80 }
+      end
 
     context "Behaviour due to bad/not sunny weather" do
 
       before do
+        allow(plane).to receive(:flying?).and_return(false)
         allow(plane).to receive(:change_status)
       end
 
-      describe "#sunny?" do
+        context "#landing whilst not sunny" do
 
-        it {is_expected.to respond_to(:sunny?)}
-
-        it "Will be Sunny roughly 90% of the time" do
-          100.times do
-            subject.land(plane)
-          end
-          expect(subject.holding_bay.size).to satisfy{|x| x >= 80 }
-        end
-
-        describe "#landing in whilst not sunny" do
           before do
             airport.stub(:sunny?).and_return(false)
           end
@@ -94,10 +154,14 @@ describe Airport do
             subject.land(plane)
             expect(subject.holding_bay.size).to eq (before)
           end
+
         end
 
         describe "#taking_off whilst not sunny" do
+
           before do
+            allow(plane).to receive(:flying?).and_return(true)
+            airport.stub(:full?).and_return(false)
             airport.land(plane)
             airport.stub(:sunny?).and_return(false)
           end
@@ -108,14 +172,11 @@ describe Airport do
 
           it "Will not take off a plane from the holding bay whilst not sunny" do
             before = subject.holding_bay.size
+            allow(plane).to receive(:landed?).and_return(true)
             subject.take_off
             expect(subject.holding_bay.size).to eq (before)
           end
         end
-
-
-
       end
     end
-  end
 end
