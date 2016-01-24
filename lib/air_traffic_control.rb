@@ -1,15 +1,15 @@
 # require_relative 'airplane'
 require_relative 'airport'
 require_relative 'weather'
+# require_relative 'plane_container'
 
 class AirTrafficControl
   include Weather
+  # include PlaneContainer
 
-  DEFAULT_CAPACITY = 100
-
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize
     @inflight = []
-    @capacity = capacity
+    # setup_plane_list
   end
 
   def display_inflight
@@ -19,12 +19,16 @@ class AirTrafficControl
   def instruct_land(plane, airport)
     raise 'Too stormy to land' if stormy?
     raise 'Airport is full' if airport.full?
-    plane.land
+    airport.land(plane)
     @inflight.delete(plane)
+    # plane_out
   end
 
   def instruct_takeoff(plane, airport)
+    raise 'Too stormy to take-off' if stormy?
+    airport.takeoff(plane)
     @inflight << plane
+    # plane_in
   end
 
   private
