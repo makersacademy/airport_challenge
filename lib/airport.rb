@@ -8,14 +8,14 @@ class Airport
   end
   
   def landed(plane)
-    fail "It is too stormy to land." if weather == "Stormy"
+    fail "It is too stormy to land." if weather == :stormy
     fail "Airport is full." if full?
     planes << plane
     "Plane has touched down!!"
   end
   
   def leave_gate
-    fail "It is too stormy to take off." if weather == "Stormy"
+    fail "It is too stormy to take off." if weather == :stormy
     planes.pop
     "Plane has taken off!!"
   end
@@ -23,8 +23,8 @@ class Airport
   private
   
   def weather
-    @weather = ["Sunny", "Raining", "Snow", "Hail", "Stormy"]
-    @weather[rand(0..4)]
+    @weather = [:sunny, :raining, :snow, :ail, :stormy]
+    @weather.sample
   end
   
   def full?
