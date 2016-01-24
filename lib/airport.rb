@@ -1,9 +1,12 @@
 require_relative 'plane'
 
 class Airport
+  attr_reader :capacity
+  DEFAULT_CAPACITY=40
 
   def initialize
     @landed_planes = []
+    @capacity = DEFAULT_CAPACITY
   end
 
   def landed_planes
@@ -11,17 +14,18 @@ class Airport
   end
 
   def clear_to_land(plane)
+    fail 'The airport is full' if full?
     fail 'Stormy weather is preventing landing' if stormy?
     plane.land
     @landed_planes << plane
   end
 
   def clear_to_takeoff
+    fail 'There are no planes at the airport' if empty?
     fail 'Stormy weather is preventing takeoff' if stormy?
-    fail 'There are no planes at the airport' if landed_planes.empty?
-    plane = @landed_planes[0]
-    plane.takeoff
-    @landed_planes.delete_at(0)
+    @landed_planes.each_with_index do |plane, i|
+      return @landed_planes.delete_at(i)
+    end
   end
 
   def confirm_landed(plane)
@@ -29,7 +33,15 @@ class Airport
   end
 
   def stormy?
-    rand(1..3) == 13 ? true:false
+    rand(1..13) == 13 ? true:false
+  end
+
+  def full?
+    @landed_planes.size >= capacity
+  end
+
+  def empty?
+    @landed_planes.size <= capacity
   end
 
 
