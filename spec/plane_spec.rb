@@ -24,14 +24,14 @@ describe Plane do
     it 'can not land when stormy' do
       allow(weather).to receive(:stormy?) { true }
       allow(airport).to receive(:full?) { false }
-      expect{plane.land(airport, weather)}.to raise_error("Weather is stormy: unsafe to take off")
+      expect{plane.land(airport, weather)}.to raise_error("Unsafe to land due to weather")
     end
 
     context "when weather isn't stormy" do
 
       before do
         allow(weather).to receive(:stormy?) { false }
-        allow(airport).to receive(:stored_planes).and_return(Array.new)
+        allow(airport).to receive(:stored_planes).and_return([])
       end
 
       it 'can not land when airport is full' do

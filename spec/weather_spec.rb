@@ -18,7 +18,7 @@ describe Weather do
   end
 
   it "returns 'false' when 'stormy?' is passed values 1-9" do
-    allow(weather).to receive(:random_value).and_return(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    allow(weather).to receive(:random_value).and_return(1,2,3,4,5,6,7,8,9)
     9.times { expect(weather.stormy?).to eq(false) }
   end
 

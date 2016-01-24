@@ -4,8 +4,8 @@ describe Airport do
 
   subject(:airport) { described_class.new }
 
-  let(:plane) { double (:plane) }
-  let(:weather) { double (:weather) }
+  let(:plane) { double :plane }
+  let(:weather) { double :weather }
 
   it 'has an Airport class' do
     expect(airport).to be_a(Airport)
@@ -32,7 +32,7 @@ describe Airport do
   end
 
   it 'can display stored planes array' do
-    expect(airport.instance_variable_get(:@stored_planes)).to eq(airport.stored_planes)
+    expect(airport.instance_variable_get(:@stored_planes)).to eq airport.stored_planes
   end
 
   it "can call 'take_off' with an arguement" do
@@ -40,12 +40,12 @@ describe Airport do
   end
 
   it 'stores planes that land' do
-    (airport.stored_planes) << plane
-    expect(airport.stored_planes.pop).to eq (plane)
+    airport.stored_planes << plane
+    expect(airport.stored_planes.pop).to eq plane
   end
 
   it 'removes a plane from stored_planes once it takes off' do
-    (airport.stored_planes) << plane
+    airport.stored_planes << plane
     allow(plane).to receive(:in_flight) { false }
     allow(weather).to receive(:stormy?) { false }
     allow(plane).to receive(:flight_status)
@@ -61,13 +61,13 @@ describe Airport do
   it 'can only take off when weather isn\'t stormy' do
     allow(weather).to receive(:stormy?) { true }
     allow(plane).to receive(:in_flight) { false }
-    (airport.stored_planes) << plane
-    expect{airport.take_off(plane, weather)}.to raise_error('Weather is stormy: unsafe to take off')
+    airport.stored_planes << plane
+    expect{airport.take_off(plane, weather)}.to raise_error('Unsafe to land due to weather')
   end
 
   it 'cannot take off if already in flight' do
     allow(plane).to receive(:in_flight) { true }
-    expect{airport.take_off(plane, weather)}.to raise_error('Plane already in flight')
+    expect{airport.take_off(plane, weather)}.to raise_error('Plane in flight')
   end
 
 end
