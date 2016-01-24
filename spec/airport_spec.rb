@@ -9,7 +9,7 @@ describe Airport do
   let(:weather){double(:weather, :stormy? => false)}
 
   describe "land" do
-    before (:each) do
+    before(:each) do
       allow(plane).to receive(:land)
     end
 
@@ -20,7 +20,7 @@ describe Airport do
 
     it "doesn't let planes land in stormy weather" do
       allow(weather).to receive(:stormy?).and_return true
-      expect{airport.land(plane)}.to raise_error("Piss off, it's too stormy")
+      expect{airport.land(plane)}.to raise_error("too stormy")
     end
 
     it "doesn't let planes land when the airport is full" do
@@ -34,7 +34,7 @@ describe Airport do
   end
 
   describe "take off" do
-    before (:each) do
+    before(:each) do
       allow(plane).to receive(:take_off)
     end
 
@@ -45,7 +45,7 @@ describe Airport do
 
     it "prevents take off in stormy weather" do
       allow(weather).to receive(:stormy?).and_return true
-      expect{airport.take_off(plane)}.to raise_error("Piss off, it's too stormy")
+      expect{airport.take_off(plane)}.to raise_error("too stormy")
     end
 
   end

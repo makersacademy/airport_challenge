@@ -15,14 +15,14 @@ class Airport
   end
 
   def land(plane)
-    raise "Bugger off, we're full" if full?
-    raise "Piss off, it's too stormy" if @weather.stormy?
+    fail "Bugger off, we're full" if full?
+    fail "too stormy" if @weather.stormy?
     plane.land
     @planes << plane
   end
 
   def take_off(plane)
-    raise "Piss off, it's too stormy" if @weather.stormy?
+    fail "too stormy" if @weather.stormy?
     plane.take_off
     @planes.delete(plane)
   end
