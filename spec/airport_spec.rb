@@ -4,6 +4,7 @@ describe Airport do
 
   let(:plane) {double :plane}
   let(:stormy) {double :stormy}
+  let(:weather) {double :weather}
 
   it "instructs a plane to land" do
     allow(subject).to receive(:too_stormy?).and_return false
@@ -50,7 +51,12 @@ describe Airport do
     allow(subject).to receive(:too_stormy?).and_return true
     # expect(plane).to receive(:take_off)
     expect{subject.plane_takes_off(plane)}.to raise_error("It's too stormy to take off!")
-   end
+  end
 
+  it "stops a plane from landing if there is stormy weather" do
+    allow(subject).to receive(:too_stormy?).and_return true
+    # expect(plane).to receive(:take_off)
+    expect{subject.land_plane(plane)}.to raise_error("It's too stormy to land!")
+  end
 
 end
