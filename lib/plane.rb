@@ -3,7 +3,7 @@ class Plane
   def initialize(airport)
     fail 'There is no room at the airport.' if airport_full?(airport)
     @landed = true
-    airport.landed_planes << self
+    add_to_airport_list_of_landed_planes(airport)
   end
 
   def land(airport, weather)

@@ -22,4 +22,14 @@ describe Airport do
   expect(subject.confirm_plane_landed(plane)).to eq(true)
   end
 
+  it 'Can receive the "confirm_plane_taken_off" command with 1 argument.' do
+    expect(subject).to respond_to(:confirm_plane_taken_off).with(1).argument
+  end
+
+  it 'Confirms that a newly taken_off plane has taken_off.' do
+  plane = double(:plane)
+  subject.landed_planes = []
+  expect(subject.confirm_plane_taken_off(plane)).to eq(true)
+  end
+
 end

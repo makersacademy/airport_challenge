@@ -33,8 +33,9 @@ context 'During stormy weather' do
   end
 end
 
+context 'When the airport is full' do
 
-  it 'Will not be permitted to land when the airport is full.' do
+  it 'Flying plane will not be permitted to land at this airport.' do
     weather = double(:stormy? => false)
     default_capacity = 30
     airport = double(:capacity => default_capacity, :landed_planes => [], :confirm_plane_landed => true)
@@ -45,17 +46,17 @@ end
     expect{plane.land(airport, weather)}.to raise_error(message)
   end
 
-context 'When the airport is full' do
   it 'Will not be able to create another plane at this airport.' do
     weather = double(:stormy? => false)
     airport = double(:capacity => 2, :landed_planes => [:p1, :p2], :confirm_plane_landed => true)
     message = 'There is no room at the airport.'
     expect{Plane.new(airport)}.to raise_error(message)
   end
+
 end
 
 context 'While the plane is flying' do
-  it 'Will not be able to take-off' do
+  it 'Will not be able to take-off.' do
     weather = double(:stormy? => false)
     airport = double(:confirm_plane_landed => true, :landed_planes => [], :capacity => 30)
     plane = Plane.new(airport)
@@ -66,7 +67,7 @@ context 'While the plane is flying' do
 end
 
 context 'Once the plane has landed' do
-  it 'Will not be able to land' do
+  it 'Will not be able to land.' do
     weather = double(:stormy? => false)
     airport = double(:confirm_plane_landed => true, :landed_planes => [], :capacity => 30)
     plane = Plane.new(airport)
