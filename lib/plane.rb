@@ -28,9 +28,9 @@ class Plane
   def location
     # NOTE: consider using guard statements over conditionals
     if in_flight?
-      return nil
+      "In flight"
     else
-      return airport.code
+      airport.to_s
     end
   end
 

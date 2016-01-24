@@ -33,6 +33,10 @@ class Airport
   # NOTE: consider overwriting #inspect instead of providing read access
   # to @code
 
+  def to_s
+    code.to_s
+  end
+
   private
   attr_reader :stormy
 
@@ -45,7 +49,7 @@ class Airport
   end
 
   def remove(plane)
-    @planes.delete(plane)
+    @planes.delete plane
   end
 
   # FIXME: extract as module or class

@@ -1,11 +1,10 @@
 require 'plane'
 
 describe Plane do
-  subject(:docked_plane) { described_class.new(airport) }
   let(:airport) { double :airport }
+  subject(:docked_plane) { described_class.new(airport) }
   let(:in_flight_plane) { described_class.new }
 
-  # FIXME: cannot to test for initialization without attr_reader
   # describe '#initialize' do => use new built-in methods
   #   # it { is_expected.to respond_to(:airport) }
   #   it { is_expected.to have_attributes(:airport => airport) }
@@ -75,15 +74,14 @@ describe Plane do
   describe '#location' do
     context 'when plane is stationed at an airport' do
       it 'returns the airport code' do
-        allow(airport).to receive(:code) { :LAX }
-        expect(docked_plane.location).to eq :LAX
+        allow(airport).to receive(:to_s) { "LAX" }
+        expect(docked_plane.location).to eq "LAX"
       end
     end
 
     context 'when a plane is in flight' do
-      it 'returns nil' do
-        allow(docked_plane).to receive(:in_flight?) { true }
-        expect(docked_plane.location).to be_nil
+      it "returns \'In flight\'" do
+        expect(in_flight_plane.location).to eq "In flight"
       end
     end
   end
@@ -93,8 +91,6 @@ describe Plane do
 
     context 'when the plane is stationed at an airport' do
       it 'returns false' do
-        # Plane is not in flight by default because it is associated with
-        # an airport at initialization
         expect(docked_plane.in_flight?).to be_falsy
       end
     end

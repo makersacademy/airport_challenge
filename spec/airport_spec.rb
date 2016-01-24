@@ -62,6 +62,7 @@ describe Airport do
 
       it 'raises an exception and does not accept inbound planes' do
         expect{ full_airport.inbound(plane) }.to raise_exception("Permission to land denied, #{full_airport} is full")
+        expect(subject.planes).to_not include plane
       end
     end
   end
@@ -69,7 +70,15 @@ describe Airport do
   describe '#outbound' do
     it { is_expected.to respond_to(:outbound).with(1).argument }
     context 'when a plane departs from airport' do
+      #TODO
+    end
+  end
 
+  describe '#to_s' do
+    it { is_expected.to respond_to(:to_s).with(0).arguments }
+
+    it 'it returns a string version of the airport code' do
+      expect(airport.to_s).to eq "LAX"
     end
   end
 end
