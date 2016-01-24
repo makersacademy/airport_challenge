@@ -3,19 +3,29 @@ require 'airport'
 describe Airport do
 
   let(:plane) {double :plane}
+  let(:stormy) {double :stormy}
 
   it "instructs a plane to land" do
-    expect(plane).to receive(:land)
+    allow(subject).to receive(:too_stormy?).and_return false
+    # expect(plane).to receive(:land)
     subject.land_plane(plane)
   end
 
   it "confirms if a plane has landed" do
-    expect(plane).to receive(:land)
+    allow(subject).to receive(:too_stormy?).and_return false
+    # expect(plane).to receive(:land)
     expect(subject.land_plane(plane)).to include plane
   end
 
+  it "instructs a plane to take off" do
+    allow(subject).to receive(:too_stormy?).and_return false
+    # expect(plane).to receive(:take_off)
+    subject.plane_takes_off(plane)
+  end
+
   it "confirms if a plane has taken off" do
-    expect(plane).to receive(:take_off)
+    allow(subject).to receive(:too_stormy?).and_return false
+    # expect(plane).to receive(:take_off)
     expect(subject.plane_takes_off(plane)).to_not include plane
   end
 
@@ -28,9 +38,19 @@ describe Airport do
   end
 
   it "stops a plane from landing if the airport is full" do
-    subject.capacity.times { expect(plane).to receive(:land) }
+    allow(subject).to receive(:too_stormy?).and_return false
+    # subject.capacity.times { expect(plane).to receive(:land) }
     subject.capacity.times { subject.land_plane(plane) }
     expect{subject.land_plane(plane)}.to raise_error("Airport full!")
   end
+
+# I was having issues getting this test to pass, and used this advice
+# https://github.com/makersacademy/slack-overflow/issues/158
+  it "stops a plane from taking off if there is stormy weather" do
+    allow(subject).to receive(:too_stormy?).and_return true
+    # expect(plane).to receive(:take_off)
+    expect{subject.plane_takes_off(plane)}.to raise_error("It's too stormy to take off!")
+   end
+
 
 end

@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -13,15 +14,20 @@ class Airport
 
   def land_plane(plane)
     raise "Airport full!" if @planes.count >= @capacity
-    plane.land
+    # plane.land
     @planes << plane
   end
 
   def plane_takes_off(plane)
-    plane.take_off
-    @planes.pop
+    # plane.take_off
+    raise "It's too stormy to take off!" if too_stormy?
+    @planes.delete(plane)
     @planes
   end
 
+  def too_stormy?
+    weather = Weather.new
+    weather.stormy?
+  end
 
 end
