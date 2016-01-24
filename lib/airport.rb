@@ -12,4 +12,8 @@ class Airport
     @capacity = capacity
   end
 
+  def landed_planes
+
+  end
+
 end

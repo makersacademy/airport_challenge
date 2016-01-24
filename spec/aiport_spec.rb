@@ -10,7 +10,7 @@ describe Airport do
     expect(Airport::CAPACITY).to eq(5)
   end
 
-  it 'can specify the value of CAPACITY' do
+  it 'can specify the value of CAPACITY when an Airport is instantiated' do
     test_capacity = rand(10) + 1
     airport = Airport.new(test_capacity)
     expect(airport.capacity).to eq(test_capacity)
@@ -22,5 +22,13 @@ describe Airport do
     airport.set_capacity(new_capacity)
     expect(airport.capacity).to eq(new_capacity)
   end
+
+  it 'can respond to \'landed_planes\' method' do
+    expect(subject).to respond_to(:landed_planes)
+  end
+
+  # it 'can store Planes' do
+  #
+  # end
 
 end
