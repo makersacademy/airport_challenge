@@ -35,37 +35,37 @@ describe Airport do
     expect(airport.instance_variable_get(:@stored_planes)).to eq airport.stored_planes
   end
 
-  it "can call 'take_off' with an arguement" do
-    expect(airport).to respond_to(:take_off).with(2).argument
+  context "when planes aren't in flight" do
+
+    before do
+      allow(plane).to receive(:in_flight) { false }
+      airport.stored_planes << plane
+      allow(plane).to receive(:flight_status)
+    end
+
+    it 'stores planes that land' do
+      expect(airport.stored_planes.pop).to eq plane
+    end
+
+    it 'removes a plane from stored_planes once it takes off' do
+      allow(weather).to receive(:stormy?) { false }
+      airport.take_off(plane, weather)
+      expect(airport.stored_planes.length).to eq(0)
+    end
+
+    it "can only remove planes that are at the airport" do
+      airport.stored_planes.pop
+      expect{airport.take_off(plane, weather)}.to raise_error('Plane not at airport')
+    end
+
+    it "can only take off when weather isn't stormy" do
+      allow(weather).to receive(:stormy?) { true }
+      expect{airport.take_off(plane, weather)}.to raise_error('Unsafe to land due to weather')
+    end
+
   end
 
-  it 'stores planes that land' do
-    airport.stored_planes << plane
-    expect(airport.stored_planes.pop).to eq plane
-  end
-
-  it 'removes a plane from stored_planes once it takes off' do
-    airport.stored_planes << plane
-    allow(plane).to receive(:in_flight) { false }
-    allow(weather).to receive(:stormy?) { false }
-    allow(plane).to receive(:flight_status)
-    airport.take_off(plane, weather)
-    expect(airport.stored_planes.length).to eq(0)
-  end
-
-  it 'can only remove planes that are at the airport' do
-    allow(plane).to receive(:in_flight) { false }
-    expect{airport.take_off(plane, weather)}.to raise_error('Plane not at airport')
-  end
-
-  it 'can only take off when weather isn\'t stormy' do
-    allow(weather).to receive(:stormy?) { true }
-    allow(plane).to receive(:in_flight) { false }
-    airport.stored_planes << plane
-    expect{airport.take_off(plane, weather)}.to raise_error('Unsafe to land due to weather')
-  end
-
-  it 'cannot take off if already in flight' do
+  it "cannot take off if already in flight" do
     allow(plane).to receive(:in_flight) { true }
     expect{airport.take_off(plane, weather)}.to raise_error('Plane in flight')
   end

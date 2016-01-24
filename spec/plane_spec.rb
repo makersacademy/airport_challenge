@@ -17,10 +17,6 @@ describe Plane do
 
   context 'landing planes' do
 
-    it 'can respond to \'land\' method with two arguments' do
-      expect(plane).to respond_to(:land).with(2).arguments
-    end
-
     it 'can not land when stormy' do
       allow(weather).to receive(:stormy?) { true }
       allow(airport).to receive(:full?) { false }
