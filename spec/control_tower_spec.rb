@@ -2,6 +2,12 @@ require "control_tower"
 
 
 describe ControlTower do
+  before(:each) do
+    @plane = Plane.new
+    @heatrow = Airport.new "Heatrow"
+    @tower = ControlTower.new
+  end
+  
   it "creates an instance of the class" do 
     expect(subject).to be_a ControlTower
   end
@@ -10,12 +16,25 @@ describe ControlTower do
   it { is_expected.to respond_to(:take_off).with(2).arguments }
   
   describe "#take-off" do
-    it "changes the state (flying) of the plane to true" do
-      plane = Plane.new
-      heatrow = Airport.new "Heatrow"
-      tower = ControlTower.new
-      tower.take_off(plane, heatrow)
-      expect(plane.flying).to eq true
+  
+    it "receives information about the weather" do
+      expect(@heatrow.check_weather).to be_a Symbol
     end
   end
+  
+  describe "#land" do
+    
+    it "receives information about the weather" do
+      expect(@heatrow.check_weather).to be_a Symbol
+    end
+  end
+  
+  describe "#report" do
+    
+    it "triggers Plane's flying state" do
+      @tower.take_off(@plane, @heatrow)
+      expect(@plane.flying).to eq true
+    end
+  end
+  
 end

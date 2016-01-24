@@ -1,24 +1,29 @@
 class ControlTower
   
   def land(plane, airport)
-    plane.flying = false
+    airport.check_weather
     report(plane, airport)
   end
   
   def take_off(plane, airport)
-    plane.flying = true
+    airport.check_weather
     report(plane, airport)
   end
   
   private
   
   def report(plane, airport)
-    
-    if plane.flying == false    #plane names had to be added               
-      "Unit 737-1 has successfully landed in #{airport.name}" 
+    if airport.clear?
+       if plane.flying == true    #plane names had to be added               
+         plane.flying = false
+        "737-1 landed in #{airport.name}"  
+       else
+         plane.flying = true
+         "737-1 took-off from #{airport.name}"
+      end
     else
-      "Unit 737-1 has successfully taken-off from #{airport.name}"
-   end
+      "Cannot operate, stormy weather"
+    end
   end
   
 end
