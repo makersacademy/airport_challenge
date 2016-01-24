@@ -22,6 +22,7 @@ class Plane
     fail "Can't take off - weather is stormy" if weather.condition == "stormy"
     @landed = false
     airport.planes.delete(self)
+    self
   end
 
 end

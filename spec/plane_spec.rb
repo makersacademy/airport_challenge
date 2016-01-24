@@ -7,9 +7,6 @@ describe Plane do
   let(:airport2) { double :airport}
 
   describe "#land" do 
-    it "responds to land with 2 args" do 
-      expect(subject).to respond_to(:land).with(2).arguments
-    end
 
     it "returns plane when plane successfully landed" do
       allow(airport1).to receive(:full) {false}
@@ -33,52 +30,39 @@ describe Plane do
     end
 
     it "prevents landing when airport is at capacity" do
-      allow(airport2).to receive(:full) {false}
-      allow(airport2).to receive(:planes) {[]}
-      20.times do
-        Plane.new.land(airport2, weather1)
-      end
       allow(airport2).to receive(:full) {true}
       expect do
         subject.land(airport2, weather1)
       end.to raise_error("Can't land when airport is at capacity")
     end
-
-    it "prevents landing when weather is bad and airport is full" do
-      expect do
-        subject.land(airport2, weather2)
-      end.to raise_error("Can't land when weather is stormy")
-    end
   end
 
   describe "#landed" do
-    it "returns nil as default value" do
-      expect(subject.landed).to eq nil
-    end
 
-    it "returns true after land and landed are called" do
+    it "returns true after plane has landed" do
       allow(airport1).to receive(:full) {false}
       allow(airport1).to receive(:planes) {[]}
       subject.land(airport1, weather1)
       expect(subject.landed).to eq true
     end
 
-    it "returns false if successfully taken off" do
+    it "returns false if plane has taken off" do
       allow(airport1).to receive(:full) {false}
       allow(airport1).to receive(:planes) {[]}
       subject.land(airport1, weather1)
       subject.takeoff(airport1, weather1)
       expect(subject.landed).to eq false
     end
-
   end
 
   describe "#takeoff" do
-    it "responds to takeoff with 2 args" do
-      expect(subject).to respond_to(:takeoff).with(2).arguments
+    it "returns a plane with successfully take off" do
+      allow(airport1).to receive(:full) {false}
+      allow(airport1).to receive(:planes) {[]}      
+      subject.land(airport1, weather1)
+      expect(subject.takeoff(airport1, weather1)).to eq subject
     end
-
-
+     
     it "raises an error if already taken off" do
       allow(airport1).to receive(:full) {false}
       allow(airport1).to receive(:planes) {[]}

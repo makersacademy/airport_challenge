@@ -2,41 +2,22 @@ require 'plane'
 require 'airport'
 require 'weather'
 
-describe "feature testing" do
+describe "Feature Test" do
+
   let(:weather) { double :weather, condition: "sunny"}
 
-  
-  it "returns array of 10 planes which have landed" do
+  it "returns array of 20 planes succesfully landed" do
     airport = Airport.new
     array = []
-    10.times do
-      landed_plane = Plane.new.land(airport, weather)
-      array << landed_plane
-    end
+    20.times { array << Plane.new.land(airport, weather) }
     expect(airport.planes).to eq array
   end
 
-
-  it "15 land & 7 take off successfully, reports back 8 planes grounded" do
+  it "lands 15, takes off 7, reports 8 planes at the airport" do
     airport = Airport.new
     array = []
-    15.times {array << Plane.new.land(airport, weather)}
-    expect(airport.planes.count).to eq 15
+    15.times { array << Plane.new.land(airport, weather)}
     array[0..6].each {|x| x.takeoff(airport, weather)}
     expect(airport.planes.count).to eq 8
   end
-
-  it "errors landing 21st plane, increase capacity, 21st plane lands ok" do
-    airport = Airport.new
-    expect(airport.planes.count).to eq 0
-    20.times { Plane.new.land(airport, weather)}
-    expect do
-      Plane.new.land(airport, weather)
-    end.to raise_error("Can't land when airport is at capacity")
-    airport.capacity = 25
-    Plane.new.land(airport, weather)
-    expect(airport.planes.count).to eq 21
-    expect(airport.capacity).to eq 25
-  end
-
 end
