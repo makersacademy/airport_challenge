@@ -21,6 +21,7 @@ describe Plane do
 
   describe "#location" do
     it "it can be updated to show its location" do
+        expect(subject.set_location("In air.")).to eq "In air."
     end
   end
 end

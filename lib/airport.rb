@@ -14,10 +14,12 @@ class Airport
 
   def land_plane(plane)
     @planes_at_airport << plane
+    #plane.set_location(@name)
   end
 
   def take_off_plane(plane)
     @planes_at_airport.delete(plane)
+    #plane.set_location("In air.")
   end
 
   def set_weather(weather="Clear")

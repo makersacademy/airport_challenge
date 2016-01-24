@@ -8,6 +8,7 @@ class Plane
     @in_air = in_air
   end
 
-  # def location
-  # end
+  def set_location(location)
+    @location = location
+  end
 end

@@ -12,13 +12,18 @@ class AirTrafficController
     else
       airport.land_plane(plane)
     end
-    #airport.land_plane(plane)
   end
 
-  def take_off
+  def take_off?(plane, airport)
+    if airport.weather == "Storm"
+      raise "The conditions are too bad to take off"
+    else
+      airpot.take_off_plane(plane)
+    end
   end
 
-  def check_planes
+  def check_planes(airport)
+    airport.planes_at_airport
   end
 
 end
