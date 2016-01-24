@@ -29,6 +29,7 @@ describe "airport" do
   describe 'land/takeoff' do
     it "plane can land" do
       allow(@airport).to receive(:stormy?) {false}
+      allow(@airport).to receive(:security_threat?) {false}
       @airport.tell_to_land(@airplane)
       expect(@airport.planes_at_airport).to include(@airplane)
     end
@@ -39,10 +40,15 @@ describe "airport" do
     end
   end
 
-  describe 'full' do
+  describe 'tell to land when full' do
     it "cant land when full is true" do
       allow(@airport).to receive (:full?) {true}
-      expect(@airport.tell_to_land(@airplane)).to eq "luton is full or its too stormy, no land bro"
+      expect(@airport.tell_to_land(@airplane)).to eq "luton is full/dangerous or its too stormy, no land bro"
+    end
+
+    it 'is full when cap reached' do
+      20.times{@airport.tell_to_land(Airplane.new)}
+      expect(@airport.tell_to_land(@airplane)).to eq  "luton is full/dangerous or its too stormy, no land bro"
     end
   end
 
@@ -55,7 +61,7 @@ describe "airport" do
 
     it 'doesn\'t allow plane to land in stormz' do
       allow(@airport).to receive(:stormy?) {true}
-      expect(@airport.tell_to_land(@airplane)).to eq "#{@airport.name} is full or its too stormy, no land bro"
+      expect(@airport.tell_to_land(@airplane)).to eq "#{@airport.name} is full/dangerous or its too stormy, no land bro"
     end
   end
 end

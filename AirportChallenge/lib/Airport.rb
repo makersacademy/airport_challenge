@@ -2,33 +2,35 @@
 
 require_relative 'airplane'
 require_relative "weather"
-require_relative 'customs'
+require_relative 'security'
 
 
 class Airport
   include Weather
+  include Security
+
   attr_reader :name, :airport_capacity, :cap_used, :planes_at_airport
   def initialize(airport)
     @name = airport
     @airport_capacity = 10
-    @cap_used = 5
+    @cap_used = 0
     @planes_at_airport = []
   end
 
 
   def tell_to_land(plane)
-    if stormy? == false && full? == false
+    if stormy? == false && full? == false && security_threat? == false
       @cap_used += 1
       planes_at_airport << plane
       plane.plane_landed
       "#{plane} landed in #{@name} #{@planes_at_airport} is/are in the airport"
     else
-      "#{@name} is full or its too stormy, no land bro"
+      "#{@name} is full/dangerous or its too stormy, no land bro"
     end
   end
 
   def tell_to_take_off(plane)
-    if stormy? == false && planes_at_airport.include?(plane)
+    if stormy? == false && planes_at_airport.include?(plane) && security_threat == false
       @airport_capacity -= 1
       planes_at_airport.delete(plane)
       plane.plane_taken_off
