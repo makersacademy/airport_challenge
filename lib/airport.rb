@@ -4,7 +4,7 @@ class Airport
   attr_writer :landed_planes
 
   def  initialize
-    @landed_planes = Array.new
+    @landed_planes = []
   end
 
   def confirm_plane_landed(plane)
