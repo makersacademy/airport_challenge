@@ -6,6 +6,7 @@ class Plane
   end
 
   def land(airport, weather)
+    fail 'This plane has already landed.' if @landed
     fail 'The weather is too stormy to land.' if weather.stormy?
     fail 'There is no room at the airport.' if airport_full?(airport)
     @landed = true
@@ -13,6 +14,8 @@ class Plane
   end
 
   def take_off(airport, weather)
+    fail 'This plane is already flying.' if !@landed
+    fail 'This plane is not at the given airport.' if !airport.confirm_plane_landed(self)
     fail 'The weather is too stormy to take-off.' if weather.stormy?
     @landed = false
     remove_from_airport_list_of_landed_planes(airport)
