@@ -1,8 +1,8 @@
 require_relative 'airport'
 
 class Plane
-  # NOTE: should new planes always be instantiated from an airport?
-  def initialize(airport=nil)
+  # Planes must always be instantiated from an airport
+  def initialize(airport)
     @airport = airport
   end
 
@@ -11,7 +11,7 @@ class Plane
     # e.g. fail "#{destination} is not a valid airport"
     # unless destination.class == Airport
     fail "Plane is not in flight!" unless in_flight?
-    fail "Unable to land plane in stormy weather" if destination.stormy?
+    fail "Unable to land at #{destination} due to stormy weather" if destination.stormy?
     destination.inbound self
     new_location destination
     # NOTE: consider changing this to a string

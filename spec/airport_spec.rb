@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new("LAX") }
-  let(:plane) { Plane.new }
+  let(:plane) { double :plane }
 
   describe '#initialize' do
     it { is_expected.to respond_to(:code) }
