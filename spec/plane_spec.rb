@@ -3,14 +3,29 @@ require 'plane.rb'
 describe Plane do
   let(:airport) { double :airport }
 
+  describe 'landed?' do
+    it 'returns true is the plane has landed and is on the ground ' do
+      expect(subject.landed?).to eq true
+    end
+  end
 
+  describe '#land' do
+    it 'sets the planes status to landed' do
+      expect(subject.land).to eq true
+    end
+  end
 
-
-
-
-
-
-
+  describe '#takeoff' do
+    it 'sets landed to false' do
+      subject.takeoff
+      expect(subject.landed?).to eq false
+    end
+  end
+  # describe 'initialize' do
+  #   it 'initializes with airborne false' do
+  #
+  #   end
+  # end
 
   # describe '#clearance' do
   #   it 'returns planes clearance' do

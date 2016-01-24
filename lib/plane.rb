@@ -1,7 +1,19 @@
 class Plane
 
   def initialize
-    @airborne = false
+    @landed = true
+  end
+
+  def landed?
+    @landed ? true:false
+  end
+
+  def land
+    @landed = true
+  end
+
+  def takeoff
+    @landed = false
   end
 
 
@@ -10,7 +22,6 @@ class Plane
 
 
 
-  
   # attr_reader :clearance
   #
   # def initialize
