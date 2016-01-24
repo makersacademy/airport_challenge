@@ -15,7 +15,7 @@ class Airport
   def land(plane)
     fail 'Landing is not allowed in stormy weather' if weather.stormy?
     fail 'Landing is not permitted as airport is full' if full?
-    fail 'Only planes can land' unless plane.kind_of?(Plane)
+    fail 'Only planes can land' unless plane.is_a?(Plane)
     plane.to_land(self)
     planes << plane
     plane.confirm('landed', self)
@@ -34,7 +34,8 @@ class Airport
   end
 
   def change_capacity(new_capacity)
-    fail 'Number of planes is higher than new capacity' if new_capacity < planes.length
+    msg = 'Number of planes is higher than new capacity'
+    fail msg if new_capacity < planes.length
     @capacity = new_capacity
   end
 

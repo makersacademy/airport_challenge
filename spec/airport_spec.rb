@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) {double(:plane, kind_of?: Plane)}
-  let(:plane2) {double(:plane, kind_of?: Plane)}
+  let(:plane) {double(:plane, is_a?: Plane)}
+  let(:plane2) {double(:plane, is_a?: Plane)}
 
   before(:each) do
     allow(plane).to receive(:to_land)
@@ -53,7 +53,7 @@ describe Airport do
   end
 
   context 'landing a plane' do
-    before (:each) do
+    before(:each) do
       allow(subject.weather).to receive(:stormy?) {false}
     end
 
@@ -96,7 +96,7 @@ describe Airport do
   end
 
   context 'take-off' do
-    before (:each) do
+    before(:each) do
       allow(subject.weather).to receive(:stormy?) {false}
       subject.land(plane)
       allow(plane).to receive(:confirm)
@@ -130,7 +130,8 @@ describe Airport do
 
     it 'plane is prevented from taking off in stormy weather' do
       allow(subject.weather).to receive(:stormy?) {true}
-      expect{subject.take_off(plane)}.to raise_error('Take-off is not allowed in stormy weather')
+      msg = 'Take-off is not allowed in stormy weather'
+      expect{subject.take_off(plane)}.to raise_error msg
     end
 
     context 'edge cases' do

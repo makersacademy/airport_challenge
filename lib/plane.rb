@@ -11,7 +11,7 @@ class Plane
 
   def confirm(status,airport)
     if status == 'landed' && airport.contains?(self)
-      puts 'Landing was succesful'
+      puts "Landing succesful"
       @on_ground = true
     elsif status == 'took-off' && (airport.contains?(self) == false)
       puts 'Take-off was succesful'
