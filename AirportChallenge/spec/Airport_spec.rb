@@ -27,8 +27,9 @@ describe Airport do
     it "plane can land" do
       allow(subject).to receive(:stormy?) {false}
       allow(subject).to receive(:security_threat?) {false}
-      subject.tell_to_land(airplane)
-      expect(subject.planes_at_airport).to include(airplane)
+      allow(subject).to receive(:tell_to_land).and_return(airplane)
+      allow(subject).to receive(:planes_at_airport).and_return(airplane)
+      expect(subject.planes_at_airport).to eq (airplane)
     end
 
     it "plane can take off" do
@@ -42,6 +43,7 @@ describe Airport do
       allow(subject).to receive (:full?) {true}
       message = "luton is full/dangerous or its too stormy, no land bro"
       expect(subject.tell_to_land(airplane)).to eq message
+
     end
 
     it 'is full when cap reached' do

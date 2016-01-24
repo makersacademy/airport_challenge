@@ -4,11 +4,15 @@ require 'airport'
 
 describe Weather do
 
-  before(:example) do
-    @airport = Airport.new("luton")
+  let(:airport) {double :airport}
+
+  it 'stormy is true' do
+    allow(airport).to receive(:stormy?) {true}
+    expect(airport.stormy?).to eq(true) | eq(false)
   end
 
-  it 'stormy is true or false' do
-    expect(@airport.stormy?).to eq(true) | eq(false)
+  it 'stormy is false' do
+    allow(airport).to receive(:stormy?) {false}
+    expect(airport.stormy?).to eq(true) | eq(false)
   end
 end
