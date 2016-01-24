@@ -24,12 +24,18 @@ subject(:Airport) {described_class.new weather}
     weather.conjure_storm
     expect {subject.request_take_off(plane)}.to raise_error("Planes cannot take off in a storm.")
   end
+
   it 'can prevent a plane landing during stormy weather' do
     allow(weather).to receive(:conjure_storm).and_return(true)
     allow(weather).to receive(:storm).and_return(true)
     weather.conjure_storm
     expect {subject.request_land(plane)}.to raise_error("Planes cannot land in a storm.")
+  end
 
+  it 'can prevent a plane from landing when the airport is full' do
+    allow(weather).to receive(:storm).and_return(false)
+    Airport::DEFAULT_CAPACITY.times {subject.request_land(plane)}
+    expect {subject.request_land(plane)}.to raise_error("Planes cannot land as the airport is full.")
   end
 
 end

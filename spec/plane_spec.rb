@@ -1,7 +1,5 @@
 require 'plane'
 
 describe Plane do
-  it ' is this working?' do
-
-  end
+  it {is_expected.to respond_to('flying?')}
 end
