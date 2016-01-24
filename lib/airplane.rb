@@ -1,7 +1,11 @@
 
 class Airplane
   attr_reader :landed, :plane, :location
+
+  DEFAULT_CAPACITY = 100
+
   def initialize
+    @capacity = DEFAULT_CAPACITY
     @landed = true
   end
 

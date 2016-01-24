@@ -47,4 +47,8 @@ shared_examples_for PlaneContainer do
   #   it ''
   # end
 
+  it 'has a default capacity when initialized' do
+    expect(subject.capacity).to eq PlaneContainer::DEFAULT_CAPACITY
+  end
+
 end

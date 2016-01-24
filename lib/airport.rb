@@ -7,11 +7,11 @@ class Airport
   include Weather
   include PlaneContainer
 
-  DEFAULT_CAPACITY = 100
+  # DEFAULT_CAPACITY = 100
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize#(capacity = DEFAULT_CAPACITY)
     # @ground_planes = []
-    @capacity = capacity
+    # @capacity = capacity
     setup_plane_list
   end
 
