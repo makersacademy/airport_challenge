@@ -17,6 +17,12 @@ shared_examples_for PlaneContainer do
     end
   end
 
+  describe '#plane_in' do
+    it 'check plane added to list' do
+      expect(subject.plane_in(plane)).to change(subject.display_inflight.count).from(0).to(1)
+    end
+  end
+
   #logged out of module list
   describe '#plane_out' do
     it 'returns plane removed from list' do
