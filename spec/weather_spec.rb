@@ -1,2 +1,5 @@
 require 'weather'
-#tests for randomness
+
+describe Weather do
+
+end
