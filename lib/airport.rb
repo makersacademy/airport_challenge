@@ -13,4 +13,8 @@ class Airport
     @capacity = capacity
   end
 
+  def full?
+    @stored_planes.length >= @capacity
+  end
+
 end

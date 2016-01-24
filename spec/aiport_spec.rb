@@ -16,7 +16,7 @@ describe Airport do
     expect(airport.capacity).to eq(test_capacity)
   end
 
-  it 'can alter CAPACITY as needed' do
+  it 'can alter CAPACITY as needed (post-instantiation)' do
     new_capacity = 10
     airport = Airport.new
     airport.set_capacity(new_capacity)
@@ -29,6 +29,10 @@ describe Airport do
 
   it 'can display stored planes array' do
     expect(subject.instance_variable_get(:@stored_planes)).to eq(subject.stored_planes)
+  end
+
+  it "won't accept planes landing once at capacity" do
+
   end
 
 end
