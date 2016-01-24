@@ -9,10 +9,11 @@ class Airport
   include Weather
   include Security
 
+  DEFAULT_CAPACITY = 10
   attr_reader :name, :airport_capacity, :cap_used, :planes_at_airport
   def initialize(airport)
     @name = airport
-    @airport_capacity = 10
+    @airport_capacity = DEFAULT_CAPACITY
     @cap_used = 0
     @planes_at_airport = []
   end
