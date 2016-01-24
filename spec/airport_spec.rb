@@ -3,9 +3,14 @@ require 'airport.rb'
 describe Airport do
   let(:plane) { double :plane }
 
-  describe '#initialize' do
+  describe 'initialization' do
     it 'initializes with a default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'has a variable capacity' do
+      airport = Airport.new(100)
+      expect(airport.capacity).to eq 100
     end
   end
 
