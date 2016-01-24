@@ -56,6 +56,12 @@ describe Airport do
       subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
+    it 'doesn\'t allow landing if weather is stormy' do
+      # airport = Airport
+      plane = double("plane", :in_air? => false)
+      allow(weather).to receive(:stormy?).and_return true
+      expect{ subject.take_off(plane) }.to raise_error "Cannot take off in stormy conditions"
+    end
     #Confirm landing? Check if plane is included in array of planes at airport
 
   end

@@ -14,6 +14,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Cannot take off in stormy conditions" if stormy?
     @planes_landed.delete(plane)
     puts "#{plane} has taken off"
     @plane = plane
