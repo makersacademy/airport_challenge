@@ -1,5 +1,6 @@
 require_relative 'plane'
 
+
 class Airport
 
 	attr_accessor :planes, :capacity
@@ -11,13 +12,15 @@ class Airport
 		@capacity = capacity
     end
 
-    def allow_takeoff
+    def allow_takeoff(weather)
       fail "No planes available for takeoff" if @planes.empty?
-      @planes.pop
+      fail "No takeoffs due to stormy weather" if weather.stormy?
+       @planes.pop
     end
 
-    def allow_landing(plane)
-		 fail "Airport is full" if @planes.count >=20   
+    def allow_landing(plane, weather)
+		fail "Airport is full" if @planes.count >= capacity 
+		fail "No landings due to stormy weather" if weather.stormy?
         @planes << plane
     end
 
