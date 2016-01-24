@@ -6,7 +6,7 @@ module PlaneContainer
     @list_planes = []
   end
 
-  def initialize#(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = DEFAULT_CAPACITY
     setup_plane_list
     # @list_planes = []
