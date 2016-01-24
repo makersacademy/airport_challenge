@@ -4,12 +4,16 @@ describe Airport do
 
   subject(:airport){ described_class.new }
   let(:plane){ Plane.new}
-  let(:weather){ double}
-  let(:port){ Airport.new weather}
+  let(:stormy_weather){double(:weather, :stormy? => true)}
+  let(:fine_weather){double(:weather, :stormy? => false)}
+  let(:airport_stormy){Airport.new(Airport::DEFAULT_CAPACITY, stormy_weather)}
+  let(:airport_fine){Airport.new(Airport::DEFAULT_CAPACITY, fine_weather)}
+
 
   context "status of the airport" do
 
     it {is_expected.to respond_to :planes}
+    it {is_expected.to respond_to :full?}
 
     it "when initialized has no planes(planes is an empty array)" do
       expect(subject.planes).to eq []
@@ -19,6 +23,16 @@ describe Airport do
       expect(subject.weather).to_not be_nil
     end
 
+    it "when initialized it has default capacity" do
+      expect(subject.capacity).to be described_class::DEFAULT_CAPACITY
+    end
+
+    it "became full when amount of planes equaled capacity" do
+      Airport::DEFAULT_CAPACITY.times{airport_fine.land(plane)}
+      expect(airport_fine.full?).to eq true
+    end
+
+
   end
 
   describe "instruct plan to #land" do
@@ -26,19 +40,23 @@ describe Airport do
     it {is_expected.to respond_to :land}
 
     it "- give a confirmation that particular plane landed" do
-      allow(weather).to receive(:stormy?).and_return false
-      expect(port.land(plane)).to eq "#{plane} has landed"
+      expect(airport_fine.land(plane)).to eq "#{plane} has landed"
     end
 
     it "- keeps info about landed planes" do
-      allow(weather).to receive(:stormy?).and_return false
-      port.land(plane)
-      expect(port.planes).to eq [plane]
+      airport_fine.land(plane)
+      expect(airport_fine.planes).to eq [plane]
     end
 
     it "- prevent plane to land if weather is stormy" do
-      allow(weather).to receive(:stormy?).and_return true
-      expect{port.land(plane)}.to raise_error "Storm!Landing is not allowed!"
+      message = "Storm!Landing is not allowed!"
+      expect{airport_stormy.land(plane)}.to raise_error message
+    end
+
+    it "- prevent plane to land if airport is full" do
+      Airport::DEFAULT_CAPACITY.times{airport_fine.land(plane)}
+      message = "Landing is not allowed! Airport is full!"
+      expect{airport_fine.land(plane)}.to raise_error message
     end
 
   end
@@ -48,22 +66,20 @@ describe Airport do
     it {is_expected.to respond_to :takeoff}
 
     it "- give a confirmation that particular plane took off" do
-      allow(weather).to receive(:stormy?).and_return false
-      expect(port.takeoff(plane)).to eq "#{plane} has taken off"
+      expect(airport_fine.takeoff(plane)).to eq "#{plane} has taken off"
     end
 
     it "- update it's info about plane if it took off" do
-      allow(weather).to receive(:stormy?).and_return false
       plane1 = Plane.new
-      port.land(plane)
-      port.land(plane1)
-      port.takeoff(plane)
-      expect(port.planes).to eq [plane1]
+      airport_fine.land(plane)
+      airport_fine.land(plane1)
+      airport_fine.takeoff(plane)
+      expect(airport_fine.planes).to eq [plane1]
     end
 
     it "- prevent plane to take off if weather is stormy" do
-      allow(weather).to receive(:stormy?).and_return true
-      expect{port.takeoff(plane)}.to raise_error "Storm!Takeoff is not allowed!"
+      message = "Storm!Takeoff is not allowed!"
+      expect{airport_stormy.takeoff(plane)}.to raise_error message
     end
 
   end
