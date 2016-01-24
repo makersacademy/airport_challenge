@@ -2,11 +2,11 @@ Airport Challenge
 =================
 Created by Mark Hill 24/1/16
 
-Using TDD to respond to user stories and build software controlling the flow of planes into an airport.
+Build software to control the flow of planes into an airport with TDD, in response to user stories.
 
 Content:
 Three classes
-(1) Plane - Records the state of the plane (landed/not-landed), contains methods 'land' and 'takeoff' checking weather/ condition of the airport.
+(1) Plane - Records the state of the plane (landed/not-landed), contains methods 'land' and 'takeoff' which check weather/ condition of the airport.
 (2) Airport - Records the planes that have landed and the capacity of the airport. Contains full? method which checks to see if the number of planes has reached the capacity.
 (3) Weather - Randomly generates a weather condition, with a 75% chance of sunny weather and a 25% chance of stormy weather.
 
