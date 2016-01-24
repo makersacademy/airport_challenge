@@ -1,6 +1,18 @@
 Airport Challenge
 =================
 
+````
+        ______
+        _\ _~-\___
+=  = ==(____MA____D
+          \_____\___________________,-~~~~~~~`-.._
+          /     o O o o o o O O o o o o o o O o  |\_
+          `~-.__        ___..----..                  )
+                `---~~\___________/------------`````
+                =  ===(_________D
+
+````
+
 [![Build Status](https://travis-ci.org/seanhawkridge/airport_challenge.svg?branch=master)](https://travis-ci.org/seanhawkridge/airport_challenge)
 
 My Approach
