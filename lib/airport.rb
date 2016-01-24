@@ -23,19 +23,16 @@ class Airport
   def land(plane)
     fail "Airport Full" if full?
     fail "Cannot land in stormy conditions" if stormy?
+    plane.plane_landed
     @plane = plane
     @planes_landed << plane
     puts "#{plane} has landed"
     @plane
   end
 
-  #
-
 
 
   private
-
-  # attr_reader :weather
 
   def full?
     planes_landed.count >= capacity ? true : false

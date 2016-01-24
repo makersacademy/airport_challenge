@@ -22,16 +22,16 @@ describe Airport do
       # airport = Airport.new
       plane = Plane.new
       allow(subject).to receive(:stormy?).and_return false
-      subject.land(plane)
+      # subject.land(plane)
       expect(subject.land(plane)).to eq plane
     end
     #Confirm landing? Check if plane is included in array of planes at airport
 
     it 'doesn\'t allow landing if the airport is full' do
       # airport = Airport.new
-      plane = Plane.new
       allow(subject).to receive(:stormy?).and_return false
       subject.capacity.times do
+        plane = Plane.new
         subject.land(plane)
       end
       expect{ subject.land(plane) }.to raise_error "Airport Full"
