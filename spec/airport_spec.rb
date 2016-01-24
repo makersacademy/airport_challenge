@@ -22,10 +22,19 @@ describe Airport do
       # expect(airport.land(plane)).to eq "#{Plane} has landed"
     end
     #Confirm landing? Check if plane is included in array of planes at airport
+
+    it 'doesn\'t allow landing if the airport is full' do
+      airport = Airport.new
+      plane = Plane.new
+      subject.capacity.times do
+        subject.land(plane)
+      end
+      expect{ subject.land(plane) }.to raise_error "Airport Full"
+    end
   end
 
   context 'taking off' do
-    
+
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'takes off a plane and confirms it is no longer in the airport' do

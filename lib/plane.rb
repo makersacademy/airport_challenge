@@ -1,6 +1,15 @@
 class Plane
 
-  #Landed? method??
+  def initialize
+    @in_air = true
+  end
+  
+  def landed?
+    @in_air = false
+  end
 
-  #In air? method??
+  def in_air?
+    @in_air = true
+  end
+
 end
