@@ -4,6 +4,7 @@ require_relative 'weather'
 class Airport
   include Weather
   attr_reader :planes
+  MAX = 5
 
   def initialize
     @planes = []
@@ -25,6 +26,11 @@ class Airport
   def ready_for_landing?
     return false if stormy? == true
     true
+  end
+
+  def full?
+    return true if @planes.length >= MAX
+    false
   end
 
 end

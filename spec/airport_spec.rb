@@ -59,14 +59,30 @@ describe Airport do
   end
 
   describe '#ready_for_landing?' do
+
     it "responds to ready_for_landing?" do
       expect(airport).to respond_to :ready_for_landing?
     end
+    it "returns false when weather is stormy" do
+      dbl = double("ready_for_landing?")
+      expect(dbl).to receive(:ready_for_landing?)
+      dbl.ready_for_landing?
+    end
+
+
+
   end
 
-  it "returns false when weather is stormy" do
-    dbl = double("ready_for_landing?")
-    expect(dbl).to receive(:ready_for_landing?)
-    dbl.ready_for_landing?
+  describe "#full?" do
+    it "responds to full?" do
+      expect(airport).to respond_to :full?
+    end
+    it "returns false when airport isn't full" do
+      expect(airport.full?).to eq false
+    end
+    it "returns true when airport is full" do
+      5.times {airport.landed_at("plane") }
+      expect(airport.full?).to eq true
+    end
   end
 end
