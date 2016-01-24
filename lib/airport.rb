@@ -19,6 +19,7 @@ class Airport
   private
   attr_reader :stormy
 
+  # FIXME: extract as module or class
   def generate_weather
     # 1 in 20 chance of weather being stormy
     @stormy = (rand(20) == 0)

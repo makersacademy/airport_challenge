@@ -6,12 +6,14 @@ class Plane
     @airport = airport
   end
 
+  # TODO: guard against landing if not in_flight
   def land(destination)
     raise "Unable to land plane in stormy weather" if destination.stormy?
     arrive_at destination
     return true
   end
 
+  # TODO: guard against taking off if in_flight
   def take_off
     raise "Unable to take off in stormy weather" if airport.stormy?
     depart_airport
@@ -33,7 +35,6 @@ class Plane
   end
 
   private
-
   attr_reader :airport
 
   def depart_airport
