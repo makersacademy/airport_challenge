@@ -22,4 +22,9 @@ class Airport
     true
   end
 
+  def ready_for_landing?
+    return false if stormy? == true
+    true
+  end
+
 end

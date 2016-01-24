@@ -1,7 +1,7 @@
 module Weather
 
   def stormy?
-    return true if (rand(10) == 5)
+    return true if rand(10) == 5
     false
   end
 

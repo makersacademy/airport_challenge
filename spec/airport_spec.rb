@@ -55,9 +55,18 @@ describe Airport do
       dbl = double("ready_for_take_off?")
       expect(dbl).to receive(:ready_for_take_off?)
       dbl.ready_for_take_off?
-
     end
   end
 
+  describe '#ready_for_landing?' do
+    it "responds to ready_for_landing?" do
+      expect(airport).to respond_to :ready_for_landing?
+    end
+  end
 
+  it "returns false when weather is stormy" do
+    dbl = double("ready_for_landing?")
+    expect(dbl).to receive(:ready_for_landing?)
+    dbl.ready_for_landing?
+  end
 end
