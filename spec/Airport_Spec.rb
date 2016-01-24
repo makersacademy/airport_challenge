@@ -6,6 +6,7 @@ it { is_expected.to respond_to(:land).with(1).argument }
 it { is_expected.to respond_to :planes_landed }
 it { is_expected.to respond_to(:takeoff).with(1).argument}
 it { is_expected.to respond_to(:current_weather)}
+it { is_expected.to respond_to(:capacity)}
 
 let(:plane){double :plane}
 let(:plane2){double :plane2}
