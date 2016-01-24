@@ -7,13 +7,14 @@ it { is_expected.to respond_to(:land).with(1).argument }
 it { is_expected.to respond_to :planes_landed }
 it { is_expected.to respond_to(:takeoff).with(1).argument}
 it { is_expected.to respond_to(:current_weather)}
-it { is_expected.to respond_to(:current_capacity)}
+it { is_expected.to respond_to(:capacity)}
+it { is_expected.to respond_to(:capacity_hit)}
 
 let(:plane){double :plane}
 let(:plane2){double :plane2}
 
 it 'has a default capacity' do
-  expect(subject.current_capacity).to eq Airport::DEFAULT_CAPACITY
+  expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
 it 'lands a plane' do
@@ -39,33 +40,6 @@ it "shows plane has landed" do
   airport.land(plane)
   expect(airport.planes_landed).to eq [(plane)]
   end
-=begin
-it 'takes a unit off capacity when a plane lands' do
-  plane = double(plane)
-  airport = Airport.new
-  current_capacity = airport.current_capacity
-  allow(airport).to receive(:current_weather).and_return(false)
-  airport.land(plane)
-  expect(airport.current_capacity).to eq current_capacity - 1
-end
-
-it 'adds a unit onto capacity when a plane takes off' do
-  plane = double(plane)
-  airport = Airport.new
-  allow(airport).to receive(:current_weather).and_return(false)
-  airport.land(plane)
-  allow(airport).to receive(:current_weather).and_return(false)
-  current_capacity = airport.current_capacity
-  expect(airport.current_capacity).to eq current_capacity + 1
-end
-=end
-=begin
-it 'lets a plane takeoff' do
-  plane = double(:plane)
-  subject.land(plane)
-  expect(subject.takeoff(plane)).to eq [plane]
-end
-=end
 
 it 'lets a specified plane takeoff' do
   plane = double(:plane)
@@ -88,7 +62,7 @@ it 'makes sure you cannot tell a plane to takeoff more than once' do
 end
 
 it 'prevents takeoff when weather is stormy' do
-  plane = double (:plane)
+  plane = double(:plane)
   airport = Airport.new
   allow(airport).to receive(:current_weather).and_return(false)
   airport.land(plane)
@@ -97,19 +71,20 @@ it 'prevents takeoff when weather is stormy' do
 end
 
 it 'prevents landing when weather is stormy' do
-   plane = double (:plane)
+   plane = double(:plane)
    airport = Airport.new
    allow(airport).to receive(:current_weather).and_return(true)
    expect {airport.land(plane)}.to raise_error ("plane cannot land due to stormy conditions")
  end
 
 it 'prevents landing if the airport is at capacity' do
-   plane = double (:plane)
+   plane = double(:plane)
    airport = Airport.new
+   allow(airport).to receive(:capacity_hit).and_return(true)
    allow(airport).to receive(:current_weather).and_return(false)
-   allow(airport).to receive(:current_capacity).and_return(0)
-   expect(airport.land(plane)).to raise_error ("plane cannot land as airport is at capacity")
+   expect {airport.land(plane)}.to raise_error ("plane cannot land as airport is full")
 end
+
 
 
 end
