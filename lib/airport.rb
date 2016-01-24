@@ -43,7 +43,7 @@ class Airport
     fail "This plane has already been landed" if plane.status == "landed"
   end
 
-  def weather_status(status: Weather::WEATHER)
+  def weather_status(status: Weather::WEATHER) #soli'D' attempt
     status.sample
   end
 

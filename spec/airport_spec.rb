@@ -5,23 +5,23 @@ describe Airport do
 
   let(:plane) {double :plane}
 
+  before do
+    allow(subject).to receive(:weather_status).and_return("sunny")
+    allow(plane).to receive(:landed).and_return("landed")
+    allow(plane).to receive(:status).and_return("")
+  end
+
   it { is_expected.to respond_to :land }
   it { is_expected.to respond_to :takeoff }
 
   #LANDING
   describe "#land" do
     it "lands a plane and stores it in the array" do
-      allow(subject).to receive(:weather_status).and_return("sunny")
-      allow(plane).to receive(:landed).and_return("landed")
-      allow(plane).to receive(:status).and_return("")
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
 
     it "denies landing if there are more than 10 planes" do
-      allow(subject).to receive(:weather_status).and_return("sunny")
-      allow(plane).to receive(:landed).and_return("landed")
-      allow(plane).to receive(:status).and_return("")
       11.times {subject.land(plane)}
       error = "The airport is full"
       expect {subject.land(plane)}.to raise_error(error)
@@ -34,7 +34,6 @@ describe Airport do
     end
 
     it "can't land the same plane twice" do
-      allow(subject).to receive(:weather_status).and_return("sunny")
       allow(plane).to receive(:status).and_return("landed")
       error = "This plane has already been landed"
       expect {subject.land(plane)}.to raise_error(error)
@@ -45,10 +44,7 @@ describe Airport do
   #TAKEOFF
   describe "#takeoff" do
     it "takes off a plane and removes it from the array" do
-      allow(subject).to receive(:weather_status).and_return("sunny")
-      allow(plane).to receive(:landed).and_return("landed")
       allow(plane).to receive(:fly).and_return("flying")
-      allow(plane).to receive(:status).and_return("")
       subject.land(plane)
       expect(subject.takeoff(plane)).to eq plane
     end
@@ -60,7 +56,6 @@ describe Airport do
     end
 
     it "can't take off the same plane twice" do
-      allow(subject).to receive(:weather_status).and_return("sunny")
       allow(plane).to receive(:status).and_return("flying")
       error = "This plane is already flying"
       expect {subject.takeoff(plane)}.to raise_error(error)
