@@ -1,7 +1,7 @@
 require 'airport'
 require 'plane'
+require 'weather'
 describe Airport do
-
 it { is_expected.to respond_to(:land).with(1).argument }
 it { is_expected.to respond_to(:depart).with(1).argument }
 it { is_expected.to respond_to :stormy?}

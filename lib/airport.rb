@@ -1,5 +1,7 @@
 require './lib/plane'
+require './lib/weather'
 class Airport
+	include Weather
 	attr_accessor :planes, :capacity
 	
 	DEFAULT_CAPACITY = 10
@@ -23,16 +25,9 @@ class Airport
 	planes.delete(plane)	
 	plane.flying=true
 	end
-
-	def stormy?
-	if rand(10).even? 
-		false
-	else 
-		true
-	end
 	
 
-	end
+
 
 	
 end

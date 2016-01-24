@@ -1,5 +1,7 @@
 require 'airport'
 require 'plane'
+require './lib/weather'
+
 describe 'Landing a plane' do
 	it 'lands a plane' do 
 		plane = Plane.new
