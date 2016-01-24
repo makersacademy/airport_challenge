@@ -5,11 +5,6 @@ module PlaneContainer
     @list_planes = []
   end
 
-  # def default_capacity
-  #   100 if self.class.name == Airport
-  #   500 if self.class.name == AirTrafficControl
-  # end
-
   def initialize(capacity = self.class::DEFAULT_CAPACITY)
     @capacity = capacity
     setup_plane_list

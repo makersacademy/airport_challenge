@@ -35,8 +35,18 @@ shared_examples_for PlaneContainer do
     end
   end
 
-  it 'has a default capacity when initialized' do
-    expect(subject.capacity).to eq subject.class::DEFAULT_CAPACITY
+  describe '#initialize' do
+    it 'has a default capacity when initialized' do
+      expect(subject.capacity).to eq subject.class::DEFAULT_CAPACITY
+    end
+  end
+
+  describe '#initialize' do
+    it 'has a set capacity when initialized' do
+      random = rand(subject.class::DEFAULT_CAPACITY)
+      subject = described_class.new(random)
+      expect(subject.capacity).to eq random
+    end
   end
 
   #is full at capacity
