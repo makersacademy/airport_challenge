@@ -2,20 +2,23 @@ require_relative 'plane'
 
 class Airport
 
-	attr_reader :plane, :capacity
+	attr_accessor :planes
+
+	def initialize
+		@planes = Array.new
+	end
 
 	def allow_takeoff
-      Plane.new
+      raise "No planes available for takeoff" if @planes.empty?
+      @planes.pop
 	end
 
 	def allow_landing(plane)
-		 
-        raise "Airport is full, cannot allow plane to land" if Airport.new.full?   
-        @plane = plane
+		 raise "Airport is full, cannot allow plane to land" if @planes.count >=20   
+        @planes << plane
     end
 
     def full?
-    	true
+    	@planes.length >= 20
     end
-    
 end
