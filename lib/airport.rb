@@ -6,10 +6,10 @@ class Airport
 
   def initialize(capacity = CAPACITY)
     @capacity = capacity
-    @stored_planes = Array.new
+    @stored_planes = []
   end
 
-  def set_capacity(capacity)
+  def amend_capacity(capacity)
     @capacity = capacity
   end
 

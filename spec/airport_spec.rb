@@ -23,7 +23,7 @@ describe Airport do
 
   it 'can alter CAPACITY as needed (post-instantiation)' do
     new_capacity = 10
-    airport.set_capacity(new_capacity)
+    airport.amend_capacity(new_capacity)
     expect(airport.capacity).to eq(new_capacity)
   end
 
