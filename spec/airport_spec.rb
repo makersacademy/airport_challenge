@@ -33,17 +33,16 @@ describe Airport do
     before(:each) do
       allow(plane).to receive(:land).and_return(plane)
       airport.land(plane)
+      allow(plane).to receive(:take_off).and_return(plane)
     end
 
     it 'no longer has the plane that is instructed to take off' do
-      allow(plane).to receive(:take_off).and_return(plane)
       airport.take_off(plane)
       expect(airport.planes).not_to include plane
     end
 
     it 'raises error, prevent take off on stormy weather' do
       allow(weather).to receive(:stormy?).and_return(true)
-      allow(plane).to receive(:take_off)
       message = 'Cannot take off on a storm! Try again!'
       expect { airport.take_off(plane) }.to raise_error(message)
     end
@@ -52,6 +51,18 @@ describe Airport do
       other_plane = double(:other_plane)
       message = 'Plane not in the airport!'
       expect { airport.take_off(other_plane) }.to raise_error(message)
+    end
+  end
+
+  describe '#capacity' do
+    it 'has a default capacity' do
+      expect(airport.capacity).to eq Airport::DEF_CAPACITY
+    end
+
+    it 'can be initialized with a different capacity' do
+      cap = 5
+      airport = Airport.new(cap)
+      expect(airport.capacity).to eq cap
     end
   end
 end
