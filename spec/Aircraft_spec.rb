@@ -1,1 +1,1 @@
-require 'Aircraft'
+require 'aircraft'
