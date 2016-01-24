@@ -7,7 +7,7 @@ describe Airport do
 
   describe '#land' do
     before(:each) do
-      allow(plane).to receive(:land)
+      allow(plane).to receive(:land).and_return(plane)
     end
 
     it 'has the plane that is instructed to land' do
