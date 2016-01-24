@@ -2,6 +2,7 @@ require_relative 'plane'
 require_relative 'modules/weather'
 
 class Airport
+  include Weather
   attr_reader :planes
 
   CAPACITY = 10
@@ -43,8 +44,5 @@ class Airport
     fail "This plane has already been landed" if plane.status == "landed"
   end
 
-  def weather_status
-    Weather::WEATHER.sample
-  end
 
 end
