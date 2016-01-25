@@ -3,21 +3,19 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) { double(:plane) }
+  before do
+    allow(airport).to receive(:weather) {:sunny}
+  end
   
-  it {expect(airport).to be_a Airport}  
-      
+  it {expect(airport).to be_a Airport}
+  
   describe '#landed' do
-#    before(:each) do
-#      allow(airport).to receive(:weather)
-#    end
     
     it 'returns string if plane has landed' do
-      allow(airport).to receive(:weather) {:sunny}
       expect(airport.landed(plane)).to eq 'Plane has touched down!!'
     end
     
     it 'adds a plane to the airport' do
-      allow(airport).to receive(:weather) {:sunny}
       airport.landed(plane)
       expect(airport.planes.count).to eq 1
     end
@@ -49,7 +47,6 @@ describe Airport do
   describe '#capacity' do
     
     it 'raises an error if full' do
-      allow(airport).to receive(:weather) {:sunny}
       15.times { airport.landed(plane) }
       expect {airport.landed(plane)}.to raise_error "Airport is full."
     end
