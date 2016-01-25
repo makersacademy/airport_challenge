@@ -12,21 +12,23 @@ DEFAULT_CAPACITY = 200
 
   def land(plane)
     fail 'Runway is full, unable to land' if full?
-    fail 'Cannot land due to stormy weather' if weather_conditions < 3
-    @landed_planes << plane
+    fail 'Cannot land due to stormy weather' if stormy
+    landed_planes << plane
   end
 
   def take_off(plane)
-    fail 'Cannot take off due to stormy weather' if weather_conditions < 3
-    @landed_planes.delete plane
+    fail 'Cannot take off due to stormy weather' if stormy
+    landed_planes.delete plane
   end
 
-  def weather_conditions
-    rand(10)
+  private
+
+  def stormy
+    rand(10) < 3
   end
 
   def full?
-    @landed_planes.size >= capacity
+    landed_planes.size >= capacity
   end
 
 end

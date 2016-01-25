@@ -22,8 +22,7 @@ describe Airport do
     end
 
     it 'confirm that plane has landed' do
-      allow(airport).to receive(:weather_conditions).and_return(8)
-      #allow(airport).to receive(:full?).and_return(false)
+      allow(airport).to receive(:stormy).and_return(false)
       airport.land(plane)
       expect(airport.landed_planes).to include plane
     end
@@ -37,7 +36,7 @@ describe Airport do
     end
 
     it 'confirm plane is no longer in the airport' do
-      allow(airport).to receive(:weather_conditions).and_return(8)
+      allow(airport).to receive(:stormy).and_return(false)
       expect(airport.landed_planes).not_to include plane
     end
 
@@ -46,7 +45,7 @@ describe Airport do
   context 'bad weather' do
 
     before do
-      allow(airport).to receive(:weather_conditions).and_return(1)
+      allow(airport).to receive(:stormy).and_return(true)
     end
 
     it 'prevents take off when weather is stormy' do
@@ -64,7 +63,7 @@ describe Airport do
   context 'full' do
 
     it 'prevents landing when airport is full' do
-      allow(airport).to receive(:weather_conditions).and_return(8)
+      allow(airport).to receive(:stormy).and_return(false)
       capacity.times {airport.land(plane)}
       message = 'Runway is full, unable to land'
       expect{airport.land(plane)}.to raise_error message
