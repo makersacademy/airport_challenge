@@ -27,12 +27,14 @@ describe 'challenge bonus feature tests' do
       airport.land(plane4)
       airport.land(plane5)
       airport.land(plane6)
-      expect(airport.planes_landed).to eq [plane, plane2, plane3, plane4, plane5, plane6]
+      planes_array = [plane, plane2, plane3, plane4, plane5, plane6]
+      expect(airport.planes_landed).to eq planes_array
     end
 
     it 'planes cannot land when in an airport' do
       airport.land(plane)
-      expect{ airport.land(plane)}.to raise_error "The plane has already landed"
+      message = "The plane has already landed"
+      expect{ airport.land(plane)}.to raise_error message
     end
   end
 
@@ -60,17 +62,17 @@ describe 'challenge bonus feature tests' do
 
     it 'planes can not take off when in the air' do
       airport.take_off(plane)
-      expect{ airport.take_off(plane)}.to raise_error "The plane is already in the air"
+      message = "The plane is already in the air"
+      expect{ airport.take_off(plane)}.to raise_error message
     end
 
     it 'planes can not land in stormy weather' do
       allow(airport2).to receive(:stormy?).and_return true
-      expect{airport2.land(plane)}.to raise_error "Cannot land in stormy conditions"
+      message = "Cannot land in stormy conditions"
+      expect{airport2.land(plane)}.to raise_error message
     end
 
   end
-
-
 
   describe 'planes landing at another airport' do
 
@@ -83,13 +85,15 @@ describe 'challenge bonus feature tests' do
     end
 
       it 'planes can land at another airport' do
-        expect(airport2.planes_landed).to eq [plane, plane2, plane3, plane4, plane5]
+        planes_array = [plane, plane2, plane3, plane4, plane5]
+        expect(airport2.planes_landed).to eq planes_array
       end
 
       it 'planes can not land at a full airport' do
-        expect{airport2.land(plane6)}.to raise_error "Airport Full"
+        message =  "Airport Full"
+        expect{airport2.land(plane6)}.to raise_error message
       end
 
   end
-  
+
 end

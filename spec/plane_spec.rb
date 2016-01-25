@@ -18,17 +18,20 @@ describe Plane do
 
   it 'cannot take off if already in the air' do
     allow(subject).to receive(:in_air)
-    expect{subject.plane_take_off(airport)}.to raise_error "The plane is already in the air"
+    message = "The plane is already in the air"
+    expect{subject.plane_take_off(airport)}.to raise_error message
   end
 
   it 'cannot land if it is already in the airport' do
     subject.plane_landed(airport)
-    expect{subject.plane_landed(airport)}.to raise_error "The plane has already landed"
+    message = "The plane has already landed"
+    expect{subject.plane_landed(airport)}.to raise_error message
   end
 
   it 'cannot be in an airport if in the air' do
     subject.in_air?
-    expect{ subject.at_airport }.to raise_error "The plane is in the air"
+    message = "The plane is in the air"
+    expect{ subject.at_airport }.to raise_error message
   end
 
   it 'must be in an airport if landed' do
