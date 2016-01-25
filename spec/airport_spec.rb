@@ -18,17 +18,6 @@ describe Airport do
     end
   end
 
-  describe "#planes" do
-    before do
-      allow(plane).to receive(:land) {plane}   
-    end
-
-    it "returns an array of 1 plane after landing" do
-      airport.planes << plane.land(airport, weather)
-      expect(airport.planes).to eq [plane]
-    end
-  end
-
   describe "#full" do
     it "full returns true if capacity is reached" do
       airport.capacity = 0
