@@ -18,18 +18,22 @@ class Plane
     fail "The plane has already landed" if @in_air == false
     @in_air = false
     @at_airport = true
+    @not_in_air = true
     @airport = airport
   end
 
   def at_airport
     fail "The plane is in the air" if !@at_airport
+    @in_air = false
     @at_airport = true
   end
 
-  def not_in_air?
-    @at_airport = true
-    @not_in_air = true
-    @in_air = false
+  def landed?
+    @at_airport
+  end
+
+  def flying?
+    @in_air
   end
 
   def in_air?

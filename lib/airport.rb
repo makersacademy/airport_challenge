@@ -3,7 +3,6 @@ require_relative 'weather'
 class Airport
   attr_reader :capacity
   attr_reader :planes_landed
-  attr_reader :weather
 
   DEFAULT_CAPACITY = 20
 
@@ -17,21 +16,16 @@ class Airport
     fail "Cannot take off in stormy conditions" if stormy?
     plane.plane_take_off(self)
     remove_planes(plane)
-    puts "#{plane} has taken off"
-    @plane = plane
+    plane
   end
 
   def land(plane)
     fail "Airport Full" if full?
     fail "Cannot land in stormy conditions" if stormy?
     plane.plane_landed(self)
-    @plane = plane
-    @planes_landed << plane
-    puts "#{plane} has landed"
-    @plane
+    add_planes(plane)
+    plane
   end
-
-
 
   private
 
@@ -45,6 +39,12 @@ class Airport
 
   def remove_planes(plane)
     @planes_landed.delete(plane)
+    puts "#{plane} has taken off"
+  end
+
+  def add_planes(plane)
+    @planes_landed << plane
+    puts "#{plane} has landed"
   end
 
 end
