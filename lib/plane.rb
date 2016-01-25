@@ -1,9 +1,10 @@
 require_relative 'weather.rb'
 require_relative 'airport.rb'
 class Plane
-attr_reader :landed
 
-  def land(airport, weather = Weather.new.check_weather)
+attr_reader :landed
+include Weather
+  def land(airport, weather = check_weather)
     fail "Already Landed" if @landed
     if weather == :sunny && airport.full? == false
       airport.planes << self
@@ -18,7 +19,7 @@ attr_reader :landed
     end
   end
 
-  def takeoff(airport, weather = Weather.new.check_weather)
+  def takeoff(airport, weather = check_weather)
     fail "Not At Airport" unless airport.planes.include?(self)
     if weather == :sunny
       puts "The plane takes off!"
