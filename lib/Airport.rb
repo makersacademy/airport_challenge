@@ -1,11 +1,13 @@
 require_relative 'aircraft'
+require_relative 'weather'
 
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :weather
 
   def initialize
     @planes = []
+    @weather = Weather.new
   end
 
   def take_off(plane)
@@ -20,7 +22,7 @@ class Airport
   end
 
   def weather
-    @weather
+    @weather.sunny?
   end
 
 end
