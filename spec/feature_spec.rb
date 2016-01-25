@@ -23,7 +23,7 @@ describe 'depart plane' do
 	end
 end
 
-describe 'error when plans depart and stormy' do
+context 'when weather is stormy' do
 	it 'prevents departure' do 
 		plane = Plane.new
 		airport = Airport.new
@@ -35,7 +35,7 @@ describe 'error when plans depart and stormy' do
 	end
 end
 
-describe 'prevent landing when weather is stormy' do
+context 'when weather is stormy' do
 	it 'prevents landing' do 
 		plane = Plane.new
 		airport = Airport.new
@@ -46,8 +46,8 @@ describe 'prevent landing when weather is stormy' do
 end
 
 
-describe 'prevent landing when airport is full' do
-	it 'prevents landing when airport is full' do 
+context 'when airport is full' do
+	it 'prevents landing' do 
 		plane = Plane.new
 		airport = Airport.new
 		allow(airport).to receive(:stormy?) {false}
@@ -66,8 +66,8 @@ it "#capacity can be overridden" do
 end
 
 
-describe "planes only depart airports they are in" do 
-	it "allows plane to only depart from airport it is in" do  
+context "wehn planes are not in airport" do 
+	it "prevents depatrture" do  
 	airport = Airport.new
 	plane = Plane.new
 	allow(airport).to receive(:stormy?) {false}
@@ -75,8 +75,8 @@ describe "planes only depart airports they are in" do
 	end
 end
 
-describe "departing an airport changes a planes status to flying" do
-	it '#depart changes a planes status to flying' do
+context "when a plane is departed" do
+	it 'status is changed to flying' do
 	airport = Airport.new
 	plane = Plane.new
 	allow(airport).to receive(:stormy?) {false}	
@@ -86,8 +86,8 @@ describe "departing an airport changes a planes status to flying" do
 	end
 	end
 
-describe "planes flying cannot depart"  do 
-	it "changes a planes status from flying to landed" do
+context "when plane is already flying"  do 
+	it "can not depart" do
 	plane = Plane.new
 	airport = Airport.new
 	allow(airport).to receive(:stormy?) {false}
@@ -97,8 +97,8 @@ describe "planes flying cannot depart"  do
 	end
 end
 
-describe "fail land if already in an airport" do 
-	it "prevents a plane from landing if already landed" do
+context "when plane is already grounded"  do 
+	it "can not land" do
 	plane = Plane.new
 	airport = Airport.new
 	allow(airport).to receive(:stormy?) {false}
