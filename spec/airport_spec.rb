@@ -7,11 +7,9 @@ describe Airport do
   it {expect(airport).to be_a Airport}  
       
   describe '#landed' do
-    before(:each) do
-      allow(airport).to receive(:weather)
-    end
-    
-    it {expect(airport).to respond_to(:landed).with(1).argument}
+#    before(:each) do
+#      allow(airport).to receive(:weather)
+#    end
     
     it 'returns string if plane has landed' do
       allow(airport).to receive(:weather) {:sunny}
@@ -31,7 +29,6 @@ describe Airport do
   end
   
   describe '#leave_gate' do
-    it {expect(airport).to respond_to(:leave_gate)}
     
     it 'Removes a plane from the airport' do
       allow(airport).to receive(:weather) {:sunny}

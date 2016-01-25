@@ -9,8 +9,6 @@ describe Plane do
   describe 'Plane should be able to land' do
     let(:landed) { double(landed: 'Plane has touched down!!') }
     
-    it {expect(plane).to respond_to(:land).with(1).argument}
-    
     it 'lands at an airport' do
       plane.take_off(leave)
       expect(plane.land(landed)).to eq 'Plane has touched down!!'
@@ -28,7 +26,6 @@ describe Plane do
   end
   
   describe 'can take off from an airport' do
-    it {expect(plane).to respond_to(:take_off)}
     
     it 'leaves an airport' do
       expect(plane.take_off(leave)).to eq 'Plane has taken off!!'
