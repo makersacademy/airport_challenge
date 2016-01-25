@@ -24,4 +24,9 @@ describe Airport do
   it 'subtracts one from number of planes when a plane takes off' do
     expect{ Plane.new.take_off(subject) }.to change{ subject.number_of_planes }.by(-1)
   end
+
+  it 'can override default capacity' do
+    subject.capacity = 1
+    expect(Airport::DEFAULT_CAPACITY).to eq 1
+  end
 end

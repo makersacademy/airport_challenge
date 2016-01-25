@@ -10,7 +10,7 @@ class Plane
       fail 'Must land at a valid airport'
     elsif airport.weather == 'stormy'
       fail 'Unable to land during stormy weather'
-    elsif airport.number_of_planes == Airport::CAPACITY
+    elsif airport.number_of_planes == Airport::DEFAULT_CAPACITY
       fail 'Unable to land at full airport'
     else  
       airport.add_plane

@@ -1,5 +1,5 @@
 class Airport
-  CAPACITY = 100
+  DEFAULT_CAPACITY = 100
 
   attr_accessor :weather, :number_of_planes
 
