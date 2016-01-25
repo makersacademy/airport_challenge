@@ -35,7 +35,22 @@ describe Airport do
 		end
 	end
 end
-     	
+
+describe Airport do
+    it { is_expected.to respond_to(:land).with(1).argument }
+end
+describe Airport do
+    describe '#land' do
+        it 'it demostrate that the plane actually lands' do
+            airport = described_class.new
+            allow(airport).to receive(:weather?).and_return(true)
+            plane = double(:plane)
+            airport.land(plane)
+            expect(airport.planes).to eq [plane]
+        end
+    end
+end
+
          	
 
 describe Airport do
