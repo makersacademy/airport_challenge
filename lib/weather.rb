@@ -1,9 +1,5 @@
 module Weather
 	def stormy?
-	if rand(10).even? 
-		false
-	else 
-		true
-	end
+	rand(10).even? 
 	end
 end

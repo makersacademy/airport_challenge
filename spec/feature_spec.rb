@@ -114,7 +114,7 @@ describe "multiple planes depart and land" do
 	fleet = []
 	airport = Airport.new
 	allow(airport).to receive(:stormy?) {false}
-	5.times {fleet<<Plane.new}
+	5.times {fleet << Plane.new}
 	fleet.each {|jet| airport.land(jet)}
 	fleet.each do |jet|
 	allow(airport).to receive(:stormy?) {false}
