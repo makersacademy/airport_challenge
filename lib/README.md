@@ -97,3 +97,13 @@ NameError: uninitialized constant Task
 	from (irb):16
 	from /Users/eirikwiig/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
 ```
+
+
+Approach
+-----
+```
+git clone git@github.com:hibreez/airport_challenge.git
+cd airport_challenge
+gem install bundle
+bundle
+```
