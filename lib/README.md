@@ -102,7 +102,7 @@ NameError: uninitialized constant Task
 Approach
 -----
 ```
-git clone git@github.com:hibreez/airport_challenge.git
+git clone git@github.com:eilw/airport_challenge.git
 cd airport_challenge
 gem install bundle
 bundle
