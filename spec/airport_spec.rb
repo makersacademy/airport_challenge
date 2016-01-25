@@ -7,7 +7,7 @@ describe Airport do
 
   before do
       allow(airport.weather).to receive(:stormy?).and_return false
-    end
+  end
 
   it 'has a default capacity' do
     expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
@@ -35,18 +35,21 @@ describe Airport do
 
     it 'raises an error when airport is full' do
       described_class::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-      expect { airport.land(Plane.new) }.to raise_error 'Airport is full!'
+      message = 'Airport is full!'
+      expect { airport.land(Plane.new) }.to raise_error message
     end
 
     it 'raises an error when plane has already arrived' do
       airport.land(plane)
-      expect { airport.land(plane) }.to raise_error 'Plane has already arrived.'
+      message = 'Plane has already arrived.'
+      expect { airport.land(plane) }.to raise_error message
     end
 
     context 'when stormy' do
       it 'does not allow plane to land' do
         allow(airport.weather).to receive(:stormy?).and_return true
-        expect { airport.land(plane) }.to raise_error 'Plane cannot land due to stormy weather.'
+        message = 'Plane cannot land due to stormy weather.'
+        expect { airport.land(plane) }.to raise_error message
       end
 
       it 'allows plane to land after storm has cleared' do
@@ -76,7 +79,8 @@ describe Airport do
     end
 
     it 'raises an error when plane is not at airport' do
-      expect { airport.takeoff(plane) }.to raise_error 'Plane is not at this airport.'
+      message = 'Plane is not at this airport.'
+      expect { airport.takeoff(plane) }.to raise_error message
     end
 
     context 'when stormy' do
@@ -86,7 +90,8 @@ describe Airport do
 
       it 'does not allow plane to take off' do
         allow(airport.weather).to receive(:stormy?).and_return true
-        expect { airport.takeoff(plane) }.to raise_error 'Plane cannot takeoff due to stormy weather.'
+        message = 'Plane cannot take off due to stormy weather.'
+        expect { airport.takeoff(plane) }.to raise_error message
       end
 
       it 'allows plane to take off after storm has cleared' do
