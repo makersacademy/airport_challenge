@@ -65,7 +65,7 @@ plane.take_off(airport)
 airport.confirm_plane_taken_off(plane)
 ```
 
-...which will return ```true``` if the plane has taken off, or ```false``` if the plane is still landed at the specified airport.
+...which will return ```true``` if the plane has taken off, or ```false``` if the plane is still landed at the specified airport. If the given plane has never been at the airport in question, the following error will be raised: ```'That plane has never been at this airport.'```.
 
 7. To order a plane to land, use...
 
@@ -81,13 +81,4 @@ plane.land(airport)
 airport.confirm_plane_landed(plane)
 ```
 
-...which will return ```true``` if the plane has landed at the specified airport, or ```false``` if the plane is still flying.
-
-
-Known Bugs
----------
-
-The system should be fully featured, however small bugs do currently exist, as described below:
-
-* Currently ```airport.confirm_plane_landed``` simply checks that the plane is currently landed at the airport, so will return ```true``` even if the plane  was created at the airport rather than landed there.
-* Similarly ```airport.confirm_plane_taken_off``` simply checks that the plane is not currently landed at the airport, so will return ```true``` even for airports at which the plane has never landed or taken off from.
+...which will return ```true``` if the plane has landed at the specified airport, or ```false``` if the plane is still flying. If the given plane has never been at the airport in question, the following error will be raised: ```'That plane has never been at this airport.'```.

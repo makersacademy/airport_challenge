@@ -18,6 +18,7 @@ describe Airport do
 
   it 'Confirms that a newly landed plane has landed.' do
   plane = double(:plane)
+  subject.landed_planes_history << plane
   subject.landed_planes << plane
   expect(subject.confirm_plane_landed(plane)).to eq(true)
   end
@@ -29,7 +30,20 @@ describe Airport do
   it 'Confirms that a newly taken_off plane has taken_off.' do
   plane = double(:plane)
   subject.landed_planes = []
+  subject.landed_planes_history << plane
   expect(subject.confirm_plane_taken_off(plane)).to eq(true)
   end
+
+context 'When the plane in question has never been to this airport' do
+  it 'Will raise an error when attempting to confirm the plane has landed.' do
+    plane = double(:plane)
+    expect{subject.confirm_plane_landed(p)}.to raise_error('That plane has never been at this airport.')
+  end
+
+  it 'Will raise an error when attempting to confirm the plane has taken-off.' do
+    plane = double(:plane)
+    expect{subject.confirm_plane_taken_off(p)}.to raise_error('That plane has never been at this airport.')
+  end
+end
 
 end

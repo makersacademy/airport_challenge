@@ -26,6 +26,7 @@ class Plane
 
   def add_to_airport_list_of_landed_planes(airport)
     airport.landed_planes << self
+    airport.landed_planes_history << self
   end
 
   def remove_from_airport_list_of_landed_planes(airport)
