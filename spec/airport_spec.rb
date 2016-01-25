@@ -26,7 +26,7 @@ describe Airport do
 		it 'confirms plane has landed' do
 		plane = double(:plane)
 		subject.land(plane)
-		expect(subject.planes_landed).to eq [(plane)]  #planes_landed method in class Airport	
+		expect(subject.planes_landed).to eq [plane]  #planes_landed method in class Airport	
 		end
 	end
 
@@ -40,6 +40,6 @@ describe Airport do
 	end
 end
 
-#why needed [ ] around plane in 'confirms plane has landed' test?
+#why needed () around plane in 'confirms plane has taken off' test?
 
 
