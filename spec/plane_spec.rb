@@ -1,25 +1,25 @@
 require 'plane'
 
+
 describe Plane do
-	subject (:plane) {described_class.new}
 
-	describe '#land' do
-		let(:airport) {double :airport}
+	plane = Plane.new
 
-		it {is_expected.to respond_to(:land).with(1).argument}
-
-		it 'expects plane to land' do
-			plane.land(airport)
-			expect(plane).to be_landed
-		end
-
-
-		it 'lands at an airport' do
-			plane.land(airport)
-			expect(plane.airport?).to eq airport
-		end
+		it 'returns an instance of plane' do
+		expect(plane).to be_a(Plane)
 	end
+
+	it {is_expected.to respond_to(:land).with(1).argument}
+	it {is_expected.to respond_to(:take_off)}
+
 end
+
+
+
+
+
+
+
 
 
 

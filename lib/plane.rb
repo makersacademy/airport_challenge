@@ -1,28 +1,18 @@
-require_relative 'airport'
-
 class Plane
 
-	def land(airport)
-		@airport = airport
+	def land(plane)
+
 	end
 
-	def takeoff(airport)
-		@airport = false
+	def take_off
+
 	end
-
-	def landed?
-		true if @airport
-	end
-
-	def airport?
-		@airport unless !@airport
-	end
-
-private
-
-	attr_reader :airport
 
 end
+
+
+
+
 
 
 
