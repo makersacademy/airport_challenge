@@ -67,7 +67,8 @@ it { is_expected.to respond_to :capacity }
 	end
 
 	it "#capacity can be overridden" do
-	airport = described_class.new (15)
+	airport = Airport.new
+	airport.increase_capacity(15)
 	expect(airport.capacity).to eq 15
 	end
 

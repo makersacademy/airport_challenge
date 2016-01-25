@@ -27,8 +27,8 @@ class Airport
 	plane.flying=true
 	end
 	
-
-
-
+	def increase_capacity(number)
+	@capacity = number
+	end
 	
 end

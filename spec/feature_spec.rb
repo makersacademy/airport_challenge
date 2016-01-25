@@ -58,8 +58,9 @@ describe 'prevent landing when airport is full' do
 end
 
 describe  "allows capacity that can be overridden" do 
-	it "allows capacity that can be overridden" do
-	airport = Airport.new (15)
+it "#capacity can be overridden" do
+	airport = Airport.new
+	airport.increase_capacity(15)
 	expect(airport.capacity).to eq 15
 	end
 end
