@@ -1,8 +1,6 @@
 require 'airport'
-require 'support/shared_examples_for_takeoff_land.rb'
 
 describe Airport do
-  it_behaves_like TakeoffLand
   subject(:airport) {described_class.new}
 
   describe '#land' do
@@ -14,12 +12,12 @@ describe Airport do
     end
 
     it 'expects not to let planes land if the airport is at full capacity' do
-    airport.set_capacity.times do
-    plane = double(:plane)
-    airport.land(plane, weather)
-    end
-    message = "The airport is full!"
-    expect {airport.land(plane, weather)}.to raise_error(message)
+      airport.set_capacity.times do
+        plane = double(:plane)
+        airport.land(plane, weather)
+      end
+      message = "The airport is full!"
+      expect {airport.land(plane, weather)}.to raise_error(message)
     end
 
   end
@@ -42,7 +40,6 @@ describe Airport do
     let(:weather) {double("weather", :stormy? => nil)}
     before {airport.land(plane, weather)}
 
-    it {is_expected.to respond_to(:takeoff).with(2).arguments}
 
     it 'removes the plane from the airport' do
       airport.takeoff(plane, weather)

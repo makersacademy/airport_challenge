@@ -1,9 +1,8 @@
 require_relative 'plane'
-require_relative 'takeoff_land'
+require_relative 'weather'
 
 class Airport
 
-  include TakeoffLand
 
   DEFAULT_CAPACITY = 20
 
@@ -13,15 +12,15 @@ class Airport
   end
 
   def land(plane, weather)
+    too_stormy_to_land(weather)
     error_if_full
-    landed_plane = landing(plane, weather)
     add_plane(plane)
   end
 
   def takeoff(plane, weather)
+    too_stormy_to_takeoff(weather)
     plane_not_in_airport_error(plane)
-    flying_plane = taking_off(plane, weather)
-    remove_plane(flying_plane)
+    remove_plane(plane)
   end
 
   def planes_in_airport
@@ -60,5 +59,15 @@ class Airport
   def plane_in_airport_error(plane)
     raise "Plane has already landed!" if planes.include?(plane)
   end
+
+  def too_stormy_to_takeoff(weather)
+    raise "Too stormy to takeoff!" if weather.stormy?
+  end
+
+  def too_stormy_to_land(weather)
+    raise "Too stormy to land!" if weather.stormy?
+  end
+
+
 
 end

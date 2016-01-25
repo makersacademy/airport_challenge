@@ -1,9 +1,7 @@
 require 'plane'
-require 'support/shared_examples_for_takeoff_land.rb'
 
 describe Plane do
 
-  it_behaves_like TakeoffLand
   subject(:plane) {described_class.new}
 
     describe '#land' do
