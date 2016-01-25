@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -13,7 +14,7 @@ describe Airport do
       expect(test_plane.landed?).to eq true
     end
 
-    it "does not let a plane land if it is stormy" do
+    it "does let a plane land if it is not stormy" do
       test_plane = Plane.new
       expect(test_plane.stormy?).to eq true
     end
