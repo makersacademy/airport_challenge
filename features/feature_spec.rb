@@ -4,6 +4,7 @@ require 'weather'
 
 describe "landing" do
   it "planes can land at airport" do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
@@ -13,6 +14,7 @@ end
 
 describe "take off" do
   it "planes can take off from airport" do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
     airport = Airport.new
     plane = Plane.new
     airport.land(plane)
@@ -23,6 +25,7 @@ end
 
 describe "multiple airports" do
   it "can't be in two places at once" do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
     airport_1 = Airport.new
     airport_2 = Airport.new
     plane = Plane.new
@@ -33,6 +36,7 @@ end
 
 describe "full airport" do
   it "can't have more planes" do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
     airport = Airport.new
     10.times { airport.land(Plane.new) }
     expect {airport.land(Plane.new) }.to raise_error "This airport is full"
@@ -40,6 +44,10 @@ describe "full airport" do
 end
 
 describe "capacity" do
+  before do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+  end
+
   it "has default capacity" do
     airport = Airport.new
     airport.capacity.times { airport.land(Plane.new) }
@@ -55,6 +63,11 @@ describe "capacity" do
 end
 
 describe "weather dependency" do
+
+  before do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+  end
+
   it "can't take off when stormy" do
     airport = Airport.new
     plane = Plane.new
@@ -69,6 +82,7 @@ describe "weather dependency" do
     allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
     expect { airport.land(plane) }.to raise_error "Can't land due to stormy weather"
   end
+end
 
 
 

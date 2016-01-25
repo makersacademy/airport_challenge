@@ -4,6 +4,10 @@ describe Airport do
   subject(:airport) { Airport.new }
   let(:plane) { double(:plane, :landed => false, :landed= => true)}
 
+  before do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+  end
+
   it "can't have a plane land twice" do
     airport.land(plane)
     expect { airport.land(plane) }.to raise_error "This plane has already landed."
