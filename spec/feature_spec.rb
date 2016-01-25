@@ -18,7 +18,8 @@ describe 'challenge bonus feature tests' do
     allow(airport).to receive(:stormy?).and_return false
     allow(airport2).to receive(:stormy?).and_return false
   end
-  context 'landing' do
+
+  describe 'landing' do
     it 'planes can land at an airport and are contained within it' do
       airport.land(plane)
       airport.land(plane2)
@@ -36,7 +37,8 @@ describe 'challenge bonus feature tests' do
   end
 
 
-  context 'take off' do
+  describe 'take off' do
+
     before do
       airport.land(plane)
       airport.land(plane2)
@@ -65,6 +67,7 @@ describe 'challenge bonus feature tests' do
       allow(airport2).to receive(:stormy?).and_return true
       expect{airport2.land(plane)}.to raise_error "Cannot land in stormy conditions"
     end
+
   end
 
 
@@ -86,5 +89,7 @@ describe 'challenge bonus feature tests' do
       it 'planes can not land at a full airport' do
         expect{airport2.land(plane6)}.to raise_error "Airport Full"
       end
+
   end
+  
 end
