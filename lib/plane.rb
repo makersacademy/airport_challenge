@@ -1,4 +1,5 @@
 require "./lib/airport.rb"
+require "./lib/control_tower.rb"
 
 class Plane
   

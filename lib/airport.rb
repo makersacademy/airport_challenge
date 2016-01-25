@@ -18,7 +18,7 @@ class Airport
   end
   
   def full?
-    @planes.size == DEFAULT_CAPACITY
+    @planes.size == airport.capacity
   end
 
   def clear?

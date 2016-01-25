@@ -3,32 +3,26 @@ require "airport"
 
 describe Airport do
   
-  subject do 
-    Airport.new "Name"
-  end
- 
-  before(:each) do
-    @tower = double(:controltower)
-    @plane = double(:plane)
-    @airport = Airport.new "Stansted"
-  end
-   
-  it "creates an instance of the class" do
-    expect(described_class.new("Stansted")).to be_a Airport
-  end
+  subject(:airport) { described_class.new(name, capacity) }
   
-  
-  it { is_expected.to respond_to(:planes) }
-  it { is_expected.to respond_to(:clear?) }
+    let(:name) { "Stansted" }  
+    let(:capacity) { 3 }
+    
   
   it "#clear? returns true on a new instance" do
-    expect(@airport.clear?).to eq true
+    expect(airport.clear?).to eq true
   end
-  
-  it { is_expected.to respond_to(:weather=) }
-  it { is_expected.to respond_to(:check_weather)} 
+
     
   it "has a default capacity" do
-    expect(@airport.capacity).to eq 3
+    expect(airport.capacity).to eq 3
   end
+  
+  context "Can be created with a different capacity" do
+  
+  let(:capacity) { 5 }
+  it "has variable capacity" do
+    expect(airport.capacity).to eq 5
+  end
+ end
 end
