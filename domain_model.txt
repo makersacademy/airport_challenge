@@ -1,0 +1,29 @@
+object		    	| message
+
+
+USER STORY 1
+at_controller   
+passengers
+plane             landed?, land(airport)
+airport           
+
+USER STORY 2
+at_controller
+passengers
+plane             takeoff(airport), landed
+airport
+
+USER STORY 3
+plane             takeoff(airport, weather)
+weather
+
+USER STORY 4
+plane             land(airport, weather)
+weather
+
+USER STORY 5
+plane
+airport           full
+
+USER STORY 6
+airport           capacity
