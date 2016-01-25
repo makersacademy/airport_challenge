@@ -31,7 +31,7 @@ describe Airport do
     it 'Removes a plane from the airport' do
       allow(airport).to receive(:weather) {:sunny}
       airport.landed(plane)
-      expect(airport.leave_gate).to eq "Plane has taken off!!"
+      airport.leave_gate
       expect(airport.planes[0]).to eq nil
     end
   end
