@@ -9,17 +9,17 @@ class Airport
   DEFAULT_CAPACITY = 10
 
   def land(plane)
-    raise "This plane has already landed." if docked?(plane)
-    raise "This plane is already landed at another airport." if plane.landed == true
-    raise "Can't land due to stormy weather" if weather.stormy?
-    raise "This airport is full" if full?
+    fail "This plane has already landed." if docked?(plane)
+    fail "This plane is already landed at another airport." if plane.landed == true
+    fail "Can't land due to stormy weather" if weather.stormy?
+    fail "This airport is full" if full?
     plane.landed = true
     planes << plane
   end
 
   def take_off(plane)
-    raise "This plane is not at this airport." unless docked?(plane)
-    raise "Can't take off due to stormy weather" if weather.stormy?
+    fail "This plane is not at this airport." unless docked?(plane)
+    fail "Can't take off due to stormy weather" if weather.stormy?
     planes.delete(plane)
     plane.landed = false
     plane
