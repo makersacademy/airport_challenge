@@ -3,10 +3,10 @@ class Airport
 
   attr_accessor :weather, :number_of_planes, :capacity
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @weather = weather_update
     @number_of_planes = 0
-    @capacity = DEFAULT_CAPACITY
+    @capacity = capacity
   end
 
   def add_plane

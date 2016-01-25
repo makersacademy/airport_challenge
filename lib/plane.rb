@@ -6,16 +6,12 @@ class Plane
   end
 
   def land(airport)
-    if airport.class != Airport
-      fail 'Must land at a valid airport'
-    elsif airport.weather == 'stormy'
-      fail 'Unable to land during stormy weather'
-    elsif airport.number_of_planes == Airport::DEFAULT_CAPACITY
-      fail 'Unable to land at full airport'
-    else  
+      fail 'Must land at a valid airport' if airport.class != Airport
+      fail 'Unable to land during stormy weather' if airport.weather == 'stormy'
+      fail 'Unable to land at full airport' if airport.number_of_planes == airport.capacity
+
       airport.add_plane
       @landed = true
-    end
   end
 
   def take_off(airport)

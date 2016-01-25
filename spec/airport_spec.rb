@@ -35,5 +35,12 @@ describe Airport do
       25.times { Plane.new.land(airport) }
       expect { Plane.new.land(airport) }.to raise_error 'Unable to land at full airport'
     end
+
+    subject { Airport.new }
+    let(:plane) { Plane.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times { plane.land(subject) }
+      expect { plane.land(subject) }.to raise_error 'Unable to land at full airport'
+    end
   end
 end
