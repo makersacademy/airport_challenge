@@ -23,7 +23,7 @@ class Plane
   end
 
   def at_airport
-    fail "The plane is in the air" if !@at_airport
+    fail "The plane is in the air" unless @at_airport
     @in_air = false
     @at_airport = true
   end
