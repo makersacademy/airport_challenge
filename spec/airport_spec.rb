@@ -7,6 +7,10 @@ describe Airport do
   let(:plane) { double :plane }
   let(:weather) { double :weather }
 
+  not_at_airport = 'Plane not at airport'
+  unsafe_to_land = 'Unsafe to land due to weather'
+  plane_in_flight = 'Plane in flight'
+
   it 'has an Airport class' do
     expect(airport).to be_a(Airport)
   end
@@ -60,19 +64,19 @@ describe Airport do
 
     it "can only remove planes that are at the airport" do
       airport.stored_planes.pop
-      expect{airport.take_off(plane, weather)}.to raise_error('Plane not at airport')
+      expect{airport.take_off(plane, weather)}.to raise_error(not_at_airport)
     end
 
     it "can only take off when weather isn't stormy" do
       allow(weather).to receive(:stormy?) { true }
-      expect{airport.take_off(plane, weather)}.to raise_error('Unsafe to land due to weather')
+      expect{airport.take_off(plane, weather)}.to raise_error(unsafe_to_land)
     end
 
   end
 
   it "cannot take off if already in flight" do
     allow(plane).to receive(:in_flight) { true }
-    expect{airport.take_off(plane, weather)}.to raise_error('Plane in flight')
+    expect{airport.take_off(plane, weather)}.to raise_error(plane_in_flight)
   end
 
 end

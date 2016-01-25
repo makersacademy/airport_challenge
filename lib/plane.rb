@@ -15,16 +15,18 @@ class Plane
     land_status
   end
 
-  def confirmation(airport)
-    puts "#{self} has landed at #{airport}"
+  def flight_status
+    self.in_flight = true
   end
 
   def land_status
     self.in_flight = false
   end
 
-  def flight_status
-    self.in_flight = true
+  private
+
+  def confirmation(airport)
+    puts "#{self} has landed at #{airport}"
   end
 
 end

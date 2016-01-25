@@ -7,6 +7,9 @@ describe Plane do
   let(:airport) { double :airport }
   let(:weather) { double :weather }
 
+  unsafe_to_land = 'Unsafe to land due to weather'
+  already_landed = "Plane already landed"
+
   it 'has a Plane class' do
     expect(plane).to be_a(Plane)
   end
@@ -20,7 +23,7 @@ describe Plane do
     it 'can not land when stormy' do
       allow(weather).to receive(:stormy?) { true }
       allow(airport).to receive(:full?) { false }
-      expect{plane.land(airport, weather)}.to raise_error("Unsafe to land due to weather")
+      expect{plane.land(airport, weather)}.to raise_error(unsafe_to_land)
     end
 
     context "when weather isn't stormy" do
@@ -53,7 +56,7 @@ describe Plane do
           end
 
           it 'can not land a plane if plane is already landed' do
-            expect{plane.land(airport, weather)}.to raise_error("Plane already landed")
+            expect{plane.land(airport, weather)}.to raise_error(already_landed)
           end
 
           it "can be changed to 'in_flight'" do

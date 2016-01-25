@@ -1,7 +1,7 @@
 class Weather
 
   def stormy?
-    random_value == 10 ? true : false
+    random_value == 10 
   end
 
   private

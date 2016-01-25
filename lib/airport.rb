@@ -26,6 +26,8 @@ class Airport
     @stored_planes.length >= @capacity
   end
 
+  private
+
   def stored?(plane)
     @stored_planes.include?(plane)
   end
