@@ -7,7 +7,6 @@ class Airport
   def initialize(capacity=20)
     @grounded_planes = []
     @capacity = capacity
-    @sunny
   end
 
   def landed(plane)
@@ -26,6 +25,6 @@ class Airport
   end
 
   def sunny?
-    @sunny == true if rand(1..2) == 2
+    rand(1..2) == 2 ? true : false
   end
 end
