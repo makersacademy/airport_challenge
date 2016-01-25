@@ -20,7 +20,6 @@ Methods/State: land, takeoff, airport
 
 Class: Weather
 Methods/State: condition
-
 ```
 
 During the exercise I took to using pry to spike my feature test, and then proceed to Red, Green, Refactor with each user story. The earlier user stories modelled the behaviour of the plane objects with doubles and mocks used as substitutes for the airport and weather classes.
@@ -29,6 +28,25 @@ Airport class was then created and tested, with doubles and mocks removed from p
 
 TravisCI checks advise of 100% coverage of test case scenarios, and all houndci suggestions were acted upon and completed. 
 
+
+Instructions
+-----------
+
+```
+$ irb
+2.2.3 :004 > airport = Airport.new
+ => #<Airport:0x007faa43987728 @capacity=20, @planes=[]> 
+2.2.3 :005 > plane = Plane.new
+ => #<Plane:0x007faa4397ed08> 
+2.2.3 :006 > weather1 = Weather.new
+ => #<Weather:0x007faa430a3dc8 @condition="stormy"> 
+2.2.3 :007 > weather2 = Weather.new
+ => #<Weather:0x007faa4396e2f0 @condition="sunny"> 
+2.2.3 :008 > plane.land(airport, weather2)
+ => #<Plane:0x007faa4397ed08 @landed=true, @airport=#<Airport:0x007faa43987728 @capacity=20, @planes=[#<Plane:0x007faa4397ed08 ...>]>> 
+2.2.3 :009 > plane.takeoff(airport, weather1)
+RuntimeError: Can't take off - weather is stormy
+```
 
 Task
 -----

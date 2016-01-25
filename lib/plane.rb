@@ -2,10 +2,6 @@ class Plane
 
   attr_reader :landed, :airport
 
-  def initialize
-    @airport
-  end
-
   def land(airport, weather)
     fail "Plane already landed" if landed
     fail "Can't land when weather is stormy" if weather.condition == "stormy"
