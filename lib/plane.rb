@@ -6,7 +6,7 @@ class Plane
     fail "Can't land when airport is at capacity" if airport.full
     @landed = true
     @airport = airport
-    airport.planes.push(self)
+    airport.dock(self)
     self
   end
 
@@ -15,7 +15,7 @@ class Plane
     fail "Plane not at this airport" unless docked?(airport)
     fail "Can't take off - weather is stormy" if stormy?(weather)
     @landed = false
-    airport.planes.delete(self)
+    airport.undock(self)
     self
   end
 

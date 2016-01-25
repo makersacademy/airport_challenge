@@ -14,4 +14,12 @@ class Airport
     false
   end
 
+  def dock(plane)
+    planes.push(plane)
+  end
+
+  def undock(plane)
+    planes.delete(plane)
+  end
+
 end

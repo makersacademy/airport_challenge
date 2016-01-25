@@ -12,6 +12,7 @@ describe Plane do
       allow(airport1).to receive(:full) {false}
       allow(airport1).to receive(:planes) {[]}
       allow(airport2).to receive(:full) {true}
+      allow(airport1).to receive(:dock)
     end
 
     it "returns plane when plane successfully landed" do
@@ -35,8 +36,11 @@ describe Plane do
   describe "#takeoff" do
     before do
       allow(airport1).to receive(:full) {false}
-      allow(airport1).to receive(:planes) {[]}   
+      allow(airport1).to receive(:planes) {[]}
+      allow(airport1).to receive(:dock)
+      allow(airport1).to receive(:undock)  
     end
+
     it "returns a plane with successfully take off" do
    
       plane.land(airport1, weather1)
@@ -63,6 +67,7 @@ describe Plane do
     before do
       allow(airport1).to receive(:full) {false}
       allow(airport1).to receive(:planes) {[]}
+      allow(airport1).to receive(:dock)
     end
 
     it "prevents landing" do
