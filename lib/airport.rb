@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-attr_reader :holding_bay, :capacity, :weather
+attr_reader :holding_bay, :capacity, :sunny
 
 DEFAULT_CAPACITY = 20
 
@@ -17,11 +17,11 @@ DEFAULT_CAPACITY = 20
     if full?
       "The airport is full"
     else
-      if @sunny && plane.flying?
+      if sunny && plane.flying?
         plane.change_status
-        @holding_bay << plane
+        holding_bay << plane
       else
-        @sunny == false ? "Unsafe to land plane whilst stormy" : "Plane has already landed"
+        sunny ? "Plane has already landed" : "Unsafe to land plane whilst stormy"
       end
     end
   end
@@ -30,13 +30,13 @@ DEFAULT_CAPACITY = 20
     if empty?
       "The airport is empty"
     else
-        plane = @holding_bay.pop
-        if @sunny && plane.landed?
+        plane = holding_bay.pop
+        if sunny && plane.landed?
           plane.change_status
           plane
         else
-          @holding_bay << plane
-          @sunny == false ? "Unsafe to take off plane whilst stormy" : "This plane is already flying"
+          holding_bay << plane
+          sunny ? "This plane is already flying" : "Unsafe to take off plane whilst stormy"
         end
     end
   end
@@ -44,11 +44,11 @@ DEFAULT_CAPACITY = 20
   private
 
   def full?
-    @holding_bay.size >= @capacity
+    holding_bay.size >= capacity
   end
 
   def empty?
-    @holding_bay.empty?
+    holding_bay.empty?
   end
 
 end

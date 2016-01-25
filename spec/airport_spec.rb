@@ -1,14 +1,14 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) {described_class.new 20, true}
+  subject(:airport) {described_class.new Airport::DEFAULT_CAPACITY, true}
   let(:plane) {double :plane}
 
   describe "#initialize" do
 
       context "All airports have holding bay for planes to be stored" do
 
-        it {is_expected.to respond_to(:holding_bay)}
+        # it {is_expected.to respond_to(:holding_bay)}
 
         it "Initializes new Airports with a holding bay Array" do
           expect(airport.holding_bay).to be_a Array
@@ -21,15 +21,15 @@ describe Airport do
 
     context "All Aiports have a capacity" do
 
-      it {is_expected.to respond_to(:capacity)}
+      # it {is_expected.to respond_to(:capacity)}
 
       it "Initializes new Airports with a capacity" do
         expect(airport.capacity).to be_a Integer
       end
 
       it "Intializes all new Airports with the same default capacity" do
-        airport1 = Airport.new
-        airport2 = Airport.new
+        airport1 = described_class.new
+        airport2 = described_class.new
         expect(airport1.capacity).to eq airport2.capacity
       end
 
@@ -83,8 +83,8 @@ describe Airport do
         let(:small_airport) {described_class.new 2, true}
 
       before do
-        plane1 = double("plane1", :flying? => true, :change_status => "Landed")
-        plane2 = double("plane2", :flying? => true, :change_status => "Landed")
+        plane1 = double("plane1", :flying? => true, :change_status => :Landed)
+        plane2 = double("plane2", :flying? => true, :change_status => :Landed)
         small_airport.land plane1
         small_airport.land plane2
       end

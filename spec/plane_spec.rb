@@ -7,10 +7,10 @@ describe Plane do
   describe "#initialize" do
     context "All planes have a status, flying or landed" do
 
-      it {is_expected.to respond_to(:status)}
+      # it {is_expected.to respond_to(:status)}
 
       it "Ensures that, for Airtraffic control, Plane.new is initially flying" do
-        expect(subject.status).to eq "Flying"
+        expect(plane.status).to eq :Flying
       end
 
     end
@@ -19,53 +19,59 @@ describe Plane do
     context "Flying and Landing" do
 
       describe "#landed?" do
-        it {is_expected.to respond_to(:landed?)}
+        # it {is_expected.to respond_to(:landed?)}
 
         it "Returns true when landed" do
-          subject.change_status
-          expect(subject.landed?).to be true
+          plane.change_status
+          expect(plane.landed?).to be true
         end
 
         it "Returns false when not landed" do
-          expect(subject.landed?). to be false
+          expect(plane.landed?). to be false
         end
 
         it "Returns true when status == 'Landed'" do
-          subject.status = "Landed"
-          expect(subject.landed?).to be true
+          plane.status = :Landed
+          expect(plane.landed?).to be true
         end
 
         it "Returns false when status == 'Flying'" do
-          subject.status = "Flying"
-          expect(subject.landed?).to be false
+          plane.status = :Flying
+          expect(plane.landed?).to be false
         end
-        
+
       end
 
       describe "#flying?" do
-        it {is_expected.to respond_to(:flying?)}
+        # it {is_expected.to respond_to(:flying?)}
+
         it "Returns true when flying" do
-          expect(subject.flying?).to be true
+          expect(plane.flying?).to be true
         end
+
         it "Returns false when not flying" do
-          subject.change_status
-          expect(subject.flying?).to be false
+          plane.change_status
+          expect(plane.flying?).to be false
         end
+
         it "Returns false when status == 'Landed'" do
-          subject.status = "Landed"
-          expect(subject.flying?).to be false
+          plane.status = :Landed
+          expect(plane.flying?).to be false
         end
+
         it "Returns true when status == 'Flying'" do
-          subject.status = "Flying"
-          expect(subject.flying?).to be true
+          plane.status = :Flying
+          expect(plane.flying?).to be true
         end
+
       end
 
       describe "#change_status" do
-          it {is_expected.to respond_to(:change_status)}
+
+          # it {is_expected.to respond_to(:change_status)}
 
           it "Will change the plane's status from 'Flying' to 'Landed'." do
-            expect {subject.change_status}.to change {plane.status}.to("Landed")
+            expect {plane.change_status}.to change {plane.status}.to(:Landed)
           end
       end
     end
