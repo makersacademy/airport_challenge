@@ -19,8 +19,11 @@ describe Airport do
   end
 
   describe "#planes" do
+    before do
+      allow(plane).to receive(:land) {plane}   
+    end
+
     it "returns an array of 1 plane after landing" do
-      allow(plane).to receive(:land) {plane}
       airport.planes << plane.land(airport, weather)
       expect(airport.planes).to eq [plane]
     end

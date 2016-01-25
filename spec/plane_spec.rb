@@ -8,30 +8,24 @@ describe Plane do
   let(:airport2) { double :airport}
 
   describe "#land" do 
-
-    it "returns plane when plane successfully landed" do
+    before do
       allow(airport1).to receive(:full) {false}
       allow(airport1).to receive(:planes) {[]}
+      allow(airport2).to receive(:full) {true}
+    end
+
+    it "returns plane when plane successfully landed" do
       expect(plane.land(airport1, weather1)).to eq plane
     end
 
     it "raises an error if already landed" do
-      allow(airport1).to receive(:full) {false}
-      allow(airport1).to receive(:planes) {[]}
       plane.land(airport1, weather1)
       expect do
         plane.land(airport1, weather1)
       end.to raise_error("Plane already landed")
     end
 
-    it "prevents landing when weather is stormy" do
-      expect do
-        plane.land(airport1, weather2)
-      end.to raise_error("Can't land when weather is stormy")
-    end
-
     it "prevents landing when airport is at capacity" do
-      allow(airport2).to receive(:full) {true}
       expect do
         plane.land(airport2, weather1)
       end.to raise_error("Can't land when airport is at capacity")
@@ -39,17 +33,17 @@ describe Plane do
   end
 
   describe "#landed" do
-
-    it "returns true after plane has landed" do
+    before do
       allow(airport1).to receive(:full) {false}
       allow(airport1).to receive(:planes) {[]}
+    end
+
+    it "returns true after plane has landed" do
       plane.land(airport1, weather1)
       expect(plane.landed).to eq true
     end
 
     it "returns false if plane has taken off" do
-      allow(airport1).to receive(:full) {false}
-      allow(airport1).to receive(:planes) {[]}
       plane.land(airport1, weather1)
       plane.takeoff(airport1, weather1)
       expect(plane.landed).to eq false
@@ -57,16 +51,17 @@ describe Plane do
   end
 
   describe "#takeoff" do
-    it "returns a plane with successfully take off" do
+    before do
       allow(airport1).to receive(:full) {false}
-      allow(airport1).to receive(:planes) {[]}      
+      allow(airport1).to receive(:planes) {[]}   
+    end
+    it "returns a plane with successfully take off" do
+   
       plane.land(airport1, weather1)
       expect(plane.takeoff(airport1, weather1)).to eq plane
     end
      
     it "raises an error if already taken off" do
-      allow(airport1).to receive(:full) {false}
-      allow(airport1).to receive(:planes) {[]}
       plane.land(airport1, weather1)
       plane.takeoff(airport1, weather1)
       expect do
@@ -75,18 +70,26 @@ describe Plane do
     end
 
     it "raises an error if told to take off from wrong airport" do
-      allow(airport1).to receive(:full) {false}
-      allow(airport1).to receive(:planes) {[]}
       plane.land(airport1, weather1)
       expect do
         plane.takeoff(airport2, weather1)
       end.to raise_error("Plane not at this airport")
-
     end
+  end
 
-    it "can't take off if the weather is stormy" do
+  context "when weather is stormy" do
+    before do
       allow(airport1).to receive(:full) {false}
       allow(airport1).to receive(:planes) {[]}
+    end
+
+    it "prevents landing" do
+      expect do
+        plane.land(airport1, weather2)
+      end.to raise_error("Can't land when weather is stormy")
+    end
+
+    it "can't take off" do
       plane.land(airport1, weather1)
       expect do
         plane.takeoff(airport1, weather2)
