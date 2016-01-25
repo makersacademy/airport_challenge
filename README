@@ -1,6 +1,13 @@
 AIRPORT CHALLENGE
 -----------------
 
+Installation
+-------------
+* git clone sara6 network address
+* cd airport_challenge
+* bundle install
+
+
 Lib and spec set up
 -------------------
 * Airport

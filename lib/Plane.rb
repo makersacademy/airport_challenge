@@ -1,7 +1,6 @@
 class Plane
 
-	def initialize(name = "Airbus")
-		@name = name
+	def initialize
 		@fly = true
 	end
 	
@@ -10,7 +9,7 @@ class Plane
 	end
 
 	def takes_off
-		@fly 
+		@fly = true 
 	end 
 
 	def land
