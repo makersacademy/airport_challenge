@@ -12,6 +12,10 @@ Approach
 * Ran feature tests again in pry.
 * Refactored as I went along to remove anything unnecessary / fix anything that wasn't working as expected.
 
+Installation Instructions
+-------------------------
+#add irb copy to show requiring of correct file and how to interact
+#e.g. creating new class instances and testing methods
 
 Instructions
 ---------

@@ -18,8 +18,6 @@ DEFAULT_CAPACITY = 200
 
   def take_off(plane)
     fail 'Cannot take off due to stormy weather' if weather_conditions < 3
-    departing_flights = []
-    departing_flights << plane
     @landed_planes.delete plane
   end
 
