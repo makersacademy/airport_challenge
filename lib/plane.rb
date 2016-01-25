@@ -1,11 +1,11 @@
+require_relative 'airport'
+
 class Plane
 
-	def land(plane)
-
+	def landed?  #rspec tested
 	end
 
-	def take_off
-
+	def taken_off?  #rspec tested
 	end
 
 end
