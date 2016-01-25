@@ -2,12 +2,12 @@ require './lib/Plane.rb'
 
 
 class Airport
-  attr_accessor :grounded_planes, :capacity, :sunny
+  attr_reader :grounded_planes, :capacity, :sunny
 
   def initialize(capacity=20)
     @grounded_planes = []
     @capacity = capacity
-    @sunny == true if rand(1..2) == 2
+    @sunny
   end
 
   def landed(plane)
@@ -26,6 +26,6 @@ class Airport
   end
 
   def sunny?
-   @sunny == false
+    @sunny == true if rand(1..2) == 2
   end
 end
