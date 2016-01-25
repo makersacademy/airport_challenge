@@ -1,16 +1,13 @@
 Airport Challenge
 =================
+This is my first challenge. The aim of the project is to implement 6 user stories in order to control the flow of planes in/out in different airports.
 
-Instructions
+Author
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+This is written by Valentina Monetta at Makers Academy (January 2016)
 
-Steps
+Steps (to update)
 -------
 
 1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
