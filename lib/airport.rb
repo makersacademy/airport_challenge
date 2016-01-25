@@ -1,4 +1,6 @@
 class Airport
+  CAPACITY = 100
+
   attr_accessor :weather
 
   def initialize

@@ -45,4 +45,10 @@ describe Plane do
     airport.weather = 'stormy'
     expect { subject.take_off(airport) }.to raise_error 'Unable to take off during stormy weather'
   end
+
+  it 'cannot land at an already full airport' do
+    airport = Airport.new
+    Airport::CAPACITY.times{Plane.new.land(airport)}
+    expect { subject.land(airport) }.to raise_error 'Unable to land at full airport'
+  end
 end
