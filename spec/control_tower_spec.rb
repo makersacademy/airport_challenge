@@ -1,63 +1,67 @@
 require "control_tower"
+require "airport"
 
 
 describe ControlTower do
-  before(:each) do
-    @plane = Plane.new
-    @heatrow = double(:airport)
-    @tower = ControlTower.new
-  end
   
-  it "creates an instance of the class" do 
-    expect(subject).to be_a ControlTower
-  end
+  subject(:tower) { described_class.new }
+  
+  let(:plane)     { Plane.new }
+  let(:airport)   { Airport.new(name, capacity)}
+  
+  let(:name) { "Heatrow" }
+  let(:capacity) { 3 }
+    
+    
+    before(:each) do 
+      
+    end
+    
   
   it { is_expected.to respond_to(:land).with(2).arguments }
+  
   it { is_expected.to respond_to(:take_off).with(2).arguments }
   
-  it "clears to land in clear weather" do
-    allow(@tower).to receive(:land) do |plane, airport|
-      "737-1 landed in Stansted"
-    end
-    expect(@tower.land(@plane, @airport)).to eq "737-1 landed in Stansted"
+  it "receives confirm of landing in clear weather" do
+    allow(airport).to receive(:clear?).and_return(true)
+    allow(plane).to receive(:flying).and_return(true)
+    expect(tower.land(plane, airport)).to eq "737-1 landed in Heatrow"
   end
-  it "Clears for take-off in clear weather" do
-    allow(@tower).to receive(:take_off) do |plane, airport|
-      "737-1 took-off from Stansted"
+  
+  it "receives confirm of take-off in clear weather" do
+    allow(tower).to receive(:take_off) do |plane, airport|
+      "737-1 took-off from Heatrow"
     end
-    expect(@tower.take_off(@plane, @airport)).to eq "737-1 took-off from Stansted"
+    expect(tower.take_off(plane, airport)).to eq "737-1 took-off from Heatrow"
   end
   
   it "Does not clear for take-off in stormy weather" do
-    allow(@heatrow).to receive(:check_weather).and_return(:stormy)
-    allow(@heatrow).to receive(:clear?).and_return(false)
-    allow(@heatrow).to receive(:name).and_return("Heatrow")
-    allow(@heatrow).to receive(:planes).and_return([@plane])
-    expect(@tower.take_off(@plane, @heatrow)).to eq "Cannot operate in Heatrow, stormy weather"
+    allow(airport).to receive(:check_weather).and_return(:stormy)
+    allow(airport).to receive(:clear?).and_return(false)
+    allow(airport).to receive(:planes).and_return([plane])
+    expect(tower.take_off(plane, airport)).to eq "Cannot operate in Heatrow, stormy weather"
   end
   
   it "Does not clear for landing in stormy weather" do
-    allow(@heatrow).to receive(:check_weather).and_return(:stormy)
-    allow(@heatrow).to receive(:clear?).and_return(false)
-    allow(@plane).to receive(:flying).and_return(true)
-    allow(@heatrow).to receive(:name).and_return("Heatrow")
-    allow(@heatrow).to receive(:full?).and_return(false)
-    expect(@tower.land(@plane, @heatrow)).to eq "Cannot operate in Heatrow, stormy weather"
+    allow(airport).to receive(:check_weather).and_return(:stormy)
+    allow(airport).to receive(:clear?).and_return(false)
+    allow(plane).to receive(:flying).and_return(true)
+    allow(airport).to receive(:full?).and_return(false)
+    expect(tower.land(plane, airport)).to eq "Cannot operate in Heatrow, stormy weather"
   end
   
   it "Does not clear for landing if the airport is full" do
-     allow(@heatrow).to receive(:check_weather).and_return(:rainy)
-     allow(@heatrow).to receive(:full?).and_return(true)
-     allow(@heatrow).to receive(:name).and_return("Heatrow")
-    expect(@tower.land(@plane, @heatrow)).to eq "Cannot land in Heatrow, the airport is full" 
+     allow(airport).to receive(:check_weather).and_return(:rainy)
+     allow(airport).to receive(:full?).and_return(true)
+    expect(tower.land(plane, airport)).to eq "Cannot land in Heatrow, the airport is full" 
   end
   
   
   describe "#take-off" do
   
     it "receives information about the weather" do
-      allow(@heatrow).to receive(:check_weather).and_return(:rainy)
-      expect(@heatrow.check_weather).to be_a Symbol
+      allow(airport).to receive(:check_weather).and_return(:rainy)
+      expect(airport.check_weather).to be_a Symbol
     end
     
   end
@@ -65,15 +69,15 @@ describe ControlTower do
   describe "#land" do
     
     it "receives information about the weather" do
-      allow(@heatrow).to receive(:check_weather).and_return(:rainy)
-      expect(@heatrow.check_weather).to be_a Symbol
+      allow(airport).to receive(:check_weather).and_return(:rainy)
+      expect(airport.check_weather).to be_a Symbol
     end
     
     it "cannot be instructed if a plane is not flying" do
-      allow(@heatrow).to receive(:check_weather).and_return(:rainy)
-      allow(@heatrow).to receive(:full?).and_return(false)
-      allow(@heatrow).to receive(:name).and_return("Heatrow")
-      expect(@tower.land(@plane, @heatrow)).to eq "737-11 is not flying" 
+      allow(airport).to receive(:check_weather).and_return(:rainy)
+      allow(airport).to receive(:full?).and_return(false)
+      allow(airport).to receive(:name).and_return("Heatrow")
+      expect(tower.land(plane, airport)).to eq "737-6 is not flying" 
       
     end
   end
