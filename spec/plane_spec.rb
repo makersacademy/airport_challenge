@@ -11,7 +11,7 @@ describe Plane do
   end
   describe 'landed' do
     it 'returns true is the plane has landed and is on the ground' do
-      subject.land
+      plane.land
       expect(plane.landed?).to eq true
     end
   end
@@ -24,7 +24,7 @@ describe Plane do
 
   describe '#takeoff' do
     it 'sets landed to false' do
-      subject.takeoff
+      plane.takeoff
       expect(plane.landed?).to eq false
     end
   end
