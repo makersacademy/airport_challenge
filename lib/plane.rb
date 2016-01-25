@@ -3,10 +3,10 @@ require_relative 'airport'
 class Plane
 
   def initialize
-    @flying = false
+    @flying = true
   end
   
-  def land(airport) 
+  def land(airport)
     fail "Already on the ground" unless flying
     @flying = false
     airport.landed(self)
@@ -21,5 +21,4 @@ class Plane
   private
   
   attr_reader :flying
-  
 end

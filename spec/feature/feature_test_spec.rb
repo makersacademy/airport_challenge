@@ -5,10 +5,8 @@ describe "Feature test" do
   describe "Planes can land at an airport if not stormy" do
     airport = Airport.new
     plane = Plane.new
-    
+
     it "can't land in stormy weather" do
-      allow(airport).to receive(:weather) {:sunny}    
-      plane.take_off(airport)
       allow(airport).to receive(:weather) {:stormy}
       expect {plane.land(airport)}.to raise_error "It is too stormy to land." 
     end
@@ -55,7 +53,11 @@ describe "Feature test" do
     it "lands multiple planes" do
       allow(gatwick).to receive(:weather) {:sunny}
       allow(jfk).to receive(:weather) {:snow}
-    
+      
+      planes.each do |plane|
+        plane.land(gatwick)
+      end    
+      
       planes.each do |plane|
         plane.take_off(gatwick)
       end
