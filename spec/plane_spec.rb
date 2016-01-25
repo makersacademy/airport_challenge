@@ -5,13 +5,14 @@ describe Plane do
   let(:airport) {double :airport}
 
   describe "#initialize" do
-
     context "All planes have a status, flying or landed" do
+
       it {is_expected.to respond_to(:status)}
 
       it "Ensures that, for Airtraffic control, Plane.new is initially flying" do
         expect(subject.status).to eq "Flying"
       end
+
     end
   end
 
@@ -19,21 +20,26 @@ describe Plane do
 
       describe "#landed?" do
         it {is_expected.to respond_to(:landed?)}
+
         it "Returns true when landed" do
           subject.change_status
           expect(subject.landed?).to be true
         end
+
         it "Returns false when not landed" do
           expect(subject.landed?). to be false
         end
+
         it "Returns true when status == 'Landed'" do
           subject.status = "Landed"
           expect(subject.landed?).to be true
         end
+
         it "Returns false when status == 'Flying'" do
           subject.status = "Flying"
           expect(subject.landed?).to be false
         end
+        
       end
 
       describe "#flying?" do

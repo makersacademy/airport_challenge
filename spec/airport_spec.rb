@@ -1,10 +1,8 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) {described_class.new}
-  let(:small_airport) {described_class.new 2}
+  subject(:airport) {described_class.new 20, true}
   let(:plane) {double :plane}
-
 
   describe "#initialize" do
 
@@ -30,8 +28,8 @@ describe Airport do
       end
 
       it "Intializes all new Airports with the same default capacity" do
-        airport1 = airport
-        airport2 = airport
+        airport1 = Airport.new
+        airport2 = Airport.new
         expect(airport1.capacity).to eq airport2.capacity
       end
 
@@ -44,6 +42,12 @@ describe Airport do
           little_airport = Airport.new 5
           expect(little_airport.capacity).to eq 5
       end
+
+      it "Allows the system designer to override the default capacity with any number" do
+        any_capacity = rand
+        random_sized_airport = Airport.new any_capacity
+        expect(random_sized_airport.capacity).to eq any_capacity
+      end
     end
   end
 
@@ -53,13 +57,11 @@ describe Airport do
     before do
       allow(plane).to receive(:change_status)
       allow(plane).to receive(:flying?).and_return(true)
-      allow(airport).to receive(:sunny).and_return(true)
     end
 
     context "Can #land plane  in airport" do
 
       before do
-        allow(airport).to receive(:full?).and_return(false)
         airport.land plane
       end
 
@@ -78,11 +80,11 @@ describe Airport do
     context "Capacity constraints" do
 
       describe "#full?" do
+        let(:small_airport) {described_class.new 2, true}
 
       before do
         plane1 = double("plane1", :flying? => true, :change_status => "Landed")
         plane2 = double("plane2", :flying? => true, :change_status => "Landed")
-        allow(airport).to receive(:sunny).and_return(true)
         small_airport.land plane1
         small_airport.land plane2
       end
@@ -106,8 +108,6 @@ describe Airport do
         before do
           allow(plane).to receive(:change_status)
           allow(plane).to receive(:flying?).and_return(true)
-          allow(airport).to receive(:sunny).and_return(true)
-          allow(airport).to receive(:full?).and_return(false)
           airport.land(plane)
           allow(plane).to receive(:landed?).and_return(true)
         end
@@ -138,40 +138,40 @@ describe Airport do
     context "Behaviour due to bad/not sunny weather" do
 
         context "#landing whilst not sunny" do
-          subject(:airport2) {described_class.new(10, false)}
+          subject(:stormy_airport) {described_class.new(10, false)}
 
           it "Will not allow plane to land if not sunny" do
             allow(plane).to receive(:change_status)
             allow(plane).to receive(:flying?).and_return(true)
-            expect(airport2.land(plane)).to eq("Unsafe to land plane whilst stormy")
+            expect(stormy_airport.land(plane)).to eq("Unsafe to land plane whilst stormy")
           end
 
           it "Will not add plane to holding bay if landing whilst not sunny" do
-            before = airport2.holding_bay.size
-            airport2.land plane
-            expect(airport2.holding_bay.size).to eq (before)
+            before = stormy_airport.holding_bay.size
+            stormy_airport.land plane
+            expect(stormy_airport.holding_bay.size).to eq (before)
           end
 
         end
 
         describe "#taking_off whilst not sunny" do
-          subject(:airport2) {described_class.new(10, false)}
+          subject(:stormy_airport) {described_class.new(10, false)}
 
           before do
             allow(plane).to receive(:change_status)
             allow(plane).to receive(:flying?).and_return(true)
-            airport2.land(plane)
+            stormy_airport.land(plane)
           end
 
           it "Will not allow plane to take off if not sunny" do
-            allow(airport2).to receive(:empty?).and_return(false)
-            expect(airport2.take_off).to eq("Unsafe to take off plane whilst stormy")
+            allow(stormy_airport).to receive(:empty?).and_return(false)
+            expect(stormy_airport.take_off).to eq("Unsafe to take off plane whilst stormy")
           end
 
           it "Will not take off a plane from the holding bay whilst not sunny" do
-            before = airport2.holding_bay.size
-            airport2.take_off
-            expect(airport2.holding_bay.size).to eq (before)
+            before = stormy_airport.holding_bay.size
+            stormy_airport.take_off
+            expect(stormy_airport.holding_bay.size).to eq (before)
           end
 
         end
