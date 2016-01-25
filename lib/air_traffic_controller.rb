@@ -1,5 +1,3 @@
-require 'airport'
-
 class AirTrafficController
   attr_reader :name
   def initialize(name="Test")
