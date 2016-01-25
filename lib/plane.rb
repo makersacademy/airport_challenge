@@ -1,31 +1,38 @@
 class Plane
-  attr_reader :landed, :in_airport, :cleared
-
   def initialize
-    @landed = true
+    @flying = true
     @in_airport = false
-    @cleared = false
   end
 
-  def has_landed?
-    landed
+  def flying
+    @flying
+  end
+
+  def landed
+    @flying = false
   end
 
   def takeoff
-    landed = false
+    @flying = true
   end
 
-  def in_airport?
-    in_airport
+  def in_airport
+    @in_airport
+  end
+
+  def on_runway
+    @in_airport = true
   end
 
   def fly_away
-    in_airport = false
+    @in_airport = false
   end
 
   def cleared
-    cleared = true
-    fly_away if cleared
-    takeoff if cleared
+    takeoff if !flying
+  end
+
+  def touch_down
+    landed if flying
   end
 end

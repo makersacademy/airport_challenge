@@ -12,5 +12,18 @@ describe Weather do
   end
 
   it {is_expected.to respond_to(:weather_randomiser)}
+  # describe '#weather_randomiser' do
+  #   it 'randomly selects weather' do
+  #     storm = false
+  #     sun = false
+  #     20.times do
+  #       sky = Weather.new
+  #       storm = sky.is_stormy? if sky.is_stormy?
+  #       sun = true if !sky.is_stormy?
+  #     end
+  #     expect(storm).to be(true)
+  #     expect(sun).to be(true)
+  #   end
+  # end
 
 end
