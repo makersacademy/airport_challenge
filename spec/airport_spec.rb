@@ -13,11 +13,6 @@ describe Airport do
     expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
   end
 
-  it 'testing' do
-    allow(weather).to receive(:stormy?).and_return false
-    expect(weather.stormy?).to eq false
-  end
-
   describe '#land' do
     it 'instructs plane to land' do
       expect(plane).to receive(:arrive)

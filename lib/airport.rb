@@ -17,16 +17,14 @@ class Airport
     fail 'Plane cannot land due to stormy weather.' if weather.stormy?
     fail 'Airport is full!' if full?
     plane.arrive
-    planes << plane
-    plane
+    store(plane)
   end
 
   def takeoff(plane)
     fail 'Plane is not at this airport.' unless include?(plane)
     fail 'Plane cannot take off due to stormy weather.' if weather.stormy?
     plane.depart
-    planes.delete(plane)
-    plane
+    remove(plane)
   end
 
   private
@@ -37,5 +35,15 @@ class Airport
 
   def full?
     planes.count >= DEFAULT_CAPACITY
+  end
+
+  def store(plane)
+    planes << plane
+    plane
+  end
+
+  def remove(plane)
+    planes.delete(plane)
+    plane
   end
 end
