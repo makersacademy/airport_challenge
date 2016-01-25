@@ -15,6 +15,7 @@ class Airport
 
   def land_plane(plane)
     raise denied if check_weather(sky)
+    plane.touch_down
     @planes << plane
   end
 

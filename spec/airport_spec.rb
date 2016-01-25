@@ -8,6 +8,9 @@ describe Airport do
   subject(:airport) {described_class.new}
 
   it {is_expected.to respond_to(:land_plane)}
+  before do
+    allow(plane).to receive(:touch_down)
+  end
   describe '#land_plane' do
     it 'lands planes' do
       allow(airport).to receive(:check_weather) {false}

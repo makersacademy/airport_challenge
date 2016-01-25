@@ -20,7 +20,7 @@ class Plane
     @in_airport
   end
 
-  def on_runway
+  def in_hanger
     @in_airport = true
   end
 
@@ -30,9 +30,11 @@ class Plane
 
   def cleared
     takeoff if !flying
+    fly_away if in_airport
   end
 
   def touch_down
     landed if flying
+    in_hanger if !in_airport
   end
 end
