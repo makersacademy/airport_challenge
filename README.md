@@ -21,7 +21,7 @@ This is a solo project, created for the Makers Academy week 1 weekend challenge.
 Instructions
 ---------
 
-1. Firstly open Terminal, ```cd``` in to the directory containing this project and run ```irb```.
+1. Firstly open Terminal, ```cd``` in to the directory containing this project and run ```irb```, or any similar REPL.
 2. Require the necessary files using:
 
 ```
