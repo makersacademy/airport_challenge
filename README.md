@@ -1,10 +1,47 @@
-Russell Vaughan - Airport Challenge
-=================
+#Russell Vaughan - Airport Challenge
+====================================
+
+Last Edited
+------------
+January 25th 2016
+
+Author
+---------------
+Russell Vaughan
+
+Program Synopsis
+----------------
+Airport Challenge is an Air Traffic Control simulator that allows you control the traffic at a simulator airport. The program allows you to depart and land planes into an airport based on external factors such as weather and capacity.
+
+Example Program:
+-----------------
+
+Scenario 1
+
+2.2.3 :028 > airport = Airport.new
+ => #<Airport:0x007fa154051728 @planes=[], @capacity=10> 
+2.2.3 :029 > plane = Plane.new
+ => #<Plane:0x007fa15403a618 @flying=false> 
+2.2.3 :030 > airport.land(plane)
+ => [#<Plane:0x007fa15403a618 @flying=false>] 
+2.2.3 :031 > airport.depart(plane)
+ => true 
+
+Scenario 2
+
+2.2.3 :006 > airport = Airport.new
+ => #<Airport:0x007fa153827c00 @planes=[], @capacity=10> 
+2.2.3 :007 > plane = Plane.new
+ => #<Plane:0x007fa1540d1630 @flying=false> 
+2.2.3 :008 > airport.land(plane)
+RuntimeError: unsafe flying conditions to land
+
+
 
 Learning Objectives:
 ---------------------
 
-The purpose of this challenge is to expand on the learnings from the Boris Bikes challenge. At the heart those challenges was learning Test Driven Development and Effective Pairing, although this challenge will be undertaken solely by me.
+The purpose of this challenge is to expand on the learnings from the Boris Bikes challenge. At the heart those challenges were learning Test Driven Development and Effective Pairing, although this challenge will be undertaken solely by me.
 
 Task
 -----
@@ -50,16 +87,13 @@ Expectations:
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
 * The code is elegant: every class has a clear responsibility, methods are short etc. 
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+Key Learnings From Challenge
+---------------------------
+Effective TDD Development (Red, Green, Refactor)
+Stubbing Test Elements to simulate desired test conditions.
+Using Modules within programs
+Ruby Syntax
 
-**BONUS**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
