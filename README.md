@@ -1,79 +1,48 @@
-Airport Challenge
-=================
+Airport - Controlling the flow of planes: V1.0.5 [![Build Status](https://travis-ci.org/MatDrake/airport_challenge.svg?branch=master)](https://travis-ci.org/MatDrake/airport_challenge)
 
-Instructions
----------
+Author: Mat Drake
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Created: 23/01/2016
 
-Steps
--------
+Requirements: This program was designed to run with Ruby 2.2.1
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+--------------------------------
 
-Task
------
+Using this program, you will be able to track and control the flow of planes to and from their destinations from an airport. As well, you can assess whether the conditions (weather and airport capacity) are safe for landing/take-off.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+--------------------------------
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+Airports can be instantiated, with the ability to (by default) store 5 planes. You can change an Airport's capacity as needed (pre and post instantiation) to store the required number of planes.
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+You can instantiate new instances of planes which by default will be in flight. Planes can then land/take off at/from specified Airports as long as certain conditions are met:
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+- To land:
+  - The plane is in flight
+  - The targeted airport is not at capacity
+  - The weather is not stormy
+- To take off
+  - The plane is not in flight already
+  - The plane is taking off from the airport it landed at
+  - The weather is not stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+A Weather class must be instantiated before planes can land or take off, as this is a required argument for the methods. The Weather is determined by a random number feature. Whenever a plane lands or takes off, the specified weather class will select a value between 1 and 10. If a 10 in called, the weather will be stormy; any other value and the weather is safe for landing/take off.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+--------------------------------
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
+An example of setting up this program for use would be:
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+london_weather = Weather.new
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+london = Airport.new
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+plane = Plane.new
 
-Please create separate files for every class, module and test suite.
+plane.land(london, london_weather)
 
-In code review we'll be hoping to see:
+london.take_off(plane, london_weather)
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+In the example above, we create our airport (london) as well as a specific weather for that part of the world (weather_london). We then create our plane that we will be landing. By calling 'land' on a plane and passing it the airport and related weather, we can attempt to land our plane (so long as the safe conditions are met). By calling 'take_off' on our airport and passing it the plane we want to take off and the related weather, our plane can attempt to take off (so long as the safe conditions are met).
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+--------------------------------
 
-**BONUS**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
