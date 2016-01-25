@@ -1,6 +1,7 @@
 require 'weather'
 
 describe Weather do
+  subject(:weather) {described_class.new}
 
   context 'That both types work' do
     it 'can be stormy' do

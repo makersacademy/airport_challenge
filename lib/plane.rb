@@ -1,7 +1,7 @@
 class Plane
 
   def initialize
-    @on_ground = false
+    @flying = true
   end
 
   def to_land(airport=false)
@@ -10,22 +10,23 @@ class Plane
   end
 
   def confirm(status,airport)
-    if status == 'landed' && airport.contains?(self)
+    if status == :landed && airport.contains?(self)
       puts "Landing succesful"
-      @on_ground = true
-    elsif status == 'took-off' && (airport.contains?(self) == false)
+      @flying = false
+    elsif status == :took_off && (!airport.contains?(self))
       puts 'Take-off was succesful'
-      @on_ground = false
+      @flying = true
     end
   end
 
   def take_off(airport=false)
-    fail 'Cannot take-off without being instructed to' unless airport.is_a?(Airport)
+    msg = 'Cannot take-off without being instructed to'
+    fail msg unless airport.is_a?(Airport)
     fail 'Plane already in the air' if in_air?
   end
 
   def in_air?
-    true unless @on_ground
+   @flying
   end
 
 end

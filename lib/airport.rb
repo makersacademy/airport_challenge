@@ -12,13 +12,13 @@ class Airport
     @weather = Weather.new
   end
 
-  def land(plane)
+  def land(plane) #add symbols
     fail 'Landing is not allowed in stormy weather' if weather.stormy?
     fail 'Landing is not permitted as airport is full' if full?
     fail 'Only planes can land' unless plane.is_a?(Plane)
     plane.to_land(self)
     planes << plane
-    plane.confirm('landed', self)
+    plane.confirm(:landed, self)
   end
 
   def take_off(specific_plane)
@@ -26,7 +26,7 @@ class Airport
     fail 'Plane not at airport' unless contains?(specific_plane)
     specific_plane.take_off(self)
     planes.delete(specific_plane)
-    specific_plane.confirm('took-off',self)
+    specific_plane.confirm(:took_off, self)
   end
 
   def contains?(specific_plane)

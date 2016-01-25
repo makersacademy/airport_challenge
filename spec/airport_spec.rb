@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-
+  subject(:airport) {described_class.new}
   let(:plane) {double(:plane, is_a?: Plane)}
   let(:plane2) {double(:plane, is_a?: Plane)}
 
