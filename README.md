@@ -1,37 +1,31 @@
 Airport Challenge
 =================
 
-This is a software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+The aim of this challenge is to build a software to control the flow of planes at an airport.
 
-<!-- Your code should defend against edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc. -->
+The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-Plane
+Current state of the project
 -------
+* I derived a functional representation from given User Stories (see at https://docs.google.com/spreadsheets/d/1To2KRcizbrMYTPcU9RAWpIlG1LTZGfBzoP4Pwok4OeQ)
+* I used rspec for the TDD-approach
+* So far the tests include feedback to the plane flying, to land and to take off (User Stories 1 and 2)
 
-* landed?
-* flying?
-
-
-Weather
+Class Plane
 -------
+* land
+* take off
 
+Class Weather
+-------
 * sunny (normal status)
 * is stormy (rare occasions)
 
-<!-- For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test. -->
-
-
-Airport
+Class Airport
 -------
-
 * landing possible (weather condition)
 * landing possible (capacity)
 * takeoff possible (weather condition)
-
-Domain Model
--------
-
-* A detailed view of the underlying Domain Model derived from User Stories: https://docs.google.com/spreadsheets/d/1To2KRcizbrMYTPcU9RAWpIlG1LTZGfBzoP4Pwok4OeQ
 
 
 User stories
@@ -62,6 +56,9 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+
+Yet to come regarding the task of the challenge
+===============================================
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
