@@ -26,8 +26,9 @@ class Airport
     @planes
   end
 
+  private
+
   def too_stormy?
-    weather = Weather.new
     weather.stormy?
   end
 
