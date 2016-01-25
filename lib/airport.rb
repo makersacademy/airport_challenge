@@ -1,12 +1,15 @@
 require 'weather.rb'
 
 class Airport
-  attr_reader :planes, :sky, :denied
+  attr_reader :planes, :sky, :denied, :capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 50
+
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
     @sky = Weather.new
     @denied = 'Permission denied, the weather is too dangerous.'
+    @capacity = capacity
   end
 
   def planes

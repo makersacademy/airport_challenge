@@ -7,6 +7,12 @@ describe Airport do
   let (:weather) {double :weather}
   subject(:airport) {described_class.new}
 
+  describe '#initialize' do
+    it 'sets the default capacity to 50' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
   it {is_expected.to respond_to(:land_plane)}
   before do
     allow(plane).to receive(:touch_down)
