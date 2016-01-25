@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   subject(:Airport) { described_class.new }
   let(:plane) { double :plane }
+  let(:weather) { Weather.new }
 
   describe ' #airport management' do
 
@@ -27,6 +28,11 @@ describe Airport do
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes).to eq []
+    end
+
+    it 'should prevent a take off when it is not sunny' do
+      allow(subject).to receive(:sunny?).and_return(false)
+      expect{ subject.take_off(plane)}.to raise_error "Weather conditions not suitable for take off."
     end
 
   end

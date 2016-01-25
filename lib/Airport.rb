@@ -11,13 +11,16 @@ class Airport
   def take_off(plane)
     plane.report_take_off
     @planes.delete(plane)
-    plane.status
+    plane
   end
 
   def land(plane)
     plane.report_landed
     @planes << plane
-    plane.status
+  end
+
+  def weather
+    @weather
   end
 
 end
