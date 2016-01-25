@@ -18,10 +18,12 @@ describe Airport do
   end
 
   it 'adds one to number of planes when a plane lands' do
+    subject.weather = 'sunny'
     expect{ Plane.new.land(subject) }.to change{ subject.number_of_planes }.by(1)
   end
 
   it 'subtracts one from number of planes when a plane takes off' do
+    subject.weather = 'sunny'
     expect{ Plane.new.take_off(subject) }.to change{ subject.number_of_planes }.by(-1)
   end
 
@@ -32,6 +34,7 @@ describe Airport do
   describe 'initialization' do
     it 'has a variable capacity' do
       airport = Airport.new(25)
+      airport.weather = 'sunny'
       25.times { Plane.new.land(airport) }
       expect { Plane.new.land(airport) }.to raise_error 'Unable to land at full airport'
     end
@@ -39,6 +42,7 @@ describe Airport do
     subject { Airport.new }
     let(:plane) { Plane.new }
     it 'defaults capacity' do
+      subject.weather = 'sunny'
       described_class::DEFAULT_CAPACITY.times { plane.land(subject) }
       expect { plane.land(subject) }.to raise_error 'Unable to land at full airport'
     end
