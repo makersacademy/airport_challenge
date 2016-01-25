@@ -18,6 +18,7 @@ class Airport
 
   def land_plane(plane)
     raise denied if check_weather(sky)
+    raise 'Permission denied, the airport is full.' if planes.length >= capacity
     plane.touch_down
     @planes << plane
   end

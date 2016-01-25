@@ -27,6 +27,11 @@ describe Airport do
       allow(airport).to receive(:check_weather) {true}
       expect{airport.land_plane(plane)}.to raise_error 'Permission denied, the weather is too dangerous.'
     end
+
+    it 'does not land planes when the airport is full' do
+      50.times {airport.land_plane(plane)}
+      expect{airport.land_plane(plane)}.to raise_error 'Permission denied, the airport is full.'
+    end
   end
 
   it {is_expected.to respond_to(:clear_plane_for_take_off).with(1).argument}
