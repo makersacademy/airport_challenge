@@ -2,10 +2,10 @@ require 'Plane'
 	
 describe Plane do
 
+respond
 
 
 
- it {is_expected.to respond_to(:landed?)}
 
 
 
