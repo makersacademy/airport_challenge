@@ -24,6 +24,7 @@ class Plane
     elsif airport.weather == 'stormy'
       fail 'Unable to take off during stormy weather'
     else
+      airport.subtract_plane
       @landed = false  
     end
   end
