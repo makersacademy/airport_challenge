@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :capacity
@@ -7,6 +8,7 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @landed_planes = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def landed_planes
@@ -31,13 +33,10 @@ class Airport
   end
 
   def confirm_landed(plane)
-    plane.landed
+    plane.landed?
   end
 
-  def stormy?
-    rand(1..13) == 13 ? true:false
-  end
-
+  private
   def full?
     @landed_planes.size >= capacity
   end
@@ -46,23 +45,7 @@ class Airport
     @landed_planes.size <= 0
   end
 
-
-
-
-
-
-
-  # def clearance?
-  #   true
-  # end
-  #
-  # def plane_lands(plane)
-  #   fail "Plane does not have clearance to land" if plane.clearance == false
-  #   @landed_planes << plane
-  # end
-  #
-  # def reset_clearance
-  #   @landed_planes.each {|plane| plane.request_clearance(self)}
-  # end
-
+  def stormy?
+    @weather.stormy?
+  end
 end

@@ -60,9 +60,8 @@ describe Airport do
   describe '#clear_to_takeoff' do
     it 'instructs a plane to takeoff and removes it from the landed planes array' do
       allow(airport).to receive(:stormy?) { false }
-      allow(airport).to receive(:empty?) { false }
       allow(plane).to receive(:land)
-      allow(plane).to receive(:landed?) { false }
+      allow(plane).to receive(:landed?)
       allow(plane).to receive(:takeoff)
       airport.clear_to_land(plane)
       airport.clear_to_takeoff
@@ -85,69 +84,8 @@ describe Airport do
 
   describe '#confirm_landed' do
     it 'accepts a plane and confirms if it has landed' do
-      allow(plane).to receive(:landed) {true}
+      allow(plane).to receive(:landed?) {true}
       expect(airport.confirm_landed(plane)).to eq true
     end
   end
-
-  describe '#stormy?' do
-    it 'randomly returns true or false if the weather is stormy' do
-      allow(airport).to receive(:stormy?) { true }
-      expect(airport.stormy?).to eq true
-    end
-
-    it 'returns false if the weather is not stormy' do
-      allow(airport).to receive(:stormy?) { false }
-      expect(airport.stormy?).to eq false
-    end
-  end
-
-  describe '#full?' do
-    it 'airport has a method called to check if it is full' do
-      expect(airport).to respond_to :full?
-    end
-
-    it 'returns true when the airport has reached its capacity' do
-      allow(airport).to receive(:stormy?) { false }
-      allow(plane).to receive(:landed?) { false }
-      allow(plane).to receive(:land)
-      described_class::DEFAULT_CAPACITY.times do
-        airport.clear_to_land(plane)
-      end
-      expect(airport.full?).to eq true
-    end
-
-    describe '#empty?' do
-      it 'returns true of false depening on whether the airport is empty' do
-        expect(airport.empty?).to eq true
-      end
-    end
-  end
 end
-
-# describe '#clearance?' do
-#   it 'returns clearance as true' do
-#     expect(subject.clearance?).to eq true
-#   end
-# end
-#
-# describe '#plane_lands' do
-#   it 'a plane lands and it is stored at the airport' do
-#     allow(plane).to receive(:clearance).and_return(true)
-#     landed_planes = [plane]
-#     expect(subject.plane_lands(plane)).to eq landed_planes
-#   end
-#
-#   it 'returns an error if a plane does not have clearance to land' do
-#     allow(plane).to receive(:clearance).and_return(false)
-#     expect{subject.plane_lands(plane)}.to raise_error "Plane does not have clearance to land"
-#   end
-# end
-#
-# describe '#landed_planes' do
-#   it 'returns an array with a copy of the planes at the airport' do
-#     allow(plane).to receive(:clearance).and_return(true)
-#     subject.plane_lands(plane)
-#     expect(subject.landed_planes).to eq [plane]
-#   end
-# end
