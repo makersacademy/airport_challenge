@@ -18,6 +18,10 @@ describe Airport do
   end
 
   it 'adds one to number of planes when a plane lands' do
-    expect{subject.add_plane}.to change{subject.number_of_planes}.by(1)
+    expect{ subject.add_plane }.to change{ subject.number_of_planes }.by(1)
+  end
+
+  it 'subtracts one from number of planes when a plane takes off' do
+    expect{ subject.subtract_plane }.to change{ subject.number_of_planes }.by(-1)
   end
 end
