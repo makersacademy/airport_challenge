@@ -1,76 +1,78 @@
 Airport Challenge
-=================
-This is my first challenge. The aim of the project is to implement 6 user stories in order to control the flow of planes in/out in different airports.
+==================
+
+This is my first challenge. The aim of the project is to implement 6 user stories (see in doc directory) in order to control the flow of planes in/out in different airports. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. 
+
 
 Author
----------
+------
 
-This is written by Valentina Monetta at Makers Academy (January 2016)
+This code and README.md is prepared in Ruby 2.2.3 by Valentina Monetta at Makers Academy (January 2016).
 
-Steps (to update)
--------
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+Installation and requirements
+-----------------------------
+This project is forked and then cloned locally from https://github.com/makersacademy/airport_challenge. Below the steps to follow to run the program :
+1. Run the command `gem install bundle` 
+2. When the installation completes, run `bundle`
+Rspec installed by following the content in this link: https://github.com/rspec/rspec-rails. 
 
-Task
------
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Directories
+-----------
+doc directory - contains instruction to review the code and the User stories
+lib directory - contains code (airport.rb, plane.rb and weather.rb)
+spec directory - contains rspec tests (airport_spec.rb, plane_spec.rb, weather_spec.rb)
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+Instructions (to update)
+------------
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Copyright and Licensing
+-----------------------
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+The MIT License (MIT)
 
-Please create separate files for every class, module and test suite.
+Copyright (c) [2016] [Valentina Monetta]
 
-In code review we'll be hoping to see:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-**BONUS**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+
+
+
+
+
+
+
+
+
+
+
