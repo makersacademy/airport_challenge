@@ -12,6 +12,10 @@ class Airport
     @number_of_planes += 1
   end
 
+  def subtract_plane
+    @number_of_planes -= 1
+  end
+
   private
 
   def weather_update
