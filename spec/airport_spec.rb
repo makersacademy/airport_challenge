@@ -28,4 +28,12 @@ describe Airport do
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
+
+  describe 'initialization' do
+    it 'has a variable capacity' do
+      airport = Airport.new(25)
+      25.times { Plane.new.land(airport) }
+      expect { Plane.new.land(airport) }.to raise_error 'Unable to land at full airport'
+    end
+  end
 end
