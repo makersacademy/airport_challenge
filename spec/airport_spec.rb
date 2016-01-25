@@ -67,12 +67,8 @@ it { is_expected.to respond_to :capacity }
 	end
 
 	it "#capacity can be overridden" do
-	airport = described_class.new
-	plane = Plane.new
-	airport.capacity=15
-	allow(airport).to receive(:stormy?) {false}
-	airport.capacity.times { airport.land(Plane.new) }
-	expect{airport.land(plane)}.to raise_error("airport at capacity")
+	airport = described_class.new (15)
+	expect(airport.capacity).to eq 15
 	end
 
 

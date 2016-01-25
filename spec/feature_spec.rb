@@ -59,14 +59,11 @@ end
 
 describe  "allows capacity that can be overridden" do 
 	it "allows capacity that can be overridden" do
-	airport = Airport.new
-	plane = Plane.new 
-	airport.capacity=15
-	allow(airport).to receive(:stormy?) {false}
-	airport.capacity.times { airport.land Plane.new }
-	expect{airport.land(plane)}.to raise_error("airport at capacity")
+	airport = Airport.new (15)
+	expect(airport.capacity).to eq 15
 	end
 end
+
 
 describe "planes only depart airports they are in" do 
 	it "allows plane to only depart from airport it is in" do  
