@@ -1,0 +1,30 @@
+AIRPORT CHALLENGE
+-----------------
+
+Lib and spec set up
+-------------------
+* Airport
+* Plane
+* Weather
+* Each of the above has a corresponding spec file. 
+
+
+Description
+-----------
+* Started with each user story and worked out in turn
+* Stunts and mock used to isolate tests
+
+
+Difficulties
+------------
+* The weather user story 
+* What to put in the weather spec 
+* The weather tests in airport would make all other tests fail
+* The above tests are commented out in airport_spec to make the others works
+* Confusion on what belongs to airport and what belongs to a plane (i.e. landing and land)
+
+Next steps
+-----------
+* Solving weather better 
+* Looking up modules more, which suspect may help with weather user story 
+* Understanding irb in a README
