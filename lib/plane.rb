@@ -5,11 +5,11 @@ attr_reader :landed
 
   def land(airport, weather = Weather.new.check_weather)
     fail "Already Landed" if @landed
-    if weather == "sunny" && airport.full? == false
+    if weather == :sunny && airport.full? == false
       airport.planes << self
       puts "Landed!"
       @landed = true
-    elsif weather == "stormy"
+    elsif weather == :stormy
       puts "Could not land due to bad weather"
       @landed = false
     else
@@ -20,7 +20,7 @@ attr_reader :landed
 
   def takeoff(airport, weather = Weather.new.check_weather)
     fail "Not At Airport" unless airport.planes.include?(self)
-    if weather == "sunny"
+    if weather == :sunny
       puts "The plane takes off!"
       airport.planes.delete(self)
       @landed = false

@@ -1,9 +1,9 @@
 class Weather
   def check_weather
     if rand(100) < 75
-      "sunny"
+      :sunny
     else
-      "stormy"
+      :stormy
     end
   end
 end
