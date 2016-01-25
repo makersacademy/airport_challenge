@@ -16,7 +16,7 @@ class Airport
 	fail "plane is already landed and cannot land" if include?
 	fail "unsafe flying conditions to land" if stormy?
 	fail "airport at capacity" if at_capacity
-	plane.flying=false
+	plane.land
 	store_plane
 	end
 
@@ -25,7 +25,7 @@ class Airport
 	fail "plane is already flying an cannot take off" if plane.flying
 	fail "unsafe flying conditions to depart" if stormy?
 	fail "can only take off from current airport" if !include?	
-	plane.flying=true
+	plane.fly
 	delete_plane
 	end
 	
