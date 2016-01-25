@@ -1,14 +1,16 @@
 class Weather
 
   def stormy?
-    random_generator == :stormy
+    if random_generator <= 20
+      true
+    else
+      false
+    end
   end
 
   #private
-  def weather
+  def random_generator
     num = rand(100)
-    stormy == true if num <= 20
   end
-
 end
 
