@@ -1,7 +1,5 @@
 class Plane
 
-  attr_reader :landed, :airport
-
   def land(airport, weather)
     fail "Plane already landed" if landed
     fail "Can't land when weather is stormy" if stormy?(weather)
@@ -14,7 +12,7 @@ class Plane
 
   def takeoff(airport, weather)
     fail "Plane already airborne" unless landed
-    fail "Plane not at this airport" unless airport == @airport
+    fail "Plane not at this airport" unless docked?(airport)
     fail "Can't take off - weather is stormy" if stormy?(weather)
     @landed = false
     airport.planes.delete(self)
@@ -23,9 +21,15 @@ class Plane
 
   private
 
+  attr_reader :landed, :airport
+
   def stormy?(weather)
     return true if weather.condition == "stormy"
     false
   end
 
+  def docked?(airport)
+    return true if airport == @airport
+    false
+  end
 end

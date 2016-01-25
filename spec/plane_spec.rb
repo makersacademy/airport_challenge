@@ -32,24 +32,6 @@ describe Plane do
     end
   end
 
-  describe "#landed" do
-    before do
-      allow(airport1).to receive(:full) {false}
-      allow(airport1).to receive(:planes) {[]}
-    end
-
-    it "returns true after plane has landed" do
-      plane.land(airport1, weather1)
-      expect(plane.landed).to eq true
-    end
-
-    it "returns false if plane has taken off" do
-      plane.land(airport1, weather1)
-      plane.takeoff(airport1, weather1)
-      expect(plane.landed).to eq false
-    end
-  end
-
   describe "#takeoff" do
     before do
       allow(airport1).to receive(:full) {false}
