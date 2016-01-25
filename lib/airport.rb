@@ -16,7 +16,7 @@ class Airport
 	fail "plane is already landed and cannot land" if include?
 	fail "unsafe flying conditions to land" if stormy?
 	fail "airport at capacity" if at_capacity
-	plane.land
+	plane.grounded
 	store_plane
 	end
 
