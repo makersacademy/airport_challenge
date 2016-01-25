@@ -5,13 +5,14 @@ Airport Challenge
 ###Build software to control the flow of planes into an airport with TDD, in response to user stories.
 
 ###Content:
-Three classes:
+Two classes:
 
 (1) Plane - Records the state of the plane (landed/not-landed), contains methods 'land' and 'takeoff' which check weather/ condition of the airport.
 
 (2) Airport - Records the planes that have landed and the capacity of the airport. Contains full? method which checks to see if the number of planes has reached the capacity.
 
-(3) Weather - Randomly generates a weather condition, with a 75% chance of sunny weather and a 25% chance of stormy weather.
+One module:
+(1) Weather - Randomly generates a weather condition, with a 75% chance of sunny weather and a 25% chance of stormy weather.
 
 ###Example:
 ```
@@ -37,15 +38,15 @@ The plane takes off!
 
 
  Instruct a plane to land at an airport and confirm that it has landed
- 
+
  Instruct a plane to take off from an airport and confirm that it is no longer in the airport
- 
+
  Prevent takeoff when weather is stormy
- 
+
  Prevent landing when weather is stormy
- 
+
  Prevent landing when the airport is full
- 
+
  Create a default airport capacity that can be overridden as appropriate
- 
+
  Raise errors for inconsistent system states.
