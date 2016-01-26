@@ -1,6 +1,5 @@
 module Weather
   def weather
-    @weather = [:sunny, :raining, :snow, :ail, :stormy]
-    @weather.sample
+    [:sunny, :raining, :snow, :ail, :stormy].sample
   end
 end
