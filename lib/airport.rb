@@ -7,15 +7,17 @@ class Airport
 		@planes = []
 	end
 
-	def land(plane)  #rspec tested
+	def land(plane)  
 		@planes << plane
 	end
 
-	def planes_landed  #rspec tested
+# tried to incorporate planes_landed into land, so a plane lands, put plane in array, return array, but it didn't like it, so created separate method to return value of array?
+
+	def planes_landed  
 		@planes
 	end
 
-	def planes_takenoff
+	def taken_off(plane)
 		@planes.pop
 	end
 end
