@@ -1,79 +1,71 @@
-Airport Challenge
+
+
+Airport Challenge         [![Build Status](https://travis-ci.org/MarcoCode/airport_challenge.svg?branch=master)](https://travis-ci.org/MarcoCode/airport_challenge)  
 =================
 
-Instructions
+What is it?
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+* My solution to the airport_challenge (Maker's Academy - Week 1)
+* Refactored solution into the SRP_airport branch
 
-Steps
+Rationale
 -------
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+* The ControlTower class instructs planes
+  - It is designed to instruct Planes to land or take_off from/to a specific airport
+* The Airport class let planes land and take-off
+  - It is designed to store Planes that have landed 
+* The Plane class keeps track of the flying state
+  - It is designed to communicate its status to the ControlTower class
+  - Each instance has to be docked when created in order to take-off from an airport
 
-Task
------
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Example
+-------
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+irb(main):004:0> ct = ControlTower.new
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+=> #<ControlTower:0x007f9eb983e168>
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+irb(main):005:0> stansted = Airport.new "Stansted"
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+=> \#\<Airport:0x007f9eb982c7b0 @name="Stansted", @capacity=3, @weather=:sunny, @planes=[]\>
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+irb(main):006:0> plane = Plane.new
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
+=> \#\<Plane:0x007f9eb9827850 @plane_id="737-1", @flying=false\>
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+irb(main):007:0> plane1 = Plane.new
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+=> \#\<Plane:0x007f9eb98667a8 @plane_id="737-2", @flying=false\>
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+irb(main):008:0> plane.dock(stansted)
 
-Please create separate files for every class, module and test suite.
+=> [\#\<Plane:0x007f9eb9827850 @plane_id="737-1", @flying=false\>]
 
-In code review we'll be hoping to see:
+irb(main):009:0> stansted.planes
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+=> [\#\<Plane:0x007f9eb9827850 @plane_id="737-1", @flying=false\>]
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+irb(main):010:0> ct.take_off(plane, stansted)
 
-**BONUS**
+=> "737-1 took-off from Stansted"
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+irb(main):012:0> ct.take_off(plane1, stansted)
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+=> "737-2 is not in Stansted"
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+irb(main):013:0> plane2 = Plane.new
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+=> \#\<Plane:0x007f9eb994bf88 @plane_id="737-3", @flying=false\>
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+irb(main):014:0> ct.land(plane, stansted)
+
+=> "737-1 landed in Stansted"
+
+irb(main):015:0> ct.land(plane2, stansted)
+
+=> "737-3 is not flying"
+
+
