@@ -6,7 +6,8 @@ Airport Challenge         [![Build Status](https://travis-ci.org/MarcoCode/airpo
 What is it?
 ---------
 
-* My solution to the challenge
+* My solution to the airport_challenge (Maker's Academy - Week 1)
+* Refactored solution into the SRP_airport branch
 
 Rationale
 -------
