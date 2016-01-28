@@ -68,7 +68,7 @@ describe Airport do
       it {is_expected.to respond_to(:land).with(1).argument}
 
       it "Can #land plane  in airport and then see it in the holding_bay" do
-        expect(airport.holding_bay).to eq [plane]
+        expect(airport.holding_bay).to include plane
       end
 
       it "Cannot land a plane that has already landed" do
