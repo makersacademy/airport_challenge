@@ -8,6 +8,10 @@ describe Airport do
 		expect(subject).to respond_to(:land).with(1).argument  #unsure how these 3 lines are shorter than a 1 liner: it {is_expected.to respond_to(:land).with(1).argument}
 	end
 
+	it 'instrcuts a plane to take off' do
+		expect(subject).to respond_to(:take_off)
+	end
+
 end
 	
 
