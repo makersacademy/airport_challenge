@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+AIRPORT CHALLENGE README
+
+LICENSE:	This project is licensed under the terms of the MIT license.
+		see LICENSE.md
+
+DESCRIPTION:	The aim of this project is to set up a program for managing an airport and aviation traffic too and from that airpot.
+
+AUTHORS:	Joe Wroe (Main)
+		
+=======
 Airport Challenge
 =================
 
@@ -89,3 +100,4 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+>>>>>>> 3b2a5e2f27aa371bdcb3bc6c79d96cf1aee77e4b
