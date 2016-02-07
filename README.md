@@ -1,3 +1,35 @@
+-Run it! :)
+| => irb
+2.2.3 :001 > require './lib/weather.rb'
+=> true 
+2.2.3 :002 > require './lib/airplane.rb'
+=> true 
+2.2.3 :003 > require './lib/airport.rb'
+=> true 
+
+-Obtain an Airport and a Plane!
+2.2.3 :004 > plane = Airplane.new
+=> #<Airplane:0x007fddf08ab328> 
+2.2.3 :005 > port = Airport.new
+=> #<Airport:0x007fddf08a13a0 @capacity=50, @planes=[]> 
+
+Playing
+Your plane is call example.
+Your airport is call port.
+
+-to check the Planes into the airport call .planes on airport. (port.planes)
+
+-to land a plane use .land on airport and introduce your plane as a parameter (port.land(example))
+
+-to to take off any plane, first decide which you want to take off! Then use takeoff on your airport, make sure you introduce the plane you want to take off as a parameter. (port.takeoff(example))
+
+Be carefull! the weather might not let you fly or land eventually! There is a 20% of chance of REALLY BAD WEATHER.
+
+
+
+
+
+
 Airport Challenge
 =================
 
