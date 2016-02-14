@@ -65,6 +65,15 @@ describe 'User Stories' do
       expect { plane.land(airport) }.to raise_error 'Plane cannot land: plane already landed'
     end
 
+    # As an air traffic controller
+    # So the system is consistent and correctly reports plane status and location
+    # I want to ensure a plane that has taken off from an airport is no longer in that airport
+    it 'taking off a plane removes it from that airport' do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes).not_to include plane
+    end
+
     it 'non-flying planes must be in an airport' do
       airport.land(plane)
       expect(plane.airport).to eq airport
@@ -106,11 +115,6 @@ describe 'User Stories' do
 
   end
 end
-
-
-
-
-
 
 
 
