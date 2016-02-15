@@ -2,7 +2,7 @@ Airport Challenge
 =================
 [![Build Status](https://travis-ci.org/barrygrubb/airport_challenge.svg?branch=master)](https://travis-ci.org/barrygrubb/airport_challenge)
 
-add coveralls badge
+[![Build Status](https://travis-ci.org/barrygrubb/takeaway-challenge.svg?branch=master)](https://travis-ci.org/barrygrubb/takeaway-challenge)
 
 Introduction
 ---------
