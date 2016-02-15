@@ -4,7 +4,7 @@ Airport Challenge
 Introduction
 ---------
 
-This project aims to replicate a working airport system, built using Ruby. Rspec is used throughout to test all methods.
+This project aims to replicate a working airport system, built using Ruby. Rspec is used throughout to provide feature and unit testing capabilities.
 
 Features modeled include the following:
 
@@ -21,7 +21,9 @@ This is a solo project, created for the Makers Academy week 1 weekend challenge.
 Instructions
 ---------
 
-* Firstly open Terminal, ```cd``` in to the directory containing this project and run ```irb```, or any similar REPL.
+* Firstly open Terminal and clone the repository locally using `git clone https://github.com/barrygrubb/airport_challenge.git`.
+
+* `cd` in to the directory containing this project and run `irb`, or any similar REPL.
 * Require the necessary files using:
 
 ```
@@ -49,7 +51,7 @@ airport = Airport.new(10)
 plane = Plane.new(airport)
 ```
 
-...where ```(airport)``` is the name of the previously created airport at which you wish to create the plane. Note that this argument is non-optional, as an airport will always have to be specified to create a plane at. In the case that the airport specified is already at full capacity the following error will be raised: ```'There is no room at the airport.'```. To make room to create further planes, either create additional airports or order any planes currently landed at the specified airport to take-off.
+...where `(airport)` is the name of the previously created airport at which you wish to create the plane. Note that this argument is non-optional, as an airport will always have to be specified to create a plane at. In the case that the airport specified is already at full capacity the following error will be raised: `'There is no room at the airport.'`. To make room to create further planes, either create additional airports or order any planes currently landed at the specified airport to take-off.
 
 * To order a plane to take-off, use...
 
@@ -57,7 +59,7 @@ plane = Plane.new(airport)
 plane.take_off(airport)
 ```
 
-...and if that plane is currently landed at the specified airport it will take-off, providing that the weather is not stormy. If the weather is stormy the following error will be raised: ```'The weather is too stormy to take-off.'```. In this instance keep giving the order to take-off until the stormy weather has cleared. If the plane is not currently landed at the specified airport the following error will be raised: ```'This plane is not at the given airport.'```. If the specified plane is already flying the following error will be raised: ```'This plane is already flying.'```.
+...and if that plane is currently landed at the specified airport it will take-off, providing that the weather is not stormy. If the weather is stormy the following error will be raised: `'The weather is too stormy to take-off.'`. In this instance keep giving the order to take-off until the stormy weather has cleared. If the plane is not currently landed at the specified airport the following error will be raised: `'This plane is not at the given airport.'`. If the specified plane is already flying the following error will be raised: `'This plane is already flying.'`.
 
 * Once the order had been given for a plane to take-off you can confirm that it has successfully taken-of using...
 
@@ -65,7 +67,7 @@ plane.take_off(airport)
 airport.confirm_plane_taken_off(plane)
 ```
 
-...which will return ```true``` if the plane has taken off, or ```false``` if the plane is still landed at the specified airport. If the given plane has never been at the airport in question, the following error will be raised: ```'That plane has never been at this airport.'```.
+...which will return `true` if the plane has taken off, or `false` if the plane is still landed at the specified airport. If the given plane has never been at the airport in question, the following error will be raised: `'That plane has never been at this airport.'`.
 
 * To order a plane to land, use...
 
@@ -73,7 +75,7 @@ airport.confirm_plane_taken_off(plane)
 plane.land(airport)
 ```
 
-...and providing the weather is not stormy, and providing that the specified airport is not at maximum capacity, the plane will land at the specified airport. If the weather is stormy then the following error will be raised: ```'The weather is too stormy to land.'```. In this instance keep giving the order to land until the stormy weather has cleared. If the specified airport is at maximum capacity the following error will be raised: ```'There is no room at the airport.'```. In this instance any planes currently landed at the specified airport will have to be ordered to take-off before any further planes can land there. Alternatively further airports can be built to land any flying planes at. In the instance that the specified plane is already landed at an airport the following error will be raised: ```'This plane has already landed.'```.
+...and providing the weather is not stormy, and providing that the specified airport is not at maximum capacity, the plane will land at the specified airport. If the weather is stormy then the following error will be raised: `'The weather is too stormy to land.'`. In this instance keep giving the order to land until the stormy weather has cleared. If the specified airport is at maximum capacity the following error will be raised: `'There is no room at the airport.'`. In this instance any planes currently landed at the specified airport will have to be ordered to take-off before any further planes can land there. Alternatively further airports can be built to land any flying planes at. In the instance that the specified plane is already landed at an airport the following error will be raised: `'This plane has already landed.'`.
 
 * Once the order to land the plane has been given, you can confirm that it has successfully landed using...
 
@@ -81,4 +83,4 @@ plane.land(airport)
 airport.confirm_plane_landed(plane)
 ```
 
-...which will return ```true``` if the plane has landed at the specified airport, or ```false``` if the plane is still flying. If the given plane has never been at the airport in question, the following error will be raised: ```'That plane has never been at this airport.'```.
+...which will return `true` if the plane has landed at the specified airport, or `false` if the plane is still flying. If the given plane has never been at the airport in question, the following error will be raised: `'That plane has never been at this airport.'`.
