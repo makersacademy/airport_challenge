@@ -2,7 +2,7 @@ Airport Challenge
 =================
 [![Build Status](https://travis-ci.org/barrygrubb/airport_challenge.svg?branch=master)](https://travis-ci.org/barrygrubb/airport_challenge)
 
-[![Build Status](https://travis-ci.org/barrygrubb/takeaway-challenge.svg?branch=master)](https://travis-ci.org/barrygrubb/takeaway-challenge)
+[![Coverage Status](https://coveralls.io/repos/github/barrygrubb/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/barrygrubb/airport_challenge?branch=master)
 
 Introduction
 ---------
