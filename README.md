@@ -1,5 +1,6 @@
 Airport Challenge
 =================
+[![Build Status](https://travis-ci.org/barrygrubb/airport_challenge.svg?branch=master)](https://travis-ci.org/barrygrubb/airport_challenge)
 
 Introduction
 ---------
