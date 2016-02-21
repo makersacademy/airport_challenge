@@ -1,7 +1,10 @@
 require 'plane'
 
 describe Plane do
-  it 'can tell whether it has #landed' do
-    expect(subject).to respond_to(:landed)
+  subject(:plane) { described_class.new }
+
+  it 'returns landed' do
+    expect(plane.landed).to be false
   end
+
 end

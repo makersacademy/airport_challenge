@@ -1,23 +1,16 @@
 require 'weather'
 
 describe Weather do
-  it 'responds to #stormy' do
-    expect(subject).to respond_to(:stormy)
+  subject(:weather) { described_class.new }
+
+  it 'returns true if it is stormy' do
+    allow(weather).to receive(:stormy).and_return true
+    expect(weather.stormy).to be true
   end
 
-  it 'gives random weather' do
-    wx = double("Weather")
-    allow(wx).to receive(:stormy).and_return(nil, nil, nil, nil, nil, true, nil, nil, nil, nil)
-    expect(wx.stormy).to eq(nil)
-    expect(wx.stormy).to eq(nil)
-    expect(wx.stormy).to eq(nil)
-    expect(wx.stormy).to eq(nil)
-    expect(wx.stormy).to eq(nil)
-    expect(wx.stormy).to eq(true)
-    expect(wx.stormy).to eq(nil)
-    expect(wx.stormy).to eq(nil)
-    expect(wx.stormy).to eq(nil)
-    expect(wx.stormy).to eq(nil)
+  it 'returns nil if it is not stormy' do
+    allow(weather).to receive(:stormy).and_return nil
+    expect(weather.stormy).to be nil
   end
 
 end
