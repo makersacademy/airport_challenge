@@ -3,10 +3,10 @@ Airport Challenge
 
 The Airport Challenge is Makers Academy Week 1 weekend challenge.
 It was designed to test my progress in TDD Ruby, and it uses Ruby and Rspec.
-In order to implement the code, please run the Gemfile to install the required
-dependencies (such as Rspec), and run Rspec in the command line to see
+In order to implement the code, please run 'bundle' so the Gemfile will install
+the required dependencies (such as Rspec), and run Rspec in the command line to see
 the results of the tests. Please note that this file is currently in the
-process of being updated and as such, the Travis build does not yet pass.
+process of being updated and as such, the Travis build may not yet pass.
 
 =================
 
