@@ -17,6 +17,7 @@ require_relative 'plane'
         def land(plane)
           raise "The airport is at maximum capacity." if full?
           @planes << plane
+          plane.land(self)
         end
 
         def take_off
@@ -30,6 +31,10 @@ require_relative 'plane'
 
         def full?
           @planes.length >= set_capacity
+        end
+
+        def stormy?
+          weather.stormy?
         end
 
   end
