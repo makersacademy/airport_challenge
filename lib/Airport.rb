@@ -1,32 +1,51 @@
-require 'Plane'
-require 'Weather'
+require_relative 'weather.rb'
 
 class Airport
+  DEFAULT_CAPACITY = 20
+  attr_reader :planes
 
-	include Weather
+  def initialize(weather_reporter, capacity = DEFAULT_CAPACITY)
+    @weather_reporter = weather_reporter
+    @capacity = capacity
+    @planes = []
+  end
 
-	attr_reader :landed_planes, :flying_planes
-	attr_accessor :capacity
-  #> capactity should readd be att_reader not attr_accessor
+  def land(plane)
+    raise 'Cannot land plane: airport full' if full?
+    raise 'Cannot land plane: weather is stormy' if stormy?
+    plane.land(self)
+    add_plane(plane)
+  end
 
-	MAXIMUM_CAPACITY = 10
+  def take_off(plane)
+    raise 'Cannot take off plane: weather is stormy' if stormy?
+    raise 'Cannot take off plane: plane not at this airport' unless at_airport?(plane)
+    plane.take_off
+    remove_plane(plane)
+    plane
+  end
 
-	def initialize(capacity = MAXIMUM_CAPACITY)
-		@landed_planes = []
-		@flying_planes = []
-		@capacity = capacity
-	end 
+  private
 
-	def land(plane)
-		raise 'No landing due to stormy weather' if stormy?
-		landed_planes.push(plane)
-    plane.land 
-	end 
+  attr_reader :capacity, :weather_reporter
 
-	def take_off(plane)
-		raise 'No take off due to stormy weather' if stormy?
-    flying_planes << landed_planes.pop
-    plane.takes_off
-	end 
+  def full?
+    planes.length >= capacity
+  end
 
+  def stormy?
+    weather_reporter.stormy?
+  end
+
+  def at_airport?(plane)
+    planes.include?(plane)
+  end
+
+  def add_plane(plane)
+    planes << plane
+  end
+
+  def remove_plane(plane)
+    planes.pop
+  end
 end

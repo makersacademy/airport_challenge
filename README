@@ -1,37 +1,55 @@
 AIRPORT CHALLENGE
 -----------------
 
+Write program for the following user stories:
+
+As an air traffic controller
+So planes can land safely at my airport
+I would like to instruct a plane to land
+
+As an air traffic controller
+So planes can take off safely from my airport
+I would like to instruct a plane to take off
+
+As an air traffic controller
+So that I can avoid collisions
+I want to prevent airplanes landing when my airport if full
+
+As an air traffic controller
+So that I can avoid accidents
+I want to prevent airplanes landing or taking off when the weather is stormy
+
+As an air traffic controller
+So that I can ensure safe take off procedures
+I want planes only to take off from the airport they are at
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+As an air traffic controller
+So the system is consistent and correctly reports plane status and location
+I want to ensure a flying plane cannot take off and cannot be in an airport
+
+As an air traffic controller
+So the system is consistent and correctly reports plane status and location
+I want to ensure a plane that is not flying cannot land and must be in an airport
+
+As an air traffic controller
+So the system is consistent and correctly reports plane status and location
+I want to ensure a plane that has taken off from an airport is no longer in that airport
+
 Installation
 -------------
-* git clone sara6 network address
+* git clone sara6 https://github.com/sara6/airport_challenge.git
 * cd airport_challenge
 * bundle install
 
 
 Lib and spec set up
 -------------------
-* Airport
-* Plane
-* Weather
-* Each of the above has a corresponding spec file. 
-
-
-Description
------------
-* Started with each user story and worked out in turn
-* Stunts and mock used to isolate tests
-
-
-Difficulties
-------------
-* The weather user story 
-* What to put in the weather spec 
-* The weather tests in airport would make all other tests fail
-* The above tests are commented out in airport_spec to make the others works
-* Confusion on what belongs to airport and what belongs to a plane (i.e. landing and land)
-
-Next steps
------------
-* Solving weather better 
-* Looking up modules more, which suspect may help with weather user story 
-* Understanding irb in a README
+* airport
+* plane
+* weather
+* user stories in feature tests
+* Each of the above has a corresponding spec file.

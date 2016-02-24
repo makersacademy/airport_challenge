@@ -1,0 +1,12 @@
+Airport challenge breakout
+--------------------------
+
+* wording of test consistent with test result
+
+* file names: snake_case
+* Class names: PascalCase
+* camelCase
+
+* tag or status - use a symbol ':'
+* methods match domain names 
+* modules include behaviour 

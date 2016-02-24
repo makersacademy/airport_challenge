@@ -1,28 +1,34 @@
-require 'Plane'
+require 'plane.rb'
 
-describe Plane do 
+describe Plane do
+  subject(:plane) { described_class.new }
+  let(:airport) { double :airport }
 
-  let(:plane) {Plane.new}
+  describe '#take_off' do
+    it { is_expected.to respond_to :take_off }
 
-
-  describe 'At initialization' do
-
-  	it 'flies' do
-  		expect(plane.flying).to eq(true)
-  	end 
+    it 'raises an error if already flying' do
+      expect { plane.take_off }.to raise_error 'Plane cannot take off: plane already flying'
+    end
   end
 
-  describe 'take off' do
+  describe '#land' do
+    it 'stores the airport the plane landed at' do
+      plane.land(airport)
+      expect(plane.airport).to eq airport
+    end
 
-  	it 'takes_off' do
-  		expect(plane.takes_off).to eq(true)
-  	end 
+    it 'raises an error if already landed' do
+      plane.land(airport)
+      expect { plane.land(airport) }.to raise_error 'Plane cannot land: plane already landed'
+    end
   end
 
-  describe 'landing' do
+  describe '#airport' do
+    it { is_expected.to respond_to :airport }
 
-  	it 'lands' do 
-  		expect(plane.land).to eq(false)
+    it 'raises an error if already flying' do
+      expect { plane.airport }.to raise_error 'Plane cannot be at an airport: plane already flying'
     end
   end
 end
