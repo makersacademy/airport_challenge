@@ -2,18 +2,14 @@ class Weather
   attr_reader :stormy, :weather_randomiser
 
   def initialize
-    weather_randomiser
+    @stormy = weather_randomiser
   end
 
-  def is_stormy?
+  def stormy?
     stormy
   end
 
   def weather_randomiser
-    if rand(20) <= 1
-      @stormy = true
-    else
-      @stormy = false
-    end
+    Kernel.rand <= 0.05
   end
 end
