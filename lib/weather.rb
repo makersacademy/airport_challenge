@@ -1,5 +1,5 @@
 class Weather
   def stormy?
-    rand(2) == 1
+    rand(6) == 1
   end
 end

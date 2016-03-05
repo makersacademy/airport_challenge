@@ -52,3 +52,15 @@ takeoff
 weather           is_stormy
 
 controller=>prevent=>takeoff<=stormy<=weather
+
+
+
+
+4) As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+Nouns: air traffic controller, safety, landing, weather
+Verbs: ensure, prevent, is_stormy
+
+controller=>prevent=>landing<=stormy<=weather

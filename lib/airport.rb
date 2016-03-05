@@ -11,16 +11,14 @@ class Airport
   end
 
   def land(plane)
+    fail "Landing prevented due to stormy weather" if @weather.stormy?
     planes << plane
     planes.last
   end
 
   def take_off(plane)
-    if @weather.stormy?
-      raise "Take-off prevented due to stormy weather"
-    else
-      planes.delete plane
-    end
+    fail "Take-off prevented due to stormy weather" if @weather.stormy?
+    planes.delete plane
   end
 
 end
