@@ -10,6 +10,7 @@ class Airport
 
   def take_off(plane)
     hangar.delete(plane)
+    plane.take_off
   end
   
   def hangar
