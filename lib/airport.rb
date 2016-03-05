@@ -1,13 +1,12 @@
 class Airport
 
   private
-  @plane_list
 
-  def set_airborne plane
+  def release plane
     plane.takeoff
   end
 
-  def set_landed plane
+  def capture plane
     plane.land
   end
 
@@ -18,12 +17,12 @@ class Airport
 
   def land_airplane plane
     @plane_list << plane
-    set_landed plane
+    capture plane
   end
 
   def launch_airplane plane
     @plane_list.delete plane
-    set_airborne plane
+    release plane
   end
 
   def list_airplanes

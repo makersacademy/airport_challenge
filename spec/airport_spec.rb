@@ -6,7 +6,7 @@ describe Airport do
   describe 'storage:' do
 
     it 'can list landed airplanes' do
-      expect(subject).to respond_to(:list_airplanes)
+      expect(subject.list_airplanes).to eq []
     end
 
   end
