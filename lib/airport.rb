@@ -3,7 +3,7 @@ require_relative "weather"
 
 class Airport
 
-  attr_reader :planes, :capacity
+  attr_reader :capacity
   DEFAULT_CAPACITY = 50
 
   def initialize(**opts)
@@ -14,14 +14,23 @@ class Airport
 
   def land(plane)
     fail "Landing prevented due to stormy weather" if @weather.stormy?
-    fail "Airport reached its capacity" if @planes.size >= DEFAULT_CAPACITY
+    fail "Airport reached its capacity" if full?
     planes << plane
-    planes.last
+    plane.land_at(self)
   end
 
   def take_off(plane)
     fail "Take-off prevented due to stormy weather" if @weather.stormy?
+    plane.depart_from(self)
     planes.delete plane
+  end
+
+private
+
+  attr_reader :planes
+
+  def full?
+    @planes.size >= DEFAULT_CAPACITY
   end
 
 end

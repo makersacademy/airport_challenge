@@ -1,2 +1,5 @@
-require 'coveralls'
-Coveralls.wear!
+#require 'coveralls'
+#overalls.wear!
+
+require 'simplecov'
+SimpleCov.start

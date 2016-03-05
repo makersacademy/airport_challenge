@@ -1,5 +1,9 @@
 class Weather
   def stormy?
-    rand(10) == 1
+    weather_conditions == :stormy
+  end
+
+  def weather_conditions
+    [:stormy, :clear, :cloudy, :rain].sample
   end
 end

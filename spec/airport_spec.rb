@@ -17,17 +17,23 @@ describe Airport do
   end
 
   let(:plane) { double :plane }
-  before { allow(plane).to receive(:land) }
-  before { allow(plane).to receive(:take_off) }
+  before { allow(plane).to receive(:land_at) }
+  before { allow(plane).to receive(:depart_from) }
   def storm(value)
     allow(weather).to receive(:stormy?).and_return(value)
   end
 
   describe "#land" do
+    it "instructs the plane to land" do
+      storm(false)
+      expect(plane).to receive(:land_at)
+      subject.land plane
+    end
+
     it "lands the plane" do
       storm(false)
       subject.land plane
-      expect(subject.planes.last).to eq plane
+      expect(subject.send(:planes).last).to eq plane
     end
 
     it "prevents landing when weather is stormy" do
@@ -54,7 +60,7 @@ describe Airport do
       storm(false)
       subject.land plane
       subject.take_off plane
-      expect(subject.planes).not_to include plane
+      expect(subject.send(:planes)).not_to include plane
     end
 
     it "prevents take-off when weather is stormy" do
