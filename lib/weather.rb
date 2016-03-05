@@ -5,7 +5,7 @@ class Weather
 
   private
 
-  WEATHER_CONDITIONS = [:stormy, :fine, :fine, :fine, :fine].freeze
+  WEATHER_CONDITIONS = [:stormy, :fine, :fine, :fine].freeze
 
   def condition
     WEATHER_CONDITIONS.sample
