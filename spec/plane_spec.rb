@@ -4,6 +4,8 @@ describe Plane do
 
 let(:airport) {Airport.new}
 
+	it { is_expected.to respond_to :plane_status}
+
 	describe 'takeoff' do 
 
 		it 'can take off from an airport' do 
@@ -11,8 +13,9 @@ let(:airport) {Airport.new}
 		end	
 
 		it 'will take off and confirm that it is no longer in the airport' do 
-			airport.storage << subject
-			expect(subject.take_off(airport)).to eq 'This plane has taken off and is no longer in the airport.'
+			london = Airport.new 
+			london.storage << subject
+			expect(subject.take_off(london)).to eq 'This plane has taken off and is now in the air.'
 		end	
 
 		it 'will after takeoff, no longer be in the airport' do
@@ -29,17 +32,21 @@ let(:airport) {Airport.new}
 		end
 
 		it 'cannot takeoff from an airport if it is not already in that airport' do 
-			expect {subject.take_off(airport)}.to raise_error 'This plane is not at this airport so it cannot take off.'
+			expect {subject.take_off(airport)}.to raise_error 'This plane is not at this airport, so it cannot take off from here.'
 		end
 	end
 
 	describe 'landing' do
 
 		it 'will land at an airport and confirm that it has landed' do
+			airport.storage << subject
+			subject.take_off(airport)
 			expect(subject.land(airport)).to eq 'This plane has now landed.'
 		end
 
 		it 'will land at an airport and will then be in that airport' do 
+			airport.storage << subject
+			subject.take_off(airport)
 			subject.land(airport)
 			expect(airport.storage.length).to eq 1
 		end
@@ -50,8 +57,8 @@ let(:airport) {Airport.new}
 		end
 
 		it 'cannot land if the plane is already at the airport' do 
-			subject.land(airport)
-			expect {subject.land(airport)}.to raise_error 'This plane has already landed at this airport.'
+			airport.storage << subject
+			expect {subject.land(airport)}.to raise_error 'This plane is already at an airport.'
 		end
 	end
 end
