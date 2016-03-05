@@ -1,0 +1,43 @@
+require 'airport'
+
+describe Airport do
+  let(:dummy_plane) {double :plane}
+
+  describe 'storage:' do
+
+    it 'can list landed airplanes' do
+      expect(subject).to respond_to(:list_airplanes)
+    end
+
+  end
+
+  describe 'landing sequence:' do
+
+    it 'can accept landing airplanes' do
+      expect(subject).to respond_to(:land_airplane).with(1).argument
+    end
+
+    it 'can store landed airplanes' do
+      subject.land_airplane(probe = dummy_plane)
+      expect(subject.list_airplanes).to eq [probe]
+    end
+
+  end
+
+  describe 'takeoff sequence:' do
+
+    it 'can release departing airplanes' do
+      expect(subject).to respond_to(:launch_airplane).with(1).argument
+    end
+
+    it 'can remove from storage departing planes' do
+      subject.land_airplane(probe = dummy_plane)
+      subject.launch_airplane(probe)
+      expect(subject.list_airplanes).to eq []
+    end
+
+  end
+
+
+
+end
