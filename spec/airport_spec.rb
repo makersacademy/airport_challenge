@@ -4,18 +4,18 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather) }
 
-  it 'has a default capacity' do
-    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
+  describe 'capacity tests' do
+    it 'has a default capacity' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
 
-  it 'default airport capacity can be overridden' do
-    airport = described_class.new(1000)
-    expect(airport.capacity).to eq 1000
+    it 'default airport capacity can be overridden' do
+      airport = described_class.new(1000)
+      expect(airport.capacity).to eq 1000
+    end
   end
 
   describe 'landing planes' do
-    it { is_expected.to respond_to(:land).with(1).argument }
-
     it 'instructs the plane to land' do
       allow(subject.weather).to receive(:stormy?).and_return(false)
       allow(plane).to receive(:land)
@@ -28,6 +28,7 @@ describe Airport do
       subject.land plane
       expect(subject.planes).to eq [plane]
     end
+
     it 'prevents landing when weather is stormy' do
       allow(subject.weather).to receive(:stormy?).and_return(true)
       allow(plane).to receive(:land)
@@ -36,12 +37,15 @@ describe Airport do
     end
 
     it 'prevents landing when the airport is full' do
+      subject = described_class.new(0)
+      allow(subject.weather).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:land)
+      message = 'Cannot land since airport is full'
+      expect { subject.land plane }.to raise_error message
     end
   end
 
   describe 'planes taking off' do
-    it { is_expected.to respond_to(:land) }
-
     it 'instructs the plane to take off' do
       allow(subject.weather).to receive(:stormy?).and_return(false)
       allow(plane).to receive(:land)
