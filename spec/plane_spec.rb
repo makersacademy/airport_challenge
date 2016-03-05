@@ -3,8 +3,6 @@ require "plane"
 describe Plane do
   let(:airport) { double :airport }
   before :each do
-    allow(airport).to receive(:land)
-    allow(airport).to receive(:take_off)
     subject.land_at(airport)
   end
   let(:weather) { double :weather, stormy?: false }
@@ -12,6 +10,11 @@ describe Plane do
   describe "#land_at" do
     it "lands in the airport" do
       expect(subject.flying).to eq false
+    end
+
+    it "cannot land again once in the airport" do
+      message = "Plane already landed"
+      expect { subject.land_at(airport) }.to raise_error
     end
   end
 

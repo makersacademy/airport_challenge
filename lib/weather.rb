@@ -1,4 +1,5 @@
 class Weather
+
   def stormy?
     weather_conditions == :stormy
   end
@@ -6,4 +7,5 @@ class Weather
   def weather_conditions
     [:stormy, :clear, :cloudy, :rain].sample
   end
+  
 end
