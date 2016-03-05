@@ -1,26 +1,25 @@
 class Plane
 
 	attr_reader :landed , :taken_off
-	attr_accessor :has_landed
 
 	def initialize
 		@landed = false
 		@taken_off = false
 	end
 
-	def landed?
+	def has_landed?
 		@landed
 	end
 
-	def taken_off?
+	def has_taken_off?
 		@taken_off
 	end
 
-	def has_landed
+	def landed
 		@landed = true
 	end
 
-	def has_taken_off
+	def taken_off
 		@taken_off = true
 	end
 
