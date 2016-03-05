@@ -1,5 +1,7 @@
 class Plane
 
+  attr_reader :flying
+
   def land_at(airport)
     @airport = airport
     @flying = false
@@ -7,11 +9,8 @@ class Plane
 
   def depart_from(airport)
     fail "Wrong airport" if airport != @airport
+    fail "Plane already flying" if @flying 
     @flying = true
-  end
-
-  def flying?
-    @flying
   end
 
 end
