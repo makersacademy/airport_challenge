@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new }
-  let(:airplane) { double :airplane }
+  let(:plane) { double :plane }
   let(:weather) { double :weather }
 
   describe '#capacity' do
@@ -19,16 +19,15 @@ describe Airport do
   end
 
   describe '#land_plane' do
-    # it 'instructs a plane to land' do
-    #   allow(airplane).to receive(:land)
-    #   shane_airport = airport
-    #   airport.land_plane(airplane)
-    #   expect(airport).to respond_to(:land_plane).with(1).argument
-    # end
+    it 'instructs a plane to land' do
+      allow(plane).to receive(:land)
+      airport.land_plane(plane)
+    end
 
-    it 'raises an error when plane cannot land' do
-      message = "Cannot land due to inclement weather."
-      expect{ airport.land_plane(:airplane) }.to raise_error message
+    it 'confirms that the plane has landed' do
+      allow(plane).to receive(:land)
+      airport.land_plane(plane)
+      expect(subject.planes).to include plane
     end
   end
 

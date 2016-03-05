@@ -1,9 +1,14 @@
 class Weather
 
   def inclement?
-    true
+    random_weather == :inclement?
   end
-  #
-  # private
 
+  private
+
+  WEATHER_STATUS = [:inclement, :clear, :clear, :inclement, :inclement, :clear]
+
+  def random_weather
+    WEATHER_STATUS.sample
+  end
 end

@@ -1,6 +1,6 @@
 require 'airplane'
 
-describe Airplane do
+describe Plane do
 
   subject (:airplane) { described_class.new }
 
