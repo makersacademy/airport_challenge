@@ -51,7 +51,7 @@ describe Airport do
 
 	end
 
-	it 'raises an error if trying to takeoff with no planes' do
+	it 'raises an error if there are no planes to takeoff' do
 		expect { subject.takeoff(plane) }.to raise_error 'no planes to take off'
 	end
 
