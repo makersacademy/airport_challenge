@@ -8,10 +8,20 @@ describe Airport do
   it { expect(subject).to respond_to(:take_off).with(1).argument }
 
   describe '#land' do
+    context 'good weather' do
+      before {allow(airport).to receive(:bad_weather?).and_return(false)}
       it 'stores a plane in an airport' do
         subject.land(plane)
         expect(subject.landed_planes).to include plane
       end
+    end
+    context 'bad weather' do
+      before {allow(airport).to receive(:bad_weather?).and_return(true)}
+      it 'plane not allowed to land' do
+        error_message = "Too stormy to land"
+        expect {subject.land(plane)}.to raise_error(error_message)
+      end
+    end
   end
 
   describe '#take_off' do
@@ -41,8 +51,10 @@ describe Airport do
 
       it 'plane not allowed to take off' do
         error_message = "Too stormy to fly"
-        subject.land(plane)
-        expect {subject.take_off(plane)}.to raise_error(error_message)
+        # subject.land(plane)
+        dummy_plane = double(:plane)
+        subject.landed_planes<<dummy_plane
+        expect {subject.take_off(dummy_plane)}.to raise_error(error_message)
       end
 
       xit 'plane still at airport' do
