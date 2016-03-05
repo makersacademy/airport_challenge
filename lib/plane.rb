@@ -1,14 +1,16 @@
 class Plane
+  attr_reader :flying
 
-  def land
-    landed = true
+  def initialize
+    @flying = false
   end
 
   def take_off
-    airborne = true
+    @flying = !@flying
   end
 
-private
-  attr_reader :landed, :airborne
+  def land
+    @flying
+  end
 
 end
