@@ -13,25 +13,25 @@ class Airport
   end
 
   def instruct_land(plane)
-    raise "The airport is full." if full?
+    fail "Airport full." if full?
     plane.landed?
     @planes << plane
     plane
   end
 
   def instruct_takeoff
-      plane = @planes.pop
-      @planes.delete(plane)
-    end
+    plane = @planes.pop
+    @planes.delete(plane)
+  end
 
 private
 
-def full?
-  @planes.size >= @capacity
-end
+  def full?
+    @planes.size >= @capacity
+  end
 
-def empty?
-  @planes.size == 0
-end
+  def empty?
+    @planes.empty?
+  end
 
 end

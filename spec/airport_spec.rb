@@ -16,13 +16,13 @@ describe Airport do
       described_class::DEFAULT_CAPACITY.times do
         airport.instruct_land(plane)
       end
-      expect { airport.instruct_land(plane) }.to raise_error "The airport is full."
+      expect { airport.instruct_land(plane) }.to raise_error "Airport full."
     end
 
     it "accepts a given capacity" do
       airport = Airport.new(100)
       100.times { airport.instruct_land (plane) }
-      expect{ airport.instruct_land (plane)}.to raise_error "The airport is full."
+      expect{ airport.instruct_land (plane)}.to raise_error "Airport full."
     end
   end
 
@@ -40,9 +40,9 @@ describe Airport do
       airport.instruct_land(plane)
     end
 
-    it "raises an error" do
+    it "raises an error if airport is full" do
       airport.capacity.times { airport.instruct_land(plane) }
-      expect { airport.instruct_land(plane) }.to raise_error "The airport is full."
+      expect { airport.instruct_land(plane) }.to raise_error "Airport full."
     end
   end
 
