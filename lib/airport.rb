@@ -6,10 +6,10 @@ class Airport
   attr_reader :planes, :capacity
   DEFAULT_CAPACITY = 50
 
-  def initialize(weather = Weather.new)
-    @weather = weather
+  def initialize(**opts)
+    @weather = opts[:weather] || Weather.new
+    @capacity = opts[:capacity] || DEFAULT_CAPACITY
     @planes = []
-    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)

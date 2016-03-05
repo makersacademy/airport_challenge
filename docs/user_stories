@@ -77,3 +77,15 @@ Nouns: air traffic controller, safety, landing, airport
 Verbs: ensure, prevent, is_full
 
 controller=>prevent=>landing<=full<=airport
+
+
+
+
+6) As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+Nouns: system designer, software, airports, capacity
+Verbs: be_overridden
+
+capacity<=override
