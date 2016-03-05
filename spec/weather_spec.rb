@@ -22,7 +22,8 @@ describe Weather do
     allow(subject).to receive(:random_num).and_return 3
     expect(subject.stormy?).to eq false
     end
-
+    
+   
   end
 
 end

@@ -31,5 +31,11 @@ describe Airport do
       expect(plane).to receive(:take_off)
       subject.take_off(plane) 
     end
-  end 
+   
+  end
+
+  describe '#stormy?' do
+    it { is_expected.to respond_to(:stormy?) }
+  end  
+
 end

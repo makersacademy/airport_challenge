@@ -1,8 +1,9 @@
 class Airport
+attr_reader :hangar
 
   def initialize
     @hangar = []
-   # weather = Weather.new
+   #@ weather = Weather.new
   end
 
   def land(plane)
@@ -14,7 +15,7 @@ class Airport
     plane.take_off
   end
   
-  def hangar
-    @hangar
-  end
+  def stormy?
+  end 
+ 
 end
