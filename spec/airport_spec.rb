@@ -11,6 +11,12 @@ describe Airport do
     it "instructs plane to land" do
       expect(subject.instruct_land(plane)).to eq plane
     end
+
+    it "confirm plane has landed" do
+      plane = Plane.new
+      subject.instruct_land(plane)
+      expect(plane.status).to eq false
+    end
   end
 
 
@@ -18,9 +24,7 @@ describe Airport do
   #
   # describe '#instruct_takeoff' do
   #   it "plane takes off" do
-  #     planes_num = subject.planes.count
-  #     subject.instruct_takeoff
-  #     expect(subject.planes.count).to eq (planes_num - 1)
+  #
   #   end
   # end
 
