@@ -8,10 +8,10 @@ describe Airport do
   it { expect(subject).to respond_to(:take_off).with(1).argument }
 
   describe '#land' do
-    it 'stores a plane in an airport' do
-      subject.land(plane)
-      expect(subject.landed_planes).to include plane
-    end
+      it 'stores a plane in an airport' do
+        subject.land(plane)
+        expect(subject.landed_planes).to include plane
+      end
   end
 
   describe '#take_off' do
@@ -20,8 +20,8 @@ describe Airport do
       expect {subject.take_off(plane)}.to raise_error(error_message)
     end
 
-    context 'good weather to fly' do
-      before {allow(airport).to receive(:flying_weather?).and_return(true)}
+    context 'good weather' do
+      before {allow(airport).to receive(:bad_weather?).and_return(false)}
 
       xit 'removes a plane from an airport with one plane' do
       end
@@ -36,7 +36,7 @@ describe Airport do
       end
     end
 
-    context 'bad weather to fly' do
+    context 'bad weather' do
       before {allow(airport).to receive(:bad_weather?).and_return(true)}
 
       it 'plane not allowed to take off' do
@@ -51,7 +51,7 @@ describe Airport do
   end
 
   describe '#plane_landed?' do
-
+    before {allow(airport).to receive(:bad_weather?).and_return(false)}
     it 'confirms the plane is in the airport'  do
       subject.land(plane)
       expect(subject.in_airport?(plane)).to be true
