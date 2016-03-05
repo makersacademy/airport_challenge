@@ -1,11 +1,10 @@
 require 'airport'
 
 describe Airport do
-let(:airport) {Airport.new}
 
   describe 'planes array' do
     it 'should have an empty planes array on initialization' do
-      expect(airport.planes).to eq []
+      expect(subject.planes).to eq []
     end
   end
 
@@ -19,8 +18,8 @@ let(:airport) {Airport.new}
     end
 
     it 'should raise an error when the airport is full' do
-      10.times {(Airplane.new).land_plane(:airport)}
-      expect{ (Airplane.new).land_plane(:airport) }.to raise_error 'Airport is full'
+      10.times {(Airplane.new).land_plane(subject)}
+      expect{ (Airplane.new).land_plane(subject) }.to raise_error 'Airport is full'
     end
   end
 

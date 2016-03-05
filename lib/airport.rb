@@ -9,10 +9,9 @@ class Airport
     @capacity = DEFAULT_VALUE
   end
 
-  private
-  
+
   def full?
-    @planes.size == @capacity
+    @planes.size >= @capacity
   end
 
 end
