@@ -51,7 +51,6 @@ describe Airport do
 
       it 'plane not allowed to take off' do
         error_message = "Too stormy to fly"
-        # subject.land(plane)
         dummy_plane = double(:plane)
         subject.landed_planes<<dummy_plane
         expect {subject.take_off(dummy_plane)}.to raise_error(error_message)
@@ -62,7 +61,7 @@ describe Airport do
     end
   end
 
-  describe '#plane_landed?' do
+  describe '#in_airport?' do
     before {allow(airport).to receive(:bad_weather?).and_return(false)}
     it 'confirms the plane is in the airport'  do
       subject.land(plane)
