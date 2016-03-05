@@ -1,7 +1,9 @@
 class Plane
-  attr_reader :landed
+  attr_accessor :at_airport
 
-  def landed
-    @landed = true
+  def at_airport
+    @at_airport = true
   end
+
+
 end
