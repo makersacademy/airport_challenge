@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+let(:plane) {double :airplane}
 
   describe 'planes array' do
     it 'should have an empty planes array on initialization' do
@@ -17,9 +18,9 @@ describe Airport do
       expect(subject.capacity).to eq 10
     end
 
-    it 'should raise an error when the airport is full' do
-      10.times {(Airplane.new).land_plane(subject)}
-      expect{ (Airplane.new).land_plane(subject) }.to raise_error 'Airport is full'
+
+    it 'should respond to full? method' do
+      expect(subject).to respond_to :full?
     end
 
     it 'should set a capacity if initialized with an argument' do
