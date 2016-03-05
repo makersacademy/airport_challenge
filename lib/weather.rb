@@ -2,9 +2,7 @@ class Weather
 
   private
 
-  @current = :sunny
-
-  def self.roll_new_weather
+  def roll_new_weather
     srand
     case rand(1..10)
     when 1..7 then :sunny
@@ -13,13 +11,17 @@ class Weather
   end
 
   public
-  
-  def self.show_weather
+
+  def initialize
+    @current = :sunny
+  end
+
+  def current_weather
     @current
   end
 
-  def self.change_weather(new_weather=nil)
-    @current = new_weather || self.roll_new_weather
+  def change_weather(new_weather=nil)
+    @current = new_weather || roll_new_weather
   end
 
 end
