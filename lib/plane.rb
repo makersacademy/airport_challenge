@@ -1,8 +1,8 @@
 class Plane
   
   def land(airport)
-    @landed = true
     airport.land(self)
+    @landed = true
   end
 
   def landed?

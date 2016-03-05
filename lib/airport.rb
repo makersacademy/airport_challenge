@@ -2,6 +2,7 @@ class Airport
 
   def initialize
     @hangar = []
+   # weather = Weather.new
   end
 
   def land(plane)
