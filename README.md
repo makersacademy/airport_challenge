@@ -12,6 +12,8 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+This airport was written by Simon Glancy - 05/03/2015
+
 
 Instructions
 ---------
