@@ -5,12 +5,16 @@ class Plane
     @flying = false
   end
 
+  def flying?
+    @flying
+  end
+
   def take_off
-    @flying = !@flying
+    @flying = true
   end
 
   def land
-    @flying
+    @flying = false
   end
 
 end

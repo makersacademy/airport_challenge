@@ -6,14 +6,14 @@ describe Plane do
     describe '#land' do
       it 'is on the ground' do
         plane.land
-        expect(plane.flying).not_to eq true
+        expect(plane).not_to be_flying
       end
     end
 
       describe '#take_off' do
         it 'is airborne' do
           plane.take_off
-          expect(plane.flying).to eq true
+          expect(plane).to be_flying
         end
       end
 
