@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:dummy_plane) {double :plane}
+  let(:dummy_plane) {double :plane, land: nil, takeoff: nil}
 
   describe 'storage:' do
 
@@ -22,6 +22,11 @@ describe Airport do
       expect(subject.list_airplanes).to eq [probe]
     end
 
+    it 'can set planes to landed' do
+      expect(dummy_plane).to receive(:land)
+      subject.land_airplane(dummy_plane)
+    end
+
   end
 
   describe 'takeoff sequence:' do
@@ -35,6 +40,13 @@ describe Airport do
       subject.launch_airplane(probe)
       expect(subject.list_airplanes).to eq []
     end
+
+    it 'can set planes to airborne' do
+      subject.land_airplane(dummy_plane)
+      expect(dummy_plane).to receive(:takeoff)
+      subject.launch_airplane(dummy_plane)
+    end
+
 
   end
 

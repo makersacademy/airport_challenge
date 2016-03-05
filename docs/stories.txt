@@ -9,7 +9,8 @@ plane   verify it has taken off
 airport set the plane to airborne
 airport verify it no longer has the plane
 
-
+weather   have a weather state
+weather   read weather.
 airport   negate takeoff if stormy
 airport   negate land if stormy
 

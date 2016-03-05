@@ -8,5 +8,6 @@ so far:
 - Add an internal state and accessors method to be able to tell if airborne or not (test edge cases)
 - Implemented a Airport class, to act as container and controller of planes.
 - Add internal storage and methods to be able to store, land and dispatch planes.
+- Add Airport methods to switch landed/airborne status of planes being launched/landed
 
 TODO how i implemented stuff
