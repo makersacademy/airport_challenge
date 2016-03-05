@@ -1,9 +1,14 @@
+require "rspec/expectations"
 require 'airport'
 
 describe Airport do 
-
   let(:plane) {double(:plane)}
   let(:weather) {double(:weather)}
+
+  before(:each) do  
+    allow(plane).to receive(:landed)
+    allow(plane).to receive(:flying)
+  end
   
   it{is_expected.to respond_to(:planes)}
 
