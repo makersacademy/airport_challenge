@@ -7,7 +7,8 @@ class Airport
   end
 
 
-  def arrive(plane)
+  def arrive(plane, weather)
+    raise "there is a storm" if weather.storm? 
     @planes << plane
   end
 
@@ -15,4 +16,7 @@ class Airport
     @planes.delete(plane)
   end
 
+  def storm(weather)
+    weather.storm?
+  end
 end
