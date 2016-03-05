@@ -27,10 +27,11 @@ describe Airport do
   end
 
   it '2.3 raises an error - CANNOT LAND AIRPORT IS FULL' do
-    allow(subject).to receive(:stormy?) {true}
-    plane = Plane.new
+    allow(subject).to receive(:stormy?) {false}
+    allow(subject).to receive(:full?) {true}
 
-    expect {subject.land_plane(plane)}.to raise_error "CANNOT LAND IN A STORM"
+    plane = Plane.new
+    expect {subject.land_plane(plane)}.to raise_error "CANNOT LAND AIRPORT IS FULL"
   end
 
 
