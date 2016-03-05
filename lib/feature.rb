@@ -4,4 +4,6 @@ require_relative 'airport'
 plane = Plane.new
 airport = Airport.new
 
-plane.instruct_takeoff
+p plane
+airport.instruct_land(plane)
+p airport.planes
