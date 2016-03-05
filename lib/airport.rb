@@ -12,22 +12,24 @@ class Airport
     @plane_list << plane
   end
 
-  def check_weather weather_dispatcher
-    raise 'Denied. weather is Stormy' if weather_dispatcher.current_weather == :stormy
+  def check_weather
+    raise 'Denied. weather is Stormy' if @local_weather.current_weather == :stormy
   end
 
   public
 
-  def initialize
+  def initialize(weather)
     @plane_list = []
+    @local_weather = weather
   end
 
-  def land_airplane plane, weather_dispatcher
-    check_weather weather_dispatcher
+  def land_airplane plane
+    check_weather
     capture plane
   end
 
-  def launch_airplane plane, weather_dispatcher
+  def launch_airplane plane
+    check_weather
     release plane
   end
 

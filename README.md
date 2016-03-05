@@ -12,6 +12,6 @@ so far:
 - Implemented a Weather class, to dispatch weather updates
 - Add Weather methods to change weather randomly or to a given value, and to read it
 - Made my beautiful methods ugly and went through great pains to avoid including the Weather class in the Airport one
-
+- Scrapped everything due to too many parameters being thrown around. Airport now has a weather instance loaded.
 
 TODO how i implemented stuff
