@@ -9,4 +9,12 @@ attr_reader :capacity, :storage
 		@capacity = capacity
 		@storage = []
 	end
+
+	def full?
+		storage.length>=capacity 
+	end
+
+	def in_airport?(plane)
+		storage.include?(plane)
+	end
 end

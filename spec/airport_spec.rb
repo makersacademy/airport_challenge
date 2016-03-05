@@ -2,6 +2,7 @@ require './docs/airport'
 
 describe Airport do 
 
+	it { is_expected.to respond_to :full?}
 	it 'has a default capacity of 50' do
 		expect(subject.capacity).to eq 50
 	end
