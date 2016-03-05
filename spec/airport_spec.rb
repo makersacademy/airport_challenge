@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   let(:dummy_plane) {double :plane, land: nil, takeoff: nil}
+  let(:dummy_weather) {double :weather, show_weather: :stormy}
 
   describe 'storage:' do
 
@@ -25,6 +26,15 @@ describe Airport do
     it 'can set planes to landed' do
       expect(dummy_plane).to receive(:land)
       subject.land_airplane(dummy_plane)
+    end
+
+    it 'can check weather on landing request' do
+      expect(dummy_weather).to receive(:show_weather)
+      subject.land_airplane(dummy_plane)
+    end
+
+    it 'raises exception when a plane tries to land in stormy weather' do
+
     end
 
   end

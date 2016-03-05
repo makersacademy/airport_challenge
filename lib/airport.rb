@@ -11,6 +11,7 @@ class Airport
   end
 
   public
+
   def initialize
     @plane_list = []
   end
@@ -28,4 +29,5 @@ class Airport
   def list_airplanes
     @plane_list
   end
+
 end
