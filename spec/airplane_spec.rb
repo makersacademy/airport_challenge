@@ -1,6 +1,9 @@
 require 'airplane'
 
 describe Airplane do
+let(:airport) {Airport.new}
+let(:plane1) {Airplane.new}
+let(:plane2) {Airplane.new}
 
   describe 'plane_status' do
     it 'should be landed when a new plane is initialized' do
@@ -14,7 +17,6 @@ describe Airplane do
     end
 
     it 'should push that plane into the airport.planes array' do
-      airport = Airport.new
       subject.land_plane(airport)
       expect(airport.planes).to eq [subject]
     end
@@ -24,7 +26,6 @@ describe Airplane do
     end
 
     it 'should confirm the plane has landed with the plane status' do
-      airport = Airport.new
       subject.plane_status
       subject.land_plane(airport)
       expect(subject.landed).to eq true
@@ -37,9 +38,6 @@ describe Airplane do
     end
 
     it 'should remove that plane from the airport.planes array' do
-      airport = Airport.new
-      plane1 = Airplane.new
-      plane2 = Airplane.new
       plane1.land_plane(airport)
       plane2.land_plane(airport)
       plane1.take_off(airport)
@@ -47,9 +45,6 @@ describe Airplane do
     end
 
     it 'should confirm that the plane has taken off with the plane status' do
-      airport = Airport.new
-      plane1 = Airplane.new
-      plane2 = Airplane.new
       plane1.land_plane(airport)
       plane2.land_plane(airport)
       plane1.take_off(airport)

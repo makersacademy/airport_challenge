@@ -12,6 +12,7 @@ attr_reader :landed
   end
 
   def land_plane(airport)
+    raise 'Airport is full' if full 
     airport.planes << self
     @landed = true
   end
