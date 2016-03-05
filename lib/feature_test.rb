@@ -15,7 +15,7 @@ p plane, plane2
 #p plane.takeoff(heathrow)
 p heathrow.planes
 p plane2
-p "attempting to land second plane..."
+#p "attempting to land second plane..."
 p plane2.land(heathrow)
 p heathrow.planes
 p gatwick

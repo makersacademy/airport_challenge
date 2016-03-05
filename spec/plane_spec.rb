@@ -44,6 +44,10 @@ describe Plane do
       allow(subject).to receive(:storm_check){true}
       expect{subject.takeoff(airport)}.to raise_error("Cannot take off in stormy weather.")
     end
+  #  it "raises an error if plane is told to take off from airport it's not at" do
+  #    allow(subject).to receive(:storm_check){false}
+  #    expect{subject.takeoff(airport)}.to raise_error("I'm not there!")
+  #  end
   end
-  
+
 end
