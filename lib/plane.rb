@@ -1,19 +1,23 @@
+require_relative 'weather'
+
 class Plane
   attr_reader :flying
   def initialize
-    @flying = false
-  end
-
-  def flying?
-    @flying
-  end
-
-  def takeoff
     @flying = true
   end
 
-  def land
+  def land(airport)
+    airport.receive_plane(self)
     @flying = false
+  end
+
+  def takeoff(airport)
+    airport.release_plane(self)
+    @flying = true
+  end
+
+  def storm_check
+    Weather.new.storm
   end
 
 end

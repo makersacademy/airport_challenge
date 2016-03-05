@@ -22,22 +22,17 @@ describe Airport do
 
   end
 
-  describe "#request_land" do
-    it {is_expected.to respond_to(:request_land).with(1).argument}
-
-    it "tells a plane to land" do
-      expect(flying_plane).to receive(:land)
-      subject.request_land(flying_plane)
+  describe "#receive_plane" do
+    it "adds landing plan to its array" do
+      subject.receive_plane(flying_plane)
+      expect(subject.planes).to eq([flying_plane])
+    end
+  end
+  describe "#release_plane" do
+    it "removes plane taking off from its array" do
+      subject.release_plane(flying_plane)
+      expect(subject.planes).to eq([])
     end
   end
 
-  describe "#request_takeoff" do
-    it {is_expected.to respond_to(:request_takeoff).with(1).argument}
-
-    it "tells a plane to take off" do
-      expect(landed_plane).to receive(:takeoff)
-      subject.request_takeoff(landed_plane)
-    end
-
-  end
 end
