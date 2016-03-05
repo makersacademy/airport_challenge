@@ -45,9 +45,5 @@ describe Plane do
       expect{subject.takeoff(airport)}.to raise_error("Cannot take off in stormy weather.")
     end
   end
-
-  describe "#storm_check" do
-
-  end
-
+  
 end

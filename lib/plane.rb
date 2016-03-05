@@ -14,7 +14,8 @@ class Plane
   end
 
   def takeoff(airport)
-      raise "Cannot take off in stormy weather." if storm_check
+    #raise "I'm not there!" if !airport.planes.include?(self)
+    raise "Cannot take off in stormy weather." if storm_check
     airport.release_plane(self)
     @flying = true
   end
