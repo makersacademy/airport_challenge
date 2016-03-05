@@ -21,6 +21,4 @@ This is a program that controls the flow of planes at an airport. (TO BE COMPLET
 Author
 -------
 
-Junyuan Xue
-
-[github](https://github.com/junyuanxue)
+Junyuan Xue ([github](https://github.com/junyuanxue))
