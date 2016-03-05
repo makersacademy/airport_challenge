@@ -45,7 +45,7 @@ Installation instructions
 Submitting Bugs/making feature requests
 - to be added later
 
-Project created in Ruby v2.2.1
+Project created in Ruby v2.3.0
 
 Authors
 Initial coding: Pete BURCH
