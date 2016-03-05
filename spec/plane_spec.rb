@@ -1,8 +1,5 @@
 require 'plane'
 
-describe 'hello' do 
-	
-
-
+describe '' do 
 	
 end
