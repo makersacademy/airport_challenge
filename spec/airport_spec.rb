@@ -5,14 +5,6 @@ describe Airport do
   let(:dummy_weather) {double :weather, current_weather: :sunny}
   let(:subject) {Airport.new(dummy_weather)}
 
-  describe 'storage:' do
-
-    it 'can list landed airplanes' do
-      expect(subject.list_airplanes).to eq []
-    end
-
-  end
-
   describe 'landing sequence:' do
 
     it 'can accept landing airplanes' do
@@ -34,9 +26,17 @@ describe Airport do
       subject.land_airplane(dummy_plane)
     end
 
-    it 'raises exception when a plane tries to land in stormy weather' do
+    it 'raises an exception when a plane tries to land in stormy weather' do
       allow(dummy_weather).to receive(:current_weather).and_return(:stormy)
       expect { subject.land_airplane(dummy_plane) }.to raise_error(RuntimeError) #why looking for the message fails?
+    end
+
+    it 'rases an exception when a plane tries to land in a full airport' do
+      expect{ 20.times do
+          subject.land_airplane(dummy_plane)
+        end }.not_to raise_error
+      expect{ subject.land_airplane(dummy_plane) }.to raise_error(RuntimeError)
+
     end
 
   end
@@ -71,6 +71,22 @@ describe Airport do
       expect { subject.launch_airplane(dummy_plane) }.to raise_error(RuntimeError) #why looking for the message fails?
     end
 
+  end
+
+  describe 'storage:' do
+
+    it 'can list landed airplanes' do
+      expect(subject.list_airplanes).to eq []
+    end
+
+    it 'custom capacity is the max amount of planes airport can hold' do
+      subject = Airport.new(dummy_weather, 15)
+      expect{ 15.times do
+          subject.land_airplane(dummy_plane)
+        end }.not_to raise_error
+      expect{ subject.land_airplane(dummy_plane) }.to raise_error(RuntimeError)
+    end
+    
   end
 
 end

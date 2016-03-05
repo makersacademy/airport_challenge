@@ -2,6 +2,8 @@ class Airport
 
   private
 
+  DEFAULT_CAPACITY = 20
+
   def release plane
     @plane_list.delete plane
     plane.takeoff
@@ -13,18 +15,24 @@ class Airport
   end
 
   def check_weather
-    raise 'Denied. weather is Stormy' if @local_weather.current_weather == :stormy
+    raise 'Denied. Weather is stormy' if @local_weather.current_weather == :stormy
+  end
+
+  def check_capacity
+    raise 'Denied. Airport is full.' if @plane_list.length >= @capacity
   end
 
   public
 
-  def initialize(weather)
+  def initialize(weather, cap = DEFAULT_CAPACITY)
     @plane_list = []
     @local_weather = weather
+    @capacity = cap
   end
 
   def land_airplane plane
     check_weather
+    check_capacity
     capture plane
   end
 
