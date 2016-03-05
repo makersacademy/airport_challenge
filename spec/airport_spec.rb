@@ -35,6 +35,11 @@ describe Airport do
       expect(plane1).to receive(:land).with subject
       subject.land plane1
     end
+
+    it 'doesn\'t allow the plane to land if full' do
+      20.times {subject.land plane1}
+      expect{subject.land plane1}.to raise_error 'Airport full - cant\'t land!'
+    end
   end
 
   describe '#full?' do
