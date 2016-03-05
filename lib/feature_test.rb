@@ -4,7 +4,7 @@ require_relative 'weather'
 
 plane = Plane.new
 heathrow = Airport.new
-plane.land(heathrow)
+p plane.land(heathrow)
 #plane.takeoff(heathrow)
 
 #p heathrow.planes
