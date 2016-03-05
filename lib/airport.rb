@@ -10,7 +10,14 @@ class Airport
   end
 
   def land(plane)
+    raise 'Airport is full, plane cannot land' if full?
     @planes << plane
+  end
+
+  private
+
+  def full?
+    @planes.count >= @capacity
   end
 
 end

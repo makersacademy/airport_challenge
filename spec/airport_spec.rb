@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  
+
   let(:plane) {double :plane}
 
   describe 'capacity' do
@@ -16,6 +16,12 @@ describe Airport do
     it 'can land a plane' do
       subject.land(plane)
       expect(subject.planes).to eq([plane])
+    end
+    it 'cannot land a plane when full' do
+      random_capacity = Random.rand(10)
+      subject = described_class.new(random_capacity)
+      random_capacity.times{subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error('Airport is full, plane cannot land')
     end
   end
 
