@@ -16,7 +16,7 @@ describe Airport do
     airport.call_land(plane)
   end
 
-  it 'fails to calls plane to land due to weather' do
+  it 'fails to call plane to land due to weather' do
     allow(weather).to receive(:stormy?).and_return(true)
     message = "Bad weather means plane can\'t land"
     expect {airport.call_land(plane)}.to raise_error message
