@@ -8,3 +8,7 @@ p plane
 airport.instruct_land(plane)
 p airport.planes
 p plane.status
+
+airport.instruct_takeoff
+p airport.planes
+p plane.takeoff.status

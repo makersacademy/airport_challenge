@@ -2,21 +2,14 @@ require_relative 'airport'
 
 class Plane
 
+  attr_reader :landed
+
   def initialize
-    @flying = false
+    @landed = false
   end
 
-  def land
-    @flying = false
+  def landed?
+    @landed = true
   end
-
-  def takeoff
-    @flying = true
-  end
-
-  def status
-    @flying
-  end
-
 
 end
