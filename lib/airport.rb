@@ -10,6 +10,7 @@ class Airport
   end
 
   def take_off(a_plane)
+    raise 'Plane not at airport' unless in_airport?(a_plane)
     @landed_planes.delete(a_plane)
   end
 
