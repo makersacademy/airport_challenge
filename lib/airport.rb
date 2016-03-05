@@ -21,13 +21,15 @@ class Airport
     if plane.flying == false || planes.include?(plane)
       plane = planes.pop
       plane.take_off
+    else
+      "Plane not in airport"
     end
   end
 
   private
 
   def full?
-    planes.size == 2
+    planes.size == 3
   end
 
 end
