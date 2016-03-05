@@ -9,4 +9,12 @@ class Airport
   def full?
      planes.length == capacity ? true : false
   end
+
+  def remove_plane(plane)
+    planes.delete(plane)
+  end
+
+  def add_plane(plane)
+    planes << plane
+  end
 end

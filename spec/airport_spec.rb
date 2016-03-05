@@ -22,5 +22,20 @@ describe Airport do
       expect(subject).to be_full
     end
   end
-  
+
+  describe "remove_plane" do
+    it "should remove selected plane from array" do
+      subject.planes << plane
+      subject.remove_plane(plane)
+      expect(subject.planes).to be_empty
+    end
+  end
+
+   describe "add_plane" do
+     it "should add selected plane to array" do
+       subject.add_plane(plane)
+       expect(subject.planes).to eq [plane]
+     end
+   end
+
 end
