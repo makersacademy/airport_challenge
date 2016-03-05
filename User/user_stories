@@ -22,3 +22,28 @@ Air Traffic  confirm, instruct
 
 
 Air Traffic => instruct => plane <=> land <=> confirm
+
+User Story 2
+-------------------------
+Nouns
+- Air traffic controller
+- Passenger
+- Destination
+- Airport
+- Plane
+
+Verbs
+- Get
+- Instruct
+- Take off
+- Confirm
+
+
+
+object      Message
+-------------------------
+plane       Take off
+air traffic instruct, confirm
+
+
+air traffic => instruct => plane <=> take off <=> confirm

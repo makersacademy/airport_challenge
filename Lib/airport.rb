@@ -14,7 +14,16 @@ class Airport
     plane
   end
 
+  def take_off(planes)
+    @hangar.map { |plane| plane.takeoff  }
+    @hangar.pop
+  end
+
   def planes_in_hangar
     @hangar
+  end
+
+  def plane_status(plane)
+    plane.flying?
   end
 end
