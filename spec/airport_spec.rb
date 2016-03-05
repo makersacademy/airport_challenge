@@ -11,7 +11,7 @@ describe Airport do
 
   describe '#land' do
     before do
-      allow(plane).to receive(:flying?).and_return(true)
+      allow(plane).to receive(:flying).and_return(true)
     end
 
     it 'allows the plane to land' do
@@ -31,7 +31,7 @@ describe Airport do
 
     it 'prevents a parked plane from landing' do
       airport.land(plane)
-      allow(plane).to receive(:flying?).and_return(false)
+      allow(plane).to receive(:flying).and_return(false)
       airport.land(plane)
       expect(airport.land(plane)).to eq "Not an airborne plane."
     end
@@ -39,7 +39,7 @@ describe Airport do
 
     describe '#take_off' do
       before do
-        allow(plane).to receive(:flying?).and_return(true)
+        allow(plane).to receive(:flying).and_return(true)
       end
       # it { is_expected.to respond_to :take_off }
 

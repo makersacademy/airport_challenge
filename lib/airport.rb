@@ -8,8 +8,8 @@ class Airport
   end
 
   def land(plane)
-    raise 'No space for landing' if full?
-    if plane.flying? == true
+    fail 'No space for landing' if full?
+    if plane.flying == true
       plane.land
       planes << plane
     else
@@ -18,7 +18,7 @@ class Airport
   end
 
   def take_off(plane)
-    if plane.flying? == false || planes.include?(plane)
+    if plane.flying == false || planes.include?(plane)
       plane = planes.pop
       plane.take_off
     end
