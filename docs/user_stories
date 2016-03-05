@@ -64,3 +64,16 @@ Nouns: air traffic controller, safety, landing, weather
 Verbs: ensure, prevent, is_stormy
 
 controller=>prevent=>landing<=stormy<=weather
+
+
+
+
+
+5) As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+Nouns: air traffic controller, safety, landing, airport
+Verbs: ensure, prevent, is_full
+
+controller=>prevent=>landing<=full<=airport
