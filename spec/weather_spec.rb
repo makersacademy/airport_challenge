@@ -8,7 +8,7 @@ describe Weather do
     it 'will return a number between 1 and 6' do
       expect(subject.random_num).to be_within(3).of(3)
     end
-   end
+  end
 
   describe '#stormy' do
     it { is_expected.to respond_to(:stormy?) } 

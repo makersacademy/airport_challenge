@@ -15,7 +15,7 @@ describe Plane do
         expect(subject.landed?).to eq true
     end
    
-    it 'should call airport.land(plane)'do
+    it 'should call airport.land(plane)' do
        allow(airport).to receive(:land).and_return(true)
  
           expect(airport).to receive(:land).with(plane)
@@ -29,12 +29,12 @@ describe Plane do
     
     it { is_expected.to respond_to(:landed?) }
   
-    it 'will return false when a plane has taken off'do
+    it 'will return false when a plane has taken off' do
       subject.take_off
       expect(subject.landed?).to eq false
+    end
   end
-  end
-  end
+end
 
 #  describe '#status' do
   
