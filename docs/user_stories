@@ -1,0 +1,17 @@
+1)
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
+
+Nouns: air traffic controller, passengers, plane, airport
+Verbs: instruct to land, confirm landed
+
+Object            Messages
+-------------------------------------
+controller       instruct, confirm
+passengers
+plane              land
+airport
+
+controller=>instruct=>plane<=land<=airport
+controller=>confirm landed<=plane
