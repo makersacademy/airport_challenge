@@ -22,7 +22,9 @@ heathrow.in_airport(plane)
 # User story 2
 heathrow = Airport.new
 plane = Plane.new
+heathrow.take_off(plane)
 heathrow.land(plane)
+heathrow.in_airport?(plane)
 heathrow.take_off(plane)
 heathrow.in_airport?(plane)
 
