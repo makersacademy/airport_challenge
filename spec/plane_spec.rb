@@ -1,7 +1,8 @@
 require 'plane'
 
 describe Plane do
-  let(:airport){double(:airport, :planes => [], :receive_plane => [], :release_plane => [])}
+  let(:airport){double(:airport, :planes => [], :receive_plane => [], :release_plane => [], :full? => false)}
+  let(:full_airport){double(:full_airport, :planes => [], :receive_plane => [], :full? => true)}
 
   describe "#land" do
     it {is_expected.to respond_to(:land).with(1).argument}
@@ -21,6 +22,10 @@ describe Plane do
     it "stops landing if stormy" do
       allow(subject).to receive(:storm_check){true}
       expect{subject.land(airport)}.to raise_error("Cannot land in stormy weather.")
+    end
+    it "stops landing if airport full" do
+      allow(subject).to receive(:storm_check){false}
+      expect{subject.land(full_airport)}.to raise_error("Cannot land if airport is full.")
     end
   end
 

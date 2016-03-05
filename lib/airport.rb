@@ -17,5 +17,9 @@ class Airport
     @planes.delete(plane)
   end
 
+  def full?
+    @planes.length == @capacity
+  end
+
 
 end

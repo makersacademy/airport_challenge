@@ -10,6 +10,10 @@ p plane.land(heathrow)
 #p heathrow.planes
 #plane.land(heathrow)
 #p heathrow.planes
-p plane.takeoff(heathrow)
+#p plane.takeoff(heathrow)
 p heathrow.planes
 p plane
+
+p heathrow.planes.length
+p heathrow.full?
+p plane.land(heathrow)
