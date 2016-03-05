@@ -18,7 +18,7 @@ describe Plane do
 
   describe "takeoff sequence:" do
 
-    it "can be instructed to take off from the airport" do
+    it "can be instructed to take off" do
       expect(subject).to respond_to(:takeoff)
     end
 

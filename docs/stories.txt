@@ -1,9 +1,12 @@
 controller
 plane   instruct to land at airport
 plane   verify it has landed
+airport verify it contains the plane
 
 plane   instruct to takeoff from airport
 plane   verify it has taken off
+airport verift it no longer has the plane
+
 
 airport   negate takeoff if stormy
 airport   negate land if stormy
