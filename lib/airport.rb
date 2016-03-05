@@ -25,12 +25,15 @@ class Airport
   def land(plane)
     raise ("Airport is closed") if closed?
     raise ("Airport is full") if full?
+    raise ("Plane is not flying") unless plane.flying?
     plane.flying = false
     planes << plane
   end
 
   def take_off
+    raise ("No planes in airport") if empty?
     raise ("Airport is closed") if closed?
+    raise ("Plane is not on the ground") if planes.last.flying?
     plane = planes.pop
     plane.flying = true
     plane
@@ -39,5 +42,9 @@ class Airport
 private
   def full?
     planes.length >= capacity
+  end
+
+  def empty?
+    planes.length == 0
   end
 end

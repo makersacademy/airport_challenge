@@ -1,7 +1,8 @@
 Airport Challenge
 
 Sub-modules and libraries used
-- to be added later
+- airport.rb
+- plane.rb
 
 Description of Project
 -implement following user stories:
