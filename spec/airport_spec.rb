@@ -6,12 +6,13 @@ describe Airport do
   let(:weather) { double :weather}
 
   before do
-    allow(plane).to receive(:land)
+    allow(plane).to receive(:landed?)
+    allow(plane).to receive(:landed).and_return(false)
     allow(weather).to receive(:stormy?).and_return(false)
   end
 
   it 'calls plane to land' do
-    expect(plane).to receive(:land)
+    expect(plane).to receive(:landed?)
     airport.call_land(plane)
   end
 
@@ -27,12 +28,14 @@ describe Airport do
   end
 
   it 'instructs planes to takeoff' do
+    allow(plane).to receive(:landed).and_return(true)
     airport.call_land(plane)
     expect(airport.takeoff).to eq plane
   end
 
   it 'checks plane removed after takeoff' do
     airport.call_land(plane)
+    allow(plane).to receive(:landed).and_return(true)
     airport.takeoff
     expect(airport.planes).to eq []
   end

@@ -1,13 +1,8 @@
 class Weather
 
-  attr_reader :stormy
-
-
-
   def stormy?
-    # choose = rand(5)
-    # WEATHER[choose] == :stormy
-    false
+    choose = rand(5)
+    WEATHER[choose] == :stormy
   end
 
   private
