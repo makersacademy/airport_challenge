@@ -15,8 +15,8 @@ class Airport
   def land(plane)
     fail "Landing prevented due to stormy weather" if weather.stormy?
     fail "Airport reached its capacity" if full?
-    planes << plane
     plane.land_at(self)
+    planes << plane
   end
 
   def take_off(plane)
@@ -30,7 +30,7 @@ class Airport
   attr_reader :planes, :weather
 
   def full?
-    @planes.size >= DEFAULT_CAPACITY
+    planes.count >= capacity
   end
 
 end

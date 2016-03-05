@@ -18,7 +18,7 @@ describe Airport do
 
   describe "take-off and landing" do
     let(:plane) { double :plane }
-    before :each do
+    before do
       allow(plane).to receive(:land_at)
       allow(plane).to receive(:depart_from)
     end

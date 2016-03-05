@@ -2,7 +2,7 @@ require "plane"
 
 describe Plane do
   let(:airport) { double :airport }
-  before :each do
+  before do
     subject.land_at(airport)
   end
   let(:weather) { double :weather, stormy?: false }

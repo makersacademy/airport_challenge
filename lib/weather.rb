@@ -1,12 +1,12 @@
 class Weather
 
   def stormy?
-    weather_report == :stormy
+    weather == :stormy
   end
 
   private
 
-  def weather_report
+  def weather
     [:stormy, :clear, :cloudy, :rain].sample
   end
 
