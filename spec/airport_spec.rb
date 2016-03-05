@@ -23,7 +23,7 @@ describe Airport do
 
 	it 'raises an error if airport is full' do
 		allow(plane).to receive(:landed)
-		expect {(subject.capacity + 1).times do ; subject.land(plane) ; end}.to raise_error "airport is full"
+		expect {(subject.capacity + 1).times {subject.land(plane)}}.to raise_error "airport is full"
 	end
 
 	it 'responds to takeoff method' do
