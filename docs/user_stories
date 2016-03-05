@@ -15,3 +15,23 @@ airport
 
 controller=>instruct=>plane<=land<=airport
 controller=>confirm landed<=plane
+
+
+
+
+2) As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+Nouns: air traffic controller, passengers, destination, plane, airport
+Verbs: instruct, take off, confirm take off
+
+Object            Messages
+------------------------------------
+controller        instruct, confirm
+passengers
+plane              take off
+airport
+
+controller=>instruct=>plane<=takeoff<=airport
+controller=>confirm takeoff<=plane
