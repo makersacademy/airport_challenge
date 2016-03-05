@@ -1,0 +1,24 @@
+User Story 1
+---------------------
+Nouns
+- Air traffic controller
+- Passenger
+- Destination
+- Airport
+- Plane
+
+Verbs
+- Get
+- Instruct
+- Land
+- Confirm
+
+
+
+object      Message
+------------------------
+Plane       Land
+Air Traffic  confirm, instruct
+
+
+Air Traffic => instruct => plane <=> land <=> confirm
