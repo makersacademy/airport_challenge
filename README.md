@@ -22,5 +22,5 @@ Author
 -------
 
 Junyuan Xue
-[email](junyuanxue.is@gmail.com)
+
 [github](https://github.com/junyuanxue)
