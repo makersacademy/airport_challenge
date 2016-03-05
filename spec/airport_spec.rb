@@ -7,8 +7,13 @@ describe Airport do
     expect(subject.planes).to eq []
   end
 
-  it "has a maximum capacity" do
+  it "has a default capacity" do
     expect(subject.capacity).to eq 20
+  end
+
+  it "can be initialized with a different capacity" do
+    airport = Airport.new(10)
+    expect(airport.capacity).to eq 10
   end
 
   describe "full" do
@@ -16,16 +21,6 @@ describe Airport do
       20.times {subject.planes << plane}
       expect(subject).to be_full
     end
-
   end
-
-  # describe "land_plane" do
-  #   it "should load plane into airport.planes array" do
-  #     subject.land_plane(plane)
-  #     expect(subject.planes).to eq [plane]
-  #   end
-
-
-  # end
-
+  
 end

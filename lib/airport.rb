@@ -1,15 +1,12 @@
 
 class Airport
   attr_reader :planes, :capacity
-  def initialize
+  def initialize(capacity=20)
     @planes = []
-    @capacity = 20
+    @capacity = capacity
   end
 
   def full?
      planes.length == capacity ? true : false
   end
-  # def land_plane(plane)
-  #   planes << plane
-  # end
 end
