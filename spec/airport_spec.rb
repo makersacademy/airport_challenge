@@ -6,7 +6,7 @@ describe Airport do
   it { expect(subject).to respond_to(:plane_landed?).with(1).argument }
 
   describe '#land' do
-    let(:plane) {double(:plane)}
+    let(:plane) {double (:plane)}
 
     it 'land and stores a plane in an airport' do
       subject.land(plane)
@@ -17,11 +17,11 @@ describe Airport do
   end
 
   describe '#plane_landed?' do
-    let(:plane) {double(:plane)}
+    let(:plane) {double (:plane)}
     it 'confirms the plane has landed'  do
-      10.times {subject.land(plane)}
-      subject.land(plane)
-      expect(subject.plane_landed?(plane)).to be  true
+      10.times {subject.land (plane)}
+      subject.land (plane)
+      expect(subject.plane_landed? (plane)).to be  true
     end
   end
 
