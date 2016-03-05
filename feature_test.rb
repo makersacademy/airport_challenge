@@ -1,5 +1,5 @@
-require './lib/airport.rb'
-require './lib/plane.rb'
+  require './lib/airport.rb'
+  require './lib/plane.rb'
 # require './lib/weather.rb÷'
 
 # User Story 1
@@ -33,11 +33,10 @@ heathrow.in_airport?(plane)
 # plane in middle -> .delete(plane)
 
 #User story 3
-
+require './lib/airport.rb'
+require './lib/plane.rb'
 heathrow = Airport.new
 plane = Plane.new
-heathrow.land(plane)
-10.times {heathrow.land(Plane.new)}
 heathrow.land(plane)
 #Random chance of take off
 #error if bad weather

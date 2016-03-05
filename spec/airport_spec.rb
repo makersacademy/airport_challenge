@@ -19,8 +19,10 @@ describe Airport do
       error_message = 'Plane not at airport'
       expect {subject.take_off(plane)}.to raise_error(error_message)
     end
+
     context 'good weather to fly' do
       before {allow(airport).to receive(:flying_weather?).and_return(true)}
+
       xit 'removes a plane from an airport with one plane' do
       end
 
@@ -35,17 +37,20 @@ describe Airport do
     end
 
     context 'bad weather to fly' do
-      before {allow(airport).to receive(:flying_weather?).and_return(false)}
-      it 'not allowed when stormy weather' do
+      before {allow(airport).to receive(:bad_weather?).and_return(true)}
+
+      it 'plane not allowed to take off' do
         error_message = "Too stormy to fly"
         subject.land(plane)
         expect {subject.take_off(plane)}.to raise_error(error_message)
+      end
+
+      xit 'plane still at airport' do
       end
     end
   end
 
   describe '#plane_landed?' do
-    before {allow(airport).to receive(:flying_weather?).and_return(true)}
 
     it 'confirms the plane is in the airport'  do
       subject.land(plane)

@@ -1,3 +1,5 @@
+require_relative 'weather'
+
 class Airport
   attr_reader :landed_planes
 
@@ -11,7 +13,7 @@ class Airport
 
   def take_off(a_plane)
     fail 'Plane not at airport' unless in_airport?(a_plane)
-    fail "Too stormy to fly" unless flying_weather?
+    fail "Too stormy to fly" if bad_weather?
     @landed_planes.delete(a_plane)
   end
 
@@ -21,7 +23,8 @@ class Airport
 
   private
 
-  def flying_weather?
-    false
+  def bad_weather?
+    Weather.new.stormy?
   end
+
 end
