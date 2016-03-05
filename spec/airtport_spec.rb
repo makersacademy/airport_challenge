@@ -35,6 +35,7 @@ describe Airport do
   
     it 'should let a plane depart' do
     allow(weather).to receive(:storm?).and_return(false)
+      subject.arrive(plane, weather)  
       subject.depart(plane, weather)
       expect(subject.planes).not_to include(plane)
     end

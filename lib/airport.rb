@@ -16,7 +16,8 @@ class Airport
   end
 
   def depart(plane, weather)
-    raise "there is a storm" if weather.storm? 
+    raise "this plane does not exist" if @planes.include?(plane) == false
+    raise "there is a storm" if weather.storm?
     @planes.delete(plane)
   end
 
