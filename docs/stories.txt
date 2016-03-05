@@ -1,0 +1,12 @@
+controller
+plane   instruct to land at airport
+plane   verify it has landed
+
+plane   instruct to takeoff from airport
+plane   verify it has taken off
+
+airport   negate takeoff if stormy
+airport   negate land if stormy
+airport   negate land if full
+
+airport   have different caps
