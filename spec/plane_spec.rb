@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-	
+
 	it 'responds to the method landed?' do
 		expect(subject).to respond_to (:landed?)
 	end
@@ -15,7 +15,15 @@ describe Plane do
 	end
 
 	it 'confirms that a plane has not yet taken off' do
-		expect(subject.landed?).to eq false
+		expect(subject.taken_off?).to eq false
+	end
+
+	it 'responds to the method status' do
+		expect(subject).to respond_to (:status)
+	end
+
+	it 'gives the status of a plane' do
+		expect(subject.status).to be_a String
 	end
 
 
