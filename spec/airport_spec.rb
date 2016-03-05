@@ -21,6 +21,11 @@ describe Airport do
       10.times {(Airplane.new).land_plane(subject)}
       expect{ (Airplane.new).land_plane(subject) }.to raise_error 'Airport is full'
     end
+
+    it 'should set a capacity if initialized with an argument' do
+      airport = Airport.new(5)
+      expect(airport.capacity).to eq 5
+    end
   end
 
 end
