@@ -1,9 +1,14 @@
 class Plane
-  def flying?
-    @flying
+
+  def land
+    @flying = false
+  end
+  
+  def take_off
+    @flying = true
   end
 
-  def flying=(value)
-    @flying = value
+  def flying?
+    @flying
   end
 end

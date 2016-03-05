@@ -1,19 +1,17 @@
 require 'airport'
 
 describe Airport do
+  subject(:airport) { described_class.new }
   context 'initial settings' do
     it {should respond_to(:land).with(1).argument}
     it {should respond_to(:take_off)}
     it {should respond_to(:capacity)}
-    it {should respond_to(:planes)}
     it {should respond_to(:closed?)}
     it {should respond_to(:closed=).with(1).argument}
     it {should respond_to(:include?).with(1).argument}
     it {should_not be_closed}
-    describe "#capacity" do
-      it 'has default specified in class' do
-        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-      end
+    it 'has default capacity specified in class' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
@@ -27,7 +25,7 @@ describe Airport do
 
   context 'empty airport' do
     it 'raises an error if there are no planes in airport' do
-      expect {subject.take_off}.to raise_error("No planes in airport")
+      expect {airport.take_off}.to raise_error("No planes in airport")
     end
 
   end
@@ -35,33 +33,34 @@ describe Airport do
   describe '.land' do
     let (:plane){double(:plane)}
     before(:each) do
-      allow(plane).to receive(:flying=).with(false)
+      allow(plane).to receive(:land)
+      # allow(plane).to receive(:flying=).with(false)
       allow(plane).to receive(:flying?).and_return(true || false)
     end
     it 'plane that has landed is in airport' do
-      subject.land(plane)
-      expect(subject).to include(plane)
+      airport.land(plane)
+      expect(airport).to include(plane)
     end
 
     it 'last plane landed is not flying' do
-      subject.land(plane)
+      airport.land(plane)
       allow(plane).to receive(:flying?).and_return(false)
-      expect(subject.planes.last).to_not be_flying
+      expect(airport.send(:planes).last).to_not be_flying
     end
 
     it 'raises an error if plane is not flying' do
       allow(plane).to receive(:flying?).and_return(false)
-      expect {subject.land(plane)}.to raise_error("Plane is not flying")
+      expect {airport.land(plane)}.to raise_error("Plane is not flying")
     end
 
     it 'raises an error if airport is closed' do
-      subject.closed = true
-      expect {subject.land(plane)}.to raise_error("Airport is closed")
+      airport.closed = true
+      expect {airport.land(plane)}.to raise_error("Airport is closed")
     end
 
     it 'raises an error if airport is full' do
-      Airport::DEFAULT_CAPACITY.times{subject.land(plane)}
-      expect {subject.land(plane)}.to raise_error("Airport is full")
+      Airport::DEFAULT_CAPACITY.times{airport.land(plane)}
+      expect {airport.land(plane)}.to raise_error("Airport is full")
     end
   end
 
@@ -69,48 +68,48 @@ describe Airport do
   describe '.take_off' do
     let (:plane){double(:plane)}
     before(:each) do
-      allow(plane).to receive(:flying=).with(false)
+      allow(plane).to receive(:land)
       allow(plane).to receive(:flying?).and_return(true)
-      subject.land(plane)
+      airport.land(plane)
       allow(plane).to receive(:flying?).and_return(false)
-      plane = subject.planes.last
+      plane = airport.send(:planes).last
     end
 
     it 'plane that has taken off is flying' do
-      allow(plane).to receive(:flying=).with(true)
-      plane = subject.take_off
+      allow(plane).to receive(:take_off)
+      plane = airport.take_off
       allow(plane).to receive(:flying?).and_return(true)
       expect(plane).to be_flying
     end
 
     it 'plane that has taken off is no longer in airport' do
-      allow(plane).to receive(:flying=).with(true)
-      plane = subject.take_off
+      allow(plane).to receive(:take_off)
+      plane = airport.take_off
       allow(plane).to receive(:flying?).and_return(true)
-      expect(subject).to_not include(plane)
+      expect(airport).to_not include(plane)
     end
 
 
     it 'raises an error if airport is closed' do
-      subject.closed = true
-      expect {subject.take_off}.to raise_error("Airport is closed")
+      airport.closed = true
+      expect {airport.take_off}.to raise_error("Airport is closed")
     end
 
     it 'raises an error if plane is not on the ground' do
       allow(plane).to receive(:flying?).and_return(true)
-      expect {subject.take_off}.to raise_error("Plane is not on the ground")
+      expect {airport.take_off}.to raise_error("Plane is not on the ground")
     end
   end
 
   describe '.closed' do
     it 'is closed' do
-      subject.closed = true
-      expect(subject).to be_closed
+      airport.closed = true
+      expect(airport).to be_closed
     end
 
     it 'is open' do
-      subject.closed = false
-      expect(subject).to_not be_closed
+      airport.closed = false
+      expect(airport).to_not be_closed
     end
   end
 end

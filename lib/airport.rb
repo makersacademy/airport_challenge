@@ -2,7 +2,6 @@ class Airport
 
   DEFAULT_CAPACITY = 10
   attr_reader :capacity
-  attr_reader :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -26,7 +25,7 @@ class Airport
     raise ("Airport is closed") if closed?
     raise ("Airport is full") if full?
     raise ("Plane is not flying") unless plane.flying?
-    plane.flying = false
+    plane.land
     planes << plane
   end
 
@@ -35,11 +34,14 @@ class Airport
     raise ("Airport is closed") if closed?
     raise ("Plane is not on the ground") if planes.last.flying?
     plane = planes.pop
-    plane.flying = true
+    plane.take_off
     plane
   end
 
 private
+
+  attr_reader :planes
+
   def full?
     planes.length >= capacity
   end
