@@ -10,6 +10,23 @@ describe Airport do
     allow(plane).to receive(:landed).and_return(false)
   end
 
+  describe '#initialization' do
+    subject { Airport.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        airport.instruct_land(plane)
+      end
+      expect { airport.instruct_land(plane) }.to raise_error "The airport is full."
+    end
+
+    it "accepts a given capacity" do
+      airport = Airport.new(100)
+      100.times { airport.instruct_land (plane) }
+      expect{ airport.instruct_land (plane)}.to raise_error "The airport is full."
+    end
+  end
+
+
   it { is_expected.to respond_to(:instruct_land).with(1).argument }
 
   describe '#landing' do
@@ -21,6 +38,11 @@ describe Airport do
     it 'confirm plane has landed' do
       expect(plane).to receive(:landed?)
       airport.instruct_land(plane)
+    end
+
+    it "raises an error" do
+      airport.capacity.times { airport.instruct_land(plane) }
+      expect { airport.instruct_land(plane) }.to raise_error "The airport is full."
     end
   end
 
