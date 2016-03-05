@@ -1,5 +1,5 @@
 class Airport
-  def arriving(plane)
+  def arrive(plane)
     true
   end
 end
