@@ -9,4 +9,9 @@ class Airport
   def capacity
     @capacity
   end
+
+  def land_plane(airplane)
+    airplane.land
+  end
+
 end
