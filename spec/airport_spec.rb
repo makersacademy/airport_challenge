@@ -1,8 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:plane1) { double(:Plane, take_off: nil) }
-  let(:plane2) { double(:Plane) }
+  let(:plane1) { double(:Plane, take_off: nil, land: nil) }
+  let(:plane2) { double(:Plane, take_off: nil, land: nil) }
 
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity)}
@@ -30,6 +30,11 @@ describe Airport do
       subject.land plane1
       expect(subject.planes).to eq [plane1]
     end
+
+    it 'tells the plane to land' do
+      expect(plane1).to receive(:land).with subject
+      subject.land plane1
+    end
   end
 
   describe '#full?' do
@@ -38,7 +43,7 @@ describe Airport do
     end
 
     it 'reports if full' do
-      (Airport::DEFAULT_CAPACITY).times {subject.land(plane1)}
+      Airport::DEFAULT_CAPACITY.times {subject.land plane1}
       expect(subject).to be_full
     end
   end
@@ -48,7 +53,7 @@ describe Airport do
 
     it 'removes a plane from airport when it leaves' do
       subject.land(plane1, plane2)
-      subject.take_off(plane1)
+      subject.take_off plane1
       expect(subject.planes).to eq [plane2]
     end
 

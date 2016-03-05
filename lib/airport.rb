@@ -4,7 +4,7 @@ class Airport
 
   def initialize capacity=DEFAULT_CAPACITY
     @capacity = capacity
-    @planes = Array.new
+    @planes = []
   end
 
   def change_capacity quantity
@@ -12,6 +12,7 @@ class Airport
   end
 
   def land *args
+    args.each {|plane| plane.land self}
     @planes += args
   end
 
