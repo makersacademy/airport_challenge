@@ -5,11 +5,15 @@ airport verify it contains the plane
 
 plane   instruct to takeoff from airport
 plane   verify it has taken off
-airport verift it no longer has the plane
-
+airport verify it no longer has the plane
 
 airport   negate takeoff if stormy
 airport   negate land if stormy
-airport   negate land if full
 
+airport   have a capacity
+airport   negate land if full
 airport   have different caps
+
+edge: airport can't dispatch if empty
+edge: airplane can't land if flying
+edge: airplane can't take off if landed
