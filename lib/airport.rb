@@ -1,4 +1,5 @@
 require_relative 'aircraft'
+require_relative 'weather'
 
 class Airport
   attr_reader :capacity, :aircrafts
@@ -9,13 +10,22 @@ class Airport
     @aircrafts = []
   end
 
-  def landing aircraft
-    raise 'The aircraft has already landed.' if aircraft.landed == true
-    raise 'The airport is full.' if full
+  def land aircraft, weather=Weather.new
+    raise 'The aircraft is on the ground' if aircraft.landed == true
+    raise 'The airport is full' if full
+    raise 'Weather not ideal.' if weather.stormy
     aircraft.change_status
     @aircrafts << aircraft
-    'The aircraft has landed safely.'
+    "The #{aircraft} has landed safely to #{self}"
   end
+
+  def takeoff aircraft, weather=Weather.new
+    raise 'Cannot locate the aircraft' unless @aircrafts.include? aircraft
+    raise 'Weather not ideal' if weather.stormy
+    aircraft.change_status
+    @aircrafts.delete aircraft
+    "The #{aircraft} has successfully taken off from #{self}"
+    end
 
   private
   def empty
