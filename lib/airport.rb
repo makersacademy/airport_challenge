@@ -25,7 +25,7 @@ class Airport
     planes.delete plane
   end
 
-private
+  private
 
   attr_reader :planes
 

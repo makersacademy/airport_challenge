@@ -17,8 +17,10 @@ describe Airport do
   end
 
   let(:plane) { double :plane }
-  before { allow(plane).to receive(:land_at) }
-  before { allow(plane).to receive(:depart_from) }
+  before :each do
+    allow(plane).to receive(:land_at)
+    allow(plane).to receive(:depart_from)
+  end
   def storm(value)
     allow(weather).to receive(:stormy?).and_return(value)
   end
