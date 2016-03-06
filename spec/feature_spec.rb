@@ -8,7 +8,7 @@ ba = Plane.new(heathrow)
 lufthansa = Plane.new(frankfurt)
 klm = Plane.new(schiphol)
 
-describe "Program features" do
+describe "Feature tests" do
   describe "initializing airports" do
     it "has the default capacity" do
       expect(schiphol.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -25,8 +25,11 @@ describe "Program features" do
 
   describe "initializing planes" do
     [ba, lufthansa, klm].each do |plane|
-      it "#{plane} starts in the airport" do
+      it "#{plane} doesn't start in the air" do
         expect(plane.flying).to eq false
+      end
+      it "#{plane} starts in a specific airport" do
+        expect(plane.airport.planes).to include plane
       end
     end
   end
@@ -64,14 +67,32 @@ describe "Program features" do
       end
 
       it "klm cannot land in schiphol due to traffic" do
-        frankfurt_to_schiphol = []
-        30.times { frankfurt_to_schiphol << (Plane.new(frankfurt)) }
-        frankfurt_to_schiphol.each do |plane|
+        fran_to_schi = []
+        30.times { fran_to_schi << (Plane.new(frankfurt)) }
+        fran_to_schi.each do |plane|
           frankfurt.take_off(plane)
           schiphol.land(plane)
         end
         frankfurt.take_off(klm)
         expect { schiphol.land(klm) }.to raise_error
+      end
+    end
+  end
+
+  context "stormy weather" do
+    before do
+      allow(heathrow.send(:weather)).to receive(:stormy?).and_return(true)
+      allow(frankfurt.send(:weather)).to receive(:stormy?).and_return(false)
+    end
+
+    describe "take-off" do
+      it "ba cannot take off from heathrow due to stormy weather" do
+        expect { heathrow.take_off(ba) }.to raise_error
+      end
+
+      it "lufthansa cannot land in heathrow due to stormy weather" do
+        frankfurt.take_off(lufthansa)
+        expect { heathrow.land(lufthansa) }.to raise_error
       end
     end
   end

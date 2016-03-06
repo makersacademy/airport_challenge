@@ -1,6 +1,6 @@
 class Plane
 
-  attr_reader :flying
+  attr_reader :flying, :airport
 
   def initialize(airport=Airport.new, flying=false)
     @airport = airport
