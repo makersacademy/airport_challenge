@@ -10,6 +10,8 @@ class Airport
 
   def instruct_to_land(plane)
     plane.land
+    @capacity << plane
+    # return "An airplane has landed."
   end
 
 end
