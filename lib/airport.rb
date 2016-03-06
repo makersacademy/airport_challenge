@@ -3,22 +3,47 @@ require_relative 'weatherconditions'
 
 class Airport
 
-	include Weather_Conditions
+CAPACITY = 5
 
-	attr_reader :planes, :current_weather
+	include WeatherConditions
 
-	def initialize
+	attr_reader :planes, :current_weather, :capacity
+
+	def initialize(capacity=CAPACITY)
 		@planes = []
-		@current_weather = :sunny
+		@current_weather = WEATHER.sample
+		@capacity = capacity
 	end
 
 	def land plane
-		@planes << plane unless @planes.include?(plane) 
+		fail ("Bad weather! Too dangerous to land plane.") if self.current_weather == :stormy
+		fail ("Cannot land. Airport is full!") if @planes.size == CAPACITY
+		unless plane.landed?
+			plane.change_landed_status
+			@planes << plane 
+		else
+			"This plane has already landed elsewhere"
+		end
 	end
 
 	def take_off plane
-		raise(RuntimeError) if self.current_weather == :stormy
-		@planes.delete(plane) if @planes.include?(plane) && self.current_weather != :stormy
+		fail ("Bad weather! Too dangerous to take off.") if self.current_weather == :stormy
+		if plane.landed? && @planes.include?(plane)
+		plane.change_landed_status
+		@planes.delete(plane) 
+	else
+		 "This plane is not at this airport!"
+		end
+	end
+
+	private
+
+	def full?
+		@planes.length == @capacity
+	end
+
+	def empty?
+		@planes.length == 0
 	end
 
 end

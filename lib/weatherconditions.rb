@@ -1,6 +1,6 @@
-module Weather_Conditions
+module WeatherConditions
 
-	WEATHER = [:stormy]
+	WEATHER = [:stormy,:rainy,:windy,:sunny]
 
 	def weather
 		@current_weather = WEATHER.sample
