@@ -1,13 +1,12 @@
 require_relative '../lib/plane.rb'
 require_relative '../lib/airport.rb'
 require_relative '../lib/weather.rb'
-p 1
 p plane = Plane.new
-p 2
 p airport = Airport.new
-p 3
-p 4
-#p airport.take_off(plane)
+p plane2 = Plane.new
+p airport.land(plane)
+p airport.land(plane2)
+p airport.take_off(plane)
 #p plane.land(airport)
 #p 4
 #p plane.landed?

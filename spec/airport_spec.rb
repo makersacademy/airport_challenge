@@ -4,52 +4,54 @@ describe Airport do
  subject(:airport) { described_class.new }
    let(:plane) { double :plane }
    let(:weather) { double :weather }
+   let(:good_weather) { allow(subject).to receive(:stormy).and_return(false) }
+   let(:bad_weather) { allow(subject).to receive(:stormy).and_return(true) }
+   let(:airport_full) { allow(subject).to receive(:full?).and_return(true) }
+   let(:airport_not_full) { allow(subject).to receive(:fully?).and_return(false) }
+ 
+    describe '#land' do  
+      it { is_expected.to respond_to(:land).with(1).argument }
+    
+      it 'will not allow landing when stormy and will fail with message' do
+        bad_weather
+        expect { subject.land(plane) }.to raise_error "Weather is stormy so no landing"
+      end
+    
+      it 'will not allow landing when airport is full' do
+        airport_full
+        expect { subject.land(plane) }.to raise_error "Airport is full. Please find another airport to land"
+      end
 
-  describe '#good_weather' do
-    describe '#land' do 
-  
-    it { is_expected.to respond_to(:land).with(1).argument }
-  end
-    it 'will not allow landing when stormy and will fail with message "nope"' do
-      allow(subject).to receive(:stormy).and_return(true)
-      expect { subject.land(plane)}.to raise_error "nope"
+      it "will store the plane in planes" do
+        good_weather
+        airport_not_full
+        allow(plane).to receive(:land).and_return(true)
+        expect(subject).to receive(:add_plane).and_return(true)
+        subject.land(plane)
+      end
+
+      it "will call on plane.land" do
+        good_weather
+        airport_not_full
+        allow(plane).to receive(:land).and_return(true)
+        expect(subject).to receive(:add_plane)
+        subject.land(plane)
+      end
     end
-              #  DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
-               #      expect{subject.dock_bike(Bike.new)}.to raise_error("There are no spaces available")
-                        
-    it 'will not allow landing when airport is full' do
-      allow(subject).to receive(:full?).and_return(true)
-      expect { subject.land(plane) }.to raise_error "ALL FULL TRY THE THAMES"
-  end
-
-    it "will store the plane in planes" do
-      allow(plane).to receive(:land)
-      subject.land(plane)
-      expect(subject.planes.include? plane).to eq true
-    end
-
-    it "will call on plane.land" do
-      allow(plane).to receive(:land)
-      expect(plane).to receive(:land)
-      subject.land(plane)
-    end
-  end
-
+ 
   describe '#take_off' do
 
     it { is_expected.to respond_to(:take_off).with(1).argument }
     
-    it 'will not run  when stormy and fail with message "I cannae do it, she cannae handle the weather captain" ' do
-      allow(subject).to receive(:stormy).and_return(true)
+    it 'will not run  when stormy and fail' do
+      bad_weather
       allow(plane).to receive(:take_off)
       expect { subject.take_off(plane) }.to raise_error "I cannae do it, she cannae handle the weather"
-      # expect(plane).to not_receive(:take_off)
       
     end 
 
     it 'will call remove_plane after ' do  
-      
-      allow(subject).to receive(:stormy). and_return(false)
+      good_weather 
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       allow(subject).to receive(:remove_plane)
@@ -59,9 +61,9 @@ describe Airport do
     end
     
     it 'will call plane.take_off' do
-      
-      allow(subject).to receive(:stormy).and_return(false)
+      good_weather 
       allow(plane).to receive(:take_off).and_return(true)
+      allow(subject.planes).to receive(:include?).and_return(true) 
       allow(subject).to receive(:remove_plane)
       expect(plane).to receive(:take_off)
       subject.take_off(plane) 
@@ -70,15 +72,9 @@ describe Airport do
   end
   
   describe '#remove_plane' do
- #   let(:planes) { double :planes }
 
     it { is_expected.to respond_to(:remove_plane).with(1).argument }
     
-#    it 'will delete the plane it was given'  do
-#      allow(subject).to receive(:planes).and_return([plane])
-#      subject.planes
-#      expect  subject.remove_plane(plane).to_return plane 
-#    end
   end
   describe '#stormy' do
     it { is_expected.to respond_to(:stormy) }
@@ -106,3 +102,4 @@ describe Airport do
     end
   end
 end
+
