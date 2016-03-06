@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+
 ## "WEATHER" TO LAND?
 
 * How do you keep your airport _accident-free_ in bad weather?
@@ -46,61 +48,62 @@ The Airport class is able to communicate with other two classes and hence serves
 Detailed descriptions for methods within each class are given below.
 
 ### Airport class methods
-#### initialize
+#### - initialize
 It takes one optional argument: capacity
+
 It creates an airport with a dock as an empty array. The default capacity of the dock is set at 5. The default capacity can be overridden given a value when creating a new airport.
+
 e.g., Airport.new(20) => creates an airport with a capacity of 20
 
-#### land (public)
+#### - land
 It takes two arguments: aircraft (compulsory), weather (optional)
+
 It instructs the specified aircraft to (or not to) land, depending on the result of calling a private can_land? method.
+
 If no error is raised by can_land?, it
 * calls a change_status method on the aircraft
 * stores the aircraft to the dock
 * display a message confirming the landing
 
-#### takeoff (public)
+#### - takeoff
 It takes two arguments: aircraft (compulsory), weather (optional)
+
 It instructs the specified aircraft to (or not to) takeoff, depending on the result of calling a private can_takeoff? method.
+
 If no error is raised by can_takeoff?, it
 * calls a change_status method on the aircraft
 * clears the aircraft from the dock
-* display a message confirming the takeoff.
+* display a message confirming the takeoff
 
-#### can_land? (private)
+#### - can_land? (private)
 It raises an error in the following three cases:
 * When the aircraft is already on the ground
 * When the airport dock is full
 * When the weather is stormy
 
-#### can_takeoff? (private)
+#### - can_takeoff? (private)
 It raises an error in the following two cases:
 * When the aircraft does not exist in the dock
 * When the weather is stormy
 
-#### full (private)
+#### - full (private)
 It returns true when the dock is full
 
-
 ### Aircraft class methods
-#### initialize
+#### - initialize
 It creates an aircraft with a default status of landed.
 
-#### change_status
+#### - change_status
 It flips the status of the aircraft between landed and not landed i.e., airbourne.
 
 ### Weather class methods
-#### initialize
+#### - initialize
 It take one optional argument: number
-It creates a weather with a default probability of 80% sunny and 20% stormy. When no value is provided, an integer between 1 and 10 is randomly assigned. The weather condition is determined according to the number as follows.
+
+It creates a weather with a default probability of 80% sunny and 20% stormy. When no value is provided, an integer between 1 and 10 is randomly assigned. The weather condition is determined according to the number as follows. The default probability can be overridden when given a number.
 * 1 or 2: stormy
 * 3 to 10: sunny
-The default probability can be overridden when given a number.
 
 
 ## Authour
 Misa Ogura
-
-
-### Travis-ci status
-[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
