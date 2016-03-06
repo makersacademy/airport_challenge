@@ -36,27 +36,27 @@ class Airport
   end
 
   def can_land? plane
-    raise 'Cannot land since airport is full' if full?
-    raise 'Unable to land due to stormy weather' if weather.stormy?
-    raise 'Plane already in the airport' if check_aprons plane
+    fail 'Cannot land since airport is full' if full?
+    fail 'Unable to land due to stormy weather' if weather.stormy?
+    fail 'Plane already in the airport' if check_aprons plane
     landing_authorized plane
   end
 
   def landing_authorized plane
-    planes << plane
     plane.land
+    planes << plane
     "#{plane} landed at #{self}"
   end
 
   def can_take_off? plane
-    raise 'Plane not in the airport' unless check_aprons plane
-    raise 'Unable to take off due to stormy weather' if weather.stormy?
+    fail 'Plane not in the airport' unless check_aprons plane
+    fail 'Unable to take off due to stormy weather' if weather.stormy?
     take_off_authorized plane
   end
 
   def take_off_authorized plane
-    planes.delete(plane)
     plane.take_off
+    planes.delete(plane)
     "#{plane} has departed from #{self}"
   end
 

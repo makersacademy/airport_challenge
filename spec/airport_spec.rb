@@ -1,11 +1,8 @@
 require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane) { double(:plane) }
+  let(:plane) { double(:plane, land: true) }
   let(:weather) { double(:weather) }
-  before(:each) do
-    allow(subject.weather).to receive(:stormy?).and_return(false)
-  end
 
   describe 'Capacity tests' do
     it 'Has a default capacity' do
@@ -18,21 +15,20 @@ describe Airport do
     end
   end
 
-  describe 'landing planes' do
-    it 'instructs the plane to land' do
-      allow(plane).to receive(:land)
-      subject.land plane
-    end
+  before(:each) do
+    allow(subject.weather).to receive(:stormy?).and_return(false)
+  end
 
-    it 'has the plane after it has landed' do
-      allow(plane).to receive(:land)
-      subject.land plane
-      expect(subject.has_plane?(plane)).to be true
-    end
+  describe '#landing' do
+    context 'after landing is authorized' do
+      it 'plane is in the airport' do
+        subject.land plane
+        expect(subject.has_plane?(plane)).to be true
+      end
 
-    it 'confirms the plane has landed' do
-      allow(plane).to receive(:land)
-      expect(subject.land plane).to eq "#{plane} landed at #{subject}"
+      it 'confirms the plane has landed' do
+        expect(subject.land(plane)).to eq "#{plane} landed at #{subject}"
+      end
     end
 
     context 'when the airport is full' do
@@ -54,34 +50,27 @@ describe Airport do
     end
   end
 
-  describe 'planes taking off' do
-    it 'instructs the plane to take off' do
-      allow(plane).to receive(:land)
-      subject.land plane
-      expect(plane).to receive(:take_off)
-      subject.take_off plane
+  describe '#take_off' do
+  before(:each) { subject.land plane }
+
+    context 'when plane has already taken off' do
+      it 'tells the pilot he is drunk' do
+        allow(plane).to receive(:take_off)
+        subject.take_off plane
+        expect(subject.has_plane?(plane)).to be false
+      end
     end
 
-    it 'plane not in airport after taking off' do
-      allow(plane).to receive(:land)
-      subject.land plane
-      allow(plane).to receive(:take_off)
-      subject.take_off plane
-      expect(subject.has_plane?(plane)).to be false
-    end
-
-    it 'confirms the plane has taken off' do
-      allow(plane).to receive(:land)
-      subject.land plane
-      allow(plane).to receive(:take_off)
-      confirmation = "#{plane} has departed from #{subject}"
-      expect(subject.take_off plane).to eq confirmation
+    context 'after take off is authorized' do
+      it 'confirms the plane has taken off' do
+        allow(plane).to receive(:take_off)
+        confirmation = "#{plane} has departed from #{subject}"
+        expect(subject.take_off(plane)).to eq confirmation
+      end
     end
 
     context 'when weather is stormy' do
       it 'prevents takeoff' do
-        allow(plane).to receive(:land)
-        subject.land plane
         allow(subject.weather).to receive(:stormy?).and_return(true)
         allow(plane).to receive(:take_off)
         message = 'Unable to take off due to stormy weather'
