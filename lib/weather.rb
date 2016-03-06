@@ -1,12 +1,12 @@
 class Weather
 
   def stormy?
-    get_random_num % 15 == 0
+    random_weather % 15 == 0
   end
 
   private
 
-  def get_random_num
-    num = rand(1..100)
+  def random_weather
+    weather = rand(1..100)
   end
 end
