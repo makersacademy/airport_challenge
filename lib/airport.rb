@@ -23,7 +23,7 @@ class Airport
 
   def dispatch(plane)
     fail "Cannot take off" unless can_take_off?(plane)
-    @airfield.delete_if { |pl| pl == plane }
+    remove_from_airfield(plane)
     plane.take_off
     plane
   end
@@ -37,6 +37,10 @@ class Airport
   end
 
   private
+
+  def remove_from_airfield(plane)
+    @airfield.delete_if { |pl| pl == plane }
+  end
 
   def at_capacity?
     capacity == airfield.size
