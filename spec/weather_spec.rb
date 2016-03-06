@@ -1,12 +1,13 @@
 require 'weather'
 
 describe Weather do
-  it {is_expected.to respond_to(:current_weather)}
 
-  describe '#current_weather' do
-    it 'should return a boolean representing the weather' do
-      subject.current_weather
-      expect(subject.stormy).to be_truthy
-    end
+  it 'creates a random number between 0 and 1' do
+    expect(subject.random).to be_a Integer
+  end
+
+  it 'assigns the random number a value to determine the state of the weather' do
+    subject.random == 0
+    expect(subject.current).to be_a String
   end
 end

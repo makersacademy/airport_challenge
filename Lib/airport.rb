@@ -3,29 +3,29 @@ require_relative 'weather'
 
 class Airport
 
-  attr_accessor :hangar, :clear, :current_weather
+  attr_accessor :hangar, :clear
 
   def initialize
     @hangar = []
-    @clear = true
-    @current_weather
+    @clear = "good weather"
   end
 
-  def check_weather(weather)
-    @current_weather = weather.stormy
+  def current_weather(weather)
+    @clear = weather.current
   end
 
   def land_plane(plane)
-    @hangar << plane.landed
+    @hangar << plane
+    @hangar.map { |planes| planes.landed  }
     plane
   end
 
   def take_off(planes)
-    if @hangar.empty? || @current_weather == false
+    if @clear == "good weather"
       @hangar.map { |plane| plane.takeoff  }
       @hangar.pop
     else
-      raise "No takeoff in stormy weather"
+      "cant take off"
     end
   end
 

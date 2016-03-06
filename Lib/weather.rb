@@ -1,17 +1,17 @@
 class Weather
-
-  attr_accessor :stormy
-
   def initialize
-    @stormy = false
+    @random = rand(2)
   end
 
-  def current_weather
-    if rand(10) > 4
-      @stormy = true
-    else
-      @stormy
-    end
+  def random
+    @random
+  end
 
+  def current
+    if @random == 0
+      "good weather"
+    else
+      "bad weather"
+    end
   end
 end
