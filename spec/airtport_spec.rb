@@ -36,12 +36,30 @@ describe Airport do
   end
 
   describe 'departure' do
-  
+
+    it 'should initiate a plane to fly' do
+    allow(weather).to receive(:storm?).and_return(false)
+    subject.arrive(plane, weather) 
+    subject.depart(plane, weather)
+    end
+    
     it 'should let a plane depart' do
     allow(weather).to receive(:storm?).and_return(false)
       subject.arrive(plane, weather)  
       subject.depart(plane, weather)
       expect(subject.planes).not_to include(plane)
+    end
+
+    it 'should depart a specif plane' do
+      allow(weather).to receive(:storm?).and_return(false)
+      aa_10= plane
+      aa_55= plane
+      aa_60= plane
+      subject.arrive(aa_55, weather)
+      subject.arrive(aa_60, weather)
+      subject.arrive(aa_10, weather)
+      subject.depart(aa_60, weather)
+      expect(subject.planes).not_to include(aa_60)
     end
 
     it 'when there is a storm planes cant depart' do
