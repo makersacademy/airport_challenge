@@ -2,7 +2,6 @@ require "plane"
 
 describe Plane do
   let(:airport) { double :airport }
-  before { allow(:airport).to receive(:planes) }
   subject(:plane) { described_class.new(airport) }
   let(:weather) { double :weather, stormy?: false }
 
