@@ -43,7 +43,7 @@ describe Plane do
     end
 
     it "raises an exception if told to land while on the ground" do
-      expect{subject.land(dummy_airport)}.to raise_error(already_on_ground)
+      expect{subject.land(dummy_airport)}.to raise_error already_on_ground
     end
 
   end
@@ -56,7 +56,7 @@ describe Plane do
     end
 
     it "raises an exception if told to takeoff while in flight" do
-      expect{subject.takeoff}.to raise_error(already_in_air)
+      expect{subject.takeoff}.to raise_error already_in_air
     end
 
   end

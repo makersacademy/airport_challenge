@@ -13,28 +13,28 @@ describe Airport do
   describe 'landing sequence:' do
 
     it 'can check weather on landing request' do
-      expect(dummy_weather).to receive(:current_weather)
-      subject.land_airplane(dummy_plane)
+      expect(dummy_weather).to receive :current_weather
+      subject.land_airplane dummy_plane
     end
 
     it 'can communicate sucessful landing to planes' do
-      expect(dummy_plane).to receive(:land)
-      subject.land_airplane(dummy_plane)
+      expect(dummy_plane).to receive :land
+      subject.land_airplane dummy_plane
     end
 
     it 'can store landed airplanes' do
-      subject.land_airplane(probe = dummy_plane)
-      expect(subject.list_airplanes).to eq [probe]
+      subject.land_airplane dummy_plane
+      expect(subject.list_airplanes).to eq [dummy_plane]
     end
 
     it 'raises an exception when a plane tries to land in stormy weather' do
-      allow(dummy_weather).to receive(:current_weather).and_return(:stormy)
-      expect{ subject.land_airplane(dummy_plane) }.to raise_error(bad_weather)
+      allow(dummy_weather).to receive(:current_weather).and_return :stormy
+      expect{subject.land_airplane(dummy_plane)}.to raise_error bad_weather
     end
 
     it 'raises an exception when a plane tries to land in a full airport' do
-      expect{ 20.times {subject.land_airplane(dummy_plane)} }.not_to raise_error
-      expect{ subject.land_airplane(dummy_plane) }.to raise_error(full_airport)
+      expect{20.times {subject.land_airplane(dummy_plane)}}.not_to raise_error
+      expect{subject.land_airplane(dummy_plane)}.to raise_error full_airport
     end
 
   end
@@ -42,27 +42,27 @@ describe Airport do
   describe 'takeoff sequence:' do
 
     it 'can check weather on takeoff request' do
-      subject.land_airplane(dummy_plane)
-      expect(dummy_weather).to receive(:current_weather)
-      subject.launch_airplane(dummy_plane)
+      subject.land_airplane dummy_plane
+      expect(dummy_weather).to receive :current_weather
+      subject.launch_airplane dummy_plane
     end
 
     it 'can remove from storage departing planes' do
-      subject.land_airplane(probe = dummy_plane)
-      subject.launch_airplane(probe)
+      subject.land_airplane dummy_plane
+      subject.launch_airplane dummy_plane
       expect(subject.list_airplanes).to eq []
     end
 
     it 'can set planes to airborne' do
-      subject.land_airplane(dummy_plane)
-      expect(dummy_plane).to receive(:takeoff)
-      subject.launch_airplane(dummy_plane)
+      subject.land_airplane dummy_plane
+      expect(dummy_plane).to receive :takeoff
+      subject.launch_airplane dummy_plane
     end
 
     it 'raises exception when a plane tries to take off in stormy weather' do
-      subject.land_airplane(dummy_plane)
-      allow(dummy_weather).to receive(:current_weather).and_return(:stormy)
-      expect{ subject.launch_airplane(dummy_plane) }.to raise_error(bad_weather)
+      subject.land_airplane dummy_plane
+      allow(dummy_weather).to receive(:current_weather).and_return :stormy
+      expect{ subject.launch_airplane(dummy_plane) }.to raise_error bad_weather
     end
 
   end
@@ -74,9 +74,9 @@ describe Airport do
     end
 
     it 'can accept a custom capacity and enforce it' do
-      subject = Airport.new(dummy_weather, 5)
-      expect{ 5.times {subject.land_airplane(dummy_plane)} }.not_to raise_error
-      expect{ subject.land_airplane(dummy_plane) }.to raise_error(full_airport)
+      subject = Airport.new dummy_weather, 5
+      expect{5.times {subject.land_airplane(dummy_plane)}}.not_to raise_error
+      expect{subject.land_airplane(dummy_plane)}.to raise_error full_airport
     end
 
   end

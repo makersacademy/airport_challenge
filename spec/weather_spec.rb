@@ -14,7 +14,7 @@ describe Weather  do
   describe 'weather changing:' do
 
     it 'calls the random generator for new weather' do
-      expect(subject).to receive(:roll_new_weather)
+      expect(subject).to receive :roll_new_weather
       subject.change_weather
     end
 
@@ -24,8 +24,8 @@ describe Weather  do
     end
 
     it 'can change the weather to a given value' do
-      subject.change_weather(:dummy_weather)
-      expect(subject.current_weather).to eq(:dummy_weather)
+      subject.change_weather :dummy_condition
+      expect(subject.current_weather).to eq :dummy_condition
     end
 
   end

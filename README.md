@@ -25,6 +25,7 @@ so far:
 - Spend a minute prentending I'm done
 - Start to go through the code review file to see what I need to tweak to get to a decent codebase (hint: probably everything)
 - Added stronger consistency tests. Fixed a bug in the airplane class thanks to rspec.
+- Cleared up extra rspec, make style consistent across classes (spaces, parenthesys...)
 
 
 TODO how i implemented stuff
