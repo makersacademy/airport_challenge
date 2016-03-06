@@ -7,7 +7,7 @@ describe 'User Stories' do
 it 'planes need to land at airports, instructs planes to land at airport' do
 	airport = Airport.new(20)
 	plane = Plane.new
-	airport.land(plane)
+	allow(airport).to receive(:stormy?).and_return false
   	expect { airport.land(plane)}.not_to raise_error
 end
 
@@ -19,7 +19,6 @@ end
 it 'i want to instruct a plane to take off from an airport' do
 	airport = Airport.new(20)
 	plane = Plane.new
-	airport.take_off(plane)
 	expect { airport.take_off(plane).not_to raise_error }
 end
 
@@ -30,11 +29,11 @@ end
 it 'i want to stop planes landing when the airport is full' do
 	airport = Airport.new(20)
 	plane = Plane.new
+	allow(airport).to receive(:stormy?).and_return false
 	20.times do 
-		airport.land(plane)
-	end
+	airport.land(plane)
+end
 	expect { airport.land(plane) }.to raise_error 'Airport full, cannot land plane'
-	end
 end
 
 
@@ -43,13 +42,36 @@ end
 # I want to prevent takeoff when weather is stormy
 
 
+context 'when weather is stormy' do
+	before do
+		allow(airport).to receive(:stormy?).and_return true
+	end
+
 #4.2 As an air traffic controller
 # To ensure safety
 # I want to prevent landing when weather is stormy
 
+it 'does not allow planes to land when stormy' do
+	airport = Airport.new(20)
+	plane = Plane.new
+	allow(airport).to receive(:stormy?).and_return true
+	expect { airport.land(plane) }.to raise_error 'Cannot land plane when weather is stormy'
+	end
+
+	it 'does not allow planes to take off when stormy' do
+		expect { airport.take_off(plane) }.to raise_error 'Cannot take off when weather is stormy'
+	end
+end
+end
 
 
 # As the system designer
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
+
+
+
+
+
+
 
