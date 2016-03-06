@@ -3,6 +3,8 @@ Airport Challenge
 
 This is a implementation of https://github.com/makersacademy/airport_challenge, made with sweat, tea, a warm blanket and (some) swearing.
 
+https://travis-ci.org/lorenzoturrino/airport_challenge.svg?branch=master
+
 so far:
 - Implemented a Plane class, representing..planes.
 - Added an internal state and accessors method to be able to tell if airborne or not (test edge cases)
@@ -14,6 +16,8 @@ so far:
 - Made my beautiful methods ugly and went through great pains to avoid including the Weather class in the Airport one
 - Scrapped everything due to too many parameters being thrown around. Airport now has a weather instance loaded.
 - Added a capacity, and the ability to raise an error if a plane tries to land to a full airport.
-- Added a default capacity, and the ability to init a class with a different one
+- Added a default capacity, and the ability to init a class with a different one.
+- Slept and spent the morning cleaning the bathroom because holy hell my flatmates are animals.
+- Activate Travis CI, added that beautiful tag over there (it is working, right?)
 
 TODO how i implemented stuff
