@@ -2,35 +2,47 @@ class Plane
 
   private
 
-  @flying
+  @current_status
   @current_airport
 
   def dock_at(airport)
     @current_airport = airport
   end
 
+  def check_current_status(desired_status)
+    return if @current_status == desired_status
+    if desired_status == :landed
+      raise 'Warning! Already in flight.'
+    elsif desired_status == :flying
+      raise 'Warning! Already landed.'
+    end
+    fail "Required Status Unknown."
+  end
+
   public
 
   def initialize(airport=nil)
     if airport == nil
-      @flying = true
+      @current_status = :flying
     else
-      @flying = false
+      @current_status = :landed
       dock_at airport
     end
   end
 
   def land(airport)
-    @flying = false
+    check_current_status :flying
+    @current_status = :landed
     dock_at airport
   end
 
   def takeoff
-    @flying = true
+    check_current_status :landed
+    @current_status = :flying
   end
 
   def airborne?
-    @flying
+    @current_status == :flying
   end
 
   def stationed_at?

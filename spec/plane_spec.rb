@@ -37,6 +37,15 @@ describe Plane do
       expect(subject.stationed_at?).to eq dummy_airport
     end
 
+    it "raises an exception if told to takeoff while in flight" do
+      expect{subject.takeoff}.to raise_error('Warning! Already in flight.')
+    end
+
+    it "raises an exception if told to land while on the ground" do
+      subject = Plane.new(dummy_airport)
+      expect{subject.land(dummy_airport)}.to raise_error('Warning! Already landed.')
+    end
+
   end
 
 end
