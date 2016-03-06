@@ -30,7 +30,7 @@ WTL is written in Ruby version 2.2.3 and has been developed using RSpec version 
 
 
 ## Design
-The programme involves three classes; Airport, Aircraft and Weather.
+The design of WTL involves three classes; Airport, Aircraft and Weather.
 
 The Airport class is able to communicate with other two classes and hence serves as a main interface for the user. From the Airport class, the user is able to instruct an aircraft to (or not to) land and takeoff depending on the status of the aircraft and the weather conditions.
 
@@ -71,29 +71,39 @@ If no error is raised by can_land?, it
 * display a message confirming the landing
 
 ```
-In sunny weather...
-
-2.2.3 :007 > aircraft1
- => #<Aircraft:0x007f88f28a3608 @landed=true>
-2.2.3 :008 > aircraft2
- => #<Aircraft:0x007f88f2891f20 @landed=false>
-2.2.3 :009 > airport1.land aircraft1
-RuntimeError: The aircraft is already on the ground
-2.2.3 :010 > airport1.land aircraft2
+  If airport1 instructs already landed aircraft1 to land...
+  
+  2.2.3 :007 > aircraft1
+   => #<Aircraft:0x007f88f28a3608 @landed=true>
+  2.2.3 :008 > airport1.land aircraft1
+  RuntimeError: The aircraft is already on the ground
+```
+```
+  If airport1 instructs airbourne aircraft2 to land and sunny...
+  
+  2.2.3 :009 > aircraft2
+   => #<Aircraft:0x007f88f2891f20 @landed=false>
+  2.2.3 :010 > airport1.land aircraft2
  => "The aircraft has landed safely to the airport"
- ```
- ```
- in stormy weather...
+```
+```
+  If airport1 is full and instructs aircraft2 to land...
+  
+  2.2.3 :011 > aircraft2
+   => #<Aircraft:0x007f88f2891f20 @landed=false>
+  2.2.3 :012 > airport1
+   => #<Airport:0x007ff6f103ac60 @capacity=5, @dock=["aircraft", "aircraft", "aircraft", "aircraft", "aircraft"]> 
+  2.2.3 :013 > airport1.land aircraft2
+  RuntimeError: Unable to instruct landing as the airport dock is full
+```
+```
+  If airport1 instructs airbourne aircraft2 to land and stormy...
  
- 2.2.3 :007 > aircraft1
-  => #<Aircraft:0x007f88f28a3608 @landed=true>
- 2.2.3 :008 > aircraft2
-  => #<Aircraft:0x007f88f2891f20 @landed=false>
- 2.2.3 :009 > airport1.land aircraft1
- RuntimeError: The aircraft is already on the ground
- 2.2.3 :010 > airport1.land aircraft2
- RuntimeError: Unable to instruct landing due to severe weather
- ```
+  2.2.3 :014 > aircraft2
+   => #<Aircraft:0x007f88f2891f20 @landed=false>
+  2.2.3 :015 > airport1.land aircraft2
+  RuntimeError: Unable to instruct landing due to severe weather
+```
 
 #### - takeoff
 It takes two arguments: aircraft (compulsory), weather (optional)
@@ -104,6 +114,31 @@ If no error is raised by can_takeoff?, it
 * calls a change_status method on the aircraft
 * clears the aircraft from the dock
 * display a message confirming the takeoff
+
+```
+  If the aircraft2 has landed at airport1 but not airport2...
+  
+  2.2.3 :008 > airport1.land aircraft2
+   => "The aircraft has landed safely to the airport" 
+  2.2.3 :009 > airport2.takeoff aircraft2
+  RuntimeError: Unable to locate the aircraft
+```
+```
+  If the airport1 instructs aircraft2 to take off and sunny...
+  
+  2.2.3 :010 > airport1.land aircraft2
+   => "The aircraft has landed safely to the airport" 
+  2.2.3 :011 > airport1.takeoff aircraft2
+   => "The aircraft has successfully taken off from the airport" 
+```
+```
+  If the airport1 instructs aircraft2 to take off any stormy...
+  
+  2.2.3 :010 > airport1.land aircraft2
+   => "The aircraft has landed safely to the airport" 
+  2.2.3 :011 > airport1.takeoff aircraft2
+  RuntimeError: Unable to instruct takeoff due to severe weather
+```
 
 #### - can_land? (private)
 It raises an error in the following three cases:
