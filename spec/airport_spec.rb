@@ -19,7 +19,8 @@ describe Airport do
         end
 
         it 'prevents landing - raises error' do
-          expect(airport.land(plane)).to eq airport.plane
+          allow(airport).to receive(:flying?).and_return(false)
+          expect { airport.land(plane) }.to raise_error "Error: Can't land a non-flying plane"
         end
 
       end
