@@ -10,4 +10,8 @@ class Plane
     @landed = true
   end
 
+  def airborn?
+    @landed = false
+  end
+
 end

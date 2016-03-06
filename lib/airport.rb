@@ -24,6 +24,7 @@ class Airport
     fail 'No planes in airport' if airport_empty?
     plane_check = planes.pop
     fail 'Plane is currently airborn' if plane_check.landed == false
+    plane_check.airborn?
     plane_check
   end
 

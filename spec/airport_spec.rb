@@ -9,6 +9,7 @@ describe Airport do
     allow(plane).to receive(:landed?)
     allow(plane).to receive(:landed).and_return(false)
     allow(weather).to receive(:stormy?).and_return(false)
+    allow(plane).to receive(:airborn?)
   end
 
   it 'calls plane to land' do
@@ -32,11 +33,25 @@ describe Airport do
     expect(airport.takeoff).to eq plane
   end
 
+  it 'calls for plane status to be changed' do
+    allow(plane).to receive(:landed).and_return(true)
+    airport.call_land(plane)
+    expect(plane).to receive(:airborn?)
+    airport.takeoff
+  end
+
   it 'checks plane removed after takeoff' do
     airport.call_land(plane)
     allow(plane).to receive(:landed).and_return(true)
     airport.takeoff
     expect(airport.planes).to eq []
+  end
+
+  it 'Checks multiple planes landing and taking off' do
+    10.times {airport.call_land(plane)}
+    allow(plane).to receive(:landed).and_return(true)
+    5.times {airport.takeoff}
+    expect(airport.planes.length).to eq 5 
   end
 
   it 'raises error if airport full' do
