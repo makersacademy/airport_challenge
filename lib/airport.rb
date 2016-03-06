@@ -9,7 +9,7 @@ class Airport
   end
 
   def land(plane)
-    fail "The weather is too bad" if get_forecast == 'stormy'
+    fail "The weather is too bad" if forecast == 'stormy'
     plane.land
     @airfield << plane
   end
@@ -20,7 +20,7 @@ class Airport
 
   def dispatch(plane)
     fail "This plane is not in the airfield" unless @airfield.include?(plane)
-    fail "The weather is too bad" if get_forecast == 'stormy'
+    fail "The weather is too bad" if forecast == 'stormy'
     @airfield.delete_if { |pl| pl == plane }
     plane.take_off
     plane
@@ -30,7 +30,7 @@ class Airport
     airfield.include?(plane) ? false : true
   end
 
-  def get_forecast
+  def forecast
     weather_seed = { 'sunny' => 19, 'stormy' => 1 }
     weather = []
     weather_seed.each do |condition, weight|
