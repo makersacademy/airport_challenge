@@ -7,12 +7,12 @@ attr_reader :status
   end
 
   def flying
-    fail "is already flying" if @status == :flying
+    raise "is already flying" if @status == :flying
     @status = :flying
   end
 
   def landed
-    fail "has landed already" if @status == :landed
+    raise "has landed already" if @status == :landed
     @status = :landed
   end
 
