@@ -8,7 +8,8 @@ describe Plane do
 
     it 'lands only when flying' do
       subject.land airport
-      expect{subject.land airport}.to raise_error "Already landed!"
+      message = "Already landed!"
+      expect{subject.land airport}.to raise_error message
     end
   end
 
@@ -26,7 +27,8 @@ describe Plane do
 
     it 'leaves only when commanded by relevant airport' do
       subject.land airport
-      expect{subject.take_off 'somewhere_else'}.to raise_error "Wrong airport giving instructions"
+      message = "Wrong airport giving instructions"
+      expect{subject.take_off 'somewhere_else'}.to raise_error message
     end
 
     it 'is no longer at an airport' do
