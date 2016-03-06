@@ -1,8 +1,9 @@
 require_relative 'weather'
 
 class Plane
-  attr_reader :flying
+  attr_reader :flying, :weather
   def initialize
+    @weather = Weather.new
     @flying = true
   end
 
@@ -21,7 +22,7 @@ class Plane
   end
 
   def storm_check
-    Weather.new.storm
+    @weather.storm
   end
 
 end

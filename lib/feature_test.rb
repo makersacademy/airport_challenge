@@ -9,17 +9,10 @@ gatwick = Airport.new
 heathrow.capacity = 2
 plane.land(heathrow)
 p plane, plane2
-#p heathrow.planes
-#plane.land(heathrow)
-#p heathrow.planes
-#p plane.takeoff(heathrow)
-p heathrow.planes
-p plane2
-#p "attempting to land second plane..."
 p plane2.land(heathrow)
 p heathrow.planes
-p gatwick
-plane.takeoff(gatwick)
+p plane.takeoff(heathrow)
 p plane
-p heathrow
-p gatwick.planes.include?(plane)
+p plane.land(heathrow)
+p ObjectSpace.each_object(Weather).count
+p plane.weather
