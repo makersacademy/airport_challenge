@@ -1,15 +1,15 @@
 class Plane
 
+  def initialize
+    @landed = true
+  end
+
   def landed?
     @landed
   end
 
-  def landed
-    @landed
-  end
-
-  def landed=(status)
-    @landed = status
+  def land
+    @landed = true
   end
 
 end

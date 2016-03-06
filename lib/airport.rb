@@ -6,7 +6,9 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def accept(plane)
+    raise "This plane is not currently flying." if plane.landed?
+    plane.land
     planes << plane
   end
 
