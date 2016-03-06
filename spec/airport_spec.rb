@@ -23,6 +23,10 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "The weather is too bad"
     end
 
+    it 'fails when airport is full' do
+      subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error "The airport is full"
+    end
   end
 
   describe '#confirm_landing' do

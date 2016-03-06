@@ -11,6 +11,7 @@ class Airport
   end
 
   def land(plane)
+    fail "The airport is full" if at_capacity?
     fail "The weather is too bad" if forecast == 'stormy'
     plane.land
     @airfield << plane
@@ -39,6 +40,12 @@ class Airport
       weight.times { weather << condition }
     end
     weather.sample
+  end
+
+  private
+
+  def at_capacity?
+    capacity == airfield.size
   end
 
 end
