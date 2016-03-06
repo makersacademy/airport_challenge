@@ -1,11 +1,11 @@
 require 'plane'
 
 describe Plane do
-  let(:airport){double(:airport, :planes => [], :receive_plane => [], :release_plane => [], :full? => false)}
-  let(:full_airport){double(:full_airport, :planes => [], :receive_plane => [], :full? => true)}
+  let(:airport){double(:airport, planes:[],receive_plane:[],release_plane:[],full?:false)}
+  let(:full_airport){double(:full_airport,planes:[],receive_plane:[],full?:true)}
+
 
   describe "#land" do
-    it {is_expected.to respond_to(:land).with(1).argument}
     it "reports its initial flying status" do
       expect(subject.flying).to be(true)
     end
@@ -16,6 +16,7 @@ describe Plane do
       expect(subject.flying).to be(false)
     end
     it "tells destination airport to receive it" do
+      allow(subject).to receive(:storm_check){false}
       expect(airport).to receive(:receive_plane)
       subject.land(airport)
     end
@@ -37,6 +38,7 @@ describe Plane do
       expect(subject.flying).to be(true)
     end
     it "tells airport to release it" do
+      allow(subject).to receive(:storm_check){false}
       expect(airport).to receive(:release_plane)
       subject.takeoff(airport)
     end
