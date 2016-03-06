@@ -30,7 +30,7 @@ class Airport
   private
 
   # error handling for landing
-  def can_land? aircraft, weather=Weather.new
+  def can_land? aircraft, weather
     raise 'The aircraft is on the ground' if aircraft.landed == true
     raise 'The airport is full' if full
     raise 'Weather not ideal.' if weather.stormy
@@ -42,6 +42,7 @@ class Airport
     raise 'Weather not ideal' if weather.stormy
   end
 
+  # checks if the dock is full
   def full
     @dock.count >= @capacity
   end
