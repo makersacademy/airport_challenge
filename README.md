@@ -27,7 +27,7 @@ Documentation
 * Documentation can be found at './docs/table_of_contents.html'
 * A feature test can be found at './spec/feature_test.rb'
 
--------
+
 ```
 2.3.0 :001 > require './lib/airport'
  => true
