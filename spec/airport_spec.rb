@@ -5,12 +5,17 @@ describe Airport do
   let(:plane) { double :plane }
   let(:weather) { double :weather }
 
-      before do
-        allow(plane).to receive(:land)
-        allow(plane).to receive(:take_off)
-        allow(weather).to receive(:stormy?).and_return false
-        airport.weather = weather
-      end
+    before do
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
+      allow(airport.weather).to receive(:stormy?).and_return false
+      # airport.weather = weather
+    end
+
+    it 'has a variable capacity' do
+      large_airport = described_class.new(50)
+      expect(large_airport.capacity).to eq 50
+    end
 
   describe '#land' do
     before do
@@ -40,7 +45,7 @@ describe Airport do
     end
 
     it 'prevents landing in stormy weather' do
-      allow(weather).to receive(:stormy?).and_return true
+      allow(airport.weather).to receive(:stormy?).and_return true
       message = "Plane cannot land in bad weather"
       expect { airport.land(plane) }.to raise_error message
     end
@@ -63,8 +68,8 @@ describe Airport do
       end
 
       it 'prevents take off when weather is stormy' do
-        allow(weather).to receive(:stormy?).and_return true
-        message = "Plane can't take_off due to bad weather"
+        allow(airport.weather).to receive(:stormy?).and_return true
+        message = "Plane cannot take off in bad weather"
         expect{ airport.take_off(plane) }.to raise_error message
       end
     end
