@@ -31,7 +31,7 @@ class Airport
   private
 
   def not_safe?
-    Weather::stormy?
+    Weather.stormy?
   end
 
   def full?
