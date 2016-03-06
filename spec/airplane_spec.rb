@@ -10,7 +10,6 @@ let(:airport5) {double :airport, :planes => [plane1, plane2], :full? => false, :
 let(:airport6) {double :airport, :planes => [subject], :full? => false, :stormy? => true}
 let(:plane1) {Airplane.new}
 let(:plane2) {Airplane.new}
-let(:plane3) {Airplane.new}
 
   describe 'plane_status' do
     it 'should be landed when a new plane is initialized' do
@@ -37,6 +36,7 @@ let(:plane3) {Airplane.new}
       10.times {airport3.planes << Airplane.new}
       message = 'Airport is full'
       expect{ (subject).land_plane(airport3) }.to raise_error message
+      expect(airport3.planes.size).to eq 10
     end
 
     it 'should not land at airport if already landed' do
@@ -49,10 +49,8 @@ let(:plane3) {Airplane.new}
   describe 'take_off' do
 
     it 'should remove that plane from the airport.planes array' do
-      subject.take_off(airport)
-      subject.land_plane(airport1)
-      subject.take_off(airport1)
-      expect(airport1.planes).to eq [plane2]
+      plane1.take_off(airport5)
+      expect(airport5.planes).to eq [plane2]
     end
 
     it 'should confirm that the plane has taken off with the plane status' do
@@ -61,14 +59,13 @@ let(:plane3) {Airplane.new}
     end
 
     it 'should not take off from airport if already taken off' do
-      subject.take_off(airport)
+      plane1.take_off(airport5)
       message = 'Plane already taken off'
-      expect { subject.take_off(airport) }.to raise_error message
+      expect { plane1.take_off(airport5) }.to raise_error message
     end
 
     it 'should not take off from an airport it is not at' do
-      subject.plane_status
-      subject.land_plane(airport4)
+      airport4.planes << subject
       message = 'Plane not at that airport'
       expect{ subject.take_off(airport5) }.to raise_error message
       expect(airport4.planes).to eq [subject]
