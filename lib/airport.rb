@@ -12,7 +12,7 @@ class Airport
   end
 
   def land *args
-    raise 'Airport full - cant\'t land!' if full?
+    fail 'Airport full - cant\'t land!' if full?
     args.each {|plane| plane.land self}
     @planes += args
   end

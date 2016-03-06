@@ -16,8 +16,13 @@ describe Plane do
     end
   end
 
-
   describe '#take_off' do
+    it {is_expected.to respond_to(:take_off)}
 
+    it 'is no longer at an airport' do
+      subject.land airport
+      subject.take_off
+      expect(subject).not_to be_landed
+    end
   end
 end
