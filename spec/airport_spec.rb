@@ -1,10 +1,10 @@
 require 'airport'
 
 describe Airport do
- let(:plane) { double(:plane, land:nil, take_off:nil) }
- before :each do
-  allow(subject).to receive(:forecast) { 'sunny' }
-end
+  let(:plane) { double(:plane, land:nil, take_off:nil) }
+  before :each do
+    allow(subject).to receive(:forecast) { 'sunny' }
+  end
   describe '#land' do
     it { is_expected.to respond_to :land }
 
