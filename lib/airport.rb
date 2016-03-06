@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -27,7 +28,7 @@ class Airport
     attr_reader :planes
 
     def is_stormy?
-
+      Weather.new.stormy?
     end
 
 end

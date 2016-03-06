@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+  subject(:airport) { described_class.new }
   let(:plane) {double :plane}
 
   describe 'land' do
@@ -16,6 +17,11 @@ describe Airport do
       allow(plane).to receive(:is_landed).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(true)
       expect{subject.land(plane)}.to raise_error "It's too stormy to land."
+    end
+
+    it 'expects landing to be prevented when airport is full' do
+      allow(subject).to receive(:is_full?).and_return(true)
+      expect{subject.land(plane)}.to raise_error "Airport is full! Plane cannot land."
     end
 
   end
