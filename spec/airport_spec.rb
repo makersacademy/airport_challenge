@@ -2,12 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  # methods to which instances of the described_class respond to
-  it { is_expected.to respond_to(:capacity) }
-  it { is_expected.to respond_to(:dock) }
-  it { is_expected.to respond_to(:land).with(2).argument }
-  it { is_expected.to respond_to(:takeoff).with(2).argument }
-
   # doubles
   subject(:airport) { described_class.new }
   let(:landed) { double(:aircraft, landed: true, change_status: nil) }

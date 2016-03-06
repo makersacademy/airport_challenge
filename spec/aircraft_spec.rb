@@ -2,10 +2,6 @@ require 'aircraft'
 
 describe Aircraft do
 
-  # methods to which instances of the described_class respond to
-  it { is_expected.to respond_to(:landed)}
-  it { is_expected.to respond_to(:change_status) }
-
   # doubles
   subject(:aircraft) { described_class.new }
 

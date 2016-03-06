@@ -2,9 +2,6 @@ require 'weather'
 
 describe Weather do
 
-  # methods to which instances of the described_class respond to
-  it { is_expected.to respond_to(:stormy) }
-
   # doubles
   let(:bad_weather) { described_class.new(Random.rand(1..2)) }
   let(:good_weather) { described_class.new(Random.rand(3..10)) }
