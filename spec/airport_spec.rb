@@ -1,9 +1,11 @@
 require 'airport'
-require 'support/weather_spec'
 
 describe Airport do
   let(:plane1) { double(:Plane, take_off: nil, land: nil) }
   let(:plane2) { double(:Plane, take_off: nil, land: nil) }
+  let(:good_weather) { double(:Weather, stormy?: false) }
+  let(:bad_weather) { double(:Weather, stormy?: true) }
+  before(:each) {subject.weather = good_weather}
 
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity)}
@@ -24,12 +26,21 @@ describe Airport do
     end
   end
 
+  describe '#weather' do
+    it {is_expected.to respond_to(:weather=)}
+  end
+
   describe '#land' do
     it {is_expected.to respond_to(:land).with(1).argument}
 
-    it 'lands a plane' do
+    it 'lands a plane in good weather' do
       subject.land plane1
       expect(subject.planes).to eq [plane1]
+    end
+
+    it 'doesn\'t land a plane in bad weather' do
+      subject.weather = bad_weather
+      expect{subject.land plane1}.to raise_error 'Bad weather - cant\'t land!'
     end
 
     it 'tells the plane to land' do
@@ -68,9 +79,5 @@ describe Airport do
       expect(plane1).to receive(:take_off)
       subject.take_off plane1
     end
-  end
-
-  describe 'Weather Spec' do
-    it_behaves_like Weather
   end
 end

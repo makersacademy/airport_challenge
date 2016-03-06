@@ -1,10 +1,9 @@
-module Weather
-  def stormy?
-    generate_weather
+class Weather
+
+  def initialize
   end
 
-  private
-  def generate_weather
-    rand(1..4) % 3 == 0
+  def stormy?
+    rand(1..4) % 4 == 0
   end
 end
