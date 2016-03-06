@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
 
 	let(:plane) { double :plane }
+	let(:plane2) { double :plane }
 
 	it 'responds to land method' do
 		expect(subject).to respond_to(:land).with(1).argument
@@ -22,8 +23,15 @@ describe Airport do
 	end
 
 	it 'raises an error if airport is full' do
+		airport = Airport.new(0)
 		allow(plane).to receive(:landed)
-		expect {(subject.capacity + 1).times {subject.land(plane)}}.to raise_error "airport is full"
+		expect { airport.land(plane) }.to raise_error "airport is full"
+	end
+
+	it 'raises an error if a plane which has already landed tries to land' do
+		allow(plane).to receive(:landed)
+		subject.land(plane)
+		expect { subject.land(plane) }.to raise_error "plane has already landed"
 	end
 
 	it 'responds to takeoff method' do
@@ -48,7 +56,17 @@ describe Airport do
 	end
 
 	it 'raises an error if there are no planes to takeoff' do
-		expect { subject.takeoff(plane) }.to raise_error 'no planes to take off'
+		expect { subject.takeoff(plane) }.to raise_error "no planes to take off"
+	end
+
+	it 'raises an error if a plane which has already taken off tries to take off' do
+		allow(plane).to receive(:landed)
+		allow(plane2).to receive(:landed)
+		allow(plane).to receive(:taken_off)
+		subject.land(plane)
+		subject.land(plane2)
+		subject.takeoff(plane)
+		expect { subject.takeoff(plane) }.to raise_error "plane has already taken off"
 	end
 
 
