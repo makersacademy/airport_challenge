@@ -31,15 +31,16 @@ describe Airport do
 
   describe 'take_off' do
 
-    before(:each) do
+
+    it 'can have a plane take off' do
       allow(plane).to receive_messages(report_landed:true)
       subject.land(plane)
       allow(plane).to receive_messages(report_take_off:true)
-    end
-
-    it 'can have a plane take off' do
       subject.take_off(plane)
       expect(subject).to be_empty
+    end
+    it 'plane cannot take off if it isn\'t in the airport' do
+      expect{subject.take_off(plane)}.to raise_error('Plane is not in Airport')
     end
   end
 

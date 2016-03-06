@@ -18,8 +18,12 @@ class Airport
   end
 
   def take_off(plane)
-    plane.report_take_off
-    planes.delete(plane)
+    if planes.include?(plane)
+      plane.report_take_off
+      planes.delete(plane)
+    else
+      raise 'Plane is not in Airport'
+    end
   end
 
   def empty?
