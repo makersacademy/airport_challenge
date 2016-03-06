@@ -2,7 +2,6 @@ require 'weather'
 
 describe Weather do
   subject(:weather) { described_class.new }
-  
 
   describe '#stormy?' do
     it 'returns true when stormy' do

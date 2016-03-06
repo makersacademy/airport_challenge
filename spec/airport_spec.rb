@@ -4,6 +4,7 @@ describe Airport do
   subject(:airport) { described_class.new }
 
   let(:plane) {double(:plane)}
+  before{allow(plane).to receive(:landed).and_return(true)}
 
   describe '#initialize' do
     it 'starts with no planes' do
@@ -27,7 +28,6 @@ describe Airport do
   describe '#land' do
     before(:each) do
       allow(airport).to receive(:bad_weather?).and_return(false)
-      allow(plane).to receive(:landed).and_return(true)
     end
 
     it 'stores plane in an airport' do
@@ -42,7 +42,7 @@ describe Airport do
     end
 
     it 'does not allow plane to land if full' do
-      allow(airport).to receive(:check_plane?).and_return(false)
+      allow(airport).to receive(:airport_has?).and_return(false)
       error_message = "Airport is full, cannot land"
       20.times{subject.planes_in_airport << plane }
       expect{subject.land(plane)}.to raise_error(error_message)
@@ -58,7 +58,6 @@ describe Airport do
   describe '#take_off' do
     before(:each) do
       allow(plane).to receive(:at_airport?).and_return(true)
-      allow(plane).to receive(:landed).and_return(true)
       allow(plane).to receive(:taken_off).and_return(true)
     end
 

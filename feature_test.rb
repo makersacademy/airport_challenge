@@ -1,5 +1,4 @@
 
-# require './lib/weather.rb÷'
 
 # User Story 1
 #Should ATC be the one to land

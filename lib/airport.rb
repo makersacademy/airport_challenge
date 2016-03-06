@@ -10,7 +10,7 @@ class Airport
   end
 
   def land(a_plane)
-    fail "Plane already at airport" if check_plane?(a_plane)
+    fail "Plane already at airport" if airport_has?(a_plane)
     fail "Airport is full, cannot land" if airport_full?
     fail "Too stormy to land" if bad_weather?
     a_plane.landed
@@ -34,7 +34,7 @@ class Airport
     @planes_in_airport.size == capacity
   end
 
-  def check_plane?(a_plane)
+  def airport_has?(a_plane)
     planes_in_airport.include? a_plane
   end
 
