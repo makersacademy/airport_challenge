@@ -2,11 +2,12 @@ class Plane
 
   private
 
-  @current_status
-  @current_airport
-
   def dock_at(airport)
     @current_airport = airport
+  end
+
+  def depart_from_airport
+    @current_airport = nil
   end
 
   def check_current_status(desired_status)
@@ -24,6 +25,7 @@ class Plane
   def initialize(airport=nil)
     if airport == nil
       @current_status = :flying
+      depart_from_airport
     else
       @current_status = :landed
       dock_at airport
@@ -38,6 +40,7 @@ class Plane
 
   def takeoff
     check_current_status :landed
+    depart_from_airport
     @current_status = :flying
   end
 

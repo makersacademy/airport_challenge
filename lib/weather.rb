@@ -4,7 +4,7 @@ class Weather
 
   def roll_new_weather
     srand
-    case rand(1..10)
+    @current = case rand(1..10)
     when 1..7 then :sunny
     when 8..10 then :stormy
     end
@@ -13,7 +13,7 @@ class Weather
   public
 
   def initialize
-    @current = :sunny
+    @current = roll_new_weather
   end
 
   def current_weather
