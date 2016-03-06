@@ -15,9 +15,13 @@ class Airport
   end
 
   def land_plane(plane)
-    @hangar << plane
-    @hangar.map { |planes| planes.landed  }
-    plane
+    if @clear == "good weather"
+      @hangar << plane
+      @hangar.map { |planes| planes.landed  }
+      plane
+    else
+      "can't land"
+    end
   end
 
   def take_off(planes)

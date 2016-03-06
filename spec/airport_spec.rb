@@ -37,7 +37,11 @@ describe Airport do
     expect(subject.take_off(plane)).to eq "cant take off"
   end
 
-
+  it 'prevents landing in bad weather' do
+    subject.clear = "bad weather"
+    subject.land_plane(plane)
+    expect(subject.land_plane(plane)).to eq "can't land"
+  end
 
 
   it 'should report on the status of the plane' do
