@@ -1,10 +1,9 @@
 class Plane
 
-  attr_reader :current_status, :flight_num
+  attr_reader :current_status
 
-  def initialize(flight_num)
+  def initialize
     @current_status = nil
-    @flight_num = flight_num
   end
 
   def land

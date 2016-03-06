@@ -3,6 +3,8 @@ require_relative 'weather'
 
 class Airport
 
+  attr_reader :capacity
+
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity=DEFAULT_CAPACITY)
@@ -10,12 +12,12 @@ class Airport
     @planes = []
   end
 
-  def capacity
-    @capacity
-  end
-
   def planes
     @planes
+  end
+
+  def capacity_change(number)
+    @capacity = number
   end
 
   def plane_land(plane)
@@ -26,11 +28,15 @@ class Airport
   end
 
   def plane_takeoff(plane)
-    fail "Flight status is unknown" if plane.current_status.nil?
-    fail "Flight is not landed" if plane.current_status == :inflight
-    fail "Cannot take off due to inclement weather" if weather?
-    plane.takeoff
-    @planes.delete(plane)
+    if plane_at_airport?(plane)
+      fail "Flight status is unknown" if plane.current_status.nil?
+      fail "Flight is not landed" if plane.current_status == :inflight
+      fail "Cannot take off due to inclement weather" if weather?
+      plane.takeoff
+      @planes.delete(plane)
+    else
+      fail "Plane is not at airport"
+    end
   end
 
   private
@@ -44,4 +50,7 @@ class Airport
     @planes.size == capacity
   end
 
+  def plane_at_airport?(plane)
+    @planes.include? plane
+  end
 end

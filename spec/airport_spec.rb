@@ -13,8 +13,9 @@ describe Airport do
     end
 
     it 'is expected to have a user-specified capacity' do
-      shane_airport = Airport.new(40)
-      expect(shane_airport.capacity).to eq 40
+      test_airport = airport
+      test_airport.capacity_change(3)
+      expect(test_airport.capacity).to eq 3
     end
   end
 
@@ -48,6 +49,7 @@ describe Airport do
 
   describe '#plane_takeoff' do
     it 'instructs a plane to take off' do
+      allow(airport).to receive(:plane_at_airport?).and_return(true)
       allow(airport).to receive(:weather?).and_return(false)
       allow(plane).to receive(:current_status).and_return(:landed)
       allow(plane).to receive(:takeoff)
@@ -65,6 +67,7 @@ describe Airport do
     end
 
     it 'prevents takeoff when weather is inclement' do
+      allow(airport).to receive(:plane_at_airport?).and_return(true)
       allow(plane).to receive(:current_status).and_return(:landed)
       allow(airport).to receive(:weather?).and_return(true)
       message = "Cannot take off due to inclement weather"
@@ -72,6 +75,7 @@ describe Airport do
     end
 
     it 'prevents take off for a plane whose status in unknown' do
+      allow(airport).to receive(:plane_at_airport?).and_return(true)
       allow(plane).to receive(:current_status).and_return(nil)
       allow(plane).to receive(:takeoff)
       message = "Flight status is unknown"
@@ -79,6 +83,7 @@ describe Airport do
     end
 
     it 'prevents take off for a plane that is not landed' do
+      allow(airport).to receive(:plane_at_airport?).and_return(true)
       allow(plane).to receive(:current_status).and_return(:inflight)
       allow(plane).to receive(:takeoff)
       message = "Flight is not landed"
