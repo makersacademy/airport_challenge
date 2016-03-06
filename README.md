@@ -4,9 +4,9 @@ Airport Challenge
 ```
         ______
         _\____\___
-=  = ==(____MA____)
+=  = ==(____JX____)
           \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
+          /     j u n y u a n - a i r w a y s   |\_
           `~-.__       __..----..__                  )
                 `---~~\___________/------------`````
                 =  ===(_________)
@@ -79,7 +79,16 @@ Oops, looks like there is a storm going on there. So Schiphol Airport is not an 
 2.2.3 :010 > frankfurt.land(ba)
  => [#<Plane:0x007fd68d006160 @airport=#<Airport:0x007fd68c1686f8 @weather=#<Weather:0x007fd68c168680>, @capacity=70, @planes=[...]>, @flying=false>, #<Plane:0x007fd68b8d34c0 @airport=#<Airport:0x007fd68c1686f8 @weather=#<Weather:0x007fd68c168680>, @capacity=70, @planes=[...]>, @flying=false>]
 ```
-Landed! Passengers will be grumpy that they end up in the wrong city but at least everyone's safe. :)
+Landed! Passengers will be grumpy that they end up in the wrong city but at least everyone is safe. :)
+
+##To run the tests
+
+In your terminal, type `$ rspec` under `airport_challenge` directory will run all the unit tests in spec files.
+
+I have also created a `feature_spec.rb` file to store all the feature tests. To fun feature tests only, simply type:
+```
+$ rspec spec/feature_spec.rb
+```
 
 ##Tools used
 
@@ -88,4 +97,8 @@ Landed! Passengers will be grumpy that they end up in the wrong city but at leas
 
 ##Author
 
-Junyuan Xue ([github](https://github.com/junyuanxue))
+Junyuan Xue
+
+[github](https://github.com/junyuanxue)
+
+[blog](https://spinningcodes.wordpress.com/)
