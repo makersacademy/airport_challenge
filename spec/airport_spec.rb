@@ -2,6 +2,9 @@ require 'airport'
 
 describe Airport do
  let(:plane) { double(:plane, land:nil, take_off:nil) }
+ before :each do
+  allow(subject).to receive(:forecast) { 'sunny' }
+end
   describe '#land' do
     it { is_expected.to respond_to :land }
 
@@ -62,6 +65,12 @@ describe Airport do
     it { is_expected.to respond_to(:forecast) }
     it 'gets the current weather forecast' do
       expect(subject.forecast).to be_a String
+    end
+  end
+
+  describe '#capacity' do
+    it 'returns the current capacity of the airport' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 end
