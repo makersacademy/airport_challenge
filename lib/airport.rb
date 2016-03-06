@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
 DEFAULT_CAPACITY = 20
 
-attr_reader :planes
+attr_reader :planes, :capacity
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
@@ -21,12 +21,11 @@ attr_reader :planes
     @planes.delete(plane)
   end
 
-
-
   def stormy?
     number = rand(0..10)
     number == 5 ? true : false
   end
+
 private
 
   def full?

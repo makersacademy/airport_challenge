@@ -9,11 +9,9 @@ attr_reader :flying
   end
 
   def land(airport)
-#raise "CANNOT LAND IN A STORM" if airport.stormy?
     raise "CANNOT LAND A LANDED PLANE" if @flying == false
     airport.allow_landing(self)
     @flying = false
-
   end
 
   def take_off(airport)
@@ -21,7 +19,6 @@ attr_reader :flying
     raise "PLANE IS NOT AT THAT AIRPORT" if !in_airport?(airport)
     airport.allow_take_off(self)
     @flying = true
-
   end
 
 private
