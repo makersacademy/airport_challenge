@@ -15,4 +15,10 @@ describe Plane do
       expect(plane.landed?).to eq(true)
     end
   end
+
+  describe 'departing' do
+    it 'should change landed status' do
+      expect(plane.depart).to eq(false)
+    end
+  end
 end

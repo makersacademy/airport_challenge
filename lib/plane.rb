@@ -1,7 +1,7 @@
 class Plane
 
   def initialize
-    @landed = true
+    @landed = false
   end
 
   def landed?
@@ -10,6 +10,10 @@ class Plane
 
   def land
     @landed = true
+  end
+
+  def depart
+    @landed = false
   end
 
 end

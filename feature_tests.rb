@@ -4,11 +4,17 @@ require './lib/plane.rb'
 airport = Airport.new
 plane = Plane.new
 
-p plane
+#throw error when plane isn't at airport
+#airport.depart(plane)
 
-planes = airport.planes
-landed = plane.landed?
-
-#check airport does not accept landed planes
-plane.land
+#land a plane
 airport.accept(plane)
+
+#confirm whether plane is at airport
+airport.present?(plane)
+
+#depart a plane
+airport.depart(plane)
+
+#confirm whether plane is at airport
+airport.present?(plane)

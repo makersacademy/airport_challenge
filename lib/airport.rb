@@ -12,4 +12,14 @@ class Airport
     planes << plane
   end
 
+  def depart(plane)
+    raise "This plane is not at this airport." unless planes.include? plane
+    plane.depart
+    planes.delete(plane)
+  end
+
+  def present?(plane)
+    planes.include? plane
+  end
+
 end
