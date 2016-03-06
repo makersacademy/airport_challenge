@@ -9,15 +9,16 @@ p 2
 p airplane = Plane.new
 p
 airplane.land(airport)
-p 3
+p 3.1
+#p airport.stormy?
+p 3.2
 p airport.planes
 p 4
-p airport.plane_take_off(airplane)[0]
+p airplane.take_off(airport)
+#airport.allow_take_off(airplane)#[0]
 
 p 5
 p airplane
 
 p 6
 p airport.planes
-
-10.times {p airport.stormy?}
