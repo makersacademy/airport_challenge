@@ -1,4 +1,5 @@
 require 'airport'
+require 'support/weather_spec'
 
 describe Airport do
   let(:plane1) { double(:Plane, take_off: nil, land: nil) }
@@ -67,5 +68,9 @@ describe Airport do
       expect(plane1).to receive(:take_off)
       subject.take_off plane1
     end
+  end
+
+  describe 'Weather Spec' do
+    it_behaves_like Weather
   end
 end

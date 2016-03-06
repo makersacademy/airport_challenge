@@ -1,6 +1,6 @@
 require 'weather'
 
-describe Weather do
+shared_examples_for Weather do
   describe '#stormy?' do
     it {is_expected.to respond_to(:stormy?)}
 
