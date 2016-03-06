@@ -4,16 +4,16 @@ class Plane
     @landed = false
   end
 
-def report_landed
-  @landed = true
-end
+  def report_landed
+    @landed = true
+  end
 
-private
+  def report_take_off
+    @landed = false
+  end
 
-attr_reader :landed
-
-def landed?
-  @landed
-end
+  def landed?
+    @landed
+  end
 
 end

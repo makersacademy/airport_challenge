@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   DEFAULT_CAPACITY = 50
@@ -11,10 +13,12 @@ class Airport
 
   def land(plane)
     raise 'Airport is full, plane cannot land' if full?
+    plane.report_landed
     planes << plane
   end
 
   def take_off(plane)
+    plane.report_take_off
     planes.delete(plane)
   end
 
@@ -26,7 +30,7 @@ class Airport
     planes.count >= @capacity
   end
 
-  private
+    private
 
   attr_reader :planes
 

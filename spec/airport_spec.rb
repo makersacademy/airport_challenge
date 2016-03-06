@@ -16,6 +16,9 @@ describe Airport do
   end
 
   describe 'land' do
+
+    before(:each) {allow(plane).to receive_messages(report_landed:true)}
+
     it 'can land a plane' do
       subject.land(plane)
       expect(subject).not_to be_empty
@@ -28,7 +31,11 @@ describe Airport do
 
   describe 'take_off' do
 
-    before(:each) {subject.land(plane)}
+    before(:each) do
+      allow(plane).to receive_messages(report_landed:true)
+      subject.land(plane)
+      allow(plane).to receive_messages(report_take_off:true)
+    end
 
     it 'can have a plane take off' do
       subject.take_off(plane)
