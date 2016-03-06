@@ -20,6 +20,11 @@ describe Airport do
   end
 
   describe '#landing' do
+    it 'instructs the plane to land' do
+      expect(plane).to receive(:land)
+      subject.land plane
+    end
+
     context 'after landing is authorized' do
       it 'plane is in the airport' do
         subject.land plane
@@ -52,6 +57,11 @@ describe Airport do
 
   describe '#take_off' do
   before(:each) { subject.land plane }
+
+    it 'instructs the plane to take off' do
+      expect(plane).to receive(:take_off)
+      subject.take_off plane
+    end
 
     context 'when plane has already taken off' do
       it 'tells the pilot he is drunk' do
