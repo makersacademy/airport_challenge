@@ -1,5 +1,6 @@
 require './lib/airport'
 require './lib/plane'
+require './lib/weather'
 
 gatwick = Airport.new
 plane = Plane.new
@@ -30,7 +31,7 @@ standsted.land(boing) #raise error 'Airport full'
 # feature_tests.rb
 ##### EDGE CASES #######
 # planes can only take off from airports they are in
-# planes that are already flying cannot takes off and/or be in an airport
+# planes that are already flying cannot take off and/or be in an airport
 # planes that are landed cannot land again and must be in an airport
 
 
