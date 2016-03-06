@@ -17,7 +17,6 @@ class Airport
     raise 'Plane already in the airport' if planes.include?(plane)
     planes << plane
     plane.land
-    self
   end
 
   def take_off(plane)
@@ -25,7 +24,6 @@ class Airport
     raise 'Plane not in the airport' unless planes.include?(plane)
     planes.delete(plane)
     plane.take_off
-    self
   end
 
   def full?
