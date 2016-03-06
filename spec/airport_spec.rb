@@ -45,5 +45,8 @@ describe Airport do
     expect {airport.call_land(plane)}.to raise_error message
   end
 
+  it 'raies error if no planes available to takeoff' do
+    expect {airport.takeoff}.to raise_error 'No planes in airport'
+  end
 
 end

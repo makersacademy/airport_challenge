@@ -21,6 +21,7 @@ class Airport
   end
 
   def takeoff
+    fail 'No planes in airport' if airport_empty?
     plane_check = planes.pop
     fail 'Plane is currently airborn' if plane_check.landed == false
     plane_check
@@ -32,4 +33,7 @@ class Airport
     planes.length+1 > capacity
   end
 
+  def airport_empty?
+    planes == []
+  end
 end
