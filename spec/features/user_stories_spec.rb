@@ -16,6 +16,12 @@ end
 # So I can get passengers on the way to their destination
 # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
+it 'i want to instruct a plane to take off from an airport' do
+	airport = Airport.new
+	plane = Plane.new
+	airport.take_off(plane)
+	expect { airport.take_off(plane).not_to raise_error }
+end
 
 # As an air traffic controller
 # To ensure safety
