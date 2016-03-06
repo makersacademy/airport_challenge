@@ -3,9 +3,7 @@ require 'airport'
 describe Airport do
   let(:plane1) { double(:Plane, take_off: nil, land: nil) }
   let(:plane2) { double(:Plane, take_off: nil, land: nil) }
-  let(:good_weather) { double(:Weather, stormy?: false) }
-  let(:bad_weather) { double(:Weather, stormy?: true) }
-  before(:each) {subject.weather = good_weather}
+  before(:each) {allow(subject.weather).to receive(:stormy?).and_return(false)}
 
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity)}
@@ -26,10 +24,6 @@ describe Airport do
     end
   end
 
-  describe '#weather' do
-    it {is_expected.to respond_to(:weather=)}
-  end
-
   describe '#land' do
     it {is_expected.to respond_to(:land).with(1).argument}
 
@@ -39,7 +33,7 @@ describe Airport do
     end
 
     it 'doesn\'t land a plane in bad weather' do
-      subject.weather = bad_weather
+      allow(subject.weather).to receive(:stormy?).and_return(true)
       expect{subject.land plane1}.to raise_error 'Bad weather - cant\'t land!'
     end
 
@@ -49,7 +43,7 @@ describe Airport do
     end
 
     it 'doesn\'t allow the plane to land if full' do
-      20.times {subject.land plane1}
+      subject.capacity.times {subject.land plane1}
       expect{subject.land plane1}.to raise_error 'Airport full - cant\'t land!'
     end
   end
@@ -60,7 +54,7 @@ describe Airport do
     end
 
     it 'reports if full' do
-      Airport::DEFAULT_CAPACITY.times {subject.land plane1}
+      subject.capacity.times {subject.land plane1}
       expect(subject).to be_full
     end
   end
@@ -73,6 +67,11 @@ describe Airport do
       subject.land plane2
       subject.take_off plane1
       expect(subject.planes).to eq [plane2]
+    end
+
+    it 'doesn\'t allow plane to take off in bad weather' do
+      allow(subject.weather).to receive(:stormy?).and_return(true)
+      expect{subject.take_off plane1}.to raise_error 'Bad weather - cant\'t take off!'
     end
 
     it 'tells a plane to take off' do
