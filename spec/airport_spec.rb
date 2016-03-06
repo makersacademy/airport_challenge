@@ -30,7 +30,7 @@ describe Airport do
 
     it 'raises an exception when a plane tries to land in stormy weather' do
       allow(dummy_weather).to receive(:current_weather).and_return(:stormy)
-      expect { subject.land_airplane(dummy_plane) }.to raise_error(bad_weather)
+      expect{ subject.land_airplane(dummy_plane) }.to raise_error(bad_weather)
     end
 
     it 'rases an exception when a plane tries to land in a full airport' do
@@ -68,7 +68,7 @@ describe Airport do
     it 'raises exception when a plane tries to take off in stormy weather' do
       subject.land_airplane(dummy_plane)
       allow(dummy_weather).to receive(:current_weather).and_return(:stormy)
-      expect { subject.launch_airplane(dummy_plane) }.to raise_error(bad_weather)
+      expect{ subject.launch_airplane(dummy_plane) }.to raise_error(bad_weather)
     end
 
   end
