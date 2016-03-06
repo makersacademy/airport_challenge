@@ -20,8 +20,8 @@ describe Airport do
   end
 
   it 'should report on the status of the plane' do
-    allow(plane).to receive_messages(takeoff: true)
-    expect(subject.plane_status(plane)).to be_true
+    allow(plane).to receive_messages(flying?: true)
+    expect(subject.plane_status(plane)).to be_truthy
   end
 
 end
