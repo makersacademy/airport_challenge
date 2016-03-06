@@ -48,4 +48,4 @@ RuntimeError: Unable to land due to stormy weather
  ```
 
 
-All content copyright Murilo Dal Ri © 2015 • All rights reserved.
+All content copyright Murilo Dal Ri © 2016 • All rights reserved.
