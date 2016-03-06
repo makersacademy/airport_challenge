@@ -11,17 +11,23 @@ class Airport
     end
 
     def land(plane)
+      fail "It's too stormy to land." if is_stormy?
       plane.is_landed
       @planes << plane
     end
 
     def takeoff(plane)
-      @planes.pop
+      fail "It's too stormy to take-off." if is_stormy?
+      plane.took_off
+      @planes.delete(plane)
     end
 
   private
 
     attr_reader :planes
 
+    def is_stormy?
+
+    end
 
 end

@@ -1,10 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) {double :plane, landed?: false}
-  before do
-    allow(plane).to receive(:is_landed).and_return(true)
-  end
+  let(:plane) {double :plane, is_landed: true}
 
   describe 'land' do
 
@@ -19,9 +16,12 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error "It's too stormy to land."
     end
 
+  end
+
   describe 'takeoff' do
 
     it 'expects the plane to take off from the airport when weather is fine' do
+      allow(plane).to receive(:took_off).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(false)
       subject.land(plane)
       subject.takeoff(plane)
@@ -29,12 +29,12 @@ describe Airport do
     end
 
     it 'expects takeoff to be prevented when weather is stormy' do
+      allow(plane).to receive(:took_off).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(true)
       subject.land(plane)
-      expect{subject.takeoff(plane)}.to raise_error "It's too stormy to land."
+      expect{subject.takeoff(plane)}.to raise_error "It's too stormy to take-off."
     end
 
   end
 
-  end
 end
