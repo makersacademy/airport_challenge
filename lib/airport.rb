@@ -16,7 +16,7 @@ class Airport
     can_land? aircraft, weather
     aircraft.change_status
     @dock << aircraft
-    "The #{aircraft} has landed safely to #{self}"
+    'The aircraft has landed safely to the airport'
   end
 
   # instructs the specified aircraft to takeoff (or not)
@@ -24,7 +24,7 @@ class Airport
     can_takeoff? aircraft, weather
     aircraft.change_status
     @dock.delete aircraft
-    "The #{aircraft} has successfully taken off from #{self}"
+    'The aircraft has successfully taken off from the airport'
   end
 
   private

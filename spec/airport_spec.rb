@@ -48,7 +48,7 @@ describe Airport do
     end
     it 'confirms landing' do
       expect(subject.land(airbourne, sunny)).to eq(
-      "The #{airbourne} has landed safely to #{subject}")
+      'The aircraft has landed safely to the airport')
     end
   end
 
@@ -75,7 +75,7 @@ describe Airport do
     it 'confirms takeoff' do
       subject.land airbourne, sunny
       expect(subject.takeoff(airbourne, sunny)).to eq(
-      "The #{airbourne} has successfully taken off from #{subject}")
+      'The aircraft has successfully taken off from the airport')
     end
   end
 end

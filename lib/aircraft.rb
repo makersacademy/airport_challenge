@@ -11,5 +11,4 @@ attr_reader :landed
     @landed = !@landed
     self
   end
-
 end
