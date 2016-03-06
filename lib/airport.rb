@@ -15,7 +15,7 @@ class Airport
   def land plane
     fail 'Airport full - cant\'t land!' if full?
     plane.land self
-    @planes += plane
+    @planes << plane
   end
 
   def full?
@@ -27,7 +27,7 @@ class Airport
     @planes.delete plane
   end
 
-  private
+  # private
 
   # def its_stormy?
   #   @weather.stormy?

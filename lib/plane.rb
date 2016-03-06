@@ -1,5 +1,4 @@
 class Plane
-  # will add weather
   def land airport
     @airport = airport
   end
