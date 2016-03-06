@@ -4,6 +4,19 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) {double :plane}
 
+  describe 'initialize' do
+
+    it 'expects airport to have a capacity that is set to the default capacity if nothing is specified' do
+      expect(subject.capacity).to eq subject::DEFAULT_CAPACITY
+    end
+
+    it 'expects the capacity to be able to be set when initialized' do
+      airport = Airport.new 13
+      expect(airport.capacity).to eq 13
+    end
+
+  end
+
   describe 'land' do
 
     it 'expects the plane to land into the airport when weather is fine' do
