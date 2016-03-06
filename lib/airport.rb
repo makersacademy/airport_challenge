@@ -33,7 +33,7 @@ class Airport
   end
 
   def stormy?
-    Weather::stormy?
+    Weather.stormy?
   end
 
   private

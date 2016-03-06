@@ -4,11 +4,8 @@ class Weather
   def self.stormy?
     forecast == :stormy
   end
-
-  private
-
-
-  WEATHER_SEED = { :sunny => 19, :stormy => 1 }
+  
+  WEATHER_SEED = { sunny: 19, stormy: 1 }.freeze
 
   def self.weather_array
     weather = []
