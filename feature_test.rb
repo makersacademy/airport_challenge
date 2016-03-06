@@ -47,3 +47,16 @@ end
 #Random chance of take off
 #error if bad weather
 #take off
+
+#User story 4
+require './lib/airport.rb'
+require './lib/plane.rb'
+heathrow = Airport.new
+
+20.times do
+  plane = Plane.new
+  heathrow.land(plane)
+  p plane.at_airport?
+end
+
+#User story 4

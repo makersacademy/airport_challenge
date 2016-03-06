@@ -11,6 +11,7 @@ describe Airport do
     end
   end
 
+
   describe '#land' do
     let (:plane) {double(:plane)}
 
@@ -18,6 +19,13 @@ describe Airport do
       allow(plane).to receive(:landed).and_return(true)
       subject.land(plane)
       expect(subject.planes_in_airport).to include plane
+    end
+
+    it 'does not let plane land in stormy weather' do
+      error_message = 'Too stormy to land'
+      allow(plane).to receive(:landed).and_return(true)
+      allow(airport).to receive(:bad_weather?).and_return(true)
+      expect{subject.land(plane)}.to raise_error(error_message)
     end
   end
 
@@ -50,9 +58,9 @@ describe Airport do
         allow(plane).to receive(:landed).and_return(true)
         allow(airport).to receive(:bad_weather?).and_return(true)
       end
-      
+
       it 'plane not allowed to take off' do
-        subject.land(plane)
+        allow(airport).to receive(:land).with(plane).and_return([plane])
         error_message = "Too stormy to fly"
         expect {subject.take_off(plane)}.to raise_error(error_message)
       end
