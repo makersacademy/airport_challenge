@@ -26,19 +26,60 @@ This program simulates an air traffic control system that would allow planes lan
 
 ##How to use Airport
 
-To clone this repo
+To clone this repo:
 ```
-git clone git@github.com:junyuanxue/airport_challenge.git
+$ git clone git@github.com:junyuanxue/airport_challenge.git
 ```
 
-Change to `airport_challenge` directory and open `irb`
-```bash
-cd airport_challenge
-irb
+Change to `airport_challenge` directory, open `irb` and require the `airport` file:
+```
+$ cd airport_challenge
+$ irb
 2.2.3 :001 > require "./lib/airport.rb"
+ => true
 ```
 
+Now we can build some airports:
+```
+2.2.3 :002 > heathrow = Airport.new(capacity: 50)
+ => #<Airport:0x007fd68c172b80 @weather=#<Weather:0x007fd68c172ab8>, @capacity=50, @planes=[]>
+2.2.3 :003 > frankfurt = Airport.new(capacity: 70)
+ => #<Airport:0x007fd68c1686f8 @weather=#<Weather:0x007fd68c168680>, @capacity=70, @planes=[]>
+2.2.3 :004 > schiphol = Airport.new
+ => #<Airport:0x007fd68c15b700 @weather=#<Weather:0x007fd68c15b598>, @capacity=30, @planes=[]>
+```
 
+Let's have some planes as well. I think it'd make more sense to initialize them in the airport rather than in the sky (but the latter is cool, too):
+```
+2.2.3 :005 > ba = Plane.new(heathrow)
+ => #<Plane:0x007fd68b8d34c0 @airport=#<Airport:0x007fd68c172b80 @weather=#<Weather:0x007fd68c172ab8>, @capacity=50, @planes=[#<Plane:0x007fd68b8d34c0 ...>]>, @flying=false>
+2.2.3 :006 > lufthansa = Plane.new(frankfurt)
+ => #<Plane:0x007fd68d006160 @airport=#<Airport:0x007fd68c1686f8 @weather=#<Weather:0x007fd68c168680>, @capacity=70, @planes=[#<Plane:0x007fd68d006160 ...>]>, @flying=false>
+2.2.3 :007 > klm = Plane.new(schiphol)
+ => #<Plane:0x007fd68b8a8400 @airport=#<Airport:0x007fd68c15b700 @weather=#<Weather:0x007fd68c15b598>, @capacity=30, @planes=[#<Plane:0x007fd68b8a8400 ...>]>, @flying=false>
+```
+
+To fly a plane (well, to instruct a plane to take off, more precisely):
+```
+2.2.3 :008 > heathrow.take_off(ba)
+ => #<Plane:0x007fd68b8d34c0 @airport=#<Airport:0x007fd68c172b80 @weather=#<Weather:0x007fd68c172ab8>, @capacity=50, @planes=[]>, @flying=true>
+```
+
+Now it's flying! Let's land it in sweet sweet Amsterdam:
+```
+2.2.3 :009 > schiphol.land(ba)
+RuntimeError: Landing prevented due to stormy weather
+	from /Users/junyuanxue/Desktop/Makers/weekend-challenges/airport_challenge/lib/airport.rb:16:in `land'
+	from (irb):9
+	from /Users/junyuanxue/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+```
+
+Oops, looks like there is a storm going on there. So Schiphol Airport is not an option for landing. Maybe our BA plane and divert its route and try land in Frankfurt instead:
+```
+2.2.3 :010 > frankfurt.land(ba)
+ => [#<Plane:0x007fd68d006160 @airport=#<Airport:0x007fd68c1686f8 @weather=#<Weather:0x007fd68c168680>, @capacity=70, @planes=[...]>, @flying=false>, #<Plane:0x007fd68b8d34c0 @airport=#<Airport:0x007fd68c1686f8 @weather=#<Weather:0x007fd68c168680>, @capacity=70, @planes=[...]>, @flying=false>]
+```
+Landed! Passengers will be grumpy that they end up in the wrong city but at least everyone's safe. :)
 
 ##Tools used
 
