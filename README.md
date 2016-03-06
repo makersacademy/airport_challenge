@@ -18,6 +18,10 @@ Context
 This is first weekend challenge from Makers Academy, designed to test knowledge of TDD using Ruby and Rspec. 
 The task was to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. 
 
+Progress
+-----
+https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+
 Approach
 -----
 
