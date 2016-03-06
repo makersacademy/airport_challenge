@@ -5,11 +5,25 @@ require './lib/airport.rb'
 # setup
 #--------
 
+
+def flying_planes(number)
+  planes = []
+  number.times do
+    planes << Plane.new
+    planes.last.take_off
+  end
+  planes
+end
+
 # create an airport
 airport = Airport.new
 
-# fill the airport with planes using .land
-Airport::DEFAULT_CAPACITY.times {airport.land(Plane.new)}
+# fill the airport with flying planes using .land
+Airport::DEFAULT_CAPACITY.times do
+  plane = Plane.new
+  plane.take_off
+  airport.land(plane)
+end
 
 #--------
 # operation
@@ -47,7 +61,7 @@ rescue
 end
 
 #check whether plane has taken off
-plane.flying?                         #=> false
+puts "Plane is flying #{plane.flying?}"
 
 
 # instruct plane to land when airport closed - expect an error
@@ -64,11 +78,20 @@ end
 # set airport open
 airport.closed = false
 # empty airport
-airport.planes.count.times {plane = airport.take_off}
+airport.send(:planes).count.times {plane = airport.take_off}
 
 
 # fill airport to capacity
-Airport::DEFAULT_CAPACITY.times {airport.land(Plane.new)}
+# fill the airport with flying planes using .land
+Airport::DEFAULT_CAPACITY.times do
+  plane = Plane.new
+  plane.take_off
+  airport.land(plane)
+end
+
+#--------
+# operation
+#--------
 
 # try and land another plane - should generate an error
 begin
@@ -76,3 +99,55 @@ begin
 rescue
   puts "Airport full, plane cannot land"
 end
+
+#--------
+# random weather testing
+#--------
+
+puts "=============================="
+
+BAD_WEATHER_INDEX = 0.25
+
+prng = Random.new
+heathrow = Airport.new
+planes_to_land = []
+planes_taken_off = []
+
+
+while true
+  heathrow.closed = prng.rand(1.0) < BAD_WEATHER_INDEX
+
+  puts "Heathrow closed due to bad weather" if heathrow.closed?
+
+  new_planes = prng.rand(10)
+  planes_to_land.concat(flying_planes(new_planes))
+  puts "#{new_planes} new planes in airspace. Total #{planes_to_land.count} waiting to land"
+
+  until planes_to_land.empty?
+    begin
+      heathrow.land(planes_to_land.last)
+      planes_to_land.pop
+    rescue => e
+      puts "...#{e.message}"
+      break
+    end
+  end
+  
+  until heathrow.send(:planes).empty?
+    begin
+      planes_taken_off << heathrow.take_off
+    rescue => e
+      puts "...#{e.message}"
+      break
+    end
+  end
+
+  puts "#{planes_to_land.count} planes waiting to land"
+  puts "#{planes_taken_off.count} taken off"
+  puts "#{heathrow.send(:planes).count} planes on the ground"
+
+  puts "..."
+
+  break if gets.chomp=="end"
+end
+
