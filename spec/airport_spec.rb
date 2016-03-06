@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane) { double :plane}
   let(:weather) { double :weather}
+  let(:plane) { double :plane}
 
   before do
     allow(plane).to receive(:landed?)
@@ -17,7 +17,6 @@ describe Airport do
   end
 
   it 'fails to call plane to land due to weather' do
-    allow(weather).to receive(:stormy?).and_return(true)
     message = "Bad weather means plane can\'t land"
     expect {airport.call_land(plane)}.to raise_error message
   end
