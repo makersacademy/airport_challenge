@@ -21,7 +21,7 @@ describe Airport do
   describe 'plane_land' do
     it 'has landed plane' do
       subject.plane_land(plane)
-      expect(subject.planes).to eq([plane])
+      expect(subject).to_not be_empty
     end
 
   end
@@ -30,7 +30,7 @@ describe Airport do
     it 'no longer has plane' do
       subject.plane_land(plane)
       subject.plane_take_off(plane)
-      expect(subject.planes).to be_empty
+      expect(subject).to be_empty
     end
   end
 
