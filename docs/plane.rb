@@ -8,28 +8,37 @@ class Plane
 	end
 
 	def take_off(from)
-		#if from.airport_open?
-		fail 'This plane is not at this airport, so it cannot take off from here.' unless from.in_airport?(self)
-		fail 'This plane is already in the air, so it cannot take off.' if @in_air
-		from.storage.delete(self)
-		@in_air =true
-		'This plane has taken off and is now in the air.'
-		# else
-		# 	from.announcement
-		# #end
+		if from.airport_open?
+			fail 'This plane is not at this airport, so it cannot take off from here.' unless from.in_airport?(self)
+			fail 'This plane is already in the air, so it cannot take off.' if @in_air
+			from.storage.delete(self)
+			@in_air =true
+			plane_status
+		else
+			announcement
+		end
 	end
 
 	def land(at)
-		fail 'This airport is full. Do not land.' if at.full?
-		fail 'This plane is already at an airport.' if @in_air ==false
-		at.storage.push(self)
-		@in_air = false
-		'This plane has now landed.'
-		
+		if at.airport_open?
+			fail 'This airport is full. Do not land.' if at.full?
+			fail 'This plane is already at an airport.' if @in_air ==false
+			at.storage.push(self)
+			@in_air = false
+			plane_status
+		else
+			announcement
+		end
 	end
 
 	def plane_status
-		@in_air	
+		@in_air == true ? 'This plane has taken off and is now in the air.' : 'This plane has now landed.'
+	end
+
+	private
+
+	def announcement
+		"Due to stormy weather, this airport is closed" 
 	end
 
 end

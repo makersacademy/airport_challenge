@@ -21,16 +21,10 @@ attr_reader :capacity, :storage
 		storage.include?(plane)
 	end
 
-# 	def airport_open?
-# 		weather = random_weather
-# 	 	weather == "Sunny"
-# 	end
-
-# #private
-
-# 	def announcement
-# 		"Due to stormy weather, this airport is closed" if airport_open? == false
-# 	end
+	def airport_open?(weather)
+		climate = weather.random_weather
+	 	climate == "Sunny"
+	end
 
 end
 
