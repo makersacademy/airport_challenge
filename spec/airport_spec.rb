@@ -1,11 +1,14 @@
 require 'airport'
 
 describe Airport do
+  let(:subject) {Airport.new(dummy_weather)}
+
   let(:dummy_plane) {double :plane, land: nil, takeoff: nil}
   let(:dummy_weather) {double :weather, current_weather: :sunny}
-  let(:subject) {Airport.new(dummy_weather)}
+
   let(:bad_weather) {'Denied. Stormy weather.'}
   let(:full_airport) {'Denied. Full airport.'}
+
 
   describe 'landing sequence:' do
 
@@ -36,7 +39,6 @@ describe Airport do
     it 'rases an exception when a plane tries to land in a full airport' do
       expect{ 20.times {subject.land_airplane(dummy_plane)} }.not_to raise_error
       expect{ subject.land_airplane(dummy_plane) }.to raise_error(full_airport)
-
     end
 
   end

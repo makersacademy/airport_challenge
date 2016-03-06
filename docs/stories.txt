@@ -18,6 +18,7 @@ airport   have a capacity
 airport   negate land if full
 airport   have different caps
 
-edge: airport can't dispatch if empty
+edge: plane must be in the airport he's taking off from
+edge: landed plane must be in an airport.
 edge: airplane can't land if landed
 edge: airplane can't take off if flying

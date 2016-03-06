@@ -18,6 +18,9 @@ so far:
 - Added a capacity, and the ability to raise an error if a plane tries to land to a full airport.
 - Added a default capacity, and the ability to init a class with a different one.
 - Slept and spent the morning cleaning the bathroom because holy hell my flatmates are animals.
+- Did a round of correction to get along with Hound CI
 - Activate Travis CI, added that beautiful tag over there (it is working, right?)
+- Added internal plane status with airport currently landed at to shield against edge cases.
+
 
 TODO how i implemented stuff
