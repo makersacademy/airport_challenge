@@ -1,7 +1,7 @@
 class Plane
 
   def initialize
-    @current_status = :landed
+    @current_status = nil
   end
 
   def current_status
@@ -10,6 +10,10 @@ class Plane
 
   def land(plane)
     @current_status = :landed
+  end
+
+  def takeoff(plane)
+    @current_status = :inflight
   end
 
 end
