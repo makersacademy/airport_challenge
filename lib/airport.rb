@@ -10,17 +10,17 @@ class Airport
 
 
   def arrive(plane, weather)
-    raise "this plane has landed already" if plane.status == :landed
-    raise "there is a storm" if weather.storm? 
-    raise "airport is full" if full?
+    fail "this plane has landed already" if plane.status == :landed
+    fail "there is a storm" if weather.storm? 
+    fail "airport is full" if full?
     plane.landed
     @planes << plane
 
   end
 
   def depart(plane, weather)
-    raise "this plane does not exist" if @planes.include?(plane) == false
-    raise "there is a storm" if weather.storm?
+    fail "this plane does not exist" if @planes.include?(plane) == false
+    fail "there is a storm" if weather.storm?
     plane.flying
     @planes.delete(plane)
   end
