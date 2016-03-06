@@ -15,11 +15,11 @@ class Airport
   end
 
   def check_weather
-    raise 'Denied. Weather is stormy' if @local_weather.current_weather == :stormy
+    fail 'Denied. Stormy weather.' if @local_weather.current_weather == :stormy
   end
 
   def check_capacity
-    raise 'Denied. Airport is full.' if @plane_list.length >= @capacity
+    fail 'Denied. Full airport.' if @plane_list.length >= @capacity
   end
 
   public
