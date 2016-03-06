@@ -30,13 +30,40 @@ describe Airport do
       expect {subject.take_off(plane)}.to raise_error(error_message)
     end
 
-    it 'removes plane from airport' do
-      allow(plane).to receive(:at_airport?).and_return(true)
-      allow(plane).to receive(:landed).and_return(true)
-      allow(plane).to receive(:taken_off).and_return(true)
-      subject.land(plane)
-      subject.take_off(plane)
-      expect(subject.planes_in_airport).not_to include plane
+    context 'good weather' do
+      before {allow(airport).to receive(:bad_weather?).and_return(false)}
+
+      it 'removes plane from airport' do
+        allow(plane).to receive(:at_airport?).and_return(true)
+        allow(plane).to receive(:landed).and_return(true)
+        allow(plane).to receive(:taken_off).and_return(true)
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.planes_in_airport).not_to include plane
+      end
+    end
+
+    context 'bad weather' do
+      before do
+        allow(plane).to receive(:at_airport?).and_return(true)
+        allow(plane).to receive(:taken_off).and_return(true)
+        allow(plane).to receive(:landed).and_return(true)
+        allow(airport).to receive(:bad_weather?).and_return(true)
+      end
+      
+      it 'plane not allowed to take off' do
+        subject.land(plane)
+        error_message = "Too stormy to fly"
+        expect {subject.take_off(plane)}.to raise_error(error_message)
+      end
+
+      xit 'plane still at airport' do
+        # allow(airport).to receive(:bad_weather?).and_return(false)
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.planes_in_airport).to include plane
+      end
+
     end
   end
 end

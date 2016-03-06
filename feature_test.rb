@@ -9,7 +9,6 @@ require './lib/airport.rb'
 require './lib/plane.rb'
 heathrow = Airport.new
 plane = Plane.new
-#land plane
 plane.at_airport?#confirm plane not at aiport
 heathrow.land(plane)
 plane.at_airport? #confirm plane in airport after landing
@@ -34,13 +33,17 @@ plane.at_airport? #plane not at airport
 # # last plane of many -> .pop
 # # plane in middle -> .delete(plane)
 #
-# #User story 3
-# require './lib/airport.rb'
-# require './lib/plane.rb'
-# heathrow = Airport.new
-# plane = Plane.new
-# heathrow.land(plane)
-# #Random chance of take off
-# #error if bad weather
-# #take off
-# heathrow.take_off(plane)
+#User story 3
+require './lib/airport.rb'
+require './lib/plane.rb'
+heathrow = Airport.new
+
+20.times do
+  plane = Plane.new
+  heathrow.land(plane)
+  heathrow.take_off(plane)
+  p plane.at_airport?
+end
+#Random chance of take off
+#error if bad weather
+#take off
