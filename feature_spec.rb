@@ -117,7 +117,7 @@ planes_taken_off = []
 while true
   heathrow.closed = prng.rand(1.0) < BAD_WEATHER_INDEX
 
-  puts "Heathrow closed due to bad weather" if heathrow.closed?
+  puts "Heathrow closed for landing due to bad weather" if heathrow.closed?
 
   new_planes = prng.rand(10)
   planes_to_land.concat(flying_planes(new_planes))
@@ -132,7 +132,10 @@ while true
       break
     end
   end
-  
+
+  heathrow.closed = prng.rand(1.0) < BAD_WEATHER_INDEX
+  puts "Heathrow closed for take off due to bad weather" if heathrow.closed?
+
   until heathrow.send(:planes).empty?
     begin
       planes_taken_off << heathrow.take_off
@@ -150,4 +153,3 @@ while true
 
   break if gets.chomp=="end"
 end
-

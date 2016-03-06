@@ -38,7 +38,7 @@ class Airport
     plane
   end
 
-private
+  private
 
   attr_reader :planes
 
