@@ -6,7 +6,7 @@ it { is_expected.to respond_to 'landed'}
 
 it 'confirms that it had landed' do
   subject.landed
-    expect(subject).to be_landed
+  expect(subject).to be_landed
 end
 
 it 'confirms that it had taken off' do
