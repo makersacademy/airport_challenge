@@ -17,6 +17,9 @@ describe Airport do
 
   # unit tests
   describe '#initialize' do
+    it 'creates an airport with an empty dock' do
+      expect(subject.dock).to eq []
+    end
     it 'creates an airport with a default capacity of 5' do
       expect(subject.capacity).to eq 5
     end
