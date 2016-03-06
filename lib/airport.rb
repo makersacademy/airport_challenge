@@ -21,13 +21,13 @@ class Airport
   def plane_land(plane)
     fail "Cannot land as airport is full" if full?
     fail "Cannot land due to inclement weather" if weather?
-    plane.land(plane)
+    plane.land
     @planes << plane
   end
 
   def plane_takeoff(plane)
     fail "Cannot take off due to inclement weather" if weather?
-    plane.takeoff(plane)
+    plane.takeoff
     @planes.delete(plane)
   end
 

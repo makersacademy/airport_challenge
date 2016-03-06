@@ -8,11 +8,11 @@ class Plane
     @current_status
   end
 
-  def land(plane)
+  def land
     @current_status = :landed
   end
 
-  def takeoff(plane)
+  def takeoff
     @current_status = :inflight
   end
 
