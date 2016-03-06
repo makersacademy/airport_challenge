@@ -3,19 +3,26 @@ require_relative './lib/plane.rb'
 require_relative './lib/weather.rb'
 
 american_1 = Plane.new
-lufthansa_2 = Plane.new
-a_port = Airport.new
-b_port = Airport.new
-weather = Weather.new
+lufthansa_1 = Plane.new
 
-# p a_port.arrive(american_1, weather)
+heathrow = Airport.new
+frankfurt = Airport.new
 
-p a_port.arrive(lufthansa_2, weather)
-
-p b_port.arrive(lufthansa_2, weather)
+heath_weather = Weather.new
+frank_weather = Weather.new
 
 
+frankfurt.arrive(american_1, frank_weather)
+frankfurt.arrive(lufthansa_1, frank_weather)
 
-# p a_port.depart(american_1, weather)
+frankfurt.planes
 
-# p a_port.planes
+frankfurt.depart(lufthansa_1, frank_weather)
+frankfurt.planes
+
+
+heathrow.arrive(lufthansa_1, heath_weather)
+heathrow.planes
+frankfurt.planes
+
+

@@ -5,6 +5,7 @@ describe Airport do
   let(:plane) {double(:plane, status: nil , flying: nil, landed: nil)}
   let(:weather) {double(:weather)}
 
+
   it{is_expected.to respond_to(:planes)}
 
   describe 'capacity' do 
@@ -17,6 +18,11 @@ describe Airport do
 
   describe 'arrival' do
     
+    it 'should initiate a plane to land' do
+    allow(weather).to receive(:storm?).and_return(false)
+    subject.arrive(plane, weather)
+    end
+
     it 'should receive a landing plane' do
     allow(weather).to receive(:storm?).and_return(false)
     subject.arrive(plane, weather)
