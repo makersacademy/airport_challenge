@@ -7,7 +7,7 @@ describe Airport do
   describe 'initialize' do
 
     it 'expects airport to have a capacity that is set to the default capacity if nothing is specified' do
-      expect(subject.capacity).to eq subject::DEFAULT_CAPACITY
+      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end
 
     it 'expects the capacity to be able to be set when initialized' do
