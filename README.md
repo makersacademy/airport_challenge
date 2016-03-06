@@ -79,13 +79,16 @@ Edge Cases
 Code Example (How it's used)
 -----
 ```
-You can create a new airport or plane:
 airport = Airport.new
 plane = Plane.new
 
-You can land the plane:
+Landing a plane:
 airport.land(plane)
 
-You can instruct a plane to take off
+Instructing a plane to take off:
 airport.takeoff(plane)
+
+Checking if a plane is landed or in the air:
+plane.landed?
+
 ```
