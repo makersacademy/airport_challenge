@@ -1,4 +1,4 @@
-Travis-CI status: 
+Travis-CI status:
 [![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
 ## "WEATHER" TO LAND?
@@ -13,6 +13,7 @@ Travis-CI status:
 WEATHER TO LAND (WTL) is a safeguard programme between a control tower and arriving/departing aircrafts.
 
 It helps air traffic control officers:
+
 1.  to instruct aircrafts to land/take-off in fine weather and to confirm the result
 2.  to instruct aircrafts NOT to land/take-off in a stormy weather
 3.  to instruct aircrafts NOT to land when the airport is full
@@ -53,9 +54,12 @@ Detailed descriptions for methods within each class are given below.
 It takes one optional argument: capacity
 
 It creates an airport with a dock as an empty array. The default capacity of the dock is set at 5. The default capacity can be overridden given a value when creating a new airport.
-
-e.g., Airport.new(20) => creates an airport with a capacity of 20
-
+```
+2.2.3 :002 > airport1 = Airport.new
+ => #<Airport:0x007fd0d982d9b0 @capacity=5, @dock=[]>
+2.2.3 :003 > airport2 = Airport.new 20
+ => #<Airport:0x007fd0d90b0408 @capacity=20, @dock=[]>
+```
 #### - land
 It takes two arguments: aircraft (compulsory), weather (optional)
 
@@ -65,6 +69,30 @@ If no error is raised by can_land?, it
 * calls a change_status method on the aircraft
 * stores the aircraft to the dock
 * display a message confirming the landing
+
+```
+In sunny weather...
+
+2.2.3 :007 > aircraft1
+ => #<Aircraft:0x007f88f28a3608 @landed=true>
+2.2.3 :008 > aircraft2
+ => #<Aircraft:0x007f88f2891f20 @landed=false>
+2.2.3 :009 > airport1.land aircraft1
+RuntimeError: The aircraft is already on the ground
+2.2.3 :010 > airport1.land aircraft2
+ => "The aircraft has landed safely to the airport"
+ ```
+ ```
+ in stormy weather...
+ 2.2.3 :007 > aircraft1
+  => #<Aircraft:0x007f88f28a3608 @landed=true>
+ 2.2.3 :008 > aircraft2
+  => #<Aircraft:0x007f88f2891f20 @landed=false>
+ 2.2.3 :009 > airport1.land aircraft1
+ RuntimeError: The aircraft is already on the ground
+ 2.2.3 :010 > airport1.land aircraft2
+ RuntimeError: Unable to instruct landing due to severe weather
+ ```
 
 #### - takeoff
 It takes two arguments: aircraft (compulsory), weather (optional)
