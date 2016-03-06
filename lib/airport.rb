@@ -14,7 +14,7 @@ class Airport
   end
 
   def confirm_landing(plane)
-    return airfield.include?(plane) ? true : false
+    airfield.include?(plane) ? true : false
   end
 
 end
