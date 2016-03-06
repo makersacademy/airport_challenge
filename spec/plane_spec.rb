@@ -3,9 +3,9 @@ require 'plane'
 describe Plane do
   subject(:plane) { described_class.new }
 
-  describe '#landed' do
-    it 'confirms that plane is at airport' do
-      expect(plane.at_airport).to eq true
+  describe '#flying?' do
+    it 'confirms plane is flying' do
+      expect(plane.flying?).to be true
     end
   end
 end

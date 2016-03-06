@@ -1,27 +1,66 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
-  subject(:airport) { described_class.new}
-  let(:plane) { :plane }
+  subject(:airport) { described_class.new(50)}
+  let(:plane) { double :plane }
 
-  describe '#arrive' do
-    it 'instructs a plane to land' do
-      expect(airport).to respond_to(:arrive).with(1).argument
+  describe '#land' do
+    context 'when weather is sunny' do
+      before { allow(airport).to receive(:stormy?).and_return(false) }
+
+      it 'instructs a plane to land' do
+        expect(airport).to respond_to(:land).with(1).argument
+      end
+
+      context 'when plane is at the airport' do
+
+        it 'confirms plane to be not flying' do
+          expect(airport.land(plane)).to eq airport.plane
+        end
+
+        it 'prevents landing - raises error' do
+          expect(airport.land(plane)).to eq airport.plane
+        end
+
+      end
+
+      context 'when airport is full' do
+        it 'prevents landing - raises error' do
+          airport.capacity.times { airport.land(plane) }
+          expect { airport.land(plane) }.to raise_error 'Error: Airport full!'
+        end
+
+      end
+
     end
 
-    it 'confirms if plane is in the airport' do
-      expect(airport.arrive(plane)).to eq plane
+    context 'when weather is stormy' do
+      it 'prevents landing - raises error' do
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect { airport.land(plane) }.to raise_error "Error: Too stormy, can't land!"
+      end
     end
   end
 
   describe '#depart' do
-    it 'instructs a plane to take off' do
-      expect(airport).to respond_to(:depart).with(1).argument
+    context 'when weather is sunny' do
+      before { allow(airport).to receive(:stormy?).and_return(false) }
+      it 'instructs a plane to take off' do
+        expect(airport).to respond_to(:depart).with(1).argument
+      end
+
+      it 'confirms if plane is no longer in the airport' do
+        allow(airport).to receive(:land).and_return(plane)
+        airport.depart(plane)
+        expect(airport.at_airport).not_to include plane
+      end
     end
 
-    it 'confirms if plane is no longer in the airport' do
-      expect(airport.depart(plane)).to eq 'The plane is no longer in the airport.'
+    context 'when weather is stormy' do
+      it 'prevents departing - raises error' do
+        allow(airport).to receive(:stormy?).and_return(true)
+        expect { airport.depart(plane) }.to raise_error "Error: Too stormy, can't depart!"
+      end
     end
   end
 
