@@ -3,9 +3,9 @@ require 'plane'
 describe Plane do
   let(:airport){double(:airport, planes:[],receive_plane:[],release_plane:[],full?:false)}
   let(:full_airport){double(:full_airport,planes:[],receive_plane:[],release_plane:[],full?:true)}
-  before {allow(subject).to receive_messages(storm_check:false, at_airport?:true)}
+  before{allow(subject).to receive_messages(storm_check:false,at_airport?:true)}
   landed_plane = Plane.new
-  before {allow(landed_plane).to receive_messages(storm_check:false, at_airport?:true, flying?:false)}
+  before{allow(landed_plane).to receive_messages(storm_check:false,at_airport?:true,flying?:false)}
 
   describe "#land" do
     it {is_expected.to respond_to(:land).with(1).arguments}
