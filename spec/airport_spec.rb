@@ -74,9 +74,13 @@ describe Airport do
 
   describe '#forecast' do
     it { is_expected.to respond_to(:forecast) }
+
     it 'gets the current weather forecast' do
-      expect(subject.forecast).to be_a String
+      expect(subject.forecast).to satisfy do |value|
+        (value=='stormy') || (value =='sunny')
+      end
     end
+
   end
 
   describe '#capacity' do

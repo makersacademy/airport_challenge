@@ -34,18 +34,22 @@ class Airport
   end
 
   def forecast
-    weather_seed = { 'sunny' => 19, 'stormy' => 1 }
-    weather = []
-    weather_seed.each do |condition, weight|
-      weight.times { weather << condition }
-    end
-    weather.sample
+    weather_array.sample
   end
 
   private
 
   def at_capacity?
     capacity == airfield.size
+  end
+
+  def weather_array
+    weather_seed = { 'sunny' => 19, 'stormy' => 1 }
+    weather = []
+    weather_seed.each do |condition, weight|
+      weight.times { weather << condition }
+    end
+    weather
   end
 
 end
