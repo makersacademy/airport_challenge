@@ -21,6 +21,9 @@ so far:
 - Did a round of correction to get along with Hound CI
 - Activate Travis CI, added that beautiful tag over there (it is working, right?)
 - Added internal plane status with airport currently landed at to shield against edge cases.
+- Added checks to make sure only planes in the right state can takeoff/land
+- Spend a minute prentending I'm done
+- Start to go through the code review file to see what I need to tweak to get to a decent codebase (hint: probably everything)
 
 
 TODO how i implemented stuff

@@ -12,7 +12,7 @@ describe Weather  do
 
   describe 'weather changing:' do
 
-    it 'can change the weather' do
+    it 'can be told to change the weather' do
       expect(subject).to respond_to(:change_weather).with(0).arguments
     end
 

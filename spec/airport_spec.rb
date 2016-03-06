@@ -21,7 +21,7 @@ describe Airport do
       expect(subject.list_airplanes).to eq [probe]
     end
 
-    it 'can set planes to landed' do
+    it 'can communicate sucessful landing to planes' do
       expect(dummy_plane).to receive(:land)
       subject.land_airplane(dummy_plane)
     end
@@ -36,7 +36,7 @@ describe Airport do
       expect{ subject.land_airplane(dummy_plane) }.to raise_error(bad_weather)
     end
 
-    it 'rases an exception when a plane tries to land in a full airport' do
+    it 'raises an exception when a plane tries to land in a full airport' do
       expect{ 20.times {subject.land_airplane(dummy_plane)} }.not_to raise_error
       expect{ subject.land_airplane(dummy_plane) }.to raise_error(full_airport)
     end
@@ -81,9 +81,9 @@ describe Airport do
       expect(subject.list_airplanes).to eq []
     end
 
-    it 'custom capacity is the max amount of planes airport can hold' do
-      subject = Airport.new(dummy_weather, 15)
-      expect{ 15.times {subject.land_airplane(dummy_plane)} }.not_to raise_error
+    it 'can accept a custom capacity and enforce it' do
+      subject = Airport.new(dummy_weather, 5)
+      expect{ 5.times {subject.land_airplane(dummy_plane)} }.not_to raise_error
       expect{ subject.land_airplane(dummy_plane) }.to raise_error(full_airport)
     end
 
