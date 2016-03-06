@@ -17,14 +17,14 @@ describe Airport do
         end
         it "can't land - raises error" do
           allow(airport).to receive(:flying?).and_return(false)
-          expect { airport.land(plane) }.to raise_error "Error: Can't land a non-flying plane"
+          expect { airport.land(plane) }.to raise_error "Plane already landed"
         end
       end
 
       context 'when airport is full' do
         it "can't land - raises error" do
           airport.capacity.times { airport.land(plane) }
-          expect { airport.land(plane) }.to raise_error 'Error: Airport full!'
+          expect { airport.land(plane) }.to raise_error 'Airport full!'
         end
       end
     end
@@ -32,7 +32,7 @@ describe Airport do
     context 'when weather is stormy' do
       it "can't land - raises error" do
         allow(airport).to receive(:stormy?).and_return(true)
-        expect { airport.land(plane) }.to raise_error "Error: Too stormy, can't land!"
+        expect { airport.land(plane) }.to raise_error "Stormy, can't land"
       end
     end
   end
@@ -45,13 +45,13 @@ describe Airport do
       end
 
       context 'when plane is in the air' do
-        it 'confirms if plane is no longer in the airport' do
+        it 'confirms plane not in the airport' do
           allow(airport).to receive(:flying?).and_return(true)
           expect(airport.at_airport).not_to include plane
         end
         it "can't depart - raises error" do
           allow(airport).to receive(:flying?).and_return(true)
-          expect { airport.depart(plane) }.to raise_error "Error: Can't depart a flying plane"
+          expect {airport.depart(plane)}.to raise_error "Plane already flying"
         end
       end
     end
@@ -59,7 +59,7 @@ describe Airport do
     context 'when weather is stormy' do
       it 'prevents departing - raises error' do
         allow(airport).to receive(:stormy?).and_return(true)
-        expect { airport.depart(plane) }.to raise_error "Error: Too stormy, can't depart!"
+        expect {airport.depart(plane)}.to raise_error "Stormy, can't depart"
       end
     end
   end
