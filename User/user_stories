@@ -114,3 +114,21 @@ airport     full?
 
 
 air traffic => prevent landing <=> airplane => airport full?
+
+User Story 6
+---------------------------
+
+Nouns
+- system designer
+- default capacity
+- airport
+
+verbs
+- set 
+
+object    Message
+-------------------------
+system designer set
+airport
+
+system designer => set <=> default capacity => airport

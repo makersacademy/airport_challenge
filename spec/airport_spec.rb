@@ -54,4 +54,9 @@ describe Airport do
     allow(plane).to receive_messages(flying?: true)
     expect(subject.plane_status(plane)).to be_truthy
   end
+
+  it 'should have a modifiable default capacity' do
+    airport = Airport.new(5)
+    expect(airport.capacity).to eq 5
+  end
 end
