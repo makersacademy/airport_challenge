@@ -74,7 +74,7 @@ RuntimeError: Landing prevented due to stormy weather
 	from /Users/junyuanxue/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
 ```
 
-Oops, looks like there is a storm going on there. So Schiphol Airport is not an option for landing. Maybe our BA plane and divert its route and try land in Frankfurt instead:
+Oops, looks like there is a storm going on there. So Schiphol Airport is not an option for landing. Maybe our BA plane can change its route and try land in Frankfurt instead:
 ```
 2.2.3 :010 > frankfurt.land(ba)
  => [#<Plane:0x007fd68d006160 @airport=#<Airport:0x007fd68c1686f8 @weather=#<Weather:0x007fd68c168680>, @capacity=70, @planes=[...]>, @flying=false>, #<Plane:0x007fd68b8d34c0 @airport=#<Airport:0x007fd68c1686f8 @weather=#<Weather:0x007fd68c168680>, @capacity=70, @planes=[...]>, @flying=false>]
