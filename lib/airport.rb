@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -15,7 +16,8 @@ def land(plane)
 end
 
 def take_off(plane)
-  plane.take_off
+  raise "no take off due to storm" if Weather.new.stormy? == "stormy"
+  plane.taken_off
   @storage.pop
 end
 

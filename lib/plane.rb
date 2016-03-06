@@ -10,7 +10,7 @@ def landed?
   @landed = true
 end
 
-def take_off
+def taken_off
   @landed = false
 end
 
