@@ -26,14 +26,17 @@ describe Airport do
 
   describe '#landing' do
     it 'does not allow landing of aircrafts already on ground' do
-      expect{subject.land(landed)}.to raise_error'The aircraft is on the ground'
+      message = 'The aircraft is already on the ground'
+      expect{subject.land(landed)}.to raise_error message
     end
     it 'does not allow landing if the airport is full' do
       subject.capacity.times { subject.dock << airbourne }
-      expect{ subject.land(airbourne) }.to raise_error'The airport is full'
+      message = 'Unable to instruct landing as the airport dock is full'
+      expect{ subject.land(airbourne) }.to raise_error message
     end
     it 'does not allow landing if the weather is stormy' do
-      expect{subject.land(airbourne, storm)}.to raise_error'Weather not ideal.'
+      message = 'Unable to instruct landing due to severe weather'
+      expect{subject.land(airbourne, storm)}.to raise_error message
     end
     it 'calls change_status method on the aircraft to instruct landing' do
       expect(airbourne).to receive(:change_status)
@@ -51,11 +54,13 @@ describe Airport do
 
   describe '#takeoff' do
     it 'does not allow takeoff of aircrafts not docked in the airport' do
-      expect{subject.takeoff(landed)}.to raise_error'Cannot locate the aircraft'
+      message = 'Unable to locate the aircraft'
+      expect{subject.takeoff(landed)}.to raise_error message
     end
     it 'does not allow takeoff if the weather is stormy' do
       subject.land airbourne, sunny
-      expect{subject.takeoff(airbourne,storm)}.to raise_error'Weather not ideal'
+      message = 'Unable to instruct landing due to severe weather'
+      expect{subject.takeoff(airbourne,storm)}.to raise_error message
     end
     it 'calls change_status method on the aircraft to instruct takeoff' do
       subject.land airbourne, sunny
