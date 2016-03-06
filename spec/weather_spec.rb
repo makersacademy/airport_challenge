@@ -11,16 +11,16 @@ describe Weather do
   end
 
   describe '#stormy' do
-    it { is_expected.to respond_to(:stormy?) } 
+    it { is_expected.to respond_to(:stormy) } 
     
     it 'will return true if random_num is 5' do
     allow(subject).to receive(:random_num).and_return 5
-    expect(subject.stormy?).to eq true
+    expect(subject.calculate_weather).to eq true
     end
    
     it 'will return false if random_num is 3' do
     allow(subject).to receive(:random_num).and_return 3
-    expect(subject.stormy?).to eq false
+    expect(subject.calculate_weather).to eq false
     end
     
    

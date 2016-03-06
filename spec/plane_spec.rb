@@ -5,23 +5,20 @@ describe Plane do
   
   describe '#land' do
     
-    let(:airport) { double :airport }
-    it { is_expected.to respond_to(:land).with(1).argument }
+    it { is_expected.to respond_to(:land) }
  
     it 'should make landed = true' do
-      
-       allow(airport).to receive(:land).and_return(true)
-      subject.land(airport)
+        subject.land
         expect(subject.landed?).to eq true
     end
    
-    it 'should call airport.land(plane)' do
-       allow(airport).to receive(:land).and_return(true)
- 
-          expect(airport).to receive(:land).with(plane)
-          subject.land(airport)
-    end
-      
+#    it 'should call airport.land(plane)' do
+#       allow(airport).to receive(:land).and_return(true)
+# 
+#          expect(airport).to receive(:land).with(plane)
+#          subject.land(airport)
+#    end
+#      
   end
   
   describe '#landed?' do
