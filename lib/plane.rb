@@ -1,16 +1,19 @@
 class Plane
 
   def initialize
-    @status = false
+    @in_airport = false
   end
 
   def at_airport?
-    @status
+    @in_airport
   end
 
   def landed
-    @status = true
+    @in_airport = true
   end
-    
+
+  def taken_off
+    @in_airport = false
+  end
 
 end

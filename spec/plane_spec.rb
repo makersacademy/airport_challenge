@@ -22,5 +22,11 @@ describe Plane do
 		end
   end
 
-
+  describe '#taken_off' do
+    it 'change status of plane to not be at aiport' do
+      subject.landed
+      subject.taken_off
+      expect(subject.at_airport?).to be false
+    end
+  end
 end

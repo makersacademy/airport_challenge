@@ -18,14 +18,17 @@ plane.at_airport? #confirm plane in airport after landing
 #Check if should be in Plane class
 
 
-# # User story 2
-# heathrow = Airport.new
-# plane = Plane.new
-# heathrow.take_off(plane)
-# heathrow.land(plane)
-# heathrow.in_airport?(plane)
-# heathrow.take_off(plane)
-# heathrow.in_airport?(plane)
+# User story 2
+require './lib/airport.rb'
+require './lib/plane.rb'
+heathrow = Airport.new
+plane = Plane.new
+plane.at_airport? #plane not at airport
+heathrow.take_off(plane) #raise error, no plane to take of f
+heathrow.land(plane)#plane added to airport
+plane.at_airport? #plane at airport
+heathrow.take_off(plane)#plane can leave
+plane.at_airport? #plane not at airport
 #
 # #Extra tests, for one plane -> []
 # # last plane of many -> .pop
