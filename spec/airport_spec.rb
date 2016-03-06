@@ -74,13 +74,15 @@ describe Airport do
     it 'prevents take off for a plane whose status in unknown' do
       allow(plane).to receive(:current_status).and_return(nil)
       allow(plane).to receive(:takeoff)
-      expect{ airport.plane_takeoff(plane) }.to raise_error("Flight status is unknown")
+      message = "Flight status is unknown"
+      expect{ airport.plane_takeoff(plane) }.to raise_error message
     end
 
     it 'prevents take off for a plane that is not landed' do
       allow(plane).to receive(:current_status).and_return(:inflight)
       allow(plane).to receive(:takeoff)
-      expect{ airport.plane_takeoff(plane) }.to raise_error("Flight is not landed")
+      message = "Flight is not landed"
+      expect{ airport.plane_takeoff(plane) }.to raise_error message
     end
 
   end
