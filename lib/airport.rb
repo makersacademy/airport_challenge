@@ -7,7 +7,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    create_aprons # the place where planes park is called apron.
+    create_aprons # The place where the planes park is called apron.
     @weather = Weather.new
   end
 
@@ -36,9 +36,9 @@ class Airport
   end
 
   def can_land? plane
+    fail 'Plane already in the airport' if check_aprons plane
     fail 'Cannot land since airport is full' if full?
     fail 'Unable to land due to stormy weather' if weather.stormy?
-    fail 'Plane already in the airport' if check_aprons plane
     landing_authorized plane
   end
 
