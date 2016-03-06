@@ -2,12 +2,11 @@ require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
-  attr_reader :capacity, :planes, :weather
+  attr_reader :capacity, :planes
 
   def initialize capacity=DEFAULT_CAPACITY
     @capacity = capacity
     @planes = []
-    @weather = Weather.new
   end
 
   def change_capacity quantity
@@ -21,10 +20,6 @@ class Airport
     @planes << plane
   end
 
-  def full?
-    @planes.length >= 20
-  end
-
   def take_off plane
     fail 'Bad weather - cant\'t take off!' if not_safe?
     plane.take_off
@@ -34,6 +29,10 @@ class Airport
   private
 
   def not_safe?
-    weather.stormy?
+    Weather.stormy?
+  end
+  
+  def full?
+    @planes.length >= 20
   end
 end
