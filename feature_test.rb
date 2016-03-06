@@ -76,8 +76,9 @@ heathrow.land(plane) #error
 #User story 6
 require './lib/airport.rb'
 require './lib/plane.rb'
-heathrow = Airport.new (15)
-20.times do
+capacity = 10
+heathrow = Airport.new (capacity)
+capacity.times do
   plane = Plane.new
   heathrow.land(plane)
   p plane.at_airport?

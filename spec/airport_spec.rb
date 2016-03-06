@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  
-  let (:plane) {double(:plane)}
+
+  let(:plane) {double(:plane)}
 
   describe '#initialize' do
     it 'starts with no planes' do
@@ -81,7 +81,7 @@ describe Airport do
     end
 
     context 'bad weather' do
-      before do
+      before(:each) do
         allow(airport).to receive(:bad_weather?).and_return(true)
       end
 
@@ -92,8 +92,7 @@ describe Airport do
       end
 
       xit 'plane still at airport' do
-        # allow(airport).to receive(:bad_weather?).and_return(false)
-        subject.land(plane)
+        allow(airport).to receive(:land).with(plane).and_return([plane])
         subject.take_off(plane)
         expect(subject.planes_in_airport).to include plane
       end
