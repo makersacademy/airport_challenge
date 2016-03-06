@@ -26,8 +26,8 @@ After feature and unit tests I started off with two classes, Airport and Airplan
 Once I had completed that, I moved on to the user stories regarding the weather. I carried out feature tests, followed unit tests and then implemented code to pass those tests. The weather class generates a random number between 0 and 2 on initialization and if that number is 0 or 1 the weather is sunny (```:stormy = false```) and if it is 2, the weather is stormy (```:stormy = true```). This was as stated in the instructions: ```"use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy)"```.
 
 **Test coverage**
-My RSpec tests currently have a 98.28% test coverage.
-https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+
+My RSpec tests currently have a 98.28% test coverage. [![BuildStatus](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
 
 Other notes and thoughts regarding this challenge:
