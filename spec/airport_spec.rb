@@ -57,7 +57,8 @@ describe Airport do
     it {is_expected.to respond_to(:take_off).with(1).argument}
 
     it 'removes a plane from airport when it leaves' do
-      subject.land(plane1, plane2)
+      subject.land plane1
+      subject.land plane2
       subject.take_off plane1
       expect(subject.planes).to eq [plane2]
     end
