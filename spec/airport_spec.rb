@@ -11,9 +11,14 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
   end
     it 'will not allow landing when stormy and will fail with message "nope"' do
-      allow(subject).to receive(:stormy). and_return(true)
-      expect { subject.land(plane)}. to raise_error "nope"
+      allow(subject).to receive(:stormy).and_return(true)
+      expect { subject.land(plane)}.to raise_error "nope"
     end 
+    
+    it 'will not allow landing when airport is full' do
+      allow(subject).to receive(:full?).and_return(true)
+      expect { subject.land(plane) }.to raise_error "ALL FULL TRY THE THAMES"
+  end
 
     it "will store the plane in planes" do
       allow(plane).to receive(:land)
@@ -33,7 +38,7 @@ describe Airport do
     it { is_expected.to respond_to(:take_off).with(1).argument }
     
     it 'will not allow take_off when stormyand fail with message "I cannae do it, she cannae handle the weather captain" ' do
-      allow(subject).to receive(:stormy). and_return(true)
+      allow(subject).to receive(:stormy).and_return(true)
       allow(plane).to receive(:take_off)
       expect { subject.take_off(plane) }.to raise_error "I cannae do it, she cannae handle the weather"
       # expect(plane).to not_receive(:take_off)

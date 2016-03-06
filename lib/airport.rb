@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     raise "nope" if stormy
+    raise "ALL FULL TRY THE THAMES" if full?
     plane.land
     add_plane(plane)
   end
@@ -29,6 +30,10 @@ class Airport
   def stormy
     weather.stormy 
   end 
+  
+  def full?
+    planes.length > 0
+  end
 
 attr_reader :planes, :weather
 
