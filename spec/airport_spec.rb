@@ -16,7 +16,7 @@ describe Airport do
     end
 
     it 'Stop a plane from landing when there is a storm' do
-      allow(subject).to receive(:get_forecast) { 'stormy' }
+      allow(subject).to receive(:forecast) { 'stormy' }
       expect { subject.land(plane) }.to raise_error "The weather is too bad"
     end
 
@@ -45,7 +45,7 @@ describe Airport do
     end
 
     it 'Stop a plane from taking off when there is a storm' do
-      allow(subject).to receive(:get_forecast) { 'stormy' }
+      allow(subject).to receive(:forecast) { 'stormy' }
       expect { subject.land(plane) }.to raise_error "The weather is too bad"
     end
   end
@@ -58,10 +58,10 @@ describe Airport do
     end
   end
 
-  describe '#get_forecast' do
-    it { is_expected.to respond_to(:get_forecast) }
+  describe '#forecast' do
+    it { is_expected.to respond_to(:forecast) }
     it 'gets the current weather forecast' do
-      expect(subject.get_forecast).to eq 'sunny' || 'stormy'
+      expect(subject.forecast).to be_a String
     end
   end
 end
