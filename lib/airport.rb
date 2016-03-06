@@ -11,6 +11,7 @@ def initialize
 end
 
 def land(plane)
+  raise "no landing off due to storm" if Weather.new.stormy? == "stormy"
   plane.landed?
   @storage << plane
 end
