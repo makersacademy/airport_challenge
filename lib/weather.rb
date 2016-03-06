@@ -6,7 +6,7 @@ class Weather
 
   private
 
-  SKY = [:stormy, :sunny, :sunny]
+  SKY = [:stormy, :sunny, :sunny].freeze
 
   def sky
     SKY.sample
