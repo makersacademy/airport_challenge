@@ -2,13 +2,14 @@ require 'aircraft'
 
 describe Aircraft do
 
-  # methods the described_class responds to
+  # methods to which instances of the described_class respond to
   it { is_expected.to respond_to(:landed)}
   it { is_expected.to respond_to(:change_status) }
 
   # doubles
   subject(:aircraft) { described_class.new }
 
+  # unit tests
   describe '#initialize' do
     it 'creates an aircraft with a default status: landed' do
       expect(subject.landed).to eq(true)

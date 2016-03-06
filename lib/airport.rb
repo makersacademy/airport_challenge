@@ -2,37 +2,51 @@ require_relative 'aircraft'
 require_relative 'weather'
 
 class Airport
-  attr_reader :capacity, :aircrafts
+  attr_reader :capacity, :dock
   DEFAULT_CAPACITY = 5
 
+  # create an airport with a dock and an amendable capacity
   def initialize capacity=DEFAULT_CAPACITY
     @capacity = capacity
-    @aircrafts = []
+    @dock = []
   end
 
+  # instruct the specified aircraft to land (or not)
   def land aircraft, weather=Weather.new
-    raise 'The aircraft is on the ground' if aircraft.landed == true
-    raise 'The airport is full' if full
-    raise 'Weather not ideal.' if weather.stormy
+    can_land? aircraft, weather
     aircraft.change_status
-    @aircrafts << aircraft
+    @dock << aircraft
     "The #{aircraft} has landed safely to #{self}"
   end
 
+  # instruct the specified aircraft to takeoff (or not)
   def takeoff aircraft, weather=Weather.new
-    raise 'Cannot locate the aircraft' unless @aircrafts.include? aircraft
-    raise 'Weather not ideal' if weather.stormy
+    can_takeoff? aircraft, weather
     aircraft.change_status
-    @aircrafts.delete aircraft
+    @dock.delete aircraft
     "The #{aircraft} has successfully taken off from #{self}"
-    end
+  end
 
-  private
+private
+
+  # error handling for landing
+  def can_land? aircraft, weather
+    raise 'The aircraft is on the ground' if aircraft.landed == true
+    raise 'The airport is full' if full
+    raise 'Weather not ideal.' if weather.stormy
+  end
+
+  # error handling for takeoff
+  def can_takeoff? aircraft, weather
+    raise 'Cannot locate the aircraft' unless @dock.include? aircraft
+    raise 'Weather not ideal' if weather.stormy
+  end
+
   def empty
-    @aircrafts == []
+    @dock == []
   end
 
   def full
-    @aircrafts.count >= @capacity
+    @dock.count >= @capacity
   end
 end
