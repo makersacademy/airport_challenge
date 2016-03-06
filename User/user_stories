@@ -93,3 +93,24 @@ plane       landing
 
 air traffic => weather(stormy) => prevent <=> landing <=> plane
               \weather(clear) => landing <=> plane
+
+User Story 5
+-------------------------------
+
+Nouns
+- Air traffic controller
+- Airplane
+- Airport
+
+verbs
+- prevent
+
+
+object      Message
+---------------------------
+air traffic prevent
+airplane    land
+airport     full?
+
+
+air traffic => prevent landing <=> airplane => airport full?

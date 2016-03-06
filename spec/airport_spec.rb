@@ -43,6 +43,12 @@ describe Airport do
     expect(subject.land_plane(plane)).to eq "can't land"
   end
 
+  it 'prevents landing if the airport is full' do
+    subject.full = "hangar is full"
+    subject.land_plane(plane)
+    expect(subject.hangar).to be_empty
+  end
+
 
   it 'should report on the status of the plane' do
     allow(plane).to receive_messages(flying?: true)
