@@ -29,7 +29,8 @@ describe Plane do
     end
 
     it "Cannot take off when it has already taken off" do
-      expect { subject.take_off }.to raise_error "This plane is not in the airport"
+      err = "This plane is not in the airport"
+      expect { subject.take_off }.to raise_error err
     end
   end
 

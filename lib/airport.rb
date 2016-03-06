@@ -18,12 +18,9 @@ class Airport
   end
 
   def dispatch(plane)
-    if @airfield.include?(plane)
-      @airfield.delete_if { |pl| pl == plane }
-      plane.take_off
-    else
-      fail "This plane is not in the airfield"
-    end
+    fail "This plane is not in the airfield" unless @airfield.include?(plane)
+    @airfield.delete_if { |pl| pl == plane }
+    plane.take_off
     plane
   end
 
