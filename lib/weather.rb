@@ -4,7 +4,7 @@ module Weather
   end
 
   private
-  OUTCOMES = [:stormy, :sunny, :showers, :overcast, :clear, :mist, :wind]
+  OUTCOMES = [:stormy, :sunny, :showers, :overcast, :clear, :mist, :wind].freeze
 
   def forecast
     OUTCOMES.sample
