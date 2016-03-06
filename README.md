@@ -84,6 +84,7 @@ RuntimeError: The aircraft is already on the ground
  ```
  ```
  in stormy weather...
+ 
  2.2.3 :007 > aircraft1
   => #<Aircraft:0x007f88f28a3608 @landed=true>
  2.2.3 :008 > aircraft2
