@@ -20,7 +20,9 @@ describe Airport do
     end
 
     it 'expects landing to be prevented when airport is full' do
-      allow(subject).to receive(:is_full?).and_return(true)
+      allow(plane).to receive(:is_landed).and_return(true)
+      allow(subject).to receive(:is_stormy?).and_return(false)
+      10.times{subject.land(plane)}
       expect{subject.land(plane)}.to raise_error "Airport is full! Plane cannot land."
     end
 
@@ -30,6 +32,7 @@ describe Airport do
 
     before do
       allow(plane).to receive(:is_landed).and_return(true)
+      allow(subject).to receive(:is_stormy?).and_return(false)
       subject.land(plane)
     end
 

@@ -12,6 +12,7 @@ class Airport
     end
 
     def land(plane)
+      fail "Airport is full! Plane cannot land." if is_full?
       fail "It's too stormy to land." if is_stormy?
       plane.is_landed
       @planes << plane
@@ -29,6 +30,10 @@ class Airport
 
     def is_stormy?
       Weather.new.stormy?
+    end
+
+    def is_full?
+      @planes.length == 10
     end
 
 end
