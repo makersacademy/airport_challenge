@@ -4,6 +4,7 @@ class Airport
 
   attr_reader :airfield, :capacity
   DEFAULT_CAPACITY = 50
+  @weather_seed = { 'sunny' => 19, 'stormy' => 1 }
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @airfield  = []
@@ -44,7 +45,6 @@ class Airport
   end
 
   def weather_array
-    weather_seed = { 'sunny' => 19, 'stormy' => 1 }
     weather = []
     weather_seed.each do |condition, weight|
       weight.times { weather << condition }
