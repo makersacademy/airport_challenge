@@ -4,11 +4,10 @@ class Airport
 
   attr_reader :airfield, :capacity
   DEFAULT_CAPACITY = 50
-  @weather_seed = { 'sunny' => 19, 'stormy' => 1 }
-
   def initialize(capacity = DEFAULT_CAPACITY)
     @airfield  = []
     @capacity = capacity
+    @weather_seed = { 'sunny' => 19, 'stormy' => 1 }
   end
 
   def land(plane)
@@ -34,19 +33,21 @@ class Airport
     airfield.include?(plane) ? false : true
   end
 
+  def forecast
+    weather_array.sample
+  end
+  
   private
 
   def at_capacity?
     capacity == airfield.size
   end
 
-  def forecast
-    weather_array.sample
-  end
+
 
   def weather_array
     weather = []
-    weather_seed.each do |condition, weight|
+    @weather_seed.each do |condition, weight|
       weight.times { weather << condition }
     end
     weather
