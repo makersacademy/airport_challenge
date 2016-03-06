@@ -13,17 +13,25 @@ Airport Challenge
 
 ```
 
-Introduction
----------
+##Introduction
 
-This is a program that controls the flow of planes at an airport. (TO BE COMPLETED)
+This program simulates an air traffic control system that would allow planes land and take off at an airport under certain weather conditions.
 
-Features
----------
-* Landing
-* Take-off
-* Change capacity
+##Features
 
-Author
----------
+* Instruct and control landing
+* Instruct and control take-off
+* Create new capacity
+* Detect and report stormy weather conditions, and prevent landing or take-off when necessary
+
+
+
+
+##Tools used
+
+* Ruby
+* RSpec
+
+##Author
+
 Junyuan Xue ([github](https://github.com/junyuanxue))
