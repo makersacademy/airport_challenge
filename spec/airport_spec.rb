@@ -17,11 +17,7 @@ describe Airport do
   end
 
   describe "take-off and landing" do
-    let(:plane) { double :plane }
-    before do
-      allow(plane).to receive(:land_at)
-      allow(plane).to receive(:depart_from)
-    end
+    let(:plane) { double :plane, land_at: nil, depart_from: nil }
     def storm(value)
       allow(weather).to receive(:stormy?).and_return(value)
     end
