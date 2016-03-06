@@ -19,9 +19,6 @@ let(:plane3) {Airplane.new}
   end
 
   describe 'land_plane' do
-    it 'should respond to land_plane method' do
-      expect(subject).to respond_to(:land_plane).with(1).argument
-    end
 
     it 'should push that plane into the airport.planes array' do
       subject.take_off(airport)
@@ -29,9 +26,6 @@ let(:plane3) {Airplane.new}
       expect(airport2.planes).to eq [subject]
     end
 
-    it 'should respond to plane_status' do
-      expect(subject).to respond_to :plane_status
-    end
 
     it 'should confirm the plane has landed with the plane status' do
       subject.plane_status
@@ -41,19 +35,18 @@ let(:plane3) {Airplane.new}
 
     it 'should raise an error when the airport is full' do
       10.times {airport3.planes << Airplane.new}
-      expect{ (subject).land_plane(airport3) }.to raise_error 'Airport is full'
+      message = 'Airport is full'
+      expect{ (subject).land_plane(airport3) }.to raise_error message
     end
 
     it 'should not land at airport if already landed' do
-      expect{ subject.land_plane(airport4) }.to raise_error 'Plane already landed'
+      message = 'Plane already landed'
+      expect{ subject.land_plane(airport4) }.to raise_error message
     end
 
   end
 
   describe 'take_off' do
-    it 'should respond to take_off method' do
-      expect(subject).to respond_to(:take_off).with(1).argument
-    end
 
     it 'should remove that plane from the airport.planes array' do
       subject.take_off(airport)
@@ -69,13 +62,15 @@ let(:plane3) {Airplane.new}
 
     it 'should not take off from airport if already taken off' do
       subject.take_off(airport)
-      expect { subject.take_off(airport) }.to raise_error 'Plane already taken off'
+      message = 'Plane already taken off'
+      expect { subject.take_off(airport) }.to raise_error message
     end
 
     it 'should not take off from an airport it is not at' do
       subject.plane_status
       subject.land_plane(airport4)
-      expect{ subject.take_off(airport5) }.to raise_error 'Plane not at that airport'
+      message = 'Plane not at that airport'
+      expect{ subject.take_off(airport5) }.to raise_error message
       expect(airport4.planes).to eq [subject]
       expect(subject.landed).to eq true
     end
@@ -84,11 +79,13 @@ let(:plane3) {Airplane.new}
   describe 'weather' do
     it 'should not land when weather is stormy' do
       plane1.plane_status
-      expect{ plane1.land_plane(airport6) }.to raise_error 'Too stormy to land'
+      message = 'Too stormy to land'
+      expect{ plane1.land_plane(airport6) }.to raise_error message
     end
 
     it 'should not take off when weather is stormy' do
-      expect{ subject.take_off(airport6) }.to raise_error 'Too stormy to take off'
+      message = 'Too stormy to take off'
+      expect{ subject.take_off(airport6) }.to raise_error message
     end
   end
 end

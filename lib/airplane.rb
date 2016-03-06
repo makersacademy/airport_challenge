@@ -13,17 +13,17 @@ class Airplane
   end
 
   def land_plane(airport)
-    raise 'Too stormy to land' if airport.stormy?
-    raise 'Airport is full' if airport.full?
-    raise 'Plane already landed' if self.landed == true
+    fail 'Too stormy to land' if airport.stormy?
+    fail 'Airport is full' if airport.full?
+    fail 'Plane already landed' if self.landed == true
     airport.planes << self
     @landed = true
   end
 
   def take_off(airport)
-    raise 'Too stormy to take off' if airport.stormy?
-    raise 'Plane already taken off' if self.landed == false
-    raise 'Plane not at that airport' if !airport.planes.include? self
+    fail 'Too stormy to take off' if airport.stormy?
+    fail 'Plane already taken off' if self.landed == false
+    fail 'Plane not at that airport' if !airport.planes.include? self
     airport.planes.delete(self)
     self.plane_status
   end
