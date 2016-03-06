@@ -5,6 +5,7 @@ class Airport
   def initialize capacity=DEFAULT_CAPACITY
     @capacity = capacity
     @planes = []
+    @weather = Weather.new
   end
 
   def change_capacity quantity
@@ -13,7 +14,7 @@ class Airport
 
   def land *args
     fail 'Airport full - cant\'t land!' if full?
-    args.each {|plane| plane.land self}
+    args.each { |plane| plane.land self }
     @planes += args
   end
 
@@ -23,6 +24,12 @@ class Airport
 
   def take_off plane
     plane.take_off
-    @planes.delete(plane)
+    @planes.delete plane
+  end
+
+  private
+
+  def its_stormy?
+    @weather.stormy?
   end
 end
