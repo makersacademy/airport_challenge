@@ -41,4 +41,8 @@ class Airport
       @planes.length == @capacity
     end
 
+    def is_landed?
+      plane.landed?
+    end
+
 end
