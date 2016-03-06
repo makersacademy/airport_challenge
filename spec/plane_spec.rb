@@ -2,8 +2,8 @@ require 'plane'
 
 describe Plane do
   let(:airport){double(:airport, planes:[],receive_plane:[],release_plane:[],full?:false)}
-  let(:full_airport){double(:full_airport,planes:[],receive_plane:[],full?:true)}
-  before {allow(subject).to receive(:storm_check){false}}
+  let(:full_airport){double(:full_airport,planes:[],receive_plane:[],release_plane:[],full?:true)}
+  before {allow(subject).to receive_messages(storm_check:false, at_airport?:true)}
 
   describe "#land" do
     it {is_expected.to respond_to(:land).with(1).arguments}
@@ -42,10 +42,11 @@ describe Plane do
       allow(subject).to receive(:storm_check){true}
       expect{subject.takeoff(airport)}.to raise_error("Cannot take off in stormy weather.")
     end
-  #  it "raises an error if plane is told to take off from airport it's not at" do
-  #    allow(subject).to receive(:storm_check){false}
-  #    expect{subject.takeoff(airport)}.to raise_error("I'm not there!")
-  #  end
+    it "raises an error if plane is told to take off from airport it's not at" do
+      allow(subject).to receive(:at_airport?){false}
+      subject.land(airport)
+      expect{subject.takeoff(full_airport)}.to raise_error("Plane is not at that airport.")
+    end
   end
 
   describe "#storm_check" do
@@ -57,4 +58,12 @@ describe Plane do
     end
   end
 
+  describe "#at_airport?" do
+    it {is_expected.to respond_to(:at_airport?).with(1).argument}
+    it "checks within airport's array for self" do
+      plane = Plane.new
+      expect(airport.planes).to receive(:include?)
+      plane.at_airport?(airport)
+    end
+  end
 end
