@@ -14,4 +14,5 @@ class Airport
     @planes.size >= @capacity
   end
 
+
 end

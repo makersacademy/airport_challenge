@@ -1,7 +1,8 @@
 require_relative 'airport'
+require_relative 'weather'
 
 class Airplane
-attr_reader :landed
+  attr_reader :landed
 
   def initialize
     @landed = true
@@ -20,9 +21,13 @@ attr_reader :landed
 
   def take_off(airport)
     raise 'Plane already taken off' if self.landed == false
-    raise 'Cannot take off because plane not at that airport' if !airport.planes.include? self
+    raise 'Plane not at that airport' if !airport.planes.include? self
     airport.planes.delete(self)
     self.plane_status
+  end
+
+  def stormy?(weather=Weather.new)
+    weather.stormy
   end
 
 

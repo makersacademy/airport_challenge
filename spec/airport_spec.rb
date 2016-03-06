@@ -11,7 +11,7 @@ let(:plane) {double :airplane}
 
   describe 'capacity' do
     it 'should respond to capacity' do
-      expect(subject).to respond_to(:capacity)
+      expect(subject).to respond_to :capacity
     end
 
     it 'should have a default capacity of 10 when initialized.' do

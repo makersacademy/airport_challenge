@@ -29,7 +29,7 @@ let(:plane3) {Airplane.new}
     end
 
     it 'should respond to plane_status' do
-      expect(subject).to respond_to(:plane_status)
+      expect(subject).to respond_to :plane_status
     end
 
     it 'should confirm the plane has landed with the plane status' do
@@ -51,7 +51,7 @@ let(:plane3) {Airplane.new}
 
   describe 'take_off' do
     it 'should respond to take_off method' do
-      expect(subject).to respond_to(:take_off).with(1)
+      expect(subject).to respond_to(:take_off).with(1).argument
     end
 
     it 'should remove that plane from the airport.planes array' do
@@ -74,9 +74,15 @@ let(:plane3) {Airplane.new}
     it 'should not take off from an airport it is not at' do
       subject.plane_status
       subject.land_plane(airport4)
-      expect{ subject.take_off(airport5) }.to raise_error 'Cannot take off because plane not at that airport'
+      expect{ subject.take_off(airport5) }.to raise_error 'Plane not at that airport'
       expect(airport4.planes).to eq [subject]
       expect(subject.landed).to eq true
+    end
+  end
+
+  describe 'stormy' do
+    it 'should respond to stormy? method' do
+      expect(subject).to respond_to(:stormy?).with(1).argument
     end
   end
 end
