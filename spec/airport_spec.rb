@@ -6,6 +6,10 @@ describe Airport do
 
   describe 'initialize' do
 
+    it 'expects an airport to be created with an empty hanger' do
+      expect(subject.list_planes).to eq([])
+    end
+
     it 'expects airport to have a capacity that is set to the default capacity if nothing is specified' do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end

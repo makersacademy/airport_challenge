@@ -4,6 +4,8 @@ class Weather
     random_number > 8
   end
 
+private
+
   def random_number
     rand(10)
   end
