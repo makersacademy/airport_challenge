@@ -13,8 +13,10 @@ describe Airport do
     it 'will not allow landing when stormy and will fail with message "nope"' do
       allow(subject).to receive(:stormy).and_return(true)
       expect { subject.land(plane)}.to raise_error "nope"
-    end 
-    
+    end
+              #  DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
+               #      expect{subject.dock_bike(Bike.new)}.to raise_error("There are no spaces available")
+                        
     it 'will not allow landing when airport is full' do
       allow(subject).to receive(:full?).and_return(true)
       expect { subject.land(plane) }.to raise_error "ALL FULL TRY THE THAMES"
@@ -37,7 +39,7 @@ describe Airport do
 
     it { is_expected.to respond_to(:take_off).with(1).argument }
     
-    it 'will not allow take_off when stormyand fail with message "I cannae do it, she cannae handle the weather captain" ' do
+    it 'will not run  when stormy and fail with message "I cannae do it, she cannae handle the weather captain" ' do
       allow(subject).to receive(:stormy).and_return(true)
       allow(plane).to receive(:take_off)
       expect { subject.take_off(plane) }.to raise_error "I cannae do it, she cannae handle the weather"
@@ -45,7 +47,7 @@ describe Airport do
       
     end 
 
-    it 'will call remove_plane after take_off' do  
+    it 'will call remove_plane after ' do  
       
       allow(subject).to receive(:stormy). and_return(false)
       allow(plane).to receive(:land)
@@ -82,10 +84,25 @@ describe Airport do
     it { is_expected.to respond_to(:stormy) }
     
     it 'will call on weather.stormy' do
-    allow(subject.weather).to receive(:stormy)
-    expect(subject.weather).to receive(:stormy)
-    subject.stormy
+      allow(subject.weather).to receive(:stormy)
+      expect(subject.weather).to receive(:stormy)
+      subject.stormy
     end
   end  
+  
+  describe '#full' do
+    it { is_expected.to respond_to(:full?) }
 
+    it 'will return true when plans is at or greater than  capacity' do
+      allow(subject.planes).to receive(:size) { 20 }
+      allow(subject).to receive(:capacity) { 20 }
+      expect(subject.full?).to eq true
+    end
+    
+    it 'will return false when plans is less than capacity' do
+      allow(subject.planes).to receive(:size) { 3 }
+      allow(subject).to receive(:capacity) { 20 }
+      expect(subject.full?).to eq false
+    end
+  end
 end

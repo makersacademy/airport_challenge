@@ -1,11 +1,14 @@
-require_relative '../lib/weather.rb'
+require_relative '../lib/weather.rb' 
+
 
 class Airport
+  DEFAULT_CAPACITY = 20
+  
   def initialize
+    @capacity = DEFAULT_CAPACITY
     @planes = []
     @weather = Weather.new
-  end
-
+  end 
   def land(plane)
     raise "nope" if stormy
     raise "ALL FULL TRY THE THAMES" if full?
@@ -32,10 +35,10 @@ class Airport
   end 
   
   def full?
-    planes.length > 0
+   @planes.size >= @capacity
   end
 
-attr_reader :planes, :weather
+attr_reader :planes, :weather, :capacity
 
 
 end
