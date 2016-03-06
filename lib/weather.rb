@@ -1,13 +1,17 @@
 class Weather
 
 
-  def self.stormy?
+  def stormy?
     forecast == :stormy
   end
-  
-  WEATHER_SEED = { sunny: 19, stormy: 1 }.freeze
 
-  def self.weather_array
+
+
+  private
+
+  WEATHER_SEED = { sunny: 19, stormy: 1 }.freeze
+  
+  def weather_array
     weather = []
     WEATHER_SEED.each do |condition, weight|
       weight.times { weather << condition }
@@ -15,7 +19,8 @@ class Weather
     weather
   end
 
-  def self.forecast
+
+  def forecast
     weather_array.sample
   end
 
