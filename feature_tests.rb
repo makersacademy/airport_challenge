@@ -5,4 +5,8 @@ airport = Airport.new
 plane = Plane.new
 
 planes = airport.planes
-p planes
+landed = plane.landed?
+
+airport.land(plane)
+
+p plane.landed?
