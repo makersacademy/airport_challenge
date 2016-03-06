@@ -24,7 +24,7 @@ It is built to adapt to airports of any size by allowing the user to amend airpo
 
 
 ## Development
-WTL is written in Ruby version 2.2.3 and has been developed using RSpec version 3.2.2 as a platform for behaviour-driven development (BDD). The continuous integration is assessed through Travis-CI with the latest test coverage of 99.13% as of 6th March 2016.
+WTL is written in Ruby version 2.2.3 and has been developed using RSpec version 3.2.2 as a platform for behaviour-driven development (BDD). The continuous integration is assessed through Travis-CI with the latest test coverage of 100%.
 
 
 ## Design
