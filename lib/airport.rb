@@ -11,7 +11,6 @@ class Airport
     @capacity = capacity
   end
 
-
   def full?
     @planes.size >= @capacity
   end
