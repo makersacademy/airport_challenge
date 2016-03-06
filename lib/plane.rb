@@ -5,6 +5,7 @@ class Plane
   def initialize(airport=Airport.new, flying=false)
     @airport = airport
     @flying = flying
+    @airport.planes << self
   end
 
   def land_at(airport)
