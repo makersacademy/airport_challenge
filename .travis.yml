@@ -1,3 +1,4 @@
-script: bundle exec rspec spec
+# script: bundle exec rspec spec
+script: coveralls report
 rvm:
   - 2.2.3
