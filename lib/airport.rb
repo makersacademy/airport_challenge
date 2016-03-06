@@ -21,15 +21,18 @@ class Airport
 
   def takeoff
     fail 'No planes in airport' if airport_empty?
+    fail 'Plane not in airport' if plane_in_airport(planes.last) == false
     plane_check = planes.pop
     fail 'Plane is currently airborn' if plane_check.landed == false
     plane_check.airborn?
     plane_check
   end
 
-
-
   private
+
+  def plane_in_airport(plane)
+    planes.include?(plane)
+  end
 
   def full?
     planes.length+1 > capacity
@@ -44,3 +47,5 @@ class Airport
   end
 
 end
+andrew = Airport.new
+p Airport.class.name
