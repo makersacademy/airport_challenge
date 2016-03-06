@@ -62,11 +62,23 @@ end
 
 #User story 5
 #cap = 10
-  require './lib/airport.rb'
-  require './lib/plane.rb'
-  heathrow = Airport.new
+require './lib/airport.rb'
+require './lib/plane.rb'
+heathrow = Airport.new
 20.times do
-    plane = Plane.new
+  plane = Plane.new
+  heathrow.land(plane)
+  p plane.at_airport?
+end
+plane = Plane.new
+heathrow.land(plane) #error
+
+#User story 6
+require './lib/airport.rb'
+require './lib/plane.rb'
+heathrow = Airport.new (15)
+20.times do
+  plane = Plane.new
   heathrow.land(plane)
   p plane.at_airport?
 end

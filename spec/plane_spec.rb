@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
    subject(:plane) { described_class.new }
-   it { expect(subject).to respond_to(:at_airport?) }
+   
 
    describe '#at_airport?' do
      it 'confirm plane is not at airport at start' do

@@ -2,8 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  it { expect(subject).to respond_to(:land).with(1).argument }
-  it { expect(subject).to respond_to(:take_off).with(1).argument }
+  
   let (:plane) {double(:plane)}
 
   describe '#initialize' do
@@ -13,6 +12,15 @@ describe Airport do
 
     it 'starts with a capacity of 20 planes' do
       expect(subject.capacity).to eq 20
+    end
+
+    it  'allow the capacity to be changed' do
+      airport = Airport.new(15)
+      expect(airport.capacity).to eq 15
+    end
+
+    it 'has a default capacity' do
+      expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
     end
   end
 
