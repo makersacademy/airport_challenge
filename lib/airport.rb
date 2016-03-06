@@ -29,9 +29,9 @@ class Airport
   private
 
   def not_safe?
-    Weather.stormy?
+    Weather::stormy?
   end
-  
+
   def full?
     @planes.length >= 20
   end

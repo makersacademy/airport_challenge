@@ -25,7 +25,7 @@ describe Airport do
   end
 
   describe '#land' do
-    it {is_expected.to respond_to(:land).with(1).argument}
+    it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'lands a plane in good weather' do
       subject.land plane1
@@ -35,7 +35,7 @@ describe Airport do
     it 'doesn\'t land a plane in bad weather' do
       allow(subject).to receive(:not_safe?).and_return(true)
       message = 'Bad weather - cant\'t land!'
-      expect{subject.land plane1}.to raise_error message
+      expect{ subject.land plane1 }.to raise_error message
     end
 
     it 'tells the plane to land' do
@@ -44,25 +44,14 @@ describe Airport do
     end
 
     it 'doesn\'t allow the plane to land if full' do
-      subject.capacity.times {subject.land plane1}
+      subject.capacity.times { subject.land plane1 }
       message = 'Airport full - cant\'t land!'
-      expect{subject.land plane1}.to raise_error message
+      expect{ subject.land plane1 }.to raise_error message
     end
   end
 
-  # describe '#full?' do
-  #   it 'reports false if not full' do
-  #     expect(subject).not_to be_full
-  #   end
-  #
-  #   it 'reports if full' do
-  #     subject.capacity.times {subject.land plane1}
-  #     expect(subject).to be_full
-  #   end
-  # end
-
   describe '#take_off' do
-    it {is_expected.to respond_to(:take_off).with(1).argument}
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'removes a plane from airport when it leaves' do
       subject.land plane1
@@ -74,7 +63,7 @@ describe Airport do
     it 'doesn\'t allow plane to take off in bad weather' do
       allow(subject).to receive(:not_safe?).and_return(true)
       message = 'Bad weather - cant\'t take off!'
-      expect{subject.take_off plane1}.to raise_error message
+      expect{ subject.take_off plane1 }.to raise_error message
     end
 
     it 'tells a plane to take off' do
