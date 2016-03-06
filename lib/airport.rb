@@ -30,7 +30,7 @@ attr_reader :planes
 private
 
   def full?
-    @planes.length == @capacity ? true : false
+    @planes.length >= @capacity ? true : false
   end
 
 end

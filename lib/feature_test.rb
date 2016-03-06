@@ -1,24 +1,20 @@
 require_relative 'plane'
 require_relative 'airport'
 
+gatwick = Airport.new
 
-airport = Airport.new
-p 1
-p airport.planes
-p 2
-p airplane = Plane.new
-p
-airplane.land(airport)
-p 3.1
-#p airport.stormy?
-p 3.2
-p airport.planes
-p 4
-p airplane.take_off(airport)
-#airport.allow_take_off(airplane)#[0]
+10.times{Plane.new.land(gatwick)}
+p 1.0
+p gatwick.planes
 
-p 5
-p airplane
+gatwick.planes.each do |plane|
+  plane.take_off(gatwick)
+end
 
-p 6
-p airport.planes
+gatwick.planes.each do |plane|
+  plane.take_off(gatwick)
+end
+
+p 2.0
+p gatwick.planes.length
+p gatwick.planes

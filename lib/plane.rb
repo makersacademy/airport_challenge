@@ -4,23 +4,30 @@ class Plane
 
 attr_reader :flying
 
-def initialize
+  def initialize
     @flying = true
-end
+  end
 
-def land(airport)
+  def land(airport)
 #raise "CANNOT LAND IN A STORM" if airport.stormy?
-raise "CANNOT LAND A LANDED PLANE" if @flying == false
+    raise "CANNOT LAND A LANDED PLANE" if @flying == false
     airport.allow_landing(self)
     @flying = false
 
-end
+  end
 
-def take_off(airport)
-raise "A FLYING PLANE CANNOT TAKE-OFF" if @flying == true
+  def take_off(airport)
+    raise "A FLYING PLANE CANNOT TAKE-OFF" if @flying == true
+    raise "PLANE IS NOT AT THAT AIRPORT" if !in_airport?(airport)
     airport.allow_take_off(self)
     @flying = true
 
-end
+  end
+
+private
+
+  def in_airport?(airport)
+    airport.planes.include?(self)
+  end
 
 end

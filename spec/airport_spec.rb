@@ -3,15 +3,15 @@ require 'airport'
 describe Airport do
 let(:plane) { double :plane, :flying => true }
 
-  describe '#planes' do
+  describe '# 1. planes' do
     it { is_expected.to respond_to :planes }
-  end
+
 
     it '1.0 planes is an array' do
       expect(subject.planes).to be_a Array
     end
-
-  describe '#land_plane' do
+  end
+  describe '# 2. land_plane' do
 
     it '2.0 puts a plane in the planes array' do
       allow(subject).to receive(:stormy?) {false}
@@ -35,9 +35,17 @@ let(:plane) { double :plane, :flying => true }
       expect {subject.allow_landing(plane)}.to raise_error "CANNOT LAND AIRPORT IS FULL"
     end
 
+    it '2.3 raises an error CANNOT LAND AIRPORT IS FULL when at capacity' do
+    #airport = Airport.new(35)
+    allow(subject).to receive(:stormy?) {false}
+    Airport::DEFAULT_CAPACITY.times{subject.allow_landing(double(:plane))}
+    expect {
+    subject.allow_landing(double(:plane))
+    }.to raise_error "CANNOT LAND AIRPORT IS FULL"
+end
   end
 
-  describe '#plane_take_off' do
+  describe '# 3. plane_take_off' do
 
     it '3.0 removes the plane from the planes array' do
       allow(subject).to receive(:stormy?) {false}
@@ -57,6 +65,9 @@ let(:plane) { double :plane, :flying => true }
 
       expect {subject.allow_take_off(plane)}.to raise_error "CANNOT TAKE-OFF IN A STORM"
     end
+
+
+
 
   end
 
