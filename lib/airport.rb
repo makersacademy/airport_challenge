@@ -1,56 +1,57 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
   attr_reader :airfield, :capacity
   DEFAULT_CAPACITY = 50
+
   def initialize(capacity = DEFAULT_CAPACITY)
     @airfield  = []
     @capacity = capacity
-    @weather_seed = { 'sunny' => 19, 'stormy' => 1 }
   end
 
   def land(plane)
-    fail "The airport is full" if at_capacity?
-    fail "The weather is too bad" if forecast == 'stormy'
+    fail "Plane cannot land" unless can_land?
     plane.land
     @airfield << plane
   end
 
   def confirm_landing(plane)
-    airfield.include?(plane) ? true : false
+    airfield.include?(plane)
   end
 
   def dispatch(plane)
-    fail "This plane is not in the airfield" unless @airfield.include?(plane)
-    fail "The weather is too bad" if forecast == 'stormy'
+    fail "Cannot take off" unless can_take_off?(plane)
     @airfield.delete_if { |pl| pl == plane }
     plane.take_off
     plane
   end
 
   def confirm_dispatch(plane)
-    airfield.include?(plane) ? false : true
+    !airfield.include?(plane)
   end
 
-  def forecast
-    weather_array.sample
+  def stormy?
+    Weather::stormy?
   end
-  
+
   private
 
   def at_capacity?
     capacity == airfield.size
   end
 
+  def can_land?
+    fail "The airport is full" if at_capacity?
+    fail "The weather is too bad" if stormy?
+    true
+  end
 
-
-  def weather_array
-    weather = []
-    @weather_seed.each do |condition, weight|
-      weight.times { weather << condition }
-    end
-    weather
+  def can_take_off?(plane)
+    fail "This plane is not in the airfield" unless @airfield.include?(plane)
+    fail "The weather is too bad" if stormy?
+    true
   end
 
 end

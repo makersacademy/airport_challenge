@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   let(:plane) { double(:plane, land:nil, take_off:nil) }
   before :each do
-    allow(subject).to receive(:forecast) { 'sunny' }
+    allow(subject).to receive(:stormy?) { false }
   end
 
   describe '#new' do
@@ -27,7 +27,7 @@ describe Airport do
     end
 
     it 'Stop a plane from landing when there is a storm' do
-      allow(subject).to receive(:forecast) { 'stormy' }
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.land(plane) }.to raise_error "The weather is too bad"
     end
 
@@ -60,7 +60,7 @@ describe Airport do
     end
 
     it 'Stop a plane from taking off when there is a storm' do
-      allow(subject).to receive(:forecast) { 'stormy' }
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.land(plane) }.to raise_error "The weather is too bad"
     end
   end
@@ -82,12 +82,11 @@ describe Airport do
 end
 
 describe Airport do
-  describe '#forecast' do
-    it { is_expected.to respond_to(:forecast) }
+  describe '#stormy?' do
 
-    it 'gets the current weather forecast' do
-      expect(subject.forecast).to satisfy do |value|
-        (value=='stormy') || (value =='sunny')
+    it 'tells you weather it\'s sunny or not' do
+      expect(subject.stormy?).to satisfy do |value|
+        [true, false].include? value
       end
     end
 
