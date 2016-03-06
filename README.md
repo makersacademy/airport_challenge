@@ -1,5 +1,6 @@
 Airport Challenge
 =================
+https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
 Tree
 ---------
 airport_challenge
