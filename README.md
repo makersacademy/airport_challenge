@@ -91,3 +91,4 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 Author: Paul Rees 05/03/16
+[![Build Status](https://travis-ci.org/paulalexrees/airport_challenge.svg?branch=master)](https://travis-ci.org/paulalexrees/airport_challenge)
