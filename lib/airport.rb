@@ -10,7 +10,7 @@ class Airport
 
 
   def arrive(plane, weather)
-    raise "this plane has landed already" if plane.status == landed
+    raise "this plane has landed already" if plane.status == 'landed'
     raise "there is a storm" if weather.storm? 
     raise "airport is full" if full?
     plane.landed

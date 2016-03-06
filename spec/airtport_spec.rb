@@ -2,14 +2,9 @@ require "rspec/expectations"
 require 'airport'
 
 describe Airport do 
-  let(:plane) {double(:plane)}
+  let(:plane) {double(:plane, status: nil , flying: nil, landed: nil)}
   let(:weather) {double(:weather)}
 
-  before(:each) do  
-    allow(plane).to receive(:landed)
-    allow(plane).to receive(:flying)
-  end
-  
   it{is_expected.to respond_to(:planes)}
 
   describe 'capacity' do 
@@ -21,7 +16,6 @@ describe Airport do
   end    
 
   describe 'arrival' do
-    it {is_expected.to respond_to(:arrive).with(2).argument}
     
     it 'should receive a landing plane' do
     allow(weather).to receive(:storm?).and_return(false)
@@ -36,7 +30,6 @@ describe Airport do
   end
 
   describe 'departure' do
-    it {is_expected.to respond_to(:depart).with(2).argument}
   
     it 'should let a plane depart' do
     allow(weather).to receive(:storm?).and_return(false)
