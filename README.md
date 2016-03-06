@@ -81,6 +81,8 @@ Oops, looks like there is a storm going on there. So Schiphol Airport is not an 
 ```
 Landed! Passengers will be grumpy that they end up in the wrong city but at least everyone is safe. :)
 
+I have also considered edge cases to ensure the consistency of my air control system - try make a plane that's already flying take off again and it will tell you off (hopefully). :P
+
 ##To run the tests
 
 In your terminal, type `$ rspec` under `airport_challenge` directory will run all the unit tests in spec files.
@@ -99,6 +101,6 @@ $ rspec spec/feature_spec.rb
 
 Junyuan Xue
 
-[github](https://github.com/junyuanxue)
+[github](https://github.com/junyuanxue)  [blog](https://spinningcodes.wordpress.com/)
 
-[blog](https://spinningcodes.wordpress.com/)
+Thanks for reading :)
