@@ -1,17 +1,21 @@
-require 'plane'
+require 'airport'
 
 describe Plane do 
 
-	let(:plane) {double :plane, :landed? => true}
-	let(:airport) {double :airport, :planes => [subject]}
+	subject(:plane) {Plane.new}
+	let(:airport) {double :airport, planes: [subject]}
 
-	it 'plane is flying' do
-	expect(subject.landed?).to eq false
+	it 'plane is inititalised as flying' do
+		expect(subject.landed?).to eq false
 	end	
 
-	it 'plane has landed' do
-	expect(plane.landed?).to eq true
+	it 'expect plane status to change after landing' do
+		subject.land
+	    expect(subject.landed?).to eq true
 	end
 
-
+	it 'expect plane status to change after taking off' do
+		subject.take_off
+	    expect(subject.landed?).to eq false
+	end
 end

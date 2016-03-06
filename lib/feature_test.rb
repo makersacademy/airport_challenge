@@ -2,7 +2,7 @@ require './airport.rb'
 
 airport = Airport.new
 plane = Plane.new
-plane = Plane.new
+plane1 = Plane.new
 airport2 = Airport.new
 
 p airport.planes #p prints array of planes in the airport
@@ -16,25 +16,32 @@ p "Airport1" + airport.planes.to_s
 p "Airport2" + airport2.planes.to_s
 p airport2.take_off plane
 5.times {airport2.take_off plane}
-plane.change_landed_status
+
 p "Airport1" + airport.planes.to_s
 p "Airport2" + airport2.planes.to_s
-p airport.planes.length
+p airport.planes
 #plane takes off 
 airport.take_off plane
 
 #no planes at airport
 p airport.planes
-
+p airport.current_weather
 airport.weather #changes weather
 p airport.current_weather #prints the current weather
-airport.weather
-p airport.weather
-p airport.current_weather
+
+
 p airport.land plane
 
-p "Thank god its not stormy. I would have missed my appointment"
+p "Thankfully it's not stormy. I would have missed my next flight"
 airport.take_off plane
 
 airport.land plane
 
+plane2 = Plane.new
+plane3 = Plane.new
+plane4 = Plane.new
+plane5 = Plane.new
+
+airport.land plane2
+#error if plane instruct to take off from another airport
+p airport2.take_off plane2 

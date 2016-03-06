@@ -1,24 +1,19 @@
 require 'airport'
-require 'plane'
-require 'simplecov'
-SimpleCov.start
 
 describe Airport do 
 
 	subject(:airport) {Airport.new}
-	#let(occupied airport) {Airport.new,}
 	let(:sunny_weather) {allow(subject).to receive(:current_weather).and_return(:sunny)}
 	let(:stormy_weather) {allow(subject).to receive(:current_weather).and_return(:stormy)}
-	let(:plane) { double(:plane)}
+	let(:plane) { double(:plane, landed?:false,land: nil)}
 
 
-	describe '#landing' do
-		before do
-		allow(plane).to receive(:landed?).and_return(false)
-		allow(plane).to receive(:change_landed_status)
+	describe 'landing' do
+		it 'plane to land' do
+			sunny_weather
+			expect(plane).to receive(:land)
+			subject.land plane
 		end
-
-		it {expect(subject).to respond_to(:land).with(1).argument }
 
 		it 'has the plane at the airport aftering landing' do
 			sunny_weather
@@ -28,21 +23,17 @@ describe Airport do
 
 		it 'expect error when instructing plane to land during storm' do
 			stormy_weather
-			expect{subject.land plane}.to raise_error("Bad weather! Too dangerous to land plane.")
+			error = "Bad weather! Too dangerous to land plane."
+			expect{subject.land plane}.to raise_error(error)
 		end
 	end
 
-	describe '#take off' do
-		before do
-		allow(plane).to receive(:landed?).and_return(true)
-		allow(plane).to receive(:change_landed_status)
-
-		end
+	describe 'take off' do
+		before {allow(plane).to receive_messages(landed?:true,land:nil)	}
 
 		it {expect(subject).to respond_to(:take_off).with(1).argument }
 
 		it 'no longer has the plane at the airport' do
-			#airport = double(Airport.new){plane,current_weather = :sunny}
 			sunny_weather
 			subject.land plane
 			subject.take_off plane
@@ -54,28 +45,26 @@ describe Airport do
 			allow(plane).to receive(:landed?).and_return(false)
 			subject.land plane
 			stormy_weather
-			expect{subject.take_off plane}.to raise_error("Bad weather! Too dangerous to take off.")
+			error = "Bad weather! Too dangerous to take off."
+			expect{subject.take_off plane}.to raise_error()
 		end
 
 		it 'display message if trying to take off when plane already landed elsewhere' do
 			sunny_weather
 			allow(plane).to receive(:landed?).and_return(true)
 			airport2 = Airport.new
+			allow(airport2).to receive(:current_weather).and_return(:sunny)
 			airport2.land plane
 			expect(subject.take_off plane).to eq("This plane is not at this airport!")
 		end
 	end
 
-
-	describe '#capacity' do
+	describe 'capacity' do
 		it 'expects error when landing with full airport' do
 			sunny_weather
 		    5.times { 
-		 	    plan =  double(:plan)
-			    allow(plan).to receive(:change_landed_status)
-	        	allow(plan).to receive(:landed?).and_return(false)
-				subject.land plan}
-
+		 	    planes =  double(:plan,landed?:false,land:nil)
+				subject.land planes}
 			expect{subject.land plane}.to raise_error("Cannot land. Airport is full!")
 		end
 
