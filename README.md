@@ -1,4 +1,4 @@
-Travis-CI status
+Travis-CI status: 
 [![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
 ## "WEATHER" TO LAND?
