@@ -36,6 +36,14 @@ describe Airport do
     it 'should raise error if departing plane is not at airport' do
       expect{ airport.depart(plane) }.to raise_error "This plane is not at this airport."
     end
+
+    it 'should prevent planes from taking off in stormy weather' do
+      allow(plane).to receive(:landed?).and_return(false)
+      allow(plane).to receive(:land)
+      airport.accept(plane)
+      allow(plane).to receive(:depart)
+      expect{ airport.depart(plane) }.to raise_error "This plane cannot depart due to adverse weather conditions"
+    end
   end
 
   describe 'verification' do

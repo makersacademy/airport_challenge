@@ -7,13 +7,14 @@ class Airport
   end
 
   def accept(plane)
-    raise "This plane is not currently flying." if plane.landed?
+    fail "This plane is not currently flying." if plane.landed?
     plane.land
     planes << plane
   end
 
   def depart(plane)
-    raise "This plane is not at this airport." unless planes.include? plane
+    fail "This plane is not at this airport." unless planes.include? plane
+    fail "This plane cannot depart due to adverse weather conditions" if Weather.new.stormy?
     plane.depart
     planes.delete(plane)
   end

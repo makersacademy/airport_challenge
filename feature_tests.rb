@@ -22,4 +22,6 @@ airport.present?(plane)
 
 #WEATHER
 
-p Weather.new.stormy?
+Weather.new.stormy?
+
+#prevent plane from taking off in stormy weather
