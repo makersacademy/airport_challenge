@@ -2,13 +2,18 @@ require "plane"
 
 describe Plane do
   let(:airport) { double :airport }
-  before do
-    subject.land_at(airport)
-  end
+  before { allow(:airport).to receive(:planes) }
+  subject(:plane) { described_class.new(airport) }
   let(:weather) { double :weather, stormy?: false }
+
+  it "is in an airport when initialized" do
+    expect(subject.flying).to eq false
+  end
 
   describe "#land_at" do
     it "lands in the airport" do
+      subject.depart_from(airport)
+      subject.land_at(airport)
       expect(subject.flying).to eq false
     end
 

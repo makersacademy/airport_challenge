@@ -3,8 +3,8 @@ require_relative "weather"
 
 class Airport
 
-  attr_reader :capacity
-  DEFAULT_CAPACITY = 50
+  attr_reader :planes, :capacity
+  DEFAULT_CAPACITY = 30
 
   def initialize(**opts)
     @weather = opts[:weather] || Weather.new
@@ -27,7 +27,7 @@ class Airport
 
   private
 
-  attr_reader :planes, :weather
+  attr_reader :weather
 
   def full?
     planes.count >= capacity
