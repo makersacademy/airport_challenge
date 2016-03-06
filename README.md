@@ -20,7 +20,7 @@ The task was to write the software to control the flow of planes at an airport. 
 
 Progress
 -----
-https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+[![Build Status](https://travis-ci.org/rhiannonruth/airport_challenge.svg?branch=master)](https://travis-ci.org/rhiannonruth/airport_challenge)
 
 Approach
 -----
