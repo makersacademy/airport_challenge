@@ -1,8 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:plane1) { double(:Plane, take_off: nil, land: nil) }
-  let(:plane2) { double(:Plane, take_off: nil, land: nil) }
+  let(:plane1) { double(:Plane, take_off: nil, land: nil, landed?: false) }
+  let(:plane2) { double(:Plane, take_off: nil, land: nil, landed?: false) }
   before(:each) { allow(subject).to receive(:not_safe?).and_return(false) }
 
   describe '#capacity' do
@@ -30,6 +30,12 @@ describe Airport do
     it 'lands a plane in good weather' do
       subject.land plane1
       expect(subject.planes).to eq [plane1]
+    end
+
+    it 'doesn\'t land a plane if the plane is landed' do
+      allow(plane1).to receive(:landed?).and_return(true)
+      message = 'Plane already landed!'
+      expect{ subject.land plane1 }.to raise_error message
     end
 
     it 'doesn\'t land a plane in bad weather' do
@@ -66,7 +72,13 @@ describe Airport do
       expect{ subject.take_off plane1 }.to raise_error message
     end
 
+    it 'doesn\'t allow plane to take off if not at airport' do
+      message = 'Not at airport - cant\'t take off!'
+      expect{ subject.take_off plane1 }.to raise_error message
+    end
+
     it 'tells a plane to take off' do
+      subject.land plane1
       expect(plane1).to receive(:take_off)
       subject.take_off plane1
     end
