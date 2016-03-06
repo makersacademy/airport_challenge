@@ -1,12 +1,13 @@
 require 'airplane'
 
 describe Airplane do
-let(:airport) {double :airport, :planes => [subject], :full? => false}
-let(:airport1) {double :airport, :planes => [plane2], :full? => false}
-let(:airport2) {double :airport, :planes => [], :full? => false}
-let(:airport3) {double :airport, :planes => [], :full? => true}
-let(:airport4) {double :airport, :planes => [], :full? => false}
-let(:airport5) {double :airport, :planes => [plane1, plane2], :full => false}
+let(:airport) {double :airport, :planes => [subject], :full? => false, :stormy? => false}
+let(:airport1) {double :airport, :planes => [plane2], :full? => false, :stormy? => false}
+let(:airport2) {double :airport, :planes => [], :full? => false, :stormy? => false}
+let(:airport3) {double :airport, :planes => [], :full? => true, :stormy? => false}
+let(:airport4) {double :airport, :planes => [], :full? => false, :stormy? => false}
+let(:airport5) {double :airport, :planes => [plane1, plane2], :full? => false, :stormy? => false}
+let(:airport6) {double :airport, :planes => [subject], :full? => false, :stormy? => true}
 let(:plane1) {Airplane.new}
 let(:plane2) {Airplane.new}
 let(:plane3) {Airplane.new}
@@ -80,9 +81,14 @@ let(:plane3) {Airplane.new}
     end
   end
 
-  describe 'stormy' do
-    it 'should respond to stormy? method' do
-      expect(subject).to respond_to(:stormy?).with(1).argument
+  describe 'weather' do
+    it 'should not land when weather is stormy' do
+      plane1.plane_status
+      expect{ plane1.land_plane(airport6) }.to raise_error 'Too stormy to land'
+    end
+
+    it 'should not take off when weather is stormy' do
+      expect{ subject.take_off(airport6) }.to raise_error 'Too stormy to take off'
     end
   end
 end

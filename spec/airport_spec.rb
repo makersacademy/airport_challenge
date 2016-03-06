@@ -29,4 +29,10 @@ let(:plane) {double :airplane}
     end
   end
 
+  describe 'weather' do
+    it 'should respond to stormy? method' do
+      expect(subject).to respond_to(:stormy?).with(1).argument
+    end
+  end
+
 end
