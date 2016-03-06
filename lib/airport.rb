@@ -25,15 +25,20 @@ class Airport
     end
 
     def takeoff(plane)
+      fail "That plane is not currently in this airport." unless in_this_airport?(plane)
       fail "That plane has already taken-off." unless is_landed?
       fail "It's too stormy to take-off." if is_stormy?
       plane.took_off
-      @planes.delete(plane)
+      @planes.delete(plane) if in_this_airport?(plane)
     end
 
   private
 
     attr_reader :planes
+
+    def in_this_airport?(plane)
+      @planes.include? plane
+    end
 
     def is_stormy?
       Weather.new.stormy?
