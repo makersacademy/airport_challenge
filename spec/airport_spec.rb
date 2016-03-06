@@ -76,6 +76,12 @@ describe Airport do
       expect{subject.takeoff(plane)}.to raise_error "That plane has already taken-off."
     end
 
+    it 'expects plane to not be able to takeoff from an airport it is not in' do
+      plane2 = double(:plane, is_landed?: true)
+      allow(plane2).to receive(:took_off).and_return(true)
+      allow(subject.takeoff(plane)).to raise_error "That plane is not currently in this airport."
+    end
+
   end
 
 end
