@@ -4,7 +4,7 @@ Tree
 ---------
 airport_challenge
 - lib
-  - aiport.rb
+  - airport.rb
   - feature_test.rb
   - plane.rb
   - weather.rb
@@ -69,6 +69,12 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 
 1. I needed to pass an argument through the initialize method in the airport class, that sets a capacity to the number of planes in an instance of the airport, and where a default value is set by a constant when no argument is passed through (DEFAULT_CAPACITY).
+
+```
+Edge Cases
+```
+1. I needed to raise an error when planes tried to take off from airports they were not at.
+2. I needed to raise an error when planes tried to land when they were already landed, or tried to take off when they were already taken-off.
 
 Code Example (How it's used)
 -----
