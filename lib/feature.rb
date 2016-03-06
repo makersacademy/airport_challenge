@@ -2,11 +2,19 @@ require_relative 'plane'
 require_relative 'airport'
 require_relative 'weather'
 
-plane = Plane.new
+plane1 = Plane.new
+plane2 = Plane.new
+plane3 = Plane.new
+plane4 = Plane.new
+
 airport = Airport.new
 
-airport.instruct_land(plane)
-airport.instruct_takeoff
+airport.instruct_land(plane1)
+airport.instruct_land(plane2)
+airport.instruct_land(plane3)
+airport.instruct_land(plane4)
+p airport.planes
+airport.instruct_takeoff(plane2)
 p airport.planes
 
 
