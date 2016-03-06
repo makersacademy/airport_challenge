@@ -4,7 +4,7 @@ Airport Challenge
 ```
         ______
         _\____\___
-=  = ==(____MA____)
+=  = ==(___PAUL___)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
@@ -26,6 +26,7 @@ My approach to the challenge:
 
 Having read the user stories, my interpretation was that an air traffic controller with no specified location should be able to instruct planes to take off from or land at an airport of their choice.
 My implementation was therefore to give planes methods which allow them to take off and land, and to change their 'flying' status accordingly.
+Planes are instantiated in the air as there is no specification for them to be at an airport initially.
 To prevent takeoff and landing when the weather is stormy, I made a **Weather** class which provides a 20% chance of stormy weather, which is checked by the plane when receiving its instructions.
 A similar check is done on the specified airport as to whether it is at full capacity.
 
