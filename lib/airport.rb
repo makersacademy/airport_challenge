@@ -24,7 +24,7 @@ class Airport
   def take_off plane
     fail 'Bad weather - cant\'t take off!' if not_safe?
     fail 'Not at airport - cant\'t take off!' unless at_airport? plane
-    plane.take_off
+    plane.take_off self
     @planes.delete plane
   end
 
