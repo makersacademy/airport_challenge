@@ -7,7 +7,7 @@ https://travis-ci.org/lorenzoturrino/airport_challenge.svg?branch=master
 
 so far:
 - Implemented a Plane class, representing..planes.
-- Added an internal state and accessors method to be able to tell if airborne or not (test edge cases)
+- Added an internal state and accessors method to be able to tell if airborne or not
 - Implemented a Airport class, to act as container and controller of planes.
 - Added internal storage and methods to be able to store, land and dispatch planes.
 - Added Airport methods to switch landed/airborne status of planes being launched/landed
@@ -24,6 +24,7 @@ so far:
 - Added checks to make sure only planes in the right state can takeoff/land
 - Spend a minute prentending I'm done
 - Start to go through the code review file to see what I need to tweak to get to a decent codebase (hint: probably everything)
+- Added stronger consistency tests. Fixed a bug in the airplane class thanks to rspec.
 
 
 TODO how i implemented stuff

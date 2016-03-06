@@ -15,16 +15,16 @@ class Airport
   end
 
   def check_weather
-    fail 'Denied. Stormy weather.' if @local_weather.current_weather == :stormy
+    raise 'Denied. Stormy weather.' if @local_weather.current_weather == :stormy
   end
 
   def check_capacity
-    fail 'Denied. Full airport.' if @plane_list.length >= @capacity
+    raise 'Denied. Full airport.' if @plane_list.length >= @capacity
   end
 
   public
 
-  def initialize(weather, cap = DEFAULT_CAPACITY)
+  def initialize weather, cap = DEFAULT_CAPACITY 
     @plane_list = []
     @local_weather = weather
     @capacity = cap

@@ -2,7 +2,7 @@ class Plane
 
   private
 
-  def dock_at(airport)
+  def dock_at airport
     @current_airport = airport
   end
 
@@ -10,7 +10,7 @@ class Plane
     @current_airport = nil
   end
 
-  def check_current_status(desired_status)
+  def check_current_status desired_status
     return if @current_status == desired_status
     if desired_status == :landed
       raise 'Warning! Already in flight.'
@@ -22,7 +22,7 @@ class Plane
 
   public
 
-  def initialize(airport=nil)
+  def initialize airport = nil
     if airport == nil
       @current_status = :flying
       depart_from_airport
@@ -32,7 +32,7 @@ class Plane
     end
   end
 
-  def land(airport)
+  def land airport
     check_current_status :flying
     @current_status = :landed
     dock_at airport

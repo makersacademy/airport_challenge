@@ -2,13 +2,11 @@ require 'plane'
 
 describe Plane do
   let(:dummy_airport) {double :airport}
+  let(:already_on_ground) {'Warning! Already landed.'}
+  let(:already_in_air) {'Warning! Already in flight.'}
 
   describe "landing sequence: " do
     let(:subject) {Plane.new}
-
-    it "can be instructed to land" do
-      expect(subject).to respond_to(:land).with(1).argument
-    end
 
     it "can be verified as landed" do
       subject.land(dummy_airport)
@@ -25,11 +23,7 @@ describe Plane do
   describe "takeoff sequence:" do
     let(:subject) {Plane.new(dummy_airport)}
 
-    it "can be instructed to take off" do
-      expect(subject).to respond_to(:takeoff)
-    end
-
-    it "can be verified as...taken off?" do
+    it "can be verified as departed" do
       subject.takeoff
       expect(subject.airborne?).to eq true
     end
@@ -41,7 +35,7 @@ describe Plane do
 
   end
 
-  describe "status consistency on the ground:" do
+  context "status consistency on the ground:" do
     let(:subject) {Plane.new(dummy_airport)}
 
     it "is in a airport when landed" do
@@ -49,12 +43,12 @@ describe Plane do
     end
 
     it "raises an exception if told to land while on the ground" do
-      expect{subject.land(dummy_airport)}.to raise_error('Warning! Already landed.')
+      expect{subject.land(dummy_airport)}.to raise_error(already_on_ground)
     end
 
   end
 
-  describe "status consistency in the air:" do
+  context "status consistency in the air:" do
     let(:subject) {Plane.new}
 
     it "is in no airport when flying" do
@@ -62,7 +56,7 @@ describe Plane do
     end
 
     it "raises an exception if told to takeoff while in flight" do
-      expect{subject.takeoff}.to raise_error('Warning! Already in flight.')
+      expect{subject.takeoff}.to raise_error(already_in_air)
     end
 
   end

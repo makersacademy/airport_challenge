@@ -12,13 +12,9 @@ describe Airport do
 
   describe 'landing sequence:' do
 
-    it 'can accept landing airplanes' do
-      expect(subject).to respond_to(:land_airplane).with(1).argument
-    end
-
-    it 'can store landed airplanes' do
-      subject.land_airplane(probe = dummy_plane)
-      expect(subject.list_airplanes).to eq [probe]
+    it 'can check weather on landing request' do
+      expect(dummy_weather).to receive(:current_weather)
+      subject.land_airplane(dummy_plane)
     end
 
     it 'can communicate sucessful landing to planes' do
@@ -26,9 +22,9 @@ describe Airport do
       subject.land_airplane(dummy_plane)
     end
 
-    it 'can check weather on landing request' do
-      expect(dummy_weather).to receive(:current_weather)
-      subject.land_airplane(dummy_plane)
+    it 'can store landed airplanes' do
+      subject.land_airplane(probe = dummy_plane)
+      expect(subject.list_airplanes).to eq [probe]
     end
 
     it 'raises an exception when a plane tries to land in stormy weather' do
@@ -45,8 +41,10 @@ describe Airport do
 
   describe 'takeoff sequence:' do
 
-    it 'can release departing airplanes' do
-      expect(subject).to respond_to(:launch_airplane).with(1).argument
+    it 'can check weather on takeoff request' do
+      subject.land_airplane(dummy_plane)
+      expect(dummy_weather).to receive(:current_weather)
+      subject.launch_airplane(dummy_plane)
     end
 
     it 'can remove from storage departing planes' do
@@ -58,12 +56,6 @@ describe Airport do
     it 'can set planes to airborne' do
       subject.land_airplane(dummy_plane)
       expect(dummy_plane).to receive(:takeoff)
-      subject.launch_airplane(dummy_plane)
-    end
-
-    it 'can check weather on takeoff request' do
-      subject.land_airplane(dummy_plane)
-      expect(dummy_weather).to receive(:current_weather)
       subject.launch_airplane(dummy_plane)
     end
 

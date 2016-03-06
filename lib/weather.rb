@@ -20,7 +20,7 @@ class Weather
     @current
   end
 
-  def change_weather(new_weather=nil)
+  def change_weather new_weather = nil
     @current = new_weather || roll_new_weather
   end
 
