@@ -90,11 +90,11 @@ describe Airport do
         expect {subject.take_off(plane)}.to raise_error(error_message)
       end
 
-      xit 'plane still at airport' do
-        allow(airport).to receive(:land).with(plane).and_return([plane])
-        subject.take_off(plane)
-        expect(subject.planes_in_airport).to include plane
-      end
+      # xit 'plane still at airport' do
+      #   allow(airport).to receive(:land).with(plane).and_return([plane])
+      #   subject.take_off(plane)
+      #   expect(subject.planes_in_airport).to include plane
+      # end
     end
   end
 end
