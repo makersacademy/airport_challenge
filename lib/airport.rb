@@ -16,9 +16,9 @@ CAPACITY = 5
 	end
 
 	def land plane
-		fail ("Bad weather! Too dangerous to land plane.") if self.current_weather == :stormy
-		fail ("Cannot land. Airport is full!") if full?
-		unless plane.landed?
+		fail "Bad weather! Too dangerous to land plane." if self.current_weather == :stormy
+		fail "Cannot land. Airport is full!" if full?
+		if !plane.landed?
 			plane.land
 			@planes << plane 
 		else
@@ -28,12 +28,12 @@ CAPACITY = 5
 	end
 
 	def take_off plane
-		fail ("Bad weather! Too dangerous to take off.") if self.current_weather == :stormy
+		fail "Bad weather! Too dangerous to take off." if self.current_weather == :stormy
 		if plane.landed? && @planes.include?(plane)
-		plane.take_off
-		@planes.delete(plane) 
-	else
-		 "This plane is not at this airport!"
+			plane.take_off
+			@planes.delete(plane) 
+		else
+		 	"This plane is not at this airport!"
 		end
 	end
 

@@ -46,7 +46,7 @@ describe Airport do
 			subject.land plane
 			stormy_weather
 			error = "Bad weather! Too dangerous to take off."
-			expect{subject.take_off plane}.to raise_error()
+			expect{subject.take_off plane}.to raise_error(error)
 		end
 
 		it 'display message if trying to take off when plane already landed elsewhere' do
@@ -62,17 +62,19 @@ describe Airport do
 	describe 'capacity' do
 		it 'expects error when landing with full airport' do
 			sunny_weather
-		    5.times { 
+		    5.times do
 		 	    planes =  double(:plan,landed?:false,land:nil)
-				subject.land planes}
+				subject.land planes
+			end
 			expect{subject.land plane}.to raise_error("Cannot land. Airport is full!")
 		end
 
 		it 'expects to have a default capacity' do
 			expect(subject.capacity).to eq Airport::CAPACITY
 		end
+
 		it 'expects capacity to be changed' do
-			airport = Airport.new(9)
+			airport = Airport.new(10)
 			expect(airport.capacity).not_to eq Airport::CAPACITY
 		end
 	end
