@@ -68,7 +68,7 @@ describe "Feature tests" do
 
       it "klm cannot land in schiphol due to traffic" do
         fran_to_schi = []
-        30.times { fran_to_schi << (Plane.new(frankfurt)) }
+        30.times { fran_to_schi << Plane.new(frankfurt) }
         fran_to_schi.each do |plane|
           frankfurt.take_off(plane)
           schiphol.land(plane)
