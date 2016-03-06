@@ -34,7 +34,8 @@ describe Airport do
 
     it 'doesn\'t land a plane in bad weather' do
       allow(subject.weather).to receive(:stormy?).and_return(true)
-      expect{subject.land plane1}.to raise_error 'Bad weather - cant\'t land!'
+      message = 'Bad weather - cant\'t land!'
+      expect{subject.land plane1}.to raise_error message
     end
 
     it 'tells the plane to land' do
@@ -44,7 +45,8 @@ describe Airport do
 
     it 'doesn\'t allow the plane to land if full' do
       subject.capacity.times {subject.land plane1}
-      expect{subject.land plane1}.to raise_error 'Airport full - cant\'t land!'
+      message = 'Airport full - cant\'t land!'
+      expect{subject.land plane1}.to raise_error message
     end
   end
 
@@ -71,7 +73,8 @@ describe Airport do
 
     it 'doesn\'t allow plane to take off in bad weather' do
       allow(subject.weather).to receive(:stormy?).and_return(true)
-      expect{subject.take_off plane1}.to raise_error 'Bad weather - cant\'t take off!'
+      message = 'Bad weather - cant\'t take off!'
+      expect{subject.take_off plane1}.to raise_error message
     end
 
     it 'tells a plane to take off' do
