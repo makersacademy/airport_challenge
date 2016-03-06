@@ -1,4 +1,5 @@
-require_relative 'airport'
+# require_relative 'airport'
+# require_relative 'weather'
 
 class Plane
 
@@ -9,7 +10,15 @@ class Plane
   end
 
   def landed?
+    @landed
+  end
+
+  def land
     @landed = true
+  end
+
+  def takeoff
+    @landed = false
   end
 
 end

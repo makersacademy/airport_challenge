@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   subject(:airport) {described_class.new}
@@ -8,6 +9,7 @@ describe Airport do
   before do
     allow(plane).to receive(:landed?)
     allow(plane).to receive(:landed).and_return(false)
+    allow(airport).to receive(:storm?).and_return(false)
   end
 
   describe '#initialization' do
@@ -21,6 +23,7 @@ describe Airport do
 
     it "accepts a given capacity" do
       airport = Airport.new(100)
+      allow(airport).to receive(:storm?).and_return(false)
       100.times { airport.instruct_land (plane) }
       expect{ airport.instruct_land (plane)}.to raise_error "Airport full."
     end
@@ -35,7 +38,7 @@ describe Airport do
       expect(airport.planes.last).to eq plane
     end
 
-    it 'confirm plane has landed' do
+    it "confirms plane has landed" do
       expect(plane).to receive(:landed?)
       airport.instruct_land(plane)
     end
@@ -43,6 +46,13 @@ describe Airport do
     it "raises an error if airport is full" do
       airport.capacity.times { airport.instruct_land(plane) }
       expect { airport.instruct_land(plane) }.to raise_error "Airport full."
+    end
+
+    it "raises an error if there is a storm during landing" do
+      allow(airport).to receive(:storm?).and_return(true)
+      plane = Plane.new
+      airport.instruct_land(plane)
+      expect { airport.instruct_land(plane).to raise_error "Storm." }
     end
   end
 
@@ -56,11 +66,23 @@ describe Airport do
       expect(plane.landed).to eq false
     end
 
-    it "confirm plane has taken off" do
+    it "confirms plane has taken off" do
       plane = Plane.new
       airport.planes << plane
       airport.instruct_takeoff
       expect(airport.planes.include?(plane)).to eq false
+    end
+
+    it "raises an error if airport is empty" do
+      airport.capacity.times { airport.instruct_takeoff }
+      expect { airport.instruct_takeoff }.to raise_error "Airport empty."
+    end
+
+    it "raises an error if there is a storm during takeoff" do
+      allow(airport).to receive(:storm?).and_return(true)
+      plane = Plane.new
+      airport.planes << plane
+      expect { airport.instruct_takeoff.to raise_error "Storm." }
     end
   end
 
