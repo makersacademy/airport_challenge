@@ -1,6 +1,15 @@
 class Weather
 
-def stormy
+  def stormy?
+    sky == :stormy
+  end
 
-end
+  private
+
+  SKY = [:stormy, :sunny, :sunny]
+
+  def sky
+    SKY.sample
+  end
+
 end
