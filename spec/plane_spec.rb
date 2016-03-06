@@ -2,18 +2,65 @@ require 'plane'
 
 describe Plane do
 
-   describe 'report_landed' do
-     it 'can be reported as landed' do
-       subject.report_landed
-       expect(subject).to be_landed
-     end
-   end
+  subject(:plane) {described_class.new}
+  let(:airport) { double :airport}
 
-   describe 'report_take_off' do
-     it 'can be reported as taken off' do
-       subject.report_take_off
-       expect(subject).to_not be_landed
-     end
-   end
+  describe 'land' do
+
+    before(:each) {allow(airport).to receive(:plane_land)}
+
+    it 'plane lands' do
+      allow(airport).to receive_messages(full?:false, stormy?:false)
+      subject.land(airport)
+      expect(subject).to be_landed
+    end
+    it 'cannot land when airport is full' do
+      allow(airport).to receive_messages(full?:true, stormy?:false)
+      message = 'Airport is full!'
+      expect{subject.land(airport)}.to raise_error message
+    end
+    it 'cannot land when weather is stormy' do
+      allow(airport).to receive_messages(full?:false, stormy?:true)
+      message = 'Too stormy to land!'
+      expect{subject.land(airport)}.to raise_error message
+    end
+    it 'cannot land if it has already landed' do
+      allow(airport).to receive_messages(full?:false, stormy?:false)
+      message = 'Plane has already landed!'
+      subject.land(airport)
+      expect{subject.land(airport)}.to raise_error message
+    end
+  end
+
+  describe 'take_off' do
+
+    before(:each) {allow(airport).to receive_messages(plane_take_off:nil, plane_land:nil)}
+
+    it 'plane takes off' do
+      allow(airport).to receive_messages(full?:false, empty?:false, stormy?:false)
+      subject.land(airport)
+      subject.take_off(airport)
+      expect(subject).to_not be_landed
+    end
+    it 'cannot take off when airport is empty' do
+      allow(airport).to receive_messages(full?:false, stormy?:false)
+      subject.land(airport)
+      allow(airport).to receive(:empty?).and_return(:true)
+      message = 'Airport is empty!'
+      expect{subject.take_off(airport)}.to raise_error message
+    end
+    it 'cannot take off when weather is stormy' do
+      allow(airport).to receive_messages(full?:false, empty?:false, stormy?:false)
+      subject.land(airport)
+      allow(airport).to receive(:stormy?).and_return(:true)
+      message = 'Too stormy to take off!'
+      expect{subject.take_off(airport)}.to raise_error message
+    end
+    it 'cannot take off if it is already flying' do
+      allow(airport).to receive_messages(empty?:false, stormy?:false)
+      message = 'Plane is still flying!'
+      expect{subject.take_off(airport)}.to raise_error message
+    end
+  end
 
 end

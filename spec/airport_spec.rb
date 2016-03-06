@@ -2,8 +2,10 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) {double :plane}
-  let(:weather) {double :weather}
+  subject(:airport) {described_class.new}
+  let(:plane) { double :plane}
+
+  it{is_expected.to respond_to(:stormy?)}
 
   describe 'capacity' do
     it 'has default capacity on initialize' do
@@ -16,51 +18,19 @@ describe Airport do
     end
   end
 
-  describe 'land' do
+  describe 'plane_land' do
+    it 'has landed plane' do
+      subject.plane_land(plane)
+      expect(subject.planes).to eq([plane])
+    end
 
-    before(:each) {allow(plane).to receive_messages(report_landed:true)}
-
-    it 'can land a plane' do
-      allow(weather).to receive(:stormy?).and_return(false)
-      subject.land(plane, weather)
-      expect(subject).not_to be_empty
-    end
-    it 'cannot land a plane when full' do
-      allow(weather).to receive(:stormy?).and_return(false)
-      message = 'Airport is full, plane cannot land'
-      subject.capacity.times{subject.land(plane, weather)}
-      expect{subject.land(plane, weather)}.to raise_error message
-    end
-    it 'cannot land a plane when stormy' do
-      allow(weather).to receive(:stormy?).and_return(true)
-      message = 'Stormy weather! Cannot land!'
-      expect{subject.land(plane, weather)}.to raise_error message
-    end
   end
 
-  describe 'take_off' do
-
-    it 'can have a plane take off' do
-      allow(plane).to receive_messages(report_landed:true)
-      allow(weather).to receive(:stormy?).and_return(false)
-      subject.land(plane, weather)
-      allow(plane).to receive_messages(report_take_off:true)
-      subject.take_off(plane, weather)
-      expect(subject).to be_empty
-    end
-    it 'cannot have a plane take off if it isn\'t in the airport' do
-      allow(weather).to receive(:stormy?).and_return(false)
-      message = 'Plane is not in Airport'
-      expect{subject.take_off(plane, weather)}.to raise_error message
-    end
-    it 'cannot have a plane take off if it is stormy' do
-      allow(plane).to receive_messages(report_landed:true)
-      allow(weather).to receive(:stormy?).and_return(false)
-      subject.land(plane, weather)
-      allow(plane).to receive_messages(report_take_off:true)
-      allow(weather).to receive(:stormy?).and_return(true)
-      message = 'Stormy weather! Cannot take off!'
-      expect{subject.take_off(plane, weather)}.to raise_error message
+  describe 'plane_take_off' do
+    it 'no longer has plane' do
+      subject.plane_land(plane)
+      subject.plane_take_off(plane)
+      expect(subject.planes).to be_empty
     end
   end
 
