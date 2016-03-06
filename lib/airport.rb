@@ -14,4 +14,9 @@ def land(plane)
   @storage << plane
 end
 
+def take_off(plane)
+  plane.take_off
+  @storage.pop
+end
+
 end
