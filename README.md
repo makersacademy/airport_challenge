@@ -22,6 +22,12 @@ Steps
 * The airport capacity can be overridden.
 
 
+Documentation
+-------
+* Documentation can be found at './docs/table_of_contents.html'
+* A feature test can be found at './spec/feature_test.rb'
+
+
 <code>2.3.0 :001 > require './lib/airport'
  => true
 2.3.0 :002 > airport=Airport.new(1)
@@ -38,3 +44,6 @@ RuntimeError: Unable to land due to stormy weather
  => "#<Plane:0x007fa08a011148> landed at #<Airport:0x007fa08a0205f8>"
 2.3.0 :006 > airport.take_off plane
  => "#<Plane:0x007fa08a011148> has departed from #<Airport:0x007fa08a0205f8>" </code>
+
+
+All content copyright Murilo Dal Ri © 2015 • All rights reserved.
