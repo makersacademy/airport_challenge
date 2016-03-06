@@ -19,6 +19,8 @@ describe Airport do
 
   describe 'land' do
 
+    before {allow(subject).to receive(:is_landed?).and_return(false)}
+
     it 'expects the plane to land into the airport when weather is fine' do
       allow(plane).to receive(:is_landed).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(false)
@@ -40,8 +42,8 @@ describe Airport do
     end
 
     it 'expects planes not to be allowed to land if they are already landed' do
-      allow(subject).to receive(:landed?).and_return(true)
-      expect{subject.land(plane)}.to raise_error "That plane is already landed."
+      allow(subject).to receive(:is_landed?).and_return(true)
+      expect{subject.land(plane)}.to raise_error "That plane has already landed."
     end
 
   end
@@ -49,9 +51,11 @@ describe Airport do
   describe 'takeoff' do
 
     before do
+      allow(subject).to receive(:is_landed?).and_return(false)
       allow(plane).to receive(:is_landed).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(false)
       subject.land(plane)
+      allow(subject).to receive(:is_landed?).and_return(true)
     end
 
     it 'expects the plane to take off from the airport when weather is fine' do
@@ -68,8 +72,8 @@ describe Airport do
     end
 
     it 'expects planes to not be allowed to take off if they are already in the air' do
-      allow(subject).to receive(:landed?).and_return(false)
-      expect{subject.land(plane)}.to raise_error "That plane has already taken-off."
+      allow(subject).to receive(:is_landed?).and_return(false)
+      expect{subject.takeoff(plane)}.to raise_error "That plane has already taken-off."
     end
 
   end

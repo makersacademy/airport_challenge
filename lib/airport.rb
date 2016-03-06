@@ -17,6 +17,7 @@ class Airport
     end
 
     def land(plane)
+      fail "That plane has already landed." if is_landed?
       fail "Airport is full! Plane cannot land." if is_full?
       fail "It's too stormy to land." if is_stormy?
       plane.is_landed
@@ -24,6 +25,7 @@ class Airport
     end
 
     def takeoff(plane)
+      fail "That plane has already taken-off." unless is_landed?
       fail "It's too stormy to take-off." if is_stormy?
       plane.took_off
       @planes.delete(plane)
