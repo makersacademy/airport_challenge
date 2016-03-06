@@ -30,10 +30,13 @@ end
 # end
 
 it 'does not land plane is airport is full' do
-  10.times {subject.land double(:plane, landed?:false)}
+  Airport::DEFAULT_CAPACITY.times {subject.land double(:plane, landed?:false)}
   expect {subject.land double(:plane) }.to raise_error "no space to land plane"
 end
 
-
+it 'creates an airport with capacity of 50' do
+  subject.capacity = 50
+  expect(subject.capacity).to eq 50
+end
 
 end

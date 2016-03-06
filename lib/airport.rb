@@ -6,9 +6,11 @@ class Airport
 attr_reader :plane
 attr_accessor :storage, :capacity
 
+DEFAULT_CAPACITY = 10
+
 def initialize
   @storage = []
-  @capacity = 10
+  @capacity = DEFAULT_CAPACITY
 end
 
 def land(plane, weather=Weather.new)
