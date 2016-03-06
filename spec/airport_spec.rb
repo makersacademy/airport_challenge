@@ -9,22 +9,41 @@ describe Airport do
     it 'starts with no planes' do
       expect(subject.planes_in_airport).to be_empty
     end
+
+    it 'starts with a capacity of 20 planes' do
+      expect(subject.capacity).to eq 20
+    end
   end
 
 
   describe '#land' do
     let (:plane) {double(:plane)}
+    before {allow(plane).to receive(:landed).and_return(true)}
 
     it 'stores plane in an airport' do
-      allow(plane).to receive(:landed).and_return(true)
+      allow(airport).to receive(:bad_weather?).and_return(false)
       subject.land(plane)
       expect(subject.planes_in_airport).to include plane
     end
 
     it 'does not let plane land in stormy weather' do
-      error_message = 'Too stormy to land'
-      allow(plane).to receive(:landed).and_return(true)
       allow(airport).to receive(:bad_weather?).and_return(true)
+      error_message = 'Too stormy to land'
+      expect{subject.land(plane)}.to raise_error(error_message)
+    end
+
+    it 'does not allow plane to land if full' do
+      allow(airport).to receive(:check_plane?).and_return(false)
+      allow(airport).to receive(:bad_weather?).and_return(false)
+      error_message = "Airport is full, cannot land"
+      20.times{subject.planes_in_airport << plane }
+      expect{subject.land(plane)}.to raise_error(error_message)
+    end
+
+    it 'does not land plane if already in airport' do
+      allow(airport).to receive(:bad_weather?).and_return(false)
+      error_message = "Plane already at airport"
+      subject.land(plane)
       expect{subject.land(plane)}.to raise_error(error_message)
     end
   end

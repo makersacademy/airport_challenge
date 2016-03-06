@@ -37,12 +37,13 @@ plane.at_airport? #plane not at airport
 require './lib/airport.rb'
 require './lib/plane.rb'
 heathrow = Airport.new
-
-20.times do
-  plane = Plane.new
-  heathrow.land(plane)
-  heathrow.take_off(plane)
-  p plane.at_airport?
+20. times do
+  20.times do
+    plane = Plane.new
+    heathrow.land(plane)
+    heathrow.take_off(plane)
+    p plane.at_airport?
+  end
 end
 #Random chance of take off
 #error if bad weather
@@ -59,4 +60,15 @@ heathrow = Airport.new
   p plane.at_airport?
 end
 
-#User story 4
+#User story 5
+#cap = 10
+  require './lib/airport.rb'
+  require './lib/plane.rb'
+  heathrow = Airport.new
+20.times do
+    plane = Plane.new
+  heathrow.land(plane)
+  p plane.at_airport?
+end
+plane = Plane.new
+heathrow.land(plane) #error
