@@ -20,10 +20,12 @@ class Airport
     @at_airport << @plane
     @at_airport.last
 
+
   end
 
   def depart(plane)
     raise "Error: Too stormy, can't depart!" if stormy?
+    raise "Error: Can't depart a flying plane" if flying?
     @at_airport.delete(plane)
   end
 
