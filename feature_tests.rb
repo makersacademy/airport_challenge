@@ -1,5 +1,6 @@
 require './lib/airport'
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 airport = Airport.new
 plane = Plane.new
@@ -18,3 +19,7 @@ airport.depart(plane)
 
 #confirm whether plane is at airport
 airport.present?(plane)
+
+#WEATHER
+
+p Weather.new.stormy?
