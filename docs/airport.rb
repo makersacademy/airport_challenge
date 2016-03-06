@@ -23,8 +23,19 @@ attr_reader :capacity, :storage
 
 	def airport_open?(weather)
 		climate = weather.random_weather
-	 	climate == "Sunny"
+	 	climate == "not stormy"
 	end
 
 end
 
+	def list_all(class_instances)
+		ObjectSpace.each_object(class_instances).to_a
+	end
+
+	airports = list_all(Airport)
+
+	def find_plane(plane)
+		airports.select do | airport |
+			airport.in_airport?(plane)
+		end
+	end

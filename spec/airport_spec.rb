@@ -2,7 +2,7 @@ require './docs/airport'
 
 describe Airport do 
 let(:plane) {double :plane}
-let(:weather) {double :weather, :random_weather => "Sunny"}
+let(:weather) {double :weather, :random_weather => "not stormy"}
 let(:weather1) {double :weather, :random_weather => "Stormy"}
 
 	it { is_expected.to respond_to :full?}
