@@ -49,11 +49,13 @@ describe Airport do
   describe '#plane_takeoff' do
     it 'instructs a plane to take off' do
       allow(airport).to receive(:weather?).and_return(false)
+      allow(plane).to receive(:current_status).and_return(:landed)
       allow(plane).to receive(:takeoff)
       airport.plane_takeoff(plane)
     end
 
     it 'confirms a plane is no longer at the airport after takeoff' do
+      allow(plane).to receive(:current_status).and_return(:landed)
       allow(airport).to receive(:weather?).and_return(false)
       allow(plane).to receive(:land)
       allow(plane).to receive(:takeoff)
@@ -63,9 +65,23 @@ describe Airport do
     end
 
     it 'prevents takeoff when weather is inclement' do
+      allow(plane).to receive(:current_status).and_return(:landed)
       allow(airport).to receive(:weather?).and_return(true)
       message = "Cannot take off due to inclement weather"
       expect { airport.plane_takeoff(plane) }.to raise_error message
     end
+
+    it 'prevents take off for a plane whose status in unknown' do
+      allow(plane).to receive(:current_status).and_return(nil)
+      allow(plane).to receive(:takeoff)
+      expect{ airport.plane_takeoff(plane) }.to raise_error("Flight status is unknown")
+    end
+
+    it 'prevents take off for a plane that is not landed' do
+      allow(plane).to receive(:current_status).and_return(:inflight)
+      allow(plane).to receive(:takeoff)
+      expect{ airport.plane_takeoff(plane) }.to raise_error("Flight is not landed")
+    end
+
   end
 end

@@ -26,6 +26,8 @@ class Airport
   end
 
   def plane_takeoff(plane)
+    fail "Flight status is unknown" if plane.current_status == nil
+    fail "Flight is not landed" if plane.current_status == :inflight
     fail "Cannot take off due to inclement weather" if weather?
     plane.takeoff
     @planes.delete(plane)
