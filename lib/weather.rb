@@ -1,5 +1,12 @@
 module Weather
   def stormy?
-    rand(100)<20
+    forecast == :stormy
+  end
+
+  private
+  OUTCOMES = [:stormy, :sunny, :showers, :overcast, :clear, :mist, :wind]
+
+  def forecast
+    OUTCOMES.sample
   end
 end
