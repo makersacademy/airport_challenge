@@ -5,6 +5,13 @@ describe Airport do
   before :each do
     allow(subject).to receive(:forecast) { 'sunny' }
   end
+
+  describe '#new' do
+    it 'allows us to change the capacity of the airfield' do
+      airport = Airport.new(20)
+      expect(airport.capacity).to eq 20
+    end
+  end
   describe '#land' do
     it { is_expected.to respond_to :land }
 
@@ -77,4 +84,5 @@ describe Airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
+
 end
