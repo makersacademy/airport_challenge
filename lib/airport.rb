@@ -34,14 +34,14 @@ class Airport
     airfield.include?(plane) ? false : true
   end
 
-  def forecast
-    weather_array.sample
-  end
-
   private
 
   def at_capacity?
     capacity == airfield.size
+  end
+
+  def forecast
+    weather_array.sample
   end
 
   def weather_array
