@@ -18,9 +18,9 @@ describe Plane do
 
   describe "#takeoff" do
     it "takes off when instructed to take off" do
-    plane = Plane.new
-    plane.takeoff
-    expect(plane.landed?).to eq false
+      plane = Plane.new
+      plane.takeoff
+      expect(plane.landed?).to eq false
     end
   end
 
