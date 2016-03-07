@@ -2,20 +2,22 @@ require_relative 'aircraft'
 require_relative 'weather'
 
 class Airport
-  attr_reader :capacity, :dock
+  attr_reader :capacity
   DEFAULT_CAPACITY = 5
 
   # creates an airport with a dock and an amendable capacity
   def initialize capacity=DEFAULT_CAPACITY
+    #, Klass_weather = Weather
     @capacity = capacity
     @dock = []
+    # @weather = Klass_weather.new
   end
 
   # instructs the specified aircraft to land (or not)
   def land aircraft, weather=Weather.new
     can_land? aircraft, weather
     aircraft.change_status
-    @dock << aircraft
+    dock aircraft
     'The aircraft has landed safely to the airport'
   end
 
@@ -23,8 +25,12 @@ class Airport
   def takeoff aircraft, weather=Weather.new
     can_takeoff? aircraft, weather
     aircraft.change_status
-    @dock.delete aircraft
+    de_dock aircraft
     'The aircraft has successfully taken off from the airport'
+  end
+
+  def show_dock
+    @dock.clone.freeze
   end
 
   private
@@ -45,5 +51,13 @@ class Airport
   # checks if the dock is full
   def full
     @dock.count >= @capacity
+  end
+
+  def dock plane
+    @dock << plane
+  end
+
+  def de_dock plane
+    @dock.delete plane
   end
 end

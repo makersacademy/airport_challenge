@@ -12,7 +12,7 @@ describe Airport do
   # unit tests
   describe '#initialize' do
     it 'creates an airport with an empty dock' do
-      expect(airport.dock).to eq []
+      expect(airport.show_dock).to eq []
     end
     it 'creates an airport with a default capacity of 5' do
       expect(airport.capacity).to eq 5
@@ -22,6 +22,9 @@ describe Airport do
       airport = described_class.new(random_capacity)
       expect(airport.capacity).to eq random_capacity
     end
+    # it 'creats an instance of the Weather class' do
+    #   expect(
+    # end
   end
 
   describe '#landing' do
@@ -30,7 +33,7 @@ describe Airport do
       expect{airport.land(landed)}.to raise_error message
     end
     it 'does not allow landing if the airport is full' do
-      airport.capacity.times { airport.dock << airbourne }
+      airport.capacity.times { airport.land airbourne }
       message = 'Unable to instruct landing as the airport dock is full'
       expect{ airport.land(airbourne) }.to raise_error message
     end
@@ -44,7 +47,7 @@ describe Airport do
     end
     it 'accepts landed aircrafts into the dock' do
       airport.land airbourne, sunny
-      expect(airport.dock.include?(airbourne)).to eq true
+      expect(airport.show_dock.include?(airbourne)).to eq true
     end
     it 'confirms landing' do
       expect(airport.land(airbourne, sunny)).to eq(
@@ -75,7 +78,7 @@ describe Airport do
       end
       it 'clears the aircraft from the dock' do
         airport.takeoff airbourne, sunny
-        expect(airport.dock.include?(airbourne)).to eq false
+        expect(airport.show_dock.include?(airbourne)).to eq false
       end
       it 'confirms takeoff' do
         expect(airport.takeoff(airbourne, sunny)).to eq(
