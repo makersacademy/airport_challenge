@@ -23,9 +23,5 @@ describe Plane do
 				subject.landed
 				expect(subject.plane_status).to eq false
 			end	
-
-			it 'can land at an airport' do 
-				expect { is_expected.to respond_to land(airport) }
-			end	
 	end
 end

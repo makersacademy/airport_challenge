@@ -1,13 +1,11 @@
 require './docs/airport'
 
 describe Airport do 
-# let(:airport) {Airport.new}
+
 let(:plane) {double :plane, :plane_status => true, :landed => false}
 let(:plane2) {double :plane, :plane_status => false, :flying => false}
 
-	it { is_expected.to respond_to :full?}
 	it { is_expected.to respond_to :in_airport?}
-	it { is_expected.to respond_to :airport_open?}
 
 	it 'has a default capacity of 50' do
 		expect(subject.capacity).to eq 50
@@ -28,9 +26,8 @@ let(:plane2) {double :plane, :plane_status => false, :flying => false}
 		end
 
 		it 'can see where a plane is currently located' do
-			london = Airport.new
-			london.storage << plane2
-			expect(london.plane_location(plane2)).to eq london
+			subject.storage << plane2
+			expect(subject.plane_location(plane2)).to eq subject
 		end
 
 		it 'can accept planes' do
@@ -44,14 +41,14 @@ let(:plane2) {double :plane, :plane_status => false, :flying => false}
 			expect(subject.storage).to eq []
 		end 
 
+		it 'can release planes' do
+			subject.storage << plane2
+			expect{subject.releases_plane(plane2)}.to change {subject.storage.size}.by(-1)
+		end 
+
 		it 'can store any number of planes below it\'s capacity' do 
 			20.times {subject.storage << plane}
 			expect(subject.storage.length).to eq 20
-		end
-
-		it 'returns full? as true, when storage has reached capacity' do
-			50.times {subject.storage << plane }
-			expect(subject.full?).to eq true
 		end
 
 		it 'can check if the plane is in a particular airport' do
