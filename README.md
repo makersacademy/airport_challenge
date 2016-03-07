@@ -72,7 +72,7 @@ If no error is raised by can_land?, it
 
 ```
   If airport1 instructs already landed aircraft1 to land...
-  
+
   2.2.3 :007 > aircraft1
    => #<Aircraft:0x007f88f28a3608 @landed=true>
   2.2.3 :008 > airport1.land aircraft1
@@ -80,7 +80,7 @@ If no error is raised by can_land?, it
 ```
 ```
   If airport1 instructs airbourne aircraft2 to land and sunny...
-  
+
   2.2.3 :009 > aircraft2
    => #<Aircraft:0x007f88f2891f20 @landed=false>
   2.2.3 :010 > airport1.land aircraft2
@@ -88,17 +88,17 @@ If no error is raised by can_land?, it
 ```
 ```
   If airport1 is full and instructs aircraft2 to land...
-  
+
   2.2.3 :011 > aircraft2
    => #<Aircraft:0x007f88f2891f20 @landed=false>
   2.2.3 :012 > airport1
-   => #<Airport:0x007ff6f103ac60 @capacity=5, @dock=["aircraft", "aircraft", "aircraft", "aircraft", "aircraft"]> 
+   => #<Airport:0x007ff6f103ac60 @capacity=5, @dock=["aircraft", "aircraft", "aircraft", "aircraft", "aircraft"]>
   2.2.3 :013 > airport1.land aircraft2
   RuntimeError: Unable to instruct landing as the airport dock is full
 ```
 ```
   If airport1 instructs airbourne aircraft2 to land and stormy...
- 
+
   2.2.3 :014 > aircraft2
    => #<Aircraft:0x007f88f2891f20 @landed=false>
   2.2.3 :015 > airport1.land aircraft2
@@ -117,25 +117,25 @@ If no error is raised by can_takeoff?, it
 
 ```
   If the aircraft2 has landed at airport1 but not airport2...
-  
+
   2.2.3 :008 > airport1.land aircraft2
-   => "The aircraft has landed safely to the airport" 
+   => "The aircraft has landed safely to the airport"
   2.2.3 :009 > airport2.takeoff aircraft2
   RuntimeError: Unable to locate the aircraft
 ```
 ```
   If the airport1 instructs aircraft2 to take off and sunny...
-  
+
   2.2.3 :010 > airport1.land aircraft2
-   => "The aircraft has landed safely to the airport" 
+   => "The aircraft has landed safely to the airport"
   2.2.3 :011 > airport1.takeoff aircraft2
-   => "The aircraft has successfully taken off from the airport" 
+   => "The aircraft has successfully taken off from the airport"
 ```
 ```
   If the airport1 instructs aircraft2 to take off any stormy...
-  
+
   2.2.3 :010 > airport1.land aircraft2
-   => "The aircraft has landed safely to the airport" 
+   => "The aircraft has landed safely to the airport"
   2.2.3 :011 > airport1.takeoff aircraft2
   RuntimeError: Unable to instruct takeoff due to severe weather
 ```
@@ -156,10 +156,17 @@ It returns true when the dock is full
 
 ### Aircraft class methods
 #### - initialize
-It creates an aircraft with a default status of landed.
+It creates an aircraft with a default status of airbourne.
 
 #### - change_status
-It flips the status of the aircraft between landed and not landed i.e., airbourne.
+It flips the status of the aircraft between airbourne and landed.
+
+```
+2.2.3 :002 > aircraft1 = Aircraft.new
+ => #<Aircraft:0x007fc1e1021c00 @landed=false>
+2.2.3 :003 > aircraft1.change_status
+ => #<Aircraft:0x007fc1e1021c00 @landed=true>
+```
 
 ### Weather class methods
 #### - initialize
