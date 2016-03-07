@@ -16,7 +16,7 @@ class Airport
 
   def instruct_takeoff(plane)
     plane.takeoff
-    # @capacity.pop
+    @capacity.pop
   end
 
 end

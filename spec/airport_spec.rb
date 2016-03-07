@@ -11,8 +11,9 @@ describe Airport do
     end
 
     it 'calls the land method on passed argument (plane)' do
-      allow(plane).to receive(:land)
-      allow(plane).to receive(:is_flying?)
+      # allow(plane).to receive(:land)
+      # allow(plane).to receive(:is_flying?)
+      plane = Plane.new
       subject.instruct_to_land(plane)
       expect(plane.is_flying?).to eq false
     end
@@ -40,16 +41,18 @@ describe Airport do
         expect(subject).to respond_to(:instruct_takeoff).with(1).argument
       end
 
-      # it 'calls the takeoff method on passed argument(plane)' do  #TODO
-      #   allow(plane).to receive(:is_flying?)
-      #   allow(plane).to receive(:land)
-      #   subject.instruct_to_land(plane)
-      #   allow(plane).to receive(:takeoff)
-      #   subject.instruct_takeoff(plane)
-      #   expect(plane.is_flying?).to eq true
-      # end
+      it 'calls the takeoff method on passed argument(plane)' do  #TODO
+        # allow(plane).to receive(:is_flying?)
+        # allow(plane).to receive(:land)
+        # subject.instruct_to_land(plane)
+        # allow(plane).to receive(:takeoff)
+        plane = Plane.new
+        subject.instruct_takeoff(plane)
+        expect(plane.is_flying?).to eq true
+      end
 
       it 'can confirm that (plane) is no longer in airport @capacity' do
+        plane = Plane.new
         subject.instruct_to_land(plane)
         expect(subject.capacity.size).to be > 0
         subject.instruct_takeoff(plane)
