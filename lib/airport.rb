@@ -10,7 +10,7 @@ class Airport
   end
 
   def capture plane
-    plane.land
+    plane.land self
     @plane_list << plane
   end
 
@@ -24,7 +24,7 @@ class Airport
 
   public
 
-  def initialize weather, cap = DEFAULT_CAPACITY 
+  def initialize weather, cap = DEFAULT_CAPACITY
     @plane_list = []
     @local_weather = weather
     @capacity = cap
@@ -43,6 +43,10 @@ class Airport
 
   def list_airplanes
     @plane_list
+  end
+
+  def wait_for_weather new_weather = nil
+    @local_weather.change_weather new_weather
   end
 
 end

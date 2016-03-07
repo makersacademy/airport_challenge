@@ -1,7 +1,7 @@
 Airport Challenge
 (I deleted your beautiful ASCII plane, apologies)
 
-This is a implementation of https://github.com/makersacademy/airport_challenge, made with sweat, tea, a warm blanket and (some) swearing.
+#This is a implementation of https://github.com/makersacademy/airport_challenge, made with sweat, tea, a warm blanket and (some) swearing.
 
 [![Build Status](https://travis-ci.org/lorenzoturrino/airport_challenge.svg?branch=master)](https://travis-ci.org/lorenzoturrino/airport_challenge)
 [![Coverage Status](https://coveralls.io/repos/github/lorenzoturrino/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/lorenzoturrino/airport_challenge?branch=master)
@@ -16,6 +16,7 @@ This is a implementation of https://github.com/makersacademy/airport_challenge, 
 
 
 ##Rough chronology of implementation:
+#it's like I'blogging!
 - Implemented a Plane class, representing..planes.
 - Added an internal state and accessors method to be able to tell if airborne or not
 - Implemented a Airport class, to act as container and controller of planes.
@@ -36,3 +37,5 @@ This is a implementation of https://github.com/makersacademy/airport_challenge, 
 - Start to go through the code review file to see what I need to tweak to get to a decent codebase (hint: probably everything)
 - Added stronger consistency tests. Fixed a bug in the airplane class thanks to ~~rspec~~ being awesome.
 - Cleared up extra rspec, make style consistent across classes (spaces, parenthesys...)
+- Found a cheasheet for markdown and formatted this txt
+- Made the decision to go and try to implement a feature test in ruby instead of refactoring all the rspec test to conform to betterspec.org

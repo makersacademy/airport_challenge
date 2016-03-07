@@ -1,12 +1,26 @@
 require 'plane'
 
 describe Plane do
-  let(:dummy_airport) {double :airport}
+  let(:subject) {Plane.new}
+  let(:dummy_airport) {double :airport, land_airplane: nil}
   let(:already_on_ground) {'Warning! Already landed.'}
   let(:already_in_air) {'Warning! Already in flight.'}
 
+  describe "initalize method:" do
+
+    it "can be created on the ground" do
+      expect(dummy_airport).to receive :land_airplane
+      Plane.new dummy_airport
+    end
+
+    it "can be created in flight" do
+      subject = Plane.new
+      expect(subject.airborne?).to eq true
+    end
+
+  end
+
   describe "landing sequence: " do
-    let(:subject) {Plane.new}
 
     it "can be verified as landed" do
       subject.land(dummy_airport)
@@ -21,7 +35,7 @@ describe Plane do
   end
 
   describe "takeoff sequence:" do
-    let(:subject) {Plane.new(dummy_airport)}
+    before(:each) {subject.land(dummy_airport)}
 
     it "can be verified as departed" do
       subject.takeoff
@@ -36,20 +50,20 @@ describe Plane do
   end
 
   context "status consistency on the ground:" do
-    let(:subject) {Plane.new(dummy_airport)}
 
     it "is in a airport when landed" do
+      subject.land(dummy_airport)
       expect(subject.stationed_at?).to eq dummy_airport
     end
 
     it "raises an exception if told to land while on the ground" do
+      subject.land(dummy_airport)
       expect{subject.land(dummy_airport)}.to raise_error already_on_ground
     end
 
   end
 
   context "status consistency in the air:" do
-    let(:subject) {Plane.new}
 
     it "is in no airport when flying" do
       expect(subject.stationed_at?).to eq nil

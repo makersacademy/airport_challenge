@@ -23,12 +23,12 @@ class Plane
   public
 
   def initialize airport = nil
-    if airport == nil
-      @current_airport = nil
-      @current_status = :flying
-    else
-      @current_airport = airport
+    unless airport
       @current_status = :landed
+      takeoff
+    else
+      @current_status = :flying
+      airport.land_airplane self
     end
   end
 

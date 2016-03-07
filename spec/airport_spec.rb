@@ -67,7 +67,7 @@ describe Airport do
 
   end
 
-  describe 'storage:' do
+  describe 'storage and status:' do
 
     it 'can list landed airplanes' do
       expect(subject.list_airplanes).to eq []
@@ -79,6 +79,15 @@ describe Airport do
       expect{subject.land_airplane(dummy_plane)}.to raise_error full_airport
     end
 
+    it 'can wait for any new weather condition' do
+      expect(dummy_weather).to receive(:change_weather).with nil
+      subject.wait_for_weather
+    end
+
+    it 'can wait for a specific weather condition' do
+      expect(dummy_weather).to receive(:change_weather).with :dummy_condition
+      subject.wait_for_weather(:dummy_condition)
+    end
   end
 
 end
