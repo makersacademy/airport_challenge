@@ -13,6 +13,10 @@ This project is built to simulate an airport. Functionality is as follows:
 * set an adjustable capacity on airport, once filled no more plans can land (you
   can set capacity by adding after creating the airport 'airport = Airport.new
 50' will set capacity to 50. If no capacity is set it will default to 20.
+* edge cases covered
+    - planes not in that airport cannot take-off
+    - planes that are landed cannot land again 
+  
 
 
 
