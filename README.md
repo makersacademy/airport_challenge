@@ -34,10 +34,10 @@ Some sample features:
  => #<Plane:0x007fa5eb1046c0 @landed=false>
 2.2.3 :009 > airport.present? plane
  => false
-2.2.3 :016 > airport.accept(plane) #sometimes planes cannot land due to bad weather
+2.2.3 :010 > airport.accept(plane) #sometimes planes cannot land due to bad weather
 RuntimeError: This plane cannot depart due to adverse weather conditions
 2.2.3 :006 > airport.accept(plane)
 => [#<Plane:0x007fa5eb1046c0 @landed=true>]  
-2.2.3 :015 > airport.depart(plane) #sometimes planes cannot depart due to bad weather
+2.2.3 :011 > airport.depart(plane) #sometimes planes cannot depart due to bad weather
 RuntimeError: This plane cannot depart due to adverse weather conditions
 ```
