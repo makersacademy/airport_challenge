@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kevinpmcc/airport_challenge.svg?branch=master)](https://travis-ci.org/kevinpmcc/airport_challenge)
+
 Airport Challenge
 ------------------
 
