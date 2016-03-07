@@ -1,11 +1,5 @@
 module Weather
   def stormy?
-    predict < 20
-  end
-
-  private
-
-  def predict
-    rand(100)
+    rand(100) < 20
   end
 end
