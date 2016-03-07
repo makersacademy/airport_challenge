@@ -1,19 +1,32 @@
 require 'weather'
 
 describe Weather do
+
   let(:dummy_class) {Class.new {include Weather}}
-  subject(:class) {dummy_class.new}
+  subject(:weather) {dummy_class.new}
 
   describe 'stormy?' do
 
-  it 'returns true when forecast is stormy' do
-    allow(subject).to receive(:forecast).and_return(:stormy)
-    expect(subject.stormy?).to be(true)
+  it 'can return true' do
+    @counter = 0
+    loop do
+      @bad_weather = weather.stormy?
+      break if @bad_weather
+      @counter += 1
+      break if @counter >= 10000
+    end
+    expect(@bad_weather).to be(true)
   end
 
-  it 'returns false when forecast is not stormy' do
-    allow(subject).to receive(:forecast).and_return(:sunny)
-    expect(subject.stormy?).to be(false)
+  it 'can return false' do
+    @counter = 0
+    loop do
+      @bad_weather = weather.stormy?
+      break unless @bad_weather
+      @counter += 1
+      break if @counter >= 10000
+    end
+    expect(@bad_weather).to be(false)
   end
 
   end

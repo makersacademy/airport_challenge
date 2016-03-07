@@ -9,28 +9,28 @@ describe Airport do
 
   describe 'capacity' do
     it 'has default capacity on initialize' do
-      expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+      expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
     end
     it 'can be overriden on initialize' do
       random_capacity = Random.rand(100)
-      subject = described_class.new(random_capacity)
-      expect(subject.capacity).to eq random_capacity
+      airport = described_class.new(random_capacity)
+      expect(airport.capacity).to eq random_capacity
     end
   end
 
   describe 'plane_land' do
     it 'has landed plane' do
-      subject.plane_land(plane)
-      expect(subject).to_not be_empty
+      airport.plane_land(plane)
+      expect(airport).to_not be_empty
     end
 
   end
 
   describe 'plane_take_off' do
     it 'no longer has plane' do
-      subject.plane_land(plane)
-      subject.plane_take_off(plane)
-      expect(subject).to be_empty
+      airport.plane_land(plane)
+      airport.plane_take_off(plane)
+      expect(airport).to be_empty
     end
   end
 
