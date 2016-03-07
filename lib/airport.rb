@@ -16,13 +16,15 @@ end
 def land(plane, weather=Weather.new)
   # raise "no landing due to storm" if weather.stormy? == "stormy"
   raise "no space to land plane" if full?
+  raise "plane has already landed" if plane.landed?
   plane.landed?
   @storage << plane
 end
 
 def take_off(plane, weather=Weather.new)
   # raise "no take off due to storm" if weather.stormy? == "stormy"
-  plane.taken_off
+  raise "plane has already taken off" if plane.taken_off?
+  plane.taken_off?
   @storage.pop
 end
 

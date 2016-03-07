@@ -10,7 +10,7 @@ it 'confirms that it had landed' do
 end
 
 it 'confirms that it had taken off' do
-  subject.taken_off
+  subject.taken_off?
   expect(subject.landed).to eq false
 end
 

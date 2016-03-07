@@ -11,8 +11,7 @@ it 'tells plane to land and puts in storage' do
 end
 
 it 'takes plane out of storage after take off' do
-  plane = double(:plane, taken_off:true)
-  weather = double(:weather, stormy?:"sunny")
+  plane = double(:plane, taken_off?:false,)
   subject.take_off(plane)
   expect(subject.storage.size).to eq 0
 end
@@ -25,7 +24,7 @@ end
 
 # it 'does not let plane land if weather is stormy' do
 #   plane = double(:plane, landed?:false)
-#   weather = double(:weather, stormy?:"stormy")
+#   allow(Weather.new).to receive(:stormy?) { "stormy" }
 #   expect{ subject.land(plane) }.to raise_error "no landing due to storm"
 # end
 
@@ -37,6 +36,16 @@ end
 it 'creates an airport with capacity of 50' do
   subject.capacity = 50
   expect(subject.capacity).to eq 50
+end
+
+it 'does not land plane if it has already landed' do
+  plane = double(:plane, landed?:true)
+  expect{ subject.land(plane) }.to raise_error "plane has already landed"
+end
+
+it 'does not land plane if it has already landed' do
+  plane = double(:plane, taken_off?:true)
+  expect{ subject.take_off(plane) }.to raise_error "plane has already taken off"
 end
 
 end
