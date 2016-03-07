@@ -87,4 +87,11 @@ describe Airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
+
+  describe '#capacity=' do
+    it 'changes the capacity of the airport after creation' do
+      subject.capacity = 22
+      expect(subject.capacity).to eq 22
+    end
+  end
 end
