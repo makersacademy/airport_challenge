@@ -8,9 +8,13 @@ describe Airport do
    let(:bad_weather) { allow(subject).to receive(:stormy).and_return(true) }
    let(:airport_full) { allow(subject).to receive(:full?).and_return(true) }
    let(:airport_not_full) { allow(subject).to receive(:fully?).and_return(false) }
- 
-    describe '#land' do  
-      it { is_expected.to respond_to(:land).with(1).argument }
+   let(:added_plane) { allow(subject).to receive(:add_plane).and_return(true) } 
+   let(:landable_plane) { allow(plane).to receive(:land).and_return(true) }
+   let(:take_offable_plane) { allow(plane).to receive(:take_off).and_return(true) }
+    
+     
+     
+     describe '#land' do  
     
       it 'will not allow landing when stormy and will fail with message' do
         bad_weather
@@ -25,7 +29,7 @@ describe Airport do
       it "will store the plane in planes" do
         good_weather
         airport_not_full
-        allow(plane).to receive(:land).and_return(true)
+        landable_plane
         expect(subject).to receive(:add_plane).and_return(true)
         subject.land(plane)
       end
@@ -33,7 +37,7 @@ describe Airport do
       it "will call on plane.land" do
         good_weather
         airport_not_full
-        allow(plane).to receive(:land).and_return(true)
+        landable_plane
         expect(subject).to receive(:add_plane)
         subject.land(plane)
       end
@@ -41,19 +45,17 @@ describe Airport do
  
   describe '#take_off' do
 
-    it { is_expected.to respond_to(:take_off).with(1).argument }
     
     it 'will not run  when stormy and fail' do
       bad_weather
-      allow(plane).to receive(:take_off)
       expect { subject.take_off(plane) }.to raise_error "I cannae do it, she cannae handle the weather"
       
     end 
 
     it 'will call remove_plane after ' do  
       good_weather 
-      allow(plane).to receive(:land)
-      allow(plane).to receive(:take_off)
+      landable_plane
+      take_offable_plane
       allow(subject).to receive(:remove_plane)
       subject.land(plane)
       expect(subject).to receive(:remove_plane)
@@ -62,7 +64,7 @@ describe Airport do
     
     it 'will call plane.take_off' do
       good_weather 
-      allow(plane).to receive(:take_off).and_return(true)
+      take_offable_plane
       allow(subject.planes).to receive(:include?).and_return(true) 
       allow(subject).to receive(:remove_plane)
       expect(plane).to receive(:take_off)
@@ -77,7 +79,6 @@ describe Airport do
     
   end
   describe '#stormy' do
-    it { is_expected.to respond_to(:stormy) }
     
     it 'will call on weather.stormy' do
       allow(subject.weather).to receive(:stormy)
@@ -87,7 +88,6 @@ describe Airport do
   end  
   
   describe '#full' do
-    it { is_expected.to respond_to(:full?) }
 
     it 'will return true when plans is at or greater than  capacity' do
       allow(subject.planes).to receive(:size) { 20 }
