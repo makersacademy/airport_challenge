@@ -17,6 +17,7 @@ class Airport
   end
 
   def plane_land(plane)
+    fail "Plane is already landed" if landed?
     fail "Cannot land as airport is full" if full?
     fail "Cannot land due to inclement weather" if weather?
     plane.land
@@ -24,15 +25,12 @@ class Airport
   end
 
   def plane_takeoff(plane)
-    if plane_at_airport?(plane)
+      fail "Plane is not at airport" unless plane_at_airport?(plane)
       fail "Flight status is unknown" if unknown_status?(plane)
       fail "Flight is not landed" if inflight?(plane)
       fail "Cannot take off due to inclement weather" if weather?
       plane.takeoff
       @planes.delete(plane)
-    else
-      fail "Plane is not at airport"
-    end
   end
 
   private
@@ -56,5 +54,9 @@ class Airport
 
   def inflight?(plane)
     plane.current_status == :inflight
+  end
+
+  def landed?(plane)
+    plane.current_status == :landed
   end
 end
