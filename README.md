@@ -1,4 +1,12 @@
-# H1 Airport Challenge:
+[![Build Status](https://travis-ci.org/ccfz/airport_challenge.svg?branch=master)](https://travis-ci.org/ccfz/airport_challenge)
+
+# Airport Challenge:
+
+### User story:
+
+* Create an airport where planes and land and take-off. If there is a storm the plane should not be able to land/take-off.
+
+### How I completed the challenge
 
 I went about the challenge by looking at the user stories one by one and creating the methods and classes based on that. 
 
@@ -11,8 +19,8 @@ I then introduced a simple random method to my weather class, which would return
 Finally I added multiple guard conditions that would prevent landed planes, to land again. That required some additional methods to the plane class, as the plane did not have a status prior. 
 
 
-Application example: 
-
+###### Application example: 
+''''
 require_relative './lib/airport.rb'
 require_relative './lib/plane.rb'
 require_relative './lib/weather.rb'
@@ -39,3 +47,4 @@ frankfurt.planes
 heathrow.arrive(lufthansa_1, heath_weather)
 heathrow.planes
 frankfurt.planes
+''''
