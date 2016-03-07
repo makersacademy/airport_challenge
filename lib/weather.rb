@@ -10,7 +10,7 @@ class Weather
   private
 
   WEATHER_SEED = { sunny: 19, stormy: 1 }.freeze
-  
+
   def weather_array
     weather = []
     WEATHER_SEED.each do |condition, weight|

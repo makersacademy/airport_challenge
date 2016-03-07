@@ -13,8 +13,6 @@ describe Airport do
     end
   end
   describe '#land' do
-    it { is_expected.to respond_to :land }
-
 
     it 'Should land a plane' do
       2.times { subject.land(plane) }
@@ -73,22 +71,20 @@ describe Airport do
     end
   end
 
-  describe '#capacity' do
-    it 'returns the current capacity of the airport' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-    end
-  end
-
-end
-
-describe Airport do
   describe '#stormy?' do
 
     it 'tells you weather it\'s sunny or not' do
-      expect(subject.stormy?).to satisfy do |value|
+      airport = Airport.new
+      expect(airport.stormy?).to satisfy do |value|
         [true, false].include? value
       end
     end
 
+  end
+
+  describe '#capacity' do
+    it 'returns the current capacity of the airport' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
   end
 end

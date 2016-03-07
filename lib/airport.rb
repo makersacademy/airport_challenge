@@ -25,7 +25,6 @@ class Airport
     fail "Cannot take off" unless can_take_off?(plane)
     remove_from_airfield(plane)
     plane.take_off
-    plane
   end
 
   def confirm_dispatch(plane)
@@ -53,9 +52,13 @@ class Airport
   end
 
   def can_take_off?(plane)
-    fail "This plane is not in the airfield" unless @airfield.include?(plane)
+    fail "This plane is not in the airfield" unless in_airfield? plane
     fail "The weather is too bad" if stormy?
     true
+  end
+
+  def in_airfield?(plane)
+    @airfield.include?(plane)
   end
 
 end
