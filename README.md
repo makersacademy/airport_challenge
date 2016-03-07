@@ -3,7 +3,7 @@ Airport Challenge
 
 This program simulates an air traffic control system, allowing airports to coordinate plane takeoffs and landings.
 
-To install this program, use:
+To run this program, use:
 
 ```
 git clone https://github.com/kylebuttner/airport_challenge.git
