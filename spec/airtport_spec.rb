@@ -21,12 +21,12 @@ describe Airport do
   describe 'arrival' do
     
     it 'should initiate a plane to land' do
-    subject.arrive(plane, weather)
+      ubject.arrive(plane, weather)
     end
 
     it 'should receive a landing plane' do
-    subject.arrive(plane, weather)
-    expect(subject.planes).to include(plane)
+      subject.arrive(plane, weather)
+      expect(subject.planes).to include(plane)
     end
 
     it 'when there is a storm planes cant arrive' do
@@ -38,8 +38,8 @@ describe Airport do
   describe 'departure' do
 
     it 'should initiate a plane to fly' do
-    subject.arrive(plane, weather) 
-    subject.depart(plane, weather)
+      subject.arrive(plane, weather) 
+      subject.depart(plane, weather)
     end
     
     it 'should let a plane depart' do
@@ -60,8 +60,8 @@ describe Airport do
     end
 
     it 'when there is a storm planes cant depart' do
-    allow(weather).to receive(:storm?).and_return(true)
-    expect{subject.depart(plane)}.to raise_error
+      allow(weather).to receive(:storm?).and_return(true)
+      expect{subject.depart(plane)}.to raise_error
     end
 
   end
