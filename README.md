@@ -8,7 +8,7 @@ To run this program, use:
 ```
 git clone https://github.com/kylebuttner/airport_challenge.git
 cd airport_challenge
-gem install bundle #if bundle is not already installed
+gem install bundle      #if bundle is not already installed
 bundle
 irb
 
