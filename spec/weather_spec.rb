@@ -8,10 +8,10 @@ describe Weather do
 
   # unit tests
   describe '#initialize' do
-    it 'creates a sunny weather w/ probability of 80%' do
+    it 'creates a sunny weather' do
       expect(good_weather.stormy).to eq false
     end
-    it 'creates a sunny weather w/ probability of 20%' do
+    it 'creates a stormy weather' do
       expect(bad_weather.stormy).to eq true
     end
   end
