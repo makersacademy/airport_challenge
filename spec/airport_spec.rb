@@ -7,7 +7,7 @@ describe Airport do
   describe 'initialize' do
 
     it 'expects an airport to be created with an empty hanger' do
-      expect(subject.list_planes).to eq([])
+      expect{subject.takeoff(plane)}.to raise_error "That plane is not currently in this airport."
     end
 
     it 'expects airport to have a capacity that is set to the default capacity if nothing is specified' do
@@ -26,20 +26,23 @@ describe Airport do
     before {allow(subject).to receive(:is_landed?).and_return(false)}
 
     it 'expects the plane to land into the airport when weather is fine' do
-      allow(plane).to receive(:is_landed).and_return(true)
+      allow(plane).to receive(:make_landed).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(false)
       subject.land(plane)
-      expect(subject.list_planes).to include(plane)
+      allow(subject).to receive(:is_landed?).and_return(true)
+      allow(plane).to receive(:took_off).and_return(true)
+      subject.takeoff(plane)
+      expect(plane).to eq(plane)
     end
 
     it 'expects landing to be prevented when weather is stormy' do
-      allow(plane).to receive(:is_landed).and_return(true)
+      allow(plane).to receive(:make_landed).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(true)
       expect{subject.land(plane)}.to raise_error "It's too stormy to land."
     end
 
     it 'expects landing to be prevented when airport is full' do
-      allow(plane).to receive(:is_landed).and_return(true)
+      allow(plane).to receive(:make_landed).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(false)
       10.times{subject.land(plane)}
       expect{subject.land(plane)}.to raise_error "Airport is full! Plane cannot land."
@@ -56,7 +59,7 @@ describe Airport do
 
     before do
       allow(subject).to receive(:is_landed?).and_return(false)
-      allow(plane).to receive(:is_landed).and_return(true)
+      allow(plane).to receive(:make_landed).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(false)
       subject.land(plane)
       allow(subject).to receive(:is_landed?).and_return(true)
@@ -66,7 +69,7 @@ describe Airport do
       allow(plane).to receive(:took_off).and_return(true)
       allow(subject).to receive(:is_stormy?).and_return(false)
       subject.takeoff(plane)
-      expect(subject.list_planes).to eq([])
+      expect{subject.takeoff(plane)}.to raise_error "That plane is not currently in this airport."
     end
 
     it 'expects takeoff to be prevented when weather is stormy' do

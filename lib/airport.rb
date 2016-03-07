@@ -12,21 +12,17 @@ class Airport
       @capacity = capacity
     end
 
-    def list_planes
-      planes
-    end
-
     def land(plane)
-      fail "That plane has already landed." if is_landed?
+      fail "That plane has already landed." if is_landed?(plane)
       fail "Airport is full! Plane cannot land." if is_full?
       fail "It's too stormy to land." if is_stormy?
-      plane.is_landed
+      plane.make_landed
       @planes << plane
     end
 
     def takeoff(plane)
       fail "That plane is not currently in this airport." unless in_this_airport?(plane)
-      fail "That plane has already taken-off." unless is_landed?
+      fail "That plane has already taken-off." unless is_landed?(plane)
       fail "It's too stormy to take-off." if is_stormy?
       plane.took_off
       @planes.delete(plane) if in_this_airport?(plane)
@@ -48,7 +44,7 @@ class Airport
       @planes.length == @capacity
     end
 
-    def is_landed?
+    def is_landed?(plane)
       plane.landed?
     end
 

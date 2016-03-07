@@ -1,8 +1,11 @@
 require './lib/airport.rb'
 
 airport = Airport.new
+
 plane = Plane.new
 
-3.times{airport.land(plane)}
+airport.land(plane)
+
+3.times{airport.land(Plane.new)}
 
 airport.takeoff(plane)

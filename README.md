@@ -77,6 +77,13 @@ Edge Cases
 1. I needed to raise an error when planes tried to take off from airports they were not at.
 2. I needed to raise an error when planes tried to land when they were already landed, or tried to take off when they were already taken-off.
 
+
+Installation Instructions
+-----
+- Fork the repo
+- Clone the repo to your computer: git clone [repo url]
+- Install bundle gem
+
 Code Example (How it's used)
 -----
 ```
