@@ -1,11 +1,10 @@
 class Weather
 
- attr_reader :weather
+  WEATHER = ['stormy', 'sunny', 'sunny', 'sunny', 'sunny']
 
   def stormy?
-    weather = ['stormy', 'sunny', 'sunny', 'sunny', 'sunny']
     choose = rand(5)
-    weather[choose] == 'stormy'
+    WEATHER[choose] == 'stormy'
   end
 
 end

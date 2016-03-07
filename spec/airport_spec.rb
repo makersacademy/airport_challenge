@@ -41,11 +41,13 @@ describe Airport do
     airport.takeoff
   end
 
+  context 'take off' do
   it 'checks plane removed after takeoff' do
     airport.call_land(plane)
     allow(plane).to receive(:landed).and_return(true)
     airport.takeoff
     expect(airport.planes).to eq []
+  end
   end
 
   it 'Checks multiple planes landing and taking off' do
