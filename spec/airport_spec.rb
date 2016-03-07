@@ -62,20 +62,25 @@ describe Airport do
       message = 'Unable to instruct landing due to severe weather'
       expect{airport.takeoff(airbourne,storm)}.to raise_error message
     end
-    it 'calls change_status method on the aircraft to instruct takeoff' do
-      airport.land airbourne, sunny
-      expect(airbourne).to receive(:change_status)
-      airport.takeoff airbourne, sunny
-    end
-    it 'clears the aircraft from the dock' do
-      airport.land airbourne, sunny
-      airport.takeoff airbourne, sunny
-      expect(airport.dock.include?(airbourne)).to eq false
-    end
-    it 'confirms takeoff' do
-      airport.land airbourne, sunny
-      expect(airport.takeoff(airbourne, sunny)).to eq(
-      'The aircraft has successfully taken off from the airport')
+
+    context 'When airport has an aircraft landed' do
+
+      before(:each) do
+        airport.land airbourne, sunny
+      end
+
+      it 'calls change_status method on the aircraft to instruct takeoff' do
+        expect(airbourne).to receive(:change_status)
+        airport.takeoff airbourne, sunny
+      end
+      it 'clears the aircraft from the dock' do
+        airport.takeoff airbourne, sunny
+        expect(airport.dock.include?(airbourne)).to eq false
+      end
+      it 'confirms takeoff' do
+        expect(airport.takeoff(airbourne, sunny)).to eq(
+        'The aircraft has successfully taken off from the airport')
+      end
     end
   end
 end
