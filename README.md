@@ -92,7 +92,7 @@ To control landing/take off:
 => [#<Plane:0x007f9d64104588 @landed=true>] 
 ```
 
-Weather can be changed by calling :weather method on airport object. The weather is sampled at random and can be checked using :current_weather method on airport object. 75% of the time, the weather will be good enough to land or take off. However, this percentage can be changed in the weather module as required.
+Weather can be changed by calling `weather method` on airport object. The weather is sampled at random and can be checked using `current_weather` method on airport object. 75% of the time, the weather will be good enough to land or take off. However, this percentage can be changed in the weather module as required.
 
 
 Author
