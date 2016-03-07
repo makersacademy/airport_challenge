@@ -5,12 +5,14 @@ describe Airport do
   let(:plane) {double(:plane, status: nil , flying: nil, landed: nil)}
   let(:weather) {double(:weather)}
 
+  before(:each) do
+  allow(weather).to receive(:storm?).and_return(false)
+  end
 
   it{is_expected.to respond_to(:planes)}
 
   describe 'capacity' do 
     it 'should have a initial capacity' do
-      allow(weather).to receive(:storm?).and_return(false)
       described_class::DEFAULT_CAPACITY.times {subject.arrive(plane, weather)}
       expect{subject.arrive(plane, weather)}.to raise_error "airport is full"
     end
@@ -19,12 +21,10 @@ describe Airport do
   describe 'arrival' do
     
     it 'should initiate a plane to land' do
-    allow(weather).to receive(:storm?).and_return(false)
     subject.arrive(plane, weather)
     end
 
     it 'should receive a landing plane' do
-    allow(weather).to receive(:storm?).and_return(false)
     subject.arrive(plane, weather)
     expect(subject.planes).to include(plane)
     end
@@ -38,20 +38,17 @@ describe Airport do
   describe 'departure' do
 
     it 'should initiate a plane to fly' do
-    allow(weather).to receive(:storm?).and_return(false)
     subject.arrive(plane, weather) 
     subject.depart(plane, weather)
     end
     
     it 'should let a plane depart' do
-    allow(weather).to receive(:storm?).and_return(false)
       subject.arrive(plane, weather)  
       subject.depart(plane, weather)
       expect(subject.planes).not_to include(plane)
     end
 
     it 'should depart a specif plane' do
-      allow(weather).to receive(:storm?).and_return(false)
       aa_10= plane
       aa_55= plane
       aa_60= plane
