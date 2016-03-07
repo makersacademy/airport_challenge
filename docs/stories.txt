@@ -1,0 +1,24 @@
+controller
+plane   instruct to land at airport
+plane   verify it has landed
+airport set the plane to landed
+airport verify it contains the plane
+
+plane   instruct to takeoff from airport
+plane   verify it has taken off
+airport set the plane to airborne
+airport verify it no longer has the plane
+
+weather   have a weather state
+weather   read weather.
+airport   negate takeoff if stormy
+airport   negate land if stormy
+
+airport   have a capacity
+airport   negate land if full
+airport   have different caps
+
+edge: plane must be in the airport he's taking off from
+edge: landed plane must be in an airport.
+edge: airplane can't land if landed
+edge: airplane can't take off if flying
