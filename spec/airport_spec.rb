@@ -19,8 +19,8 @@ describe Airport do
     end
     it 'allows to amend the default capacity when given a number' do
       random_capacity = Random.rand(100)
-      subject = described_class.new(random_capacity)
-      expect(subject.capacity).to eq random_capacity
+      airport = described_class.new(random_capacity)
+      expect(airport.capacity).to eq random_capacity
     end
   end
 
