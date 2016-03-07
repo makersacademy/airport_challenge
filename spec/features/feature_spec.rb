@@ -2,9 +2,9 @@ require 'airport'
 
 describe 'features' do
 
-  let (:airport) { Airport.new }
-  let (:plane) { Plane.new }
-  let (:plane2) { Plane.new}
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
+  let(:plane2) { Plane.new}
 
   context 'when landing a plane' do
 
@@ -39,18 +39,18 @@ describe 'features' do
       expect(plane.status).to eq "Airborne"
     end
 
-    it 'raises an error if a plane which has already taken off tries to take off' do
+    it 'raises an error if a plane tries to take off twice' do
       airport.land(plane)
       airport.land(plane2)
       airport.takeoff(plane)
-			expect { airport.takeoff(plane) }.to raise_error "plane has already taken off"
+			expect{airport.takeoff(plane)}.to raise_error "plane has already taken off"
 		end
 
     it 'raises an error if a plane tries to take off from the wrong airport' do
       airport.land(plane)
       airport2 = Airport.new
       airport2.land(plane2)
-      expect { airport.takeoff(plane2) }.to raise_error "plane is not at this airport"
+      expect{airport.takeoff(plane2)}.to raise_error "plane is not at this airport"
     end
 
   end
