@@ -43,7 +43,7 @@ describe Airport do
   end
 
   describe '#dispatch' do
-  it 'Dispaches the plane' do
+    it 'Dispaches the plane' do
       subject.land(plane)
       subject.dispatch(plane)
       expect(subject.confirm_dispatch(plane)).to be_truthy
@@ -65,7 +65,7 @@ describe Airport do
     it 'Confirms dispatch' do
       subject.land(plane)
       subject.dispatch(plane)
-      expect(subject.confirm_dispatch(plane)).to eq true
+      expect(subject.confirm_dispatch(plane)).to be_truthy
     end
   end
 
