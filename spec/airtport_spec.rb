@@ -21,7 +21,7 @@ describe Airport do
   describe 'arrival' do
     
     it 'should initiate a plane to land' do
-      ubject.arrive(plane, weather)
+      subject.arrive(plane, weather)
     end
 
     it 'should receive a landing plane' do
