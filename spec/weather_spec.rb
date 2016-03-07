@@ -2,17 +2,20 @@ require 'weather'
 
 describe Weather do
 
+  # doubles
   subject(:weather) { described_class.new }
+  let(:bad_weather) { described_class.new(Random.rand(1..2)) }
+  let(:good_weather) { described_class.new(Random.rand(3..10)) }
+
+  it { is_expected.to respond_to(:stormy?) }
 
   describe '#stormy?' do
     it 'creates a sunny weather' do
-      good_weather = weather.stormy? Random.rand(3..10)
-      expect(good_weather).to eq false
+      expect(good_weather.stormy?).to eq false
     end
 
     it 'creates a stormy weather' do
-      bad_weather = weather.stormy? Random.rand(1..2)
-      expect(bad_weather).to eq true
+      expect(bad_weather.stormy?).to eq true
     end
   end
 end
