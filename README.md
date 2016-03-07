@@ -100,3 +100,7 @@ Checking if a plane is landed or in the air:
 plane.landed?
 
 ```
+
+Author
+-----
+Erika Pheby
