@@ -90,5 +90,10 @@ describe Airport do
       expect{ airport.plane_takeoff(plane) }.to raise_error message
     end
 
+    it 'reports plane not at the airport' do
+      allow(airport).to receive(:plane_at_airport?).and_return(false)
+      message = "Plane is not at airport"
+      expect{ airport.plane_takeoff(plane) }.to raise_error message
+    end
   end
 end
