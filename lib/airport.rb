@@ -6,15 +6,14 @@ class Airport
   DEFAULT_CAPACITY = 5
 
   # creates an airport with a dock and an amendable capacity
-  def initialize capacity=DEFAULT_CAPACITY
-    #, Klass_weather = Weather
+  def initialize capacity=DEFAULT_CAPACITY, weather=Weather.new
     @capacity = capacity
     @dock = []
-    # @weather = Klass_weather.new
+    @weather = weather
   end
 
   # instructs the specified aircraft to land (or not)
-  def land aircraft, weather=Weather.new
+  def land aircraft, weather=@weather
     can_land? aircraft, weather
     aircraft.change_status
     dock aircraft
@@ -22,7 +21,7 @@ class Airport
   end
 
   # instructs the specified aircraft to takeoff (or not)
-  def takeoff aircraft, weather=Weather.new
+  def takeoff aircraft, weather=@weather
     can_takeoff? aircraft, weather
     aircraft.change_status
     de_dock aircraft
@@ -32,6 +31,11 @@ class Airport
   def show_dock
     @dock.clone.freeze
   end
+
+  def show_weather
+    @weather.clone.freeze
+  end
+
 
   private
 

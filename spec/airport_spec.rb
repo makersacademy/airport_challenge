@@ -22,9 +22,9 @@ describe Airport do
       airport = described_class.new(random_capacity)
       expect(airport.capacity).to eq random_capacity
     end
-    # it 'creats an instance of the Weather class' do
-    #   expect(
-    # end
+    it 'creats an instance of the Weather class' do
+      expect(airport.show_weather).to be_an_instance_of Weather
+    end
   end
 
   describe '#landing' do
