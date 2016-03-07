@@ -16,7 +16,7 @@ I then introduced the weather to the whole application. At the beginning I just 
 
 I then introduced a simple random method to my weather class, which would return "storm" 1 out of 4 times. I wrote a test to check that numbers 2,3 & 4 return sunny and only 1 return storm. 
 
-Finally I added multiple guard conditions that would prevent landed planes, to land again. That required some additional methods to the plane class, as the plane did not have a status prior. 
+Finally I added multiple guard conditions that would prevent landed planes, to land again. That required some additional methods to the plane class, as the plane did not have a status prior.
 
 
 ###### Application example: 
