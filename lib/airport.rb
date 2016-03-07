@@ -22,9 +22,9 @@ class Airport
   def takeoff
     fail 'Bad weather means plane can\'t land' if weather_check
     fail 'No planes in airport' if airport_empty?
-    fail 'Plane not in this airport' if plane_in_airport(planes.last) == false
+    fail 'Plane not in this airport' if !plane_in_airport(planes.last)
     plane_check = planes.pop
-    fail 'Plane is currently airborn' if plane_check.landed == false
+    fail 'Plane is currently airborn' if !plane_check.landed
     plane_check.airborn?
     plane_check
   end
