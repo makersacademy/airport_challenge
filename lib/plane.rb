@@ -20,7 +20,7 @@ class Plane
 		@status
 	end
 
-	def taken_off?
+	def takenoff?
 		@status
 	end
 
