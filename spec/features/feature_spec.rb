@@ -43,8 +43,8 @@ describe 'features' do
       airport.land(plane)
       airport.land(plane2)
       airport.takeoff(plane)
-			expect{airport.takeoff(plane)}.to raise_error "plane has already taken off"
-		end
+      expect{airport.takeoff(plane)}.to raise_error "plane has already taken off"
+    end
 
     it 'raises an error if a plane tries to take off from the wrong airport' do
       airport.land(plane)

@@ -3,13 +3,11 @@ require 'airport'
 describe Airport do
 
 	let(:plane) { double :plane }
-	let(:plane2) { double :plane }
 
 	before(:each) do
-		allow(plane).to receive(:landed)
-		allow(plane).to receive(:taken_off)
-		allow(plane2).to receive(:landed)
-		allow(plane).to receive(:airborne)
+		allow(plane).to receive_messages(:landed , :taken_off , :airborne)
+		#allow(plane).to receive(:taken_off)
+		#allow(plane).to receive(:airborne)
 	end
 
 	context 'landing planes' do
