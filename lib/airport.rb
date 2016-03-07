@@ -47,7 +47,7 @@ private
   end
 
   def storm?
-    if rand(10) >= 8
+    if rand(100) >= 90
       true
     else
       false
