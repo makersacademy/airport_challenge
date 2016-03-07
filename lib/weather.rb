@@ -1,10 +1,11 @@
 
 class Weather
-  attr_reader :random_number, :stormy
+  attr_reader :random_number, :stormy, :num
 
   def initialize
-    @random_number = rand(3)
-    @random_number <= 1 ? @stormy = false : @stormy = true
+    @num = rand(3)
+    @stormy = @num <= 1 ? false : true
+    # @random_number <= 1 ? @stormy = false : @stormy = true
   end
 
 end
