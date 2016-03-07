@@ -9,12 +9,15 @@ plane3 = Plane.new
 heathrow = Airport.new
 gatwick = Airport.new
 
-heathrow.capacity = 10
+heathrow.capacity = 3
 
 plane1.land(heathrow)
+#p heathrow.planes
 plane2.land(heathrow)
 
-plane3.land(gatwick)
-
-plane1.takeoff(heathrow)
-plane1.land(gatwick)
+#
+plane3.land(heathrow)
+plane3.land(heathrow)
+#
+# plane1.takeoff(heathrow)
+# plane1.land(gatwick)

@@ -1,31 +1,34 @@
 require 'plane'
 
 describe Plane do
+  subject(:plane){described_class.new}
+  subject(:landed_plane){described_class.new}
+
+
   let(:airport){double(:airport, planes:[],receive_plane:[],release_plane:[],full?:false)}
   let(:full_airport){double(:full_airport,planes:[],receive_plane:[],release_plane:[],full?:true)}
-  before{allow(subject).to receive_messages(storm_check:false,at_airport?:true)}
-  landed_plane = Plane.new
+  before{allow(plane).to receive_messages(storm_check:false,at_airport?:true)}
   before{allow(landed_plane).to receive_messages(storm_check:false,at_airport?:true,flying?:false)}
 
   describe "#land" do
     it {is_expected.to respond_to(:land).with(1).arguments}
     it "reports its initial flying status" do
-      expect(subject.flying).to be(true)
+      expect(plane.flying).to be(true)
     end
     it "confirms landed after successful landing" do
-      subject.land(airport)
-      expect(subject.flying).to be(false)
+      plane.land(airport)
+      expect(plane.flying).to be(false)
     end
     it "tells destination airport to receive it" do
       expect(airport).to receive(:receive_plane)
-      subject.land(airport)
+      plane.land(airport)
     end
     it "stops landing if stormy" do
-      allow(subject).to receive(:storm_check){true}
-      expect{subject.land(airport)}.to raise_error("Cannot land in stormy weather.")
+      allow(plane).to receive(:storm_check){true}
+      expect{plane.land(airport)}.to raise_error("Cannot land in stormy weather.")
     end
     it "stops landing if airport full" do
-      expect{subject.land(full_airport)}.to raise_error("Cannot land if airport is full.")
+      expect{plane.land(full_airport)}.to raise_error("Cannot land if airport is full.")
     end
     it "raises an error if plane is on the ground when told to land" do
       expect{landed_plane.land(airport)}.to raise_error("Plane is already on the ground.")
@@ -35,9 +38,9 @@ describe Plane do
   describe "#takeoff" do
     it {is_expected.to respond_to(:takeoff).with(1).argument}
     it "confirms flying after successful takeoff" do
-      subject.land(airport)
-      subject.takeoff(airport)
-      expect(subject.flying).to be(true)
+      plane.land(airport)
+      plane.takeoff(airport)
+      expect(plane.flying).to be(true)
     end
     it "tells airport to release it" do
       expect(airport).to receive(:release_plane)
@@ -48,13 +51,13 @@ describe Plane do
       expect{landed_plane.takeoff(airport)}.to raise_error("Cannot take off in stormy weather.")
     end
     it "raises an error if plane is told to take off from airport it's not at" do
-      allow(subject).to receive(:at_airport?){false}
-      subject.land(airport)
-      expect{subject.takeoff(full_airport)}.to raise_error("Plane is not at that airport.")
+      allow(plane).to receive(:at_airport?){false}
+      plane.land(airport)
+      expect{plane.takeoff(full_airport)}.to raise_error("Plane is not at that airport.")
     end
     it "raises an error if plane is already in flight when told to take off" do
-      allow(subject).to receive(:flying?){true}
-      expect{subject.takeoff(airport)}.to raise_error("Plane is already in flight.")
+      allow(plane).to receive(:flying?){true}
+      expect{plane.takeoff(airport)}.to raise_error("Plane is already in flight.")
     end
   end
 
