@@ -46,7 +46,7 @@ Feature tests were run manually from a ruby file in the spec folder
 Installation
 ------------
 you can clone the entire repo
-'''
+<pre><code>
 git clone 'https://github.com/kevinpmcc/airport_challenge.git'
 
 to run tests
@@ -86,7 +86,8 @@ kevinmccarthy$ irb
 
  => #<Plane:0x007fd80309d908 @landed=false, @taken_off=true> 
 2.2.3 :008 > 
-'''
+</code></pre>
+
 from there have a look through the files and enjoy.
 
 
