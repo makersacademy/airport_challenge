@@ -15,7 +15,7 @@ class Airport
 
   def accept(plane)
     fail "This plane is not currently flying." if plane.landed?
-    fail "This plane cannot depart due to adverse weather conditions" if is_stormy?
+    fail "This plane cannot land due to adverse weather conditions" if is_stormy?
     fail "This airport is currently at capcity." if at_capacity?
     plane.land
     planes << plane
