@@ -43,12 +43,10 @@ describe Airport do
   end
 
   describe '#dispatch' do
-    it { is_expected.to respond_to(:dispatch).with(1).argument }
-
-    it 'Dispaches the plane' do
+  it 'Dispaches the plane' do
       subject.land(plane)
       subject.dispatch(plane)
-      expect(subject.airfield.size).to eq 0
+      expect(subject.confirm_dispatch(plane)).to be_truthy
     end
 
     it 'Tells the plane to take off' do

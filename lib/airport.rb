@@ -4,7 +4,7 @@ class Airport
 
   attr_reader :airfield
   attr_accessor :capacity
-  
+
   DEFAULT_CAPACITY = 50
 
   def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
@@ -20,7 +20,7 @@ class Airport
   end
 
   def confirm_landing(plane)
-    airfield.include?(plane)
+    in_airfield?(plane)
   end
 
   def dispatch(plane)
@@ -30,7 +30,7 @@ class Airport
   end
 
   def confirm_dispatch(plane)
-    !airfield.include?(plane)
+    !in_airfield?(plane)
   end
 
   def stormy?
