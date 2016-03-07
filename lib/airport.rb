@@ -11,6 +11,10 @@ class Airport
     @capacity = capacity
   end
 
+  def set_capacity=(capacity)
+    @capacity = capacity
+  end
+
   def accept(plane)
     fail "This plane is not currently flying." if plane.landed?
     fail "This plane cannot depart due to adverse weather conditions" if is_stormy?

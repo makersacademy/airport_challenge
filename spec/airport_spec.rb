@@ -5,6 +5,12 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double(:plane) }
 
+  #error messages
+  not_flying_error = "This plane is not currently flying."
+  not_at_airport_error = "This plane is not at this airport."
+  weather_error = "This plane cannot depart due to adverse weather conditions"
+  capacity_error = "This airport is currently at capcity."
+
   context 'when weather is not stormy' do
     let(:weather) { double(:weather) }
     before(:each) do
@@ -22,13 +28,13 @@ describe Airport do
 
       it 'should not accept landed planes' do
         allow(plane).to receive(:landed?).and_return(true)
-        expect{ airport.accept(plane) }.to raise_error "This plane is not currently flying."
+        expect{ airport.accept(plane) }.to raise_error not_flying_error
       end
 
       it 'should not land at full airports' do
         allow(plane).to receive(:landed?).and_return(false)
         20.times { airport.accept(plane) }
-        expect{ airport.accept(plane) }.to raise_error "This airport is currently at capcity."
+        expect{ airport.accept(plane) }.to raise_error capacity_error
       end
 
     end
@@ -37,7 +43,7 @@ describe Airport do
 
       it 'should raise error if departing plane is not at airport' do
         allow(airport).to receive(:is_stormy?).and_return(false)
-        expect{ airport.depart(plane) }.to raise_error "This plane is not at this airport."
+        expect{ airport.depart(plane) }.to raise_error not_at_airport_error
       end
 
       it 'should remove planes after departing' do
@@ -62,7 +68,7 @@ describe Airport do
         airport.accept(plane)
         allow(airport).to receive(:is_stormy?).and_return(true)
         allow(plane).to receive(:depart)
-        expect{ airport.depart(plane) }.to raise_error "This plane cannot depart due to adverse weather conditions"
+        expect{ airport.depart(plane) }.to raise_error weather_error
       end
 
     end
@@ -72,6 +78,15 @@ describe Airport do
   describe 'verification' do
     it 'should return whether plane is at airport' do
       expect(airport.present?(plane)).to eq(false)
+    end
+
+    it 'should allow users to set airport capacity' do
+      allow(airport).to receive(:is_stormy?).and_return(false)
+      allow(plane).to receive(:landed?).and_return(false)
+      allow(plane).to receive(:land)
+      airport.set_capacity=(40)
+      40.times { airport.accept(plane) }
+      expect{ airport.accept(plane) }.to raise_error capacity_error
     end
   end
 
