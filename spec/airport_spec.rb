@@ -21,15 +21,15 @@ describe Airport do
       allow(airport.weather).to receive(:stormy?).and_return true
     end
 
-      it 'prevents landing' do
+    it 'prevents landing' do
       message = "Plane cannot land in bad weather"
       expect { airport.land(plane) }.to raise_error message
     end
 
-      it 'prevents take off' do
+    it 'prevents take off' do
       message = "Plane cannot take off in bad weather"
       expect{ airport.take_off(plane) }.to raise_error message
-      end
+    end
   end
 
   describe '#land' do
