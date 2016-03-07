@@ -6,11 +6,11 @@ def initialize
   @landed = false
 end
 
-def landed?
+def land
   @landed = true
 end
 
-def taken_off?
+def take_off
   @landed = false
 end
 
