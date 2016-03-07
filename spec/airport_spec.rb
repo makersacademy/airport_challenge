@@ -8,6 +8,7 @@ describe Airport do
 	before(:each) do
 		allow(plane).to receive(:landed)
 		allow(plane).to receive(:taken_off)
+		allow(plane2).to receive(:landed)
 	end
 
 	it 'responds to land method' do
@@ -57,7 +58,6 @@ describe Airport do
 	end
 
 	it 'raises an error if a plane which has already taken off tries to take off' do
-		allow(plane2).to receive(:landed)
 		subject.land(plane)
 		subject.land(plane2)
 		subject.takeoff(plane)
