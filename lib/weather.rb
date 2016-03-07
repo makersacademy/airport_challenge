@@ -1,16 +1,12 @@
 class Weather
   def stormy?
-    weather_type == :stormy
+    chances_of_stormy > 0.8
   end
 
   private
 
-  def weather_type
-    :stormy if chances_of_stormy
-  end
-
   def chances_of_stormy
-    rand > 0.8
+    rand
   end
 
 end

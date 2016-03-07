@@ -6,18 +6,21 @@ describe Airport do
   let(:plane) {double(:plane)}
   before{allow(plane).to receive(:landed).and_return(true)}
 
+  TEST_CAPACITY = 20
+  NEW_CAPACITY = 15
+
   describe '#initialize' do
     it 'starts with no planes' do
-      expect(subject.planes_in_airport).to be_empty
+      expect(airport.planes_in_airport).to be_empty
     end
 
-    it 'starts with a capacity of 20 planes' do
-      expect(subject.capacity).to eq 20
+    it 'starts airport with number of planes' do
+      expect(airport.capacity).to eq TEST_CAPACITY
     end
 
     it  'allow the capacity to be changed' do
-      airport = Airport.new(15)
-      expect(airport.capacity).to eq 15
+      airport = Airport.new(NEW_CAPACITY)
+      expect(airport.capacity).to eq NEW_CAPACITY
     end
 
     it 'has a default capacity' do
@@ -29,31 +32,34 @@ describe Airport do
     before(:each) do
       allow(airport).to receive(:bad_weather?).and_return(false)
     end
+    context 'good weather' do
+      it 'stores plane in an airport' do
+        airport.land(plane)
+        expect(airport.planes_in_airport).to include plane
+      end
 
-    it 'stores plane in an airport' do
-      subject.land(plane)
-      expect(subject.planes_in_airport).to include plane
+      it 'does not allow plane to land if full' do
+        allow(airport).to receive(:airport_has?).and_return(false)
+        error_message = "Airport is full, cannot land"
+        20.times{airport.land(plane) }
+        expect{airport.land(plane)}.to raise_error(error_message)
+      end
+
+      it 'does not land plane if already in airport' do
+        error_message = "Plane already at airport"
+        airport.land(plane)
+        expect{airport.land(plane)}.to raise_error(error_message)
+      end
     end
 
-    it 'does not let plane land in stormy weather' do
-      allow(airport).to receive(:bad_weather?).and_return(true)
-      error_message = 'Too stormy to land'
-      expect{subject.land(plane)}.to raise_error(error_message)
+    context 'bad weather' do
+      before{allow(airport).to receive(:bad_weather?).and_return(true)}
+      it 'does not let plane land in stormy weather' do
+        error_message = 'Too stormy to land'
+        expect{airport.land(plane)}.to raise_error(error_message)
+      end
     end
-
-    it 'does not allow plane to land if full' do
-      allow(airport).to receive(:airport_has?).and_return(false)
-      error_message = "Airport is full, cannot land"
-      20.times{subject.planes_in_airport << plane }
-      expect{subject.land(plane)}.to raise_error(error_message)
-    end
-
-    it 'does not land plane if already in airport' do
-      error_message = "Plane already at airport"
-      subject.land(plane)
-      expect{subject.land(plane)}.to raise_error(error_message)
-    end
-  end
+end
 
   describe '#take_off' do
     before(:each) do
@@ -64,7 +70,7 @@ describe Airport do
     it 'raises error if plane is not at airport' do
       allow(plane).to receive(:at_airport?).and_return(false)
       error_message = 'Plane not at airport'
-      expect {subject.take_off(plane)}.to raise_error(error_message)
+      expect {airport.take_off(plane)}.to raise_error(error_message)
     end
 
     context 'good weather' do
@@ -73,9 +79,9 @@ describe Airport do
       end
 
       it 'removes plane from airport' do
-        subject.land(plane)
-        subject.take_off(plane)
-        expect(subject.planes_in_airport).not_to include plane
+        airport.land(plane)
+        airport.take_off(plane)
+        expect(airport.planes_in_airport).not_to include plane
       end
     end
 
@@ -87,14 +93,8 @@ describe Airport do
       it 'plane not allowed to take off' do
         allow(airport).to receive(:land).with(plane).and_return([plane])
         error_message = "Too stormy to fly"
-        expect {subject.take_off(plane)}.to raise_error(error_message)
+        expect {airport.take_off(plane)}.to raise_error(error_message)
       end
-
-      # xit 'plane still at airport' do
-      #   allow(airport).to receive(:land).with(plane).and_return([plane])
-      #   subject.take_off(plane)
-      #   expect(subject.planes_in_airport).to include plane
-      # end
     end
   end
 end
