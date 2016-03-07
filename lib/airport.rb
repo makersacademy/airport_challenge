@@ -7,8 +7,6 @@ CAPACITY = 5
 
 	include WeatherConditions
 
-	attr_reader :planes, :current_weather, :capacity
-
 	def initialize(capacity=CAPACITY)
 		@planes = []
 		@current_weather = WEATHER.sample
@@ -35,6 +33,18 @@ CAPACITY = 5
 		else
 		 	"This plane is not at this airport!"
 		end
+	end
+
+	def planes
+		 @planes.dup
+	end
+
+	def capacity
+		capacity = @capacity
+	end
+
+	def current_weather
+		current_weather = @current_weather
 	end
 
 	private

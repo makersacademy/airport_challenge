@@ -2,7 +2,8 @@ require 'airport'
 
 describe Airport do 
 
-	subject(:airport) {Airport.new}
+	subject(:airport) {described_class.new}
+	let(:airport2) {described_class.new(10)}
 	let(:sunny_weather) {allow(subject).to receive(:current_weather).and_return(:sunny)}
 	let(:stormy_weather) {allow(subject).to receive(:current_weather).and_return(:stormy)}
 	let(:plane) { double(:plane, landed?:false,land: nil)}
@@ -52,7 +53,6 @@ describe Airport do
 		it 'display message if trying to take off when plane already landed elsewhere' do
 			sunny_weather
 			allow(plane).to receive(:landed?).and_return(true)
-			airport2 = Airport.new
 			allow(airport2).to receive(:current_weather).and_return(:sunny)
 			airport2.land plane
 			expect(subject.take_off plane).to eq("This plane is not at this airport!")
@@ -63,19 +63,18 @@ describe Airport do
 		it 'expects error when landing with full airport' do
 			sunny_weather
 		    5.times do
-		 	    planes =  double(:plan,landed?:false,land:nil)
+		 	    planes =  double(:plane,landed?:false,land:nil)
 				subject.land planes
 			end
 			expect{subject.land plane}.to raise_error("Cannot land. Airport is full!")
 		end
 
 		it 'expects to have a default capacity' do
-			expect(subject.capacity).to eq Airport::CAPACITY
+			expect(subject.capacity).to eq described_class::CAPACITY
 		end
 
 		it 'expects capacity to be changed' do
-			airport = Airport.new(10)
-			expect(airport.capacity).not_to eq Airport::CAPACITY
+			expect(airport2.capacity).not_to eq described_class::CAPACITY
 		end
 	end
 
