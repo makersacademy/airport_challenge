@@ -13,7 +13,7 @@ describe Weather do
       @bad_weather = weather.stormy?
       break if @bad_weather
       @counter += 1
-      break if @counter >= 10000
+      break if @counter >= 10_000
     end
     expect(@bad_weather).to be(true)
   end
@@ -24,7 +24,7 @@ describe Weather do
       @bad_weather = weather.stormy?
       break unless @bad_weather
       @counter += 1
-      break if @counter >= 10000
+      break if @counter >= 10_000
     end
     expect(@bad_weather).to be(false)
   end
