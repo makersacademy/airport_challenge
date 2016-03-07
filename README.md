@@ -48,22 +48,37 @@ from the parent project folder.
 to feature test you can use irb or pry or another REPL tool
 
 kevinmccarthy$ irb
+
 2.2.3 :001 > require './lib/plane.rb'
+
  => true 
+ 
 2.2.3 :002 > require './lib/airport.rb'
+
  => true 
+ 
 2.2.3 :003 > require './lib/weather.rb'
+
  => false 
+ 
 2.2.3 :004 > plane = Plane.new
+
  => #<Plane:0x007fd80309d908 @landed=false, @taken_off=false> 
+ 
 2.2.3 :005 > airport = Airport.new
+
  => #<Airport:0x007fd80308e188 @capacity=20, @planes=[],
 @weather=#<Weather:0x007fd80308e138 @stormy=false>> 
+
 2.2.3 :006 > airport.land(plane)
+
  => [#<Plane:0x007fd80309d908 @landed=true, @taken_off=false>] 
+ 
 2.2.3 :007 > airport.take_off(plane)
+
  => #<Plane:0x007fd80309d908 @landed=false, @taken_off=true> 
 2.2.3 :008 > 
+
 from there have a look through the files and enjoy.
 
 
