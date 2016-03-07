@@ -25,8 +25,8 @@ class Airport
   end
 
   def allow_takeoff(plane)
-    raise 'Plane already taken off' if plane.landed == false
-    raise 'Plane not at that airport' if !planes.include? plane
+    raise 'Plane already taken off' if already_flying?(plane)
+    raise 'Plane not at that airport' if not_at_that_airport(plane)
     raise 'Too stormy to take off' if stormy?
     plane.take_off
     @planes.delete(plane)
@@ -40,6 +40,14 @@ private
 
   def stormy?
     @weather.stormy
+  end
+
+  def already_flying?(plane)
+    plane.landed == false
+  end
+
+  def not_at_that_airport(plane)
+    !planes.include? plane
   end
 
 end
