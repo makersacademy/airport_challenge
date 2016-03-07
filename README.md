@@ -20,7 +20,7 @@ Finally I added multiple guard conditions that would prevent landed planes, to l
 
 
 ###### Application example: 
-''''
+```
 require_relative './lib/airport.rb'
 require_relative './lib/plane.rb'
 require_relative './lib/weather.rb'
@@ -47,4 +47,4 @@ frankfurt.planes
 heathrow.arrive(lufthansa_1, heath_weather)
 heathrow.planes
 frankfurt.planes
-''''
+```
