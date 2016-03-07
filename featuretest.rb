@@ -50,7 +50,7 @@ puts "Tobenna's private jet still want to depart. Let's give it a try"
 
 begin
 southpole_airport.launch_airplane southpole_airport.list_airplanes.first
-rescue Exception => message
-  puts "well I'm an exception, and the message is #{message}"
+rescue StandardError => message
+  puts "well I'm an exception, and the message is: '#{message}'"
 end
 puts "\n\n\nthis is the end of this test. goodnight."

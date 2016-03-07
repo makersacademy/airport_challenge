@@ -1,7 +1,7 @@
 require 'weather'
 
 describe Weather  do
-  let(:possible_weathers) {Proc.new {|wea| wea == :stormy || wea == :sunny}}
+  let(:possible_weathers) {proc {|wea| wea == :stormy || wea == :sunny}}
 
   describe 'current weather access:' do
 
