@@ -2,8 +2,8 @@ require 'plane'
 
 describe Plane do
   subject(:plane) { described_class.new } 
-  let(:not_landed_plane) { allow(subject).to receive(:landed?).and_return(false) }
-  let(:landed_plane) { allow(subject).to receive(:landed?).and_return(true) }
+  let(:not_landed_plane) { allow(subject).to receive(:landed).and_return(false) }
+  let(:landed_plane) { allow(subject).to receive(:landed).and_return(true) }
 
   describe '#land' do
     
@@ -11,7 +11,7 @@ describe Plane do
  
     it 'should call landed' do
       not_landed_plane
-      expect(subject).to receive(:landed?)
+      expect(subject).to receive(:landed)
       subject.land 
     end
     
@@ -22,13 +22,13 @@ describe Plane do
   
   end
   
-  describe '#landed?' do
+  describe '#landed' do
     
-    it { is_expected.to respond_to(:landed?) }
+    it { is_expected.to respond_to(:landed) }
   
     it 'will return false when a plane has taken off' do
       allow(subject).to receive(:taken_off).and_return true
-      expect(subject.landed?).to eq false
+      expect(subject.landed).to eq false
     end
   
   end
