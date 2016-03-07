@@ -10,11 +10,8 @@ class Plane
     @current_airport = nil
   end
 
-  def check_current_status desired_status
-    return if @current_status == desired_status
-    raise 'Warning! Already in flight.' if desired_status == :landed
-    raise 'Warning! Already landed.' if desired_status == :flying
-    fail "Required Status Unknown."
+  def current_status_is desired_status
+    true if @current_status == desired_status
   end
 
   public
@@ -30,13 +27,13 @@ class Plane
   end
 
   def land airport
-    check_current_status :flying
+    raise 'Warning! Already landed.' unless current_status_is :flying
     @current_status = :landed
     dock_at airport
   end
 
   def takeoff
-    check_current_status :landed
+    raise 'Warning! Already in flight.' unless current_status_is :landed
     depart_from_airport
     @current_status = :flying
   end
