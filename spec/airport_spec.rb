@@ -28,7 +28,7 @@ describe Airport do
     describe 'departing planes' do
 
       it 'should raise error if departing plane is not at airport' do
-        allow(airport.weather).to receive(:stormy).and_return(false)
+        allow(airport).to receive(:is_stormy?).and_return(false)
         expect{ airport.depart(plane) }.to raise_error "This plane is not at this airport."
       end
 

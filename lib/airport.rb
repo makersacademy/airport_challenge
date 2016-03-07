@@ -2,11 +2,10 @@ require './lib/weather.rb'
 
 class Airport
 
-  attr_reader :planes, :weather
+  attr_reader :planes
 
-  def initialize(weather = Weather)
+  def initialize
     @planes = []
-    @weather = weather
   end
 
   def accept(plane)
