@@ -34,21 +34,21 @@ describe Airport do
     end
     context 'good weather' do
       it 'stores plane in an airport' do
-        airport.land(plane)
+        airport.allow_land(plane)
         expect(airport.planes_in_airport).to include plane
       end
 
       it 'does not allow plane to land if full' do
         allow(airport).to receive(:airport_has?).and_return(false)
         error_message = "Airport is full, cannot land"
-        20.times{airport.land(plane) }
-        expect{airport.land(plane)}.to raise_error(error_message)
+        20.times{airport.allow_land(plane) }
+        expect{airport.allow_land(plane)}.to raise_error(error_message)
       end
 
       it 'does not land plane if already in airport' do
         error_message = "Plane already at airport"
-        airport.land(plane)
-        expect{airport.land(plane)}.to raise_error(error_message)
+        airport.allow_land(plane)
+        expect{airport.allow_land(plane)}.to raise_error(error_message)
       end
     end
 
@@ -56,7 +56,7 @@ describe Airport do
       before{allow(airport).to receive(:bad_weather?).and_return(true)}
       it 'does not let plane land in stormy weather' do
         error_message = 'Too stormy to land'
-        expect{airport.land(plane)}.to raise_error(error_message)
+        expect{airport.allow_land(plane)}.to raise_error(error_message)
       end
     end
 end
@@ -70,7 +70,7 @@ end
     it 'raises error if plane is not at airport' do
       allow(plane).to receive(:at_airport?).and_return(false)
       error_message = 'Plane not at airport'
-      expect {airport.take_off(plane)}.to raise_error(error_message)
+      expect {airport.allow_take_off(plane)}.to raise_error(error_message)
     end
 
     context 'good weather' do
@@ -79,8 +79,8 @@ end
       end
 
       it 'removes plane from airport' do
-        airport.land(plane)
-        airport.take_off(plane)
+        airport.allow_land(plane)
+        airport.allow_take_off(plane)
         expect(airport.planes_in_airport).not_to include plane
       end
     end
@@ -91,9 +91,9 @@ end
       end
 
       it 'plane not allowed to take off' do
-        allow(airport).to receive(:land).with(plane).and_return([plane])
+        allow(airport).to receive(:allow_land).with(plane).and_return([plane])
         error_message = "Too stormy to fly"
-        expect {airport.take_off(plane)}.to raise_error(error_message)
+        expect {airport.allow_take_off(plane)}.to raise_error(error_message)
       end
     end
   end

@@ -1,5 +1,4 @@
 class Plane
-
   def initialize
     @in_airport = false
   end
@@ -15,5 +14,4 @@ class Plane
   def taken_off
     @in_airport = false
   end
-
 end

@@ -9,13 +9,13 @@ class Airport
     @capacity = capacity
   end
 
-  def land(a_plane)
+  def allow_land(a_plane)
     land_check_for(a_plane)
     a_plane.landed
     park(a_plane)
   end
 
-  def take_off(a_plane)
+  def allow_take_off(a_plane)
     take_off_check_for(a_plane)
     a_plane.taken_off
     remove(a_plane)
@@ -61,5 +61,4 @@ class Airport
   def airport_has?(a_plane)
     planes_in_airport.include? a_plane
   end
-
 end

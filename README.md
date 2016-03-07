@@ -21,15 +21,13 @@ Fork and clone from
 
 https://github.com/hanfak/airport_challenge
 
-Run tests from parent folder
+Run tests from parent folder ```rspec```
 
-```rspec```
+Run feature tests, open ```feature_spec``` and  manually enter in Pry.
 
-Run feature tests, open
-```feature_spec``` and  manually enter in Pry.
+Example of running program
 
-Example
-```
+
 [2] pry(main)> require './lib/airport.rb'
 => true
 
@@ -50,7 +48,6 @@ Example
 
 [8] pry(main)> plane.at_airport?
 => true
-```
 
 
 Documentation

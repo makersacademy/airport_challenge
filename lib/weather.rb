@@ -8,5 +8,4 @@ class Weather
   def chances_of_stormy
     rand
   end
-
 end

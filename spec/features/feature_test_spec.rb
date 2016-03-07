@@ -1,27 +1,56 @@
 
 
 # User Story 1
-#Should ATC be the one to land
-# controller = AirTrafficController.new
-# controller.land(plane, airport)
+
 require_relative '../../lib/airport.rb'
 describe 'features' do
-  it 'lands planes at airport' do
-    heathrow = Airport.new
-    plane = Plane.new
-    heathrow.land(plane)
-    plane.at_airport?
-    expect(heathrow.planes_in_airport).to include plane
+  context 'User Story 1'  do
+    it 'instruct plane to land at airport' do
+        heathrow = Airport.new
+        plane = Plane.new
+        heathrow.allow_land(plane)
+        # plane.at_airport?
+        expect(heathrow.planes_in_airport).to include plane
+      end
+  end
+  context 'User Story 2' do
+    it 'instruct plane to take off from airport' do
+      # heathrow = Airport.new
+      # plane = Plane.new
+      # # plane.at_airport? #plane not at airportgit
+      # # heathrow.take_off(plane) #raise error, no plane to take of f
+      # heathrow.land(plane)#plane added to airport
+      # # plane.at_airport? #plane at airport
+      # heathrow.take_off(plane)#plane can leave
+      # expect(heathrow.planes_in_airport).not_to include plane
+    end
+  end
+  context 'User Story 3' do
+    it 'prevents plane from taking off during stormy weather' do
+
+    end
+  end
+  context 'User Story 4' do
+    it 'prevents plane from landing at airport during stormy weather' do
+
+    end
+  end
+  context 'User Story 5' do
+    it 'prevents landing when airport is full' do
+
+    end
+  end
+  context 'User Story 6' do
+    it 'sets defualt capacity of airport' do
+
+    end
+    it 'changes capacity of airport' do
+
+    end
   end
 end
-# heathrow = Airport.new
-# plane = Plane.new
-# plane.at_airport?#confirm plane not at aiport
-# heathrow.land(plane)
-# plane.at_airport? #confirm plane in airport after landing
-# #confirm plane has landed
-# #Check if necessay,
-#Check if should be in Plane class
+
+
 
 
 
