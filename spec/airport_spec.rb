@@ -16,6 +16,7 @@ let(:airport2) {described_class.new}
   describe 'allow_landing' do
     it 'should push that plane into the planes array' do
       allow(airport).to receive(:stormy?).and_return(false)
+      allow(plane1).to receive(:landed).and_return(false)
       subject.allow_landing(plane1)
       expect(subject.planes).to eq [plane1]
     end
@@ -23,34 +24,34 @@ let(:airport2) {described_class.new}
     it 'should confirm the plane has landed with the plane status' do
       allow(airport).to receive(:stormy?).and_return(false)
       allow(plane1).to receive(:landed).and_return(true)
-      subject.allow_landing(plane1)
       expect(plane1.landed).to eq true
     end
 
-    # it 'should not allow landing if already landed' do
-    #   allow(airport).to receive(:stormy?).and_return(false)
-    #   allow(plane1).to receive(:plane_status).and_return(true)
-    #   message = 'Plane already landed'
-    #   airport2.allow_landing(plane1)
-    #   expect{ airport2.allow_landing(plane1) }.to raise_error message
-    # end
+    it 'should not allow landing if already landed' do
+      allow(airport).to receive(:stormy?).and_return(false)
+      allow(plane1).to receive(:landed).and_return(true)
+      message = 'Plane already landed'
+      expect{ airport.allow_landing(plane1) }.to raise_error message
+    end
   end
 
   describe 'allow_takeoff' do
     it 'should remove that plane from the planes array' do
       allow(airport).to receive(:stormy?).and_return(false)
-      allow(plane2).to receive(:take_off).and_return(false)
+      # allow(plane1).to receive(:landed).and_return(false)
       airport.allow_landing(plane1)
-      airport.allow_landing(plane2)
-      airport.allow_takeoff(plane2)
-      expect(airport.planes).to eq [plane1]
+      allow(plane1).to receive(:take_off).and_return(false)
+      allow(plane1).to receive(:landed).and_return(true)
+      airport.allow_takeoff(plane1)
+      expect(airport.planes).to eq []
     end
 
     it 'should confirm that the plane has taken off with the plane status' do
       allow(airport).to receive(:stormy?).and_return(false)
       allow(plane1).to receive(:landed).and_return(false)
-      allow(plane1).to receive(:take_off).and_return(false)
       airport.allow_landing(plane1)
+      allow(plane1).to receive(:take_off).and_return(false)
+      allow(plane1).to receive(:landed).and_return(true)
       airport.allow_takeoff(plane1)
       expect(plane1.landed).to eq false
     end
@@ -59,6 +60,13 @@ let(:airport2) {described_class.new}
       airport.planes << plane1
       message = 'Plane not at that airport'
       expect{ airport2.allow_takeoff(plane1)}
+    end
+
+    it 'should not take off from airport if already taken off' do
+      allow(airport).to receive(:stormy?).and_return(false)
+      allow(plane1).to receive(:landed).and_return(false)
+      message = 'Plane already taken off'
+      expect { airport.allow_takeoff(plane1) }.to raise_error message
     end
   end
 

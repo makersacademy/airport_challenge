@@ -18,12 +18,14 @@ class Airport
 
   def allow_landing(plane)
     raise 'Too stormy to land' if stormy?
+    raise 'Plane already landed' if plane.landed == true
     raise 'Airport is full' if full?
     plane.land_plane
     @planes << plane
   end
 
   def allow_takeoff(plane)
+    raise 'Plane already taken off' if plane.landed == false
     raise 'Plane not at that airport' if !planes.include? plane
     raise 'Too stormy to take off' if stormy?
     plane.take_off

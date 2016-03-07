@@ -39,13 +39,13 @@ let(:plane2) {Airplane.new}
   #     expect(airport3.planes.size).to eq Airport::DEFAULT_VALUE
   #   end
   #
-    it 'should not land at airport if already landed' do
-      allow(airport4).to receive(:allow_landing).and_return(true)
-      message = 'Plane already landed'
-      airport4.allow_landing(plane1)
-      # plane1.plane_status
-      expect{ airport4.allow_landing(plane1) }.to raise_error message
-    end
+    # it 'should not land at airport if already landed' do
+    #   allow(airport4).to receive(:allow_landing).and_return(true)
+    #   message = 'Plane already landed'
+    #   airport4.allow_landing(plane1)
+    #   # plane1.plane_status
+    #   expect{ airport4.allow_landing(plane1) }.to raise_error message
+    # end
 
   end
 
@@ -61,11 +61,11 @@ let(:plane2) {Airplane.new}
     #   expect(plane2.landed).to eq false
     # end
 
-    it 'should not take off from airport if already taken off' do
-      plane1.take_off(airport5)
-      message = 'Plane already taken off'
-      expect { plane1.take_off(airport5) }.to raise_error message
-    end
+    # it 'should not take off from airport if already taken off' do
+    #   plane1.take_off(airport5)
+    #   message = 'Plane already taken off'
+    #   expect { plane1.take_off(airport5) }.to raise_error message
+    # end
 
     # it 'should not take off from an airport it is not at' do
     #   airport4.planes << subject
