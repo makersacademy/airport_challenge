@@ -1,9 +1,9 @@
 class Aircraft
 attr_reader :landed
 
-  # creates an aircraft with a default status: landed
+  # creates an aircraft with a default status: airbourne
   def initialize
-    @landed = true
+    @landed = false
   end
 
   # flips status between following landing and takeoff
