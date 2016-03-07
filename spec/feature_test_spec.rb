@@ -7,10 +7,10 @@ describe 'Feature Test' do
     plane2 = Plane.new
 
     before do
-      allow(plane).to receive(:flying) {true}
-      allow(plane1).to receive(:flying) {true}
-      allow(plane2).to receive(:flying) {true}
       allow(airport.weather).to receive(:stormy?) {false}
+      plane.take_off
+      plane1.take_off
+      plane2.take_off
       airport.land(plane)
       airport.land(plane1)
       airport.land(plane2)

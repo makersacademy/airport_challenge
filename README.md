@@ -1,5 +1,8 @@
 Airport Challenge
 =================
+
+Makers Weekend Challenge 1
+
 The following code base provides responses to the following user stories:
 ```
 As an air traffic controller 
@@ -26,6 +29,15 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+To run this code, clone the repository into your local directory of choice
+
+```
+git clone https://github.com/gvonkoss/airport_challenge.git
+
+cd airport_challenge
+```
+And follow instructions below.
+
 According to the principles behind TDD, the simplest code has been implemented to satisfy the above requirements, and can be used in the following way to instantiate an airplane, make it airborne, land it and instruct it to take off (which is impeded if -by random assignment- the weather is stormy).
 
 ```

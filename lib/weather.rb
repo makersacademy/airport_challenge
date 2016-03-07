@@ -1,14 +1,14 @@
 class Weather
 
   def stormy?
-    sky == :stormy
+    random_weather == :stormy
   end
 
   private
 
   SKY = [:stormy, :sunny, :sunny].freeze
 
-  def sky
+  def random_weather
     SKY.sample
   end
 
