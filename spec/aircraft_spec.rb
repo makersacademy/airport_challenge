@@ -2,10 +2,8 @@ require 'aircraft'
 
 describe Aircraft do
 
-  # doubles
   subject(:aircraft) { described_class.new }
 
-  # unit tests
   describe '#initialize' do
     it 'creates an aircraft with a default status: airbourne' do
       expect(subject.landed).to eq(false)

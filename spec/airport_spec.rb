@@ -2,14 +2,12 @@ require 'airport'
 
 describe Airport do
 
-  # doubles
   subject(:airport) { described_class.new }
   let(:landed) { double(:aircraft, landed: true, change_status: nil) }
   let(:airbourne) { double(:aircraft, landed: false, change_status: nil) }
   let(:sunny) { double(:weather, stormy?: false) }
   let(:storm) { double(:weather, stormy?: true) }
 
-  # unit tests
   describe '#initialize' do
     it 'creates an airport with an empty dock' do
       expect(airport.show_dock).to eq []

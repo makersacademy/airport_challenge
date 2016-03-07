@@ -2,7 +2,6 @@ require 'weather'
 
 describe Weather do
 
-  # doubles
   subject(:weather) { described_class.new }
   let(:bad_weather) { described_class.new(Random.rand(1..2)) }
   let(:good_weather) { described_class.new(Random.rand(3..10)) }
