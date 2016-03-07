@@ -5,8 +5,6 @@ class Weather
     forecast == :stormy
   end
 
-
-
   private
 
   WEATHER_SEED = { sunny: 19, stormy: 1 }.freeze
