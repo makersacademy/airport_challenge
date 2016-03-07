@@ -14,8 +14,8 @@ class Airport
 
   def instruct_land(plane)
     fail "Airport full." if full?
-    fail "Storm." if storm? == true
-    if plane.landed? == false
+    fail "Storm." if storm?
+    unless plane.landed?
       plane.land
       @planes << plane
       plane
@@ -26,8 +26,9 @@ class Airport
 
   def instruct_takeoff(plane)
     fail "Airport empty." if empty?
-    fail "Storm." if storm? == true
-    if plane.landed? == true
+    fail "Storm." if storm?
+    fail "That plane isn't in that airport." if plane_in_airport(plane) == false
+    if plane.landed?
       plane.takeoff
       plane = @planes.pop
       @planes.delete(plane)
@@ -47,11 +48,11 @@ class Airport
   end
 
   def storm?
-    if rand(100) >= 90
-      true
-    else
-      false
-    end
+    rand(100) >= 90
+  end
+
+  def plane_in_airport(plane)
+    planes.include?(plane)
   end
 
 end

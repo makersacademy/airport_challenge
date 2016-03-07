@@ -7,18 +7,13 @@ plane3 = Plane.new
 plane4 = Plane.new
 
 airport = Airport.new
+airport2 = Airport.new
 
 airport.instruct_land(plane1)
 airport.instruct_land(plane2)
-airport.instruct_land(plane3)
-airport.instruct_land(plane4)
-p airport.planes
-airport.instruct_takeoff(plane)
-p airport.planes
-
-
-
-# airport.instruct_takeoff
-# p storm?
 # p airport.planes
-# p plane.takeoff.status
+airport.instruct_takeoff(plane1)
+# p airport.planes
+airport2.instruct_land(plane1)
+# p airport2.planes
+airport2.instruct_takeoff(plane2)
