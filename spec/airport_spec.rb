@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
+  let(:Airport){described_class}
   context 'initial settings' do
     it {should respond_to(:land).with(1).argument}
     it {should respond_to(:take_off)}
@@ -34,7 +35,6 @@ describe Airport do
     let (:plane){double(:plane)}
     before(:each) do
       allow(plane).to receive(:land)
-      # allow(plane).to receive(:flying=).with(false)
       allow(plane).to receive(:flying?).and_return(true || false)
     end
     it 'plane that has landed is in airport' do
@@ -45,7 +45,7 @@ describe Airport do
     it 'last plane landed is not flying' do
       airport.land(plane)
       allow(plane).to receive(:flying?).and_return(false)
-      expect(airport.send(:planes).last).to_not be_flying
+      expect(airport.last_plane).to_not be_flying
     end
 
     it 'raises an error if plane is not flying' do
@@ -72,7 +72,7 @@ describe Airport do
       allow(plane).to receive(:flying?).and_return(true)
       airport.land(plane)
       allow(plane).to receive(:flying?).and_return(false)
-      plane = airport.send(:planes).last
+      plane = airport.last_plane
     end
 
     it 'plane that has taken off is flying' do
