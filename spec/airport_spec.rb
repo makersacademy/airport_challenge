@@ -6,8 +6,8 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:landed) { double(:aircraft, landed: true, change_status: nil) }
   let(:airbourne) { double(:aircraft, landed: false, change_status: nil) }
-  let(:sunny) { double(:weather, stormy: false) }
-  let(:storm) { double(:weather, stormy: true) }
+  let(:sunny) { double(:weather, stormy?: false) }
+  let(:storm) { double(:weather, stormy?: true) }
 
   # unit tests
   describe '#initialize' do
@@ -33,7 +33,7 @@ describe Airport do
       expect{airport.land(landed)}.to raise_error message
     end
     it 'does not allow landing if the airport is full' do
-      airport.capacity.times { airport.land airbourne }
+      airport.capacity.times { airport.land airbourne, sunny }
       message = 'Unable to instruct landing as the airport dock is full'
       expect{ airport.land(airbourne) }.to raise_error message
     end

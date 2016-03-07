@@ -43,13 +43,13 @@ class Airport
   def can_land? aircraft, weather
     raise 'The aircraft is already on the ground' if aircraft.landed
     raise 'Unable to instruct landing as the airport dock is full' if full
-    raise 'Unable to instruct landing due to severe weather' if weather.stormy
+    raise 'Unable to instruct landing due to severe weather' if weather.stormy?
   end
 
   # error handling for takeoff
   def can_takeoff? aircraft, weather
     raise 'Unable to locate the aircraft' unless @dock.include? aircraft
-    raise 'Unable to instruct landing due to severe weather' if weather.stormy
+    raise 'Unable to instruct landing due to severe weather' if weather.stormy?
   end
 
   # checks if the dock is full
