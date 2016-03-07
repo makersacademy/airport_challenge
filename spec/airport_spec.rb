@@ -29,17 +29,10 @@ describe Airport do
       expect(subject.planes[0]).to be plane
     end
 
-    it 'Checks multiple planes landing and taking off' do
-      10.times {subject.call_land(plane)}
-      allow(plane).to receive(:landed).and_return(true)
-      5.times {subject.takeoff}
-      expect(subject.planes.length).to eq 5
-    end
-
     it 'checks plane removed after takeoff' do
       subject.call_land(plane)
       allow(plane).to receive(:landed).and_return(true)
-      subject.takeoff
+      subject.takeoff(plane)
       expect(subject.planes).to eq []
     end
 
@@ -49,8 +42,8 @@ describe Airport do
       expect {subject.call_land(plane)}.to raise_error message
     end
 
-    it 'raies error if no planes available to takeoff' do
-      expect {subject.takeoff}.to raise_error 'No planes in airport'
+    it 'raises error if no planes available to takeoff' do
+      expect {subject.takeoff(plane)}.to raise_error 'No planes in airport'
     end
 
   end
@@ -60,7 +53,7 @@ describe Airport do
     it 'instructs planes to takeoff' do
       allow(plane).to receive(:landed).and_return(true)
       subject.call_land(plane)
-      expect(subject.takeoff).to eq plane
+      expect(subject.takeoff(plane)).to eq plane
     end
 
   end

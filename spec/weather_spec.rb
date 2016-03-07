@@ -2,6 +2,7 @@ require 'weather'
 
   describe Weather do
       subject(:weather) { described_class.new }
+      subject(:plane) { described_class.new }
 
     it 'should return sunny' do
       allow(subject).to receive(:rand).and_return(2)
