@@ -11,7 +11,12 @@ class Airport
   def instruct_to_land(plane)
     plane.land
     @capacity << plane
-    # return "An airplane has landed."
+    # return "An airplane has landed."  #TODO
+  end
+
+  def instruct_takeoff(plane)
+    plane.takeoff
+    # @capacity.pop
   end
 
 end

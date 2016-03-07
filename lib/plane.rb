@@ -10,6 +10,10 @@ class Plane
     @flying = false
   end
 
+  def takeoff
+    @flying = true
+  end
+
   def is_flying? # getter method
     @flying
   end
