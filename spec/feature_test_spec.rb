@@ -7,7 +7,7 @@ describe 'Feature Test' do
     plane2 = Plane.new
 
     before do
-      allow(airport.weather).to receive(:stormy?) {false}
+      allow(airport).to receive(:stormy?) {false}
       plane.take_off
       plane1.take_off
       plane2.take_off

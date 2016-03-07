@@ -1,4 +1,4 @@
-class Weather
+module Weather
 
   def stormy?
     random_weather == :stormy

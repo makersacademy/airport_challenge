@@ -3,12 +3,12 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
-  let(:weather) { double :weather }
+  # let(:weather) { double :weather }
 
     before do
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
-      allow(airport.weather).to receive(:stormy?).and_return false
+      allow(airport).to receive(:stormy?).and_return false
     end
 
     it 'has a variable capacity' do
@@ -18,7 +18,7 @@ describe Airport do
 
   context 'in stormy weather' do
     before do
-      allow(airport.weather).to receive(:stormy?).and_return true
+      allow(airport).to receive(:stormy?).and_return true
     end
 
     it 'prevents landing' do
