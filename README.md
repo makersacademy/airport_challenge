@@ -63,7 +63,7 @@ It creates an airport with a dock as an empty array. The default capacity of the
 #### - land
 It takes two arguments: aircraft (compulsory), weather (optional)
 
-It instructs the specified aircraft to (or not to) land, depending on the result of calling a private can_land? method.
+If no weather is given, it creates a random weather. It instructs the specified aircraft to (or not to) land, depending on the result of calling a private can_land? method.
 
 If no error is raised by can_land?, it
 * calls a change_status method on the aircraft
@@ -108,7 +108,7 @@ If no error is raised by can_land?, it
 #### - takeoff
 It takes two arguments: aircraft (compulsory), weather (optional)
 
-It instructs the specified aircraft to (or not to) takeoff, depending on the result of calling a private can_takeoff? method.
+If no weather is given, it creates a random weather. It instructs the specified aircraft to (or not to) takeoff, depending on the result of calling a private can_takeoff? method.
 
 If no error is raised by can_takeoff?, it
 * calls a change_status method on the aircraft
