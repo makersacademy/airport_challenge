@@ -7,13 +7,15 @@ describe Airport do
 
   context 'when weather is not stormy' do
     let(:weather) { double(:weather) }
-    before(:each) { allow(airport).to receive(:is_stormy?) { false } }
+    before(:each) do
+      allow(airport).to receive(:is_stormy?) { false }
+      allow(plane).to receive(:land)
+    end
 
     describe 'landing planes' do
 
       it 'should add planes after landing' do
         allow(plane).to receive(:landed?).and_return(false)
-        allow(plane).to receive(:land)
         airport.accept(plane)
         expect(airport.planes).to include plane
       end
@@ -21,6 +23,12 @@ describe Airport do
       it 'should not accept landed planes' do
         allow(plane).to receive(:landed?).and_return(true)
         expect{ airport.accept(plane) }.to raise_error "This plane is not currently flying."
+      end
+
+      it 'should not land at full airports' do
+        allow(plane).to receive(:landed?).and_return(false)
+        20.times { airport.accept(plane) }
+        expect{ airport.accept(plane) }.to raise_error "This airport is currently at capcity."
       end
 
     end

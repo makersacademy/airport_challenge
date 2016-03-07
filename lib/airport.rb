@@ -4,13 +4,17 @@ class Airport
 
   attr_reader :planes
 
-  def initialize
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def accept(plane)
     fail "This plane is not currently flying." if plane.landed?
     fail "This plane cannot depart due to adverse weather conditions" if is_stormy?
+    fail "This airport is currently at capcity." if at_capacity?
     plane.land
     planes << plane
   end
@@ -28,6 +32,10 @@ class Airport
 
   def is_stormy?
     Weather.new.stormy?
+  end
+
+  def at_capacity?
+    self.planes.count == @capacity
   end
 
 end
