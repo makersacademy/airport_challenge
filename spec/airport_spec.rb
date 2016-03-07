@@ -1,7 +1,7 @@
 require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane) { double(:plane, land: true) }
+  let(:plane) { double(:plane, land: true, take_off: true) }
   let(:weather) { double(:weather) }
 
   describe 'Capacity tests' do
@@ -39,7 +39,6 @@ describe Airport do
     context 'when the airport is full' do
       it 'prevents landing' do
         subject = described_class.new(0)
-        allow(plane).to receive(:land)
         message = 'Cannot land since airport is full'
         expect { subject.land plane }.to raise_error message
       end
@@ -48,7 +47,6 @@ describe Airport do
     context 'when the weather is stormy' do
       it 'prevents landing' do
         allow(subject.weather).to receive(:stormy?).and_return(true)
-        allow(plane).to receive(:land)
         message = 'Unable to land due to stormy weather'
         expect { subject.land plane }.to raise_error message
       end
@@ -65,7 +63,6 @@ describe Airport do
 
     context 'when plane has already taken off' do
       it 'tells the pilot he is drunk' do
-        allow(plane).to receive(:take_off)
         subject.take_off plane
         expect(subject.has_plane?(plane)).to be false
       end
@@ -73,7 +70,6 @@ describe Airport do
 
     context 'after take off is authorized' do
       it 'confirms the plane has taken off' do
-        allow(plane).to receive(:take_off)
         confirmation = "#{plane} has departed from #{subject}"
         expect(subject.take_off(plane)).to eq confirmation
       end
@@ -82,7 +78,6 @@ describe Airport do
     context 'when weather is stormy' do
       it 'prevents takeoff' do
         allow(subject.weather).to receive(:stormy?).and_return(true)
-        allow(plane).to receive(:take_off)
         message = 'Unable to take off due to stormy weather'
         expect { subject.take_off plane }.to raise_error message
       end

@@ -5,10 +5,10 @@ class Airport
 
   attr_reader :capacity, :weather
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
     @capacity = capacity
     create_aprons # The place where the planes park is called apron.
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land plane
@@ -20,7 +20,7 @@ class Airport
   end
 
   def has_plane? plane
-    check_aprons plane
+    check_planes plane
   end
 
   private
@@ -31,31 +31,29 @@ class Airport
     @planes = []
   end
 
-  def check_aprons plane
+  def check_planes plane
     planes.include? plane
   end
 
   def can_land? plane
-    fail 'Plane already in the airport' if check_aprons plane
     fail 'Cannot land since airport is full' if full?
     fail 'Unable to land due to stormy weather' if weather.stormy?
     landing_authorized plane
   end
 
   def landing_authorized plane
-    plane.land
+    plane.land self
     planes << plane
     "#{plane} landed at #{self}"
   end
 
   def can_take_off? plane
-    fail 'Plane not in the airport' unless check_aprons plane
     fail 'Unable to take off due to stormy weather' if weather.stormy?
     take_off_authorized plane
   end
 
   def take_off_authorized plane
-    plane.take_off
+    plane.take_off self
     planes.delete(plane)
     "#{plane} has departed from #{self}"
   end
