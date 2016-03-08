@@ -1,20 +1,22 @@
 require 'weather'
 
 describe Weather do
-  describe '#stormy?' do
+  subject(:weather) { described_class.new }
 
+
+  describe '#stormy?' do
     it 'is expected to yield a boolean value' do
-      expect(Weather.stormy?).not_to eq nil
+      expect(weather.stormy?).not_to eq nil
     end
 
     it 'is expected to return true with bad weather' do
-      allow(subject).to receive(:stormy?).and_return(true)
-      expect(subject).to be_stormy
+      allow(Kernel).to receive(:rand).and_return(4)
+      expect(weather).to be_stormy
     end
 
     it 'is expected to return false with good weather' do
-      allow(subject).to receive(:stormy?).and_return(false)
-      expect(subject).not_to be_stormy
+      allow(Kernel).to receive(:rand).and_return(1)
+      expect(weather).not_to be_stormy
     end
   end
 end

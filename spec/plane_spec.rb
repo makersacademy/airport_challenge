@@ -1,40 +1,35 @@
 require 'plane'
 
 describe Plane do
+  subject(:plane) { described_class.new }
   let(:airport) { double(:Airport) }
 
   describe '#land' do
-    it { is_expected.to respond_to(:land).with(1).argument}
-
     it 'lands only when flying' do
-      subject.land airport
+      plane.land airport
       message = "Already landed!"
-      expect{subject.land airport}.to raise_error message
+      expect{plane.land airport}.to raise_error message
     end
   end
 
   describe '#landed?' do
-    it { is_expected.to respond_to(:landed?) }
-
     it 'displays that it has landed when at an airport' do
-      subject.land airport
-      expect(subject).to be_landed
+      plane.land airport
+      expect(plane).to be_landed
     end
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off).with(1).argument }
-
     it 'leaves only when commanded by relevant airport' do
-      subject.land airport
+      plane.land airport
       message = "Wrong airport giving instructions"
-      expect{subject.take_off 'somewhere_else'}.to raise_error message
+      expect{plane.take_off 'somewhere_else'}.to raise_error message
     end
 
     it 'is no longer at an airport' do
-      subject.land airport
-      subject.take_off airport
-      expect(subject).not_to be_landed
+      plane.land airport
+      plane.take_off airport
+      expect(plane).not_to be_landed
     end
   end
 end

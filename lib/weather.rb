@@ -1,5 +1,5 @@
 class Weather
-  def self.stormy?
-    rand(1..4) % 4 == 0
+  def stormy?
+    Kernel.rand(1..4) % 4 == 0
   end
 end

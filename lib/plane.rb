@@ -7,7 +7,7 @@ class Plane
   end
 
   def landed?
-    airport
+    !!airport
   end
 
   def take_off at_airport
