@@ -24,6 +24,11 @@ class Airport
     remove_plane(plane)
   end
  
+  
+
+private  
+attr_reader :planes, :weather, :capacity
+
   def remove_plane(plane)
      @planes.delete(plane)
   end
@@ -39,10 +44,5 @@ class Airport
   def full?
    @planes.size >= @capacity
   end
-  
-
-  
-attr_reader :planes, :weather, :capacity
-
 
 end
