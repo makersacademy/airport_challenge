@@ -28,11 +28,12 @@ Once I had completed that, I moved on to the user stories regarding the weather.
 I also did not use modules as I felt that no methods or tests were being shared by the different classes.
 
 **UPDATE**
+
 Edited landing and take off methods to be in the Airport class, refactored code and relevant tests.
 
 **Test coverage**
 
-My RSpec tests currently have a 97.54% test coverage. [![BuildStatus](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+My RSpec tests currently have a 98.36% test coverage. [![BuildStatus](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
 
 Other notes and thoughts regarding this challenge:
