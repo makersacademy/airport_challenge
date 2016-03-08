@@ -2,44 +2,37 @@ require 'plane'
 
 describe Plane do
   subject(:plane) { described_class.new } 
-  let(:not_landed_plane) { allow(subject).to receive(:landed).and_return(false) }
-  let(:landed_plane) { allow(subject).to receive(:landed).and_return(true) }
+  let(:not_landed_plane) { allow(plane).to receive(:landed).and_return(false) }
+  let(:landed_plane) { allow(plane).to receive(:landed).and_return(true) }
 
   describe '#land' do
     
-    it { is_expected.to respond_to(:land) }
- 
-    it 'should call landed' do
-      not_landed_plane
-      expect(subject).to receive(:landed)
-      subject.land 
+    it 'should set landed to be true' do
+      expect(plane.land).to eq true
     end
-    
+   
     it 'should give error if already landed' do
-      landed_plane
-      expect { subject.land }.to raise_error "hmmm, it looks like we have that plane down as already landed, can you check the reference"
+      plane.land
+      expect { plane.land }.to raise_error "That plane is already landed" 
     end  
-  
   end
-  
-  describe '#landed' do
-    
-    it { is_expected.to respond_to(:landed) }
-  
-    it 'will return false when a plane has taken off' do
-      allow(subject).to receive(:taken_off).and_return true
-      expect(subject.landed).to eq false
+
+  describe '#take_off' do
+
+    it 'should set landed to be false' do
+      plane.land
+      expect(plane.take_off).to eq false
     end
-  
+
+    it 'should give error if not landed' do
+      expect { plane.take_off }.to raise_error "That plane is not landed"
+    end
   end
-
-  describe '#take_off' do 
-
-    it { is_expected.to respond_to(:take_off) }
-  
-  end
-
 end
+    
+  
+  
+
 
 
  

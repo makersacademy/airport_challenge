@@ -19,7 +19,7 @@ class Airport
 
   def take_off(plane)
     raise "I cannae do it, she cannae handle the weather" if stormy
-    raise "error5" unless planes.include? plane
+    raise "That plane is not in this airport" unless planes.include? plane
     plane.take_off
     remove_plane(plane)
   end
