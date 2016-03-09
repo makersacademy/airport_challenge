@@ -1,91 +1,101 @@
+[![Build Status](https://travis-ci.org/kevinpmcc/airport_challenge.svg?branch=master)](https://travis-ci.org/kevinpmcc/airport_challenge)
+
 Airport Challenge
-=================
+------------------
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+What is it?
+------------
+This project is built to simulate an airport. Functionality is as follows:
 
-```
+* planes can land 
+* planes can take off
+* can see all planes landed
+* can see if plane has landed or taken off
+* allow no planes to land or take off if weather is stormy
+* set an adjustable capacity on airport, once filled no more plans can land (you
+  can set capacity by adding after creating the airport 'airport = Airport.new
+50' will set capacity to 50. If no capacity is set it will default to 20.
+* edge cases covered
+    - planes not in that airport cannot take-off
+    - planes that are landed cannot land again 
+  
 
-Instructions
----------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
 
-Steps
--------
+Approach
+------------
+Based on the user stories I took the air traffic controller to be the person
+entering commands into the program, and passengers as being irrelevant to the
+fucntionality at this stage.
+I went through each user story and created domain models and diagrams showing
+interactions between objects with messages.
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+I ended up with 3 classes. Airport, Plane, Weather. Airport has the most
+functionality instigating all landing and taking off of planes. Weather has a
+random number generator and there is a 1 in 6 chance of the weather being
+stormy.
 
-Task
------
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Documentation
+------------
+Ruby v2.2.1
+Rspec v3.4.2 - for unit tests
+Feature tests were run manually from a ruby file in the spec folder
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+Installation
+------------
+you can clone the entire repo
+<pre><code>
+git clone 'https://github.com/kevinpmcc/airport_challenge.git'
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+to run tests
+'rspec'
+from the parent project folder.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+to feature test you can use irb or pry or another REPL tool
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+kevinmccarthy$ irb
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
+2.2.3 :001 > require './lib/plane.rb'
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+ => true 
+ 
+2.2.3 :002 > require './lib/airport.rb'
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+ => true 
+ 
+2.2.3 :003 > require './lib/weather.rb'
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+ => false 
+ 
+2.2.3 :004 > plane = Plane.new
 
-Please create separate files for every class, module and test suite.
+ => #<Plane:0x007fd80309d908 @landed=false, @taken_off=false> 
+ 
+2.2.3 :005 > airport = Airport.new
 
-In code review we'll be hoping to see:
+ => #<Airport:0x007fd80308e188 @capacity=20, @planes=[],
+@weather=#<Weather:0x007fd80308e138 @stormy=false>> 
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+2.2.3 :006 > airport.land(plane)
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+ => [#<Plane:0x007fd80309d908 @landed=true, @taken_off=false>] 
+ 
+2.2.3 :007 > airport.take_off(plane)
 
-**BONUS**
+ => #<Plane:0x007fd80309d908 @landed=false, @taken_off=true> 
+2.2.3 :008 > 
+</code></pre>
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+from there have a look through the files and enjoy.
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+Author
+------------
+Kevin McCarthy
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Contacts
+------------
+kevinpatrickmccarthy@gmail.com
+https://github.com/kevinpmcc
