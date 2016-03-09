@@ -5,13 +5,13 @@ class Plane
   end
 
   def land
-    raise "hmmm, it looks like we have that plane down as already landed, can you check the reference" if landed
+    raise "That plane is already landed" if landed
     change_plane_status
   end
 
 
   def take_off
-    raise "hmmm, it looks like we have that plane down as not landed, can you check the reference" if @landed == false
+    raise "That plane is not landed" if !landed
     change_plane_status
   end
 
