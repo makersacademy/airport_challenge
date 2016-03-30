@@ -1,4 +1,4 @@
-describe ("airport", function() {
+describe ("airport when weather is not stormy", function() {
 
   var airport;
   var plane;
@@ -6,6 +6,9 @@ describe ("airport", function() {
   beforeEach(function(){
     airport = new Airport();
     plane = new Plane();
+    weather = new Weather();
+    spyOn(Math, "random").and.returnValue(1);
+
   });
 
   it("default_capacity defaults to 5", function(){
@@ -26,4 +29,33 @@ describe ("airport", function() {
     expect(function(){airport.land(plane)}).toThrow("Hanger is full");
   })
 
+  it("cannot takeoff a plane when hanger is empty", function(){
+    expect(function(){airport.takeoff(plane)}).toThrow("Hanger is empty");
+  })
+
 });
+
+describe ("airport when weather is stormy", function() {
+
+  var airport;
+  var plane;
+
+  beforeEach(function(){
+    airport = new Airport();
+    plane = new Plane();
+    weather = new Weather();
+    airport.land(plane);
+    spyOn(Math, "random").and.returnValue(0);
+
+  });
+
+  it("cannot land plane", function(){
+    expect(function(){airport.land(plane)}).toThrow("Weather is stormy");
+  })
+
+  it("cannot take off plane", function(){
+    expect(function(){airport.takeoff(plane)}).toThrow("Weather is stormy");
+  })
+
+});
+
