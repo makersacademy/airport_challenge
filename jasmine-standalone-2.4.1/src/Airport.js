@@ -8,6 +8,7 @@ Airport.prototype.full = function(){
 }
 
 Airport.prototype.land = function(plane){
+  if(this.full() === true){throw "Hanger is full"};
     this.hanger.push(plane);
   }
 

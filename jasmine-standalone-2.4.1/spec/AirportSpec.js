@@ -21,4 +21,9 @@ describe ("airport", function() {
     expect(airport.hanger).toContain(plane);
   })
 
+  it("throws error if hanger is full", function(){
+    for(i=1; i<=5;i++){airport.land(plane)};
+    expect(function(){airport.land(plane)}).toThrow("Hanger is full");
+  })
+
 });
