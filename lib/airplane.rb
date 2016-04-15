@@ -5,7 +5,11 @@ class Airplane
   end
 
   def land(airport)
-    airborn = false
+    @airborn = false
+  end
+
+  def takeoff
+    @airborn = true
   end
 
   def airborn?
