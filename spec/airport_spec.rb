@@ -49,4 +49,14 @@ describe Airport do
 			end
 		end
 
+		context 'when dispatching a plane' do
+			context 'when weather is good' do
+				it '#dispatch should release the plane from its landed array' do
+					airport_with_goodweather.receive(plane)
+					airport_with_goodweather.dispatch(plane)
+					expect(airport_with_goodweather.landed).not_to include plane
+				end
+			end
+		end
+
 end
