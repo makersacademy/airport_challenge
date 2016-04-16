@@ -1,6 +1,6 @@
 class Airport
 
-  ERR_ALREADY_LANDED = "plane already landed"
+  ERR_ALREADY_LANDED = "plane already landed".freeze
 
   attr_reader :planes_at_airport
 
@@ -8,7 +8,8 @@ class Airport
     @planes_at_airport = []
   end
 
-  def take_off(plane)
+  def instruct_takeoff(plane)
+    plane.takeoff
     planes_at_airport.delete(plane)
   end
 

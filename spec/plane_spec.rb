@@ -11,4 +11,12 @@ describe Plane do
       expect(subject.landed?).to be true
     end
   end
+
+  context 'when instructed to take off' do
+
+    it 'is flying' do
+      subject.takeoff
+      expect(subject.landed?).to be false
+    end
+  end
 end
