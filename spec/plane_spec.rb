@@ -23,8 +23,12 @@ describe Plane do
 			plane.land(airport)
 			expect(plane.location).to eq airport
 		end
-		it '#land should return a status update explaining that the plan landed successfully' do
+		it '#land should return a status update explaining that the plane landed successfully' do
 			expect(plane.land(airport)).to eq "Plane landed successfully..."
+		end
+		it '#land_fails should return a status update explaining why the plane didn\'t land' do
+			expect(plane.land_fails("full")).to eq "Plane failed to land because airport is already full"
+			expect(plane.land_fails("weather")).to eq "Plane failed to land because of bad weather"
 		end
 	end
 
