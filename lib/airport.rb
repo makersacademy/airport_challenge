@@ -13,14 +13,20 @@ DEFAULT_CAPACITY = 50
 
   def instruct_takeoff
     fail "No planes in airport" if empty?
+    fail "Stormy weather" if stormy?
     planes.pop
   end
 
   def instruct_landing(plane)
     fail "Airport full" if full?
+    fail "Stormy weather" if stormy?
      planes << plane
   end
 
+  def stormy?
+    #Chance of storms is 20%
+    (Random.new(5)) == 0 ? true : false
+  end
 
   private
 

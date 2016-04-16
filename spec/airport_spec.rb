@@ -31,6 +31,12 @@ let(:airport) { described_class.new}
     it 'raises an error when there are no planes to take off' do
       expect { airport.instruct_takeoff }.to raise_error 'No planes in airport'
     end
+
+    it 'raises an error when plane tries to take off in story weather' do
+      airport.instruct_landing(Plane.new)
+      allow(airport).to receive(:stormy?) { true }
+      expect { airport.instruct_takeoff }.to raise_error 'Stormy weather'
+    end
   end
 
   describe '#instruct_landing' do
@@ -60,13 +66,18 @@ let(:airport) { described_class.new}
       airport.capacity.times {airport.instruct_landing(plane)}
       expect { airport.instruct_landing(plane) }.to raise_error 'Airport full'
     end
+
+    it 'raises an error when plane tries to land in stormy weather' do
+      allow(airport).to receive(:stormy?) { true }
+      plane = Plane.new
+      expect { airport.instruct_landing(plane) }.to raise_error 'Stormy weather'
+    end
   end
 
   it 'has default capacity (if no capacity set at initialization' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-   #optional
   it 'changes capacity of airport' do
     airport.capacity = 52
     52.times {airport.instruct_landing(Plane.new)}
