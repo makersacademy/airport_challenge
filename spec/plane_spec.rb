@@ -17,12 +17,14 @@ describe Plane do
     end
 
     it 'returns true if plane is flying' do
-      plane.take_off
-      expect(plane).to be_flying
+      expect(plane.take_off).to be_flying
     end
 
     it 'returns false if plane isn\'t flying' do
-      plane.land
+      expect(plane.land).not_to be_flying
+    end
+
+    it 'expect plane not to be flying as default' do
       expect(plane).not_to be_flying
     end
 

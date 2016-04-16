@@ -21,10 +21,15 @@ let(:airport) { described_class.new}
       expect(airport).to respond_to :instruct_takeoff
     end
 
+    it 'instructs a plane to take off' do
+      plane = Plane.new
+      airport.instruct_landing(plane)
+      expect(airport.instruct_takeoff).to eq plane
+    end
+
     it 'instructs a plane to take off, which is then flying' do
       airport.instruct_landing(Plane.new)
       plane = airport.instruct_takeoff
-      plane.take_off
       expect(plane).to be_flying
     end
 
@@ -49,8 +54,8 @@ let(:airport) { described_class.new}
 
     it 'instructs a plane to land, which is then no longer flying' do
       plane = Plane.new
+      plane.take_off
       airport.instruct_landing(plane)
-      plane.land
       expect(plane).not_to be_flying
     end
 

@@ -14,18 +14,19 @@ DEFAULT_CAPACITY = 50
   def instruct_takeoff
     fail "No planes in airport" if empty?
     fail "Stormy weather" if stormy?
-    planes.pop
+    planes.pop.take_off
   end
 
   def instruct_landing(plane)
     fail "Airport full" if full?
     fail "Stormy weather" if stormy?
+     plane.land
      planes << plane
   end
 
   def stormy?
     #Chance of storms is 20%
-    (Random.new(5)) == 0 ? true : false
+    Random.new(5) == 0 ? true : false
   end
 
   private
@@ -33,7 +34,7 @@ DEFAULT_CAPACITY = 50
   attr_reader :planes
 
   def full?
-    planes.count >= @capacity
+    planes.count >= capacity
   end
 
   def empty?
