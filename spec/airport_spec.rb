@@ -45,4 +45,19 @@ describe Airport do
     plane = Plane.new
     expect(plane.landed?).to eq(false)
   end
+
+  it 'landed planes should be stored in the airport' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.planes).to include(plane)
+  end
+
+  it 'planes which have taken off should no longer be in the airport' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    (subject.planes).should_not include(plane)
+  end
+
+
 end
