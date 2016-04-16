@@ -5,6 +5,6 @@ class Weather
 
   private
   def self.weather_severity
-    rand(0..10)
+    rand(10)
   end
 end

@@ -22,12 +22,18 @@ describe Plane do
 
   describe "#land" do
     it "location will be 'airport' after landing" do
+      subject.take_off
       subject.land
       expect(subject.broadcast_location).to eq "airport"
     end
 
     it "have a nil return value" do
+      subject.take_off
       expect(subject.land).to eq nil
+    end
+
+    it "only planes in the sky can land" do
+      expect{subject.land}.to raise_error("I haven't taken off yet mate")
     end
   end
 
@@ -39,6 +45,11 @@ describe Plane do
 
     it "have a nil return value" do
       expect(subject.take_off).to eq nil
+    end
+
+    it "flying planes can't take off" do
+      subject.take_off
+      expect{subject.take_off}.to raise_error("I'm already up here mate")
     end
   end
 end

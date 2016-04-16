@@ -1,17 +1,16 @@
 require 'weather'
 
-srand(1234)
-
 describe Weather do
 
   describe '.is_sunny?' do
     it 'returns true when weather_severity < 5' do
-      expect(Weather).to be_sunny #random set to 3
+      allow(Weather).to receive(:weather_severity).and_return(3)
+      expect(Weather).to be_sunny
     end
 
     it 'returns true when weather_severity > 5' do
-      expect(Weather).not_to be_sunny #random set to 6
-      expect(Weather).not_to be_sunny #random set to 5
+      allow(Weather).to receive(:weather_severity).and_return(6)
+      expect(Weather).not_to be_sunny
     end
   end
 
