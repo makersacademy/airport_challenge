@@ -1,7 +1,5 @@
 https://travis-ci.org/wrumble/airport_challenge.svg?branch=master
 
-!https://travis-ci.org/wrumble/airport_challenge.svg?branch=master!:https://travis-ci.org/wrumble/airport_challenge
-
 Airport Challenge
 =================
 
