@@ -11,6 +11,9 @@ describe Airport do
     end
 
     it 'has the plane after landing' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.planes).to include plane
 
     end
 
