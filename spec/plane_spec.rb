@@ -6,21 +6,13 @@ describe Plane do
   it { is_expected.to respond_to :takeoff}
 
   describe '#land' do
-    it 'is able to land' do
-
-    end
-
-    it 'can not land when the weather is stormy' do
+    it 'changes status when landing' do
 
     end
   end
 
   describe '#takeoff' do
-    it 'is able to takeoff' do
-
-    end
-
-    it 'can not take off when the weather is stormy' do
+    it 'changes status when taking off' do
 
     end
   end
