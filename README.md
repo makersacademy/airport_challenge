@@ -1,3 +1,4 @@
+Current Travis CI Status: [![Build Status](https://travis-ci.org/letianw91/airport_challenge.svg?branch=master)](https://travis-ci.org/letianw91/airport_challenge)
 Airport Challenge
 =================
 
