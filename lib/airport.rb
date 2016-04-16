@@ -43,6 +43,10 @@ class Airport
     else
       'Sunny'
     end
+    storm(plane)
+  end
+
+  def storm(plane)
     if @weather == "Stormy" && plane.ground
       fail "Planes cannot take off due to stormy weather"
     elsif @weather == "Stormy" && !plane.ground
