@@ -28,7 +28,7 @@ describe Airport do
     end
 
     it 'allows for capacity to be changed when creating a new airport' do
-      ap = Airport.new(3)
+      ap = described_class.new(3)
       allow(ap).to receive(:rand) {5}
       3.times {ap.land(flyplane)}
       expect(ap.planes).to eq [flyplane,flyplane,flyplane]
@@ -56,6 +56,7 @@ describe Airport do
     end
 
     it 'only allows a plane to land if it is currently flying' do
+      allow(subject).to receive(:rand) {5}
       expect {subject.land(groundplane)}.to raise_error("This plane is not in the air")
     end
   end
@@ -82,8 +83,10 @@ describe Airport do
     end
 
     it 'only allows planes to take off if they parked there' do
-      port1 = Airport.new
-      port2 = Airport.new
+      port1 = described_class.new
+      port2 = described_class.new
+      allow(port1).to receive(:rand) {5}
+      allow(port2).to receive(:rand) {5}
       port1.land(plane)
       port2.land(flyplane)
       expect {port2.takeoff(plane)}.to raise_error("That plane is not at this airport")
