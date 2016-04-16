@@ -1,7 +1,5 @@
 class Airport
 
-  #ERR_ALREADY_LANDED = "plane already landed".freeze
-  #ERR_PLANE_NOT_FOUND = "plane not at the airport".freeze
   DEFAULT_CAPACITY = 20
 
   attr_reader :planes_at_airport, :capacity
@@ -12,13 +10,13 @@ class Airport
   end
 
   def instruct_takeoff(plane)
-    return if stormy? or !in_airport?(plane)
+    return if stormy? || !in_airport?(plane)
     plane.takeoff
     leave_airport(plane)
   end
 
   def instruct_land(plane)
-    return if stormy? or full? or in_airport?(plane)
+    return if stormy? || full? || in_airport?(plane)
     plane.land
     access_airport(plane)
   end

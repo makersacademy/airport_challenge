@@ -6,7 +6,6 @@ describe Airport do
 
   subject(:airport) { Airport.new }
   subject(:customised_airport) {Airport.new(37)}
-  #allow(airport).to receive(:stormy?) { false }
 
   context 'when first created' do
     it 'has no planes' do
@@ -15,29 +14,22 @@ describe Airport do
   end
 
   context 'planes standard behaviour' do
-    #allow(airport).to receive(:stormy?) { false }
     it 'after take-off plane no longer at airport' do
       allow(airport).to receive(:stormy?) { false }
-      #puts "initial status airport.planes@airport: #{airport.planes_at_airport}"
       airport.planes_at_airport << landed_plane
-      #puts "airport.planes@airport: #{airport.planes_at_airport}"
       airport.instruct_takeoff(landed_plane)
       expect(airport.planes_at_airport).not_to include landed_plane
-      #puts "after takeoff, list of planes: #{airport.planes_at_airport}"
     end
 
     it 'after landing plane is at airport' do
       allow(airport).to receive(:stormy?) { false }
-      #puts "initial status airport.planes@airport: #{airport.planes_at_airport}"
       airport.instruct_land(flying_plane)
       expect(airport.planes_at_airport).to include flying_plane
-      #puts "after landing, list of planes: #{airport.planes_at_airport}"
     end
   end
   context 'edge cases' do
     it 'a plane cannot land if already landed' do
       allow(airport).to receive(:stormy?) { false }
-      #puts "initial status airport.planes@airport: #{airport.planes_at_airport}"
       airport.planes_at_airport << landed_plane
       expect(airport.planes_at_airport.count(landed_plane)).to eq 1
     end
