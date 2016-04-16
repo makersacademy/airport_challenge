@@ -1,21 +1,36 @@
-# Creation of two different airports with a capacity of 10 planes
-# When initializing, each airport contains 2 planes
+# Feature tests
+
 cdg = Airport.new("CDG", Plane)
 lhr = Airport.new("LHR", Plane)
 
-# A plane is ready for taking off if the weather is sunny
+puts "Creation of the airports"
+puts "Planes at #{cdg.name}:\n#{cdg.planes}"
+puts "Planes at #{lhr.name}:\n#{lhr.planes}"
+puts
+
+puts "A plane is ready for taking off if the weather is sunny"
 plane1 = cdg.planes.first
-p plane1.take_off(cdg)
+puts plane1.take_off(cdg)
+puts
 
-# After releasing the plane, the plane status is :flying and is not 
+puts "CDG has now only 1 plane"
+puts "Planes at #{cdg.name}:\n#{cdg.planes}"
+puts
+
+# After releasing the plane, the plane status is :flying and is not anymore
 # on the available planes for that airport
-p plane1
-puts "Planes at #{cdg.name}: #{cdg.planes}"
+puts "Status of plane #{plane1}: #{plane1.status}"
+puts "Planes at #{cdg.name}:\n#{cdg.planes}"
+puts
 
-# The plane that left cdg is about to land at lhr if the weather is sunny
-p plane1.land(lhr)
-p plane1
-puts "Planes at #{lhr.name}: #{lhr.planes}"
+puts "At this point, LHR still has 2 planes landed"
+puts "Planes at #{lhr.name}:\n#{lhr.planes}"
+puts
+
+puts "The plane that left CDG is about to land at LHR if the weather is sunny"
+puts plane1.land(lhr)
+puts "Status of plane #{plane1}: #{plane1.status}"
+puts "Planes at #{lhr.name}:\n#{lhr.planes}"
 
 
 
