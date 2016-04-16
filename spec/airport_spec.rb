@@ -8,7 +8,6 @@ describe Airport do
 
   describe '#land plane' do
 
-      end
   end
 
 end
