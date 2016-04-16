@@ -1,5 +1,4 @@
 class Plane
-
   def landed?
     @present = true
   end
