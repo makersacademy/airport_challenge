@@ -1,9 +1,8 @@
 require 'plane'
 
 describe Plane do
-    it { is_expected.to respond_to :land }
 
-    it { is_expected.to respond_to :landed? }
+  describe "#land" do
 
     it 'is expected to respond to #landed with true if landed' do
       subject.land
@@ -14,7 +13,7 @@ describe Plane do
       subject.landed = false
       expect(subject.landed?).to eq false
     end
-
+end
 
 
 end
