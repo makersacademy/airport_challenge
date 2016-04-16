@@ -14,6 +14,7 @@ class Airport
 
   def takeoff(plane)
     weather_calc(plane)
+    parked_here?(plane)
     empty?
     plane.takeoff
     @planes.delete(plane)
@@ -21,6 +22,7 @@ class Airport
 
   def land(plane)
     weather_calc(plane)
+    flying?(plane)
     full?
     plane.land
     @planes << plane
@@ -45,6 +47,18 @@ class Airport
       fail "Planes cannot take off due to stormy weather"
     elsif @weather == "Stormy" && !plane.ground
       fail "Planes cannot land due to stormy weather"
+    end
+  end
+
+  def parked_here?(plane)
+    if !@planes.include?(plane) && !@planes.empty?
+      fail "That plane is not at this airport"
+    end
+  end
+
+  def flying?(plane)
+    if plane.ground
+      fail "This plane is not in the air"
     end
   end
 end
