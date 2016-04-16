@@ -4,6 +4,7 @@ class Plane
 
 	def initialize
 		@landed = false
+		@location = "sky"
 	end
 
 	def try_to_land(airport)
@@ -25,7 +26,7 @@ class Plane
 	end
 
 	def try_to_takeoff
-		location.dispatch(self)
+		location.dispatch(self) if location != "sky"
 	end
 
 	def landed?
