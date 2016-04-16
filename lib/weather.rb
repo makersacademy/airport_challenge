@@ -1,6 +1,6 @@
 class Weather
 
-def is_stormy?
+def stormy?
 end
 
 end
