@@ -27,15 +27,16 @@ describe Airport do
   
   context "using Chicago TDD" do
     it "instruct a plane to land and confirm that it has landed" do
+      plane2.take_off
       airport.receive_plane(plane2)
       expect(airport.planes).to include plane2
-      expect(plane2.land).to eq "Landed"
+      expect(plane2.land).to eq :landed
     end
     
     it "instruct a plane to take-off and confirm that it is flying" do
       airport.release_plane(plane2)
       expect(airport.planes).not_to include plane2
-      expect(plane2.take_off).to eq "Flying"
+      expect(plane2.take_off).to eq :flying
     end
     
   end

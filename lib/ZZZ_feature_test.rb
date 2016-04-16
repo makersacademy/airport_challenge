@@ -19,3 +19,9 @@ p airport.planes
 # As an air traffic controller 
 # To ensure safety 
 # I want to prevent takeoff when weather is stormy 
+
+# when a plane is created, its status is :landed
+plane2 = Plane.new
+p plane2.status
+p plane2.take_off
+p plane2.take_off
