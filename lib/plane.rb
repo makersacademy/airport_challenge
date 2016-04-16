@@ -1,15 +1,19 @@
 class Plane
 
+  def initialize
+    @grounded = false
+  end
+
   def take_off
-    @land = false
+    @grounded = false
   end
 
   def land
-    @land = true
+    @grounded = true
   end
 
-  def landed?
-    @land
+  def in_airport?
+    @grounded
   end
 
 
