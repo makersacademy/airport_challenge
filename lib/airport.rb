@@ -7,8 +7,8 @@ class Airport
 		@capacity = capacity
 	end
 
-	def receive(plane)
-		if plane.stormy?
+	def receive(plane,weather)
+		if weather.stormy?
 			plane.land_fails("weather")
 		elsif full?
 			plane.land_fails("full")
