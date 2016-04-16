@@ -1,11 +1,12 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   let(:airport) { described_class.new }
   let(:plane) { double(:plane) }
+  let(:plane2) { Plane.new }
   it { is_expected.to respond_to :receive_plane }
   it { is_expected.to respond_to :release_plane }
-  it { is_expected.to respond_to :check_weather }
   
   context "Using London TDD" do
     it "instruct a plane to land and confirm that it has landed" do
@@ -22,8 +23,21 @@ describe Airport do
       expect(plane.take_off).to eq "Flying"
     end
     
-    it "checks the wheather" do
-      expect(airport.check_weather).to eq(:stormy).or eq(:sunny)
-    end
   end
+  
+  context "using Chicago TDD" do
+    it "instruct a plane to land and confirm that it has landed" do
+      airport.receive_plane(plane2)
+      expect(airport.planes).to include plane2
+      expect(plane2.land).to eq "Landed"
+    end
+    
+    it "instruct a plane to take-off and confirm that it is flying" do
+      airport.release_plane(plane2)
+      expect(airport.planes).not_to include plane2
+      expect(plane2.take_off).to eq "Flying"
+    end
+    
+  end
+  
 end

@@ -13,7 +13,9 @@ class Airport
     @planes.delete plane
   end
   
-  def check_weather
-    return rand(1..10) > 7 ? :stormy : :sunny
-  end
+  private
+  
+    def check_weather
+      rand(1..10) > 7 ? :stormy : :sunny
+    end
 end
