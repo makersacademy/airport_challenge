@@ -13,7 +13,7 @@ class Plane
   end
 
   def take_off
-    raise "Can't take off in stormy weather" if airport.weather == "stormy"
+    fail "Can't take off in stormy weather" if airport.weather == "stormy"
     @landed = false
     true
   end

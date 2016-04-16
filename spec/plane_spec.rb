@@ -2,11 +2,8 @@ require 'plane'
 
 
 describe Plane do
-  # let(:stormy_airport) { double(:airport, weather: "stormy") }
   let(:airport) { double(:airport, weather: "sunny") }
   let(:subject) {Plane.new(airport)}
-
-  # let(:airport) { subject.send(:airport) } #To access private instance variable bikes
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:landed?) }
@@ -32,8 +29,6 @@ describe Plane do
       end
     end
   end
-
-  #I want to prevent takeoff when weather is stormy
 
   describe '#take_off' do
     context 'plane can take off from airport' do
