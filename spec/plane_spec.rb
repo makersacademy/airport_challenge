@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane  do
-  let(:airport) { double(:airport, :land => true) }
+  let(:airport) { double(:airport, land: true) }
 
   describe '#landed_status' do
     it 'landed_status set to false when initialized' do
