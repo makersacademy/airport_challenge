@@ -7,9 +7,9 @@ describe Airport do
   it { is_expected.to respond_to :land}
   it { is_expected.to respond_to :takeoff}
 
-  let(:plane) { double(:plane, status: true, land: true, takeoff: true)}
-  let(:groundplane) { double(:plane, status: true, land: true, takeoff: true, ground: true)}
-  let(:flyplane) { double(:plane, status: true, land: true, takeoff: true, ground: false)}
+  let(:plane) { double(:plane, land: true, takeoff: true)}
+  let(:groundplane) { double(:plane, land: true, takeoff: true, ground: true)}
+  let(:flyplane) { double(:plane, land: true, takeoff: true, ground: false)}
 
   describe '#weather' do
     it 'generates the current weather when a plane is attempting to take off' do

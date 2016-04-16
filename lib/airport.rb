@@ -28,20 +28,23 @@ class Airport
 
   private
   def full?
-    raise "The airport is full" if @planes.length >= @capacity
+    fail "The airport is full" if @planes.length >= @capacity
   end
 
   def empty?
-    raise "There are no planes at the airport" if @planes.empty?
+    fail "There are no planes at the airport" if @planes.empty?
   end
 
   def weather_calc(plane)
-    if rand(20) > 17
-      @weather = 'Stormy'
+    @weather = if rand(20) > 17
+      'Stormy'
     else
-      @weather = 'Sunny'
+      'Sunny'
     end
-    raise "Planes cannot take off due to stormy weather" if @weather == "Stormy" && plane.ground
-    raise "Planes cannot land due to stormy weather" if @weather == "Stormy" && !plane.ground
+    if @weather == "Stormy" && plane.ground
+      fail "Planes cannot take off due to stormy weather"
+    elsif @weather == "Stormy" && !plane.ground
+      fail "Planes cannot land due to stormy weather"
+    end
   end
 end
