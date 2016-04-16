@@ -15,4 +15,10 @@ describe Airport do
     expect(plane.location).to eq(subject)
   end
 
+  it 'landing a plane should set landed? to true' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(plane.landed?).to eq(true)
+  end
+
 end

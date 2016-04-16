@@ -6,7 +6,11 @@ attr_accessor :location
   end
 
   def landed?
-    true
+    if @location != nil
+      true
+    else
+      false
+    end
   end
 
 end
