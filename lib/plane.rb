@@ -15,6 +15,7 @@ class Plane
   	if flying?
   		return false
   	end
+  	@state = :in_air
   end    
 
   def flying?
