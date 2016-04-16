@@ -3,6 +3,7 @@ require 'plane'
 
 describe Airport do
 
+
   describe '#land' do
 
     #I want to instruct a plane to land at an airport and confirm that it has landed
@@ -25,11 +26,21 @@ describe Airport do
 
     #I want to prevent landing when the airport is full
     it 'prevents landing when airport is full' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      plane3 = Plane.new
+      #subject.capacity.times { subject.land(plane) } cannot run this now, as we will get the error "Plane already landed"
+      subject.land(plane1)
+      subject.land(plane2)
       message = "Airport full"
-      plane = Plane.new
-      subject.capacity.times { subject.land(plane) }
-      expect{subject.land(plane)}.to raise_error message
+      expect{subject.land(plane3)}.to raise_error message
+    end
 
+    it 'a plane that has landed cannot land again' do
+      plane = Plane.new
+      subject.land(plane)
+      message = "Plane already landed"
+      expect { subject.land(plane) } .to raise_error message
     end
 
 
@@ -51,17 +62,25 @@ describe Airport do
       expect(subject.planes).to_not include plane
     end
 
+    it 'a plane can only take off from an airport it is in' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      subject.land(plane2)
+      message = "Plane not at airport"
+      expect { subject.take_off(plane1) } .to raise_error message
+    end
+
     #I want to prevent takeoff when weather is stormy
     it 'prevents take off when weather is stormy' do
 
     end
 
     it 'prevents take off when airport is empty' do
-      message = "Airport empty"
       plane = Plane.new
+      message = "Airport empty"
       expect { subject.take_off(plane) } .to raise_error message
-
     end
+
 
   end
 
