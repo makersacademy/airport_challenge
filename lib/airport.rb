@@ -8,14 +8,15 @@ class Airport
   end
 
   def land(plane)
-    raise 'Airport full' if airport_full?
+    fail 'Airport full' if airport_full?
+    fail 'Plane cannot land in stormy weather' if stormy?
     @planes << plane
     plane.landed
   end
 
   def take_off(plane)
-    raise 'All planes have taken off' if airport_empty?
-    raise 'Plane cannot take off in stormy weather' if stormy?
+    fail 'All planes have taken off' if airport_empty?
+    fail 'Plane cannot take off in stormy weather' if stormy?
     plane.take_off
     @planes.delete(plane)
   end
