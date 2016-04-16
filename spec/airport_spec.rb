@@ -5,6 +5,7 @@ describe Airport do
   let(:plane) { double(:plane) }
   it { is_expected.to respond_to :receive_plane }
   it { is_expected.to respond_to :release_plane }
+  it { is_expected.to respond_to :check_weather }
   
   context "Using London TDD" do
     it "instruct a plane to land and confirm that it has landed" do
@@ -19,6 +20,10 @@ describe Airport do
       airport.release_plane(plane)
       expect(airport.planes).not_to include plane
       expect(plane.take_off).to eq "Flying"
+    end
+    
+    it "checks the wheather" do
+      expect(airport.check_weather).to eq(:stormy).or eq(:sunny)
     end
   end
 end
