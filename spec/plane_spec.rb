@@ -6,20 +6,18 @@ describe Plane do
   it { is_expected.to respond_to :land}
   it { is_expected.to respond_to :takeoff}
 
-  let(:ap) { double(:ap, takeoff: subject.takeoff, land: subject.land)}
-
   describe '#land' do
     it 'changes status when landing' do
-      ap.takeoff(subject)
-      
+      subject.takeoff
+      subject.land
       expect(subject.ground).to eq true
     end
   end
 
   describe '#takeoff' do
     it 'changes status when taking off' do
-      ap.land(subject)
-      ap.takeoff(subject)
+      subject.land
+      subject.takeoff
       expect(subject.ground).to eq false
     end
   end
