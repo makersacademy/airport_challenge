@@ -1,15 +1,11 @@
 require 'plane'
 describe Plane do
-  describe '#take_off' do
-    it 'expects false when a planes has taken off' do
-      expect(Plane.new.take_off).to eq false
-    end
+  it 'is expected to confirm its presence when landed' do
+   expect(subject.landed?).to be true
+ end
+  it 'is expected to confirm its no presence has taken off' do
+    expect(subject.took_off?).to be false
   end
-  describe '#land' do
-    it {is_expected.to respond_to :land}
-    it 'expects true when a plane has landed' do
-      expect(Plane.new.land).to eq true
-    end
-  end
+
 
 end
