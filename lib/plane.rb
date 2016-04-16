@@ -1,6 +1,18 @@
 class Plane
-  def take_off
+  def initialize
+    @landed = false
   end
-  def land
+    def took_off?
+      @landed = false
+    end
+
+    def landed?
+      @landed
+    end
+
+  def reported_landed
+    @landed = true
   end
+    private
+  attr_reader :landed
 end
