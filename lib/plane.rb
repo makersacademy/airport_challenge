@@ -35,6 +35,10 @@ class Plane
 		"Plane has successfully departed..."
 	end
 
+	def take_off_fails
+		"Plane failed to take off because of bad weather"
+	end
+
 	def landed?
 		@landed
 	end
