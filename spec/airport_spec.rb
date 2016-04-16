@@ -30,6 +30,19 @@ let(:airport) { described_class.new}
       plane.land
       expect(plane).not_to be_flying
     end
+
+    it 'instructs a plane to land and remembers which plane has landed' do
+      plane = Plane.new
+      airport.instruct_landing(plane)
+      expect(airport.plane).to eq plane
+    end
+
+    it 'raises an error when airport gate is full' do
+      plane = Plane.new
+      airport.instruct_landing(plane)
+      expect { airport.instruct_landing(plane) }.to raise_error 'Airport already full'
+    end
+
   end
 
 end
