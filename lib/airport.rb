@@ -5,7 +5,7 @@ class Airport
 
 DEFAULT_CAPACITY = 50
 
-  attr_accessor :capacity, :weather
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
@@ -16,12 +16,14 @@ DEFAULT_CAPACITY = 50
   def takeoff(plane)
     fail "Plane not in airport" unless planes.include? plane
     fail "Stormy weather" if weather.stormy?
+    plane.take_off
     planes.pop
   end
 
   def land(plane)
     fail "Airport full" if full?
     fail "Stormy weather" if weather.stormy?
+     plane.land
      planes << plane
   end
 
@@ -29,16 +31,14 @@ DEFAULT_CAPACITY = 50
    weather.stormy?
   end
 
-  attr_reader :planes
+
+  attr_reader :planes # some tests wont work if makes this private
   private
 
-
+  attr_reader :weather
 
   def full?
     planes.count >= capacity
   end
 
-  def empty?
-    planes.empty?
-  end
 end

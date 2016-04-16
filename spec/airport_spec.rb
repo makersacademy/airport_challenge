@@ -2,12 +2,15 @@ require 'airport'
 
 describe Airport do
 
+let(:airport) { described_class.new(Airport::DEFAULT_CAPACITY, weather)}
 let(:weather) {double(:weather, stormy?: false)}
-let(:airport) { described_class.new(50, weather)}
-let(:plane) { double(:plane, land: nil, take_off: nil, flying?: nil) }
+let(:plane) { double(:plane) }
 
 
   describe 'initialization' do
+    before do
+      allow(plane).to receive(:land)
+    end
     it 'has default capacity (if no capacity set at initialization)' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
@@ -19,29 +22,50 @@ let(:plane) { double(:plane, land: nil, take_off: nil, flying?: nil) }
     end
   end
 
-  it 'changes capacity of airport' do
-    airport.capacity = 52
-    52.times {airport.land(plane)}
-    expect{airport.land(plane)}.to raise_error 'Airport full'
+  describe '#instruct_landing' do
+    it 'instructs plane to land' do
+      expect(plane).to receive(:land)
+      airport.land plane
+    end
+
+    it 'has the plane after land' do
+      allow(plane).to receive(:land)
+      airport.land plane
+      expect(airport.planes).to include plane
+    end
   end
 
   describe '#takeoff' do
+    before do
+      allow(plane).to receive(:land)
+      airport.land(plane)
+    end
 
     it 'instructs a plane to take off' do
-      airport.land(plane)
-      expect(airport.takeoff(plane))
-      allow(plane).to receive(:take_off)
+      expect(plane).to receive(:take_off)
+      airport.takeoff(plane)
     end
 
     it 'does not have plane after take off' do
-      airport.land(plane)
       allow(plane).to receive(:take_off)
       airport.takeoff(plane)
       expect(airport.planes).not_to include plane
     end
 
-    it 'raises an error when the plane is not in the airport' do
-      expect { airport.takeoff(plane) }.to raise_error 'Plane not in airport'
+    it 'launches the correct plane' do
+      allow(plane).to receive(:take_off)
+      expect(airport.takeoff(plane)).to eq plane
+    end
+  end
+
+  context 'stormy' do
+    before do
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
+    end
+    it 'raises an error when plane tries to land in stormy weather' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { airport.land(plane) }.to raise_error 'Stormy weather'
     end
 
     it 'raises an error when plane tries to take off in stormy weather' do
@@ -51,27 +75,29 @@ let(:plane) { double(:plane, land: nil, take_off: nil, flying?: nil) }
     end
   end
 
-  describe '#instruct_landing' do
-
-    it 'instructs plane to land' do
-      expect(airport.land(plane))
+  context 'inconsistent states' do
+    before do
       allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
     end
-
-    it 'has the plane after land' do
-      allow(plane).to receive(:land)
-      airport.land plane
-      expect(airport.planes).to include plane
-    end
-
     it 'raises an error when airport capacity is full' do
       airport.capacity.times {airport.land(plane)}
       expect { airport.land(plane) }.to raise_error 'Airport full'
     end
 
-    it 'raises an error when plane tries to land in stormy weather' do
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect { airport.land(plane) }.to raise_error 'Stormy weather'
+    it 'raises an error when the plane is not in the airport' do
+      expect { airport.takeoff(plane) }.to raise_error 'Plane not in airport'
+    end
+  end
+
+  context 'variable capcity' do
+    before do
+      allow(plane).to receive(:land)
+    end
+    it 'changes capacity of airport' do
+      airport.capacity = 52
+      52.times {airport.land(plane)}
+      expect{airport.land(plane)}.to raise_error 'Airport full'
     end
   end
 
