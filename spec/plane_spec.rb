@@ -37,8 +37,11 @@ describe Plane do
 	end
 
 	context 'when trying to take off' do
-
-
+		it 'should tell the airport we want it to dispatch the plane if the plane is in an airport' do
+			subject.land(airport)
+			subject.try_to_takeoff
+			expect(airport).to have_received(:dispatch).with(subject)
+		end
 	end
 
 end
