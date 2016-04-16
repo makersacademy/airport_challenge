@@ -32,6 +32,7 @@ class Plane
 	def take_off
 		@landed = false
 		@location = "sky"
+		"Plane has successfully departed..."
 	end
 
 	def landed?
