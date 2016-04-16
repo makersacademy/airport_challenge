@@ -7,6 +7,7 @@ class Airport
   end
 
   def land(plane)
+    raise 'Stormy weather! Do not land!' if stormy?
     plane.land
     @hangar << plane
   end
@@ -15,4 +16,11 @@ class Airport
     plane.take_off
     @hangar.delete(plane)
   end
+
+    private
+
+    def stormy?
+
+    end
+
 end

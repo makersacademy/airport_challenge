@@ -4,6 +4,7 @@ describe Airport do
 
 let(:airport) { subject }
 let(:plane) { double(:plane, land: nil, take_off: nil) }
+let(:weather) { double(:weather) }
 
   context 'When weather is not stormy' do
 
@@ -38,5 +39,25 @@ let(:plane) { double(:plane, land: nil, take_off: nil) }
     end
 
   end
+
+  context 'When the whether is stormy' do
+
+    context 'when a plane trying to land' do
+
+      it 'raise an error' do
+        allow(weather).to receive(:stormy?).and_return true
+        expect{airport.land(plane)}.to raise_error 'Stormy weather! Do not land!'
+      end
+
+      it 'does not let the plane land' do
+        allow(weather).to receive(:stormy?).and_return true
+        airport.land(plane)
+        expect(airport.hangar).not_to include plane
+      end
+
+    end
+
+  end
+
 
 end
