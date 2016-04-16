@@ -1,15 +1,15 @@
 require "./lib/airport"
 require "./lib/plane"
 
-describe "Airport Challenge" do
+describe "Airport Challenge - " do
 
-  describe "Initialization" do
-      it "Planes are not flying when created" do
+  describe "Initialization - " do
+      it "Planes are not at an airport when created" do
       #GIVEN I have a new plane
       plane = Plane.new
       #WHEN I check the planes status
-      #THEN The plane is not flying
-      expect(plane.flying?).to eq false
+      #THEN The plane is flying
+      expect(plane.flying?).to eq true
     end
     it "Airports are empty when created" do
       #GIVEN I have a new airport
@@ -24,42 +24,34 @@ describe "Airport Challenge" do
   # So I can get passengers to a destination
   # I want to instruct a plane to land at an airport and confirm that it has landed
 
-  context "Land a flying plane and have it accepted by an airport" do
-    it "Flying planes can land" do
-      #GIVEN I have a plane that is flying
-      plane = Plane.new
-      plane.take_off
-      #WHEN I tell the plane to land
-      plane.land
-      #THEN I expect the plane to not be flying
-      expect(plane).not_to be_flying
-    end
-    it "Planes that are not flying cannot land" do
-      #GIVEN I have a plane that is not flying
-      plane = Plane.new
-      #WHEN I try to land the plane
-      #THEN I expect to get an error
-      expect { plane.land }.to raise_error "This plane isn't flying!"
-    end
-    it "Airports can accept planes that are not flying" do
-      #GIVEN I have an airport and a flying plane
+  context "Landing a plane at an airport - " do
+    it "Airports can accept planes" do
+      #GIVEN I have an airport and a plane
       airport = Airport.new
       plane = Plane.new
-      plane.take_off
-      #WHEN I land the plane and ask the airport to accept it
-      plane.land
+      #WHEN I ask the airport to accept the plane
       airport.accept plane
       #THEN I expect the plane to be stored in the airport
       expect(airport.planes).to include plane
     end
-    it "Airports cannot accept planes that are still flying" do
-      #GIVEN I have an airport and a flying plane
+    it "Planes stop flying when accepted by an airport" do
+      #GIVEN I have an airport and a plane that is flying
       airport = Airport.new
       plane = Plane.new
-      plane.take_off
-      #WHEN I ask the airport to accept the flying plane
+      #WHEN I tell the airport to accept the plane
+      airport.accept plane
+      #THEN I expect the plane to not be flying
+      expect(plane).not_to be_flying
+    end
+    it "Airports can only accept flying planes" do
+      #GIVEN I have an airport and a plane that is not flying
+      airport = Airport.new
+      plane = Plane.new
+      airport.accept plane
+      #WHEN I ask the airport to accept the plane
+      airport.accept plane
       #THEN I expect an error
-      expect { airport.accept plane }.to raise_error "Plane is still flying!"
+      expect { airport.accept plane }.to raise_error "Plane is already at an airport"
     end
   end
 
@@ -67,22 +59,17 @@ describe "Airport Challenge" do
   # So I can get passengers on the way to their destination
   # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-  context "Have a plane take off and leave an airport" do
-    it "Planes can take off" do
-      #GIVEN I have a plane that is not flying
-      plane = Plane.new
-      #WHEN I tell the plane to take off
-      plane.take_off
-      #THEN I expect the plane to be flying
-      expect(plane).to be_flying
-    end
+  context "Having a plane leave an airport" do
+    #GIVEN
+    #WHEN
+    #THEN
   end
 
   # As an air traffic controller
   # To ensure safety
   # I want to prevent takeoff when weather is stormy
 
-  context "prevents planes from taking off when the weather is stormy" do
+  context "Preventing planes leaving in stormy weather" do
     #GIVEN
     #WHEN
     #THEN
@@ -92,7 +79,7 @@ describe "Airport Challenge" do
   # To ensure safety
   # I want to prevent landing when weather is stormy
 
-  context " prevents planes from landing when the weather is stormy" do
+  context "Preventing planes landing in stormy weather" do
     #GIVEN
     #WHEN
     #THEN
@@ -102,7 +89,7 @@ describe "Airport Challenge" do
   # So that the software can be used for many different airports
   # I would like a default airport capacity that can be overridden as appropriate
 
-  context "gives airports a default capacity that can be overridden" do
+  context "Creating airports with different capacities" do
     #GIVEN
     #WHEN
     #THEN
@@ -112,7 +99,7 @@ describe "Airport Challenge" do
   # To ensure safety
   # I want to prevent landing when the airport is full
 
-  context "prevents planes from landing at full airports" do
+  context "Preventing planes from landing at full airports" do
     #GIVEN
     #WHEN
     #THEN

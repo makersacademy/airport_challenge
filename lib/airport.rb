@@ -6,7 +6,13 @@ class Airport
   attr_reader :planes
 
   def accept plane
-    raise "Plane is still flying!" if plane.flying?
+    raise "Plane is already at an airport" unless plane.flying?
+    plane.land
+    store_plane plane
+  end
+
+  private
+  def store_plane plane
     @planes << plane
   end
 end
