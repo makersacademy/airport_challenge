@@ -14,8 +14,8 @@ class Airport
   end
 
   def take_off(plane)
-
       @planes.delete(plane)
+      return "Plane has taken off"
   end
 
 end
