@@ -1,4 +1,10 @@
 class Plane
+  attr_reader :landed
+  def storm
+   r = Random.new
+   r.rand(10) > 8 ? true : false
+  end
+
   def initialize
     @landed = false
   end
@@ -8,7 +14,19 @@ class Plane
     @airport= airport
   end
 
-  def landed?
-    @landed
+  def take_off(airport)
+    @airport= airport
+    if storm
+      @landed=true
+      raise "can't fly win storm"
+    else
+      @landed=false
+    end
   end
+
 end
+
+
+plane=Plane.new
+p plane.take_off "harry"
+
