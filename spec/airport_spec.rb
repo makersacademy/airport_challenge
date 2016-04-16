@@ -69,6 +69,10 @@ describe Airport do
 					#i.e. [].delete(plane) == nil
 					expect(airport_with_badweather.dispatch(plane)).not_to eq nil
 				end
+				it '#dispatch should tell the plane that take off failed' do
+					airport_with_badweather.dispatch(plane)
+					expect(plane).to have_received(:take_off_fails)
+				end
 			end
 
 		end
