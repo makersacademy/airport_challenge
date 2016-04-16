@@ -1,10 +1,15 @@
+require_relative 'plane'
+
 class Airport
     
-    def land(plane)
-    end
-
-    def hangar
-        
+    attr_reader :hangar
+    
+    def initialize
+        @hangar = []
     end
     
+    def land(plane)
+        hangar << plane
+    end
+
 end
