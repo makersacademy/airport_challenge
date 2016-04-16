@@ -20,4 +20,17 @@ describe Airport do
     end
   end
 
+describe '#takeoff plane' do
+  it 'instructs the plane to takeoff' do
+    plane = Plane.new
+    subject.takeoff(plane)
+  end
+
+  it 'makes sure the correct plane takes off' do
+    plane = Plane.new
+    expect(subject.planes). to_not include plane
+  end
+
+end
+
 end
