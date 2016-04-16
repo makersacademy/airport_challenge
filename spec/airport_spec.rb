@@ -10,12 +10,6 @@ describe Airport do
     expect(airport.planes).to include plane
   end
 
-  # it 'confirms the plane has left the airport' do
-  #   airport.land(plane)
-  #   airport.take_off(plane)
-  #   expect(airport.planes).not_to include plane
-  # end
-
   context 'with weather as an argument,' do
     let(:weather) { double :weather, stormy?: true }
 
