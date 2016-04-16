@@ -64,6 +64,9 @@ describe Airport do
 			end
 			context 'when weather is bad' do
 				it '#dispatch should not try to delete from the airport\'s landed array' do
+					#this is an awkward way to test that the plane is not deleted from the landed array
+					#the array is already empty, so trying to delete from it would return nil
+					#i.e. [].delete(plane) == nil
 					expect(airport_with_badweather.dispatch(plane)).not_to eq nil
 				end
 			end
