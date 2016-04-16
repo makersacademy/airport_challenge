@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-let(:airport) { described_class.new(Airport::DEFAULT_CAPACITY, weather)}
+let(:airport) { described_class.new(weather)}
 let(:weather) {double(:weather, stormy?: false)}
 let(:plane) { double(:plane, land: nil, take_off:nil) }
 
@@ -13,7 +13,7 @@ let(:plane) { double(:plane, land: nil, take_off:nil) }
     end
 
     it 'sets capacity to argument passed' do
-      airport = Airport.new(30, weather)
+      airport = Airport.new(weather, 30)
       30.times {airport.land(plane)}
       expect{airport.land(plane)}.to raise_error 'Airport full'
     end

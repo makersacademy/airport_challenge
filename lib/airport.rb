@@ -7,7 +7,7 @@ DEFAULT_CAPACITY = 50
 
   attr_accessor :capacity
 
-  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
     @weather = weather
