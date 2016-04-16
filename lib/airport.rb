@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-attr_reader :planes
+
 
 def initialize
   @planes = []
@@ -16,5 +16,8 @@ def take_off(plane)
   @planes.pop
 end
 
+private
+
+attr_reader :planes
 
 end
