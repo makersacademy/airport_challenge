@@ -9,4 +9,10 @@ describe Airport do
     expect(subject.land(plane)).to eq(plane)
   end
 
+  it 'landing a plane sets its location to current airport' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(plane.location).to eq(subject)
+  end
+
 end
