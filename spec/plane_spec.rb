@@ -2,8 +2,25 @@ require 'plane'
 
 describe Plane do
 
-  it "has an initial landed_status set to false" do
+  describe '#landed_status' do
+
+    it 'landed_status set to false upon initialization' do
+      expect(subject.landed_status).to eq false
+    end
+
+    it 'landing_status set to true upon landing' do
+      airport = Airport.new
+      airport.land(subject)
+      expect(subject.landed_status).to eq true
+    end
+
+    it 'landing_status set to false upon take off' do
+    airport = Airport.new
+    airport.land(subject)
+    airport.take_off(subject)
     expect(subject.landed_status).to eq false
+    end
+
   end
 
 end
