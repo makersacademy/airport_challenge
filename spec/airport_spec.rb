@@ -4,20 +4,28 @@ describe Airport do
 
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
-  let(:weather) { double :weather }
 
-  it { is_expected.to respond_to(:weather)}
 
   it 'confirms the plane is in the airport' do
     airport.land(plane)
     expect(airport.planes).to include plane
   end
 
-  it 'confirms the plane has left the airport' do
-    airport.land(plane)
-    airport.take_off(plane)
-    expect(airport.planes).not_to include plane
+  # it 'confirms the plane has left the airport' do
+  #   airport.land(plane)
+  #   airport.take_off(plane)
+  #   expect(airport.planes).not_to include plane
+  # end
+
+  context 'shitty weather' do
+    let(:weather) { double :weather, stormy?: nil }
+    it 'will not let a plane take off' do
+    allow(weather).to receive(:stormy?).and_return(true)
+    expect{airport.take_off(plane)}.to raise_error 'Cannot take off due to shitty weather'
+    end
   end
+
+
 
 
 end
