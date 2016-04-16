@@ -6,7 +6,7 @@ attr_accessor :location
   end
 
   def landed?
-    if @location != nil && @location != "in_the_air"
+    if !@location.nil? && @location != "in_the_air"
       true
     else
       false

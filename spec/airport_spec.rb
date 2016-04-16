@@ -8,7 +8,7 @@ let(:plane) {double :plane}
 
   it 'can land a plane' do
     allow(plane).to receive(:location=).with(subject)
-    expect(subject.land(plane)).to eq (plane)
+    expect(subject.land(plane)).to eq(plane)
   end
 
   it 'landing a plane sets its location to current airport' do
