@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   attr_accessor :planes
@@ -7,14 +9,6 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-  end
-
-  def land(plane)
-    @planes << plane
-  end
-
-  def take_off(plane)
-    @planes.delete(plane)
   end
 
   def check_plane_status(plane)
