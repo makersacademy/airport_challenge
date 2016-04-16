@@ -20,12 +20,12 @@ class Airport
 	end
 
 	def dispatch(plane)
-		if weather.stormy?
-			plane.take_off_fails
-		else
-			plane.take_off
+		# if weather.stormy?
+		# 	plane.take_off_fails
+		# else
 			landed.delete(plane)
-		end
+			plane.take_off
+		# end
 	end
 
 	private
