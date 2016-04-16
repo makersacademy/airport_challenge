@@ -19,15 +19,17 @@ describe Airport do
 
   context 'planes interaction' do
     it 'after take-off plane no longer at airport' do
-      #airport.planes_at_airport << landed_plane
-      #puts "airport with plane: #{airport_with_plane} "
-      airport_with_plane.instruct_takeoff(landed_plane)
+      airport.planes_at_airport << landed_plane
+      puts "airport.planes@airport: #{airport.planes_at_airport}"
+      airport.instruct_takeoff(landed_plane)
       expect(airport.planes_at_airport).not_to include landed_plane
+      puts "after takeoff, list of planes: #{airport.planes_at_airport}"
     end
 
     it 'after landing plane is at airport' do
       airport.instruct_land(flying_plane)
       expect(airport.planes_at_airport).to include flying_plane
+      puts "after landing, list of planes: #{airport.planes_at_airport}"
     end
 
     it 'a plane cannot land if already landed' do
@@ -42,14 +44,16 @@ describe Airport do
   end
 
   context 'when weather stormy' do
+    #allow(airport).to receive(:stormy?) { true }
     it 'a plane can not take off' do
-      allow(airport_with_plane).to receive(:good_weather?) { false }
-      airport_with_plane.instruct_takeoff(landed_plane)
-      expect(airport_with_plane.planes_at_airport).to include landed_plane
+      allow(airport).to receive(:stormy?) { true }
+      airport.planes_at_airport << landed_plane
+      airport.instruct_takeoff(landed_plane)
+      expect(airport.planes_at_airport).to include landed_plane
     end
 
     it 'a plane can not land' do
-      allow(airport).to receive(:good_weather?) { false }
+      allow(airport).to receive(:stormy?) { true }
       airport.instruct_land(flying_plane)
       expect(airport.planes_at_airport).not_to include flying_plane
     end
@@ -57,6 +61,7 @@ describe Airport do
 
   context 'when full' do
     it 'a plane can not land' do
+
     end
   end
 

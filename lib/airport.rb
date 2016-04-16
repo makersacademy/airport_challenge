@@ -2,6 +2,7 @@ class Airport
 
   ERR_ALREADY_LANDED = "plane already landed".freeze
   ERR_PLANE_NOT_FOUND = "plane not at the airport".freeze
+  DEFAULT_CAPACITY = 2
 
   attr_reader :planes_at_airport
 
@@ -11,23 +12,17 @@ class Airport
 
   def instruct_takeoff(plane)
     return ERR_PLANE_NOT_FOUND unless in_airport?(plane)
-    if good_weather?
-      plane.takeoff
-      leave_airport(plane)
-    end
+    return if stormy?
+    plane.takeoff
+    leave_airport(plane)
   end
 
   def instruct_land(plane)
     return ERR_ALREADY_LANDED if in_airport?(plane)
-    if good_weather?
-      plane.land
-      access_airport(plane)
-    end
+    return if stormy?
+    plane.land
+    access_airport(plane)
   end
-
-
-
-
 
   private
 
@@ -47,8 +42,8 @@ class Airport
       rand(10)
     end
 
-    def good_weather?
-      weather_generator < 9
+    def stormy?
+      weather_generator == 9
     end
 
 end
