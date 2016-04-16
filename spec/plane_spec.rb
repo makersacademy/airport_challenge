@@ -60,6 +60,9 @@ describe Plane do
 			subject.land(airport)
 			expect(subject.take_off).to eq "Plane has successfully departed..."
 		end
+		it '#take_off_fails should return a status update explaining that the plane couldn\'t take off' do
+			expect(subject.take_off_fails).to eq "Plane failed to take off because of bad weather"
+		end
 	end
 
 end
