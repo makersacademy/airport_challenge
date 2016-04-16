@@ -1,6 +1,6 @@
 class Weather
 
-initialize do
+def initialize
   @stormy = false
   @stormy = true if rand(10) == 1
 end
