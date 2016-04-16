@@ -7,8 +7,12 @@ class Airport
 	end
 
 	def receive(plane)
-		@landed << plane
-		plane.land(self)
+		if plane.stormy?
+			plane.land_fails("weather")
+		else
+			@landed << plane
+			plane.land(self)
+		end
 	end
 
 end

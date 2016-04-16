@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 	let(:plane_ingoodweather){ double(:plane_ingoodweather, :stormy? => false, :land => nil) }
-	let(:plane_inbadweather){ double(:plane_inbadweather, :stormy? => true, :land => nil) }
+	let(:plane_inbadweather){ double(:plane_inbadweather, :stormy? => true, :land_fails => nil) }
 	
 
 		context 'when receiving a plane' do
@@ -30,7 +30,7 @@ describe Airport do
 						expect(subject.landed).not_to include plane_inbadweather
 					end
 					it '#receive should tell the plane landing failed' do
-						expect(plane_inbadweather).to receive(:land_fails).with(subject)
+						expect(plane_inbadweather).to receive(:land_fails).with("weather")
 						subject.receive(plane_inbadweather)
 					end
 				end
