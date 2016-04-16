@@ -15,7 +15,7 @@ describe Plane do
 		end
 		it 'should return an explanation if plane is already landed' do
 			subject.land(airport)
-			expect(subject.try_to_land(airport)).to eq "Plan is already landed"
+			expect(subject.try_to_land(airport)).to eq "Plane is already landed"
 		end
 		it '#land should set a landed attribute to true' do
 			subject.land(airport)

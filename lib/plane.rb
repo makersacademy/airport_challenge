@@ -8,7 +8,7 @@ class Plane
 	end
 
 	def try_to_land(airport)
-		landed? ? "Plan is already landed" : airport.receive(self)
+		landed? ? "Plane is already landed" : airport.receive(self)
 	end
 
 	def land(airport)
@@ -26,7 +26,7 @@ class Plane
 	end
 
 	def try_to_takeoff
-		location.dispatch(self) if location != "sky"
+		location == "sky" ? "Plane is already in the sky" : location.dispatch(self)
 	end
 
 	def take_off
