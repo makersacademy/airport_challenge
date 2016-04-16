@@ -56,6 +56,11 @@ describe Airport do
 					airport_with_goodweather.dispatch(plane)
 					expect(airport_with_goodweather.landed).not_to include plane
 				end
+				it '#dispatch should tell the plane it is taking off' do
+					airport_with_goodweather.receive(plane)
+					airport_with_goodweather.dispatch(plane)
+					expect(plane).to have_received(:take_off)
+				end
 			end
 		end
 
