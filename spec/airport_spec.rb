@@ -21,11 +21,11 @@ describe Airport do
 				end
 				context 'when docking station is full' do
 					it '#receive should not store the plane' do
-						airport_with_goodweather.receive(plane)
+						6.times { airport_with_goodweather.receive(plane) }
 						expect(airport_with_goodweather.landed.length).to eq 5
 					end
 					it '#receive should tell the plane landing failed' do
-						airport_with_goodweather.receive(plane)
+						6.times { airport_with_goodweather.receive(plane) }
 						expect(plane).to have_received(:land_fails).with("full")
 					end
 				end

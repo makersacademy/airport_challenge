@@ -1,13 +1,14 @@
 class Airport
 
-	attr_reader :landed
+	attr_reader :landed, :weather
 
-	def initialize(capacity=20)
+	def initialize(capacity,weather)
 		@landed = []
 		@capacity = capacity
+		@weather = weather
 	end
 
-	def receive(plane,weather)
+	def receive(plane)
 		if weather.stormy?
 			plane.land_fails("weather")
 		elsif full?
