@@ -38,4 +38,9 @@ describe Plane do
 		expect(plane.landed?).to eq true
 	end
 
+	context 'when trying to take off' do
+		
+
+	end
+
 end
