@@ -9,7 +9,7 @@ class Airport
   end
 
   def instruct_landing(plane)
-    raise "Airport is full" if @plane
+    raise "Gate full" if @plane
      @plane = plane
   end
 end

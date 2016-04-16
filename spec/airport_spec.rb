@@ -40,7 +40,7 @@ let(:airport) { described_class.new}
     it 'raises an error when airport gate is full' do
       plane = Plane.new
       airport.instruct_landing(plane)
-      expect { airport.instruct_landing(plane) }.to raise_error 'Airport already full'
+      expect { airport.instruct_landing(plane) }.to raise_error 'Gate full'
     end
 
   end
