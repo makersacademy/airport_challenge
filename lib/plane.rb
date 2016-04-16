@@ -23,10 +23,5 @@ class Plane
       @landed=false
     end
   end
-
 end
-
-
-plane=Plane.new
-p plane.take_off "harry"
 
