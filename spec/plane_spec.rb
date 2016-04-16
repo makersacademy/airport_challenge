@@ -25,6 +25,7 @@ describe Plane do
       subject.take_off
       subject.land
       expect(subject.broadcast_location).to eq "airport"
+      expect(subject.flying).to be_falsey
     end
 
     it "have a nil return value" do
@@ -35,12 +36,14 @@ describe Plane do
     it "only planes in the sky can land" do
       expect{subject.land}.to raise_error("I haven't taken off yet mate")
     end
+
   end
 
   describe "#take_off" do
     it "location will be 'where eagles soar' after landing" do
       subject.take_off
       expect(subject.broadcast_location).to eq "where eagles soar"
+      expect(subject.flying).to be_truthy
     end
 
     it "have a nil return value" do

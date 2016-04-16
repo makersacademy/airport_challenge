@@ -10,7 +10,7 @@ class Airport
   end
 
   def land(plane)
-    raise "No room here mate" if full?
+    fail "No room here mate" if full?
     weather_any_good
     plane.land
     @planes << plane
@@ -18,9 +18,9 @@ class Airport
   end
 
   def take_off
-    raise "No planes here mate" if empty?
+    fail "No planes here mate" if empty?
     weather_any_good
-    planes.pop.take_off
+    planes.shift.take_off
     "Don't forget to send a postcard"
   end
 
@@ -32,7 +32,7 @@ class Airport
   attr_reader :planes
 
   def weather_any_good
-    raise "Not in this weather mate" unless Weather.sunny?
+    fail "Not in this weather mate" unless Weather.sunny?
   end
 
   def full?
