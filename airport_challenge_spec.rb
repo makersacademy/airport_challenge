@@ -59,10 +59,22 @@ describe "Airport Challenge - " do
   # So I can get passengers on the way to their destination
   # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-  context "Having a plane leave an airport" do
-    #GIVEN
-    #WHEN
-    #THEN
+  context "Having a plane leave an airport - " do
+    it "Airports can release planes" do
+      #GIVEN
+      #WHEN
+      #THEN
+    end
+    it "Planes start flying when released by an airport" do
+      #GIVEN
+      #WHEN
+      #THEN
+    end
+    it "Airports can only release planes that they contain" do
+      #GIVEN
+      #WHEN
+      #THEN
+    end
   end
 
   # As an air traffic controller
