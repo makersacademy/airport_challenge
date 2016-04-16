@@ -21,7 +21,7 @@ class Airport
 
 	def dispatch(plane)
 		if weather.stormy?
-			plane
+			plane.take_off_fails
 		else
 			plane.take_off
 			landed.delete(plane)
