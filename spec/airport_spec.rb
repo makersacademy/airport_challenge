@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   let(:plane){double :plane, landed?: true}
   let(:weather){double :weather, stormy?: false}
-
+  subject(:airport){ described_class.new(weather) }
   it {is_expected.to respond_to :land_plane}
   it {is_expected.to respond_to :take_off}
 
@@ -14,15 +14,17 @@ describe Airport do
 
   it "has a plane take off" do
     subject.land_plane plane
-    allow(plane).to receive(:flying?).and_return(false)
-    expect(subject.take_off(plane)).to eq plane
+    allow(plane).to receive(:flying).and_return(false)
+    expect(airport.take_off(plane)).to eq plane
   end
 
   it "denies take off during stormy weather" do
-    subject.land_plane plane
-    allow(plane).to receive(:flying?).and_return(false)
     allow(weather).to receive(:stormy?).and_return(true)
-    expect(subject.take_off(plane)).to raise_error "Too stormy for take-off"
+    airport = described_class.new(weather)
+
+    airport.land_plane plane
+    allow(plane).to receive(:flying).and_return(false)
+    expect{airport.take_off(plane)}.to raise_error('Too stormy for take-off')
   end
 
 end

@@ -1,15 +1,17 @@
 class Weather
 
   def stormy?
+    random_weather
     @stormy
   end
 
-  def good_weather
-    @stormy = false
-  end
-
-  def bad_weather
-    @stormy = true
+  def random_weather
+    number = rand(20)
+    if number <= 1
+      @stormy = true
+    else
+      @stormy = false
+    end
   end
 
 end
