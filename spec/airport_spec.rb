@@ -2,43 +2,49 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  let(:airport) { described_class.new }
-  let(:plane) { double(:plane) }
-  let(:plane2) { Plane.new }
+  subject { Airport.new Plane }
+  let(:plane) { subject.planes.first }
   it { is_expected.to respond_to :receive_plane }
   it { is_expected.to respond_to :release_plane }
+  it { is_expected.to respond_to :ready_for_landing? }
+  it { is_expected.to respond_to :ready_for_taking_off? }
   
-  context "Using London TDD" do
-    it "instruct a plane to land and confirm that it has landed" do
-      allow(plane).to receive(:land).and_return("Landed")
-      airport.receive_plane(plane)
-      expect(airport.planes).to include plane
-      expect(plane.land).to eq "Landed"
+  describe "Landing" do
+    # Before each landing test, the plane must be flying
+    before(:each) do
+      allow(subject).to receive(:ready_for_taking_off?).and_return true
+      plane.take_off(subject)
     end
     
-    it "instruct a plane to take-off and confirm that it is flying" do
-      allow(plane).to receive(:take_off).and_return("Flying")
-      airport.release_plane(plane)
-      expect(airport.planes).not_to include plane
-      expect(plane.take_off).to eq "Flying"
+    it "when weather is sunny can receive planes" do
+      allow(subject).to receive(:ready_for_landing?).and_return true
+      expect(plane.land(subject)).to eq "Plane has landed"
+      expect(subject.planes).to include plane
     end
     
+    it "when weather is stormy cannot receive planes" do
+      allow(subject).to receive(:ready_for_landing?).and_return false
+      expect{ plane.land(subject) }.to raise_error(RuntimeError, "Cannot land")
+      expect(subject.planes).not_to include plane
+    end
+    
+    it "a landed plane cannot land again" do
+      plane = subject.planes.pop
+      expect(plane.land(subject)).to eq "Plane is already landed"
+    end
+    
+    it "a plane cannot land in a full airport" do
+      allow(subject).to receive(:full?).and_return true
+      expect{ plane.land(subject) }.to raise_error(RuntimeError, "Cannot land")
+    end
   end
-  
-  context "using Chicago TDD" do
-    it "instruct a plane to land and confirm that it has landed" do
-      plane2.take_off
-      airport.receive_plane(plane2)
-      expect(airport.planes).to include plane2
-      expect(plane2.land).to eq :landed
-    end
     
-    it "instruct a plane to take-off and confirm that it is flying" do
+  describe "Taking off" do
+    xit "instruct a plane to take-off and confirm that it is flying" do
       airport.release_plane(plane2)
       expect(airport.planes).not_to include plane2
       expect(plane2.take_off).to eq :flying
     end
-    
   end
-  
+    
 end

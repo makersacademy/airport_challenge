@@ -2,26 +2,16 @@
 # So I can get passengers to a destination 
 # I want to instruct a plane to land at an airport and confirm that has landed
 
-plane = Plane.new
+a1 = Airport.new(Plane)
+a2 = Airport.new(Plane)
 
-airport = Airport.new
-airport.receive_plane(plane)
-p airport.planes
+p1 = a1.planes.first
+p1.take_off(a1)
 
-# As an air traffic controller 
-# So I can get passengers on the way to their destination 
-# I want to instruct a plane to take off from an airport and 
-# confirm that it is no longer in the airport
+p a1.planes
+p p1.status
 
-airport.release_plane(plane)
-p airport.planes
 
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent takeoff when weather is stormy 
 
-# when a plane is created, its status is :landed
-plane2 = Plane.new
-p plane2.status
-p plane2.take_off
-p plane2.take_off
+
+
