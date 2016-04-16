@@ -1,0 +1,3 @@
+a = Airport.new
+p = Plane.new
+a.land_plane p
