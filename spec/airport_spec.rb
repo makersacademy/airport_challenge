@@ -26,32 +26,42 @@ let(:plane) { double(:plane, land: nil, take_off: nil, flying?: nil) }
   end
 
   describe '#takeoff' do
-    it 'responds to takeoff' do
-      expect(airport).to respond_to :takeoff
-    end
 
     it 'instructs a plane to take off' do
-      plane_double = double :plane
-      airport.land(plane_double)
-      expect(airport.takeoff).to eq plane_double
+      airport.land(plane)
+      expect(airport.takeoff(plane))
+      allow(plane).to receive(:take_off)
     end
 
-    it 'raises an error when there are no planes to take off' do
-      expect { airport.takeoff }.to raise_error 'No planes in airport'
+    it 'does not have plane after take off' do
+      airport.land(plane)
+      allow(plane).to receive(:take_off)
+      airport.takeoff(plane)
+      expect(airport.planes).not_to include plane
+    end
+
+    it 'raises an error when the plane is not in the airport' do
+      expect { airport.takeoff(plane) }.to raise_error 'Plane not in airport'
     end
 
     it 'raises an error when plane tries to take off in stormy weather' do
       airport.land(plane)
       allow(weather).to receive(:stormy?).and_return(true)
-      expect { airport.takeoff }.to raise_error 'Stormy weather'
+      expect { airport.takeoff(plane) }.to raise_error 'Stormy weather'
     end
   end
 
   describe '#instruct_landing' do
-    it {is_expected.to respond_to(:land).with(1).argument}
 
-    it 'instructs a plane to land' do
-      expect(airport.land(plane)).to include plane
+    it 'instructs plane to land' do
+      expect(airport.land(plane))
+      allow(plane).to receive(:land)
+    end
+
+    it 'has the plane after land' do
+      allow(plane).to receive(:land)
+      airport.land plane
+      expect(airport.planes).to include plane
     end
 
     it 'raises an error when airport capacity is full' do

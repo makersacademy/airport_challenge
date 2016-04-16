@@ -13,8 +13,8 @@ DEFAULT_CAPACITY = 50
     @weather = weather
   end
 
-  def takeoff
-    fail "No planes in airport" if empty?
+  def takeoff(plane)
+    fail "Plane not in airport" unless planes.include? plane
     fail "Stormy weather" if weather.stormy?
     planes.pop
   end
@@ -29,8 +29,9 @@ DEFAULT_CAPACITY = 50
    weather.stormy?
   end
 
-  private
   attr_reader :planes
+  private
+
 
 
   def full?

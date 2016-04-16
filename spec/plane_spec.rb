@@ -4,24 +4,22 @@ describe Plane do
 
   let(:plane) {described_class.new}
 
-    it 'responds to is flying?' do
-      expect(plane).to respond_to :flying?
-    end
-
-    it 'responds to land' do
-      expect(plane).to respond_to :land
-    end
-
-    it 'responds to take_off' do
-      expect(plane).to respond_to :take_off
-    end
-
-    it 'returns true if plane is flying' do
+    it 'can take off' do
       expect(plane.take_off).to be_flying
     end
 
-    it 'returns false if plane isn\'t flying' do
+    it 'raises error if already flying when take off' do
+      plane.take_off
+      expect{plane.take_off}.to raise_error "Plane is already flying"
+    end
+
+    it 'can land' do
+      plane.take_off
       expect(plane.land).not_to be_flying
+    end
+
+    it 'raises error if already landed when land' do
+      expect{plane.land}.to raise_error "Plane is not flying"
     end
 
     it 'expect plane not to be flying as default' do
