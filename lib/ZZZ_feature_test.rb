@@ -1,15 +1,21 @@
-# As an air traffic controller 
-# So I can get passengers to a destination 
-# I want to instruct a plane to land at an airport and confirm that has landed
+# Creation of two different airports with a capacity of 10 planes
+# When initializing, each airport contains 2 planes
+cdg = Airport.new("CDG", Plane)
+lhr = Airport.new("LHR", Plane)
 
-a1 = Airport.new(Plane)
-a2 = Airport.new(Plane)
+# A plane is ready for taking off if the weather is sunny
+plane1 = cdg.planes.first
+p plane1.take_off(cdg)
 
-p1 = a1.planes.first
-p1.take_off(a1)
+# After releasing the plane, the plane status is :flying and is not 
+# on the available planes for that airport
+p plane1
+puts "Planes at #{cdg.name}: #{cdg.planes}"
 
-p a1.planes
-p p1.status
+# The plane that left cdg is about to land at lhr if the weather is sunny
+p plane1.land(lhr)
+p plane1
+puts "Planes at #{lhr.name}: #{lhr.planes}"
 
 
 

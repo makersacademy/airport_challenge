@@ -6,29 +6,18 @@ class Plane
   end
   
   def land(airport)
-    if @status == :flying
-      if airport.ready_for_landing?
-        @status = :landed
-        airport.receive_plane(self)
-        "Plane has landed"
-      else
-        raise "Cannot land"
-      end
-    else
-      "Plane is already landed"
-    end
+    return "Plane #{self} is already landed" unless @status == :flying
+    raise "Cannot land" unless airport.ready_for_landing?
+    @status = :landed
+    airport.receive_plane(self)
+    "Plane #{self} has landed at #{airport.name}"
   end
   
   def take_off(airport)
-    if @status == :landed
-      if airport.ready_for_taking_off?
-        @status = :flying
-        airport.release_plane(self)
-      else
-        raise "Cannot take off"
-      end
-    else
-      "Plane is already flying"
-    end
+    return "Plane #{self} is already flying" unless @status == :landed
+    raise "Cannot take off" unless airport.ready_for_taking_off?
+    @status = :flying
+    airport.release_plane(self)
+    "Plane #{self} has taking off from #{airport.name}"
   end
 end
