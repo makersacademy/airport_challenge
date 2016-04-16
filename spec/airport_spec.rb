@@ -5,8 +5,9 @@ describe Airport do
 
   describe '#land' do
     it 'accepts a plane to land' do
-      subject.land(plane)
-      expect{ subject.land(plane) }.to raise_error 'Airport full'
+      airport = Airport.new(1)
+      airport.land(plane)
+      expect{ airport.land(plane) }.to raise_error 'Airport full'
     end
   end
 
@@ -32,6 +33,19 @@ describe Airport do
       allow(airport).to receive(:rand) { 10 }
       airport.change_weather
       expect{ airport.land(plane) }.to raise_error 'Plane cannot land in stormy weather'
+    end
+  end
+
+  describe '#capacity' do
+    it 'sets a default capacity for the airport' do
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      expect{ subject.land(plane) }.to raise_error 'Airport full'
+    end
+
+    it 'allows the default capacity to be overriden when initialized' do
+      airport = Airport.new(100)
+      100.times { airport.land(plane) }
+      expect{ airport.land(plane) }.to raise_error 'Airport full'
     end
   end
 

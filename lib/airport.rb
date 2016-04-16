@@ -2,9 +2,12 @@ class Airport
 
   require_relative 'plane'
 
-  def initialize
+  DEFAULT_CAPACITY = 50
+
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
     @storm_level = 1
+    @capacity = capacity
   end
 
   def land(plane)
@@ -29,7 +32,7 @@ class Airport
   private
 
   def airport_full?
-    @planes.length == 1
+    @planes.length == @capacity
   end
 
   def airport_empty?
