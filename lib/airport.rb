@@ -1,7 +1,11 @@
 class Airport
-  def accept plane
+  def initialize
+    @planes = []
   end
 
-  def planes
+  attr_reader :planes
+
+  def accept plane
+    @planes << plane
   end
 end

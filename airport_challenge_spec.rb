@@ -7,16 +7,41 @@ describe "Airport Challenge" do
   # So I can get passengers to a destination
   # I want to instruct a plane to land at an airport and confirm that it has landed
 
-  it "can land planes at airports and confirm that they have landed" do
-    #GIVEN
-    airport = Airport.new
-    plane = Plane.new
-    #WHEN
-    plane.land
-    airport.accept plane
-    #THEN
-    expect(plane).not_to be_flying
-    expect(airport.planes).to include plane
+  context "Land a flying plane and have it accepted by an airport" do
+    it "Planes are not flying when created" do
+      #GIVEN I have a new plane
+      plane = Plane.new
+      #WHEN I check the planes status
+      #THEN The plane is not flying
+      expect(plane.flying?).to eq false
+    end
+    it "Planes can fly" do
+      #GIVEN I have a plane that is not flying
+      plane = Plane.new
+      #WHEN I tell the plane to take off
+      plane.take_off
+      #THEN I expect the plane to be flying
+      expect(plane).to be_flying
+    end
+    it "Planes can land" do
+      #GIVEN I have a plane that it flying
+      plane = Plane.new
+      plane.take_off
+      #WHEN I tell the plane to land
+      plane.land
+      #THEN I expect the plane to not be flying
+      expect(plane).not_to be_flying
+    end
+    it "Airports can accept planes that have landed" do
+      #GIVEN I have an airport and a flying plane
+      airport = Airport.new
+      plane = Plane.new
+      plane.take_off
+      #WHEN I land the plane and ask the airport to accept it
+      plane.land
+      airport.accept plane
+      expect(airport.planes).to include plane
+    end
   end
 
   # As an air traffic controller
