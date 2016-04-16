@@ -2,61 +2,39 @@ require 'airport'
 
 describe Airport do
 
+let(:plane) {double :plane}
+
   it{is_expected.to respond_to(:land).with(1).argument}
 
   it 'can land a plane' do
-    plane = Plane.new
-    expect(subject.land(plane)).to eq(plane)
+    allow(plane).to receive(:location=).with(subject)
+    expect(subject.land(plane)).to eq (plane)
   end
 
   it 'landing a plane sets its location to current airport' do
-    plane = Plane.new
+    expect(plane).to receive(:location=).with(subject)
     subject.land(plane)
-    expect(plane.location).to eq(subject)
-  end
-
-  it 'landing a plane should set landed? to true' do
-    plane = Plane.new
-    subject.land(plane)
-    expect(plane.landed?).to eq(true)
-  end
-
-  it{is_expected.to respond_to(:take_off).with(1).argument}
-
-  it 'taking off should set the plane\'s location to in_the_air' do
-    plane = Plane.new
-    subject.take_off(plane)
-    expect(plane.location).to eq('in_the_air')
-  end
-
-  it 'taking off should set landed to false' do
-    plane = Plane.new
-    subject.take_off(plane)
-    expect(plane.landed?).to eq(false)
-  end
-
-  it 'when landed is true the plane must be at an airport' do
-    plane = Plane.new
-    subject.land(plane)
-    expect(plane.location).to be_a(Airport)
-  end
-
-  it 'when location is not an airport landed? should be false' do
-    plane = Plane.new
-    expect(plane.landed?).to eq(false)
   end
 
   it 'landed planes should be stored in the airport' do
-    plane = Plane.new
+    allow(plane).to receive(:location=).with(subject)
     subject.land(plane)
     expect(subject.planes).to include(plane)
   end
 
-  it 'planes which have taken off should no longer be in the airport' do
-    plane = Plane.new
-    subject.land(plane)
+  it{is_expected.to respond_to(:take_off).with(1).argument}
+
+  it 'taking off should set the plane\'s location to in the air' do
+    expect(plane).to receive(:location=).with("in_the_air")
     subject.take_off(plane)
-    (subject.planes).should_not include(plane)
+  end
+
+  it 'planes which have taken off should no longer be in the airport' do
+    allow(plane).to receive(:location=).with("in_the_air")
+    subject.planes << plane
+    expect(subject.planes).to include(plane)
+    subject.take_off(plane)
+    expect(subject.planes).not_to include(plane)
   end
 
 
