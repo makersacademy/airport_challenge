@@ -19,6 +19,10 @@ class Airport
 		end
 	end
 
+	def dispatch(plane)
+		landed.delete(plane)
+	end
+
 	private
 
 	def full?
