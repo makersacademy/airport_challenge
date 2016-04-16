@@ -14,7 +14,9 @@ class Plane
   end
   
   def take_off(airport)
+    msg = "The plane is at another airport. Cannot take off from this location!"
     return "Plane #{self} is already flying" unless @status == :landed
+    raise msg unless airport.planes.include? self
     raise "Cannot take off" unless airport.ready_for_taking_off?
     @status = :flying
     airport.release_plane(self)
