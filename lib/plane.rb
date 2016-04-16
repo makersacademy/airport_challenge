@@ -1,12 +1,21 @@
+require 'airport'
+
 class Plane
-  attr_reader :landed
+  attr_reader :landed, :airport
+
+  def initialize(airport)
+    @airport = airport
+  end
 
   def land(airport)
+    @airport = airport
     @landed = true
   end
 
   def take_off
-    !@landed = false
+    raise "Can't take off in stormy weather" if airport.weather == "stormy"
+    @landed = false
+    true
   end
 
   def landed?
@@ -14,6 +23,6 @@ class Plane
   end
 
   private
-  attr_writer :landed
+  attr_writer :landed, :airport
 
 end
