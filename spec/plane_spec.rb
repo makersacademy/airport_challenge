@@ -8,10 +8,14 @@ describe Plane do
 			subject.try_to_land(airport)
 			expect(airport).to have_received(:receive).with(subject)
 		end
-		it 'should not tell the airport we want it to receive the plane if plan is already landed' do
+		it 'should not tell the airport we want it to receive the plane if plane is already landed' do
 			subject.land(airport)
 			subject.try_to_land(airport)
 			expect(airport).not_to have_received(:receive).with(subject)
+		end
+		it 'should return an explanation if plane is already landed' do
+			subject.land(airport)
+			expect(subject.try_to_land(airport)).to eq "Plan is already landed"
 		end
 		it '#land should set a landed attribute to true' do
 			subject.land(airport)
