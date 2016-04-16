@@ -51,14 +51,10 @@ class Airport
   end
 
   def parked_here?(plane)
-    if !@planes.include?(plane) && !@planes.empty?
-      fail "That plane is not at this airport"
-    end
+    fail "That plane is not at this airport" if !@planes.include?(plane) && !@planes.empty?
   end
 
   def flying?(plane)
-    if plane.ground
-      fail "This plane is not in the air"
-    end
+    fail "This plane is not in the air" if plane.ground
   end
 end
