@@ -4,6 +4,18 @@ describe Airport do
 
 let(:airport) { described_class.new}
 
+  describe 'initialization' do
+    it 'sets defualt capacity if no argument passed' do
+      50.times {airport.instruct_landing(Plane.new)}
+      expect{airport.instruct_landing(Plane.new)}.to raise_error 'Airport full'
+    end
+    it 'sets capacity to argument passed' do
+      airport1 = Airport.new(30)
+      30.times {airport1.instruct_landing(Plane.new)}
+      expect{airport1.instruct_landing(Plane.new)}.to raise_error 'Airport full'
+    end
+  end
+
   describe '#instruct_takeoff' do
     it 'responds to instruct_takeoff' do
       expect(airport).to respond_to :instruct_takeoff
@@ -36,18 +48,29 @@ let(:airport) { described_class.new}
       expect(plane).not_to be_flying
     end
 
-    it 'instructs a plane to land and remembers which plane has landed' do
-      plane = Plane.new
-      airport.instruct_landing(plane)
-      expect(airport.planes).to include plane
-    end
+    # made attr_reader :planes private so can no longer test airport.planes
+    #it 'instructs a plane to land and remembers which plane has landed' do
+      #plane = Plane.new
+      #airport.instruct_landing(plane)
+      #expect(airport.planes).to include plane
+    #end
 
     it 'raises an error when airport capacity is full' do
       plane = Plane.new
-      Airport::DEFAULT_CAPACITY.times {airport.instruct_landing(plane)}
-      expect { airport.instruct_landing(plane) }.to raise_error 'Gate full'
+      airport.capacity.times {airport.instruct_landing(plane)}
+      expect { airport.instruct_landing(plane) }.to raise_error 'Airport full'
+    end
+  end
+
+  it 'has default capacity (if no capacity set at initialization' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
+   #optional
+  it 'changes capacity of airport' do
+    airport.capacity = 52
+    52.times {airport.instruct_landing(Plane.new)}
+    expect{airport.instruct_landing(Plane.new)}.to raise_error 'Airport full'
   end
 
 end
