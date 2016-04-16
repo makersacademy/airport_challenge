@@ -35,4 +35,14 @@ describe Airport do
     expect(plane.landed?).to eq(false)
   end
 
+  it 'when landed is true the plane must be at an airport' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(plane.location).to be_a(Airport)
+  end
+
+  it 'when location is not an airport landed? should be false' do
+    plane = Plane.new
+    expect(plane.landed?).to eq(false)
+  end
 end
