@@ -22,7 +22,7 @@ describe Airport do
     end
 
     it "doesn't #land_plane if full?" do
-      airport.capacity.times { |x| airport.land_plane plane}
+      airport.capacity.times { airport.land_plane plane}
       expect{airport.land_plane plane}.to raise_error "Airport full"
     end
 
