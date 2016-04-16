@@ -1,4 +1,5 @@
-require_relative 'Weather'
+require_relative 'weather'
+require_relative 'plane'
 
 class Airport
 
