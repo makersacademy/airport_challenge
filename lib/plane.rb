@@ -29,6 +29,11 @@ class Plane
 		location.dispatch(self) if location != "sky"
 	end
 
+	def take_off
+		@landed = false
+		@location = "sky"
+	end
+
 	def landed?
 		@landed
 	end
