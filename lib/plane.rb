@@ -13,10 +13,12 @@ class Plane
 
   def land
     @location = 'airport'
+    nil
   end
 
   def take_off
     @location = 'where eagles soar'
+    nil
   end
 
   private

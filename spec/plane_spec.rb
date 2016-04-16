@@ -25,12 +25,20 @@ describe Plane do
       subject.land
       expect(subject.broadcast_location).to eq "airport"
     end
+
+    it "have a nil return value" do
+      expect(subject.land).to eq nil
+    end
   end
 
   describe "#take_off" do
     it "location will be 'where eagles soar' after landing" do
       subject.take_off
       expect(subject.broadcast_location).to eq "where eagles soar"
+    end
+
+    it "have a nil return value" do
+      expect(subject.take_off).to eq nil
     end
   end
 end
