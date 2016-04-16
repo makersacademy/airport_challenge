@@ -1,27 +1,30 @@
 class Airport
 
-  ERR_ALREADY_LANDED = "plane already landed".freeze
-  ERR_PLANE_NOT_FOUND = "plane not at the airport".freeze
-  DEFAULT_CAPACITY = 2
+  #ERR_ALREADY_LANDED = "plane already landed".freeze
+  #ERR_PLANE_NOT_FOUND = "plane not at the airport".freeze
+  DEFAULT_CAPACITY = 20
 
-  attr_reader :planes_at_airport
+  attr_reader :planes_at_airport, :capacity
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes_at_airport = []
+    @capacity = capacity
   end
 
   def instruct_takeoff(plane)
-    return ERR_PLANE_NOT_FOUND unless in_airport?(plane)
-    return if stormy?
+    return if stormy? or !in_airport?(plane)
     plane.takeoff
     leave_airport(plane)
   end
 
   def instruct_land(plane)
-    return ERR_ALREADY_LANDED if in_airport?(plane)
-    return if stormy?
+    return if stormy? or full? or in_airport?(plane)
     plane.land
     access_airport(plane)
+  end
+
+  def stormy?
+      weather_generator == 9
   end
 
   private
@@ -42,8 +45,7 @@ class Airport
       rand(10)
     end
 
-    def stormy?
-      weather_generator == 9
+    def full?
+      planes_at_airport.count >= capacity
     end
-
 end
