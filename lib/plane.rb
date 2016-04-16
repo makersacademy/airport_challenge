@@ -17,6 +17,14 @@ class Plane
 		"Plane landed successfully..."
 	end
 
+	def land_fails(reason)
+		if reason == "full" 
+			"Plane failed to land because airport is already full"
+		elsif reason == "weather"
+			"Plane failed to land because of bad weather"
+		end	
+	end
+
 	def landed?
 		@landed
 	end
