@@ -10,9 +10,9 @@ let(:airport) { described_class.new}
       expect{airport.instruct_landing(Plane.new)}.to raise_error 'Airport full'
     end
     it 'sets capacity to argument passed' do
-      airport1 = Airport.new(30)
-      30.times {airport1.instruct_landing(Plane.new)}
-      expect{airport1.instruct_landing(Plane.new)}.to raise_error 'Airport full'
+      airport = Airport.new(30)
+      30.times {airport.instruct_landing(Plane.new)}
+      expect{airport.instruct_landing(Plane.new)}.to raise_error 'Airport full'
     end
   end
 
@@ -64,7 +64,7 @@ let(:airport) { described_class.new}
 
   it 'has default capacity (if no capacity set at initialization' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
-    end
+  end
 
    #optional
   it 'changes capacity of airport' do

@@ -12,17 +12,17 @@ DEFAULT_CAPACITY = 50
   end
 
   def instruct_takeoff
-    raise "No planes in airport" if empty?
+    fail "No planes in airport" if empty?
     planes.pop
   end
 
   def instruct_landing(plane)
-    raise "Airport full" if full?
+    fail "Airport full" if full?
      planes << plane
   end
 
 
-private
+  private
 
   attr_reader :planes
 

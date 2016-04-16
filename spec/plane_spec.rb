@@ -8,7 +8,7 @@ describe Plane do
       expect(plane).to respond_to :flying?
     end
 
-     it 'responds to land' do
+    it 'responds to land' do
       expect(plane).to respond_to :land
     end
 
