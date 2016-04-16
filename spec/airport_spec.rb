@@ -10,6 +10,7 @@ let(:airport) { described_class.new}
     end
 
     it 'instructs a plane to take off, which is then flying' do
+      airport.instruct_landing(Plane.new)
       plane = airport.instruct_takeoff
       plane.take_off
       expect(plane).to be_flying
@@ -34,12 +35,12 @@ let(:airport) { described_class.new}
     it 'instructs a plane to land and remembers which plane has landed' do
       plane = Plane.new
       airport.instruct_landing(plane)
-      expect(airport.plane).to eq plane
+      expect(airport.planes).to include plane
     end
 
-    it 'raises an error when airport gate is full' do
+    it 'raises an error when airport capacity is full' do
       plane = Plane.new
-      airport.instruct_landing(plane)
+      50.times {airport.instruct_landing(plane)}
       expect { airport.instruct_landing(plane) }.to raise_error 'Gate full'
     end
 

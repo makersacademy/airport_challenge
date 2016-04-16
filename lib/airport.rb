@@ -2,14 +2,19 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :plane
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
 
   def instruct_takeoff
-    Plane.new
+    plane = @planes.pop
   end
 
   def instruct_landing(plane)
-    raise "Gate full" if @plane
-     @plane = plane
+    raise "Gate full" if @planes.count >= 50
+     @planes << plane
+     return plane
   end
 end
