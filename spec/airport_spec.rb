@@ -35,4 +35,13 @@ describe Airport do
     expect{airport.land_plane plane}.to raise_error"Airport full"
   end
 
+  it "will take different values for capacity" do
+    array = (1..10).to_a
+    array.each do |x|
+      airport = Airport.new weather, x
+      x.times {|x|airport.land_plane plane}
+      expect{airport.land_plane plane}.to raise_error"Airport full"
+    end
+  end
+
 end
