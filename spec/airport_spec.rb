@@ -1,10 +1,16 @@
 
 require 'Airport'
-
+require 'plane'
 
 describe Airport do
-	it 'responds to land' do
-	expect(subject).to respond_to 'land'
+	let(:plane) {Plane.new}
+	it 'responds to land with 1 argument' do
+	subject { is_expected.to respond_to(:land).with(1).argument }
 	end
-	
+
+	it 'says that it has landed' do 
+	expect(subject.land(plane)).to eq 'the plane has landed'
+	end
+
 end
+	
