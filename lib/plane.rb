@@ -8,6 +8,7 @@ class Plane
   end
 
   def land
+    raise "This plane isn't flying!" unless @flying
     @flying = false
   end
 

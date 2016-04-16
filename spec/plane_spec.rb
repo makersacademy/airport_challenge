@@ -19,5 +19,8 @@ describe Plane do
       subject.land
       expect(subject).not_to be_flying
     end
+    it "should raise an error if @flying is false" do
+      expect { subject.land }.to raise_error "This plane isn't flying!"
+    end
   end
 end
