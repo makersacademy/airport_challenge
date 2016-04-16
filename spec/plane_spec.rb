@@ -42,6 +42,10 @@ describe Plane do
 			subject.try_to_takeoff
 			expect(airport).to have_received(:dispatch).with(subject)
 		end
+		it 'should not tell the airport we want it to dispatch the plane if the plane is not in an airport' do
+			subject.try_to_takeoff
+			expect(airport).not_to have_received(:dispatch).with(subject)
+		end
 	end
 
 end
