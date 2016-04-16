@@ -6,22 +6,21 @@ class Plane
     @location = "Airplane factory"
   end
 
-  def land
-    @location = "Airport"
-    "That was a bumpy landing sir"
-  end
-
-  def take_off
-    @location = "Where eagles soar"
-    "I can see my house from here"
-  end
 
   def broadcast_location
     location
   end
 
+  def land
+    @location = 'airport'
+  end
+
+  def take_off
+    @location = 'where eagles soar'
+  end
+
   private
-  attr_reader :location
+  attr_accessor :location
 
 
 end
