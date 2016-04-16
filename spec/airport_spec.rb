@@ -1,7 +1,6 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to :weather}
   it { is_expected.to respond_to :capacity}
   it { is_expected.to respond_to :planes}
   it { is_expected.to respond_to :land}
@@ -10,15 +9,6 @@ describe Airport do
   let(:plane) { double(:plane, land: true, takeoff: true, ground: false)}
   let(:groundplane) { double(:plane, land: true, takeoff: true, ground: true)}
   let(:flyplane) { double(:plane, land: true, takeoff: true, ground: false)}
-
-  describe '#weather' do
-    it 'generates the current weather when a plane is attempting to take off' do
-      allow(subject).to receive(:rand) {5}
-      subject.land(flyplane)
-      subject.takeoff(flyplane)
-      expect(subject.weather).to eq "Sunny"
-    end
-  end
 
   describe '#capacity' do
     it 'prevents landing when the airport capacity is full' do

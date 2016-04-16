@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :capacity
-  attr_reader :planes, :weather
+  attr_reader :planes
 
   DEFAULT_CAPACITY = 5
 
@@ -38,19 +38,9 @@ class Airport
   end
 
   def weather_calc(plane)
-    @weather = if rand(20) > 17
-      'Stormy'
-    else
-      'Sunny'
-    end
-    storm(plane)
-  end
-
-  def storm(plane)
-    if @weather == "Stormy" && plane.ground
-      fail "Planes cannot take off due to stormy weather"
-    elsif @weather == "Stormy" && !plane.ground
-      fail "Planes cannot land due to stormy weather"
+    if rand(20) > 17
+      fail "Planes cannot take off due to stormy weather" if plane.ground
+      fail "Planes cannot land due to stormy weather" if !plane.ground
     end
   end
 
