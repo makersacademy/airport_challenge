@@ -5,12 +5,7 @@ class Weather
   end
 
   def random_weather
-    number = rand(20)
-    if number <= 1
-      true
-    else
-      false
-    end
+    rand(20) <= 1 ? true : false
   end
 
 end
