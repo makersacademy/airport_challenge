@@ -1,5 +1,13 @@
 class Weather
   def stormy?
-    Random.new.rand(5) == 1 ? true : false #Chance of storms is 20%
+    random_outlook == :stormy
+  end
+
+  private
+
+  OUTLOOKS = [:stormy, :fine, :fine, :fine]
+
+  def random_outlook
+    OUTLOOKS.sample
   end
 end

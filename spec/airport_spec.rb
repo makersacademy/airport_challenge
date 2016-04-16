@@ -4,13 +4,10 @@ describe Airport do
 
 let(:airport) { described_class.new(Airport::DEFAULT_CAPACITY, weather)}
 let(:weather) {double(:weather, stormy?: false)}
-let(:plane) { double(:plane) }
+let(:plane) { double(:plane, land: nil, take_off:nil) }
 
 
   describe 'initialization' do
-    before do
-      allow(plane).to receive(:land)
-    end
     it 'has default capacity (if no capacity set at initialization)' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
@@ -37,7 +34,6 @@ let(:plane) { double(:plane) }
 
   describe '#takeoff' do
     before do
-      allow(plane).to receive(:land)
       airport.land(plane)
     end
 
@@ -47,22 +43,16 @@ let(:plane) { double(:plane) }
     end
 
     it 'does not have plane after take off' do
-      allow(plane).to receive(:take_off)
       airport.takeoff(plane)
       expect(airport.planes).not_to include plane
     end
 
     it 'launches the correct plane' do
-      allow(plane).to receive(:take_off)
       expect(airport.takeoff(plane)).to eq plane
     end
   end
 
   context 'stormy' do
-    before do
-      allow(plane).to receive(:land)
-      allow(plane).to receive(:take_off)
-    end
     it 'raises an error when plane tries to land in stormy weather' do
       allow(weather).to receive(:stormy?).and_return(true)
       expect { airport.land(plane) }.to raise_error 'Stormy weather'
@@ -76,10 +66,6 @@ let(:plane) { double(:plane) }
   end
 
   context 'inconsistent states' do
-    before do
-      allow(plane).to receive(:land)
-      allow(plane).to receive(:take_off)
-    end
     it 'raises an error when airport capacity is full' do
       airport.capacity.times {airport.land(plane)}
       expect { airport.land(plane) }.to raise_error 'Airport full'
@@ -91,9 +77,6 @@ let(:plane) { double(:plane) }
   end
 
   context 'variable capcity' do
-    before do
-      allow(plane).to receive(:land)
-    end
     it 'changes capacity of airport' do
       airport.capacity = 52
       52.times {airport.land(plane)}
