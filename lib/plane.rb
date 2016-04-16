@@ -1,13 +1,14 @@
 class Plane
 
-	attr_reader :location
+	attr_reader :location, :weather
 
-	def initialize
+	def initialize(weather)
+		@weather = weather
 		@landed = false
 	end
 
 	def try_to_land(airport)
-		airport.receive(self) if landed? == false
+		airport.receive(self,weather) if landed? == false
 	end
 
 	def land(airport)
