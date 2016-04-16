@@ -29,4 +29,10 @@ describe Airport do
     expect(plane.location).to eq('in_the_air')
   end
 
+  it 'taking off should set landed to false' do
+    plane = Plane.new
+    subject.take_off(plane)
+    expect(plane.landed?).to eq(false)
+  end
+
 end
