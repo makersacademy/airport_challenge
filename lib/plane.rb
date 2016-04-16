@@ -8,7 +8,7 @@ class Plane
 	end
 
 	def try_to_land(airport)
-		airport.receive(self) if landed? == false
+		landed? ? "Plan is already landed" : airport.receive(self)
 	end
 
 	def land(airport)
