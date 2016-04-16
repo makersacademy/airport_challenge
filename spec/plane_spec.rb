@@ -50,6 +50,9 @@ describe Plane do
 			subject.try_to_takeoff
 			expect(airport).not_to have_received(:dispatch).with(subject)
 		end
+		it 'should explain that the plane is already in the sky if it is' do
+			expect(subject.try_to_takeoff).to eq "Plane is already in the sky"
+		end
 		it '#take_off should set the landed attribute to false' do
 			subject.land(airport)
 			subject.take_off
