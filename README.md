@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/OMGDuke/airport_challenge.svg?branch=master)](https://travis-ci.org/OMGDuke/airport_challenge)
 
+[![Coverage Status](https://coveralls.io/repos/github/OMGDuke/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/OMGDuke/airport_challenge?branch=master)
+
 Airport Challenge
 =================
 
