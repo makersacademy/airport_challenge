@@ -8,18 +8,17 @@ describe Airport do
   it {is_expected.to respond_to :take_off}
 
   it "lands a plane" do
-    subject.land_plane(plane)
-    expect(subject.planes).to include plane
+    airport.land_plane(plane)
+    expect(airport.planes).to include plane
   end
 
   it "has a plane take off" do
-    subject.land_plane plane
+    airport.land_plane plane
     allow(plane).to receive(:flying).and_return(false)
     expect(airport.take_off(plane)).to eq plane
   end
 
   it "denies take off during stormy weather" do
-    airport = described_class.new(weather)
     airport.land_plane plane
     allow(weather).to receive(:stormy?).and_return(true)
     allow(plane).to receive(:flying).and_return(false)
@@ -27,9 +26,13 @@ describe Airport do
   end
 
   it "denies landing during stormy weather" do
-    airport = described_class.new(weather)
     allow(weather).to receive(:stormy?).and_return(true)
     expect{airport.land_plane(plane)}.to raise_error('Too stormy for landing')
+  end
+
+  it "denies landing when airport is full" do
+    20.times { |x| airport.land_plane plane}
+    expect{airport.land_plane plane}.to raise_error"Airport full"
   end
 
 end
