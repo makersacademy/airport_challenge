@@ -5,7 +5,6 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
 
-
   it 'confirms the plane is in the airport' do
     airport.land(plane)
     expect(airport.planes).to include plane
@@ -18,14 +17,19 @@ describe Airport do
   # end
 
   context 'with weather as an argument,' do
-    let(:weather) { described_class.new }
+    let(:weather) { double :weather, stormy?: true }
 
-    it 'will not let a plane take off' do
+    it 'will not let a plane take off in shitty weather' do
     allow(weather).to receive(:stormy?).and_return(true)
+    expect{airport.take_off(plane)}.to raise_error 'Cannot take off due to shitty weather'
+  end
+
+    let(:weather) { double :weather, fine?: true }
+
+    it 'will let a plane take off in fine weather' do
+    allow(weather).to receive(:fine?).and_return(true)
     expect{airport.take_off(plane)}.to raise_error 'Cannot take off due to shitty weather'
     end
   end
-
-
 
 end
