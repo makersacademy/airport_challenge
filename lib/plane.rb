@@ -1,10 +1,10 @@
 class Plane
 
   def landed?
-    @present = true
+    true
   end
 
   def took_off?
-    @present = false
+   false
   end
 end
