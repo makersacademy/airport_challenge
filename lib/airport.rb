@@ -9,12 +9,23 @@ class Airport
   end
 
   def instruct_takeoff
+    raise "No planes in airport" if empty?
     plane = @planes.pop
   end
 
   def instruct_landing(plane)
-    raise "Gate full" if @planes.count >= 50
+    raise "Gate full" if full?
      @planes << plane
-     return plane
+  end
+
+
+private
+
+  def full?
+    @planes.count >= 50
+  end
+
+  def empty?
+    @planes.empty?
   end
 end

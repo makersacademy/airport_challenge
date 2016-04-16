@@ -15,6 +15,10 @@ let(:airport) { described_class.new}
       plane.take_off
       expect(plane).to be_flying
     end
+
+    it 'raises an error when there are no planes to take off' do
+      expect { airport.instruct_takeoff }.to raise_error 'No planes in airport'
+    end
   end
 
   describe '#instruct_landing' do
@@ -22,7 +26,7 @@ let(:airport) { described_class.new}
 
     it 'instructs a plane to land' do
       plane = Plane.new
-      expect(airport.instruct_landing(plane)).to eq plane
+      expect(airport.instruct_landing(plane)).to include plane
     end
 
     it 'instructs a plane to land, which is then no longer flying' do
