@@ -56,6 +56,10 @@ describe Plane do
 			subject.take_off
 			expect(subject.location).to eq "sky"
 		end
+		it '#take_off should return a status update explaining that the plane has taken off successfully' do
+			subject.land(airport)
+			expect(subject.take_off).to eq "Plane has successfully departed..."
+		end
 	end
 
 end
