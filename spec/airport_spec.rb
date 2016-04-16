@@ -6,7 +6,8 @@ describe Airport do
 
     #I want to instruct a plane to land at an airport and confirm that it has landed
     it 'instructs a plane to land' do
-
+      plane = Plane.new
+      subject.land(plane)
     end
 
     it 'has the plane after landing' do
