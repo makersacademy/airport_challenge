@@ -2,8 +2,15 @@ require_relative 'plane'
 
 class Airport
 
-def land(plane)
-  plane
-end
+  attr :planes
+
+  def initialize
+    @planes = []
+  end
+
+  def land(plane)
+    @planes << plane
+    return "Plane has landed"
+  end
 
 end
