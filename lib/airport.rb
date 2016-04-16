@@ -17,4 +17,8 @@ class Airport
     @planes.delete(plane)
   end
 
+  def check_plane_status(plane)
+    @planes.include?(plane) ? "Plane in airport" : "Plane not in airport"
+  end
+
 end

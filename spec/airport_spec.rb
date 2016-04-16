@@ -16,5 +16,13 @@ describe Airport do
     expect(airport.planes).not_to include(plane)
   end
 
+  it 'checks whether or not a plane is in the airport' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.land(plane)
+    expect(airport.check_plane_status(plane)).to eq "Plane in airport"
+    airport.take_off(plane)
+    expect(airport.check_plane_status(plane)).to eq "Plane not in airport"
+  end
 
 end
