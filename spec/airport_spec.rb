@@ -32,14 +32,6 @@ describe Airport do
     expect(subject.take_off(plane)).to eq ("Plane has taken off")
   end
 
-  it "returns error message when plane tries to take off" do
-    plane = Plane.new
-    subject.land(plane)
-    expect {subject.take_off(plane)}.to raise_error("Plane can't take off due to stormy weather")
-  end
-
-
-
 end
 
 
