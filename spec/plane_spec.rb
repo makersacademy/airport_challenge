@@ -27,6 +27,10 @@ describe Plane do
       it 'lands' do
         expect(subject.land(airport)).to eq true
       end
+      it 'does not land in stormy weather' do
+        allow(airport).to receive(:weather).and_return("stormy")
+        expect { subject.land(airport) }.to raise_exception "Can't land in in stormy weather"
+      end
     end
   end
 

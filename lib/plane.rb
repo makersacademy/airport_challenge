@@ -9,6 +9,7 @@ class Plane
 
   def land(airport)
     @airport = airport
+    fail "Can't land in in stormy weather" if airport.weather == "stormy"
     @landed = true
   end
 
