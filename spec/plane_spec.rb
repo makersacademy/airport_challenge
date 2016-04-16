@@ -8,6 +8,19 @@ describe Plane do
 			subject.try_to_land(airport)
 			expect(airport).to have_received(:receive).with(subject)
 		end
+		it '#land should set a landed attribute to true' do
+			subject.land(airport)
+			expect(subject.landed?).to eq true
+		end
+		it '#land should store the plan\'s location' do
+			subject.land(airport)
+			expect(subject.location).to eq airport
+		end
+		it '#land should return a status update explaining that the plan landed successfully' do
+			expect(subject.land(airport)).to eq "Plane landed successfully..."
+		end
 	end
+
+
 
 end
