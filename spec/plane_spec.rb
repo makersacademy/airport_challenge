@@ -17,7 +17,7 @@ describe Plane do
 			subject.land(airport)
 			expect(subject.landed?).to eq true
 		end
-		it '#land should store the plan\'s location' do
+		it '#land should store the plane\'s location' do
 			subject.land(airport)
 			expect(subject.location).to eq airport
 		end
@@ -45,6 +45,16 @@ describe Plane do
 		it 'should not tell the airport we want it to dispatch the plane if the plane is not in an airport' do
 			subject.try_to_takeoff
 			expect(airport).not_to have_received(:dispatch).with(subject)
+		end
+		it '#take_off should set the landed attribute to false' do
+			subject.land(airport)
+			subject.take_off
+			expect(subject.landed?).to eq false
+		end
+		it '#take_off should set the plane\'s location to "sky"' do
+			subject.land(airport)
+			subject.take_off
+			expect(subject.location).to eq "sky"
 		end
 	end
 
