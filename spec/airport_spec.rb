@@ -19,12 +19,17 @@ describe Airport do
   end
 
   it "denies take off during stormy weather" do
-    allow(weather).to receive(:stormy?).and_return(true)
     airport = described_class.new(weather)
-
     airport.land_plane plane
+    allow(weather).to receive(:stormy?).and_return(true)
     allow(plane).to receive(:flying).and_return(false)
     expect{airport.take_off(plane)}.to raise_error('Too stormy for take-off')
+  end
+
+  it "denies landing during stormy weather" do
+    airport = described_class.new(weather)
+    allow(weather).to receive(:stormy?).and_return(true)
+    expect{airport.land_plane(plane)}.to raise_error('Too stormy for landing')
   end
 
 end
