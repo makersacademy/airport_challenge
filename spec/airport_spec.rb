@@ -23,4 +23,10 @@ describe Airport do
 
   it{is_expected.to respond_to(:take_off).with(1).argument}
 
+  it 'taking off should set the plane\'s location to in_the_air' do
+    plane = Plane.new
+    subject.take_off(plane)
+    expect(plane.location).to eq('in_the_air')
+  end
+
 end
