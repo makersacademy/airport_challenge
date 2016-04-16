@@ -10,12 +10,12 @@ class Airport
 
   def land(plane)
     @planes << plane
-    return "Plane has landed"
+    "Plane has landed"
   end
 
   def take_off(plane)
-      @planes.delete(plane)
-      return "Plane has taken off"
+    @planes.delete(plane)
+    "Plane has taken off"
   end
 
 end
