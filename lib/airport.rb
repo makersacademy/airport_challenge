@@ -1,9 +1,17 @@
 class Airport
   def land(plane)
-  true
+    true
   end
 
   def landed?(plane)
-  true
+    true
+  end
+
+  def take_off(plane)
+    true
+  end
+
+  def departed?(plane)
+    true
   end
 end
