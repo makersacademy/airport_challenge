@@ -32,4 +32,10 @@ describe Plane do
 		end
 	end
 
+	it '#landed? should tell you whether it is landed or not' do
+		expect(plane.landed?).to eq false
+		plane.land(airport)
+		expect(plane.landed?).to eq true
+	end
+
 end

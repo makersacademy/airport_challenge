@@ -6,7 +6,6 @@ describe Airport do
 	let(:plane){ spy(:plane) }
 
 		context 'when receiving a plane' do
-
 			context 'when weather is good' do
 				context 'when docking station is not full' do
 					it '#receive should store the plane' do
@@ -34,7 +33,6 @@ describe Airport do
 					end
 				end
 			end
-
 			context 'when weather is bad' do
 				context 'when docking station is not full' do
 					it '#receive should not store the plane' do
@@ -47,7 +45,6 @@ describe Airport do
 					end
 				end
 			end
-
 		end
 
 end
