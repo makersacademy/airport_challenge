@@ -1,7 +1,8 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
+
+  let(:weather) {double(:weather)}
 
 
   describe '#land' do
@@ -21,7 +22,10 @@ describe Airport do
 
     #I want to prevent landing when weather is stormy
     it 'prevents landing when weather is stormy' do
-
+    allow(weather).to receive(:weather_generator) { 8 }
+      plane = Plane.new
+      message = "Too stormy to land"
+      expect { subject.land(plane) } .to raise_error message
     end
 
     #I want to prevent landing when the airport is full
