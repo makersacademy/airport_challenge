@@ -5,13 +5,14 @@ class Airport
 
   DEFAULT_CAPACITY = 25
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
     fail "No room here mate" if full?
-    weather_any_good
+    weather_test
     plane.land
     @planes << plane
     "That was a bumpy landing sir"
@@ -19,7 +20,7 @@ class Airport
 
   def take_off
     fail "No planes here mate" if empty?
-    weather_any_good
+    weather_test
     planes.shift.take_off
     "Don't forget to send a postcard"
   end
@@ -28,10 +29,15 @@ class Airport
     planes
   end
 
-  private
-  attr_reader :planes
+  def airport_capacity
+    capacity
+  end
 
-  def weather_any_good
+  private
+  
+  attr_reader :planes, :capacity
+
+  def weather_test
     fail "Not in this weather mate" unless Weather.sunny?
   end
 

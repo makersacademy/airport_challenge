@@ -5,13 +5,20 @@ describe Airport do
   it {is_expected.to respond_to(:land).with(1).argument}
   it {is_expected.to respond_to(:take_off)}
   it {is_expected.to respond_to(:planes_in_airport)}
+  it {is_expected.to respond_to(:airport_capacity)}
 
 
   let(:plane) {double :plane, land: nil, take_off: nil}
 
   it 'airports have a default capacity of 25 planes' do
     expect(Airport::DEFAULT_CAPACITY).to eq 25
+    expect(subject.airport_capacity).to eq 25
   end
+
+  it 'can be built with different size capacities' do
+    expect(Airport.new(20).airport_capacity).to eq 20
+  end
+
 
   describe "#land" do
     it "plane will recieve a call to land when weather is fine" do
