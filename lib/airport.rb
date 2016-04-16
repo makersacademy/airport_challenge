@@ -13,4 +13,7 @@ class Airport
     return "Plane has landed"
   end
 
+  def take_off
+  end
+
 end
