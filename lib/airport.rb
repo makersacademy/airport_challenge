@@ -20,8 +20,8 @@ class Airport
 	end
 
 	def dispatch(plane)
-		landed.delete(plane)
 		plane.take_off
+		landed.delete(plane)
 	end
 
 	private

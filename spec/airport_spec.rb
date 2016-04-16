@@ -62,6 +62,12 @@ describe Airport do
 					expect(plane).to have_received(:take_off)
 				end
 			end
+			context 'when weather is bad' do
+				it '#dispatch should not try to delete from the airport\'s landed array' do
+					expect(airport_with_badweather.dispatch(plane)).not_to eq nil
+				end
+			end
+
 		end
 
 end
