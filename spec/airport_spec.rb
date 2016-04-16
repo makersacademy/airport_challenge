@@ -34,11 +34,16 @@ describe Airport do
 
     #I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
     it 'instructs a plane to take off' do
-
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
     end
 
     it 'does not have the plane after take off' do
-
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).to_not include plane
     end
 
     #I want to prevent takeoff when weather is stormy
