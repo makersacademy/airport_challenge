@@ -19,8 +19,4 @@ class Airport
     @planes.pop
   end
 
-
-
-
-
 end
