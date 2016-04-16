@@ -25,6 +25,10 @@ describe Airport do
 
     #I want to prevent landing when the airport is full
     it 'prevents landing when airport is full' do
+      message = "Airport full"
+      plane = Plane.new
+      subject.capacity.times { subject.land(plane) }
+      expect{subject.land(plane)}.to raise_error message
 
     end
 
@@ -53,6 +57,9 @@ describe Airport do
     end
 
     it 'prevents take off when airport is empty' do
+      message = "Airport empty"
+      plane = Plane.new
+      expect { subject.take_off(plane) } .to raise_error message
 
     end
 
