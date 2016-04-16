@@ -22,8 +22,8 @@ describe Plane do
   end
 
   describe '#ground?' do
-    it 'starts on the ground' do
-      expect(subject.ground).to eq true
+    it 'starts in the air' do
+      expect(subject.ground).to eq false
     end
   end
 

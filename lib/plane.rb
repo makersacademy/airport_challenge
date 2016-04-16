@@ -2,7 +2,7 @@ class Plane
   attr_reader :ground
 
   def initialize
-    @ground = true
+    @ground = false
   end
 
   def land
