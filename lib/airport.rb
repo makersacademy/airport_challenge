@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :capacity
-  attr_reader :planes
+  attr_reader :planes, :weather
 
   DEFAULT_CAPACITY = 5
 
@@ -12,37 +12,36 @@ class Airport
     @weather = 'Sunny'
   end
 
-  def weather
+  def takeoff(plane)
+    weather_calc(plane)
+    empty?
+    plane.takeoff
+    @planes.delete(plane)
+  end
+
+  def land(plane)
+    weather_calc(plane)
+    full?
+    plane.land
+    @planes << plane
+  end
+
+  private
+  def full?
+    raise "The airport is full" if @planes.length >= @capacity
+  end
+
+  def empty?
+    raise "There are no planes at the airport" if @planes.empty?
+  end
+
+  def weather_calc(plane)
     if rand(20) > 17
       @weather = 'Stormy'
     else
       @weather = 'Sunny'
     end
+    raise "Planes cannot take off due to stormy weather" if @weather == "Stormy" && plane.ground
+    raise "Planes cannot land due to stormy weather" if @weather == "Stormy" && !plane.ground
   end
-
-  def takeoff(plane)
-    weather
-    if @planes.empty?
-      raise "There are no planes at the airport"
-    elsif weather == "Stormy"
-      raise "Planes cannot take off due to stormy weather"
-    else
-      plane.takeoff
-      @planes.delete(plane)
-    end
-  end
-
-  def land(plane)
-    weather
-    if @planes.length >= @capacity
-      raise "The airport is full"
-    elsif weather == "Stormy"
-      raise "Planes cannot land due to stormy weather"
-    else
-      plane.land
-      @planes << plane
-    end
-  end
-
-
 end

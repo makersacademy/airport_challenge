@@ -8,6 +8,8 @@ describe Airport do
   it { is_expected.to respond_to :takeoff}
 
   let(:plane) { double(:plane, status: true, land: true, takeoff: true)}
+  let(:groundplane) { double(:plane, status: true, land: true, takeoff: true, ground: true)}
+  let(:flyplane) { double(:plane, status: true, land: true, takeoff: true, ground: false)}
 
   describe '#weather' do
     it 'generates the current weather when a plane is attempting to take off' do
@@ -49,7 +51,7 @@ describe Airport do
 
     it 'raises an error when a plane tried to land and the weather is stormy' do
       allow(subject).to receive(:rand) {20}
-      expect {subject.land(plane)}.to raise_error("Planes cannot land due to stormy weather")
+      expect {subject.land(flyplane)}.to raise_error("Planes cannot land due to stormy weather")
     end
   end
 
@@ -65,9 +67,9 @@ describe Airport do
 
     it 'raises an error when a plane tries to takeoff and the weather is stormy' do
       allow(subject).to receive(:rand) {5}
-      subject.land(plane)
+      subject.land(groundplane)
       allow(subject).to receive(:rand) {20}
-      expect {subject.takeoff(plane)}.to raise_error("Planes cannot take off due to stormy weather")
+      expect {subject.takeoff(groundplane)}.to raise_error("Planes cannot take off due to stormy weather")
     end
 
     it 'raises an error when there are no planes to take off' do
