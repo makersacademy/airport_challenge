@@ -24,6 +24,10 @@ class Plane
 		end	
 	end
 
+	def try_to_takeoff
+		location.dispatch(self)
+	end
+
 	def landed?
 		@landed
 	end
