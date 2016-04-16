@@ -2,16 +2,17 @@ require 'plane'
 
 describe Plane do
 	let(:airport){ spy(:airport) }
+	let(:weather){ double(:weather) }
 
 	context 'when trying to land' do
 		it 'should tell the airport we want it to receive the plane if plane is not already landed' do
 			subject.try_to_land(airport)
-			expect(airport).to have_received(:receive).with(subject)
+			expect(airport).to have_received(:receive).with(subject,weather)
 		end
 		it 'should not tell the airport we want it to receive the plane if plan is already landed' do
 			subject.land(airport)
 			subject.try_to_land(airport)
-			expect(airport).not_to have_received(:receive).with(subject)
+			expect(airport).not_to have_received(:receive).with(subject,weather)
 		end
 		it '#land should set a landed attribute to true' do
 			subject.land(airport)
