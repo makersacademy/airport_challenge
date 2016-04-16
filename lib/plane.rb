@@ -10,4 +10,8 @@ class Plane
     @landed_status = true
   end
 
+  def take_off
+    @landed_status = false
+  end
+
 end

@@ -16,4 +16,11 @@ describe Plane  do
 
   end
 
+  describe '#taken_off' do
+    it 'sets landed_status to false' do
+      subject.take_off
+      expect(subject.landed_status).to eq false
+    end
+  end
+
 end
