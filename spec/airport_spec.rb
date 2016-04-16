@@ -9,7 +9,7 @@ describe Airport do
 	end
 
 	it 'says that it has landed' do 
-	expect(subject.land(plane)).to eq 'the plane has landed'
+	expect(subject.land(plane)).to eq true
 	end
 
 end
