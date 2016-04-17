@@ -6,25 +6,21 @@ class Airport
   STORMY = "stormy weather".freeze
   FULL = "capacity full".freeze
 
-  attr_reader :planes_at_airport, :capacity
+  attr_reader :planes, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @planes_at_airport = []
+    @planes = []
     @capacity = capacity
   end
 
-  def instruct_takeoff(plane)
+  def takeoff(plane)
     check_errors(plane, false)
-    #fail NOT_FOUND if !in_airport?(plane)
-    #return if stormy?
     plane.takeoff
     leave_airport(plane)
   end
 
-  def instruct_land(plane)
+  def land(plane)
     check_errors(plane, true)
-    #fail LANDED if in_airport?(plane)
-    #return if stormy? || full?
     plane.land
     access_airport(plane)
   end
@@ -36,15 +32,15 @@ class Airport
   private
 
     def in_airport?(plane)
-      planes_at_airport.include?(plane)
+      planes.include?(plane)
     end
 
     def access_airport(plane)
-      planes_at_airport << plane
+      planes << plane
     end
 
     def leave_airport(plane)
-      planes_at_airport.delete(plane)
+      planes.delete(plane)
     end
 
     def check_errors(plane,land)
@@ -62,6 +58,6 @@ class Airport
     end
 
     def full?
-      planes_at_airport.count >= capacity
+      planes.count >= capacity
     end
 end
