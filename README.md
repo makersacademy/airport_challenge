@@ -13,8 +13,11 @@ when a plane has landed or taken off. I erred on the side of caution and
 granted the user the option of searching for a plane on the ground via the
 predicate method '.in_airport?' at any time.
 
-The weather is 'checked' (i.e. re-rolled) everytime a plane tries to land or
-take off via '.stormy'. You'll see in a few of the "stop landing when airport
+I see the weather as a property of the airport, so
+didn't make the weather its own class. The weather is 'checked'
+(i.e. re-rolled) everytime a plane tries to land or take off via '.stormy'.
+
+You'll see in a few of the "stop landing when airport
 is full" tests that I've 'permitted_duplicates', overriding the '.in_airport?'
 method with a stub; is that bad form???
 
