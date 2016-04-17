@@ -3,8 +3,8 @@ require "plane"
 
 describe Airport do
 	
-	let (:plane) {double(:plane)}
 	subject(:airport) { described_class.new }
+	let (:plane) {double(:plane)}
 		
 		it "The plane lands in the airport" do
 			expect(subject.land(plane)).to be true

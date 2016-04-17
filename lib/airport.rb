@@ -4,15 +4,8 @@ class Airport
 	 true
 	end
 
-	def landed?
-		true
-	end
-
 	def depart(plane)
 	 true
 	end
 
-	def depart?
-		true
-	end
 end
