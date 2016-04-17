@@ -1,6 +1,7 @@
-Current Travis CI Status: [![Build Status](https://travis-ci.org/letianw91/airport_challenge.svg?branch=master)](https://travis-ci.org/letianw91/airport_challenge)
+[![Build Status](https://travis-ci.org/letianw91/airport_challenge.svg?branch=master)](https://travis-ci.org/letianw91/airport_challenge)
 
-Coverall: [![Coverage Status](https://coveralls.io/repos/github/letianw91/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/letianw91/airport_challenge?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/letianw91/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/letianw91/airport_challenge?branch=master)
+
 
 Airport Challenge
 =================
@@ -97,4 +98,6 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 
 
-Personal 
+Personal Apporach
+=================
+First I created domain models of the task:
