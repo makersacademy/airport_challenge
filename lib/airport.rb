@@ -1,10 +1,11 @@
 class Airport
-  attr_reader :planes, :name
+  attr_reader :planes, :name, :capacity
   
-  AIRPORT_CAPACITY = 10
+  DEFAULT_CAPACITY = 10
   
-  def initialize(name, plane)
+  def initialize(name, plane, capacity = DEFAULT_CAPACITY)
     @name = name
+    @capacity = capacity
     @planes = []
     2.times { @planes << plane.new }
   end
@@ -32,6 +33,6 @@ class Airport
     end
     
     def full?
-      @planes.size == AIRPORT_CAPACITY 
+      @planes.size == capacity 
     end
 end

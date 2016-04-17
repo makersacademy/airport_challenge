@@ -10,6 +10,17 @@ describe Airport do
   it { is_expected.to respond_to :ready_for_landing? }
   it { is_expected.to respond_to :ready_for_taking_off? }
   
+  describe "Initialization" do
+    it "has a default capacity if none is passed" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    
+    it "can be initialized with a different value" do
+      airport = Airport.new("JFK", Plane, 50)
+      expect(airport.capacity).to eq 50
+    end
+  end
+  
   describe "Landing" do
     # Before each landing test, the plane must be flying
     before(:each) do
