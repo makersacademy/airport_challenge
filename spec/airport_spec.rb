@@ -5,7 +5,7 @@ describe Airport do
 
     describe "Landing Plane" do
       it "enables a plane to land" do
-        expect(subject).to respond_to(:land).with(1).argument
+        expect(airport.land(:plane)).to eq true
       end
 
       it "confirms plane has landed" do
