@@ -12,6 +12,14 @@ describe Weather do
     end
   end
 
+  describe '#weather_setter' do
+    it "produces a random number value between 1 - 10" do
+      weather = Weather.new
+      expect(weather.weather_setter).to be <=10
+      expect(weather.weather_setter).to be >=0
+    end
+  end
+
 
 
 end
