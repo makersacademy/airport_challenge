@@ -1,46 +1,61 @@
 
 
 class Plane
-  attr_reader :location, :flying, :crashed
+  attr_reader :flying, :crashed, :location
 
   def initialize
-    @location = 'where eagles soar'
     @flying = true
     @crashed = false
-  end
-
-  def broadcast_location
-    crashed? ? "... ..." : location
-  end
-
-  def crashed?
-    crashed
+    @location = 'Where eagles soar'
   end
 
   def flying?
     flying
   end
 
-  def land(location = "a field")
-    fail "You yanking crank, I'm on the effin' tarmac" unless flying
-    @location = location
-    @flying = false
-    location == "a field" ? crash : nil
+  def crashed?
+    crashed
+  end
+
+  def broadcast_location
+    crashed? ? "... ..." : location
+  end
+
+  def land(land_location = "a field")
+    fail "You yanking my crank, I'm on the effin' tarmac" unless flying
+    if land_location.class == Airport
+      land_location.permission_to_land? ? safe_land(land_location) : stay_in_air
+    else
+      crash(land_location)
+    end
   end
 
   def take_off(take_off_location)
     fail "I'm already up here mate" if flying
     fail "This birds got no wings" if crashed
     fail "You frickin' loopy, I'm in #{location}" unless take_off_location == location
-    @location = 'where eagles soar'
+    @location = 'Where eagles soar'
     @flying = true
     nil
   end
 
   private
-  def crash
+
+  def crash(land_location)
+    @location = land_location
+    @flying = false
     rand(2) == 1 ? @crashed = true : @crashed = false
-    return "Crash landing"
+    "Crash landing"
+  end
+
+  def safe_land(land_location)
+    @location = land_location
+    @flying = false
+    nil
+  end
+
+  def stay_in_air
+    "A couple more laps of the run-way folks"
   end
 
 end
