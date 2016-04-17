@@ -46,7 +46,7 @@ describe Airport do
         subject.capacity.times { subject.land plane }
         expect { subject.land plane }.to raise_error 'no spaces available'
         end
-    end
+end
 
 
 end
