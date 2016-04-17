@@ -11,11 +11,15 @@ class Airport
   end
 
   def land_plane(plane)
-    fail "Too stormy for landing" if @weather.stormy?
-    fail "Airport full" if full?
-    plane.landed?
-    @planes << plane
-    "The plane has landed"
+    if @weather.stormy?
+      fail "Too stormy for landing"
+    elsif full?
+      fail "Airport full" if full?
+    else
+      plane.landed?
+      @planes << plane
+      "The plane has landed"
+    end
   end
 
   def take_off(plane)
