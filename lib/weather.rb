@@ -8,15 +8,16 @@ class Weather
 # end
 
 def stormy?
-  :stormy
+  random_weather == :stormy
 end
 
-# private
+private
 
-# def random_weather
-#   FORECAST.sample
-# end
+FORECAST = [:sunny, :sunny, :sunny, :stormy]
 
-# FORECAST = [:sunny, :sunny, :sunny, :stormy]
+def random_weather
+  FORECAST.sample
+end
+
 
 end
