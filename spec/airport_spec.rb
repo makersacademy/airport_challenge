@@ -1,21 +1,18 @@
 require "airport"
 describe Airport do
-  it { expect(subject).to respond_to :planes }
-  it { expect(subject).to respond_to(:accept).with(1).argument }
+  it { expect(subject).to respond_to(:accept, :release).with(1).argument }
 
-  let(:flying_plane) { double(:plane, flying?: true, land: false) }
-  let(:grounded_plane) { double(:plane, flying?: false, land: false) }
+  let(:flying_plane) { double(:plane, flying?: true, land: false, take_off: true) }
+  let(:grounded_plane) { double(:plane, flying?: false, land: false, take_off: true) }
 
-  describe "#planes" do
-    it "should return an array" do
-      expect(subject.planes).to be_an Array
-    end
+  it "should be initialized with @planes as empty" do
+    expect(subject.instance_variable_get(:@planes)).to be_empty
   end
 
   describe "#accept" do
     it "should add the object to @planes" do
       subject.accept flying_plane
-      expect(subject.planes).to include flying_plane
+      expect(subject.instance_variable_get(:@planes)).to include flying_plane
     end
     it "should check if the plane is flying" do
       expect(flying_plane).to receive :flying?
@@ -27,6 +24,22 @@ describe Airport do
     end
     it "should raise an error if the plane is already grounded" do
       expect { subject.accept grounded_plane }.to raise_error "Plane is already at an airport"
+    end
+  end
+
+  describe "#release" do
+    it "should remove the object from @planes" do
+      subject.instance_variable_set(:@planes, [grounded_plane])
+      subject.release grounded_plane
+      expect(subject.instance_variable_get(:@planes)).not_to include grounded_plane
+    end
+    it "should tell the plane to take off if it is at the airport" do
+      subject.instance_variable_set(:@planes, [grounded_plane])
+      expect(grounded_plane).to receive :take_off
+      subject.release grounded_plane
+    end
+    it "should raise an error if the plane is not at the airport" do
+      expect { subject.release flying_plane }.to raise_error "Plane is not at this airport"
     end
   end
 end

@@ -16,7 +16,7 @@ describe "Airport Challenge - " do
       airport = Airport.new
       #WHEN I check what planes the airport contains
       #THEN The airport is empty
-      expect(airport.planes).to be_empty
+      expect(airport.instance_variable_get(:@planes)).to be_empty
     end
   end
 
@@ -32,7 +32,7 @@ describe "Airport Challenge - " do
       #WHEN I ask the airport to accept the plane
       airport.accept plane
       #THEN I expect the plane to be stored in the airport
-      expect(airport.planes).to include plane
+      expect(airport.instance_variable_get(:@planes)).to include plane
     end
     it "Planes stop flying when accepted by an airport" do
       #GIVEN I have an airport and a plane that is flying
@@ -49,7 +49,6 @@ describe "Airport Challenge - " do
       plane = Plane.new
       airport.accept plane
       #WHEN I ask the airport to accept the plane
-      airport.accept plane
       #THEN I expect an error
       expect { airport.accept plane }.to raise_error "Plane is already at an airport"
     end
@@ -61,19 +60,32 @@ describe "Airport Challenge - " do
 
   context "Having a plane leave an airport - " do
     it "Airports can release planes" do
-      #GIVEN
-      #WHEN
-      #THEN
+      #GIVEN I have a plane that is in an airport
+      airport = Airport.new
+      plane = Plane.new
+      airport.accept plane
+      #WHEN I ask the airport to release the plane
+      airport.release plane
+      #THEN The plane is no longer in the airport
+      expect(airport.instance_variable_get(:@planes)).not_to include plane
     end
     it "Planes start flying when released by an airport" do
-      #GIVEN
-      #WHEN
-      #THEN
+      #GIVEN I have a plane that is in an airport
+      airport = Airport.new
+      plane = Plane.new
+      airport.accept plane
+      #WHEN I ask the airport to release the plane
+      airport.release plane
+      #THEN I expect the plane to be flying
+      expect(plane).to be_flying
     end
     it "Airports can only release planes that they contain" do
-      #GIVEN
-      #WHEN
-      #THEN
+      #GIVEN I have an airport and a plane not at that airport
+      airport = Airport.new
+      plane = Plane.new
+      #WHEN I ask the airport to release the plane
+      #THEN I expect an error
+      expect { airport.release plane }.to raise_error "Plane is not at this airport"
     end
   end
 
