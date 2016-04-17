@@ -33,12 +33,12 @@ class Airport
     @planes.each do |plane|
       return true if plane == check_plane
     end
-    return false
+    false
   end
 
   def stormy?
     return true if rand(10) == 9
-    return false
+    false
   end
 
 end

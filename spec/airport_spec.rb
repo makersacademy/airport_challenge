@@ -13,7 +13,6 @@ describe Airport do
       sunny
       permit_duplicates
       subject.capacity(10)
-      permit_duplicates
       10.times { subject.land(plane) }
       expect{subject.land(plane)}.to raise_error("Airport is full.")
     end
@@ -43,7 +42,7 @@ describe Airport do
 
     it {expect(subject).to respond_to(:land).with(1).argument}
 
-    it "can't tell a plane to land if it's already in the airport" do
+    it "should prevent a plane from landing if it's already in that airport" do
       sunny
       subject.land(plane)
       expect{subject.land(plane)}.to raise_error("Error; Plane ID #{plane} has already landed in Airport ID #{subject}.")
