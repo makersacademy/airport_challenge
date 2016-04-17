@@ -10,6 +10,7 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+    @weather = Weather.new
   end
 
   def takeoff(plane)
@@ -29,7 +30,7 @@ class Airport
   end
 
   def weather_check(plane)
-    Weather.weather_calc(plane)
+    @weather.weather_calc(plane)
   end
 
   private
