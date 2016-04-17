@@ -21,7 +21,7 @@ describe Airport do
     end
   end
 
-    describe '#land' do
+  describe '#land' do
     it 'accepts a plane to land' do
       airport = Airport.new(1)
       airport.land(plane)
