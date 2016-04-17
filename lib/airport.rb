@@ -11,7 +11,12 @@ def full?
 end
 
 def park(plane)
+  if self.full?
+    raise "The airport is full, abort landing!"
+    plane.landed = false
+  else
   @apron << plane
+end
 end
 
 end

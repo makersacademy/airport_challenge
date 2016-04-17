@@ -17,6 +17,8 @@ def land(airport)
     raise "It is too stormy to land"
   else
     @landed = true
+    airport.park(self)
+
   end
 end
 
@@ -35,5 +37,6 @@ end
 def stormy?
   @stormy
 end
+
 
 end

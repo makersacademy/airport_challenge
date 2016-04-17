@@ -1,12 +1,12 @@
 require 'plane'
 
 describe Plane do
-let(:airport) { double(:airport)}
+let(:airport) { double(:airport, park: nil)}
 
   describe '#land' do
 
     it 'is expected to respond to #landed? with true if landed' do
-      subject.land(:airport)
+      subject.land(airport)
       expect(subject.landed?).to eq true
     end
 
