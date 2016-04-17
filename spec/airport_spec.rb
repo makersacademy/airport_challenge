@@ -10,6 +10,12 @@ describe Airport do
 
     it {expect(subject).to respond_to(:land).with(1).argument}
 
+    it "can't tell a plane to land if it's already in the airport" do
+      sunny_airport
+      subject.land(plane)
+      expect{subject.land(plane)}.to raise_error("Error; Plane ID #{plane} has already landed in Airport ID #{subject}.")
+    end
+
   end
 
   describe "#in_airport?" do
@@ -40,7 +46,7 @@ describe Airport do
       expect{subject.take_off(plane)}.to raise_error("Can not take off during stormy weather.")
     end
 
-    it "can't tell a plane to take off unles it's already in the airport"do
+    it "can't tell a plane to take off unless it's already in the airport" do
       sunny_airport
       expect{subject.take_off(plane)}.to raise_error("Error; Plane ID #{plane} is not in Airport ID #{subject}.")
     end

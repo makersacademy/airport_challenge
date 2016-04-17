@@ -5,6 +5,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Error; Plane ID #{plane} has already landed in Airport ID #{self}." if in_airport?(plane)
     @planes.push(plane)
     "Plane ID #{plane} has landed."
   end
