@@ -5,11 +5,8 @@ module ErrorManager
   FULL = "capacity full".freeze
 
   def check_errors(plane,land)
-    if land
-      fail LANDED if in_airport?(plane)
-    else
-      fail NOT_FOUND if !in_airport?(plane)
-    end
+    fail LANDED if land && in_airport?(plane)
+    fail NOT_FOUND unless land || in_airport?(plane)
     fail STORMY if stormy?
     fail FULL  if full?
   end
