@@ -1,7 +1,7 @@
 class Weather
 
-  def check
-    rand(100) < 10 ? false : true
+  def goodweather?
+    rand(100) > 10 ? true : false
   end
 
 end
