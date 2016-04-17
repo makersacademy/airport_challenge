@@ -45,31 +45,33 @@ describe Plane do
       expect(subject).not_to be_crashed
     end
 
-    it "plane crash-lands if no location is provided" do
-      expect(subject.land).to eq "Crash landing"
-      expect(subject).not_to be_flying
-    end
+    describe '#crash' do
+      it "plane crash-lands if no location is provided" do
+        expect(subject.land).to eq "Crash landing"
+        expect(subject).not_to be_flying
+      end
 
-    it "some crash landings are safe" do
-      allow(subject).to receive(:rand).and_return(0)
-      subject.land
-      expect(subject).not_to be_crashed
-      expect(subject.broadcast_location).to eq "a field"
-    end
+      it "some crash landings are safe" do
+        allow(subject).to receive(:rand).and_return(0)
+        subject.land
+        expect(subject).not_to be_crashed
+        expect(subject.broadcast_location).to eq "a field"
+      end
 
-    it "some crash landings are not" do
-      allow(subject).to receive(:rand).and_return(1)
-      subject.land
-      expect(subject).to be_crashed
-      expect(subject.broadcast_location).to eq "... ..."
-    end
+      it "some crash landings are not" do
+        allow(subject).to receive(:rand).and_return(1)
+        subject.land
+        expect(subject).to be_crashed
+        expect(subject.broadcast_location).to eq "... ..."
+      end
 
-    it "only planes in the sky can land" do
-      subject.land(airport)
-      expect{subject.land(airport)}.to raise_error("You yanking my crank, I'm on the effin' tarmac")
+      it "only planes in the sky can land" do
+        subject.land(airport)
+        expect{subject.land(airport)}.to raise_error("You yanking my crank, I'm on the effin' tarmac")
+      end
     end
-
   end
+
 
   describe "#take_off" do
     it "location will be 'the sky' whilst flying" do
