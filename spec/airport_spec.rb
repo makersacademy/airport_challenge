@@ -43,8 +43,18 @@ describe "#stormy"do
 
     expect{subject.take_off(plane)}.to raise_error("Too stormy to take off")
 
-#end
+
 end
+it "doesn't allow a plane to land if the weather is stormy" do
+    plane = Plane.new
+
+    subject.land(plane)
+
+    expect{subject.land(plane)}.to raise_error("Too stormy to land")
+
+
+end
+
 end
 end
 
