@@ -92,7 +92,7 @@ I have considered edge cases to ensure the consistency of the air control system
 
  There is also feature_spec.rb file which contains all the feature tests for user stories. To solely run these, type the following:
 
- '$ rspec spec/feature_spec.rb'
+ `$ rspec spec/feature_spec.rb`
 
 
 ## Tools
