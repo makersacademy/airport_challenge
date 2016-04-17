@@ -38,5 +38,12 @@ describe Plane do
       expect{subject.take_off}.to raise_error 'Plane already flying'
     end
   end
+
+  describe 'plane status' do
+    it 'checks if plane is flying' do
+      allow(subject).to receive(:flying) {true}
+      expect(subject.flying?).to eq true
+    end
+  end
 end
 
