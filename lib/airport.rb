@@ -39,11 +39,7 @@ class Airport
 
 	def weather_update
 		roll = rand(20)
-		if roll >= 19
-			@stormy = true
-		else
-			@stormy = false
-		end
+		roll == 19 ? @stormy = true : @stormy = false
 	end
 
 	def full?
