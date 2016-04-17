@@ -10,7 +10,11 @@ attr_reader :weather
   end
 
   def land(plane)
-    true
+    if self.weather.stormy?
+      raise 'Cannot land because of bad weather'
+    else
+      true
+  end
   end
 
   def landed?(plane)

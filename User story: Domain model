@@ -18,3 +18,10 @@ Airtraffic Controller:
 
 airport <- weather
 airport <- take_off (raise error if)
+
+User story 4
+
+Air traffic controller
+
+airport <- weather
+airport <- land(plane -> raise error if)
