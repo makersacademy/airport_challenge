@@ -18,6 +18,7 @@ class Airport
 	end
 
 	def take_off(plane)
+		fail 'No planes available' if empty?
 		fail 'There is a storm occuring at the airport' if bad_weather
 		planes.delete(plane)
 	end
@@ -34,4 +35,7 @@ class Airport
   	def full? 
   		planes.count >= capacity
   	end
+	def empty?
+    	planes.empty?
+    end
 end
