@@ -34,7 +34,7 @@ gatwick = Airport.new(1)
         end
       end
 
-    end
+  end
 
   context 'when conditions are stormy' do
 
