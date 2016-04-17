@@ -86,4 +86,4 @@ I would like a default airport capacity that can be overridden as appropriate
 
 **BONUS**
 
-* RSpec **feature** included to work through the user stories.
+* RSpec feature test included to work through the user stories.

@@ -14,16 +14,16 @@ class Airport
 
   def takeoff(plane)
     weather_check(plane)
-    parked_here?(plane)
-    empty?
+    fail "That plane is not at this airport" if parked_here?(plane)
+    fail "There are no planes at the airport" if empty?
     plane.takeoff
     @planes.delete(plane)
   end
 
   def land(plane)
     weather_check(plane)
-    flying?(plane)
-    full?
+    fail "This plane is not in the air" if flying?(plane)
+    fail "The airport is full" if full?
     plane.land
     @planes << plane
   end
@@ -34,18 +34,18 @@ class Airport
 
   private
   def full?
-    fail "The airport is full" if @planes.length >= @capacity
+    @planes.length >= @capacity
   end
 
   def empty?
-    fail "There are no planes at the airport" if @planes.empty?
+    @planes.empty?
   end
 
   def parked_here?(plane)
-    fail "That plane is not at this airport" if !@planes.include?(plane) && !@planes.empty?
+    !@planes.include?(plane) && !@planes.empty?
   end
 
   def flying?(plane)
-    fail "This plane is not in the air" if plane.ground
+    plane.ground
   end
 end
