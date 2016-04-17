@@ -75,7 +75,6 @@ describe Airport do
             it 'should raise an error if the airport is empty' do
                 expect { airport.take_off }.to raise_error 'airport is devoid of planes'
             end
-            
         end
     end
     
@@ -83,16 +82,16 @@ describe Airport do
     context 'bad weather' do
     
         describe '#land(plane)' do 
-           it 'cannot land a plane in stormy weather' do
+           it 'cannot land a plane' do
                 allow(airport).to receive(:weather) { 'stormy' }
                 expect { airport.land(plane) }.to raise_error 'It\'s too stormy to land!'
             end
         end
         
         describe '#take_off' do
-            it ' plane cannot take off in stormy weather' do
+            it ' plane cannot take off' do
                 allow(airport).to receive(:weather) { 'stormy' }
-                expect {airport.take_off}.to raise_error 'It\'s too stormy to launch a plane!'
+                expect {airport.take_off}.to raise_error 'It\'s too stormy!'
             end
         end
     

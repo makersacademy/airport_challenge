@@ -13,14 +13,14 @@ class Airport
     end
     
     def land(plane)
-        raise 'airport is at capacity' if full?
-        raise 'It\'s too stormy to land!' if weather == 'stormy'
+        fail 'airport is at capacity' if full?
+        fail 'It\'s too stormy to land!' if weather == 'stormy'
         hangar << plane
     end
     
     def take_off
-        raise 'It\'s too stormy to launch a plane!' if weather == 'stormy'
-        raise 'airport is devoid of planes' if empty?
+        fail 'It\'s too stormy!' if weather == 'stormy'
+        fail 'airport is devoid of planes' if empty?
         hangar.pop
     end
     
