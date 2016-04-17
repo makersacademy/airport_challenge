@@ -6,7 +6,8 @@ describe "#feature_test" do
   ###
   #As an air traffic controller
   #So I can get passengers to a destination
-  #I want to instruct a plane to land at an airport and confirm that it has landed
+  #I want to instruct a plane to land at an airport and confirm
+  #that it has landed
   it "Passes user story 1" do
     plane = Plane.new
     ap = Airport.new
@@ -18,7 +19,8 @@ describe "#feature_test" do
   ###
   #As an air traffic controller
   #So I can get passengers on the way to their destination
-  #I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+  #I want to instruct a plane to take off from an airport and
+  #confirm that it is no longer in the airport
   it "Passes user story 2" do
     plane = Plane.new
     ap = Airport.new
@@ -36,11 +38,12 @@ describe "#feature_test" do
   it "Passes user story 3" do
     plane = Plane.new
     ap = Airport.new
+    t_stormy = "Planes cannot take off due to stormy weather"
     allow(ap).to receive(:weather_check).and_return(true)
     ap.land(plane)
     expect(ap.planes).to eq [plane]
-    allow(ap).to receive(:weather_check).and_raise("Planes cannot take off due to stormy weather")
-    expect {ap.takeoff(plane)}.to raise_error("Planes cannot take off due to stormy weather")
+    allow(ap).to receive(:weather_check).and_raise(t_stormy)
+    expect {ap.takeoff(plane)}.to raise_error(t_stormy)
   end
   ###
   #As an air traffic controller
@@ -49,14 +52,15 @@ describe "#feature_test" do
   it "Passes user story 4" do
     plane = Plane.new
     ap = Airport.new
-    allow(ap).to receive(:weather_check).and_raise("Planes cannot land due to stormy weather")
-    expect {ap.land(plane)}.to raise_error("Planes cannot land due to stormy weather")
+    l_stormy = "Planes cannot land due to stormy weather"
+    allow(ap).to receive(:weather_check).and_raise(l_stormy)
+    expect {ap.land(plane)}.to raise_error(l_stormy)
   end
   ###
   #As an air traffic controller
   #To ensure safety
   #I want to prevent landing when the airport is full
-  it "Passes user story 4" do
+  it "Passes user story 5" do
     plane1 = Plane.new
     plane2 = Plane.new
     plane3 = Plane.new
@@ -75,8 +79,9 @@ describe "#feature_test" do
   ###
   #As the system designer
   #So that the software can be used for many different airports
-  #I would like a default airport capacity that can be overridden as appropriate
-  it "Passes user story 5" do
+  #I would like a default airport capacity that can be overridden
+  #as appropriate
+  it "Passes user story 6" do
     ap = Airport.new(2)
     ap2 = Airport.new
     expect(ap.capacity).to eq(2)

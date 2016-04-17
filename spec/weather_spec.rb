@@ -7,11 +7,13 @@ describe Weather do
 
   it 'raises an error when a plane tried to land and the weather is stormy' do
     allow(subject).to receive(:rand) {20}
-    expect {subject.weather_calc(flyplane)}.to raise_error("Planes cannot land due to stormy weather")
+    l_stormy = "Planes cannot land due to stormy weather"
+    expect {subject.weather_calc(flyplane)}.to raise_error(l_stormy)
   end
 
-  it 'raises an error when a plane tries to takeoff and the weather is stormy' do
+  it 'raises an error when a plane tries to takeoff in stormy weather' do
     allow(subject).to receive(:rand) {20}
-    expect {subject.weather_calc(groundplane)}.to raise_error("Planes cannot take off due to stormy weather")
+    t_stormy = "Planes cannot take off due to stormy weather"
+    expect {subject.weather_calc(groundplane)}.to raise_error(t_stormy)
   end
 end

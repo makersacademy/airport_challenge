@@ -45,7 +45,8 @@ describe Airport do
 
     it 'only allows a plane to land if it is currently flying' do
       allow(subject).to receive(:weather_check).and_return(true)
-      expect {subject.land(groundplane)}.to raise_error("This plane is not in the air")
+      no_fly = "This plane is not in the air"
+      expect {subject.land(groundplane)}.to raise_error(no_fly)
     end
   end
 
@@ -60,7 +61,8 @@ describe Airport do
 
     it 'raises an error when there are no planes to take off' do
       allow(subject).to receive(:weather_check).and_return(true)
-      expect {subject.takeoff(plane)}.to raise_error("There are no planes at the airport")
+      no_planes = "There are no planes at the airport"
+      expect {subject.takeoff(plane)}.to raise_error(no_planes)
     end
 
     it 'only allows planes to take off if they parked there' do
@@ -68,9 +70,10 @@ describe Airport do
       port2 = described_class.new
       allow(port1).to receive(:weather_check).and_return(true)
       allow(port2).to receive(:weather_check).and_return(true)
+      no_plane = "That plane is not at this airport"
       port1.land(plane)
       port2.land(flyplane)
-      expect {port2.takeoff(plane)}.to raise_error("That plane is not at this airport")
+      expect {port2.takeoff(plane)}.to raise_error(no_plane)
     end
   end
   describe "#weather" do
