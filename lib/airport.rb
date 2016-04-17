@@ -1,9 +1,11 @@
 class Airport
   def land(_plane)
     fail "Stormy cannot land" if stormy?
+    true
   end
 
   def take_off(_plane)
+    fail "Stormy cannot take off" if stormy?
     true
   end
 
@@ -16,5 +18,6 @@ class Airport
   end
 
    def stormy?(_plane)
+    rand(1..2) == 1
    end
 end
