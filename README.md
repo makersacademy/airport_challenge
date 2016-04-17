@@ -37,7 +37,9 @@ Commands
 ----
 All interaction is based around the airport
 When initializing a new airport provide a capacity as an argument to set a custom capacity. Providing no Argument sets the capacity to 5.
+
 `takeoff(plane)` - If the plane is at the airport and the weather is suitable this method causes the provided plane to take off.
+
 `land(plane)` - If the plane is in the air and the weather is suitable this method causes the provided plane to land at the current airport as long as there is room.
 
 
