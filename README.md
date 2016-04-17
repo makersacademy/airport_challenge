@@ -76,6 +76,5 @@ I do however feel I have one weakness in my design: When initializing a plane, i
 
 TO DO!!!
 -----
-
 * Write an RSpec **feature** test that lands and takes off a number of planes
 * Set up Travis CI on your own repo and add a status badge to your README showing that all tests are passing - and make sure it passes our own CI when you submit your PR.
