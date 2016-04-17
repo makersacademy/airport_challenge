@@ -96,7 +96,7 @@ I have considered edge cases to ensure the consistency of the air control system
 
  Tools
  -----
- 
+
  * [ ] Ruby
  * [ ] RSpec
 
