@@ -13,13 +13,14 @@ def initialize(landed = DEFAULT_LANDED, stormy = DEFAULT_STORMY)
 end
 
 def land(airport)
+  if @landed == true
+    raise "But...we *are* landed!"
+  end
   if @stormy
     raise "It is too stormy to land"
-  else
+  end
     @landed = true
     airport.park(self)
-
-  end
 end
 
 def landed?
@@ -27,11 +28,14 @@ def landed?
 end
 
 def take_off
+  if @landed == false
+    raise "Can't take off - plane is already airborne!"
+  end
   if @stormy
     raise "It is too stormy to take off"
-  else
-    @landed = false
   end
+  @landed = false
+
 end
 
 def stormy?
