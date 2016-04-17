@@ -1,4 +1,5 @@
 require_relative "plane"
+require_relative "weather"
 
 class Airport
 
@@ -14,20 +15,16 @@ class Airport
   def arrival(plane)
       raise "Too stormy to land." if stormy?
       raise "Airport is full." if full?
+      raise "Aircraft already at airport." if plane.in_airport?
       plane.land
       @landed_aircraft << plane
   end
 
   def departure(plane)
     raise "Too stormy to take-off." if stormy?
+    raise "Aircraft not in airport." unless plane.in_airport?
     plane.take_off
     @landed_aircraft.delete(plane)
-  end
-
-#private
-
-  def stormy?
-    rand > 0.85
   end
 
   def full?

@@ -1,9 +1,5 @@
 class Plane
 
-  def initialize
-    @grounded = false
-  end
-
   def take_off
     @grounded = false
   end

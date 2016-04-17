@@ -3,11 +3,9 @@ require  "plane"
 describe Plane do
 
   let(:airport) {double :airport}
+  subject(:plane) {described_class.new}
 
-  it { expect(subject).to respond_to(:land) }
   it { expect(subject).to respond_to(:in_airport?) }
-  it { expect(subject).to respond_to(:take_off) }
-
 
   describe "#land" do
     it "returns true when plane has landed" do

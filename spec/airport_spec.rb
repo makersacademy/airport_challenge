@@ -5,11 +5,7 @@ describe Airport do
   subject(:airport) { described_class.new}
   let(:capacity) {Airport::DEFAULT}
   let(:plane) {Plane.new}
-
-  it { expect(subject).to respond_to(:arrival).with(1).argument }
-  it { expect(subject).to respond_to(:departure).with(1).argument }
-  it { expect(subject).to respond_to(:stormy?)}
-  it { expect(subject).to respond_to(:full?)}
+  let(:weather) {Weather.new}
 
   describe "#initialize" do
     it "airport starts empty" do
@@ -17,7 +13,6 @@ describe Airport do
     end
 
     it "sets a default capacity when not passed an argument" do
-      new_airport = Airport.new
       expect(subject.capacity).to_not eq nil
     end
 
@@ -30,20 +25,19 @@ describe Airport do
 
   describe "#arrival" do
 
+    before { allow(airport).to receive(:stormy?) {false} }
+
     it "adds a plane to @landed_aircraft" do
-      allow(airport).to receive(:stormy?) {false}
       subject.arrival(plane)
       expect(subject.landed_aircraft).to include plane
     end
 
     it "@landed_aircraft increases by one when a plane lands" do
-      allow(airport).to receive(:stormy?) {false}
       subject.arrival(plane)
       expect(subject.landed_aircraft.count).to eq 1
     end
 
     it "expect plane status 'in_airport?' to be true when landed" do
-      allow(airport).to receive(:stormy?) {false}
       subject.arrival(plane)
       expect(plane.in_airport?).to be true
     end
@@ -54,30 +48,35 @@ describe Airport do
     end
 
     it "raises error 'Airport is full.'." do
-      allow(airport).to receive(:stormy?) {false}
-      20.times {subject.arrival(plane)}
+      20.times {subject.arrival(Plane.new)}
       expect{subject.arrival(plane)}.to raise_error ("Airport is full.")
+    end
+
+    it "aircraft can not land if already in airport" do
+      test_plane = Plane.new
+      subject.arrival(test_plane)
+      expect{subject.arrival(test_plane)}.to raise_error ("Aircraft already at airport.")
     end
 
   end
 
   describe "#departure" do
+
+      before { allow(airport).to receive(:stormy?) {false} }
+
     it "removes aircraft from '@landed_aircraft' " do
-      allow(airport).to receive(:stormy?) {false}
       subject.arrival(plane)
       subject.departure(plane)
       expect(subject.landed_aircraft).to_not include plane
     end
 
     it "@landed_aircraft decreases by one when a plane lands" do
-      allow(airport).to receive(:stormy?) {false}
       subject.arrival(plane)
       subject.departure(plane)
       expect(subject.landed_aircraft.count).to eq 0
     end
 
     it "expect plane status 'in_airport?' to be false when landed" do
-      allow(airport).to receive(:stormy?) {false}
       subject.arrival(plane)
       subject.departure(plane)
       expect(plane.in_airport?).to be false
@@ -87,18 +86,14 @@ describe Airport do
       allow(airport).to receive(:stormy?) {true}
       expect{subject.departure(plane)}.to raise_error ("Too stormy to take-off.")
     end
-  end
 
-  describe "#stormy?" do
-    it "returns false when weather isnt stormy" do
-      allow(airport).to receive(:stormy?) {false}
-      expect(subject.stormy?).to be false
+    it "aircraft can not take-off if not in the airport" do
+      test_plane = Plane.new
+      subject.arrival(test_plane)
+      subject.departure(test_plane)
+      expect{subject.departure(test_plane)}.to raise_error ("Aircraft not in airport.")
     end
 
-    it "returns true when weather is stormy" do
-      allow(airport).to receive(:stormy?) {true}
-      expect(subject.stormy?).to be true
-    end
   end
 
   describe "#full?" do
@@ -109,12 +104,11 @@ describe Airport do
 
     it "returns false until capacity is reached" do
       allow(airport).to receive(:stormy?) {false}
-      19.times{ subject.arrival(plane) }
+      19.times{ subject.arrival(Plane.new) }
       expect(subject.full?).to be false
       subject.arrival(plane)
       expect(subject.full?).to be true
     end
-
 
   end
 
