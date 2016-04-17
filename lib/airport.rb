@@ -32,7 +32,7 @@ class Airport
 		rand(1..6) < 6? false : true
 	end
 
- 		private
+ 	private
 
 
     def full?
