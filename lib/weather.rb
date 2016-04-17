@@ -4,15 +4,8 @@ class Weather
 
 
 	def stormy?
-		generate_weather == false
+		rand(1..6) <6? false : true
 	end
 
-	private
-
-	OUTLOOKS = [false, false, false, false, false, true]
-
-	def generate_weather
-		OUTLOOKS.sample
-	end
 
 end
