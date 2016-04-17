@@ -1,12 +1,27 @@
 class Weather
 
-  def stormy?
-    false
+attr :stormy
 
-  end
+def initialize
+
+  @stormy = false
+end
+
+  def stormy?
+    @stormy
+end
+
+
 
   def weather_setter_generator
-      rand(10)
+    storm = rand(10)
+      if storm >= 9
+        @stormy = true
+      else
+        @stormy = false
+      end
+
   end
+
 
 end
