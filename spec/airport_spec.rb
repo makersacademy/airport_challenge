@@ -5,6 +5,7 @@ describe Airport do
   it { is_expected.to respond_to :planes}
   it { is_expected.to respond_to :land}
   it { is_expected.to respond_to :takeoff}
+  it { is_expected.to respond_to :weather_check}
 
   let(:plane) { double(:plane, land: true, takeoff: true, ground: false)}
   let(:groundplane) { double(:plane, land: true, takeoff: true, ground: true)}
