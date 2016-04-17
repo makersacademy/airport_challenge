@@ -9,16 +9,16 @@ class Airport
 	end
 
 	def accept(plane)
-		raise "That plane has already landed at this airport!" if @planes.include?(plane)
-		raise "The weather is too harsh for a safe landing, please circle back. Over." if stormy?
-		raise "The airport is full! Circle until a plane has taken off. Over." if full?
+		fail "That plane has already landed at this airport!" if @planes.include?(plane)
+		fail "The weather is too harsh for a safe landing, please circle back. Over." if stormy?
+		fail "The airport is full! Circle until a plane has taken off. Over." if full?
 		@planes << plane
 		weather_update
 	end
 
 	def confirm_takeoff(plane)
-		raise "No such plane is presently at the airport." unless @planes.include?(plane)
-		raise "The weather is too harsh for a safe take-off!" if stormy?
+		fail "No such plane is presently at the airport." unless @planes.include?(plane)
+		fail "The weather is too harsh for a safe take-off!" if stormy?
 		@planes.delete(plane)
 		weather_update
 	end
