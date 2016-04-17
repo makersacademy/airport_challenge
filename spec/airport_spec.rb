@@ -3,129 +3,106 @@ require 'airport'
 describe Airport do
 
   #let(:weather) {double(:weather)}
+  subject(:airport) { described_class.new }
+  let(:plane) {double(:plane)}
+  before { allow(plane).to receive(:landed) }
 
   describe "#planes" do
+
     it 'a new airport has no planes' do
-      expect(subject.planes).to eq []
+      expect(airport.planes).to eq []
     end
 
     it 'list all landed planes' do
-      allow(subject).to receive(:stormy?).and_return(false)
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.planes).to eq [plane]
+      allow(airport).to receive(:stormy?).and_return(false)
+      airport.land(plane)
+      expect(airport.planes).to eq [plane]
     end
 
-    it 'airport has a default capacity of 2 planes' do
-      expect(Airport::DEFAULT_CAPACITY).to eq 2
-    end
+    it "has a variable capacity" do
+      capacity = 20
+			airport = Airport.new(capacity)
+			expect(airport.capacity).to eq capacity
+		end
 
+		it "sets the the capacity to a default value when capacity is not provided" do
+			expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+		end
   end
 
 
   describe '#land' do
+    context 'when conditions are not stormy' do
+      before { allow(airport).to receive(:stormy?).and_return (false) }
 
-    #I want to instruct a plane to land at an airport and confirm that it has landed
-    it 'instructs a plane to land' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane = Plane.new
-      subject.land(plane)
-    end
+        it 'instructs a plane to land' do
+          airport.land(plane)
+        end
 
-    it 'has the plane after landing' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.planes).to include plane
+        # it 'prevents landing when airport is full' do
+        #   airport.capacity.times { airport.land(plane) }
+        #   message = "Airport full"
+        #   expect { airport.land(plane) } .to raise_error message
+        # end
 
-    end
-
-    #I want to prevent landing when weather is stormy
-       it 'prevents landing when weather is stormy' do
-        allow(subject).to receive(:stormy?).and_return (true)
-         plane = Plane.new
-         message = "Too stormy to land"
-       expect { subject.land(plane) } .to raise_error message
+        it 'a plane that has landed cannot land again' do
+          airport.land(plane)
+          message = "Plane already landed"
+          expect { airport.land(plane) } .to raise_error message
+        end
       end
 
-    #I want to prevent landing when the airport is full
-    it 'prevents landing when airport is full' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane1 = Plane.new
-      plane2 = Plane.new
-      plane3 = Plane.new
-      #subject.capacity.times { subject.land(plane) } cannot run this now, as we will get the error "Plane already landed"
-      subject.land(plane1)
-      subject.land(plane2)
-      message = "Airport full"
-      expect{subject.land(plane3)}.to raise_error message
+    context 'when conditions are stormy' do
+      before { allow(airport).to receive(:stormy?).and_return (true) }
+
+      it 'prevents landing when weather is stormy' do
+        message = "Too stormy to land"
+        expect { airport.land(plane) } .to raise_error message
+      end
     end
-
-    it 'a plane that has landed cannot land again' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane = Plane.new
-      subject.land(plane)
-      message = "Plane already landed"
-      expect { subject.land(plane) } .to raise_error message
-    end
-
-
   end
 
   describe '#take_off' do
 
-    #I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-    it 'instructs a plane to take off' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane = Plane.new
-      subject.land(plane)
-      subject.take_off(plane)
+    before { allow(plane).to receive(:departed) }
+
+    context 'when conditions are not stormy' do
+      before { allow(airport).to receive(:stormy?).and_return (false) }
+
+        it 'instructs a plane to take off' do
+          airport.land(plane)
+          airport.take_off(plane)
+        end
+
+        it 'does not have the plane after take off' do
+          airport.land(plane)
+          airport.take_off(plane)
+          expect(airport.planes).to_not include plane
+        end
+
+        it 'prevents take off when airport is empty' do
+          message = "Airport empty"
+          expect { airport.take_off(plane) } .to raise_error message
+        end
     end
 
-    it 'does not have the plane after take off' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane = Plane.new
-      subject.land(plane)
-      subject.take_off(plane)
-      expect(subject.planes).to_not include plane
+    context 'when conditions are stormy' do
+
+        it 'prevents take off when weather is stormy' do
+          allow(airport).to receive(:stormy?).and_return (false)
+          airport.land(plane)
+          allow(airport).to receive(:stormy?).and_return (true)
+          message = "Too stormy to take off"
+          expect { airport.take_off(plane) } .to raise_error message
+        end
+
+        it 'a plane can take off after the stormy weather has passed' do
+          allow(airport).to receive(:stormy?).and_return (false)
+          airport.land(plane)
+          allow(airport).to receive(:stormy?).and_return (true)
+          allow(airport).to receive(:stormy?).and_return (false)
+          expect { airport.take_off(plane) } .to_not raise_error
+        end
     end
-
-    it 'a plane can only take off from an airport it is in' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane1 = Plane.new
-      plane2 = Plane.new
-      subject.land(plane2)
-      message = "Plane not at airport"
-      expect { subject.take_off(plane1) } .to raise_error message
-    end
-
-    #I want to prevent takeoff when weather is stormy
-    it 'prevents take off when weather is stormy' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane = Plane.new
-      subject.land(plane)
-      allow(subject).to receive(:stormy?).and_return (true)
-      message = "Too stormy to take off"
-      expect { subject.take_off(plane) } .to raise_error message
-    end
-
-    it 'a plane can take off after the stormy weather has passed' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane = Plane.new
-      subject.land(plane)
-      allow(subject).to receive(:stormy?).and_return (true)
-      allow(subject).to receive(:stormy?).and_return (false)
-      expect { subject.take_off(plane) } .to_not raise_error
-    end
-
-    it 'prevents take off when airport is empty' do
-      allow(subject).to receive(:stormy?).and_return (false)
-      plane = Plane.new
-      message = "Airport empty"
-      expect { subject.take_off(plane) } .to raise_error message
-    end
-
-
   end
-
 end

@@ -7,8 +7,8 @@ class Airport
 
   attr_reader :planes, :capacity, :weather
 
-  def initialize
-    @capacity = DEFAULT_CAPACITY
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @planes = []
     #@weather = Weather.new
   end
@@ -31,20 +31,15 @@ class Airport
 
   private
   def full?
-    @planes.count >= DEFAULT_CAPACITY
+    @planes.count >= capacity
   end
 
   def empty?
     @planes.empty?
   end
 
-   def stormy?
-      rand(10) >= 7
-    end
-   #
-  #  def weather_generator
-  #    @weather += rand(11)
-  #  end
-
-
+  def stormy?
+    rand(10) >= 7
+  end
+  
 end
