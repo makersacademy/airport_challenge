@@ -5,6 +5,7 @@ class Airport
   end
 
   def land(airplane)
+
     @tarmac.push(airplane)
   end
 
