@@ -3,7 +3,7 @@ class Airport
 
   attr_reader :hangar
 
-  def initialize(capacity = DEFAULT_CAPACITY,weather)
+  def initialize(capacity = DEFAULT_CAPACITY,weather = Weather.new)
     @hangar = []
     @capacity = capacity
     @weather = weather
@@ -25,7 +25,7 @@ class Airport
     private
 
     def stormy?
-      weather.stormy?
+      @weather.stormy?
     end
 
     def full?
