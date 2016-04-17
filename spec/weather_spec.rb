@@ -17,7 +17,7 @@ describe Weather do
 
   describe '#weather_setter_generator' do
     before :each do
-  srand(9)
+    srand(9)
 
     it "produces a random number value between 1 - 10" do
       weather = Weather.new
@@ -30,7 +30,7 @@ describe Weather do
       weather.weather_setter_generator
       expect(weather.stormy?).to eq true
     end
-  end
+    end
   end
 
 

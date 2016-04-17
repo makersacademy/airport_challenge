@@ -1,15 +1,14 @@
 class Weather
 
-attr :stormy
+attr_reader :stormy
 
 def initialize
-
   @stormy = false
 end
 
   def stormy?
     @stormy
-end
+  end
 
 
 
