@@ -12,7 +12,6 @@ describe Airport do
       end
     end
 
-
     describe "#land" do
       it "confirms plane has landed" do
        expect(airport.landed?).to be true
