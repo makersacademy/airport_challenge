@@ -13,7 +13,7 @@ class Airport
   def land(plane)
     fail "No room here mate" if full?
     weather_test
-    plane.land
+    plane.land(self)
     @planes << plane
     "That was a bumpy landing sir"
   end
@@ -34,7 +34,7 @@ class Airport
   end
 
   private
-  
+
   attr_reader :planes, :capacity
 
   def weather_test

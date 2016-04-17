@@ -23,7 +23,7 @@ describe Airport do
   describe "#land" do
     it "plane will recieve a call to land when weather is fine" do
       allow(Weather).to receive(:sunny?).and_return(true)
-      expect(plane).to receive(:land)
+      expect(plane).to receive(:land)  #need to make sure it is recieving sefl as an argument
       subject.land(plane)
     end
 
