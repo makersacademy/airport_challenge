@@ -1,12 +1,10 @@
 require 'plane'
 
-describe Plane do 
-	it 'response to landed and returns true' do
-	expect(subject.landed?).to eq true
-	end
-
-	it 'reports that is has taken off' do 
-	expect(subject.taken_off).to eq true
-	end
-	
+describe Plane do
+   it {is_expected.to respond_to :flying?}
+   it {is_expected.to respond_to :report_landed}
+   it 'reports the plane is flying' do
+   	subject.report_landed
+   	expect(subject.flying?).to eq false
+   end
 end

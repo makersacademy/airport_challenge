@@ -1,12 +1,16 @@
 
 class Plane
 
-	def landed?
-		true
+	def flying?
+		@flying
 	end
 
 	def taken_off
-		true
+		@flying = true
+	end
+
+	def report_landed
+		@flying = false
 	end
 
 end
