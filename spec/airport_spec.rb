@@ -73,4 +73,10 @@ describe Airport do
       expect {port2.takeoff(plane)}.to raise_error("That plane is not at this airport")
     end
   end
+  describe "#weather" do
+    it "returns nothing if the weather is fine" do
+      allow(Weather).to receive(:weather_calc).and_return(nil)
+      expect(subject.weather_check(plane)).to eq(nil)
+    end
+  end
 end
