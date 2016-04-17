@@ -1,16 +1,20 @@
-require_relative 'weather'
-require_relative 'airplane'
+  #Dependencies
+  require_relative 'weather'
+  require_relative 'airplane'
 
 class Airport
 
-DEFAULT_CAPACITY = 20
+  #New airport is built, with default capacity of 20
+  DEFAULT_CAPACITY = 20
 
   def initialize capacity = DEFAULT_CAPACITY
     @capacity = capacity
     @tarmac = []
   end
 
-  def land(airplane, forecast = Weather.new.goodweather?)
+  #Landing checks weather and landing space availability
+  #Weather class contains a method >> Good Weather << that creates a boolean that is 10% likely to be false (meaning bad weather)
+  def land airplane, forecast = Weather.new.goodweather?
     if forecast == false
       fail "Can't land until skies are clear"
     elsif full?
@@ -20,7 +24,8 @@ DEFAULT_CAPACITY = 20
     end
   end
 
-  def takeoff(airplane, forecast = Weather.new.goodweather?)
+  #Take off includes weather check
+  def takeoff airplane, forecast = Weather.new.goodweather?
     if forecast == false
       fail "Can't get going until skies are clear"
     else
@@ -28,13 +33,17 @@ DEFAULT_CAPACITY = 20
     end
   end
 
+  #An easier to understand function
   def on_tarmac
     @tarmac
   end
 
+  #Interface for basic info
   attr_reader :tarmac
 	attr_reader :capacity
 
+
+  # Tarmac tracker
   private
 
 	def empty?
