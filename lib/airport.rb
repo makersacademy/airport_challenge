@@ -1,11 +1,25 @@
+require_relative "weather"
+require_relative "plane"
+
 class Airport
 	
-	def land(plane)
-	 true
-	end
+		def initialize(weather = Weather.new)
+			@weather = weather
+		end
+
+		def land(plane)
+	 		true
+		end
 
 	def depart(plane)
-	 true
+	 
+	 	if self.weather.stormy?
+	 		raise "Unable to take off due to stormy weather"
+	 	else
+	 		true
+	 	end
+	
 	end
+
 
 end
