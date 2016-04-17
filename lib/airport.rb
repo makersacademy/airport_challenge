@@ -29,7 +29,7 @@ class Airport
   private
   
     def check_weather
-      rand(1..10) > 8 ? :stormy : :sunny
+      rand(1..10) > 7 ? :stormy : :sunny
     end
     
     def full?

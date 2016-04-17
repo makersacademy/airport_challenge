@@ -4,7 +4,7 @@ describe Plane do
   subject { described_class.new }
   let(:airport) { double(:airport, :name => "CDG", :ready_for_landing? => \
   true, :ready_for_taking_off? => true, :planes => [subject]) }
-  let(:other_airport) { double(:airport) }
+  let(:other_airport) { double(:airport, :planes => []) }
   it { is_expected.to respond_to :take_off }
   it { is_expected.to respond_to :land }
   
@@ -37,12 +37,13 @@ describe Plane do
   it "a plane cannot land in a full airport" do
     subject.take_off(airport)
     allow(airport).to receive(:ready_for_landing?).and_return false
-    expect{ subject.land(airport) }.to raise_error(RuntimeError, "Cannot land")
+    subject.land(airport)
+    expect(subject.status).to be :flying
   end
   
   it "raises error if plane is at a different airport" do
     msg = "The plane is at another airport. Cannot take off from this location!"
-    allow(other_airport).to receive(:planes).and_return []
-    expect{ subject.take_off(other_airport) }.to raise_error(RuntimeError, msg)
+    allow(other_airport.planes).to receive(:include?).and_return false
+    subject.take_off(other_airport)
   end
 end

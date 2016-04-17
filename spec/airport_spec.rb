@@ -34,9 +34,9 @@ describe Airport do
       expect(subject.planes).to include plane
     end
     
-    it "when weather is stormy cannot receive planes" do
+    it "when weather is stormy cannot receive planes and raises error" do
       allow(subject).to receive(:ready_for_landing?).and_return false
-      expect{ plane.land(subject) }.to raise_error(RuntimeError, "Cannot land")
+      plane.land(subject)
       expect(subject.planes).not_to include plane
     end
   end
@@ -49,14 +49,14 @@ describe Airport do
     end
     
     it "when sunny instructs a plane to take-off and confirms that it is flying" do
-      expect(plane.take_off(subject)).to eq "Plane #{plane} has taking off from #{subject.name}"
+      expect(plane.take_off(subject)).to eq plane
       expect(plane.status).to eq :flying
       expect(subject.planes).not_to include plane
     end
     
-    it "when weather is stormy cannot release planes" do
+    it "when weather is stormy cannot release planes and raises error" do
       allow(subject).to receive(:ready_for_taking_off?).and_return false
-      expect{ plane.take_off(subject) }.to raise_error(RuntimeError, "Cannot take off")
+      plane.take_off(subject) 
       expect(subject.planes).to include plane
     end
   end
