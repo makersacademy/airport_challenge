@@ -17,7 +17,7 @@ def weather_setter
         @stormy = false
       end
 end
- private
+
   def weather_setter_generator
     rand(10)
 
