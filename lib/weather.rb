@@ -5,7 +5,7 @@ class Weather
 
   end
 
-  def weather_setter
+  def weather_setter_generator
       rand(10)
   end
 
