@@ -22,6 +22,13 @@ describe "Airport Challenge" do
       #THEN The airport is empty
       expect(airport.instance_variable_get(:@planes)).to be_empty
     end
+    it "Airports have a default capacity" do
+      #GIVEN I have a new airport
+      airport = Airport.new
+      #WHEN I check the airports capacity
+      #THEN The capacity is set to a default value
+      expect(airport.instance_variable_get(:@capacity)).to eq Airport::Default_Capacity
+    end
   end
 
   describe "Weather" do
@@ -75,6 +82,17 @@ describe "Airport Challenge" do
         #WHEN I ask the airport to accept the plane
         #THEN I expect an error
         expect { airport.accept plane }.to raise_error Airport::AcceptErr
+      end
+      it "Airports cannot accept planes when they are full" do
+        #GIVEN I have a full airport and a plane is flying
+        airport = Airport.new
+        plane1 = Plane.new
+        plane2 = Plane.new
+        allow(airport).to receive(:stormy?) { false }
+        airport.accept plane1
+        #WHEN I ask the airport to accept the plane
+        #THEN I expect an error
+        expect { airport.accept plane2 }.to raise_error Airport::CapacityErr
       end
     end
     context "In stormy weather" do
