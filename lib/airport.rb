@@ -34,5 +34,4 @@ class Airport
     @capacity == @hangar.length
   end
 
-
 end
