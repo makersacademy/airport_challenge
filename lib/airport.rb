@@ -5,12 +5,11 @@ class Airport
 
   DEFAULT_CAPACITY = 2
 
-  attr_reader :planes, :capacity, :weather
+  attr_reader :planes, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    #@weather = Weather.new
   end
 
   def land(plane)
@@ -41,5 +40,5 @@ class Airport
   def stormy?
     rand(10) >= 7
   end
-  
+
 end

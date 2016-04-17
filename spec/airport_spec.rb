@@ -2,7 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  #let(:weather) {double(:weather)}
   subject(:airport) { described_class.new }
   let(:plane) {double(:plane)}
   before { allow(plane).to receive(:landed) }
@@ -84,6 +83,14 @@ describe Airport do
           message = "Airport empty"
           expect { airport.take_off(plane) } .to raise_error message
         end
+
+         it 'a plane can only take off from an airport it is in' do
+           plane1 = Plane.new
+           plane2 = Plane.new
+           subject.land(plane2)
+           message = "Plane not at airport"
+           expect { subject.take_off(plane1) } .to raise_error message
+         end
     end
 
     context 'when conditions are stormy' do
