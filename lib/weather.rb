@@ -5,4 +5,7 @@ class Weather
 
   end
 
+  def weather_setter
+  end
+
 end
