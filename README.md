@@ -1,4 +1,7 @@
 Current Travis CI Status: [![Build Status](https://travis-ci.org/letianw91/airport_challenge.svg?branch=master)](https://travis-ci.org/letianw91/airport_challenge)
+
+Coverall: [![Coverage Status](https://coveralls.io/repos/github/letianw91/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/letianw91/airport_challenge?branch=master)
+
 Airport Challenge
 =================
 
@@ -90,3 +93,8 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+
+
+Personal 

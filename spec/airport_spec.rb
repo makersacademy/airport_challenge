@@ -4,7 +4,7 @@ describe Airport do
 
   let(:airport) { subject }
   let(:plane) { spy(:plane) }
-  let(:plane1) { spy(:plane) }
+  let(:plane_1) { spy(:plane) }
   let(:weather) { double(:weather, stormy?: false)}
 
   subject {described_class.new(20, weather)}
@@ -26,7 +26,7 @@ describe Airport do
       it 'raise an error if the hangar is full' do
         tiny_airport = Airport.new(1,weather)
         tiny_airport.land(plane)
-        expect{tiny_airport.land(plane1)}.to raise_error 'Hangar full! Do not land!'
+        expect{tiny_airport.land(plane_1)}.to raise_error 'Hangar full! Do not land!'
       end
 
     end
@@ -56,6 +56,11 @@ describe Airport do
         airport.land(plane)
         airport.take_off(plane)
         expect(airport.hangar).not_to include plane
+      end
+
+      it 'cannot ask a plane that is not in the airport to take off' do
+        airport.land(plane)
+        expect{airport.take_off(plane_1)}.to raise_error 'Plane not in the hangar!'
       end
 
     end
