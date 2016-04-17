@@ -1,4 +1,5 @@
 class Airport
+  DEFAULT_CAPACITY = 20
 
   def initialize
     @planes = []
@@ -6,6 +7,7 @@ class Airport
 
   def land(plane)
     fail "Error; Plane ID #{plane} has already landed in Airport ID #{self}." if in_airport?(plane)
+    fail "Airport is full." if @planes.length >= DEFAULT_CAPACITY
     fail "Can not land during stormy weather." if stormy?
     @planes.push(plane)
     "Plane ID #{plane} has landed."

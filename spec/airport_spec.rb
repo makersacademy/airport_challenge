@@ -21,6 +21,15 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error("Can not land during stormy weather.")
     end
 
+    it "should prevent landing when the airport is full" do
+      sunny
+      allow(subject).to receive(:in_airport?).and_return(false)
+      Airport::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
+      expect{subject.land(plane)}.to raise_error("Airport is full.")
+    end
+
   end
 
   describe "#in_airport?" do
