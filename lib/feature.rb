@@ -10,7 +10,7 @@ require './lib/plane'
 airport = Airport.new
 plane = Plane.new
 airport.land(plane)
-raise "Plane was not landed" unless plane.landed_status == true
+fail "Plane was not landed" unless plane.landed_status == true
 
 
 # As an air traffic controller
@@ -22,7 +22,7 @@ airport = Airport.new
 plane = Plane.new
 airport.land(plane)
 airport.take_off(plane)
-raise "Plane did not take off" unless plane.landed_status == false
+fail "Plane did not take off" unless plane.landed_status == false
 
 
 # As an air traffic controller
@@ -34,7 +34,7 @@ plane = Plane.new
 airport.land(plane)
 airport.change_weather
 airport.take_off(plane)
-raise "Plane took off in stormy weather" unless plane.landed_status == false
+fail "Plane took off in stormy weather" unless plane.landed_status == false
 
 # As an air traffic controller
 # To ensure safety
@@ -46,7 +46,7 @@ raise "Plane took off in stormy weather" unless plane.landed_status == false
 
 airport = Airport.new
 Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-raise "Airport accepted more than it's capacity" unless airport.land(Plane.new) == 'Airport full'
+fail "Airport accepted more than it's capacity" unless airport.land(Plane.new) == 'Airport full'
 
 # As the system designer
 # So that the software can be used for many different airports

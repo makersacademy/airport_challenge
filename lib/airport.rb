@@ -13,11 +13,15 @@ class Airport
   def land(plane)
     fail 'Airport full' if airport_full?
     fail 'Plane cannot land in stormy weather' if stormy?
+    fail 'Plane has already landed here' if landed? plane
+    fail 'Plane has already landed elsewhere' if at_other_airport? plane
+
     @planes << plane
-    plane.landed
+    plane.land
   end
 
   def take_off(plane)
+    fail 'Plane is not at this airport' if at_airport? plane
     fail 'All planes have taken off' if airport_empty?
     fail 'Plane cannot take off in stormy weather' if stormy?
     plane.take_off
@@ -40,7 +44,19 @@ class Airport
   end
 
   def stormy?
-    @storm_level >= 8
+    @storm_level == 9
+  end
+
+  def landed?(plane)
+    @planes.include? plane
+  end
+
+  def at_airport?(plane)
+    !(@planes.include? plane)
+  end
+
+  def at_other_airport?(plane)
+    plane.instance_variable_get(:@landed) == true
   end
 
 end
