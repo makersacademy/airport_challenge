@@ -3,9 +3,7 @@ require "airport"
 describe Airport do
   let(:landed_plane) { double(:landed_plane, landed?: true, takeoff: false) }
   let(:flying_plane) {double(:flying_plane, landed?: false, land: true) }
-
   subject(:airport) { described_class.new }
-  #subject(:customised_airport) {Airport.new(37)}
 
   context "when first created" do
     it "has no planes" do

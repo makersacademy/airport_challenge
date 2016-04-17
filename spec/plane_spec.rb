@@ -1,10 +1,10 @@
-require 'plane'
+require "plane"
 
 describe Plane do
 
   it { is_expected.to respond_to(:landed?) }
 
-  context 'when instructed to land' do
+  context "when instructed to land" do
 
     it 'is landed' do
       subject.land
@@ -12,7 +12,7 @@ describe Plane do
     end
   end
 
-  context 'when instructed to take off' do
+  context "when instructed to take off" do
 
     it 'is flying' do
       subject.takeoff

@@ -1,10 +1,8 @@
+require_relative "error_mgr"
 class Airport
+  include ErrorManager
 
   DEFAULT_CAPACITY = 20
-  NOT_FOUND = "plane not at airport".freeze
-  LANDED = "plane alreay on ground".freeze
-  STORMY = "stormy weather".freeze
-  FULL = "capacity full".freeze
 
   attr_reader :planes, :capacity
 
@@ -41,16 +39,6 @@ class Airport
 
     def leave_airport(plane)
       planes.delete(plane)
-    end
-
-    def check_errors(plane,land)
-      if land
-        fail LANDED if in_airport?(plane)
-      else
-        fail NOT_FOUND if !in_airport?(plane)
-      end
-      fail STORMY if stormy?
-      fail FULL  if full?
     end
 
     def weather_generator
