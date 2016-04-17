@@ -36,6 +36,6 @@ class Airport
   		planes.count >= capacity
   	end
 	def empty?
-    	planes.empty?
-    end
+		planes.empty?
+	end
 end
