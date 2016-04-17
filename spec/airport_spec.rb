@@ -49,6 +49,9 @@ describe Airport do
                 airport.land(plane)
                 expect(airport.hangar).to include(plane)
             end
+            
+            it 'should raise error if plane already landed'
+                
          end
 
         describe '#take_off' do

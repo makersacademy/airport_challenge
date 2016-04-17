@@ -2,7 +2,12 @@ require_relative 'airport'
 
 class Plane
     
-    def landed?
+    def landed?(airport)
+        if airport.hangar.include? self
+            true
+        else
+            false
+        end
     end
     
 end
