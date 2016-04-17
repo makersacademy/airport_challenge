@@ -90,7 +90,7 @@ I have considered edge cases to ensure the consistency of the air control system
 
  In your terminal, type `$ rspec` under `airport_challenge` directory and it will run all the unit tests in spec files.
 
- There is also feature_spec.rb file which contains all the feature tests. To solely run these, type the following:
+ There is also feature_spec.rb file which contains all the feature tests for user stories. To solely run these, type the following:
 
  '$ rspec spec/feature_spec.rb'
 

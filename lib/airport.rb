@@ -16,7 +16,7 @@ class Airport
   def land(plane)
     fail "Airport full" if full?
     fail "Too stormy to land" if stormy?
-    fail "Plane already landed" if @planes.include?(plane)
+    fail "Plane already landed" if in_airport?(plane)
     #fail "Plane landed in other airport" if plane_status?
     plane.landed
     @planes << plane
@@ -25,7 +25,7 @@ class Airport
   def take_off(plane)
     fail "Airport empty" if empty?
     fail "Too stormy to take off" if stormy?
-    fail "Plane not at airport" unless @planes.include?(plane)
+    fail "Plane not at airport" unless in_airport?(plane)
     plane.departed
     @planes.delete(plane)
   end
@@ -41,6 +41,10 @@ class Airport
 
   def stormy?
     @weather.stormy?
+  end
+
+  def in_airport?(plane)
+    @planes.include?(plane)
   end
 
 end

@@ -4,6 +4,7 @@ describe Airport do
 
   subject(:airport) { described_class.new }
   let(:plane) { double(:plane) }
+  let(:permit_duplicates) { allow(airport).to receive(:in_airport?).and_return false }
   before { allow(plane).to receive(:landed) }
 
   describe "#planes" do
@@ -12,7 +13,7 @@ describe Airport do
       expect(airport.planes).to eq []
     end
 
-    it 'list all landed planes' do
+    it 'lists all landed planes' do
       allow(airport).to receive(:stormy?).and_return false
       airport.land(plane)
       expect(airport.planes).to eq [plane]
@@ -38,11 +39,12 @@ describe Airport do
           airport.land(plane)
         end
 
-        # it 'prevents landing when airport is full' do
-        #   airport.capacity.times { airport.land(plane) }
-        #   message = "Airport full"
-        #   expect { airport.land(plane) } .to raise_error message
-        # end
+         it 'prevents landing when airport is full' do
+           permit_duplicates
+           airport.capacity.times { airport.land(plane)}
+           message = "Airport full"
+           expect { subject.land(plane)}.to raise_error message
+         end
 
         it 'a plane that has landed cannot land again' do
           airport.land(plane)
