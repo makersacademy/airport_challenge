@@ -1,6 +1,7 @@
 require 'plane'
 
 describe Plane do
+let(:weather) { double(:weather, :stormy? => true) }
 
   describe '#land' do
 
@@ -13,6 +14,17 @@ describe Plane do
       subject.landed = false
       expect(subject.landed?).to eq false
     end
+
+    it 'is expected to raise an error if weather is stormy' do
+      subject.stormy = true
+      expect {subject.land}.to raise_error("It is too stormy to land")
+
+  end
+
+    # raise an error if plane already landed
+
+
+
 end
 
   describe '#take_off' do
@@ -21,6 +33,8 @@ end
     subject.take_off
     expect(subject.landed?).to eq false
   end
+
+  # raise an error if plane already taken off
 end
 
 end
