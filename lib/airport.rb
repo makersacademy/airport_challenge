@@ -15,5 +15,9 @@ class Airport
     def take_off
         hangar.pop
     end
+    
+    def weather
+        @weather
+    end
 
 end
