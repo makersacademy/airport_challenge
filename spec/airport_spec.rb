@@ -44,11 +44,11 @@ describe Airport do
       it "can be stormy" do
       allow(airport).to receive(:stormy?).and_return true
       expect(airport.stormy?(:plane)).to be true
-    end
+      end
 
       it "can be not stormy" do
       allow(airport).to receive(:stormy?).and_return false
       expect(airport.stormy?(:plane)).to be false
+      end
     end
-  end
 end
