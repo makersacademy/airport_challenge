@@ -14,6 +14,7 @@ DEFAULT_CAPACITY = 30
   def land(plane)
     fail 'Airport is full' if full?
     fail 'Too windy to land' if stormy?
+    #fail 'Plane not flying' unless plane.flying?
     plane.land
     @planes << plane
   end
@@ -21,6 +22,8 @@ DEFAULT_CAPACITY = 30
   def take_off(plane)
     fail 'Airport is empty' if empty?
     fail 'Too windy to take off' if stormy?
+    #fail 'Plane already flying' if plane.flying?
+    #fail 'Plane in different airport' unless @planes.include?(plane)
     plane.take_off
     @planes.delete(plane)
   end

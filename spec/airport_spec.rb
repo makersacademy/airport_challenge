@@ -99,7 +99,6 @@ describe Airport do
       allow(plane).to receive(:take_off)
       expect {subject.take_off(plane)}.not_to raise_error
     end
-
   end
 end
 

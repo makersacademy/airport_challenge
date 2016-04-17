@@ -14,7 +14,8 @@ describe Plane do
     it 'lands the plane' do
       allow(subject).to receive(:land)
       allow(subject).to receive(:flying?)
-      expect(subject.land).not_to eq(:flying?)
+      subject.land
+      expect(subject.flying?).not_to eq(:flying?)
   end
 
     it 'prevents landing if plane is not flying' do
@@ -25,12 +26,12 @@ describe Plane do
 
   describe 'taking off plane' do
 
-     it 'takes plane off' do
-       allow(subject).to receive(:take_off)
-       allow(subject).to receive(:land)
-       allow(subject).to receive(:flying?)
-       subject.land
-       expect(subject.take_off).to eq subject.flying?
+    it 'takes plane off' do
+      allow(subject).to receive(:take_off)
+      allow(subject).to receive(:land)
+      allow(subject).to receive(:flying?)
+      subject.land
+      expect(subject.take_off).to eq subject.flying?
      end
 
      it 'prevents take off if plane is already flying' do
