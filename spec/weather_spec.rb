@@ -19,12 +19,6 @@ describe Weather do
     before :each do
     srand(9)
 
-    it "produces a random number value between 1 - 10" do
-      weather = Weather.new
-      expect(weather.weather_setter_generator).to be == 9
-      expect(weather.weather_setter_generator).to be >= 0
-    end
-
     it "changes to true if weather_setter_generator is >= 9" do
       weather = Weather.new
       weather.weather_setter_generator
@@ -36,11 +30,6 @@ describe Weather do
     before :each do
     srand(0..8)
 
-    it "produces a random number value between 1 - 10" do
-      weather = Weather.new
-      expect(weather.weather_setter_generator).to be < 9
-      expect(weather.weather_setter_generator).to be >= 0
-    end
 
     it "changes to true if weather_setter_generator is >= 9" do
       weather = Weather.new
