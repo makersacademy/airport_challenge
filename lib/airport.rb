@@ -15,7 +15,6 @@ class Airport
   end
 
   def take_off(plane)
-    fail "Flight cancelled due to bad weather" if bad_weather?
     fail "No planes at the airport" if empty?
     @planes.pop
   end
@@ -24,13 +23,6 @@ class Airport
 
   attr_reader :capacity, :planes
 
-  def bad_weather?
-    weather.stormy?
-  end
-
-  def weather
-    @weather ||= Weather.new
-  end
 
   def full?
     planes.count >= DEFAULT_CAPACITY
@@ -39,6 +31,4 @@ class Airport
   def empty?
     @planes.empty?
   end
-
-
 end
