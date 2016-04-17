@@ -1,21 +1,20 @@
 require_relative 'plane'
 class Airport
-attr_reader :plane_holder
-  def storm
-   r = Random.new
-   r.rand(10) > 8 ? true : false
-  end
+  CAPACITY =  10
 
-  def initialize
+attr_reader :plane_holder, :capacity
+
+
+  def initialize (capacity=CAPACITY)
     @plane_holder= []
+    @capacity=capacity
+
   end
 
   def land(plane)
-     if storm
-      raise "can't land in a storm"
-    else
+      raise "can't land in a storm" if plane.weather?
+      raise "can't airport full" if full?
       @plane_holder << plane
-    end
   end
 
   def landed
@@ -23,10 +22,12 @@ attr_reader :plane_holder
   end
 
   def take_off(plane)
-    if storm
-      raise "can't fly win storm"
-    else
-       @plane_holder.pop
-    end
-   end
+    raise "can't fly win storm" if plane.weather?
+    @plane_holder.pop
+  end
+
+def full?
+  @plane_holder.length >= @capacity
+end
+
   end
