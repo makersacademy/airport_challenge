@@ -19,8 +19,6 @@ describe Airport do
 	expect{subject.release_planes}.to raise_error 'the weather is stormy'
 	end
 
-
-
 	#it 'responds to has take off' do
 	#expect {is_expected.to respond_to(:take_off).with(1).argument }
 	#end
@@ -47,11 +45,13 @@ describe Airport do
 
 	describe '#land' do
         it 'raises an error when exceding DEFAULT_CAPACITY' do
-      	allow(subject).to receive(:stormy?).and_return(false)
+        allow(subject).to receive(:stormy?).and_return(false)
         subject.capacity.times { subject.land plane }
         expect { subject.land plane }.to raise_error 'no spaces available'
         end
 	end
+
+
 
 
 end
