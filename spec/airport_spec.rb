@@ -35,7 +35,7 @@ describe Airport do
     end
 
     # cannot get to work with double
-    it 'prevents a plane landed at a different airport from landing' do
+    it 'prevents a plane landing at two airports at one time' do
       plane = Plane.new
       airport1 = Airport.new
       airport2 = Airport.new
@@ -43,7 +43,6 @@ describe Airport do
       expect { airport2.land(plane) }.to raise_error
       'Plane has already landed elsewhere'
     end
-
   end
 
   describe '#take_off' do
@@ -77,5 +76,4 @@ describe Airport do
       'Plane cannot land in stormy weather'
     end
   end
-
 end
