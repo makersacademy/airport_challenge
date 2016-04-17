@@ -29,7 +29,7 @@ As not specified by the user, it is important to precise that the following prio
 * if no inconsistencies but weather is stormy, that is raised as exception, regardless of current capacity of airport
 * if not of the above conditions, then the capacity constraint is checked.
 
-The test coverage is of 98.02, only 2 lines have remained untested, the ones to create the random number and the boolean variable to determine if weather is stormy.  It is trivial code so no further effort has been made to add those.
+The test coverage is of 98.02, only 2 lines have remained untested, the ones to create the random number and the boolean variable to determine if weather is stormy within the module Weather.  It is trivial code so no further effort has been made to increase coverage.
 
 Regarding tests a pragmatic approach has been taken in order to ensure the majority of cases where covered trying not to fall onto vacuous tests.  For example, for testing full capacity, the same double plane has been stored in memory to fulfill the capacity of the airport.  Although this would not be possible in the software working due to other tests preventing to land an already landed plane, it did not matter for the test, we just needed elements fulfilling the capacity of airport, and perhaps there are other methods of increasing airport capacity not involving the .land method.
 
@@ -37,7 +37,7 @@ It was also very important to stub the random weather generator for the relevant
 
 Travis CI does not work, or I don't know how to make it work for me.  I get a ERR_CONNECTION_TIMED_OUT on the web page, therfore no badge showing that all the tests have passed has been included.  Anyway they seem to be very trivial tests just checking the existance of the two classes Airport and Plane.
 
-Feature test
+Feature test example
 ---------
 new airport, a plane lands, it tries to take off but weather conditions are stormy
 ```
