@@ -1,6 +1,9 @@
 Airport Challenge
 =================
 
+[![Build Status](https://travis-ci.org/festinalent3/airport_challenge.svg?branch=master)](https://travis-ci.org/festinalent3/airport_challenge)
+
+
 ```
         ______
         _\____\___
