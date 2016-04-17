@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY= 20
@@ -8,34 +9,40 @@ class Airport
       @capacity = capacity
       @planes = []
     end
-    def airport_space
-      @planes
-    end
-    def accept_for_landing(plane)
-      raise "Airport is full" if full?
-      # raise "It's too stormy to land" unless stormy? == false
-      @planes << plane
-      #  @planes.flatten!
+          # def airport_space
+          #   @planes
+          # end
+          def accept_for_landing(plane)
+            raise "Already landed" if any_landed?(plane)
+            raise "Airport is full" if full?
+            raise "It's too stormy to land" if stormy_weather?
+            plane.reported_landed
+            @planes << plane
+          end
+          def accept_for_take_off(plane)
+            raise "There are no planes in the Airport" unless planes_inside?(plane)
+            raise "the plane is no longer in the airport" unless any_landed?(plane)
+            raise "It's too stormy to takeoff" if stormy_weather?
+            plane.took_off?
+            @planes.delete(plane) if planes_inside?(plane)
+          end
 
-    end
-    def accept_for_take_off(plane)
-    @planes.delete(plane)
-    #raise "It's too stormy to takeoff" unless stormy? == false
-    #  @planes
-    end
+   private
 
-    def stormy?
-      if rand(10) > 6
-        true
-      else
-        false
-      end
-    end
+  attr_reader :planes
 
+  def any_landed?(plane)
+    plane.landed?
+  end
 
-  private
-
+  def planes_inside?(plane)
+    @planes.include?(plane)
+  end
     def full?
-      @planes.count >= capacity
+      @planes.length == capacity
+    end
+
+    def stormy_weather?
+    Weather.new.stormy?
     end
 end
