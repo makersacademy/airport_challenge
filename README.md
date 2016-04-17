@@ -52,6 +52,13 @@ I would like a default airport capacity that can be overridden as appropriate
 Approach
 --------
 
+1. Draw a Domain model diagram to identify the classes and how they're interact with each other via methods.
+
+2. Start with plane_spec.rb, going through the user stories, one by one.
+
+3. Create doubles to isolate test.
+
+4. Test weather class to ensure weather is randomly generated.  
 
 
 Contributor
