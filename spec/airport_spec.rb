@@ -1,5 +1,6 @@
 require "airport"
 describe Airport do
+  it { expect(subject).to respond_to :stormy? }
   it { expect(subject).to respond_to(:accept, :release).with(1).argument }
 
   let(:flying_plane) { double(:plane, flying?: true, land: false, take_off: true) }
@@ -28,18 +29,35 @@ describe Airport do
   end
 
   describe "#release" do
+    # it "should check if the plane is in the airport" do
+    #   subject.instance_variable_set(:@planes, [grounded_plane])
+    #   expect(subject).to receive :plane_in_airport?
+    #   subject.release grounded_plane
+    # end
+    it "should check the weather" do
+      subject.instance_variable_set(:@planes, [grounded_plane])
+      expect(subject).to receive :stormy?
+      subject.release grounded_plane
+    end
     it "should remove the object from @planes" do
       subject.instance_variable_set(:@planes, [grounded_plane])
+      allow(subject).to receive(:stormy?) { false }
       subject.release grounded_plane
       expect(subject.instance_variable_get(:@planes)).not_to include grounded_plane
     end
     it "should tell the plane to take off if it is at the airport" do
       subject.instance_variable_set(:@planes, [grounded_plane])
+      allow(subject).to receive(:stormy?) { false }
       expect(grounded_plane).to receive :take_off
       subject.release grounded_plane
     end
     it "should raise an error if the plane is not at the airport" do
       expect { subject.release flying_plane }.to raise_error "Plane is not at this airport"
+    end
+    it "should raise an error if the weather is stormy" do
+      subject.instance_variable_set(:@planes, [grounded_plane])
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.release grounded_plane }.to raise_error "The weather is stormy"
     end
   end
 end

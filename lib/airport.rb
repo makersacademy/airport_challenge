@@ -1,4 +1,7 @@
+require_relative "weather"
+
 class Airport
+  include Weather
   def initialize
     @planes = []
   end
@@ -10,7 +13,8 @@ class Airport
   end
 
   def release plane
-    raise "Plane is not at this airport" unless ok_to_take_off? plane
+    raise "Plane is not at this airport" unless plane_in_airport? plane
+    raise "The weather is stormy" if stormy?
     plane.take_off
     remove_plane plane
   end
@@ -30,7 +34,7 @@ class Airport
     plane.flying?
   end
 
-  def ok_to_take_off? plane
+  def plane_in_airport? plane
     @planes.include? plane
   end
 end
