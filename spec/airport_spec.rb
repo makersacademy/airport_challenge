@@ -11,7 +11,7 @@ describe Airport do
       context "weather" do
         it "raises an error if weather is stormy" do
           allow(airport).to receive(:stormy?).and_return true
-          expect { airport.land(:plane) }.to raise_error "Stormy so cannot land plane"
+          expect { airport.land(:plane) }.to raise_error "Stormy cannot land"
         end
       end
     end
