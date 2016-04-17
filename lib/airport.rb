@@ -1,6 +1,8 @@
 require_relative "error_mgr"
+require_relative "weather"
 class Airport
   include ErrorManager
+  include Weather
 
   DEFAULT_CAPACITY = 20
 
@@ -23,10 +25,6 @@ class Airport
     access_airport(plane)
   end
 
-  def stormy?
-      weather_generator == 9
-  end
-
   private
 
     def in_airport?(plane)
@@ -39,10 +37,6 @@ class Airport
 
     def leave_airport(plane)
       planes.delete(plane)
-    end
-
-    def weather_generator
-      rand(10)
     end
 
     def full?
