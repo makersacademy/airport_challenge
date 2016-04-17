@@ -20,14 +20,17 @@ shared_examples_for "a communicator" do
       end
       it 'does not land plane in stormy weather' do
         allow(airport).to receive(:weather).and_return("stormy")
-        expect { communicator.land(flying_plane, airport) }.to raise_exception "Can't land in stormy weather"
+        message = "Can't land in stormy weather"
+        expect { communicator.land(flying_plane, airport) }.to raise_exception message
       end
       it 'does not land plane in a full airport' do
+        message = "Can't land in full airport"
         allow(airport).to receive(:full?).and_return(true)
-        expect { communicator.land(flying_plane, airport) }.to raise_exception "Can't land in full airport"
+        expect { communicator.land(flying_plane, airport) }.to raise_exception message
       end
       it 'does not land plane again if already landed' do
-        expect { communicator.land(landed_plane, airport) }.to raise_exception "Can't land again"
+        message = "Can't land again"
+        expect { communicator.land(landed_plane, airport) }.to raise_exception
       end
     end
   end
@@ -43,17 +46,20 @@ shared_examples_for "a communicator" do
       end
       it 'does not take off in stormy weather' do
         allow(airport).to receive(:weather).and_return("stormy")
-        expect { communicator.take_off(landed_plane, airport) }.to raise_exception "Can't take off in stormy weather"
+        message = "Can't take off in stormy weather"
+        expect { communicator.take_off(landed_plane, airport) }.to raise_exception message
       end
       it 'can only take off from current airport' do
+        message = "Can't take off from another airport"
         allow(landed_plane).to receive(:current_airport).and_return another_airport
-        expect { communicator.take_off(landed_plane, airport) }.to raise_exception "Can't take off from another airport"
+        expect { communicator.take_off(landed_plane, airport) }.to raise_exception
       end
       it 'plane can not take off if already flying' do
-        expect { communicator.take_off(flying_plane, airport) }.to raise_exception "Can't take off when flying"
+        message = "Can't take off when flying"
+        expect { communicator.take_off(flying_plane, airport) }.to raise_exception message
       end
     end
-  end  
+  end
 end
 
 describe Plane do

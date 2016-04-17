@@ -69,7 +69,7 @@ The next step was to imagine the things both planes and airports do - and I figu
 
 A new spec file was created, aiming at testing the behavior of a "communicator" module. Gradually I could create a module, communicator, that handled exceptions that arised when a plane could not land or take off at an airport, and also control the actual landings and take offs, were they allowed.
 
-I decided not to create a separate weather class, but instead allowed for airports to update their weather status by simply calling a method that returns a randomized weather. So it's not possible to manipulate the weather, which is also, unfortunately, the case in real life. New airports are always nice and sunny, but they update weather status automatically every time they dock a plane.
+I decided not to create a separate weather class, but instead allowed for airports to update their weather status by simply calling a method that returns a randomized weather. So it's not possible to manipulate the weather, which is also, unfortunately, the case in real life. New airports are always nice and sunny, but they update weather status automatically every time they dock a plane. We can also always call the method ourselves from the airport in case we believe we are stuck in a 'never ending storm'.
 
 The result is that both a plane and an airport can go ahead and say "land plane" or "take off". A plane for example, can land itself and then the airport can tell it to take off. Or the other way around. Or the airport calls all the shots, or the plane. It doesen't matter since all communication and implementation of landings and take offs take place within the communicator module, indirectly setting all object attributes accordingly. Pretty neat!
 
@@ -80,4 +80,3 @@ I do however feel I have one weakness in my design: When initializing a plane, i
 TO DO!!!
 -----
 * Write an RSpec **feature** test that lands and takes off a number of planes
-* Set up Travis CI on your own repo and add a status badge to your README showing that all tests are passing - and make sure it passes our own CI when you submit your PR.
