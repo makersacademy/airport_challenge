@@ -3,8 +3,8 @@ class Airport
 		plane.land
 	end
 
-# when I call takeoff, it should change the state of the plane
   def take_off
+  	# when called, needs to change the state of take_off?
   end
 
 end

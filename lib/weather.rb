@@ -1,8 +1,8 @@
-# class Weather
+class Weather
 
-# def stormy_day
-# 	x = rand(10)
-# 	x < 2
-# end
-
-# end
+def weather
+	x = rand(10)
+	:stormy if x < 2 
+	:sunny if x => 2 && x < 8
+end
+end

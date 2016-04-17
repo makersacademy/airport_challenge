@@ -17,7 +17,14 @@ describe Plane do
   		plane2.take_off
   		expect(plane2.flying?).to eq true
   	end
+  end
 
+  describe "#land" do
+  	it {is_expected.to respond_to(:landed?)}
+  	it "returns true if landed" do
+  		plane3 = Plane.new
+  		allow(plane3).to receive(:landed?) {true}
+  	end
   end
 end
 

@@ -1,4 +1,5 @@
 require 'airport'
+require 'rspec/expectations'
 
 describe Airport do
 	it {is_expected.to respond_to(:land)}

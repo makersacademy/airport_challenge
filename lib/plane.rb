@@ -5,7 +5,7 @@ class Plane
   end
 
 	def land(airport)
-		return true if landed == true
+		true if landed == true
 	end
 
 	def landed?
@@ -13,7 +13,7 @@ class Plane
 
   def take_off
   	if flying?
-  		return false
+  		false
   	end
   	@state = :in_air
   end    
