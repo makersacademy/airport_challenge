@@ -27,16 +27,6 @@ describe Airport do
 
     before { allow(airport).to receive(:stormy?) {false} }
 
-    it "adds a plane to @landed_aircraft" do
-      subject.arrival(plane)
-      expect(subject.landed_aircraft).to include plane
-    end
-
-    it "@landed_aircraft increases by one when a plane lands" do
-      subject.arrival(plane)
-      expect(subject.landed_aircraft.count).to eq 1
-    end
-
     it "expect plane status 'in_airport?' to be true when landed" do
       subject.arrival(plane)
       expect(plane.in_airport?).to be true
@@ -63,18 +53,6 @@ describe Airport do
   describe "#departure" do
 
       before { allow(airport).to receive(:stormy?) {false} }
-
-    it "removes aircraft from '@landed_aircraft' " do
-      subject.arrival(plane)
-      subject.departure(plane)
-      expect(subject.landed_aircraft).to_not include plane
-    end
-
-    it "@landed_aircraft decreases by one when a plane lands" do
-      subject.arrival(plane)
-      subject.departure(plane)
-      expect(subject.landed_aircraft.count).to eq 0
-    end
 
     it "expect plane status 'in_airport?' to be false when landed" do
       subject.arrival(plane)
