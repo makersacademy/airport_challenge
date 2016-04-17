@@ -6,7 +6,7 @@ require './lib/plane.rb'
 
 airport = Airport.new
 plane = Plane.new
-puts airport.land(plane)
+airport.in_airport?(plane)
 
 # User story 2:
 # Instruct a plane to take off from an airport and confirm this
@@ -16,5 +16,14 @@ puts airport.take_off(plane)
 
 # User story 3:
 # I want to prevent take off when weather is stormy
+# Will need to revisit this when rewriting into Rspec
+
 
 airport.take_off(plane)
+
+# User story 4:
+# I want to prevent landing when weather is stormy
+# Will need to revisit this when rewriting into Rspec
+
+airport.land(plane)
+
