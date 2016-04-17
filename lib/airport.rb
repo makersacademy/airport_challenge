@@ -18,6 +18,7 @@ DEFAULT_CAPACITY = 50
     fail "Stormy weather" if stormy?
     plane.take_off
     planes.pop
+    return planes
   end
 
   def land(plane)

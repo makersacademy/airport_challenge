@@ -5,7 +5,6 @@ describe Airport do
   let(:airport) { described_class.new(weather)}
   let(:weather) {double(:weather, stormy?: false)}
   let(:plane) { double(:plane, land: nil, take_off:nil) }
-  Airport.send(:public, *Airport.private_instance_methods)
 
   describe 'initialization' do
     it 'has default capacity (if no capacity set at initialization)' do
@@ -26,8 +25,7 @@ describe Airport do
     end
 
     it 'has the plane after land' do
-      airport.land plane
-      expect(airport.planes).to include plane
+      expect(airport.land plane).to include plane
     end
   end
 
@@ -42,12 +40,7 @@ describe Airport do
     end
 
     it 'does not have plane after take off' do
-      airport.takeoff(plane)
-      expect(airport.planes).not_to include plane
-    end
-
-    it 'launches the correct plane' do
-      expect(airport.takeoff(plane)).to eq plane
+      expect(airport.takeoff(plane)).not_to include plane
     end
   end
 
