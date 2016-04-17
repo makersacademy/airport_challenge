@@ -2,9 +2,12 @@ require 'weather'
 
 class Airport
   attr_accessor :planes
+  attr_accessor :capacity
+  DEFAULT_CAPACITY = 12
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def safe_to_fly(weather = Weather.new.weather_now)
@@ -17,6 +20,7 @@ class Airport
 
   def land(plane)
     fail "Can't land when stormy" if safe_to_fly == false
+    fail "Can't land at a full airport" if @planes.length >= @capacity
     plane.location = self
     @planes << plane
     plane

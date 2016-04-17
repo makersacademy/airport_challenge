@@ -52,4 +52,14 @@ let(:plane) {double :plane}
     allow(subject).to receive(:safe_to_fly).and_return(false)
     expect{subject.land(plane)}.to raise_error("Can't land when stormy")
   end
+
+  it 'should prevent landing if the airport is full' do
+    allow(plane).to receive(:location=).with(subject)
+    allow(subject).to receive(:safe_to_fly).and_return(true)
+    subject.land(plane)
+    expect{
+      subject.capacity.times{subject.land(plane)}
+    }.to raise_error("Can't land at a full airport")
+	end
+
 end
