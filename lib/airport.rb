@@ -12,7 +12,7 @@ class Airport
   def release plane
     raise "Plane is not at this airport" unless ok_to_take_off? plane
     plane.take_off
-    remove plane
+    remove_plane plane
   end
 
   private
