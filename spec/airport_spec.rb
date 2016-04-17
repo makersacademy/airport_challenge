@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new }
-  let(:plane) {double(:plane)}
+  let(:plane) { double(:plane) }
   before { allow(plane).to receive(:landed) }
 
   describe "#planes" do
@@ -13,15 +13,15 @@ describe Airport do
     end
 
     it 'list all landed planes' do
-      allow(airport).to receive(:stormy?).and_return(false)
+      allow(airport).to receive(:stormy?).and_return false
       airport.land(plane)
       expect(airport.planes).to eq [plane]
     end
 
     it "has a variable capacity" do
       capacity = 20
-			airport = Airport.new(capacity)
-			expect(airport.capacity).to eq capacity
+      airport = Airport.new(capacity)
+      expect(airport.capacity). to eq capacity
 		end
 
 		it "sets the the capacity to a default value when capacity is not provided" do
@@ -32,7 +32,7 @@ describe Airport do
 
   describe '#land' do
     context 'when conditions are not stormy' do
-      before { allow(airport).to receive(:stormy?).and_return (false) }
+      before { allow(airport).to receive(:stormy?).and_return false }
 
         it 'instructs a plane to land' do
           airport.land(plane)
@@ -49,10 +49,19 @@ describe Airport do
           message = "Plane already landed"
           expect { airport.land(plane) } .to raise_error message
         end
-      end
+
+        # it 'a plane cannot land in two airports' do
+        #    allow(plane).to receive(:landed)
+        #    airport1 = described_class.new
+        #    airport2 = described_class.new
+        #    airport1.land(plane)
+        #    message = "Plane landed in other airport"
+        #    expect { airport2.land(plane) } .to raise_error message
+        # end
+    end
 
     context 'when conditions are stormy' do
-      before { allow(airport).to receive(:stormy?).and_return (true) }
+      before { allow(airport).to receive(:stormy?).and_return true }
 
       it 'prevents landing when weather is stormy' do
         message = "Too stormy to land"
@@ -66,7 +75,7 @@ describe Airport do
     before { allow(plane).to receive(:departed) }
 
     context 'when conditions are not stormy' do
-      before { allow(airport).to receive(:stormy?).and_return (false) }
+      before { allow(airport).to receive(:stormy?).and_return false }
 
         it 'instructs a plane to take off' do
           airport.land(plane)
@@ -96,18 +105,18 @@ describe Airport do
     context 'when conditions are stormy' do
 
         it 'prevents take off when weather is stormy' do
-          allow(airport).to receive(:stormy?).and_return (false)
+          allow(airport).to receive(:stormy?).and_return false
           airport.land(plane)
-          allow(airport).to receive(:stormy?).and_return (true)
+          allow(airport).to receive(:stormy?).and_return true
           message = "Too stormy to take off"
           expect { airport.take_off(plane) } .to raise_error message
         end
 
         it 'a plane can take off after the stormy weather has passed' do
-          allow(airport).to receive(:stormy?).and_return (false)
+          allow(airport).to receive(:stormy?).and_return false
           airport.land(plane)
-          allow(airport).to receive(:stormy?).and_return (true)
-          allow(airport).to receive(:stormy?).and_return (false)
+          allow(airport).to receive(:stormy?).and_return true
+          allow(airport).to receive(:stormy?).and_return false
           expect { airport.take_off(plane) } .to_not raise_error
         end
     end
