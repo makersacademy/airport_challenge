@@ -15,16 +15,16 @@ describe Weather do
 
   end
 
-  describe '#weather_setter_generator when stormy' do
-    before :each do
-    srand(9)
+  #describe '#weather_setter_generator when stormy' do
+   # before :each do
+    #srand(9)
 
-    it "changes to true if weather_setter_generator is >= 9" do
-      weather = Weather.new
-      weather.weather_setter_generator
-      expect(weather.stormy?).to eq true
-    end
-    end
+    #it "changes to true if weather_setter_generator is >= 9" do
+    #  weather = Weather.new
+     # weather.weather_setter_generator
+     # expect(weather.stormy?).to eq true
+    #end
+   # end
 
   #describe '#weather_setter_generator when not stormy' do
    # before :each do
@@ -39,7 +39,7 @@ describe Weather do
     #end
   #rend
 
-  end
+  #end
 
 
 
