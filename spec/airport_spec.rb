@@ -35,6 +35,10 @@ describe Airport do
       allow(plane).to receive(:flying?).and_return true
       expect{ airport.dock(plane) }.to raise_exception "Can't dock a flying plane"
     end
+    it 'raises an exception if it tries to dock a plane thats already docked' do
+      allow(airport).to receive(:planes).and_return [plane]
+      expect{ airport.dock(plane) }.to raise_exception "Can't dock plane twice"
+    end
   end
 
   describe '#undock(plane)' do
@@ -46,6 +50,12 @@ describe Airport do
     it 'raises an exception if it tries to undock a flying plane' do
       allow(plane).to receive(:flying?).and_return true
       expect{ airport.undock(plane) }.to raise_exception "Can't undock a plane that is not here"
+    end
+  end
+
+  describe '#update_weather' do
+    it 'it sets the weather to either sunny or stormy' do
+      expect(airport.update_weather == "sunny" || airport.update_weather == "stormy").to eq(true)
     end
   end
 

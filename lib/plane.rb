@@ -5,6 +5,7 @@ class Plane
 
   def initialize(airport = Airport.new)
     self.landed_at(airport)
+    airport.dock(self)
   end
 
   def landed?
