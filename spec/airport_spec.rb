@@ -28,7 +28,7 @@ describe Airport do
     before { allow(airport).to receive(:stormy?) {false} }
 
     it "expect plane status 'in_airport?' to be true when landed" do
-      subject.arrival(plane)
+      subject.arrival plane
       expect(plane.in_airport?).to be true
     end
 
@@ -44,7 +44,7 @@ describe Airport do
 
     it "aircraft can not land if already in airport" do
       test_plane = Plane.new
-      subject.arrival(test_plane)
+      subject.arrival test_plane
       expect{subject.arrival(test_plane)}.to raise_error ("Aircraft already at airport.")
     end
 
@@ -55,8 +55,8 @@ describe Airport do
       before { allow(airport).to receive(:stormy?) {false} }
 
     it "expect plane status 'in_airport?' to be false when landed" do
-      subject.arrival(plane)
-      subject.departure(plane)
+      subject.arrival plane
+      subject.departure plane
       expect(plane.in_airport?).to be false
     end
 
@@ -67,8 +67,8 @@ describe Airport do
 
     it "aircraft can not take-off if not in the airport" do
       test_plane = Plane.new
-      subject.arrival(test_plane)
-      subject.departure(test_plane)
+      subject.arrival test_plane
+      subject.departure test_plane
       expect{subject.departure(test_plane)}.to raise_error ("Aircraft not in airport.")
     end
 
@@ -84,7 +84,7 @@ describe Airport do
       allow(airport).to receive(:stormy?) {false}
       19.times{ subject.arrival(Plane.new) }
       expect(subject.full?).to be false
-      subject.arrival(plane)
+      subject.arrival plane
       expect(subject.full?).to be true
     end
 
