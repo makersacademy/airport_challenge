@@ -3,6 +3,7 @@ require_relative 'communicator'
 class Airport
   include Communicator
   attr_reader :weather, :capacity, :planes
+  attr_writer :capacity
   DEFAULT_CAPACITY = 30
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -33,6 +34,6 @@ class Airport
   end
 
   private
-  attr_writer :weather, :capacity, :planes
+  attr_writer :weather, :planes
 
 end

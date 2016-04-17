@@ -75,8 +75,4 @@ The result is that both a plane and an airport can go ahead and say "land plane"
 
 I do however feel I have one weakness in my design: When initializing a plane, if not given a specific airport that it 'belongs to', it will simply go ahed and instantiate a new airport. Had I had more time, I would have looked deeper into resolving this issue. Could also refactor airport methods slightly. For now I feel like I have had a great opportunity to further practise TDD, SOLID principles and general Rspec functionality and logic.
 
-
-
-TO DO!!!
------
-* Write an RSpec **feature** test that lands and takes off a number of planes
+I also included an Rspec feature test for the six user stories and a simple feature test for a few planes taking off from one airport and then landing at another airport.

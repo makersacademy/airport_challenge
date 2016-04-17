@@ -18,6 +18,13 @@ describe Airport do
     end
   end
 
+  describe '#capacity?' do
+    it 'can be overridden' do
+      airport.capacity = 3000
+      expect(Airport::DEFAULT_CAPACITY).not_to eq(airport.capacity)
+    end
+  end
+
   describe '#full?' do
     it 'returns true if nr of planes equals capacity' do
       airport.capacity.times { |plane| airport.planes << plane }
@@ -55,7 +62,8 @@ describe Airport do
 
   describe '#update_weather' do
     it 'it sets the weather to either sunny or stormy' do
-      expect(airport.update_weather == "sunny" || airport.update_weather == "stormy").to eq(true)
+      airport.update_weather
+      expect(airport.weather == "sunny" || airport.weather == "stormy").to eq(true)
     end
   end
 

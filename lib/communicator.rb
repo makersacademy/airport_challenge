@@ -2,8 +2,8 @@ module Communicator
 
   def land(plane, airport)
     check_can_land(plane, airport)
+    plane.landed_at(airport)
     airport.dock(plane)
-    plane.is_landed
   end
 
   def take_off(plane, airport)

@@ -7,7 +7,7 @@ shared_examples_for "a communicator" do
   let(:another_airport) { double(:another_airport, weather: "sunny", full?: false, planes: []) }
   let(:airport_planes) { double(:planes) }
 
-  let(:flying_plane) { double(:plane, landed?: false, is_landed: true, current_airport: nil, flying?: true) }
+  let(:flying_plane) { double(:plane, landed?: false, current_airport: nil, flying?: true) }
   let(:landed_plane) { double(:plane, landed?: true, is_flying: true, current_airport: airport, flying?: false) }
   let(:communicator) {described_class.new}
 
@@ -15,8 +15,9 @@ shared_examples_for "a communicator" do
   describe '#land' do
     context 'planes can land at an airport' do
       it 'lands plane in current airport' do
+        allow(flying_plane).to receive(:landed_at).with(airport).and_return(landed_plane)
         allow(airport).to receive(:dock).with(flying_plane).and_return([landed_plane])
-        expect(communicator.land(flying_plane, airport)).to eq true
+        expect(communicator.land(flying_plane, airport)).to eq [landed_plane]
       end
       it 'does not land plane in stormy weather' do
         allow(airport).to receive(:weather).and_return("stormy")
@@ -30,7 +31,7 @@ shared_examples_for "a communicator" do
       end
       it 'does not land plane again if already landed' do
         message = "Can't land again"
-        expect { communicator.land(landed_plane, airport) }.to raise_exception
+        expect {communicator.land(landed_plane, airport)}.to raise_exception message
       end
     end
   end
