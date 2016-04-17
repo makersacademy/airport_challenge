@@ -34,7 +34,7 @@ describe Weather do
 
   describe '#weather_setter_generator when not stormy' do
     before :each do
-    srand(8)
+    srand(0..8)
 
     it "produces a random number value between 1 - 10" do
       weather = Weather.new
