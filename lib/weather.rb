@@ -1,8 +1,8 @@
 class Weather
-  attr_reader :weather
+  attr_accessor :weather_now
 
-    def weather
-      @weather = 'stormy'
+    def initialize
+      @weather_now = 'stormy'
     end
 
 end
