@@ -15,7 +15,7 @@ class Airport
     def land(plane)
         fail 'airport is at capacity' if full?
         fail 'It\'s too stormy to land!' if weather == 'stormy'
-        hangar << plane
+        hangar << plane unless hangar.include? plane
     end
     
     def take_off

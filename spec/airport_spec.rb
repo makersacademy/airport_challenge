@@ -22,7 +22,11 @@ describe Airport do
     
         it 'should have a maximum capacity' do
             allow(airport).to receive(:weather) { 'sunny' }
-            airport.capacity.times { airport.land(plane) }
+            airplane = 0
+            airport.capacity.times do 
+                airport.land(airplane)
+                airplane += 1
+            end
             expect { airport.land(plane) }.to raise_error 'airport is at capacity'
         end
         
@@ -44,15 +48,22 @@ describe Airport do
     context ' good weather' do
         
         describe '#land(plane)' do
-            it 'checks a plane has landed' do
+            
+            before do 
                 allow(airport).to receive(:weather) { 'sunny' }
+            end
+            
+            it 'checks a plane has landed' do
                 airport.land(plane)
                 expect(airport.hangar).to include(plane)
             end
             
-            it 'should raise error if plane already landed'
-                
-         end
+            it 'should not land same plane twice' do
+                airport.land(plane)
+                airport.land(plane)
+                expect(airport.hangar.length).to eq 1
+            end
+        end
 
         describe '#take_off' do
             
