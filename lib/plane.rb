@@ -1,3 +1,5 @@
+require "airport"
+
 class Plane
 
   def take_off
@@ -11,6 +13,5 @@ class Plane
   def in_airport?
     @grounded
   end
-
 
 end

@@ -12,7 +12,7 @@ describe Weather do
     end
 
     it "returns true when weather is stormy" do
-      allow(weather).to receive(:stormy?) {true}
+      allow(weather).to receive(:rand).with(0.9) {true}
       expect(subject.stormy?).to be true
     end
 

@@ -39,7 +39,7 @@ describe Airport do
     end
 
     it "raises error 'Airport is full.'." do
-      20.times {subject.arrival(Plane.new)}
+      capacity.times {subject.arrival(Plane.new)}
       em = "Airport is full."
       expect{subject.arrival(plane)}.to raise_error em
     end
@@ -87,9 +87,7 @@ describe Airport do
 
     it "returns false until capacity is reached" do
       allow(airport).to receive(:stormy?) {false}
-      19.times{ subject.arrival(Plane.new) }
-      expect(subject.full?).to be false
-      subject.arrival plane
+      capacity.times{ subject.arrival(Plane.new) }
       expect(subject.full?).to be true
     end
 
