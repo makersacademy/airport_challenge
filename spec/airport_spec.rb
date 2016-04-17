@@ -40,6 +40,11 @@ describe Airport do
 	expect(subject.release_planes).to eq []
 	end
 
+	it 'fails if the plane hasnt taken off yet' do 
+	plane.report_landed
+	expect {subject.land plane}.to raise_error 'the plane hasnt taken off yet'
+	end
+
 	describe '#land' do
         it 'raises an error when exceding DEFAULT_CAPACITY' do
       	allow(subject).to receive(:stormy?).and_return(false)

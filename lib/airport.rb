@@ -14,6 +14,7 @@ class Airport
 
 
 	def land(plane)
+		fail 'the plane hasnt taken off yet' if plane.flying? == false
 		fail 'no spaces available' if full?
 		fail 'the weather is stormy' if stormy?
 		@planes << plane
@@ -31,7 +32,7 @@ class Airport
 		rand(1..6) < 6? false : true
 	end
 
-	private
+ 		private
 
 
     def full?
