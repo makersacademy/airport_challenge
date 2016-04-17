@@ -5,7 +5,6 @@ class Plane
   end
 
   def took_off?
-    @landed =false
+    @landed = false
   end
-
 end

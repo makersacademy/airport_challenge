@@ -6,5 +6,4 @@ describe Weather do
     allow(subject).to receive(:stormy?).and_return(8)
     expect(subject.stormy?).to eq 8
   end
-
 end
