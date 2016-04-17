@@ -5,9 +5,9 @@ describe Airport do
 
   it 'checks whether or not a plane is in the airport after landing and takeoff' do
     plane = Plane.new
-    (plane).land(subject)
+    plane.land(subject)
     expect(subject.check_plane_status(plane)).to eq "Plane in airport"
-    (plane).takeoff(subject)
+    plane.takeoff(subject)
     expect(subject.check_plane_status(plane)).to eq "Plane not in airport"
   end
 
