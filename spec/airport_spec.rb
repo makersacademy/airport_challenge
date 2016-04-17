@@ -1,5 +1,5 @@
 
-require 'Airport'
+require 'airport'
 require 'plane'
 
 describe Airport do
