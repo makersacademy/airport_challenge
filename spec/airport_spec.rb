@@ -11,7 +11,7 @@ describe Airport do
   it { is_expected.to respond_to :ready_for_taking_off? }
   
   describe "Initialization" do
-    it "has a default capacity if none is passed" do
+    it "has a default capacity if none is given" do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
     
@@ -21,43 +21,38 @@ describe Airport do
     end
   end
   
-  describe "Landing" do
-    # Before each landing test, the plane must be flying
-    before(:each) do
-      allow(subject).to receive(:ready_for_taking_off?).and_return true
-      plane.take_off(subject)
+  describe "Methods" do
+    let(:dummy_plane) { double(:plane) }
+    
+    it "receives a plane" do
+      subject.receive_plane dummy_plane
+      expect(subject.send(:planes)).to include dummy_plane
     end
     
-    it "when weather is sunny can receive planes" do
-      allow(subject).to receive(:ready_for_landing?).and_return true
-      expect(plane.land(subject)).to eq "Plane #{plane} has landed at #{subject.name}"
-      expect(subject.planes).to include plane
+    it "releases a plane" do
+      subject.release_plane plane
+      expect(subject.send(:planes)).not_to include plane
     end
     
-    it "when weather is stormy cannot receive planes and raises error" do
-      allow(subject).to receive(:ready_for_landing?).and_return false
-      plane.land(subject)
-      expect(subject.planes).not_to include plane
-    end
-  end
-    
-  describe "Taking off" do
-    # Before each taking off test, the plane must be at the airport (landed)
-    before(:each) do
-      allow(subject).to receive(:ready_for_taking_off?).and_return true
-      plane = subject.planes.last
+    it "allows the planes to land if conditions are met" do
+      allow(subject).to receive(:check_weather).and_return :sunny
+      allow(subject).to receive(:full?).and_return false
+      expect(subject.ready_for_landing?).to be true
     end
     
-    it "when sunny instructs a plane to take-off and confirms that it is flying" do
-      expect(plane.take_off(subject)).to eq plane
-      expect(plane.status).to eq :flying
-      expect(subject.planes).not_to include plane
+    it "does not allow landing if conditions are not met" do
+      allow(subject).to receive(:check_weather).and_return :stormy
+      expect(subject.ready_for_landing?).to be false
     end
     
-    it "when weather is stormy cannot release planes and raises error" do
-      allow(subject).to receive(:ready_for_taking_off?).and_return false
-      plane.take_off(subject) 
-      expect(subject.planes).to include plane
+    it "allows the planes to take off if conditions are met" do
+      allow(subject).to receive(:check_weather).and_return :sunny
+      expect(subject.ready_for_taking_off?).to be true
+    end
+    
+    it "does not allow landing if conditions are not met" do
+      allow(subject).to receive(:check_weather).and_return :stormy
+      expect(subject.ready_for_taking_off?).to be false
     end
   end
 end

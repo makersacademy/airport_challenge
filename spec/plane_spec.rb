@@ -17,13 +17,12 @@ describe Plane do
     expect(subject.status).to eq :landed
   end
   
-  it "flies after taking off" do
-    expect(subject.status).to eq :landed
+  it "status is :flying after taking off" do
     subject.take_off(airport)
     expect(subject.status).to eq :flying
   end
   
-  it "is at the airport after landing" do
+  it "status is :landed after landing" do
     subject.take_off(airport)
     expect(subject.status).to eq :flying
     subject.land(airport)
@@ -34,14 +33,25 @@ describe Plane do
     expect(subject.land(airport)).to eq "Plane #{subject} is already landed"
   end
   
-  it "a plane cannot land in a full airport" do
+  it "a flying plane cannot take off again" do
+    subject.take_off(airport)
+    expect(subject.take_off(airport)).to eq "Plane #{subject} is already flying"
+  end
+  
+  it "cannot land if airport is not ready for landing" do
     subject.take_off(airport)
     allow(airport).to receive(:ready_for_landing?).and_return false
     subject.land(airport)
     expect(subject.status).to be :flying
   end
   
-  it "raises error if plane is at a different airport" do
+  it "cannot take off if airport is not ready for taking off" do
+    allow(airport).to receive(:ready_for_taking_off?).and_return false
+    subject.take_off(airport)
+    expect(subject.status).to be :landed
+  end
+  
+  it "cannot take off from an airport if it is not currently there" do
     msg = "The plane is at another airport. Cannot take off from this location!"
     allow(other_airport.planes).to receive(:include?).and_return false
     subject.take_off(other_airport)
