@@ -29,7 +29,7 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-
+```
 2.2.3 :001 > require './lib/airport.rb'
  => true 
 2.2.3 :002 > airport = Airport.new
@@ -74,5 +74,5 @@ RuntimeError: Unable to takeoff due to stormy weather
 	from /home/namitha/Documents/week1/airport_challenge/lib/airport.rb:21:in `departure'
 	from (irb):19
 	from /usr/share/rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
-
+```
 
