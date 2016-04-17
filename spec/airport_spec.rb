@@ -21,11 +21,11 @@ describe Airport do
   describe '#instruct_landing' do
     it 'instructs plane to land' do
       expect(plane).to receive(:land)
-      airport.land plane
+      airport.land(plane)
     end
 
     it 'has the plane after land' do
-      expect(airport.land plane).to include plane
+      expect(airport.land(plane)).to include plane
     end
   end
 
