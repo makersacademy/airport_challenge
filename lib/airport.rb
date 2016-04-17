@@ -23,6 +23,7 @@ class Airport
 
   def take_off(plane)
     fail "Airport empty" if empty?
+    fail "Too stormy to take off" if stormy?
     fail "Plane not at airport" if @planes.include?(plane) == false
     plane.departed
     @planes.delete(plane)

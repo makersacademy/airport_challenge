@@ -4,7 +4,7 @@ describe Airport do
 
   #let(:weather) {double(:weather)}
 
-  describe "#planes_in_airport" do
+  describe "#planes" do
     it 'a new airport has no planes' do
       expect(subject.planes).to eq []
     end
@@ -101,7 +101,21 @@ describe Airport do
 
     #I want to prevent takeoff when weather is stormy
     it 'prevents take off when weather is stormy' do
+      allow(subject).to receive(:stormy?).and_return (false)
+      plane = Plane.new
+      subject.land(plane)
+      allow(subject).to receive(:stormy?).and_return (true)
+      message = "Too stormy to take off"
+      expect { subject.take_off(plane) } .to raise_error message
+    end
 
+    it 'a plane can take off after the stormy weather has passed' do
+      allow(subject).to receive(:stormy?).and_return (false)
+      plane = Plane.new
+      subject.land(plane)
+      allow(subject).to receive(:stormy?).and_return (true)
+      allow(subject).to receive(:stormy?).and_return (false)
+      expect { subject.take_off(plane) } .to_not raise_error
     end
 
     it 'prevents take off when airport is empty' do
