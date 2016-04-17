@@ -5,6 +5,8 @@ let(:airport) { double(:airport, park: nil)}
 
   describe '#land' do
 
+it { is_expected.to respond_to(:land).with(1).argument }
+
     it 'is expected to respond to #landed? with true if landed' do
       subject.land(airport)
       expect(subject.landed?).to eq true
