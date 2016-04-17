@@ -13,7 +13,7 @@ end
 
 private
 
-FORECAST = [:sunny, :sunny, :sunny, :stormy]
+FORECAST = [:sunny, :stormy]
 
 def random_weather
   FORECAST.sample
