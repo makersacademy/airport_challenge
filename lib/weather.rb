@@ -1,7 +1,7 @@
 class Weather
 
-def self.weather
-
+def self.stormy?
+  rand(20) < 3
 end
 
 end
