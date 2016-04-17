@@ -12,8 +12,15 @@ class Airport
   end
 
   def permission_to_land?(plane)
-    run_way << plane if Weather.sunny? && !full?
-    Weather.sunny? && !full?
+    return insult(plane) unless plane.flying?
+    return false if !Weather.sunny? || full?
+    true
+  end
+
+  def permission_to_leave?(plane)
+    return insult(plane) unless present?(plane)
+    return false if !Weather.sunny?
+    true
   end
 
   # def land(plane)
@@ -38,18 +45,23 @@ class Airport
   # def airport_capacity
   #   capacity
   # end
-  #
-  private
-  #
-  # attr_reader :planes, :capacity
-  #
-  # def weather_test
-  #   fail "Not in this weather mate" unless Weather.sunny?
-  # end
-  #
-  def full?
-    run_way.size >= DEFAULT_CAPACITY
+  def insult(plane)
+    "You been on the wacky-backy, You're in #{plane.location}"
   end
+
+  private
+  # attr_reader :planes, :capacity
+
+  def full?
+    run_way.size >= capacity
+  end
+
+  def present?(plane)
+    plane.location == self
+  end
+
+
+
   #
   # def empty?
   #   planes == []

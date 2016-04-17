@@ -15,7 +15,7 @@ describe Plane do
 
   describe "#broadcast_location" do
     it 'is expected to know where it is' do
-      expect(subject.broadcast_location).to eq "Where eagles soar"
+      expect(subject.broadcast_location).to eq "the sky"
     end
   end
 
@@ -40,7 +40,7 @@ describe Plane do
 
     it "planes don't land at airports if permission is not granted" do
       expect(subject.land(airport_no_permission)).to eq "A couple more laps of the run-way folks"
-      expect(subject.broadcast_location).to eq "Where eagles soar"
+      expect(subject.broadcast_location).to eq "the sky"
       expect(subject).to be_flying
       expect(subject).not_to be_crashed
     end
@@ -72,8 +72,8 @@ describe Plane do
   end
 
   describe "#take_off" do
-    it "location will be 'Where eagles soar' whilst flying" do
-      expect(subject.broadcast_location).to eq "Where eagles soar"
+    it "location will be 'the sky' whilst flying" do
+      expect(subject.broadcast_location).to eq "the sky"
       expect(subject).to be_flying
     end
 

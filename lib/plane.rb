@@ -6,7 +6,7 @@ class Plane
   def initialize
     @flying = true
     @crashed = false
-    @location = 'Where eagles soar'
+    @location = 'the sky'
   end
 
   def flying?
@@ -34,7 +34,7 @@ class Plane
     fail "I'm already up here mate" if flying
     fail "This birds got no wings" if crashed
     fail "You frickin' loopy, I'm in #{location}" unless take_off_location == location
-    @location = 'Where eagles soar'
+    @location = 'the sky'
     @flying = true
     nil
   end
@@ -44,7 +44,7 @@ class Plane
   def crash(land_location)
     @location = land_location
     @flying = false
-    rand(2) == 1 ? @crashed = true : @crashed = false
+    @crashed = rand(2) == 1
     "Crash landing"
   end
 

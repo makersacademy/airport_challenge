@@ -2,14 +2,13 @@ require 'airport'
 
 describe Airport do
 
-  # it {is_expected.to respond_to(:land).with(1).argument}
-  # it {is_expected.to respond_to(:take_off)}
-  # it {is_expected.to respond_to(:planes_in_airport)}
-  # it {is_expected.to respond_to(:airport_capacity)}
-  it {is_expected.to respond_to(:permission_to_land?)}
+  it {is_expected.to respond_to(:permission_to_land?).with(1).argument}
+  it {is_expected.to respond_to(:permission_to_leave?).with(1).argument}
 
-
-  let(:plane) {double :plane, land: nil, take_off: nil}
+  let(:plane_in_airport) {double :plane_in_airport, location: subject}
+  let(:other_plane) {double :other_plane, location: !subject}
+  let(:grounded_plane) {double :grounded_plane, flying?: false, location: "not the sky"}
+  let(:flying_plane) {double :flying_plane, flying?: true, location: "the sky"}
 
   it 'airports have a default capacity of 25 planes' do
     expect(Airport::DEFAULT_CAPACITY).to eq 25
@@ -27,26 +26,40 @@ describe Airport do
   describe '#permission_to_land?' do
     it 'permission granted if weather is good' do
       allow(Weather).to receive(:sunny?).and_return(true)
-      expect(subject.permission_to_land?(plane)).to eq true
+      expect(subject.permission_to_land?(flying_plane)).to eq true
     end
 
     it 'permission denied if weather is bad' do
       allow(Weather).to receive(:sunny?).and_return(false)
-      expect(subject.permission_to_land?(plane)).to be_falsey
-    end
-
-    it 'plane stored on run_way if permission granted' do
-      allow(Weather).to receive(:sunny?).and_return(true)
-      subject.permission_to_land?(plane)
-      expect(subject.run_way).to eq [plane]
+      expect(subject.permission_to_land?(flying_plane)).to be_falsey
     end
 
     it 'permission denied if run_way is full' do
       allow(Weather).to receive(:sunny?).and_return(true)
-      Airport::DEFAULT_CAPACITY.times {subject.permission_to_land?(plane)}
-      expect(subject.permission_to_land?(plane)).to be_falsey
+      subject.instance_variable_set(:@capacity,2)
+      subject.instance_variable_set(:@run_way, [plane_in_airport,plane_in_airport])
+      expect(subject.permission_to_land?(flying_plane)).to be_falsey
     end
 
+    it 'insult if plane is grounded' do
+      expect(subject.permission_to_leave?(grounded_plane)).to eq subject.insult(grounded_plane)
+    end
+  end
+
+  describe '#permission_to_leave?' do
+    it 'permission granted if weather is good' do
+      allow(Weather).to receive(:sunny?).and_return(true)
+      expect(subject.permission_to_leave?(plane_in_airport)).to eq true
+    end
+
+    it 'permission denied if weather is bad' do
+      allow(Weather).to receive(:sunny?).and_return(false)
+      expect(subject.permission_to_leave?(plane_in_airport)).to be_falsey
+    end
+
+    it 'insult if plane is not in airport' do
+      expect(subject.permission_to_leave?(other_plane)).to eq subject.insult(other_plane)
+    end
   end
 
 
