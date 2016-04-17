@@ -31,12 +31,6 @@ describe Plane do
         airport.land(plane)
         expect(plane.landed).to eq true
       end
-
-      it 'returns false when plane takes off from airport' do
-        airport.take_off(plane)
-        expect(plane.landed).to eq true
-      end
-
     end
 
     describe '#departed' do

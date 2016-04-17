@@ -4,7 +4,7 @@ describe Airport do
 
   subject(:airport) { described_class.new }
   let(:plane) { double(:plane) }
-  let(:permit_duplicates) { allow(airport).to receive(:in_airport?).and_return false }
+  let(:duplicates) { allow(airport).to receive(:in_airport?).and_return false }
   before { allow(plane).to receive(:landed) }
 
   describe "#planes" do
@@ -26,7 +26,7 @@ describe Airport do
 		end
 
 		it "sets the the capacity to a default value when capacity is not provided" do
-			expect(airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+			expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
 		end
   end
 
@@ -40,7 +40,7 @@ describe Airport do
         end
 
          it 'prevents landing when airport is full' do
-           permit_duplicates
+           duplicates
            airport.capacity.times { airport.land(plane)}
            message = "Airport full"
            expect { subject.land(plane)}.to raise_error message

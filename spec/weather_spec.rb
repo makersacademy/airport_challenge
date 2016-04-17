@@ -17,5 +17,4 @@ describe Weather do
         end
 
     end
-
 end
