@@ -26,7 +26,8 @@ describe Airport do
       it 'raise an error if the hangar is full' do
         tiny_airport = Airport.new(1,weather)
         tiny_airport.land(plane)
-        expect{tiny_airport.land(plane_1)}.to raise_error 'Hangar full! Do not land!'
+        message = 'Hangar full! Do not land!'
+        expect{tiny_airport.land(plane_1)}.to raise_error message
       end
 
     end
@@ -35,7 +36,8 @@ describe Airport do
 
       it 'raises an error and prevents landing' do
         allow(weather).to receive(:stormy?).and_return true
-        expect{airport.land(plane)}.to raise_error 'Stormy weather! Do not land!'
+        message = 'Stormy weather! Do not land!'
+        expect{airport.land(plane)}.to raise_error message
       end
 
     end
@@ -60,7 +62,8 @@ describe Airport do
 
       it 'cannot ask a plane that is not in the airport to take off' do
         airport.land(plane)
-        expect{airport.take_off(plane_1)}.to raise_error 'Plane not in the hangar!'
+        message = 'Plane not in the hangar!'
+        expect{airport.take_off(plane_1)}.to raise_error message
       end
 
     end
@@ -70,7 +73,8 @@ describe Airport do
       it 'raises an error to tell operator it is stormy' do
         airport.land(plane)
         allow(weather).to receive(:stormy?).and_return true
-        expect{airport.take_off(plane)}.to raise_error 'Stomy weather! Do not take off!'
+        message = 'Stomy weather! Do not take off!'
+        expect{airport.take_off(plane)}.to raise_error message
       end
 
     end
