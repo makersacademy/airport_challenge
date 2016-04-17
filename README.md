@@ -63,7 +63,7 @@ And planes:
  => #<Plane:0x007fe94b8b5790 @landed_status=false>
  ```
 
- See how they fly (landed_status is false). Let's land the planes now:
+ See how they fly (`@landed_status=false`). Let's land the planes now:
 
 ```
  2.2.3 :006 > gatwick.land(easyjet)
