@@ -9,12 +9,12 @@ class Plane
 
   def land(airport)
     @airport = airport
-    fail "Can't land in in stormy weather" if airport.weather == "stormy"
+    check_landing_exceptions
     @landed = true
   end
 
-  def take_off
-    fail "Can't take off in stormy weather" if airport.weather == "stormy"
+  def take_off(current_airport)
+    check_take_off_exceptions(current_airport)
     @landed = false
     true
   end
@@ -25,5 +25,16 @@ class Plane
 
   private
   attr_writer :landed, :airport
+
+  def check_take_off_exceptions(current_airport)
+    fail "Can't take off from another airport" if airport != current_airport
+    fail "Can't take off in stormy weather" if airport.weather == "stormy"
+  end
+
+  def check_landing_exceptions
+    fail "Can't land again" if landed
+    fail "Can't land in stormy weather" if airport.weather == "stormy"
+    fail "Can't land in full airport" if airport.full?
+  end
 
 end
