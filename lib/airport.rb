@@ -5,7 +5,7 @@ class Airport
   end
 
   def take_off(_plane)
-    fail "Stormy cannot take off" if stormy?
+    fail "Cannot take off" if stormy?
     true
   end
 
