@@ -3,9 +3,9 @@ require_relative 'weather'
 
 class Airport
   attr_accessor :planes, :capacity
-  Default_capacity = 5
+  DEFAULT_CAPACITY = 5
 
-  def initialize(capacity = Default_capacity)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
@@ -20,7 +20,7 @@ class Airport
 
   def take_off(plane)
     fail "Plane already flying" if landed?(plane) == false
-    fail "Wrong airport!" if wrong_airport? (plane)
+    fail "Wrong airport!" if wrong_airport?(plane)
     fail "Too stormy for take off" if stormy_weather?
     plane.landed = false
     plane = @planes.pop

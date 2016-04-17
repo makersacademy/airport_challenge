@@ -1,4 +1,4 @@
-require "airport"
+require 'airport'
 require 'rspec/expectations'
 
 describe Airport do
@@ -54,7 +54,7 @@ describe Airport do
     end
 
     it "airport should prevent take off when stormy" do
-      
+
       allow(subject).to receive(:stormy_weather?).and_return(true)
       allow(subject).to receive(:wrong_airport?).and_return(false)
       expect{subject.take_off(plane)}.to raise_error "Too stormy for take off"
