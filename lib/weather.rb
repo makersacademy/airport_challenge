@@ -1,7 +1,9 @@
 module Weather
 
+  STORM = 9
+
   def stormy?
-      weather_generator == 9
+      weather_generator == STORM
   end
 
   private
