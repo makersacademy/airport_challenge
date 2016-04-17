@@ -7,10 +7,23 @@ describe Plane do
 
 
 
-  let(:clear_airport) {double :clear_airport, class: Airport, permission_to_land?: true, land_plane: [subject]}
-  let(:stormy_airport) {double :stormy_airport, class: Airport, permission_to_land?: false}
-  let(:not_airport) {double :not_airport, class: !Airport}
+  let(:clear_airport) {
+    double :clear_airport,
+    class: Airport,
+    permission_to_land?: true,
+    permission_to_leave?: true,
+    land_plane: [subject],
+    plane_take_off: subject
+  }
 
+  let(:stormy_airport) {
+    double :stormy_airport,
+    class: Airport,
+    permission_to_land?: false,
+    permission_to_leave?: false
+  }
+
+  let(:not_airport) {double :not_airport, class: !Airport}
 
   # let(:airport2) {double :airport2, class: Airport, permission_to_land?: true}
   # let(:airport_no_permission) {double :airport_no_permission, class: Airport, permission_to_land?: false}
@@ -19,12 +32,19 @@ describe Plane do
 
 
   describe "#broadcast_location" do
-    it 'is expected to know where it is' do
+    it 'is expected to know where it is unless crashed' do
       expect(subject.broadcast_location).to eq "the sky"
+      subject.instance_variable_set(:@crashed, true)
+      expect(subject.broadcast_location).to eq subject.static
     end
+
   end
 
   describe "#land" do
+    it "only flying planes can land" do
+      subject.instance_variable_set(:@flying, false)
+      expect(subject.land(stormy_airport)).to eq subject.insult
+    end
 
     it "need permission to land at airports" do
       expect(clear_airport).to receive(:permission_to_land?)
@@ -68,62 +88,130 @@ describe Plane do
       expect(subject.land(stormy_airport)).to eq subject.complain
     end
 
-    it "if land location not airport then crash" do
-      expect(subject).to receive (:crash)
+    it "if location not airport then crash" do
+      expect(subject).to receive(:crash)
       subject.land(not_airport)
     end
 
-    describe 'crash_landing'
+    it "if location not provided then crash in a field" do
+      expect(subject).to receive(:crash)
+      subject.land(not_airport)
+    end
 
-    # it "planes don't need permission to land anywhere else" do
-    #   expect(not_airport).not_to receive(:permission_to_land?)
-    #   subject.land(not_airport)
-    # end
-    #
-    # it "planes land safely at airports if permission is granted" do
-    #   expect(subject.land(airport)).to eq nil
-    #   expect(subject.broadcast_location).to eq airport
-    #   expect(subject).not_to be_flying
-    #   expect(subject).not_to be_crashed
-    # end
-    #
-    # it "planes don't land at airports if permission is not granted" do
-    #   expect(subject.land(airport_no_permission)).to eq "A couple more laps of the run-way folks"
-    #   expect(subject.broadcast_location).to eq "the sky"
-    #   expect(subject).to be_flying
-    #   expect(subject).not_to be_crashed
-    # end
-    #
-    # describe '#crash' do
-    #   it "plane crash-lands if no location is provided" do
-    #     expect(subject.land).to eq "Crash landing"
-    #     expect(subject).not_to be_flying
-    #   end
-    #
-    #   it "some crash landings are safe" do
-    #     allow(subject).to receive(:rand).and_return(0)
-    #     subject.land
-    #     expect(subject).not_to be_crashed
-    #     expect(subject.broadcast_location).to eq "a field"
-    #   end
-    #
-    #   it "some crash landings are not" do
-    #     allow(subject).to receive(:rand).and_return(1)
-    #     subject.land
-    #     expect(subject).to be_crashed
-    #     expect(subject.broadcast_location).to eq "... ..."
-    #   end
-    #
-    #   it "only planes in the sky can land" do
-    #     subject.land(airport)
-    #     expect{subject.land(airport)}.to raise_error("You yanking my crank, I'm on the effin' tarmac")
-    #   end
-    # end
+    describe 'crash' do
+      it "crash landings leave planes in fields" do
+        subject.land
+        expect(subject).to be_crashed
+        expect(subject).not_to be_flying
+        expect(subject.broadcast_location).to eq "... ..."
+      end
+    end
   end
+
+  describe "#take_off" do
+    it 'only grounded planes can take_off' do
+      expect(subject.take_off(stormy_airport)).to eq subject.insult
+    end
+
+    it 'only takes-off from present location' do
+      subject.instance_variable_set(:@location, clear_airport)
+      expect(subject.take_off(stormy_airport)).to eq subject.insult
+    end
+
+    it "crashed planes can't takes-off" do
+      subject.instance_variable_set(:@location, clear_airport)
+      subject.instance_variable_set(:@crashed, true)
+      expect(subject.take_off(clear_airport)).to eq "... ..."
+    end
+
+    it "need permission to take_off from airports" do
+      subject.instance_variable_set(:@location, clear_airport)
+      subject.instance_variable_set(:@flying, false)
+      expect(clear_airport).to receive(:permission_to_leave?)
+      subject.take_off(clear_airport)
+    end
+
+    it "if permission granted receives a call to take_off" do
+      subject.instance_variable_set(:@location, clear_airport)
+      subject.instance_variable_set(:@flying, false)
+      expect(clear_airport).to receive(:plane_take_off)
+      subject.take_off(clear_airport)
+      expect(stormy_airport).not_to receive(:plane_take_off)
+      subject.take_off(stormy_airport)
+    end
+
+    it "if permission granted location is sky" do
+      subject.instance_variable_set(:@location, clear_airport)
+      subject.instance_variable_set(:@flying, false)
+      subject.take_off(clear_airport)
+      expect(subject.broadcast_location).to eq "the sky"
+    end
+
+    it "if permission not granted location stays the same" do
+      subject.instance_variable_set(:@location, stormy_airport)
+      subject.instance_variable_set(:@flying, false)
+      subject.take_off(stormy_airport)
+      expect(subject.broadcast_location).to eq stormy_airport
+    end
+
+    it "if permission granted plane is flying" do
+      subject.instance_variable_set(:@location, clear_airport)
+      subject.instance_variable_set(:@flying, false)
+      subject.take_off(clear_airport)
+      expect(subject).to be_flying
+    end
+
+    it "if permission not granted plane remains on the ground" do
+      subject.instance_variable_set(:@location, stormy_airport)
+      subject.instance_variable_set(:@flying, false)
+      subject.take_off(stormy_airport)
+      expect(subject).not_to be_flying
+    end
+
+    it "if permission granted location set after call to land" do
+
+    end
+
+    it "if permission granted flying set before call to land" do
+
+    end
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   describe '#complain' do
     it 'complains about weather' do
-      expect(subject.complain).to eq ("It's bloody cats and dogs out there")
+      expect(subject.complain).to eq ("Permission denied: turn that bird around")
+    end
+  end
+
+  describe '#insult' do
+    it 'insults mis-directed pilots' do
+      expect(subject.insult).to eq "You been on the wacky-backy, You're in #{subject.location}"
+    end
+  end
+
+  describe '#static' do
+    it '... ...' do
+      expect(subject.static).to eq "... ..."
     end
   end
 

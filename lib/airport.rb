@@ -11,15 +11,11 @@ class Airport
   end
 
   def permission_to_land?(plane)
-    return insult(plane) unless plane.flying?
-    return false unless Weather.sunny? && not_full?
-    true
+    Weather.sunny? && not_full? && plane.flying?
   end
 
   def permission_to_leave?(plane)
-    return insult(plane) unless present?(plane)
-    return false unless Weather.sunny?
-    true
+    Weather.sunny? && present?(plane)
   end
 
   def land_plane(plane)
@@ -36,8 +32,6 @@ class Airport
   def insult(plane)
     "You been on the wacky-backy, You're in #{plane.location}"
   end
-
-
 
   private
   def not_full?

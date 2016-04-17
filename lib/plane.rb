@@ -18,57 +18,63 @@ class Plane
   end
 
   def broadcast_location
-    crashed? ? "... ..." : location
+    crashed? ? static : location
   end
 
-  def land(airport) # = "a field")
-    return crash unless airport.class == Airport
-    if airport.permission_to_land?
-      @location = airport
-      airport.land_plane(self)
-      @flying = false
-    else
-      complain
-    end
-
-    # fail "You yanking my crank, I'm on the effin' tarmac" unless flying
-    # if land_location.class == Airport
-    #   land_location.permission_to_land? ? safe_land(land_location) : stay_in_air
-    # else
-    #   crash(land_location)
-    # end
+  def land(airport = "a field")
+    return insult unless flying?
+    return crash(airport) unless airport.class == Airport
+    airport.permission_to_land? ? safe_land(airport) : complain
   end
+
+  def take_off(airport)
+    return static if crashed?
+    return insult if flying? || !present?(airport)
+    leave(airport) if airport.permission_to_leave?
+  end
+
+
 
   def complain
-    "It's bloody cats and dogs out there"
+    "Permission denied: turn that bird around"
   end
 
-  def take_off(take_off_location)
-    fail "I'm already up here mate" if flying
-    fail "This birds got no wings" if crashed
-    fail "You frickin' loopy, I'm in #{location}" unless take_off_location == location
-    @location = 'the sky'
-    @flying = true
-    nil
+  def insult
+    "You been on the wacky-backy, You're in #{location}"
   end
+
+  def static
+    "... ..."
+  end
+
+
 
   private
+  def safe_land(airport)
+    @location = airport
+    airport.land_plane(self)
+    @flying = false
+  end
+
+  def leave(airport)
+    @flying = true
+    airport.plane_take_off(self)
+    @location = 'the sky'
+  end
 
   def crash(land_location)
     @location = land_location
     @flying = false
-    @crashed = rand(2) == 1
+    @crashed = true
     "Crash landing"
-  end
-
-  def safe_land(land_location)
-    @location = land_location
-    @flying = false
-    nil
   end
 
   def stay_in_air
     "A couple more laps of the run-way folks"
+  end
+
+  def present?(airport)
+    airport == location
   end
 
 end
