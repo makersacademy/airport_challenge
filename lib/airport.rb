@@ -7,12 +7,6 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
-    plane.location = self
-    @planes << plane
-    plane
-  end
-
   def safe_to_fly
     weather = Weather.new.weather_now
     if weather == 'stormy'
@@ -21,10 +15,16 @@ class Airport
       true
     end
   end
-
+  
+  def land(plane)
+    fail "Can't land when stormy" if safe_to_fly == false
+    plane.location = self
+    @planes << plane
+    plane
+  end
 
   def take_off(plane)
-      fail "Planes cannot take off if the weather is stormy" if safe_to_fly == false
+      fail "Can't take off when stormy" if safe_to_fly == false
       plane.location = "in_the_air"
       @planes.delete(plane)
   end
