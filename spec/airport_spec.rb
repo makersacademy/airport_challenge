@@ -36,6 +36,14 @@ describe Airport do
 			airport1.landing(plane)
 			expect(airport1.departure(plane)).to eq plane
 		end
+
+		it "plane is already taken off" do 
+    		plane = Plane.new
+			airport1.landing(plane)
+			airport1.departure(plane)
+			expect{airport1.departure(plane)}.to raise_error "Plane is already takenoff"
+		end
+
 		it "unable to take off due to stormy weather" do 
 			allow(weather).to receive(:stormy?).and_return true
 			message = 'Unable to takeoff due to stormy weather'

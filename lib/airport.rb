@@ -19,6 +19,7 @@ class Airport
 
 	def departure(plane)
 		raise "Unable to takeoff due to stormy weather" if weather.stormy?
+		raise "Plane is already takenoff" unless planes.include? plane
 		@planes.pop if planes.include? plane
 	end	
 
@@ -27,4 +28,5 @@ class Airport
 	def full?
 		@planes.count >= capacity
 	end	
+
 end
