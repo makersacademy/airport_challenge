@@ -1,22 +1,32 @@
+require_relative 'communicator'
+
 class Airport
-  attr_reader :weather, :full, :capacity, :planes
+  include Communicator
+  attr_reader :weather, :capacity, :planes
   DEFAULT_CAPACITY = 30
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    #@full = false
-    return @weather = "stormy" if Random.rand > 0.9
+    return @weather = "stormy" if Random.rand > 0.9 #I'm thinking weather should just be inherited from weatherclass?
     @weather = "sunny"
   end
 
+  def dock(plane)
+    raise "Can't dock a flying plane" if plane.flying?
+    @planes << plane
+  end
+
+  def undock(plane)
+    raise "Can't undock a plane that is not here" if plane.flying?
+    planes.delete(plane)
+  end
+
   def full?
-    print 'YO YO'
-    print planes.length
-    (planes.length) == capacity
+    planes.length == capacity
   end
 
   private
-  attr_writer :weather, :full, :capacity, :planes
+  attr_writer :weather, :capacity, :planes
 
 end
