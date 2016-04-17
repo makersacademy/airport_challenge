@@ -16,7 +16,7 @@ describe Plane do
       allow(subject).to receive(:flying?)
       subject.land
       expect(subject.flying?).not_to eq(:flying?)
-  end
+    end
 
     it 'prevents landing if plane is not flying' do
       allow(subject).to receive(:flying?) {false}
@@ -32,9 +32,9 @@ describe Plane do
       allow(subject).to receive(:flying?)
       subject.land
       expect(subject.take_off).to eq subject.flying?
-     end
+    end
 
-     it 'prevents take off if plane is already flying' do
+    it 'prevents take off if plane is already flying' do
       allow(subject).to receive(:flying?) {true}
       expect{subject.take_off}.to raise_error 'Plane already flying'
     end
