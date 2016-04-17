@@ -1,6 +1,7 @@
 require_relative 'plane'
 require_relative 'weather'
 class Airport
+  attr_reader :capacity, :planes, :weather
 
  DEFAULT_CAPACITY = 10
 
@@ -16,16 +17,14 @@ class Airport
 
   def take_off(plane)
     fail "No planes at the airport" if empty?
+    fail 'Bad weather for flying' if stormy?
     @planes.pop
   end
 
   private
 
-  attr_reader :capacity, :planes
-
-
   def full?
-    planes.count >= DEFAULT_CAPACITY
+    planes.count >= @capacity
   end
 
   def empty?

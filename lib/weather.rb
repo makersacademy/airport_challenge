@@ -1,6 +1,6 @@
 class Weather
   def stormy?
-     roll >= 1
+     roll >= 8
   end
 
 private
