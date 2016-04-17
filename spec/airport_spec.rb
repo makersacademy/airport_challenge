@@ -26,6 +26,7 @@ let(:plane) {double :plane}
   end
 
   it{is_expected.to respond_to(:take_off).with(1).argument}
+  it{is_expected.to respond_to(:safe_to_fly).with(1).argument}
 
   it 'taking off should set the plane\'s location to in the air' do
     allow(subject).to receive(:safe_to_fly).and_return(true)
@@ -42,7 +43,6 @@ let(:plane) {double :plane}
     expect(subject.planes).not_to include(plane)
   end
 
-let(:safe_to_fly) {double :safe_to_fly}
   it 'planes should not be able to take off if it is not safe to fly' do
     allow(subject).to receive(:safe_to_fly).and_return(false)
     expect{subject.take_off(plane)}.to raise_error("Can't take off when stormy")

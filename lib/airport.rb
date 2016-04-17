@@ -7,15 +7,14 @@ class Airport
     @planes = []
   end
 
-  def safe_to_fly
-    weather = Weather.new.weather_now
+  def safe_to_fly(weather = Weather.new.weather_now)
     if weather == 'stormy'
       false
     else
       true
     end
   end
-  
+
   def land(plane)
     fail "Can't land when stormy" if safe_to_fly == false
     plane.location = self
