@@ -1,4 +1,4 @@
-
+require_relative 'airport'
 
 class Plane
   attr_reader :flying, :crashed, :location
@@ -21,13 +21,26 @@ class Plane
     crashed? ? "... ..." : location
   end
 
-  def land(land_location = "a field")
-    fail "You yanking my crank, I'm on the effin' tarmac" unless flying
-    if land_location.class == Airport
-      land_location.permission_to_land? ? safe_land(land_location) : stay_in_air
+  def land(airport) # = "a field")
+    return crash unless airport.class == Airport
+    if airport.permission_to_land?
+      @location = airport
+      airport.land_plane(self)
+      @flying = false
     else
-      crash(land_location)
+      complain
     end
+
+    # fail "You yanking my crank, I'm on the effin' tarmac" unless flying
+    # if land_location.class == Airport
+    #   land_location.permission_to_land? ? safe_land(land_location) : stay_in_air
+    # else
+    #   crash(land_location)
+    # end
+  end
+
+  def complain
+    "It's bloody cats and dogs out there"
   end
 
   def take_off(take_off_location)
