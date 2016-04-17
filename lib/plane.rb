@@ -12,24 +12,28 @@ def initialize(landed = DEFAULT_LANDED, stormy = DEFAULT_STORMY)
   @stormy = stormy
 end
 
-  def land
-    if @stormy
-      raise "It is too stormy to land"
-    else
+def land
+  if @stormy
+    raise "It is too stormy to land"
+  else
     @landed = true
   end
-  end
+end
 
-  def landed?
-    @landed
-  end
+def landed?
+  @landed
+end
 
-  def take_off
+def take_off
+  if @stormy
+    raise "It is too stormy to take off"
+  else
     @landed = false
   end
+end
 
-  def stormy?
+def stormy?
   @stormy
-  end
+end
 
 end

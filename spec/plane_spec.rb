@@ -34,6 +34,11 @@ end
     expect(subject.landed?).to eq false
   end
 
+  it 'is expected to raise an error if weather is stormy' do
+    subject.stormy = true
+    expect {subject.take_off}.to raise_error("It is too stormy to take off")
+  end
+
   # raise an error if plane already taken off
 end
 
