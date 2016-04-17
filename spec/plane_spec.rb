@@ -2,16 +2,31 @@ require 'plane'
 
 describe Plane do
 
-  it 'adds a plane to the airport once it has landed' do
+  it 'takes off once cleared' do
+    airport = Airport.new
+    allow(airport).to receive(:cleared_for_takeoff)
+    spy(subject.request_takeoff(airport))
+    expect(airport).to have_received(:cleared_for_takeoff)
+  end
+
+   it 'lands once cleared' do
+     airport = Airport.new
+     allow(airport).to receive(:cleared_for_landing)
+     spy(subject.request_land(airport))
+     expect(airport).to have_received(:cleared_for_landing)
+   end
+
+  it 'is added to the airport once it has landed' do
     airport = Airport.new
     subject.land(airport)
     expect(airport.planes).to include(subject)
   end
 
-  it 'removes a plane once it has taken off' do
+  it 'is removed from the airport once it has taken off' do
     airport = Airport.new
-    subject.take_off(airport)
+    subject.takeoff(airport)
     expect(airport.planes).not_to include(subject)
   end
+
 
 end
