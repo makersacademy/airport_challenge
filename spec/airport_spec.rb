@@ -2,15 +2,22 @@ require 'airport'
 
 describe Airport do 
 	subject(:airport) { described_class.new }
-
+	
 	it { is_expected.to respond_to(:landing).with(1).argument }
 	it { is_expected.to respond_to(:departure) }
-let(:plane) {double :plane }
+	let(:plane) {double :plane }
+	
 	describe '#land' do
         it 'confirms landed or not' do
     		allow(plane).to receive(:landed?).and_return(true)
     		expect(subject.landing(plane)).to include plane
     	end	
+
+    	it "raises error when airport is full" do 
+    		allow(plane).to receive(:landed?).and_return(true)
+			airport.capacity.times { subject.landing(plane) }
+			expect{subject.landing(plane)}.to raise_error("Airport is full")
+		end
 	end
 
 	describe '#departure' do
