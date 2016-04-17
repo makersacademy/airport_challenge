@@ -32,4 +32,19 @@ describe Airport do
     expect{subject.take_off(plane)}.to raise_error 'Cannot take off because of the bad weather'
   end
 
+  it 'should have a default capacity of 20 planes' do
+  allow(subject.weather).to receive(:stormy?) {false}
+  20.times {subject.land(plane)}
+    expect{subject.land(plane)}.to raise_error 'Cannot land because airport is at capacity'
+  end
+
+  it 'should allow a specified capacity' do
+    airport = Airport.new(10)
+    allow(airport.weather).to receive(:stormy?) {false}
+    10.times {airport.land(plane)}
+    expect{airport.land(plane)}.to raise_error 'Cannot land because airport is at capacity'
+  end
+
+
+
 end
