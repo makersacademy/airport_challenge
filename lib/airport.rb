@@ -10,7 +10,7 @@ class Airport
   end
 
   def store(plane)
-    raise "The airport is full" if planes.length >= capacity
+    fail "The airport is full" if planes.length >= capacity
     @planes << plane
   end
 
