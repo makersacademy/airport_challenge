@@ -1,4 +1,5 @@
 class Plane
+
   def confirm_landing
     @landed = true
   end
@@ -10,4 +11,5 @@ class Plane
   def landed?
     @landed
   end
+  
 end
