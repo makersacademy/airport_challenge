@@ -31,10 +31,8 @@ DEFAULT_CAPACITY = 50
    weather.stormy?
   end
 
-
-  attr_reader :planes # some tests wont work if makes this private
   private
-
+  attr_reader :planes
   attr_reader :weather
 
   def full?

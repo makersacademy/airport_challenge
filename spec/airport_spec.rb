@@ -2,10 +2,10 @@ require 'airport'
 
 describe Airport do
 
-let(:airport) { described_class.new(weather)}
-let(:weather) {double(:weather, stormy?: false)}
-let(:plane) { double(:plane, land: nil, take_off:nil) }
-
+  let(:airport) { described_class.new(weather)}
+  let(:weather) {double(:weather, stormy?: false)}
+  let(:plane) { double(:plane, land: nil, take_off:nil) }
+  Airport.send(:public, *Airport.private_instance_methods)
 
   describe 'initialization' do
     it 'has default capacity (if no capacity set at initialization)' do
@@ -26,7 +26,6 @@ let(:plane) { double(:plane, land: nil, take_off:nil) }
     end
 
     it 'has the plane after land' do
-      allow(plane).to receive(:land)
       airport.land plane
       expect(airport.planes).to include plane
     end

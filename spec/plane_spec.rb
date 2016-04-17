@@ -1,11 +1,12 @@
 require 'plane'
 
 describe Plane do
+
+  let(:plane) {described_class.new}
+
   before do
     plane.take_off
   end
-
-  let(:plane) {described_class.new}
 
   it 'can take off' do
     expect(plane).to be_flying

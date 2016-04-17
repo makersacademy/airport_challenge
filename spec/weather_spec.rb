@@ -1,4 +1,5 @@
 require 'weather'
+
 describe Weather do
 
   let(:weather) {described_class.new}
