@@ -35,8 +35,13 @@ describe Airport do
       expect {subject.take_off(plane).to eq plane}
     end
 
-    it 'raises an error when trying to take off from a empty airport' do
-      expect {subject.take_off(double (:plane))}.to raise_error "No planes at the airport"
+    it 'raises an error when trying to take off when bad weather' do
+      airport = Airport.new
+      stormy_weather = Weather.new
+      allow(stormy_weather).to receive(:stormy).and_return true
+      allow(airport).to receive(:weather).and_return(stormy_weather)
+      message =
+      expect {airport.take_off(double (:plane))}.to raise_error "Flight cancelled due to bad weather"
     end
   end
 end
