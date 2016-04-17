@@ -1,7 +1,8 @@
 require_relative 'airport'
 
 class Plane
-  attr_reader :flying, :crashed, :location
+  attr_reader :location
+
 
   def initialize
     @flying = true
@@ -50,6 +51,8 @@ class Plane
 
 
   private
+  attr_reader :flying, :crashed
+
   def safe_land(airport)
     @location = airport
     airport.land_plane(self)

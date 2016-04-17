@@ -4,32 +4,31 @@ describe Plane do
   it {is_expected.to respond_to(:broadcast_location)}
   it {is_expected.to respond_to(:land).with(1).argument}
   it {is_expected.to respond_to(:take_off).with(1).argument}
+  it {is_expected.to respond_to(:flying?)}
+  it {is_expected.to respond_to(:crashed?)}
+  it {is_expected.to respond_to(:complain)}
+  it {is_expected.to respond_to(:insult)}
+  it {is_expected.to respond_to(:static)}
 
 
 
-  let(:clear_airport) {
+  let(:clear_airport) do
     double :clear_airport,
     class: Airport,
     permission_to_land?: true,
     permission_to_leave?: true,
     land_plane: [subject],
     plane_take_off: subject
-  }
+  end
 
-  let(:stormy_airport) {
+  let(:stormy_airport) do
     double :stormy_airport,
     class: Airport,
     permission_to_land?: false,
     permission_to_leave?: false
-  }
+  end
 
   let(:not_airport) {double :not_airport, class: !Airport}
-
-  # let(:airport2) {double :airport2, class: Airport, permission_to_land?: true}
-  # let(:airport_no_permission) {double :airport_no_permission, class: Airport, permission_to_land?: false}
-  # let(:not_airport) {double :not_airport, class: !Airport}
-  # let(:crashed_plane) {double :crashed_plane, location: "a field", crashed?: true}
-
 
   describe "#broadcast_location" do
     it 'is expected to know where it is unless crashed' do
@@ -98,7 +97,7 @@ describe Plane do
       subject.land(not_airport)
     end
 
-    describe 'crash' do
+    describe '#crash' do
       it "crash landings leave planes in fields" do
         subject.land
         expect(subject).to be_crashed
@@ -178,28 +177,9 @@ describe Plane do
 
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   describe '#complain' do
     it 'complains about weather' do
-      expect(subject.complain).to eq ("Permission denied: turn that bird around")
+      expect(subject.complain).to eq "Permission denied: turn that bird around"
     end
   end
 
@@ -215,33 +195,4 @@ describe Plane do
     end
   end
 
-
-  # describe "#take_off" do
-  #   it "location will be 'the sky' whilst flying" do
-  #     expect(subject.broadcast_location).to eq "the sky"
-  #     expect(subject).to be_flying
-  #   end
-  #
-  #   it "have a nil return value" do
-  #     subject.land(airport)
-  #     expect(subject.take_off(airport)).to eq nil
-  #   end
-  #
-  #   it "flying planes can't take off" do
-  #     expect{subject.take_off(airport)}.to raise_error("I'm already up here mate")
-  #   end
-  #
-  #   it "can only take off from current location" do
-  #     subject.land(airport)
-  #     expect{subject.take_off(airport2)}.to raise_error("You frickin' loopy, I'm in #{airport}")
-  #   end
-  #
-  #   it "crashed planes can't take off" do
-  #     allow(subject).to receive(:rand).and_return(1)
-  #     subject.land
-  #     expect{subject.take_off("a field")}.to raise_error("This birds got no wings")
-  #   end
-  #
-  #
-  # end
 end

@@ -6,30 +6,41 @@ describe Airport do
   it {is_expected.to respond_to(:permission_to_leave?).with(1).argument}
   it {is_expected.to respond_to(:land_plane).with(1).argument}
 
-  let(:landing_plane) {double :landing_plane,
+  let(:landing_plane) do
+    double :landing_plane,
     flying?: true,
     location: subject
-  }
-  let(:leaving_plane) {double :leaving_plane,
+  end
+
+  let(:leaving_plane) do
+    double :leaving_plane,
     flying?: true,
     location: subject
-  }
-  let(:plane_in_airport) {double :plane_in_airport,
+  end
+
+  let(:plane_in_airport) do
+    double :plane_in_airport,
     flying?: false,
     location: subject
-  }
-  let(:plane_out_airport) {double :plane_out_airport,
+  end
+
+  let(:plane_out_airport) do
+    double :plane_out_airport,
     flying?: true,
     location: !subject
-  }
-  let(:grounded_plane) {double :grounded_plane,
+  end
+
+  let(:grounded_plane) do
+    double :grounded_plane,
     flying?: false,
     location: !"the sky"
-  }
-  let(:flying_plane) {double :flying_plane,
+  end
+
+  let(:flying_plane) do
+    double :flying_plane,
     flying?: true,
     location: "the sky"
-  }
+  end
 
   it 'should have a default capacity of 25 planes' do
     expect(Airport::DEFAULT_CAPACITY).to eq 25
