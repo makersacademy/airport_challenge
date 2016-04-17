@@ -21,6 +21,7 @@ class Airport
 
 	def release_planes
 		fail 'the weather is stormy' if stormy?
+		@planes.pop
 		@planes
 	end
 
