@@ -1,8 +1,8 @@
-# class Weather
+ class Weather
 #
-#   def stormy?
-#     rand(10) >= 7
-#   end
+   def stormy?
+     rand(10) >= 7
+   end
 #
 #
-# end
+ end
