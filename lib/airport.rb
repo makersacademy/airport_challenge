@@ -12,7 +12,7 @@ class Airport
   def release plane
     raise "Plane is not at this airport" unless ok_to_take_off? plane
     plane.take_off
-    @planes.delete plane
+    remove plane
   end
 
   private
@@ -20,6 +20,10 @@ class Airport
 
   def store_plane plane
     @planes << plane
+  end
+
+  def remove_plane plane
+    @planes.delete plane
   end
 
   def ok_to_land? plane
