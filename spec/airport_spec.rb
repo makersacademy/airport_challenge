@@ -25,13 +25,13 @@ describe Airport do
     end
 
     it 'responds to plane' do 
-      expect(subject).to respond_to(:plane)
+      expect(subject).to respond_to(:planes)
     end
 
-    # it 'raises an error when the airport is full' do 
-    #   subject.capacity.times { subject.land(flying_plane) }
-    #   expect { subject.land(flying_plane) }.to raise_error('Airport full. Redirect to another airport.')
-    # end
+    it 'raises an error when the airport is full' do 
+      subject.capacity.times { subject.land(flying_plane) }
+      expect { subject.land(flying_plane) }.to raise_error('Airport is full. Reroute to another destination.')
+    end
 
   end
 

@@ -15,7 +15,12 @@ class Airport
   end
 
   def land(plane)
+    raise 'Airport is full. Reroute to another destination.' if full?
     @planes << plane
+  end
+
+  def full?
+    @planes.count == capacity
   end
 
 end
