@@ -1,9 +1,9 @@
 class Airport
-  def land(plane)
+  def land(_plane)
     true
   end
 
-  def landed?(plane)
+  def landed?(_plane)
     true
   end
 end
