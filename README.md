@@ -1,91 +1,45 @@
 Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+Simple programme which allows users to create airports with variable capacity
+and '.land' or '.take_off' planes from those airports. Given the ambiguity of
+the user story for setting capacity I decided to give the user the option of
+setting capacity both at instantiation and afterwards. To prevent the user
+shrinking the airport too much (i.e. landing five planes, then setting
+capacity = 4) I had to use my own method, as opposed to attr_writer.
 
-```
+Wasn't sure exactly what they meant where they want to be able to 'confirm'
+when a plane has landed or taken off. I erred on the side of caution and
+granted the user the option of searching for a plane on the ground via the
+predicate method '.in_airport?' at any time.
 
-Instructions
----------
+The weather is 'checked' (i.e. re-rolled) everytime a plane tries to land or
+take off via '.stormy'. You'll see in a few of the "stop landing when airport
+is full" tests that I've 'permitted_duplicates', overriding the '.in_airport?'
+method with a stub; is that bad form???
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+A given airport will track all aircraft that land in its @planes array, and
+remove them as they take off. It will throw an error when you:
 
-Steps
--------
+- try to land an aircraft in the same airport twice
+- try to get an aircraft to takeoff from an airport, when it hasn't landed
+there yet
+- try to make the capacity of an airport smaller than the number of planes
+currently on the ground there
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+I haven't yet implemented explicit protection from:
 
-Task
------
+- a plane being in two different airports simultaneously
+- a plane being in the air and in an airport at the same time
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+My plan to deal with these would be to give each plane an @landed? instance
+variable (default to false), which is set to true whenever a plane 'lands'
+at an airport and 'false' whenever they take off. This variable would be
+checked before landing or taking off, preventing the two edge cases above.
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+The implementation seems simple enough, but I found that I had to rewrite
+many tests to deal with this new behaviour of planes and I didn't leave
+enough time it seems :(
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+by Emmett (emmett.finbarr.walsh@gmail.com)

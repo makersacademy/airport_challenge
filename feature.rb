@@ -1,5 +1,5 @@
-require './lib/airport.rb'
-require './lib/plane.rb'
+require '../lib/airport.rb'
+require '../lib/plane.rb'
 
 # User story 1:
 # Instruct a plane to land at an airport and confirm that it has landed
