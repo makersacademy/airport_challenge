@@ -1,7 +1,6 @@
 class Airport
 
   def initialize
-
     @tarmac = []
   end
 

@@ -9,9 +9,9 @@ describe Weather do
   it "generates instances of good and bad weather" do
       weather_history = []
       1000.times do
-        weather_history << Weather.check
+        weather_history << subject.check
       end
-      expect(weather_history).to include "false"
+      expect(weather_history).to include false
   end
 
 end
