@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  attr_accessor :planes, :capacity
+  attr_accessor :planes
 
   DEFAULT_CAPACITY = 20
 
@@ -23,11 +23,10 @@ class Airport
   def cleared_for_landing(plane)
     fail "The airport is full." if full?
     fail "It's too stormy to land." if stormy?
-    true
   end
 
   def full?
-    @planes.length >= @capacity
+    @planes.size >= @capacity
   end
 
   def stormy?

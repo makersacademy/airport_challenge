@@ -1,6 +1,7 @@
 require 'plane'
 
 describe Plane do
+  let(:airport) {double(:airport)}
 
   it 'takes off once cleared' do
     airport = Airport.new
