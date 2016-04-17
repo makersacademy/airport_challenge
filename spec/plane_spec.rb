@@ -5,16 +5,16 @@ describe Plane do
 
   describe '#initialize' do
     it 'creates a plane with a default status: landed' do
-      expect(plane.landed).to eq(true)
+      expect(plane).to be_docked
     end
   end
 
   it 'can change its status to landed' do
-    subject.land
-    expect(plane.landed).to eq true
+    plane.land
+    expect(plane).to be_docked
   end
   it 'can change its status to airborne' do
-    subject.take_off
-    expect(plane.landed).to eq false
+    plane.take_off
+    expect(plane).not_to be_docked
   end
 end
