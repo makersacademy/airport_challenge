@@ -1,6 +1,7 @@
 require "airport"
 
 describe Airport do
+  let(:plane) {spy :plane}
   let(:landed_plane) { double(:landed_plane, landed?: true, takeoff: false) }
   let(:flying_plane) {double(:flying_plane, landed?: false, land: true) }
   subject(:airport) { described_class.new }
@@ -12,11 +13,25 @@ describe Airport do
   end
 
   describe "planes standard behaviour" do
+    it "sends message to plane to take-off" do
+      allow(airport).to receive(:stormy?) { false }
+      airport.land(plane)
+      airport.takeoff(plane)
+      expect(plane).to have_received(:takeoff)
+    end
+
     it "after take-off plane no longer at airport" do
       allow(airport).to receive(:stormy?) { false }
       airport.planes << landed_plane
       airport.takeoff(landed_plane)
       expect(airport.planes).not_to include landed_plane
+    end
+
+    it "sends message to plane to land" do
+      allow(airport).to receive(:stormy?) { false }
+      airport.land(plane)
+      expect(plane).to have_received(:land)
+
     end
 
     it "after landing plane is at airport" do
