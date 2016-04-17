@@ -10,12 +10,12 @@ class Airport
   def initialize
     @capacity = DEFAULT_CAPACITY
     @planes = []
-    @weather = Weather.new
+    #@weather = Weather.new
   end
 
   def land(plane)
-    fail "Too stormy to land" if @weather.stormy?
     fail "Airport full" if full?
+    fail "Too stormy to land" if stormy?
     fail "Plane already landed" if @planes.include?(plane)
     plane.landed
     @planes << plane
@@ -37,9 +37,9 @@ class Airport
     @planes.empty?
   end
 
-  #  def stormy?
-  #    @weather >= 7
-  #  end
+   def stormy?
+      rand(10) >= 7
+    end
    #
   #  def weather_generator
   #    @weather += rand(11)
