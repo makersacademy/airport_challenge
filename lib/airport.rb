@@ -12,13 +12,13 @@ class Airport
   def land plane
     fail "Airport is full." if full?
     fail "It's not safe to land." if safe? == false
-    fail "This plane has already landed." if @planes.include? plane
+    fail "Plane already landed." if @planes.include? plane
     @planes << plane
   end
 
   def take_off plane
     fail "No planes in airport." if @planes.empty?
-    fail "It's not safe to take off." if safe? == false
+    fail "Not safe to take off." if safe? == false
     fail "This plane has already taken off." if !@planes.include? plane
     @planes.delete(plane)
   end
