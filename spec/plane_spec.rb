@@ -32,7 +32,6 @@ describe Plane do
         expect { plane.land(airport) }.to raise_exception "Can't land in full airport"
       end
       it 'does not land again if already landed' do
-        #allow(airport).to receive(:full?).and_return(true)
         plane.land(airport)
         expect { plane.land(airport) }.to raise_exception "Can't land again"
       end

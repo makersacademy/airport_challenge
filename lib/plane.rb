@@ -8,7 +8,7 @@ class Plane
   end
 
   def land(airport)
-    @airport = airport
+    @airport = airport #could still work if changed to airport class - airport lands the plane etc
     check_landing_exceptions
     @landed = true
   end
