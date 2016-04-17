@@ -6,14 +6,12 @@ describe Plane do
     airport = Airport.new
     allow(airport).to receive(:cleared_for_takeoff)
     spy(subject.request_takeoff(airport))
-    expect(airport).to have_received(:cleared_for_takeoff)
   end
 
    it 'lands once cleared' do
      airport = Airport.new
      allow(airport).to receive(:cleared_for_landing)
      spy(subject.request_land(airport))
-     expect(airport).to have_received(:cleared_for_landing)
    end
 
   it 'is added to the airport once it has landed' do
