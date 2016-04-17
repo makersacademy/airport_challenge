@@ -1,4 +1,4 @@
-require_relative 'weather.rb'
+require_relative 'airport.rb'
 
 class Plane
 attr_accessor :landed
@@ -12,7 +12,7 @@ def initialize(landed = DEFAULT_LANDED, stormy = DEFAULT_STORMY)
   @stormy = stormy
 end
 
-def land
+def land(airport)
   if @stormy
     raise "It is too stormy to land"
   else

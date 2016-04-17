@@ -1,12 +1,12 @@
 require 'plane'
 
 describe Plane do
-let(:weather) { double(:weather, :stormy? => true) }
+let(:airport) { double(:airport)}
 
   describe '#land' do
 
     it 'is expected to respond to #landed? with true if landed' do
-      subject.land
+      subject.land(:airport)
       expect(subject.landed?).to eq true
     end
 
@@ -17,7 +17,7 @@ let(:weather) { double(:weather, :stormy? => true) }
 
     it 'is expected to raise an error if weather is stormy' do
       subject.stormy = true
-      expect {subject.land}.to raise_error("It is too stormy to land")
+      expect {subject.land(:airport)}.to raise_error("It is too stormy to land")
 
   end
 
