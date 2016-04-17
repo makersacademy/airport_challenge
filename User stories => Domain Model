@@ -1,0 +1,24 @@
+User stories => Domain Model
+
+Traffic Controller 
+
+Airport <= Land(plane)
+Airport <= Landed(plane)
+
+-----
+
+Airport <= Takeoff(plane)
+Airport <= Departed(plane)
+
+-----
+
+Airport <= not_takeoff_due_weather(plane) <=> weather(fine/stormy)
+Airport <= not_landing_due_weather(plane) <=> weather(fine/stormy)
+
+-----
+
+
+Airport <= capacity(variable)
+
+
+
