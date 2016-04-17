@@ -1,7 +1,7 @@
  require 'weather.rb'
 
 describe Weather do
-  #
+  
   describe '#stormy?' do
     it "if random number for weather is > 6" do
       allow(subject).to receive(:rand) {7}

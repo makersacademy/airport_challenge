@@ -3,7 +3,9 @@ class Weather
   def stormy?
     level > 6
   end
-  private
+
+private
+
   def level
     rand(10)
   end
