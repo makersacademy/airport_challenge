@@ -29,6 +29,13 @@ describe "Airport Challenge" do
       #THEN The capacity is set to a default value
       expect(airport.instance_variable_get(:@capacity)).to eq Airport::Default_Capacity
     end
+    it "Airports have a variable capacity" do
+      #GIVEN I make a new airport with a bigger capacity
+      airport = Airport.new 10
+      #WHEN I check the airports capacity
+      #THEN The capacity is set to a specified value
+      expect(airport.instance_variable_get(:@capacity)).to eq 10
+    end
   end
 
   describe "Weather" do

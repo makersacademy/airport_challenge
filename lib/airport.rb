@@ -9,9 +9,9 @@ class Airport
   ReleaseErr = "Plane not at this airport"
   CapacityErr = "Airport is full"
 
-  def initialize
+  def initialize capacity=Default_Capacity
     @planes = []
-    @capacity = Default_Capacity
+    @capacity = capacity
   end
 
   def accept plane

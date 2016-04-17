@@ -41,6 +41,7 @@ We had to implement the following user stories using TDD.
 - The class includes `Weather`
 - Planes are stored in the `@planes` instance variable.
 - Airports have a default capacity of 1
+- Custom capacity can be specified when initializing
 - `#accept` evaluates whether a plane can land. If so, it tell the plane to land and adds the plane to `@planes`
 - Planes are only told to land if they are flying (aka. not at an airport), if the weather is not stormy, and if the airport is not full.
 - `#release` evaluates whether a plane can take off. If so, it tells the plane to take off and removes them from `@planes`

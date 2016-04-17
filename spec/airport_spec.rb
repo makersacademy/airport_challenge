@@ -12,6 +12,10 @@ describe Airport do
   it "should be initialized with a default capacity" do
     expect(subject.instance_variable_get(:@capacity)).to eq Airport::Default_Capacity
   end
+  it "should be initialized with a specified capacity" do
+    LHR = Airport.new 30
+    expect(LHR.instance_variable_get(:@capacity)).to eq 30
+  end
 
   describe "#accept" do
     it "should check the weather" do
