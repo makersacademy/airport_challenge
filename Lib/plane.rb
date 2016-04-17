@@ -1,5 +1,6 @@
 class Plane
-  def initialize(name)
-    @name = name
+  attr_accessor :landed
+  def initialize
+    @landed
   end
 end

@@ -2,15 +2,11 @@ require_relative './lib/airport.rb'
 require_relative './lib/plane.rb'
 require_relative './lib/weather.rb'
 
-airport = Airport.new
-plane = Plane.new("Boeing747")
+heathrow = Airport.new
+lax = Airport.new
+boeing747 = Plane.new
 weather = Weather.new
-plane_2 = Plane.new("Learjet")
+learjet = Plane.new
 
-airport.capacity = 5
-p airport.land(plane)
-p airport.land(plane)
-p airport.land(plane)
-p airport.land(plane)
-p airport.land(plane)
-p airport.land(plane)
+heathrow.capacity = 100
+p heathrow.capacity
