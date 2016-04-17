@@ -18,6 +18,7 @@ class Airport
 	end	
 
 	def departure(plane)
+		raise "Unable to takeoff due to stormy weather" if weather.stormy?
 		@planes.pop if planes.include? plane
 	end	
 

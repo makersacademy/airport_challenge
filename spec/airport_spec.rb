@@ -22,7 +22,7 @@ describe Airport do
 			expect{airport1.landing(plane)}.to raise_error "Airport is full"
 		end
 
-		it "raises error with stormy weather" do 
+		it "Unable to land due to stormy weather" do 
 			allow(weather).to receive(:stormy?).and_return true
 			message = 'Unable to land due to stormy weather'
   			expect { airport.landing(plane) }.to raise_error message    		
@@ -35,6 +35,11 @@ describe Airport do
 			plane = Plane.new
 			airport1.landing(plane)
 			expect(airport1.departure(plane)).to eq plane
+		end
+		it "unable to take off due to stormy weather" do 
+			allow(weather).to receive(:stormy?).and_return true
+			message = 'Unable to takeoff due to stormy weather'
+  			expect {airport.departure(plane) }.to raise_error message    		
 		end	
 	end	
 end
