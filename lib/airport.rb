@@ -8,15 +8,11 @@ class Airport
     end	
 	
 	def landing(plane)
-		if plane.landed?
-		 @planes << plane
-		end 
+		@planes << plane if plane.landed?
 	end	
 
 	def departure(plane)
-		if planes.include? plane
-			@planes.pop
-		end	
+		@planes.pop if planes.include? plane
 	end	
 
 end
