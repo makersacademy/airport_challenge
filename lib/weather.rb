@@ -10,13 +10,9 @@ class Weather
     rand_weather == :stormy
   end
 
-
-
   WEATHER_TYPES = [:fine, :fine, :stormy, :fine, :fine]
 
   def rand_weather
     WEATHER_TYPES.sample
   end
 end
-puts weather = Weather.new
-puts weather.rand_weather

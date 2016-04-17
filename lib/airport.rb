@@ -2,9 +2,9 @@ require_relative 'weather'
 require_relative 'plane'
 
 class Airport
-attr_reader :weather, :planes, :capacity
+  attr_reader :weather, :planes, :capacity
 
-DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
@@ -26,12 +26,12 @@ DEFAULT_CAPACITY = 20
   def take_off(plane)
     fail 'Plane is not in airport' if self.landed?(plane) == false
     fail 'Cannot take off because of the bad weather' if self.weather.stormy?
-    planes.pop
-      #This needs to not assume that plane taking off is at the end of the array
+    planes.reject{ |planes| planes == plane }
+
   end
 
   def departed?(plane)
-    true
+    self.landed?(plane) == false
   end
 
   def full?

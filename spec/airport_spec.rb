@@ -8,7 +8,7 @@ describe Airport do
 
 
   it 'should land plane' do
-    expect(subject.weather). to receive(:stormy?) {false}
+    expect(subject.weather).to receive(:stormy?) {false}
     subject.land(plane)
   end
 
@@ -20,11 +20,12 @@ describe Airport do
 
   it 'should not allow planes to land if the weather is stormy' do
     allow(subject.weather).to receive(:stormy?) {true}
-    expect{subject.land(plane)}.to raise_error 'Cannot land because of bad weather'
+    message = 'Cannot land because of bad weather'
+    expect{subject.land(plane)}.to raise_error message
   end
 
   it 'should instruct plane to take off' do
-    allow(subject.planes). to receive(:landed?) {true}
+    allow(subject.planes).to receive(:landed?) {true}
     expect(subject.weather).to receive(:stormy?) {false}.twice
     subject.land(plane)
     subject.take_off(plane)
@@ -35,11 +36,12 @@ describe Airport do
   end
 
   it 'should not allow planes to take off if the weather is stormy' do
-    allow(subject.planes). to receive(:landed?) {true}
+    allow(subject.planes).to receive(:landed?) {true}
     allow(subject.weather).to receive(:stormy?) {false}
     subject.land(plane)
     allow(subject.weather).to receive(:stormy?) {true}
-   expect{subject.take_off(plane)}.to raise_error 'Cannot take off because of the bad weather'
+    message = 'Cannot take off because of the bad weather'
+    expect{subject.take_off(plane)}.to raise_error message
   end
 
   it 'should have a default capacity of 20 planes' do
@@ -58,7 +60,7 @@ describe Airport do
   end
 
   it 'should not allow plane to take off, if plane is not in airport' do
-    allow(subject.planes). to receive(:landed?) {false}
+    allow(subject.planes).to receive(:landed?) {false}
     expect{subject.take_off(plane)}. to raise_error 'Plane is not in airport'
   end
 
@@ -67,7 +69,4 @@ describe Airport do
     subject.land(plane)
     expect{subject.land(plane)}.to raise_error 'Plane has already landed'
   end
-
-
-
 end

@@ -10,7 +10,7 @@ describe Weather do
 
   it 'should randomly generate weather' do
     allow(subject).to receive(:rand_weather) {:fine}
-    expect(subject.rand_weather).to eq (:fine)
+    expect(subject.rand_weather).to eq :fine
   end
 
   it 'should return true if stormy' do
