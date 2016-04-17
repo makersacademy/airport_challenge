@@ -1,4 +1,6 @@
 class Weather
+
+	attr_reader :weather
 	
 	def stormy?
   	random_outlook == :stormy

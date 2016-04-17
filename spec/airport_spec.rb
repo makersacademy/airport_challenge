@@ -3,10 +3,12 @@ require "plane"
 require "weather"
 
 describe Airport do
+
+
 	
 	subject(:airport) { described_class.new }
 	let (:plane) {double(:plane)}
-	let (:weather) {double(:weather, random_outlook: :stormy)}
+	let (:weather) {double(:weather, random_outlook: :stormy?)}
 		
 		it "The plane lands in the airport" do
 			expect(subject.land(plane)).to be true
@@ -17,6 +19,12 @@ describe Airport do
 		end
 
 		it "The plane can not depart due storm" do
+			allow(subject.weather).to receive(:stormy?) {true}
 			expect {subject.depart(plane).to raise_error "Unable to take off due to stormy weather"}
+		end
+
+		it "The plane can not land due storm" do
+			allow(subject.weather).to receive(:stormy?) {true}
+			expect {subject.land(plane).to raise_error "Unable to land due to stormy weather"}
 		end
 end
