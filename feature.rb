@@ -3,19 +3,14 @@ require_relative './lib/plane.rb'
 require_relative './lib/weather.rb'
 
 airport = Airport.new
-plane = Plane.new
+plane = Plane.new("Boeing747")
 weather = Weather.new
+plane_2 = Plane.new("Learjet")
 
-# p airport.land(plane)
-# p
-
-airport.land(plane)
-p plane.flying
-airport.take_off(plane)
-p plane.flying
-airport.weather_check?
-airport.weather_check?
-airport.weather_check?
-airport.weather_check?
-airport.weather_check?
-airport.weather_check?
+airport.capacity = 5
+p airport.land(plane)
+p airport.land(plane)
+p airport.land(plane)
+p airport.land(plane)
+p airport.land(plane)
+p airport.land(plane)

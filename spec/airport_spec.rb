@@ -3,7 +3,6 @@ require 'rspec/expectations'
 
 describe Airport do
   let(:plane) {double :plane}
-  let(:weather) {double :weather}
 
   describe "#land" do
 
@@ -20,6 +19,19 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error "Too stormy to land"
     end
 
+    it "will prevent landing when airport is full" do
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      subject.capacity.times{subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error "Airport full! No space to land"
+    end
+
+    it "system designer can set capacity of the airport" do
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      new_capacity = 2
+      subject.capacity = new_capacity
+      new_capacity.times{subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error "Airport full! No space to land"
+    end
   end
 
   describe "#take_off" do
