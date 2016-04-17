@@ -52,14 +52,6 @@ describe Airport do
           expect { airport.land(plane) } .to raise_error message
         end
 
-        # it 'a plane cannot land in two airports' do
-        #    allow(plane).to receive(:landed)
-        #    airport1 = described_class.new
-        #    airport2 = described_class.new
-        #    airport1.land(plane)
-        #    message = "Plane landed in other airport"
-        #    expect { airport2.land(plane) } .to raise_error message
-        # end
     end
 
     context 'when conditions are stormy' do

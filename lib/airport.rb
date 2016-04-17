@@ -17,7 +17,6 @@ class Airport
     fail "Airport full" if full?
     fail "Too stormy to land" if stormy?
     fail "Plane already landed" if in_airport?(plane)
-    #fail "Plane landed in other airport" if plane_status?
     plane.landed
     @planes << plane
   end
