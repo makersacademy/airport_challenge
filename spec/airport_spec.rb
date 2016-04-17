@@ -9,18 +9,21 @@ let(:plane) {double :plane}
   it 'can land a plane' do
     allow(subject).to receive(:safe_to_fly).and_return(true)
     allow(plane).to receive(:location=).with(subject)
+    allow(plane).to receive(:location).and_return("in_the_air")
     expect(subject.land(plane)).to eq(plane)
   end
 
   it 'landing a plane sets its location to current airport' do
     allow(subject).to receive(:safe_to_fly).and_return(true)
     expect(plane).to receive(:location=).with(subject)
+    allow(plane).to receive(:location).and_return("in_the_air")
     subject.land(plane)
   end
 
   it 'landed planes should be stored in the airport' do
     allow(subject).to receive(:safe_to_fly).and_return(true)
     allow(plane).to receive(:location=).with(subject)
+    allow(plane).to receive(:location).and_return("in_the_air")
     subject.land(plane)
     expect(subject.planes).to include(plane)
   end
@@ -30,6 +33,7 @@ let(:plane) {double :plane}
 
   it 'taking off should set the plane\'s location to in the air' do
     allow(subject).to receive(:safe_to_fly).and_return(true)
+    allow(plane).to receive(:location).and_return(subject)
     expect(plane).to receive(:location=).with("in_the_air")
     subject.take_off(plane)
   end
@@ -37,6 +41,7 @@ let(:plane) {double :plane}
   it 'planes which have taken off should no longer be in the airport' do
     allow(subject).to receive(:safe_to_fly).and_return(true)
     allow(plane).to receive(:location=).with("in_the_air")
+    allow(plane).to receive(:location).and_return(subject)
     subject.planes << plane
     expect(subject.planes).to include(plane)
     subject.take_off(plane)
@@ -56,6 +61,7 @@ let(:plane) {double :plane}
   it 'should prevent landing if the airport is full' do
     allow(plane).to receive(:location=).with(subject)
     allow(subject).to receive(:safe_to_fly).and_return(true)
+    allow(plane).to receive(:location).and_return("in_the_air")
     subject.land(plane)
     expect{
       subject.capacity.times{subject.land(plane)}
@@ -72,11 +78,29 @@ let(:plane) {double :plane}
 		expect(airport.capacity).to eq 7
   end
 
-  it{is_expected.to respond_to(:set_capacity).with(1).argument}
+  it{is_expected.to respond_to(:change_capacity).with(1).argument}
 
   it 'should be able to change the airport\'s capacity' do
-    subject.set_capacity(25)
+    subject.change_capacity(25)
     expect(subject.capacity).to eq 25
+  end
+
+  it 'should only let planes take off from airports they are in' do
+
+  end
+
+  it 'should not take off planes which are already in the air' do
+    allow(plane).to receive(:location=).with("in_the_air")
+    allow(plane).to receive(:location).and_return("in_the_air")
+    allow(subject).to receive(:safe_to_fly).and_return(true)
+    expect{subject.take_off(plane)}.to raise_error("Can\'t take off while flying")
+  end
+
+  it 'should not land planes which have already landed' do
+    allow(plane).to receive(:location=).with(subject)
+    allow(plane).to receive(:location).and_return(subject)
+    allow(subject).to receive(:safe_to_fly).and_return(true)
+    expect{subject.land(plane)}.to raise_error("Can\'t land while landed")
   end
 
 end

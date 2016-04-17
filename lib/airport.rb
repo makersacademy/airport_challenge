@@ -1,4 +1,5 @@
 require 'weather'
+require 'plane'
 
 class Airport
   attr_accessor :planes
@@ -10,7 +11,7 @@ class Airport
     @capacity = capacity
   end
 
-  def set_capacity(num)
+  def change_capacity(num)
     @capacity = num
   end
 
@@ -25,15 +26,17 @@ class Airport
   def land(plane)
     fail "Can't land when stormy" if safe_to_fly == false
     fail "Can't land at a full airport" if @planes.length >= @capacity
+    fail "Can\'t land while landed" if plane.location.is_a?(Airport)
     plane.location = self
     @planes << plane
     plane
   end
 
   def take_off(plane)
-      fail "Can't take off when stormy" if safe_to_fly == false
-      plane.location = "in_the_air"
-      @planes.delete(plane)
+    fail "Can't take off when stormy" if safe_to_fly == false
+    fail "Can\'t take off while flying" if plane.location == "in_the_air"
+    plane.location = "in_the_air"
+    @planes.delete(plane)
   end
 
 end
