@@ -4,13 +4,13 @@
 
 
 #Personal Apporach
-=================
+
 
 Here's the steps I've taken to finish the task.
 
 
 ##Domain Models
----------
+
 I created domain models for each user story.
 
 e.g For the first story:
@@ -21,26 +21,26 @@ e.g For the first story:
 | Plane        | land       |   
 
 ##RSpec tests
---------------
+
 Based on the domain models and user stories, I wrote RSpec tests based on the domain models and described behaviors. e.g. For the abovementioned domain
 model, I wrote a test for the Airport class stating that when an airport calling the #land method, the Airport should send a message to the plane. The airport should also confirm that the plane is parked in its hangar. To adhere to SRP, I used a spy to confirm that the airport has sent a message. For the plane class, I tested that when receiving a #land message, it will change its status to not flying
 
 ##Coding
--------
+
 Based on the test failing, I started writing my code and aimed for changing the error message each time until the test can past.
 
 ##Refactoring
---------
+
 After all tests for a user story had passed, I tried to refactor both the tests and the library to remove redundant code and to make the code more readable. Then I ran RSpec test again to make sure the tests still passed
 
 ##Feature test
--------
+
 I ran a feature test in irb for the implemented story to ensure the code worked in "real" situations.
 
 I iterated through these steps for each of the user stories.
 
 ##Defending against edge cases
---------
+
 After having implemented all stories, I looked at the edge cases and wrote tests for defending against each of the cases (That I think needed to be defended against in my design). I then went through the BDD cycle to implement the code and made sure they passed unit and feature tests.
 
 ##Major decisions that I made
