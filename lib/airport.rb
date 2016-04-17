@@ -1,6 +1,6 @@
 class Airport
   def land(_plane)
-    true
+    raise "Stormy so cannot land plane" if stormy?
   end
 
   def take_off(_plane)
@@ -14,4 +14,8 @@ class Airport
   def departed?(_plane)
     true
   end
+
+   def stormy?(_plane)
+     true
+   end
 end
