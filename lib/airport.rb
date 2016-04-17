@@ -1,13 +1,22 @@
 class Airport
   DEFAULT_CAPACITY = 20
+  attr_writer :capacity
 
-  def initialize
+  def capacity(capacity)
+    if capacity < @planes.length
+      fail "There are currently too many planes in the airport for the requested capacity."
+    end
+    @capacity = capacity
+  end
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
     fail "Error; Plane ID #{plane} has already landed in Airport ID #{self}." if in_airport?(plane)
-    fail "Airport is full." if @planes.length >= DEFAULT_CAPACITY
+    fail "Airport is full." if @planes.length >= @capacity
     fail "Can not land during stormy weather." if stormy?
     @planes.push(plane)
     "Plane ID #{plane} has landed."

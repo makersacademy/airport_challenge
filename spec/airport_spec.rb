@@ -5,6 +5,39 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:sunny) { allow(subject).to receive(:stormy?).and_return(false) }
   let(:stormy) { allow(subject).to receive(:stormy?).and_return(true) }
+  let(:permit_duplicates) {allow(subject).to receive(:in_airport?).and_return(false)}
+
+  describe "#capacity" do
+
+    it "can change the capacity after initialization" do
+      sunny
+      permit_duplicates
+      subject.capacity(10)
+      permit_duplicates
+      10.times { subject.land(plane) }
+      expect{subject.land(plane)}.to raise_error("Airport is full.")
+    end
+
+    it "can't make capacity too small for current number of planes on the ground" do
+      sunny
+      permit_duplicates
+      5.times { subject.land(plane) }
+      expect{subject.capacity(3) }.to raise_error("There are currently too many planes in the airport for the requested capacity.")
+    end
+
+  end
+
+  describe "#initialize" do
+
+    it "should be able to set the capacity while instantiating" do
+      airport = Airport.new(15)
+      allow(airport).to receive(:stormy?).and_return(false)
+      allow(airport).to receive(:in_airport?).and_return(false)
+      15.times { airport.land(plane) }
+      expect{airport.land(plane)}.to raise_error("Airport is full.")
+    end
+
+  end
 
   describe "#land" do
 
@@ -21,12 +54,10 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error("Can not land during stormy weather.")
     end
 
-    it "should prevent landing when the airport is full" do
+    it "should prevent landing when the airport is full (default capacity)" do
       sunny
-      allow(subject).to receive(:in_airport?).and_return(false)
-      Airport::DEFAULT_CAPACITY.times do
-        subject.land(plane)
-      end
+      permit_duplicates
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect{subject.land(plane)}.to raise_error("Airport is full.")
     end
 
