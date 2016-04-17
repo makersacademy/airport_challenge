@@ -29,14 +29,15 @@ describe Airport do
   end
   context 'edge cases' do
     it 'a plane cannot land if already landed' do
-      allow(airport).to receive(:stormy?) { false }
+      #allow(airport).to receive(:stormy?) { false }
       airport.planes_at_airport << landed_plane
-      expect(airport.planes_at_airport.count(landed_plane)).to eq 1
+      #expect(airport.planes_at_airport.count(landed_plane)).to eq 1
+      expect{ airport.instruct_land(landed_plane) }.to raise_error Airport::LANDED
     end
 
     it 'a plane cannot take off if not at airport' do
-      allow(airport).to receive(:stormy?) { false }
-      expect(airport.instruct_takeoff(flying_plane)).to be nil
+      #allow(airport).to receive(:stormy?) { false }
+      expect{ airport.instruct_takeoff(flying_plane)}.to raise_error Airport::NOT_FOUND
     end
   end
 
@@ -49,9 +50,9 @@ describe Airport do
 
     it 'a plane can not land' do
       allow(airport).to receive(:stormy?) { false }
-      airport.instruct_land(flying_plane)
-      expect(airport.planes_at_airport.size).to eq 20
-      expect(airport.planes_at_airport).not_to include flying_plane
+      expect{ airport.instruct_land(flying_plane)}.to raise_error Airport::FULL
+      #expect(airport.planes_at_airport.size).to eq 20
+      #expect(airport.planes_at_airport).not_to include flying_plane
     end
   end
 
@@ -61,19 +62,21 @@ describe Airport do
     end
   end
 
-  context 'when weather stormy' do
+  context 'when stormy weather ' do
 
     it 'a plane can not take off' do
       allow(airport).to receive(:stormy?) { true }
       airport.planes_at_airport << landed_plane
-      airport.instruct_takeoff(landed_plane)
-      expect(airport.planes_at_airport).to include landed_plane
+      #airport.instruct_takeoff(landed_plane)
+      #expect(airport.planes_at_airport).to include landed_plane
+      expect{airport.instruct_takeoff(landed_plane)}.to raise_error Airport::STORMY
     end
 
     it 'a plane can not land' do
       allow(airport).to receive(:stormy?) { true }
-      airport.instruct_land(flying_plane)
-      expect(airport.planes_at_airport).not_to include flying_plane
+      #airport.instruct_land(flying_plane)
+      #expect(airport.planes_at_airport).not_to include flying_plane
+      expect{airport.instruct_land(flying_plane)}.to raise_error Airport::STORMY
     end
   end
 end
