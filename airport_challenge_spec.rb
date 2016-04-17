@@ -5,7 +5,7 @@ require "./lib/weather"
 describe "Airport Challenge" do
 
   describe "Planes" do
-      it "Planes are not at an airport when created" do
+    it "Planes are not at an airport when created" do
       #GIVEN I have a new plane
       plane = Plane.new
       #WHEN I check the planes status
