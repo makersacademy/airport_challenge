@@ -16,14 +16,14 @@ Airport Challenge
 Travis CI: 
 ![alt text](https://travis-ci.org/DXTimer/airport_challenge.svg?branch=master "Travis CI")
 
-CI Travis: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+Coveralls: 
+![alt text](https://coveralls.io/builds/5820345 "Coveralls")
 
 Summary
 -----
-```
+
 Makers Academy has asked me to design a traffic control system while following the TDD approach. 
-With the [user stories](../blob/master/LICENSE) provided by the client I design a system that:
+With the [user stories](../blob/master/blob/user_stories.md) provided by the client I design a system that:
 
 - Airport Traffic Control can `issue_landing_permission(plane)` for a given plane
 - Airport Traffic Control can `issue_take_off_permission(plane)` for a given plane
@@ -33,11 +33,11 @@ With the [user stories](../blob/master/LICENSE) provided by the client I design 
 - Airport can be set a `capacity` otherwise it defaults to `DEFAULT_CAPACITY = 20`
 - Airport prevents landing if `full?`
 - Edge cases implemented to defends against actions with inconsistent states
-```
+
 
 Weather Station
 ----
-The `Airport` class contains a initialization variable called `weather_station` which defaults to [weather_station.rb](../lib/master/weather_station.rb)
+The `Airport` class contains a initialization variable called `weather_station` which defaults to [weather_station.rb](../blob/master/lib/weather_station.rb)
 This is done with the idea that when an object of `Airport.new` is called it will allow to set another source of weather forcast, which is less random.
 
 Feature Test Sample
