@@ -31,14 +31,11 @@ describe Airport do
             allow(subject).to receive(:stormy_weather?).and_return(false)
             subject.accept_for_landing(plane)
             allow(subject).to receive(:any_landed?).and_return(true)
-            allow(plane).to receive(:took_off).and_return(true)
-            subject.accept_for_take_off(plane)
-            expect(plane).to eq plane
           end
           it "raises an error message when the weather is too stormy to land" do
            allow(plane).to receive(:reported_landed).and_return(true)
            allow(subject).to receive(:stormy_weather?).and_return(true)
-           expect {subject.accept_for_landing(plane)}.to raise_error "It's too stormy to land"
+           expect {subject.accept_for_landing(plane)}.to raise_error("It's too stormy to land")
           end
           it "raises exception if Airport is full" do
             allow(plane).to receive(:reported_landed).and_return(true)
@@ -48,7 +45,7 @@ describe Airport do
           end
           it "will not allow planes to land when they are already on the ground" do
             allow(subject).to receive(:any_landed?).and_return(true)
-            expect{subject.accept_for_landing(plane)}.to raise_error "Already landed"
+            expect{subject.accept_for_landing(plane)}.to raise_error("Already landed")
           end
         end
         describe '#accept_for_take_off' do
@@ -60,17 +57,16 @@ describe Airport do
             allow(subject).to receive(:any_landed?).and_return(true)
           end
             it "sets a plane into the air if the weather is fine" do
-              allow(plane).to receive(:took_off?).and_return(true)
               allow(subject).to receive(:stormy_weather?).and_return(true)
-              expect{subject.accept_for_take_off(plane)}.to raise_error "It's too stormy to takeoff"
+              expect{subject.accept_for_take_off(plane)}.to raise_error("It's too stormy to takeoff")
             end
             it "it won't allow the planes to take off if they already did" do
               allow(subject).to receive(:any_landed?).and_return(false)
-              expect{subject.accept_for_take_off(plane)}.to raise_error "the plane is no longer in the airport"
+              expect{subject.accept_for_take_off(plane)}.to raise_error("the plane is no longer in the airport")
             end
             it "will only send the plane into the sky if it's in the airport" do
               landed_plane = double(:plane, any_landed?: true)
-              expect{subject.accept_for_take_off(landed_plane)}.to raise_error "There are no planes in the Airport"
+              expect{subject.accept_for_take_off(landed_plane)}.to raise_error("There are no planes in the Airport")
             end
         end
 end
