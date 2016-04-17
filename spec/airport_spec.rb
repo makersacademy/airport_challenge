@@ -13,6 +13,10 @@ describe Airport do
     it 'launches a plane that flies' do 
       expect(flying_plane).to be_flying
     end
+
+    it 'raises an error when the airport is empty' do 
+      expect { subject.launch_plane }.to raise_error('No planes for take off.')
+    end
   end
 
   describe 'lands planes' do 
@@ -30,7 +34,7 @@ describe Airport do
 
     it 'raises an error when the airport is full' do 
       subject.capacity.times { subject.land(flying_plane) }
-      expect { subject.land(flying_plane) }.to raise_error('Airport is full. Reroute to another destination.')
+      expect { subject.land(flying_plane) }.to raise_error('Airport is full.')
     end
 
   end
