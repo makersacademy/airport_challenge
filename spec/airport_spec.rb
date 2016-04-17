@@ -12,14 +12,14 @@ describe Airport do
 
   describe '#capacity' do
     it 'prevents landing when the airport capacity is full' do
-      allow(Weather).to receive(:weather_calc).and_return("Sunny")
+      allow(subject).to receive(:weather_check).and_return(true)
       subject.capacity.times {subject.land(flyplane)}
       expect {subject.land(flyplane)}.to raise_error("The airport is full")
     end
 
     it 'allows for capacity to be changed when creating a new airport' do
       ap = described_class.new(3)
-      allow(Weather).to receive(:weather_calc).and_return("Sunny")
+      allow(ap).to receive(:weather_check).and_return(true)
       3.times {ap.land(flyplane)}
       expect(ap.planes).to eq [flyplane,flyplane,flyplane]
     end
@@ -27,7 +27,7 @@ describe Airport do
 
   describe '#planes' do
     it 'returns what planes are currently at the airport' do
-      allow(Weather).to receive(:weather_calc).and_return("Sunny")
+      allow(subject).to receive(:weather_check).and_return(true)
       3.times {subject.land(flyplane)}
       expect(subject.planes).to eq [flyplane,flyplane,flyplane]
     end
@@ -35,7 +35,7 @@ describe Airport do
 
   describe '#land' do
     it 'allows planes to land' do
-      allow(Weather).to receive(:weather_calc).and_return("Sunny")
+      allow(subject).to receive(:weather_check).and_return(true)
       subject.land(flyplane)
       expect(subject.planes).to eq [flyplane]
     end
@@ -43,14 +43,14 @@ describe Airport do
 
 
     it 'only allows a plane to land if it is currently flying' do
-      allow(Weather).to receive(:weather_calc).and_return("Sunny")
+      allow(subject).to receive(:weather_check).and_return(true)
       expect {subject.land(groundplane)}.to raise_error("This plane is not in the air")
     end
   end
 
   describe '#takeoff' do
     it 'allows planes to takeoff' do
-      allow(Weather).to receive(:weather_calc).and_return("Sunny")
+      allow(subject).to receive(:weather_check).and_return(true)
       subject.land(flyplane)
       subject.land(plane)
       subject.takeoff(flyplane)
@@ -58,14 +58,15 @@ describe Airport do
     end
 
     it 'raises an error when there are no planes to take off' do
-      allow(Weather).to receive(:weather_calc).and_return("Sunny")
+      allow(subject).to receive(:weather_check).and_return(true)
       expect {subject.takeoff(plane)}.to raise_error("There are no planes at the airport")
     end
 
     it 'only allows planes to take off if they parked there' do
       port1 = described_class.new
       port2 = described_class.new
-      allow(Weather).to receive(:weather_calc).and_return("Sunny")
+      allow(port1).to receive(:weather_check).and_return(true)
+      allow(port2).to receive(:weather_check).and_return(true)
       port1.land(plane)
       port2.land(flyplane)
       expect {port2.takeoff(plane)}.to raise_error("That plane is not at this airport")

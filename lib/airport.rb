@@ -10,11 +10,11 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    @weather = 'Sunny'
+    @weather = Weather.new
   end
 
   def takeoff(plane)
-    Weather.weather_calc(plane)
+    weather_check(plane)
     parked_here?(plane)
     empty?
     plane.takeoff
@@ -22,7 +22,7 @@ class Airport
   end
 
   def land(plane)
-    Weather.weather_calc(plane)
+    weather_check(plane)
     flying?(plane)
     full?
     plane.land
@@ -32,6 +32,10 @@ class Airport
   private
   def full?
     fail "The airport is full" if @planes.length >= @capacity
+  end
+
+  def weather_check(plane)
+    @weather.weather_calc(plane)
   end
 
   def empty?
