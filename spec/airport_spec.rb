@@ -52,6 +52,12 @@ describe Airport do
         expect(plane).to have_received(:take_off)
       end
 
+      it 'ensure the plane is no longer in the hangar' do
+        airport.land(plane)
+        airport.take_off(plane)
+        expect(airport.hangar).not_to include plane
+      end
+
     end
 
     context 'if the weather is stormy' do

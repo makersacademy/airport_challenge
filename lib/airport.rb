@@ -1,9 +1,11 @@
+require_relative 'weatherstation'
+
 class Airport
   DEFAULT_CAPACITY = 20
 
   attr_reader :hangar
 
-  def initialize(capacity = DEFAULT_CAPACITY,weather = Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY,weather = WeatherStation.new)
     @hangar = []
     @capacity = capacity
     @weather = weather
