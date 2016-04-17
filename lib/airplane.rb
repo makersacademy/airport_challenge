@@ -4,14 +4,6 @@ class Airplane
     @airborn = airborn
   end
 
-  def land(airport)
-    @airborn = false
-  end
-
-  def takeoff
-    @airborn = true
-  end
-
   def airborn?
     @airborn
   end
