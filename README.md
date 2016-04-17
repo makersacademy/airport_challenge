@@ -13,12 +13,12 @@ Airport Challenge
 
 ```
 
-Introduction
----------
+## Introduction
+-------
 This program simulates an air traffic control system that allows planes land and take off at an airport under certain weather conditions.
 
 
-Features
+## Features
 -------
 * [ ] Plane status
 * [ ] Plane landing
@@ -29,7 +29,7 @@ Features
 * [ ] Variable and default capacity
 * [ ] Errors raised for inconsistent actions
 
-Instructions
+## Instructions
 -----
 
 Clone this repo:
@@ -86,7 +86,7 @@ Now let's take off, and fly me to the moon.
 I have considered edge cases to ensure the consistency of the air control system so don't try to take off a plane if it is already flying. Duh. 👆
 
 
- #Testing
+## Testing
  -----
  In your terminal, type `$ rspec` under `airport_challenge` directory and it will run all the unit tests in spec files.
 
@@ -95,14 +95,14 @@ I have considered edge cases to ensure the consistency of the air control system
  '$ rspec spec/feature_spec.rb'
 
 
- #Tools
+## Tools
  -----
 
- * [ ] Ruby
- * [ ] RSpec
+ * Ruby
+ * RSpec
 
 
- Author
+## Author
  -----
 
  Sity Shah
