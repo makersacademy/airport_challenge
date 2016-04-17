@@ -15,8 +15,8 @@ describe Airport do
         
     end
     
-    subject (:airport) { described_class.new }
-    let (:plane) { double :plane }
+    subject(:airport){ described_class.new }
+    let(:plane){ double :plane }
     
     context 'airport capacity' do
     
@@ -94,17 +94,16 @@ describe Airport do
     
         describe '#land(plane)' do 
            it 'cannot land a plane' do
-                allow(airport).to receive(:weather) { 'stormy' }
+                allow(airport).to receive(:weather){ 'stormy' }
                 expect { airport.land(plane) }.to raise_error 'It\'s too stormy to land!'
             end
         end
         
         describe '#take_off' do
             it ' plane cannot take off' do
-                allow(airport).to receive(:weather) { 'stormy' }
+                allow(airport).to receive(:weather){ 'stormy' }
                 expect {airport.take_off}.to raise_error 'It\'s too stormy!'
             end
         end
-    
     end
 end
