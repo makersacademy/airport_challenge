@@ -18,6 +18,28 @@ describe Airport do
     subject (:airport) { described_class.new }
     let (:plane) { double :plane }
     
+    context 'airport capacity' do
+    
+        it 'should have a maximum capacity' do
+            allow(airport).to receive(:weather) { 'sunny' }
+            airport.capacity.times { airport.land(plane) }
+            expect { airport.land(plane) }.to raise_error 'airport is at capacity'
+        end
+        
+        it 'can be overriden on initialize' do 
+            random_capacity = rand(100)
+            aeropuerto = Airport.new(random_capacity)
+            expect(aeropuerto.capacity).to eq random_capacity    
+        end
+        
+        it 'can be redefined at any point' do
+            random_capacity = rand(100)
+            airport.capacity = random_capacity
+            expect(airport.capacity).to eq(random_capacity)
+        end
+    
+    end
+    
         
     context ' good weather' do
             
@@ -47,6 +69,11 @@ describe Airport do
                 expect(airport.hangar.length).to eq(hangar_length - 1)
             end
             
+            it 'should raise an error if the airport is empty' do
+                allow(airport).to receive(:weather) { 'sunny' }
+                expect { airport.take_off }.to raise_error 'airport is devoid of planes'
+            end
+            
         end
     end
     
@@ -72,4 +99,5 @@ describe Airport do
         end
     
     end
-end
+    
+ end
