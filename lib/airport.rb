@@ -2,12 +2,16 @@ require_relative 'weather'
 require_relative 'plane'
 
 class Airport
-  attr_reader :capacity, :run_way
+  attr_reader :capacity
   DEFAULT_CAPACITY = 25
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @run_way = []
     @capacity = capacity
+  end
+
+  def run_way_roll_call
+    run_way
   end
 
   def permission_to_land?(plane)
@@ -34,6 +38,7 @@ class Airport
   end
 
   private
+  attr_reader :run_way
   def not_full?
     run_way.size < capacity
   end
@@ -45,7 +50,7 @@ class Airport
   def run_way_check(plane, &block)
     return "You're still on the ground moron" unless plane.flying?
     return insult(plane) unless present?(plane)
-    yield
+    yield block
   end
 
 end

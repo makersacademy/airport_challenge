@@ -5,6 +5,7 @@ describe Airport do
   it {is_expected.to respond_to(:permission_to_land?).with(1).argument}
   it {is_expected.to respond_to(:permission_to_leave?).with(1).argument}
   it {is_expected.to respond_to(:land_plane).with(1).argument}
+  it {is_expected.to respond_to(:run_way_roll_call)}
 
   let(:landing_plane) do
     double :landing_plane,
@@ -48,11 +49,22 @@ describe Airport do
   end
 
   it 'should be built with empty run-ways' do
-    expect(subject.run_way).to eq []
+    expect(subject.run_way_roll_call).to eq []
   end
 
   it 'can be built with different size capacities' do
     expect(Airport.new(20).capacity).to eq 20
+  end
+
+  describe "#run_way_roll_call" do
+    it "retruns empty for new airport" do
+      expect(subject.run_way_roll_call).to eq []
+    end
+
+    it "returns run_way for airport with planes in" do
+      subject.instance_variable_set(:@run_way, [plane_in_airport,plane_in_airport])
+      expect(subject.run_way_roll_call).to eq [plane_in_airport,plane_in_airport]
+    end
   end
 
   describe '#permission_to_land?' do
@@ -87,7 +99,7 @@ describe Airport do
 
     it 'adds plane to the run-way' do
       subject.land_plane(landing_plane)
-      expect(subject.run_way).to eq [landing_plane]
+      expect(subject.run_way_roll_call).to eq [landing_plane]
     end
 
     it "landing plane must be flying" do
@@ -124,7 +136,7 @@ describe Airport do
     it 'removes plane from the run-way' do
       subject.instance_variable_set(:@run_way, [leaving_plane])
       subject.plane_take_off(leaving_plane)
-      expect(subject.run_way).to eq []
+      expect(subject.run_way_roll_call).to eq []
     end
 
     it 'leaving plane must be at airport' do

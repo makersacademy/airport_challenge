@@ -36,7 +36,6 @@ describe Plane do
       subject.instance_variable_set(:@crashed, true)
       expect(subject.broadcast_location).to eq subject.static
     end
-
   end
 
   describe "#land" do
@@ -85,6 +84,10 @@ describe Plane do
 
     it "if permission not granted complain about the weather" do
       expect(subject.land(stormy_airport)).to eq subject.complain
+    end
+
+    it "if permission granted cheer" do
+      expect(subject.land(clear_airport)).to eq subject.cheer
     end
 
     it "if location not airport then crash" do
@@ -160,12 +163,26 @@ describe Plane do
       expect(subject).to be_flying
     end
 
+    it "if permission granted cheer" do
+      subject.instance_variable_set(:@location, clear_airport)
+      subject.instance_variable_set(:@flying, false)
+      expect(subject.take_off(clear_airport)).to eq subject.cheer
+    end
+
     it "if permission not granted plane remains on the ground" do
       subject.instance_variable_set(:@location, stormy_airport)
       subject.instance_variable_set(:@flying, false)
       subject.take_off(stormy_airport)
       expect(subject).not_to be_flying
     end
+
+    it "if permission not granted complian" do
+      subject.instance_variable_set(:@location, stormy_airport)
+      subject.instance_variable_set(:@flying, false)
+      expect(subject.take_off(stormy_airport)).to eq subject.complain
+    end
+
+
 
     it "if permission granted location set after call to land" do
 
@@ -192,6 +209,12 @@ describe Plane do
   describe '#static' do
     it '... ...' do
       expect(subject.static).to eq "... ..."
+    end
+  end
+
+  describe '#cheer' do
+    it 'love yourself' do
+      expect(subject.cheer).to eq "Another great manouveur from captain Kyle"
     end
   end
 

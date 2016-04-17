@@ -25,13 +25,13 @@ class Plane
   def land(airport = "a field")
     return insult unless flying?
     return crash(airport) unless airport.class == Airport
-    airport.permission_to_land? ? safe_land(airport) : complain
+    airport.permission_to_land?(self) ? safe_land(airport) : complain
   end
 
   def take_off(airport)
     return static if crashed?
     return insult if flying? || !present?(airport)
-    leave(airport) if airport.permission_to_leave?
+    airport.permission_to_leave?(self) ? leave(airport) : complain
   end
 
 
@@ -48,6 +48,10 @@ class Plane
     "... ..."
   end
 
+  def cheer
+    "Another great manouveur from captain Kyle"
+  end
+
 
 
   private
@@ -57,12 +61,14 @@ class Plane
     @location = airport
     airport.land_plane(self)
     @flying = false
+    cheer
   end
 
   def leave(airport)
     @flying = true
     airport.plane_take_off(self)
     @location = 'the sky'
+    cheer
   end
 
   def crash(land_location)
