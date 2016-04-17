@@ -37,6 +37,12 @@ describe Airport do
       expect { subject.land(flying_plane) }.to raise_error('Airport is full.')
     end
 
+  describe 'has a default or variable plane capacity' do 
+    it 'has a default capacity when no explicit capacity is defined' do 
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
   end
 
 end
