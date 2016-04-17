@@ -62,4 +62,21 @@ let(:plane) {double :plane}
     }.to raise_error("Can't land at a full airport")
 	end
 
+  it 'should initialize with a default capacity of 12' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq 12
+  end
+
+  it 'should initialize with the capacity you pass in' do
+    airport = Airport.new(7)
+		expect(airport.capacity).to eq 7
+  end
+
+  it{is_expected.to respond_to(:set_capacity).with(1).argument}
+
+  it 'should be able to change the airport\'s capacity' do
+    subject.set_capacity(25)
+    expect(subject.capacity).to eq 25
+  end
+
 end

@@ -10,6 +10,10 @@ class Airport
     @capacity = capacity
   end
 
+  def set_capacity(num)
+    @capacity = num
+  end
+
   def safe_to_fly(weather = Weather.new.weather_now)
     if weather == 'stormy'
       false
