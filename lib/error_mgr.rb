@@ -8,6 +8,6 @@ module ErrorManager
     fail LANDED if land && in_airport?(plane)
     fail NOT_FOUND unless land || in_airport?(plane)
     fail STORMY if stormy?
-    fail FULL  if full?
+    fail FULL if full?
   end
 end

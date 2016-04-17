@@ -13,6 +13,56 @@ Airport Challenge
 
 ```
 
+Solution
+---------
+This repo contains the solution to the Airport Challenge exercise.
+
+To resolve this exercise a TDD approach has been adopted.  From the user stories two main objects have been identified, Plane and Airport.
+
+*a Plane simply keeps a status on whether is landed or not, using a boolean, and has two methods, land and take off, which switch that status.  By default a new Plane is in an undetermined status (nil), until one of those two methods are called.
+
+* an Airport manages the traffic of different planes.  It captures the list of planes currently at the airport using an array named "planes".  It then manages planes with the methods land and takeoff, which are subject to the different conditions exposed in the user stories.  Basically the planes can't land or take off if the weather is stormy, and planes can't land if airport is full.  Of course, a plane can't land if it's already on ground, and can't take off if it is not at the airport.  No other edge cases have been considered as we have made sure that one a plane takes off, it disappears from the airport log.
+
+As not specified by the user, it is important to precise that the following priorities have been implemented for the special conditions applied:
+
+* if inconsistencies are detected, the program raise this as exception, regardless of the weather or the capacity of the airport
+* if no inconsistencies but weather is stormy, that is raised as exception, regardless of current capacity of airport
+* if not of the above conditions, then the capacity constraint is checked.
+
+The test coverage is of 98.02, only 2 lines have remained untested, the ones to create the random number and the boolean variable to determine if weather is stormy.  It is trivial code so no further effort has been made to add those.
+
+Regarding tests a pragmatic approach has been taken in order to ensure the majority of cases where covered trying not to fall onto vacuous tests.  For example, for testing full capacity, the same double plane has been stored in memory to fulfill the capacity of the airport.  Although this would not be possible in the software working due to other tests preventing to land an already landed plane, it did not matter for the test, we just needed elements fulfilling the capacity of airport, and perhaps there are other methods of increasing airport capacity not involving the .land method.
+
+It was also very important to stub the random weather generator for the relevant test cases, when testing cases with higher priority than weather, to avoid that the tests could pass or fail randomly depending on the weather random result.
+
+Travis CI does not work, or I don't know how to make it work for me.  I get a ERR_CONNECTION_TIMED_OUT on the web page, therfore no badge showing that all the tests have passed has been included.  Anyway they seem to be very trivial tests just checking the existance of the two classes Airport and Plane.
+
+Feature test
+---------
+new airport, a plane lands, it tries to take off but weather conditions are stormy
+```
+2.2.3 :001 > plane = Plane.new
+ => #<Plane:0x00000001f96db0>
+2.2.3 :002 > airport = Airport.new
+ => #<Airport:0x00000001de20f0 @planes=[], @capacity=20>
+2.2.3 :003 > plane.landed?
+ => nil
+2.2.3 :005 > airport.land(plane)
+ => [#<Plane:0x00000001f96db0 @landed=true>]
+2.2.3 :006 > airport.takeoff(plane)
+RuntimeError: stormy weather
+  from /home/sergio/Ronin/Week1/airport_challenge/lib/error_mgr.rb:10:in `check_errors'
+  from /home/sergio/Ronin/Week1/airport_challenge/lib/airport.rb:15:in `takeoff'
+  from (irb):6
+  from /home/sergio/.rvm/rubies/ruby-2.2.3/bin/irb:11:in `<main>'
+2.2.3 :007 > airport.takeoff(plane)
+ => #<Plane:0x00000001f96db0 @landed=false>
+
+```
+
+
+
+
 Instructions
 ---------
 
@@ -37,25 +87,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -74,7 +124,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
