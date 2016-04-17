@@ -6,6 +6,7 @@ class Airport
 
   def land(plane)
     fail "Error; Plane ID #{plane} has already landed in Airport ID #{self}." if in_airport?(plane)
+    fail "Can not land during stormy weather." if stormy?
     @planes.push(plane)
     "Plane ID #{plane} has landed."
   end
