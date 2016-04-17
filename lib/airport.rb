@@ -2,19 +2,25 @@ require_relative "weather"
 
 class Airport
   include Weather
+
+  StormErr = "The weather is stormy"
+  AcceptErr = "Plane already at an airport"
+  ReleaseErr = "Plane not at this airport"
+
   def initialize
     @planes = []
   end
 
   def accept plane
-    fail "Plane is already at an airport" unless ok_to_land? plane
+    fail AcceptErr unless ok_to_land? plane
+    fail StormErr if stormy?
     plane.land
     store_plane plane
   end
 
   def release plane
-    fail "Plane is not at this airport" unless plane_in_airport? plane
-    fail "The weather is stormy" if stormy?
+    fail ReleaseErr unless plane_in_airport? plane
+    fail StormErr if stormy?
     plane.take_off
     remove_plane plane
   end
