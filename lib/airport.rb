@@ -25,7 +25,7 @@ class Airport
 
 	def plane_status(plane)
 		if @planes.include?(plane) && plane.landed?
-			"Confirming that that plane has landed."
+			"Confirming that plane has landed."
 		else
 			"No such plane is presently at the airport."
 		end

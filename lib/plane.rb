@@ -7,14 +7,14 @@ class Plane
 		raise "This plane is already on the ground, Captain!" if landed?
 		airport.accept(self)
 		@landed = true
-		puts "All passengers please fasten your seatbelts - we will be landing shortly."
+		"All passengers please fasten your seatbelts - we will be landing shortly."
 	end
 
 	def takeoff(airport)
 		raise "We've already taken off, Sir! Are you feeling alright?" unless landed?
 		airport.confirm_takeoff(self)
 		@landed = false
-		puts "Please fasten your seatbelts, fold your tray tables and prepare for lift off!"
+		"Please fasten your seatbelts, fold your tray tables and prepare for lift off!"
 	end
 
 	def landed?

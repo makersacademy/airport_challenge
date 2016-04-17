@@ -1,5 +1,5 @@
 describe Plane do
-	let(:airport) { double("Airport", :accept => true, :confirm_takeoff => true) }
+	let(:airport) { double("Airport", accept: true, confirm_takeoff: true) }
 
 	describe '#land(airport)' do 
 		it 'responds to land' do
