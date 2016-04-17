@@ -8,6 +8,8 @@ require "./lib/weather"
 
 airport = Airport.new
 plane = Plane.new
+Airport.new.safe? == true
+
 # fail "plane did not land" unless airport.land(plane) == plane
 fail "plane landing wasn't confirmed" unless airport.land(plane) == [plane]
 # As an air traffic controller
@@ -27,5 +29,12 @@ fail "plane landing wasn't confirmed" unless airport.land(plane) == [plane]
 weather = Weather.new
 # fail "Object responded weirdly" unless weather.new_day == "Stormy" || "Sunny"
 # fail "Plane took off in stormy weather" if airport.take_off(plane) == []
-weather.new_day = "Sunny"
 fail "Returned false when sunny" if airport.safe == false
+
+# As an air traffic controller
+# To ensure safety
+# I want to prevent landing when the airport is full
+
+plane = Plane.new
+5.times(airport.land(plane))
+fail "Airport does not know when full" if airport.land(plane)

@@ -2,6 +2,9 @@ require "airport"
 
 describe Airport do
   let(:plane) {double(:plane)}
+  let(:plane2) {double(:plane2)}
+  let(:plane3) {double(:plane3)}
+
 
   it { expect(subject).to respond_to(:land, :take_off).with(1).argument }
   it { expect(subject).to respond_to(:safe?)}
@@ -12,13 +15,28 @@ describe Airport do
 
   describe "#land" do
     it "when plane lands, airport should confirm the plane has landed" do
+      allow(subject).to receive(:safe?).and_return(true)
       expect(subject.land(plane)).to eq [plane]
     end
 
     it "should raise error if plane tries to take off when it's unsafe" do
       allow(subject).to receive(:safe?).and_return(false)
-      expect { subject.land(plane)}.to raise_error "It's not safe to land." if subject.safe? == false
+      expect { subject.land(plane)}.to raise_error "It's not safe to land."
     end
+
+    it "should raise error if aiport is full" do
+      allow(subject).to receive(:safe?).and_return(true)
+      subject.land(plane)
+      subject.land(plane2)
+      expect { subject.land(plane3)}.to raise_error "Airport is full."
+    end
+
+    it "should raise error if you try to land the same plane" do
+      allow(subject).to receive(:safe?).and_return(true)
+      subject.land(plane)
+      expect{subject.land(plane)}.to raise_error "This plane has already landed." if plane == plane
+    end
+
   end
 
   describe "#take_off" do
@@ -28,15 +46,25 @@ describe Airport do
     end
 
     it "when plane takes_off, airport should confirm plane is no longer in airport" do
+      allow(subject).to receive(:safe?).and_return(true)
       subject.land plane
       subject.take_off plane
       expect(subject.planes).to eq []
     end
 
     it "should raise error if plane tries to take off when it's unsafe" do
+      allow(subject).to receive(:safe?).and_return(true)
       subject.land(plane)
       allow(subject).to receive(:safe?).and_return(false)
-      expect { subject.take_off(plane)}.to raise_error "It's not safe to take off." if subject.safe? == false
+      expect { subject.take_off(plane)}.to raise_error "It's not safe to take off."
+    end
+
+    it "should raise error if you try to take_off the same plane" do
+      allow(subject).to receive(:safe?).and_return(true)
+      subject.land(plane)
+      subject.land(plane2)
+      subject.take_off(plane2)
+      expect{subject.take_off(plane2)}.to raise_error "This plane has already taken off." if plane == plane
     end
 
     describe "#safe?" do
@@ -49,6 +77,16 @@ describe Airport do
       it "should return true if weather is sunny" do
         allow(subject).to receive(:safe?).and_return(true)
         expect(subject.safe?).to eq true
+      end
+    end
+
+      describe "#capacity" do
+    	it "returns DEFAULT_CAPACITY if no capacity is given when initializing" do
+    		expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
+      it "returns given capacity if one is given when initializing" do
+        stn = Airport.new 30
+        expect(stn.capacity).to eq 30
       end
     end
   end
