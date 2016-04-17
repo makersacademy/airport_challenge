@@ -10,7 +10,8 @@ subject.park(:plane)
 end
 
 it 'Raises an error if a plane tries to land when the apron is full' do
-
+  10.times { subject.park(plane) }
+  expect { subject.park(plane) }.to raise_error 'The airport is full, abort landing!'
 end
 
 end
