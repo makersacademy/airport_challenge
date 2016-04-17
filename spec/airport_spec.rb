@@ -20,8 +20,6 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
         expect(subject.planes[0]).to eq plane
-weather = Weather.new
-               weather.stub(:weather_setter_generator) { 4 }
     subject.take_off(plane)
     expect(subject.planes[0]).not_to eq plane
 
@@ -30,11 +28,9 @@ weather = Weather.new
   it "returns a message letting the user know the plane has taken off" do
     plane = Plane.new
 
-    weather = Weather.new
-               weather.stub(:weather_setter_generator) { 4 }
 
     subject.land(plane)
-    weather.weather_setter
+
     expect(subject.take_off(plane)).to eq ("Plane has taken off")
   end
 
@@ -42,11 +38,9 @@ describe "#stormy"do
 
   it "doesn't allow a plane to take off if the weather is stormy" do
     plane = Plane.new
-    weather = Weather.new
-               weather.stub(:weather_setter_generator) { 9 }
 
     subject.land(plane)
-    weather.weather_setter
+
     expect{subject.take_off(plane)}.to raise_error("Too stormy to take off")
 
 #end

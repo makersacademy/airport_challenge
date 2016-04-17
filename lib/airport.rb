@@ -22,7 +22,7 @@ class Airport
   end
 
 def stormy_weather?
-true
+  @weather.weather_setter
 end
 
 end
