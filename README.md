@@ -17,7 +17,7 @@ Travis CI:
 ![alt text](https://travis-ci.org/DXTimer/airport_challenge.svg?branch=master "Travis CI")
 
 Coveralls: 
-![alt text](https://coveralls.io/builds/5820345 "Coveralls")
+![alt text](https://camo.githubusercontent.com/1f374b45f3637dd51b45c5a3fe380d9f89cd2e89/68747470733a2f2f636f766572616c6c732e696f2f6275696c64732f353832303334352f6261646765 "Coveralls")
 
 Summary
 -----
