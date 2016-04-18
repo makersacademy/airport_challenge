@@ -19,14 +19,17 @@ class Airport
   end
 
   def launch(plane)
+    fail 'Already in flight.' if plane.flying? == true
     fail 'Grounded.' if stormy?
     fail 'No planes.' if empty? 
     @planes.pop
   end
 
   def land(plane)
-    fail 'Airport full.' if full?
+    fail 'Already landed.' if plane.flying? == false
     fail 'Cannot land.' if stormy?
+    fail 'Airport full.' if full?
+    plane.landed? == true
     @planes << plane
   end
 
