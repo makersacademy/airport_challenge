@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:plane) {described_class.new}
+  subject(:plane) {described_class.new}
 
   before do
     plane.take_off

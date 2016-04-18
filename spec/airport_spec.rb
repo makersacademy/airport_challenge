@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:airport) { described_class.new(weather)}
+  subject(:airport) { described_class.new(weather)}
   let(:weather) {double(:weather, stormy?: false)}
   let(:plane) { double(:plane, land: nil, take_off:nil) }
 
@@ -65,14 +65,6 @@ describe Airport do
 
     it 'raises an error when the plane is not in the airport' do
       expect { airport.takeoff(plane) }.to raise_error 'Plane not in airport'
-    end
-  end
-
-  context 'variable capcity' do
-    it 'changes capacity of airport' do
-      airport.capacity = 52
-      52.times {airport.land(plane)}
-      expect{airport.land(plane)}.to raise_error 'Airport full'
     end
   end
 
