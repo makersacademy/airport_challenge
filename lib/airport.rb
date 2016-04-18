@@ -1,6 +1,6 @@
 require 'plane'
 require 'weather'
-
+# checking on Git
 class Airport
     attr_reader :capacity
 
