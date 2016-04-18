@@ -1,7 +1,7 @@
 class Weather
 
   def initialize
-    @number = rand(1..0)
+    @number = rand(1..10)
   end
 
   def sunny?
