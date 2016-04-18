@@ -22,10 +22,14 @@ attr_reader :plane_holder, :capacity
 
   def take_off(plane)
     raise "can't fly win storm" if plane.weather
-    @plane_holder.pop
+    delete_plane(plane)
   end
 
   private
+
+  def delete_plane(plane)
+    @plane_holder.delete plane
+  end
 
   def full?
     @plane_holder.length >= @capacity
