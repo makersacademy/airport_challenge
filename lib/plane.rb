@@ -6,16 +6,20 @@ class Plane
 
   def land
     fail 'Plane already landed!' unless flying?
-    @flying = false
+    self.flying = false
   end
 
   def take_off
     fail 'Plane already flying!' if flying?
-    @flying = true
+    self.flying = true
   end
 
   def flying?
-    @flying
+    flying
   end
+
+  private
+
+  attr_accessor :flying
 
 end
