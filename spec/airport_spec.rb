@@ -54,12 +54,9 @@ describe Airport do
   end
 
   it "will take different values for capacity" do
-    array = ('a'..'g').to_a #needed to test multiple planes without receiving
-    array.each do |x|       #a 'Plane landed' failure
-      x = Plane.new
-      airport = Airport.new weather, array.count
-      airport.land_plane x
-    end
+    random_cap = rand(40)
+    airport = Airport.new weather, random_cap
+    expect(airport.capacity).to eq random_cap
   end
 
 end
