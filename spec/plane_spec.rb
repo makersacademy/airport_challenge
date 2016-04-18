@@ -9,7 +9,8 @@ describe Plane do
   end
 
   it "reports when landed" do
-    expect(subject.landed?).to eq true
+    subject.landed?
+    expect(subject.landed).to eq true
   end
 
 end
