@@ -1,12 +1,21 @@
 class Plane
 
-def grounded?
-end
+  attr_reader :grounded
 
-def arrive
+  def initialize
+    @grounded = false
+  end
+
+  def grounded?
+    @grounded
+  end
+
+  def arrive
+    @grounded = true
   end
 
   def depart
+    @grounded = false
   end
 
 end
