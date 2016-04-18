@@ -6,9 +6,6 @@ describe Airport do
   let(:weather){double :weather, stormy?: false}
   subject(:airport){ described_class.new(weather) }
 
-  it {is_expected.to respond_to :land_plane}
-  it {is_expected.to respond_to :take_off}
-
   describe '#land_plane' do
 
     it "lands a plane" do
