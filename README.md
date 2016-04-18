@@ -35,7 +35,7 @@ Regarding tests a pragmatic approach has been taken in order to ensure the major
 
 It was also very important to stub the random weather generator for the relevant test cases, when testing cases with higher priority than weather, to avoid that the tests could pass or fail randomly depending on the weather random result.
 
-Travis CI does not work, or I don't know how to make it work for me.  I get a ERR_CONNECTION_TIMED_OUT on the web page, therfore no badge showing that all the tests have passed has been included.  Anyway they seem to be very trivial tests just checking the existance of the two classes Airport and Plane.
+I finde Travis CI a moody website and application  It did not worked during all weekend, I got a ERR_CONNECTION_TIMED_OUT on the web page.  It worked early Morning so I added the badge as recommended.
 
 Feature test example
 ---------
