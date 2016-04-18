@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  before(:each) { allow(airport).to receive(:bad_weather?) { false } }
+  before(:each) { allow(airport).to receive(:stormy?) { false } }
   describe '#initialize' do
     it 'has a default capacity, unless specified' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -22,7 +22,7 @@ describe Airport do
         expect(airport.docked_planes).to include plane
       end
       it 'doesn\'t allow a plane to land when it is stormy' do
-        allow(airport).to receive(:bad_weather?) { true }
+        allow(airport).to receive(:stormy?) { true }
         message = 'It is not safe for the plane to land'
         expect { airport.land_plane(plane) }.to raise_error message
       end
@@ -37,7 +37,7 @@ describe Airport do
     let(:plane) { double(:plane, land: false, take_off: true ) }
     before(:each) do
       airport.land_plane(plane)
-      allow(airport).to receive(:bad_weather?) { false }
+      allow(airport).to receive(:stormy?) { false }
     end
     context 'when a plane wishes to take off' do
       it 'can instruct a plane to take off and confirm it has left' do
@@ -45,9 +45,13 @@ describe Airport do
         expect(airport.docked_planes).not_to include plane
       end
       it 'doesn\'t allow a plane to take off when it is stormy' do
-        allow(airport).to receive(:bad_weather?) { true }
+        allow(airport).to receive(:stormy?) { true }
         message = 'It is not safe for the plane to take off'
         expect { airport.launch_plane(plane) }.to raise_error message
+      end
+      it 'doesn\'t launch a plane if airport is empty' do
+        airport.launch_plane(plane)
+        expect { airport.launch_plane(plane) }.to raise_error 'Airport empty'
       end
     end
   end

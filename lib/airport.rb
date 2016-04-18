@@ -9,28 +9,26 @@ class Airport
   attr_accessor :docked_planes
 
 
-  def initialize(capacity = DEFAULT_CAPACITY, planes=Plane.new)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @docked_planes = []
-    @planes = planes
   end
 
   def land_plane(plane)
     fail 'It is not safe for the plane to land' if bad_weather?
     fail 'Airport full' if full?
-    docked_planes << plane
     plane.land
+    docked_planes << plane
   end
 
   def launch_plane(plane)
     fail 'It is not safe for the plane to take off' if bad_weather?
-    docked_planes.pop
+    fail 'Airport empty' if empty?
     plane.take_off
+    docked_planes.pop
   end
 
   private
-
-  attr_reader :planes
 
   def full?
     docked_planes.length >= capacity
@@ -42,14 +40,6 @@ class Airport
 
   def bad_weather?
     stormy?
-  end
-
-  def land
-    planes.land
-  end
-
-  def take_off
-    planes.take_off
   end
 
 end
