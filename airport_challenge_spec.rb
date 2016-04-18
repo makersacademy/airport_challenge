@@ -27,7 +27,7 @@ describe "Airport Challenge" do
       airport = Airport.new
       #WHEN I check the airports capacity
       #THEN The capacity is set to a default value
-      expect(airport.instance_variable_get(:@capacity)).to eq Airport::Default_Capacity
+      expect(airport.instance_variable_get(:@capacity)).to eq Airport::DEFAULT_CAPACITY
     end
     it "Airports have a variable capacity" do
       #GIVEN I make a new airport with a bigger capacity
@@ -88,7 +88,7 @@ describe "Airport Challenge" do
         airport.accept plane
         #WHEN I ask the airport to accept the plane
         #THEN I expect an error
-        expect { airport.accept plane }.to raise_error Airport::AcceptErr
+        expect { airport.accept plane }.to raise_error Airport::ACCEPT_ERR
       end
       it "Airports cannot accept planes when they are full" do
         #GIVEN I have a full airport and a plane is flying
@@ -99,7 +99,7 @@ describe "Airport Challenge" do
         airport.accept plane1
         #WHEN I ask the airport to accept the plane
         #THEN I expect an error
-        expect { airport.accept plane2 }.to raise_error Airport::CapacityErr
+        expect { airport.accept plane2 }.to raise_error Airport::FULL_ERR
       end
     end
     context "In stormy weather" do
@@ -110,7 +110,7 @@ describe "Airport Challenge" do
         allow(airport).to receive(:stormy?) { true }
         #WHEN I ask the airport to accept the plane
         #THEN I expect an error
-        expect { airport.accept plane }.to raise_error Airport::StormErr
+        expect { airport.accept plane }.to raise_error Airport::STORM_ERR
       end
       it "Prioritises invalid planes over stormy weather" do
         #GIVEN I have an plane already at an airport
@@ -120,7 +120,7 @@ describe "Airport Challenge" do
         plane.instance_variable_set(:@flying, false)
         #WHEN I ask the airport to accept the plane
         #THEN I get the invalid plane error, rather than the weather error
-        expect { airport.accept plane }.to raise_error Airport::AcceptErr
+        expect { airport.accept plane }.to raise_error Airport::ACCEPT_ERR
       end
     end
   end
@@ -170,7 +170,7 @@ describe "Airport Challenge" do
         allow(airport).to receive(:stormy?) { false }
         #WHEN I ask the airport to release the plane
         #THEN I expect an error
-        expect { airport.release plane }.to raise_error Airport::ReleaseErr
+        expect { airport.release plane }.to raise_error Airport::RELEASE_ERR
       end
     end
     context "In stormy weather" do
@@ -183,7 +183,7 @@ describe "Airport Challenge" do
         plane.instance_variable_set(:@flying, false)
         #WHEN I ask the airport to release the plane
         #THEN I expect an error
-        expect { airport.release plane }.to raise_error Airport::StormErr
+        expect { airport.release plane }.to raise_error Airport::STORM_ERR
       end
       it "Prioritises missing planes over stormy weather" do
         #GIVEN I have an plane not at an airport
@@ -192,7 +192,7 @@ describe "Airport Challenge" do
         allow(airport).to receive(:stormy?) { true }
         #WHEN I ask the airport to release the plane
         #THEN I get the no plane error, rather than the weather error
-        expect { airport.release plane }.to raise_error Airport::ReleaseErr
+        expect { airport.release plane }.to raise_error Airport::RELEASE_ERR
       end
     end
   end

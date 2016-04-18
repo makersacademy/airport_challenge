@@ -3,11 +3,11 @@ require_relative "weather"
 class Airport
   include Weather
 
-  Default_Capacity = 1
-  StormErr = "The weather is stormy"
-  AcceptErr = "Plane already at an airport"
-  ReleaseErr = "Plane not at this airport"
-  CapacityErr = "Airport is full"
+  DEFAULT_CAPACITY = 1
+  STORM_ERR = "The weather is stormy"
+  ACCEPT_ERR = "Plane already at an airport"
+  RELEASE_ERR = "Plane not at this airport"
+  FULL_ERR = "Airport is full"
 
   def initialize capacity=Default_Capacity
     @planes = []
@@ -15,16 +15,16 @@ class Airport
   end
 
   def accept plane
-    fail AcceptErr unless plane_flying? plane
-    fail CapacityErr if full?
-    fail StormErr if stormy?
+    fail ACCEPT_ERR unless plane_flying? plane
+    fail FULL_ERR if full?
+    fail STORM_ERR if stormy?
     plane.land
     store_plane plane
   end
 
   def release plane
-    fail ReleaseErr unless plane_in_airport? plane
-    fail StormErr if stormy?
+    fail RELEASE_ERR unless plane_in_airport? plane
+    fail STORM_ERR if stormy?
     plane.take_off
     remove_plane plane
   end

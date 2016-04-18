@@ -10,7 +10,7 @@ describe Airport do
     expect(subject.instance_variable_get(:@planes)).to be_empty
   end
   it "should be initialized with a default capacity" do
-    expect(subject.instance_variable_get(:@capacity)).to eq Airport::Default_Capacity
+    expect(subject.instance_variable_get(:@capacity)).to eq Airport::DEFAULT_CAPACITY
   end
   it "should be initialized with a specified capacity" do
     LHR = Airport.new 30
@@ -43,16 +43,16 @@ describe Airport do
       subject.accept flying_plane
     end
     it "should raise an error if the plane is already grounded" do
-      expect { subject.accept grounded_plane }.to raise_error Airport::AcceptErr
+      expect { subject.accept grounded_plane }.to raise_error Airport::ACCEPT_ERR
     end
     it "should raise an error if the weather is stormy" do
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.accept flying_plane }.to raise_error Airport::StormErr
+      expect { subject.accept flying_plane }.to raise_error Airport::STORM_ERR
     end
     it "should raise an error if the airport is full" do
       subject.instance_variable_set(:@planes, [grounded_plane])
       allow(subject).to receive(:stormy?) { false }
-      expect { subject.accept flying_plane }.to raise_error Airport::CapacityErr
+      expect { subject.accept flying_plane }.to raise_error Airport::FULL_ERR
     end
   end
 
@@ -80,12 +80,12 @@ describe Airport do
       subject.release grounded_plane
     end
     it "should raise an error if the plane is not at the airport" do
-      expect { subject.release flying_plane }.to raise_error Airport::ReleaseErr
+      expect { subject.release flying_plane }.to raise_error Airport::RELEASE_ERR
     end
     it "should raise an error if the weather is stormy" do
       subject.instance_variable_set(:@planes, [grounded_plane])
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.release grounded_plane }.to raise_error Airport::StormErr
+      expect { subject.release grounded_plane }.to raise_error Airport::STORM_ERR
     end
   end
 end
