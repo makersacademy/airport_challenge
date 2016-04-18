@@ -8,14 +8,14 @@ To build a program by TDD.
 To Feature and Unit test each step of the process.
 To use the SRP (Single Responsibility Principle) for program design.
 
-###FILES
+####FILES
 
 1. airport.rb
 2. plane.rb
 3. weather.rb
 4. feature_test.rb
 
-###FULFILLS ALL USER STORIES
+####FULFILLS ALL USER STORIES
 
   1. I want to instruct a plane to land at an airport and confirm that it has landed.
     (Shows the airport's apron with the new plane added)
@@ -30,7 +30,7 @@ To use the SRP (Single Responsibility Principle) for program design.
   6. I would like a default airport capacity that can be overridden as appropriate
     (DEFAULT_CAPACITY can be set with attr_accessor)
 
-###EDGE CASES // Prevented by Guard Conditions
+####EDGE CASES // Prevented by Guard Conditions
 
   1. Planes only take off from airports they are in
   2. Planes cannot be in more than one airport at once.
