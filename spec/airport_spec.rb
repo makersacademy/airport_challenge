@@ -63,9 +63,8 @@ let(:plane) {double :plane}
     allow(subject).to receive(:safe_to_fly).and_return(true)
     allow(plane).to receive(:location).and_return("in_the_air")
     subject.land(plane)
-    expect{
-      subject.capacity.times{subject.land(plane)}
-    }.to raise_error("Can't land at a full airport")
+    expect{subject.capacity.times{subject.land(plane)}
+          }.to raise_error("Can't land at a full airport")
 	end
 
   it 'should initialize with a default capacity of 12' do
@@ -86,14 +85,14 @@ let(:plane) {double :plane}
   end
 
   it 'should only let planes take off from airports they are in' do
-
+    
   end
 
   it 'should not take off planes which are already in the air' do
     allow(plane).to receive(:location=).with("in_the_air")
     allow(plane).to receive(:location).and_return("in_the_air")
     allow(subject).to receive(:safe_to_fly).and_return(true)
-    expect{subject.take_off(plane)}.to raise_error("Can\'t take off while flying")
+    expect{subject.take_off(plane)}.to raise_error("Can\'t take off if flying")
   end
 
   it 'should not land planes which have already landed' do
