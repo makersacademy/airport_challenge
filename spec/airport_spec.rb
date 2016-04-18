@@ -54,8 +54,8 @@ describe Airport do
 			expect{subject.land(plane)}.to raise_error "Unable to land due airport in full capacity"
 		end
 
-		it "no plane in airport, no departing" do
+		it "/ no plane in airport, no departing" do
 			allow(subject.planes_in_airport).to receive(:landed?) {false}
-			expect{subject.depart(plane)}.to raise_error "Plane not in the airport"
+			
 		end
 end
