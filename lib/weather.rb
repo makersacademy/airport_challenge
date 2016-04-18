@@ -1,7 +1,12 @@
 class Weather
+  attr_reader :storm
+
+  def initialize
+    @storm = false
+  end
 
   def stormy?
-    rand > 0.85
+     @storm = rand > 0.85
   end
 
 end

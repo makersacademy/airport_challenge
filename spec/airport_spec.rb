@@ -25,7 +25,7 @@ describe Airport do
 
   describe "#arrival" do
 
-    before { allow(airport).to receive(:stormy?) {false} }
+    before { allow(airport).to receive(:storms?) {false} }
 
     it "expect plane status 'in_airport?' to be true when landed" do
       subject.arrival plane
@@ -33,7 +33,7 @@ describe Airport do
     end
 
     it "raises error 'Too stormy to land.'" do
-      allow(airport).to receive(:stormy?) {true}
+      allow(airport).to receive(:storms?) {true}
       em = "Too stormy to land."
       expect{subject.arrival(plane)}.to raise_error em
     end
@@ -55,7 +55,7 @@ describe Airport do
 
   describe "#departure" do
 
-      before { allow(airport).to receive(:stormy?) {false} }
+      before { allow(airport).to receive(:storms?) {false} }
 
     it "expect plane status 'in_airport?' to be false when landed" do
       subject.arrival plane
@@ -64,7 +64,7 @@ describe Airport do
     end
 
     it "raises error 'Too stormy to take-off.'" do
-      allow(airport).to receive(:stormy?) {true}
+      allow(airport).to receive(:storms?) {true}
       em = "Too stormy to take-off."
       expect{subject.departure(plane)}.to raise_error em
     end
@@ -75,20 +75,6 @@ describe Airport do
       subject.departure test_plane
       em = "Aircraft not in airport."
       expect{subject.departure(test_plane)}.to raise_error em
-    end
-
-  end
-
-  describe "#full?" do
-
-    it "returns true or false when calling #full." do
-      expect(subject.full?).to_not be nil
-    end
-
-    it "returns false until capacity is reached" do
-      allow(airport).to receive(:stormy?) {false}
-      capacity.times{ subject.arrival(Plane.new) }
-      expect(subject.full?).to be true
     end
 
   end
