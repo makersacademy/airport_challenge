@@ -2,8 +2,8 @@ require  "plane"
 
 describe Plane do
 
-  let(:airport) {double :airport}
-  subject(:plane) {described_class.new}
+  let(:airport) { double :airport }
+  subject(:plane) { described_class.new }
 
   describe "#land" do
     it "returns true when plane has landed" do

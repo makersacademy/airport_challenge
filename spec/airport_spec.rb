@@ -3,9 +3,9 @@ require "airport"
 describe Airport do
 
   subject(:airport) { described_class.new}
-  let(:capacity) {Airport::DEFAULT}
-  let(:plane) {Plane.new}
-  let(:weather) {Weather.new}
+  let(:capacity) { Airport::DEFAULT }
+  let(:plane) { Plane.new }
+  let(:weather) { Weather.new }
 
   describe "#initialize" do
     it "airport starts empty" do
@@ -25,7 +25,7 @@ describe Airport do
 
   describe "#arrival" do
 
-    before { allow(airport).to receive(:storms?) {false} }
+    before { allow(airport).to receive(:storms?) { false } }
 
     it "expect plane status 'in_airport?' to be true when landed" do
       subject.arrival plane
@@ -33,7 +33,7 @@ describe Airport do
     end
 
     it "raises error 'Too stormy to land.'" do
-      allow(airport).to receive(:storms?) {true}
+      allow(airport).to receive(:storms?) { true }
       em = "Too stormy to land."
       expect{subject.arrival(plane)}.to raise_error em
     end
@@ -55,7 +55,7 @@ describe Airport do
 
   describe "#departure" do
 
-      before { allow(airport).to receive(:storms?) {false} }
+      before { allow(airport).to receive(:storms?) { false } }
 
     it "expect plane status 'in_airport?' to be false when landed" do
       subject.arrival plane
@@ -64,7 +64,7 @@ describe Airport do
     end
 
     it "raises error 'Too stormy to take-off.'" do
-      allow(airport).to receive(:storms?) {true}
+      allow(airport).to receive(:storms?) { true }
       em = "Too stormy to take-off."
       expect{subject.departure(plane)}.to raise_error em
     end
