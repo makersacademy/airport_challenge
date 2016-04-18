@@ -18,9 +18,7 @@ describe Airport do
     let(:plane) { double(:plane, land: true, docked?: false) }
     context 'when a plane wishes to land' do
       it 'can instruct a plane to land and confirm it has landed' do
-        airport.land_plane(plane)
-        allow(plane).to receive(:docked?) { true }
-        expect(airport.docked_planes).to include plane
+        expect(airport.land_plane(plane)).to eq [plane]
       end
       it 'doesn\'t allow a docked plane to land again' do
         allow(plane).to receive(:docked?) { true }
@@ -47,8 +45,7 @@ describe Airport do
     end
     context 'when a plane wishes to take off' do
       it 'can instruct a plane to take off and confirm it has left' do
-        airport.launch_plane(plane)
-        expect(airport.docked_planes).not_to include plane
+        expect(airport.launch_plane(plane)).to eq plane
       end
       it 'doesn\'t allow a plane to take off when it is stormy' do
         allow(airport).to receive(:stormy?) { true }
