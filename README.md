@@ -1,91 +1,181 @@
-Airport Challenge
-=================
+Travis-CI status:
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
+## "WEATHER" TO LAND?
+
+* How do you keep your airport _accident-free_ in bad weather?
+* _Human errors_ have led to numerous aircraft accidents in the past...
+* What if you can _automate the decision_ whether it is safe to land/take-off?
+* And what if it can be achieved via _seamless communication_ between the airport and aircrafts?
+
+
+## Introduction
+WEATHER TO LAND (WTL) is a safeguard programme between a control tower and arriving/departing aircrafts.
+
+It helps air traffic control officers:
+
+1.  to instruct aircrafts to land/take-off in fine weather and to confirm the result
+2.  to instruct aircrafts NOT to land/take-off in a stormy weather
+3.  to instruct aircrafts NOT to land when the airport is full
+4.  to detect any discrepancies between the instruction and the status of an aircraft. For example:
+  * landing of an aircraft that is on the ground
+  * takeoff of an airbourne aircraft
+  * takeoff of an aircraft that does not exist in the dock
+
+It is built to adapt to airports of any size by allowing the user to amend airport capacity accordingly.
+
+
+## Development
+WTL is written in Ruby version 2.2.3 and has been developed using RSpec version 3.2.2 as a platform for behaviour-driven development (BDD). The continuous integration is assessed through Travis-CI with the latest test coverage of 100%.
+
+
+## Design
+The design of WTL involves three classes; Airport, Aircraft and Weather.
+
+The Airport class is able to communicate with other two classes and hence serves as a main interface for the user. From the Airport class, the user is able to instruct an aircraft to (or not to) land and takeoff depending on the status of the aircraft and the weather conditions.
+
+### Overview of class interaction
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+                             ____User____               
+ __________                 |            |                 _________
+| Aircraft |  check status  |   Airport  | check weather  | Weather |
+|__________| <------------- | check dock | -------------> |_________|
+                            |____________|
+                                   |
+                                   v
+                      decision on landing/takeoff
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+## Classes
+Detailed descriptions for methods within each class are given below.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+### Airport class methods
+#### - initialize
+It takes one optional argument: capacity
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+It creates an airport with a dock as an empty array. The default capacity of the dock is set at 5. The default capacity can be overridden given a value when creating a new airport.
+```
+2.2.3 :002 > airport1 = Airport.new
+ => #<Airport:0x007fd0d982d9b0 @capacity=5, @dock=[]>
+2.2.3 :003 > airport2 = Airport.new 20
+ => #<Airport:0x007fd0d90b0408 @capacity=20, @dock=[]>
+```
+#### - land
+It takes two arguments: aircraft (compulsory), weather (optional)
 
-Please create separate files for every class, module and test suite.
+If no weather is given, it creates a random weather. It instructs the specified aircraft to (or not to) land, depending on the result of calling a private can_land? method.
 
-In code review we'll be hoping to see:
+If no error is raised by can_land?, it
+* calls a change_status method on the aircraft
+* stores the aircraft to the dock
+* display a message confirming the landing
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+```
+  If airport1 instructs already landed aircraft1 to land...
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+  2.2.3 :007 > aircraft1
+   => #<Aircraft:0x007f88f28a3608 @landed=true>
+  2.2.3 :008 > airport1.land aircraft1
+  RuntimeError: The aircraft is already on the ground
+```
+```
+  If airport1 instructs airbourne aircraft2 to land and sunny...
 
-**BONUS**
+  2.2.3 :009 > aircraft2
+   => #<Aircraft:0x007f88f2891f20 @landed=false>
+  2.2.3 :010 > airport1.land aircraft2
+ => "The aircraft has landed safely to the airport"
+```
+```
+  If airport1 is full and instructs aircraft2 to land...
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+  2.2.3 :011 > aircraft2
+   => #<Aircraft:0x007f88f2891f20 @landed=false>
+  2.2.3 :012 > airport1
+   => #<Airport:0x007ff6f103ac60 @capacity=5, @dock=["aircraft", "aircraft", "aircraft", "aircraft", "aircraft"]>
+  2.2.3 :013 > airport1.land aircraft2
+  RuntimeError: Unable to instruct landing as the airport dock is full
+```
+```
+  If airport1 instructs airbourne aircraft2 to land and stormy...
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+  2.2.3 :014 > aircraft2
+   => #<Aircraft:0x007f88f2891f20 @landed=false>
+  2.2.3 :015 > airport1.land aircraft2
+  RuntimeError: Unable to instruct landing due to severe weather
+```
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+#### - takeoff
+It takes two arguments: aircraft (compulsory), weather (optional)
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+If no weather is given, it creates a random weather. It instructs the specified aircraft to (or not to) takeoff, depending on the result of calling a private can_takeoff? method.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+If no error is raised by can_takeoff?, it
+* calls a change_status method on the aircraft
+* clears the aircraft from the dock
+* display a message confirming the takeoff
+
+```
+  If the aircraft2 has landed at airport1 but not airport2...
+
+  2.2.3 :008 > airport1.land aircraft2
+   => "The aircraft has landed safely to the airport"
+  2.2.3 :009 > airport2.takeoff aircraft2
+  RuntimeError: Unable to locate the aircraft
+```
+```
+  If the airport1 instructs aircraft2 to take off and sunny...
+
+  2.2.3 :010 > airport1.land aircraft2
+   => "The aircraft has landed safely to the airport"
+  2.2.3 :011 > airport1.takeoff aircraft2
+   => "The aircraft has successfully taken off from the airport"
+```
+```
+  If the airport1 instructs aircraft2 to take off any stormy...
+
+  2.2.3 :010 > airport1.land aircraft2
+   => "The aircraft has landed safely to the airport"
+  2.2.3 :011 > airport1.takeoff aircraft2
+  RuntimeError: Unable to instruct takeoff due to severe weather
+```
+
+#### - can_land? (private)
+It raises an error in the following three cases:
+* When the aircraft is already on the ground
+* When the airport dock is full
+* When the weather is stormy
+
+#### - can_takeoff? (private)
+It raises an error in the following two cases:
+* When the aircraft does not exist in the dock
+* When the weather is stormy
+
+#### - full (private)
+It returns true when the dock is full
+
+### Aircraft class methods
+#### - initialize
+It creates an aircraft with a default status of airbourne.
+
+#### - change_status
+It flips the status of the aircraft between airbourne and landed.
+
+```
+2.2.3 :002 > aircraft1 = Aircraft.new
+ => #<Aircraft:0x007fc1e1021c00 @landed=false>
+2.2.3 :003 > aircraft1.change_status
+ => #<Aircraft:0x007fc1e1021c00 @landed=true>
+```
+
+### Weather class methods
+#### - initialize
+It take one optional argument: number
+
+It creates a weather with a default probability of 80% sunny and 20% stormy. When no value is provided, an integer between 1 and 10 is randomly assigned. The weather condition is determined according to the number as follows. The default probability can be overridden when given a number.
+* 1 or 2: stormy
+* 3 to 10: sunny
+
+
+## Authour
+Misa Ogura
