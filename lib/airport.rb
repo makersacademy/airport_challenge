@@ -20,7 +20,7 @@ class Airport
   end
 
   def take_off(plane)
-    fail 'Plane not in the hangar!' unless @hangar.include?(plane)
+    fail 'Plane not in the hangar!' unless hangar.include?(plane)
     fail 'Stomy weather! Do not take off!' if stormy?
     plane.take_off
     @hangar.delete(plane)
@@ -28,12 +28,14 @@ class Airport
 
   private
 
+  attr_reader :weather, :capacity
+
   def stormy?
-    @weather.stormy?
+    weather.stormy?
   end
 
   def full?
-    @capacity == @hangar.length
+    capacity == hangar.length
   end
 
 end
