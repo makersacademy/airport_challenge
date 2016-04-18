@@ -4,7 +4,7 @@ require_relative 'airport'
 module Weather
 
   def self.stormy?
-    [true, true, true, false].sample
+    [false, false, false, true].sample
   end
 
 end
