@@ -1,8 +1,8 @@
 require 'airport'
 describe Airport do
 
- let(:plane_fine) {double("plane", weather?: false)}
- let(:plane_storm) {double("plane", weather?: true)}
+ let(:plane_fine) {double("plane", weather: false)}
+ let(:plane_storm) {double("plane", weather: true)}
 
   it 'can create an airport' do
     expect(subject).to be_an_instance_of Airport

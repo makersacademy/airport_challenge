@@ -1,5 +1,5 @@
 class Plane
-  attr_reader :weather
+  attr_accessor :weather
 
   def storm
    r = Random.new
@@ -7,7 +7,8 @@ class Plane
   end
 
   def initialize
-    @weather = true
+    @weather = false
   end
+
 end
 
