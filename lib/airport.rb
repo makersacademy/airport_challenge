@@ -25,7 +25,8 @@ attr_reader :plane_holder, :capacity
     @plane_holder.pop
   end
 
-private
+  private
+
   def full?
     @plane_holder.length >= @capacity
   end
