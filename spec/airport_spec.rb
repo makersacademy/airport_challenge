@@ -5,8 +5,8 @@ describe Airport do
   before(:each) { allow(airport).to receive(:bad_weather?) { false } }
   describe '#initialize' do
     it 'has a default capacity, unless specified' do
-    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
     it 'can have a variable capacity when initialized' do
       random_capacity = Random.rand(100)
       airport = described_class.new random_capacity
@@ -16,7 +16,7 @@ describe Airport do
 
   describe '#land_plane' do
     let(:plane) { double(:plane, land: true) }
-      context 'when a plane wishes to land' do
+    context 'when a plane wishes to land' do
       it 'can instruct a plane to land and confirm it has landed' do
         airport.land_plane(plane)
         expect(airport.docked_planes).to include plane

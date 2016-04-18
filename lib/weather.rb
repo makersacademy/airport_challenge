@@ -1,6 +1,7 @@
 module Weather
 
-  FORECAST = [:fine, :fine, :stormy, :fine, :fine, :stormy, :fine] #a typical london week
+  FORECAST = [:fine, :fine, :stormy, :fine, :fine, :stormy, :fine].freeze
+  #a typical london week
 
   def stormy?
     random_outlook == :stormy
