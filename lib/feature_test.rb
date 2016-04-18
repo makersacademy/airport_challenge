@@ -86,14 +86,20 @@ plane4 = Plane.new
 plane5 = Plane.new
 plane6 = Plane.new
 
+#Same plane cannot land in the same
 gatwick.confirm_landing(weather, plane1)
 gatwick.confirm_landing(weather, plane2)
 gatwick.confirm_landing(weather, plane3)
+gatwick.confirm_landing(weather, plane1)
+#Same plane cannot land in another airport
+luton.confirm_landing(weather, plane1)
+
+gatwick.confirm_takeoff(weather)
+gatwick.confirm_takeoff(weather)
 
 gatwick.confirm_landing(weather, plane4)
 gatwick.confirm_landing(weather, plane5)
 gatwick.confirm_landing(weather, plane6)
-
 
 luton.confirm_landing(weather, plane6)
 
