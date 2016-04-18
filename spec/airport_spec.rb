@@ -23,7 +23,7 @@ describe Airport do
 
       it "stormy" do
         allow(weather).to receive(:stormy?).and_return(true)
-        expect{airport.land_plane(plane)}.to raise_error('Too stormy for landing')
+        expect{airport.land_plane(plane)}.to raise_error'Too stormy for landing'
       end
 
       it "full?" do
@@ -54,7 +54,7 @@ describe Airport do
       it "stormy?" do
         allow(weather).to receive(:stormy?).and_return(true)
         allow(plane).to receive(:flying).and_return(false)
-        expect{airport.take_off(plane)}.to raise_error('Too stormy for take-off')
+        expect{airport.take_off(plane)}.to raise_error'Too stormy for take-off'
       end
 
       it "plane isn't in airport" do
