@@ -3,9 +3,12 @@ require 'weather'
 
 describe Airport do
 
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:take_off).with(1).argument }
   it { is_expected.to respond_to(:capacity)}
+
+it "can set a different airport capacity" do
+  new_airport = Airport.new(50)
+  expect(new_airport.capacity).to eq 50
+end
 
   it "allows multiple planes to land" do
     plane = Plane.new
@@ -13,12 +16,11 @@ describe Airport do
     expect(subject.planes[0]).to eq plane
   end
 
-   it "doesn't allow more than one plane to land" do
-    plane = Plane.new
-    plane2 = Plane.new
-    subject.land(plane)
+   it "doesn't allow more planes to land than capacity" do
+    airport90 =Airport.new(9)
 
-    expect{subject.land(plane2)}.to raise_error("Airport full")
+    9.times{airport90.land(Plane.new)}
+    expect{airport90.land(Plane.new)}.to raise_error("Airport full")
   end
 
   it "returns a message letting the user know the plane has landed" do
@@ -29,7 +31,6 @@ describe Airport do
   it "allows a plane to take off" do
     plane = Plane.new
     subject.land(plane)
-        expect(subject.planes[0]).to eq plane
     subject.take_off(plane)
     expect(subject.planes[0]).not_to eq plane
 
