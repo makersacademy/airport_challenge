@@ -6,6 +6,7 @@ class Airport
 
   DEFAULT_CAPACITY=20
   attr_reader :capacity
+  attr_accessor :docked_planes
 
 
   def initialize(capacity = DEFAULT_CAPACITY, planes=Plane.new)
@@ -22,10 +23,13 @@ class Airport
   end
 
   def launch_plane(plane)
+    raise 'It is stormy and is not safe for the plane to take off' if bad_weather?
+    docked_planes.pop
+    plane.take_off
   end
 
   private
-  attr_accessor :docked_planes
+
   attr_reader :planes
 
   def full?
