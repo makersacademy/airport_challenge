@@ -19,7 +19,7 @@ This repo contains the solution to the Airport Challenge exercise.
 
 To resolve this exercise a TDD approach has been adopted.  From the user stories two main objects have been identified, Plane and Airport.
 
-*a Plane simply keeps a status on whether is landed or not, using a boolean, and has two methods, land and take off, which switch that status.  By default a new Plane is in an undetermined status (nil), until one of those two methods are called.
+* a Plane simply keeps a status on whether is landed or not, using a boolean, and has two methods, land and take off, which switch that status.  By default a new Plane is in an undetermined status (nil), until one of those two methods are called.
 
 * an Airport manages the traffic of different planes.  It captures the list of planes currently at the airport using an array named "planes".  It then manages planes with the methods land and takeoff, which are subject to the different conditions exposed in the user stories.  Basically the planes can't land or take off if the weather is stormy, and planes can't land if airport is full.  Of course, a plane can't land if it's already on ground, and can't take off if it is not at the airport.  No other edge cases have been considered as we have made sure that one a plane takes off, it disappears from the airport log.
 
