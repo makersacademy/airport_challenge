@@ -14,25 +14,25 @@ class Airport
   end
 
   def land(plane)
-    fail 'Cannot land because of bad weather' if self.stormy?
+    fail 'Cannot land because of bad weather' if stormy?
     fail 'Airport at capacity' if full?
-    fail 'Plane has already landed' if self.landed?(plane)
+    fail 'Plane has already landed' if landed?(plane)
     planes << plane
   end
 
   def landed?(plane)
-    self.planes.include?(plane)
+    planes.include?(plane)
   end
 
   def take_off(plane)
-    fail 'Plane is not in airport' if self.landed?(plane) == false
-    fail 'Cannot take off because of the bad weather' if self.stormy?
-    planes.reject{ |planes| planes == plane }
+    fail 'Plane is not in airport' if landed?(plane) == false
+    fail 'Cannot take off because of the bad weather' if stormy?
+    planes.delete(plane)
 
   end
 
   def departed?(plane)
-    self.landed?(plane) == false
+    landed?(plane) == false
   end
 
   def full?
