@@ -53,7 +53,7 @@ $ irb
 2.2.3 :004 >
 ```
 
-# Step 2: Tests and \*\_spec.rb files  
+# Step 3: Tests and \*\_spec.rb files  
 
 ## Use named subject with `described_class`
 
@@ -247,7 +247,7 @@ end
 
 The `respond_to` tests are an initial step you go through using the tests to drive the creation of an objects public interface, and can safely be deleted once you have more sophisticated tests that check both the interface methods and their responses (and associated changes in state)  
 
-# Step 3: Application code and \*.rb files
+# Step 4: Application code and \*.rb files
 
 ## Naming Convention Matching the Domain Model
 
