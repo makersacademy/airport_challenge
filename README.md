@@ -1,32 +1,22 @@
 [![Coverage Status](https://coveralls.io/repos/github/knowerlittle/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/knowerlittle/airport_challenge?branch=master)
 
 ##AIRPORT CHALLENGE
-_________________________________
 
-______
-_\____\___
-=  = ==(____MA____)
-  \_____\___________________,-~~~~~~~`-.._
-  /     o o o o o o o o o o o o o o o o  |\_
-  `~-.__       __..----..__                  )
-        `---~~\___________/------------`````
-        =  ===(_________)
+WEEKEND CHALLENGE FOR WEEK 1 .
 
-WEEKEND CHALLENEGE FOR WEEK 1 .
-_________________________________
 To build a program by TDD.
 To Feature and Unit test each step of the process.
 To use the SRP (Single Responsibility Principle) for program design.
 
 ##FILES
-_________________________________
+
 1. airport.rb
 2. plane.rb
 3. weather.rb
 4. feature_test.rb
 
 ##FULFILLS ALL USER STORIES
-_________________________________
+
   1. I want to instruct a plane to land at an airport and confirm that it has landed.
     (Shows the airport's apron with the new plane added)
   2. I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
@@ -41,7 +31,7 @@ _________________________________
     (DEFAULT_CAPACITY can be set with attr_accessor)
 
 ##EDGE CASES // Prevented by Guard Conditions
-_________________________________
+
   1. Planes only take off from airports they are in
   2. Planes cannot be in more than one airport at once.
   3. Flying planes cannot take off.
