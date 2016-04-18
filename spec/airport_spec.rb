@@ -1,7 +1,7 @@
 require "airport"
 
 describe Airport do
-  let(:plane) {spy :plane}
+  let(:plane) { spy :plane }
   let(:landed_plane) { double(:landed_plane, landed?: true, takeoff: false) }
   let(:flying_plane) {double(:flying_plane, landed?: false, land: true) }
   subject(:airport) { described_class.new }
