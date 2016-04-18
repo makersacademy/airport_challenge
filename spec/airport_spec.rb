@@ -26,7 +26,7 @@ describe Airport do
 					end
 					it '#receive should tell the plane landing failed' do
 						6.times { airport_with_goodweather.receive(plane) }
-						expect(plane).to have_received(:land_fails).with("full")
+						expect(plane).to have_received(:land_fails).with(:full)
 					end
 					it '#receive should not store the plane when it already has 10 planes if no custom capacity is set' do
 						airport = Airport.new
@@ -43,7 +43,7 @@ describe Airport do
 					end
 					it '#receive should tell the plane landing failed' do
 						airport_with_badweather.receive(plane)
-						expect(plane).to have_received(:land_fails).with("weather")
+						expect(plane).to have_received(:land_fails).with(:weather)
 					end
 				end
 			end
