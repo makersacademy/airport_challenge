@@ -62,8 +62,8 @@ describe Airport do
     end
 
     it "returns run_way for airport with planes in" do
-      subject.instance_variable_set(:@run_way, [plane_in_airport,plane_in_airport])
-      expect(subject.run_way_roll_call).to eq [plane_in_airport,plane_in_airport]
+      subject.instance_variable_set(:@run_way, [plane_in_airport])
+      expect(subject.run_way_roll_call).to eq [plane_in_airport]
     end
   end
 

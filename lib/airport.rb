@@ -34,7 +34,7 @@ class Airport
   end
 
   def insult(plane)
-    "You been on the wacky-backy, You're in #{plane.location}"
+    "You yanking my crank? You're in #{plane.location}"
   end
 
   private
@@ -47,7 +47,7 @@ class Airport
     plane.location == self
   end
 
-  def run_way_check(plane, &block)
+  def run_way_check plane, &block
     return "You're still on the ground moron" unless plane.flying?
     return insult(plane) unless present?(plane)
     yield block
