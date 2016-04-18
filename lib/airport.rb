@@ -8,7 +8,6 @@ attr_reader :plane_holder, :capacity
   def initialize (capacity=CAPACITY)
     @plane_holder= []
     @capacity=capacity
-
   end
 
   def land(plane)
@@ -26,8 +25,8 @@ attr_reader :plane_holder, :capacity
     @plane_holder.pop
   end
 
-def full?
-  @plane_holder.length >= @capacity
-end
-
+private
+  def full?
+    @plane_holder.length >= @capacity
   end
+end
