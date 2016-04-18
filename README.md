@@ -1,5 +1,4 @@
-https://travis-ci.org/tigretoncio/airport_challenge.svg?branch=master
-Airport Challenge
+Airport Challenge  [![Build Status](https://travis-ci.org/tigretoncio/airport_challenge.svg?branch=master)](https://travis-ci.org/tigretoncio/airport_challenge)
 =================
 
 ```
