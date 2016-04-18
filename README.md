@@ -16,12 +16,61 @@ Airport Challenge version 1 17/04/2016
 Airport Challenege is software to control the flow of planes at an airport. The planes can land and take off provided that the weather
 is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-
 I've writtend the program with two classes - Airport and Plane,
 Airport has the methods for landing and take off. The planes are also stored within an array in Airport Class.
 The Plane class has the Weather method. This is wrong and should have its own class.
+The plane objects should also be stored in a hash so that the unique planes take off and land.
 
-feature test
+These issues will be addressed in the next version.
+
+
+feature tests
+-------------
+
+feature test - for the purpose of the feature test the weather setter is used to change the weather as the storm method uses random method.
+
+In normal running of the program the storm method is called on an instance of a Plane.
+
+require "./lib/airport"
+plane = Plane.new
+plane.weather
+plane.storm <---- here you would run the storm method.
+plane.weather
+plane.weather
+heathrow = Airport.new
+heathrow.land(plane)
+heathrow.plane_holder
+
+below the storm method is called until true...
+
+[2] pry(main)> require "./lib/airport"
+=> true
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007fa534987cc8 @weather=false>
+[4] pry(main)> plane.weather
+=> false
+[5] pry(main)> plane.storm
+=> false
+[6] pry(main)> plane.storm
+=> false
+[7] pry(main)> plane.storm
+=> false
+[8] pry(main)> plane.storm
+=> false
+[9] pry(main)> plane.storm
+=> false
+[10] pry(main)> plane.storm
+=> false
+[11] pry(main)> plane.storm
+=> true
+[12] pry(main)> plane.weather
+=> true
+[13] pry(main)> heathrow = Airport.new
+=> #<Airport:0x007fa535926378 @capacity=10, @plane_holder=[]>
+[14] pry(main)> heathrow.land(plane)
+RuntimeError: can't land in a storm
+feature tests
+
 -------------
 
 As an air traffic controller
