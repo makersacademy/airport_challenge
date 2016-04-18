@@ -1,7 +1,5 @@
 class Plane
 
-attr_accessor :landed
-
   def initialize(landed = true)
     @landed = landed
   end
@@ -17,5 +15,8 @@ attr_accessor :landed
   def docked?
     landed
   end
+
+  private
+  attr_accessor :landed
 
 end
