@@ -18,7 +18,7 @@ class Airport
     fail "Too stormy to land" if stormy?
     fail "Plane already landed" if in_airport?(plane)
     plane.landed
-    @planes << plane
+    planes << plane
   end
 
   def take_off(plane)
@@ -26,24 +26,24 @@ class Airport
     fail "Too stormy to take off" if stormy?
     fail "Plane not at airport" unless in_airport?(plane)
     plane.departed
-    @planes.delete(plane)
+    planes.delete(plane)
   end
 
   private
   def full?
-    @planes.count >= capacity
+    planes.count >= capacity
   end
 
   def empty?
-    @planes.empty?
+    planes.empty?
   end
 
   def stormy?
-    @weather.stormy?
+    weather.stormy?
   end
 
   def in_airport?(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 
 end
