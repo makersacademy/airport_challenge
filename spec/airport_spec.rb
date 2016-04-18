@@ -6,6 +6,12 @@ describe Airport do
   let(:weather){double :weather, stormy?: false}
   subject(:airport){ described_class.new(weather) }
 
+  it "will take different values for capacity" do
+    random_cap = rand(40)
+    airport = Airport.new weather, random_cap
+    expect(airport.capacity).to eq random_cap
+  end
+
   describe '#land_plane' do
 
     it "lands a plane" do
@@ -51,12 +57,6 @@ describe Airport do
       b = Plane.new
       expect{airport.take_off(b)}.to raise_error('Plane cannot take off')
     end
-  end
-
-  it "will take different values for capacity" do
-    random_cap = rand(40)
-    airport = Airport.new weather, random_cap
-    expect(airport.capacity).to eq random_cap
   end
 
 end
