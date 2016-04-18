@@ -31,7 +31,7 @@ The relevance of the subsequent steps may depend on how far the reviewee got wit
 
 ## README is updated
 
-Please do update your README following the [contribution notes](https://github.com/makersacademy/airport-challenge/blob/master/CONTRIBUTING.md), i.e.
+Please do update your README following the [contribution notes](https://github.com/makersacademy/airport_challenge/blob/master/CONTRIBUTING.md), i.e.
 * Make sure you have written your own README that briefly explains your approach to solving the challenge.
 * If your code isn't finished it's not ideal but acceptable as long as you explain in your README where you got to and how you would plan to finish the challenge.
 
