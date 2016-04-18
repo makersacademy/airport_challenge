@@ -2,11 +2,6 @@ require_relative 'airport'
 
 class Weather
 
-
-# def initialize
-#   @weather = weather
-# end
-
 def stormy?
   random_weather == :stormy
 end
