@@ -19,7 +19,7 @@ class Airport
   def take_off plane
     fail "No planes in airport." if @planes.empty?
     fail "Not safe to take off." if safe? == false
-    fail "This plane has already taken off." if !@planes.include? plane
+    fail "Plane has already taken off." if !@planes.include? plane
     @planes.delete(plane)
   end
 
