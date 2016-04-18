@@ -21,7 +21,7 @@ describe Airport do
 
     it 'raises an error when the weather is stormy' do 
       allow(subject).to receive(:stormy?).and_return true 
-      expect{ subject.launch(landed_plane) }.to raise_error 'Unable to takeoff in stormy weather.'
+      expect{ subject.launch(landed_plane) }.to raise_error 'Grounded: stormy weather.'
     end
   end
 
@@ -45,7 +45,7 @@ describe Airport do
 
     it 'raises an error when the weather is stormy' do 
       allow(subject).to receive(:stormy?).and_return true 
-      expect{ subject.land(flying_plane) }.to raise_error 'Unable to land in stormy weather.'
+      expect{ subject.land(flying_plane) }.to raise_error 'Cannot land: stormy weather.'
     end
 
   describe 'has a default or variable plane capacity' do 
