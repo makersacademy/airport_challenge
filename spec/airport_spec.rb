@@ -5,24 +5,18 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double(:plane) }
   let(:duplicates) { allow(airport).to receive(:in_airport?).and_return false }
-  before { allow(plane).to receive(:landed) }
+  before { allow(plane).to receive(:land) }
 
   describe "#planes" do
 
     it 'a new airport has no planes' do
-      expect(airport.planes).to eq []
-    end
-
-    it 'lists all landed planes' do
-      allow(airport).to receive(:stormy?).and_return false
-      airport.land(plane)
-      expect(airport.planes).to eq [plane]
+      expect(airport).to be_empty #references the method and calls it with a ? predicate matcher
     end
 
     it "has a variable capacity" do
       capacity = 20
       airport = Airport.new(capacity)
-      expect(airport.capacity). to eq capacity
+      expect(airport.capacity).to eq capacity
 		end
 
 		it "sets the the capacity to a default value when capacity is not provided" do
@@ -41,9 +35,9 @@ describe Airport do
 
          it 'prevents landing when airport is full' do
            duplicates
-           airport.capacity.times { airport.land(plane)}
+           airport.capacity.times { airport.land(plane)} #airport.land(double (:plane)) - helper method with relevant stubs?
            message = "Airport full"
-           expect { subject.land(plane)}.to raise_error message
+           expect { airport.land(plane)}.to raise_error message
          end
 
         it 'a plane that has landed cannot land again' do
@@ -66,7 +60,7 @@ describe Airport do
 
   describe '#take_off' do
 
-    before { allow(plane).to receive(:departed) }
+    before { allow(plane).to receive(:depart) }
 
     context 'when conditions are not stormy' do
       before { allow(airport).to receive(:stormy?).and_return false }
@@ -79,7 +73,7 @@ describe Airport do
         it 'does not have the plane after take off' do
           airport.land(plane)
           airport.take_off(plane)
-          expect(airport.planes).to_not include plane
+          expect(airport.in_airport?(plane)).to eq false
         end
 
         it 'prevents take off when airport is empty' do
@@ -92,7 +86,7 @@ describe Airport do
            plane2 = Plane.new
            subject.land(plane2)
            message = "Plane not at airport"
-           expect { subject.take_off(plane1) } .to raise_error message
+           expect { airport.take_off(plane1) } .to raise_error message
          end
     end
 

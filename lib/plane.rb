@@ -1,4 +1,3 @@
-
 class Plane
 
   attr_reader :landed_status
@@ -7,11 +6,11 @@ class Plane
     @landed_status = false
   end
 
-  def landed
+  def land
     @landed_status = true
   end
 
-  def departed
+  def depart
     @landed_status = false
   end
 

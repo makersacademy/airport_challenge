@@ -23,7 +23,7 @@ gatwick = Airport.new(1)
       context 'User Story 1:' do
         it 'instructs a plane to land and confirms plane has landed' do
           gatwick.land(easyjet)
-          expect(easyjet.landed).to eq true
+          expect(easyjet.land).to eq true
         end
       end
 
