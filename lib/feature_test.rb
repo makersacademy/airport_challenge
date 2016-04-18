@@ -89,9 +89,11 @@ plane6 = Plane.new
 gatwick.confirm_landing(weather, plane1)
 gatwick.confirm_landing(weather, plane2)
 gatwick.confirm_landing(weather, plane3)
+
 gatwick.confirm_landing(weather, plane4)
 gatwick.confirm_landing(weather, plane5)
 gatwick.confirm_landing(weather, plane6)
+
 
 luton.confirm_landing(weather, plane6)
 
