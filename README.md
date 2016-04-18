@@ -1,3 +1,7 @@
+[![Coverage Status](https://coveralls.io/repos/github/jackhardy1/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/jackhardy1/airport_challenge?branch=master)
+
+[![Build Status](https://travis-ci.org/jackhardy1/airport_challenge.svg?branch=master)](https://travis-ci.org/jackhardy1/airport_challenge)
+
 Airport Challenge - to edit
 
 
