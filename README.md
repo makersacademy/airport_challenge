@@ -35,7 +35,9 @@ Regarding tests a pragmatic approach has been taken in order to ensure the major
 
 It was also very important to stub the random weather generator for the relevant test cases, when testing cases with higher priority than weather, to avoid that the tests could pass or fail randomly depending on the weather random result.
 
-I finde Travis CI a moody website and application  It did not worked during all weekend, I got a ERR_CONNECTION_TIMED_OUT on the web page.  It worked early Morning so I added the badge as recommended.
+I find Travis CI a moody website and application  It did not worked during all weekend, I got a ERR_CONNECTION_TIMED_OUT on the web page.  It worked early Morning so I added the badge as recommended.
+
+Finally, it has been considered that the probability of Stormy weather is .1.  This has been achieved generating a random number between 0 and 9, and assigning the Stormy condition if the number is 9.
 
 Feature test example
 ---------
