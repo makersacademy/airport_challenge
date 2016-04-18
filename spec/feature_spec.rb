@@ -12,6 +12,14 @@ gatwick = Airport.new(1)
   context 'when conditions are not stormy' do
     before { allow(gatwick).to receive(:stormy?).and_return false }
 
+    it 'mutiple planes taking off and landing' do
+      allow(heathrow).to receive(:stormy?).and_return false
+      heathrow.land(easyjet)
+      heathrow.land(ryanair)
+      heathrow.take_off(easyjet)
+      heathrow.take_off(ryanair)
+    end
+
       context 'User Story 1:' do
         it 'instructs a plane to land and confirms plane has landed' do
           gatwick.land(easyjet)
