@@ -2,8 +2,8 @@ require 'plane'
 
 describe Plane do
   describe "#initialize" do
-    it "creates plane in neutral state" do
-      expect(subject.flight).to eq(nil)
+    it "creates plane in flight" do
+      expect(subject.flight).to eq(true)
     end
   end
 

@@ -2,7 +2,7 @@ class Plane
   attr_accessor :flight
 
   def initialize
-    @flight
+    @flight = true
   end
 
   def landed
