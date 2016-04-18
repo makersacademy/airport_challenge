@@ -28,7 +28,7 @@ class Airport
 		def depart(plane)
 	 			fail "Unable to take off due to stormy weather" if self.weather.stormy?
 	 			fail "Plane not in the airport" if self.landed?(plane) == false
-	 			planes_in_airport.pop
+	 			planes_in_airport.delete(plane).depart
 	 	end
 
 	 	def departed?(plane)
