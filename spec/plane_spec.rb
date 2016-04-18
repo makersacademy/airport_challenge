@@ -29,8 +29,8 @@ describe Plane do
 			expect(subject.land(airport)).to eq "Plane landed successfully..."
 		end
 		it '#land_fails should return a status update explaining why the plane didn\'t land' do
-			expect(subject.land_fails("full")).to eq "Plane failed to land because airport is already full"
-			expect(subject.land_fails("weather")).to eq "Plane failed to land because of bad weather"
+			expect(subject.land_fails(:full)).to eq "Plane failed to land because airport is already full"
+			expect(subject.land_fails(:weather)).to eq "Plane failed to land because of bad weather"
 		end
 	end
 
@@ -61,7 +61,7 @@ describe Plane do
 		it '#take_off should set the plane\'s location to "sky"' do
 			subject.land(airport)
 			subject.take_off
-			expect(subject.location).to eq "sky"
+			expect(subject.location).to eq :sky
 		end
 		it '#take_off should return a status update explaining that the plane has taken off successfully' do
 			subject.land(airport)

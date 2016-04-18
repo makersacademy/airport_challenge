@@ -12,9 +12,9 @@ class Airport
 
 	def receive(plane)
 		if weather.stormy?
-			plane.land_fails("weather")
+			plane.land_fails(:weather)
 		elsif full?
-			plane.land_fails("full")
+			plane.land_fails(:full)
 		else
 			@landed << plane
 			plane.land(self)
