@@ -46,22 +46,23 @@ describe Airport do
 
   describe '#take_off' do
 
+    before(:each) do
+      airport.land(plane)
+    end
+
     context 'if the weather is not stormy' do
 
       it 'instructs the plane to take off' do
-        airport.land(plane)
         airport.take_off(plane)
         expect(plane).to have_received(:take_off)
       end
 
       it 'ensure the plane is no longer in the hangar' do
-        airport.land(plane)
         airport.take_off(plane)
         expect(airport.hangar).not_to include plane
       end
 
       it 'cannot ask a plane that is not in the airport to take off' do
-        airport.land(plane)
         message = 'Plane not in the hangar!'
         expect{airport.take_off(plane_1)}.to raise_error message
       end
@@ -71,7 +72,6 @@ describe Airport do
     context 'if the weather is stormy' do
 
       it 'raises an error to tell operator it is stormy' do
-        airport.land(plane)
         allow(weather).to receive(:stormy?).and_return true
         message = 'Stomy weather! Do not take off!'
         expect{airport.take_off(plane)}.to raise_error message
