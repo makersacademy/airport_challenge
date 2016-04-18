@@ -1,5 +1,6 @@
 # Airport Challenge
 Makers Academy Week 1 Weekend Challenge
+
 [![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://travis-ci.org/travis-ci/travis-web)
 
 We had to implement the following user stories using TDD.
