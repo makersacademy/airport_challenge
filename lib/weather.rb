@@ -1,12 +1,6 @@
-class Weather
+module Weather
 
-  attr_reader :weather
-
-  def initialize
-    @weather = weather
-  end
-
-  def stormy?
+def stormy?
     rand_weather == :stormy
   end
 
