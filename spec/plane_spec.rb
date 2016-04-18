@@ -7,4 +7,9 @@ describe Plane do
   it "reports when not landed" do
     expect(subject.flying).to eq false
   end
+
+  it "reports when landed" do
+    expect(subject.landed?).to eq true
+  end
+
 end
