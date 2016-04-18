@@ -573,7 +573,7 @@ Style/WhileUntilDo:
   Description: 'Checks for redundant do after while or until.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-multiline-while-do'
   Enabled: true
-# enable for later challenge 
+# enable for later challenge
 
   # Align ends correctly.
 Lint/EndAlignment:
@@ -781,7 +781,7 @@ Style/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
   SupportedStyles:
   - empty_lines
-  - no_empty_lines  
+  - no_empty_lines
 
 Style/EmptyLinesAroundBlockBody:
   Enabled: false
@@ -1105,13 +1105,13 @@ Style/WhileUntilModifier:
                  single-line body.
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#while-as-a-modifier'
   Enabled: false
-# enable for later challenge 
+# enable for later challenge
 
 Style/WordArray:
   Description: 'Use %w or %W for arrays of words.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-w'
   Enabled: false
-# enable for later challenge  
+# enable for later challenge
 
 
 Rails/ActionFilter:
@@ -1167,4 +1167,3 @@ Rails/TimeZone:
 Rails/Validation:
   Description: 'Use validates :attribute, hash of validations.'
   Enabled: false
-
