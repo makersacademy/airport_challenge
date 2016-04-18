@@ -1,40 +1,12 @@
-Airport Challenge
+Airport Challenge [![Build Status](https://travis-ci.org/omajul85/airport_challenge.svg?branch=master)](https://travis-ci.org/omajul85/airport_challenge)
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+**Author:** Omar Alvarez
 
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+I have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
 As an air traffic controller 
@@ -62,30 +34,68 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+The task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. I need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In my tests, the probability of bad weather is 30%. The weather is checked by the airport traffic controllers.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+The code defends against edge cases, such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+From user stories to classes
+----------------------------
 
-Please create separate files for every class, module and test suite.
+The application has been modeled using 2 classes: `Airport` and `Plane`. The weather is not a class itself. In this example, the Airport has a private method that checks if the weather is fine or not and instructs the planes accordingly.
 
-In code review we'll be hoping to see:
+**Airport class:**
+- When initialized, requires 3 args: Name of the airport, Plane class, capacity *optional*.
+- The Plane class passed during initialization allow the airport to create some planes objects.
+- It has 4 public methods: 
+```ruby
+  receive_plane(plane)
+  release_plane(plane)
+  ready_for_landing?
+  ready_for_taking_off?
+```
+ `receive_plane`can be used in 2 cases: if you want to add a plane that comes from the factory, and also is invoked when a plane lands.
+ `release_plane` can be used in 2 cases: if you want to remove a plane from the list of available planes (maybe for sending to maintenance, and also is invoked when a plane takes off.
+ `ready_for_landing` and `ready_for_taking_off` are methods that check if the conditions are met in order to instruct a plane for landing or taking off. The conditions are the weather and the capacity.
+ 
+ **Plane class:**
+- When a new plane is created, by default it has the status `:landed`.
+- It has 2 public methods:
+```ruby
+  land(airport)
+  take_off(airport)
+```
+ `land(airport)` invokes the method receive_plane of the airport class and set the status of the plane to `:landed` if conditions were met for landing. If conditions were not met, it raises an error.
+ `take_off(airport)` invokes the method release_plane of the airport class and set the status of the plane to `:flying` if conditions were met for taking off. If conditions were not met, it raises an error.
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+Instructions
+------------
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+From a user's perspective, this is how the application can be used (do not forget to require the files inside the irb):
 
-**BONUS**
+```
+$ irb
+2.3.0 :002 > airport = Airport.new("CDG", Plane, 10)
+ => #<Airport:0x007fea7c024e28 @name="CDG", @capacity=10, @planes=[#<Plane:0x007fea7c024dd8 @status=:landed>, #<Plane:0x007fea7c024db0 @status=:landed>]> 
+2.3.0 :003 > plane = Plane.new
+ => #<Plane:0x007fea7c02e3b0 @status=:landed> 
+2.3.0 :004 > airport.receive_plane plane
+ => [#<Plane:0x007fea7c024dd8 @status=:landed>, #<Plane:0x007fea7c024db0 @status=:landed>, #<Plane:0x007fea7c02e3b0 @status=:landed>] 
+2.3.0 :005 > plane.take_off airport
+ => #<Plane:0x007fea7c02e3b0 @status=:flying> 
+2.3.0 :006 > plane.land airport
+ => "Plane #<Plane:0x007fea7c02e3b0> has landed at CDG" 
+2.3.0 :007 > 
+```
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+RSpec
+-----
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+For testing the airport class, I did not use double since when an airport is initialized, by default it contains 2 planes. So, I used one of those planes for testing: `let(:plane) { subject.planes.first }`.
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+For testing the plane class I used an airport double:
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
+let(:airport) { double(:airport, :name => "CDG", :ready_for_landing? => \
+  true, :ready_for_taking_off? => true, :planes => [subject]) }
+```
+For testing the exceptions on my RSpec file, I simply call the functions that should raise the error. Since the errors are handled using `rescue`, the function prints the error message that is raised. I did not find a better way to test the exceptions in RSpec, but at least, in the RSpec results you can see that the error was raised and rescued as expected.
