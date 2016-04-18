@@ -83,26 +83,26 @@ feature 'Feature Tests' do
     expect(Airport::DEFAULT_CAPACITY).not_to eq(airport.capacity)
   end
 
-    def take_off_and_land_planes
-      airport = Airport.new
-      destination = Airport.new
-      plane1 = Plane.new(airport)
-      plane2 = Plane.new(airport)
-      plane3 = Plane.new(airport)
-      plane4 = Plane.new(airport)
-      plane5 = Plane.new(airport)
+  def take_off_and_land_planes
+    airport = Airport.new
+    destination = Airport.new
+    plane1 = Plane.new(airport)
+    plane2 = Plane.new(airport)
+    plane3 = Plane.new(airport)
+    plane4 = Plane.new(airport)
+    plane5 = Plane.new(airport)
 
-      airport.update_weather until airport.update_weather == "sunny"
-      5.times do
+    airport.update_weather until airport.update_weather == "sunny"
+    5.times do
       airport.take_off(airport.planes.last, airport)
-      end
-
-      destination.update_weather until destination.update_weather == "sunny"
-      destination.land(plane1, destination)
-      destination.update_weather until destination.update_weather == "sunny"
-      destination.land(plane2, destination)
-      destination.update_weather until destination.update_weather == "sunny"
-      destination.land(plane3, destination)
     end
+
+    destination.update_weather until destination.update_weather == "sunny"
+    destination.land(plane1, destination)
+    destination.update_weather until destination.update_weather == "sunny"
+    destination.land(plane2, destination)
+    destination.update_weather until destination.update_weather == "sunny"
+    destination.land(plane3, destination)
+  end
 
 end

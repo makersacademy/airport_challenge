@@ -69,10 +69,18 @@ The next step was to imagine the things both planes and airports do - and I figu
 
 A new spec file was created, aiming at testing the behavior of a "communicator" module. Gradually I could create a module, communicator, that handled exceptions that arised when a plane could not land or take off at an airport, and also control the actual landings and take offs, were they allowed.
 
-I decided not to create a separate weather class, but instead allowed for airports to update their weather status by simply calling a method that returns a randomized weather. So it's not possible to manipulate the weather, which is also, unfortunately, the case in real life. New airports are always nice and sunny, but they update weather status automatically every time they dock a plane. We can also always call the method ourselves from the airport in case we believe we are stuck in a 'never ending storm'.
+I also created a weather_checker module allowing airports to update weather data.
+
+
+Functionality
+-----
+
+Airports are always instantiated with sunny weather and no planes. Airplanes are preferably instantiated by passing the airport the plane belongs to as a parameter on initialization.  
+
+It is not possible to 'set' a weather, since in real life that is unfortunately the case as well. There is a module called weather_checker included with a method that however makes it possible to get weather info, thus allowing us to wait until it is sunny again if we want to allow planes to land and take off. Just to get some variety, airports automatically update their weather status every time a plane is docked.
 
 The result is that both a plane and an airport can go ahead and say "land plane" or "take off". A plane for example, can land itself and then the airport can tell it to take off. Or the other way around. Or the airport calls all the shots, or the plane. It doesen't matter since all communication and implementation of landings and take offs take place within the communicator module, indirectly setting all object attributes accordingly. Pretty neat!
 
-I do however feel I have one weakness in my design: When initializing a plane, if not given a specific airport that it 'belongs to', it will simply go ahed and instantiate a new airport. Had I had more time, I would have looked deeper into resolving this issue. Could also refactor airport methods slightly. For now I feel like I have had a great opportunity to further practise TDD, SOLID principles and general Rspec functionality and logic.
+I do however feel I have one weakness in my design: When initializing a plane, if not given a specific airport that it 'belongs to', it will simply go ahed and instantiate a new airport. Had I had more time, I would have looked deeper into resolving this issue. For now I feel like I have had a great opportunity to further practise TDD, SOLID principles and general Rspec functionality and logic.
 
 I also included an Rspec feature test for the six user stories and a simple feature test for a few planes taking off from one airport and then landing at another airport.
