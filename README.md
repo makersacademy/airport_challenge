@@ -1,91 +1,106 @@
 Airport Challenge
 =================
-
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+Tree
 ---------
+airport_challenge
+- lib
+  - airport.rb
+  - feature_test.rb
+  - plane.rb
+  - weather.rb
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+- spec
+  - airport.rb
+  - plane_spec.rb
+  - spec_helper.rb
+  - weather_spec.rb
 
-Steps
--------
+My approach at solving the challenge
+---------
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
+```
 
-1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
-2. Fork this repo, and clone to your local machine
-3. Run the command `gem install bundle` (if you don't have bundle already)
-4. When the installation completes, run `bundle`
-3. Complete the following task:
+1. I needed classes for airports and planes
+2. I needed methods of landing (in the airport class) and confirming a plane has landed (in the plane class)
 
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+1. I needed methods of instructing the plane to take off (in the airport class) and confirming a plane has landed (in the plane class)
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+1. I needed a weather class so I could create instances of weather, using randomization so that it would occasionally be stormy.
+2. I needed a private method in the airport class which checked if the weather is stormy by calling on the weather class.
+3. I needed to raise an error to prevent takeoff when the weather is stormy (in my takeoff method)
 
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+
+1. Same as above, but for landing.
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+
+1. I needed to create a private method that would tell me when the airport had reached capacity.
+2. I needed to raise an error when trying to land a plane when the airport is full in the landing method.
+
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+1. I needed to pass an argument through the initialize method in the airport class, that sets a capacity to the number of planes in an instance of the airport, and where a default value is set by a constant when no argument is passed through (DEFAULT_CAPACITY).
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```
+Edge Cases
+```
+1. I needed to raise an error when planes tried to take off from airports they were not at.
+2. I needed to raise an error when planes tried to land when they were already landed, or tried to take off when they were already taken-off.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
+Installation Instructions
+-----
+- Fork the repo
+- Clone the repo to your computer: git clone [repo url]
+- Install bundle gem
 
-In code review we'll be hoping to see:
+Code Example (How it's used)
+-----
+```
+airport = Airport.new
+plane = Plane.new
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+Landing a plane:
+airport.land(plane)
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+Instructing a plane to take off:
+airport.takeoff(plane)
 
-**BONUS**
+Checking if a plane is landed or in the air:
+plane.landed?
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+```
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Author
+-----
+Erika Pheby
