@@ -3,6 +3,10 @@ require "plane"
 require "weather"
 
 describe Weather do
+
+	it "is stormy" do
+		subject.stormy?
+	end
 	
 	it "Returns true if stormy" do
 		allow(subject).to receive (:stormy?) {true}
