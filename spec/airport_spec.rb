@@ -50,7 +50,7 @@ describe Airport do
       expect(subject.ready_for_taking_off?).to be true
     end
     
-    it "does not allow landing if conditions are not met" do
+    it "does not allow taking off if conditions are not met" do
       allow(subject).to receive(:check_weather).and_return :stormy
       expect(subject.ready_for_taking_off?).to be false
     end

@@ -38,10 +38,39 @@ The task is to test drive the creation of a set of classes/modules to satisfy al
 
 The code defends against edge cases, such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
+From user stories to classes
+----------------------------
+
+The application has been modeled using 2 classes: `Airport` and `Plane`. The weather is not a class itself. In this example, the Airport has a private method that checks if the weather is fine or not and instructs the planes accordingly.
+
+**Airport class:**
+- When initialized, requires 3 args: Name of the airport, Plane class, capacity *optional*.
+- The Plane class passed during initialization allow the airport to create some planes objects.
+- It has 4 public methods: 
+```ruby
+  receive_plane(plane)
+  release_plane(plane)
+  ready_for_landing?
+  ready_for_taking_off?
+```
+ `receive_plane`can be used in 2 cases: if you want to add a plane that comes from the factory, and also is invoked when a plane lands.
+ `release_plane` can be used in 2 cases: if you want to remove a plane from the list of available planes (maybe for sending to maintenance, and also is invoked when a plane takes off.
+ `ready_for_landing` and `ready_for_taking_off` are methods that check if the conditions are met in order to instruct a plane for landing or taking off. The conditions are the weather and the capacity.
+ 
+ **Plane class:**
+- When a new plane is created, by default it has the status `:landed`.
+- It has 2 public methods:
+```ruby
+  land(airport)
+  take_off(airport)
+```
+ `land(airport)` invokes the method receive_plane of the airport class and set the status of the plane to `:landed` if conditions were met for landing. If conditions were not met, it raises an error.
+ `take_off(airport)` invokes the method release_plane of the airport class and set the status of the plane to `:flying` if conditions were met for taking off. If conditions were not met, it raises an error.
+
 Instructions
 ------------
 
-From a user's perspective, this is how the application can be used:
+From a user's perspective, this is how the application can be used (do not forget to require the files inside the irb):
 
 ```
 $ irb
