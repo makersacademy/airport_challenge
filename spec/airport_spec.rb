@@ -43,7 +43,6 @@ let(:plane) {double :plane}
     allow(plane).to receive(:location=).with("in_the_air")
     allow(plane).to receive(:location).and_return(subject)
     subject.planes << plane
-    expect(subject.planes).to include(plane)
     subject.take_off(plane)
     expect(subject.planes).not_to include(plane)
   end
@@ -85,7 +84,7 @@ let(:plane) {double :plane}
   end
 
   it 'should only let planes take off from airports they are in' do
-    
+
   end
 
   it 'should not take off planes which are already in the air' do
