@@ -19,7 +19,21 @@ Travis CI has been used to test all stages of the build and the status can be se
 Modules and classes used
 ------------------------
 The solution makes use of the following classes and modules, each stored in a file of the same name:
+- Airport (class)
+  - land_plane (public method)
+  - launch_plane (public method)
+- Plane (class)
+  - land (public method)
+  - take_off (public method)
+  - docked? (public method)
+- Weather (module)
+  - stormy? (method)
+  - random_outlook (method)
 
 Solution Explained
 ------------------
 The following is a brief explanation of the solution:
+- The weather is invoked through a module included in the airport class that generates a random  
+  outlook based on a weekly forecast provided in an array
+- The only methods used in the plane class is change the status of landed and are recalled using docked?
+- 
