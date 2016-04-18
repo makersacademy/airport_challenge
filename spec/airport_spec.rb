@@ -7,13 +7,13 @@ describe Airport do
   let (:goodweather) {double :goodweather, goodweather?: true}
 
 
-  context "#initialize" do
+  context "Initialize" do
 
     it "initializes with a DEFAULT_CAPACITY of 20" do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
-    it "allows a default value to be set when creating a new bike" do
+    it "allows a default value to be set when creating a new airport" do
       large_airport = Airport.new 25
       expect(large_airport.capacity).to eq 25
     end

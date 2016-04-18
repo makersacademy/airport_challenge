@@ -13,7 +13,7 @@ class Airport
   end
 
   #Landing checks weather and landing space availability
-  #Weather class contains a method >> Good Weather << that creates a boolean that is 10% likely to be false (meaning bad weather)
+  #Weather class contains a method >> goodweather? << that creates a boolean that is 10% likely to be false (meaning bad weather)
   def land airplane, forecast = Weather.new.goodweather?
     if forecast == false
       fail "Can't land until skies are clear"
@@ -25,15 +25,18 @@ class Airport
   end
 
   #Take off includes weather check
+  #Assumption: each plane is a unique object
+
   def takeoff airplane, forecast = Weather.new.goodweather?
     if forecast == false
       fail "Can't get going until skies are clear"
+
     else
       @tarmac.delete(airplane)
     end
   end
 
-  #An easier to understand function
+  #Better english
   def on_tarmac
     @tarmac
   end
