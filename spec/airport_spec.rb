@@ -1,20 +1,24 @@
 require "airport"
 describe Airport do
-  it { expect(subject).to respond_to :stormy? }
-  it { expect(subject).to respond_to(:accept, :release).with(1).argument }
-
+  subject { Airport.new }
   let(:flying_plane) { double(:plane, flying?: true, land: false, take_off: true) }
   let(:grounded_plane) { double(:plane, flying?: false, land: false, take_off: true) }
 
-  it "should be initialized with @planes as empty" do
-    expect(subject.instance_variable_get(:@planes)).to be_empty
-  end
-  it "should be initialized with a default capacity" do
-    expect(subject.instance_variable_get(:@capacity)).to eq Airport::DEFAULT_CAPACITY
-  end
-  it "should be initialized with a specified capacity" do
-    LHR = Airport.new 30
-    expect(LHR.instance_variable_get(:@capacity)).to eq 30
+  describe "#initialize" do
+    it "should be initialized with @planes as empty" do
+      expect(subject.instance_variable_get(:@planes)).to be_empty
+    end
+    context "initialized with no capacity specified" do
+      it "should be initialized with a default capacity" do
+        expect(subject.instance_variable_get(:@capacity)).to eq Airport::DEFAULT_CAPACITY
+      end
+    end
+    context "initialized with a capacity specified" do
+      subject { Airport.new 30 }
+      it "should be initialized with a specified capacity" do
+        expect(subject.instance_variable_get(:@capacity)).to eq 30
+      end
+    end
   end
 
   describe "#accept" do
