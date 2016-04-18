@@ -2,6 +2,7 @@ require 'plane'
 require 'weather'
 
 class Airport
+    attr_reader :capacity
 
   DEFAULT_CAPACITY = 10
 
@@ -10,11 +11,7 @@ class Airport
     @capacity = capacity
   end
 
-  def capacity
-    @capacity
-  end
-
-  def plane_exit(planes)
+  def plane_exit
     fail "Can't let the plane out with this weather" if stormy?
     fail "Can't take where there is none" if empty
     @landed = false

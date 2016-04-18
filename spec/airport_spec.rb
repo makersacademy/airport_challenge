@@ -26,12 +26,14 @@ describe Airport do
       before { allow(airport).to receive(:stormy?) {false} }
       it 'can not accept more planes if the airport is full' do
         subject.arrival(:plane)
-        expect{Airport::DEFAULT_CAPACITY.times{subject.arrival(:plane)}}.to raise_error("No more planes for today mate")
+        message = "No more planes for today mate"
+        expect{10.times{subject.arrival(:plane)}}.to raise_error(message)
       end
     describe '#empty' do
 
-      it 'will not allow a plane to leave if there are no planes in the airport' do
-        expect{subject.plane_exit(:plane)}.to raise_error("Can't take where there is none")
+      it 'will not allow a plane to leave when airport is empty' do
+        message = "Can't take where there is none"
+        expect{subject.plane_exit}.to raise_error(message)
       end
     end
     end
@@ -41,7 +43,8 @@ describe Airport do
     before { allow(airport).to receive(:stormy?) {true} }
     it 'will not allow a plane to take off if the weather is stormy' do
         allow(airport).to receive(:stormy?) {true}
-        expect{subject.plane_exit(:plane)}.to raise_error("Can't let the plane out with this weather")
+        message = "Can't let the plane out with this weather"
+        expect{subject.plane_exit}.to raise_error(message)
     end
   end
   describe '#arrival' do
@@ -49,7 +52,8 @@ describe Airport do
     before { allow(airport).to receive(:stormy?) {true} }
     it 'will not allow a plane to land if the weather is stormy' do
       allow(airport).to receive(:stormy?) {true}
-      expect{subject.arrival(:plane)}.to raise_error("Can't let you land in this weather")
+      message = "Can't let you land in this weather"
+      expect{subject.arrival(:plane)}.to raise_error(message)
     end
   end
 end
