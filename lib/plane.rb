@@ -4,7 +4,7 @@ class Plane
 attr_accessor :landed
 attr_accessor :stormy
 
-DEFAULT_LANDED = true
+DEFAULT_LANDED = false
 DEFAULT_STORMY = false
 
 def initialize(landed = DEFAULT_LANDED, stormy = DEFAULT_STORMY)
@@ -13,7 +13,7 @@ def initialize(landed = DEFAULT_LANDED, stormy = DEFAULT_STORMY)
 end
 
 def land(airport)
-  if @landed == true
+  if self.landed? == true
     raise "But...we *are* landed!"
   end
   if @stormy

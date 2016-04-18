@@ -1,8 +1,11 @@
 require_relative 'plane.rb'
 
 class Airport
+
 DEFAULT_CAPACITY = 20
+
 attr_reader :capacity
+attr_accessor :landed
 
 def initialize(capacity = DEFAULT_CAPACITY)
   @capacity = capacity
@@ -19,7 +22,7 @@ def park(plane)
     plane.landed = false
   else
   @apron << plane
-end
+  end
 end
 
 end
