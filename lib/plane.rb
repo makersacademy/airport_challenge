@@ -1,21 +1,21 @@
 class Plane
 
   def initialize
-    @flying = true
+    $flying = true
   end
 
   def land
     fail 'Plane not flying' unless flying?
-    @flying = false
+    $flying = false
   end
 
   def take_off
     fail 'Plane already flying' if flying?
-    @flying = true
+    $flying = true
   end
 
   def flying?
-    @flying
+    $flying
   end
 
 end

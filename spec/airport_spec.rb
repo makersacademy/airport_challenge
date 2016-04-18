@@ -56,9 +56,13 @@ describe Airport do
     end
 
     it 'instructs plane to take off' do
+      plane1 = Plane.new
+      airport1 = Airport.new
       allow(subject).to receive(:empty?) {false}
-      expect(plane).to receive(:take_off)
-      subject.take_off(plane)
+      allow(subject).to receive(:land)
+      airport1.land(plane1)
+      expect(plane1).to receive(:take_off)
+      airport1.take_off(plane1)
     end
 
     it 'confirms plane left airport' do
@@ -76,7 +80,21 @@ describe Airport do
     it 'allows taking off when storm is over' do
       allow(subject).to receive(:empty?) {false}
       allow(subject).to receive(:stormy?) {false}
+      allow(plane).to receive(:land)
+      subject.land(plane)
       expect {subject.take_off(plane)}.not_to raise_error
+    end
+
+    it 'prevents take off if plane is not in airport' do
+      plane1 = Plane.new
+      airport1 = Airport.new
+      airport2 = Airport.new
+      allow(airport1).to receive(:empty?) {false}
+      allow(airport2).to receive(:empty?) {false}
+      allow(airport).to receive(:stormy?) {false}
+      allow(plane1).to receive(:land)
+      airport1.land(plane1)
+      expect {airport2.take_off(plane1)}.to raise_error 'Plane in different airport'
     end
   end
 
