@@ -53,7 +53,7 @@ $ irb
 2.2.3 :004 >
 ```
 
-# Step 2: Tests and \*\_spec.rb files  
+# Step 2: Tests and \*\_spec.rb files
 
 ## Use named subject with `described_class`
 
@@ -245,7 +245,7 @@ it 'fails when the airport is full' do
 end
 ```
 
-The `respond_to` tests are an initial step you go through using the tests to drive the creation of an objects public interface, and can safely be deleted once you have more sophisticated tests that check both the interface methods and their responses (and associated changes in state)  
+The `respond_to` tests are an initial step you go through using the tests to drive the creation of an objects public interface, and can safely be deleted once you have more sophisticated tests that check both the interface methods and their responses (and associated changes in state)
 
 # Step 3: Application code and \*.rb files
 
@@ -300,7 +300,7 @@ end
 
 Just delete commented out lines in your final submission.  Descriptive comments are just about okay, but please prefer to try and make the code describe itself, e.g.
 
-```ruby  
+```ruby
   def land(plane) # this lands the plane at the airport
     fail 'Cannot land since airport is full' if full?
     fail 'Unable to land due to stormy weather' if weather.stormy?
