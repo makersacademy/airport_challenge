@@ -1,0 +1,51 @@
+#Airport Challenge - Maggie Allen
+
+Goal
+To build a system of classes and methods which will interact to mimic the
+actions of planes at an airport with some permissions linked to the weather.
+The program was built using Test Driven Development and user stories were used
+to shape the build.
+
+User Stories
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
+
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is
+no longer in the airport
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+Method
+I began the challenge by reading all of the user stories and documentation to
+get an idea of the scope of the project. Then, taking each user story in turn,
+I used domain models to map out the features and interactions that would be
+required to complete the user story. Once this was clear, I wrote the first,
+simplest test for my code in rspec and ran it to see the failing test. Using
+the error messages as a guide, I then wrote the simplest code I could to fulfil
+the user story. This was repeated until the functionality required for the user
+story was complete and then repeated for each user story.
+
+Time Constraints
+I was unable to finish the challenge before the deadline this time. The code is
+complete for all user stories, but it doesn't cover all edge cases. The main
+area affected is the feature tests section - I struggled to write tests which
+could handle the random weather function and ran out of time before a solution
+could be found. I will attempt to finish this at a later stage by setting the
+weather inside my tests to ensure the test code runs smoothly.  
