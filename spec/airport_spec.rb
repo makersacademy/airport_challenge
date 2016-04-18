@@ -27,6 +27,10 @@ describe Airport do
       allow(plane).to receive(:land)
     end
 
+    before do
+      allow(subject).to receive(:stormy?) {false}
+    end
+
     it 'instructs plane to land' do
       expect(plane).to receive(:land)
       subject.land(plane)
@@ -47,6 +51,12 @@ describe Airport do
       expect {subject.land(plane)}.not_to raise_error
     end
 
+    it 'prevents plane from landing if not flying' do
+      allow(subject).to receive(:stormy?) {false}
+      allow(subject).to receive(:flying?) {false}
+      expect {subject.land(plane)}.to raise_error 'Plane not flying'
+    end
+
   end
 
   describe 'taking off plane' do
@@ -55,12 +65,18 @@ describe Airport do
       allow(plane).to receive(:take_off)
     end
 
+    before do
+      allow(subject).to receive(:stormy?) {false}
+    end
+
     it 'instructs plane to take off' do
       plane1 = Plane.new
       airport1 = Airport.new
-      allow(subject).to receive(:empty?) {false}
-      allow(subject).to receive(:land)
+      allow(airport1).to receive(:empty?) {false}
+      allow(airport1).to receive(:stormy?) {false}
+      allow(plane1).to receive(:land)
       airport1.land(plane1)
+      allow(airport1).to receive(:flying?) {false}
       expect(plane1).to receive(:take_off)
       airport1.take_off(plane1)
     end
@@ -68,6 +84,7 @@ describe Airport do
     it 'confirms plane left airport' do
       allow(plane).to receive(:land)
       subject.land(plane)
+      allow(subject).to receive(:flying?) {false}
       subject.take_off(plane)
       expect(subject.planes).not_to include(plane)
     end
@@ -82,6 +99,7 @@ describe Airport do
       allow(subject).to receive(:stormy?) {false}
       allow(plane).to receive(:land)
       subject.land(plane)
+      allow(subject).to receive(:flying?) {false}
       expect {subject.take_off(plane)}.not_to raise_error
     end
 
@@ -91,10 +109,20 @@ describe Airport do
       airport2 = Airport.new
       allow(airport1).to receive(:empty?) {false}
       allow(airport2).to receive(:empty?) {false}
-      allow(airport).to receive(:stormy?) {false}
+      allow(airport2).to receive(:stormy?) {false}
+      allow(airport1).to receive(:stormy?) {false}
       allow(plane1).to receive(:land)
       airport1.land(plane1)
+      allow(airport2).to receive(:flying?) {false}
       expect {airport2.take_off(plane1)}.to raise_error 'Plane in different airport'
+    end
+
+    it 'prevents plane from taking off if flying already' do
+      allow(subject).to receive(:flying?) {true}
+      allow(plane).to receive(:land)
+      airport.land(plane)
+      allow(subject).to receive(:empty) {false}
+      expect {subject.take_off(plane)}.to raise_error 'Plane already flying'
     end
   end
 
