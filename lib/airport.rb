@@ -24,7 +24,7 @@ DEFAULT_CAPACITY = 30
     fail 'Airport is empty' if empty?
     fail 'Too windy to take off' if stormy?
     fail 'Plane already flying' if flying?
-    fail 'Plane in different airport' unless @planes.include?(plane)
+    fail 'Plane not here' unless @planes.include?(plane)
     plane.take_off
     @planes.delete(plane)
   end

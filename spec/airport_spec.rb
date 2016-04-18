@@ -114,7 +114,7 @@ describe Airport do
       allow(plane1).to receive(:land)
       airport1.land(plane1)
       allow(airport2).to receive(:flying?) {false}
-      expect {airport2.take_off(plane1)}.to raise_error 'Plane in different airport'
+      expect {airport2.take_off(plane1)}.to raise_error 'Plane not here'
     end
 
     it 'prevents plane from taking off if flying already' do
@@ -137,7 +137,7 @@ describe Airport do
       expect {subject.land(plane)}.to raise_error 'Too windy to land'
     end
 
-  it 'prevents take off when stormy' do
+    it 'prevents take off when stormy' do
       allow(subject).to receive(:empty?) {false}
       allow(plane).to receive(:take_off)
       expect {subject.take_off(plane)}.to raise_error 'Too windy to take off'
