@@ -23,12 +23,12 @@ describe Airport do
       end
       it 'doesn\'t allow a plane to land when it is stormy' do
         allow(airport).to receive(:bad_weather?) { true }
-        message = 'It is stormy and is not safe for the plane to land'
+        message = 'It is not safe for the plane to land'
         expect { airport.land_plane(plane) }.to raise_error message
       end
       it 'doesn\'t allow a plane to land if airport is full' do
-         airport.capacity.times { airport.land_plane(plane) }
-         expect { airport.land_plane(plane) }.to raise_error 'Airport full'
+        airport.capacity.times { airport.land_plane(plane) }
+        expect { airport.land_plane(plane) }.to raise_error 'Airport full'
       end
     end
   end
@@ -46,7 +46,7 @@ describe Airport do
       end
       it 'doesn\'t allow a plane to take off when it is stormy' do
         allow(airport).to receive(:bad_weather?) { true }
-        message = 'It is stormy and is not safe for the plane to take off'
+        message = 'It is not safe for the plane to take off'
         expect { airport.launch_plane(plane) }.to raise_error message
       end
     end

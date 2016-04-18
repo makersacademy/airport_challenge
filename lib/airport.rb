@@ -16,14 +16,14 @@ class Airport
   end
 
   def land_plane(plane)
-    fail 'It is stormy and is not safe for the plane to land' if bad_weather?
+    fail 'It is not safe for the plane to land' if bad_weather?
     fail 'Airport full' if full?
     docked_planes << plane
     plane.land
   end
 
   def launch_plane(plane)
-    fail 'It\'s stormy and is not safe for the plane to take off' if bad_weather?
+    fail 'It is not safe for the plane to take off' if bad_weather?
     docked_planes.pop
     plane.take_off
   end
