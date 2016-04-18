@@ -2,11 +2,11 @@ require "airport"
 require "plane"
 
 describe Airport do
-  subject(:airport) {described_class.new(100)}
-  let(:plane) {double(:plane)}
+  subject(:airport)   {described_class.new(100)}
+  let(:plane)         {double(:plane)}
 
-    describe "#initialize" do
-      it "allow the cpapcity to be set" do
+    describe "initialize" do
+      it "allow the capcity to be set" do
         newairport = Airport.new(20)
         expect(newairport.capacity).to eq 20
       end
@@ -14,22 +14,24 @@ describe Airport do
 
     describe "#land" do
       it "confirms plane has landed" do
-       expect(airport.landed?).to be true
+        allow(airport).to receive(:stormy?).and_return false
+        airport.land(plane)
+        expect(airport.planes).to include plane
       end
 
       context "weather" do
-        it "raises an error if weather is stormy" do
+        it "cannot land when stormy" do
           allow(airport).to receive(:stormy?).and_return true
           expect { airport.land(plane) }.to raise_error "Stormy cannot land"
         end
 
-        it "can land if not stormy" do
+        it "can land when not stormy" do
           allow(airport).to receive(:stormy?).and_return false
-          expect(airport.land(plane)).to be true
+          expect(airport.land(plane)).to include plane
         end
       end
 
-      context "full" do
+      context "capacity" do
         it "raises an error" do
           allow(airport).to receive(:stormy?).and_return false
           100.times { airport.land(plane) }
@@ -40,10 +42,6 @@ describe Airport do
     end
 
     describe "#take_off" do
-      it "confirms plane no longer at airport" do
-       expect(airport.departed?).to be true
-      end
-
       context "weather" do
         it "raises an error if weather is stormy" do
           allow(airport).to receive(:stormy?).and_return true
@@ -55,18 +53,6 @@ describe Airport do
           airport.land(plane)
           expect(airport.take_off).to be plane
         end
-      end
-    end
-
-    describe "#stormy" do
-      it "can be stormy" do
-      allow(airport).to receive(:stormy?).and_return true
-      expect(airport.stormy?(plane)).to be true
-      end
-
-      it "can be not stormy" do
-      allow(airport).to receive(:stormy?).and_return false
-      expect(airport.stormy?(plane)).to be false
       end
     end
 end

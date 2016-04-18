@@ -1,8 +1,9 @@
 require "plane"
+require "weather"
 
 class Airport
 
-  attr_reader :capacity
+  attr_reader :capacity, :planes
 
   DEFAULT_CAPACITY = 100
 
@@ -15,7 +16,6 @@ class Airport
     fail "Airport full" if full?
     fail "Stormy cannot land" if stormy?
     planes << plane
-    landed?
   end
 
   def take_off
@@ -23,22 +23,14 @@ class Airport
     planes.pop
   end
 
-  def landed?
-    true
-  end
+  private
 
-  def departed?
-    true
+  def stormy?(weather = Weather.new)
+    weather.stormy?
   end
 
   def full?
     planes.count >= capacity
   end
 
-   def stormy?
-    rand(1..2) == 1
-   end
-
-  private
-   attr_reader :planes
 end
