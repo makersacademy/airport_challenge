@@ -6,7 +6,7 @@ puts 'Please enter the capacity for the new airport (Integers values only)'
 capacity = gets.chomp
 new_airport = Airport.new(capacity)
 docked_planes=[]
-puts 'What would you like to do? : (l)and, (t)ake_off, (s)how_planes or e(x)it'
+puts 'What would you like to do?: (l)and, (t)ake_off, (s)how_planes or e(x)it'
 input = gets.chomp.downcase
 while input != 'x'
   begin
@@ -26,7 +26,7 @@ while input != 'x'
   rescue
     p RuntimeError
   end
-  puts 'What would you like to do? : (l)and, (t)ake_off, (s)how_planes or e(x)it'
+  puts 'Enter command: (l)and, (t)ake_off, (s)how_planes or e(x)it'
   input = gets.chomp.downcase
 end
 puts 'Goodbye!'
