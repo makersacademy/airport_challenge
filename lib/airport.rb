@@ -1,8 +1,10 @@
 class Airport
 
-	attr_reader :landed, :weather
+	attr_reader :landed
 
-	def initialize(capacity=10,weather=Weather.new)
+	DEFAULT_CAPACITY = 10
+
+	def initialize(capacity=DEFAULT_CAPACITY,weather=Weather.new)
 		@landed = []
 		@capacity = capacity
 		@weather = weather
@@ -29,6 +31,8 @@ class Airport
 	end
 
 	private
+
+	attr_reader :weather
 
 	def full?
 		landed.length == @capacity
