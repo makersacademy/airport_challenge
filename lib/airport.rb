@@ -28,6 +28,8 @@ DEFAULT_CAPACITY = 30
     @planes.delete(plane)
   end
 
+private
+
   def stormy?
     Weather.stormy?
   end
