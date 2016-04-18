@@ -27,7 +27,7 @@ class Plane
   end
 
   def is_flying
-    @airport = nil
+    @airport = 'no airport'
     @flying = true
     true
   end

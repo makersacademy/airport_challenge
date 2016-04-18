@@ -1,16 +1,13 @@
 require 'communicator'
-require 'airport'
-require 'plane'
 
 shared_examples_for "a communicator" do
+  let(:communicator) {described_class.new}
+
   let(:airport) { double(:airport, weather: "sunny", full?: false, planes: []) }
   let(:another_airport) { double(:another_airport, weather: "sunny", full?: false, planes: []) }
-  let(:airport_planes) { double(:planes) }
 
   let(:flying_plane) { double(:plane, landed?: false, current_airport: nil, flying?: true) }
   let(:landed_plane) { double(:plane, landed?: true, is_flying: true, current_airport: airport, flying?: false) }
-  let(:communicator) {described_class.new}
-
 
   describe '#land' do
     context 'planes can land at an airport' do

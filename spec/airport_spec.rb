@@ -1,27 +1,24 @@
 require 'airport'
 
 describe Airport do
-  let(:airport) {Airport.new}
+  let(:airport) {described_class.new}
   let(:plane) {double(:plane, flying?: false)}
-  let(:airport_capacity_300) {Airport.new(300)}
 
   describe '#initalize' do
-    it 'gets a random weather on initalization' do
-      expect(airport.weather == "sunny" || airport.weather == "stormy").to eq(true)
+    it 'sets weather to "sunny" on initalization' do
+      expect(airport.weather == "sunny").to eq(true)
     end
-    it 'doesn\'t contain any planes on initalization' do
+    it 'doesn\'t contain any docked planes on initalization' do
       expect(airport.planes.length).to eq(0)
-    end
-    it 'has a default capacity that can be overridden on initalization' do
-      expect(Airport::DEFAULT_CAPACITY).to eq(30)
-      expect(airport_capacity_300.capacity).to eq(300)
     end
   end
 
   describe '#capacity?' do
-    it 'can be overridden' do
-      airport.capacity = 3000
-      expect(Airport::DEFAULT_CAPACITY).not_to eq(airport.capacity)
+    context 'it can be overriden' do
+      it 'Default capacity is overridden' do
+        airport.capacity = 3000
+        expect(Airport::DEFAULT_CAPACITY).not_to eq(airport.capacity)
+      end
     end
   end
 
@@ -57,13 +54,6 @@ describe Airport do
     it 'raises an exception if it tries to undock a flying plane' do
       allow(plane).to receive(:flying?).and_return true
       expect{ airport.undock(plane) }.to raise_exception "Can't undock a plane that is not here"
-    end
-  end
-
-  describe '#update_weather' do
-    it 'it sets the weather to either sunny or stormy' do
-      airport.update_weather
-      expect(airport.weather == "sunny" || airport.weather == "stormy").to eq(true)
     end
   end
 

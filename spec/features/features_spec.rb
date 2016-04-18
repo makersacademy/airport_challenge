@@ -4,19 +4,19 @@ require 'plane'
 feature 'Feature Tests' do
 
   scenario 'Landing a flying plane at an airport' do
-    flying_plane_can_land_and_report_that_it_has_landed
+    plane_lands_and_report_that_it_has_landed
   end
 
-  scenario 'Plane can take off from airport and confirm leaving' do
-    landed_plane_can_take_off_and_report_leaving
+  scenario 'Plane takes off from airport & confirms leaving' do
+    landed_takes_off_and_report_leaving
   end
 
   scenario 'Prevent take off in story weather' do
-    prevent_take_off_when_weather_is_stormy
+    prevent_take_off_when_stormy_weather
   end
 
   scenario 'Prevent landing in stormy weather' do
-    prevent_landing_when_weather_is_stormy
+    prevent_landing_when_stormy_weather
   end
 
   scenario 'Prevent landing when airport is full' do
@@ -28,11 +28,11 @@ feature 'Feature Tests' do
   end
 
   scenario 'Take off and land some planes' do
-    take_off_and_land_five_planes
+    take_off_and_land_some_planes
   end
 
 
-  def flying_plane_can_land_and_report_that_it_has_landed
+  def plane_lands_and_report_that_it_has_landed
     airport = Airport.new
     plane = Plane.new(airport)
     airport.update_weather until airport.update_weather == "sunny"
@@ -41,7 +41,7 @@ feature 'Feature Tests' do
     plane.landed?
   end
 
-  def landed_plane_can_take_off_and_report_leaving
+  def landed_takes_off_and_report_leaving
     airport = Airport.new
     plane = Plane.new(airport)
     airport.update_weather until airport.update_weather == "sunny"
@@ -50,7 +50,7 @@ feature 'Feature Tests' do
     plane.flying?
   end
 
-  def prevent_take_off_when_weather_is_stormy
+  def prevent_take_off_when_stormy_weather
     message = "Can't take off in stormy weather"
     airport = Airport.new
     plane = Plane.new(airport)
@@ -58,7 +58,7 @@ feature 'Feature Tests' do
     expect { airport.take_off(plane, airport) }.to raise_exception message
   end
 
-  def prevent_landing_when_weather_is_stormy
+  def prevent_landing_when_stormy_weather
     message = "Can't land in stormy weather"
     airport = Airport.new
     plane = Plane.new(airport)
@@ -83,7 +83,7 @@ feature 'Feature Tests' do
     expect(Airport::DEFAULT_CAPACITY).not_to eq(airport.capacity)
   end
 
-    def take_off_and_land_five_planes
+    def take_off_and_land_some_planes
       airport = Airport.new
       destination = Airport.new
       plane1 = Plane.new(airport)
@@ -97,11 +97,12 @@ feature 'Feature Tests' do
       airport.take_off(airport.planes.last, airport)
       end
 
-      destination.land(plane1, airport)
-      airport.update_weather until airport.update_weather == "sunny"
-      destination.land(plane2, airport)
-      airport.update_weather until airport.update_weather == "sunny"
-      destination.land(plane3, airport)
+      destination.update_weather until destination.update_weather == "sunny"
+      destination.land(plane1, destination)
+      destination.update_weather until destination.update_weather == "sunny"
+      destination.land(plane2, destination)
+      destination.update_weather until destination.update_weather == "sunny"
+      destination.land(plane3, destination)
     end
 
 end

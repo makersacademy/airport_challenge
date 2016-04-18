@@ -1,9 +1,8 @@
 require 'plane'
 
 describe Plane do
+  let(:plane) {described_class.new(airport)}
   let(:airport) { double(:airport, weather: "sunny", full?: false, dock: []) }
-  let(:another_airport) { double(:another_airport, weather: "sunny", full?: false) }
-  let(:plane) {Plane.new(airport)}
 
   describe '#initialize' do
     it 'plane is landed, not flying and docked in an airport' do
@@ -17,7 +16,6 @@ describe Plane do
       it 'it confirms landed' do
         plane.landed_at(airport)
         expect(plane.landed?).to eq true
-        expect(plane.flying?).to eq false
       end
     end
   end
@@ -27,7 +25,6 @@ describe Plane do
       it 'it confirms flying' do
         plane.is_flying
         expect(plane.flying?).to eq true
-        expect(plane.landed?).to eq false
       end
     end
   end
@@ -39,7 +36,7 @@ describe Plane do
     end
     it 'reports nil (no longer in an airport) if flying' do
       plane.is_flying
-      expect(plane.current_airport).to eq nil
+      expect(plane.current_airport).to eq 'no airport'
     end
   end
 

@@ -1,9 +1,12 @@
 require_relative 'communicator'
+require_relative 'weather_checker'
 
 class Airport
   include Communicator
-  attr_reader :weather, :capacity, :planes
-  attr_writer :capacity
+  include WeatherChecker
+
+  attr_reader :planes
+  attr_accessor :capacity
   DEFAULT_CAPACITY = 30
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -13,14 +16,13 @@ class Airport
   end
 
   def dock(plane)
-    raise "Can't dock a flying plane" if plane.flying?
-    raise "Can't dock plane twice" if planes.include?(plane)
+    check_can_dock(plane)
     update_weather
-    @planes << plane
+    planes << plane
   end
 
   def undock(plane)
-    raise "Can't undock a plane that is not here" if plane.flying?
+    check_can_undock(plane)
     planes.delete(plane)
   end
 
@@ -28,12 +30,16 @@ class Airport
     planes.length == capacity
   end
 
-  def update_weather
-    return @weather = "stormy" if Random.rand > 0.9
-    @weather = "sunny"
+  private
+  attr_writer :planes
+
+  def check_can_dock(plane)
+    raise "Can't dock a flying plane" if plane.flying?
+    raise "Can't dock plane twice" if planes.include?(plane)
   end
 
-  private
-  attr_writer :weather, :planes
+  def check_can_undock(plane)
+    raise "Can't undock a plane that is not here" if plane.flying?
+  end
 
 end

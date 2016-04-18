@@ -22,7 +22,7 @@ module Communicator
 
   def check_can_take_off(plane, airport)
     fail "Can't take off when flying" if plane.flying?
-    fail "Can't take off from another airport" if (plane.current_airport) != airport
+    fail "Can't take off from another airport" if plane.current_airport != airport
     fail "Can't take off in stormy weather" if airport.weather == "stormy"
   end
 
