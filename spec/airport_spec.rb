@@ -24,11 +24,11 @@ describe Airport do
 			expect {subject.airport_landing(plane)}.to raise_error "can't land when stormy"
   	end
 
-	  # it "raises an error when trying to land when stormy" do
-	  #   allow(subject).to receive(:rand) {2}
-	  #   plane = Plane.new
-	  #   expect{subject.stormy?; subject.airport_landing(plane)}.to raise_error "can't land when stormy"
-	  # end
+	  it "raises an error when trying to land when stormy" do
+	    allow(subject).to receive(:rand) {2}
+	    plane = Plane.new
+	    expect{subject.stormy?; subject.airport_landing(plane)}.to raise_error "can't land when stormy"
+	  end
 	end
 
 	describe "#airport_take_off" do
