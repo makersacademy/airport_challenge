@@ -1,7 +1,5 @@
 require "plane"
 describe Plane do
-  it { expect(subject).to respond_to :flying?, :land, :take_off }
-
   it "should not be at an airport when initialized" do
     expect(subject.instance_variable_get(:@flying)).to eq true
   end
