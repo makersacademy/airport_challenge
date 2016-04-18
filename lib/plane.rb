@@ -21,6 +21,7 @@ class Plane
   end
 
   def land(airport)
+    airport.flying.delete(self)
     airport.planes << self
   end
 

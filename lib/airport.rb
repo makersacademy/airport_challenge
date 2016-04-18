@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  attr_accessor :planes, :flying
+  attr_reader :planes, :flying, :capacity
 
   DEFAULT_CAPACITY = 20
 
@@ -13,7 +13,7 @@ class Airport
   end
 
   def check_plane_status(plane)
-    @planes.include?(plane) ? "Plane in airport" : "Plane not in airport"
+    planes.include?(plane) ? "Plane in airport" : "Plane not in airport"
   end
 
   def cleared_for_takeoff(_plane)
@@ -27,7 +27,7 @@ class Airport
   end
 
   def full?
-    @planes.size >= @capacity
+    planes.size >= capacity
   end
 
   def stormy?
