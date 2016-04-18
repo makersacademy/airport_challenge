@@ -1,25 +1,23 @@
+require_relative 'airport'
+
 class Plane
+attr_reader :flying
 
-	def initialize 
-		@state = :on_land
-  end
 
-	def land(airport)
-		true if landed == true
-	end
+def initialize 
+    @flying = true
+end
 
-	def landed?
-	end
+def land
+  @flying = false
+end
 
-  def take_off
-  	if flying?
-  		false
-  	end
-  	@state = :in_air
-  end    
+def take_off
+  @flying = true
+end
 
-  def flying?
-  	return @state == :in_air
-  end
+def flying?
+  @flying
+end
 
 end
