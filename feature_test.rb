@@ -6,7 +6,7 @@ puts "***Attempt to land a plane at an airport***"
 puts "	Initializing a plane..."
 plane = Plane.new
 puts "	Initializing an airport with a weather object..."
-airport = Airport.new(Weather.new)
+airport = Airport.new
 puts "	Checking plane is not already landed..."
 puts "	Plane landed?: #{plane.landed?}"
 puts "	Attempting to land the plane at the airport..."
@@ -19,7 +19,7 @@ puts "***Check plane is not landed***"
 puts "	Plane landed?: #{plane.landed?}"
 puts "	Plane in airport?: #{airport.landed.include?(plane)}"
 puts "***Check planes don't land in bad weather by trying to land 100 planes***"
-airport = Airport.new(Weather.new,100)
+airport = Airport.new(100)
 100.times do
 	plane = Plane.new
 	plane.try_to_land(airport)
@@ -39,7 +39,7 @@ end
 puts "	Planes still in the airport: #{airport.landed.length}"
 puts "***Check planes can't land if the airport is full***"
 puts "	Use the default capacity of 10"
-airport = Airport.new(Weather.new)
+airport = Airport.new
 puts "	Land planes at the airport until the airport has 10 planes"
 until airport.landed.length == 10
 	plane = Plane.new
@@ -50,7 +50,7 @@ plane = Plane.new
 puts plane.try_to_land(airport)
 puts "***Check you can set a different capacity when creating an airport***"
 puts "	Set the capacity to 20"
-airport = Airport.new(Weather.new,20)
+airport = Airport.new(20)
 puts "	Land planes until the airport has 20 planes"
 until airport.landed.length == 20
 	plane = Plane.new
@@ -84,7 +84,7 @@ rescue NoMethodError => e
 end
 puts "***Check that planes already flying cannot take off***"
 plane = Plane.new
-airport = Airport.new(Weather.new)
+airport = Airport.new
 until plane.landed?
 	plane.try_to_land(airport)
 end
@@ -98,12 +98,12 @@ puts plane.try_to_takeoff
 puts "	Airport contains plane?: #{airport.landed.include?(plane)}"
 puts "***Check that planes already landed cannot be landed***"
 plane = Plane.new
-airport = Airport.new(Weather.new)
+airport = Airport.new
 until plane.landed?
 	plane.try_to_land(airport)
 end
 puts "	Plane location: #{plane.location}"
 puts " 	Plane landed?: #{plane.landed?}"
 puts "	Try to land plane at a different airport"
-puts plane.try_to_land(Airport.new(Weather.new))
+puts plane.try_to_land(Airport.new)
 
