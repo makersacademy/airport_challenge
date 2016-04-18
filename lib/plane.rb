@@ -4,7 +4,7 @@ class Plane
 
 	def initialize
 		@landed = false
-		@location = "sky"
+		@location = :sky
 	end
 
 	def try_to_land(airport)
@@ -18,20 +18,20 @@ class Plane
 	end
 
 	def land_fails(reason)
-		if reason == "full" 
+		if reason == :full 
 			"Plane failed to land because airport is already full"
-		elsif reason == "weather"
+		elsif reason == :weather
 			"Plane failed to land because of bad weather"
 		end	
 	end
 
 	def try_to_takeoff
-		location == "sky" ? "Plane is already in the sky" : location.dispatch(self)
+		location == :sky ? "Plane is already in the sky" : location.dispatch(self)
 	end
 
 	def take_off
 		@landed = false
-		@location = "sky"
+		@location = :sky
 		"Plane has successfully departed..."
 	end
 
