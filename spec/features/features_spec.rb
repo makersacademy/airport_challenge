@@ -37,9 +37,6 @@ let(:plane) { Plane.new(airport) }
 
 
   def land_plane_confirm_landed
-    # airport = Airport.new
-    # plane = Plane.new(airport)
-    p airport
     airport.update_weather until airport.update_weather == "sunny"
     plane.take_off(plane, airport)
     plane.land(plane, airport)
@@ -47,8 +44,8 @@ let(:plane) { Plane.new(airport) }
   end
 
   def take_off_report_leaving
-    # airport = Airport.new
-    # plane = Plane.new(airport)
+    airport = Airport.new
+    plane = Plane.new(airport)
     airport.update_weather until airport.update_weather == "sunny"
     airport.take_off(plane, airport)
     plane.current_airport
@@ -57,16 +54,16 @@ let(:plane) { Plane.new(airport) }
 
   def no_take_off_if_stormy_weather
     message = "Can't take off in stormy weather"
-    # airport = Airport.new
-    # plane = Plane.new(airport)
+    airport = Airport.new
+    plane = Plane.new(airport)
     airport.update_weather until airport.update_weather == "stormy"
     expect { airport.take_off(plane, airport) }.to raise_exception message
   end
 
   def no_landing_if_stormy_weather
     message = "Can't land in stormy weather"
-    # airport = Airport.new
-    # plane = Plane.new(airport)
+    airport = Airport.new
+    plane = Plane.new(airport)
     airport.update_weather until airport.update_weather == "sunny"
     plane.take_off(plane, airport)
     airport.update_weather until airport.update_weather == "stormy"
