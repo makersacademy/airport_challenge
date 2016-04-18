@@ -214,7 +214,7 @@ describe Plane do
 
   describe '#cheer' do
     it 'love yourself' do
-      expect(subject.cheer).to eq "Another great manouveur from captain Kyle"
+      expect(subject.cheer).to eq "Another great manouveur from Air Master Ward"
     end
   end
 

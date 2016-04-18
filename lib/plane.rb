@@ -49,7 +49,7 @@ class Plane
   end
 
   def cheer
-    "Another great manouveur from captain Kyle"
+    "Another great manouveur from Air Master Ward"
   end
 
 
