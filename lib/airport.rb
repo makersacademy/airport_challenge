@@ -20,7 +20,7 @@ class Airport
   end
 
   def take_off(plane)
-    fail 'Plane not in the hangar!' if !@hangar.include?(plane)
+    fail 'Plane not in the hangar!' unless @hangar.include?(plane)
     fail 'Stomy weather! Do not take off!' if stormy?
     plane.take_off
     @hangar.delete(plane)
