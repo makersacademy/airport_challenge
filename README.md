@@ -20,14 +20,14 @@ This program simulates an air traffic control system that allows planes land and
 
 ## Features
 
-* [ ] Plane status
-* [ ] Plane landing
-* [ ] Plane takeoff
-* [ ] Storms prevent landing
-* [ ] Storms prevent takeoff
-* [ ] Full airport cannot land planes
-* [ ] Variable and default capacity
-* [ ] Errors raised for inconsistent actions
+* Plane status
+* Plane landing
+* Plane takeoff
+* Storms prevent landing
+* Storms prevent takeoff
+* Full airport cannot land planes
+* Variable and default capacity
+* Errors raised for inconsistent actions
 
 ## Instructions
 
