@@ -4,8 +4,8 @@ describe Airport do
 	let(:goodweather){ double(:goodweather, :stormy? => false) }
 	let(:badweather){ double(:badweather, :stormy? => true) }
 	let(:plane){ spy(:plane) }
-	let(:airport_with_goodweather){ Airport.new(goodweather,5) }
-	let(:airport_with_badweather){ Airport.new(badweather,5) }
+	let(:airport_with_goodweather){ Airport.new(5, goodweather) }
+	let(:airport_with_badweather){ Airport.new(5, badweather) }
 
 		context 'when receiving a plane' do
 			context 'when weather is good' do
@@ -29,7 +29,7 @@ describe Airport do
 						expect(plane).to have_received(:land_fails).with("full")
 					end
 					it '#receive should not store the plane when it already has 10 planes if no custom capacity is set' do
-						airport = Airport.new(goodweather)
+						airport = Airport.new
 						11.times { airport.receive(plane) }
 						expect(airport.landed.length).to eq 10
 					end
