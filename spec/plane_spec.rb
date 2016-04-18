@@ -34,7 +34,7 @@ describe Plane do
       plane.landed_at(airport)
       expect(plane.current_airport).to eq airport
     end
-    it 'reports nil (no longer in an airport) if flying' do
+    it 'reports "no airport" if flying' do
       plane.is_flying
       expect(plane.current_airport).to eq 'no airport'
     end

@@ -4,23 +4,23 @@ require 'plane'
 feature 'Feature Tests' do
 
   scenario 'Landing a flying plane at an airport' do
-    plane_lands_and_report_that_it_has_landed
+    land_plane_confirm_landed
   end
 
   scenario 'Plane takes off from airport & confirms leaving' do
-    landed_takes_off_and_report_leaving
+    take_off_report_leaving
   end
 
   scenario 'Prevent take off in story weather' do
-    prevent_take_off_when_stormy_weather
+    no_take_off_if_stormy_weather
   end
 
   scenario 'Prevent landing in stormy weather' do
-    prevent_landing_when_stormy_weather
+    no_landing_if_stormy_weather
   end
 
   scenario 'Prevent landing when airport is full' do
-    prevent_landing_when_airport_is_full
+    no_landing_when_full_airport
   end
 
   scenario 'Override default capacity' do
@@ -28,11 +28,11 @@ feature 'Feature Tests' do
   end
 
   scenario 'Take off and land some planes' do
-    take_off_and_land_some_planes
+    take_off_and_land_planes
   end
 
 
-  def plane_lands_and_report_that_it_has_landed
+  def land_plane_confirm_landed
     airport = Airport.new
     plane = Plane.new(airport)
     airport.update_weather until airport.update_weather == "sunny"
@@ -41,7 +41,7 @@ feature 'Feature Tests' do
     plane.landed?
   end
 
-  def landed_takes_off_and_report_leaving
+  def take_off_report_leaving
     airport = Airport.new
     plane = Plane.new(airport)
     airport.update_weather until airport.update_weather == "sunny"
@@ -50,7 +50,7 @@ feature 'Feature Tests' do
     plane.flying?
   end
 
-  def prevent_take_off_when_stormy_weather
+  def no_take_off_if_stormy_weather
     message = "Can't take off in stormy weather"
     airport = Airport.new
     plane = Plane.new(airport)
@@ -58,7 +58,7 @@ feature 'Feature Tests' do
     expect { airport.take_off(plane, airport) }.to raise_exception message
   end
 
-  def prevent_landing_when_stormy_weather
+  def no_landing_if_stormy_weather
     message = "Can't land in stormy weather"
     airport = Airport.new
     plane = Plane.new(airport)
@@ -68,7 +68,7 @@ feature 'Feature Tests' do
     expect { airport.land(plane, airport) }.to raise_exception message
   end
 
-  def prevent_landing_when_airport_is_full
+  def no_landing_when_full_airport
     message = "Can't land in full airport"
     airport = Airport.new(0)
     plane = Plane.new(airport)
@@ -83,7 +83,7 @@ feature 'Feature Tests' do
     expect(Airport::DEFAULT_CAPACITY).not_to eq(airport.capacity)
   end
 
-    def take_off_and_land_some_planes
+    def take_off_and_land_planes
       airport = Airport.new
       destination = Airport.new
       plane1 = Plane.new(airport)
