@@ -7,14 +7,6 @@ describe Airport do
   let(:weather)      { double :weather, stormy?: false}
 
   describe 'launches planes' do 
-    # it 'responds to launch' do 
-    #   allow(plane).to receive(:flying?).and_return true
-    #   expect(subject).to respond_to(:launch).with(1).argument 
-    # end
-
-    # it 'launches a plane that flies' do 
-    #   expect(plane).to be_flying
-    # end
 
     it 'raises an error when the airport is empty' do 
       expect { subject.launch(landed_plane) }.to raise_error('No planes.')

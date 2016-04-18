@@ -5,9 +5,6 @@ describe Plane do
   let(:airport) { double :airport }
 
   describe 'is flying' do
-    it 'responds to flying' do 
-      expect(subject).to respond_to :flying?
-    end
 
     it 'confirms that it has landed' do 
       allow(airport).to receive(:land).and_return true 
