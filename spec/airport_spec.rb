@@ -18,17 +18,17 @@ describe Airport do
 	    expect(subject.planes.empty?).to be false
   	end
 
-		it "cannot land in a storm" do
+		it "raises an error when stormy and can't land" do
 			allow(subject).to receive(:stormy?) {true}
 			plane = Plane.new
 			expect {subject.airport_landing(plane)}.to raise_error "can't land when stormy"
   	end
 
-	  it "raises an error when trying to land when stormy" do
-	    allow(subject).to receive(:rand) {2}
-	    plane = Plane.new
-	    expect{subject.stormy?; subject.airport_landing(plane)}.to raise_error "can't land when stormy"
-	  end
+	  # it "raises an error when trying to land when stormy" do
+	  #   allow(subject).to receive(:rand) {2}
+	  #   plane = Plane.new
+	  #   expect{subject.stormy?; subject.airport_landing(plane)}.to raise_error "can't land when stormy"
+	  # end
 	end
 
 	describe "#airport_take_off" do
