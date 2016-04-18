@@ -5,7 +5,6 @@ describe Airport do
   let(:flying_plane) { double :plane, flying?: true }
   let(:landed_plane) { double :plane, flying?: false }
   let(:weather)      { double :weather, stormy?: false}
-  # subject            { described_class.new weather }
 
   describe 'launches planes' do 
     it 'responds to launch' do 
@@ -17,7 +16,7 @@ describe Airport do
     end
 
     it 'raises an error when the airport is empty' do 
-      # expect { subject.launch(landed_plane) }.to raise_error('No planes for take off.')
+      expect { subject.launch(flying_plane) }.to raise_error('No planes for take off.')
     end
 
     it 'raises an error when the weather is stormy' do 
@@ -32,7 +31,7 @@ describe Airport do
     end
 
     it 'lands a plane' do 
-      # expect(subject.land(flying_plane)).to eq [flying_plane] 
+      expect(subject.land(flying_plane)).to eq [flying_plane] 
     end
 
     it 'responds to plane' do 
@@ -40,9 +39,8 @@ describe Airport do
     end
 
     it 'raises an error when the airport is full' do 
-      allow(subject).to receive(:stormy?).and_return true
-      # subject.capacity.times { subject.land(flying_plane) }
-      # expect { subject.land(flying_plane) }.to raise_error('Airport is full.')
+      subject.capacity.times { subject.land(flying_plane) }
+      expect { subject.land(flying_plane) }.to raise_error('Airport is full.')
     end
 
     it 'raises an error when the weather is stormy' do 

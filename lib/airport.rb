@@ -14,6 +14,10 @@ class Airport
     @weather = weather
   end
 
+  def stormy? 
+    @stormy
+  end
+
   def launch(plane)
     raise 'Unable to takeoff in stormy weather.' if stormy?
     raise 'No planes for take off.' if empty? 
@@ -21,8 +25,8 @@ class Airport
   end
 
   def land(plane)
-    raise 'Unable to land in stormy weather.' if stormy?
     raise 'Airport is full.' if full?
+    raise 'Unable to land in stormy weather.' if stormy?
     @planes << plane
   end
 
