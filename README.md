@@ -28,7 +28,7 @@ First weekend challenge, forked from MakersAcademy.
 
 Progress
 --------
-Tests to avoid planes landing and taking off twice still failing hence commented out code. Also weather method still partly in airport.rb, needs to be moved to weather.rb.
+Project finished. However, code is clumsy and in no way elegant and easy to read. In urgent need to be refactored.
 
 
 Author
