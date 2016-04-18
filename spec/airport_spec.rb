@@ -16,12 +16,12 @@ describe Airport do
     end
 
     it 'raises an error when the airport is empty' do 
-      expect { subject.launch(flying_plane) }.to raise_error('No planes for take off.')
+      expect { subject.launch(flying_plane) }.to raise_error('No planes.')
     end
 
     it 'raises an error when the weather is stormy' do 
       allow(subject).to receive(:stormy?).and_return true 
-      expect{ subject.launch(landed_plane) }.to raise_error 'Grounded: stormy weather.'
+      expect{ subject.launch(landed_plane) }.to raise_error 'Grounded.'
     end
   end
 
@@ -40,12 +40,12 @@ describe Airport do
 
     it 'raises an error when the airport is full' do 
       subject.capacity.times { subject.land(flying_plane) }
-      expect { subject.land(flying_plane) }.to raise_error('Airport is full.')
+      expect { subject.land(flying_plane) }.to raise_error('Airport full.')
     end
 
     it 'raises an error when the weather is stormy' do 
       allow(subject).to receive(:stormy?).and_return true 
-      expect{ subject.land(flying_plane) }.to raise_error 'Cannot land: stormy weather.'
+      expect{ subject.land(flying_plane) }.to raise_error 'Cannot land.'
     end
 
   describe 'has a default or variable plane capacity' do 
