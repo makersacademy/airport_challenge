@@ -5,7 +5,7 @@ require_relative 'weather'
 
 class Airport
 
-	attr_reader :plane, :capacity, :weather
+	attr_reader :planes, :capacity, :weather
 
 	DEFAULT_CAPACITY = 50
 
@@ -20,14 +20,14 @@ class Airport
 		fail 'the plane hasnt taken off yet' if plane.flying? == false
 		fail 'the weather is stormy' if stormy? == true
 		fail 'no spaces available' if full?
-		@planes << plane
+		planes << plane
 	end
 
 
 	def release_planes
 		fail 'the weather is stormy' if stormy? 
-		@planes.pop
-		@planes
+		planes.pop
+		planes
 	end
 
 
@@ -35,7 +35,7 @@ class Airport
 
 
     def full?
-        @planes.count >= capacity
+        planes.count >= capacity
     end
 
 
