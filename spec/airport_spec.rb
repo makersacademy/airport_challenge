@@ -36,7 +36,6 @@ describe Airport do
       subject.land(plane)
       expect{subject.land(plane)}.to raise_error "Plane already landed." if plane == plane
     end
-
   end
 
   describe "#take_off" do
@@ -70,13 +69,7 @@ describe Airport do
     describe "#safe?" do
 
       it "should return false if weather is stormy" do
-        allow(subject).to receive(:safe?).and_return(false)
-        expect(subject.safe?).to eq false
-      end
-
-      it "should return true if weather is sunny" do
-        allow(subject).to receive(:safe?).and_return(true)
-        expect(subject.safe?).to eq true
+        expect(subject.safe?).to eq(false).or(eq(true))
       end
     end
 
