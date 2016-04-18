@@ -13,5 +13,4 @@ describe Weather do
       allow(weather).to receive(:rand) {1}
       expect(subject.stormy?).to be true
     end
-
 end

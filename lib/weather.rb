@@ -5,7 +5,7 @@ class Weather
 
   def stormy?
     return true if rand(8) == 1
-    return false
+    false
   end
-  
+
 end
