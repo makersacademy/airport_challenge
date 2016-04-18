@@ -16,7 +16,7 @@ describe Airport do
 
 	describe '#initialize' do
 		it 'initializes an airport with a default capacity' do
-			expect(subject.instance_variable_get(:@capacity)).to eq 100
+			expect(subject.instance_variable_get(:@capacity)).to eq capacity
 		end
 
 		it 'default airport capacity can be overridden as appropriate' do
@@ -37,10 +37,9 @@ describe Airport do
 		end
 
 		it 'prevents landing when the airport is full' do
-			airport = Airport.new(1)
 			sunny
-			airport.accept(plane)
-			expect{airport.accept("plane")}.to raise_error(full)
+			small_airport.accept(plane)
+			expect{small_airport.accept("plane")}.to raise_error(full)
 		end
 
 		it 'prevents landing when that plane has already landed at this airport' do

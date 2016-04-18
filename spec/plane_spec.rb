@@ -1,6 +1,6 @@
 describe Plane do
 	let(:airport) { double("Airport", accept: true, confirm_takeoff: true) }
-
+	
 	describe '#land(airport)' do 
 		it 'responds to land' do
 			expect(subject).to respond_to(:land)
