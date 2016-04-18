@@ -29,7 +29,7 @@ class Airport
     "Aircraft taken off."
   end
 
-private
+  private
 
   def full?
     @landed_aircraft.count >= @capacity

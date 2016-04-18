@@ -35,20 +35,20 @@ describe Airport do
     it "raises error 'Too stormy to land.'" do
       allow(airport).to receive(:storms?) { true }
       em = "Too stormy to land."
-      expect{subject.arrival(plane)}.to raise_error em
+      expect{ subject.arrival(plane) }.to raise_error em
     end
 
     it "raises error 'Airport is full.'." do
       capacity.times {subject.arrival(Plane.new)}
       em = "Airport is full."
-      expect{subject.arrival(plane)}.to raise_error em
+      expect{ subject.arrival(plane) }.to raise_error em
     end
 
     it "aircraft can not land if already in airport" do
       test_plane = Plane.new
       subject.arrival test_plane
       em = "Aircraft already at airport."
-      expect{subject.arrival(test_plane)}.to raise_error em
+      expect{ subject.arrival(test_plane) }.to raise_error em
     end
 
   end
@@ -66,7 +66,7 @@ describe Airport do
     it "raises error 'Too stormy to take-off.'" do
       allow(airport).to receive(:storms?) { true }
       em = "Too stormy to take-off."
-      expect{subject.departure(plane)}.to raise_error em
+      expect{ subject.departure(plane) }.to raise_error em
     end
 
     it "aircraft can not take-off if not in the airport" do
@@ -74,10 +74,9 @@ describe Airport do
       subject.arrival test_plane
       subject.departure test_plane
       em = "Aircraft not in airport."
-      expect{subject.departure(test_plane)}.to raise_error em
+      expect{ subject.departure(test_plane) }.to raise_error em
     end
 
   end
-
 
 end
