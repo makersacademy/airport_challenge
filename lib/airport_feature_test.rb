@@ -2,8 +2,6 @@ require_relative 'airport'
 require_relative 'plane'
 require_relative 'weather'
 
-#This is still work in progress! Simpler plane objects need to be added;
-#exception messages need to be displayed; the loop needs to work smoother
 puts 'Please enter the capacity for the new airport (Integers values only)'
 capacity = gets.chomp
 new_airport = Airport.new(capacity)
@@ -32,7 +30,3 @@ while input != 'x'
   input = gets.chomp.downcase
 end
 puts 'Goodbye!'
-
-when ‘rescuing’ from an error message in the feature test, how do you display the exception message invoked by the corresponding class?
-
-  do you store the exception message in the class and then access it from the executable feature test or is there a more elegant way of doing it?
