@@ -17,7 +17,7 @@ To use the SRP (Single Responsibility Principle) for program design.
 
 ####FULFILLS ALL USER STORIES
 
-  1. I want to instruct a plane to land at an airport and confirm that it has landed.
+  1. I want to instruct a plane to land at an airport and confirm that it has landed. 
     (Shows the airport's apron with the new plane added)
   2. I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
     (Shows the airport's apron once the plane has popped off)
