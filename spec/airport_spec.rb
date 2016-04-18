@@ -4,9 +4,6 @@ require 'plane'
 
 describe Airport do
 	let(:plane) {Plane.new}
-	#it 'responds to land with 1 argument' do
-	#subject { is_expected.to respond_to(:land).with(1).argument }
-	#end
 
 	it 'says that it has landed' do 
 	allow(subject).to receive(:stormy?).and_return(false)
@@ -19,14 +16,6 @@ describe Airport do
 	expect{subject.release_planes}.to raise_error 'the weather is stormy'
 	end
 
-	#it 'responds to has take off' do
-	#expect {is_expected.to respond_to(:take_off).with(1).argument }
-	#end
-
-
-	#it 'responds to release_planes' do
-	#expect(subject).to respond_to 'release_planes'
-	#end
 
 	it 'fails if it is stormy' do
 	allow(subject).to receive(:stormy?).and_return(true)
