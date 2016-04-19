@@ -13,13 +13,5 @@ describe Plane do
     it 'responds to landed' do
     expect(subject).to respond_to(:landed)
   end
-
-
-  end
-
-  describe "#storm" do
-    it 'responds to weather' do
-      expect(subject).to respond_to(:weather)
-    end
   end
 end

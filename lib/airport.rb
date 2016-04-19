@@ -11,14 +11,14 @@ class Airport
   end
 
   def land(plane)
-    raise "can't land in a storm" if weather
+    raise "can't land in a storm" if Weather.weather?
     raise "can't airport full" if full?
     plane.ground
     @plane_holder << plane
   end
 
   def take_off(plane)
-    raise "can't fly win storm" if plane.weather
+    raise "can't fly win storm" if Weather.weather?
     delete_plane(plane)
   end
 

@@ -3,8 +3,8 @@ describe Airport do
   subject(:airport) { described_class.new }
 
 
- let(:plane_fine) {double("plane", weather: false, ground: true)}
- let(:plane_storm) {double("plane", weather: true, ground: true)}
+ let(:plane_air) {double("plane", ground: true)}
+ let(:plane_ground) {double("plane", ground: false)}
 
   it 'can create an airport' do
     expect(subject).to be_an_instance_of Airport
@@ -19,36 +19,39 @@ describe Airport do
   describe '#land' do
 
     it 'can land in clear weather' do
-      subject.land(plane_fine)
-      expect(subject.plane_holder).to eq [plane_fine]
+      allow(Weather).to receive(:weather?).and_return(false)
+      airport.land(plane_air)
+      expect(subject.plane_holder).to eq [plane_air]
     end
     it 'does not land in stormy weather' do
-      expect{subject.land(plane_storm)}.to raise_error("can't land in a storm")
+      allow(Weather).to receive(:weather?).and_return(true)
+      expect{subject.land(plane_air)}.to raise_error("can't land in a storm")
       expect(subject.plane_holder).to eq []
     end
     it 'raises an error when the airport is full' do
-      10.times {(subject.land(plane_fine))}
-      expect {subject.land(plane_fine)}.to raise_error("can't airport full")
+      allow(Weather).to receive(:weather?).and_return(false)
+      10.times {(subject.land(plane_air))}
+      expect {subject.land(plane_air)}.to raise_error("can't airport full")
     end
     # it 'does not land when the airport is full' do
-    #   11.times {(subject.land(plane_fine))}
-    #   expect(subject.plane_holder).to eq [plane_fine,plane_fine,plane_fine,plane_fine,
-    #     plane_fine,plane_fine,plane_fine,plane_fine,plane_fine,plane_fine]
+    #   11.times {(subject.land(plane_air))}
+    #   expect(subject.plane_holder).to eq [plane_air,plane_air,plane_air,plane_air,
+    #     plane_air,plane_air,plane_air,plane_air,plane_air,plane_air]
     # end
   end
    describe "#take_off" do
     it 'plane can take off' do
-      subject.land(plane_fine)
-      subject.take_off(plane_fine)
+      subject.take_off(plane_ground)
       expect(subject.plane_holder).to eq []
     end
     it 'takes off in clear weather' do
-      expect {subject.take_off(plane_fine)}.not_to raise_error
+      allow(Weather).to receive(:weather?).and_return(false)
+      expect {subject.take_off(plane_air)}.not_to raise_error
     end
     it 'does not takes off if weather is stormy' do
-     subject.land(plane_fine)
-     expect {subject.take_off(plane_storm)}.to raise_error
-     expect(subject.plane_holder).to eq [plane_fine]
+      allow(Weather).to receive(:weather?).and_return(true)
+      expect {subject.take_off(plane_ground)}.to raise_error
+
     end
   end
 end
