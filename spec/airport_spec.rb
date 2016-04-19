@@ -1,8 +1,10 @@
 require 'airport'
 describe Airport do
+  subject(:airport) { described_class.new }
 
- let(:plane_fine) {double("plane", weather: false)}
- let(:plane_storm) {double("plane", weather: true)}
+
+ let(:plane_fine) {double("plane", weather: false, ground: true)}
+ let(:plane_storm) {double("plane", weather: true, ground: true)}
 
   it 'can create an airport' do
     expect(subject).to be_an_instance_of Airport
@@ -10,11 +12,13 @@ describe Airport do
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::CAPACITY
   end
+  it 'creates and empty airport' do
+   expect(subject.plane_holder).to eq []
+  end
 
   describe '#land' do
 
     it 'can land in clear weather' do
-      expect(subject.plane_holder).to eq []
       subject.land(plane_fine)
       expect(subject.plane_holder).to eq [plane_fine]
     end
@@ -22,12 +26,15 @@ describe Airport do
       expect{subject.land(plane_storm)}.to raise_error("can't land in a storm")
       expect(subject.plane_holder).to eq []
     end
-    it 'does not land when the airport is full' do
+    it 'raises an error when the airport is full' do
       10.times {(subject.land(plane_fine))}
       expect {subject.land(plane_fine)}.to raise_error("can't airport full")
-      expect(subject.plane_holder).to eq [plane_fine,plane_fine,plane_fine,plane_fine,
-        plane_fine,plane_fine,plane_fine,plane_fine,plane_fine,plane_fine]
     end
+    # it 'does not land when the airport is full' do
+    #   11.times {(subject.land(plane_fine))}
+    #   expect(subject.plane_holder).to eq [plane_fine,plane_fine,plane_fine,plane_fine,
+    #     plane_fine,plane_fine,plane_fine,plane_fine,plane_fine,plane_fine]
+    # end
   end
    describe "#take_off" do
     it 'plane can take off' do

@@ -12,10 +12,18 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 
 
 require "./lib/airport"
+describe "plane landing at the airport" do
+  subject(:plane) {Plane.new}
+  expect(plane.landed).to be true
+end
+
+require "./lib/airport"
 plane = Plane.new
 heathrow = Airport.new
 heathrow.land(plane)
 heathrow.plane_holder
+
+
 
 
 #fails to land need to create an airport object which store plane

@@ -1,9 +1,9 @@
-require_relative 'plane'
+require_relative 'plane' #use require relative up here
+require_relative 'weather'
 class Airport
   CAPACITY =  10
 
-attr_reader :plane_holder, :capacity
-
+  attr_reader :plane_holder, :capacity
 
   def initialize (capacity=CAPACITY)
     @plane_holder= []
@@ -11,13 +11,10 @@ attr_reader :plane_holder, :capacity
   end
 
   def land(plane)
-    raise "can't land in a storm" if plane.weather
+    raise "can't land in a storm" if weather
     raise "can't airport full" if full?
+    plane.ground
     @plane_holder << plane
-  end
-
-  def landed
-    @airport
   end
 
   def take_off(plane)

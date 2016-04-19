@@ -1,14 +1,19 @@
 class Plane
-  attr_accessor :weather
+
+  attr_reader :landed
 
   def storm
-   r = Random.new
-   r.rand(10) > 8 ? @weather=true : @weather =false
+     @weather = rand(10) > 8 ? true : false
   end
 
   def initialize
     @weather = false
+    @landed = false
   end
+  def ground
+    @landed = true
+  end
+
 
 end
 
