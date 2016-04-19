@@ -4,7 +4,7 @@ class Airport
 
   DEFAULT_CAPACITY = 50
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @storm_level = 1
     @capacity = capacity
@@ -15,14 +15,13 @@ class Airport
     fail 'Plane cannot land in stormy weather' if stormy?
     fail 'Plane has already landed here' if landed? plane
     fail 'Plane has already landed elsewhere' if at_other_airport? plane
-
     @planes << plane
     plane.land
   end
 
   def take_off(plane)
-    fail 'Plane is not at this airport' if at_airport? plane
     fail 'All planes have taken off' if airport_empty?
+    fail 'Plane is not at this airport' unless at_airport? plane
     fail 'Plane cannot take off in stormy weather' if stormy?
     plane.take_off
     @planes.delete(plane)
@@ -52,11 +51,11 @@ class Airport
   end
 
   def at_airport?(plane)
-    !(@planes.include? plane)
+    @planes.include? plane
   end
 
   def at_other_airport?(plane)
-    plane.instance_variable_get(:@landed) == true
+    !(@planes.include? plane) && plane.status == true
   end
 
 end

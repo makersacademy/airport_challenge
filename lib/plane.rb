@@ -4,6 +4,10 @@ class Plane
     @landed = false
   end
 
+  def status
+    @landed
+  end
+
   def land
     @landed = true
   end
