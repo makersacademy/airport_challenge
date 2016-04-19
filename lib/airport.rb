@@ -11,8 +11,10 @@ class Airport
   end
 
   def land(plane)
+
     raise "can't land in a storm" if Weather.weather?
     raise "can't airport full" if full?
+    raise "plane already landed" if plane.landed
     plane.ground
     @plane_holder << plane
   end

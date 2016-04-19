@@ -2,9 +2,9 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
 
-
- let(:plane_air) {double("plane", ground: true)}
- let(:plane_ground) {double("plane", ground: false)}
+ let(:airport1) { Airport.new }
+ let(:plane_air) {double("plane", landed: false)}
+ let(:plane_ground) {double("plane", landed: true)}
 
   it 'can create an airport' do
     expect(subject).to be_an_instance_of Airport
@@ -17,9 +17,15 @@ describe Airport do
   end
 
   describe '#land' do
-
+    before()
+    it 'cant land twice without taking off' do
+      allow(Weather).to receive(:weather?).and_return(false)
+      allow(plane_air).to receive(:landed).and_return(true)
+      expect{airport.land(plane_air)}.to raise_error("plane already landed")
+    end
     it 'can land in clear weather' do
       allow(Weather).to receive(:weather?).and_return(false)
+      allow(plane_air).to receive(:ground).and_return(true)
       airport.land(plane_air)
       expect(subject.plane_holder).to eq [plane_air]
     end
@@ -30,6 +36,7 @@ describe Airport do
     end
     it 'raises an error when the airport is full' do
       allow(Weather).to receive(:weather?).and_return(false)
+       allow(plane_air).to receive(:ground).and_return(true)
       10.times {(subject.land(plane_air))}
       expect {subject.land(plane_air)}.to raise_error("can't airport full")
     end
