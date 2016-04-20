@@ -17,7 +17,6 @@ describe Airport do
   end
 
   describe '#land' do
-    before()
     it 'cant land twice without taking off' do
       allow(Weather).to receive(:weather?).and_return(false)
       allow(plane_air).to receive(:landed).and_return(true)
