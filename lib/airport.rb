@@ -1,4 +1,5 @@
 require 'weather'
+require 'plane'
 
 class Airport
 
@@ -13,6 +14,8 @@ class Airport
   def dock(plane)
     fail "Weather is too stormy, cannot land" if current_weather.is_stormy?
     fail "Airport is full, cannot land" if full?
+    fail "Plane is already landed" if plane.is_flying == false
+    plane.landed
     planes << plane
   end
 
@@ -24,7 +27,7 @@ class Airport
   private
 
   attr_reader :planes, :current_weather, :capacity
-  
+
   def full?
     planes.size >= capacity
   end

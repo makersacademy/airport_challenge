@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let (:plane) {double :plane}
+  let (:plane) {double :plane, is_flying: true, landed: (), taken_off: ()}
   let (:good_weather) {double :weather, is_stormy?: false}
   let (:bad_weather) {double :weather, is_stormy?: true}
 
@@ -16,10 +16,17 @@ describe Airport do
         expect(subject.release).to eq plane1
       end
 
+      it "returns error if planes is already landed" do
+        subject = Airport.new(good_weather)
+        plane1 = plane
+        expect(plane1).to receive(:is_flying) {false}
+        expect{subject.dock(plane1)}.to raise_error "Plane is already landed"
+      end
+
       it "changes planes to landed" do
         subject = Airport.new(good_weather)
         plane1 = plane
-        expect(plane1).to receive(:is_flying?) {false}
+        expect(plane1).to receive(:landed)
         subject.dock(plane1)
       end
     end
