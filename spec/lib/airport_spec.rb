@@ -60,7 +60,9 @@ describe Airport do
       loads
       expect(waiting_room.size).to eq 4
     end
-
+    it "is limited by capacity" do
+      expect { airport.load(mob2) }.to raise_error "Capacity reached!"
+    end
   end
 
   describe '#unload' do
@@ -73,19 +75,5 @@ describe Airport do
       expect(waiting_room.empty?).to eq true
     end
   end
-
-  describe '#full?' do
-    it "confirms if it's not full" do
-      expect( airport.full? ).to eq false
-    end
-    it "confirms if it's full" do
-      airport.load(mob)
-      expect( airport.full? ).to eq true
-    end
-    it "is limited by capacity" do
-      expect { airport.load(mob2) }.to raise_error "Airport full!"
-    end
-  end
-
 
 end
