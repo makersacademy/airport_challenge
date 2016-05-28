@@ -2,12 +2,20 @@ require 'airport'
 
 describe Airport do
 
-  it 'require airplane to land' do
-    expect(subject).to respond_to :require_land
+  it 'responds to dock' do
+    expect(subject).to respond_to(:dock)
   end
 
-  it 'require airplane to take off' do
-    expect(subject).to respond_to :require_take_off
+  it 'responds to dock and a argument plane' do
+    expect(subject).to respond_to(:dock).with(1).arguments
+  end
+
+  it 'responds to land a plane' do
+    expect(subject).to respond_to :land_plane
+  end
+
+  it 'responds to take off a palne' do
+    expect(subject).to respond_to :take_off_plane
   end
 
 end
