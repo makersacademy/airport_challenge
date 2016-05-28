@@ -3,11 +3,11 @@ require 'weather'
 class Planes
 
   def land(weather)
-    @land = weather.report == "sunny" ? true : false
+    @land = weather.state == "sunny" ? true : false
   end
 
   def take_off(weather)
-    @land = weather.report == "sunny" ? false : true
+    @land = weather.state == "sunny" ? false : true
   end
 
   def at_airport?

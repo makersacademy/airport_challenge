@@ -7,14 +7,14 @@ let(:weather) {double("weather")}
   describe "#land" do
     it "should land a plane when weather is sunny" do
       plane = Planes.new
-      allow(weather).to receive(:report) {"sunny"}
+      allow(weather).to receive(:state) {"sunny"}
       plane.land(weather)
       expect(plane.at_airport?).to eq true
     end
 
     it "should not land a plane when weather is stormy" do
       plane = Planes.new
-      allow(weather).to receive(:report) {"stormy"}
+      allow(weather).to receive(:state) {"stormy"}
       plane.land(weather)
       expect(plane.at_airport?).to eq false
     end
@@ -24,14 +24,14 @@ let(:weather) {double("weather")}
 
     it "should take off a plane if weather is sunny" do
       plane = Planes.new
-      allow(weather).to receive(:report) {"sunny"}
+      allow(weather).to receive(:state) {"sunny"}
       plane.take_off(weather)
       expect(plane.at_airport?).to eq false
     end
 
     it "should not take off a plane if weather is stormy" do
       plane = Planes.new
-      allow(weather).to receive(:report) {"stormy"}
+      allow(weather).to receive(:state) {"stormy"}
       plane.take_off(weather)
       expect(plane.at_airport?).to eq true
     end

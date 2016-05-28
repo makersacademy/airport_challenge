@@ -1,10 +1,10 @@
 require "weather"
 
 describe Weather do
-  describe "#report" do
-    it "should report weather" do
-      expect(subject).to respond_to(:report)
-      p subject.report
+  describe "#state" do
+    it "should set a weather state" do
+      expect(subject).to respond_to(:state)
+      p subject.state
     end
   end
 end
