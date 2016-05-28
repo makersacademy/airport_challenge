@@ -11,14 +11,14 @@ describe Airport do
   let(:loads) { airport.load(people) }
   let(:unloads) { airport.unload }
   let(:default_loads) { airport.load }
-  let(:waiting_room) { airport.passengers }
+  let(:waiting_room) { airport.seats }
 
   it 'can be instantiated' do
     expect(airport.class).to eq Airport
   end
 
   it 'check if airport is empty before anyone arrives' do
-    expect(airport.passengers).to be_an_instance_of Array
+    expect(waiting_room).to be_an_instance_of Array
   end
 
   it 'check if arrived passengers in airport' do
