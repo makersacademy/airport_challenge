@@ -25,6 +25,14 @@ describe Airport do
         expect(subject.release).to eq plane1
       end
     end
+
+    describe "#capacity" do
+      it "returns an error if over default capcity" do
+        subject = Airport.new(good_weather)
+        20.times{subject.dock(plane)}
+        expect{subject.dock(plane)}.to raise_error "Airport is full, cannot land"
+      end
+    end
   end
 
   context "bad weather" do

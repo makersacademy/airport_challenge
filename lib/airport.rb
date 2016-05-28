@@ -2,13 +2,17 @@ require 'weather'
 
 class Airport
 
-  def initialize(current_weather)
+  DEFAULT_CAPACITY = 20
+
+  def initialize(current_weather, capacity = DEFAULT_CAPACITY)
     @current_weather = current_weather
     @planes = []
+    @capacity = capacity
   end
 
   def dock(plane)
     fail "Weather is too stormy, cannot land" if current_weather.is_stormy?
+    fail "Airport is full, cannot land" if full?
     planes << plane
   end
 
@@ -19,6 +23,12 @@ class Airport
 
   private
 
-  attr_reader :planes, :current_weather
+  attr_reader :planes, :current_weather, :capacity
+  
+  def full?
+    planes.size >= capacity
+  end
+
+
 
 end
