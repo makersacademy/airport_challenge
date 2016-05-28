@@ -7,7 +7,7 @@ describe Weather do
 			expect(subject).to respond_to(:stormy?)
 		end
 		it "should reply with true or false" do
-			expect(subject).to be_a(Boolean)
+			expect(subject.stormy?).to satisfy{|result| (result == true) || (result == false)}
 		end
 	end
 
