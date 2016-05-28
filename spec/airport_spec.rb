@@ -20,9 +20,7 @@ describe Airport do
 
   describe '#take_off' do
     it "raises an error if the plane isn't at the airport" do
-      expect{
-        subject.take_off(@plane)
-      }.to raise_error("That plane doesn't exist!")
+      expect{ subject.take_off(@plane) }.to raise_error("That plane doesn't exist!")
     end
 
     it "instructs a plane to take off" do
