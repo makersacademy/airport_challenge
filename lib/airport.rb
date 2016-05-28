@@ -9,12 +9,12 @@ class Airport
 
   def dock(plane)
     fail "Weather is too stormy, cannot land" if current_weather.is_stormy?
-    @planes = plane
+    planes << plane
   end
 
   def release
     fail "Weather is too stormy, cannot take off" if current_weather.is_stormy?
-    @planes
+    planes.pop
   end
 
   private
