@@ -1,8 +1,11 @@
 require 'airport'
-  (let :plane) {double :plane}
+
 describe Airport do
+
+  let (:plane) {double :plane}
+
   it "docks planes" do
-    subject.dock(plane)
+    expect(subject.dock(plane)).to eq plane
   end
 
 end
