@@ -1,0 +1,21 @@
+Boris Bikes project steps:
+
+1. README.md
+2. Diagram the user stories - nouns, verbs into Objects and Messages within a Table. Show communication between all players
+3. Do feature tests for the initialisation of new objects of certain classes
+4. Initialise RSpec within a project (google how to check whether rspec has already been initialised within a project or not. 
+5. Create a new spec file for the object
+	- Set up spec file to describe the object (e.g. plane) - Describe PLANE do /n end
+	- Run spec to see resulting errors
+6. Create a new file for the object class in the lib directory
+	- define the class
+	- require the right file inside your spec file 
+7. Start IRB and require code files for specific classes (e.g. planes) 
+	- set a variable (e.g. plane) to equal a new instance of the class (e.g. plane = Plane.new) in irb 
+	- call a method you wish to use on that class on the variable (e.g. plane.land)
+	- will be a feature error
+8. Add a test to Rspec file that expects the object to respond to the method you desire (e.g., use ‘it’ to ensure the ‘plane’ will respond to ‘land’)
+	- Run Rspec to check method
+	- add the method to the class of the object (e.g. add method ‘land’ to plane class)
+	- Run the Rspec
+9. 
