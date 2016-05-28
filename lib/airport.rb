@@ -5,6 +5,7 @@ class Airport
   attr_reader :plane
 
   def land(plane)
+    print "Plane has landed"
     @plane = plane
   end
 

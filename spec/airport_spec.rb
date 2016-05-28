@@ -20,5 +20,10 @@ describe Airport do
     expect(subject.land(plane)).to eq plane
   end
 
+  it 'confirms landing' do
+    plane = Plane.new
+    expect { (subject.land(plane)) }.to output("Plane has landed").to_stdout 
+  end
+
 
 end
