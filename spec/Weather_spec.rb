@@ -1,4 +1,4 @@
-require "weather"
+require "weather.rb"
 
 describe Weather do
 

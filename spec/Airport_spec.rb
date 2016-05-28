@@ -1,4 +1,4 @@
-require "./lib/airport"
+require "airport.rb"
 
 
 
