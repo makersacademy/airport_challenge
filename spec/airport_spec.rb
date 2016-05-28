@@ -55,14 +55,14 @@ describe Airport do
 
     it "prevents take-off" do
       airport.land(plane)
-      airport.stub(stormy?: true)
+      allow(airport).to receive(:stormy?) { true }
       allow(plane).to receive(:landed?) { true }
       message = "Plane cannot take off due to storm"
       expect { airport.take_off(plane) }.to raise_error message
     end
 
     it "prevents landing" do
-      airport.stub(stormy?: true)
+      allow(airport).to receive(:stormy?) { true }
       message = "Plane cannot land due to storm"
       expect { airport.land(plane) }.to raise_error message
     end

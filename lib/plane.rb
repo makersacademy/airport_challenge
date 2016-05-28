@@ -1,19 +1,19 @@
 class Plane
 
-  def initialize(location = :airborne)
-    @location = location
+  def initialize(landed = false)
+    @landed = false
   end
 
   def land
-    @location = :airport
+    @landed = true
   end
 
   def take_off
-    @location = :airborne
+    @landed = false
   end
 
   def landed?
-    @location == :airport
+    @landed
   end
 
 end
