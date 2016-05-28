@@ -7,9 +7,8 @@ describe Airport do
 
   describe 'respond and initiate' do
     it "responds to a method"do
-      expect(airport).to respond_to(:land).with(1).argument
-      expect(airport).to respond_to(:depart).with(1).argument
-      expect(airport).to respond_to(:plane)
+      expect(airport).to respond_to(:land_aircraft).with(1).argument
+      expect(airport).to respond_to(:allow_departure).with(1).argument
     end
 
     it "can initialize a new airport" do
@@ -22,34 +21,24 @@ describe Airport do
 
   end
 
-  describe '#land' do
+  describe '#land_aircraft' do
     it "raises an error when airport is full" do
-      Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-      expect { airport.land(Plane.new) }.to raise_error "Airport is full"
+      Airport::DEFAULT_CAPACITY.times { airport.land_aircraft(Plane.new) }
+      expect { airport.land_aircraft(Plane.new) }.to raise_error "Airport is full"
     end
+
+    
+
   end
 
-  describe '#depart' do
+  describe '#allow_departure' do
     it 'raises an error when there are no planes to depart' do
-      expect { airport.depart(Plane.new) }.to raise_error "No planes at airport"
+      expect { airport.allow_departure(Plane.new) }.to raise_error "No planes at airport"
     end
   end
 
-  describe "#is_stormy?" do
-    it 'raises an error for departure when the weather is stormy' do
-      expect { airport.depart(Plane.new) }.to raise_error "Weather is stormy. No departures"
-    end
-  end
 
-  # it 'confirms landing' do
-  #   plane = Plane.new
-  #   expect { (airport.land(plane)) }.to output("Plane has landed\n").to_stdout
-  # end
-  #
-  # it 'confirms departure' do
-  #   plane = Plane.new
-  #   expect { (airport.depart(plane)) }.to output("Plane has departed\n").to_stdout
-  # end
+
 
 
 end
