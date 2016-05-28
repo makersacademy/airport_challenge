@@ -1,9 +1,12 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
+
   def initialize
     @capacity = []
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -12,13 +15,15 @@ class Airport
   end
 
   def take_off
+    raise "You cannot take off in a storm." if weather.weather_report
     plane_departure
   end
 
+
   private
 
-  attr_accessor :capacity
-  attr_reader :plane
+  attr_accessor :capacity, :weather_report
+  attr_reader :plane, :weather
 
   def aircraft_hanger
     capacity
