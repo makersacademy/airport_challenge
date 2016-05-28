@@ -9,5 +9,5 @@ p airport.passengers
 p airport.load(people)
 p airport.load
 
- airport.unload
+p airport.unload
 p airport.passengers

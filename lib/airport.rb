@@ -14,6 +14,7 @@ class Airport
   end
 
   def unload
+    @passengers = []
     self
   end
 end
