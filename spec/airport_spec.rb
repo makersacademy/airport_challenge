@@ -3,13 +3,13 @@ require 'airport'
 describe Airport do
 
   describe 'attributes:' do
-    it { is_expected.to have_attributes(:planes => []) }
-    it { is_expected.to have_attributes(:capacity => Airport::DEFAULT_CAPACITY) }
+    it { is_expected.to have_attributes(planes: []) }
+    it { is_expected.to have_attributes(capacity: Airport::DEFAULT_CAPACITY) }
   end
 
   describe 'responds to:' do
     it 'responds to dock' do
-      expect(subject).to respond_to(:dock)
+      expect(subject).to respond_to :dock
     end
 
     it 'responds to dock and a argument plane' do
