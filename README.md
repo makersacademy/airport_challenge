@@ -1,4 +1,4 @@
-Airport Challenge 
+Airport Challenge
 =================
 Travis says..... ![travis build status](https://travis-ci.org/kennbarr/airport_challenge.svg?branch=master)
 
@@ -23,10 +23,10 @@ Travis says..... ![travis build status](https://travis-ci.org/kennbarr/airport_c
 
 ```
 
-Approach
+Summary
 ---------
 
-* Created Airport, Plane and Weather classes.
+* Created Airport, Plane and Weather classes. 100% tested each and passed feature tests
 
 ######Airport
 * Airports store Planes in an array. Custom capacity can be set when creating a new Airport, default is 10.
@@ -45,5 +45,60 @@ Issues
 -------
 
 * Had to make code more complicated in order to make method testable.
-  1. Redundant optional argument "weather" added to Airport initialize method in order to be able to get test coverage of stormy? method
-  2. "Kernel.rand" had to be used in place of "rand" in order to be able to stub the random results
+  1. Redundant optional argument "weather" added to Airport initialize method in order to be able to get test coverage of Airport.stormy?
+  2. "Kernel.rand" had to be used in place of "rand" in Weather.stormy? to be able to stub the random result
+
+Sample Interface
+-------
+
+######Plane can lands and take off from airport. Can confirm if plane in airport
+```
+$ irb
+2.3.0 :001 > airport = Airport.new
+ => #<Airport:0x007ffc32092b40 @capacity=10, @planes=[], @weather=#<Weather:0x007ffc32092af0>>
+2.3.0 :002 > plane = Plane.new
+ => #<Plane:0x007ffc32068138 @landed=false>
+2.3.0 :003 > airport.has?(plane)
+ => false
+2.3.0 :004 > airport.land(plane)
+ => [#<Plane:0x007ffc32068138 @landed=true>]
+2.3.0 :005 > airport.has?(plane)
+ => true
+2.3.0 :006 > airport.take_off(plane)
+ => #<Plane:0x007ffc32068138 @landed=false>
+2.3.0 :007 > airport.has?(plane)
+ => false
+```
+
+######Airport can be initialized with custom capacity and reject landings when full
+```
+$ irb
+2.3.0 :001 > airport = Airport.new(3)
+ => #<Airport:0x007f83db105ae8 @capacity=3, @planes=[], @weather=#<Weather:0x007f83db105ac0>>
+2.3.0 :002 > 3.times {airport.land(Plane.new)}
+ => 3
+2.3.0 :003 > airport
+ => #<Airport:0x007f83db105ae8 @capacity=3, @planes=[#<Plane:0x007f83db0c7220 @landed=true>, #<Plane:0x007f83db0c71d0 @landed=true>, #<Plane:0x007f83db0c7180 @landed=true>], @weather=#<Weather:0x007f83db105ac0>>
+2.3.0 :004 > airport.land(Plane.new)
+RuntimeError: Cannot land as airport is full
+```
+
+######Weather is random and stormy weather prevents landing and take_off
+```
+$ irb
+2.3.0 :001 > airport = Airport.new
+ => #<Airport:0x007f83db00eb30 @capacity=10, @planes=[], @weather=#<Weather:0x007f83db00eb08>>
+2.3.0 :002 > plane1, plane2, plane3 = Plane.new, Plane.new, Plane.new
+ => [#<Plane:0x007f83db027388 @landed=false>, #<Plane:0x007f83db027360 @landed=false>, #<Plane:0x007f83db027338 @landed=false>]
+2.3.0 :003 > airport.land(plane1)
+ => [#<Plane:0x007f83db027388 @landed=true>]
+2.3.0 :004 > airport.land(plane2)
+RuntimeError: Plane cannot land due to storm
+2.3.0 :005 > airport.land(plane3)
+ => [#<Plane:0x007f83db027388 @landed=true>, #<Plane:0x007f83db027338 @landed=true>]
+
+2.3.0 :006 > airport.take_off(plane1)
+=> #<Plane:0x007f83db027388 @landed=false>
+2.3.0 :007 > airport.take_off(plane3)
+RuntimeError: Plane cannot take off due to storm
+```
