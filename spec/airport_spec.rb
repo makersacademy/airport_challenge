@@ -15,4 +15,10 @@ describe Airport do
 		plane.plane_flying? == false
 		expect(subject.take_off(plane)).to eq plane
 	end
+
+	it 'allows landed plane to take off again' do
+		plane = Plane.new
+		subject.land(plane)
+		expect(subject.take_off(plane)).to eq plane
+	end
 end
