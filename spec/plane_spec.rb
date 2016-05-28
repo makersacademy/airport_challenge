@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  describe 'land method' do
+  describe '#land' do
     it 'responds to land method with 1 argument (i.e. the destination airport)' do
     expect(subject).to respond_to(:land).with(1).argument
     end
@@ -13,11 +13,28 @@ describe Plane do
     end
   end
 
-  describe 'landed method' do
+  describe '#landed' do
     it 'responds to landed method' do
     expect(subject).to respond_to(:landed)
     end
   end
+
+  describe '#is_where method' do
+    it 'responds to is_where? method' do
+    expect(subject).to respond_to(:is_where?)
+    end
+
+    it 'returns current location of plane when called on plane' do
+    airport = Airport.new
+    subject.land(airport)
+    expect(subject.is_where?).to eq airport
+    end
+
+    # it 'updates location to current airport' do
+    # expect(subject.location).to eq(:is_where?)
+  end
+
+
 
   # describe 'initialization' do
   #   it 'has default status landed on creation' do

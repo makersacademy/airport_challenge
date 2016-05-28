@@ -10,6 +10,11 @@ class Plane
 
   def land(airport)
     @landed = true
+    @location = airport
+  end
+
+  def is_where?
+    @location
   end
 
 end
