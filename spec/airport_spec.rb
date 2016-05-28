@@ -10,10 +10,17 @@ describe Airport do
 		end
 
 		it "checks whether a plane has landed at the airport or not" do
+			allow(subject).to receive(:stormy?).and_return(false)
 			plane = double(:plane)
 			subject.land(plane)
 			expect(subject.landed?(plane)).to eq(true)
 		end
+
+		it "does not let a plane land if the weather is bad" do
+			allow(subject).to receive(:stormy?).and_return(true)
+			expect {subject.land(double(:plane))}.to raise_error("It's too stormy to land a plane")
+		end
+
 	end
 
 
@@ -24,9 +31,15 @@ describe Airport do
 		end
 
 		it "confirm that the plane is no longer at the airport" do
+			allow(subject).to receive(:stormy?).and_return(false)
 			plane = double(:plane)
 			subject.takeoff(plane)
 			expect(subject.left_airport?(plane)).to eq(true)
+		end
+
+		it "does not let a plane takeoff if the weather is bad" do
+			allow(subject).to receive(:stormy?).and_return(true)
+			expect {subject.takeoff(double(:plane))}.to raise_error("It's too stormy to take off")
 		end
 
 	end
