@@ -1,12 +1,19 @@
 require 'weather'
 
 describe Weather do
+  subject(:weather) { described_class.new }
 
-  let(:weather) { Weather.new }
-
-  describe "#stormy?" do
-    it "responds to stormy? method" do
-    expect(weather).to respond_to(:stormy?)
+  describe "#stormy" do
+    it "can be stormy" do
+      allow(Kernel).to receive(:rand).and_return 6
+      expect(weather.stormy?).to be true
     end
+
+    it "can be stormy" do
+      allow(Kernel).to receive(:rand).and_return 1
+      expect(weather.stormy?).to be false
+    end
+
   end
+
 end

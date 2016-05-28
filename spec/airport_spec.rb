@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
   subject(:airport) { described_class.new }
@@ -85,12 +86,14 @@ describe Airport do
     end
 
     it "confirms if a departed plane has left the airport" do
+    allow(airport).to receive(:stormy?).and_return false
     airport.land(plane)
     airport.take_off(plane)
     expect(airport.confirm_departed(plane)).to eq "#{plane} has departed airport"
     end
 
     it "confirms if a plane has not departed the airport" do
+    allow(airport).to receive(:stormy?).and_return false
     airport.land(plane)
     expect(airport.confirm_departed(plane)).to eq "#{plane} has not departed airport"
     end
