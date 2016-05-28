@@ -1,6 +1,6 @@
 class Plane
 
-  def initialize(landed = false)
+  def initialize
     @landed = false
   end
 
