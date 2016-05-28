@@ -14,4 +14,13 @@ class Airport
   def confirm_landed(plane)
     return true if @plane == plane
   end
+
+  def take_off(plane)
+    @plane = ""
+  end
+
+  def confirm_departed(plane)
+
+  end
+
 end
