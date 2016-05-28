@@ -1,34 +1,35 @@
-
-
+require "weather"
 
 class Plane
 	CANNOT_LAND_ERROR_MSG = "cannot land plane"
 	CANNOT_TAKE_OFF_ERROR_MSG =  "cannot take_off plane"
+	SKY = Sky.new
+	NO_WEATHER = NoWeather.new
 
 	def initialize
-		@current_airport = nil
-		@weather = nil
+		@position =  SKY
+		@weather = NO_WEATHER
 	end
 
 	def land(airport)
-		if landed?
-			raise CANNOT_LAND_ERROR_MSG
-		else
-			if @weather != nil && @weather.stormy?
+		unless landed?
+			if @weather.stormy?
 				raise CANNOT_LAND_ERROR_MSG
 			else
-				@current_airport = airport if airport.land_plane?(self)
+				@position = airport if airport.accept_plane?(self)
 			end
+		else
+			raise CANNOT_LAND_ERROR_MSG
 		end
 
 	end
 
 	def take_off
 		if landed?
-			if @weather != nil && @weather.stormy?
+			if @weather.stormy?
 				raise	CANNOT_TAKE_OFF_ERROR_MSG
 			else
-				@current_airport = nil
+				@position = SKY
 			end
 		else 
 			raise CANNOT_TAKE_OFF_ERROR_MSG
@@ -36,15 +37,21 @@ class Plane
 	end
 
 	def landed?
-		@current_airport != nil
+		@position.is_airport?
 	end
 
 	def get_airport
-		@current_airport
+		@position
 	end
 
 	def weather(weather)
 		@weather = weather
+	end
+
+	private
+
+	def changeposition(new_position)
+			#DRY take off and landing
 	end
 
 end

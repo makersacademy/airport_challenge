@@ -8,19 +8,23 @@ class Airport
 		@planes = []
 	end
 
-	def land_plane?(plane)
+	def is_airport?
+		true
+	end
+
+	def accept_plane?(plane)
 		room_for_one_more = room_for_plane? 
-		room_for_one_more ? dock(plane) : capacity_reached
+		room_for_one_more ? accept(plane) : capacity_reached
 		room_for_one_more 
 	end
 
 	private
-	
+
 	def room_for_plane?
 		@planes.length < @capacity
 	end
 
-	def dock(plane)
+	def accept(plane)
 		@planes << plane
 	end
 
@@ -28,4 +32,13 @@ class Airport
 		raise CAPACITY_REACHED_ERROR_MESSAGE
 	end
 
+end
+
+class Sky
+	def is_airport?
+		false
+	end
+	def accept_plane?(plane)
+		true
+	end
 end

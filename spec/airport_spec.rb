@@ -8,10 +8,10 @@ describe Airport do
 		end
 	end
 
-	describe "#land_plane?(plane)" do
+	describe "#accept_plane?(plane)" do
 		it "returns true if empty" do
 			plane = double(:plane)
-			expect(subject.land_plane?(plane)).to be(true)
+			expect(subject.accept_plane?(plane)).to be(true)
 		end
 		it "raise an error if full" do
 			test_capacity = rand(1..100)
@@ -19,10 +19,17 @@ describe Airport do
 			airport = Airport.new(test_capacity)
 			test_capacity.times { |i|
 				planes[i] = double(:plane)
-				airport.land_plane?(planes[i])
+				airport.accept_plane?(planes[i])
 			}
-			expect{airport.land_plane?(double(:plane))}.to raise_error
+			expect{airport.accept_plane?(double(:plane))}.to raise_error
 		end
+	end
+
+	describe "#is_airport?" do
+		it "returns true" do
+			expect(subject.is_airport?).to be(true)
+		end
+
 	end
 
 end
