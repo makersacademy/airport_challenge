@@ -15,6 +15,13 @@ describe Airport do
         subject.dock(plane1)
         expect(subject.release).to eq plane1
       end
+
+      it "changes planes to landed" do
+        subject = Airport.new(good_weather)
+        plane1 = plane
+        expect(plane1).to receive(:is_flying?) {false}
+        subject.dock(plane1)
+      end
     end
 
     describe "#release" do
