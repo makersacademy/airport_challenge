@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
@@ -35,4 +36,23 @@ describe Airport do
 		expect(subject.in_airport?(plane)).to eq false
 	end
 
+	it 'cannot land the plane in a storm' do
+		plane = Plane.new
+		weather = Weather.new
+		weather.stormy?
+		expect {subject.land(plane)}.to raise_error("Unable to land in a storm")
+	end
+
+	# it 'raises an error when a plane tries to land in a storm' do
+
+	# end
+
 end
+
+
+
+
+
+
+
+
