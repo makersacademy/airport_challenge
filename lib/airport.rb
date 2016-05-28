@@ -1,5 +1,7 @@
+require_relative 'plane'
+
 class Airport
-  def has_landed(plane)
+  def confirm_landed(plane)
 
   end
 end
