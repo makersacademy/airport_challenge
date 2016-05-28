@@ -19,11 +19,12 @@ describe Airport do
 
       it "cannot land if plane already in an airport" do
         allow(plane).to receive(:landed?) { true }
-        expect { airport.land(plane) }.to raise_error "Plane has already landed"
+        message = "Plane has already landed"
+        expect { airport.land(plane) }.to raise_error message
       end
 
       it "prevents landing if airport full" do
-        small_airport = Airport.new(1)
+        small_airport = Airport.new(1,weather)
         small_airport.land(plane)
         message = "Cannot land as airport is full"
         expect { small_airport.land(plane) }.to raise_error message
