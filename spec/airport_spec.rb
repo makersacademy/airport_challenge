@@ -1,8 +1,8 @@
 require 'airport'
 
 describe Airport do
-
-  let(:airport) { Airport.new }
+  subject(:airport) { described_class.new }
+  let(:plane) { double :plane }
 
   describe "#land" do
 
@@ -11,7 +11,6 @@ describe Airport do
     end
 
     it "lands and stores plane at airport" do
-    plane = Plane.new
     airport.land(plane)
     expect(airport.planes).to eq [plane]
     end
@@ -25,13 +24,11 @@ describe Airport do
     end
 
     it "confirms if a landed plane is at the airport" do
-    plane = Plane.new
     airport.land(plane)
     expect(airport.confirm_landed(plane)).to eq "#{plane} has landed at airport"
     end
 
     it "confirms if a landed plane is NOT at the airport" do
-    plane = Plane.new
     expect(airport.confirm_landed(plane)).to eq "#{plane} has not landed at airport"
     end
 
@@ -44,7 +41,6 @@ describe Airport do
     end
 
     it "causes plane to leave airport" do
-    plane = Plane.new
     airport.land(plane)
     airport.take_off(plane)
     expect(airport.take_off(plane)).to eq []
@@ -59,14 +55,12 @@ describe Airport do
     end
 
     it "confirms if a departed plane has left the airport" do
-    plane = Plane.new
     airport.land(plane)
     airport.take_off(plane)
     expect(airport.confirm_departed(plane)).to eq "#{plane} has departed airport"
     end
 
     it "confirms if a plane has not departed the airport" do
-    plane = Plane.new
     airport.land(plane)
     expect(airport.confirm_departed(plane)).to eq "#{plane} has not departed airport"
     end
