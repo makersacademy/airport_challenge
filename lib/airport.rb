@@ -1,4 +1,4 @@
-require_relative 'Plane'
+require_relative 'lib/plane.rb'
 
 class Airport
 
@@ -9,5 +9,5 @@ class Airport
   def take_off(plane)
     "The plane has taken off"
   end
-  
+
 end

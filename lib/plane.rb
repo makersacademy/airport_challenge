@@ -1,4 +1,4 @@
-require_relative 'airport'
+require_relative 'lib/airport.rb'
 
 class Plane
   
@@ -9,6 +9,6 @@ class Plane
   def landed?
   	true
   end
-  
+
 end
 
