@@ -7,3 +7,16 @@ airport.land(plane2)
 airport
 airport.take_off
 airport
+
+
+
+require './airport_challenge/lib/weather.rb'
+weather = Weather.new
+weather.weather_report
+weather.weather_report
+weather.weather_report
+weather.weather_report
+weather.weather_report
+weather.weather_report
+weather.weather_report
+weather.weather_report
