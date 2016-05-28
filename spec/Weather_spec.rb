@@ -1,4 +1,4 @@
-require "Weather"
+require "weather"
 
 describe Weather do
 
