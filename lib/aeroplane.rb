@@ -13,8 +13,8 @@ class Aeroplane
     @to_land
   end
 
-  def land(wobj)
-    if (wobj.is_stormy?)
+  def land(wobj, full = false)
+    if (wobj.is_stormy? || full == true)
       @to_land = false
     else
       @to_land = true
