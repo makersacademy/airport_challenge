@@ -5,6 +5,8 @@ describe Airport do
 
   let(:person) { double(:person) }
   let(:people) { [person,person,person] }
+  let(:mob) { [*1..100] }
+  let(:mob2) { [*1..101] }
 
   let(:loads) { airport.load(people) }
   let(:unloads) { airport.unload }
@@ -22,6 +24,19 @@ describe Airport do
   it 'check if arrived passengers in airport' do
     loads
     expect(waiting_room).to be_an_instance_of Array
+  end
+
+  it 'has a default capacity of 100' do
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it 'airport can be instantiated with new capacity' do
+    expect(Airport.new(80).capacity).to eq 80
+  end
+
+  it 'airport can have capacity set' do
+    airport.capacity = 20
+    expect(airport.capacity).to eq 20
   end
 
   describe '#load' do
@@ -49,8 +64,8 @@ describe Airport do
   end
 
   describe '#unload' do
-    it '#unload returns airport' do
-      expect(unloads).to eq airport
+    it '#unload returns passengers exiting airport' do
+      expect(unloads).to eq waiting_room
     end
     it 'unloads all passengers' do
       loads
@@ -59,9 +74,18 @@ describe Airport do
     end
   end
 
-
-
-
+  describe '#full?' do
+    it "confirms if it's not full" do
+      expect( airport.full? ).to eq false
+    end
+    it "confirms if it's full" do
+      airport.load(mob)
+      expect( airport.full? ).to eq true
+    end
+    it "is limited by capacity" do
+      expect { airport.load(mob2) }.to raise_error "Airport full!"
+    end
+  end
 
 
 end
