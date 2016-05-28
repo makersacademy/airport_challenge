@@ -1,4 +1,4 @@
-require 'Airport'
+require 'airport'
 
 describe Airport do 
 
@@ -13,4 +13,5 @@ describe Airport do
     plane = Plane.new
     expect(subject.take_off(plane)).to eq "The plane has taken off"
   end
+  
 end

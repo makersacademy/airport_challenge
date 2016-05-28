@@ -1,9 +1,9 @@
-require 'Plane'
+require 'plane'
 
- describe Plane do
+describe Plane do
 
- 	it { is_expected.to respond_to(:flying?) }
+  it { is_expected.to respond_to(:flying?) }
 
- 	it { is_expected.to respond_to(:landed?) }
- 	
- end
+  it { is_expected.to respond_to(:landed?) }
+
+end
