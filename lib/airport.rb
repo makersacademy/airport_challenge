@@ -15,14 +15,16 @@ DEFAULT_CAPACITY = 20
     fail("Plane has already landed") if plane.landed?
     fail("Cannot land as airport is full") if full?
     fail("Plane cannot land due to storm") if stormy?
+
     plane.land
     @planes << plane
   end
 
   def take_off(plane)
-    fail("Plane has already taken off") if !plane.landed?
-    fail("Plane is not at this airport") if !has?(plane)
+    fail("Plane has already taken off") unless plane.landed?
+    fail("Plane is not at this airport") unless has?(plane)
     fail("Plane cannot take off due to storm") if stormy?
+
     plane.take_off
     @planes.delete(plane)
   end
