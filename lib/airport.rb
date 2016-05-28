@@ -1,12 +1,25 @@
+require 'plane'
+
 class Airport
 
+	def initialize 
+		@landed = []
+	end
+
 	def land(plane)
-		@plane = plane
+		@landed << plane
+		"Welcome to London"
 	end
 
 	def take_off(plane)
-		@plane = plane
+		@landed.pop
+		"Have a pleasant flight"
 	end
+
+	def in_airport?(plane)
+		@landed.include? plane
+	end
+
 
 	attr_reader :plane
 
