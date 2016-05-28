@@ -1,0 +1,18 @@
+traffic controller
+
+instruct plane to land at an airport, confirm it has landed
+	airport.land
+	airport.have_planes
+instruct plane to take off from airport, confirm no longer at the airport
+	airport.take_off
+	airport.have_planes
+
+traffic controller
+
+prevent takeoff when weather is stormy
+prevent landing when weather is stormy
+
+system designer
+default airport capacity can be overwritten
+	airport.have_planes
+
