@@ -3,12 +3,9 @@ require 'plane'
 
 describe Airport do
 
-  it do
+  it "responds to a method"do
     expect(subject).to respond_to(:land).with(1).argument
     expect(subject).to respond_to(:depart).with(1).argument
-  end
-
-  it do
     expect(subject).to respond_to(:plane)
   end
 
@@ -16,16 +13,24 @@ describe Airport do
     expect(subject).to be_a(Airport)
   end
 
-  it 'lands / departs something' do
+  it 'lands a plane' do
     plane = Plane.new
     expect(subject.land(plane)).to eq plane
+  end
+
+  it 'departs a plane' do
+    plane = Plane.new
     expect(subject.depart(plane)).to eq plane
   end
 
-  it 'confirms landing / departure' do
+  it 'confirms landing' do
     plane = Plane.new
-    expect { (subject.land(plane)) }.to output("Plane has landed").to_stdout
-    expect { (subject.depart(plane)) }.to output("Plane has departed").to_stdout
+    expect { (subject.land(plane)) }.to output("Plane has landed\n").to_stdout
+  end
+
+  it 'confirms departure' do
+    plane = Plane.new
+    expect { (subject.depart(plane)) }.to output("Plane has departed\n").to_stdout
   end
 
 
