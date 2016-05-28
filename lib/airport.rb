@@ -18,6 +18,10 @@ class Airport
 		room_for_one_more 
 	end
 
+	def release_plane(plane)
+		@planes.delete(plane)
+	end
+
 	private
 
 	def room_for_plane?
@@ -39,6 +43,9 @@ class Sky
 		false
 	end
 	def accept_plane?(plane)
+		true
+	end
+	def release_plane(plane)
 		true
 	end
 end

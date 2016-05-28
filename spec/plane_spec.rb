@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-	let(:airport) {double(:airport, accept_plane?: true, is_airport?: true)}
+	let(:airport) {double(:airport, accept_plane?: true, is_airport?: true, release_plane: true)}
 	let(:weather) {double(:weather, stormy?: true)}
 
 	describe "#land(airport)" do
@@ -52,13 +52,13 @@ describe Plane do
 
 	end
 
-	describe "#get_airport" do
-		it "should take the get_airport message" do
-			expect(subject).to respond_to(:get_airport)
+	describe "#get_position" do
+		it "should take the get_position message" do
+			expect(subject).to respond_to(:get_position)
 		end
 		it "should return it's airport" do
 			subject.land(airport)
-			expect(subject.get_airport).to eq(airport)
+			expect(subject.get_position).to eq(airport)
 		end
 	end
 
