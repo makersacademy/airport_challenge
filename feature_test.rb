@@ -1,7 +1,9 @@
 require_relative './lib/plane.rb'    # => true
-require_relative './lib/airport.rb'  # => true
+require_relative './lib/airport.rb'  # => false
 
-geneva = Airport.new  # => #<Airport:0x007ff8a39b3ea0>
-plane = Plane.new     # => #<Plane:0x007ff8a39b3cc0>
-plane.land            # => nil
-plane.report_landed   # => nil
+geneva = Airport.new  # ~> NameError: uninitialized constant Geneva
+
+# ~> NameError
+# ~> uninitialized constant Geneva
+# ~>
+# ~> /Users/sdawes/Documents/projects/airport_challenge/feature_test.rb:4:in `<main>'
