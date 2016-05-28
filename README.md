@@ -1,6 +1,6 @@
 Airport Challenge 
 =================
-![travis build status](https://travis-ci.org/kennbarr/airport_challenge.svg?branch=master)
+Travis says..... ![travis build status](https://travis-ci.org/kennbarr/airport_challenge.svg?branch=master)
 
 ```
                                 4eec
@@ -26,10 +26,22 @@ Airport Challenge
 Approach
 ---------
 
-* X
+* Created Airport, Plane and Weather classes.
 
+######Airport
+* Airports store Planes in an array. Custom capacity can be set when creating a new Airport, default is 10.
+* Airports check: plane is airborne, airport is not full and weather is not stormy before permitting a plane to land
+* Airports check: plane is not already airborne, plane is in this airport and weather is not stormy before permitting a plane to take off
+
+######Plane
+* Planes have a predicate method 'landed?' that returns *true* if landed and *false* if airborne
+* This 'landed?' state can be changed by calling the 'land' and 'take_off' methods on a plane
+
+######Weather
+* The purpose of this class is to randomise the weather to occasionally result in stormy conditions
+* Calling 'stormy?' on an instance of Weather has a 20% probability of returning true
 
 Issues
 -------
 
-1. Y
+1. X
