@@ -14,5 +14,11 @@ class Airport
 		@terminal.include? plane
 	end
 
+	def takeoff (plane)
+		@terminal.reject! {|pl| pl == plane}
+	end
 
+	def left_airport? (plane)
+		true unless @terminal.include? plane
+	end
 end
