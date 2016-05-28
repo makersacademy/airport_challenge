@@ -7,8 +7,8 @@ describe Plane do
   end
 
   describe 'responds to:' do
-    it 'responds to land' do
-      expect(subject).to respond_to :land
+    it 'responds to landed?' do
+      expect(subject).to respond_to :landed?
     end
 
     it 'responds to take off' do
@@ -16,15 +16,16 @@ describe Plane do
     end
   end
 
-    describe '#land' do
+    describe '#landed?' do
       it 'expect plane to be landed' do
-        expect(subject.land).to eq true
+        expect(subject.landed?).to eq true
       end
     end
 
     describe '#take_off' do
-      it 'expect plane to be taken off' do
-        expect(subject.take_off).to eq false
+      it 'expect plane to be taken off (#landed? == false)' do
+        subject.take_off
+        expect(subject.landed?).to eq false
       end
     end
 

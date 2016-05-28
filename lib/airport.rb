@@ -12,13 +12,10 @@ class Airport
     @capacity = capacity
   end
 
-  def dock(plane)
+  def land_plane(plane)
   end
 
-  def land_plane
-  end
-
-  def take_off_plane
+  def take_off_plane(plane)
   end
 
 end
