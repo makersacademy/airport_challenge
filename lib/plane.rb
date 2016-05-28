@@ -12,11 +12,12 @@ class Plane
 	end
 
 	def land(airport)
+		new_position = airport
 		if !landed?
 			if @weather.stormy?
 				raise "error"
 			else
-				@position = airport if airport.accept_plane?(self)
+				@position = new_position if new_position.accept_plane?(self)
 			end
 		else
 			raise "error"
@@ -25,12 +26,12 @@ class Plane
 	end
 
 	def take_off
+		new_position = SKY
 		if landed?
 			if @weather.stormy?
 				raise	"error"
 			else
-				@position = SKY
-			end
+				@position = new_position  if new_position.accept_plane?(self) 			end
 		else 
 			raise "error"
 		end
