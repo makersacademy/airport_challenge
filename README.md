@@ -60,3 +60,7 @@ airport.land_plane(plane)
 ```
 airport.take_off(plane)
 ```
+- An airport can have a specific max capacity if required, otherwise it's just instantiated with a default capacity
+```
+airport_large = Airport.new(100)
+```
