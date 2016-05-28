@@ -44,4 +44,6 @@ Approach
 Issues
 -------
 
-1. X
+* Had to make code more complicated in order to make method testable.
+  1. Redundant optional argument "weather" added to Airport initialize method in order to be able to get test coverage of stormy? method
+  2. "Kernel.rand" had to be used in place of "rand" in order to be able to stub the random results
