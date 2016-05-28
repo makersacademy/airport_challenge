@@ -20,17 +20,17 @@ class Plane
 	end	
 
 	def transition_ok?(new_position)
-		if new_position.accept_plane?(self)
-			unless @weather.stormy?
+		unless @weather.stormy?
+			if new_position.accept_plane?(self)
 				if new_position.is_airport?
 					return !landed?
 				end
 				if (new_position.is_airport? == false)
 					return landed?
 				end
-			else
-				raise "error"
 			end
+		else
+			raise "error"
 		end
 	end
 
