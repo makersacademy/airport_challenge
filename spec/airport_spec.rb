@@ -13,7 +13,7 @@ describe Airport do
     it "lands and stores plane at airport" do
     plane = Plane.new
     airport.land(plane)
-    expect(airport.land(plane)).to eq plane
+    expect(airport.land(plane)).to eq [plane]
     end
 
   end
@@ -42,7 +42,7 @@ describe Airport do
     plane = Plane.new
     airport.land(plane)
     airport.take_off(plane)
-    expect(airport.take_off(plane)).to eq ""
+    expect(airport.take_off(plane)).to eq []
     end
 
   end
@@ -60,16 +60,16 @@ describe Airport do
     # end
   end
 
-  # describe "#planes"
+  describe "#planes"
 
-  #   it "responds to planes method" do
-  #   expect(airport).to respond_to(:planes)
-  #   end
+    it "responds to planes method" do
+    expect(airport).to respond_to(:planes)
+    end
 
-  #   it "lists planes currently landed at airport" do
-  #   plane = Plane.new
-  #   airport.land(plane)
-  #   expect(airport.planes).to eq plane
-  #   end
+    # it "lists planes currently landed at airport" do
+    # plane = Plane.new
+    # airport.land(plane)
+    # expect(airport.planes).to eq plane
+    # end
 
 end
