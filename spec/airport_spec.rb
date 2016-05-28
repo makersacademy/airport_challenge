@@ -30,6 +30,11 @@ describe Airport do
     expect(airport.confirm_landed(plane)).to eq true
     end
 
+    # it "raises error if specific plane has not landed" do
+    # plane = Plane.new
+    # expect(airport.confirm_landed(plane)).to raise_error "#{plane} has not landed at this airport"
+    # end
+
   end
 
   describe "#take_off" do
@@ -53,11 +58,11 @@ describe Airport do
     expect(airport).to respond_to(:confirm_departed).with(1).argument
     end
 
-    # it "confirms if specific plane has departed" do
-    # plane = Plane.new
-    # airport.land(plane)
-    # expect(airport.confirm_departed(plane)).to eq true
-    # end
+    it "confirms if specific plane has departed" do
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.confirm_departed(plane)).to eq true
+    end
   end
 
   describe "#planes"
