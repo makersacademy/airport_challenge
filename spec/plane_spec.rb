@@ -16,15 +16,12 @@ describe Plane do
     end
 
     describe 'when landing' do
-      describe '#land_at' do
-        it 'instructs a plane to land' do
-          expect(plane).to respond_to(:land_at).with(1).argument
+        it { is_expected.to respond_to(:land_at).with(1).argument }
+
+        it 'should not be flying after landing' do
+          allow(airport).to receive(:dock)
+          plane.land_at(airport)
+          expect(plane.flying?).to eq false
         end
-      end
-      it 'should not be flying after landing' do
-        allow(airport).to receive(:dock)
-        plane.land_at(airport)
-        expect(plane.flying?).to eq false
-      end
     end
 end

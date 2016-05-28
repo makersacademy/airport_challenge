@@ -6,8 +6,8 @@ class Plane
   end
 
   def land_at(airport)
-    @flying = false
     airport.dock(self)
+    @flying = false
   end
 
   def flying?

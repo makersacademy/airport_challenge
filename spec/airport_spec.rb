@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane) {double :plane}
-  let(:plane_alt) {double :plane_alt}
+  let(:plane) { double :plane }
+  let(:plane_alt) { double :plane_alt }
 
     describe '#dock' do
       it 'instructs a plane to dock' do
@@ -33,5 +33,11 @@ describe Airport do
         expect(airport.check_for_landed(plane)).to eq true
         expect(airport.check_for_landed(plane_alt)).to eq false
       end
+    end
+    describe '#check weather' do
+      before
+        let(weather) { double :weather }
+      it 'raises an error if the weather is stormy'
+
     end
 end
