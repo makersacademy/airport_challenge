@@ -14,7 +14,7 @@ class Plane
 	def land(airport)
 		new_position = airport
 		#is the transition ok?
-		if !landed? 
+		if transition_ok?(new_position)
 			if @weather.stormy?
 				raise "error"
 			else
@@ -28,8 +28,8 @@ class Plane
 
 	def take_off
 		new_position = SKY
-		#is the transition ok?
-		if landed? 
+		#is the trasintion ok?
+		if transition_ok?(new_position)
 			if @weather.stormy?
 				raise	"error"
 			else
@@ -41,10 +41,10 @@ class Plane
 	end	
 
 	def transition_ok?(new_position)
-		if new_position.is_airport
-			return !landed
+		if new_position.is_airport?
+			return !landed?
 		end
-		if (new_position.is_airport == false)
+		if (new_position.is_airport? == false)
 			return landed?
 		end
 	end
