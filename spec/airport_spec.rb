@@ -10,6 +10,12 @@ describe Airport do
     expect(airport).to respond_to(:land).with(1).argument
     end
 
+    it "lands and stores plane at airport" do
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.land(plane)).to eq plane
+    end
+
   end
 
   describe "#confirm_landed" do
@@ -18,6 +24,18 @@ describe Airport do
     expect(airport).to respond_to(:confirm_landed).with(1).argument
 
     end
+
+  # describe "#planes"
+
+  #   it "responds to planes method" do
+  #   expect(airport).to respond_to(:planes)
+  #   end
+
+  #   it "lists planes currently landed at airport" do
+  #   plane = Plane.new
+  #   airport.land(plane)
+  #   expect(airport.planes).to eq plane
+  #   end
 
   end
 
