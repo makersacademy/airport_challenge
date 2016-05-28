@@ -1,5 +1,5 @@
-require "airport"
-require "plane"
+require "./lib/airport"
+
 
 
 describe Airport do
