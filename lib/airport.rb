@@ -4,4 +4,8 @@ class Airport
     @planes = plane
   end
 
+  def release
+    @planes
+  end
+
 end

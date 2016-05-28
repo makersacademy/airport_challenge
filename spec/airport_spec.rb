@@ -4,8 +4,11 @@ describe Airport do
 
   let (:plane) {double :plane}
 
-  it "docks planes" do
-    expect(subject.dock(plane)).to eq plane
+
+  it "docks and releases planes" do
+    plane1 = plane
+    subject.dock(plane1)
+    expect(subject.release).to eq plane1
   end
 
 end
