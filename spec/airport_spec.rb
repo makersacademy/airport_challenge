@@ -35,6 +35,12 @@ describe Airport do
     end
   end
 
+  describe "#is_stormy?" do
+    it 'raises an error for departure when the weather is stormy' do
+      expect { airport.depart(Plane.new) }.to raise_error "Weather is stormy. No departures"
+    end
+  end
+
   # it 'confirms landing' do
   #   plane = Plane.new
   #   expect { (airport.land(plane)) }.to output("Plane has landed\n").to_stdout

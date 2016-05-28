@@ -1,0 +1,5 @@
+class WeatherReport
+
+  
+
+end
