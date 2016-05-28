@@ -9,8 +9,9 @@ class Airport
     @plane = plane
   end
 
-  def plane
-    @plane
+  def depart(plane)
+    print "Plane has departed"
+    @plane = plane
   end
 
 
