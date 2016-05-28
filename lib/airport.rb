@@ -1,11 +1,11 @@
 class Airport
 
 	def land(plane)
-		"Plane landed"
+		plane
 	end
 
 	def take_off(plane)
-
+		plane
 	end
 
 end
