@@ -1,6 +1,6 @@
 <h1>Airport Challenge</h1>
 [![Build Status](https://travis-ci.org/awye765/airport_challenge.svg?branch=master)](https://travis-ci.org/awye765/airport_challenge)
-[![Coverage Status](https://coveralls.io/repos/github/awye765/airport_challenge/badge.svg?branch=master)](https://coveralls.io/repos/github/awye765/airport_challenge)
+[![Coverage Status]<a href='https://coveralls.io/github/awye765/airport_challenge?branch=master'><img src='https://coveralls.io/repos/github/awye765/airport_challenge/badge.svg?branch=master' alt='Coverage Status' /></a>
 
 <h1>Introduction</h1>
 
