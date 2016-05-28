@@ -10,11 +10,12 @@ class Airport
   end
 
   def plane_arrival(plane)
-    raise "The airport terminal is full" if terminal_full?
+    fail "The airport terminal is full" if terminal_full?
     @terminal << plane if plane.at_airport? == false && !terminal_full?
   end
 
   def plane_departure
+    fail "There are no planes at the terminal to depart." if terminal_empty?
     @terminal.pop if @terminal[-1].at_airport?
   end
 
@@ -28,4 +29,7 @@ class Airport
     @terminal.count == @capacity
   end
 
+  def terminal_empty?
+    @terminal.empty?
+  end
 end
