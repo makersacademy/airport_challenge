@@ -8,7 +8,9 @@ describe Plane do
 
   describe '#take_off' do
     it 'doesn\'t take off from airport if already airborne' do
-      expect { subject.take_off }.to raise_error(RuntimeError, "Plane is already airborne.")
+      expect { subject.take_off }.to raise_error(
+        RuntimeError,
+        "Plane is already airborne.")
     end
 
     it 'leaves the airport' do
@@ -18,7 +20,9 @@ describe Plane do
 
   describe '#land' do
     it 'doesn\'t land at an airport if already on the ground' do
-      expect { plane.land(lhw) }.to raise_error(RuntimeError, "Plane is already on the ground.")
+      expect { plane.land(lhw) }.to raise_error(
+        RuntimeError,
+        "Plane is already on the ground.")
     end
 
     it 'lands at an airport' do

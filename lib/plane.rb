@@ -5,13 +5,14 @@ class Plane
   end
 
   def take_off
-    raise "Plane is already airborne." unless airport
+    # used fail to keep Hound happy, but bbatsov says to use raise??
+    fail "Plane is already airborne." unless airport
     airport = nil
     airport
   end
 
   def land(destination)
-    raise "Plane is already on the ground." if airport
+    fail "Plane is already on the ground." if airport
     airport = destination
     airport
   end
