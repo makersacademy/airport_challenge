@@ -14,7 +14,7 @@ class Airport
     @planes << plane
   end
 
-  def takeoff(plane)
+  def takeoff
     raise("Airport empty") if @planes == []
     @planes.pop
   end
