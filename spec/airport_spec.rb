@@ -4,5 +4,8 @@ describe Airport do
 
 	subject {Airport.new(3)}
 
-	# it {is_expected.to respond_to(:new).with(1).argument }
+	it {is_expected.to respond_to(:arriving)}
+
+	it {is_expected.to respond_to(:full?)}
+
 end

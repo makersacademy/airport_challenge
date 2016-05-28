@@ -1,3 +1,6 @@
+require 'airport.rb'
+require 'plane.rb'
+
 class Airport
 
 	def initialize(capacity)
@@ -5,7 +8,7 @@ class Airport
 		@planes = 0
 	end
 
-	def arrival
+	def arriving
 		@planes += 1
 	end
 
