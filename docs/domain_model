@@ -15,7 +15,7 @@ Objects    | Messages
 Plane      | 
 Airport    | receive(plane), release(plane), parked?(plane)
 Weather    | stormy? 
-Dispatcher | travel_allowed?=
+Dispatcher | travel_allowed?
 
 ## Verbose feature tests
 
