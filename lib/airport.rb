@@ -21,12 +21,19 @@ class Airport
 
   def release
     fail "Weather is too stormy, cannot take off" if current_weather.is_stormy?
-    planes.pop
+    fail "Airport is empty, cannot take off" if empty?
+    x = planes.pop
+    x.taken_off
+    x
   end
 
   private
 
   attr_reader :planes, :current_weather, :capacity
+
+  def empty?
+    planes.empty?
+  end
 
   def full?
     planes.size >= capacity

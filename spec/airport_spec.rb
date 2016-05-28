@@ -38,6 +38,14 @@ describe Airport do
         subject.dock(plane1)
         expect(subject.release).to eq plane1
       end
+
+      it "changes planes to landed" do
+        subject = Airport.new(good_weather)
+        plane1 = plane
+        expect(plane1).to receive(:taken_off)
+        subject.dock(plane1)
+        subject.release
+      end
     end
 
     describe "#capacity" do
@@ -51,6 +59,11 @@ describe Airport do
         subject = Airport.new(good_weather, 10)
         10.times{subject.dock(plane)}
         expect{subject.dock(plane)}.to raise_error "Airport is full, cannot land"
+      end
+
+      it "returns an error if airport is empty" do
+        subject = Airport.new(good_weather)
+        expect{subject.release}.to raise_error "Airport is empty, cannot take off"
       end
     end
   end
