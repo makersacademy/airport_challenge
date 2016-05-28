@@ -21,6 +21,12 @@ describe Airport do
 			expect {subject.land(double(:plane))}.to raise_error("It's too stormy to land a plane")
 		end
 
+		it "does not let a plane land if it is already at capacity" do
+			allow(subject).to receive(:full?).and_return(true)
+			allow(subject).to receive(:stormy?).and_return(false)
+			expect {subject.land(double(:plane))}.to raise_error("The airport is already full")
+		end
+
 	end
 
 
