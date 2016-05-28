@@ -15,6 +15,11 @@ describe Airport do
     it "can initialize a new airport" do
       expect(airport).to be_a(Airport)
     end
+
+    it "has a default capacity" do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
   end
 
   describe '#land' do
