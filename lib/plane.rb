@@ -1,6 +1,10 @@
 class Plane
 
-	def plane_flying?
+	def flying?
+		true
+	end
+
+	def landed?
 		true
 	end
 
