@@ -47,3 +47,13 @@ Your task is to test drive the creation of a set of classes/modules to satisfy a
 ## Progress
 
 1. Decided what to name my classes!
+```
+airport = Airport.new
+plane = Plane.new
+weather = Weather.new
+```
+
+1. Airport can instruct a plane to land, and also confirms that plane has landed.
+```
+airport.land_plane(plane)
+```
