@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Cannot land plane: weather is stormy" if stormy?
     @planes << plane
   end
 
@@ -25,6 +26,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Cannot take-off: weather is stormy" if stormy?
     @planes.pop
     @planes
   end
@@ -35,6 +37,12 @@ class Airport
     else
       "#{plane} has departed airport"
     end
+  end
+
+  private
+
+  def stormy?
+    rand(1..6) > 4
   end
 
 end

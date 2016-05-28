@@ -4,16 +4,39 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
 
+  describe "#planes" do
+
+    it "responds to planes method" do
+    expect(airport).to respond_to(:planes)
+    end
+
+    it "lists planes currently landed at airport" do
+    allow(airport).to receive(:stormy?).and_return false
+    plane1 = Plane.new
+    airport.land(plane1)
+    plane2 = Plane.new
+    airport.land(plane2)
+    expect(airport.planes).to eq [plane1, plane2]
+    end
+  end
+
   describe "#land" do
 
     it "responds to land method with 1 argument" do
     expect(airport).to respond_to(:land).with(1).argument
     end
 
-    it "lands and stores plane at airport" do
+    it "lands and stores each plane at airport" do
+    allow(airport).to receive(:stormy?).and_return false
     airport.land(plane)
     expect(airport.planes).to eq [plane]
     end
+
+    it "prevents plane landing when stormy" do
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.land(plane) }.to raise_error "Cannot land plane: weather is stormy"
+    end
+
 
   end
 
@@ -24,6 +47,7 @@ describe Airport do
     end
 
     it "confirms if a landed plane is at the airport" do
+    allow(airport).to receive(:stormy?).and_return false
     airport.land(plane)
     expect(airport.confirm_landed(plane)).to eq "#{plane} has landed at airport"
     end
@@ -41,9 +65,15 @@ describe Airport do
     end
 
     it "causes plane to leave airport" do
+    allow(airport).to receive(:stormy?).and_return false
     airport.land(plane)
     airport.take_off(plane)
     expect(airport.take_off(plane)).to eq []
+    end
+
+    it "prevents plane taking-off when stormy" do
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.take_off(plane) }.to raise_error "Cannot take-off: weather is stormy"
     end
 
   end
@@ -66,17 +96,5 @@ describe Airport do
     end
 
   end
-
-  describe "#planes"
-
-    it "responds to planes method" do
-    expect(airport).to respond_to(:planes)
-    end
-
-    # it "lists planes currently landed at airport" do
-    # plane = Plane.new
-    # airport.land(plane)
-    # expect(airport.planes).to eq plane
-    # end
 
 end
