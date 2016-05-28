@@ -1,4 +1,4 @@
 class Plane
-	def land (airport)
+	def land
 	end
 end
