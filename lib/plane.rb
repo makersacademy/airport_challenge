@@ -30,12 +30,8 @@ class Plane
 
 
 	def change_position(new_position)
-		if transition_ok?(new_position)
-			unless @weather.stormy?
-				@position = new_position if new_position.accept_plane?(self)
-			else
-				raise "error"
-			end
+		if transition_ok?(new_position) && !@weather.stormy?
+			@position = new_position if new_position.accept_plane?(self)
 		else
 			raise "error"
 		end
