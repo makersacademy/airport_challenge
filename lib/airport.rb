@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :planes
+  attr_accessor :planes
 
   def initialize
     @planes = []
@@ -7,5 +7,10 @@ class Airport
 
   def land_plane(plane)
     @planes << plane
+  end
+
+  def take_off(plane)
+    raise "That plane doesn't exist!" unless @planes.include?(plane)
+    @planes.delete(plane)
   end
 end

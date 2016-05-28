@@ -46,14 +46,17 @@ Your task is to test drive the creation of a set of classes/modules to satisfy a
 
 ## Progress
 
-1. Decided what to name my classes!
+- Decided what to name my classes!
 ```
 airport = Airport.new
 plane = Plane.new
 weather = Weather.new
 ```
-
-1. Airport can instruct a plane to land, and also confirms that plane has landed.
+- Airport can instruct a plane to land, and also confirms that plane has landed.
 ```
 airport.land_plane(plane)
+```
+- Airport can instruct a plane to take off, and raises an error if the plane instructed doesn't exist
+```
+airport.take_off(plane)
 ```
