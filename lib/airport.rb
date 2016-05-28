@@ -2,14 +2,14 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :plane
+  attr_reader :planes
 
-  def planes
+  def initialize
     @planes = []
   end
 
   def land(plane)
-    planes << plane
+    @planes << plane
   end
 
   def confirm_landed(plane)
@@ -22,7 +22,7 @@ class Airport
   end
 
   def confirm_departed(plane)
-    return true if !planes.include?(plane)
+    return true if !@planes.include?(plane)
   end
 
 end

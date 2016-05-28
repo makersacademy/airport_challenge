@@ -13,7 +13,7 @@ describe Airport do
     it "lands and stores plane at airport" do
     plane = Plane.new
     airport.land(plane)
-    expect(airport.land(plane)).to eq [plane]
+    expect(airport.planes).to eq [plane]
     end
 
   end
@@ -60,7 +60,7 @@ describe Airport do
 
     it "confirms if specific plane has departed" do
     plane = Plane.new
-    airport.land(plane)
+    airport.take_off(plane)
     expect(airport.confirm_departed(plane)).to eq true
     end
   end
