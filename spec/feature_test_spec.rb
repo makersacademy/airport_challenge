@@ -1,16 +1,15 @@
-#require 'airport'
+require 'airport'
 require 'plane'
-# require 'weather'
+require 'weather'
 
 describe "Program Feature Test" do
 
-	let(:airport) {double(:airport, land_plane?: true)}
-	let(:weather) {double(:weather, stormy?: true)}
 	# As an air traffic controller 
 	# So I can get passengers to a destination 
 	# I want to instruct a plane to land at an airport and confirm that it has landed 
 	it "instructs a plane to land at an airport and confirm that it has landed " do
 		plane = Plane.new
+		airport = Airport.new
 		plane.land(airport)
 		plane.landed?
 	end
@@ -20,6 +19,7 @@ describe "Program Feature Test" do
 	# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 	it "instructs a plane to take off from an airport and confirm that it is no longer in the airport" do
 		plane = Plane.new
+		airport = Airport.new
 		plane.land(airport)
 		plane.get_airport == airport #should be true
 		plane.take_off
@@ -31,6 +31,8 @@ describe "Program Feature Test" do
 	# I want to prevent takeoff when weather is stormy
 	it "prevent takeoff when weather is stormy" do
 		plane = Plane.new
+		airport = Airport.new
+		weather = Weather.new
 		plane.land(airport)
 		plane.weather(weather)
 		plane.get_airport == airport #should be true
@@ -47,6 +49,8 @@ describe "Program Feature Test" do
 	# I want to prevent landing when weather is stormy 
 	it "prevent landing when weather is stormy" do
 		plane = Plane.new
+		airport = Airport.new
+		weather = Weather.new
 		plane.weather(weather)
 		begin
 			plane.land(airport)

@@ -19,7 +19,7 @@ describe Plane do
 			subject.land(airport)
 		end
 		it "shouldn't land if already landed" do
-						subject.land(airport)
+			subject.land(airport)
 			expect{subject.land(airport)}.to raise_error
 		end
 	end
