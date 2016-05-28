@@ -8,7 +8,12 @@ describe Aeroplane do
   end
   describe '#land' do
     it 'ask aeroplane to land' do
-      expect(subject.land(false)).to eq true
+      w = Weather.new(false)
+      expect(subject.land(w)).to eq true
+    end
+    it 'prevents landing if weather is stormy' do
+      w = Weather.new(true)
+      expect(subject.land(w)).to eq false
     end
   end
   describe '#taken_off?' do
@@ -17,8 +22,14 @@ describe Aeroplane do
     end
   end
   describe '#take_off' do
-    it 'ask aeroplane to take off' do
-      expect(subject.take_off(false)).to eq true
+    it 'asks aeroplane to take off' do
+      w = Weather.new(false)
+      expect(subject.take_off(w)).to eq true
+    end
+    it 'prevents takeoff if weather is stormy' do
+      w = Weather.new(true)
+      expect(subject.take_off(w)).to eq false
     end
   end
+
 end
