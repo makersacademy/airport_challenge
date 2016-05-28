@@ -8,6 +8,8 @@ describe Aeroplane do
   end
   describe '#land' do
     it 'ask aeroplane to land' do
+      # w = double()
+      # w.stub("has the is_stormy value"){false}
       w = Weather.new(false)
       expect(subject.land(w)).to eq true
     end

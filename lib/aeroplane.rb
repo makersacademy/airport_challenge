@@ -1,4 +1,5 @@
 require './lib/weather'
+require './lib/airport'
 
 class Aeroplane
   attr_reader :to_land, :to_take_off
@@ -14,11 +15,11 @@ class Aeroplane
 
   def land(wobj)
     if (wobj.is_stormy?)
-      @to_take_off = false
+      @to_land = false
     else
-      @to_take_off = true
+      @to_land = true
     end
-    @to_take_off
+    @to_land
   end
 
   def taken_off?
@@ -33,5 +34,5 @@ class Aeroplane
     end
     @to_take_off
   end
-  
+
 end
