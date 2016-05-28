@@ -5,3 +5,5 @@ plane2 = Plane.new
 airport.land(plane1)
 airport.land(plane2)
 airport
+airport.take_off
+airport

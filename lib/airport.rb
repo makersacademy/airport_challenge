@@ -2,22 +2,31 @@ require_relative 'plane'
 
 class Airport
 
-def initialize
-  @capacity = []
-end
+  def initialize
+    @capacity = []
+  end
 
-def land(plane)
-  aircraft_hanger << plane
-  "You have landed plane: #{plane}"
-end
+  def land(plane)
+    aircraft_hanger << plane
+    "You have landed plane: #{plane}"
+  end
 
-private
+  def take_off
+    plane_departure
+  end
 
-attr_accessor :capacity
-attr_reader :plane
+  private
 
-def aircraft_hanger
-  capacity
-end
+  attr_accessor :capacity
+  attr_reader :plane
+
+  def aircraft_hanger
+    capacity
+  end
+
+  def plane_departure
+    departure = capacity.pop
+    "The flight now leaving is: #{departure}"
+  end
 
 end
