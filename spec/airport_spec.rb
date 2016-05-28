@@ -16,11 +16,16 @@ describe Airport do
       subject.land_plane(@plane)
       expect(subject.planes).to include(@plane)
     end
+
+    it "raises an error if the airport is at capacity" do
+      Airport::DEFAULT_CAPACITY.times { subject.land_plane(@plane) }
+      expect{ subject.land_plane(@plane) }.to raise_error(Airport::ERROR_FULL)
+    end
   end
 
   describe '#take_off' do
     it "raises an error if the plane isn't at the airport" do
-      expect{ subject.take_off(@plane) }.to raise_error("That plane doesn't exist!")
+      expect{ subject.take_off(@plane) }.to raise_error(Airport::ERROR_NO_PLANE)
     end
 
     it "instructs a plane to take off" do
