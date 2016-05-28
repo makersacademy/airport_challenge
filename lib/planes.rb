@@ -1,15 +1,13 @@
+require 'weather'
+
 class Planes
 
-  def initialize
-    @land = false
+  def land(weather)
+    weather.report == "sunny" ? @land = true : @land = false
   end
 
-  def landed
-    @land = true
-  end
-
-  def taken_off
-    @land = false
+  def take_off(weather)
+    weather.report == "sunny" ? @land = false : @land = true
   end
 
   def at_airport?

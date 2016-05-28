@@ -8,11 +8,11 @@ class Airport
     @terminal = []
   end
 
-  def receives_plane(plane)
+  def plane_arrival(plane)
     @terminal << plane if plane.at_airport?
   end
 
-  def releases_plane
+  def plane_departure
     @terminal.pop if @terminal[0].at_airport? == false
     @terminal
   end

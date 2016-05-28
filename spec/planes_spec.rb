@@ -1,18 +1,37 @@
 require 'planes'
 
 describe Planes do
-  describe "#landed" do
-    it "should land a plane" do
-      subject.landed
-      expect(subject.at_airport?).to eq true
+
+  describe "#land" do
+    it "should land a plane when weather is sunny" do
+      plane = Planes.new
+      weather = double("weather", :report => "sunny")
+      plane.land(weather)
+      expect(plane.at_airport?).to eq true
+    end
+
+    it "should not land a plane when weather is stormy" do
+      plane = Planes.new
+      weather = double("weather", :report => "stormy")
+      plane.land(weather)
+      expect(plane.at_airport?).to eq false
     end
   end
-  describe "#taken_off" do
-    it "should take off a plane" do
+
+  describe "#take_off" do
+
+    it "should take off a plane if weather is sunny" do
       plane = Planes.new
-      plane.landed
-      plane.taken_off
-      expect(subject.at_airport?).to eq false
+      weather = double("weather", :report => "sunny")
+      plane.take_off(weather)
+      expect(plane.at_airport?).to eq false
+    end
+
+    it "should not take off a plane if weather is stormy" do
+      plane = Planes.new
+      weather = double("weather", :report => "stormy")
+      plane.take_off(weather)
+      expect(plane.at_airport?).to eq true
     end
   end
 end
