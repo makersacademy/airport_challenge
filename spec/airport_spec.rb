@@ -22,7 +22,12 @@ describe Airport do
 
     it "responds to confirm_landed method with 1 argument" do
     expect(airport).to respond_to(:confirm_landed).with(1).argument
+    end
 
+    it "confirms if specific plane has landed" do
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.confirm_landed(plane)).to eq true
     end
 
   # describe "#planes"

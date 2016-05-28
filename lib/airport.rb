@@ -2,6 +2,7 @@ require_relative 'plane'
 
 class Airport
 
+  attr_reader :plane
   # def planes
   #   @planes = []
   # end
@@ -11,6 +12,6 @@ class Airport
   end
 
   def confirm_landed(plane)
-
+    return true if @plane == plane
   end
 end
