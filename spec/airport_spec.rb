@@ -32,6 +32,12 @@ describe Airport do
         20.times{subject.dock(plane)}
         expect{subject.dock(plane)}.to raise_error "Airport is full, cannot land"
       end
+
+      it "returns an error if over set capacity" do
+        subject = Airport.new(good_weather, 10)
+        10.times{subject.dock(plane)}
+        expect{subject.dock(plane)}.to raise_error "Airport is full, cannot land"
+      end
     end
   end
 
