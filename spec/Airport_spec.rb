@@ -3,15 +3,21 @@ require 'airport'
 describe Airport do
 
 	subject(:airport) {described_class.new}
+	subject(:airport1) {described_class.new}
 	let(:plane1) {double (:plane)}
 	let(:plane2) {double (:plane)}
+	let(:plane3) {double (:plane)}
 	let(:weather) {double (:weather)}
 	let(:weather1) {double (:weather)}
 	
 	before do
 		allow(plane1).to receive(:land)
 		allow(plane2).to receive(:land)
+		allow(plane3).to receive(:land)
 		allow(plane1).to receive(:take_off)
+		allow(plane1).to receive(:at_airport?) {false}
+		allow(plane2).to receive(:at_airport?) {false}
+		allow(plane3).to receive(:at_airport?) {true}
 		allow(weather).to receive(:state) {'sunny'}
 		allow(weather1).to receive(:state) {'stormy'}
 	end
@@ -32,6 +38,10 @@ describe Airport do
 		it 'does not allow plane to land if already at terminal' do
 			airport.incoming_plane(plane1, weather.state)
 			expect(airport.incoming_plane(plane1, weather.state)).to eq "#{plane1} has already landed!"
+		end
+		it 'does not allow plane to land if already landed elsewhere' do
+			airport.incoming_plane(plane3, weather.state)
+			expect(airport1.incoming_plane(plane3, weather.state)). to eq "#{plane3} has already landed elsewhere!"
 		end
 	end
 

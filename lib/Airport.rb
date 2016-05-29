@@ -16,6 +16,8 @@ class Airport
 		raise "Cannot land! Too stormy!" if weather == "stormy"
 		if @terminal.include? plane
 			"#{plane} has already landed!"
+		elsif plane.at_airport?
+			"#{plane} has already landed elsewhere!"
 		else
 		plane.land
 		@terminal << plane if (!full? && weather == "sunny")
