@@ -1,5 +1,5 @@
-require_relative 'plane'
-require_relative 'weather'
+require_relative 'plane.rb'
+require_relative 'weather.rb'
 
 class Airport
 	attr_reader :terminal
