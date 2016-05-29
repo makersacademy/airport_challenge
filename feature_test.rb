@@ -3,8 +3,7 @@ require './lib/plane.rb'
 
 airport = Airport.new
 plane = Plane.new
-plane.on_ground
-airport.planes
+p plane.land(airport)
 plane.take_off
-plane.on_ground
-airport.planes
+# airport.set_capacity(1)
+# airport.accept_plane(plane)
