@@ -1,5 +1,5 @@
 class Airport
-  DEFAULT_CAPACITY = 20.freeze
+  DEFAULT_CAPACITY = 20
   ERROR_FULL = "Airport is full. Please circle the airport awkwardly.".freeze
   ERROR_NO_PLANE = "That plane doesn't exist!".freeze
 
@@ -11,7 +11,7 @@ class Airport
   end
 
   def land_plane(plane)
-    fail ERROR_FULL if @planes.length >= @capacity
+    fail ERROR_FULL if full?
     @planes << plane
   end
 
@@ -19,4 +19,13 @@ class Airport
     fail ERROR_NO_PLANE unless @planes.include?(plane)
     @planes.delete(plane)
   end
+
+  private
+    def empty?
+      @planes.size == 0
+    end
+
+    def full?
+      @planes.size >= @capacity
+    end
 end
