@@ -10,7 +10,7 @@ class Airport
   end
 
   def arrive(plane)
-    fail "Airport is full!" if @planes.count >= capacity
+    fail "Airport is full!" if full?
     fail "Plane can't land due to stormy weather." if stormy?
     @planes << plane
     plane.land(self)
@@ -25,6 +25,10 @@ class Airport
   def stormy?
     chance = rand(101)
     chance <= @storm_probability ? true : false
+  end
+
+  def full?
+    @planes.count >= capacity
   end
 
 end
