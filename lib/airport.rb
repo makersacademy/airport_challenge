@@ -4,13 +4,18 @@ class Airport
 
   def initialize
     @dispatcher = Dispatcher.new
+    @vehicles_parked = []
   end
 
   def receive(vehicle)
-    @dispatcher.travel_allowed? ? nil : (raise 'Travel not allowed at this time')
+    @dispatcher.travel_allowed? ? (@vehicles_parked << vehicle) : (raise 'Travel not allowed at this time')
   end
 
   def release(vehicle)
     @dispatcher.travel_allowed?
+  end
+
+  def parked?(vehicle)
+    @vehicles_parked.include?(vehicle)
   end
 end
