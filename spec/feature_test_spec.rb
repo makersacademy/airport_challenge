@@ -1,6 +1,7 @@
 require 'airport'
 
 describe 'feature test' do
+
   it 'allows planes to land and take off when sunny' do
     weather = Weather.new
     allow(weather).to receive(:state) {'sunny'}
@@ -15,4 +16,5 @@ describe 'feature test' do
     airport.departing_plane(plane2, weather)
     airport.departing_plane(plane3, weather)
   end
+  
 end

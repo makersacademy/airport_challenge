@@ -1,7 +1,8 @@
-require_relative 'plane.rb'
-require_relative 'weather.rb'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+
 	attr_reader :terminal
 
 	DEFAULT_CAPACITY = 10
@@ -36,7 +37,7 @@ class Airport
 		end
 	end
 
-	private
+		private
 	
 	def full?
 		true if @terminal.length >= @capacity

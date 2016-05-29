@@ -1,3 +1,4 @@
+
 class Weather
 
 	def state

@@ -34,6 +34,7 @@ describe Airport do
 	end
 
 	describe '#departing_plane' do
+
 		it 'allows plane to take off when weather is sunny' do
 			airport.incoming_plane(plane1, goodweather.state)
 			expect(airport.departing_plane(plane1, goodweather.state)).to eq "#{plane1} is taking off!"
@@ -49,12 +50,14 @@ describe Airport do
 	end
 
 	describe '#terminal' do
+
 		it 'displays planes that are currently in terminal' do
 			airport.incoming_plane(plane1, goodweather.state)
 			airport.incoming_plane(plane2, goodweather.state)
 			airport.departing_plane(plane1, goodweather.state)
 			expect(airport.terminal).to eq [plane2]
 		end
+		
 	end
 		
 end

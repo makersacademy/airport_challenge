@@ -1,3 +1,4 @@
+
 class Plane
 
 	def at_airport?
