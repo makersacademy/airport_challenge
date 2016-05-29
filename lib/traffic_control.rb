@@ -3,6 +3,7 @@ require_relative "weather"
 class TrafficControl
 
   def allow_landing_and_take_off_depending_on(weather)
+    weather.state
     if weather.state == "sunny"
       @permission = true
       "Permission granted."

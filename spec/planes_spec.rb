@@ -20,7 +20,7 @@ describe Plane do
       expect(plane2.at_airport?).to eq false
     end
 
-    it "should not land a plane if it has already landed" do
+    it "should not land a plane if it has already landed"  do
       allow(traffic_control).to receive(:permission?) {true}
       plane3.land(traffic_control)
       expect{plane3.land(traffic_control)}.to raise_error("Plane has already landed.")

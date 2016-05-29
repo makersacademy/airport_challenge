@@ -1,7 +1,7 @@
 #Airport Challenge
 =================
 
-The aim of this project was to develop an 'airport', 'plane' and 'weather' that interacts with each other. It was not a required component but this project also includes a 'traffic_control'.
+The aim of this challenge was to develop an 'airport', 'plane' and 'weather' that interacts with each other. It was not part of the challenge but this project also includes a 'traffic_control'.
 
 ###airport
 Airport accepts planes to the terminal (if it is not full) when landed, and releases a plane from the terminal when plane takes off. It does not allow an empty terminal to release a plane.
