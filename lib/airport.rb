@@ -3,9 +3,10 @@ require_relative "weather"
 class Airport
   DEFAULT_CAPACITY = 20
   ERROR = {
+    stormy: "No can do. It's too stormy, cap'n!",
     full: "Not enough room. Please circle the airport awkwardly.",
-    no_plane: "404 plane not found",
-    stormy: "No can do. It's too stormy, cap'n!"
+    plane_missing: "404 plane not found",
+    plane_docked: "The plane has already landed!"
   }.freeze
 
   attr_reader :capacity
@@ -19,12 +20,13 @@ class Airport
   def land_plane(plane)
     fail ERROR[:stormy] if @weather.stormy?
     fail ERROR[:full] if full?
+    fail ERROR[:plane_docked] if docked?(plane)
     @planes << plane
   end
 
   def take_off(plane)
     fail ERROR[:stormy] if @weather.stormy?
-    fail ERROR[:no_plane] unless docked?(plane)
+    fail ERROR[:plane_missing] unless docked?(plane)
     @planes.delete(plane)
   end
 
