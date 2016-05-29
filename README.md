@@ -1,4 +1,4 @@
-Week 1: Airport Challenge
+Week 1: Airport Challenge [![Build Status](https://travis-ci.org/chdezmar/airport_challenge.svg?branch=master)](https://travis-ci.org/chdezmar/airport_challenge)
 =========================
 
 ```
