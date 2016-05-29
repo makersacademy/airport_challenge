@@ -1,6 +1,5 @@
 class Plane
-
-  def good_weather?
+  def sunny?
     true
-    end
+  end
 end
