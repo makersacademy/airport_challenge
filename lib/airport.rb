@@ -14,6 +14,7 @@ end
 
   def land(plane)
     raise "Impossible to land" if stormy?
+    raise "Airport full" if full?
     planes << plane
   end
 
@@ -29,6 +30,7 @@ private
   end
 
   def full?
+    planes.size >= @capacity
   end
 
 
