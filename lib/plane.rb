@@ -1,9 +1,9 @@
 require "weather"
 
 class Plane
-  SKY = Sky.new
-  STORM_ERROR = "Stormy Weather" 
-  BAD_COMMAND_ERROR = "Command does not make sense!" 
+  SKY = Sky.new.freeze
+  STORM_ERR_MSG = "Stormy Weather" 
+  BAD_CMD_ERR_MSG = "Command does not make sense!" 
 
   attr_reader :position
 
@@ -29,29 +29,28 @@ class Plane
   end
 
   private
-    def change_position(new_position)
-      go_for_change?(new_position)
-      enact_change(new_position)  
+    def change_position(new_pos)
+      enact_change(new_pos) if go_for_change?(new_pos)
     end
 
-    def go_for_change?(new_position)
+    def go_for_change?(new_pos)
       weather_ok_for_change?
-      change_makes_sense?(new_position)
-      new_position.accept_plane?(self)
+      change_makes_sense?(new_pos)
+      new_pos.accept_plane?(self)
     end
 
-    def enact_change(new_position)
-      @position = new_position
-      new_position.receive_plane(self)
+    def enact_change(new_pos)
+      @position = new_pos
+      new_pos.receive_plane(self)
     end
     
     def weather_ok_for_change?
-      raise STORM_ERROR if @weather.stormy? 
+      fail STORM_ERR_MSG if @weather.stormy? 
     end
 
-    def change_makes_sense?(new_position)
-      it_makes_sense = new_position.is_airport?^landed?
-      raise BAD_COMMAND_ERROR unless it_makes_sense
+    def change_makes_sense?(new_pos)
+      it_makes_sense = new_pos.is_airport?^landed?
+      fail BAD_CMD_ERR_MSG unless it_makes_sense
     end
 
 end

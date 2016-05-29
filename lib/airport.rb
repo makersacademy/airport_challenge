@@ -1,7 +1,7 @@
 class Airport
 
   DEFAULT_CAPACITY = 20
-  CAPACITY_REACHED_ERROR_MESSAGE = "Airport full! Please try another"
+  AT_CAPACITY_ERR_MSG = "Airport full! Please try another"
 
   def is_airport?
     true
@@ -17,7 +17,7 @@ class Airport
   end
 
   def receive_plane(plane)
-    room_for_plane? ?  @planes << plane : capacity_reached
+    room_for_plane? ? add_plane(plane) : capacity_reached
   end
 
   def release_plane(plane)
@@ -29,8 +29,12 @@ class Airport
       @planes.length < @capacity
     end
 
+    def add_plane(plane)
+      @planes << plane
+    end
+
     def capacity_reached
-      raise CAPACITY_REACHED_ERROR_MESSAGE
+      fail AT_CAPACITY_ERR_MSG
     end
 
 end
