@@ -3,7 +3,7 @@ class Weather
   def initialize(storm = false)
     @storm = storm
   end
-  def is_stormy?
+  def stormy?
     @storm
   end
 end

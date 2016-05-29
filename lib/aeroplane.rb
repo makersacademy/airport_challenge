@@ -14,7 +14,7 @@ class Aeroplane
   end
 
   def land(wobj, full = false)
-    if (wobj.is_stormy? || full == true)
+    if wobj.stormy? || full == true
       @to_land = false
     else
       @to_land = true
@@ -27,7 +27,7 @@ class Aeroplane
   end
 
   def take_off(wobj)
-    if (wobj.is_stormy?)
+    if wobj.stormy?
       @to_take_off = false
     else
       @to_take_off = true
