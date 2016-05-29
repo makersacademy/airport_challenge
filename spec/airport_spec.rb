@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let (:plane) {double :plane, land: true, take_off: false}
+  let (:plane) {double :plane, land: true, take_off: false, is_flying?: true}
   
   it "has a default hangar capacity of 5" do
   	expect(subject.capacity).to eq 5
