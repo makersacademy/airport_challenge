@@ -4,7 +4,7 @@ describe Airport do
 
   let(:landed_plane) {double(:landed_plane, landed?: true)}
   let(:flying_plane) {double(:flying_plane, landed?: false)}
-  
+
 
   describe 'attributes:' do
     it { is_expected.to have_attributes(planes: []) }
@@ -45,11 +45,6 @@ describe Airport do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
       Airport::DEFAULT_CAPACITY.times {subject.land_plane(flying_plane)}
       expect {subject.land_plane(flying_plane)}.to raise_error 'The airport is full!'
-    end
-
-    it 'raises error if plane has already landed' do
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
-      expect{subject.land_plane(landed_plane)}.to raise_error 'This plane has already landed!'
     end
 
     it 'raises error if weather is stormy' do

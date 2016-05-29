@@ -14,7 +14,6 @@ class Airport
   end
 
   def land_plane(plane)
-    fail 'This plane has already landed!' if plane.landed?
     fail 'The airport is full!' if full?
     fail 'Land Denied: Storm!' if @weather.stormy?
     @planes << plane
