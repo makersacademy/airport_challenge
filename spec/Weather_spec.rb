@@ -1,4 +1,4 @@
-require './lib/weather.rb'
+require 'weather.rb'
 
 describe Weather do
 
