@@ -12,6 +12,7 @@ describe Airport do
   
   before(:each) do
     @airport = Airport.new
+    @capacity = @airport.capacity
   end
 
   context 'responses' do
@@ -20,7 +21,19 @@ describe Airport do
     it { is_expected.to respond_to :launch }
     it { is_expected.to respond_to :weather }
   end
-  
+
+  context '#init' do
+    it 'allows weather to be set' do
+      airport1 = Airport.new("stormy")
+      expect(airport1.weather).to eq("stormy")
+    end
+
+    it 'allows capacity to be set' do
+      num = rand.to_i
+      airport2 = Airport.new("clear",num)
+      expect(airport2.capacity).to eq(num)
+    end
+  end
   context '#land' do
     it 'doesnt cause an error when landing a plane' do
       expect{@airport.land(plane1)}.not_to raise_error
@@ -39,6 +52,14 @@ describe Airport do
     it 'calls the #set_landed method on the plane' do
       @airport.land(plane_spy)
       expect(plane_spy).to have_recieved(:set_landed)
+    end
+
+    it "allows ::DEFAULT_CAPACITY planes to land" do
+        expect{ @capacity.times{ @airport.land(plane1) } }.not_to raise_error 
+    end
+    it "raises an error when more planes than capacity attempt to land" do
+        @capacity.times{ @airport.land(plane1) }
+        expect{ @airport.land(plane1) }.to raise_error("Airport is full")
     end
   end
 
