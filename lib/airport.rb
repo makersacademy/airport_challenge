@@ -7,12 +7,12 @@ DEFAULT_CAPACITY = 10
 
 	def initialize
 		@weather = Weather.new
-		@capacity = []
+		@planes = []
 	end
 
 	def land(plane)
 		raise "Airport is full" if full?
-		capacity << plane
+		planes << plane
 		"#{plane} has landed"
 	end
 
@@ -21,10 +21,10 @@ DEFAULT_CAPACITY = 10
 	end
 
 	private
-	attr_reader :weather, :capacity
+	attr_reader :weather, :planes
 
   def full?
-    capacity.length >= DEFAULT_CAPACITY
+    planes.length >= DEFAULT_CAPACITY
   end
 
 end

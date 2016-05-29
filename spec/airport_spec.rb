@@ -39,9 +39,6 @@ describe Airport do
     	expect(airport.take_off(plane)).to eq "#{plane} has taken off and left the airport"
     end
 
-    it 'test' do
-    	expect(1).to eq 1
-    end
 
   end  
 	
