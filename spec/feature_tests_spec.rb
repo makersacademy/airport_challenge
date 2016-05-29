@@ -1,11 +1,11 @@
 require 'airport'
 
-describe 'Feature Tests' do
+feature 'Regular operation in fair weather' do
   let(:weather) { double(:weather, stormy?: false) }
   subject(:airport) { Airport.new(10,weather) }
   let(:plane) { Plane.new }
 
-  it 'can instruct planes to land or take off and confirm it happened' do
+  scenario 'can instruct planes to land or take off and confirm it happened' do
     plane1 = Plane.new
     plane2 = Plane.new
     plane3 = Plane.new
@@ -24,22 +24,7 @@ describe 'Feature Tests' do
     expect(airport.has?(plane1)).to eq false
   end
 
-  it 'planes can only land or take off when weather is fair' do
-    allow(airport).to receive(:stormy?) { true }
-    message = "Plane cannot land due to storm"
-    expect { airport.land(plane) }.to raise_error message
-
-    allow(airport).to receive(:stormy?) { false }
-    expect(airport.land(plane))
-    allow(airport).to receive(:stormy?) { true }
-    message = "Plane cannot take off due to storm"
-    expect { airport.take_off(plane) }.to raise_error message
-
-    allow(airport).to receive(:stormy?) { false }
-    expect(airport.take_off(plane))
-  end
-
-  it 'can create Airports with custom or default capacity' do
+  scenario 'can create Airports with custom or default capacity' do
     message = "Cannot land as airport is full"
 
     small_airport = Airport.new(5)
@@ -51,5 +36,22 @@ describe 'Feature Tests' do
     allow(regular_airport).to receive(:stormy?) { false }
     10.times { regular_airport.land(Plane.new) }
     expect { regular_airport.land(Plane.new) }.to raise_error message
+  end
+end
+
+feature 'restricted operation in stormy weather' do
+  subject(:airport) { Airport.new }
+  let(:plane) { Plane.new }
+
+  scenario 'planes cannot land or take off in stormy weather' do
+    allow(airport).to receive(:stormy?) { true }
+    message = "Plane cannot land due to storm"
+    expect { airport.land(plane) }.to raise_error message
+
+    allow(airport).to receive(:stormy?) { false }
+    expect(airport.land(plane))
+    allow(airport).to receive(:stormy?) { true }
+    message = "Plane cannot take off due to storm"
+    expect { airport.take_off(plane) }.to raise_error message
   end
 end
