@@ -8,6 +8,7 @@ lib
 - airport.rb    : airport class and methods
 - plane.rb      : plane class and methods
 - weather.rb    : weather class and methods
+
 spec            : respective tests
 - airport_spec.rb
 - plane_spec.rb
