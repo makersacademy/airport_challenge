@@ -18,6 +18,7 @@ end
   end
 
   def take_off(plane)
+    raise "Impossible to take off" if stormy?
     @planes.delete(plane)
   end
 
