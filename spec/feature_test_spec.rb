@@ -26,4 +26,15 @@ describe 'feature test' do
     expect{airport1.dock(plane1)}.to raise_error "Weather is too stormy, cannot land"
   end
 
+  it 'Mutiple Airports can share weather systems' do
+    weather1 = Weather.new
+    airport1 = Airport.new(weather1)
+    plane1 = Plane.new
+    airport2 = Airport.new(weather1)
+    plane2 = Plane.new
+    weather1.blizzard
+    expect{airport1.dock(plane1)}.to raise_error "Weather is too stormy, cannot land"
+    expect{airport2.dock(plane2)}.to raise_error "Weather is too stormy, cannot land"
+  end
+
 end
