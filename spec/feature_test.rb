@@ -17,9 +17,9 @@ plane.seats
 plane.take_off(airport)
 plane.land(airport2)
 airport2.load(plane.unload)
-p plane.seats
-p airport.seats
-p airport2.seats
+plane.seats
+airport.seats
+airport2.seats
 
 
 
