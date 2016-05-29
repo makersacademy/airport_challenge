@@ -24,18 +24,30 @@ The following desired features are written at the time of drafting the model, an
 Please refer to the suite of feature test for latest feature set.
 
 ### Operator lands a plane (weather is good) and checks that it is safely in the airport
+
 *2.2.3 :001 >* my_jet = Plane.new
+
  => #<Plane:0x00023fe02>
+ 
 *2.2.3 :002 >* airport = Airport.new
+
  => #<Airport:0x00023fe02 @capacity = 50>
+ 
 *2.2.3 :003 >* airport.receive(my_jet)
+
  => '#<Plane:0x00023fe02> landed'
+ 
 *2.2.3 :004 >* airport.parked?(my_jet)
+
  => true
 
 ### Designer creates a series of airports with different capacities
+
 *2.2.3 :001 >* standard_airport = Airport.new
+
  => #<Airport:0x00023fe02 @capacity = 50>
+ 
 *2.2.3 :002 >* big_airport = Airport.new(9999)
+
  => #<Airport:0x000333e0b @capacity = 9999>
  
