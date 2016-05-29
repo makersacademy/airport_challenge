@@ -1,7 +1,7 @@
 
 class Weather
 
-  def stormy?
+  def check_storm
     rand(5) > 3
   end
 

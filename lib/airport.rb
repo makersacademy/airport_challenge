@@ -13,11 +13,18 @@ end
 
 
   def land(plane)
+    raise "Impossible to land" if stormy?
     planes << plane
   end
 
   def take_off(plane)
     @planes.delete(plane)
+  end
+
+private
+
+  def stormy?
+    Weather.new.check_storm
   end
 
   def full?
