@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double(:plane) }
-  let(:airport) { Airport.new(:capacity => 25, :storm_probability => 0) }
-  let(:stormy_airport) { Airport.new(:storm_probability => 100) }
+  let(:airport) { Airport.new(capacity: 25, storm_probability: 0) }
+  let(:stormy_airport) { Airport.new(storm_probability: 100) }
 
   it 'can have its capacity overriden and planes can\'t land if full' do
     allow(plane).to receive(:land).and_return(plane)
