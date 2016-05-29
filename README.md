@@ -1,4 +1,7 @@
-https://travis-ci.org/danielschambers/airport_challenge.svg?branch=master
+[![Travis Build status][https://travis-ci.org/danielschambers/airport_challenge.svg?branch=master
+]][https://travis-ci.org/danielschambers/airport_challenge]
+
+
 
 Airport Challenge
 =================
