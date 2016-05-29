@@ -23,11 +23,15 @@ describe Airport do
 			expect(airport.incoming_plane(plane2, weather.state)).to eq "Terminal:#{[plane1, plane2]}"
 		end
 		it 'raises error when airport is full' do
-			Airport::DEFAULT_CAPACITY.times {airport.incoming_plane(plane1, weather.state)}
+			Airport::DEFAULT_CAPACITY.times {airport.incoming_plane(Plane.new, weather.state)}
 			expect{airport.incoming_plane(plane1, weather.state)}.to raise_error("Cannot land! Airport full!")
 		end
 		it 'raises error when weather is stormy' do
 			expect{airport.incoming_plane(plane1, weather1.state)}.to raise_error("Cannot land! Too stormy!")
+		end
+		it 'does not allow plane to land if already at terminal' do
+			airport.incoming_plane(plane1, weather.state)
+			expect(airport.incoming_plane(plane1, weather.state)).to eq "#{plane1} has already landed!"
 		end
 	end
 
@@ -40,6 +44,10 @@ describe Airport do
 			airport.incoming_plane(plane1, weather.state)
 			expect{airport.departing_plane(plane1, weather1.state)}.to raise_error("Cannot take off! Too stormy!")
 		end
+		it 'does not allow a plane to take off if it is not at the terminal' do
+			expect(airport.departing_plane(plane1, weather.state)).to eq "#{plane1} is not at terminal!"
+		end
+
 	end
 
 	describe '#terminal' do
