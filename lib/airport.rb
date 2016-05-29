@@ -1,15 +1,15 @@
 class Airport
 
 	DEFAULT_CAPACITY = 20
-	CAPACITY_REACHED_ERROR_MESSAGE = "airport full"
+	CAPACITY_REACHED_ERROR_MESSAGE = "Airport full! Please try another"
+
+	def is_airport?
+		true
+	end
 
 	def initialize (capacity = DEFAULT_CAPACITY)
 		@capacity = capacity
 		@planes = []
-	end
-
-	def is_airport?
-		true
 	end
 
 	def accept_plane?(plane)
@@ -17,7 +17,7 @@ class Airport
 	end
 
 	def receive_plane(plane)
-		room_for_plane? ?  @planes << plane  : capacity_reached
+		room_for_plane? ?  @planes << plane : capacity_reached
 	end
 
 	def release_plane(plane)
@@ -49,7 +49,6 @@ class Sky #NoAirport Class
 	end
 
 	def release_plane(plane)
-		true
 	end
-	
+
 end
