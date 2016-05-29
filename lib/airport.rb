@@ -12,7 +12,7 @@ class Airport
   end
 
   def release(vehicle)
-    @dispatcher.travel_allowed?
+    @dispatcher.travel_allowed? ? (@vehicles_parked.delete(vehicle)) : (raise 'Travel not allowed at this time')
   end
 
   def parked?(vehicle)

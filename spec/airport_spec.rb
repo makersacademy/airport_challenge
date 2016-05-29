@@ -36,6 +36,10 @@ describe Airport do
       allow_any_instance_of(Dispatcher).to receive(:travel_allowed?).and_return(false)
       expect{subject.receive(vehicle)}.to raise_error('Travel not allowed at this time')
     end
-  end 
 
+    it '#release(veichle) should raise an error' do
+      allow_any_instance_of(Dispatcher).to receive(:travel_allowed?).and_return(false)
+      expect{subject.release(vehicle)}.to raise_error('Travel not allowed at this time')
+    end
+  end 
 end
