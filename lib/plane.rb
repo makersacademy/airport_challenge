@@ -22,7 +22,7 @@ class Plane
   private
 
   def grounded?
-    @airport == nil ? false : true
+    @airport.nil? ? false : true
   end
 
 end
