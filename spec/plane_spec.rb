@@ -2,10 +2,12 @@ require 'plane'
 
 describe Plane do
 
-	let(:airport) {double(:airport, accept_plane?: true, 
+	let(:airport) do
+    double(:airport, accept_plane?: true, 
     airport?: true, 
     release_plane: true, 
-    receive_plane: true)}
+    receive_plane: true)
+  end
   let(:bad_weather) {double(:weather, stormy?: true)}
   let(:good_weather) {double(:weather, stormy?: false)}
 
