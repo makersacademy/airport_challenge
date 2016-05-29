@@ -36,20 +36,3 @@ class Plane
 
 end
 
-people = [Passenger.new,Passenger.new,Passenger.new]
-people2 = [Passenger.new,Passenger.new,Passenger.new]
-airport = Airport.new
-airport2 = Airport.new
-plane = Plane.new(airport)
-plane2 = Plane.new(airport)
-
-airport.load(people)
-airport.seats
-plane.load(airport.unload)
-plane.seats
-plane.take_off(airport)
-plane.land(airport2)
-airport2.load(plane.unload)
-p plane.seats
-p airport.seats
-p airport2.seats

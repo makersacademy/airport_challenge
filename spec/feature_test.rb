@@ -10,12 +10,21 @@ airport2 = Airport.new
 plane = Plane.new(airport)
 plane2 = Plane.new(airport)
 
-mob = []
-100.times{ mob.concat([Passenger.new])}
-
 airport.load(people)
+airport.seats
+plane.load(airport.unload)
+plane.seats
+plane.take_off(airport)
+plane.land(airport2)
+airport2.load(plane.unload)
+p plane.seats
 p airport.seats
-p plane.load(airport.unload)
+p airport2.seats
+
+
+# airport.load(people)
+# p airport.seats
+# p plane.load(airport.unload)
 # p plane.take_off(airport)
 # p plane.land(airport2)
 # p airport2.load(plane.unload)

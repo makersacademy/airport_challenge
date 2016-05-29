@@ -41,15 +41,6 @@ describe Plane do
       takes_off
       expect{ loads }.to raise_error "Plane airbourne! What are we loading? Seagulls!"
     end
-    # it "can't load people from another airport" do
-    #   allow(another_airport).to receive(:full?) { false }
-    #   allow(another_airport).to receive(:seats) { [] }
-    #   allow(airport).to receive(:unload) { people }
-    #   takes_off
-    #   plane.land(another_airport)
-    #   leaving = airport.unload
-    #   expect{ plane.load(leaving) }.to raise_error "Plane can't load people from another airport!"
-    # end
   end
 
   describe '#unload' do
@@ -112,5 +103,4 @@ describe Plane do
       expect{ lands }.to raise_error "Weather stormy. Can't land!"
     end
   end
-
 end
