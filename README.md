@@ -1,3 +1,5 @@
+https://travis-ci.org/danielschambers/airport_challenge.svg?branch=master
+
 Airport Challenge
 =================
 
@@ -74,15 +76,73 @@ As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 
+```
+```
+*** A demonstration of User Story #3 ***
+
+[15] pry(main)> airport.weather_report
+=> true
+[16] pry(main)> airport.take_off
+RuntimeError: You cannot take off in a storm.
+from /Users/IX/Course/airport_challenge/lib/airport.rb:22:in `take_off'
+
+```
+
+```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 
+```
+```
+*** A demonstration of User Story #4 ***
+
+[16] pry(main)> airport.weather_report
+=> true
+[17] pry(main)> airport.land(plane2)
+RuntimeError: You cannot land in a storm.
+from /Users/IX/Course/airport_challenge/lib/airport.rb:15:in `land'
+
+```
+```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
+```
+```
+*** A demonstration of User Story #5 ***
 
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007fb0990a3510 @hanger=[], @weather=#<Weather:0x007fb0990a34e8>>
+[3] pry(main)> Airport::DEFAULT_CAPACITY.times {airport.land(Plane.new)}
+=> 10
+[4] pry(main)> plane1 = Plane.new
+=> #<Plane:0x007fb0992de780 @flying=true>
+[5] pry(main)> airport.land(plane1)
+RuntimeError: Airport is full.
+from /Users/IX/Course/airport_challenge/lib/airport.rb:14:in `land'
+
+```
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+
+```
+```
+*** A demonstration of User Story #6 ***
+
+[2] pry(main)> airport = Airport.new(Weather.new, 40)
+=> #<Airport:0x007ff943431b30
+ @capacity=40,
+ @hanger=[],
+ @weather=#<Weather:0x007ff943431b58>>
+[3] pry(main)> 40.times{airport.land(Plane.new)}
+=> 40
+[4] pry(main)> plane1 = Plane.new
+=> #<Plane:0x007ff943aac550 @flying=true>
+[5] pry(main)> airport.land(plane1)
+RuntimeError: Airport is full.
+from /Users/IX/Course/airport_challenge/lib/airport.rb:15:in `land'
+
 ```

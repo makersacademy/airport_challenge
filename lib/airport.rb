@@ -5,7 +5,8 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(weather = Weather.new, hanger = DEFAULT_CAPACITY)
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @hanger = []
     @weather = weather
   end
@@ -31,10 +32,10 @@ class Airport
   private
 
   attr_accessor :hanger
-  attr_reader :plane, :weather, :in_flight
+  attr_reader :plane, :weather, :in_flight, :capacity
 
   def full?
-    aircraft_hanger.length >= DEFAULT_CAPACITY
+    aircraft_hanger.length >= capacity
   end
 
   def empty?
