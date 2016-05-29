@@ -46,5 +46,5 @@ describe Aeroplane do
     it "raises an error when #take_off is called on a non-landed plane" do
       expect{ @plane.take_off }.to raise_error("Plane is already flying")
     end
- end
+  end
 end

@@ -15,7 +15,7 @@ class Aeroplane
   end
   
   def take_off
-    fail "Plane is already flying" if !@landed
+    fail "Plane is already flying" unless @landed
     @landed = false
   end
 end

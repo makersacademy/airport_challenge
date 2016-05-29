@@ -20,6 +20,6 @@ class Airport
 
   def stormy?
     return true if weather == "stormy"
-    return false
+    false
   end
 end
