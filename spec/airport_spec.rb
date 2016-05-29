@@ -14,14 +14,16 @@ describe Airport do
         subject.land_plane
       end
 
-      it "confirms the plane has landed" do
-        subject.land_plane(plane)
-        expect(subject.docked?(plane)).to be_truthy
-      end
-
       it "raises an error if the airport is at capacity" do
         described_class::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
         expect { subject.land_plane(plane) }.to raise_error(described_class::ERROR_FULL)
+      end
+
+      describe "#docked?" do
+        it "confirms the plane has landed" do
+          subject.land_plane(plane)
+          expect(subject.docked?(plane)).to be_truthy
+        end
       end
     end
 
@@ -35,12 +37,10 @@ describe Airport do
         subject.take_off(plane)
       end
 
-      it "confirms the plane is not at the airport anymore" do
-        # Assuming planes need to have landed to exist at the airport.
-        # This test depends on another method working, needs refactoring :/
-        subject.land_plane(plane)
-        subject.take_off(plane)
-        expect(subject.docked?(plane)).to be_falsey
+      describe "#docked?" do
+        it "confirms the plane is not docked at the airport" do
+          expect(subject.docked?(plane)).to be_falsey
+        end
       end
     end
   end
