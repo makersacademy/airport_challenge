@@ -30,7 +30,7 @@ private
   end
 
   def full?
-    planes.size >= @capacity
+    planes.length >= @capacity
   end
 
 
