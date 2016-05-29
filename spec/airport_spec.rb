@@ -3,7 +3,6 @@ require "airport"
 describe Airport do
   before do
     @plane = double(:plane)
-    allow(@plane).to receive_messages([:land, :depart_plane])
   end
 
   describe "#land_plane" do
