@@ -1,4 +1,4 @@
-require 'Airport'
+require 'airport'
 
 describe Airport do
 	
@@ -21,7 +21,7 @@ describe Airport do
 
 		it 'instructs the plane to land' do
 			allow(plane).to receive(:status)
-			allow(plane).to receive(:set_landed)
+			allow(plane).to receive(:make_landed)
 			allow_any_instance_of(Weather).to receive(:status).and_return("sunny")
 			expect(subject.land(plane)).to eq "landed plane: #{plane}"
 		end
@@ -34,7 +34,7 @@ describe Airport do
 
 		it 'cannot land if airport full' do
 			allow(plane).to receive(:status)
-			allow(plane).to receive(:set_landed)
+			allow(plane).to receive(:make_landed)
 			allow_any_instance_of(Weather).to receive(:status).and_return("sunny")
 			10.times { subject.land(plane) }
 			expect{subject.land(plane)}.to raise_error RuntimeError
@@ -42,7 +42,7 @@ describe Airport do
 
 		it 'cannot land if weather stormy' do
 			allow(plane).to receive(:status)
-			allow(plane).to receive(:set_landed)	
+			allow(plane).to receive(:make_landed)	
 			allow_any_instance_of(Weather).to receive(:status).and_return("stormy")
 			expect{subject.land(plane)}.to raise_error RuntimeError
 		end
@@ -52,21 +52,21 @@ describe Airport do
 	describe '#takeoff' do
 
 		it 'expects an argument of (plane) so it knows which to release' do
-			expect { (subject.takeoff).with(no_args) }.to raise_error ArgumentError 
+			expect { subject.takeoff.with(no_args) }.to raise_error ArgumentError 
 		end
 
 		it 'instructs a plane to takeoff' do
 			allow_any_instance_of(Weather).to receive(:status).and_return("sunny")
-			allow(plane).to receive(:set_airborne)
+			allow(plane).to receive(:make_airborne)
 			allow(plane).to receive(:status)
-			allow(plane).to receive(:set_landed)
+			allow(plane).to receive(:make_landed)
 			subject.land(plane)
 			expect(subject.takeoff(plane)).to eq "plane taken off"
 		end
 
 		it 'cannot takeoff if weather stormy' do
 			allow(plane).to receive(:status)
-			allow(plane).to receive(:set_landed)	
+			allow(plane).to receive(:make_landed)	
 			allow_any_instance_of(Weather).to receive(:status).and_return("stormy")
 			expect{subject.takeoff(plane)}.to raise_error RuntimeError
 		end

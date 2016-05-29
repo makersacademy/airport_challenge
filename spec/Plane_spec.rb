@@ -1,4 +1,4 @@
-require 'Plane'
+require 'plane'
 
 describe Plane do
 
@@ -12,17 +12,17 @@ describe Plane do
 		end
 
 		it 'should eq "landed" if on the ground' do
-			subject.set_landed(airport)
+			subject.make_landed(airport)
 			expect(subject.status).to eq "landed"
 		end
 
 		it 'should eq "airborne" if in the air' do
-			subject.set_airborne
+			subject.make_airborne
 			expect(subject.status).to eq "airborne"
 		end
 
 		it 'should have nil airport attr if airborne' do
-			subject.set_airborne
+			subject.make_airborne
 			expect(subject.airport).to eq nil
 		end
 

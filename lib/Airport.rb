@@ -1,5 +1,5 @@
-require_relative 'Plane'
-require_relative 'Weather'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -12,22 +12,22 @@ class Airport
 	end
 
 	def land(plane)
-		raise "This plane has already landed!" if plane.status == "landed"
-		raise "The airport is full!" if @available_space == 0
-		raise "Stormy weather, cannot land plane" if check_weather == "stormy"
+		fail "This plane has already landed!" if plane.status == "landed"
+		fail "The airport is full!" if @available_space == 0
+		fail "Stormy weather, cannot land plane" if check_weather == "stormy"
 		@terminal << plane
 		@available_space -= 1
-		plane.set_landed(self)
+		plane.make_landed(self)
 		"landed plane: #{plane}"
 	end
 
 	def takeoff(plane)
-		raise "This plane is already airborne!" if plane.status == "airborne"
-		raise "Stormy weather, cannot takeoff" if check_weather == "stormy"
-		raise "No planes in the terminal" if @capacity == @available_space
+		fail "This plane is already airborne!" if plane.status == "airborne"
+		fail "Stormy weather, cannot takeoff" if check_weather == "stormy"
+		fail "No planes in the terminal" if @capacity == @available_space
 		@terminal.delete(plane)
 		@available_space += 1
-		plane.set_airborne
+		plane.make_airborne
 		"plane taken off"
 	end
 
@@ -36,10 +36,10 @@ class Airport
 		weather.status
 	end
 
-	private
+		private
 
-	DEFAULT_CAPACITY = 10
+		DEFAULT_CAPACITY = 10
 
-	attr_reader :available_space
+		attr_reader :available_space
 
 end
