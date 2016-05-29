@@ -38,6 +38,10 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error "Cannot land plane: weather is stormy"
     end
 
+    it "prevents plane landing when airport full" do
+    allow(airport).to receive(:full?).and_return true
+    expect { airport.land(plane) }.to raise_error "Cannot land plane: airport is full"
+    end
 
   end
 
@@ -77,9 +81,14 @@ describe Airport do
     expect { airport.take_off(plane) }.to raise_error "Cannot take-off: weather is stormy"
     end
 
+    it "prevents plane taking-off when airport full" do
+    allow(airport).to receive(:full?).and_return true
+    expect { airport.take_off(plane) }.to raise_error "Cannot take-off: airport is full"
+    end
+
   end
 
-  describe "confirm_departed" do
+  describe "#confirm_departed" do
 
     it "responds to confirm_departed method with 1 argument" do
     expect(airport).to respond_to(:confirm_departed).with(1).argument
@@ -99,5 +108,14 @@ describe Airport do
     end
 
   end
+
+  describe "#capacity" do
+
+    it "returns the capacity of the airport" do
+    expect(airport).to respond_to(:capacity)
+    end
+
+  end
+
 
 end
