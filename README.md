@@ -1,9 +1,11 @@
 <h1>Airport Challenge</h1>
 [![Build Status](https://travis-ci.org/awye765/airport_challenge.svg?branch=master)](https://travis-ci.org/awye765/airport_challenge)
 <a href='https://coveralls.io/github/awye765/airport_challenge?branch=master'><img src='https://coveralls.io/repos/github/awye765/airport_challenge/badge.svg?branch=master' alt='Coverage Status' /></a>
-<center>
-  <img src="https://s-media-cache-ak0.pinimg.com/736x/9f/3a/b7/9f3ab757006005c183e5d17fe04a63e0.jpg" />
-</center>
+
+<p align="center">
+  <img src="https://s-media-cache-ak0.pinimg.com/736x/9f/3a/b7/9f3ab757006005c183e5d17fe04a63e0.jpg">
+</p>
+
 <h1>Introduction</h1>
 
 <h2>Makers Academy, Week 1 Solo Project</h2>
