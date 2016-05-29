@@ -8,6 +8,7 @@ class Airport
 	end
 
 	def land(plane)
+		fail "Airport full" if @landed.count >= 20
 		@landed << plane
 		"Welcome to London"
 	end
