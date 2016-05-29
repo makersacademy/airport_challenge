@@ -11,7 +11,7 @@ describe Airport do
 
       it 'confirms a plane has landed' do
         plane = double(:plane, :landed? => true)
-        expect(subject.land(plane)).to eq [plane]
+        expect(subject.land(plane)).to eq plane
       end
 
       # it 'only lets planes that are flying to land' do
@@ -29,10 +29,5 @@ describe Airport do
         plane = double(:plane, :take_off? => true)
         expect(subject.take_off(plane)).to eq plane
       end
-
-      # it 'does not let a plane take off the weather is stormy' do
-      #   plane = Plane.new
-      #   expect { subject.take_off(plane) }.to raise_error 'It is too stormy to take off. Hold tight'
-      # end
     end
 end
