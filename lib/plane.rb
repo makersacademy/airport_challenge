@@ -37,6 +37,7 @@ class Plane
     def go_for_change?(new_position)
       weather_ok_for_change?
       change_makes_sense?(new_position)
+      new_position.accept_plane?(self)
     end
 
     def enact_change(new_position)
@@ -49,7 +50,8 @@ class Plane
     end
 
     def change_makes_sense?(new_position)
-      raise BAD_COMMAND_ERROR if !new_position.is_airport?^landed? || !new_position.accept_plane?(self)
+      it_makes_sense = new_position.is_airport?^landed?
+      raise BAD_COMMAND_ERROR unless it_makes_sense
     end
 
 end
