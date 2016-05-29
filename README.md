@@ -19,7 +19,7 @@ spec            : respective tests
 
 When writing the classes for the task I sorted the user stories into objects and actions. I then a imagined how I wanted my interface to look and wrote an rspec test. I ran rspec and corrected all errors until green.
 
-Below are some further notes of what I spent most time questioning for each step. They double as areas I need to better understand  and as actionable points for if I were to work more on the project.  
+Below are some further notes of what I spent most time questioning for each step. They double as areas I need to better understand  and as actionable points for further work on the project.  
 
 Task
 -----
@@ -70,9 +70,9 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-# questioning if I should have made more methods private and asking, what are the implications of private methods on rspec tests.
-# should implement 'context' for weather
+# questioning if I should have made more methods private and asking what are the implications of private methods on rspec tests.
+# should I implement 'context' for weather?
 # created a feature test - was unsure if it should include 'tests' or should just have no 'expects' and display like irb
-# during the creation of feature test, found a bug. there is no error returned if trying to take_off a plane twice, even though the plane is no longer in the array. Decided that according to user stories this would be correct, as my method airport.check_for_landed(plane) fufills the first user statement 'confirm that it has landed'. However, decided it is not in the spirit of the program to keep track of airplanes and accurately allocate them to destinations. It doesn't make sense to have a plane 'take_off' twice from the same location. fixed it by writing new tests and methods (check_if_already_landed) and (check_if_already_flying).
+# during the creation of feature test, found a bug. There is no error returned if trying to take_off a plane twice, even though the plane is no longer in the array. I decided that according to user stories this would be correct, as my method airport.check_for_landed(plane) fulfils the first user statement 'confirm that it has landed'. However, I decided it is not in the spirit of the program to keep track of airplanes and accurately allocate them to destinations. It doesn't make sense to have a plane 'take_off' twice from the same location. I fixed it by writing new tests and methods #check_if_already_landed and #check_if_already_flying for the plane class.
 # need more research for how best to make methods private to increase program security.
 ```
