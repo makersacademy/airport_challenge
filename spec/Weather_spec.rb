@@ -1,4 +1,4 @@
-# require 'weather'
+# require 'Weather'
 
 # describe Weather do
 

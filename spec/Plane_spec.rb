@@ -1,4 +1,4 @@
-require 'plane'
+require 'Plane'
 
 describe Plane do
 
