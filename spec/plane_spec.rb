@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-	 
+   
 
   it { is_expected.to respond_to(:flying?) }
 
@@ -15,18 +15,18 @@ describe Plane do
 
 
 describe 'landed?' do 
-	it 'has landed at the airport' do
-		plane.land
-		expect(plane.landed?).to eq true
-		expect(plane.flying?).to eq false
-	end
+  it 'has landed at the airport' do
+    plane.land
+    expect(plane.landed?).to eq true
+    expect(plane.flying?).to eq false
+  end
 end
   
   describe '#land' do
-  	it "has landed at the airport" do
-	  plane.land
-	  expect(plane.flying?).to eq false
-	  expect(plane.landed?).to eq true
+    it "has landed at the airport" do
+    plane.land
+    expect(plane.flying?).to eq false
+    expect(plane.landed?).to eq true
     end
   end
 
@@ -39,7 +39,3 @@ end
       end
     end
 end
-
-	  
-
-	  

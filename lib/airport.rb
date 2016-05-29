@@ -1,33 +1,42 @@
 require_relative 'plane.rb'
 
-
 class Airport
 
-  def initialize
+  attr_reader :landed_planes, :capacity
+
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @landed_planes =[]
+    @capacity = capacity
   end
 
   def land(plane)
-  	fail "This plane has already landed" if plane.landed?
-  	plane.land
-  	@landed_planes << plane
-	"The plane has now landed"
+    fail "The airport is full!" if full?
+    fail "This plane has already landed" if plane.landed?
+    plane.land
+    @landed_planes << plane
+  "The plane has now landed"
   end
 
   def take_off(plane)
-  	fail "The airport is empty. There are no planes available for take off" if empty?
-	@landed_planes.pop
-	"The plane has taken off"
+    fail "There are no planes available for take off" if empty?
+  @landed_planes.pop
+  "The plane has taken off"
   end
 
   def in_airport?(plane)
-	@landed_planes.include? plane
+  @landed_planes.include? plane
   end
 
   private 
 
   def empty?
-	true if @landed_planes.empty?
+  true if @landed_planes.empty?
+  end
+
+  def full? 
+    true if @landed_planes.length >= capacity
   end
 end
 

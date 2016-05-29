@@ -1,3 +1,4 @@
+
 require 'airport'
 
 describe Airport do 
@@ -33,7 +34,7 @@ describe Airport do
     end
 
     it 'won\'t allow a plane to take off if the airport is empty' do
-      expect{airport.take_off(plane)}.to raise_error("The airport is empty. There are no planes available for take off")
+      expect{airport.take_off(plane)}.to raise_error("There are no planes available for take off")
     end
 
     it 'no longer has the plane after takeoff' do
@@ -42,12 +43,10 @@ describe Airport do
       allow(plane).to receive(:flying?).and_return(true)
       expect(airport.in_airport?(plane)).to eq false
     end
+
+    it 'raises an error when there is no space available at default capacity' do
+      Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error("The airport is full!")
+    end
   end
 end
-
-
-
-
-  
-
-    
