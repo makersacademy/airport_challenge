@@ -1,21 +1,30 @@
-require 'dispatcher'
+require_relative './dispatcher'
+require_relative './receive_dispatcher'
 
 class Airport
 
-  def initialize
-    @dispatcher = Dispatcher.new
+  DEFAULT_CAPACITY = 100
+
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @receive_dispatcher = ReceiveDispatcher.new 
+    @release_dispatcher = Dispatcher.new
     @vehicles_parked = []
+    @capacity = capacity
   end
 
   def receive(vehicle)
-    @dispatcher.travel_allowed? ? (@vehicles_parked << vehicle) : (raise 'Travel not allowed at this time')
+    @receive_dispatcher.travel_allowed?(self) ? (@vehicles_parked << vehicle) : (raise 'Travel not allowed at this time')
   end
 
   def release(vehicle)
-    @dispatcher.travel_allowed? ? (@vehicles_parked.delete(vehicle)) : (raise 'Travel not allowed at this time')
+    @release_dispatcher.travel_allowed? ? (@vehicles_parked.delete(vehicle)) : (raise 'Travel not allowed at this time')
   end
 
   def parked?(vehicle)
     @vehicles_parked.include?(vehicle)
+  end
+
+  def full?
+    @vehicles_parked.count == @capacity 
   end
 end

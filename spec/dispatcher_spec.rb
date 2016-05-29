@@ -1,4 +1,4 @@
-require 'dispatcher.rb'
+require 'dispatcher'
 
 describe Dispatcher do
 
@@ -9,9 +9,8 @@ describe Dispatcher do
   end 
 
   context 'When weather conditions are bad' do
-    
-    it ':travel_allowed? returns false' do
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+    it '#travel_allowed? returns false' do
+      allow_any_instance_of(Weather).to receive_messages(stormy?: true)
       expect(subject.travel_allowed?).to eq false
     end  
   end 
