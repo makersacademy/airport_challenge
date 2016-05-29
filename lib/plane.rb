@@ -32,11 +32,13 @@ class Plane
 	private
 
 	def transition_ok?(new_position)
-			(new_position.accept_plane?(self) && !new_position.is_airport?)^!landed?
+		raise_error if @weather.stormy? || !new_position.accept_plane?(self)
+		raise_error if !new_position.is_airport?^landed?
+		true
 	end
 
 	def change_position(new_position)
-		transition_ok?(new_position) && !@weather.stormy? ? @position = new_position : raise_error
+		transition_ok?(new_position) ? @position = new_position : raise_error
 	end
 
 	def raise_error
