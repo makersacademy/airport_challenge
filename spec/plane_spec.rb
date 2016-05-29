@@ -17,7 +17,7 @@ describe Plane do
   end
 
     describe '#landed?' do
-      it 'expect plane to be landed' do
+      it 'expect plane to be landed (#landed? == true)' do
         expect(subject.landed?).to eq true
       end
     end
