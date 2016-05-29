@@ -11,6 +11,7 @@ def initialize(capacity=100)
   @planes = []
 end
 
+
   def land(plane)
     planes << plane
   end
