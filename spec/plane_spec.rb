@@ -17,13 +17,13 @@ describe Plane do
   end
 
     describe '#landed?' do
-      it 'expect plane to be landed (#landed? == true)' do
+      it 'expect plane to be landed' do
         expect(subject.landed?).to eq true
       end
     end
 
     describe '#take_off' do
-      it 'expect plane to be taken off (#landed? == false)' do
+      it 'expect plane to be flying' do
         subject.take_off
         expect(subject.landed?).to eq false
       end
