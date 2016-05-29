@@ -44,10 +44,10 @@ describe Airport do
       test_capacity = rand(10..20)
       airport = Airport.new(2)
       expect do
-        test_capacity.times do
+        test_capacity.times { |_i|
           airport.receive_plane(plane)
           airport.release_plane(plane)
-        end
+        }
       end.to_not raise_error
     end
   end
