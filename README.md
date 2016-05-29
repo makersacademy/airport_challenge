@@ -1,5 +1,3 @@
-https://travis-ci.org/a-mellor/airport_challenge
-
 Makers Academy Weekend Challenge 1
 ================
 Currently not able to fulfil all of the clients requirements. The weather having an impact on take off and landing still needs to be implemented.
