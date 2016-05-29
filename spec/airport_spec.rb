@@ -16,7 +16,7 @@ describe Airport do
 
       it "raises an error if the airport is at capacity" do
         described_class::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
-        expect { subject.land_plane(plane) }.to raise_error(described_class::ERROR_FULL)
+        expect { subject.land_plane(plane) }.to raise_error(described_class::ERROR[:full])
       end
 
       describe "#docked?" do
@@ -29,7 +29,7 @@ describe Airport do
 
     describe "#take_off" do
       it "raises an error if the plane isn't at the airport" do
-        expect { subject.take_off(plane) }.to raise_error(described_class::ERROR_NO_PLANE)
+        expect { subject.take_off(plane) }.to raise_error(described_class::ERROR[:no_plane])
       end
 
       it "instructs a plane to take off" do
@@ -50,13 +50,13 @@ describe Airport do
 
     describe "#land_plane" do
       it "does not allow a plane to land" do
-        expect { subject.land_plane(plane) }.to raise_error described_class::ERROR_STORMY
+        expect { subject.land_plane(plane) }.to raise_error described_class::ERROR[:stormy]
       end
     end
 
     describe "#take_off" do
       it "does not allow a plane to take off" do
-        expect { subject.take_off(plane) }.to raise_error described_class::ERROR_STORMY
+        expect { subject.take_off(plane) }.to raise_error described_class::ERROR[:stormy]
       end
     end
   end
