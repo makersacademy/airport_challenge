@@ -2,11 +2,17 @@ require 'plane'
 
 describe Plane do
 
-  describe '#landed' do
-    it 'responds to landed method' do
-    expect(subject).to respond_to(:landed)
-    end
-  end
+  # subject(:plane) { described_class.new }
+
+  # describe "#take-off" do
+  #   it { is_expected.to respond_to :take_off }
+
+  #   it "raises an error if already flying" do
+  #     expect { plane.take_off }.to raise_error "Plane cannot take-off: plane already flying"
+  #   end
+
+  # end
+
 
   # describe '#is_where method' do
   #   it 'responds to is_where? method' do

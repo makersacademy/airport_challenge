@@ -6,10 +6,10 @@
 
 <h2>Makers Academy, Week 1 Solo Project</h2>
 
-This is a solo project completed at the end of week 1 of the <a href="http://www.makersacademy.com/">Makers Academy</a> full stack developer course.   
+This is a solo project completed at the end of week 1 of the <a href="http://www.makersacademy.com/">Makers Academy</a> full stack developer course.
 
 <h2>Project aim</h2>
-To replicate a working airport system using Ruby.  
+To replicate a working airport system using Ruby.
 
 <h2>Project tech stack</h2>
 

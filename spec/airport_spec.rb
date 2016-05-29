@@ -75,7 +75,13 @@ describe Airport do
     allow(airport).to receive(:stormy?).and_return false
     airport.land(plane)
     airport.take_off(plane)
-    expect(airport.take_off(plane)).to eq []
+    expect(airport.planes).to eq []
+    end
+
+    it "returns the plane that took-off" do
+    allow(airport).to receive(:stormy?).and_return false
+    airport.land(plane)
+    expect(airport.take_off(plane)).to eq plane
     end
 
     it "prevents plane taking-off when stormy" do
@@ -89,6 +95,14 @@ describe Airport do
     allow(airport).to receive(:full?).and_return true
     expect { airport.take_off(plane) }.to raise_error "Cannot take-off: airport is full"
     end
+
+    # it "flying planes won't take-off because flying" do
+    # allow(airport).to receive(:stormy?).and_return false
+    # airport.land(plane)
+    # flying_plane = airport.take_off(plane)
+    # expect { flying_plane.take_off }.to raise_error "Plane cannot take-off: plane already flying"
+    # end
+
 
   end
 

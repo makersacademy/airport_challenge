@@ -35,7 +35,6 @@ class Airport
     fail "Cannot take-off: weather is stormy" if stormy?
     fail "Cannot take-off: airport is full" if full?
     @planes.pop
-    @planes
   end
 
   def confirm_departed(plane)
@@ -54,6 +53,10 @@ class Airport
 
   def stormy?
     Weather.new.stormy?
+  end
+
+  def landed?
+    plane.landed?
   end
 
 end
