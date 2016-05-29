@@ -5,6 +5,10 @@ describe Plane do
   it "has a default capacity" do
     expect(subject.capacity).to eq Plane::DEFAULT_CAPACITY
   end
+  it "allows user to change capacity" do
+    subject.capacity = 300
+    expect(subject.capacity).to eq 300
+  end
   it "is flying when started" do
     expect(subject.flying?).to be true
   end
