@@ -1,6 +1,6 @@
 require 'airport'
 require 'receive_dispatcher'
-true
+
 describe Airport do
   let(:vehicle) { double :vehicle }
   #not too happy about this variable below but need to keep houn happy

@@ -42,7 +42,7 @@ feature 'Instructing a plane to land into an airport' do
         #weather is good fist to allow the airport to fill up
         allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
         airport = Airport.new
-        (Airport::DEFAULT_CAPACITY).times{airport.receive(Plane.new)}
+        Airport::DEFAULT_CAPACITY.times{airport.receive(Plane.new)}
         #back to bad weather, we are in England after all :P 
         allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
         expect{airport.receive(plane)}.to raise_error
