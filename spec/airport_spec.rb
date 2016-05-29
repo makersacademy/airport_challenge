@@ -2,10 +2,12 @@ require 'airport'
 
 describe Airport do
   let(:plane1) { double(:plane1, :landed? => true, :set_landed => true)}
-  let(:plane2) { double(:plane2, 
-                        :landed? => false, 
-                        :set_landed => true, 
-                        :take_off => true)}
+  let(:plane2) do
+    double( :plane2, 
+            :landed? => false,
+            :set_landed => true, 
+            :take_off => true)
+  end
   let(:plane_spy){ spy(:plane_spy) }
   
   before(:each) do
