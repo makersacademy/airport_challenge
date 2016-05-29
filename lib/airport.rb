@@ -3,19 +3,28 @@ class Airport
 
   attr_reader :capacity
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(params = {})
     @planes = []
-    @capacity = capacity
+    @storm_probability = params.fetch(:storm_probability, 10) # 10%
+    @capacity = params.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
   def land(plane)
     fail "Airport is full!" if @planes.count >= capacity
+    fail "Plane can't land due to stormy weather." if stormy?
     @planes << plane
     plane.land(self)
   end
 
   def take_off(plane)
+    fail "Plane can't take off due to stormy weather." if stormy?
     @planes.delete(plane)
     plane.take_off
   end
+
+  def stormy?
+    chance = rand(101)
+    chance <= @storm_probability ? true : false
+  end
+
 end
