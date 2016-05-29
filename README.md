@@ -26,7 +26,7 @@ Travis says..... ![travis build status](https://travis-ci.org/kennbarr/airport_c
 Summary
 ---------
 
-* Created Airport, Plane and Weather classes. 100% tested each and passed feature tests
+* Created Airport, Plane and Weather classes. 100% tested and passed feature tests
 
 ######Airport
 * Airports store Planes in an array. Custom capacity can be set when creating a new Airport, default is 10.
@@ -44,14 +44,14 @@ Summary
 Issues
 -------
 
-* Had to make code more complicated in order to make method testable.
+* Had to make code more complicated in order to make some methods testable.
   1. Redundant optional argument "weather" added to Airport initialize method in order to be able to get test coverage of Airport.stormy?
   2. "Kernel.rand" had to be used in place of "rand" in Weather.stormy? to be able to stub the random result
 
 Sample Interface
 -------
 
-######Plane can lands and take off from airport. Can confirm if plane in airport
+######Planes can land and take off from airport. Can confirm if plane in airport
 ```
 $ irb
 2.3.0 :001 > airport = Airport.new
