@@ -1,3 +1,3 @@
-# class Plane
+class Plane
 
-# end
+end

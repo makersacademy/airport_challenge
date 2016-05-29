@@ -1,3 +1,3 @@
-# class Weather
-
-# end
+class Weather
+	
+end
