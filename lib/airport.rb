@@ -1,10 +1,14 @@
 class Airport
 
+  def initialize
+    @planes = []
+  end
+
   def land(plane)
-    "The plane has landed"
+    @planes << plane
   end
 
   def take_off(plane)
-    "The plane has taken off"
+    plane
   end
 end
