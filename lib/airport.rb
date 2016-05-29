@@ -22,6 +22,8 @@ class Airport
     plane.take_off
   end
 
+  private
+
   def stormy?
     chance = rand(101)
     chance <= @storm_probability ? true : false
