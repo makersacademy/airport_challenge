@@ -28,9 +28,8 @@ describe Airport do
     end
 
     it 'confirms a plane has taken off' do
-      plane = double(:plane, :take_off? => true)
-      # plane = Plane.new
+      plane = double(:plane, take_off?: true)
       airport.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
-  end
+end
