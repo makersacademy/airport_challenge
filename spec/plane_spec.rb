@@ -2,26 +2,40 @@ require 'plane'
 
 describe Plane do
 
-  # subject(:plane) { described_class.new }
+  subject(:plane) { described_class.new }
+  let(:airport) { double :airport }
 
-  # describe "#take-off" do
-  #   it { is_expected.to respond_to :take_off }
+  describe "#take_off" do
 
-  #   it "raises an error if already flying" do
-  #     expect { plane.take_off }.to raise_error "Plane cannot take-off: plane already flying"
-  #   end
+    it { is_expected.to respond_to :take_off }
 
+    it "raises an error if plane already flying" do
+      expect { plane.take_off }.to raise_error "Plane cannot take-off: plane already flying"
+    end
 
+  end
 
-  # describe '#is_where method' do
-  #   it 'responds to is_where? method' do
-  #   expect(subject).to respond_to(:is_where?)
-  #   end
+# #   # describe "#land" do
 
-  #   it 'returns current location of plane when called on landed plane' do
-  #   airport = Airport.new
-  #   subject.land(airport)
-  #   expect(subject.is_where?).to eq airport
-  #   end
+# #   #   it "remembers the current airport at which it is landed" do
+# #   #     plane.land(airport)
+# #   #     expect(plane.airport).to eq airport
+# #   #   end
+
+# #   #   it "raises an error if already landed at same airport" do
+# #   #     plane.land(airport)
+# #   #     expect { plane.land(airport) }.to raise_error "Plane cannot land: already landed at this airport"
+# #   #   end
+
+# #   # end
+
+# #   # describe "#airport" do
+
+# #   #   it { is_expected.to respond_to :airport }
+
+# #   #   it "raises an error if already flying" do
+# #   #     expect { plane.airport }.to raise_error "Plane cannnot be at an airport: plane already flying"
+# #   #   end
+# #   # end
 
 end
