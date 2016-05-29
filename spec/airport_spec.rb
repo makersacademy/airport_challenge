@@ -4,9 +4,9 @@ describe Airport do
 
   let(:plane){double(:plane)}
 
-  describe "#is_airport?" do
+  describe "#airport?" do
     it "returns true" do
-      expect(subject.is_airport?).to be(true)
+      expect(subject.airport?).to be(true)
     end
   end
 
@@ -46,12 +46,12 @@ end
 
 describe Sky do
 
-  describe "#is_airport?" do
+  describe "#airport?" do
     it "responds to the message" do
-      expect(subject).to respond_to(:is_airport?)
+      expect(subject).to respond_to(:airport?)
     end
     it "returns false" do
-      expect(subject.is_airport?).to be(false)
+      expect(subject.airport?).to be(false)
     end
   end
 

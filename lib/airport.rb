@@ -1,9 +1,9 @@
 class Airport
 
   DEFAULT_CAPACITY = 20
-  AT_CAPACITY_ERR_MSG = "Airport full! Please try another"
+  AT_CAPACITY_ERR_MSG = "Airport full! Please try another".freeze
 
-  def is_airport?
+  def airport?
     true
   end
 
@@ -41,18 +41,18 @@ end
 
 class Sky #NoAirport Class
 
-  def is_airport?
+  def airport?
     false
   end
 
-  def accept_plane?(plane)
+  def accept_plane?(_plane)
     true
   end
 
-  def receive_plane(plane)
+  def receive_plane(_plane)
   end
 
-  def release_plane(plane)
+  def release_plane(_plane)
   end
 
 end

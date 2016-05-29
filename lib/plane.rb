@@ -2,8 +2,8 @@ require "weather"
 
 class Plane
   SKY = Sky.new.freeze
-  STORM_ERR_MSG = "Stormy Weather" 
-  BAD_CMD_ERR_MSG = "Command does not make sense!" 
+  STORM_ERR_MSG = "Stormy Weather".freeze
+  BAD_CMD_ERR_MSG = "Command does not make sense!".freeze
 
   attr_reader :position
 
@@ -21,7 +21,7 @@ class Plane
   end 
 
   def landed?
-    position.is_airport?
+    position.airport?
   end
 
   def new_weather(weather)
@@ -49,7 +49,7 @@ class Plane
     end
 
     def change_makes_sense?(new_pos)
-      it_makes_sense = new_pos.is_airport?^landed?
+      it_makes_sense = new_pos.airport?^landed?
       fail BAD_CMD_ERR_MSG unless it_makes_sense
     end
 
