@@ -44,7 +44,7 @@ describe Airport do
       test_capacity = rand(10..20)
       airport = Airport.new(2)
       expect do
-        test_capacity.times { |_i|
+        test_capacity.times { 
           airport.receive_plane(plane)
           airport.release_plane(plane)
         }
