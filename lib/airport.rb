@@ -5,14 +5,15 @@ class Airport
 
 DEFAULT_CAPACITY = 20
 
-	def initialize(weather: Weather.new)		
+	def initialize(capacity: DEFAULT_CAPACITY, weather: Weather.new)		
 		@landed = []
+		@capacity = capacity
 		@weather = weather
 	end
 
 	def land(plane)
-		fail "Cannot land in a storm" if weather.stormy?
-		fail "Airport full" if @landed.count >= DEFAULT_CAPACITY
+		#fail "Cannot land in a storm" if weather.stormy?
+		fail "Airport full" if full?
 		@landed << plane
 		"Welcome to London"
 	end
@@ -27,6 +28,10 @@ DEFAULT_CAPACITY = 20
 	end
 
 	private
+
+	def full?
+		@landed.count >= @capacity
+	end
 
 	attr_reader :plane
 

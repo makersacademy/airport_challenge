@@ -19,10 +19,10 @@ describe Airport do
 			expect(airport.in_airport?(plane)).to eq true
 		end
 
-		it 'does not allow the plane to land in a storm' do
-			allow(airport).to receive(:stormy?).and_return(true)
-			expect {airport.land(plane)}.to raise_error "Cannot land in a storm"
-		end
+		# it 'does not allow the plane to land in a storm' do
+		# 	allow(airport).to receive(:stormy?).and_return(true)
+		# 	expect {airport.land(plane)}.to raise_error "Cannot land in a storm"
+		# end
 
 		it 'raises an error when full' do
 			described_class::DEFAULT_CAPACITY.times {airport.land(plane)}

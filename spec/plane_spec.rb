@@ -11,7 +11,6 @@ describe Plane do
 			expect(plane.landed?).to eq true
 		end
 
-
 	end
 
 	describe '#take_off' do
@@ -21,7 +20,7 @@ describe Plane do
 			plane.take_off
 			expect(plane.landed?).to eq false
 		end
-		
+
 	end
 
 end
