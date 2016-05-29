@@ -8,11 +8,7 @@ class Airport
   end
 
   def full?
-    if @current_capacity < @max_capacity
-      return false
-    else
-      return true
-    end
+    @current_capacity > @max_capacity
   end
 
 end
