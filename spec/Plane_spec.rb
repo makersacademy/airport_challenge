@@ -1,4 +1,4 @@
-require "plane.rb"
+require "./lib/plane.rb"
 
 describe Plane do
 
