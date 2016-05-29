@@ -4,10 +4,9 @@ describe Airport do
 
   let(:airport) { Airport.new }
   let(:plane) { double :plane, land: nil, depart: nil }
-  let(:weather_report) { double :weather_report }
 
   describe 'respond and initiate' do
-    it "responds to a method"do
+    it "responds to a method" do
       expect(airport).to respond_to(:land).with(1).argument
       expect(airport).to respond_to(:depart).with(1).argument
     end
@@ -23,11 +22,6 @@ describe Airport do
 
 
   describe '#land' do
-    context 'when NOT stormy' do
-      before do
-        allow(weather_report).to receive(:stormy?).and_return false
-      end
-    end
 
     it "raises an error when airport is full" do
       Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
@@ -35,15 +29,9 @@ describe Airport do
     end
   end
 
-
   describe '#depart' do
     it 'raises an error when there are no planes to depart' do
       expect { airport.depart(plane) }.to raise_error "No planes at airport"
     end
   end
-
-
-
-
-
 end
