@@ -4,23 +4,39 @@ describe Airport do
 
 	subject {Airport.new(3)}
 
+	let(:test_plane) { double :plane}
+	let(:bad_weather) { double :weather, :good}
+
+	
 	it {is_expected.to respond_to(:arrival)}
 
 	it {is_expected.to respond_to(:departure)}
 
-	it {is_expected.to respond_to(:change_weather)}
+	it 'tries to accpet a plane to a full airport' do
+		
+		allow(test_plane).to receive(:land).with(subject) {"result"}
 
-	it 'changes the weather and checks it' do
-		expect(subject.change_weather).to eq false
-	end
+		allow(Weather).to receive(:good_forecast?).and_return(true)
 
-	it 'tries to accept and arriving plane in bad weather' do
-		subject.change_weather
-		expect{subject.arrival}.to raise_error("Can't land during stormy weather")
-	end
-
-	it 'tries to depart a plane in bad weather' do
-		subject.change_weather
-		expect{subject.departure}.to raise_error("Can't take off during stormy weather")
+		expect{4.times{subject.arrival(test_plane)}}.to raise_error("Airport full!")
 	end
 end
+
+
+# p subject.departure
+# p subject.instance_variables
+# p subject.instance_variable_get(:@planes)
+
+
+# shared_examples_for Weather do
+#   let(:instance) { described_class.new }
+
+#   it 'does something exciting' do
+#     instance.should_receive(:method_two).and_return('MANUAL')
+#     expect(instance.method_one).to eq(some_value)
+#   end
+# end
+
+# describe SomeController do
+#   include_examples SomeModule
+# end

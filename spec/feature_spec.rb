@@ -23,4 +23,8 @@ describe 'Feature testing' do
 		# expect).to raise_error("Can only take off from an airport")
 		p @testy_Plane.take_off(@testy_Airport)
 	end
+
+	it 'lets me play about here' do 
+		p @testy_Airport.arrival(@testy_Plane)
+	end
 end

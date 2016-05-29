@@ -3,6 +3,7 @@ require 'plane.rb'
 require 'weather.rb'
 
 class Airport
+	include Weather
 
 	def initialize(capacity)
 		@capacity = capacity
@@ -10,14 +11,14 @@ class Airport
 	end
 
 	def arrival(plane)
-		fail "Can't land during stormy weather" if Weather.good_forecast?
+		fail "Can't land during stormy weather" if !Weather.good_forecast?
 		fail "Airport full!" if full?
 		@planes << plane
 		plane.land(self)
 	end
 
 	def departure(plane)
-		fail "Can't take off during stormy weather" if Weather.good_forecast?
+		fail "Can't take off during stormy weather" if !Weather.good_forecast?
 		@planes.pop.take_off(self)
 	end
 
