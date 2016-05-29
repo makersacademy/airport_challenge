@@ -30,7 +30,7 @@ describe Airport do
         expect(airport).to receive(:release)
         airport.release(plane)
       end
-      it "should remove the plane the aiport" do
+      it "should remove the plane from the aiport" do
         allow(weather).to receive(:stormy?).and_return(false)
         airport.dock(plane, weather)
         airport.release(plane, weather)
@@ -71,7 +71,7 @@ describe Airport do
         allow(weather).to receive(:stormy?).and_return(true)
         expect{ airport.check_weather(weather) }.to raise_error('No planes can land or take off in a storm')
       end
-      it "doesn't raise error if the weather is not stormy" do
+      it "raises no error if the weather is not stormy" do
         allow(weather).to receive(:stormy?).and_return(false)
         expect{ airport.check_weather(weather) }.not_to raise_error
       end

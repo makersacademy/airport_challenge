@@ -14,4 +14,11 @@ third user story
   #   raise 'No planes can take off in a storm' if Weather.new.stormy?
   # end
 : naming practices -- def check(weather) or def check_weather(weather) better?
-: unsure of how to approach private methods 
+: unsure of how to approach private methods
+
+further notes
+:bug - I can check if a plane is stored in the airport with the method #check_for_landed,
+but trying to take_off_from a airport multiple times throws the error 'No planes can land or take off in a storm'
+
+
+-- context for weather
