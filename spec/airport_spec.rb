@@ -14,6 +14,10 @@ describe Airport do
   		subject.allow_landing(plane)
   		expect(subject.allow_take_off).to eq plane
   	end
+
+  	it "raises an error if there are no planes in the hangar" do
+  		expect{subject.allow_take_off}.to raise_error("The hangar is empty!!")
+  	end
   end
 
 end

@@ -4,8 +4,9 @@ describe "Feature Test" do
     plane = Plane.new
 
     gatwick.allow_landing(plane)
-    
+
     gatwick.allow_take_off
+    
 
 
   end
