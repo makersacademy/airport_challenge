@@ -11,6 +11,10 @@ class Airport
 	def arriving
 		@planes += 1
 	end
+	
+	def departing 
+		@planes -= 1
+	end
 
 	def full?
 		@planes >= @capacity

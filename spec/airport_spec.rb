@@ -6,6 +6,8 @@ describe Airport do
 
 	it {is_expected.to respond_to(:arriving)}
 
+	it {is_expected.to respond_to(:departing)}
+
 	it {is_expected.to respond_to(:full?)}
 
 end
