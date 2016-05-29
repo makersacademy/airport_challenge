@@ -29,13 +29,10 @@ end
   def take_off(plane)
     fail "Airport empty" if empty?
     fail "Impossible to take off" if stormy?
-    if @planes.include?(plane)
-      flying_plane = @planes.delete(plane)
-      flying_plane.departure
-      "Plane #{plane} took off successfully"
-    else
-      raise "Plane not in airport"
-    end
+    fail "Plane not in airport" unless @planes.include?(plane)
+    flying_plane = @planes.delete(plane)
+    flying_plane.departure
+    "Plane #{plane} took off successfully"
   end
 
   private

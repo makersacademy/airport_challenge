@@ -24,7 +24,7 @@ describe Airport do
   context "Good weather" do
     it "responds to #land" do
   		expect(subject).to respond_to(:land).with(1).argument
-  	end
+    end
     # => PRIVATE
     # it "confirms that plane has landed" do
     #   allow(subject).to receive(:stormy?).and_return(false)
