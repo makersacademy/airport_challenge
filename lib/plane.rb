@@ -13,8 +13,8 @@ class Plane
   # instance variables to show that it is now on the ground.
   def land(airport)
     return "Plane is already on the ground!" if @on_ground
-    airport_result = airport.accept_plane(self)
-    if airport_result.is_a? String
+    airport_result = airport.accept_landing(self)
+    if airport_result.is_a?(String)
       return "Unable to land. Message from airport: #{airport_result}"
     else
       @on_ground = true
@@ -23,13 +23,19 @@ class Plane
     end
   end
 
-  # #take_off instructs the plane to take off, changing its
+  # #take_off checks whether the airport will allow the take-off
+  # and if so, instructs the plane to take off, changing the plane's
   # instance variables to reflect that it is now in the air.
-  def take_off
-    return "Plane is already in the air!" if !@on_ground
-    @on_ground = false
-    @location = nil
-    "Plane has taken off."
-  end
+  def take_off(airport)
+    return "Plane is already in the air!" unless @on_ground
+    airport_result = airport.allow_take_off(self)
+    if airport_result.is_a?(String)
+      return "Unable to take off. Message from airport: #{airport_result}"
+    else
+      @on_ground = false
+      @location = nil
+      "Plane took off from #{airport}."
+    end
+  end 
 
 end
