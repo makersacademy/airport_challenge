@@ -19,6 +19,10 @@ describe Airport do
       it 'should ask the airport to check the weather' do
         expect(airport).to respond_to(:check_weather).with(1).arguments
       end
+      it "should ask the airport if it is full" do
+        expect(airport).to receive(:full?)
+        airport.full?
+      end
     end
 
     describe '#release' do
@@ -65,11 +69,34 @@ describe Airport do
       it { is_expected.to respond_to(:check_weather)}
       it 'raises an error if the weather is stormy' do
         allow(weather).to receive(:stormy?).and_return(true)
-        expect{ airport.check_weather(weather) }.to raise_error('No planes can take off in a storm')
+        expect{ airport.check_weather(weather) }.to raise_error('No planes can land or take off in a storm')
       end
       it "doesn't raise error if the weather is not stormy" do
         allow(weather).to receive(:stormy?).and_return(false)
         expect{ airport.check_weather(weather) }.not_to raise_error
+      end
+    end
+
+    describe 'default CAPACITY' do
+      it "is initialzed with a capacity of 10" do
+        expect(airport.capacity).to eq 10
+      end
+      it "can be overidden with a different number" do
+        airport.capacity = 5
+        expect(airport.capacity).to eq 5
+      end
+    end
+
+    describe '#full' do
+      before do
+        allow(weather).to receive(:stormy?).and_return(false)
+      end
+      it "does not raise error if airport has space" do
+        expect{airport.full?}.not_to raise_error
+      end
+      it "raises an error if the airport is full" do
+        10.times { airport.dock(plane, weather) }
+        expect{airport.dock(plane, weather)}.to raise_error 'Airport is at full capacity'
       end
     end
 end
