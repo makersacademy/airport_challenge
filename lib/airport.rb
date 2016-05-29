@@ -18,7 +18,7 @@ class Airport
     fail "Cannot land plane: weather is stormy" if stormy?
     fail "Cannot land plane: airport is full" if full?
     fail "Cannot land plane: plane already landed" if at_airport?(plane)
-    @planes << plane
+    add_plane(plane)
   end
 
   def confirm_landed(plane)
@@ -36,7 +36,7 @@ class Airport
   def take_off(plane)
     fail "Cannot take-off: weather is stormy" if stormy?
     fail "Cannot take-off: plane not at this airport" unless at_airport?(plane)
-    @planes.pop
+    remove_plane(plane)
   end
 
   def confirm_departed(plane)
@@ -57,6 +57,14 @@ class Airport
 
   def stormy?
     weather.stormy?
+  end
+
+  def add_plane(plane)
+    planes << plane
+  end
+
+  def remove_plane(plane)
+    planes.pop
   end
 
   def at_airport?(plane)
