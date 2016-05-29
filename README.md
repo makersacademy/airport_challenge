@@ -51,6 +51,15 @@ Your code should defend against [edge cases](http://programmers.stackexchange.co
 Solution
 -----
 
+From the user stories, I picked up two key nouns for the domain model: Plane and Airport. I assumed that a Plane would take_off and land, and that Airport (or it's Air Traffic Control) would allow departures (depart) and arrivals (arrive) on it's runway.
+
+| Noun          | Verb          |
+| ------------- | ------------- |
+| Plane         | land          |
+|               | take_off      |
+| Airport       | arrive        |
+|               | depart        |
+
 I started off with by writing test spec for a Plane class (and then by implementing the class), as I assumed the plane would start off flying. I created methods inside Plane: land and take_off, which act to update the current location of the plane, and I have implemented edge cases to ensure a plane behaves as should (see above).
 
 I then wrote and built upon test spec and code for an Airport class, which has functions arrive and depart that send a message to an instance of Plane to say it's okay to take off/land. Airport also has a stormy? method and an optional parameter for storm_probability. Planes can't take off if stormy? is true.
