@@ -10,7 +10,7 @@ describe Plane do
         allow(airport).to receive(:release)
       end
       it 'should make the plane fly' do
-        plane.take_off_from(airport)
+        plane.take_off_from(airport, weather)
         expect(plane.flying?).to eq true
       end
     end

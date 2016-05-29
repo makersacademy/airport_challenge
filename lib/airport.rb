@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :planes
@@ -7,7 +8,8 @@ class Airport
     @planes = []
   end
 
-  def dock(plane)
+  def dock(plane, weather)
+    self.check_weather(weather)
     @planes << plane
   end
 
@@ -15,7 +17,12 @@ class Airport
     @planes.include? plane
   end
 
-  def release(plane)
+  def release(plane, weather)
+    self.check_weather(weather)
     @planes.delete(plane)
+  end
+
+  def check_weather(weather)
+    raise 'No planes can take off in a storm' if weather.stormy?
   end
 end
