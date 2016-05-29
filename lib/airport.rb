@@ -13,13 +13,13 @@ class Airport
   end
 
   def land_plane(plane)
-    raise 'This plane has already taken off!' if plane.landed?
-    raise 'The airport is full!' if full?
+    fail 'This plane has already taken off!' if plane.landed?
+    fail 'The airport is full!' if full?
     @planes << plane
   end
 
   def take_off_plane(plane)
-    raise 'The airport is empty!' if @planes == []
+    fail 'The airport is empty!' if @planes == []
     @planes.pop
     @planes
   end
