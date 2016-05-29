@@ -54,11 +54,11 @@ describe Plane do
 
 	describe "#get_position" do
 		it "should take the get_position message" do
-			expect(subject).to respond_to(:get_position)
+			expect(subject).to respond_to(:position)
 		end
 		it "should return it's airport" do
 			subject.land(airport)
-			expect(subject.get_position).to eq(airport)
+			expect(subject.position).to eq(airport)
 		end
 	end
 

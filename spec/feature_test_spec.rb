@@ -21,9 +21,9 @@ describe "Program Feature Test" do
 		plane = Plane.new
 		airport = Airport.new
 		plane.land(airport)
-		plane.get_position == airport #should be true
+		plane.position == airport #should be true
 		plane.take_off
-		plane.get_position != airport #should be true
+		plane.position != airport #should be true
 	end
 
 	# As an air traffic controller 
@@ -35,13 +35,13 @@ describe "Program Feature Test" do
 		weather = Weather.new
 		plane.land(airport)
 		plane.weather(weather)
-		plane.get_position == airport #should be true
+		plane.position == airport #should be true
 		begin
 			plane.take_off
 		rescue
 			"error"
 		end
-		plane.get_position == airport #should be true if weather is stormy
+		plane.position == airport #should be true if weather is stormy
 	end
 
 	# As an air traffic controller 
@@ -57,7 +57,7 @@ describe "Program Feature Test" do
 		rescue
 			"error"
 		end
-		plane.get_position == airport #should be true
+		plane.position == airport #should be true
 	end
 
 	# As an air traffic controller 

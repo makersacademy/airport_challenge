@@ -4,6 +4,8 @@ class Plane
 	SKY = Sky.new
 	NO_WEATHER = NoWeather.new
 
+	attr_reader :position
+
 	def initialize
 		@position =  SKY
 		@weather = NO_WEATHER
@@ -19,10 +21,6 @@ class Plane
 
 	def landed?
 		@position.is_airport?
-	end
-
-	def get_position
-		@position
 	end
 
 	def weather(weather)
