@@ -8,14 +8,15 @@ An airport is responsible for storing planes. Its default capacity can be modifi
 
 Weather is responsible for knowing what the current weather is.
 
-A dispatcher is responsible for allowing planes to land/take off pending weather conditions.
+A dispatcher is responsible for allowing planes to land/take off pending weather conditions. The more specialised ReceiveDispatcher also checks if the airport is full before allowing inward travel.
 
-Objects    | Messages
--------    | -------------
-Plane      | 
-Airport    | receive(plane), release(plane), parked?(plane), full?
-Weather    | stormy? 
-Dispatcher | travel_allowed?
+Objects            | Messages
+-------            | -------------
+Plane              | 
+Airport            | receive(plane), release(plane), parked?(plane), full?
+Weather            | stormy? 
+Dispatcher         | travel_allowed?
+ReceiveDispatcher  | travel_allowed?
 
 ## Verbose feature tests
 
