@@ -11,12 +11,12 @@ describe Airport do
     end
 
     describe "#land_plane" do
-      it "instructs the plane to land" do
+      it "instructs a plane to land" do
         expect(subject).to receive(:land_plane)
         subject.land_plane
       end
 
-      it "confirms the plane has landed" do
+      it "does not allow landing if plane has already landed" do
         subject.land_plane(plane)
 
         expect do
@@ -24,7 +24,7 @@ describe Airport do
         end.to raise_error(described_class::ERROR[:plane_docked])
       end
 
-      it "rejects plane landing if the airport is at capacity" do
+      it "does not allow landing if the airport is at capacity" do
         described_class::DEFAULT_CAPACITY.times do
           plane_unique = double(:plane)
           subject.land_plane(plane_unique)
@@ -42,7 +42,7 @@ describe Airport do
         subject.take_off(plane)
       end
 
-      it "confirms the plane is not docked at the airport" do
+      it "does not allow take-off if plane isn't there" do
         expect do
           subject.take_off(plane)
         end.to raise_error(described_class::ERROR[:plane_missing])
