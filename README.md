@@ -1,8 +1,8 @@
 README::::airport_challenge
 
-Author:: Michael Lo, Makers May cohort 2016
+Author:::: Michael Lo, Makers May cohort 2016
 
-::Files
+Files
 
 lib
 - airport.rb    : airport class and methods

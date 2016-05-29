@@ -28,10 +28,10 @@ class Airport
   end
 
   def check_weather(weather)
-    raise 'No planes can land or take off in a storm' if weather.stormy?
+    fail 'No planes can land or take off in a storm' if weather.stormy?
   end
 
   def full?
-    raise 'Airport is at full capacity' if @planes.count >= @capacity
+    fail 'Airport is at full capacity' if @planes.count >= @capacity
   end
 end
