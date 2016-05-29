@@ -1,4 +1,4 @@
-require 'airport'
+require "airport"
 
 describe Airport do
   before do
@@ -6,7 +6,7 @@ describe Airport do
     allow(@plane).to receive_messages([:land, :depart_plane])
   end
 
-  describe '#land_plane' do
+  describe "#land_plane" do
     it "instructs the plane to land" do
       expect(subject).to receive(:land_plane)
       subject.land_plane
@@ -19,13 +19,13 @@ describe Airport do
 
     it "raises an error if the airport is at capacity" do
       Airport::DEFAULT_CAPACITY.times { subject.land_plane(@plane) }
-      expect{ subject.land_plane(@plane) }.to raise_error(Airport::ERROR_FULL)
+      expect { subject.land_plane(@plane) }.to raise_error(Airport::ERROR_FULL)
     end
   end
 
-  describe '#take_off' do
+  describe "#take_off" do
     it "raises an error if the plane isn't at the airport" do
-      expect{ subject.take_off(@plane) }.to raise_error(Airport::ERROR_NO_PLANE)
+      expect { subject.take_off(@plane) }.to raise_error(Airport::ERROR_NO_PLANE)
     end
 
     it "instructs a plane to take off" do
@@ -42,10 +42,9 @@ describe Airport do
     end
   end
 
-  describe 'DEFAULT_CAPACITY' do
+  describe "#capacity" do
     it "has a default capacity" do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
-
 end
