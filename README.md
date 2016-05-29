@@ -55,7 +55,7 @@ I started off with by writing test spec for a Plane class (and then by implement
 
 I then wrote and built upon test spec and code for an Airport class, which has functions arrive and depart that send a message to an instance of Plane to say it's okay to take off/land. Airport also has a stormy? method and an optional parameter for storm_probability. Planes can't take off if stormy? is true.
 
-Usage
+Example Usage
 -----
 
 ```ruby
@@ -63,10 +63,20 @@ require './lib/plane'
 require './lib/airport'
 
 mry007  = Plane.new
+#=> #<Plane:0x007f95f201f858 @airport=nil>
 lhw     = Airport.new(capacity: 100, storm_probability: 50) # Airport takes optional parameters through a Hash object
+#=> #<Airport:0x007f95f209e158 @planes=[], @storm_probability=50, @capacity=100>
 sxf     = Airport.new
+#=> #<Airport:0x007f95f2094b80 @planes=[], @storm_probability=10, @capacity=20> 
 
 lhw.arrive(mry007)
+#=> RuntimeError: Plane can't land due to stormy weather.
+lhw.arrive(mry007)
+#=> #<Plane:0x007f95f201f858 @airport=#<Airport:0x007f95f209e158 @planes=[#<Plane:0x007f95f201f858 ...>], @storm_probability=50, @capacity=100>>
 lhw.depart(mry007)
+#=> RuntimeError: Plane can't take off due to stormy weather
+lhw.depart(mry007)
+#=> #<Plane:0x007f95f201f858 @airport=nil> 
 sxf.arrive(mry007)
+#=> #<Plane:0x007f95f201f858 @airport=#<Airport:0x007f95f2094b80 @planes=[#<Plane:0x007f95f201f858 ...>], @storm_probability=10, @capacity=20>> 
 ```
