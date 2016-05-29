@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-	let(:plane) {Plane.new}
+	let(:plane) {double(:plane)}
 	let(:airport) {Airport.new}
 
   context '#land' do
@@ -15,6 +15,17 @@ describe Airport do
     it 'confirms a plane has landed' do
     	expect(airport.land(plane)).to eq "#{plane} has landed"
     end
+    
+    # it 'raises an error if the weather is stormy' do
+    # 	expect{stormy.land(plane)}.to raise_error("You cannot land during stormy weather")
+    # end
+
+  it "raises an error when airport is full" do
+    Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
+    expect{subject.land(plane)}.to raise_error "Airport is full"
+  end
+
+
   end
 
   context '#take_off' do
@@ -31,6 +42,7 @@ describe Airport do
     it 'test' do
     	expect(1).to eq 1
     end
+
   end  
 	
 end
