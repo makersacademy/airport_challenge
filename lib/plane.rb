@@ -20,13 +20,7 @@ class Plane
 	end	
 
 	def transition_ok?(new_position)
-		if new_position.accept_plane?(self)
-			if new_position.is_airport?
-				return !landed?
-			else
-				return landed?
-			end
-		end
+			new_position.accept_plane?(self) && !new_position.is_airport? ? landed? : !landed?
 	end
 
 	def change_position(new_position)
@@ -50,18 +44,4 @@ class Plane
 	end
 
 	private
-
-	def defunct_change_position(new_position = SKY)
-			if transition_ok?(new_position)
-				transition(new_position)
-			else; raise "error"; end
-	end
-
-
-	def transition(new_position)
-		@position.release_plane(self) 
-		new_position.receive_plane(self)
-		@position = new_position
-	end
-
 end
