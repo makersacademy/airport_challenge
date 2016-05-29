@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -31,8 +32,7 @@ class Airport
 	private
 
 	def stormy?
-		 chance = rand(1..5)
-		 chance == 1 
+		 Weather.new.weather_generator
 	end
 
 	def full?

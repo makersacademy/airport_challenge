@@ -1,11 +1,8 @@
 class Weather
 
-	def Stormy?
-		 chance = rand(1..5)
-		 if chance == 1 
-		  "stormy" 
-		 else "nice"
-		 end
+	def weather_generator
+		storm_chance = rand(1..5)
+	 	storm_chance == 1 
 	end
 
 end

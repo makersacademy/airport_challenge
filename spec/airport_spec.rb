@@ -9,7 +9,7 @@ describe Airport do
 			expect(subject).to respond_to(:land).with(1).argument
 		end
 
-		it "checks whether a plane has landed at the airport or not" do
+		it "checks whether a plane has landed at the airport or not on a clear day" do
 			allow(subject).to receive(:stormy?).and_return(false)
 			plane = double(:plane)
 			subject.land(plane)
@@ -36,7 +36,7 @@ describe Airport do
 			expect(subject).to respond_to(:takeoff).with(1).argument
 		end
 
-		it "confirm that the plane is no longer at the airport" do
+		it "confirms that the plane has taken off when it's a clear day" do
 			allow(subject).to receive(:stormy?).and_return(false)
 			plane = double(:plane)
 			subject.takeoff(plane)
