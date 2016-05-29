@@ -6,7 +6,9 @@ describe Airport do
   let(:plane) { double(:plane) }
 
   context "in good weather" do
-    subject { described_class.new(described_class::DEFAULT_CAPACITY, weather_good) }
+    subject do
+      described_class.new(described_class::DEFAULT_CAPACITY, weather_good)
+    end
 
     describe "#land_plane" do
       it "instructs the plane to land" do
@@ -15,8 +17,13 @@ describe Airport do
       end
 
       it "raises an error if the airport is at capacity" do
-        described_class::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
-        expect { subject.land_plane(plane) }.to raise_error(described_class::ERROR[:full])
+        described_class::DEFAULT_CAPACITY.times do
+          subject.land_plane(plane)
+        end
+
+        expect do
+          subject.land_plane(plane)
+        end.to raise_error(described_class::ERROR[:full])
       end
 
       describe "#docked?" do
@@ -29,7 +36,9 @@ describe Airport do
 
     describe "#take_off" do
       it "raises an error if the plane isn't at the airport" do
-        expect { subject.take_off(plane) }.to raise_error(described_class::ERROR[:no_plane])
+        expect do
+          subject.take_off(plane)
+        end.to raise_error(described_class::ERROR[:no_plane])
       end
 
       it "instructs a plane to take off" do
@@ -46,17 +55,23 @@ describe Airport do
   end
 
   context "in bad weather" do
-    subject { described_class.new(described_class::DEFAULT_CAPACITY, weather_bad) }
+    subject do
+      described_class.new(described_class::DEFAULT_CAPACITY, weather_bad)
+    end
 
     describe "#land_plane" do
       it "does not allow a plane to land" do
-        expect { subject.land_plane(plane) }.to raise_error described_class::ERROR[:stormy]
+        expect do
+          subject.land_plane(plane)
+        end.to raise_error described_class::ERROR[:stormy]
       end
     end
 
     describe "#take_off" do
       it "does not allow a plane to take off" do
-        expect { subject.take_off(plane) }.to raise_error described_class::ERROR[:stormy]
+        expect do
+          subject.take_off(plane)
+        end.to raise_error described_class::ERROR[:stormy]
       end
     end
   end

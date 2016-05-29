@@ -34,8 +34,6 @@ class Airport
 
   private
 
-    attr_reader :planes
-
     def empty?
       @planes.empty?
     end
