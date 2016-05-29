@@ -80,14 +80,14 @@ plane = Plane.new
 ```
 
 
-ATC can confirm that a plane is in-flight:
+The ATC can confirm that a plane is in-flight:
 ```
 plane.flying?
 => true
 ```
 
 
-...or else that a plane has landed:
+...or else it has landed:
 ```
 plane.flying?
 => false
