@@ -8,6 +8,10 @@ describe Airport do
 	let(:plane) {double(:plane)}
 	let(:weather) {double(:weather, stormy?: false)}
 
+	it 'has a default capacity' do
+		expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
+	end
+
 	describe '#land' do
 
 		it 'accepts flying plane' do
