@@ -30,7 +30,8 @@ describe Airport do
 
 
   context 'When travel is allowed by dispatcher' do
-
+    #the allow_any_instance statements could be grouped under before(:all)
+    #but the d cannot be used, so either Hound is happy or the code is DRY!
     it '#receive(veichle) should not raise an error' do
       allow_any_instance_of(d).to receive(:travel_allowed?).and_return(true)
       expect{subject.receive(vehicle)}.not_to raise_error
