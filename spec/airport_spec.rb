@@ -2,7 +2,7 @@ require 'airport.rb'
 
 describe "Airport" do 
   subject(:airport) { Airport.new }
-
+  subject(:plane) { Plane.new }
   
   describe "#take off" do 
 
@@ -18,7 +18,7 @@ describe "Airport" do
 
       it "plane is no longer at the airport after taking off" do
         airport.stub(:stormy?) { false }
-      	plane = airport.land(Plane.new)
+      	airport.land(plane)
       	expect(airport.depart).to eq false
       end
 
@@ -29,7 +29,7 @@ describe "Airport" do
 
       it "does not take off in bad weather" do
         airport.stub(:stormy?) { true }
-        expect{airport.land(Plane.new)}.to raise_error("Bad weather")
+        expect{airport.land(plane)}.to raise_error("Bad weather")
       end
     end
   end 
@@ -42,13 +42,11 @@ describe "Airport" do
       
     it "plane has landed in good weather" do
       airport.stub(:stormy?){ false }
-    	plane = airport.land(Plane.new)
-    	expect(plane.pop.airport).to eq true
+    	expect(airport.land(plane).pop.airport).to eq true
     end
 
     it "cannot land if there is no space" do 
       airport.stub(:stormy?){ false }
-      plane = Plane.new
       Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
       expect{ airport.land(plane) }.to raise_error "Airport is full"
     end
@@ -57,7 +55,7 @@ describe "Airport" do
 
       it "cannot land in stormy weather" do 
         airport.stub(:stormy?){ true }
-        expect{airport.land(Plane.new)}.to raise_error("Bad weather")
+        expect{airport.land(plane)}.to raise_error("Bad weather")
       end
 
       it "shows planes that have landed" do
