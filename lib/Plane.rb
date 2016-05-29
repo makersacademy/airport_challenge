@@ -8,12 +8,12 @@ class Plane
 		@airport = airport
 	end
 
-	def set_landed(airport)
+	def make_landed(airport)
 		@status = "landed"
 		@airport = airport
 	end
 
-	def set_airborne
+	def make_airborne
 		@status = "airborne"
 		@airport = nil
 	end
