@@ -19,7 +19,7 @@ feature 'Instructing a plane to land into an airport' do
       scenario 'Air traffic controller cannot land a plane(error is raised)' do
         allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
         airport = Airport.new
-        (Airport::DEFAULT_CAPACITY).times{airport.receive(Plane.new)}
+        Airport::DEFAULT_CAPACITY.times{airport.receive(Plane.new)}
         expect{airport.receive(plane)}.to raise_error
       end
     end
