@@ -21,7 +21,7 @@ Dispatcher | travel_allowed?
 
 The Interface for this application will be irb. 
 The following desired features are written at the time of drafting the model, and are a limited set of examples to show the interface.
-Please refer to the suite of feature test for latest feature set.
+Please refer to the [suite of feature tests] (https://github.com/andreamazza89/airport_challenge/tree/master/spec/features) for latest feature set.
 
 ### Operator lands a plane (weather is good) and checks that it is safely in the airport
 ```

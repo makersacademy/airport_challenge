@@ -1,3 +1,6 @@
+#responsible for storing vehicles (planes for now)
+#its default capacity can be modified. it also responds to full?
+
 require_relative './dispatcher'
 require_relative './receive_dispatcher'
 

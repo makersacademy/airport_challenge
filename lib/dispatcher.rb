@@ -1,3 +1,5 @@
+#responsible for allowing travel from the airport pending weather
+
 require_relative './weather'
 
 class Dispatcher

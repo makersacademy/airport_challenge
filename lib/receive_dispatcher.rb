@@ -1,5 +1,4 @@
-#Release Dispatcher is responsible for checking if 
-#inwards travel is allowed pending airport capacity and weather
+#responsible for checking if inwards travel is allowed pending airport capacity and weather
 
 require_relative './dispatcher'
 
