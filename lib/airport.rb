@@ -23,6 +23,7 @@ end
 
   def take_off(plane)
     raise "Impossible to take off" if stormy?
+    raise "Airport empty" if empty?
     @planes.delete(plane)
   end
 
@@ -36,5 +37,8 @@ private
     planes.length >= DEFAULT_CAPACITY
   end
 
+  def empty?
+    planes.length == 0
+  end
 
 end

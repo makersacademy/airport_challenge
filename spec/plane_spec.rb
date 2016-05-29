@@ -15,7 +15,7 @@ describe Plane do
 
   it "allows to change origin" do
     subject.origin = "LHR"
-    expect(subject.origin).to eq "LHR" 
+    expect(subject.origin).to eq "LHR"
   end
 
   it "has an unknown destination" do

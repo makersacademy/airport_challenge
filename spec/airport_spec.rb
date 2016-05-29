@@ -62,5 +62,11 @@ describe Airport do
     end
   end
 
+  context "Airport empty" do
+    it "raises an error when trying to #take_off from an empty airport" do
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect {subject.take_off(plane)}.to raise_error("Airport empty")
+    end
+  end
 
 end
