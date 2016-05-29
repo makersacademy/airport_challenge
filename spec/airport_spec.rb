@@ -43,3 +43,39 @@ describe Airport do
 	end
 
 end
+
+describe Sky do
+
+  describe "#is_airport?" do
+    it "responds to the message" do
+      expect(subject).to respond_to(:is_airport?)
+    end
+    it "returns false" do
+      expect(subject.is_airport?).to be(false)
+    end
+  end
+
+  describe "#accept_plane?(plane)" do
+    it "responds to the message" do
+      expect(subject).to respond_to(:accept_plane?)
+    end
+
+    it "returns true" do
+    	plane = double(:plane)
+      expect(subject.accept_plane?(plane)).to be(true)
+    end
+  end
+
+  describe "#receive_plane(plane)" do
+    it "responds to the message" do
+      expect(subject).to respond_to(:receive_plane)
+    end
+  end
+
+  describe "#release_plane(plane)" do
+    it "responds to the message" do
+      expect(subject).to respond_to(:release_plane)
+    end
+  end
+
+end
