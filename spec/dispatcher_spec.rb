@@ -9,7 +9,9 @@ describe Dispatcher do
   end 
 
   context 'When weather conditions are bad' do
+    
     it ':travel_allowed? raises an error' do
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       expect{subject.travel_allowed?}.to raise_error('Travel not allowed due to weather conditions')
     end  
   end 
