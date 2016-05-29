@@ -21,12 +21,14 @@ class Airport
     fail ERROR[:stormy] if @weather.stormy?
     fail ERROR[:full] if full?
     fail ERROR[:plane_docked] if docked?(plane)
+    plane.flight_end
     @planes << plane
   end
 
   def take_off(plane)
     fail ERROR[:stormy] if @weather.stormy?
     fail ERROR[:plane_missing] unless docked?(plane)
+    plane.flight_start
     @planes.delete(plane)
   end
 

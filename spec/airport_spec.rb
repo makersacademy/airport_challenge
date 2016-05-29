@@ -3,7 +3,7 @@ require "airport"
 describe Airport do
   let(:weather_good) { double(:weather, stormy?: false) }
   let(:weather_bad) { double(:weather, stormy?: true) }
-  let(:plane) { double(:plane) }
+  let(:plane) { double(:plane, flight_end: (), flight_start: ()) }
 
   context "in good weather" do
     subject do
@@ -26,7 +26,7 @@ describe Airport do
 
       it "does not allow landing if the airport is at capacity" do
         described_class::DEFAULT_CAPACITY.times do
-          plane_unique = double(:plane)
+          plane_unique = double(:plane, flight_end: (), flight_start: ())
           subject.land_plane(plane_unique)
         end
 
