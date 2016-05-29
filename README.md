@@ -26,8 +26,20 @@ Topics covered
 
 
 
-Irb transcript
+Irb transcripts
 ---------
+
+The weather will be checked at the time that the plane is instructed to land or take off.
+
+```
+2.2.3 :063 > airport.land(plane)
+RuntimeError: SERVICE ALERT! Airport activity cancelled due to storms
+	from (irb):26:in `land'
+	from (irb):63
+	from /Users/Carlos/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+```
+Feature testing:
+
 ```
 2.2.3 :001 > require "./lib/airport.rb"
  => true 
