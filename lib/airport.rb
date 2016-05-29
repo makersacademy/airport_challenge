@@ -16,15 +16,20 @@ end
 
 
   def land(plane)
-    raise "Impossible to land" if stormy?
     raise "Airport full" if full?
+    raise "Impossible to land" if stormy?
     planes << plane
+    landed_plane = planes.last
+    landed_plane.arrival
+    "Plane #{plane} landed successfully"
   end
 
   def take_off(plane)
-    raise "Impossible to take off" if stormy?
     raise "Airport empty" if empty?
-    @planes.delete(plane)
+    raise "Impossible to take off" if stormy?
+    flying_plane = @planes.delete(plane)
+    flying_plane.departure
+    "Plane #{plane} took off successfully"
   end
 
 private

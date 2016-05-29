@@ -1,14 +1,25 @@
 
 class Plane
 
-DEFAULT_CAPACITY = 500
+  DEFAULT_CAPACITY = 500
 
-attr_accessor :capacity
+  attr_accessor :capacity
 
-def initialize(capacity=DEFAULT_CAPACITY)
-  @capacity= capacity
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @capacity = capacity
+    @flying = true
+  end
 
-end
+  def arrival
+    @flying = false
+  end
 
+  def departure
+    @flying = true
+  end
+
+  def flying?
+    @flying
+  end
 
 end

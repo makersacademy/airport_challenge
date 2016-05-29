@@ -49,6 +49,7 @@ describe Airport do
     end
 
     it "raises an error when trying to #take_off if #stormy?" do
+      allow(subject).to receive(:empty?).and_return(false) #stub
       allow(subject).to receive(:stormy?).and_return(true) #stub
       expect {subject.take_off(plane)}.to raise_error("Impossible to take off")
     end
