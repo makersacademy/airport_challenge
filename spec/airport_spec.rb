@@ -36,7 +36,17 @@ describe Airport do
 	it "Will not land planes in bad weather" do
 		allow(subject).to receive(:weather?).and_return("Bad Weather")
 		expect(subject.land(plane)).to raise_error "ERROR: Weather Is Not Good Enough To Land"
+	end
+
+	it 'gives a DEFAULT_CAPACITY of 50' do
+		expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+	end
+end
 
 
-end
-end
+
+
+
+
+
+

@@ -6,6 +6,7 @@ require_relative 'weather'
 class Airport 
 
 	attr_reader :terminal
+	attr_reader :weather
 	attr_accessor :capacity
 	DEFAULT_CAPACITY = 50
 
@@ -16,7 +17,8 @@ class Airport
 	end
 
 	def land(plane)
-		#fail "ERROR: Weather Is Not Good Enough To Land" if #WEATHER = "Bad Weather"
+		
+		fail "ERROR: Weather Is Not Good Enough To Land" if weather == "Bad Weather"
 		fail "ERROR: Airport is full" if full?
 		terminal << plane
 	end
