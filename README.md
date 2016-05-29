@@ -60,54 +60,54 @@ Airport | land_plane(plane), take_off(plane)
 The expected interface for the Air Traffic Controller (ATC) to use is `irb` or `pry`. The following notes and accompanying code explain how to interact with the program.
 
 Getting started:
-```
+```ruby
 require './lib/airport.rb'
 require './lib/plane.rb'
 ```
 
 
 There is a 1-in-5 chance of a storm:
-```
+```ruby
 weather = Weather.new
 weather.stormy?
-=> true/false
+=> false
 ```
 
 
 Creating a new plane:
-```
+```ruby
 plane = Plane.new
 ```
 
 
 The ATC can confirm that a plane is in-flight:
-```
+```ruby
 plane.flying?
 => true
 ```
 
 
 ...or else confirm that it has landed:
-```
+```ruby
 plane.flying?
 => false
 ```
 
 
 An airport can have a specific maximum capacity if required, otherwise it's just instantiated with a default capacity. Weather is also an optional argument.
-```
+```ruby
 airport_default = Airport.new
 airport_large = Airport.new(100, weather)
 ```
 
 
 The ATC can instruct a plane to land as long as the weather is good. The airport will raise an error if there is no space left in the hangar:
-```
+```ruby
 airport_default.land_plane(plane)
 ```
 
 
 The ATC can instruct a plane to take off as long as the weather is good. The airport will raise an error if the plane is not located here:
-```
+```ruby
 airport_default.take_off(plane)
 ```
