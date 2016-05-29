@@ -5,7 +5,7 @@ require 'plane'
 describe Airport do
 
 	subject(:airport) {described_class.new}
-	let(:plane) {double(:plane)}
+	let(:plane) {double(:plane, landed?: false, land: nil)}
 
 	describe '#land' do
 
@@ -15,8 +15,12 @@ describe Airport do
 
 		it 'has the plane after landing' do
 			airport.land(plane)
-			allow(plane).to receive(:landed?).and_return(true)
 			expect(airport.in_airport?(plane)).to eq true
+		end
+
+		it 'cannot land plane that has already landed' do
+			allow(plane).to receive(:landed?).and_return(true)
+			expect {airport.land(plane)}.to raise_error "Plane already landed"
 		end
 
 		it 'raises an error when full' do
@@ -31,7 +35,7 @@ describe Airport do
 		it 'allows landed plane to take off again' do
 				airport.land(plane)
 				expect(airport.take_off(plane)).to eq "Have a pleasant flight"
-			end
+		end
 
 		it 'does not have plane after takeoff' do
 			airport.land(plane)

@@ -9,6 +9,8 @@ class Airport
 
 	def land(plane)
 		fail "Airport full" if @landed.count >= 20
+		fail "Plane already landed" if plane.landed?
+		plane.land
 		@landed << plane
 		"Welcome to London"
 	end
