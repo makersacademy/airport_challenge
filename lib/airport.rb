@@ -7,12 +7,12 @@ class Airport
 attr_accessor :capacity
 
 DEFAULT_CAPACITY = 100
-AIRPORT_CODE = "AMS"
-FULL_MSG = "Sorry, this airport is currently full"
-EMPTY_MSG = "Oops, there are no planes on the airport"
-STORM_MSG = "SERVICE ALERT! Airport activity cancelled due to storms"
-LANDED_MSG = "ERROR! Plane already landed"
-TAKE_OFF_MSG = "ERROR! Plane already took off"
+AIRPORT_CODE = "AMS".freeze
+FULL_MSG = "Sorry, this airport is currently full".freeze
+EMPTY_MSG = "Oops, there are no planes on the airport".freeze
+STORM_MSG = "SERVICE ALERT! Airport activity cancelled due to storms".freeze
+LANDED_MSG = "ERROR! Plane already landed".freeze
+TAKE_OFF_MSG = "ERROR! Plane already took off".freeze
 
 def initialize(capacity=DEFAULT_CAPACITY)
   @capacity = capacity
