@@ -7,6 +7,19 @@ describe Airport do
   let (:weather) { Weather.new }
   let (:plane) {Plane.new}
 
+  context "At initialization" do
+    it "has default capacity" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    it "allows user to change capacity" do
+      subject.capacity = 50
+      expect(subject.capacity).to eq 50
+    end
+    it "stats with 0 planes" do
+      expect(subject.planes).to eq []
+    end
+
+  end
   context "Good weather" do
     it "responds to #land" do
   		expect(subject).to respond_to(:land).with(1).argument
@@ -44,7 +57,7 @@ describe Airport do
   context "Airport full" do
     it "raises an error when trying to #land in a full airport" do
       allow(subject).to receive(:stormy?).and_return(false)
-      100.times {subject.land(plane)}
+      Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
       expect {subject.land(plane)}.to raise_error("Airport full")
     end
   end

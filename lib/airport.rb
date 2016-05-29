@@ -4,9 +4,12 @@ require_relative 'weather.rb'
 
 class Airport
 
-attr_accessor :planes
+attr_accessor :capacity, :planes
 
-def initialize(capacity=100)
+DEFAULT_CAPACITY = 100
+
+
+def initialize(capacity=DEFAULT_CAPACITY)
   @capacity = capacity
   @planes = []
 end
@@ -30,7 +33,7 @@ private
   end
 
   def full?
-    planes.length >= @capacity
+    planes.length >= DEFAULT_CAPACITY
   end
 
 
