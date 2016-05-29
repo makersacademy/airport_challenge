@@ -29,7 +29,7 @@ class Airport
     @landed_planes.include? plane
   end
 
-  private 
+ private 
 
   def empty?
     true if @landed_planes.empty?
@@ -38,7 +38,10 @@ class Airport
   def full? 
     true if @landed_planes.length >= capacity
   end
+
 end
+
+
 
 
 
