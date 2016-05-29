@@ -23,8 +23,7 @@ class Plane
 		if new_position.accept_plane?(self)
 			if new_position.is_airport?
 				return !landed?
-			end
-			if (new_position.is_airport? == false)
+			else
 				return landed?
 			end
 		end
