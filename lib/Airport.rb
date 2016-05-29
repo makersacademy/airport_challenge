@@ -1,4 +1,5 @@
 require_relative 'Plane'
+require_relative 'Weather'
 
 class Airport
 	attr_reader :terminal
@@ -10,7 +11,7 @@ class Airport
 		@capacity = capacity
 	end
 
-	def incoming_plane(plane, weather)
+	def incoming_plane(plane, weather = Weather.new.state)
 		raise "Cannot land! Airport full!" if full?
 		raise "Cannot land! Too stormy!" if weather == "stormy"
 		plane.land
@@ -18,7 +19,7 @@ class Airport
 		"Terminal:#{@terminal}"
 	end
 
-	def departing_plane(plane, weather)
+	def departing_plane(plane, weather = Weather.new.state)
 		raise "Cannot take off! Too stormy!" if weather == "stormy"
 		plane.take_off
 		@terminal.delete(plane)
