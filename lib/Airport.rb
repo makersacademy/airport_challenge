@@ -17,7 +17,7 @@ class Airport
 		fail "Stormy weather, cannot land plane" if check_weather == "stormy"
 		@terminal << plane
 		@available_space -= 1
-		plane.make_landed(self)
+		plane.set_landed(self)
 		"landed plane: #{plane}"
 	end
 
@@ -27,7 +27,7 @@ class Airport
 		fail "No planes in the terminal" if @capacity == @available_space
 		@terminal.delete(plane)
 		@available_space += 1
-		plane.make_airborne
+		plane.set_airborne
 		"plane taken off"
 	end
 
