@@ -4,7 +4,7 @@
 
 A plane currently has no responsibilities: it is just an object that could wither be in an airport or not be in an airport.
 
-An airport is responsible for storing planes. Its default capacity can be modified.
+An airport is responsible for storing planes. Its default capacity can be modified and it knows if it is full or not.
 
 Weather is responsible for knowing what the current weather is.
 
@@ -13,7 +13,7 @@ A dispatcher is responsible for allowing planes to land/take off pending weather
 Objects    | Messages
 -------    | -------------
 Plane      | 
-Airport    | receive(plane), release(plane), parked?(plane)
+Airport    | receive(plane), release(plane), parked?(plane), full?
 Weather    | stormy? 
 Dispatcher | travel_allowed?
 
