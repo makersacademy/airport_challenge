@@ -22,10 +22,10 @@ describe Plane do
       expect(plane.airport).to eq airport
     end
 
-# #   #   it "raises an error if already landed at same airport" do
-# #   #     plane.land(airport)
-# #   #     expect { plane.land(airport) }.to raise_error "Plane cannot land: already landed at this airport"
-# #   #   end
+    it "raises an error if already landed at same airport" do
+      plane.land(airport)
+      expect { plane.land(airport) }.to raise_error "Plane cannot land: already landed at this airport"
+    end
 
   end
 
