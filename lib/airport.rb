@@ -33,7 +33,7 @@ class Airport
 
   def take_off(plane)
     fail "Cannot take-off: weather is stormy" if stormy?
-    fail "Cannot take-off: airport is full" if full?
+    fail "Cannot take-off: plane not at this airport" unless at_airport?(plane)
     @planes.pop
   end
 
@@ -55,8 +55,8 @@ class Airport
     Weather.new.stormy?
   end
 
-  def landed?
-    plane.landed?
+  def at_airport?(plane)
+    planes.include?(plane)
   end
 
 end

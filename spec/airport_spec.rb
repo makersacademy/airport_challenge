@@ -106,7 +106,6 @@ describe Airport do
         allow(airport).to receive(:stormy?).and_return false
       end
 
-
       it "causes plane to leave airport" do
         airport.land(plane)
         airport.take_off(plane)
@@ -118,16 +117,11 @@ describe Airport do
         expect(airport.take_off(plane)).to eq plane
       end
 
-      context "when full" do
-
-        before do
-          allow(airport).to receive(:full?).and_return true
-        end
-
-        it "prevents plane taking-off when airport full" do
-          expect { airport.take_off(plane) }.to raise_error "Cannot take-off: airport is full"
-        end
-
+      it "raises an error if plane not at airport" do
+        another_airport = described_class.new
+        allow(another_airport).to receive(:stormy?).and_return false
+        another_airport.land(plane)
+        expect { airport.take_off(plane) }.to raise_error "Cannot take-off: plane not at this airport"
       end
 
     end
