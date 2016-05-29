@@ -4,22 +4,18 @@ require 'weather'
 
 describe Plane do
 	subject(:plane) {described_class.new}
-	let(:weather) {double (:weather)}
-
-	before do
-		allow(weather).to receive(:state) {'sunny'}
-	end
+	let(:goodweather) {double :weather, state: 'sunny'}
 
 	describe '#at_airport?' do
 		it 'responds true if incoming plane lands successfully' do
 			airport = Airport.new
-			airport.incoming_plane(plane, weather.state)
+			airport.incoming_plane(plane, goodweather.state)
 			expect(plane.at_airport?).to eq true
 		end		
 		it 'responds false once landed plane has taken off' do
 			airport = Airport.new
-			airport.incoming_plane(plane, weather.state)
-			airport.departing_plane(plane, weather.state)
+			airport.incoming_plane(plane, goodweather.state)
+			airport.departing_plane(plane, goodweather.state)
 			expect(plane.at_airport?).to eq false
 		end
 	end
