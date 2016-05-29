@@ -1,49 +1,24 @@
 require_relative 'airport'
 require_relative 'passenger'
+require_relative 'container'
+require_relative 'weather'
 
 class Plane
-  attr_accessor :capacity
-  attr_reader :seats
-  DEFAULT_CAPACITY = 100
-
-  def initialize(capacity=DEFAULT_CAPACITY)
-    @seats = []
-    @capacity = capacity
-  end
-
-  def load(people=[Passenger.new])
-    @people = people
-    fail "Capacity reached!" if full?
-    @seats.concat(people)
-    self
-  end
-
-  def unload
-    fail "Plane airbourne! You must be nuts!" if flying?
-    leaving = @seats
-    @seats = []
-    leaving
-  end
+  include Container
+  include Weather
 
   def take_off
     fail "Plane already airbourne!" if flying?
+    fail "Weather stormy. Can't take off!" if stormy?
     @flying = true
+    "Plane has taken off and no longer at airport!"
   end
 
-  def land
+  def land(airport)
     fail "Plane can't land! Already grounded!" unless flying?
+    fail "Plane can't land! Airport is full" if airport.full?
+    fail "Weather stormy. Can't land!" if stormy?
     @flying = false
-    true
-  end
-
-  private
-
-  def flying?
-    @flying ||= false
-  end
-
-  def full?
-    @people ||= []
-    @people.size + @seats.size > @capacity
+    "Plane has landed at airport!"
   end
 end

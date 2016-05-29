@@ -4,14 +4,21 @@ describe Plane do
   subject(:plane) { described_class.new }
 
   let(:person) { double(:person) }
+  let(:airport) { double(:airport) }
+
   let(:people) { [person,person,person] }
   let(:mob) { [*1..100] }
   let(:mob2) { [*1..101] }
+
 
   let(:loads) { plane.load(people) }
   let(:unloads) { plane.unload }
   let(:default_loads) { plane.load }
   let(:waiting_room) { plane.seats }
+
+  before :each do
+    srand(0)
+  end
 
   it 'can be instantiated' do
     expect(plane.class).to eq Plane
@@ -39,7 +46,6 @@ describe Plane do
       loads
       expect(waiting_room.size).to eq 4
     end
-
   end
 
   describe '#unload' do
@@ -52,28 +58,46 @@ describe Plane do
       expect(waiting_room.empty?).to eq true
     end
     it 'raises error when unloading if airbourne' do
+
       plane.take_off
       expect{ plane.unload }.to raise_error "Plane airbourne! You must be nuts!"
     end
   end
 
   describe '#take_off' do
-    it 'can take off' do
-      expect(plane.take_off).to eq true
+    it "confirm it's taken off" do
+      expect(plane.take_off).to eq "Plane has taken off and no longer at airport!"
     end
     it "raises error when already airbourne" do
       plane.take_off
       expect{ plane.take_off }.to raise_error "Plane already airbourne!"
     end
+    it "doesn't take off when stormy" do
+      srand(70)
+      expect{ plane.take_off }.to raise_error "Weather stormy. Can't take off!"
+    end
   end
 
   describe '#land' do
     it "raises error when already grounded" do
-      expect{ plane.land }.to raise_error "Plane can't land! Already grounded!"
+      allow(airport).to receive(:full?) { true }
+      expect{ plane.land(airport) }.to raise_error "Plane can't land! Already grounded!"
     end
     it "confirms it's landed" do
+      allow(airport).to receive(:full?) { false }
       plane.take_off
-      expect(plane.land).to eq true
+      expect( plane.land(airport) ).to eq "Plane has landed at airport!"
+    end
+    it "raises on error if airport is full" do
+      allow(airport).to receive(:full?) { true }
+      plane.take_off
+      expect{ plane.land(airport) }.to raise_error "Plane can't land! Airport is full"
+    end
+    it "doesn't land when stormy" do
+      allow(airport).to receive(:full?) { false }
+      plane.take_off
+      srand(70)
+      expect{ plane.land(airport) }.to raise_error "Weather stormy. Can't land!"
     end
   end
 
