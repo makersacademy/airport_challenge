@@ -1,13 +1,28 @@
 require_relative 'airport.rb'
 
 class Plane
-  
-  def flying?
-  	true
+
+  def initialize
+	@at_airport = false
+	@flying = true
   end
 
   def landed?
-  	true
+	@at_airport
+  end
+
+  def flying?
+    @flying
+  end
+
+   def land
+    @at_airport = true
+    @flying = false
+  end
+
+  def take_off
+    @at_airport = false
+    @flying = true
   end
 
 end
