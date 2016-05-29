@@ -4,8 +4,8 @@ require 'airport.rb'
 
 describe Airport do
 
-  let (:weather) { Weather.new }
-  let (:plane) {Plane.new}
+  let(:weather) { Weather.new }
+  let(:plane) {Plane.new}
 
   context "At initialization" do
     it "has default capacity" do

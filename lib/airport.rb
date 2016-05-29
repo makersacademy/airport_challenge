@@ -16,9 +16,9 @@ end
 
 
   def land(plane)
-    raise "Airport full" if full?
-    raise "Impossible to land" if stormy?
-    raise "Plane already landed" if planes.include?(plane)
+    fail "Airport full" if full?
+    fail "Impossible to land" if stormy?
+    fail "Plane already landed" if planes.include?(plane)
     planes << plane
     landed_plane = planes.last
     landed_plane.arrival
@@ -27,8 +27,8 @@ end
   end
 
   def take_off(plane)
-    raise "Airport empty" if empty?
-    raise "Impossible to take off" if stormy?
+    fail "Airport empty" if empty?
+    fail "Impossible to take off" if stormy?
     if @planes.include?(plane)
       flying_plane = @planes.delete(plane)
       flying_plane.departure
@@ -51,7 +51,7 @@ end
   end
 
   def empty?
-    planes.length == 0
+    planes.empty?
   end
 
 end

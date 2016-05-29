@@ -1,9 +1,9 @@
 require 'airport.rb'
 
 describe Plane do
-  let (:airport) {Airport.new}
-  let (:weather) {Weather.new}
-  let (:plane) {Plane.new}
+  let(:airport) {Airport.new}
+  let(:weather) {Weather.new}
+  let(:plane) {Plane.new}
 
   it "has a default capacity" do
     expect(subject.capacity).to eq Plane::DEFAULT_CAPACITY
