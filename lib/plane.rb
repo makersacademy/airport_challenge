@@ -2,13 +2,16 @@ require_relative "airport.rb"
 
 class Plane
 
+  attr_reader :airport
+
   def initialize
     @in_air = true
   end
 
-  def land
+  def land(airport)
     fail "Plane can not land as it is already on the ground" if already_landed?
     @in_air = false
+    @airport = airport
   end
 
   def depart

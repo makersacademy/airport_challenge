@@ -3,10 +3,11 @@ require 'plane'
 describe Plane do
 
   let(:plane) { Plane.new }
+  let(:airport) { double :airport}
 
   describe 'respond and initiate' do
     it "responds to a method"do
-      expect(plane).to respond_to(:land)
+      expect(plane).to respond_to(:land).with(1).argument
       expect(plane).to respond_to(:depart)
     end
 
@@ -17,10 +18,17 @@ describe Plane do
   end
 
   describe '#land' do
-    it 'raises an error if already landed' do
-      plane.land
-      expect { plane.land }.to raise_error "Plane can not land as it is already on the ground"
+
+    it 'record the airport plane landed at' do
+      plane.land(airport)
+      expect(plane.airport).to eq airport
     end
+
+    it 'raises an error if already landed' do
+      plane.land(airport)
+      expect { plane.land(airport) }.to raise_error "Plane can not land as it is already on the ground"
+    end
+
   end
 
   describe '#depart' do

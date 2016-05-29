@@ -1,9 +1,10 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
 
   let(:airport) { Airport.new }
+  let(:plane) { double :plane, land: nil, depart: nil }
+  let(:weather_report) { double :weather_report }
 
   describe 'respond and initiate' do
     it "responds to a method"do
@@ -18,19 +19,26 @@ describe Airport do
     it "has a default capacity" do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
-
   end
 
+
   describe '#land' do
+    context 'when NOT stormy' do
+      before do
+        allow(weather_report).to receive(:stormy?).and_return false
+      end
+    end
+
     it "raises an error when airport is full" do
-      Airport::DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-      expect { airport.land(Plane.new) }.to raise_error "Airport is full"
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error "Airport is full"
     end
   end
 
+
   describe '#depart' do
     it 'raises an error when there are no planes to depart' do
-      expect { airport.depart(Plane.new) }.to raise_error "No planes at airport"
+      expect { airport.depart(plane) }.to raise_error "No planes at airport"
     end
   end
 
