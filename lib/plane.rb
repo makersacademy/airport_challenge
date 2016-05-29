@@ -1,7 +1,11 @@
 class Plane
 
   def landed?
-    plane
+    true
+  end
+
+  def take_off?
+    true
   end
 
 end
