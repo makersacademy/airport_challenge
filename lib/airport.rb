@@ -17,7 +17,6 @@ class Airport
   def land(plane)
     fail "Cannot land plane: weather is stormy" if stormy?
     fail "Cannot land plane: airport is full" if full?
-    fail "Cannot land plane: plane already landed" if at_airport?(plane)
     add_plane(plane)
   end
 
