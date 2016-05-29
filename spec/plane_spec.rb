@@ -29,13 +29,13 @@ describe Plane do
 
   end
 
-# #   # describe "#airport" do
+  describe "#airport" do
 
-# #   #   it { is_expected.to respond_to :airport }
+    it { is_expected.to respond_to :airport }
 
-# #   #   it "raises an error if already flying" do
-# #   #     expect { plane.airport }.to raise_error "Plane cannnot be at an airport: plane already flying"
-# #   #   end
-# #   # end
+    it "raises an error if already flying" do
+      expect { plane.airport }.to raise_error "Plane cannnot be at an airport: plane already flying"
+    end
+  end
 
 end

@@ -8,7 +8,7 @@ class Airport
   attr_reader :hangar
   attr_accessor :capacity
 
-  def initialize(weather, capacity=DEFAULT_CAPACITY)
+  def initialize(weather, capacity = DEFAULT_CAPACITY)
     @weather = weather
     @hangar = []
     @capacity = capacity

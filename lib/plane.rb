@@ -1,4 +1,4 @@
-require_relative 'airport'
+# require_relative 'airport'
 
 class Plane
 
@@ -17,6 +17,7 @@ class Plane
   end
 
   def airport
+    fail "Plane cannnot be at an airport: plane already flying" if flying
     @airport
   end
 
