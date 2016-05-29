@@ -2,13 +2,12 @@ require "weather"
 
 class Plane
   SKY = Sky.new
-  DEFAULT_WEATHER = Weather.new
   STORM_ERROR = "Stormy Weather" 
   BAD_COMMAND_ERROR = "Command does not make sense!" 
 
   attr_reader :position
 
-  def initialize(weather = DEFAULT_WEATHER)
+  def initialize(weather = Weather.new)
     @position =  SKY
     @weather = weather
   end
