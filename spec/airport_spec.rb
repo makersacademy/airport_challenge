@@ -20,9 +20,9 @@ describe Airport do
 			airport = Airport.new(test_capacity)
 			test_capacity.times { |i|
 				planes[i] = double(:plane)
-				airport.accept_plane?(planes[i])
+				airport.receive_plane(planes[i])
 			}
-			expect{airport.accept_plane?(plane)}.to raise_error
+			expect{airport.receive_plane(plane)}.to raise_error
 		end
 	end
 
@@ -34,7 +34,7 @@ describe Airport do
 
 	describe "#release_plane(plane)" do
 		it "releases the plane" do
-			subject.accept_plane?(plane)
+			subject.receive_plane(plane)
 			expect(subject.release_plane(plane)).to eq(plane)
 		end
 	end

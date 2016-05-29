@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-	let(:airport) {double(:airport, accept_plane?: true, is_airport?: true, release_plane: true)}
+	let(:airport) {double(:airport, accept_plane?: true, is_airport?: true, release_plane: true, receive_plane: true)}
 	let(:weather) {double(:weather, stormy?: true)}
 
 	describe "#land(airport)" do

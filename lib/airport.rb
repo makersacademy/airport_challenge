@@ -13,9 +13,11 @@ class Airport
 	end
 
 	def accept_plane?(plane)
-		room_for_one_more = room_for_plane? 
-		room_for_one_more ? accept(plane) : capacity_reached
-		room_for_one_more 
+		room_for_plane? 
+	end
+
+	def receive_plane(plane)
+		room_for_plane? ?  @planes << plane  : capacity_reached
 	end
 
 	def release_plane(plane)
@@ -23,29 +25,31 @@ class Airport
 	end
 
 	private
+		def room_for_plane?
+			@planes.length < @capacity
+		end
 
-	def room_for_plane?
-		@planes.length < @capacity
-	end
-
-	def accept(plane)
-		@planes << plane
-	end
-
-	def capacity_reached
-		raise CAPACITY_REACHED_ERROR_MESSAGE
-	end
+		def capacity_reached
+			raise CAPACITY_REACHED_ERROR_MESSAGE
+		end
 
 end
 
-class Sky
+class Sky #NoAirport Class
+
 	def is_airport?
 		false
 	end
+
 	def accept_plane?(plane)
 		true
 	end
+
+	def receive_plane(plane)
+	end
+
 	def release_plane(plane)
 		true
 	end
+	
 end

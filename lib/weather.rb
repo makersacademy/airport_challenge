@@ -9,7 +9,3 @@ class NoWeather
 		false
 	end
 end
-l = Weather.new.stormy?
-x = Weather.new.stormy?
-puts b = x ? l : !l
-puts x^!l == l^!x
