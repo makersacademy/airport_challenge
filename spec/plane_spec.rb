@@ -16,6 +16,8 @@ describe Plane do
       airport = double(:airport,stormy: true)
       expect{plane.land(airport)}.to raise_error("It's raining Fool!")
     end
+
+
   end
 
   describe '#take_off' do

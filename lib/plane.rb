@@ -6,6 +6,7 @@ class Plane
     raise "You are not flying Fool!" if self.landed?
     raise "It's raining Fool!" if airport.stormy
     @landed = true
+    airport.planes << self
     return self
   end
 
