@@ -10,9 +10,11 @@ describe Plane do
     expect(subject.location).to eq(nil)
   end
 
-  it '#land_plane lands the plane at the specified airport' do
+  it '#land_plane lands the plane at the specified airport if plane is accepted by airport' do
     allow(airport).to receive(:accept_plane) {true}
-    expect(plane.land(airport)).to eq "Plane landed at #{airport}."
+    expect(plane.land(airport)).to eq("Plane landed at #{airport}.")
+    allow(airport).to receive(:accept_plane) {"Airport already at capacity"}
+    expect(plane.land(airport)).to eq("Unable to land. Message from airport: Airport already at capacity")
   end
   
 end

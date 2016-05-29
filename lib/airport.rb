@@ -14,7 +14,7 @@ class Airport
   end
 
   def accept_plane(plane)
-    return "Airport already at capacity" if @planes.length == @capacity
+    return "Airport already at capacity" if @planes.length >= @capacity
     @planes << plane
     true
   end

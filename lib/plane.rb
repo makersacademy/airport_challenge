@@ -9,13 +9,18 @@ class Plane
   end
 
   def land(airport)
-    if airport.accept_plane(self)
+    airport_result = airport.accept_plane(self)
+    if airport_result.is_a? String
+      return "Unable to land. Message from airport: #{airport_result}"
+    else
       @on_ground = true
       @location = airport
-      return "Plane landed at #{airport}."
-    else
-      return "Airport would not accept plane.  Unable to land."
+      return "Plane landed at #{airport}."      
     end
   end
+
+  # def take_off
+
+  # end
 
 end
