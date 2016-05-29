@@ -8,3 +8,4 @@ gem 'coveralls', require: false
 gem 'rubocop'
 gem 'reek'
 gem 'rake'
+gem 'faker' # to make weather a little more random
