@@ -8,6 +8,11 @@ attr_accessor :capacity
 
 DEFAULT_CAPACITY = 100
 AIRPORT_CODE = "AMS"
+FULL_MSG = "Sorry, this airport is currently full"
+EMPTY_MSG = "Oops, there are no planes on the airport"
+STORM_MSG = "SERVICE ALERT! Airport activity cancelled due to storms"
+LANDED_MSG = "ERROR! Plane already landed"
+TAKE_OFF_MSG = "ERROR! Plane already took off"
 
 def initialize(capacity=DEFAULT_CAPACITY)
   @capacity = capacity
@@ -16,9 +21,9 @@ end
 
 
   def land(plane)
-    fail "Airport full" if full?
-    fail "Impossible to land" if stormy?
-    fail "Plane already landed" if planes.include?(plane)
+    fail FULL_MSG if full?
+    fail STORM_MSG if stormy?
+    fail LANDED_MSG if planes.include?(plane)
     planes << plane
     landed_plane = planes.last
     landed_plane.arrival
@@ -27,9 +32,9 @@ end
   end
 
   def take_off(plane)
-    fail "Airport empty" if empty?
-    fail "Impossible to take off" if stormy?
-    fail "Plane not in airport" unless @planes.include?(plane)
+    fail EMPTY_MSG if empty?
+    fail STORM_MSG if stormy?
+    fail TAKE_OFF_MSG unless @planes.include?(plane)
     flying_plane = @planes.delete(plane)
     flying_plane.departure
     "Plane #{plane} took off successfully"
