@@ -5,7 +5,7 @@ require 'plane'
 describe Airport do
 
 	subject(:airport) {described_class.new}
-	let(:plane) {double(:plane)}
+	let(:plane) {double(:plane, landed?: false)}
 	let(:weather) {double(:weather, stormy?: false)}
 
 	it 'has a default capacity' do
@@ -21,6 +21,12 @@ describe Airport do
 		it 'has the plane after landing' do
 			airport.land(plane)
 			expect(airport.in_airport?(plane)).to eq true
+		end
+
+		it 'raises error when plane has already landed' do
+			airport.land(plane)
+			allow(plane).to receive(:landed?).and_return(true)
+			expect {airport.land(plane)}.to raise_error "Plane already landed"
 		end
 
 		# it 'does not allow the plane to land in a storm' do
@@ -46,6 +52,13 @@ describe Airport do
 			airport.take_off(plane)
 			expect(airport.in_airport?(plane)).to eq false
 		end
+
+		# it 'raises error when plane has already taken off' do
+		# 	airport.land(plane)
+		# 	airport.take_off(plane)
+		# 	allow(plane).to receive(:landed?).and_return(false)
+		# 	expect {airport.take_off(plane)}.to raise_error "Plane already taken off"
+		# end
 
 	end
 

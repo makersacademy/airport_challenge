@@ -14,7 +14,7 @@ describe Plane do
 			expect(plane.landed?).to eq true
 		end
 
-		it "has taken_off" do
+		it "has taken off" do
 			airport.land(plane)
 			airport.take_off(plane)
 			allow(plane).to receive(:landed?).and_return(false)
@@ -22,5 +22,5 @@ describe Plane do
 		end
 
 	end
-	
+
 end

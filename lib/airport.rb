@@ -14,13 +14,14 @@ class Airport
 	end
 
 	def land(plane)
-		#fail "Cannot land in a storm" if weather.stormy?
+		fail "Plane already landed" if plane.landed?
 		fail "Airport full" if full?
 		@landed << plane
 		"Welcome to London"
 	end
 
 	def take_off(plane)
+		#fail "Plane already taken off" if plane.landed?
 		@landed.pop
 		"Have a pleasant flight"
 	end
