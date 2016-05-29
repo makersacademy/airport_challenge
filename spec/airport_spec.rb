@@ -37,12 +37,11 @@ describe Airport do
     end
 
     it 'raise error if plane has already landed' do
-      expect{subject.land_plane(landed_plane)}.to raise_error('This plane has already taken off!')
+      expect{subject.land_plane(landed_plane)}.to raise_error('This plane has already landed!')
     end
 
   #   it 'raise error if weather is stormy' do
   #   end
-
   end
 
   describe '#take_off_plane' do
@@ -50,8 +49,13 @@ describe Airport do
       subject.land_plane(taken_off_plane)
       expect(subject.take_off_plane(landed_plane)).to eq subject.planes
     end
+
     it "raise error if the airport is empty" do
       expect{subject.take_off_plane(landed_plane)}.to raise_error('The airport is empty!')
+    end
+
+    it 'raise error if plane has already taken off' do
+      expect{subject.take_off_plane(taken_off_plane)}.to raise_error('This plane has already taken off!')
     end
 
   #   it 'raise error if weather is stormy' do
