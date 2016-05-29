@@ -10,20 +10,17 @@ describe Aeroplane do
 
   describe '#land' do
     it 'ask aeroplane to land' do
-      # w = double()
-      # w.stub("has the is_stormy value"){false}
-      w = Weather.new(false)
-      expect(subject.land(w)).to eq true
+      w = double("Weather Object", :stormy? => false)
+      expect(subject.land(w, false)).to eq true
     end
     it 'prevents landing if weather is stormy' do
-      w = Weather.new(true)
+      w = double("Weather Object", :stormy? => true)
       expect(subject.land(w)).to eq false
     end
     it 'prevents landing if airport is full' do
-      w = Weather.new
-      air2 = Airport.new(25,25)
-      ab = air2.full?
-      expect(subject.land(w, ab)).to eq false
+      w = double("Weather Object", :stormy? => false)
+      ab = double("Airport Object", :full? => true)
+      expect(subject.land(w, ab.full?)).to eq false
     end
   end
 
@@ -35,12 +32,12 @@ describe Aeroplane do
 
   describe '#take_off' do
     it 'asks aeroplane to take off' do
-      w = Weather.new(false)
+      w = double("Weather Object", :stormy? => false)
       expect(subject.take_off(w)).to eq true
     end
 
     it 'prevents takeoff if weather is stormy' do
-      w = Weather.new(true)
+      w = double("Weather Object", :stormy? => true)
       expect(subject.take_off(w)).to eq false
     end
   end
