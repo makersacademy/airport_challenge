@@ -8,6 +8,7 @@ module Container
   def initialize(capacity=DEFAULT_CAPACITY)
     @seats = []
     @capacity = capacity
+    @planes ||= 0
   end
 
   def load(people=[Passenger.new])

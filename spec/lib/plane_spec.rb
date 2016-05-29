@@ -1,17 +1,19 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
-  subject(:plane) { described_class.new(airport) }
+  airport2 = Airport.new
+  subject(:plane) { described_class.new(airport2) }
 
   let(:person) { double(:person) }
   let(:people) { [person,person,person] }
-  let(:airport) { double(:airport) }
+  let(:airport) { double(:airport)}
   let(:another_airport) { double(:another_airport)}
 
   let(:loads) { plane.load(people) }
   let(:unloads) { plane.unload }
   let(:waiting_room) { plane.seats }
-  let(:takes_off) { plane.take_off(airport) }
+  let(:takes_off) { plane.take_off(airport2) }
 
   before :each do
     srand(0)
@@ -49,7 +51,7 @@ describe Plane do
       expect(waiting_room.empty?).to eq true
     end
     it 'raises error when unloading if airbourne' do
-      plane.take_off(airport)
+      plane.take_off(airport2)
       message = "Plane airbourne! You must be nuts!"
       expect{ plane.unload }.to raise_error message
     end
@@ -61,7 +63,7 @@ describe Plane do
       expect(takes_off).to eq message
     end
     it "raises error when already airbourne" do
-      plane.take_off(airport)
+      plane.take_off(airport2)
       expect{ takes_off }.to raise_error "Plane already airbourne!"
     end
     it "doesn't take off when stormy" do
@@ -76,7 +78,7 @@ describe Plane do
   end
 
   describe '#land' do
-    let(:lands) { plane.land(airport) }
+    let(:lands) { plane.land(airport2) }
     before do
       allow(airport).to receive(:full?) { true }
     end
@@ -86,10 +88,12 @@ describe Plane do
     end
     it "raises on error if airport is full" do
       takes_off
+      airport2.plane_capacity = 0
       message = "Plane can't land! Airport is full"
       expect{ lands }.to raise_error message
     end
     it "confirms it's landed" do
+      airport2.plane_capacity = 15
       allow(airport).to receive(:full?) { false }
       takes_off
       expect( lands ).to eq "Plane has landed at airport!"

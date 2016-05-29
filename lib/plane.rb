@@ -11,6 +11,7 @@ class Plane
   def initialize(airport)
     old_initialize
     @current_location = airport
+    airport.planes += 1
   end
 
   def take_off(airport)
@@ -18,6 +19,7 @@ class Plane
     fail "Weather stormy. Can't take off!" if stormy?
     fail "Plane can't take off from wrong location!" if airport != current_location
     @flying = true
+    airport.planes -= 1
     "Plane has taken off and no longer at airport!"
   end
 
@@ -26,6 +28,7 @@ class Plane
     fail "Plane can't land! Airport is full" if airport.full?
     fail "Weather stormy. Can't land!" if stormy?
     @flying = false
+    airport.planes += 1
     @current_location = airport
     "Plane has landed at airport!"
   end
