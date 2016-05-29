@@ -8,11 +8,16 @@ class Airport
     @planes = []
   end
 
+  # #set_capacity allows maximum plane capacity of the airport
+  # to be set.
   def set_capacity(new_capacity)
-    return "Capacity must be greater than 0" if new_capacity <= 0
+    return "Capacity cannot be negative" if new_capacity < 0
     @capacity = new_capacity
   end
 
+  # #accept_plane checks whether the airport will receive a plane
+  # that intends to land.  It may not accept the plane if it is already
+  # at capacity, or the weather is stormy.
   def accept_plane(plane)
     return "Airport already at capacity" if @planes.length >= @capacity
     @planes << plane
