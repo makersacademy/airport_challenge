@@ -11,6 +11,12 @@ Unfortunately from the outset, I misinterpreted the user stories and instead tho
 
 Anyway, my feature tests when implementing the program however have good readability and seem to mimic what should be going on apart from missing any set capacity that the airport should have for the planes. And in retrospect to the methods in the classes, these could always be mapped to the appropriate buttons for the Air Traffic Controller so he/she could utilise the interface of the program in the same way even though more behaviour has been encapsulated by the Plane class. Overall a good lesson learnt! I understand and feel comfortable/familiar with everything we covered this week, I just need to work on maybe how I interpret the user stories and how these are then reflected in all my class behaviour. In the end this exercise has reinforced everything I've learnt this week, not only through the extra material learnt from doing the exercise, but overall, once again, it's been about how I should take a step back when thinking about how to approach the problem. The funny thing is, if I had been pair programming, the other person would have probably pulled me up on both these issues within the first 10 minutes of drawing up the domain model.
 
+Lastly, in future challenges I think I will refer back to this week and think two things:
+<ol>
+<li>What's being asked of me?</li>
+<li>KISS, hug, KISS</li>
+</ol>
+
 ### Feature Tests
 N.B. I would rather construct a fully fledged feature test at Makers with either my pair next week or during any potential workshop either my cohort or Makers come up with. For now I'm happy with what I've covered this weekend without needing to add an additional 'thing' to go over mentally, to give myself time to reflect on everything so far. :-)
 
