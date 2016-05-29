@@ -1,19 +1,11 @@
 class Plane
 
-	def intialize
-		@landed =  false
-	end
-
-	def land
-		@landed =  true
-	end
-
-	def take_off
+	def initialize
 		@landed = false
 	end
 
 	def landed?
 		@landed
 	end
-	
+
 end
