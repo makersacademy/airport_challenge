@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-	let(:airport) do
+  let(:airport) do
     double(:airport, accept_plane?: true, 
     airport?: true, 
     release_plane: true, 
