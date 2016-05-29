@@ -41,7 +41,7 @@ describe Airport do
       expect(subject.release_plane(plane)).to eq(plane)
     end
     it "doesn't raise an error after many repetitions" do
-      test_capacity = rand(100..1000)
+      test_capacity = rand(10..20)
       airport = Airport.new(2)
       expect do
         test_capacity.times do
