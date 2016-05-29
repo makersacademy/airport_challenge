@@ -12,8 +12,8 @@ class Airport
 	end
 
 	def incoming_plane(plane, weather = Weather.new.state)
-		raise "Cannot land! Airport full!" if full?
-		raise "Cannot land! Too stormy!" if weather == "stormy"
+		fail "Cannot land! Airport full!" if full?
+		fail "Cannot land! Too stormy!" if weather == "stormy"
 		if @terminal.include? plane
 			"#{plane} has already landed!"
 		elsif plane.at_airport?
@@ -26,7 +26,7 @@ class Airport
 	end
 
 	def departing_plane(plane, weather = Weather.new.state)
-		raise "Cannot take off! Too stormy!" if weather == "stormy"
+		fail "Cannot take off! Too stormy!" if weather == "stormy"
 		if @terminal.include? plane
 			plane.take_off
 			@terminal.delete(plane)
