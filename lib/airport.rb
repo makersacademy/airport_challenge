@@ -5,7 +5,7 @@ class Airport
   ERROR = {
     stormy: "No can do. It's too stormy, cap'n!",
     full: "Not enough room. Please circle the airport awkwardly.",
-    plane_missing: "404 plane not found",
+    plane_missing: "404 plane not found.",
     plane_docked: "The plane has already landed!"
   }.freeze
 
@@ -30,11 +30,11 @@ class Airport
     @planes.delete(plane)
   end
 
-  def docked?(plane)
-    @planes.include?(plane)
-  end
-
   private
+
+    def docked?(plane)
+      @planes.include?(plane)
+    end
 
     def empty?
       @planes.empty?
