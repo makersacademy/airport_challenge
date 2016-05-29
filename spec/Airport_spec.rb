@@ -1,6 +1,9 @@
 require 'Airport'
+require 'Plane'
 
 describe Airport do
+
+
 
 	describe '#land' do
 
@@ -8,6 +11,7 @@ describe Airport do
 	it 'instructs a plane to #land' do
 	plane = Plane.new
 	subject.land(plane)
+	expect(subject.land(plane)).to eq "The plane has just landed"
 
 	end 
 
@@ -33,11 +37,12 @@ describe Airport do
 end 
 	describe '#takeoff' do
 
-	#instruct a plane to takeoff and confirm landed
+	#instruct a plane to takeoff and reports it
 	it 'instructs a plane to #takeoff' do
 
 	plane = Plane.new
 	subject.takeoff(plane)
+	expect(subject.takeoff(plane)).to eq "The plane has now just departed"
 
 
 	end 
