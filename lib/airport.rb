@@ -3,7 +3,7 @@ class Airport
   ERROR_FULL = "Airport is full. Please circle the airport awkwardly.".freeze
   ERROR_NO_PLANE = "That plane doesn't exist!".freeze
 
-  attr_reader :planes, :capacity
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -20,7 +20,13 @@ class Airport
     @planes.delete(plane)
   end
 
+  def docked?(plane)
+    @planes.include?(plane)
+  end
+
   private
+    attr_reader :planes
+    
     def empty?
       @planes.size == 0
     end

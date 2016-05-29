@@ -1,43 +1,44 @@
 require "airport"
 
 describe Airport do
-  before do
-    @plane = double(:plane)
-  end
+  let(:weather_good) { double(:weather, :stormy? => false) }
+  let(:weather_bad) { double(:weather, :stormy? => true) }
+  let(:plane) { double(:plane) }
 
   describe "#land_plane" do
+    # p weather_bad
     it "instructs the plane to land" do
       expect(subject).to receive(:land_plane)
       subject.land_plane
     end
 
     it "confirms the plane has landed" do
-      subject.land_plane(@plane)
-      expect(subject.planes).to include(@plane)
+      subject.land_plane(plane)
+      expect(subject.docked?(plane)).to be_truthy
     end
 
     it "raises an error if the airport is at capacity" do
-      Airport::DEFAULT_CAPACITY.times { subject.land_plane(@plane) }
-      expect { subject.land_plane(@plane) }.to raise_error(Airport::ERROR_FULL)
+      Airport::DEFAULT_CAPACITY.times { subject.land_plane(plane) }
+      expect { subject.land_plane(plane) }.to raise_error(Airport::ERROR_FULL)
     end
   end
 
   describe "#take_off" do
     it "raises an error if the plane isn't at the airport" do
-      expect { subject.take_off(@plane) }.to raise_error(Airport::ERROR_NO_PLANE)
+      expect { subject.take_off(plane) }.to raise_error(Airport::ERROR_NO_PLANE)
     end
 
     it "instructs a plane to take off" do
       expect(subject).to receive(:take_off)
-      subject.take_off(@plane)
+      subject.take_off(plane)
     end
 
     it "confirms the plane is not at the airport anymore" do
       # Assuming planes need to have landed to exist at the airport.
       # This test depends on another method working, needs refactoring :/
-      subject.land_plane(@plane)
-      subject.take_off(@plane)
-      expect(subject.planes).to_not include(@plane)
+      subject.land_plane(plane)
+      subject.take_off(plane)
+      expect(subject.docked?(plane)).to be_falsey
     end
   end
 
@@ -46,7 +47,7 @@ describe Airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
-    describe "can take an argument to set capacity on instantiation" do
+    describe "can take an argument to set capacity" do
       capacity = rand(100)
       subject { described_class.new(capacity) }
 
