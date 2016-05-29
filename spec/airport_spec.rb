@@ -2,7 +2,13 @@ require 'airport'
 
 describe Airport do
 
+
   describe "#land" do
+
+    it "raises an error when airport is full" do
+      10.times {subject.land(Plane.new)}
+      expect{subject.land(Plane.new)}.to raise_error "Airport is full."
+    end
 
     it "returns a message if a plane has landed" do
       plane = Plane.new
