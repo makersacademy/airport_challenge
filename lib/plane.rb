@@ -17,18 +17,6 @@ class Plane
 		change_position(SKY)
 	end	
 
-	def transition_ok?(new_position)
-			new_position.accept_plane?(self) && !new_position.is_airport? ? landed? : !landed?
-	end
-
-	def change_position(new_position)
-		if transition_ok?(new_position) && !@weather.stormy?
-			@position = new_position 
-		else
-			raise "error"
-		end
-	end
-
 	def landed?
 		@position.is_airport?
 	end
@@ -42,4 +30,16 @@ class Plane
 	end
 
 	private
+
+	def transition_ok?(new_position)
+			(new_position.accept_plane?(self) && !new_position.is_airport?)^!landed?
+	end
+
+	def change_position(new_position)
+		transition_ok?(new_position) && !@weather.stormy? ? @position = new_position : raise_error
+	end
+
+	def raise_error
+		raise "error"
+	end
 end
