@@ -14,6 +14,7 @@ class Airport
     fail "Airport is full." if full?
     fail "You cannot land in a storm." if weather.stormy?
     fail "Plane has already landed." if plane.in_flight == false
+    plane.landed
     plane_arrival(plane)
   end
 
@@ -46,12 +47,12 @@ class Airport
 
   def plane_departure
     departure = aircraft_hanger.pop
+    departure.in_flight
     "The flight now leaving is: #{departure}"
   end
 
   def plane_arrival(plane)
     aircraft_hanger << plane
-    plane.landed
     "You have landed plane: #{plane}"
   end
 end

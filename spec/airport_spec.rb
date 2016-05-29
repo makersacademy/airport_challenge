@@ -56,6 +56,7 @@ describe Airport do
       expect{subject.take_off}.to raise_error "You cannot take off in a storm."
     end
 
+
   end
 
 end

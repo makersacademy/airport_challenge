@@ -7,11 +7,11 @@ class Plane
   end
 
   def in_flight
-    flying = true
+    self.flying = true
   end
 
   def landed
-    flying = false
+    self.flying = false
   end
 
   private
