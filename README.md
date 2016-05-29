@@ -1,7 +1,4 @@
-# Airport Challenge
-=================
-
-[![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://travis-ci.org/travis-ci/travis-web)
+# Airport Challenge [![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://travis-ci.org/travis-ci/travis-web)
 
 Makers Academy week 1 challenge testing TDD skills in Ruby and RSpec.
 
