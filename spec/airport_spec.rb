@@ -34,11 +34,13 @@ describe Airport do
     end
 
     it "prevents plane landing when stormy" do
+    allow(airport).to receive(:full?).and_return false
     allow(airport).to receive(:stormy?).and_return true
     expect { airport.land(plane) }.to raise_error "Cannot land plane: weather is stormy"
     end
 
     it "prevents plane landing when airport full" do
+    allow(airport).to receive(:stormy?).and_return false
     allow(airport).to receive(:full?).and_return true
     expect { airport.land(plane) }.to raise_error "Cannot land plane: airport is full"
     end
@@ -77,11 +79,13 @@ describe Airport do
     end
 
     it "prevents plane taking-off when stormy" do
+    allow(airport).to receive(:full?).and_return false
     allow(airport).to receive(:stormy?).and_return true
     expect { airport.take_off(plane) }.to raise_error "Cannot take-off: weather is stormy"
     end
 
     it "prevents plane taking-off when airport full" do
+    allow(airport).to receive(:stormy?).and_return false
     allow(airport).to receive(:full?).and_return true
     expect { airport.take_off(plane) }.to raise_error "Cannot take-off: airport is full"
     end
@@ -113,6 +117,19 @@ describe Airport do
 
     it "returns the capacity of the airport" do
     expect(airport).to respond_to(:capacity)
+    end
+
+    it "has default capacity on initialization" do
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it "default capacity can be overriddden at initialization" do
+    airport = Airport.new(50)
+    expect(airport.capacity).to eq 50
+    end
+
+    it "capacity (default or custom) can be overridden at anytime" do
+    expect(airport.capacity = 50).to eq 50
     end
 
   end
