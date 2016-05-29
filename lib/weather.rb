@@ -1,9 +1,7 @@
 class Weather
 
 	def stormy?
-		if outlook == :stormy
-			true
-		end
+		outlook == :stormy
 	end	
 
 	def outlook
