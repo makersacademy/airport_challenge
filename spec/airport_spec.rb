@@ -23,6 +23,11 @@ describe Airport do
     # it 'responds to full airport' do
     #   expect(subject).to respond_to :full?
     # end
+
+    # NOW PRIVATE
+    #  it 'responds to empty airport' do
+    #    expect(subject).to respond_to :empty?
+    #  end
   end
 
   describe '#land_plane' do

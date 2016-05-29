@@ -19,7 +19,7 @@ class Airport
 
   def take_off_plane(plane)
     fail 'This plane has already taken off!' unless plane.landed?
-    fail 'The airport is empty!' if @planes == []
+    fail 'The airport is empty!' if empty?
     @planes.pop
     @planes
   end
@@ -27,5 +27,9 @@ class Airport
   def full?
     @planes.size >= DEFAULT_CAPACITY
   end
-  private :full?
+
+  def empty?
+    @planes.size <= 0
+  end
+  private :full?, :empty?
 end
