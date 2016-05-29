@@ -1,6 +1,4 @@
-require 'plane'
-require 'airport'
-require 'weather'
+require './lib/airport.rb'
 
 describe Plane do
 	subject(:plane) {described_class.new}

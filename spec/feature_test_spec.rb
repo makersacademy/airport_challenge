@@ -1,6 +1,4 @@
-require 'weather'
-require 'airport'
-require 'plane'
+require './lib/airport.rb'
 
 describe 'feature test' do
   it 'allows planes to land and take off when sunny' do
