@@ -7,6 +7,6 @@ class Dispatcher
   end
 
   def travel_allowed?
-    @local_weather.stormy? ? raise 'Travel not allowed due to weather conditions' : true     
+    (@local_weather.stormy?) ? (raise 'Travel not allowed due to weather conditions') : (true)     
   end
 end
