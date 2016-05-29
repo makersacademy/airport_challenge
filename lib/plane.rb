@@ -1,8 +1,6 @@
 require "weather"
 
 class Plane
-	CANNOT_LAND_ERROR_MSG = "cannot land plane"
-	CANNOT_TAKE_OFF_ERROR_MSG =  "cannot take_off plane"
 	SKY = Sky.new
 	NO_WEATHER = NoWeather.new
 
