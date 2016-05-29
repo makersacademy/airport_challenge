@@ -14,7 +14,11 @@
 
 ## Task
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+
+Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+
+### User Stories
 
 ```
 As an air traffic controller
@@ -42,41 +46,68 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+### Functional Representation
 
-## Progress
+Objects  | Messages
+------------- | -------------
+Air Traffic Controller  |
+Plane  | flying?
+Weather | stormy?
+Airport | land_plane(plane), take_off(plane)
 
-- Decided what to name my classes!
+
+## Interface
+The expected interface for the Air Traffic Controller (ATC) to use is `irb` or `pry`. The following notes and accompanying code explain how to interact with the program.
+
+Getting started:
+```
+require './lib/airport.rb'
+require './lib/plane.rb'
+```
+
+
+There is a 1-in-5 chance of a storm:
 ```
 weather = Weather.new
-airport = Airport.new(capacity, weather)
+weather.stormy?
+=> true/false
+```
+
+
+Creating a new plane:
+```
 plane = Plane.new
 ```
 
-- There is a 1 in 5 chance of a storm
+
+ATC can confirm that a plane is in-flight:
 ```
-weather.stormy?
+plane.flying?
+=> true
 ```
 
-- Airport can instruct a plane to land as long as the weather is good
-- Airport raises an error if there is no space left
+
+...or else that a plane has landed:
+```
+plane.flying?
+=> false
+```
+
+
+An airport can have a specific maximum capacity if required, otherwise it's just instantiated with a default capacity. Weather is also an optional argument.
+```
+airport_default = Airport.new
+airport_large = Airport.new(100, weather)
+```
+
+
+The ATC can instruct a plane to land as long as the weather is good. The airport will raise an error if there is no space left in the hangar:
 ```
 airport.land_plane(plane)
 ```
 
-- Airport confirms that plane has landed
-```
-airport.docked?(plane)
-```
 
-- Airport can instruct a plane to take off as long as the weather is good.
-- Airport raises an error if the plane instructed to take off doesn't exist at the airport
+The ATC can instruct a plane to take off as long as the weather is good. The airport will raise an error if the plane is not located here:
 ```
 airport.take_off(plane)
-```
-
-- An airport can have a specific max capacity if required, otherwise it's just instantiated with a default capacity
-```
-airport_default = Airport.new
-airport_large = Airport.new(100)
 ```
