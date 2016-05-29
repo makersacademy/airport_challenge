@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+Weekend 1 Challenge: Created a program that fulfills all 6 user stories below via TDD. Tests include edge cases & corner cases.
+
 ```
         ______
         _\____\___
