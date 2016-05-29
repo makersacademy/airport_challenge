@@ -4,7 +4,7 @@ class Airport
 
   attr_reader :landed_planes, :capacity
 
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 8
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @landed_planes =[]
@@ -12,11 +12,11 @@ class Airport
   end
 
   def land(plane)
-    fail "The airport is full!" if full?
+    raise "The airport is full!" if full?
     fail "This plane has already landed" if plane.landed?
     plane.land
-    @landed_planes << plane
-  "The plane has now landed"
+    landed_planes << plane
+    "The plane has now landed"
   end
 
   def take_off(plane)
