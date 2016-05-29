@@ -4,7 +4,7 @@ module Weather
   private
 
   def stormy?
-    today == 'stormy'
+    today == :stormy
   end
 
   def today
@@ -12,6 +12,6 @@ module Weather
   end
 
   def climates
-    ['sunny','stormy']
+    [:sunny,:stormy]
   end
 end

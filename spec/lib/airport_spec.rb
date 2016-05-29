@@ -40,8 +40,6 @@ describe Airport do
   end
 
   describe '#load' do
-    it {is_expected.to respond_to(:load).with(1).argument }
-
     it '#load returns airport' do
       expect(loads).to eq airport
     end

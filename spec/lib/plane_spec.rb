@@ -4,13 +4,9 @@ describe Plane do
   subject(:plane) { described_class.new(airport) }
 
   let(:person) { double(:person) }
+  let(:people) { [person,person,person] }
   let(:airport) { double(:airport) }
   let(:another_airport) { double(:another_airport)}
-
-  let(:people) { [person,person,person] }
-  let(:mob) { [*1..100] }
-  let(:mob2) { [*1..101] }
-
 
   let(:loads) { plane.load(people) }
   let(:unloads) { plane.unload }
@@ -25,21 +21,20 @@ describe Plane do
     expect(plane.class).to eq Plane
   end
 
-
   describe '#load' do
-    it {is_expected.to respond_to(:load).with(1).argument }
-
-    it '#load returns plane' do
+    before do
       allow(airport).to receive(:seats) { people }
+    end
+    it '#load returns plane' do
       expect(loads).to eq plane
     end
     it 'can load people' do
-      allow(airport).to receive(:seats) { people }
       expect(loads).to eq plane
     end
     it 'raises error if loading whilst airbourne' do
       takes_off
-      expect{ loads }.to raise_error "Plane airbourne! What are we loading? Seagulls!"
+      message = "Plane airbourne! What are we loading? Seagulls!"
+      expect{ loads }.to raise_error message
     end
   end
 
@@ -55,15 +50,15 @@ describe Plane do
     end
     it 'raises error when unloading if airbourne' do
       plane.take_off(airport)
-      expect{ plane.unload }.to raise_error "Plane airbourne! You must be nuts!"
+      message = "Plane airbourne! You must be nuts!"
+      expect{ plane.unload }.to raise_error message
     end
   end
 
   describe '#take_off' do
-    it {is_expected.to respond_to(:take_off).with(1).argument }
-
     it "confirm it's taken off" do
-      expect(takes_off).to eq "Plane has taken off and no longer at airport!"
+      message = "Plane has taken off and no longer at airport!"
+      expect(takes_off).to eq message
     end
     it "raises error when already airbourne" do
       plane.take_off(airport)
@@ -71,30 +66,33 @@ describe Plane do
     end
     it "doesn't take off when stormy" do
       srand(70)
-      expect{ takes_off }.to raise_error "Weather stormy. Can't take off!"
+      message = "Weather stormy. Can't take off!"
+      expect{ takes_off }.to raise_error message
     end
     it "can't take off from wrong airport" do
-      expect{ plane.take_off(another_airport)}.to raise_error "Plane can't take off from wrong location!"
+      message = "Plane can't take off from wrong location!"
+      expect{plane.take_off(another_airport)}.to raise_error message
     end
   end
 
   describe '#land' do
     let(:lands) { plane.land(airport) }
-    it {is_expected.to respond_to(:land).with(1).argument }
-
-    it "raises error when already grounded" do
+    before do
       allow(airport).to receive(:full?) { true }
-      expect{ lands }.to raise_error "Plane can't land! Already grounded!"
+    end
+    it "raises error when already grounded" do
+      message = "Plane can't land! Already grounded!"
+      expect{ lands }.to raise_error message
+    end
+    it "raises on error if airport is full" do
+      takes_off
+      message = "Plane can't land! Airport is full"
+      expect{ lands }.to raise_error message
     end
     it "confirms it's landed" do
       allow(airport).to receive(:full?) { false }
       takes_off
       expect( lands ).to eq "Plane has landed at airport!"
-    end
-    it "raises on error if airport is full" do
-      allow(airport).to receive(:full?) { true }
-      takes_off
-      expect{ lands }.to raise_error "Plane can't land! Airport is full"
     end
     it "doesn't land when stormy" do
       allow(airport).to receive(:full?) { false }
@@ -103,4 +101,5 @@ describe Plane do
       expect{ lands }.to raise_error "Weather stormy. Can't land!"
     end
   end
+
 end
