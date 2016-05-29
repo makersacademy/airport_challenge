@@ -87,7 +87,7 @@ plane.flying?
 ```
 
 
-...or else it has landed:
+...or else confirm that it has landed:
 ```
 plane.flying?
 => false
@@ -103,11 +103,11 @@ airport_large = Airport.new(100, weather)
 
 The ATC can instruct a plane to land as long as the weather is good. The airport will raise an error if there is no space left in the hangar:
 ```
-airport.land_plane(plane)
+airport_default.land_plane(plane)
 ```
 
 
 The ATC can instruct a plane to take off as long as the weather is good. The airport will raise an error if the plane is not located here:
 ```
-airport.take_off(plane)
+airport_default.take_off(plane)
 ```
