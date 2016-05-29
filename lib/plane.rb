@@ -1,11 +1,17 @@
 class Plane
 
+  attr_reader :airborne
+
   def initialize
-    @grounded = true
+    @airborne = true
+  end
+
+  def in_air?
+    @airborne
   end
 
   def on_ground?
-    @grounded
+    @airborne = false
   end
 
 end
