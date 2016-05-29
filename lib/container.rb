@@ -19,7 +19,7 @@ module Container
 
   def unload
     fail "Plane airbourne! You must be nuts!" if flying?
-    leaving = @seats
+    leaving = @seats ||= []
     @seats = []
     leaving
   end
