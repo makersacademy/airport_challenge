@@ -7,18 +7,23 @@ describe Plane do
 
 	describe '#status' do
 
-		it '#status should default to "airborne"' do
+		it 'should default to "airborne"' do
 			expect(subject.status).to eq "airborne"
 		end
 
-		it '#status should eq "landed" if on the ground' do
-			subject.set_landed
+		it 'should eq "landed" if on the ground' do
+			subject.set_landed(airport)
 			expect(subject.status).to eq "landed"
 		end
 
-		it '#status should eq "airborne" if in the air' do
+		it 'should eq "airborne" if in the air' do
 			subject.set_airborne
 			expect(subject.status).to eq "airborne"
+		end
+
+		it 'should have nil airport attr if airborne' do
+			subject.set_airborne
+			expect(subject.airport).to eq nil
 		end
 
 	end	
