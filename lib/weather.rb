@@ -1,20 +1,17 @@
 class Weather
 
-  def initialize
-    @stormy = false
-  end
-
-  def weather_report
+  def weather_forecast
     weather = rand
-    if weather < 0.1
-      stormy = true
-    else
-      stormy = false
-    end
+    weather < 0.1 ? @stormy = true : @stormy = false
   end
 
   def stormy?
     @stormy
   end
+
+  private
+
+  attr_accessor :weather_report, :stormy
+
 
 end

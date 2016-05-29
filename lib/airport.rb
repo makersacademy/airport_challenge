@@ -12,16 +12,18 @@ class Airport
 
   def land(plane)
     fail "Airport is full." if full?
+    fail "You cannot land in a storm." if weather.stormy?
     plane_arrival(plane)
   end
 
   def take_off
-    fail "You cannot take off in a storm." if weather_check
+    fail "You cannot take off in a storm." if weather.stormy?
     plane_departure
   end
 
   def weather_check
-    weather.weather_report
+    weather.weather_forecast
+    weather.stormy?
   end
 
   private
@@ -41,7 +43,7 @@ class Airport
     departure = capacity.pop
     "The flight now leaving is: #{departure}"
   end
-  
+
   def plane_arrival(plane)
     aircraft_hanger << plane
     "You have landed plane: #{plane}"
