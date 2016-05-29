@@ -12,9 +12,9 @@ class Airport
 	end
 
 	def land(plane)
-		fail "This plane has already landed!" if plane.status == "landed"
-		fail "The airport is full!" if @available_space == 0
-		fail "Stormy weather, cannot land plane" if check_weather == "stormy"
+		raise "This plane has already landed!" if plane.status == "landed"
+		raise "The airport is full!" if @available_space == 0
+		raise "Stormy weather, cannot land plane" if check_weather == "stormy"
 		@terminal << plane
 		@available_space -= 1
 		plane.set_landed(self)
@@ -22,9 +22,9 @@ class Airport
 	end
 
 	def takeoff(plane)
-		fail "This plane is already airborne!" if plane.status == "airborne"
-		fail "Stormy weather, cannot takeoff" if check_weather == "stormy"
-		fail "No planes in the terminal" if @capacity == @available_space
+		raise "This plane is already airborne!" if plane.status == "airborne"
+		raise "Stormy weather, cannot takeoff" if check_weather == "stormy"
+		raise "No planes in the terminal" if @capacity == @available_space
 		@terminal.delete(plane)
 		@available_space += 1
 		plane.set_airborne
