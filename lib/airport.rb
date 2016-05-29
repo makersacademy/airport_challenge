@@ -4,7 +4,7 @@ require_relative 'weather.rb'
 
 class Airport
 
-attr_accessor :capacity, :planes
+attr_accessor :capacity
 
 DEFAULT_CAPACITY = 100
 AIRPORT_CODE = "AMS"
@@ -18,6 +18,7 @@ end
   def land(plane)
     raise "Airport full" if full?
     raise "Impossible to land" if stormy?
+    raise "Plane already landed" if planes.include?(plane)
     planes << plane
     landed_plane = planes.last
     landed_plane.arrival
@@ -37,7 +38,9 @@ end
     end
   end
 
-private
+  private
+
+  attr_reader :planes
 
   def stormy?
     Weather.new.check_storm
