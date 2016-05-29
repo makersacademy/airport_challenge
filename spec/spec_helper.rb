@@ -1,3 +1,3 @@
-$LOAD_PATH << "../lib"
+$LOAD_PATH << '../lib'
 require 'coveralls'
 Coveralls.wear!
