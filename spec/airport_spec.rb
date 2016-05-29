@@ -43,12 +43,12 @@ describe Airport do
     it "doesn't raise an error after many repetitions" do
       test_capacity = rand(100..1000)
       airport = Airport.new(2)
-      expect{
-        test_capacity.times { |i|
+      expect do
+        test_capacity.times do
           airport.receive_plane(plane)
           airport.release_plane(plane)
-        }
-      }.to_not raise_error
+        end
+      end.to_not raise_error
     end
   end
 
