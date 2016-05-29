@@ -40,6 +40,16 @@ describe Airport do
       subject.receive_plane(plane)
       expect(subject.release_plane(plane)).to eq(plane)
     end
+    it "doesn't raise an error after many repetitions" do
+      test_capacity = rand(100..1000)
+      airport = Airport.new(2)
+      expect{
+        test_capacity.times { |i|
+          airport.receive_plane(plane)
+          airport.release_plane(plane)
+        }
+      }.to_not raise_error
+    end
   end
 
 end

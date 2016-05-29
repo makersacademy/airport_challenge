@@ -3,13 +3,13 @@ class Airport
   DEFAULT_CAPACITY = 20
   AT_CAPACITY_ERR_MSG = "Airport full! Please try another".freeze
 
-  def can_land_here?
-    true
-  end
-
-  def initialize (capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+  end
+
+  def can_land_here?
+    true
   end
 
   def accept_plane?(plane)
