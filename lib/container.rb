@@ -11,6 +11,7 @@ module Container
   end
 
   def load(people=[Passenger.new])
+    fail "Plane airbourne! What are we loading? Seagulls!" if flying?
     @people = people
     fail "Capacity reached!" if full?
     @seats.concat(people)

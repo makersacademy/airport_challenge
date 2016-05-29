@@ -7,7 +7,6 @@ class Plane
   include Container
   include Weather
   alias_method :old_initialize, :initialize
-  alias_method :old_load, :load
 
   def initialize(airport)
     old_initialize
@@ -31,16 +30,26 @@ class Plane
     "Plane has landed at airport!"
   end
 
-  def load(people_boarding)
-    fail "Plane airbourne! What are we loading? Seagulls!" if flying?
-    #fail "Plane can't load people from another airport!" if @locations_seats != people_boarding
-    old_load
-  end
-
   private
 
   attr_reader :current_location
 
 end
 
+people = [Passenger.new,Passenger.new,Passenger.new]
+people2 = [Passenger.new,Passenger.new,Passenger.new]
+airport = Airport.new
+airport2 = Airport.new
+plane = Plane.new(airport)
+plane2 = Plane.new(airport)
 
+airport.load(people)
+airport.seats
+plane.load(airport.unload)
+plane.seats
+plane.take_off(airport)
+plane.land(airport2)
+airport2.load(plane.unload)
+p plane.seats
+p airport.seats
+p airport2.seats
