@@ -1,24 +1,28 @@
 class Plane
 
+  attr_reader :airport
+
   def initialize(airport=nil) # nil is not at an airport/in flight
     @airport = airport
   end
 
   def take_off
     # used fail to keep Hound happy, but bbatsov says to use raise??
-    fail "Plane is already airborne." unless airport
-    airport = nil
-    airport
+    fail "Plane is already airborne." unless grounded?
+    @airport = nil
+    self
   end
 
   def land(destination)
-    fail "Plane is already on the ground." if airport
-    airport = destination
-    airport
+    fail "Plane is already on the ground." if grounded?
+    @airport = destination
+    self
   end
 
   private
 
-  attr_accessor :airport
+  def grounded?
+    @airport == nil ? false : true
+  end
 
 end

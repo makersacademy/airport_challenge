@@ -14,7 +14,7 @@ describe Plane do
     end
 
     it 'leaves the airport' do
-      expect(plane.take_off).to be_nil
+      expect(plane.take_off.airport).to be_nil
     end
   end
 
@@ -26,7 +26,7 @@ describe Plane do
     end
 
     it 'lands at an airport' do
-      expect(subject.land(lhw)).to eq lhw
+      expect(subject.land(lhw).airport).to eq lhw
     end
   end
 end
