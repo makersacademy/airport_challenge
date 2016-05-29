@@ -6,29 +6,24 @@ class Plane
     @in_air = true
   end
 
-  def prepare_landing(airport)
-    raise "Aircraft can not landed as it has already arrived" if landed
+  def land
+    fail "Plane can not land as it is already on the ground" if already_landed?
     @in_air = false
-    @airport = airport
   end
 
   def depart
-    raise "Aircraft can not depart as it has already departed" if departed
+    fail "Plane can not depart as it has already departed" if already_departed?
     @in_air = true
-  end
-
-  def airport
-    @airport
   end
 
   private
 
-  def landed
-    @in_air = false
+  def already_landed?
+    @in_air == false
   end
 
-  def departed
-    @in_air = true
+  def already_departed?
+    @in_air == true
   end
 
 end

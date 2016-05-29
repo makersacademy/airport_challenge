@@ -10,12 +10,12 @@ class Airport
     @parking_area = []
   end
 
-  def land_aircraft(plane)
+  def land(plane)
     fail "Airport is full" if full?
     @parking_area << plane
   end
 
-  def allow_departure(plane)
+  def depart(plane)
     fail "No planes at airport" if empty?
     @parking_area.pop
   end
