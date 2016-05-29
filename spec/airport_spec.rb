@@ -7,19 +7,19 @@ describe Airport do
   let(:plane) { double :plane }
   let(:weather) { double :weather}
 
-  describe "#planes" do
+  describe "#hangar" do
 
-    it "responds to planes method" do
-      expect(airport).to respond_to(:planes)
+    it "responds to hangar method" do
+      expect(airport).to respond_to(:hangar)
     end
 
-    it "lists planes currently landed at airport" do
+    it "lists planes currently landed in airport hangar" do
       allow(airport).to receive(:stormy?).and_return false
       plane1 = Plane.new
       airport.land(plane1)
       plane2 = Plane.new
       airport.land(plane2)
-      expect(airport.planes).to eq [plane1, plane2]
+      expect(airport.hangar).to eq [plane1, plane2]
     end
 
   end
@@ -38,7 +38,7 @@ describe Airport do
 
       it "returns planes landed and stored at airport" do
         airport.land(plane)
-        expect(airport.planes).to include plane
+        expect(airport.hangar).to include plane
       end
 
       context "when full" do
@@ -109,7 +109,7 @@ describe Airport do
       it "causes plane to leave airport" do
         airport.land(plane)
         airport.take_off(plane)
-        expect(airport.planes).to eq []
+        expect(airport.hangar).to eq []
       end
 
       it "returns the plane that took-off" do
