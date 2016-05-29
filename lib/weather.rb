@@ -1,10 +1,14 @@
 class Weather
 
 	def stormy?
-		if rand(1..5) == 5
+		if outlook == :stormy
 			true
-		else
-			false
 		end
 	end	
+
+	def outlook
+		[:stormy, :fine, :fine].sample
+	end
+
 end
+
