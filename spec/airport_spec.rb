@@ -1,8 +1,8 @@
 require "airport"
 
 describe Airport do
-  let(:weather_good) { double(:weather, :stormy? => false) }
-  let(:weather_bad) { double(:weather, :stormy? => true) }
+  let(:weather_good) { double(:weather, stormy?: false) }
+  let(:weather_bad) { double(:weather, stormy?: true) }
   let(:plane) { double(:plane) }
 
   context "in good weather" do

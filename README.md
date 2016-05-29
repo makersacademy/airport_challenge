@@ -48,19 +48,35 @@ Your task is to test drive the creation of a set of classes/modules to satisfy a
 
 - Decided what to name my classes!
 ```
-airport = Airport.new
-plane = Plane.new
 weather = Weather.new
+airport = Airport.new(capacity, weather)
+plane = Plane.new
 ```
-- Airport can instruct a plane to land, and also confirms that plane has landed.
+
+- There is a 1 in 5 chance of a storm
+```
+weather.stormy?
+```
+
+- Airport can instruct a plane to land as long as the weather is good
+- Airport raises an error if there is no space left
 ```
 airport.land_plane(plane)
 ```
-- Airport can instruct a plane to take off, and raises an error if the plane instructed doesn't exist
+
+- Airport confirms that plane has landed
+```
+airport.docked?(plane)
+```
+
+- Airport can instruct a plane to take off as long as the weather is good.
+- Airport raises an error if the plane instructed to take off doesn't exist at the airport
 ```
 airport.take_off(plane)
 ```
+
 - An airport can have a specific max capacity if required, otherwise it's just instantiated with a default capacity
 ```
+airport_default = Airport.new
 airport_large = Airport.new(100)
 ```

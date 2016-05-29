@@ -1,4 +1,4 @@
-require "weather"
+require_relative "weather"
 
 class Airport
   DEFAULT_CAPACITY = 20
@@ -31,10 +31,11 @@ class Airport
   end
 
   private
+
     attr_reader :planes
 
     def empty?
-      @planes.size == 0
+      @planes.empty?
     end
 
     def full?
