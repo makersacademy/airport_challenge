@@ -13,6 +13,7 @@ class Airport
   def land(plane)
     fail "Airport is full." if full?
     fail "You cannot land in a storm." if weather.stormy?
+    fail "Plane has already landed." if plane.in_flight == false
     plane_arrival(plane)
   end
 
@@ -29,7 +30,7 @@ class Airport
   private
 
   attr_accessor :hanger
-  attr_reader :plane, :weather
+  attr_reader :plane, :weather, :in_flight
 
   def full?
     aircraft_hanger.length >= DEFAULT_CAPACITY
@@ -50,6 +51,7 @@ class Airport
 
   def plane_arrival(plane)
     aircraft_hanger << plane
+    plane.landed
     "You have landed plane: #{plane}"
   end
 end

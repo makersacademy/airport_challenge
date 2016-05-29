@@ -1,7 +1,7 @@
 class Weather
 
   def weather_forecast
-    @stormy = rand < 0.1 ? true : false
+    @stormy = rand < 0.2 ? true : false
   end
 
   def stormy?
