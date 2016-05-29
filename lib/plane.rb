@@ -3,19 +3,19 @@ require_relative 'airport.rb'
 class Plane
 
   def initialize
-  @at_airport = false
-  @flying = true
+    @at_airport = false
+    @flying = true
   end
 
   def landed?
-  @at_airport
+    @at_airport 
   end
 
   def flying?
     @flying
   end
 
-   def land
+  def land
     @at_airport = true
     @flying = false
   end

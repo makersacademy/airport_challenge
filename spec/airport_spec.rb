@@ -38,15 +38,13 @@ let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: 
 
   describe '#take_off' do
     it 'allows a plane to take off from the airport' do
-    airport.land(plane)
-    expect(airport.take_off(plane)).to eq "The plane has taken off"
+      airport.land(plane)
+      expect(airport.take_off(plane)).to eq "The plane has taken off"
     end
     it 'won\'t allow a plane to take off if the airport is empty' do
       expect{airport.take_off(plane)}.to raise_error("There are no planes available for take off")
     end
     it 'no longer has the plane after takeoff' do
-      airport.land(plane)
-      airport.take_off(plane)
       allow(plane).to receive(:flying?).and_return(true)
       expect(airport.in_airport?(plane)).to eq false
     end
