@@ -1,5 +1,12 @@
+require 'weather'
+
 class Dispatcher
-  def self.travel_allowed?
-    raise 'Vehicle release denied due to weather conditions'
+
+  def initialize
+    @local_weather = Weather.new
+  end
+
+  def travel_allowed?
+    @local_weather.stormy? ? raise 'Travel not allowed due to weather conditions' : true     
   end
 end
