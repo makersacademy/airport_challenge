@@ -3,7 +3,7 @@ require 'plane'
 describe Plane do
 
   describe '#is_flying?' do
-    it "is deafultly flying" do
+    it "is defaultly flying" do
       expect(subject.is_flying).to eq true
     end
     it "can be landed" do

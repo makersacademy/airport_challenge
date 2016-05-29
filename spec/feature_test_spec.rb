@@ -17,4 +17,13 @@ describe 'feature test' do
     plane2 = airport1.release
     airport1.dock(plane2)
   end
+
+  it 'Weather season can change after being passed to airport' do
+    weather1 = Weather.new
+    airport1 = Airport.new(weather1)
+    plane1 = Plane.new
+    weather1.blizzard
+    expect{airport1.dock(plane1)}.to raise_error "Weather is too stormy, cannot land"
+  end
+
 end

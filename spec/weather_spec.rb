@@ -28,4 +28,11 @@ describe Weather do
       expect(subject.winter).to eq [true,true,true,true,false]
     end
   end
+
+  describe "#blizzard" do
+
+    it "can be set to blizzard" do
+      expect(subject.blizzard).to eq [true,true,true,true,true]
+    end
+  end
 end

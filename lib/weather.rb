@@ -16,6 +16,10 @@ class Weather
     self.weather = [true,true,true,true,false]
   end
 
+  def blizzard
+    self.weather = [true,true,true,true,true]
+  end
+
 
   private
 
