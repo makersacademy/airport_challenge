@@ -2,7 +2,7 @@ require 'spec_helper.rb'
 require 'plane'
 require 'airport'
 
-feature 'Landing a plane into an airport' do
+feature 'Instructing a plane to land into an airport' do
 
   context 'When weather conditions are good' do
     context 'and airport has free space' do
