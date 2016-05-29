@@ -9,14 +9,14 @@ class Airport
     @capacity = params.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
-  def land(plane)
+  def arrive(plane)
     fail "Airport is full!" if @planes.count >= capacity
     fail "Plane can't land due to stormy weather." if stormy?
     @planes << plane
     plane.land(self)
   end
 
-  def take_off(plane)
+  def depart(plane)
     fail "Plane can't take off due to stormy weather." if stormy?
     @planes.delete(plane)
     plane.take_off
