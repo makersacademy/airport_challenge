@@ -11,7 +11,6 @@ describe Plane do
   #     expect { plane.take_off }.to raise_error "Plane cannot take-off: plane already flying"
   #   end
 
-  # end
 
 
   # describe '#is_where method' do

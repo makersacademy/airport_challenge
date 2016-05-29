@@ -3,9 +3,9 @@ require 'weather'
 
 describe Airport do
 
-  subject(:airport) { described_class.new }
+  subject(:airport) { described_class.new(weather) }
   let(:plane) { double :plane }
-  # let(:weather) { double :weather}
+  let(:weather) { double :weather}
 
   describe "#planes" do
 
@@ -29,7 +29,7 @@ describe Airport do
     context "when not stormy" do
 
       before do
-        allow(airport).to receive(:stormy?).and_return false
+        allow(weather).to receive(:stormy?).and_return false
       end
 
       it "responds to land method with 1 argument" do
@@ -58,7 +58,7 @@ describe Airport do
     context "when stormy" do
 
       before do
-        allow(airport).to receive(:stormy?).and_return true
+        allow(weather).to receive(:stormy?).and_return true
       end
 
       it "prevents plane landing when stormy" do
@@ -78,7 +78,7 @@ describe Airport do
     context "when not stormy" do
 
       before do
-        allow(airport).to receive(:stormy?).and_return false
+        allow(weather).to receive(:stormy?).and_return false
       end
 
       it "confirms if a landed plane is at the airport" do
@@ -103,7 +103,7 @@ describe Airport do
     context "when not stormy" do
 
       before do
-        allow(airport).to receive(:stormy?).and_return false
+        allow(weather).to receive(:stormy?).and_return false
       end
 
       it "causes plane to leave airport" do
@@ -118,7 +118,7 @@ describe Airport do
       end
 
       it "raises an error if plane not at airport" do
-        another_airport = described_class.new
+        another_airport = described_class.new(weather)
         allow(another_airport).to receive(:stormy?).and_return false
         another_airport.land(plane)
         expect { airport.take_off(plane) }.to raise_error "Cannot take-off: plane not at this airport"
@@ -129,7 +129,7 @@ describe Airport do
     context "when stormy" do
 
       before do
-        allow(airport).to receive(:stormy?).and_return true
+        allow(weather).to receive(:stormy?).and_return true
       end
 
       it "prevents plane taking-off when stormy" do
@@ -147,14 +147,14 @@ describe Airport do
     end
 
     it "confirms if a departed plane has left the airport" do
-      allow(airport).to receive(:stormy?).and_return false
+      allow(weather).to receive(:stormy?).and_return false
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.confirm_departed(plane)).to eq "#{plane} has departed airport"
     end
 
     it "confirms if a plane has not departed the airport" do
-      allow(airport).to receive(:stormy?).and_return false
+      allow(weather).to receive(:stormy?).and_return false
       airport.land(plane)
       expect(airport.confirm_departed(plane)).to eq "#{plane} has not departed airport"
     end
@@ -172,8 +172,7 @@ describe Airport do
     end
 
     it "default capacity can be overriddden at initialization" do
-      airport = Airport.new(50)
-      expect(airport.capacity).to eq 50
+      expect(described_class.new(weather, 50).capacity).to eq 50
     end
 
     it "capacity (default or custom) can be overridden at anytime" do
