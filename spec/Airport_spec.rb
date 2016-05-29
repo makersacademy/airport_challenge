@@ -1,4 +1,4 @@
-require 'airport'
+require './lib/airport.rb'
 
 describe Airport do
 
@@ -57,7 +57,7 @@ describe Airport do
 			airport.departing_plane(plane1, goodweather.state)
 			expect(airport.terminal).to eq [plane2]
 		end
-		
+
 	end
 		
 end
