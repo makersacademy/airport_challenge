@@ -6,12 +6,11 @@ describe Plane do
 	let(:weather) {double(:weather, stormy?: true)}
 
 	describe "#land(airport)" do
-		
 		it "should take the land message with 1 argument" do
 			expect(subject).to respond_to(:land).with(1).argument
 		end
 		it "shouldn't land if the weather is stormy" do
-			subject.weather(weather)
+			subject.new_weather(weather)
 			expect{subject.land(airport)}.to raise_error
 		end
 		it "should send a land message to its airport that it has landed" do
@@ -41,7 +40,7 @@ describe Plane do
 			expect(subject).to_not be_landed
 		end
 		it "shouldn't take off if the weather is stormy" do
-			subject.weather(weather)
+			subject.new_weather(weather)
 			expect{subject.take_off}.to raise_error
 		end
 		it "shouldn't take off if already in the air" do
@@ -49,11 +48,10 @@ describe Plane do
 			subject.take_off
 			expect{subject.take_off}.to raise_error
 		end
-
 	end
 
-	describe "#get_position" do
-		it "should take the get_position message" do
+	describe "#position" do
+		it "should take the position message" do
 			expect(subject).to respond_to(:position)
 		end
 		it "should return it's airport" do
@@ -62,6 +60,10 @@ describe Plane do
 		end
 	end
 
-
+	describe "#new_weather" do
+		it "should take the new_weather message" do
+			expect(subject).to respond_to(:new_weather).with(1)
+		end
+	end
 
 end

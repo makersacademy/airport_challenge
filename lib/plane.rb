@@ -25,7 +25,7 @@ class Plane
 		position.is_airport?
 	end
 
-	def weather(weather)
+	def new_weather(weather)
 		@weather = weather
 	end
 

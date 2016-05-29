@@ -4,6 +4,12 @@ describe Airport do
 
 	let(:plane){double(:plane)}
 
+	describe "#is_airport?" do
+		it "returns true" do
+			expect(subject.is_airport?).to be(true)
+		end
+	end
+
 	describe "#initialize" do
 		it "has a default capacity" do
 			expect(subject.instance_variable_get(:@capacity)).to eq(Airport::DEFAULT_CAPACITY)
@@ -14,6 +20,9 @@ describe Airport do
 		it "returns true if empty" do
 			expect(subject.accept_plane?(plane)).to be(true)
 		end
+	end
+
+	describe "#receive_plane(plane)" do
 		it "raise an error if full" do
 			test_capacity = rand(1..100)
 			planes = []
@@ -23,12 +32,6 @@ describe Airport do
 				airport.receive_plane(planes[i])
 			}
 			expect{airport.receive_plane(plane)}.to raise_error
-		end
-	end
-
-	describe "#is_airport?" do
-		it "returns true" do
-			expect(subject.is_airport?).to be(true)
 		end
 	end
 

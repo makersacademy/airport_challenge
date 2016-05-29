@@ -34,7 +34,7 @@ describe "Program Feature Test" do
 		airport = Airport.new
 		weather = Weather.new
 		plane.land(airport)
-		plane.weather(weather)
+		plane.new_weather(weather)
 		plane.position == airport #should be true
 		begin
 			plane.take_off
@@ -51,7 +51,7 @@ describe "Program Feature Test" do
 		plane = Plane.new
 		airport = Airport.new
 		weather = Weather.new
-		plane.weather(weather)
+		plane.new_weather(weather)
 		begin
 			plane.land(airport)
 		rescue
