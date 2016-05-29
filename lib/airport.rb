@@ -5,9 +5,9 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(hanger = DEFAULT_CAPACITY)
-    @weather = Weather.new
+  def initialize(weather = Weather.new, hanger = DEFAULT_CAPACITY)
     @hanger = []
+    @weather = weather
   end
 
   def land(plane)
@@ -17,8 +17,8 @@ class Airport
   end
 
   def take_off
-    fail "The hanger is empty." if empty?
     fail "You cannot take off in a storm." if weather.stormy?
+    fail "The hanger is empty." if empty?
     plane_departure
   end
 

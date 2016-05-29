@@ -2,8 +2,12 @@ require 'airport'
 
 describe Airport do
   let(:plane) {double :plane}
+  let(:weather) {double :weather}
+  let(:bad_weather) {double :weather, stormy?: true}
+  let(:good_weather) {double :weather, stormy?: false}
 
   it "raises an error when airport is full" do
+    subject = Airport.new(good_weather)
     Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
     expect{subject.land(plane)}.to raise_error "Airport is full."
   end
@@ -11,13 +15,13 @@ describe Airport do
   describe "#land" do
 
     it "returns a message if a plane has landed" do
+      subject = Airport.new(good_weather)
       expect(subject.land(plane)).to eq "You have landed plane: #{plane}"
     end
 
     it "raises an error if trying to land in a storm" do
-      airport1 = Airport.new
-      airport1.weather_report
-      expect{airport1.land(plane)}.to raise_error "You cannot land in a storm."
+      subject = Airport.new(bad_weather)
+      expect{subject.land(plane)}.to raise_error "You cannot land in a storm."
     end
 
   end
@@ -35,10 +39,8 @@ describe Airport do
     end
 
     it "raises an error if trying to take off in a storm" do
-      airport1 = Airport.new
-      airport1.land(plane)
-      airport1.weather_report
-      expect{airport1.take_off}.to raise_error "You cannot take off in a storm."
+      subject = Airport.new(bad_weather)
+      expect{subject.take_off}.to raise_error "You cannot take off in a storm."
     end
 
   end
