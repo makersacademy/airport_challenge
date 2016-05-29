@@ -1,4 +1,4 @@
-require_relative "planes"
+require "planes"
 
 class Airport
 
@@ -14,9 +14,13 @@ class Airport
     @terminal << plane if plane.at_airport? == false && !terminal_full?
   end
 
-  def plane_departure
+  def plane_departure(plane)
     fail "There are no planes at the terminal to depart." if terminal_empty?
-    @terminal.pop if @terminal[-1].at_airport?
+    if @terminal.include?(plane)
+      @terminal.delete(plane)
+    else
+      "This plane is not in our airport."
+    end
   end
 
   def see_terminal
@@ -32,4 +36,6 @@ class Airport
   def terminal_empty?
     @terminal.empty?
   end
+
+
 end

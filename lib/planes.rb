@@ -1,4 +1,4 @@
-require_relative 'weather'
+require_relative 'traffic_control'
 
 class Plane
 
@@ -6,16 +6,14 @@ class Plane
     @land = false
   end
 
-  def land(weather)
+  def land(traffic_control)
     fail "Plane has already landed." if at_airport?
-    @land = weather.state == "sunny" ? true : false
-    return at_airport? ? "The plane has successfully landed." : "The plane could not land due to adverse weather conditions."
+    @land = (traffic_control.permission?) ? true : false
   end
 
-  def take_off(weather)
-    fail "Plane has already taken off." if !at_airport?
-    @land = weather.state == "sunny" ? false : true
-    return !at_airport? ? "The plane has successfully taken_off." : "The plane could not take_off due to adverse weather conditions."
+  def take_off(traffic_control)
+    fail "Plane has already taken off." unless at_airport?
+    @land = (traffic_control.permission?) ? false : true
   end
 
   def at_airport?
