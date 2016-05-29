@@ -5,9 +5,9 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @capacity = []
+  def initialize(hanger = DEFAULT_CAPACITY)
     @weather = Weather.new
+    @hanger = []
   end
 
   def land(plane)
@@ -17,30 +17,34 @@ class Airport
   end
 
   def take_off
+    fail "The hanger is empty." if empty?
     fail "You cannot take off in a storm." if weather.stormy?
     plane_departure
   end
 
-  def weather_check
+  def weather_report
     weather.weather_forecast
-    weather.stormy?
   end
 
   private
 
-  attr_accessor :capacity, :weather_report
+  attr_accessor :hanger
   attr_reader :plane, :weather
 
   def full?
     aircraft_hanger.length >= DEFAULT_CAPACITY
   end
 
+  def empty?
+    aircraft_hanger.empty?
+  end
+
   def aircraft_hanger
-    capacity
+    hanger
   end
 
   def plane_departure
-    departure = capacity.pop
+    departure = aircraft_hanger.pop
     "The flight now leaving is: #{departure}"
   end
 
@@ -48,6 +52,4 @@ class Airport
     aircraft_hanger << plane
     "You have landed plane: #{plane}"
   end
-
-
 end
