@@ -21,7 +21,7 @@ class Plane
   end 
 
   def landed?
-    position.airport?
+    position.can_land_here?
   end
 
   def new_weather(weather)
@@ -49,7 +49,7 @@ class Plane
     end
 
     def change_makes_sense?(new_pos)
-      it_makes_sense = new_pos.airport?^landed?
+      it_makes_sense = new_pos.can_land_here?^landed?
       fail BAD_CMD_ERR_MSG unless it_makes_sense
     end
 
