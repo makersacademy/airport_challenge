@@ -2,6 +2,7 @@ require 'airport.rb'
 
 describe "Airport" do 
   subject(:airport) { Airport.new }
+
   
   describe "#take off" do 
 
@@ -30,9 +31,7 @@ describe "Airport" do
         airport.stub(:stormy?) { true }
         expect{airport.land(Plane.new)}.to raise_error("Bad weather")
       end
-
     end
-
   end 
 
   describe "#land" do
@@ -52,7 +51,7 @@ describe "Airport" do
       plane = Plane.new
       Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
       expect{ airport.land(plane) }.to raise_error "Airport is full"
-      end
+    end
 
     context "adding weather to landing" do 
 
@@ -64,9 +63,7 @@ describe "Airport" do
       it "shows planes that have landed" do
         expect(airport).to respond_to(:planes)
       end
-
     end
-  
   end
 
   describe "initialization" do 
@@ -78,8 +75,6 @@ describe "Airport" do
     it "can set capacity" do 
       expect(Airport.new(50).capacity).to eq 50
     end 
-  
   end
-
 end
 
