@@ -15,19 +15,19 @@ describe Plane do
 
   end
 
-# #   # describe "#land" do
+  describe "#land" do
 
-# #   #   it "remembers the current airport at which it is landed" do
-# #   #     plane.land(airport)
-# #   #     expect(plane.airport).to eq airport
-# #   #   end
+    it "remembers the current airport at which it is landed" do
+      plane.land(airport)
+      expect(plane.airport).to eq airport
+    end
 
 # #   #   it "raises an error if already landed at same airport" do
 # #   #     plane.land(airport)
 # #   #     expect { plane.land(airport) }.to raise_error "Plane cannot land: already landed at this airport"
 # #   #   end
 
-# #   # end
+  end
 
 # #   # describe "#airport" do
 

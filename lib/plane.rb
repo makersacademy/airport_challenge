@@ -6,4 +6,12 @@ class Plane
     fail "Plane cannot take-off: plane already flying"
   end
 
+  def land(airport)
+    @airport = airport
+  end
+
+  def airport
+    @airport
+  end
+
 end
