@@ -1,2 +1,2 @@
-require './lib/plane.rb'
+require './lib/aeroplane.rb'
 require './lib/airport.rb'

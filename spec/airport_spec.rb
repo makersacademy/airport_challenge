@@ -9,9 +9,12 @@ describe Airport do
             :take_off => true)
   end
   let(:plane_spy){ spy(:plane_spy) }
-  
+  let(:sunny) { double(:sunny, :current_weather => "sunny") }
+  let(:stormy) { double(:stormy, :current_weather => "stormy") }
+  let(:weather_spy) { spy(:weather_spy, :current_weather => "sunny") }
+
   before(:each) do
-    @airport = Airport.new
+    @airport = Airport.new(sunny)
     @capacity = @airport.capacity
   end
 
@@ -24,14 +27,19 @@ describe Airport do
 
   context '#init' do
     it 'allows weather to be set' do
-      airport1 = Airport.new("stormy")
+      airport1 = Airport.new(stormy)
       expect(airport1.weather).to eq("stormy")
+    end
+
+    it 'makes a call to weather.current_weather' do
+      airport2 = Airport.new(weather_spy)
+      expect(weather_spy).to have_recieved(:current_weather)
     end
 
     it 'allows capacity to be set' do
       num = rand.to_i
-      airport2 = Airport.new("clear",num)
-      expect(airport2.capacity).to eq(num)
+      airport3 = Airport.new(sunny,num)
+      expect(airport3.capacity).to eq(num)
     end
   end
   context '#land' do
@@ -83,7 +91,7 @@ describe Airport do
 
   context '#weather' do
     before(:each) do
-      @airport = Airport.new("stormy")
+      @airport = Airport.new(stormy)
     end
 
     it 'refuses to launch a plane when stormy' do
@@ -95,4 +103,9 @@ describe Airport do
     end
   end
 
+  context '#set_weather' do
+    it "sets the weather successfully" do
+      expect{@airport.set_weather}.not_to raise_error
+    end
+  end
 end
