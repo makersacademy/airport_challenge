@@ -12,6 +12,12 @@ class Plane
     @destination = nil
   end
 
+  def flying?
+    @flying
+  end
+
+  private
+
   def arrival
     @flying = false
   end
@@ -19,9 +25,4 @@ class Plane
   def departure
     @flying = true
   end
-
-  def flying?
-    @flying
-  end
-
 end

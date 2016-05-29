@@ -47,12 +47,13 @@ describe Airport do
     #   subject.take_off(plane)
     #   expect(subject.instance_variable_get(:@planes)).to eq []
     # end
-    it "changes origin to Current Airport when landed" do
-      allow(subject).to receive(:empty?).and_return(false) #stub
-      allow(subject).to receive(:stormy?).and_return(false) #stub
-      subject.land(plane)
-      expect(plane.origin).to eq Airport::AIRPORT_CODE
-    end
+    
+    # it "changes origin to Current Airport when landed" do
+    #   allow(subject).to receive(:empty?).and_return(false) #stub
+    #   allow(subject).to receive(:stormy?).and_return(false) #stub
+    #   subject.land(plane)
+    #   expect(plane.origin).to eq Airport::AIRPORT_CODE
+    # end
 
     # it "#take_off raises error if plane is not in the airport" do
     #   allow(subject).to receive(:empty?).and_return(false) #stub
