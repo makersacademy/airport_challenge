@@ -18,4 +18,4 @@ Boris Bikes project steps:
 	- Run Rspec to check method
 	- add the method to the class of the object (e.g. add method ‘land’ to plane class)
 	- Run the Rspec
-9. 
+9. complete 

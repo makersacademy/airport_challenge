@@ -48,3 +48,6 @@ Plane			Cannot land at airport
 
 Controller
 Airport			Default Maximum capacity?
+
+
+Storm is a condition
