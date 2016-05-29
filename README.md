@@ -83,7 +83,7 @@ $ irb
 RuntimeError: Cannot land as airport is full
 ```
 
-######Weather is random and stormy weather prevents landing and take_off
+######Weather is random and stormy weather prevents landing and take off
 ```
 $ irb
 2.3.0 :001 > airport = Airport.new

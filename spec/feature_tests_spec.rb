@@ -6,7 +6,9 @@ describe 'Feature Tests' do
   let(:plane) { Plane.new }
 
   it 'can instruct planes to land or take off and confirm it happened' do
-    plane1, plane2, plane3 = Plane.new, Plane.new, Plane.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
 
     airport.land(plane1)
     airport.land(plane2)
