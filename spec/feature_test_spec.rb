@@ -3,12 +3,13 @@ require 'plane'
 require 'weather'
 
 describe "Program Feature Test" do
-
+  let(:bad_weather) {double(:weather, stormy?: true)}
+  let(:good_weather) {double(:weather, stormy?: false)}
   # As an air traffic controller 
   # So I can get passengers to a destination 
   # I want to instruct a plane to land at an airport and confirm that it has landed 
   it "instructs a plane to land at an airport and confirm that it has landed " do
-    plane = Plane.new
+    plane = Plane.new(good_weather)
     airport = Airport.new
     plane.land(airport)
     plane.landed?
@@ -18,7 +19,7 @@ describe "Program Feature Test" do
   # So I can get passengers on the way to their destination 
   # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
   it "instructs a plane to take off from an airport and confirm that it is no longer in the airport" do
-    plane = Plane.new
+    plane = Plane.new(good_weather)
     airport = Airport.new
     plane.land(airport)
     plane.position == airport #should be true
@@ -30,7 +31,7 @@ describe "Program Feature Test" do
   # To ensure safety 
   # I want to prevent takeoff when weather is stormy
   it "prevent takeoff when weather is stormy" do
-    plane = Plane.new
+    plane = Plane.new(good_weather)
     airport = Airport.new
     weather = Weather.new
     plane.land(airport)
@@ -48,16 +49,14 @@ describe "Program Feature Test" do
   # To ensure safety 
   # I want to prevent landing when weather is stormy 
   it "prevent landing when weather is stormy" do
-    plane = Plane.new
+    plane = Plane.new(bad_weather)
     airport = Airport.new
-    weather = Weather.new
-    plane.new_weather(weather)
     begin
       plane.land(airport)
     rescue
       "error"
     end
-    plane.position == airport #should be true
+    # plane.position == airport #should be true
   end
 
   # As an air traffic controller 
@@ -68,7 +67,7 @@ describe "Program Feature Test" do
     planes = []
     airport = Airport.new(test_capacity)
     test_capacity.times do |i|
-      planes[i] = Plane.new
+      planes[i] = Plane.new(good_weather)
       planes[i].land(airport)
     end
     begin

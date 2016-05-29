@@ -3,9 +3,3 @@ class Weather
         rand(1..2) == 1
     end
 end
-
-class NoWeather
-    def stormy?
-        false
-    end
-end
