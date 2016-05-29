@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/awye765/airport_challenge.svg?branch=master)](https://travis-ci.org/awye765/airport_challenge)
 <a href='https://coveralls.io/github/awye765/airport_challenge?branch=master'><img src='https://coveralls.io/repos/github/awye765/airport_challenge/badge.svg?branch=master' alt='Coverage Status' /></a>
 
+![alt tag](https://s-media-cache-ak0.pinimg.com/736x/9f/3a/b7/9f3ab757006005c183e5d17fe04a63e0.jpg)
+
 <h1>Introduction</h1>
 
 <h2>Makers Academy, Week 1 Solo Project</h2>
@@ -9,7 +11,7 @@
 This is a solo project completed at the end of week 1 of the <a href="http://www.makersacademy.com/">Makers Academy</a> full stack developer course.
 
 <h2>Project aim</h2>
-To replicate a working airport system using Ruby.
+To replicate a rudimentary working airport system using Ruby.
 
 <h2>Project tech stack</h2>
 
