@@ -17,7 +17,7 @@ feature 'Instructing plane to take off from airport' do
     end
 
     context 'and weather conditions are bad' do
-      scenario 'Air traffic controller cannot instruct take off (error is raised)' do
+      scenario 'Traffic controller cannot instruct take off (error raised)' do
         allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
         plane = Plane.new
         airport = Airport.new

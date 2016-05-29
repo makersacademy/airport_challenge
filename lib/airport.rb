@@ -13,11 +13,19 @@ class Airport
   end
 
   def receive(vehicle)
-    @receive_dispatcher.travel_allowed?(self) ? (@vehicles_parked << vehicle) : (raise 'Travel not allowed at this time')
+    if @receive_dispatcher.travel_allowed?(self)
+       @vehicles_parked << vehicle
+    else
+      fail 'Travel not allowed at this time'
+    end
   end
 
   def release(vehicle)
-    @release_dispatcher.travel_allowed? ? (@vehicles_parked.delete(vehicle)) : (raise 'Travel not allowed at this time')
+    if @release_dispatcher.travel_allowed?
+       @vehicles_parked.delete(vehicle)
+    else
+      fail 'Travel not allowed at this time'
+    end
   end
 
   def parked?(vehicle)
