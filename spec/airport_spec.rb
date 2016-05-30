@@ -17,13 +17,16 @@ describe Airport do
     expect{airport.land(plane)}.to raise_error 'Sorry bad weather, find another airport' if airport.stormy
     end
 
-    it 'should not allow planes to land if the airport is full' do
-      Airport::DEFAULT_CAPACITY.times {airport.land(Plane.new)}
-      plane = double(:plane,landed: false)
-    expect{airport.land(plane)}.to raise_error 'Sorry, the airport is full. Good luck finding another airport'
 
+    context 'if the weather is not stormy' do
+      before { allow(airport).to receive(:stormy).and_return(false) }
+        it 'should not allow planes to land if the airport is full' do
+
+          Airport::DEFAULT_CAPACITY.times {airport.land(Plane.new)}
+          plane = double(:plane,landed: false)
+          expect{airport.land(plane)}.to raise_error 'Sorry, the airport is full. Good luck finding another airport'
+        end
     end
-
 
 
   end

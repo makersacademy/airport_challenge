@@ -13,8 +13,8 @@ class Airport
 
   def land plane
     raise 'The plane is on the ground Fool!' if plane.landed
-    raise 'Sorry bad weather, find another airport' if self.stormy
     raise 'Sorry, the airport is full. Good luck finding another airport' if self.full
+    raise 'Sorry bad weather, find another airport' if self.stormy
     plane.landed = true
     @planes << plane
     return self
