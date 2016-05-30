@@ -16,12 +16,16 @@ class Airport
 
 	end
 
+	#Land method for incoming planes:
+
 	def land(plane)
 		weather = Weather.new
 		fail "ERROR: Weather Is Not Good Enough To Land" if bad_weather? == true
 		fail "ERROR: Airport is full" if full?
 		@terminal << plane
 	end	
+
+	#Check plane has landed:
 
 	def landed?(plane)
 		if @terminal.include? plane
@@ -31,6 +35,8 @@ class Airport
 		end
 	end 
 
+	#Check plane has taken off:
+
 	def taken_off?(plane)
 		if @terminal.include? plane
 			return false 
@@ -39,29 +45,25 @@ class Airport
 		end
 	end
 
+	#Take off method for outgoing planes:
+
 	def take_off(plane)
 		@terminal.delete(plane)
 	end
 
 	private 
 
+	#Maximum capacity reached:
+
 	def full? 
 		@terminal.count >= capacity
 	end
 
+	#Check for bad weather:
+
 	def bad_weather?
 	 	Weather.new.forecast?
 	end
-
-
-	#def weather 
-	#create a random number generator which outputs a number between 1 and 5 (or so) 
-	#which outputs different weather scenarios depending on the number generated.
-	#this will cause tests to fail at times as the weather won't allow planes to land. This is where the stub comes which allows certain things to be true. 
-	#You can then force the weather to be a 1 (stormy) and check the result....
-	#GOOGLE THE 'ALLOW' STUB!!!!!
-
-
 end
 
 
