@@ -18,13 +18,11 @@ describe Airport do
 
   describe '#land' do
     it 'cannot allow plane to land if airport full' do
-      allow(plane).to receive(:in_air?).and_return(true)
-      allow(plane).to receive(:on_ground).and_return(false)
       Airport::DEFAULT_CAPACITY.times{subject.land(plane)}
       expect {subject.land(plane)}.to raise_error("The airport is at full capacity.")
     end
     it 'cannot land place when already landed' do
-      allow(plane).to receive(:in_air).and_return(false)
+      allow(plane).to receive(:in_air?).and_return(true)
       expect {subject.land(plane)}.to raise_error("You already landed, silly.")
     end
     it 'cannot land plane when stormy' do

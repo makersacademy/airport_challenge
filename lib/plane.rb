@@ -14,4 +14,8 @@ class Plane
     @airborne = false
   end
 
+  def lift_off
+    @airborne = true
+  end
+
 end

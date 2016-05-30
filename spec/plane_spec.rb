@@ -14,4 +14,8 @@ describe Plane do
     expect(subject.in_air?).to eq true
   end
 
+  it 'responds to lift off' do
+    expect(subject).to respond_to :lift_off
+  end
+
 end
