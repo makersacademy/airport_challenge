@@ -35,7 +35,7 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(false)
       plane = Plane.new
       subject.land(plane)
-      expect{(subject.takeoff(plane))}
+      expect{subject.takeoff(plane)}
     end
 
     it 'prevents plane from taking off if stormy' do
