@@ -48,7 +48,17 @@ describe Airport do
 
   describe '#stormy' do
     it {should respond_to(:stormy)}
+  end
 
+  describe '#capacity' do
+    it 'has a default capacity' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'has a default capacity that can be overriden' do
+      airport2 = Airport.new((rand(20)+2))
+      expect(airport.capacity).not_to eq(airport2.capacity)
+    end
 
   end
 

@@ -3,12 +3,14 @@ class Airport
 
   attr_reader :stormy
   attr_reader :plane
+  attr_reader :capacity
 
   DEFAULT_CAPACITY = 1
 
-  def initialize
+  def initialize capacity = DEFAULT_CAPACITY
     rand(2) == 1 ? @stormy = true : @stormy = false
     @planes = Array.new
+    @capacity = capacity
   end
 
   def land plane
@@ -31,6 +33,8 @@ class Airport
   def full
     @planes.count >= DEFAULT_CAPACITY
   end
+
+
 
 
 
