@@ -12,7 +12,8 @@ describe Airport do
 	it 'prevents landing when airport is full' do 
 	plane = Plane.new
 	capacity = Airport::DEFAULT_CAPACITY 
-	capacity.times {subject.land(plane)}
+	capacity.times {subject.land(Plane.new)}
+	allow(subject).to receive(:stormy?).and_return(false)
 	expect{subject.land(plane)}.to raise_error('Cannot land: airport is full')
 	end
 
@@ -31,6 +32,7 @@ describe Airport do
 
 	it 'raises an error when the airport is empty and there are no planes to take-off' do
 	plane = Plane.new
+	allow(subject).to receive(:stormy?).and_return(false)
 	expect{subject.take_off(plane)}.to raise_error("No planes available")
 
 	end

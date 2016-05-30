@@ -23,7 +23,7 @@ def land(plane)
 end 
 
 def take_off(plane)
-	raise "No planes available" if empty?
+	raise "No planes available" if empty? && !stormy?
 	raise "Cannot take-off: it is too dangerous to take off in stormy weather" if stormy?
 	plane = @planes.pop
 	plane.take_off
