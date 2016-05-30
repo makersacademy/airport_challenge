@@ -10,7 +10,6 @@ let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: 
   describe '#land' do
 
     context 'when not stormy' do
-
       before do 
         allow(airport).to receive(:stormy?).and_return false
       end
@@ -44,18 +43,30 @@ let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: 
   end
 
   describe '#take_off' do
-    it 'allows a plane to take off from the airport' do
-      allow(airport).to receive(:stormy?).and_return false
-      airport.land(plane)
-      expect(airport.take_off(plane)).to eq "The plane has taken off"
+    context ' when not stormy' do
+      before do 
+        allow(airport).to receive(:stormy?).and_return false
+      end
+        it 'allows a plane to take off from the airport' do
+          airport.land(plane)
+          expect(airport.take_off(plane)).to eq "The plane has taken off"
+        end
+        it 'won\'t allow a plane to take off if the airport is empty' do
+          expect{ airport.take_off(plane) }.to raise_error("There are no planes available for take off")
+        end
+        it 'no longer has the plane after takeoff' do
+          allow(plane).to receive(:flying?).and_return(true)
+          expect(airport.in_airport?(plane)).to eq false
+        end
     end
-    it 'won\'t allow a plane to take off if the airport is empty' do
-      expect{airport.take_off(plane)}.to raise_error("There are no planes available for take off")
-    end
-    it 'no longer has the plane after takeoff' do
-      allow(plane).to receive(:flying?).and_return(true)
-      expect(airport.in_airport?(plane)).to eq false
-    end
+    context' when stormy' do
+      before do 
+        allow(airport).to receive(:stormy?).and_return true
+      end
+        it 'raises an error' do
+          expect{ airport.take_off(plane) }.to raise_error("Too stormy to take-off!")
+        end
+      end
   end
 
   describe '#initialize' do

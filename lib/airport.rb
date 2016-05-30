@@ -21,6 +21,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Too stormy to take-off!" if stormy?
     fail "There are no planes available for take off" if empty?
     @landed_planes.pop
     "The plane has taken off"
