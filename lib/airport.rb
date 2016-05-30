@@ -18,7 +18,7 @@ def land(plane)
 	raise "Cannot land: it is too dangerous to land in stormy weather" if stormy?
 	# raise  "Plane is already on the ground" unless flying?
 	@planes << plane
-	p "Plane has landed"
+
 end 
 
 def take_off(plane)

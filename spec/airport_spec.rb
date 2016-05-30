@@ -6,7 +6,7 @@ describe Airport do
 # describe "#land helps a plane land"
 	it 'instructs a plane to land and confirms it has landed' do
 	plane = Plane.new
-	expect(subject.land(plane)).to eq [plane] && "Plane has landed"
+	expect(subject.land(plane)).to eq [plane]
 	end
 
 	it 'prevents landing when airport is full' do 
