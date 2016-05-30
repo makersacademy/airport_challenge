@@ -1,3 +1,5 @@
+require 'faker'
+
 module Weather
 
 	def Weather.good_forecast?
