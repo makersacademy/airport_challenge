@@ -15,7 +15,7 @@ class Airport
   def land(plane)
     raise "The airport is at full capacity." if full?
     raise "You already landed, silly." if plane.in_air? == false
-    raise "The weather is to stormy too land!" if stormy?
+    raise "The weather is too stormy to land!" if stormy?
     @planes << plane
     plane.on_ground?
     "The plane has successfully landed."
