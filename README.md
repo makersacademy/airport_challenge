@@ -5,7 +5,7 @@ Weekend 1 Challenge: Created a program that fulfills all 6 user stories below vi
 
 My solution
 ---------
-I created 3 classes: Plane, Airport & Weather. Each encapsulates a set of behaviours as per below:
+I created 3 classes: Plane, Airport & Weather. Each encapsulates a set of behaviours as per below. Classes were created with Single Responsibility in mind, however there is a certain amount of (unavoidable?!) co-dependency between the Plane & Airport classes.
 
 1. Plane
 Planes can:
@@ -14,14 +14,13 @@ Planes can:
 	- Report if they are at_airport?
 	
 2. Airport
-An airport with a specifiable capacity can:
+An airport can:
 	- allow an incoming_plane to land
 	- allow a departing_plane to take_off
-	- an error is raised if it is full, or too stormy
+	- an error is raised if it is full, too stormy, or if the plane has already landed/taken_off
 
 3. Weather
-80% of the time it is sunny; 20% of the time it is stormy.
-
+Weather randomly sets state to sunny (80% of the time) or stormy (20% of the time)
 
 
 Makers Academy Brief
