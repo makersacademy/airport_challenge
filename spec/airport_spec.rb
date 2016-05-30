@@ -2,7 +2,12 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double :plane, :landed? => false }
+  let(:plane) { double :plane, :is_landed => true, :not_landed => true, :landed? => false}
+  let(:plane_landed) { double :plane_landed, :landed? => true, :not_landed => true}
+
+  before(:each) do
+    allow(subject).to receive(:stormy?) { nil }
+  end
    
    context 'Responds to' do
     it '#land' do
@@ -46,15 +51,21 @@ describe Airport do
   context '#take_off' do
     it 'take-off a plane' do
       subject.land(plane)
+      plane.
       subject.take_off(plane)
       expect(subject.planes).to eq([])
     end
 
     it 'does not take-off a plane if weather is stormy' do
-      allow(plane).to receive(:is_landed)
       subject.land(plane)
       allow(subject).to receive(:stormy?) { :true }
-      expect{subject.take_off(plane)}.to raise_error('Error. Unable to take-off plane due to stormy weather')
+      expect{subject.take_off(plane_landed)}.to raise_error('Error. Unable to take-off plane due to stormy weather')
+    end
+
+    it 'only allows for planes to take-off from airports they are in' do
+      airport2 = Airport.new
+      airport2.land(plane)
+      expect{subject.take_off(plane_landed)}.to raise_error('Error. Unable to take-off a plane from another airport')
     end
   end
 end

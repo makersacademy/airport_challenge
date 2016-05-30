@@ -16,16 +16,19 @@ class Airport
   end
   
   def land(plane)
-    raise 'Error. Unable to land plane due to stormy weather' if stormy?
     raise 'Error. Unable to land plane due to full capacity' if full?
     raise 'Error. Unable to land a plane that is already landed' if planes.include?(plane)
+    raise 'Error. Unable to land plane due to stormy weather' if stormy?
+    plane.is_landed
     @planes << plane
   end
   
   def take_off(plane)
+    raise 'Error. Unable to take-off a plane that is already flying' if !plane.landed?
+    raise 'Error. Unable to take-off a plane from another airport' if plane.landed? && !planes.include?(plane)
     raise 'Error. Unable to take-off plane due to stormy weather' if stormy?
-    raise 'Error. Unable to take-off a plane that is already flying' if !planes.include?(plane)
     @planes.delete(plane)
+    plane.not_landed
   end
   
   private
