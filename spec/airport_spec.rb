@@ -34,7 +34,7 @@ describe Airport do
   describe '#take_off' do
     it {should respond_to(:take_off).with(1).argument}
 
-    it 'should not allow planes to take off if they already took off' do
+    it 'should not allow planes to take off if they are in the airport' do
       plane = double(:plane,landed: false)
       expect{airport.take_off(plane)}.to raise_error 'The plane is in the air Fool!'
     end
