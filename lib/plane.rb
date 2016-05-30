@@ -16,7 +16,9 @@ class Plane
     @flying
   end
 
-  private
+  # private
+  #
+  # attr_reader :arrival, :departure
 
   def arrival
     @flying = false

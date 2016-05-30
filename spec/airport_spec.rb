@@ -30,7 +30,7 @@ describe Airport do
     it "responds to #land" do
   		expect(subject).to respond_to(:land).with(1).argument
     end
-
+    # 
     # it "confirms that plane has landed" do
     #   allow(subject).to receive(:stormy?).and_return(false)
     #   subject.land(plane)
@@ -47,7 +47,7 @@ describe Airport do
     #   subject.take_off(plane)
     #   expect(subject.instance_variable_get(:@planes)).to eq []
     # end
-    
+    #
     # it "changes origin to Current Airport when landed" do
     #   allow(subject).to receive(:empty?).and_return(false) #stub
     #   allow(subject).to receive(:stormy?).and_return(false) #stub
@@ -55,20 +55,20 @@ describe Airport do
     #   expect(plane.origin).to eq Airport::AIRPORT_CODE
     # end
 
-    # it "#take_off raises error if plane is not in the airport" do
-    #   allow(subject).to receive(:empty?).and_return(false) #stub
-    #   allow(subject).to receive(:stormy?).and_return(false) #stub
-    #   expect(subject.instance_variable_get(:@planes)).not_to include(plane)
-    #   expect {subject.take_off(plane)}.to raise_error(Airport::TAKE_OFF_MSG)
-    # end
-    #
-    # it "#land raises error if plane is already the airport" do
-    #   allow(subject).to receive(:empty?).and_return(false) #stub
-    #   allow(subject).to receive(:stormy?).and_return(false) #stub
-    #   allow(subject).to receive(:full?).and_return(false)
-    #   subject.instance_variable_set(:@planes, [plane])
-    #   expect {subject.land(plane)}.to raise_error(Airport::LANDED_MSG)
-    # end
+    it "#take_off raises error if plane is not in the airport" do
+      allow(subject).to receive(:empty?).and_return(false) #stub
+      allow(subject).to receive(:stormy?).and_return(false) #stub
+      expect(subject.instance_variable_get(:@planes)).not_to include(plane)
+      expect {subject.take_off(plane)}.to raise_error(Airport::TAKE_OFF_MSG)
+    end
+
+    it "#land raises error if plane is already the airport" do
+      allow(subject).to receive(:empty?).and_return(false) #stub
+      allow(subject).to receive(:stormy?).and_return(false) #stub
+      allow(subject).to receive(:full?).and_return(false)
+      subject.instance_variable_set(:@planes, [plane])
+      expect {subject.land(plane)}.to raise_error(Airport::LANDED_MSG)
+    end
   end
 
   context "Bad weather" do

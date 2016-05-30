@@ -34,20 +34,20 @@ describe Plane do
     expect(subject.destination).to eq "MAD"
   end
 
-  # it "is not flying at arrival" do
-  #   allow(airport).to receive(:stormy?).and_return(false)
-  #   allow(airport).to receive(:full?).and_return(false)
-  #   airport.land(plane)
-  #   expect(plane.flying?).to be false
-  # end
-  #
-  # it "is flying when taken off" do
-  #   allow(airport).to receive(:stormy?).and_return(false)
-  #   allow(airport).to receive(:full?).and_return(false)
-  #   airport.land(plane)
-  #   expect(plane.flying?).to be false
-  #   airport.take_off(plane)
-  #   expect(plane.flying?).to be true
-  # end
+  it "is not flying at arrival" do
+    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport).to receive(:full?).and_return(false)
+    airport.land(plane)
+    expect(plane.flying?).to be false
+  end
+
+  it "is flying when taken off" do
+    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport).to receive(:full?).and_return(false)
+    airport.land(plane)
+    expect(plane.flying?).to be false
+    airport.take_off(plane)
+    expect(plane.flying?).to be true
+  end
 
 end
