@@ -2,8 +2,8 @@ require 'plane'
 
 describe Plane do
 
-	# subject {Plane}
-	# let(:bike) { double :bike, broken?: false }
+	subject {Plane.new}
+
 	let(:airport) {double :airport, class: Airport}
 
 	it { is_expected.to respond_to(:land).with(1).argument }
@@ -12,6 +12,7 @@ describe Plane do
 
 	it 'checks that the plane take off from airport' do
 		expect(subject.take_off(airport)).to eq "Departed to: #{airport}"
+		expect(subject.instance_variable_get(:@status)).to eq "Departed to: #{airport}"
 	end
 
 	it 'checks that planes only take off from actual airplanes' do
@@ -20,6 +21,7 @@ describe Plane do
 
 	it 'checks that the plane land in an airport' do
 		expect(subject.land(airport)).to eq "Landed in: #{airport}"
+		expect(subject.instance_variable_get(:@status)).to eq "Landed in: #{airport}"
 	end
 
 	it 'checks that planes only land in an actual airplanes' do
