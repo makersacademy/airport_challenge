@@ -20,7 +20,7 @@ An airport can:
 	- an error is raised if it is full, too stormy, or if the plane has already landed/taken_off
 
 3. Weather
-Weather randomly sets state to sunny (80% of the time) or stormy (20% of the time)
+- Weather randomly sets state to sunny (80% of the time) or stormy (20% of the time)
 
 
 Makers Academy Brief
