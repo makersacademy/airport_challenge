@@ -1,4 +1,4 @@
-require 'airport'
+require 'Airport'
 
 describe 'feature test' do
 
