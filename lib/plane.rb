@@ -10,8 +10,12 @@ def flying?
 	@flying ? true : false
 end 
 
-def landed?
+def land
 	@flying = false
+	return self
+end 
+def take_off
+	@flying = true
 	return self
 end
 

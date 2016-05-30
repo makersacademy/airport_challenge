@@ -17,18 +17,21 @@ def land(plane)
 	raise "Cannot land: airport is full" if full? 
 	raise "Cannot land: it is too dangerous to land in stormy weather" if stormy?
 	# raise  "Plane is already on the ground" unless flying?
+	plane.land
 	@planes << plane
+
+
 
 end 
 
 def take_off(plane)
 	raise "No planes available" if empty?
-	raise "Cannot take-off: it is too dangerous to land in stormy weather" if stormy?
+	raise "Cannot take-off: it is too dangerous to take off in stormy weather" if stormy?
 	plane = @planes.pop
-	return plane
-	p "Plane has taken off"
+	plane.take_off
+	plane
+	
 end
-
 
 private
 
@@ -38,7 +41,7 @@ private
 
 	def empty?
 	@planes.empty?
-	end 
+   	end
 
 	def stormy?
 		if rand(100) > 95 then
