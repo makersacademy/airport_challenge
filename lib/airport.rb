@@ -16,11 +16,9 @@ class Airport
 def land(plane)
 	raise "Cannot land: airport is full" if full? 
 	raise "Cannot land: it is too dangerous to land in stormy weather" if stormy?
-	# raise  "Plane is already on the ground" unless flying?
+	raise  "Plane is already on the ground" unless plane.flying?
 	plane.land
 	@planes << plane
-
-
 
 end 
 
@@ -29,24 +27,24 @@ def take_off(plane)
 	raise "Cannot take-off: it is too dangerous to take off in stormy weather" if stormy?
 	plane = @planes.pop
 	plane.take_off
-	plane
-	
+	plane	
 end
 
 private
 
-	def full?
+def full?
 	@planes.length >= capacity
-	end 
+end 
 
-	def empty?
+   def empty?
 	@planes.empty?
-   	end
+   end
 
 	def stormy?
-		if rand(100) > 95 then
-			return true
-		else false
-		end 
-	end 
-end 
+		rand(100) > 95 ? true : false
+	end
+
+	def flying?
+	plane.flying? ? true : false
+	end
+end
