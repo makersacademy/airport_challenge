@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :plane, :capacity
-  DEFAULT_CAPACITY= 2
+  DEFAULT_CAPACITY= 1
 
   def initialize(capacity= DEFAULT_CAPACITY)
     @plane= []
@@ -10,11 +10,11 @@ class Airport
   end
 
   def landing(plane)
-    raise "sorry, the airport is FULL" if full?
+    fail "sorry, the airport is FULL" if full?
     if plane.landed?
       @plane << plane
     else
-      "the plane doesnt have the permission to land!"
+      "no permission to land!"
     end
   end
 
