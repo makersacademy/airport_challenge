@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
-  subject (:airport) {airport = Airport.new}
+  subject (:airport) {described_class.new}
+
 
   describe '#land' do
     it 'should not allow planes to land if they already landed' do
@@ -9,9 +10,9 @@ describe Airport do
     expect{airport.land(plane)}.to raise_error 'The plane is on the ground Fool!'
     end
 
-    it 'should not allow planes to land if the weather is stormy' do
+    it 'stops planes from landing by stormy weather' do
     plane = double(:plane,landed: false)
-    expect{airport.land(plane)}.to raise_error 'Sorry bad weather, find another airport' if airport.stormy
+    expect{airport.land(plane)}.to raise_error 'The weather is not adequate' if airport.stormy
     end
     context 'if the weather is not stormy' do
       before { allow(airport).to receive(:stormy).and_return(false) }
@@ -33,7 +34,7 @@ describe Airport do
 
     it 'should not allow planes to take off if the weather is stormy' do
       plane = double(:plane,landed: true)
-      expect{airport.take_off(plane)}.to raise_error 'Sorry bad weather, wait a moment' if airport.stormy
+      expect{airport.take_off(plane)}.to raise_error 'The weather is not adequate' if airport.stormy
     end
 
   end
