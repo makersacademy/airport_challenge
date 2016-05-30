@@ -22,9 +22,9 @@ class Airport
   end
 
   def take_off(plane)
-    raise "There are no planes at the airport." if empty?
     raise "You already took off, silly." if plane.in_air? == true
     raise "The weather is too stormy to take off!" if stormy?
+    raise "There are no planes at the airport." if empty?
     @planes.pop
     plane.lift_off
     "The plane has successfully taken off."
