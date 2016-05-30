@@ -10,34 +10,34 @@ let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: 
   describe '#land' do
 
     it 'allows a flying plane to land' do
+      allow(airport).to receive(:stormy?).and_return false
       expect(airport.land(plane)).to eq "The plane has now landed"
     end
     it 'houses the plane at the airport after landing' do
+      allow(airport).to receive(:stormy?).and_return false
       airport.land(plane)
       expect(airport.in_airport?(plane)).to eq true    
     end
     it 'will raise an error if a plane has already landed' do
+      allow(airport).to receive(:stormy?).and_return false
       allow(plane).to receive(:landed?).and_return true
       expect{airport.land(plane)}.to raise_error("This plane has already landed")  
     end
     it 'raises an error when there is no space available at default capacity' do
+      allow(airport).to receive(:stormy?).and_return false
       Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
       expect{subject.land(plane)}.to raise_error("The airport is full!")
     end 
-    it 'raises an error at 11 planes when capacity is set to 10' do
-      airport = Airport.new(10)
-      10.times {airport.land(plane)}
-      expect{airport.land(plane)}.to raise_error("The airport is full!")
+    it 'raises an error when plane attempts to land in stormy weather'do
+    allow(airport).to receive(:stormy?).and_return true
+      expect{ airport.land(plane) }.to raise_error("Too stormy to land!")
     end
-    it 'accepts 10 planes when capacity is set to 10' do
-      airport = Airport.new(10)
-      9.times {airport.land(plane)}
-      expect(airport.land(plane)).to eq("The plane has now landed")
-    end
+
   end
 
   describe '#take_off' do
     it 'allows a plane to take off from the airport' do
+      allow(airport).to receive(:stormy?).and_return false
       airport.land(plane)
       expect(airport.take_off(plane)).to eq "The plane has taken off"
     end

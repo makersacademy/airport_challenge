@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Too stormy to land!" if stormy?
     fail "The airport is full!" if full?
     fail "This plane has already landed" if plane.landed?
     plane.land
@@ -37,6 +38,10 @@ class Airport
 
   def full? 
     true if @landed_planes.length >= capacity
+  end
+
+  def stormy?
+    rand(1..6) > 4
   end
 
 end
