@@ -27,7 +27,7 @@ class Airport
     raise 'Error. Unable to take-off a plane that is already flying' if !plane.landed?
     raise 'Error. Unable to take-off a plane from another airport' if plane.landed? && !planes.include?(plane)
     raise 'Error. Unable to take-off plane due to stormy weather' if stormy?
-    @planes.delete(plane)
+    @planes.pop
     plane.not_landed
   end
   

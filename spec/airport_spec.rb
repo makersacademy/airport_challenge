@@ -50,16 +50,17 @@ describe Airport do
 
   context '#take_off' do
     it 'take-off a plane' do
+      plane = Plane.new
       subject.land(plane)
-      plane.
       subject.take_off(plane)
       expect(subject.planes).to eq([])
     end
 
     it 'does not take-off a plane if weather is stormy' do
+      plane = Plane.new
       subject.land(plane)
       allow(subject).to receive(:stormy?) { :true }
-      expect{subject.take_off(plane_landed)}.to raise_error('Error. Unable to take-off plane due to stormy weather')
+      expect{subject.take_off(plane)}.to raise_error('Error. Unable to take-off plane due to stormy weather')
     end
 
     it 'only allows for planes to take-off from airports they are in' do
