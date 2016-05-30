@@ -15,7 +15,7 @@ class Airport
 
   def land plane
     fail 'The plane is on the ground Fool!' if plane.landed
-    fail 'Sorry, the airport is full. Good luck finding another airport' if self.full
+    fail 'Sorry, the airport is full.' if self.full
     fail 'Sorry bad weather, find another airport' if self.stormy
     plane.landed = true
     @planes << plane
