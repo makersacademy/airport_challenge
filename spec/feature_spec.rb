@@ -3,28 +3,27 @@ require 'plane.rb'
 # require 'Faker'
 
 
-describe 'Feature testing' do
+describe 'Let\'s make it \'em fly, yoo' do
 
 	before(:each) do
-		@testy_Airport = Airport.new(3)
+		@testy_Airport = Airport.new
+		@other_testy_Airport = Airport.new(3)
 		@testy_Plane = Plane.new
+		# let't not make it rain just yet
+		allow(Weather).to receive(:good_forecast?).and_return(true)
 	end
 
-	it 'Checks it\'s an airport' do
-		expect(@testy_Airport.class).to eq Airport
+	it 'Let\'s testy_Plane to takes off from testy_Airport and land in other_testy_Airport' do
+		# first land a plane in testy_airport
+		@testy_Airport.arrival(@testy_Plane)
+		# now lets make that plane fly!!
+		expect(@testy_Airport.departure(@other_testy_Airport)).to eq "Departed to: #{@other_testy_Airport}"
+		# check the status of testy_plane
+		expect(@testy_Plane.instance_variable_get(:@status)).to eq "Departed to: #{@other_testy_Airport}"
+		# "Crew, prepare for landing.."
+		expect(@other_testy_Airport.arrival(@testy_Plane)).to eq "Landed in: #{@other_testy_Airport}"
+		# check the status just one more time
+		expect(@testy_Plane.instance_variable_get(:@status)).to eq "Landed in: #{@other_testy_Airport}"
 	end
 
-	it 'Checks it\'s a plane' do
-		expect(@testy_Plane.class).to eq Plane
-	end
-
-	it 'testyPlane takes off' do
-		expect{@testy_Plane.take_off("airport")}.to raise_error("Can only take off from an airport")
-		# expect).to raise_error("Can only take off from an airport")
-		p @testy_Plane.take_off(@testy_Airport)
-	end
-
-	it 'lets me play about here' do 
-		p @testy_Airport.arrival(@testy_Plane)
-	end
 end
