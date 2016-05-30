@@ -1,9 +1,12 @@
 require 'Airport'
-require 'Plane'
 
 describe Airport do
 
+#subject(:airport) {described_class.new}
 
+  it 'has a capacity' do
+   expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+end 
 
 	describe '#land' do
 
@@ -11,16 +14,15 @@ describe Airport do
 	it 'instructs a plane to #land' do
 	plane = Plane.new
 	subject.land(plane)
-	expect(subject.land(plane)).to eq "The plane has just landed"
 
 	end 
 
 	#has a new plane when landed
 
 	it 'has a plane when landed' do
-	plane = Plane.new
-	subject.land(plane)
-	expect(subject.planes).to include plane
+	#plane = Plane.new
+	#subject.land(plane)
+	#expect(subject.planes).to include plane
 	end 
 
 	#no landing when stormy
@@ -37,12 +39,11 @@ describe Airport do
 end 
 	describe '#takeoff' do
 
-	#instruct a plane to takeoff and reports it
+	#instruct a plane to takeoff and confirm landed
 	it 'instructs a plane to #takeoff' do
 
-	plane = Plane.new
-	subject.takeoff(plane)
-	expect(subject.takeoff(plane)).to eq "The plane has now just departed"
+	#plane = Plane.new
+	#subject.takeoff(plane)
 
 
 	end 
@@ -50,9 +51,9 @@ end
 	#no longer has the new plane when landed
 
 	it 'does not have the new plane after take off' do
-	plane = Plane.new
-	subject.takeoff(plane)
-	expect(subject.planes).to_not include plane
+	#plane = Plane.new
+	#subject.takeoff(plane)
+	#expect(subject.planes).to_not include plane
 	end 
 
 	#no takeoff when stormy

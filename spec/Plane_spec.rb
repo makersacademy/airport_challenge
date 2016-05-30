@@ -1,6 +1,2 @@
-require 'Plane'
-
-describe Plane do
-
-
+class Plane
 end 
