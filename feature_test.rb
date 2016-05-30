@@ -3,7 +3,8 @@ Dir['./lib/*'].each {|file| require file}
 
 airport= Airport.new
 plane= Plane.new
-puts "I'm a Traffic Controler and I can see the #{plane} is approaching my empty #{airport}"
+weather= Weather.new
+puts "I'm a Traffic Controler and because the #{weather} is nice I can see the #{plane} is approaching my empty #{airport} :)"
 
 puts "the #{plane}:     ...............................................   -/--'  ....I'm r..r..rrrready to land! Can I land here, please?"
 puts "TC:            Copy that! Permission: #{plane.may_i_land?(true)}"
