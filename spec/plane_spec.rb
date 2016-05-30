@@ -18,4 +18,15 @@ describe Plane do
     expect(subject).to respond_to :lift_off
   end
 
+  describe '#on_ground?' do
+    it 'changes plane status' do
+      expect(subject.on_ground?).to eq false
+    end
+  end
+
+  describe '#lift_off' do
+    it 'changes plane status' do
+      expect(subject.lift_off).to eq true
+    end
+  end
 end
