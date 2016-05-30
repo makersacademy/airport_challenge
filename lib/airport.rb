@@ -17,14 +17,11 @@ class Airport
 	end
 
 	def land(plane)
-		
-		fail "ERROR: Weather Is Not Good Enough To Land" if weather == "Bad Weather"
+		weather = Weather.new
+		fail "ERROR: Weather Is Not Good Enough To Land" if bad_weather? == true
 		fail "ERROR: Airport is full" if full?
-		terminal << plane
-	end
-
-		#p "#{plane} has landed"
-	
+		@terminal << plane
+	end	
 
 	def landed?(plane)
 		if @terminal.include? plane
@@ -49,8 +46,13 @@ class Airport
 	private 
 
 	def full? 
-		terminal.count >= capacity
+		@terminal.count >= capacity
 	end
+
+	def bad_weather?
+	 	Weather.new.forecast?
+	end
+
 
 	#def weather 
 	#create a random number generator which outputs a number between 1 and 5 (or so) 

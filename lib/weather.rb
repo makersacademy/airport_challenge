@@ -2,13 +2,12 @@
 
 class Weather
 
-
-	def weather? 
+	def forecast? 
 		x = rand(1...5)
-			if x == 1 
-			"Bad Weather"
-			else 
-			"Good Weather"
-		end
+		x == 1 
+			# "Bad Weather"
+			# else 
+			# "Good Weather"
+		# end
 	end
 end
