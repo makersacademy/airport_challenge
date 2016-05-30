@@ -21,6 +21,6 @@ describe Weather do
   end
 
   it "generates random weather" do
-    expect(subject).to respond_to(:check_storm)
+    expect(subject.check_storm).to eq(true).or eq(false)
   end
 end
