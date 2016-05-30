@@ -10,7 +10,7 @@ describe Airport do
 		expect(subject.takeoff(plane)).to eq true
 	end
 
-	it 'gets confirmation that *the plane* it instructed to take off, has taken off' do
+	it 'gets confirmation that *the plane* instructed to take off, has...' do
 		plane = Plane.new 
 		plane.tookoff = true
 		planes = subject.planes << plane
