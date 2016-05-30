@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby ENV['CUSTOM_RUBY_VERSION']
 
 gem 'rspec'
 gem 'capybara'
