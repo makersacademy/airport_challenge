@@ -3,11 +3,29 @@ Airport Challenge
 
 Weekend 1 Challenge: Created a program that fulfills all 6 user stories below via TDD. Tests include edge cases & corner cases.
 
-# My solution
+My solution
+---------
+I created 3 classes: Plane, Airport & Weather. Each encapsulates a set of behaviours as per below:
+
+1. Plane
+Planes can:
+	- land
+	- take_off
+	- Report if they are at_airport?
+	
+2. Airport
+An airport with a specifiable capacity can:
+	- allow an incoming_plane to land
+	- allow a departing_plane to take_off
+	- an error is raised if it is full, or too stormy
+
+3. Weather
+80% of the time it is sunny; 20% of the time it is stormy.
 
 
-## Makers Academy Brief
 
+Makers Academy Brief
+=================
 
 
 
