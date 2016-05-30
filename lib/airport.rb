@@ -32,7 +32,7 @@ class Airport
   private
 
   attr_accessor :hanger
-  attr_reader :plane, :weather, :in_flight, :capacity
+  attr_reader :plane, :weather, :capacity
 
   def full?
     aircraft_hanger.length >= capacity

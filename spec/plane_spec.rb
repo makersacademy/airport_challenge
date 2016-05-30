@@ -16,7 +16,7 @@ describe Plane do
     it "can land" do
       plane = Plane.new(false)
       plane.landed
-      expect(plane.flying).to eq false
+      expect(plane.in_flight).to eq false
     end
   end
 
