@@ -8,7 +8,6 @@ describe 'feature test' do
 		airport = Airport.new
 		airport = Airport.new(50)
 		plane = Plane.new
-		airport.land(plane)
-		airport.takeoff(plane)
+		
 	end
 end
