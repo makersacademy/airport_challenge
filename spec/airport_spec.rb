@@ -4,14 +4,15 @@ require 'airport'
 describe Airport do 
 
 let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: nil)}
+let(:weatherforecast) { double :weatherforecast}
   
-  subject(:airport) { described_class.new }
+  subject(:airport) { described_class.new( weatherforecast ) }
 
   describe '#land' do
 
     context 'when not stormy' do
       before do 
-        allow(airport).to receive(:stormy?).and_return false
+        allow(weatherforecast).to receive(:stormy?).and_return false
       end
       it 'allows a flying plane to land' do
         expect(airport.land(plane)).to eq "The plane has now landed"
@@ -27,7 +28,7 @@ let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: 
 
       context 'when full' do
         it 'raises an error' do
-          allow(airport).to receive(:stormy?).and_return false
+          allow(weatherforecast).to receive(:stormy?).and_return false
           Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
           expect{subject.land(plane)}.to raise_error("The airport is full!")
         end 
@@ -36,7 +37,7 @@ let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: 
 
     context 'when stormy' do
       it 'raises an error'do
-        allow(airport).to receive(:stormy?).and_return true
+        allow(weatherforecast).to receive(:stormy?).and_return true
         expect{ airport.land(plane) }.to raise_error("Too stormy to land!")
       end
     end
@@ -45,7 +46,7 @@ let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: 
   describe '#take_off' do
     context ' when not stormy' do
       before do 
-        allow(airport).to receive(:stormy?).and_return false
+        allow(weatherforecast).to receive(:stormy?).and_return false
       end
         it 'allows a plane to take off from the airport' do
           airport.land(plane)
@@ -61,7 +62,7 @@ let(:plane) {double(:plane, landed?: false, flying?: true, land: nil, take_off: 
     end
     context' when stormy' do
       before do 
-        allow(airport).to receive(:stormy?).and_return true
+        allow(weatherforecast).to receive(:stormy?).and_return true
       end
         it 'raises an error' do
           expect{ airport.take_off(plane) }.to raise_error("Too stormy to take-off!")

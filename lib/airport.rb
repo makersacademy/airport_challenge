@@ -1,4 +1,5 @@
 require_relative 'plane.rb'
+require_relative 'weatherforecast.rb'
 
 class Airport
 
@@ -6,8 +7,9 @@ class Airport
 
   DEFAULT_CAPACITY = 8
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY , weatherforecast)
     @landed_planes =[]
+    @weatherforecast = weatherforecast
     @capacity = capacity
   end
 
@@ -42,7 +44,7 @@ class Airport
   end
 
   def stormy?
-    #rand(1..6) > 4
+    @weatherforecast.stormy?
   end
 
 end
