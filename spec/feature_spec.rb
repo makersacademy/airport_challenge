@@ -8,6 +8,7 @@ describe 'feature test' do
 		airport = Airport.new
 		airport = Airport.new(50)
 		plane = Plane.new
-		
+		plane.flying?
+
 	end
 end
