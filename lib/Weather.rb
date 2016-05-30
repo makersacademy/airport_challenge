@@ -1,8 +1,10 @@
-class Weather
+#HASHED OUT WEATHER UNTIL I UNDERSTAND IT FURTHER
 
-	def state
-		rand = rand(10)
-		rand <= 8 ? "sunny" : "stormy"
-	end
+#class Weather
 
-end
+	#def state
+	#	rand = rand(10)
+	#	rand <= 8 ? "sunny" : "stormy"
+	#end
+
+#end

@@ -1,15 +1,22 @@
 class Plane
 
-	def at_airport?
-		@at_airport == true ? true : false
-	end
+	attr_accessor :flying
 
-	def land
-		@at_airport = true
-	end
+def initialize
+	@flying = true
+end 
 
-	def take_off
-		@at_airport = false
-	end
+def flying?
+	@flying ? true : false
+end 
+
+def land
+	@flying = false
+	return self
+end 
+def take_off
+	@flying = true
+	return self
+end
 
 end

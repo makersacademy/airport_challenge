@@ -1,71 +1,45 @@
-require 'Airport'
+require 'airport'
 
 describe Airport do
 
-#subject(:airport) {described_class.new}
 
-  it 'has a capacity' do
-   expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-end 
-
-	describe '#land' do
-
+# describe "#land helps a plane land"
 	#instruct a plane to land and confirm landed
-	it 'instructs a plane to #land' do
+	it 'instructs a plane to land' do
+	plane = Plane.new
+	expect(subject.land(plane)).to eq [plane]
+	end
+
+	it 'does not allow landing when airport full' do 
+	plane = Plane.new
+	capacity = Airport::DEFAULT_CAPACITY 
+	capacity.times {subject.land(Plane.new)}
+	allow(subject).to receive(:stormy?).and_return(false)
+	expect{subject.land(plane)}.to raise_error('Airport is full')
+	end
+
+	it 'does not allow landing when stormy' do 
+	plane = Plane.new
+	allow(subject).to receive(:stormy?).and_return(true)
+	expect{subject.land(plane)}. to raise_error "Too stormy to land"
+	end 
+
+
+	it 'instructs a plane to take off' do
 	plane = Plane.new
 	subject.land(plane)
-
+	expect(subject.take_off(plane)).to eq plane 
 	end 
 
-	#has a new plane when landed
+	it 'raises an error when the airport is empty and there are no planes' do
+	plane = Plane.new
+	allow(subject).to receive(:stormy?).and_return(false)
+	expect{subject.take_off(plane)}.to raise_error("No planes available")
 
-	it 'has a plane when landed' do
-	#plane = Plane.new
-	#subject.land(plane)
-	#expect(subject.planes).to include plane
+	end
+	it 'does not allow takeoff when stormy' do 
+	plane = Plane.new
+	allow(subject).to receive(:stormy?).and_return(true)
+	expect{subject.take_off(plane)}. to raise_error "Too stormy to take off"
 	end 
-
-	#no landing when stormy
-
-	it 'does not allow landing when stormy' do
-
-	end 
-
-	#no landing when airport full
-
-	it 'does not allow landing when airport full' do
-	end 
-
-end 
-	describe '#takeoff' do
-
-	#instruct a plane to takeoff and confirm landed
-	it 'instructs a plane to #takeoff' do
-
-	#plane = Plane.new
-	#subject.takeoff(plane)
-
-
-	end 
-
-	#no longer has the new plane when landed
-
-	it 'does not have the new plane after take off' do
-	#plane = Plane.new
-	#subject.takeoff(plane)
-	#expect(subject.planes).to_not include plane
-	end 
-
-	#no takeoff when stormy
-
-	it 'does not allow takeoff when stormy' do
-	end 
-
-	#no takeoff when airport full
-
-	it 'does not allow takeoff when airport full' do
-	end 
-
-end 
-
 end 

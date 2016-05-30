@@ -1,37 +1,52 @@
-require_relative 'Plane'
-class Airport
+require_relative 'plane'
 
-	attr_reader :bikes, :capacity
+class Airport
 
 	DEFAULT_CAPACITY = 20
 
+	attr_reader :capacity
 
-	def initialize(capacity=DEFAULT_CAPACITY)
-		plane = Plane.new
-		@planes = []
+	def initialize(capacity = DEFAULT_CAPACITY)
 		@capacity = capacity
-	end 
-
-
-	def land(plane)
-		#raise "Airport full!" if full?
-		#raise "Too stormy to land!" if weather == "stormy"
-		@planes << plane #if (!full? && weather == "sunny")
+		@planes = []
 		
 	end
 
-	def takeoff(plane)
-		#raise "Too stormy to take off" if weather == "stormy"
-		plane.takeoff
-		@planes.pop
-		"#{plane} is taking off!"
-	end
 
-
-	#private
-	
-	#def full?
-	#	true if @planes.length >= @capacity
-	#end
+def land(plane)
+	raise "Airport is full" if full? 
+	raise "Too stormy to land" if stormy?
+	raise  "Plane is already on the ground" unless plane.flying?
+	plane.land
+	@planes << plane
 
 end 
+
+def take_off(plane)
+	raise "No planes available" if empty? && !stormy?
+	raise "Too stormy to take off" if stormy?
+	plane = @planes.pop
+	plane.take_off
+	plane	
+end
+
+private
+
+def full?
+	@planes.length >= capacity
+end 
+
+   def empty?
+	@planes.empty?
+   end
+
+   #randomizing stormy weather on a scale of 10
+
+	def stormy?
+		rand(10) > 8 ? true : false
+	end
+
+	def flying?
+	plane.flying? ? true : false
+	end
+end
