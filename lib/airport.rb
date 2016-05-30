@@ -5,7 +5,7 @@ require 'weather.rb'
 class Airport
 	include Weather
 
-	def initialize(capacity)
+	def initialize(capacity = 5)
 		@capacity = capacity
 		@planes = []
 	end
@@ -17,9 +17,9 @@ class Airport
 		plane.land(self)
 	end
 
-	def departure(plane)
+	def departure(destination_Airport)
 		fail "Can't take off during stormy weather" if !Weather.good_forecast?
-		@planes.pop.take_off(self)
+		@planes.pop.take_off(destination_Airport)
 	end
 
 	private
