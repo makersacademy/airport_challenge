@@ -4,38 +4,32 @@ require 'airport'
 describe Airport do
 	subject(:airport) { described_class.new }
 
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
+	it 'instructs a plane to take off' do
+		plane = Plane.new 
+		plane.tookoff = true
+		expect(subject.takeoff(plane)).to eq true
+	end
 
+	it 'gets confirmation that *the plane* it instructed to take off, has taken off' do
+		plane = Plane.new 
+		plane.tookoff = true
+		planes = subject.planes << plane
+		expect(subject.takeoff(planes[-1])).to eq true
+	end
 
+	it 'instructs a plane to land' do
+		plane = Plane.new
+		plane.landed = true
 
-# As an air traffic controller 
-# So I can get passengers to a destination 
-# I want to instruct a plane to land at an airport and confirm that it has landed 
+		expect(subject.land(plane)).to eq true
+	end
 
+	it 'gets confirmation that *the plane* it instructed to land, has landed' do
+		plane = Plane.new
+		plane.landed = true
+		planes = subject.planes << plane
 
-
-# As an air traffic controller 
-# So I can get passengers on the way to their destination 
-# I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent takeoff when weather is stormy 
-
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when weather is stormy 
-
-
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when the airport is full 
-
-
+		expect(subject.land(planes[-1])).to eq true
+	end
+	
 end
