@@ -48,6 +48,8 @@ describe Airport do
       expect {subject.take_off(plane)}.to raise_error("The weather is too stormy to take off!")
     end
     it 'cannot take off if airport is empty' do
+      allow(plane).to receive(:in_air?).and_return(false)
+      allow(subject).to receive(:stormy?).and_return(false)
       expect {subject.take_off(plane)}.to raise_error("There are no planes at the airport.")
     end
   end
