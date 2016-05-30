@@ -12,7 +12,7 @@ describe Airport do
 
 	describe '#incoming_plane' do
 		
-		it 'lands multiple planes in terminal when there is space and it is sunny' do
+		it 'lands multiple planes when there is space and it is sunny' do
 			airport.incoming_plane(plane1, goodweather.state)
 			expect(airport.incoming_plane(plane2, goodweather.state)).to eq "Terminal:#{[plane1, plane2]}"
 		end
