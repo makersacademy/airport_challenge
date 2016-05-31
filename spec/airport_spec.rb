@@ -2,35 +2,30 @@ require 'airport.rb'
 
 describe "Airport" do 
   subject(:airport) { Airport.new }
-  subject(:plane) { Plane.new }
+  let(:plane) { Plane.new }
+  let(:stormy_weather) { double :weather, stormy?: true }
+  let(:good_weather) { double :weather, stormy?: false}
+
   
   describe "#take off" do 
 
     it "cannot take off if no planes" do
-    	expect {airport.depart}.to raise_error("No planes")
+    	expect {airport.depart(good_weather)}.to raise_error("No planes")
     end
 
     it "plane takes off" do
       expect(airport).to respond_to(:depart)
     end
 
-    it "plane is no longer at the airport after taking off" do
-        airport.stub(:stormy?) { false }
-        airport.land(plane)
-        expect(airport.depart).to eq false
-    end
-
     context "adding weather for taking off" do 
 
-
-      it "takes off in good weather" do 
-        airport.stub(:stormy?) { false }
-        expect(airport).to respond_to(:depart)
+      it "takes off in good weather and plane no longer at airport" do 
+        airport.land(plane, good_weather)
+        expect(airport.depart(good_weather)).to be false
       end
 
       it "does not take off in bad weather" do
-        airport.stub(:stormy?) { true }
-        expect{airport.land(plane)}.to raise_error("Bad weather")
+        expect{airport.land(plane, stormy_weather)}.to raise_error("Bad weather")
       end
     end
   end 
@@ -38,25 +33,22 @@ describe "Airport" do
   describe "#land" do
 
     it "lands planes" do
-    	expect(airport).to respond_to(:land).with(1).argument
+    	expect(airport).to respond_to(:land).with(2).argument
     end
       
     it "plane has landed in good weather" do
-      airport.stub(:stormy?){ false }
-    	expect(airport.land(plane).pop.airport).to eq true
+    	expect(airport.land(plane, good_weather).pop.airport).to eq true
     end
 
     it "cannot land if there is no space" do 
-      airport.stub(:stormy?){ false }
-      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-      expect{ airport.land(plane) }.to raise_error "Airport is full"
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane, good_weather) }
+      expect{ airport.land(plane, good_weather) }.to raise_error "Airport is full"
     end
 
     context "adding weather to landing" do 
 
       it "cannot land in stormy weather" do 
-        airport.stub(:stormy?){ true }
-        expect{airport.land(plane)}.to raise_error("Bad weather")
+        expect{airport.land(plane, stormy_weather)}.to raise_error("Bad weather")
       end
 
       it "shows planes that have landed" do
