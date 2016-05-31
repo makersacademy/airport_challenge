@@ -22,27 +22,29 @@ class Airport
     fail ERROR[:full] if full?
     fail ERROR[:plane_docked] if docked?(plane)
     plane.flight_end
-    @planes << plane
+    planes << plane
   end
 
   def take_off(plane)
     fail ERROR[:stormy] if @weather.stormy?
     fail ERROR[:plane_missing] unless docked?(plane)
     plane.flight_start
-    @planes.delete(plane)
+    planes.delete(plane)
   end
 
   private
 
+    attr_accessor :planes
+
     def docked?(plane)
-      @planes.include?(plane)
+      planes.include?(plane)
     end
 
     def empty?
-      @planes.empty?
+      planes.empty?
     end
 
     def full?
-      @planes.size >= @capacity
+      planes.size >= capacity
     end
 end
