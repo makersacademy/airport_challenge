@@ -22,6 +22,7 @@ DEFAULT_CAPACITY = 10
 	def take_off(plane)
 	  raise "There are no planes at this airport" if empty?
 		raise "You cannot take off during stormy weather" if stormy?
+		raise "This plane is not at this airport" unless planes.include?(plane)
 		plane.take_off
 		planes.delete(plane)
 		"#{ plane } has taken off and left the airport"
