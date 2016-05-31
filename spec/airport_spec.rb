@@ -25,7 +25,9 @@ describe "Airport" do
       end
 
       it "does not take off in bad weather" do
-        expect{airport.land(plane, stormy_weather)}.to raise_error("Bad weather")
+        expect do
+          airport.land(plane, stormy_weather)
+        end.to raise_error("Bad weather")
       end
     end
   end 
@@ -42,13 +44,17 @@ describe "Airport" do
 
     it "cannot land if there is no space" do 
       Airport::DEFAULT_CAPACITY.times { airport.land(plane, good_weather) }
-      expect{ airport.land(plane, good_weather) }.to raise_error "Airport is full"
+      expect do 
+        airport.land(plane, good_weather)
+      end.to raise_error "Airport is full"
     end
 
     context "adding weather to landing" do 
 
       it "cannot land in stormy weather" do 
-        expect{airport.land(plane, stormy_weather)}.to raise_error("Bad weather")
+        expect do
+          airport.land(plane, stormy_weather)
+        end.to raise_error("Bad weather")
       end
 
       it "shows planes that have landed" do
