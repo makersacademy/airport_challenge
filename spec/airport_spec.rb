@@ -21,7 +21,7 @@ describe Airport do
 	end
 
 	it "Confirms a plane has taken off" do 
-		allow(subject).to receive(:forecast?).and_return(false)
+		allow(subject).to receive(:bad_weather?).and_return(false)
 		subject.take_off(plane)
 		expect(subject.taken_off?(plane)).to eq true
 	end
@@ -39,9 +39,9 @@ describe Airport do
 	end
 
 	it "Won't allow planes to take off in bad weather" do
-		allow(subject).to receive(:bad_weather).and_return(false)
+		allow(subject).to receive(:bad_weather?).and_return(false)
 		subject.land(plane)
-		allow(subject).to receive(:bad_weather).and_return(true)
+		allow(subject).to receive(:bad_weather?).and_return(true)
 		expect {subject.take_off (plane)}.to raise_error "ERROR: Weather Is Not Good Enough To Take Off"
 	end
 
