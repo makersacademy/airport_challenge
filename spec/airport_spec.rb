@@ -4,6 +4,7 @@ require 'plane'
 describe Airport do 
   subject(:airport) { Airport.new }
   subject(:plane) { Plane.new }
+  subject(:weather) { Weather.new }
 
   describe '#landing' do
 
@@ -25,9 +26,16 @@ describe Airport do
 
   describe '#taking_off' do
 
+     it "lands planes" do
+        expect(airport).to respond_to(:taking_off).with(1).argument
+      end
+
     it "plane takes off" do
+      allow(airport).to receive(:weather)
+
       expect(airport).to respond_to(:taking_off)
     end
+
   end
 
 end
