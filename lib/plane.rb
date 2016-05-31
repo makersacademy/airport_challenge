@@ -6,4 +6,9 @@ class Plane
     @landed = false
   end
 
+  def is_landed
+    @landed = true
+  end
+
+
 end

@@ -4,7 +4,7 @@ describe Plane do
   subject(:plane) {plane = Plane.new}
 
   describe '#landed' do
-    it {should respond_to(:landed)}
+
 
     it 'should confirm that it has not landed before landing' do
       expect(plane.landed).to eq false

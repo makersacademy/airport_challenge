@@ -10,9 +10,10 @@ describe Airport do
     expect{airport.land(plane)}.to raise_error 'The plane is on the ground Fool!'
     end
 
-    it 'stops planes from landing by stormy weather' do
-    plane = double(:plane,landed: false)
-    expect{airport.land(plane)}.to raise_error 'The weather is not adequate' if airport.stormy
+    before { allow(airport).to receive(:stormy).and_return(true) }
+      it 'stops planes from landing by stormy weather' do
+        plane = double(:plane,landed: false)
+        expect{airport.land(plane)}.to raise_error 'The weather is not adequate'
     end
     context 'if the weather is not stormy' do
       before { allow(airport).to receive(:stormy).and_return(false) }
@@ -32,9 +33,10 @@ describe Airport do
       expect{airport.take_off(plane)}.to raise_error 'The plane is in the air Fool!'
     end
 
-    it 'should not allow planes to take off if the weather is stormy' do
-      plane = double(:plane,landed: true)
-      expect{airport.take_off(plane)}.to raise_error 'The weather is not adequate' if airport.stormy
+    before { allow(airport).to receive(:stormy).and_return(true) }
+      it 'should not allow planes to take off if the weather is stormy' do
+        plane = double(:plane,landed: true)
+        expect{airport.take_off(plane)}.to raise_error 'The weather is not adequate'
     end
 
   end
@@ -55,5 +57,17 @@ describe Airport do
 
   end
 
+  describe '#change_capacity' do
+    it 'should change the airport capacity' do
+      expect(airport.change_capacity(5)).to eq 5
+    end
+
+    context 'There is two planes in the airport'
+      before {allow(airport).to receive(:planes).and_return(2)}
+        it 'should not allow capacity to be inferior to number of planes' do
+        expect{airport.change_capacity(1)}.to raise_error 'the airport capacity cannot be lower than the number of planes'
+      end
+
+  end
 
 end
