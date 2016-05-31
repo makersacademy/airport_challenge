@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :plane, :capacity
-  DEFAULT_CAPACITY= 1
+  DEFAULT_CAPACITY= 30
 
   def initialize(capacity= DEFAULT_CAPACITY)
     @plane= []
@@ -10,8 +10,8 @@ class Airport
   end
 
   def landing(plane)
-    fail "sorry, the airport is FULL" if full?
-    if plane.landed?
+    fail "sorry, the airport is FULL" if @plane.size >= DEFAULT_CAPACITY
+    if plane.permission?
       @plane << plane
     else
       "no permission to land!"
@@ -19,16 +19,7 @@ class Airport
   end
 
   def taking_off(plane)
-    idx= @plane.index(plane)
-    @plane.delete_at(idx)
-  end
-
-  def status
-    @plane
-  end
-
-  def full?
-    @plane.size == DEFAULT_CAPACITY
+    @planes.pop.permission?
   end
 
 end
