@@ -23,10 +23,8 @@ An airport can:
 	- Weather randomly sets state to sunny (80% of the time) or stormy (20% of the time)
 
 
-## How to use
 
-
-	```
+```
 1. Clone this repo to your local machine
 2. Run 'gem install bundle' if you don't have bundle already
 3. Run pry
@@ -36,7 +34,7 @@ An airport can:
 7. Land the plane: airport.incoming_plane(plane)
 8. Check if plane is at the airport: plane.at_airport?
 
-	```
+```
 
 
 Makers Academy Brief
