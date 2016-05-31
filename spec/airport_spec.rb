@@ -21,7 +21,7 @@ describe "Airport" do
 
       it "takes off in good weather and plane no longer at airport" do 
         airport.land(plane, good_weather)
-        expect(airport.depart(good_weather)).to be false
+        expect(airport.depart(good_weather)).to be(false)
       end
 
       it "does not take off in bad weather" do
@@ -39,7 +39,7 @@ describe "Airport" do
     end
       
     it "plane has landed in good weather" do
-    	expect(airport.land(plane, good_weather).pop.airport).to eq true
+    	expect(airport.land(plane, good_weather).pop.airport).to eq(true)
     end
 
     it "cannot land if there is no space" do 
