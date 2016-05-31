@@ -7,8 +7,8 @@ describe Airport do
 	let(:plane1) {double :plane, land: (), take_off: (), at_airport?: false}
 	let(:plane2) {double :plane, land: (), at_airport?: false}
 	let(:plane3) {double :plane, land: (), at_airport?: true}
-	let(:goodweather) {double :weather, state: 'sunny'}
-	let(:badweather) {double :weather, state: 'stormy'}
+	let(:goodweather) {double :weather, state: :sunny}
+	let(:badweather) {double :weather, state: :stormy}
 
 	describe '#incoming_plane' do
 		

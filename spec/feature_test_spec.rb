@@ -4,7 +4,7 @@ describe 'feature test' do
 
   it 'allows planes to land and take off when sunny' do
     weather = Weather.new
-    allow(weather).to receive(:state) {'sunny'}
+    allow(weather).to receive(:state) {:sunny}
     plane1 = Plane.new
     plane2 = Plane.new
     plane3 = Plane.new

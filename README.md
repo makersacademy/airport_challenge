@@ -22,6 +22,18 @@ An airport can:
 3. Weather
 	- Weather randomly sets state to sunny (80% of the time) or stormy (20% of the time)
 
+	```
+1. Clone this repo to your local machine
+2. Run 'gem install bundle' if you don't have bundle already
+3. Run pry
+4. Require './lib/Airport.rb'
+5. Create a new instance of plane: plane = Plane.new
+6. Create a new instance of airport: airport = Airport.new
+7. Land the plane: airport.incoming_plane(plane)
+8. Check if plane is at the airport: plane.at_airport?
+
+	```
+
 
 Makers Academy Brief
 =================

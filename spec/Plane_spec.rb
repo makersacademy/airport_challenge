@@ -3,7 +3,7 @@ require 'Airport'
 describe Plane do
 
 	subject(:plane) {described_class.new}
-	let(:goodweather) {double :weather, state: 'sunny'}
+	let(:goodweather) {double :weather, state: :sunny}
 
 	describe '#at_airport?' do
 
