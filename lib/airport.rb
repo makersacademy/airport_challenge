@@ -16,16 +16,13 @@ class Airport
   end
 
   def land_plane(plane)
-    fail ERROR[:stormy] if @weather.stormy?
-    fail ERROR[:full] if full?
-    fail ERROR[:plane_docked] if docked?(plane)
+    landing_checks(plane)
     plane.flight_end
     planes << plane
   end
 
   def take_off(plane)
-    fail ERROR[:stormy] if @weather.stormy?
-    fail ERROR[:plane_missing] unless docked?(plane)
+    take_off_checks(plane)
     plane.flight_start
     planes.delete(plane)
   end
@@ -44,5 +41,16 @@ class Airport
 
   def full?
     planes.size >= capacity
+  end
+
+  def landing_checks(plane)
+    fail ERROR[:stormy] if @weather.stormy?
+    fail ERROR[:full] if full?
+    fail ERROR[:plane_docked] if docked?(plane)
+  end
+
+  def take_off_checks(plane)
+    fail ERROR[:stormy] if @weather.stormy?
+    fail ERROR[:plane_missing] unless docked?(plane)
   end
 end
