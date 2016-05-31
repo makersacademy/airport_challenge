@@ -48,6 +48,7 @@ class Airport
 	#Take off method for outgoing planes:
 
 	def take_off(plane)
+		fail "ERROR: Weather Is Not Good Enough To Take Off" if bad_weather? == true
 		@terminal.delete(plane)
 	end
 
