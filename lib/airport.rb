@@ -1,3 +1,5 @@
+require_relative 'plane.rb'
+
 class Airport
 
 	DEFAULT_HANGAR_CAPACITY = 5

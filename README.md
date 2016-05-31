@@ -13,7 +13,7 @@ Airport Challenge
 
 ```
 
-For this class I have decided to implement just two classes:
+For this challenge I have decided to implement just two classes:
  Airport
  Plane
 
