@@ -23,8 +23,8 @@ An airport can:
 	- Weather randomly sets state to sunny (80% of the time) or stormy (20% of the time)
 
 
-How to use
----------
+## How to use
+
 
 	```
 1. Clone this repo to your local machine
