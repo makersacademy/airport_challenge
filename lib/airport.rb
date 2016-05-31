@@ -1,8 +1,8 @@
 require_relative 'plane'
 class Airport
 
+attr_reader :plane , :capacity
 
-  attr_reader :stormy , :plane , :capacity
 
 
   DEFAULT_CAPACITY = 2
@@ -16,7 +16,7 @@ class Airport
   def land plane
     fail 'The plane is on the ground Fool!' if plane.landed
     fail 'Sorry, the airport is full.' if full?
-    fail 'The weather is not adequate' if self.stormy
+    fail 'The weather is not adequate' if stormy
     plane.is_landed
     @planes << plane
     self
@@ -24,7 +24,7 @@ class Airport
 
   def take_off plane
     fail 'The plane is in the air Fool!' unless plane.landed
-    fail 'The weather is not adequate'if self.stormy
+    fail 'The weather is not adequate'if stormy
     !plane.is_landed
     @planes.pop
     self
@@ -39,7 +39,7 @@ class Airport
 private
 
 
-  attr_reader :planes
+  attr_reader :planes, :stormy
 
   def full?
     planes.count >= capacity
