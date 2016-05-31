@@ -4,12 +4,14 @@ class Plane
     check_if_already_flying
     airport.release(self, weather)
     @flying = true
+     'The plane has taken off'
   end
 
   def land_at(airport, weather)
     check_if_already_landed
     airport.dock(self, weather)
     @flying = false
+    'The plane has landed'
   end
 
   def check_if_already_flying

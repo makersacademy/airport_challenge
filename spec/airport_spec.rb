@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
+  subject(:big_airport) { described_class.new(100) }
   let(:plane) { double :plane }
   let(:plane_alt) { double :plane_alt }
   let(:weather) { double :weather }
@@ -19,13 +20,10 @@ describe Airport do
       it 'should ask the airport to check the weather' do
         expect(airport).to respond_to(:check_weather).with(1).arguments
       end
-      it "should ask the airport if it is full" do
-        expect(airport).to receive(:full?)
-        airport.full?
-      end
     end
 
     describe '#release' do
+
       it 'instructs the airport to release a plane' do
         expect(airport).to receive(:release)
         airport.release(plane)
@@ -82,17 +80,13 @@ describe Airport do
         expect(airport.capacity).to eq 10
       end
       it "can be overidden with a different number" do
-        airport.capacity = 5
-        expect(airport.capacity).to eq 5
+        expect(big_airport.capacity).to eq 100
       end
     end
 
     describe '#full' do
       before do
         allow(weather).to receive(:stormy?).and_return(false)
-      end
-      it "does not raise error if airport has space" do
-        expect{airport.full?}.not_to raise_error
       end
       it "raises an error if the airport is full" do
         10.times { airport.dock(plane, weather) }

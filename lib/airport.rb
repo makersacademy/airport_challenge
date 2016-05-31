@@ -2,8 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_accessor :capacity
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
   CAPACITY = 10
 
@@ -13,25 +12,27 @@ class Airport
   end
 
   def dock(plane, weather)
-    self.check_weather(weather)
-    self.full?
-    @planes << plane
+    check_weather(weather)
+    full?
+    planes << plane
   end
 
   def check_for_landed(plane)
-    @planes.include? plane
+    planes.include? plane
   end
 
   def release(plane, weather)
-    self.check_weather(weather)
-    @planes.delete(plane)
+    check_weather(weather)
+    planes.delete(plane)
   end
 
   def check_weather(weather)
     fail 'No planes can land or take off in a storm' if weather.stormy?
   end
 
+private
+
   def full?
-    fail 'Airport is at full capacity' if @planes.count >= @capacity
+    fail 'Airport is at full capacity' if planes.count >= capacity
   end
 end
