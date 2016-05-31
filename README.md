@@ -22,6 +22,10 @@ An airport can:
 3. Weather
 	- Weather randomly sets state to sunny (80% of the time) or stormy (20% of the time)
 
+
+How to use
+---------
+
 	```
 1. Clone this repo to your local machine
 2. Run 'gem install bundle' if you don't have bundle already
