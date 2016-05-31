@@ -8,4 +8,8 @@ class Plane
 		@landed
 	end
 
+	def set_landed
+		@landed = true
+	end
+
 end

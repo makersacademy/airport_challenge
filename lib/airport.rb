@@ -17,6 +17,7 @@ class Airport
 		fail "Cannot land in a storm" if weather.stormy?
 		fail "Plane already landed" if plane.landed?
 		fail "Airport full" if full?
+		plane.set_landed
 		@landed << plane #unless @landed.include? plane
 		"Welcome to London"
 	end

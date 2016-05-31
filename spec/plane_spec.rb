@@ -9,8 +9,7 @@ describe Plane do
 	describe '#landed?' do
 
 		it "has landed" do
-			airport.land(plane)
-			allow(plane).to receive(:landed?).and_return(true)
+			plane.set_landed
 			expect(plane.landed?).to eq true
 		end
 
