@@ -2,16 +2,16 @@ require 'airport'
 
 describe Airport do
 
-  subject {Airport.new(3)}
+  subject {Airport.new(3)} # Needs name
 
-  it {is_expected.to respond_to(:arrival)}
+  it {is_expected.to respond_to(:arrival)}  # Should be removed 
 
-  it {is_expected.to respond_to(:departure)}
+  it {is_expected.to respond_to(:departure)} # Should be removed 
 
   describe 'in good weather forecast' do
 
     before(:each) do
-      @test_plane = double("plane")
+      @test_plane = double("plane") # should be at the top as let 
       @other_airport = Airport.new
       allow(@test_plane).to receive(:land).with(subject) {"Landed in: #{subject}"}
       allow(@test_plane).to receive(:take_off).with(@other_airport) {"Departed to: #{@other_airport}"}

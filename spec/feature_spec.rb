@@ -6,14 +6,15 @@ require 'plane.rb'
 describe 'Let\'s make it \'em fly, yoo' do
 
 	before(:each) do
-		@testy_Airport = Airport.new
-		@other_testy_Airport = Airport.new(3)
-		@testy_Plane = Plane.new
-		# let't not make it rain just yet
-		allow(Weather).to receive(:good_forecast?).and_return(true)
+		
 	end
 
 	it 'Let\'s testy_Plane to takes off from testy_Airport and land in other_testy_Airport' do
+        @testy_Airport = Airport.new
+        @other_testy_Airport = Airport.new(3)
+        @testy_Plane = Plane.new
+        # let't not make it rain just yet
+        allow(Weather).to receive(:good_forecast?).and_return(true)
 		# first land a plane in testy_airport
 		@testy_Airport.arrival(@testy_Plane)
 		# now lets make that plane fly!!
