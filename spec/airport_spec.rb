@@ -14,13 +14,14 @@ describe "Airport" do
       expect(airport).to respond_to(:depart)
     end
 
+    it "plane is no longer at the airport after taking off" do
+        airport.stub(:stormy?) { false }
+        airport.land(plane)
+        expect(airport.depart).to eq false
+    end
+
     context "adding weather for taking off" do 
 
-      it "plane is no longer at the airport after taking off" do
-        airport.stub(:stormy?) { false }
-      	airport.land(plane)
-      	expect(airport.depart).to eq false
-      end
 
       it "takes off in good weather" do 
         airport.stub(:stormy?) { false }
