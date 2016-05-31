@@ -9,8 +9,6 @@ class Airport
     plane_docked: "The plane has already landed!"
   }.freeze
 
-  attr_reader :capacity
-
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
     @weather = weather
@@ -27,14 +25,14 @@ class Airport
 
   def take_off(plane)
     fail ERROR[:stormy] if @weather.stormy?
-    fail ERROR[:plane_missing] unless docked?(plane)
+    fail ERROR[:plane_missing] if !docked?(plane)
     plane.flight_start
     planes.delete(plane)
   end
 
   private
 
-    attr_accessor :planes
+    attr_accessor :capacity, :planes
 
     def docked?(plane)
       planes.include?(plane)

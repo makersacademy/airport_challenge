@@ -4,18 +4,14 @@ class Plane
   end
 
   def flight_start
-    self.flying = true
+    @flying = true
   end
 
   def flight_end
-    self.flying = false
+    @flying = false
   end
 
   def flying?
-    flying
+    @flying
   end
-
-  private
-
-    attr_accessor :flying
 end

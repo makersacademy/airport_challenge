@@ -71,19 +71,4 @@ describe Airport do
       end
     end
   end
-
-  describe "#capacity" do
-    it "has a default capacity" do
-      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
-    end
-
-    describe "can take an argument to set capacity" do
-      capacity = rand(100)
-      subject { described_class.new(capacity) }
-
-      it "has a specified capacity" do
-        expect(subject.capacity).to eq(capacity)
-      end
-    end
-  end
 end
