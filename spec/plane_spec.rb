@@ -4,7 +4,7 @@ describe Plane do
 
   let(:airport) do
     double(:airport, accept_plane?: true, 
-    can_land_here?: true, 
+    on_ground?: true, 
     release_plane: true, 
     receive_plane: true)
   end

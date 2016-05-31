@@ -1,14 +1,14 @@
 require "weather"
 
 class Plane
-  SKY = Sky.new.freeze
+  SKY = NoAirport.new.freeze
   STORM_ERR_MSG = "Stormy Weather".freeze
   BAD_CMD_ERR_MSG = "Command does not make sense!".freeze
 
   attr_reader :position
 
-  def initialize(weather = Weather.new)
-    @position =  SKY
+  def initialize(weather = Weather.new, position = SKY)
+    @position =  position
     @weather = weather
   end
 
@@ -16,12 +16,12 @@ class Plane
     change_position(airport)
   end
 
-  def take_off
-    change_position(SKY)
+  def take_off(new_sky = SKY)
+    change_position(new_sky)
   end 
 
   def landed?
-    position.can_land_here?
+    position.on_ground?
   end
 
   def new_weather(weather)
@@ -29,28 +29,16 @@ class Plane
   end
 
   private
-    def change_position(new_pos)
-      enact_change(new_pos) if go_for_change?(new_pos)
-    end
 
-    def go_for_change?(new_pos)
-      weather_ok_for_change?
-      change_makes_sense?(new_pos)
-      new_pos.accept_plane?(self)
-    end
+  def change_position(new_pos)
+    @position = new_pos if check_change?(new_pos)
+    new_pos.receive_plane(self)
+  end
 
-    def enact_change(new_pos)
-      @position = new_pos
-      new_pos.receive_plane(self)
-    end
-    
-    def weather_ok_for_change?
-      fail STORM_ERR_MSG if @weather.stormy? 
-    end
-
-    def change_makes_sense?(new_pos)
-      it_makes_sense = new_pos.can_land_here?^landed?
-      fail BAD_CMD_ERR_MSG unless it_makes_sense
-    end
+  def check_change?(new_pos)
+    fail STORM_ERR_MSG if @weather.stormy? 
+    fail BAD_CMD_ERR_MSG unless new_pos.on_ground?^@position.on_ground?
+    new_pos.accept_plane?(self)
+  end
 
 end

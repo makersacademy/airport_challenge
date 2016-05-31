@@ -1,5 +1,10 @@
 class Weather
+	
+	STATE = [:clear, :stormy].freeze
+
     def stormy?
-        rand(1..2) == 1
+        STATE.sample == :stormy
     end
+
 end
+

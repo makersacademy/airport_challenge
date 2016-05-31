@@ -8,7 +8,7 @@ class Airport
     @planes = []
   end
 
-  def can_land_here?
+  def on_ground?
     true
   end
 
@@ -25,23 +25,26 @@ class Airport
   end
 
   private
-    def room_for_plane?
-      @planes.length < @capacity
-    end
+  def room_for_plane?
+    @planes.length < @capacity
+  end
 
-    def add_plane(plane)
-      @planes << plane
-    end
+  def add_plane(plane)
+    @planes << plane
+  end
 
-    def capacity_reached
-      fail AT_CAPACITY_ERR_MSG
-    end
+  def capacity_reached
+    fail AT_CAPACITY_ERR_MSG
+  end
 
 end
 
-class Sky #NoAirport Class
 
-  def can_land_here?
+# *************************************************
+# NoAirport Class
+class NoAirport
+
+  def on_ground?
     false
   end
 
