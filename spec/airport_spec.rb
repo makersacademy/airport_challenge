@@ -4,6 +4,7 @@ describe Airport do
 
   subject(:airport) {described_class.new}
   let(:plane) {double(:plane, :land => true, :take_off => true)}
+  let(:weather) {double(:weather)}
   
   before do
     allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
