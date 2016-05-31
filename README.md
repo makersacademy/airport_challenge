@@ -1,8 +1,8 @@
 #Airport Challenge
 
 [![Build Status](https://travis-ci.org/AnnaHollandSmith/airport_challenge.svg?branch=master)](https://travis-ci.org/AnnaHollandSmith/airport_challenge)
-=========================
 
+```
 [1] pry(main)> require './lib/plane'
 => true
 [2] pry(main)> airport = Airport.new(2)
@@ -23,7 +23,7 @@
 => "The plane has taken off"
 [10] pry(main)> airport.take_off(plane3)
 RuntimeError: There are no planes available for take off
-===============================
+```
 
 The program was developed to enable planes to be instructed to land in and take-off from an airport and for the air traffic controller to be able to confirm that the plane had landed/taken-off. 
 
