@@ -32,3 +32,6 @@ The only private method is the check for the weather: it has a 10% chance of sto
 
 
 Every Plane object is initialized as flying, and its status is changed everytime it lands or it takes off.	     
+
+
+https://travis-ci.org/alterenzo/airport_challenge.svg?branch=master
