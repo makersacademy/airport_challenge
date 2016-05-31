@@ -3,7 +3,7 @@ Airport Challenge
 Task
 -------
 
-Building a program that accepts Planes to an Airport. The Airport has a capacity and will behaviour of the airport will depend on weather conditions.
+Building a program that accepts Planes to an Airport. The Airport has a capacity and the behaviour of the airport will depend on weather conditions.
 
 
 IRB
