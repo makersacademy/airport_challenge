@@ -2,13 +2,11 @@ require 'airport'
 
 describe Airport do
 
-  subject(:airport) {described_class.new}
+  subject(:airport) {described_class.new(Airport::DEFAULT_CAPACITY, weather)}
 
   let(:landed_plane) {double(:landed_plane, landed?: true)}
   let(:flying_plane) {double(:flying_plane, landed?: false)}
-
-  before {allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)}
-
+  let(:weather) {double(:weather, stormy?: false)}
 
   describe 'attributes:' do
     it { is_expected.to have_attributes(planes: []) }
@@ -31,7 +29,7 @@ describe Airport do
     end
 
     it 'raises error if weather is stormy' do
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+      allow(weather).to receive(:stormy?).and_return true
       expect{airport.land_plane(flying_plane)}.to raise_error 'Land Denied: Storm!'
     end
   end
@@ -58,7 +56,7 @@ describe Airport do
     end
 
     it 'raises error if weather is stormy' do
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+      allow(weather).to receive(:stormy?).and_return true
       airport.planes << landed_plane
       expect{airport.take_off_plane(landed_plane)}.to raise_error 'Take off Denied: Storm!'
     end

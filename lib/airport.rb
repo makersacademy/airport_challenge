@@ -7,26 +7,34 @@ class Airport
 
   attr_reader :planes, :capacity, :weather
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
     @capacity = capacity
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land_plane(plane)
-    fail 'This plane has already taken off!' if plane.landed?
-    fail 'The airport is full!' if full?
-    fail 'Land Denied: Storm!' if weather.stormy?
+    do_land_check(plane)
     planes << plane
     'The plane has landed!'
   end
 
+  def do_land_check(plane)
+    fail 'This plane has already landed!' if plane.landed?
+    fail 'The airport is full!' if full?
+    fail 'Land Denied: Storm!' if weather.stormy?
+  end
+
   def take_off_plane(plane)
+    do_take_off_check(plane)
+    planes.pop
+    'The plane has taken off!'
+  end
+
+  def do_take_off_check(plane)
     fail 'This plane has already taken off!' unless plane.landed?
     fail 'The airport is empty!' if empty?
     fail 'Take off Denied: Storm!' if weather.stormy?
-    planes.pop
-    'The plane has taken off!'
   end
 
   def full?
@@ -36,5 +44,5 @@ class Airport
   def empty?
     planes.size <= 0
   end
-  private :full?, :empty?
+  private :full?, :empty?, :do_land_check, :do_take_off_check
 end
