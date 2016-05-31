@@ -1,6 +1,4 @@
 class Aeroplane
-  attr_reader :landed
-  
   def initialize
     @landed = false
   end
@@ -11,11 +9,14 @@ class Aeroplane
   end
   
   def landed?
-    @landed
+    landed
   end
   
   def take_off
     fail "Plane is already flying" unless @landed
     @landed = false
   end
+
+  private
+  attr_reader :landed
 end
