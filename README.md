@@ -1,5 +1,10 @@
 Airport Challenge
 
+Task
+-------
+
+Building a program that accepts Planes to an Airport. The Airport has a capacity and will behaviour of the airport will depend on weather conditions.
+
 
 IRB
 ---------
@@ -18,10 +23,6 @@ RuntimeError: Bad weather
 2.2.3 :006 > airport.land(plane, weather)
  => [#<Plane:0x007fce5b10e538 @airport=true>]
 
-Task
--------
-
-Building a program that accepts Planes to an Airport. The Airport has a capacity and will behaviour of the airport will depend on weather conditions.
 
 User Stories
 -----
