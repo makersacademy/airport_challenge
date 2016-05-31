@@ -1,6 +1,6 @@
 class Plane
   attr_reader :flying
-  alias :flying? :flying
+  alias flying? flying
 
   def initialize
     @flying = true

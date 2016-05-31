@@ -25,7 +25,7 @@ class Airport
 
   def take_off(plane)
     fail ERROR[:stormy] if @weather.stormy?
-    fail ERROR[:plane_missing] if !docked?(plane)
+    fail ERROR[:plane_missing] unless docked?(plane)
     plane.flight_start
     planes.delete(plane)
   end
