@@ -7,9 +7,7 @@ describe Airport do
   let(:landed_plane) {double(:landed_plane, landed?: true)}
   let(:flying_plane) {double(:flying_plane, landed?: false)}
 
-  before do
-    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
-  end
+  before {allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)}
 
 
   describe 'attributes:' do
