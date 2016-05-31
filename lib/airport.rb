@@ -13,7 +13,7 @@ class Airport
 
 	def allow_landing(plane)
 		fail "The hangar is full, landing denied!" if @hangar.length >= capacity
-		fail "The plane is already landed!" unless plane.is_flying?
+		fail "The plane is already landed!" unless plane.flying?
 		fail "It is too dangerous to land due to weather conditions!" if stormy?
         plane.land
 		@hangar << plane
@@ -30,7 +30,7 @@ class Airport
 	private
 
 	def stormy?
-		rand(11) > 9 ? true : false
+		rand(11) > 9
 	end
 
 
