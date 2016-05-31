@@ -32,17 +32,17 @@ class Airport
 
   private
 
-    attr_accessor :capacity, :planes
+  attr_accessor :capacity, :planes
 
-    def docked?(plane)
-      planes.include?(plane)
-    end
+  def docked?(plane)
+    planes.include?(plane)
+  end
 
-    def empty?
-      planes.empty?
-    end
+  def empty?
+    planes.empty?
+  end
 
-    def full?
-      planes.size >= capacity
-    end
+  def full?
+    planes.size >= capacity
+  end
 end

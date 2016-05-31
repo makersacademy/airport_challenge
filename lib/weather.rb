@@ -7,7 +7,7 @@ class Weather
 
   private
 
-    def outlook_sample
-      OUTLOOK.sample
-    end
+  def outlook_sample
+    OUTLOOK.sample
+  end
 end
