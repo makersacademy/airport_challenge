@@ -1,10 +1,10 @@
 require 'plane'
 
 describe Plane do
-  
+
 
   describe 'attributes:' do
-    it { is_expected.to have_attributes(landed: true) }
+    it { is_expected.to have_attributes(landed: false) }
   end
 
   it 'responds to landed?' do
@@ -17,8 +17,8 @@ describe Plane do
 
 
   describe '#landed?' do
-    it 'expect plane to be landed' do
-      expect(subject.landed?).to eq true
+    it 'expect plane to be flying' do
+      expect(subject.landed?).to eq false
     end
   end
 
