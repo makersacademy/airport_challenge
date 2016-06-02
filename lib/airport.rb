@@ -46,7 +46,6 @@ class Airport
   def stormy?
     @weatherforecast.stormy?
   end
-
 end
 
 
