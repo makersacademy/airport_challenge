@@ -16,8 +16,8 @@ describe Plane do
 
     it 'plane should land at an airport and be stored in that airport' do
       allow(subject).to receive(:bad_weather).and_return(false)
-      #airport = Airport.new
-      allow(airport).to receive(:store).and_return(airport.store(subject))
+      airport = Airport.new
+      #allow(airport).to receive(:store).and_return(airport.store(subject))
       expect(subject.land(airport)).to eq(airport.store(subject))
       expect(subject.landed).to eq(true)
       expect(subject.flying).to eq(false)
