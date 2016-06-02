@@ -12,8 +12,7 @@ class Airport
   def arrive(plane)
     fail "Airport is full!" if full?
     fail "Plane can't land due to stormy weather." if stormy?
-    @planes << plane
-    plane.land(self)
+    @planes << plane.land(self)
   end
 
   def depart(plane)
@@ -22,11 +21,15 @@ class Airport
     plane.take_off
   end
 
+  def has_a?(plane)
+    @planes.include?(plane)
+  end
+
   private
 
   def stormy?
     chance = rand(101)
-    chance <= @storm_probability ? true : false
+    chance < @storm_probability
   end
 
   def full?

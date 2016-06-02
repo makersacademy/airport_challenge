@@ -13,16 +13,16 @@ class Plane
     self
   end
 
-  def land(destination)
+  def land(airport)
     fail "Plane is already on the ground." if grounded?
-    @airport = destination
+    @airport = airport
     self
   end
 
   private
 
   def grounded?
-    @airport.nil? ? false : true
+    !@airport.nil?
   end
 
 end

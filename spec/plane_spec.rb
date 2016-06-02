@@ -1,8 +1,6 @@
 require 'plane'
 
 describe Plane do
-  it { is_expected.to respond_to(:take_off).with(0).argument }
-
   let(:lhw) { double(:lhw) } # London Heathrow LHW
   let(:plane) { Plane.new(lhw) }
 
