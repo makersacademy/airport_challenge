@@ -24,7 +24,6 @@ class Plane
     @at_airport = false
     @flying = true
   end
-
 end
 
 
