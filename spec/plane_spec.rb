@@ -14,8 +14,4 @@ subject { described_class.new }
 		subject.land?
 		expect(subject).not_to be_flying
 	end
-
-
-
-
 end

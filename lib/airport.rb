@@ -19,7 +19,20 @@ AIRPORT_CAPACITY = 20
 		@planes << plane
 	end
 
+	def taking_off(plane)
+		fail 'no planes available' if empty?
+		plane.flying?
+		@planes.pop
+	end
+
+	private
+	attr_reader :planes
+
 	def full?
 		count_plane == @capacity
+	end
+
+	def empty?
+		@planes.empty?
 	end	
 end
