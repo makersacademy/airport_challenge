@@ -15,6 +15,7 @@ AIRPORT_CAPACITY = 20
 
 	def land(plane)
 		fail 'does not let plane land' if full?
+    fail 'Bad weather' if stormy?
 		plane.land?
 		@planes << plane
 	end
@@ -25,8 +26,18 @@ AIRPORT_CAPACITY = 20
 		@planes.pop
 	end
 
+def stormy?
+  weather == :stormy
+end
+
 	private
+  WEATHER = [:stormy, :fine]
+
 	attr_reader :planes
+
+def weather
+  WEATHER.sample
+end
 
 	def full?
 		count_plane == @capacity
@@ -35,4 +46,5 @@ AIRPORT_CAPACITY = 20
 	def empty?
 		@planes.empty?
 	end	
+
 end
