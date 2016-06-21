@@ -21,6 +21,7 @@ AIRPORT_CAPACITY = 20
 	end
 
 	def taking_off(plane)
+    fail 'Bad weather' if stormy?
 		fail 'no planes available' if empty?
 		plane.flying?
 		@planes.pop
