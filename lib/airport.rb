@@ -2,10 +2,10 @@ require './lib/plane'
 
 class Airport
 
-AIRPORT_CAPACITY = 20
+DEFAULT_CAPACITY = 20
 
 	def initialize(options = {})
-		@capacity = options.fetch(:capacity, AIRPORT_CAPACITY)
+		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 		@planes = []
 	end
 
@@ -41,7 +41,8 @@ def weather
 end
 
 	def full?
-		count_plane == @capacity
+		# count_plane == @capacity
+    planes.count >= DEFAULT_CAPACITY
 	end
 
 	def empty?

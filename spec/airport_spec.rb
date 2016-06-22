@@ -16,7 +16,9 @@ describe Airport do
 
 	it 'Does not let planes land and raises error when full' do
     allow(subject).to receive(:stormy?).and_return(false)
-	  20.times { subject.land(plane) }
+    Airport::DEFAULT_CAPACITY.times do
+      subject.land Plane.new
+    end
 	  expect { subject.land(plane) }.to raise_error('does not let plane land')
 	end
 
