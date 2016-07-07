@@ -1,9 +1,9 @@
 # Introduction
 Welcome to doing your first code review!  Firstly, don't worry - you are not expected to have all the answers. The following is a code-review scaffold for Airport Challenge that you can follow if you want to.  These are common issues to look out for in this challenge - but you may decide to take your own route.
 
-Either way we'd very much appreciate you submitting the [form](http://goo.gl/forms/kFRD3a9Dlg), even if it's just to say that you didn't use it :-)
+Either way we'd very much appreciate you submitting the [form](https://docs.google.com/forms/d/1_QJxz8Twnc28e5wyVpB6xmXCvP3M_HPUXk65EGLhiZw/viewform?usp=send_form#start=invite), even if it's just to say that you didn't use it :-)
 
-If you can, please use [this form](http://goo.gl/forms/kFRD3a9Dlg) to tick off where your reviewee has successfully has successfully incorporated these guidelines!  This form helps us get an overall picture of how the whole cohort is doing - it's not an assessment of an individual student.
+If you can, please use [this form](https://docs.google.com/forms/d/1_QJxz8Twnc28e5wyVpB6xmXCvP3M_HPUXk65EGLhiZw/viewform?usp=send_form#start=invite) to tick off where your reviewee has successfully has successfully incorporated these guidelines!  This form helps us get an overall picture of how the whole cohort is doing - it's not an assessment of an individual student.
 
 # Step 0: Checkout and Run tests
 
