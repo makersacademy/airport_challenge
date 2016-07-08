@@ -1,5 +1,7 @@
 # _Airport Challenge_
 
+[![Build Status](https://travis-ci.org/benjamin-white/airport_challenge.svg?branch=master)](https://travis-ci.org/benjamin-white/airport_challenge)
+
 Airport Challenge is a small **Ruby** Program to simulate the activities of planes and airports. It is comprised of the three classes contained in the **planes**, **airports** and **weather** files. The following user stories were provided by **Makers Academy** as a starting point for the program.
 
 ### User Stories
