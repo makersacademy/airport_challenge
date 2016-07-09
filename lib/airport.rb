@@ -12,13 +12,15 @@ class Airport
   end
 
   def land_plane(plane)
-    fail "Hanger is full" if full?
-    fail "Weather is stormy" if stormy?
+    landing_availability
+    #plane.land
     hanger << plane
   end
 
   def take_off_plane(plane)
-    true
+    check_weather_for_flights
+    #plane.take_off
+    hanger.pop
   end
 
   private
@@ -31,5 +33,14 @@ class Airport
 
   def stormy?
     weather.stormy?
+  end
+
+  def landing_availability
+    fail "Hanger is full" if full?
+    check_weather_for_flights
+  end
+
+  def check_weather_for_flights
+    fail "Weather is stormy" if stormy?
   end
 end
