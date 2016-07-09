@@ -12,6 +12,9 @@ puts weather_report = WeatherReport.new
 puts 'check the weather conditions'
 5.times {puts weather_report.weather_conditions }
 
+puts 'weather gauge, scale 1-5, 5 is a storm'
+puts weather_report.weather_gauge
+
 puts 'land plane'
 puts airport.land_plane(plane)
 

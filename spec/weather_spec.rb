@@ -10,4 +10,8 @@ describe WeatherReport do
     expect(subject.weather_conditions).to eq("stormy")
   end
 
+  it 'exects weather gauge to return a fixnum' do
+    expect(subject.weather_gauge).to be_a(Fixnum)
+  end
+
 end
