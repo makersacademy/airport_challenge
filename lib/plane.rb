@@ -10,6 +10,7 @@ attr_accessor :status
 
   def land(airport)
     fail 'stormy weather cannot land' if airport.weather == 'stormy'
+    fail 'airport is full cannot land' if airport.full?
     airport.planes << self
     @status = 'plane has landed'
   end

@@ -2,7 +2,7 @@ class Airport
 
   attr_reader :planes
   attr_accessor :weather
-  attr_accessor :capacity
+  attr_reader :capacity
 
   DEFAULT_CAPACITY = 10
 

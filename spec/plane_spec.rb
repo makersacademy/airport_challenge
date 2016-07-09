@@ -1,4 +1,5 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
 
@@ -37,8 +38,8 @@ describe Plane do
   end
 
   it 'wont land if the airport is full' do
-    airport = Airport.new(capacity)
-    capacity.times.subject.land(airport)
+    airport = Airport.new
+    airport.capacity.times {subject.land(airport)}
     expect{subject.land(airport)}.to raise_error 'airport is full cannot land'
   end
 end
