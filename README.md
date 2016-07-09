@@ -39,7 +39,7 @@ We have a request from a client to write the software to control the flow of pla
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport and confirm that it has landed
-
+```
 |Objects| Message|
 | ----- |-------:|
 |Air Traffic Controller| |
@@ -47,6 +47,7 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 |Plane| land_at_airport|
 |Plane| confirm_landing|
 
+```
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
