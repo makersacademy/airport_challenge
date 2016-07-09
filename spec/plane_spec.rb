@@ -72,6 +72,17 @@ describe Plane do
       expect { plane.take_off(airport, weather) }.to raise_error 'Too stormy to take off'
     end
 
+    it 'raises an error if plane is not at the given airport' do
+      plane = Plane.new
+      weather = Weather.new
+      airport = Airport.new
+      airport2 = Airport.new
+      allow(weather).to receive(:stormy?) { false }
+      plane.land(airport, weather)
+      allow(weather).to receive(:stormy?) { true }
+      expect { plane.take_off(airport2, weather) }.to raise_error 'Plane is not at given airport'
+    end
+
     it 'changes plane to not landed status' do
       plane = Plane.new
       weather = Weather.new
