@@ -13,12 +13,12 @@ describe Plane do
       expect { plane.land }.to raise_error 'Plane is not in flight'
     end
 
-
     it 'changes plane to landed' do
       plane = Plane.new
       plane.land
       expect(plane.landed).to eq true
     end
+    
   end
 
   describe '#take_off' do
