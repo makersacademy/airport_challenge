@@ -1,5 +1,13 @@
 class Airport
-  airplanes = []
+
+
+  def initialize
+    @airplanes = []
+  end
+
+  def get_airplanes
+    @airplanes
+  end
 
   def confirm_landing
 #    if airplanes.count == 1

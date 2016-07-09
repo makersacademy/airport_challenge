@@ -1,4 +1,5 @@
 require 'airplane'
+require 'airport'
 
 describe Airplane do
 
@@ -13,11 +14,12 @@ describe Airplane do
   end
 
   describe '# land' do
-    it {is_expected.to respond_to(:land)}
+    it {is_expected.to respond_to(:land).with(1).argument}
 
      it 'lands the plane' do
         subject.takeoff
-        subject.land
+        airport = Airport.new
+        subject.land(airport)
         expect(subject.landed?).to be true
      end
   end
