@@ -13,6 +13,14 @@ describe Airport do
       expect(subject.plane_landed?).to eq "Plane landed successfully"
     end
     end
+
+    describe '#take_off' do
+      it 'instructs the plane to take off from the Airport' do
+      subject.land_plane(Airplane.new)
+      expect(subject.take_off).to be_nil
+      end
+      end
+
 end
 
   #it {is_expected.to respond_to :plane_landed?}
