@@ -1,7 +1,9 @@
-class AirPort
+require_relative 'plane'
 
-  def confirm_landed
+class Airport
 
+  def request_landing(plane)
+    plane.land
   end
 
   def full?
