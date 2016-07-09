@@ -4,7 +4,7 @@ attr_reader :capacity
 
 def initialize (capacity = DEFAULT_CAPACITY)
   @planes = []
-  @capacity = 20
+  @capacity = capacity
 end
 
 end
