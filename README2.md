@@ -103,6 +103,28 @@ Flying?**=**Take-off or Landing
 Storm? and Clear? (required true/false statement in order to prevent 'Landing' and 'Take-off')
 
 
+Steps:
+
+**NOTES**:
+
+Weather is randomly generated, create number range that decide once a limit is reached it is "Raining" or "Clear".
+
+It is more likely to be "Clear" than "Raining", take limitations into account, plus make the weather system Loop for eah plane object undergoing a Take-off / Landing method
+
+**READ TEST DOUBLES**
+
+Create a Test that lands and takes off multiple planes? Create a method that accepts multiple **BUT** limitted number of objects at a time (runways?)
+
+
+1. Make directories lib + spec
+2. Create Airport.rb/_spec.rb (to lib/spec)
+3. Create Weather.rb/_spec.rb (to lib/spec)
+4. Create Plane.rb/_spec.rb (to lib/spec)
+5. Make Plane Object with Land/Take-off Behaviours (Rspec first)
+6. Make Airport capacity constant with Rspec that tests Plane objects entering/leaving
+7. Make Weather, Storm? method to effect Plane object behaviour
+8. 
+
 
 
 
