@@ -5,4 +5,8 @@ require './lib/airport.rb'
 plane = Plane.new
 airport = Airport.new
 airport.accept(plane)
-puts plane.landed?
+puts "Plane landed: #{plane.landed?}"
+
+# Second User Story
+airport.take_off(plane)
+puts "Plane in the air: #{!plane.landed?}"

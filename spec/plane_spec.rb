@@ -7,4 +7,9 @@ describe Plane do
     expect(subject).to be_landed
   end
 
+  it 'can take off from the airport' do
+    subject.take_off
+    expect(subject).to_not be_landed
+  end
+
 end

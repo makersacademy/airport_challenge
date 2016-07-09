@@ -13,4 +13,19 @@ describe Airport do
 
   end
 
+  describe '#take_off' do
+
+    let (:plane) { double :plane,
+                   dock: nil,
+                   landed?: false,
+                   take_off: nil}
+    it 'takes off a plane' do
+      subject.accept(plane)
+      subject.take_off(plane)
+      expect(plane).to_not be_landed
+      expect(subject.planes).to eq []
+    end
+
+  end
+
 end

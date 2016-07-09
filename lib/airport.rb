@@ -10,4 +10,8 @@ class Airport
     plane.dock
   end
 
+  def take_off(plane)
+    @planes.delete(plane).take_off if @planes.include? plane
+  end
+
 end
