@@ -13,6 +13,11 @@ describe WeatherReport do
     expect(subject.weather_conditions).to eq("stormy")
   end
 
+  it 'is calm when it is not stormy' do
+    allow(subject).to receive(:weather_gauge) { rand(0..4) }
+    expect(subject.weather_conditions).to eq("clear")
+  end
+
   it 'exects weather gauge to return a number between 0 and 5' do
     expect(subject.weather_gauge).to be_between(0,5).inclusive
   end
