@@ -9,19 +9,18 @@ class Airport
     @capacity = capacity
     @planes = []
     @today = Weather.new
-    land Plane.new
   end
 
   def land plane
-    return 'Unable to land due to bad weather' if stormy?
-    return 'Unable to land as airport is full' if full?
+    fail 'Unable to land due to bad weather' if stormy?
+    fail 'Unable to land as airport is full' if full?
     plane.flying = false
     planes << plane
   end
 
   def take_off
-    return 'Unable to take off due to poor weather' if stormy?
-    return 'There is no plane here!' if empty?
+    fail 'Unable to take off due to poor weather' if stormy?
+    fail 'There are no planes in this airport' if empty?
     planes.last.flying = true
     planes.pop
   end
