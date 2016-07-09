@@ -4,7 +4,7 @@ class AirPort
 
   end
 
-  def capacity
+  def full?
     'full'
   end
 end
