@@ -12,7 +12,7 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 | ----- |:-------|
 |_Air Traffic Controller_| |
 |Passengers|to_arrive|
-|Airport|land_pane|
+|Airport|land_plane|
 |Plane|confirm_landing|
 
 ```
