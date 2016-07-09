@@ -7,7 +7,7 @@ class Airport
 
   def accept(plane)
     @planes << plane
-    plane.dock
+    plane.land
   end
 
   def take_off(plane)

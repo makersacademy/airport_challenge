@@ -4,7 +4,7 @@ describe Airport do
 
   describe '#accept' do
 
-    let(:plane) { double :plane, dock: nil, landed?: true }
+    let(:plane) { double :plane, land: true, landed?: true }
     it 'accepts an plane' do
       subject.accept(plane)
       expect(subject.planes).to eq [plane]
@@ -15,10 +15,7 @@ describe Airport do
 
   describe '#take_off' do
 
-    let (:plane) { double :plane,
-                   dock: nil,
-                   landed?: false,
-                   take_off: nil}
+    let(:plane) { double :plane, land: true, landed?: false, take_off: nil}
     it 'takes off a plane' do
       subject.accept(plane)
       subject.take_off(plane)
