@@ -86,14 +86,21 @@ Allow there to be the ability to set airports to variable capacity whilst also k
 |Airport|capacity (Have the ability to create a variable capacity)|
 
 Class overview and object behaviour:
--**Airport**(Effected by **Plane**):
--Capacity, variable capacity
 
--**Plane**(Effected by **Weather**, and 'Landing' method effected by **Airport** capacity):
--Flying?**=**Take-off or Landing
+-**Airport**(Effected by **Plane**): 
 
--**Weather**(Randomly generated?):
--Storm? and Clear? (required true/false statement in order to prevent 'Landing' and 'Take-off')
+
+Capacity, variable capacity
+
+-**Plane**(Effected by **Weather**, and 'Landing' method effected by **Airport** capacity): 
+
+
+Flying?**=**Take-off or Landing
+
+-**Weather**(Randomly generated?): 
+
+
+Storm? and Clear? (required true/false statement in order to prevent 'Landing' and 'Take-off')
 
 
 
