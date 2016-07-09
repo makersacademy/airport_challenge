@@ -8,10 +8,12 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @hanger = []
+    @weather = Weather.new
   end
 
   def land_plane(plane)
     fail "Hanger is full" if full?
+    fail "Weather is stormy" if stormy?
     hanger << plane
   end
 
@@ -21,10 +23,13 @@ class Airport
 
   private
 
-  attr_reader :hanger
+  attr_reader :hanger, :weather
 
   def full?
     hanger.length >= @capacity
   end
 
+  def stormy?
+    weather.stormy?
+  end
 end
