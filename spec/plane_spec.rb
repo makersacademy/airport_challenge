@@ -2,6 +2,7 @@ require 'plane'
 
 describe Plane do
   subject(:plane) { described_class.new }
+  
   context '#land' do
 
     it { is_expected.to respond_to(:land).with(1).arguments }
