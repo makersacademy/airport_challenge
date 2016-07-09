@@ -1,7 +1,6 @@
 class Airplane
   def initialize
     @landed = true
-
   end
 
   def takeoff
