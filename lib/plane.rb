@@ -1,15 +1,18 @@
 class Plane
 
-  def landed?
-    @landed
+  attr_accessor :airborne
+  alias :airborne? :airborne
+
+  def initialize
+    @airborne
   end
 
-  def land
-    @landed = true
+  def down
+    @airborne = false
   end
 
-  def take_off
-    @landed = false
+  def up
+    @airborne = true
   end
 
 end
