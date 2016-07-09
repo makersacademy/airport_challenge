@@ -8,13 +8,13 @@ class Airport
     @airplanes
   end
 
-  def confirm_landing
-#    if airplanes.count == 1
-#      'the airplane has landed'
-#    end
+  def accept_takeoff(airplane)
+    @airplanes.pop
+    "#{airplane} has successfully taken off."
   end
 
   def accept_landing(airplane)
     @airplanes << airplane
+    "#{airplane} has successfully landed."
   end
 end

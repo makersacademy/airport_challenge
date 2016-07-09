@@ -3,8 +3,9 @@ class Airplane
     @landed = true
   end
 
-  def takeoff
+  def takeoff(airport)
     @landed = false
+    airport.accept_takeoff(self)
   end
 
   def land(airport)
