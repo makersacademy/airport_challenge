@@ -12,7 +12,7 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 | ----- |:-------|
 |_Air Traffic Controller_| |
 |Passengers|to_arrive|
-|Plane|land_at_airport|
+|Airport|land_pane|
 |Plane|confirm_landing|
 
 ```
@@ -25,7 +25,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 | ----- |:-------|
 |_Air Traffic Controller_| |
 |Passengers|to_leave|
-|Plane|depart_airport|
+|Airport|plane_depart|
 |Plane|confirm_departure|
 
 ```
