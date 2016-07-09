@@ -8,16 +8,19 @@ class Plane
     @landed = false
   end
 
-  def land (weather = Weather.new)
+  def land (airport, weather = Weather.new)
     fail 'Plane is not in flight' if landed == true
     fail 'Too stormy to land' if weather.stormy? == true
+    fail 'Airport is too full to land' if airport.full? == true
     @landed = true
+    airport.planes << self
   end
 
-  def take_off (weather = Weather.new)
+  def take_off (airport, weather = Weather.new)
     fail 'Plane is already in flight' if landed == false
     fail 'Too stormy to take off' if weather.stormy? == true
     @landed = false
+    airport.planes.delete(self)
   end
 
 end

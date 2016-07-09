@@ -11,24 +11,46 @@ describe Plane do
     it 'raises an error when plane is not in flight' do
       plane = Plane.new
       weather = Weather.new
+      airport = Airport.new
       allow(weather).to receive(:stormy?) { false }
-      plane.land(weather)
-      expect { plane.land }.to raise_error 'Plane is not in flight'
+      plane.land(airport, weather)
+      expect { plane.land(airport) }.to raise_error 'Plane is not in flight'
     end
 
     it 'raises an error when weather is stormy' do
       plane = Plane.new
       weather = Weather.new
+      airport = Airport.new
       allow(weather).to receive(:stormy?) { true }
-      expect { plane.land (weather) }.to raise_error 'Too stormy to land'
+      expect { plane.land(airport, weather) }.to raise_error 'Too stormy to land'
     end
 
-    it 'changes plane to landed' do
+    it 'raises an error if airport is full' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      weather = Weather.new
+      airport = Airport.new 1
+      allow(weather).to receive(:stormy?) { false }
+      plane1.land(airport, weather)
+      expect { plane2.land(airport, weather) }.to raise_error 'Airport is too full to land'
+    end
+
+    it 'changes plane to landed status' do
       plane = Plane.new
       weather = Weather.new
+      airport = Airport.new
       allow(weather).to receive(:stormy?) { false }
-      plane.land (weather)
+      plane.land(airport, weather)
       expect(plane.landed).to eq true
+    end
+
+    it 'adds the plane to the airport' do
+      plane = Plane.new
+      weather = Weather.new
+      airport = Airport.new
+      allow(weather).to receive(:stormy?) { false }
+      plane.land(airport, weather)
+      expect(airport.planes.include?(plane)).to eq true
     end
 
   end
@@ -36,25 +58,38 @@ describe Plane do
   describe '#take_off' do
 
     it 'raises an error when plane is already in flight' do
-      expect { subject.take_off }.to raise_error 'Plane is already in flight'
+      airport = Airport.new
+      expect { subject.take_off(airport)}.to raise_error 'Plane is already in flight'
     end
 
     it 'raises an error when weather is stormy' do
       plane = Plane.new
       weather = Weather.new
+      airport = Airport.new
       allow(weather).to receive(:stormy?) { false }
-      plane.land (weather)
+      plane.land(airport, weather)
       allow(weather).to receive(:stormy?) { true }
-      expect { plane.take_off (weather) }.to raise_error 'Too stormy to take off'
+      expect { plane.take_off(airport, weather) }.to raise_error 'Too stormy to take off'
     end
 
-    it 'changes plane to not landed' do
+    it 'changes plane to not landed status' do
       plane = Plane.new
       weather = Weather.new
+      airport = Airport.new
       allow(weather).to receive(:stormy?) { false }
-      plane.land (weather)
-      plane.take_off (weather)
+      plane.land(airport, weather)
+      plane.take_off(airport, weather)
       expect(plane.landed).to eq false
+    end
+
+    it 'removes the plane from the airport' do
+      plane = Plane.new
+      weather = Weather.new
+      airport = Airport.new
+      allow(weather).to receive(:stormy?) { false }
+      plane.land(airport, weather)
+      plane.take_off(airport, weather)
+      expect(airport.planes.include?(plane)).to eq false
     end
 
   end
