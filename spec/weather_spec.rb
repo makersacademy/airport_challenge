@@ -11,7 +11,7 @@ describe WeatherReport do
   end
 
   it 'exects weather gauge to return a fixnum' do
-    expect(subject.weather_gauge).to be_a(Fixnum)
+    expect(subject.weather_gauge).to be_between(0,5).inclusive
   end
 
 end
