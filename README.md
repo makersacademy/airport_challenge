@@ -15,9 +15,20 @@ Airport Challenge
 
 Some words from Jonny
 ---------
-Making some changes to this README for an initial commit. Towards the end of my
-time on this challenge, I'll come back and outline what I implemented and how
-I went about it.
+Reading through the user stories led me to proceed on a
+
+Airport = DockingStation, Plane = Bike
+
+basis. Whilst I feel this realisation gives me an overview of the overall code
+structure required for this challenge, I shall do my best to resist jumping into
+the production code and instead allow tests to guide some of the finer points of
+the design. Time to get cosy with a recent acquaintance, everyone's favourite
+friend, Rspec. :yoooshi:
+
+```
+
+``` to allow tests to
+guide my implementation of the finer details.
 
 Instructions
 ---------
