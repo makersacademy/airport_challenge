@@ -3,7 +3,6 @@ require 'airport.rb'
 describe Airport do
 
   let (:plane) { double :plane }
-  let (:weather) {double :weather }
 
   context 'responds to' do
     it { is_expected.to respond_to :land_plane }
@@ -21,10 +20,12 @@ describe Airport do
     end
 
     it 'should confirm the plane has landed' do
+      allow(plane).to receive(:land)
       expect(subject.land_plane(plane)).to eq [plane]
     end
 
     it 'should return an error if the hanger is full' do
+      allow(plane).to receive(:land)
       Airport::DEFAULT_CAPACITY.times { srand(16); subject.land_plane(plane) }
       expect {subject.land_plane(plane)}.to raise_error "Hanger is full"
     end
@@ -52,6 +53,8 @@ describe Airport do
     end
 
     it 'should confirm the plane has left the airport' do
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
       subject.land_plane(plane)
       expect(subject.take_off_plane(plane)).to eq plane
     end

@@ -12,14 +12,14 @@ class Airport
   end
 
   def land_plane(plane)
-    landing_availability
-    #plane.land
+    check_landing_availability
+    plane.land
     hanger << plane
   end
 
   def take_off_plane(plane)
     check_weather_for_flights
-    #plane.take_off
+    plane.take_off
     hanger.pop
   end
 
@@ -35,7 +35,7 @@ class Airport
     weather.stormy?
   end
 
-  def landing_availability
+  def check_landing_availability
     fail "Hanger is full" if full?
     check_weather_for_flights
   end
