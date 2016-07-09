@@ -7,9 +7,10 @@ puts 'create a new plane'
 puts plane = Plane.new
 
 puts 'create weather report'
-puts weather_report = Weather.new
+puts weather_report = WeatherReport.new
 
-#puts 'check the weather conditions'
+puts 'check the weather conditions'
+puts weather_report.weather_conditions
 
 puts 'land plane'
 puts airport.land_plane(plane)
