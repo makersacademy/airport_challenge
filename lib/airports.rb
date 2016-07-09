@@ -2,10 +2,16 @@ require_relative 'planes'
 
 class Airport
 
-def land_plane
-end
+  def initialize
+    @plane = []
+  end
 
-def plane_landed?
-end
+  def land_plane(plane)
+   @plane << plane
+  end
 
-end
+  def plane_landed?
+  return 'Plane landed successfully' if @plane.count >= 1
+  end
+
+  end
