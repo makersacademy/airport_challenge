@@ -16,8 +16,9 @@ describe Airport do
 
     describe '#take_off' do
       it 'instructs the plane to take off from the Airport' do
-      subject.land_plane(Airplane.new)
-      expect(subject.take_off).to be_nil
+      plane = Airplane.new
+      subject.land_plane(plane)
+      expect(subject.take_off).to eq plane
       end
       end
 
