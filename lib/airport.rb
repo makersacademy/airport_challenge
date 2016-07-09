@@ -4,7 +4,8 @@ class Airport
 
 
 
-def land_plane
+def land_plane(plane)
+@plane = plane
 @plane
 end
 
