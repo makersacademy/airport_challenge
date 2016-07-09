@@ -1,6 +1,6 @@
 class WeatherReport
   def weather_conditions
-    'clear'
+    "stormy"
   end
 
   def weather_gauge
