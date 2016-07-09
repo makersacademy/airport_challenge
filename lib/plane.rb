@@ -7,7 +7,11 @@ class Plane
   end
 
   def land
-    location = :landed
+    @location = :landed
+  end
+
+  def take_off
+    @location = nil
   end
 
 end

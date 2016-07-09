@@ -19,4 +19,16 @@ describe Plane do
     end
 
   end
+
+  describe 'take-off' do
+
+    it 'can take-off from an airport' do
+      expect(plane).to respond_to :take_off
+    end
+
+    it 'knows it has taken-off' do
+      plane.take_off
+      expect(plane.location).not_to eq :landed
+    end
+  end
 end
