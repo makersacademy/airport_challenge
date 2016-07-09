@@ -42,10 +42,10 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 ```
 |Objects| Message|
 | ----- |-------:|
-|Air Traffic Controller| |
-|Passengers| to_destination|
-|Plane| land_at_airport|
-|Plane| confirm_landing|
+|_Air Traffic Controller_| |
+|Passengers|to_destination|
+|Plane|land_at_airport|
+|Plane|confirm_landing|
 
 ```
 As an air traffic controller
