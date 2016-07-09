@@ -1,6 +1,6 @@
 class WeatherReport
   def weather_conditions
-    "stormy"
+    self.weather_gauge == 5 ? "stormy" : "clear"
   end
 
   def weather_gauge
