@@ -18,6 +18,7 @@ class Plane
 
   def take_off (airport, weather = Weather.new)
     fail 'Plane is already in flight' if landed == false
+    fail 'Plane is not at given airport' if airport.planes.include?(self) == false
     fail 'Too stormy to take off' if weather.stormy? == true
     @landed = false
     airport.planes.delete(self)

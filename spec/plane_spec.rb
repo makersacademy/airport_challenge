@@ -79,7 +79,6 @@ describe Plane do
       airport2 = Airport.new
       allow(weather).to receive(:stormy?) { false }
       plane.land(airport, weather)
-      allow(weather).to receive(:stormy?) { true }
       expect { plane.take_off(airport2, weather) }.to raise_error 'Plane is not at given airport'
     end
 
