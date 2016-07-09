@@ -22,6 +22,14 @@ verbs: instruct_plane_to_land, confirm_landed, instruct_plane_to_take_off, confi
 | Airport                | instruct_plane_to_land    |
 | Airport                | instruct_plane_to_take_off|
 
+plane <--> landed?  <--> true/false
+
+plane <--> departed <--> true/false
+
+airport <--> instruct_plane_to_land     <--> plane
+
+airport <--> instruct_plane_to_take_off <--> plane
+
 
 
 As an air traffic controller
