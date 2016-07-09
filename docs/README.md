@@ -2,10 +2,8 @@
 
 #Airport_Challenge
 
-This program is a Makers Academy weekend challenge.
+This program is a Makers Academy weekend assignment.
 It controls the flow of planes to and from an imaginary airport, dependent on weather conditions and airport capacity.
-
-Technologies used
 
 ##How to Use:
 
