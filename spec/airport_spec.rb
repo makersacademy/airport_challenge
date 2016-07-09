@@ -9,11 +9,11 @@ describe AirPort do
 
   end
 
-  context '#capacity' do
+  context '#full?' do
     it { is_expected.to respond_to :capacity }
     airport = AirPort.new
     it 'checks to see if capacity is full' do
-      expect(airport.capacity).to eq 'full'
+      expect(airport.full?).to eq 'full'
     end
 
   end
