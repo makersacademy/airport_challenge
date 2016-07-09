@@ -2,8 +2,8 @@
 
 class Plane
 
-  def land
-    #Plane.new
+  def land(airport)
+    'The plane has landed'
   end
 
 end
