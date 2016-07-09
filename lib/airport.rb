@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Abort landing. Stormy weather." if @stormy
     "Plane #{plane} has landed."
   end
 
