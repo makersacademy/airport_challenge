@@ -18,5 +18,5 @@ puts 'check the weather conditions'
 puts 'land plane'
 puts airport.land_plane(plane)
 
-#puts 'plane confirms landing'
-#puts plane.landed?
+puts 'plane confirms landing'
+puts plane.landed?
