@@ -102,6 +102,7 @@ Flying?**=**Take-off or Landing
 
 Storm? and Clear? (required true/false statement in order to prevent 'Landing' and 'Take-off')
 
+**======================================================================**
 
 Steps:
 
