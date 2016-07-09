@@ -8,3 +8,6 @@ puts plane = Plane.new
 
 puts 'land plane'
 puts airport.land_plane(plane)
+
+puts 'plane confirms landing'
+puts plane.landed?
