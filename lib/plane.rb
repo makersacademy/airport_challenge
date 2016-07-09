@@ -1,6 +1,6 @@
 class Plane
 
-  def landed?
+  def is_flying?
     true
   end
 
