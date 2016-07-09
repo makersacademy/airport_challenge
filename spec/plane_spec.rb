@@ -13,12 +13,19 @@ describe Plane do
       expect { plane.land }.to raise_error 'Plane is not in flight'
     end
 
+    it 'raises an error when weather is stormy' do
+      plane = Plane.new
+      weather  = double(:weather, :stormy => true)
+      plane.land weather
+      expect { plane.land }.to raise_error 'Too stormy to land'
+    end
+
     it 'changes plane to landed' do
       plane = Plane.new
       plane.land
       expect(plane.landed).to eq true
     end
-    
+
   end
 
   describe '#take_off' do

@@ -1,8 +1,7 @@
 class Weather
 
-def weather
-  num = rand(11)
-  num < 9 ? @stormy = false : @story = true
+def stormy?
+  rand(11) < 9 ? @stormy = false : @story = true
 end
 
 end
