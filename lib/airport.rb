@@ -1,6 +1,13 @@
 require_relative 'plane'
 
 class Airport
+  DEFAULT_CAPACITY = 100
+
+  attr_reader :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
+  end
 
   # come back and sort this out
   def stormy
