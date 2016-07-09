@@ -1,17 +1,9 @@
 class Plane
 
-  attr_reader :location
+  attr_accessor :location
 
-  def initialize(location = :landed)
+  def initialize(location = :new_plane)
     @location = location
-  end
-
-  def land
-    @location = :landed
-  end
-
-  def take_off
-    @location = nil
   end
 
 end
