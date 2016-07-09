@@ -1,6 +1,5 @@
 class Airport
 
-
   def initialize
     @airplanes = []
   end
@@ -13,5 +12,9 @@ class Airport
 #    if airplanes.count == 1
 #      'the airplane has landed'
 #    end
+  end
+
+  def accept_landing(airplane)
+    @airplanes << airplane
   end
 end

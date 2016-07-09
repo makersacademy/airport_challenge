@@ -9,6 +9,7 @@ class Airplane
 
   def land(airport)
     @landed = true
+    airport.accept_landing(self)
   end
 
   def landed?
