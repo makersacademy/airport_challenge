@@ -8,10 +8,12 @@ class Plane
   end
 
   def land
+    fail 'Plane is not in flight' if landed == true
     @landed = true
   end
 
   def take_off
+    fail 'Plane is already in flight' if landed == false
     @landed = false
   end
 
