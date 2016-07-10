@@ -1,14 +1,15 @@
 require "plane"
 
 describe Plane do
+  subject(:plane) {Plane.new}
   it "has a flying status attribute" do
-    expect(subject).to respond_to :flying
+    expect(plane).to respond_to :flying
   end
   it "starts off flying" do
-    expect(subject.flying).to eq true
+    expect(plane.flying).to eq true
   end
   it "flying status can be changed" do
     subject.flying = false
-    expect(subject.flying).to eq false
+    expect(plane.flying).to eq false
   end
 end
