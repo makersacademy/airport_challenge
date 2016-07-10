@@ -19,8 +19,8 @@ puts 'airport checks weather conditions before landing'
 puts airport.safe_conditions?(weather_report.weather_conditions)
 #puts plane.safe_to_land?(weather_report.weather_conditions)
 
-puts 'plane confirms landing'
-puts plane.landed?
+#puts 'plane confirms landing'
+#puts plane.landed?
 
-#puts 'land plane'
-#puts airport.land_plane(plane)
+puts 'land plane'
+puts airport.land_plane(plane)
