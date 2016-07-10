@@ -3,13 +3,14 @@ require_relative 'weather'
 
 class Airport
   attr_reader :planes
-  attr_reader :weather
+
   def initialize
 @planes = []
 end
 
 
 def land plane, weather = Weather.new
+raise "Weather condition is bad, no landing" if weather.stormy?
 @planes << plane
 "The plane #{plane} has landed"
 end
