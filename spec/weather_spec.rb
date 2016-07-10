@@ -7,6 +7,4 @@ describe Weather do
     expect(weather).to respond_to :stormy?
   end
 
-
-
 end

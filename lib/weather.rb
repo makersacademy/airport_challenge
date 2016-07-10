@@ -4,7 +4,7 @@ class Weather
 
   attr_accessor :weather
 
-  def conditions
+  def initialize
     @weather = [:fine,:fine,:fine,:stormy][rand(4)]
   end
 
