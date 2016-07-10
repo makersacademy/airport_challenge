@@ -13,15 +13,15 @@ class Airport
   def land(plane)
     fail "airport experiencing stormy weather" unless Weather.clear?
     fail "airport full" if full?
-    fail "selected plane already landed at airport" if @landed_planes.include?(plane)
+    fail "selected plane already landed at airport" if already_landed?(plane)
     @landed_planes << plane
     @landed_planes.last
   end
 
-  def take_off(plane = nil)
+  def take_off(plane = @landed_planes.last)
     fail "airport experiencing stormy weather" unless Weather.clear?
     fail "no planes at airport" if empty?
-    fail "selected plane not currently at airport" unless @landed_planes.include?(plane)
+    fail "selected plane not currently at airport" unless already_landed?(plane)
     @landed_planes.pop
     @airborn_planes << plane
   end
@@ -36,6 +36,10 @@ private
 
   def empty?
     @landed_planes.count == 0
+  end
+
+  def already_landed?(plane)
+    @landed_planes.include?(plane)
   end
 
 end
