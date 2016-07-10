@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-attr_reader :capacity
+attr_reader :hanger, :weather, :capacity
 
 DEFAULT_CAPACITY = 20
 
@@ -15,7 +15,9 @@ DEFAULT_CAPACITY = 20
 
   def land(plane)
     fail "Too stormy to land." if weather.stormy?
-    fail "Airport at maximum capacity." if hanger.count >= capacity
+    fail "Airport at maximum capacity." if full?
+    fail "Flight #{plane} has already landed." if plane.landed
+    plane.landed
     plane_landed(plane)
   end
 
@@ -24,16 +26,25 @@ DEFAULT_CAPACITY = 20
     "Flight #{plane} has landed at the airport."
   end
 
-  def take_off
-    fail "Too stormy to take off." if weather.stormy?
-    fail "There are no planes in the hanger." if hanger.count < 1
-    departure = hanger.pop
-    "Flight #{departure} has taken off from the airport."
+  def empty?
+    hanger.empty?
   end
 
-  private
+  def full?
+    hanger.count >= capacity
+  end
 
-  attr_reader :weather
-  attr_accessor :hanger
+  def take_off
+    fail "Too stormy to take off." if weather.stormy?
+    fail "There are no planes in the hanger." if empty?
+    fail "Flight #{departure} has already taken off." unless plane.flying
+    taken_off
+  end
+
+  def taken_off
+    departure = hanger.pop
+    departure.flying
+    "Flight #{departure} has taken off from the airport."
+  end
 
 end
