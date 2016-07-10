@@ -1,7 +1,7 @@
 require 'weather'
 
 describe Weather do
-  describe '#is_fair' do
+  describe '#fair?' do
         it 'responds to the method' do
             expect(Weather.fair?).to eq true
         end

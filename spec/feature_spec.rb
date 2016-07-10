@@ -18,4 +18,18 @@ end
      luton.land(red_plane)
      expect{jfk.take_off red_plane}.to raise_error 'this plane is not at this airport!'
    end
+
+   it 'plane cannot land if it is not airborne' do
+     green_plane.down
+     expect{jfk.land green_plane}.to raise_error 'That plane is not airborne, so cannot land'
+   end
+
+   it 'Bad weather prevents take off'do
+     allow(Weather).to receive(:fair?).and_return(false)
+     expect{luton.take_off red_plane}.to raise_error 'It is too dangerous to do that right now.'
+   end
+   it 'Bad weather prevents landing' do
+     allow(Weather).to receive(:fair?).and_return(false)
+     expect{jfk.land green_plane}.to raise_error 'It is too dangerous to do that right now.'
+   end
 end
