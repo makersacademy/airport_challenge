@@ -12,15 +12,17 @@ class Airport
   end
 
   def land_plane(plane)
+    confirm_plane_is_flying(plane)
     check_landing_availability
     plane.land
     hanger << plane
   end
 
   def take_off_plane(plane)
+    confirm_plane_is_landed_at_airport(plane)
     check_weather_for_flights
     plane.take_off
-    hanger.pop
+    hanger.slice!(hanger.index(plane))
   end
 
   private
@@ -43,4 +45,22 @@ class Airport
   def check_weather_for_flights
     fail "Weather is stormy" if stormy?
   end
+
+  def confirm_plane_is_flying(plane)
+    fail "Plane is not flying" if flying?(plane) == false
+  end
+
+  def confirm_plane_is_landed_at_airport(plane)
+    fail "Plane is flying" if flying?(plane)
+    fail "Plane is not located at this airport" if located_here?(plane) == false
+  end
+
+  def flying?(plane)
+    plane.flying == true
+  end
+
+  def located_here?(plane)
+    [plane] == hanger.select{|plane_in_hanger| plane_in_hanger == plane}
+  end
+
 end
