@@ -13,10 +13,10 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport and confirm that it has landed
 ```
-airport = Airpot.new <br />
-plane = Airplane.new <br />
-airport.land(plane) <br />
-plane.landed? <br />
+⋅⋅⋅airport = Airpot.new⋅⋅  
+⋅⋅⋅plane = Airplane.new⋅⋅
+⋅⋅⋅airport.land(plane)⋅⋅
+⋅⋅⋅plane.landed?⋅⋅
 
 ```
 As an air traffic controller
