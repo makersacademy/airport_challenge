@@ -14,6 +14,7 @@ class Airport
     fail "airport experiencing stormy weather" unless Weather.clear?
     fail "airport full" if full?
     fail "selected plane already landed at airport" if already_landed?(plane)
+    plane.touch_down
     @landed_planes << plane
     @landed_planes.last
   end
@@ -22,6 +23,7 @@ class Airport
     fail "airport experiencing stormy weather" unless Weather.clear?
     fail "no planes at airport" if empty?
     fail "selected plane not currently at airport" unless already_landed?(plane)
+    plane.up_up_and_away
     @landed_planes.pop
     @airborn_planes << plane
   end
