@@ -15,7 +15,7 @@ DEFAULT_CAPACITY = 20
 
   def land(plane)
     fail "Too stormy to land." if weather.stormy?
-    fail "Airport too full to land" if hanger.count >= capacity
+    fail "Airport at maximum capacity." if hanger.count >= capacity
     plane_landed(plane)
   end
 
@@ -31,12 +31,9 @@ DEFAULT_CAPACITY = 20
     "Flight #{departure} has taken off from the airport."
   end
 
-
   private
 
   attr_reader :weather
   attr_accessor :hanger
-
-
 
 end

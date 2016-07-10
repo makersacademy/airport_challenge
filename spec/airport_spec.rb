@@ -29,7 +29,7 @@ require 'airport'
 
         it 'will not allow a plane to land if the airport is full' do
           subject.capacity.times { subject.land(plane) }
-          expect { subject.land(plane) }. to raise_error("Airport too full to land")
+          expect { subject.land(plane) }. to raise_error("Airport at maximum capacity.")
         end
 
       end
