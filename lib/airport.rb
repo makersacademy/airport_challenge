@@ -19,6 +19,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Cannot take off as it is stormy" if stormy?
     @planes.pop
   end
 
