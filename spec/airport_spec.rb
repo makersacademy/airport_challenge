@@ -11,9 +11,9 @@ describe Airport do
     it 'defaults capacity' do
       allow(subject.weather).to receive(:stormy?) { false }
       described_class::DEFAULT_CAPACITY.times do
-        subject.accept(double(:plane, land: true))
+        subject.land(double(:plane, land: true))
       end
-      expect{ subject.accept(double(:plane, land: true)) }.
+      expect{ subject.land(double(:plane, land: true)) }.
         to raise_error 'Airport capacity is full'
     end
 
@@ -31,25 +31,25 @@ describe Airport do
       allow(subject.weather).to receive(:stormy?) { false }
     end
     it 'accepts an plane' do
-      subject.accept(plane)
+      subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
 
     it 'does not accept a plane if it is already in the airport' do
-      subject.accept(plane)
-      expect{ subject.accept(plane) }.
+      subject.land(plane)
+      expect{ subject.land(plane) }.
         to raise_error 'This plane has already landed here'
     end
 
     it 'does not allow the plane to land if the weather is stormy' do
       allow(subject.weather).to receive(:stormy?) { true }
-      expect { subject.accept(plane) }.
+      expect { subject.land(plane) }.
         to raise_error 'Could not land because of stormy weather'
     end
 
     it 'does not accept any more planes when capacity is full' do
-      subject.capacity.times { subject.accept(double(:plane, land: true)) }
-      expect{ subject.accept(double(:plane, land: true)) }.
+      subject.capacity.times { subject.land(double(:plane, land: true)) }
+      expect{ subject.land(double(:plane, land: true)) }.
         to raise_error 'Airport capacity is full'
     end
 
@@ -60,7 +60,7 @@ describe Airport do
     let(:plane) { double :plane, land: true, landed?: false, take_off: true}
     before do
       allow(subject.weather).to receive(:stormy?) { false }
-      subject.accept(plane)
+      subject.land(plane)
     end
 
     it 'takes off a plane' do

@@ -10,16 +10,12 @@ class Airport
     @capacity = capacity
   end
 
-  def accept(plane)
-    acceptance_checks(plane)
-    @planes << plane
-    plane.land
+  def land(plane)
+    accept(plane) if acceptance_checks(plane)
   end
 
   def take_off(plane)
-    fail 'This plane was not found in the airport' unless @planes.include? plane
-    fail 'Could not take off because of stormy weather' if @weather.stormy?
-    @planes.delete(plane).take_off
+    @planes.delete(plane).take_off if take_off_checks(plane)
   end
 
   private
@@ -32,6 +28,18 @@ class Airport
     fail 'This plane has already landed here' if @planes.include? plane
     fail 'Airport capacity is full' if full?
     fail 'Could not land because of stormy weather' if @weather.stormy?
+    true
+  end
+
+  def take_off_checks(plane)
+    fail 'This plane was not found in the airport' unless @planes.include? plane
+    fail 'Could not take off because of stormy weather' if @weather.stormy?
+    true
+  end
+
+  def accept(plane)
+    @planes << plane
+    plane.land
   end
 
 end

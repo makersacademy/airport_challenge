@@ -14,8 +14,4 @@ class Plane
     @landed = false
   end
 
-  private
-
-  attr_reader :landed
-
 end
