@@ -5,9 +5,9 @@ describe Plane do
   subject(:plane) { Plane.new }
   subject(:airport) { Airport.new }
 
-  describe 'landing the plane' do
+  describe 'it should be able to report where it is' do
 
-    it 'knows it has landed' do
+    it 'landed' do
       airport.land(plane)
       expect(plane.location).to eq :airport
     end
@@ -16,7 +16,8 @@ describe Plane do
 
   describe 'take-off' do
 
-    it 'knows it has taken-off' do
+    it 'taken-off' do
+      allow(airport).to receive (:stormy?) {false}
       airport.land(plane)
       airport.take_off(plane)
       expect(plane.location).to eq :air

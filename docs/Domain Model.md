@@ -30,7 +30,7 @@
 
 ### Domain Model:
 
-Controller --- **land** ---> Plane
+Controller <--- **land** ---> Plane
 
 Controller --- **take_off** ---> Plane
 
