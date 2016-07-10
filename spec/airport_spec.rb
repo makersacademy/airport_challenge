@@ -8,5 +8,11 @@ describe Airport do
     it "lands a plane" do
       expect(airport).to respond_to(:land).with(1).argument
     end
+
+    #it "changes flying attribute to landed" do
+    #  landed_plane = airport.land(plane)
+    #  expect(landed_plane.flying?).to eq false
+  #  end
+
   end
 end

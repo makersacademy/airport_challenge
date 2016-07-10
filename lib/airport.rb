@@ -8,4 +8,5 @@ class Airport
   def land(plane)
     @planes << plane
   end
+
 end
