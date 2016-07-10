@@ -14,7 +14,13 @@ describe Airport do
         plane = Airplane.new
         subject.land(plane)
         expect(subject.take_off).to eq plane
-      
+
       end
     end
+    describe '#capacity' do
+       it 'prevents planes landing if there is no room' do
+       Airport::DEFAULT_CAPACITY.times{subject.land(Airplane.new)}
+       expect {subject.land(Airplane.new)}.to raise_error "Airport full"
+     end
+   end
 end
