@@ -5,6 +5,9 @@ describe Airport do
   describe '#accept' do
 
     let(:plane) { double :plane, land: true, landed?: true }
+    before do
+      allow(subject.weather).to receive(:stormy?) { false }
+    end
     it 'accepts an plane' do
       subject.accept(plane)
       expect(subject.planes).to eq [plane]
@@ -15,13 +18,18 @@ describe Airport do
       expect{ subject.accept(plane) }.to raise_error 'This plane has already landed here'
     end
 
+    it 'does not allow the plane to land if the weather is stormy' do
+      allow(subject.weather).to receive(:stormy?) { true }
+      expect { subject.accept(plane) }.to raise_error 'Could not land because of stormy weather'
+    end
+
   end
 
   describe '#take_off' do
 
     let(:plane) { double :plane, land: true, landed?: false, take_off: true}
     before do
-      allow(subject.weather).to receive(:stormy?).and_return(false)
+      allow(subject.weather).to receive(:stormy?) { false }
       subject.accept(plane)
     end
 
@@ -36,7 +44,7 @@ describe Airport do
     end
 
     it 'does not allow the plane to take off if the weather is stormy' do
-      allow(subject.weather).to receive(:stormy?).and_return(true)
+      allow(subject.weather).to receive(:stormy?) { true }
       expect{ subject.take_off(plane) }.to raise_error 'Could not take off because of stormy weather'
     end
 

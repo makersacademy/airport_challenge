@@ -10,6 +10,7 @@ class Airport
 
   def accept(plane)
     raise 'This plane has already landed here' if @planes.include? plane
+    raise 'Could not land because of stormy weather' if @weather.stormy?
     @planes << plane
     plane.land
   end
