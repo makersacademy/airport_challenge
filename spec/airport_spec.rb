@@ -32,9 +32,11 @@ describe Airport do
 #    expect(airport.land(Plane.new)).to eq 'Unable to land as airport is full'
 #  end
     it 'will not land an already landed plane' do
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return(false)
       plane = Plane.new
-      subject.land plane
-      expect{subject.land(plane)}.to raise_error 'Plane has already landed'
+      airport.land plane
+      expect{airport.land(plane)}.to raise_error 'Plane has already landed'
     end
   end
 
