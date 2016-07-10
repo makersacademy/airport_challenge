@@ -3,6 +3,9 @@ require_relative 'airport'
 puts 'create a new airport'
 puts airport = Airport.new
 
+#puts 'create a new airport'
+#puts airport = Airport.new(2)
+
 puts 'create a new plane'
 puts plane1 = Plane.new
 
@@ -15,8 +18,8 @@ puts weather_report = WeatherReport.new
 #puts 'weather gauge, scale 1-5, 5 is a storm'
 #5.times {puts weather_report.weather_gauge}
 
-puts 'create weather conditions from weather report'
-10.times {puts weather_report.weather_conditions }
+#puts 'create weather conditions from weather report'
+#10.times {puts weather_report.weather_conditions }
 
 puts 'airport checks weather conditions before landing'
 puts airport.safe_conditions?(weather_report.weather_conditions)

@@ -2,15 +2,15 @@ require_relative 'plane'
 
 class Airport
 
-  #DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
   attr_reader :weather
   attr_reader :clear
   attr_reader :terminal
   attr_reader :capacity
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @terminal = []
-    @capacity = 1
+    @capacity = capacity
   end
 
 def safe_conditions?(weather_report)
@@ -19,9 +19,6 @@ end
 
 def clear?
   puts "Is the airway clear? Yes or No?"
-    #unless gets.downcase.chomp == 'yes' || gets.downcase.chomp == 'no'
-      #puts "Please answer yes or no"
-    #end
   response = gets.chomp
   response.downcase == 'yes' ? (@clear = true) : (@clear = false)
   @clear
@@ -41,8 +38,6 @@ def plane_depart
   plane = terminal.pop
   plane.departed?
 end
-
-
 
   def full?
       @capacity <= @terminal.length
