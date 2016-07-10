@@ -11,6 +11,7 @@ describe Airport do
   it { is_expected.to(respond_to(:find).with(1).argument) }
   it { is_expected.to(respond_to(:remove).with(1).argument) }
 
+
   describe '#planes' do
     it 'returns landed planes' do
       allow(plane).to(receive(:landed?))

@@ -1,4 +1,5 @@
 require_relative "plane"
+require_relative "weather"
 
 class Airport
   attr_reader :planes
@@ -16,7 +17,7 @@ class Airport
   def take_off(plane)
     fail "No planes" unless find(plane)
     plane.fly
-    self.remove(plane)
+    remove(plane)
   end
 
   #private
@@ -32,6 +33,5 @@ class Airport
   def remove(plane)
     @planes.delete(plane)
   end
-
 
 end
