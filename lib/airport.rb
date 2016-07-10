@@ -6,4 +6,8 @@ class Airport
 
   end
 
+  def is_flying?(plane)
+
+  end
+
 end
