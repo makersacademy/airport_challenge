@@ -41,6 +41,11 @@ describe Airport do
         message = "Weather conditions are unsuitable to land in!"
         expect{subject.land(plane)}.to raise_exception(message)
       end
+      it "returns error when trying to release plane in storm" do
+        allow(subject).to receive(:stormy?).and_return(true)
+        message = "Weather conditions are unsuitable to take off in!"
+        expect{subject.take_off}.to raise_exception(message)
+      end
     end
 
   describe "#initialize" do

@@ -19,7 +19,7 @@ class Airport
   end
 
   def take_off
-    raise "Weather conditions are unsuitable to takeoff in!" if stormy?
+    raise "Weather conditions are unsuitable to take off in!" if stormy?
     @planes[-1].flying = true
     @planes.pop
   end
