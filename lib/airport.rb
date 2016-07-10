@@ -13,7 +13,19 @@ class Airport
 	end
 
 	def take_off(plane)
+		raise "Error: Plane is not at this airport!" if !at_airport?(plane)
 		plane.fly
 		@planes.delete(plane)
+	end
+
+	private
+
+	def at_airport?(plane)
+		@planes.each do |p|
+			if p == plane
+				return true
+			end
+		end
+		return false
 	end
 end

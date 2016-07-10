@@ -19,6 +19,12 @@ describe Plane do
  			subject.land(airport)
  			expect(subject.airport).to(eq(airport))
  		end
+
+ 		it 'calling land on a landed plane raises exception "Error: Plane is already landed!"' do
+ 			airport = double(:airport)
+ 			subject.land(airport)
+ 			expect{ subject.land(airport) }.to(raise_error("Error: Plane is already landed!"))
+ 		end
  	end
 
  	describe '#fly' do
@@ -35,5 +41,9 @@ describe Plane do
  			subject.fly
 			expect(subject.airport).to(eq(nil))
 		end
+
+		it 'calling fly on a flying plane raises exception "Error: Plane is already flying!"' do
+ 			expect{ subject.fly }.to(raise_error("Error: Plane is already flying!"))
+ 		end
 	end	
 end

@@ -32,6 +32,11 @@ describe Airport do
  			subject.land_plane(plane)
  			subject.take_off(plane)
  			expect(subject.planes).to(eq([]))
- 		end	
+ 		end
+
+ 		it 'take_off plane that is not at current airport raises "Error: Plane is not at this airport!"' do
+ 			allow(plane).to(receive(:land).and_return(true))
+ 			expect{ subject.take_off(plane) }.to(raise_exception("Error: Plane is not at this airport!"))
+ 		end
  	end
 end

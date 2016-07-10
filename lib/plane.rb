@@ -9,11 +9,13 @@ class Plane
 	end
 
 	def land(airport)
+		raise "Error: Plane is already landed!" if @landed
 		@landed = true
 		@airport = airport
 	end
 
 	def fly
+		raise "Error: Plane is already flying!" if !@landed
 		@landed = false
 		@airport = nil
 	end
