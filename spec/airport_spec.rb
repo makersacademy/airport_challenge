@@ -6,18 +6,20 @@ describe Airport do
 	end
 
  	describe '#land_plane' do
- 		# it 'land_plane calls plane.land' do
- 		# 	plane = Plane.new
- 		# 	subject.land_plane(plane)
- 		# 	expect(plane.landed).to(eq(true))
- 		# end
+ 		let(:plane) { plane = double(:plane) }
 
- 		it 'land_plane calls plane.land and plane.land to return true' do
- 			plane = double(:plane)
+ 		it 'land_plane calls plane.land and plane.land returns true' do
  			allow(plane).to(receive(:land).and_return(true))
  			allow(plane).to(receive(:landed).and_return(true))
  			subject.land_plane(plane)
  			expect(plane.landed).to(eq(true))
+ 		end
+
+ 		it 'plane is at airport after land_plane' do
+ 			allow(plane).to(receive(:land).and_return(true))
+ 			allow(plane).to(receive(:landed).and_return(true))
+ 			subject.land_plane(plane)
+ 			expect(subject.planes).to(eq([plane]))
  		end
  	end
 	
