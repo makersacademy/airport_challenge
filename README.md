@@ -57,7 +57,7 @@ Therefore, I restructured the program so that airports are now responsible for t
 
 I also created a class called Weather and a method called stormy? which is called whenever an airport requests a plane to land or take-off:
 
-```
+```ruby
 def stormy?
   rand(10) > 7
 end
