@@ -17,7 +17,7 @@ class Airport
   end
 
   def land(plane)
-    raise "Plane cannot land. Airport full." if @planes.size >= @capacity
+    raise "Plane cannot land. Airport full." if full?
     raise "Abort landing. Stormy weather." if @stormy
     @planes << plane
     "Plane #{plane} has landed."
@@ -27,6 +27,12 @@ class Airport
     raise "Abort take off. Stormy weather." if @stormy
     @planes.pop
     "Plane #{plane} is in the air."
+  end
+
+  private
+
+  def full?
+    @planes.size >= @capacity
   end
 
 end
