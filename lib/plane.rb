@@ -1,7 +1,7 @@
 class Plane
 
   def initialize
-    @landed = true
+    @landed = true #assuming planes are built
   end
 
   def landed

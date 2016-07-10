@@ -25,7 +25,7 @@ class Airport
     @landed_planes.delete(plane)
   end
 
-  def build_plane
+  def build_plane #wanted to implement this feature if i had more time
     fail 'Too many planes at this aiport!' if full?
     @landed_planes << Plane.new
   end
