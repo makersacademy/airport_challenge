@@ -3,6 +3,7 @@ require 'plane'
 describe Plane do
   let(:weather_report) {double :WeatherReport}
   it {is_expected.to respond_to(:landed?)}
+  it {is_expected.to respond_to(:departed?)}
   #it {is_expected.to respond_to(:safe_to_land?)}
 
   it "Confirms when landed safely" do

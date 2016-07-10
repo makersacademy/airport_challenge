@@ -7,6 +7,7 @@ describe Airport do
   it { is_expected.to respond_to :safe_conditions?}
   it { is_expected.to respond_to :land_plane }
   it { is_expected.to respond_to :plane_depart }
+  it { is_expected.to respond_to :clear? }
 
   it 'Land plane receives a plane'do
     subject.land_plane(plane)
@@ -43,6 +44,7 @@ describe Airport do
   it "gets a confirmation from the plane when departed" do
     allow(weather_report).to receive(:weather_conditions) { "clear"}
     expect(subject.safe_conditions?(weather_report.weather_conditions)).to eq("clear")
+    subject.land_plane(plane)
     expect(subject.plane_depart).to be(true)
   end
 
