@@ -24,5 +24,8 @@ describe Airport do
       subject.takeoff(plane)
       expect {subject.planes.to_not include plane }
     end
+    it 'Will prevent planes that aren\'t in the airport from taking off' do
+      expect { subject.takeoff(Plane.new) }.to raise_error "That plane isn't in the airport"
+    end
   end
 end

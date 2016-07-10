@@ -12,6 +12,7 @@ class Airport
   end
 
   def takeoff(plane)
+    fail "That plane isn't in the airport" unless @planes.include? plane
     @planes.delete(plane)
   end
 end
