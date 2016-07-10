@@ -5,7 +5,7 @@ class Airport
   attr_reader :plane, :planes
   attr_accessor :capacity
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
@@ -16,10 +16,11 @@ class Airport
   end
 
   def deny_plane
+    #takeoff and landing permission denial merged to DRY the code
     'Airport closed due to stormy weather' if weather_stormy?
   end
 
-  def accept_plane (plane)
+  def accept_plane(plane)
     fail 'Airport full' if airport_full
     @planes << plane
   end
