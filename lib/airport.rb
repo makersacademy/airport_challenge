@@ -3,7 +3,8 @@ require_relative "plane"
 class Airport
 
   def land(plane)
-    is_flying?(plane)
+    fail "Plane has already landed" if is_flying?(plane)
+    plane.land_plane
   end
 
   def is_flying?(plane)
