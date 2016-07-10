@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 5
-
+  
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @landed_planes = []
@@ -43,7 +43,6 @@ class Airport
   def slots_available
     @capacity - (@landed_planes.length)
   end
-
 
 attr_reader :capacity
 attr_reader :airborn_planes
