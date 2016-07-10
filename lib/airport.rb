@@ -1,6 +1,10 @@
 require_relative 'plane'
 
 class Airport
+
+  #DEFAULT_CAPACITY = 20
+
+
   attr_reader :weather
   attr_reader :clear
 
@@ -32,6 +36,11 @@ def plane_depart
   fail "Airway not clear for departure" if @clear == false
   puts @plane
   @plane.departed?
+end
+
+#private
+
+def full?
 end
 
 

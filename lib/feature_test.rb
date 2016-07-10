@@ -21,8 +21,11 @@ puts airport.safe_conditions?(weather_report.weather_conditions)
 puts 'checks if it\'s clear for landing'
 puts airport.clear?
 
-puts 'checks if airport is full'
-puts airport.full?
+#puts 'checks if airport is full'
+#puts airport.full?
+
+puts 'land plane'
+puts airport.land_plane(plane)
 
 puts 'land plane'
 puts airport.land_plane(plane)
