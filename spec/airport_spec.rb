@@ -31,5 +31,9 @@ describe Airport do
       expect(released_plane.flying).to eq true
     end
   end
+  describe "#initialize" do
+    it "uses default capacity if no capacity given" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
 end
-  
