@@ -3,10 +3,22 @@ require_relative 'weather'
 
 class Airplane
 
-# attr_reader :landed
+attr_reader :landed
+
+  def initialize
+    @landed = true
+  end
 
   def landed?
-    true
+    @landed
+  end
+
+  def take_off
+    @landed = false
+  end
+
+  def land
+    @landed = true
   end
 
 end
