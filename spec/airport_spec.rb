@@ -13,13 +13,8 @@ describe Airport do
       airport.land(plane)
       expect(plane.flying).to eq false
     end
-
-
-    #it "changes flying attribute to landed" do
-    #  landed_plane = airport.land(plane)
-    #  expect(landed_plane.flying?).to eq false
-  #  end
   end
+
   describe "#take_off" do
     it "releases a plane" do
       expect(subject).to respond_to(:take_off)
@@ -31,9 +26,13 @@ describe Airport do
       expect(released_plane.flying).to eq true
     end
   end
+
   describe "#initialize" do
     it "uses default capacity if no capacity given" do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    it "has a weather condition for the day" do
+      expect(subject.forecast).to be_a Weather
     end
   end
 end
