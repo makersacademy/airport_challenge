@@ -7,10 +7,11 @@ class Airport
   attr_reader :hanger
 
   def initialize
-    @hanger = []
+    @hanger = Set.new
   end
 
   def request_landing(plane)
+    raise "Plane has already landed!" if plane_exist?(plane)
     raise "Airport is full, unable to land" if full?
     bad_weather_check
     plane.land
@@ -18,14 +19,16 @@ class Airport
   end
 
   def request_take_off(plane)
+    raise "Plane does not exist in hanger!" unless plane_exist?(plane)
     bad_weather_check
     plane.take_off
+    delete_from_hanger(plane)
   end
 
   private
 
   def full?
-    @hanger.count >= DEFAULT_CAPACITY
+    @hanger.size >= DEFAULT_CAPACITY
   end
 
   def raise_bad_weather
@@ -37,7 +40,15 @@ class Airport
   end
 
   def dock_plane(plane)
-    @hanger << plane
+    @hanger.add(plane)
+  end
+
+  def plane_exist?(plane)
+    @hanger.include?(plane)
+  end
+
+  def delete_from_hanger(plane)
+    @hanger.delete?(plane)
   end
 
 end
