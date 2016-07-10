@@ -29,6 +29,11 @@ describe Airport do
         subject.land(plane)
         expect{subject.land(plane)}.to raise_error("Plane already landed!")
       end
+      it 'remembers landed planes' do
+        plane = Plane.new
+        subject.land(plane)
+        expect(subject.planes).to include plane
+      end
     end
 
     describe '#take_off' do
