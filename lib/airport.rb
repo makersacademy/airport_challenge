@@ -6,18 +6,13 @@ class Airport
 
   attr_reader :capacity
   attr_reader :planes
-  attr_reader :weather
+  attr_accessor :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
     @weather = Weather.new
   end
-
-  # come back and sort this out
-#  def stormy
-#    @stormy = true
-#  end
 
   def land(plane)
     raise "Plane cannot land. Airport full." if full?
