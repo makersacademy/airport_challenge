@@ -15,12 +15,14 @@ describe Airport do
 
     it 'does not accept a plane if it is already in the airport' do
       subject.accept(plane)
-      expect{ subject.accept(plane) }.to raise_error 'This plane has already landed here'
+      expect{ subject.accept(plane) }.
+        to raise_error 'This plane has already landed here'
     end
 
     it 'does not allow the plane to land if the weather is stormy' do
       allow(subject.weather).to receive(:stormy?) { true }
-      expect { subject.accept(plane) }.to raise_error 'Could not land because of stormy weather'
+      expect { subject.accept(plane) }.
+        to raise_error 'Could not land because of stormy weather'
     end
 
   end
@@ -40,12 +42,14 @@ describe Airport do
 
     it 'does not allow to take off if the plane is not there' do
       subject.take_off(plane)
-      expect{ subject.take_off(plane) }.to raise_error 'This plane was not found in the airport'
+      expect{ subject.take_off(plane) }.
+        to raise_error 'This plane was not found in the airport'
     end
 
     it 'does not allow the plane to take off if the weather is stormy' do
       allow(subject.weather).to receive(:stormy?) { true }
-      expect{ subject.take_off(plane) }.to raise_error 'Could not take off because of stormy weather'
+      expect{ subject.take_off(plane) }.
+        to raise_error 'Could not take off because of stormy weather'
     end
 
   end
