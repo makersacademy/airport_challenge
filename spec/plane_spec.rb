@@ -1,6 +1,13 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
+
+  it 'cannot land at another airport while landed' do
+    subject.land
+    expect{ subject.land }.to raise_error
+  end
+
   context '#land' do
     it { is_expected.to respond_to(:land) }
     it 'should return landed status' do
