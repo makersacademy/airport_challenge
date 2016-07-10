@@ -8,6 +8,6 @@ class Plane
   end
 
   def landed?
-    #true if @coming_in_for_landing == true
+    true if @clear_for_landing == true
   end
 end
