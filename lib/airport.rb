@@ -11,19 +11,24 @@ attr_accessor :capacity
     @capacity = capacity
   end
 
-  def take_off
+  def take_off(plane)
     @planes.pop
-    fail 'Weather too stormy for take off' if Weather.stormy?
+    weather_forecast
+    return plane
   end
 
   def land(plane)
     fail 'Airport full' if full?
-    #fail 'Weather too stormy for take off' if stormy?
+    weather_forecast
     @planes << plane
   end
 
   def full?
     @planes.length >= @capacity ? true : false
+  end
+
+  def weather_forecast
+    fail 'Weather too stormy right now' if Weather.stormy?
   end
 
 end
