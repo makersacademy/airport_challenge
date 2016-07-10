@@ -12,4 +12,9 @@ class Plane
 		@landed = true
 		@airport = airport
 	end
+
+	def fly
+		@landed = false
+		@airport = nil
+	end
 end
