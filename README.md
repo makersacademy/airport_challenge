@@ -38,7 +38,7 @@ I want to prevent landing when weather is stormy
 ```
 
 def stormy? <br />
-rand(7) > 6 <br />
+  rand(7) > 6 <br />
 end <br />
 
 This gives the likelihood of it being stormy only one day a week.
