@@ -55,7 +55,7 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error 'Plane is not in flight'
     end
 
-    it 'tells the plane the plane to land' do
+    it 'tells the plane to land' do
       expect(plane).to receive(:land)
       airport.land(plane)
     end
@@ -69,7 +69,7 @@ describe Airport do
 
   describe '#take_off' do
 
-    it 'tells the plane the plane to take off' do
+    it 'tells the plane to take off' do
       airport.land(plane)
       expect(plane).to receive(:take_off)
       airport.take_off(plane)

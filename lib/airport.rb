@@ -15,16 +15,18 @@ class Airport
     fine_to_land?(plane)
     plane.land
     self.planes << plane
+    puts "Successful landing!"
   end
 
   def take_off(plane)
     fine_to_take_off?(plane)
     plane.take_off
     planes.delete(plane)
+    puts "Successful take-off!"
   end
 
   def full?
-    planes.count == capacity ? true : false
+    planes.count == capacity
   end
 
   private
