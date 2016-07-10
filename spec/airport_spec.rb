@@ -2,7 +2,7 @@ require 'airport.rb'
 
 describe Airport do
 
-  let (:plane) { double :plane }
+  let (:plane){ double :plane }
 
   context 'responds to' do
     it { is_expected.to respond_to :land_plane }
@@ -94,7 +94,7 @@ describe Airport do
   context '#take_off_plane when weather is stormy' do
 
     before :example do
-      srand(11) # weather will randomly generate clear to land, then stormy to take off
+      srand(11) #weather will randomly generate clear then stormy
     end
 
     it 'should return an error if the weather is stormy' do
