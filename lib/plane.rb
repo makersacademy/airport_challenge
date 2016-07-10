@@ -1,9 +1,10 @@
 class Plane
 
-  attr_accessor :flying
+  attr_accessor :flying, :id
 
-  def initialize
+  def initialize id='Generic Model'
     @flying = true
+    @id = id
   end
 
 end

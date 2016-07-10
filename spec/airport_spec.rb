@@ -31,6 +31,11 @@ describe Airport do
 #    2.times {airport.land(Plane.new)}
 #    expect(airport.land(Plane.new)).to eq 'Unable to land as airport is full'
 #  end
+    it 'will not land an already landed plane' do
+      plane = Plane.new
+      subject.land plane
+      expect{subject.land(plane)}.to raise_error 'Plane has already landed'
+    end
   end
 
   context 'in stormy weather' do
@@ -49,8 +54,3 @@ describe Airport do
 
   end
 end
-
-  # Concpetually, should the airport be initialized with planes ? --README
-  # I want to instruct A PLANE!! to land at an airport and confirm that it has landed
-  # I want to instruct A PLANE!! to take off from an airport and confirm that it is no longer in the airport
-  # Describe setup / usage (with code snippets) in README
