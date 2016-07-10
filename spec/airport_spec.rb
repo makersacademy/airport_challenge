@@ -34,6 +34,12 @@ describe Airport do
     expect(subject.land_plane(plane)).to be(true)
   end
 
+  it "prevents planes from departing if weather is stormy" do
+    allow(weather_report).to receive(:weather_conditions) { "stormy" }
+    expect(subject.safe_conditions?(weather_report.weather_conditions)).to eq("stormy")
+    expect {subject.plane_depart}.to raise_error 'Unable to depart due to stormy conditions'
+  end
+
 
 
 #it "ensures the plane lands in clear weather" do

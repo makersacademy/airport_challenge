@@ -12,6 +12,9 @@ def land_plane(plane)
   plane.landed?
 end
 
+def plane_depart
+end
+
 
 
 end
