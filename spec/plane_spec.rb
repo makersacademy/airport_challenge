@@ -2,6 +2,10 @@ require 'plane'
 
 describe Plane do
 
+  before do
+    allow(Weather).to receive(:clear?) {true}
+  end
+
   it 'registers a plane as landed' do
   plane = Plane.new
   airport = Airport.new
