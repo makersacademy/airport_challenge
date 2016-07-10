@@ -13,7 +13,7 @@
 
 ```
 
-This programs have 3 classes:
+This program has 3 classes:
 
 
 1. Airport
