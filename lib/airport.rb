@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    fail "airport experiencing stormy weather" unless Weather.clear?
     @planes << plane
     @planes.last
   end

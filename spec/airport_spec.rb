@@ -6,8 +6,14 @@ describe '#land' do
   it {is_expected.to respond_to(:land).with(1).argument}
 
   it 'docks plane and returns confirmation' do
+  allow(Weather).to receive(:clear?).and_return(true)
   plane = Plane.new
   expect(subject.land(plane)).to eq plane
+  end
+
+  it 'raises an error when stormy weather' do
+    allow(Weather).to receive(:clear?).and_return(false)
+    expect { subject.land(Plane.new)}.to raise_error("airport experiencing stormy weather")
   end
 end
 
