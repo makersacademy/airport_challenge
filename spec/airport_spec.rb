@@ -55,7 +55,7 @@ require 'airport'
         expect { subject.take_off }. to raise_error("There are no planes in the hanger.")
         end
 
-        # it 'will not allow a plane to take off it is already airbourne' do
+        # it 'will not allow a plane to take off it is already airborne' do
         #   subject.land(plane).take_off
         #   expect { subject.take_off }. to raise_error("Flight #{plane} has already taken-off.")
         # end
