@@ -1,16 +1,19 @@
 class Plane
-  attr_reader :status
+  attr_reader :status, :airport
   #remember public/private, only airport can tell the plane to take off
   def initialize
     @status = :flying
   end
 
-  def land #needs to take airport as arg
+  def land(airport)
     @status = :landed
+    @airport = airport #need to get rid of @ but resolve variable names first, also this method does two things
+    status
   end
 
+
   def take_off
-    @status = "in the air"
+
   end
 
 end
