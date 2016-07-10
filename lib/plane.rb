@@ -6,8 +6,4 @@ class Plane
     @is_flying = true
   end
 
-#  def is_flying?
-#    @is_flying?
-#  end
-
 end

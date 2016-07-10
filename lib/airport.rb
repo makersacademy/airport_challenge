@@ -22,11 +22,12 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Abort take off. Stormy weather." if stormy?
     raise "Plane already flying!" if plane.is_flying
+    raise "Plane not in that airport!" unless @planes.include?(plane)
+    raise "Abort take off. Stormy weather." if stormy?
     plane.is_flying = true
     @planes.pop
-    "Plane #{plane} is in the air."
+    "Plane #{plane} has left the airport and is in the air."
   end
 
   private

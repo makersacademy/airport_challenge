@@ -1,5 +1,9 @@
 class Weather
 
+  # Set a percentage which will act as the proportion of the time that the
+  # weather will be stormy (out of 100).
+  STORMY_PERCENTAGE = 20
+
   def stormy?
     weather_is_stormy?
   end
@@ -7,7 +11,7 @@ class Weather
   private
 
   def weather_is_stormy?
-    rand()*10 > 9 ? true : false
+    rand()*100 < STORMY_PERCENTAGE ? true : false
   end
 
 end
