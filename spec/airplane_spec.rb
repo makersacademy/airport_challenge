@@ -7,7 +7,7 @@ describe Airplane do
 
     describe 'airplane_status' do
       it 'should be landed when a new plane is initialized' do
-        expect(subject.landed?).to eq true
+        expect(subject.landed?).to eq false
       end
     end
 
