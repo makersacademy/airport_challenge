@@ -51,7 +51,7 @@ describe Airport do
     end
     it 'planes cannot land when weather is bad' do
       allow(plane).to receive(:airborne).and_return(true)
-      allow(Weather).to receive(:is_fair).and_return(false)
+      allow(Weather).to receive(:fair?).and_return(false)
       expect { subject.land plane }.to raise_error 'It is too dangerous to do that right now.'
 
     end
@@ -92,7 +92,7 @@ describe Airport do
       allow(plane).to receive(:down)
       subject.land(plane)
       allow(plane).to receive(:airborne).and_return(false)
-      allow(Weather).to receive(:is_fair).and_return(false)
+      allow(Weather).to receive(:fair?).and_return(false)
       expect { subject.take_off plane }.to raise_error 'It is too dangerous to do that right now.'
 
     end

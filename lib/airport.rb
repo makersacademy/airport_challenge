@@ -29,7 +29,7 @@ DEFAULT_CAPACITY = 3
   private
 
   def check_weather
-    fail 'It is too dangerous to do that right now.' unless Weather.is_fair
+    fail 'It is too dangerous to do that right now.' unless Weather.fair?
   end
 
   def enter_hanger(plane)
