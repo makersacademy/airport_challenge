@@ -33,7 +33,7 @@ require './lib/weather.rb'
 # airport.accept(Plane.new)
 
 # # Sixth User Story
-# # I would like a default airport capacity that can be overridden as appropriate
+# # I'd like a default airport capacity that can be overridden as appropriate
 airport = Airport.new(40)
 40.times { airport.accept(Plane.new) }
 puts "-- Trying to land 41st plane... --"

@@ -13,8 +13,8 @@ describe Airport do
       described_class::DEFAULT_CAPACITY.times do
         subject.accept(double(:plane, land: true))
       end
-      expect{ subject.accept(double(:plane, land: true)) }
-        .to raise_error 'Airport capacity is full'
+      expect{ subject.accept(double(:plane, land: true)) }.
+        to raise_error 'Airport capacity is full'
     end
 
     it 'allows to set a different capacity (40)' do
