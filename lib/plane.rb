@@ -4,6 +4,8 @@ class Plane
       @landed
     end
 
+    #private
+
     def land_plane
       @landed = true
     end

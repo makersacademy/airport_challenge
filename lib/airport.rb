@@ -13,14 +13,20 @@ class Airport
     planes.push(plane)
   end
 
-  def take_off
-    fail "No planes" if @planes.empty?
-    plane = planes.pop
+  def take_off(plane)
+    fail "No planes" if !find(plane)
     plane.fly
   end
+
+  #private
 
   def flying?(plane)
     plane.landed?
   end
+
+  def find(plane)
+    @planes.include?(plane)
+  end
+
 
 end
