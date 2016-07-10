@@ -1,7 +1,11 @@
 class Plane
 
   def landed?
-    false
+    @landed
+  end
+
+  def land
+    @landed = true
   end
 
 end
