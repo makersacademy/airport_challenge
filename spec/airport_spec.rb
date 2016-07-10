@@ -31,13 +31,23 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'selects a plane for take off' do
-      #plane = Plane.new
-      #subject.land(plane)
+    it 'returns an error if there are no landed planes' do
+      expect{subject.take_off}.to(raise_error("No planes"))
+    end
+    it 'tells a plane to take off' do
       allow(plane).to(receive(:landed?))
       allow(plane).to(receive(:land_plane))
       subject.land(plane)
-      expect(subject.take_off).to(eq(plane))
+      expect(plane).to(receive(:fly))
+      subject.take_off
+    end
+    it 'removes the plane from the planes array' do
+      allow(plane).to(receive(:landed?))
+      allow(plane).to(receive(:land_plane))
+      allow(plane).to(receive(:fly))
+      subject.land(plane)
+      subject.take_off
+      expect(subject.planes).to(be_empty)
     end
   end
 
