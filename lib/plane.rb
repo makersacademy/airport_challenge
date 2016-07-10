@@ -14,7 +14,7 @@ class Plane
 
   def take_off(airport)
     @status = :flying
-    @airport = :none
+    @airport = :nil
     status
   end
 

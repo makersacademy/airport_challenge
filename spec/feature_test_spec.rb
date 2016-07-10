@@ -12,6 +12,9 @@ puts airport = Airport.new
 puts "creates a plane: "
 puts plane = Plane.new
 
+puts "weather is too stormy?"
+puts weather = Weather.stormy?
+
 puts
 puts "landing the plane"
 
@@ -23,9 +26,6 @@ puts airport.land(plane)
 
 puts "checks planes landed at airport:"
 puts airport.planes
-
-puts "instructs plane to land at airport:"
-puts airport.land(plane)
 
 puts "checks plane knows it has landed:"
 puts plane.status
@@ -47,6 +47,9 @@ puts plane.status
 
 puts "checks plane knows it is not in the airport:"
 puts plane.airport
+
+puts
+puts "checking the weather"
 
 
 

@@ -3,6 +3,8 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let (:plane) {double :plane}
+  let (:Weather) {double :Weather}
+
 
   describe 'initialize airport' do
 
@@ -21,10 +23,11 @@ describe Airport do
 
     before do
       allow(plane).to receive(:land)
+      allow(Weather).to receive(:stormy?).and_return(false)
     end
 
     it 'instructs the plane to land' do
-      expect(plane).to receive(:land) #something not right here - expect in wrong place
+      expect(plane).to receive(:land)
       subject.land(plane)
     end
 
@@ -50,6 +53,7 @@ describe Airport do
     before do
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
+      allow(Weather).to receive(:stormy?).and_return(false)
       subject.land(plane)
     end
 
@@ -75,8 +79,28 @@ describe Airport do
 
   end
 
-  #these should all be in the describe of landing. It adds the plane to the array;
-  #it doesn't check the plane land method call went ok (that's in plane spec)
+  context 'the weather is stormy' do
+      before do
+        allow(plane).to receive(:land)
+        allow(plane).to receive(:take_off)
+        allow(Weather).to receive(:stormy?).and_return(false)
+      end
+
+      it 'does not allow plane to land' do
+        allow(Weather).to receive(:stormy?).and_return(true)
+        error = 'Cannot complete command, the weather is too stormy'
+        expect{subject.land(plane)}.to raise_error error
+      end
+
+      it 'does not allow plane to take off' do
+
+        subject.land(plane)
+        allow(Weather).to receive(:stormy?).and_return(true)
+        error = 'Cannot complete command, the weather is too stormy'
+        expect{subject.take_off(plane)}.to raise_error error
+      end
+  end
+
 
 
 end
