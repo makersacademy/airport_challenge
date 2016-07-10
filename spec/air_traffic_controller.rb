@@ -1,3 +1,0 @@
-describe AirtrafficController do
-
-end
