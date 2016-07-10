@@ -10,29 +10,25 @@ describe Airport do
 
   context 'in clear weather' do
 
+    before(:each) {allow(subject).to receive(:stormy?).and_return(false)}
+
     it 'will raise an error if instructed to take off with no planes' do
       expect{subject.take_off}.to raise_error 'There are no planes in this airport'
     end
 
     it 'will allow a plane to take off' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      airport.land plane
-      expect(airport.take_off).to eq plane
+      subject.land plane
+      expect(subject.take_off).to eq plane
     end
 
     it 'stores a landed plane' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      airport.land(plane)
-      expect(airport.landed_planes).to eq 1
+      subject.land(plane)
+      expect(subject.landed_planes).to eq 1
     end
 
     it 'will not land a plane if the airport is full' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      Airport::MAX_CAPACITY.times {airport.land(Plane.new)}
-      expect{airport.land(plane)}.to raise_error 'Unable to land as airport is full'
+      Airport::MAX_CAPACITY.times {subject.land(Plane.new)}
+      expect{subject.land(plane)}.to raise_error 'Unable to land as airport is full'
     end
 
    it 'has a maximum capacity that can be overiden' do
@@ -43,14 +39,14 @@ describe Airport do
    end
 
     it 'will not land an already landed plane' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      airport.land plane
-      expect{airport.land(plane)}.to raise_error 'Plane has already landed'
+      subject.land plane
+      expect{subject.land(plane)}.to raise_error 'Plane has already landed'
     end
   end
 
   context 'in stormy weather' do
+
+    before(:each) {allow(subject).to receive(:stormy?).and_return(true)}
 
     it 'will not take_off' do
       airport = Airport.new
@@ -60,9 +56,7 @@ describe Airport do
     end
 
     it 'will not land' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(true)
-      expect{airport.land(plane)}.to raise_error 'Unable to land due to bad weather'
+      expect{subject.land(plane)}.to raise_error 'Unable to land due to bad weather'
     end
   end
 end
