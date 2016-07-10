@@ -12,6 +12,7 @@ describe Airport do
       expect(subject.land(plane)).to eq("Plane #{plane} has landed.")
     end
     it 'raises an error when we try to land a plane at an airport already at capacity' do
+      allow(subject).to receive(:stormy?).and_return(false)
       subject.capacity.times {subject.land(Plane.new)}
       expect{subject.land(Plane.new)}.to raise_error("Plane cannot land. Airport full.")
     end

@@ -1,8 +1,13 @@
 class Weather
 
   def stormy?
-    false
-    #rand()*20 > 10 ? true : false
+    weather_is_stormy?
+  end
+
+  private
+
+  def weather_is_stormy?
+    rand()*10 > 9 ? true : false
   end
 
 end
