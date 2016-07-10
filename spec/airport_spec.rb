@@ -13,4 +13,12 @@ describe Airport do
       expect{ subject.request_take_off(plane) }.to raise_error
     end
   end
+
+  context '#request_landing' do
+    it 'a plane cannot land in bad weather' do
+      allow(plane).to receive(:land)
+      allow(subject).to receive(:weather_status).and_return("Stormy")
+      expect{ subject.request_landing(plane) }.to raise_error
+    end
+  end
 end

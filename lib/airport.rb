@@ -5,6 +5,7 @@ class Airport
   attr_accessor :weather_status
 
   def request_landing(plane)
+    raise "Cannot land in bad weather" if weather_status == "Stormy"
     plane.land
   end
 
