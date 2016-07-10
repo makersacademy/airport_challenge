@@ -47,6 +47,10 @@ Land a plane:
 ```ruby
 airport1.land(plane1)
 ```
+Check whether a plane has landed:
+```ruby
+plane1.landed?
+```
 
 
 My Approach

@@ -25,20 +25,20 @@ class Airport
     puts "Successful take-off!"
   end
 
+  private
+
   def full?
     planes.count == capacity
   end
 
-  private
-
   def fine_to_land?(plane)
-    fail 'Plane is not in flight' if plane.landed
+    fail 'Plane is not in flight' if plane.landed?
     fail 'Too stormy to land' if weather.stormy?
     fail 'Airport is too full to land' if full?
   end
 
   def fine_to_take_off?(plane)
-    fail 'Plane is already in flight' unless plane.landed
+    fail 'Plane is already in flight' unless plane.landed?
     fail 'Plane is not at given airport' unless planes.include?(plane)
     fail 'Too stormy to take off' if weather.stormy?
   end

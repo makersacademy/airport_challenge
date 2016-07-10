@@ -26,15 +26,6 @@ describe Airport do
 
   end
 
-  describe '#full?' do
-
-    it 'returns true if the airport is full' do
-      airport_cap_1.land(plane)
-      expect(airport_cap_1.full?).to eq true
-    end
-
-  end
-
   describe '#land' do
 
     it 'raises an error when weather is stormy' do
