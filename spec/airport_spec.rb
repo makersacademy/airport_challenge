@@ -3,6 +3,10 @@ require 'airport'
 describe Airport do
   let(:plane) { double('plane') }
 
+  it 'default airport capacity' do
+    expect(Airport::DEFAULT_CAPACITY).to eq 10
+  end
+
   it { is_expected.to respond_to(:request_landing).with(1).arguments }
   it { is_expected.to respond_to(:request_take_off).with(1).arguments }
 
@@ -18,6 +22,12 @@ describe Airport do
     it 'a plane cannot land in bad weather' do
       allow(plane).to receive(:land)
       allow(subject).to receive(:weather_status).and_return("Stormy")
+      expect{ subject.request_landing(plane) }.to raise_error
+    end
+
+    it 'a plane cannot land when airport is full' do
+      allow(plane).to receive(:land)
+      Airport::DEFAULT_CAPACITY.times { subject.request_landing(plane) }
       expect{ subject.request_landing(plane) }.to raise_error
     end
   end
