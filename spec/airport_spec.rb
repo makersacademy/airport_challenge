@@ -31,12 +31,6 @@ describe Airport do
     end
   end
 
-  describe '#plane' do
-      it 'confirms what planes are in an airport' do
-        expect(subject.plane).to eq(@planes)
-      end
-    end
-
   describe '#take_off' do
     context 'when not stormy' do
       it 'instructs a plane to take off' do
