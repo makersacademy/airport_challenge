@@ -25,6 +25,12 @@ describe Airport do
         to raise_error 'Could not land because of stormy weather'
     end
 
+    it 'does not accept any more planes when capacity is full' do
+      subject.capacity.times { subject.accept(double(:plane, land: true)) }
+      expect{ subject.accept(double(:plane, land: true)) }.
+        to raise_error 'Airport capacity is full'
+    end
+
   end
 
   describe '#take_off' do

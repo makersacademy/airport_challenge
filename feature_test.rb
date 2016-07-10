@@ -20,7 +20,14 @@ require './lib/weather.rb'
 
 # # Fourth User Story
 # # I want to prevent landing when weather is stormy
+# airport = Airport.new
+# plane = Plane.new
+# airport.weather.set_stormy
+# airport.accept(plane)
+
+# # Fifth User Story
+# # I want to prevent landing when the airport is full
 airport = Airport.new
-plane = Plane.new
-airport.weather.set_stormy
-airport.accept(plane)
+airport.weather.set_sunny
+20.times { airport.accept(Plane.new) }
+airport.accept(Plane.new)
