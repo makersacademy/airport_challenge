@@ -7,10 +7,20 @@ describe Airport do
     expect(Airport::DEFAULT_CAPACITY).to eq 10
   end
 
-  it { is_expected.to respond_to(:request_landing).with(1).arguments }
-  it { is_expected.to respond_to(:request_take_off).with(1).arguments }
+  context 'increasing default capacity' do
+    capacity = 20
+    it 'should not raise error when increasing capacity' do
+      expect { Airport.new(capacity) }.not_to raise_error
+    end
+    it 'increase default capacity' do
+      airport = Airport.new(capacity)
+      expect(airport.capacity).to eq capacity
+    end
+  end
 
   context '#request_take_off' do
+    it { is_expected.to respond_to(:request_take_off).with(1).arguments }
+
     it 'a plane cannot take off in bad weather' do
       allow(plane).to receive(:take_off)
       allow(subject).to receive(:weather_status).and_return("Stormy")
@@ -32,6 +42,8 @@ describe Airport do
   end
 
   context '#request_landing' do
+    it { is_expected.to respond_to(:request_landing).with(1).arguments }
+
     it 'a plane cannot land in bad weather' do
       allow(plane).to receive(:land)
       allow(subject).to receive(:weather_status).and_return("Stormy")
@@ -40,7 +52,7 @@ describe Airport do
 
     it 'a plane cannot land when airport is full' do
       allow(plane).to receive(:land)
-      Airport::DEFAULT_CAPACITY.times { subject.request_landing(Plane.new) }
+      subject.capacity.times { subject.request_landing(Plane.new) }
       expect{ subject.request_landing(plane) }.to raise_error
     end
 

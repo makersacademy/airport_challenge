@@ -5,9 +5,11 @@ class Airport
   DEFAULT_CAPACITY = 10
   attr_accessor :weather_status
   attr_reader :hanger
+  attr_reader :capacity
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hanger = Set.new
+    @capacity = capacity
   end
 
   def request_landing(plane)
@@ -28,7 +30,7 @@ class Airport
   private
 
   def full?
-    @hanger.size >= DEFAULT_CAPACITY
+    @hanger.size >= @capacity
   end
 
   def raise_bad_weather
