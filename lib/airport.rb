@@ -28,7 +28,25 @@ class Airport
     @airborn_planes << plane
   end
 
+  def take_off_multiple(num = 1)
+    fail "airport experiencing stormy weather" unless Weather.clear?
+    fail "no planes at airport" if empty?
+    fail "not enough planes at airport" if (@landed_planes.length < num)
+    num.times do |plane|
+      plane = @landed_planes.pop
+      plane.up_up_and_away
+      @airborn_planes << plane
+    end
+    @airborn_planes
+  end
+
+  def slots_available
+    @capacity - (@landed_planes.length)
+  end
+
+
 attr_reader :capacity
+attr_reader :airborn_planes
 
 private
 

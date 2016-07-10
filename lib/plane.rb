@@ -19,7 +19,7 @@ class Plane
     @airborn = true
   end
 
-  # def status
-  #   @airborn == true ? "currently in the air" : "currently landed at an airport"
-  # end
+  def status
+    @airborn == true ? "currently in the air" : "currently landed at an airport"
+  end
 end

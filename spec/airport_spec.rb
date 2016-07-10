@@ -46,6 +46,20 @@ describe '#take_off' do
     expect { subject.take_off(plane) }.to raise_error("no planes at airport")
   end
 
+  it 'takes off multiple planes as specified in argument' do
+    allow(Weather).to receive(:clear?) {true}
+    5.times { subject.land(Plane.new) }
+    expect(subject.take_off_multiple(5)).to eq subject.airborn_planes
+  end
+
+describe '#slots_available' do
+  it 'returns avaiable slots' do
+    allow(Weather).to receive(:clear?) {true}
+    subject.land(Plane.new)
+    expect(subject.slots_available).to eq (subject.capacity - 1)
+  end
+  end
+
   # it 'takes off a plane and returns confirmation'
   # plane = Plane.new
   # airport = Airport.new
