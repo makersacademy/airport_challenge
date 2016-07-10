@@ -22,6 +22,6 @@ To be updated...
 
 * Descriptions of libraries
 
-* Status and explanation of steps taken
+* Status and (if incomplete) explanation of steps taken to get to this stage.
 
 * Snippet of how to use in irb
