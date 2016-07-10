@@ -27,7 +27,14 @@ require './lib/weather.rb'
 
 # # Fifth User Story
 # # I want to prevent landing when the airport is full
-airport = Airport.new
-airport.weather.set_sunny
-20.times { airport.accept(Plane.new) }
+# airport = Airport.new
+# airport.weather.set_sunny
+# 20.times { airport.accept(Plane.new) }
+# airport.accept(Plane.new)
+
+# # Sixth User Story
+# # I would like a default airport capacity that can be overridden as appropriate
+airport = Airport.new(40)
+40.times { airport.accept(Plane.new) }
+puts "-- Trying to land 41st plane... --"
 airport.accept(Plane.new)

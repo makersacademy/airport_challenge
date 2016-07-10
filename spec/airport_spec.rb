@@ -2,6 +2,28 @@ require 'airport'
 
 describe Airport do
 
+  describe '#initialize' do
+
+    it 'allows to specify different capacity' do
+      expect(described_class).to respond_to(:new).with(1).argument
+    end
+
+    it 'defaults capacity' do
+      allow(subject.weather).to receive(:stormy?) { false }
+      described_class::DEFAULT_CAPACITY.times do
+        subject.accept(double(:plane, land: true))
+      end
+      expect{ subject.accept(double(:plane, land: true)) }
+        .to raise_error 'Airport capacity is full'
+    end
+
+    it 'allows to set a different capacity (40)' do
+      airport = described_class.new(40)
+      expect(airport.capacity).to eq 40
+    end
+
+  end
+
   describe '#accept' do
 
     let(:plane) { double :plane, land: true, landed?: true }
