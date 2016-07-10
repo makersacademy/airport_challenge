@@ -13,18 +13,18 @@ class Airport
   end
 
   def land(plane)
-    raise "Plane already landed!" if plane.is_flying == false
-    raise "Plane cannot land. Airport full." if full?
-    raise "Abort landing. Stormy weather." if stormy?
+    fail "Plane already landed!" if plane.is_flying == false
+    fail "Plane cannot land. Airport full." if full?
+    fail "Abort landing. Stormy weather." if stormy?
     planes << plane
     plane.is_flying = false
     "Plane #{plane} has landed."
   end
 
   def take_off(plane)
-    raise "Plane already flying!" if plane.is_flying
-    raise "Plane not in that airport!" unless planes.include?(plane)
-    raise "Abort take off. Stormy weather." if stormy?
+    fail "Plane already flying!" if plane.is_flying
+    fail "Plane not in that airport!" unless planes.include?(plane)
+    fail "Abort take off. Stormy weather." if stormy?
     plane.is_flying = true
     planes.pop
     "Plane #{plane} has left the airport and is in the air."
