@@ -16,6 +16,9 @@ class Airport
     @planes_array.push(plane)
   end
 
+  def take_off(plane)
+  end
+
   def flying?(plane)
     plane.landed?
   end
