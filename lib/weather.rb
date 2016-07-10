@@ -11,7 +11,7 @@ class Weather
   private
 
   def weather_is_stormy?
-    rand()*100 < STORMY_PERCENTAGE ? true : false
+    rand()*100 < STORMY_PERCENTAGE
   end
 
 end

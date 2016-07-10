@@ -5,7 +5,6 @@ require 'airport'
 # to reduce this? Is there another solution or is this just how testing goes?
 
 describe Airport do
-
   it 'allows setting of a default capacity when instantiating an airport instance' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
