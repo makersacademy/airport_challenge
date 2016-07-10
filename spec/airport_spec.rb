@@ -9,12 +9,15 @@ describe Airport do
 
   it {is_expected.to respond_to(:weather_stormy?)}
 
-  it 'prevents takeoff in stormy weather' do
-    allow(subject.deny_takeoff).to receive(:weather_stormy?){1}.and_return ('The weather is stormy, takeoff denied')
+  it 'prevents takeoff and landing in stormy weather' do
+    allow(subject.deny_plane).to receive(:weather_stormy?){1}.and_return ('Airport closed due to stormy weather')
   end
 
-  it 'prevents landing in stormy weather' do
-    allow(subject.deny_landing).to receive(:weather_stormy?){1}.and_return ('The weather is stormy, landing denied')
+  describe "#accept_plane" do
+    it 'raises an error when airport is full' do
+    #  50.times subject.accept_plane(Plane.new)
+      expect {subject.accept_plane(Plane.new)}.to raise_error 'Airport full'
+    end
   end
 
 end

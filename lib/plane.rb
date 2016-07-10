@@ -5,7 +5,7 @@ class Plane
   end
 
   def confirm_landing
-    "The plane has landed"
+    'The plane has landed'
   end
 
   def takeoff
@@ -13,7 +13,7 @@ class Plane
   end
 
   def confirm_takeoff
-    "The plane has left the airport"
+    'The plane has left the airport'
   end
 
 
