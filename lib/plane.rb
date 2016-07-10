@@ -5,6 +5,8 @@ class Plane
     'plane has landed'
   end
   def take_off
-  end  
+    'plane taken off'
+    'plane no longer at airport'
+  end
 
 end
