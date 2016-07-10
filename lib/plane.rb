@@ -4,7 +4,7 @@ class Plane
   alias :airborne? :airborne
 
   def initialize
-    @airborne
+    @airborne = true
   end
 
   def down

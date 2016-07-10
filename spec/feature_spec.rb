@@ -1,19 +1,21 @@
 require_relative '../lib/airport.rb'
-require_relative '../lib/plane.rb'
 
 describe 'planes at the airport' do
-  let(:airport) {Airport.new}
-  let(:plane) {Plane.new}
-    it 'lands a plane' do
-    airport.land(plane)
-    expect(airport.planes).to eq [plane]
-  end
-   it 'is confirmed when a plane has landed' do
-     airport.land(plane)
-     expect(plane.landed?).to be true
-   end
-   it 'is confirmed when a plane has taken off' do
-     airport.take_off(plane)
-     expect(plane.landed?).to be false
-   end
+
+    let(:luton) { Airport.new(2) }
+    let(:jfk) {Airport.new(2)}
+    let(:red_plane) {Plane.new}
+    let(:blue_plane) {Plane.new}
+    let(:green_plane) {Plane.new}
+
+it 'Airport gets full' do
+      luton.land(red_plane)
+      luton.land(blue_plane)
+      expect{luton.land green_plane}.to raise_error 'Airport Full'
 end
+
+   it 'Plane cannot take off from an airport it is not in' do
+     luton.land(red_plane)
+     expect{jfk.take_off red_plane}.to raise_error 'this plane is not at this airport!'
+   end
+ end
