@@ -1,7 +1,7 @@
 
 class Weather
 	def initialize
-		@weather = ['sunny','rainy','windy','stormy']
+		@weather = ['sunny', 'sunny', 'sunny', 'sunny', 'stormy']
 	end
 
 	def weather?
