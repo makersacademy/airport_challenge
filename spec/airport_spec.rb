@@ -8,7 +8,7 @@ describe Airport do
 
     it 'lands a plane' do
       allow(Weather).to receive(:stormy?).and_return(false)
-      expect(subject.land(plane)).to eq [plane]
+      expect(subject.land(plane)).to eq "The plane has landed"
     end
       it 'has docked the plane' do
         allow(Weather).to receive(:stormy?).and_return(false)
@@ -29,7 +29,7 @@ describe Airport do
       it 'instructs the plane to take off from the Airport' do
         allow(Weather).to receive(:stormy?).and_return(false)
         subject.land(plane)
-        expect(subject.take_off(plane)).to eq plane
+        expect(subject.take_off(plane)).to eq "The plane has taken off!"
       end
       it 'confirms the plane has left the airport' do
         allow(Weather).to receive(:stormy?).and_return(false)

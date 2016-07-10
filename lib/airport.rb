@@ -14,13 +14,14 @@ attr_accessor :capacity
   def take_off(plane)
     @planes.pop
     weather_forecast
-    return plane
+    return "The plane has taken off!"
   end
 
   def land(plane)
     fail 'Airport full' if full?
     weather_forecast
     @planes << plane
+    return "The plane has landed"
   end
 
   def full?
