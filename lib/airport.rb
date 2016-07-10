@@ -4,7 +4,6 @@ require 'set'
 class Airport
 
   DEFAULT_CAPACITY = 10
-  attr_accessor :weather_status
   attr_reader :hanger
   attr_reader :capacity
 
@@ -34,12 +33,16 @@ class Airport
     @hanger.size >= @capacity
   end
 
+  def random_weather_gen
+    rand(0..100)
+  end
+
   def raise_bad_weather
-    raise "bad weather alert" if bad_weather?
+    raise "bad weather alert"
   end
 
   def bad_weather_check
-    weather_status == "Stormy" ? raise_bad_weather : nil
+    random_weather_gen < 10 ? raise_bad_weather : nil
   end
 
   def dock_plane(plane)

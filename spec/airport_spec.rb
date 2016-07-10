@@ -1,6 +1,9 @@
 require 'airport'
 
 describe Airport do
+  sunny_weather = 100
+  bad_weather = 3
+
   let(:plane) { double('plane') }
 
   it 'default airport capacity' do
@@ -22,12 +25,16 @@ describe Airport do
     it { is_expected.to respond_to(:request_take_off).with(1).arguments }
 
     it 'a plane cannot take off in bad weather' do
+      allow(subject).to receive(:random_weather_gen) { sunny_weather }
       allow(plane).to receive(:take_off)
-      allow(subject).to receive(:weather_status).and_return("Stormy")
-      expect{ subject.request_take_off(plane) }.to raise_error
+      allow(plane).to receive(:land)
+      subject.request_landing(plane)
+      allow(subject).to receive(:random_weather_gen).and_return(bad_weather)
+      expect{ subject.request_take_off(plane) }.to raise_error('bad weather alert')
     end
 
     it 'should not be in hanger after take off' do
+      allow(subject).to receive(:random_weather_gen) { sunny_weather }
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       subject.request_landing(plane)
@@ -36,8 +43,9 @@ describe Airport do
     end
 
     it 'can only take off if exists in hanger' do
+      allow(subject).to receive(:random_weather_gen) { sunny_weather }
       allow(plane).to receive(:take_off)
-      expect{ subject.request_take_off(plane) }.to raise_error
+      expect{ subject.request_take_off(plane) }.to raise_error('Plane does not exist in hanger!')
     end
   end
 
@@ -46,20 +54,22 @@ describe Airport do
 
     it 'a plane cannot land in bad weather' do
       allow(plane).to receive(:land)
-      allow(subject).to receive(:weather_status).and_return("Stormy")
-      expect{ subject.request_landing(plane) }.to raise_error
+      allow(subject).to receive(:random_weather_gen) { bad_weather }
+      expect{ subject.request_landing(plane) }.to raise_error('bad weather alert')
     end
 
     it 'a plane cannot land when airport is full' do
+      allow(subject).to receive(:random_weather_gen) { sunny_weather }
       allow(plane).to receive(:land)
       subject.capacity.times { subject.request_landing(Plane.new) }
-      expect{ subject.request_landing(plane) }.to raise_error
+      expect{ subject.request_landing(plane) }.to raise_error('Airport is full, unable to land')
     end
 
     it 'cannot land if already landed' do
+      allow(subject).to receive(:random_weather_gen) { sunny_weather }
       allow(plane).to receive(:land)
       subject.request_landing(plane)
-      expect { subject.request_landing(plane) }.to raise_error
+      expect { subject.request_landing(plane) }.to raise_error('Plane has already landed!')
     end
   end
 end
