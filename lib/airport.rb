@@ -13,6 +13,7 @@ def land_plane(plane)
 end
 
 def plane_depart
+  fail "Unable to depart due to stormy conditions" if @weather == 'stormy'
 end
 
 

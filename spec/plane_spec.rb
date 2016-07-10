@@ -8,6 +8,10 @@ describe Plane do
   it "Confirms when landed safely" do
     expect(subject.landed?).to be(true)
   end
+
+  it "Confirms when landed safely" do
+    expect(subject.departed?).to be(true)
+  end
   #it "checks the weather report" do
     #weather_report = double(:weather_conditions => "clear")
     #allow(weather_report).to receive(:weather_conditions) { "stormy" }
