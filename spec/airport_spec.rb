@@ -3,17 +3,14 @@ require "airport"
 describe Airport do
 
   plane = Plane.new
-  ## let airport = new with BEFORE??
 
   it "responds to #land" do
     expect(subject).to respond_to(:land).with(1).argument
   end
-  
+
   context 'in clear weather' do
 
     it 'will raise an error if instructed to take off with no planes' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
       expect{subject.take_off}.to raise_error 'There are no planes in this airport'
     end
 
@@ -57,6 +54,7 @@ describe Airport do
 
     it 'will not take_off' do
       airport = Airport.new
+      airport.land plane
       allow(airport).to receive(:stormy?).and_return(true)
       expect{airport.take_off}.to raise_error 'Unable to take off due to poor weather'
     end

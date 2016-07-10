@@ -12,16 +12,16 @@ class Airport
   end
 
   def land plane
-    fail 'Unable to land due to bad weather' if stormy?
     fail 'Unable to land as airport is full' if full?
     fail 'Plane has already landed' if planes.include? plane
+    fail 'Unable to land due to bad weather' if stormy?
     plane.flying = false
     planes << plane
   end
 
   def take_off
-    fail 'Unable to take off due to poor weather' if stormy?
     fail 'There are no planes in this airport' if empty?
+    fail 'Unable to take off due to poor weather' if stormy?
     planes.last.flying = true
     planes.pop
   end
