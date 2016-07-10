@@ -4,7 +4,7 @@ describe Plane do
 
   describe '#land' do
 
-    it {is_expected.to respond_to(:land).and respond_to(:landed?)}
+    it {is_expected.to respond_to(:landed).and respond_to(:landed?)}
 
   end
 

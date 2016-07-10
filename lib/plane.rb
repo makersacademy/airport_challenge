@@ -4,7 +4,7 @@ class Plane
     @landed = true
   end
 
-  def land
+  def landed
     @landed = true
   end
 
@@ -12,7 +12,7 @@ class Plane
     @landed
   end
 
-  def take_off
+  def taken_off
     @landed = false
   end
 

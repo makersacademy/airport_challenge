@@ -2,36 +2,47 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) {instance_double("Plane", land: true, take_off: false)}
+  let(:plane) {instance_double("Plane", taken_off: true)}
 
   describe '#take_off' do
 
+    it {is_expected.to respond_to(:take_off)}
+
     context 'when stormy' do
-
-      # let(:weather) {class_double("Weather", stormy?: true)}
-
       it 'prevents take off' do
         allow(Weather).to receive(:stormy?) {false}
         subject.land(plane)
         allow(Weather).to receive(:stormy?).and_return(true)
         expect{subject.take_off(plane)}.to raise_error 'The weather is too stormy right now!'
       end
-
     end
 
     context 'when not stormy' do
+
+      let(:spitfire) {Plane.new}
 
       before(:example) do
         allow(Weather).to receive(:stormy?).and_return(false)
       end
 
-      it 'allows for planes to take off' do
+      it 'allows for planes to take off at random by deafault' do
         subject.land(plane)
-        expect(subject.take_off(plane)).to eq "A plane has taken off!"
+        expect(subject.take_off).to eq(plane)
       end
 
-      it 'raises an error when a plane not at the aiport tries to take off' do
-        expect{subject.take_off(plane)}.to raise_error 'This plane is not at the airport!'
+      it 'raises an error when there are no planes to take off' do
+        expect{subject.take_off}.to raise_error 'There are no planes to take off!'
+      end
+
+      it 'takes off a specific plane if an argument is given' do
+        subject.land(spitfire)
+        5.times {subject.land(Plane.new)}
+        expect(subject.take_off(spitfire)).to eq(spitfire)
+      end
+
+      it 'raises an error if a specified plane is not at the airport' do
+        5.times {subject.land(Plane.new)}
+        expect{subject.take_off(spitfire)}.to raise_error 'That plane is not at this airport!'
       end
 
     end
@@ -39,6 +50,8 @@ describe Airport do
   end
 
   describe '#land' do
+
+    it {is_expected.to respond_to(:land).with(1).argument}
 
     context 'when stormy' do
 

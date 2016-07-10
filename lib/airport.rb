@@ -1,5 +1,3 @@
-# require 'weather'
-
 class Airport
 
   DEAFAULT_CAPACITY = 50
@@ -19,21 +17,17 @@ class Airport
     return "A plane has landed!"
   end
 
-  def take_off(plane=@landed_planes.last)
-    fail 'This plane is not at the airport!' unless plane_exists?(plane)
+  def take_off(plane=@landed_planes.sample)
+    fail 'There are no planes to take off!' if empty?
+    fail 'That plane is not at this airport!' unless plane_exists?(plane)
     check_weather
+    puts "A plane has taken off!"
     @landed_planes.delete(plane)
-    return "A plane has taken off!"
   end
 
   def build_plane
     fail 'Too many planes at this aiport!' if full?
     @landed_planes << Plane.new
-  end
-
-  def check_weather
-    fail 'The weather is too stormy right now!' if Weather.stormy?
-    return "Good weather to take off..."
   end
 
   private
@@ -42,8 +36,16 @@ class Airport
     @landed_planes.length >= @capacity ? true : false
   end
 
+  def empty?
+    @landed_planes.length < 1
+  end
+
   def plane_exists?(plane)
     @landed_planes.include?(plane)
+  end
+
+  def check_weather
+    fail 'The weather is too stormy right now!' if Weather.stormy?
   end
 
   # def ok_to_fly?
