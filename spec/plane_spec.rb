@@ -5,6 +5,7 @@ describe Plane do
 
   it { is_expected.to(respond_to(:landed?)) }
   it { is_expected.to(respond_to(:land_plane)) }
+  it { is_expected.to(respond_to(:fly)) }
 
   describe '#landed?' do
     it 'does not return true when a plane is flying' do
@@ -22,8 +23,5 @@ describe Plane do
       expect(subject.landed?).to(eq(true))
     end
   end
-
-
-
 
 end
