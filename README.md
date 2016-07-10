@@ -46,3 +46,5 @@ The Airport class can `.land`/`take_off` a plane using the plane object as an ar
 Guard conditions exist to prevent planes from landing when they are not airborne and also from taking off from airports where they are not current at.
 
 The Weather class dictates whether or not it is safe to `.take_off`/`.land` when `.fair?` is called on it by returning `true` and occasionally `false`.
+
+* note: I did try to make the private methods found in `airport_spec.rb` a module, but when implemented the rspec-specific methods returned undefined.
