@@ -7,7 +7,7 @@ describe Airport do
   it { is_expected.to(respond_to(:land).with(1).argument) }
   it { is_expected.to(respond_to(:flying?).with(1).argument) }
   it { is_expected.to(respond_to(:planes))}
-  it { is_expected.to(respond_to(:take_off).with(1).argument) }
+  it { is_expected.to(respond_to(:take_off)) }
 
   describe '#planes' do
     it 'returns landed planes' do
@@ -17,7 +17,6 @@ describe Airport do
       expect(subject.planes).to(eq([plane]))
     end
   end
-
 
   describe '#land' do
     it 'returns an error if the plane is already landed' do
@@ -29,7 +28,17 @@ describe Airport do
       expect(plane).to(receive(:land_plane))
       subject.land(plane)
     end
+  end
 
+  describe '#take_off' do
+    it 'selects a plane for take off' do
+      #plane = Plane.new
+      #subject.land(plane)
+      allow(plane).to(receive(:landed?))
+      allow(plane).to(receive(:land_plane))
+      subject.land(plane)
+      expect(subject.take_off).to(eq(plane))
+    end
   end
 
   describe '#flying?' do

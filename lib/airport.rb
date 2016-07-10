@@ -16,11 +16,14 @@ class Airport
     @planes_array.push(plane)
   end
 
-  def take_off(plane)
+  def take_off
+    plane = @planes_array.pop
   end
 
   def flying?(plane)
     plane.landed?
   end
+
+
 
 end
