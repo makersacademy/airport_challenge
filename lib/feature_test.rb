@@ -15,8 +15,11 @@ puts weather_report = WeatherReport.new
 puts 'check the weather conditions'
 10.times {puts weather_report.weather_conditions }
 
-puts 'land plane'
-puts airport.land_plane(plane)
+puts 'plane checks if it \'s safe to land.'
+puts plane.safe_to_land?
 
 puts 'plane confirms landing'
-puts plane.landed?
+puts plane.landed?(weather_report.weather_conditions)
+
+puts 'land plane'
+puts airport.land_plane(plane)
