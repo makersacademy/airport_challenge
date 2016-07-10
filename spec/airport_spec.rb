@@ -13,14 +13,20 @@ describe Airport do
     subject.land_plane(plane)
   end
 
-  it "returns true when input is yes" do
+  it "returns airway is clear, weather is clear and lands plane" do
+    allow(weather_report).to receive(:weather_conditions) { "clear"}
+    expect(subject.safe_conditions?(weather_report.weather_conditions)).to eq("clear")
     allow(subject).to receive(:gets).and_return("yes")
     expect(subject.clear?).to be(true)
+    expect(subject.land_plane(plane)).to be(true)
   end
 
-  it "returns false when input is no" do
+  it "returns airway is not clear, weather is clear and stops plane landing" do
+    allow(weather_report).to receive(:weather_conditions) { "clear"}
+    expect(subject.safe_conditions?(weather_report.weather_conditions)).to eq("clear")
     allow(subject).to receive(:gets).and_return("no")
     expect(subject.clear?).to be(false)
+    expect {subject.land_plane(plane)}.to raise_error 'Airway not clear for landing'
   end
 
   it "prevents planes from landing if weather is stormy" do
