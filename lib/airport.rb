@@ -11,12 +11,12 @@ class Airport
   end
 
   def land(plane)
-    fail "Plane has already landed" if is_flying?(plane)
+    fail "Plane has already landed" if flying?(plane)
     plane.land_plane
     @planes_array.push(plane)
   end
 
-  def is_flying?(plane)
+  def flying?(plane)
     plane.landed?
   end
 

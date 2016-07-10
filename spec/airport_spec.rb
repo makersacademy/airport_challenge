@@ -5,7 +5,7 @@ describe Airport do
   let(:plane) { double :plane }
 
   it { is_expected.to(respond_to(:land).with(1).argument) }
-  it { is_expected.to(respond_to(:is_flying?).with(1).argument) }
+  it { is_expected.to(respond_to(:flying?).with(1).argument) }
   it { is_expected.to(respond_to(:planes))}
 
   describe '#planes' do
@@ -28,18 +28,13 @@ describe Airport do
       expect(plane).to(receive(:land_plane))
       subject.land(plane)
     end
-    #it 'confirms that a plane as landed' do
-    #  allow(plane).to(receive(:landed?).and_return(false))
-    #  allow(plane).to(receive(:land_plane))
-    #  allow(plane).to(receive(:landed?).and_return(false))
-    #  expect{ subject.land(plane) }.to(raise_error("Error - plane did not land"))
-    #end
+
   end
 
-  describe '#is_flying?' do
+  describe '#flying?' do
     it 'returns the landed? status of the plane' do
       expect(plane).to(receive(:landed?))
-      subject.is_flying?(plane)
+      subject.flying?(plane)
     end
   end
 
