@@ -13,10 +13,10 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport and confirm that it has landed
 ```
-⋅⋅⋅airport = Airpot.new⋅⋅  
-⋅⋅⋅plane = Airplane.new⋅⋅
-⋅⋅⋅airport.land(plane)⋅⋅
-⋅⋅⋅plane.landed?⋅⋅
+airport = Airpot.new <br />
+plane = Airplane.new <br />
+airport.land(plane)  <br />
+plane.landed?  <br />
 
 ```
 As an air traffic controller
@@ -38,7 +38,7 @@ I want to prevent landing when weather is stormy
 ```
 
 def stormy? <br />
-  rand(7) > 6 <br />
+rand(7) > 6 <br />
 end <br />
 
 This gives the likelihood of it being stormy only one day a week.
