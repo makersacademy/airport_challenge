@@ -1,7 +1,7 @@
 module Weather
-FORECAST = ['sunny', 'cloudy', 'rainy', 'storm']
+  FORECAST = ['sunny', 'cloudy', 'rainy', 'storm']
 
-  def self.report(conditions = FORECAST)
-    conditions.sample
+  def self.report
+    FORECAST.sample
   end
 end
