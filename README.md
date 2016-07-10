@@ -19,11 +19,13 @@ Reading through the user stories led me to proceed on a
 
 Airport = DockingStation, Plane = Bike
 
-basis. Whilst I feel this realisation gives me an overview of the overall code
-structure required for this challenge, I shall do my best to resist jumping into
-the production code and instead allow tests to guide some of the finer points of
-the design. Time to get cosy with a recent acquaintance, everyone's favourite
-friend, Rspec. :yoooshi:
+basis. Whilst I feel this realisation gave me an overview of the overall code
+structure required for this challenge, I did my best to resist jumping into
+the production code and instead allowed tests to guide some of the finer points of
+the design. Basically, a chance to get cosy with a recent acquaintance, everyone's
+favourite friend, Rspec. :yoooshi:
+
+Please run the spec/feature_test_spec file for an example of how the code is used.
 
 ```
 
