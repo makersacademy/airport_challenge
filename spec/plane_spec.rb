@@ -1,5 +1,5 @@
 require 'plane'
 
-describe Plane do    
-    it { is_expected.to respond_to :is_flying? }
+describe Plane do
+    it { is_expected.to respond_to :is_flying }
 end

@@ -15,12 +15,21 @@ describe Airport do
       subject.capacity.times {subject.land(Plane.new)}
       expect{subject.land(Plane.new)}.to raise_error("Plane cannot land. Airport full.")
     end
+    it 'raises an error when we try to land an already landed plane' do
+      plane = Plane.new
+      subject.land(plane)
+      expect{subject.land(plane)}.to raise_error("Plane already landed!")
+    end
   end
 
   describe '#take_off' do
     it 'instructs a plane to take off from airport and confirms it is in the air' do
       plane = Plane.new
+      subject.land(plane)
       expect(subject.take_off(plane)).to eq ("Plane #{plane} is in the air.")
+    end
+    it 'raises an error when we try to take_off a plane which is already flying' do
+      expect{subject.take_off(Plane.new)}.to raise_error("Plane already flying!")
     end
   end
 
