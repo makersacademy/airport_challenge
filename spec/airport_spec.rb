@@ -7,18 +7,20 @@ describe Airport do
     allow(airport).to receive(:land_plane).with(plane).and_return(plane)
   end
   it 'confirms that plane has landed' do
-    airport = double
+    airport = double('airport')
     allow(airport).to receive(:land_plane).with(Plane.new).and_return(:landed)
   end
   it 'instructs a plane to depart' do
+    airport = double('airport')
     plane = Plane.new
     subject.land_plane(plane)
-    expect(subject.depart_plane(plane)).to eq plane
+    allow(airport).to receive(:depart_plane).with(plane).and_raise('weather conditions prvent take-off')
   end
   it 'confirms that plane departured' do
     plane = Plane.new
     subject.land_plane(plane)
-    expect(subject.depart_plane(plane)).to be_departed
+    airport = double('airport')
+    allow(airport).to receive(:depart_plane).with(plane).and_return(:departed)
   end
   it 'prevents landing if weather is stormy' do
     airport = double('airport')

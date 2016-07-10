@@ -10,7 +10,11 @@ class Airport
     end
   end
   def depart_plane plane
-    plane
+    if Weather.stormy
+      'weather conditions prvent take-off'
+    else
+      plane
+    end
   end
 
 end
