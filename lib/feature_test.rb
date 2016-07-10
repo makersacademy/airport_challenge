@@ -24,3 +24,6 @@ puts airport.safe_conditions?(weather_report.weather_conditions)
 
 puts 'land plane'
 puts airport.land_plane(plane)
+
+puts 'plane departs'
+puts airport.plane_depart

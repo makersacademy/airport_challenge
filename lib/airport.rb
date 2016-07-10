@@ -8,9 +8,8 @@ end
 
 def land_plane(plane)
   fail "Unable to land due to stormy conditions" if @weather == 'stormy'
-#@plane = plane
-#@plane.landed?
-#@plane
+  @plane = plane
+  plane.landed?
 end
 
 

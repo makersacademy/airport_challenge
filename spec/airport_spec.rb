@@ -2,9 +2,11 @@ require 'airport'
 
 describe Airport do
   let(:weather_report) {double :WeatherReport}
-  let(:plane) {double :Plane}
+  plane = Plane.new
+  #let(:plane) {double :Plane}
   it { is_expected.to respond_to :safe_conditions?}
   it { is_expected.to respond_to :land_plane }
+  it { is_expected.to respond_to :plane_depart }
 
   it 'Land plane receives a plane'do
     subject.land_plane(plane)
