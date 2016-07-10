@@ -21,9 +21,15 @@ describe Airport do
   #  end
   end
   describe "#take_off" do
-    subject(:airport) {Airport.new}
     it "releases a plane" do
-      expect(airport).to respond_to(:take_off)
+      expect(subject).to respond_to(:take_off)
+    end
+    it "changes flying attribute to true" do
+      plane = Plane.new
+      subject.land(plane)
+      released_plane = subject.take_off
+      expect(released_plane.flying).to eq true
     end
   end
 end
+  
