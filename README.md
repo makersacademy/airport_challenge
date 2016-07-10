@@ -12,19 +12,19 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport and confirm that it has landed
 ```
-airport = Airpot.new
-plane = Airplane.new
-airport.land(plane)
-plane.landed?
+airport = Airpot.new <br />
+plane = Airplane.new <br />
+airport.land(plane) <br />
+plane.landed? <br />
 
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
-Assumes a plane has already landed:
-airport.take_off(plane)
-plane.taken_off?
+Assumes a plane has already landed: <br />
+airport.take_off(plane) <br />
+plane.taken_off? <br />
 
 ```
 As an air traffic controller
@@ -36,9 +36,9 @@ To ensure safety
 I want to prevent landing when weather is stormy
 ```
 
-def stormy?
-  rand(7) > 6
-end
+def stormy? <br />
+  rand(7) > 6 <br />
+end <br />
 
 This gives the likelihood of it being stormy only one day a week.
 if stormy? = true, airport.take_off(plane) would produce the error message 'Weather too stormy right now'
@@ -53,7 +53,8 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 For these two I used a new method called full? and set it to contain a boolean, calling false when the number of plains landing was over the capacity.
-
+<br />
+<br />
 The capacity was set to have a default of 100, that could be changed depending on the user.
 ```
 e.g
