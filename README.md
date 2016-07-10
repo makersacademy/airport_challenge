@@ -64,6 +64,7 @@ Not attempted:
 ## How to Use ##
 
 ```sh
+irb
 require './lib/airport.rb'
 plane = Plane.new
 airport = Airport.new
