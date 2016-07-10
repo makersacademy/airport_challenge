@@ -45,6 +45,12 @@ describe Airport do
         subject.land(plane)
         expect{Airport.new.take_off(plane)}.to raise_error("Plane not in that airport!")
       end
+      it 'remembers planes which have taken off from an airport' do
+        plane = Plane.new
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.planes).not_to include plane
+      end
     end
 
   end
