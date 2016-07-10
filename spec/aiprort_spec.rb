@@ -7,7 +7,7 @@ describe Airport do
   it 'allows setting of a default capacity when instantiating an airport instance' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
-  
+
   describe '#land' do
     it 'instructs a plane to land at airport and confirms it has landed' do
       plane = Plane.new
@@ -16,6 +16,10 @@ describe Airport do
     it 'prevents landing if weather is stormy' do
       subject.stormy
       expect{subject.land(Plane.new)}.to raise_error("Abort landing. Stormy weather.")
+    end
+    it 'raises an error when we try to land a plane at an airport already at capacity' do
+      subject.capacity.times {subject.land(Plane.new)}
+      expect{subject.land(Plane.new)}.to raise_error("Plane cannot land. Airport full.")
     end
   end
 
