@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   sunny_weather = 100
   bad_weather = 3
+  capacity = 20
 
   let(:plane) { double('plane') }
 
@@ -17,7 +18,6 @@ describe Airport do
   end
 
   context 'increasing default capacity' do
-    capacity = 20
     it 'should not raise error when increasing capacity' do
       expect { Airport.new(capacity) }.not_to raise_error
     end
