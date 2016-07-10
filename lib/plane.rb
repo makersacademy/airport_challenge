@@ -11,7 +11,7 @@ class Plane
     @in_flight = false
   end
 
-  def taken_off
+  def took_off
     @in_flight  = true
   end
 
