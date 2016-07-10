@@ -30,6 +30,9 @@ class Airport
   def accept_landing(airplane)
     if weather.stormy? == true
       raise 'The weather is stormy. Your flight will have to be rerouted.'
+    elsif
+      @airplanes.length == capacity
+      raise 'The airport is full'
     else
       @airplanes << airplane
     "#{airplane} has successfully landed."

@@ -8,7 +8,13 @@ describe Airport do
 
   describe 'initialize' do
     it 'should have a default capacity if none is given' do
+      airport = Airport.new
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'should have the capacity if one is passed as an argument' do
+      airport = Airport.new(20)
+      expect(airport.capacity).to eq 20
     end
     it 'should be empty on initialization' do
       expect(airport.get_airplanes.length).to eq 0
@@ -25,6 +31,12 @@ describe Airport do
     it 'raises an error if the weather is stormy' do
       allow(weather).to receive(:stormy?).and_return(true)
       expect{airport.accept_landing(airplane)}.to raise_error 'The weather is stormy. Your flight will have to be rerouted.'
+    end
+
+    it 'raises an error if the airport is full' do
+      allow(weather).to receive(:stormy?).and_return(false)
+      subject.capacity.times {subject.accept_landing(airplane)}
+      expect{airport.accept_landing(airplane)}.to raise_error 'The airport is full'
     end
   end
 
