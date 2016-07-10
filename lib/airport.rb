@@ -6,14 +6,14 @@ class Airport
     @planes = []
   end
 
-  def land_plane (plane)
+  def land_plane plane
     @planes << plane
     plane.takenoff = false
     plane.landed = true
     plane
   end
 
-  def takeoff_plane (plane)
+  def takeoff_plane plane
     @planes.pop
     plane.takenoff = true
     plane.landed = false
