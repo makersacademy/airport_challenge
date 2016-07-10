@@ -9,6 +9,7 @@ class Plane
     end
 
     def fly
+      @landed = false
     end
 
 end

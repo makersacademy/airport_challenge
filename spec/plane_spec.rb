@@ -24,4 +24,11 @@ describe Plane do
     end
   end
 
+  describe '#fly' do
+    it 'updates the landed status to false' do
+      subject.fly
+      expect(subject.landed?).to(eq(false))
+    end
+  end
+
 end
