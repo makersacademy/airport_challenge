@@ -16,6 +16,7 @@ class Airport
   def take_off(plane)
     fail "No planes" if !find(plane)
     plane.fly
+    self.remove(plane)
   end
 
   #private
@@ -26,6 +27,10 @@ class Airport
 
   def find(plane)
     @planes.include?(plane)
+  end
+
+  def remove(plane)
+    @planes.delete(plane)
   end
 
 

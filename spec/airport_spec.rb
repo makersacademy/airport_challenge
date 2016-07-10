@@ -9,6 +9,7 @@ describe Airport do
   it { is_expected.to(respond_to(:planes))}
   it { is_expected.to(respond_to(:take_off).with(1).argument) }
   it { is_expected.to(respond_to(:find).with(1).argument) }
+  it { is_expected.to(respond_to(:remove).with(1).argument) }
 
   describe '#planes' do
     it 'returns landed planes' do
@@ -42,14 +43,14 @@ describe Airport do
       expect(plane).to(receive(:fly))
       subject.take_off(plane)
     end
-    #it 'removes the plane from the planes array' do
-    #  allow(plane).to(receive(:landed?))
-    #  allow(plane).to(receive(:land_plane))
-    #  allow(plane).to(receive(:fly))
-    #  subject.land(plane)
-    #  subject.take_off
-    #  expect(subject.planes).to(be_empty)
-    #end
+    it 'removes the plane from the planes array' do
+      allow(plane).to(receive(:landed?))
+      allow(plane).to(receive(:land_plane))
+      allow(plane).to(receive(:fly))
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).to(be_empty)
+    end
   end
 
   describe '#flying?' do
@@ -59,7 +60,7 @@ describe Airport do
     end
   end
 
-  describe '#find_plane' do
+  describe '#find' do
     it 'finds the plane in the planes array' do
       allow(plane).to(receive(:landed?))
       allow(plane).to(receive(:land_plane))
@@ -67,5 +68,17 @@ describe Airport do
       expect(subject.find(plane)).to(eq(true))
     end
   end
+
+  describe '#remove' do
+    it 'removes the plane from the planes array' do
+      allow(plane).to(receive(:landed?))
+      allow(plane).to(receive(:land_plane))
+      allow(plane).to(receive(:fly))
+      subject.land(plane)
+      expect(subject.planes).not_to(eq(plane))
+      subject.take_off(plane)
+    end
+  end
+
 
 end
