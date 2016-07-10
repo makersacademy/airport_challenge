@@ -9,25 +9,25 @@ describe Plane do
 
   describe '#landed?' do
     it 'does not return true when a plane is flying' do
-      expect(subject.landed?).not_to(eq(true))
+      expect(plane.landed?).not_to(eq(true))
     end
     it 'returns true when a plane has landed' do
-      subject.land_plane
-      expect(subject.landed?).to(eq(true))
+      plane.land_plane
+      expect(plane.landed?).to(eq(true))
     end
   end
 
   describe '#land_plane' do
     it 'updates the landed status to true' do
-      subject.land_plane
-      expect(subject.landed?).to(eq(true))
+      plane.land_plane
+      expect(plane.landed?).to(eq(true))
     end
   end
 
   describe '#fly' do
     it 'updates the landed status to false' do
-      subject.fly
-      expect(subject.landed?).to(eq(false))
+      plane.fly
+      expect(plane.landed?).to(eq(false))
     end
   end
 
