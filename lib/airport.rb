@@ -52,7 +52,7 @@ class Airport
 
   def confirm_plane_is_landed_at_airport(plane)
     fail "Plane is flying" if flying?(plane)
-    fail "Plane is not located at this airport" if located_here?(plane) == false
+    fail "Plane is not here" if located_here?(plane) == false
   end
 
   def flying?(plane)

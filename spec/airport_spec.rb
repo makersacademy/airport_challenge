@@ -63,9 +63,9 @@ describe Airport do
 
     it 'should confirm the plane has left the airport' do
       allow(plane).to receive(:land)
-      allow(plane).to receive(:take_off)
       allow(plane).to receive(:flying).and_return(true)
       subject.land_plane(plane)
+      allow(plane).to receive(:take_off)
       allow(plane).to receive(:flying).and_return(false)
       expect(subject.take_off_plane(plane)).to eq plane
     end
@@ -75,19 +75,19 @@ describe Airport do
       expect {subject.take_off_plane(plane)}.to raise_error "Plane is flying"
     end
 
-    it 'should return an error if the plane is not located in the airport hanger' do
+    it 'should raise an error if the plane is not in the airport hanger' do
       allow(plane).to receive(:flying).and_return(false)
-      expect {subject.take_off_plane(plane)}.to raise_error "Plane is not located at this airport"
+      expect {subject.take_off_plane(plane)}.to raise_error "Plane is not here"
     end
 
     it 'should remove the plane from the hanger' do
       allow(plane).to receive(:land)
-      allow(plane).to receive(:take_off)
       allow(plane).to receive(:flying).and_return(true)
       subject.land_plane(plane)
+      allow(plane).to receive(:take_off)
       allow(plane).to receive(:flying).and_return(false)
       subject.take_off_plane(plane)
-      expect {subject.take_off_plane(plane)}.to raise_error "Plane is not located at this airport"
+      expect {subject.take_off_plane(plane)}.to raise_error "Plane is not here"
     end
   end
 
@@ -99,11 +99,9 @@ describe Airport do
 
     it 'should return an error if the weather is stormy' do
       allow(plane).to receive(:land)
-      weather = double(:weather)
-      allow(weather).to receive(:stormy?).and_return(false)
-      allow(plane).to receive(:take_off)
       allow(plane).to receive(:flying).and_return(true)
       subject.land_plane(plane)
+      allow(plane).to receive(:take_off)
       allow(plane).to receive(:flying).and_return(false)
       expect {subject.take_off_plane(plane)}.to raise_error "Weather is stormy"
     end
