@@ -22,6 +22,13 @@ describe Airport do
   describe '#land' do
     it {is_expected.to respond_to(:land).with(1).argument}
 
+    it 'prevents landing when weather is stormy' do
+      allow(subject).to receive(:full?).and_return false
+      allow(subject).to receive(:exists?).and_return false
+      allow(subject).to receive(:bad_weather).and_return true
+      expect{ subject.land(plane) }.to raise_error 'Stormy weather is affecting flight'
+    end
+
     before do
       allow(plane).to receive(:landed)
       allow(subject).to receive(:bad_weather).and_return false
@@ -29,20 +36,18 @@ describe Airport do
 
     it 'raises an error when airport full' do
         allow(subject).to receive(:full?).and_return true
-        expect{ subject.land(plane) }.to raise_error 'Aiport is full'
+        expect{subject.land(plane)}.to raise_error 'Aiport is full'
+    end
+
+    it 'raises an error when plane has already landed' do
+      allow(subject).to receive(:exists?).and_return true
+      expect{subject.land(plane)}.to raise_error 'Plane has already landed'
     end
 
     it 'allows a plane to land at the airport' do
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
-
-    it 'prevents landing when weather is stormy' do
-      allow(subject).to receive(:empty?).and_return false
-      allow(subject).to receive(:bad_weather).and_return true
-      expect{subject.land(plane)}.to raise_error 'Cannot land due to stormy weather'
-    end
-
   end
 
   describe '#take_off' do
@@ -53,10 +58,20 @@ describe Airport do
       expect{subject.take_off(plane)}.to raise_error 'Airport is empty'
     end
 
+    it 'raises an error if given plane is not at the aiport' do
+      allow(subject).to receive(:bad_weather).and_return false
+      allow(subject).to receive(:exists?).and_return false
+      allow(plane).to receive(:landed)
+      subject.land(plane)
+      allow(plane).to receive(:took_off)
+      expect{subject.take_off(plane)}.to raise_error 'No such plane at this airport'
+    end
+
     it 'prevents take off when weather is stormy' do
       allow(subject).to receive(:empty?).and_return false
+      allow(subject).to receive(:exists?).and_return true
       allow(subject).to receive(:bad_weather).and_return true
-      expect{subject.take_off(plane)}.to raise_error 'Cannot take off due to stormy weather'
+      expect{subject.take_off(plane)}.to raise_error 'Stormy weather is affecting flight'
     end
   end
 
