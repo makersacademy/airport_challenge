@@ -6,14 +6,21 @@ class Plane
   end
 
   def land(airport)
+    fail 'the plane is already on the ground' if status == :landed
     @status = :landed
     @airport = airport #need to get rid of @ but resolve variable names first, also this method does two things
     status
   end
 
-
-  def take_off
-
+  def take_off(airport)
+    @status = :flying
+    @airport = :none
+    status
   end
+
+
+  #need an airport method for which airport in
+
+
 
 end

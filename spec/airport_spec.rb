@@ -36,7 +36,7 @@ describe Airport do
     it 'fails when the airport is full' do
       subject.capacity.times {subject.land(plane)}
       error = 'Cannot land as the airport is full'
-      expect {subject.land(plane)}.to raise_error
+      expect {subject.land(plane)}.to raise_error error
     end
 
     it 'returns itself' do
@@ -61,6 +61,12 @@ describe Airport do
     it 'no longer has the plane after take-off' do
       subject.take_off(plane)
       expect(subject.planes).not_to include(plane)
+    end
+
+    it 'fails when the plane is not in the airport' do
+      subject.take_off(plane)
+      error = 'Cannot take off: the plane is not in the airport'
+      expect {subject.take_off(plane)}.to raise_error error
     end
 
     it 'returns the plane' do

@@ -30,8 +30,14 @@ describe Plane do
       expect(subject.status).to eq(:landed)
     end
 
-    it 'returns status' do
+    it 'returns status to airport' do
       expect(subject.land(airport)).to eq(subject.status)
+    end
+
+    it 'fails when the plane is already landed' do
+      subject.land(airport)
+      error = 'the plane is already on the ground'
+      expect{subject.land(airport)}.to raise_error error
     end
 
 
@@ -39,9 +45,19 @@ describe Plane do
 
   describe 'take-off' do
 
-    it 'can take off' do
-    #expect {subject.take_off}.to
+    it 'receives instruction from the airport' do
+      expect(subject).to respond_to(:take_off).with(1).argument #more sophisticated test?
     end
+
+    it 'changes status to flying' do
+      subject.take_off(airport)
+      expect(subject.status).to eq(:flying)
+    end
+
+    it 'returns status to airport' do
+      expect(subject.take_off(airport)).to eq(subject.status)
+    end
+
   end
 
 

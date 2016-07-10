@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :capacity #planes should be moved to a private method
+  attr_reader :capacity
   DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -19,6 +19,8 @@ class Airport
 
 #this will need a fail if it weather stormy
   def take_off(plane)
+    fail 'Cannot take off: the plane is not in the airport' if !(planes.include?(plane))
+
     plane.take_off(self)
     planes.delete_at(planes.index(plane))
 
