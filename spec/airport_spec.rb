@@ -52,4 +52,7 @@ it 'prevents landing if weather is stormy' do
   allow(weather).to receive(:stormy?).and_return(true)
   expect{subject.land plane, weather}.to raise_error('Weather condition is bad, no landing')
 end
+it 'prevents landing if airport is full' do
+  expect(subject.planes.size).to be <= Airport::DEFAULT_CAPACITY
+end
 end
