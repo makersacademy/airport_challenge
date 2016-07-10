@@ -4,10 +4,6 @@ describe Airport do
 
   describe '#initialize' do
 
-    it 'allows to specify different capacity' do
-      expect(described_class).to respond_to(:new).with(1).argument
-    end
-
     it 'defaults capacity' do
       allow(subject.weather).to receive(:stormy?) { false }
       described_class::DEFAULT_CAPACITY.times do
@@ -31,8 +27,7 @@ describe Airport do
       allow(subject.weather).to receive(:stormy?) { false }
     end
     it 'accepts an plane' do
-      subject.land(plane)
-      expect(subject.planes).to eq [plane]
+      expect{ subject.land(plane) }.to_not raise_error
     end
 
     it 'does not accept a plane if it is already in the airport' do
@@ -64,8 +59,7 @@ describe Airport do
     end
 
     it 'takes off a plane' do
-      subject.take_off(plane)
-      expect(subject.planes).to eq []
+      expect{ subject.take_off(plane) }.to_not raise_error
     end
 
     it 'does not allow to take off if the plane is not there' do
@@ -85,7 +79,6 @@ describe Airport do
   describe '#weather' do
 
     # Airport.weather keeps track of the weather
-    it { is_expected.to respond_to :weather }
     it 'should return the weather class' do
       expect(subject.weather).to be_a(Weather)
     end

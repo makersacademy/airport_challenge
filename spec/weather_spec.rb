@@ -3,7 +3,6 @@ require 'weather'
 describe Weather do
 
   describe '#stormy?' do
-    it { is_expected.to respond_to :stormy? }
     it 'returns true if the weather is stormy' do
       subject.set_stormy
       expect(subject).to be_stormy
@@ -23,7 +22,6 @@ describe Weather do
   end
 
   describe '#sunny?' do
-    it { is_expected.to respond_to :sunny? }
     it 'returns true if the weather is sunny' do
       subject.set_sunny
       expect(subject).to be_sunny
