@@ -19,6 +19,14 @@ My attempt at the Airport Challenge.
 To be updated...
 
 * Names of libraries
+./lib
+  Contains:
+    plane.rb
+    airport.rb
+./spec
+  Contains:
+    plane_spec.rb
+    airport_spec.rb
 
 * Descriptions of libraries
 
