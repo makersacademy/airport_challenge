@@ -16,6 +16,12 @@ Overview
 -----
 My attempt at the Makers Academy Week 1 weekend challenge. I have three ruby files containing the class of Airport, Plane and Weather. See below for the task details and user stories.
 
+Additional Functionality Added
+-----
+* plane.status : returns the current status of the plane
+* airport.slots_available : returns the current slots avaiable for planes (capacity - landed planes)
+* airport.take_off_multiple(5) : allows the air traffic controller to take off multiple planes at once  
+
 
 Task
 -----
