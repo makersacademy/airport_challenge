@@ -7,6 +7,13 @@ def safe_conditions?(weather_report)
 end
 
 def clear?
+  puts "Is the airway clear? Yes or No?"
+    #unless gets.downcase.chomp == 'yes' || gets.downcase.chomp == 'no'
+      #puts "Please answer yes or no"
+    #end
+  response = gets.chomp
+  response.downcase == 'yes' ? (@clear = true) : (@clear = false)
+  @clear
 end
 
 def land_plane(plane)
