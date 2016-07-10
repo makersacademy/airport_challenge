@@ -1,4 +1,5 @@
 require 'plane'
+require 'weather'
 
 describe Airplane do
 
@@ -14,9 +15,11 @@ end
 
 describe '#taken off?' do
   it 'checks a plain has taken off' do
+  allow(Weather).to receive(:stormy?).and_return(false)
   airport = Airport.new
   airport.take_off
   expect(subject.taken_off?).to eq true
+
   #it {is_expected.to respond_to :taken_off?}
 end
 end

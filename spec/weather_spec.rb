@@ -1,5 +1,9 @@
 require 'weather'
 
 describe Weather do
-  it { is_expected.to respond_to(:stormy?)}
+   describe 'stormy?' do
+    it 'responds to the method' do
+    expect(Weather.stormy?).to eq true
+      end
+   end
 end
