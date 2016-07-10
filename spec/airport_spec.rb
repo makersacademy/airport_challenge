@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   it 'lands planes' do
@@ -27,5 +28,11 @@ describe Airport do
     it 'Will prevent planes that aren\'t in the airport from taking off' do
       expect { subject.takeoff(Plane.new) }.to raise_error "That plane isn't in the airport"
     end
+    it 'Will prevent planes leaving the airport in a storm' do
+        airport = Airport.new
+        plane = Plane.new
+        airport.land(plane)
+        expect{ airport.takeoff(plane) }.to raise_error "ABORT ABORT! STORMY FRONTS ARE COMING"
+      end
+    end
   end
-end

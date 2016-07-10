@@ -49,7 +49,7 @@ I would like a default airport capacity that can be overridden as appropriate
 |Plane    |Functional?   |
 |Airport  |land          |
 |         |takeoff       |
-|Weather  |TBC (stormy)  |
+|Weather  |stormy?  |
 
 
 My steps
@@ -58,3 +58,5 @@ My steps
 2. Plane can check it is functional
 3. Plane can takeoff
 4. Air traffic controller can check that a plane has landed/takenoff
+5. Weather class
+6. Weather can affect landing an takeoffs
