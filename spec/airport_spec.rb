@@ -23,7 +23,7 @@ describe Airport do
   it "prevents planes from landing if weather is stormy" do
     allow(weather_report).to receive(:weather_conditions) { "stormy" }
     expect(subject.safe_conditions?(weather_report.weather_conditions)).to eq("stormy")
-    expect {subject.land_plane(plane)}.to raise_error "Unable to land due to stormy conditions"
+    expect {subject.land_plane(plane)}.to raise_error 'Unable to land due to stormy conditions'
   end
 
 
