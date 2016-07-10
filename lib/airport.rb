@@ -6,6 +6,7 @@ class Airport
   end
 
   def land(plane)
+    plane.flying = false
     @planes << plane
   end
 
