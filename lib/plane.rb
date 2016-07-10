@@ -1,7 +1,7 @@
 class Plane
 
   attr_accessor :airborne
-  alias :airborne? :airborne
+  alias airborne? airborne
 
   def initialize
     @airborne = true
