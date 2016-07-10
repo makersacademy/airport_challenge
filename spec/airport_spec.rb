@@ -55,4 +55,8 @@ end
 it 'prevents landing if airport is full' do
   expect(subject.planes.size).to be <= Airport::DEFAULT_CAPACITY
 end
+it 'default airport capacity could be overridden as appropriate' do
+airport = Airport.new(30)
+  expect(airport.capacity).to eq 30
+end
 end
