@@ -45,5 +45,4 @@ class Airport
   def empty?
     planes.empty?
   end
-
 end
