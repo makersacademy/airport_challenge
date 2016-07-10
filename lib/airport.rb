@@ -9,20 +9,11 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = self.weather_generator
+    @weather = WeatherState.new.weather
   end
 
   def full?
     @planes.count >= capacity
-  end
-
-  def weather_generator
-    generator = 1 + rand(5)
-    if generator == 5
-      @weather = 'stormy'
-    else
-      @weather = 'sunny'
-    end
   end
 
 end

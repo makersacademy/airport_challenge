@@ -18,13 +18,12 @@ describe '#initialize' do
 end
 
 describe '#full?' do
-  it 'is true when capacity exceeded' do
+  it 'true when capacity exceeded' do
     airport.weather = 'sunny'
-    airport.capacity.times {Plane.new.land(airport)}
+    airport.capacity.times {allow(plane).to receive(:land).and_return (airport.planes << plane)}
     expect(airport.full?).to be true
   end
 end
-
 end
 
 # not sure why this test doesn't work!

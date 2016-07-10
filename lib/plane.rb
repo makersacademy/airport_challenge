@@ -1,3 +1,5 @@
+require_relative 'weatherstate'
+
 class Plane
 
 attr_accessor :status

@@ -1,5 +1,6 @@
 require './lib/airport'
 require './lib/plane'
+require './lib/weatherstate'
 
 airport = Airport.new(3)
 airport.weather = 'sunny'
