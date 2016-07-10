@@ -26,6 +26,12 @@ describe Airport do
     expect {subject.land_plane(plane)}.to raise_error 'Unable to land due to stormy conditions'
   end
 
+  it "gets a confirmation from the plane when landed" do
+    allow(weather_report).to receive(:weather_conditions) { "clear"}
+    expect(subject.safe_conditions?(weather_report.weather_conditions)).to eq("clear")
+    expect(subject.land_plane(plane)).to be(true)
+  end
+
 
 
 #it "ensures the plane lands in clear weather" do
