@@ -32,19 +32,19 @@ How to Use
 4. Require './lib/airport'
 
 Create a new airport:
-```
+```ruby
 airport1 = Airport.new
 ```
 Create a new airport with a capacity of 10:
-```
+```ruby
 airport2 = Airport.new 10
 ```
 Create a new plane:
-```
+```ruby
 plane1 = Plane.new
 ```
 Land a plane:
-```
+```ruby
 airport1.land(plane1)
 ```
 
