@@ -14,12 +14,14 @@ class Airport
 
   def land(plane)
     raise "Weather conditions are unsuitable to land in!" if stormy?
+    raise "Airport is at maximum capacity!" if full?
     plane.flying = false
     @planes << plane
   end
 
   def take_off
     raise "Weather conditions are unsuitable to take off in!" if stormy?
+    raise "There are no planes at the airport!" if empty?
     @planes[-1].flying = true
     @planes.pop
   end
@@ -28,6 +30,12 @@ class Airport
     @forecast.stormy?
   end
 
+  def full?
+    @planes.length >= @capacity
+  end
 
+  def empty?
+    @planes.empty?
+  end
 
 end
