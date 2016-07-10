@@ -4,7 +4,10 @@ puts 'create a new airport'
 puts airport = Airport.new
 
 puts 'create a new plane'
-puts plane = Plane.new
+puts plane1 = Plane.new
+
+puts 'create a new plane'
+puts plane2 = Plane.new
 
 puts 'create weather report'
 puts weather_report = WeatherReport.new
@@ -25,10 +28,10 @@ puts airport.clear?
 #puts airport.full?
 
 puts 'land plane'
-puts airport.land_plane(plane)
+puts airport.land_plane(plane1)
 
 puts 'land plane'
-puts airport.land_plane(plane)
+puts airport.land_plane(plane2)
 
 puts 'airport checks weather conditions before departure'
 puts airport.safe_conditions?(weather_report.weather_conditions)

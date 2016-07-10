@@ -64,8 +64,8 @@ describe Airport do
   end
 
   it 'prevents planes from landing if airport full' do
-    subject.land_plane(plane)
-    expects {subject.land_plane(plane)}.to raise_error 'Airport full, piss off!'
+    20.times{subject.land_plane(plane)}
+    expect {subject.land_plane(plane)}.to raise_error 'Airport full, piss off!'
   end
 
   #it "permits plane to land if airway is clear" do
