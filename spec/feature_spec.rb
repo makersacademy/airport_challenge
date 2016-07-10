@@ -8,18 +8,21 @@ describe 'planes at the airport' do
     let(:blue_plane) {Plane.new}
     let(:green_plane) {Plane.new}
 
-it 'Airport gets full' do
-      luton.land(red_plane)
-      luton.land(blue_plane)
-      expect{luton.land green_plane}.to raise_error 'Airport Full'
-end
+  it 'Airport gets full' do
+    allow(Weather).to receive(:fair?).and_return(true)
+        luton.land(red_plane)
+        luton.land(blue_plane)
+        expect{luton.land green_plane}.to raise_error 'Airport Full'
+  end
 
    it 'Plane cannot take off from an airport it is not in' do
+     allow(Weather).to receive(:fair?).and_return(true)
      luton.land(red_plane)
      expect{jfk.take_off red_plane}.to raise_error 'this plane is not at this airport!'
    end
 
    it 'plane cannot land if it is not airborne' do
+     allow(Weather).to receive(:fair?).and_return(true)
      green_plane.down
      expect{jfk.land green_plane}.to raise_error 'That plane is not airborne, so cannot land'
    end

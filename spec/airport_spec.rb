@@ -9,7 +9,7 @@ describe Airport do
 
   let(:plane) {double(:plane)}
   let(:subject) {Airport.new}
-  let(:weather) {double(:weather)}
+  let(:Weather) {double(:Weather)}
 
   let(:planes_arr) do
     red_plane = double(:plane)
@@ -95,6 +95,7 @@ describe Airport do
       expect(subject.hanger).to eq []
     end
     it 'planes cannot take off when weather is bad' do
+      allow(Weather).to receive(:fair?).and_return(true)
       allow(plane).to receive(:airborne).and_return(true)
       allow(plane).to receive(:down)
       subject.land(plane)

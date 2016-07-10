@@ -1,6 +1,6 @@
 class Weather
 
   def self.fair?
-    rand(20) < 19
+    rand(20) < 15
   end
 end
