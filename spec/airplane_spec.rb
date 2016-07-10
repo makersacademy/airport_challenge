@@ -3,13 +3,13 @@ require 'airport'
 
 describe Airplane do
 
-  let(:airport) {double(:airport)}
+  let(:airport) {double(:airport, accept_takeoff: true, accept_landing: true)}
 
   describe '# takeoff' do
     it {is_expected.to respond_to(:takeoff)}
 
     it 'should not be landed' do
-      subject.takeoff
+      subject.takeoff(airport)
       expect(subject.landed?).to be false
     end
 
@@ -19,7 +19,7 @@ describe Airplane do
     it {is_expected.to respond_to(:land).with(1).argument}
 
      it 'lands the plane' do
-        subject.takeoff
+        subject.takeoff(airport)
         subject.land(airport)
         expect(subject.landed?).to be true
      end
