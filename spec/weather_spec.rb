@@ -6,8 +6,6 @@ describe WeatherReport do
   it {is_expected.to respond_to(:weather_gauge)}
 
   it 'is stormy under certain conditions' do
-
-    #weather_gauge = double(:weather_gauge => 5)
     allow(subject).to receive(:weather_gauge) { 5 }
     expect(subject.weather_gauge).to eq(5)
     expect(subject.weather_conditions).to eq("stormy")
