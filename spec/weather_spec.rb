@@ -6,7 +6,7 @@ describe Weather do
   end
   it "has a chance to be stormy" do
     #stormy when < 3
-    prob = 1
+    allow(subject).to receive(:prob).and_return(1)
     expect(subject.stormy?).to eq true
   end
 end

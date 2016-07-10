@@ -13,14 +13,21 @@ class Airport
   attr_reader :capacity, :forecast
 
   def land(plane)
+    raise "Weather conditions are unsuitable to land in!" if stormy?
     plane.flying = false
     @planes << plane
   end
 
   def take_off
+    raise "Weather conditions are unsuitable to takeoff in!" if stormy?
     @planes[-1].flying = true
     @planes.pop
-
   end
+
+  def stormy?
+    @forecast.stormy?
+  end
+
+
 
 end
