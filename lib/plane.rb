@@ -3,11 +3,11 @@ require_relative 'weather'
 class Plane
 
   def safe_to_land?(weather_report)
-    @weather_report = "stormy"
+    fail "Unable to land due to stormy conditions" if weather_report == "stormy"
+    @clear_for_landing = true
   end
 
   def landed?
-    #@weather_report
-    #"landed safely" if weather_report == "clear"
+    #true if @coming_in_for_landing == true
   end
 end
