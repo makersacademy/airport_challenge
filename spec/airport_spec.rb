@@ -1,6 +1,8 @@
 require 'airport'
 require 'plane'
 describe Airport do
+
+describe '#land_plane' do
   it 'instructs a plane to land' do
     airport = double('airport')
     plane = Plane.new
@@ -10,6 +12,16 @@ describe Airport do
     airport = double('airport')
     allow(airport).to receive(:land_plane).with(Plane.new).and_return(:landed)
   end
+  it 'prevents landing if weather is stormy' do
+    airport = double('airport')
+    allow(airport).to receive(:land_plane).and_raise('weather conditions prvent landing')
+  end
+  it 'prevents landing if airport is full' do
+    airport = double
+    allow(airport).to receive(:land_plane).and_raise('airport is full, please use nearest one')
+  end
+end
+describe '#depart_plane' do
   it 'instructs a plane to depart' do
     airport = double('airport')
     plane = Plane.new
@@ -22,8 +34,6 @@ describe Airport do
     airport = double('airport')
     allow(airport).to receive(:depart_plane).with(plane).and_return(:departed)
   end
-  it 'prevents landing if weather is stormy' do
-    airport = double('airport')
-    allow(airport).to receive(:land_plane).and_raise('weather conditions prvent landing')
-  end
+end
+
 end
