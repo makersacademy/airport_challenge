@@ -37,7 +37,7 @@ class Airport
 
   def fine_to_take_off?(plane)
     fail 'Plane is already in flight' unless plane.landed
-    fail 'Plane is not at given airport' unless !planes.include?(plane)
+    fail 'Plane is not at given airport' unless planes.include?(plane)
     fail 'Too stormy to take off' if weather.stormy?
   end
 
