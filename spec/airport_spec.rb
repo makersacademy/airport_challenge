@@ -6,6 +6,7 @@ describe Airport do
 
   it { is_expected.to(respond_to(:land).with(1).argument) }
   it { is_expected.to(respond_to(:is_flying?).with(1).argument) }
+  it { is_expected.to(respond_to(:planes))}
 
   describe '#land' do
     it 'returns an error if the plane is already landed' do
