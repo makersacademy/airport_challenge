@@ -1,65 +1,60 @@
 require 'plane'
-require 'airport'
 
 describe Plane do
 
+subject(:plane) {described_class.new}
+let(:airport) {double :airport, planes: []}
+
+describe '#take_off' do
   it 'can take off' do
-    airport = Airport.new
-    airport.weather = 'sunny'
-    expect(subject.take_off(airport)).to eq 'taken off'
+    allow(airport).to receive(:weather).and_return 'sunny'
+    plane.take_off(airport)
+    expect(plane.status).to eq 'taken off'
   end
-
-  it 'can provide confirmation that it has taken off' do
-    airport = Airport.new
-    airport.weather = 'sunny'
-    subject.take_off(airport)
-    expect(subject.status).to eq 'taken off'
+  it 'will not longer be in the airport' do
+    allow(airport).to receive(:weather).and_return 'sunny'
+    plane.take_off(airport)
+    expect(airport.planes).not_to include plane
   end
-
   it 'wont take off if weather is stormy' do
-    airport = Airport.new
-    airport.weather = 'stormy'
-    expect{subject.take_off(airport)}.to raise_error 'stormy weather cannot take off'
+    allow(airport).to receive(:weather).and_return 'stormy'
+    expect{plane.take_off(airport)}.to raise_error 'stormy weather cannot take off'
   end
-
   it 'wont take off if already taken off' do
-    airport = Airport.new
-    airport.weather = 'sunny'
-    plane = Plane.new
+    allow(airport).to receive(:weather).and_return 'sunny'
     plane.take_off(airport)
     expect{plane.take_off(airport)}.to raise_error 'plane already taken off'
   end
+end
 
+describe '#land' do
   it 'can land' do
-    airport = Airport.new
-    airport.weather = 'sunny'
-    expect(subject.land(airport)).to eq 'landed'
+    allow(airport).to receive(:weather).and_return 'sunny'
+    allow(airport).to receive(:full?)
+    plane.land(airport)
+    expect(plane.status).to eq 'landed'
   end
-
-  it 'can provide confirmation that it has landed' do
-    airport = Airport.new
-    airport.weather = 'sunny'
-    subject.land(airport)
-    expect(subject.status).to eq 'landed'
+  it 'will be in the airport' do
+    allow(airport).to receive(:weather).and_return 'sunny'
+    allow(airport).to receive(:full?)
+    plane.land(airport)
+    expect(airport.planes).to include plane
   end
-
   it 'wont land if weather is stormy' do
-    airport = Airport.new
-    airport.weather = 'stormy'
+    allow(airport).to receive(:weather).and_return 'stormy'
     expect{subject.land(airport)}.to raise_error 'stormy weather cannot land'
   end
-
-  it 'wont land if the airport is full' do
-    airport = Airport.new
-    airport.capacity.times {Plane.new.land(airport)}
-    expect{subject.land(airport)}.to raise_error 'airport is full cannot land'
-  end
-
   it 'wont take off if already taken off' do
-    airport = Airport.new
-    airport.weather = 'sunny'
-    plane = Plane.new
+    allow(airport).to receive(:weather).and_return 'sunny'
+    allow(airport).to receive(:full?)
     plane.land(airport)
     expect{plane.land(airport)}.to raise_error 'plane already landed'
   end
+  it 'wont land if the airport is full' do
+    allow(airport).to receive(:weather).and_return 'sunny'
+    allow(airport).to receive(:full?).and_return true
+    expect{plane.land(airport)}.to raise_error 'airport is full cannot land'
+  end
+end
+
 end
