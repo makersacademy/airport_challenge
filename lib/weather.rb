@@ -1,3 +1,5 @@
+
+
 class Weather
 
   def stormy?
