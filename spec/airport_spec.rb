@@ -6,11 +6,12 @@ describe Airport do
 
   it{ is_expected.to respond_to(:instruct_to_land).with(1).argument }
   it{ is_expected.to respond_to(:instruct_to_take_off).with(1).argument }
+  it { is_expected.to respond_to(:stormy?)}
 
   describe 'take_off' do
     it 'should instruct the airplane to take off' do
       subject.instruct_to_take_off(airplane)
-      expect(airplane.landed?).to eq false
+      expect(airplane.in_flight?).to eq true
     end
     it 'should stop the airplane from taking off when stormy' do
       allow(subject).to receive(:stormy?).and_return true
@@ -21,7 +22,7 @@ describe Airport do
   describe 'land' do
     it 'should instruct the airplane to land' do
       subject.instruct_to_land(airplane)
-      expect(airplane.landed?).to eq true
+      expect(airplane.in_flight?).to eq false
     end
     it 'should stop the airplane from landing when stormy' do
       allow(subject).to receive(:stormy?).and_return true

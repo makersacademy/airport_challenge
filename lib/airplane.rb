@@ -1,24 +1,23 @@
 require_relative 'airport'
-require_relative 'weather'
 
 class Airplane
 
-attr_reader :landed
+attr_reader :in_flight
 
   def initialize
-    @landed = false
+    @in_flight = true
   end
 
-  def landed?
-    @landed
+  def in_flight?
+    @in_flight
   end
 
   def take_off
-    @landed = false
+    @in_flight = true
   end
 
   def land
-    @landed = true
+    @in_flight = false
   end
 
 end
