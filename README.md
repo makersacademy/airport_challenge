@@ -49,7 +49,7 @@ I would like a default airport capacity that can be overridden as appropriate
 |Plane    |Functional?   |
 |Airport  |land          |
 |         |takeoff       |
-|Weather  |stormy?  |
+|Weather  |stormy?       |
 
 
 My steps

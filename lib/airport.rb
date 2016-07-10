@@ -13,6 +13,7 @@ class Airport
 
   def land(plane)
     fail "We're full to bursting" if @planes.count > @capacity
+    fail "ABORT ABORT! STORMY FRONTS ARE COMING" if @weather.stormy? == true
     @planes << plane
   end
 
