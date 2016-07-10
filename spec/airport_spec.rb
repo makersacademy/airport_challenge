@@ -2,11 +2,14 @@ require 'airport'
 
 describe Airport do
 
-  subject(:airport) { described_class.new(weather) }
+  subject(:airport) { described_class.new(Airport::DEFAULT_CAPACITY, weather) }
   let(:airplane) {double(:airplane)}
   let(:weather) {double(:weather)}
 
   describe 'initialize' do
+    it 'should have a default capacity if none is given' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
     it 'should be empty on initialization' do
       expect(airport.get_airplanes.length).to eq 0
     end
