@@ -14,7 +14,7 @@ class Airport
   end
 
   def take_off(plane)
-    fail "No planes" if !find(plane)
+    fail "No planes" unless find(plane)
     plane.fly
     self.remove(plane)
   end
