@@ -5,6 +5,10 @@ describe Plane do
   subject(:plane) { described_class.new }
   let(:airport) { Airport.new }
 
+  it { is_expected.to respond_to :takeoff }
+
+  it { is_expected.to respond_to :land }
+
   it "cannot take off if it's flying" do
     allow(subject).to receive(:flying?).and_return(true)
     expect { subject.takeoff }.to raise_error "Plane is already flying"
