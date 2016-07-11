@@ -1,7 +1,5 @@
 class Weather
-def stormy?
-['sunny','sunny','sunny','sunny','sunny','stormy',
-'sunny','sunny','sunny','sunny','sunny','sunny',
-'stormy'].sample == 'stormy' ? true : false
-end
+  def stormy?
+    Kernel.rand(10) == 1
+  end
 end

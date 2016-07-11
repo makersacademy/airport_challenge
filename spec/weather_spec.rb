@@ -3,13 +3,15 @@ require './lib/plane'
 require './lib/weather'
 
 describe Weather do
-
-it {is_expected.to respond_to :stormy?}
-it 'it returns true if weather is stormy and false if sunny' do
-weather = double('weather')
-allow(weather).to receive(:stormy?).and_return(true,false)
-expect(weather.stormy?).to eq true
-expect(weather.stormy?).to eq false
-expect(weather.stormy?).to eq false
-end
+  let(:weather) { double :weather}
+  let(:subject) { Weather.new }
+  it {is_expected.to respond_to :stormy?}
+  it 'it returns true if weather is stormy' do
+    allow(Kernel).to receive(:rand).and_return(1)
+    expect(subject.stormy?).to be true
+  end
+  it 'it returns true if weather is stormy' do
+    allow(Kernel).to receive(:rand).and_return(2)
+    expect(subject.stormy?).to be false
+  end
 end
