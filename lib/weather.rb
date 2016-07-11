@@ -8,6 +8,6 @@ end
 private
 
 def forecast
-  forecast = [1,2,3,4,5]
+  forecast = [1,2,3]
   forecast.sample
 end

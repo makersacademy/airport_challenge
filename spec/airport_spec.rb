@@ -24,7 +24,7 @@ describe Airport do
       allow(plane).to receive(:landed?).and_return(true)
       subject.land(plane)
       error_message = 'Plane has landed earlier'
-      expect { subject.has_landed }.to raise_error error_message
+      expect { subject.has_landed? }.to raise_error error_message
     end
     it 'when airport is full' do
       plane = double(:plane)
@@ -45,7 +45,7 @@ describe Airport do
       subject.land(plane)
       allow(plane).to receive(:taken_off?).and_return(true)
       error_message = 'The plane has taken off earlier'
-      expect { subject.has_taken_off}.to raise_error error_message
+      expect { subject.has_taken_off?}.to raise_error error_message
     end
   end
 
