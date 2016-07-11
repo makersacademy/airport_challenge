@@ -3,11 +3,13 @@ class Plane
     @landed = false
     @stormy = false
   end
-  def land(plane)
+  def land(airport)
     if @landed
       raise "The plane has already landed"
     elsif @stormy
       raise "The plane can't land in this weather"
+    elsif airport.full
+      raise "The plane can't land at a full airport"
     else
       @landed = true
       "The plane has successfully landed"
