@@ -15,7 +15,7 @@ class Airport
 
 
   def land plane
-    fail 'Airport if full' if @planes.size > 0 and @planes.size >= @capacity
+    fail 'Airport if full' if !@planes.empty? and @planes.size >= @capacity
     fail "Weather condition is bad, no landing" if weather.stormy?
     @planes << plane
     "The plane #{plane} has landed"
