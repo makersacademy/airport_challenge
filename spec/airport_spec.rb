@@ -68,6 +68,7 @@ describe Airport do
   end
 
   describe 'stormy weather' do
+    before { allow(subject).to receive(:stormy?).and_return(true) }
     it 'prevents planes from taking off' do
       weather = double(:weather)
       allow(weather).to receive(:stormy?).and_return(true)

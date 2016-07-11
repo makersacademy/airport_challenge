@@ -34,6 +34,4 @@ land or take off.
 ### SRP
       All methods were writing with a view of the single responsibility principle.
 ### Issues
-      Attempts to override random weather behaviour using test doubles and method stubs
-      proved to be unsuccessful. The syntax provided within the rspec documentation
-      also proved to be ineffective.
+      Fixed!!!
