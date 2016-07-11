@@ -10,6 +10,6 @@ class Weather
 
 	private
 	def set_weather
-		@weather.shuffle.pop
+		@weather.sample
 	end
 end
