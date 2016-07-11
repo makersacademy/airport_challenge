@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+
 # Airport Challenge
 
 In this challenge, we had a request from a client to write the software to control
