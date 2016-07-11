@@ -24,6 +24,16 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error ("Weather is stormy. Couldn't land")
     end
   end
-
+  describe "#Capacity" do
+    it "prevents planes form landing if the airport if full" do
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.instance_variable_get(:@capacity).times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error ("There is no space")
+    end
+    it "can be overridden" do
+      airport1 = Airport.new(66)
+      expect(airport1.instance_variable_get(:@capacity)).to eq 66
+    end
+  end
 
 end
