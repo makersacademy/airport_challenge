@@ -8,7 +8,7 @@ describe Weather do
 # end
 #
 # it "can be stormy" do
-# expect(weather.stormy?).to be true
+#  expect(weather.stormy?).to be true
 # end
 
 

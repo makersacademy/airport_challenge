@@ -3,7 +3,7 @@ require "airport"
 
 describe Airport do
 
-# let (:plane) {double :plane}
+#  let (:plane) {double :plane}
 describe "#land" do
 
   it "instructs a plane to land" do
@@ -18,26 +18,12 @@ describe "#land" do
     weather = Weather.new
 
   end
+  it 'raises an error if capacity is full' do
+  subject.capacity.times { subject.dock(double(:bike)) }
+  expect {subject.dock(double(:bike))}.to raise_error 'Docking station at full capacity'
+  end
 
-  # it "lands a plane" do
-  #
-  #   #plane = Plane.new
-  # subject.land(plane)
-  # expect(subject.plane).to eq plane
-  # end
 end
-
-  #it { is_expected.to respond_to :take_off }
-
-
-
-
-
-
-
-
-
-
 
 
 
