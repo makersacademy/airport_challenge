@@ -2,6 +2,8 @@ require 'weather'
 
 describe Weather do
 
+  #look into Kernal and stub on that
+
   let(:weather) {class_double("Weather")}
 
   it 'reports either true or false to #stormy?' do
