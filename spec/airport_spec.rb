@@ -45,14 +45,17 @@ describe Airport do
     end
   end
 #broken test needs to land plane while weather is good and take off while bad
-    context "It was a dark stormy night" do
+  context "It was a dark stormy night" do
       subject do
         described_class.new(described_class::DEFAULT_CAPACITY, weather_bad)
       end
 
     it 'Will prevent planes leaving the airport in a storm' do
       plane = Plane.new
+      subject.land(plane)
       expect{ subject.takeoff(plane) }.to raise_error "ABORT ABORT! STORMY FRONTS ARE COMING"
     end
   end
 end
+
+#Capacity test

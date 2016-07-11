@@ -59,4 +59,5 @@ My steps
 3. Plane can takeoff
 4. Air traffic controller can check that a plane has landed/takenoff
 5. Weather class
-6. Weather can affect landing an takeoffs
+6. Capacities 
+7. Weather can affect landing an takeoffs

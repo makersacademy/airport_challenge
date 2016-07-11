@@ -5,7 +5,7 @@ class Airport
   attr_reader :plane, :weather, :capacity
   DEFAULT_CAPACITY = 5
 
-#weather is always the same for the airport needs to be able to change
+
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
     @weather = weather
@@ -14,7 +14,7 @@ class Airport
 
   def land(plane)
     fail "We're full to bursting" if full?
-    weather_checks
+    # weather_checks
     @planes << plane
   end
 
