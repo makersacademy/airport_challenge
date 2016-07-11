@@ -20,7 +20,7 @@ class Airport
 
   def take_off(plane)
     fail 'Airport is empty' if empty?
-    fail 'No such plane at this airport' unless exists?(plane)
+    fail 'Plane not at this airport' unless exists?(plane)
     weather_check
     confirm_take_off(plane)
   end
@@ -30,7 +30,7 @@ class Airport
   end
 
   def weather_check
-    fail 'Stormy weather is affecting flight' if bad_weather
+    fail 'Weather: affecting flight' if bad_weather
   end
 
   def full?

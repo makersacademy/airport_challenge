@@ -2,7 +2,8 @@ require 'plane'
 
 describe Plane do
 
-  let (:plane) {double :plane}
+  let(:plane) {double :plane}
+
    it { is_expected.to respond_to :landed }
    it { is_expected.to respond_to :took_off }
    it { is_expected.to respond_to :in_flight }
@@ -16,4 +17,5 @@ describe Plane do
      subject.took_off
      expect(subject.in_flight).to be true
    end
+
 end

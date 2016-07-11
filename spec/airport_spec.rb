@@ -4,9 +4,10 @@ describe Airport do
   let(:plane) {double :plane}
 
   it {is_expected.to respond_to(:planes)}
-  it {is_expected.to respond_to(:confirm_landing)}
-  it {is_expected.to respond_to(:confirm_take_off)}
+  it {is_expected.to respond_to(:confirm_landing).with(1).argument}
+  it {is_expected.to respond_to(:confirm_take_off).with(1).argument}
   it {is_expected.to respond_to(:bad_weather)}
+  it {is_expected.to respond_to(:weather_check)}
 
   describe '#initialization' do
     it 'it sets to capacity to 50' do
@@ -26,7 +27,7 @@ describe Airport do
       allow(subject).to receive(:full?).and_return false
       allow(subject).to receive(:exists?).and_return false
       allow(subject).to receive(:bad_weather).and_return true
-      expect{ subject.land(plane) }.to raise_error 'Stormy weather is affecting flight'
+      expect{subject.land(plane)}.to raise_error 'Weather: affecting flight'
     end
 
     before do
@@ -58,20 +59,23 @@ describe Airport do
       expect{subject.take_off(plane)}.to raise_error 'Airport is empty'
     end
 
-    it 'raises an error if given plane is not at the aiport' do
+    before do
       allow(subject).to receive(:bad_weather).and_return false
       allow(subject).to receive(:exists?).and_return false
       allow(plane).to receive(:landed)
-      subject.land(plane)
       allow(plane).to receive(:took_off)
-      expect{subject.take_off(plane)}.to raise_error 'No such plane at this airport'
+    end
+
+    it 'raises an error if given plane is not at the airport' do
+      subject.land(plane)
+      expect{subject.take_off(plane)}.to raise_error 'Plane not at this airport'
     end
 
     it 'prevents take off when weather is stormy' do
       allow(subject).to receive(:empty?).and_return false
       allow(subject).to receive(:exists?).and_return true
       allow(subject).to receive(:bad_weather).and_return true
-      expect{subject.take_off(plane)}.to raise_error 'Stormy weather is affecting flight'
+      expect{subject.take_off(plane)}.to raise_error 'Weather: affecting flight'
     end
   end
 
