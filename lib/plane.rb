@@ -1,5 +1,8 @@
 class Plane
 
+  attr_reader :landed
+  attr_reader :weather
+
   def depart
     @landed = false
   end
@@ -8,8 +11,7 @@ class Plane
     @landed = true
   end
 
-  def landed?
-    @landed
+  def stormy
+    @weather = stormy
   end
-  
 end
