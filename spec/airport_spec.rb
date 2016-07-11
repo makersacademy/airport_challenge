@@ -17,6 +17,38 @@ describe Airport do
     end
   end
 
+  describe 'Raises error' do
+    it 'if plane has already landed' do
+      plane = double(:plane)
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:landed?).and_return(true)
+      subject.land(plane)
+      error_message = 'Plane has landed earlier'
+      expect { subject.has_landed }.to raise_error error_message
+    end
+    it 'when airport is full' do
+      plane = double(:plane)
+      allow(plane).to receive(:land)
+      subject.capacity.times do
+        subject.land(plane)
+      end
+      error_message = 'Airport is full'
+      expect { subject.full_airport }.to raise_error error_message
+    end
+    it 'when no planes to take off' do
+      error_message = 'No planes to take off'
+      expect { subject.no_planes }.to raise_error error_message
+    end
+    it 'when the plane has already taken off' do
+      plane = double(:plane)
+      allow(plane).to receive(:land)
+      subject.land(plane)
+      allow(plane).to receive(:taken_off?).and_return(true)
+      error_message = 'The plane has taken off earlier'
+      expect { subject.has_taken_off}.to raise_error error_message
+    end
+  end
+
   describe '#take off plane' do
     it 'allows plane to take off' do
       plane = double(:plane)
@@ -34,29 +66,22 @@ describe Airport do
       expect(subject.planes).not_to include plane
     end
   end
-  describe '#full' do
-    it 'raises an error when airport is full' do
-      plane = double(:plane)
-      allow(plane).to receive(:land)
-      subject.capacity.times do
-        subject.land(plane)
-      end
-      error_message = 'Airport is full'
-      expect { subject.land(plane) }.to raise_error error_message
-    end
-  end
+
   describe 'stormy weather' do
     it 'prevents planes from taking off' do
-      double(:weather, stormy?: true)
+      weather = double(:weather)
+      allow(weather).to receive(:stormy?).and_return(true)
       error_message = 'Unable to take off due to bad weather'
       expect{ subject.prevent_take_off }.to raise_error error_message
     end
     it 'prevents planes from landing' do
-      double(:weather, stormy?: true)
+      weather = double(:weather)
+      allow(weather).to receive(:stormy?).and_return(true)
       error_message = 'Unable to land due to bad weather'
       expect { subject.prevent_landing }.to raise_error error_message
     end
   end
+
   describe 'clear weather' do
     it 'allows planes to land' do
       weather = double(:weather)

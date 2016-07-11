@@ -7,17 +7,23 @@ class Airport
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
-    @weather = Weather.new
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def prevent_landing
     raise 'Unable to land due to bad weather' if stormy?
   end
 
-  def land(plane)
+  def full_airport
     raise 'Airport is full' if full?
+  end
+
+  def has_landed
     raise 'Plane has landed earlier' if landed?
+  end
+
+  def land(plane)
     @planes << plane
     plane.land
   end
@@ -26,9 +32,15 @@ class Airport
     raise 'Unable to take off due to bad weather' if stormy?
   end
 
-  def take_off(plane)
+  def no_planes
     raise 'No planes to take off' if empty?
+  end
+
+  def has_taken_off
     raise 'The plane has taken off earlier' if taken_off?
+  end
+
+  def take_off(plane)
     @planes.pop
     plane.take_off
   end
