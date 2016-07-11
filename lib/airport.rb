@@ -16,7 +16,7 @@ DEFAULT_CAPACITY = 20
   def land(plane)
     fail "Too stormy to land." if weather.stormy?
     fail "Airport at maximum capacity." if full?
-    fail "Flight #{plane} has already landed." if plane.landed
+    fail "Flight #{plane} has already landed." if @hanger.include?(plane)
     plane.landed
     plane_landed(plane)
   end
@@ -37,7 +37,7 @@ DEFAULT_CAPACITY = 20
   def take_off
     fail "Too stormy to take off." if weather.stormy?
     fail "There are no planes in the hanger." if empty?
-    fail "Flight #{departure} has already taken off." unless plane.flying
+    fail "Flight has already taken off." if @hanger.last.airborne
     taken_off
   end
 

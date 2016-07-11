@@ -28,14 +28,14 @@ require 'airport'
         end
 
         it 'will not allow a plane to land if the airport is full' do
-          subject.capacity.times { subject.land(plane) }
+          subject.capacity.times { subject.land(Plane.new) }
           expect { subject.land(plane) }. to raise_error("Airport at maximum capacity.")
         end
 
-        # it 'will not allow a plane to land if it has already landed' do
-        #   subject.land(plane)
-        #   expect { subject.land(plane) }. to raise_error("Flight #{plane} has already landed.")
-        # end
+        it 'will not allow a plane to land if it has already landed' do
+          subject.land(plane)
+          expect { subject.land(plane) }. to raise_error("Flight #{plane} has already landed.")
+        end
       end
 
       describe '#plane_landed' do
@@ -55,11 +55,13 @@ require 'airport'
         expect { subject.take_off }. to raise_error("There are no planes in the hanger.")
         end
 
-        # it 'will not allow a plane to take off it is already airborne' do
-        #   subject.land(plane).take_off
-        #   expect { subject.take_off }. to raise_error("Flight #{plane} has already taken-off.")
-        # end
-    end
+    #     it 'will not allow a plane to take off it is already airborne' do
+    #       allow(plane).to receive(:airborne).and_return true
+    #       subject.land(plane)
+    #       subject.take_off
+    #       expect { subject.take_off }.to raise_error("Flight has already taken off.")
+    #     end
+     end
 
       describe '#taken_off' do
         it 'confirms that a plane has taken off' do
