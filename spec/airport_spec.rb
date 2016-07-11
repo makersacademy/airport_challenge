@@ -14,7 +14,7 @@ describe Airport do
         allow(subject).to receive(:stormy?).and_return false
       end
       it "instructs planes to land" do
-        expect(subject.land(plane)).to eq "#{plane} has landed"
+        expect(subject.land(plane)).to eq [plane]
       end
       context "when the airport is full" do
         it "prevents planes form landing" do
