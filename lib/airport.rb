@@ -19,23 +19,18 @@ class Airport
 
   def accept_takeoff(airplane)
 
-    if weather.stormy?
-      raise 'The weather is stormy. Your flight will have to be rescheduled.'
-    else
+      raise 'The weather is stormy. Your flight will have to be rescheduled.' if weather.stormy?
+
       @airplanes.pop
       "#{airplane} has successfully taken off."
-    end
   end
 
   def accept_landing(airplane)
-    if weather.stormy? 
-      raise 'The weather is stormy. Your flight will have to be rerouted.'
-    elsif
-      @airplanes.length == capacity
-      raise 'The airport is full'
-    else
-      @airplanes << airplane
+    raise 'The weather is stormy. Your flight will have to be rerouted.' if weather.stormy?
+    raise 'The airport is full' if @airplanes.length == capacity
+
+    @airplanes << airplane
     "#{airplane} has successfully landed."
-    end
+
   end
 end
