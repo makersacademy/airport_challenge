@@ -24,15 +24,12 @@ describe Airport do
       end
     end
     context "when weather is stormy" do
-      before do
-        allow(subject).to receive(:stormy?).and_return true
-      end
       it "prevents planes form landing" do
+        allow(subject).to receive(:stormy?).and_return true
         expect { subject.land(plane) }.to raise_error "Stormy weather!"
       end
     end
   end
-
 
   describe "#Take off" do
     context "when weather is sunny" do
@@ -51,15 +48,12 @@ describe Airport do
       end
     end
     context "when weather is stormy" do
-      before do
-        allow(subject).to receive(:stormy?).and_return true
-      end
       it "prevents planes form taking off" do
+        allow(subject).to receive(:stormy?).and_return true
         expect { subject.takeoff(plane) }.to raise_error "Stormy weather!"
       end
     end
   end
-
 
   describe "#Capacity" do
     it "can be overridden" do
