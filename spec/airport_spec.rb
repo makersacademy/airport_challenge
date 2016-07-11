@@ -30,8 +30,7 @@ describe Airport do
       .to eq "The plane #{plane} has taken off"
   end
 
-  it 'when a plane took off from airport
-    it confirms that plane is no longer in airport' do
+  it 'confirms that plane is no longer in airport' do
   allow(subject.weather).to receive(:stormy?).and_return(false)
   subject.take_off plane
   expect(subject.planes.map{|x| x if x == plane}.empty?).to be true
@@ -41,14 +40,14 @@ it 'prevents take off if weather is stormy' do
   allow(subject.weather).to receive(:stormy?).and_return(false)
   subject.land plane
   allow(subject.weather).to receive(:stormy?).and_return(true)
-  expect{subject.take_off(plane)}.
-    to raise_error("Weather condition is bad, no take offs")
+  expect{subject.take_off(plane)}
+    .to raise_error("Weather condition is bad, no take offs")
 end
 
 it 'prevents landing if weather is stormy' do
   allow(subject.weather).to receive(:stormy?).and_return(true)
-  expect{subject.land(plane)}
-    .to raise_error('Weather condition is bad, no landing')
+  expect{subject.land(plane)}.
+    to raise_error('Weather condition is bad, no landing')
 end
 it 'prevents landing if airport is full' do
   expect(subject.planes.size).to be <= Airport::DEFAULT_CAPACITY
