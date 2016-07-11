@@ -1,6 +1,6 @@
 # Airport Challenge #
 
-I've split the program into three classes: Airport, Plane and Weather. The weather randomly generates whether is is stormy or not, with a bias towards good weather. Planes can land or take off depending on their current state. If a plane has already landed, it cannot land again and vice versa for take off. Errors are raised if airport is full or empty. There is a default capacity set for the airport if no capacity is entered when an airport is created.
+I've split the program into three classes: Airport, Plane and Weather. The weather randomly generates whether it is stormy or not, with a bias towards good weather. Planes can land or take off depending on their current state. If a plane has already landed, it cannot land again and vice versa for take off. Errors are raised if airport is full or empty. There is a default capacity set for the airport if no capacity is entered when an airport is created.
 
 ## Feature test: ##
 ```
