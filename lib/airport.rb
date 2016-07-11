@@ -1,11 +1,12 @@
 require_relative './plane'
-require_relative './Weather'
+require_relative './weather'
 class Airport
-include Weather
-attr_reader :planes
-CAPACITY = 100
+  CAPACITY ||= 10
+  include Weather
+  attr_reader :planes
   def initialize
     @planes = []
+    @capacity = CAPACITY
   end
   def land_plane plane
     if Weather.stormy
@@ -14,17 +15,23 @@ CAPACITY = 100
       'airport is full, please use nearest one'
     else
       @planes << plane
+      plane.landed?
     end
   end
   def depart_plane plane
     if Weather.stormy
       'weather conditions prvent take-off'
+    elsif empty?
+      return
     else
-      plane
+      @planes.delete(plane)
     end
   end
 private
   def full?
     @planes.count >= CAPACITY
+  end
+  def empty?
+    @planes.empty?
   end
 end

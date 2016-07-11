@@ -1,8 +1,10 @@
+require_relative './airport'
 class Plane
+
   def landed?
-    true
+    @landed = true
   end
   def departed?
-    true
+    @departed = true
   end
 end
