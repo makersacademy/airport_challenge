@@ -15,18 +15,12 @@ Airport Challenge
 
 Some words from Jonny
 ---------
-Reading through the user stories led me to proceed on a
+Very simple application which allows planes to take off and land at airports.
+Take off and landing are both not permitted if the weather is not clear. Weather
+is randomly generated in a weather class separate to Airport and Plane classes.
 
-Airport = DockingStation, Plane = Bike
-
-basis. Whilst I feel this realisation gave me an overview of the overall code
-structure required for this challenge, I did my best to resist jumping into
-the production code and instead allowed tests to guide some of the finer points of
-the design. Basically, a chance to get cosy with a recent acquaintance, everyone's
-favourite friend, Rspec. :yoooshi:
-
-Please run the spec/feature_test_spec file for an example of how the code is used.
-(To be completed).
+Requiring the lib/airport.rb file allows for feature testing as this file is
+also linked to the other code.
 
 ```
 
