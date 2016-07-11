@@ -11,16 +11,16 @@ class Airport
   end
 
   def land(plane)
-    raise "There is no space" if full?
-    raise "Weather is stormy. Couldn't land" if stormy?
+    fail "There is no space" if full?
+    fail "Stormy weather!" if stormy?
     planes << plane
-    return "#{plane} has landed"
+    "#{plane} has landed"
   end
 
   def takeoff(plane)
-    raise "Weather is stormy. Couldn't take off" if stormy?
+    fail "Stormy weather!" if stormy?
     index = planes.index(plane)
-    return "#{planes.slice!(index)} is up in the air"
+    "#{planes.slice!(index)} is up in the air"
   end
 
   private
