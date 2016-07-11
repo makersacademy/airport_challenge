@@ -20,7 +20,7 @@ class Airport
 
   def takeoff(plane)
     fail "Stormy weather!" if stormy?
-    fail "Plane not found!" if !@planes.include?(plane)
+    fail "Plane not found!" unless planes.include?(plane)
     index = planes.index(plane)
     plane
   end
