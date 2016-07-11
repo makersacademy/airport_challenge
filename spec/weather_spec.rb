@@ -1,8 +1,7 @@
 require 'weather'
 
 describe Weather do
-  subject(:weather) {described_class.new}
-
+  subject(:Weather) {described_class}
   it {is_expected.to respond_to(:stormy?)}
-  #how to check randomness?
+  it {is_expected.to respond_to(:random_outlook)}
 end

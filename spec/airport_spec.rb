@@ -11,12 +11,11 @@ describe Airport do
     it 'has a default capacity' do
         expect(subject.capacity).to eq(5)
     end
-    #this will be superceded as not public
+
     it 'can store planes' do
       expect(subject.planes).to eq([])
     end
   end
-
 
 
   describe 'landing a plane' do

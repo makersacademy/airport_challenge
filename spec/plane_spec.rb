@@ -4,8 +4,6 @@ describe Plane do
   subject(:plane) {described_class.new}
   let (:airport) {double :airport}
 
-#remember need 100% coverage
-#context on weather - is this in airport spec
 
   describe 'initialize plane' do
 
@@ -16,7 +14,6 @@ describe Plane do
     it 'is not in an airport' do
       expect(subject.airport).to eq(nil)
     end
-
   end
 
   describe 'land the plane' do
@@ -39,12 +36,10 @@ describe Plane do
       error = 'the plane is already on the ground'
       expect{subject.land(airport)}.to raise_error error
     end
-
-
   end
 
   describe 'take-off' do
-
+    
     it 'receives instruction from the airport' do
       expect(subject).to respond_to(:take_off).with(1).argument #more sophisticated test?
     end
@@ -59,6 +54,4 @@ describe Plane do
     end
 
   end
-
-
 end

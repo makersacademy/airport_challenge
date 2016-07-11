@@ -34,7 +34,8 @@ class Airport
   def weather_check
     fail "Cannot complete command, the weather is too stormy" if Weather.stormy?
   end
-  #private - just need to uncomment this and check tests
+
+  #private
 
   def planes
     @planes
