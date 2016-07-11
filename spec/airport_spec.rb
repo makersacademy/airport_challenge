@@ -9,7 +9,7 @@ describe Airport do
   let(:weather_good) { double(:weather, stormy?: false) }
   let(:weather_bad) { double(:weather, stormy?: true) }
 
-  context "in good weather" do
+  context "Clear skies ahead" do
    subject do
      described_class.new(described_class::DEFAULT_CAPACITY, weather_good)
    end
@@ -44,14 +44,13 @@ describe Airport do
     end
   end
 end
-    context "in bad weather" do
+    context "It was a dark stormy night" do
       subject do
         described_class.new(described_class::DEFAULT_CAPACITY, weather_bad)
       end
 
     it 'Will prevent planes leaving the airport in a storm' do
       plane = Plane.new
-      subject.land(plane)
       expect{ subject.takeoff(plane) }.to raise_error "ABORT ABORT! STORMY FRONTS ARE COMING"
     end
   end

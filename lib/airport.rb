@@ -3,6 +3,7 @@ require_relative 'weather'
 
 class Airport
   attr_reader :plane, :weather, :capacity
+  attr_accessor :weather
   DEFAULT_CAPACITY = 5
 
   def initialize (capacity = DEFAULT_CAPACITY, weather = Weather.new)
@@ -13,12 +14,12 @@ class Airport
 
   def land(plane)
     fail "We're full to bursting" if full?
-
+    weather_checks
     @planes << plane
   end
 
   def takeoff(plane)
-    fail "That plane isn't in the airport" unless @planes.include? plane
+    fail "That plane isn't in the airport" if @planes.empty?
     weather_checks
     @planes.delete(plane)
   end
@@ -31,5 +32,3 @@ class Airport
      @planes.count >= @capacity
   end
 end
-
-#add full method for landing
