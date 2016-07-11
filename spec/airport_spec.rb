@@ -13,4 +13,8 @@ describe Airport do
     expect(subject.take_off(Plane.new)).to eq("Plane taken off")
   end
 
+  it 'check weather' do
+    
+  end
+
 end

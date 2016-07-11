@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -15,5 +16,5 @@ class Airport
     @planes_landed.pop
     return "Plane taken off"
   end
-  
+
 end
