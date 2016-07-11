@@ -30,20 +30,20 @@ describe Airport do
        Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
        expect{subject.land(Plane.new)}.to raise_error "We're full to bursting"
      end
-  end
+   end
 
-  describe '#takeoff' do
-    it 'Confirms plane is no longer in the airport' do
-      plane = Plane.new
-      subject.land(plane)
-      subject.takeoff(plane)
-      expect {subject.planes.to_not include plane }
-    end
-    it 'Will prevent planes that aren\'t in the airport from taking off' do
-      expect { subject.takeoff(Plane.new) }.to raise_error "That plane isn't in the airport"
+   describe '#takeoff' do
+      it 'Confirms plane is no longer in the airport' do
+        plane = Plane.new
+        subject.land(plane)
+        subject.takeoff(plane)
+        expect {subject.planes.to_not include plane }
+      end
+      it 'Will prevent planes that aren\'t in the airport from taking off' do
+        expect { subject.takeoff(Plane.new) }.to raise_error "That plane isn't in the airport"
+      end
     end
   end
-end
 #broken test needs to land plane while weather is good and take off while bad
     context "It was a dark stormy night" do
       subject do
