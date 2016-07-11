@@ -1,5 +1,5 @@
 module Weather
-  def Weather.stormy
+  def self.stormy
    rand(2) > 0
   end
 end

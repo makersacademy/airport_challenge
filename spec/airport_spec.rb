@@ -1,54 +1,71 @@
 require 'airport'
 require 'plane'
 describe Airport do
+describe 'capacity' do
+  it 'can be overridden on initialize' do
+    random_capacity = Random.rand(100)
+    subject = described_class.new random_capacity
+    expect(subject.capacity).to eq random_capacity
+  end
+  it 'has a default capacity when initialized' do
+    expect(subject.capacity).to eq Airport::AIRPORT_CAPACITY
+  end
+end
 it "ensures that flying planes can't take of or be in airport" do
-  plane = Plane.new
+  plane = double('plane')
+  allow(Weather).to receive(:stormy).and_return(false)
   subject.land_plane(plane)
   subject.depart_plane(plane)
   expect(plane).not_to be_landed
 end
 it "ensures that landed planes can't land again" do
-  plane = Plane.new
+  plane = double('plane')
+  allow(Weather).to receive(:stormy).and_return(false)
   subject.land_plane(plane)
   expect(plane).not_to be_departed
 end
 describe '#land_plane' do
   it 'instructs a plane to land' do
-    airport = double('airport')
-    plane = Plane.new
-    allow(airport).to receive(:land_plane).with(plane).and_return(plane)
+    plane = double('plane')
+    allow(Weather).to receive(:stormy).and_return(false)
+    subject.land_plane(plane)
+    expect(subject).not_to be_empty
   end
   it 'confirms that plane has landed' do
-    airport = double('airport')
-    allow(airport).to receive(:land_plane).with(Plane.new).and_return(:landed)
+    plane = double('plane')
+    allow(Weather).to receive(:stormy).and_return(false)
+    expect(subject.land_plane(plane)).to eq [plane]
   end
   it 'prevents landing if weather is stormy' do
-    airport = double('airport')
-    allow(airport).to receive(:land_plane).and_raise('weather conditions prvent landing')
+    plane = double('plane')
+    allow(Weather).to receive(:stormy).and_return(true)
+    expect{subject.land_plane(plane)}.to raise_error('weather conditions prvent landing')
   end
   it 'prevents landing if airport is full' do
-    airport = double('airport')
-    allow(airport).to receive(:land_plane).with(Plane.new).and_raise('airport is full, please use nearest one')
+    allow(Weather).to receive(:stormy).and_return(false)
+    subject.capacity.times { subject.land_plane double :plane }
+    expect {subject.land_plane double(:plane)}.to raise_error('airport is full')
   end
 end
 describe '#depart_plane' do
   it 'prevents departure if weather is stormy' do
-    airport = double('airport')
-    # plane = Plane.new
-    # subject.land_plane(plane)
-    allow(airport).to receive(:depart_plane).with(Plane.new).and_raise('weather conditions prvent take-off')
+    plane = double('plane')
+    allow(Weather).to receive(:stormy).and_return(true)
+    expect{subject.depart_plane(plane)}.to raise_error('weather conditions prvent take-off')
   end
   it 'instructs a plane to depart' do
-    airport = double('airport')
-    plane = Plane.new
-    # subject.land_plane(plane)
-    allow(airport).to receive(:depart_plane).with(plane).and_return(plane)
+    plane = double('plane')
+    allow(Weather).to receive(:stormy).and_return(false)
+    subject.land_plane(plane)
+    subject.depart_plane(plane)
+    subject.report_departed
+    expect(subject).to be_empty
   end
   it 'confirms that plane departured' do
-    plane = Plane.new
+    plane = double('plane')
+    allow(Weather).to receive(:stormy).and_return(false)
     subject.land_plane(plane)
-    airport = double('airport')
-    allow(airport).to receive(:depart_plane).with(plane).and_return(:departed)
+    expect(subject.depart_plane(plane)).to eq plane
   end
 end
 
