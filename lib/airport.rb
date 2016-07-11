@@ -1,8 +1,11 @@
 require 'plane'
 
 class Airport
-     attr_accessor :planes
+     attr_accessor :plane
      
+     def initialize
+         @plane =[]
+     end
      
     # def initialize
     #     @planes = []
@@ -13,9 +16,16 @@ class Airport
         #whole class required for this?
         
     def parked(plane)
-        plane = Plane.new
-        @planes = plane
+        if plane.landing == false
+        @plane << plane
     end
+    
+    def left(plane)
+        if plane.take_off == true
+            @plane.pop
+        end
+    end
+end
     #runway
 
     

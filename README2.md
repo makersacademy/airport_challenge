@@ -32,7 +32,7 @@ We want a plane to land at an airport and have a status change to 'Landed'
 'Landed' = create a true/false situation in terms of 'Plane_flying'
 
 |Objects|Messages|
-|---------------|:-------------------:|
+|---------------:|:-------------------:|
 |Air Traffic Controller||
 |Plane| Plane_flying(landed = false) |
 ```
@@ -59,7 +59,7 @@ We want a plane **NOT** to take-off during a 'storm?'
 'storm' = create a ture/false situation in terms of 'Weather'
 
 |Objects|Messages|
-|---------------|:-------------------:|
+|---------------:|:-------------------:|
 |Air Traffic Controller||
 |Weather| storm? (if storm? = true, will stop take-off method occuring)|
 ```
@@ -72,7 +72,7 @@ We want a plane **NOT** to land during a 'storm?'
 'storm' = create a ture/false situation in terms of 'Weather'
 
 |Objects|Messages|
-|---------------|:-------------------:|
+|---------------:|:-------------------:|
 |Air Traffic Controller||
 |Weather| storm? (if storm? = true, will stop landing method occuring)|
 ```
@@ -87,7 +87,7 @@ Create a Capacity constant that will reject the 'landing' method but allow the '
 landing (-= 1), take-off (+= 1) to capacity
 
 |Objects|Messages|
-|---------------|:-------------------:|
+|---------------:|:-------------------:|
 |Air Traffic Controller||
 |Airport|capacity(additional use of landing and take-off methods to effect capacity)|
 ```
@@ -126,6 +126,10 @@ Storm? and Clear? (required true/false statement in order to prevent 'Landing' a
 Steps:
 
 **NOTES**:
+
+Need to figure out which tests and emthos to use first:
+
+Landing -> Airport -> Take_off
 
 Weather is randomly generated, create number range that decide once a limit is reached it is "Raining" or "Clear".
 
