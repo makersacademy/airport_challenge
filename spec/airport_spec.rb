@@ -103,4 +103,18 @@ describe Airport do
 
   end
 
+  describe '#capacity' do
+
+    it 'allows for setting custom capacity' do
+      airport = Airport.new(500)
+      expect(airport.capacity).to eq(500)
+    end
+
+    it 'has a deafault capacity set if no arg is given' do
+      airport = Airport.new
+      expect(airport.capacity).to eq(Airport::DEAFAULT_CAPACITY)
+    end
+
+  end
+
 end
