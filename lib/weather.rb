@@ -1,0 +1,4 @@
+module Weather
+
+
+end
