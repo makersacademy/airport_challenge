@@ -48,7 +48,4 @@ class Airport
     fail 'The weather is too stormy right now!' if Weather.stormy?
   end
 
-  # def ok_to_fly?
-  #   Weather.stormy? ? false : true
-  # end
 end
