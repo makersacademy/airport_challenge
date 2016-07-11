@@ -6,7 +6,7 @@ class Weather
 
 	def weather?
 		set_weather
-	end	
+	end
 
 	private
 	def set_weather
