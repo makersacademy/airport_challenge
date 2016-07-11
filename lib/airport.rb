@@ -16,6 +16,7 @@ class Airport
   end
 
   def take_off_plane(plane)
+    planes_in_airport.pop
     "#{plane} has successfully taken-off"
   end
 
