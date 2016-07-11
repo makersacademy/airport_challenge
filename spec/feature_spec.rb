@@ -2,8 +2,6 @@ require './lib/airport'
 require './lib/plane'
 require './lib/weather'
 
-#need to write more
-
 describe 'Airport challenge' do
 
   it 'passes feature tests' do
@@ -16,7 +14,15 @@ describe 'Airport challenge' do
     allow(Weather).to receive(:stormy?).and_return(false)
     heathrow.land(concord)
     heathrow.take_off(concord)
+    concord.taken_off
     concord.landed?
+    gatwick.land(superman)
+    gatwick.take_off(superman)
+    superman.taken_off
+    gatwick.land(superman)
+    superman.landed
+    superman.landed?
+    gatwick.capacity
   end
 
 end

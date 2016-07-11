@@ -105,7 +105,7 @@ describe Airport do
 
   describe '#capacity' do
 
-    it 'allows for setting custom capacity' do
+    it 'allows for reading and writing of capacity' do
       airport = Airport.new(500)
       expect(airport.capacity).to eq(500)
     end
