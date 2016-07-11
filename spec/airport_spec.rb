@@ -67,7 +67,7 @@ describe Airport do
     end
 
     it 'raises an error if given plane is not at the airport' do
-      subject.land(plane)
+      allow(subject).to receive(:empty?).and_return false
       expect{subject.take_off(plane)}.to raise_error 'Plane not at this airport'
     end
 
