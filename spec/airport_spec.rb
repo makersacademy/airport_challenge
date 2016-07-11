@@ -16,4 +16,12 @@ describe Airport do
       plane = double(:plane, landed: true)
     end
   end
+
+  describe '#full?' do
+    it 'raises an error if the airport is full' do
+    plane = double(:plane, landed: true)
+    subject.cap.times {subject.docked(plane)}
+    expect{subject.docked(plane)}.to raise_error 'Airport is full'
+    end
+  end
 end

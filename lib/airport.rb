@@ -12,6 +12,7 @@ DEF_CAP = 20
   end
 
   def docked(plane)
+    fail 'Airport is full' if full?
     if plane.landed == true
       @planes << plane
     else @planes - [plane]
@@ -25,6 +26,6 @@ DEF_CAP = 20
   end
 
   def full?
-    @planes.count > 20 ? true : false
+    @planes.count >= 20 ? true : false
   end
 end
