@@ -2,8 +2,8 @@ require 'airport'
 require 'plane'
 require 'weather'
 
-#set up contexts to change the weather
 # set up full blocks to name instances of classes
+# add in doubles and mocks
 
 describe Airport do
   let(:weather_good) { double(:weather, stormy?: false) }
@@ -44,6 +44,7 @@ describe Airport do
     end
   end
 end
+#broken test needs to land plane while weather is good and take off while bad
     context "It was a dark stormy night" do
       subject do
         described_class.new(described_class::DEFAULT_CAPACITY, weather_bad)

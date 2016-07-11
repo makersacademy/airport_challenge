@@ -3,9 +3,10 @@ require_relative 'weather'
 
 class Airport
   attr_reader :plane, :weather, :capacity
-  attr_accessor :weather
+
   DEFAULT_CAPACITY = 5
 
+#weather is always the same for the airport needs to be able to change
   def initialize (capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
     @weather = weather
@@ -19,7 +20,7 @@ class Airport
   end
 
   def takeoff(plane)
-    fail "That plane isn't in the airport" if @planes.empty?
+    fail "That plane isn't in the airport" if @planes.include(plane)
     weather_checks
     @planes.delete(plane)
   end
