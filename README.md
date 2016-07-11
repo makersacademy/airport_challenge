@@ -12,7 +12,6 @@ land or take off.
         were written first, followed by failing unit tests which were passed with
         an implementation and then feature tests were run again to ensure that the implementation solved the problem as required.
 
-      ```
          [2] pry(main)> require './lib/airport'
                 => true
          [3] pry(main)> airport = Airport.new
@@ -29,7 +28,7 @@ land or take off.
          [7] pry(main)> airport.take_off(plane)
                 => true
          [8] pry(main)> plane.taken_off?
-                => true                 ```
+                => true              
         example of a passing feature test.
 
 ### SRP

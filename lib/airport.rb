@@ -12,15 +12,15 @@ class Airport
   end
 
   def prevent_landing
-    raise 'Unable to land due to bad weather' if stormy?
+    fail 'Unable to land due to bad weather' if stormy?
   end
 
   def full_airport
-    raise 'Airport is full' if full?
+    fail 'Airport is full' if full?
   end
 
-  def has_landed
-    raise 'Plane has landed earlier' if landed?
+  def has_landed?
+    fail 'Plane has landed earlier' if landed?
   end
 
   def land(plane)
@@ -29,15 +29,15 @@ class Airport
   end
 
   def prevent_take_off
-    raise 'Unable to take off due to bad weather' if stormy?
+    fail 'Unable to take off due to bad weather' if stormy?
   end
 
   def no_planes
-    raise 'No planes to take off' if empty?
+    fail 'No planes to take off' if empty?
   end
 
-  def has_taken_off
-    raise 'The plane has taken off earlier' if taken_off?
+  def has_taken_off?
+    fail 'The plane has taken off earlier' if taken_off?
   end
 
   def take_off(plane)
