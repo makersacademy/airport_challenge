@@ -6,11 +6,10 @@ describe Airport do
   let(:subject) { Airport.new }
   let(:plane) { double :plane }
   let(:weather) {double :weather}
-  
+
 it 'prevents landing if weather is stormy' do
     allow(subject.weather).to receive(:stormy?).and_return(true)
-    expect{subject.take_off plane}
-      .to raise_error 'Weather condition is bad, no take offs'
+    expect{subject.take_off plane}.to raise_error 'Weather condition is bad, no take offs'
 end
 
   it {is_expected.to respond_to :land}
