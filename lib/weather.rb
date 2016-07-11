@@ -11,8 +11,4 @@ class Weather
   def stormy?
     true if @weather == :stormy
   end
-
-
-
-
 end
