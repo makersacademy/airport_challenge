@@ -26,6 +26,7 @@ the design. Basically, a chance to get cosy with a recent acquaintance, everyone
 favourite friend, Rspec. :yoooshi:
 
 Please run the spec/feature_test_spec file for an example of how the code is used.
+(To be completed).
 
 ```
 
