@@ -1,7 +1,7 @@
 require "airport"
 
 describe Airport do
-  
+
   it 'allows airplanes to land and confirms arrival' do
     plane = Plane.new
     expect(subject.allows_landing(plane)).to eq "Aircraft #{plane} has landed"
