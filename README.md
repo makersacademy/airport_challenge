@@ -18,6 +18,34 @@ Coverage
 
 [![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg)](https://coveralls.io/github/makersacademy/airport_challenge)
 
+Features
+---------
+**Airport Class**
+* Planes can land and take-off at an airport
+* Planes cannot take-off at an airport they're not at
+* Planes cannot land or take-off if the weather is stormy
+* Planes will stay at airport once landed
+* Planes will leave airport after take-off
+* Airports can contain multiple planes (no limit)
+
+**Plane Class**
+* Planes can fly!
+* Planes will leave airport once flying
+* Planes can land!
+* Planes will stay at airport once landed
+* Planes cannot fly if already flying
+* Planes cannot land if already landed
+
+**Weather Class**
+* Weather can be 'sunny', or 'stormy'
+* 20% chance of stormy weather
+
+Approach
+---------
+* Create classes for planes, airports, and weather
+* Tried to encapsulate the behaviour of each object as much as possible as per the user stories
+* Tried to hide methods in classes and use interfaces to interact with them, if necessary
+
 Instructions
 ---------
 
