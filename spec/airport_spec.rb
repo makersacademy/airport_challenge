@@ -73,10 +73,11 @@ describe Airport do
       end
     end
 
-    describe "#take_off"
+    describe "#take_off" do
       it "returns error when trying to release plane in storm" do
         message = "Weather conditions are unsuitable to take off in!"
         expect{airport.take_off}.to raise_exception(message)
       end
     end
   end
+end

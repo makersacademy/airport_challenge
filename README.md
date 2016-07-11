@@ -1,5 +1,8 @@
 # **Airport challenge** #
 
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge) 
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/makersacademy/airport_challenge?branch=master)
+
 This is a small Ruby program that simulates the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
 

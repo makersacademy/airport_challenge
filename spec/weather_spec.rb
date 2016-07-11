@@ -2,7 +2,7 @@ require "weather"
 
 describe Weather do
   subject(:weather) {Weather.new}
-  it "has a method that checks if stormy"do
+  it "has a method that checks if stormy" do
     expect(weather).to respond_to(:stormy?)
   end
   it "has a chance to be stormy" do

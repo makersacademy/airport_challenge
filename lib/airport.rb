@@ -13,15 +13,15 @@ class Airport
   attr_reader :capacity, :forecast
 
   def land(plane)
-    raise "Weather conditions are unsuitable to land in!" if stormy?
-    raise "Airport is at maximum capacity!" if full?
+    fail "Weather conditions are unsuitable to land in!" if stormy?
+    fail "Airport is at maximum capacity!" if full?
     plane.flying = false
     @planes << plane
   end
 
   def take_off
-    raise "Weather conditions are unsuitable to take off in!" if stormy?
-    raise "There are no planes at the airport!" if empty?
+    fail "Weather conditions are unsuitable to take off in!" if stormy?
+    fail "There are no planes at the airport!" if empty?
     @planes[-1].flying = true
     @planes.pop
   end
