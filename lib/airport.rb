@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -34,8 +35,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..10) >= 3
+    Weather.new.stormy?
   end
-
 
 end

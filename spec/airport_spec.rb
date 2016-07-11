@@ -15,7 +15,7 @@ describe Airport do
       end
       context "when the airport is full" do
         it "prevents planes form landing" do
-          subject.instance_variable_get(:@capacity).times { subject.land(plane) }
+          subject.instance_variable_get(:@capacity).times {subject.land(plane)}
           expect { subject.land(plane) }.to raise_error "There is no space"
         end
       end
