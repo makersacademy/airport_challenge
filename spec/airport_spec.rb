@@ -10,14 +10,14 @@ describe Airport do
     allow(subject.weather).to receive(:stormy?).and_return(true)
     expect{subject.take_off plane}
       .to raise_error 'Weather condition is bad, no take offs'
-  end
+end
 
   it {is_expected.to respond_to :land}
   it {is_expected.to respond_to(:land).with(1).argument }
   it 'instructs a plane to land and airport confirms landing' do
     allow(subject.weather).to receive(:stormy?).and_return(false)
     expect(subject.land(plane)).to eq "The plane #{plane} has landed"
-  end
+end
 
 
   it {is_expected.to respond_to :take_off}
@@ -27,7 +27,7 @@ describe Airport do
     allow(subject.weather).to receive(:stormy?).and_return(false)
     subject.land plane
     expect(subject.take_off(plane)).to eq "The plane #{plane} has taken off"
-  end
+end
 
   it 'confirms that plane is no longer in airport' do
     allow(subject.weather).to receive(:stormy?).and_return(false)
