@@ -17,16 +17,15 @@ Airport Challenge
 
 ## Libraries ##
 
-./lib
-  Contains:
-    plane.rb
-    airport.rb
-    weather.rb
-./spec
-  Contains:
-    plane_spec.rb
-    airport_spec.rb
-    weather_spec.rb
+* ./lib
+    * plane.rb
+    * airport.rb
+    * weather.rb
+* ./spec
+
+    * plane_spec.rb
+    * airport_spec.rb
+    * weather_spec.rb
 
 ## Status ##
 
@@ -65,6 +64,7 @@ Not attempted:
 ## How to Use ##
 
 ```sh
+irb
 require './lib/airport.rb'
 plane = Plane.new
 airport = Airport.new
