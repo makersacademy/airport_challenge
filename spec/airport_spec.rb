@@ -38,7 +38,13 @@ describe Airport do
       end
       it "instructs planes to take off" do
         subject.land(plane)
-        expect(subject.takeoff(plane)).to eq "#{plane} is up in the air"
+        expect(subject.takeoff(plane)).to eq plane
+      end
+      it "raises an error if a plane is in another airport" do
+        airport2 = Airport.new
+        allow(airport2).to receive(:stormy?).and_return false
+        airport2.land(plane)
+        expect { subject.takeoff(plane) }.to raise_error "Plane not found!"
       end
     end
     context "when weather is stormy" do
