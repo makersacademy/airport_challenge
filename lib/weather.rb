@@ -8,7 +8,8 @@ class Weather
     @weather = [:fine,:fine,:fine,:stormy][rand(4)]
   end
 
-  def stormy?
-    true if @weather == :stormy
+  def todays_weather
+    @weather
   end
+
 end
