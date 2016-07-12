@@ -2,107 +2,78 @@ require 'airport'
 
 describe Airport do
 
-subject(:airport) { Airport.new }
-subject(:plane) { Plane.new }
-subject(:weather) { Weather.new } 
+  plane = Plane.new
 
-  describe '#land: is should work for single planes' do
+  context 'in clear weather' do
 
-    after(:all) do
-      weather=Weather.new
-      weather.stormy? == false
-    end
+    before(:each) {allow(subject).to receive(:stormy?).and_return(false)}
 
-    it 'can tell a plane to land' do
-      allow(weather).to receive(:stormy?) {false}
-      expect(airport.land(plane)).to include plane
-    end
+      it 'can tell a plane to land' do
+        expect(subject.land(plane)).to include plane
+      end
 
+      it 'knows if a plane has landed' do
+        subject.land(plane)
+        expect(subject.planes).to include plane
+      end
 
-    it 'planes should not be able to land in a storm' do
-      allow(weather).to receive(:stormy?) {true}
-      expect{airport.land(plane)}.to raise_error("Storm")
-    end
+      it 'should not allow planes to land when full' do
+        airport = Airport.new(1)
+        airport.land(plane)
+        expect{airport.land(plane)}.to raise_error("Full")
+      end
 
-    it 'should not allow planes to land when full' do
-      allow(weather).to receive(:stormy?) {false}
-      airport = Airport.new(1)
-      airport.land(plane)
-      expect{airport.land(plane)}.to raise_error("Full")
-    end
+      it 'should tell a plane to take-off' do
+        expect(subject).to respond_to(:take_off)
+      end
 
-    it 'knows if a plane has landed' do
-      allow(weather).to receive(:stormy?) {false}
-      airport.land(plane)
-      expect(airport.planes).to include plane
-    end
+      it 'should know when a plane has taken-off' do
+        airport = Airport.new
+        airport.land(plane)
+        airport.take_off(plane)
+        expect(airport.planes).not_to eq plane
+      end
+
+      it 'only allows planes that have landed to take-off' do
+        plane2 = Plane.new
+        expect{subject.take_off(plane2)}.to raise_error "Error: that plane isn't at this airport"
+      end
+
+      it 'does not allow planes that are already flying to take-off' do
+
+        plane2 = Plane.new
+        subject.land(plane2)
+        subject.take_off(plane2)
+        expect{subject.take_off(plane2)}.to raise_error "Error: that plane isn't at this airport"
+      end
+
+      it 'knows when a plane has taken-off' do
+
+        planeA = Plane.new
+        planeB = Plane.new
+        planeC = Plane.new
+        subject.land(planeA)
+        subject.land(planeB)
+        subject.land(planeC)
+        subject.take_off(planeB)
+        expect(subject.planes).not_to include (planeB)
+      end
+
   end
 
-  describe '#take-off' do
+  context 'in bad weather' do
 
-    before do
-      airport.land(plane)
-    end
-
-    after(:all) do
-      weather=Weather.new
-      weather.stormy? == false
-    end
-
-    it 'should tell a plane to take-off' do
-      allow(weather).to receive(:stormy?) {false}
-      airport.take_off(plane)
-      expect(airport).to respond_to(:take_off)
-    end
+    before(:each) {allow(subject).to receive(:stormy?).and_return(true)}
 
     it 'should prevent a plane taking off in a storm' do
-      allow(weather).to receive(:stormy?) {true}
+      airport = Airport.new
+      airport.land(plane)
+      allow(airport).to receive(:stormy?).and_return(true)
       expect{airport.take_off(plane)}.to raise_error("Storm")
     end
 
-    it 'should know when a plane has taken-off' do
-      allow(weather).to receive(:stormy?) {false}
-      airport.take_off(plane)
-      expect(airport.planes).not_to eq plane
+    it 'planes should not be able to land in a storm' do
+      expect{subject.land(plane)}.to raise_error("Storm")
     end
   end
-
-  describe '#take-off: it should work for multiple planes' do
-
-    after(:all) do
-      weather=Weather.new
-      weather.stormy? == false
-    end
-
-    it 'knows when a plane has taken-off' do
-      allow(weather).to receive(:stormy?) {false}
-      planeA = Plane.new
-      planeB = Plane.new
-      planeC = Plane.new
-      airport.land(planeA)
-      airport.land(planeB)
-      airport.land(planeC)
-      airport.take_off(planeB)
-      expect(airport.planes).not_to include (planeB)
-    end
-
-  end
-
-  describe 'edge-cases' do
-
-    it 'only allows planes that have landed to take-off' do
-      allow(weather).to receive(:stormy?) {false}
-      plane2 = Plane.new
-      expect{airport.take_off(plane2)}.to raise_error "Error: that plane isn't at this airport"
-    end
-
-    it 'does not allow planes that are already flying to take-off' do
-      allow(weather).to receive(:stormy?) {false}
-      plane2 = Plane.new
-      airport.land(plane2)
-      airport.take_off(plane2)
-      expect{airport.take_off(plane2)}.to raise_error "Error: that plane isn't at this airport"
-    end
-  end
-
-  end
+end

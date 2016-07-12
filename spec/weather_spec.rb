@@ -1,10 +1,10 @@
 require 'weather'
 
 describe Weather do
-  subject(:weather) { Weather.new }
+  weather = Weather.new
 
-  it 'responds to stormy?' do
-    expect(weather).to respond_to :stormy?
-  end
+    it 'can be stormy or fine' do
+      expect(weather).to respond_to :weather
+    end
 
 end
