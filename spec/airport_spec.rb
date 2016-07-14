@@ -8,7 +8,7 @@ describe Airport do
 
     it 'can land planes' do
       weather = double(:weather)
-      allow(weather).to receive(:stormy?).and_return false
+      expect(subject.weather).to receive(:stormy?).and_return false
       allow(plane).to receive(:landed).and_return false
       allow(plane).to receive(:landed=).with(true)
       subject.land(plane)
@@ -16,7 +16,7 @@ describe Airport do
 
     it 'will not land planes when the weather is stormy' do
       weather = double(:weather)
-      allow(weather).to receive(:stormy?).and_return true
+      expect(subject.weather).to receive(:stormy?).and_return true
       allow(plane).to receive(:landed).and_return false
       allow(plane).to receive(:landed=).with(true)
       expect{subject.land(plane)}.to raise_error "Cannot land plane, weather is stormy"
@@ -24,7 +24,7 @@ describe Airport do
 
     it 'will not land planes when the airport is full' do
       weather = double(:weather)
-      allow(weather).to receive(:stormy?).and_return false
+      allow(subject.weather).to receive(:stormy?).and_return false
       allow(plane).to receive(:landed).and_return false
       allow(plane).to receive(:landed=).with(true)
       described_class::DEFAULT_CAPACITY.times {subject.land(plane)}
@@ -39,7 +39,7 @@ describe Airport do
 
     it 'lets a plane takeoff if the weather is fine' do
       weather = double(:weather)
-      allow(weather).to receive(:stormy?).and_return false
+      allow(subject.weather).to receive(:stormy?).and_return false
       allow(plane).to receive(:landed).and_return true
       allow(plane).to receive(:landed=).with(false)
       subject.takeoff(plane)
@@ -47,7 +47,7 @@ describe Airport do
 
     it "won't let a plane takeoff if the weather is stormy" do
       weather = double(:weather)
-      allow(weather).to receive(:stormy?).and_return true
+      allow(subject.weather).to receive(:stormy?).and_return true
       allow(plane).to receive(:landed).and_return true
       expect{subject.takeoff(plane)}.to raise_error "Plane cannot takeoff, weather is stormy"
     end
