@@ -17,21 +17,4 @@ describe "user stories" do
     plane = Plane.new
     expect { airport.take_off(plane) }.not_to raise_error
   end
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
