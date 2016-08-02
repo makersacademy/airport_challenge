@@ -35,17 +35,3 @@ describe Airplane do
   end
 
 end
-
-#airplane = Airplane.new
-#airplane.landed? # true
-#airplane.take_off
-#airplane.landed? #false
-#airplane.land
-#airplane.landed? #true
-
-
-#it 'lands the plane' do
-#  airplane = Airplane.new
-#  airplane.land
-#  expect(airplane.landed?).to be true
-# end
