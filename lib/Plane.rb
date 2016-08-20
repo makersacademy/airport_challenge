@@ -22,7 +22,7 @@ class Plane
     end
 
     if current_weather.stormy? == true
-      puts "Can't land, due to bad weather."
+      "Can't land, due to bad weather."
     else
       @location = airport
       airport.add_plane(self)

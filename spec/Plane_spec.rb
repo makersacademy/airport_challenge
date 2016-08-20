@@ -1,5 +1,5 @@
 require 'Plane.rb'
-require 'Airport.rb' #only required to fetch its DEFAULT_CAPACITY (see line 12ish)
+require 'Airport.rb' #only required Airport.rb to fetch its DEFAULT_CAPACITY (see line 12ish)
 
 describe Plane do
   let(:airport) {double :airport}
@@ -11,6 +11,8 @@ describe Plane do
     allow(bad_weather).to receive(:stormy?).and_return(true)
     allow(airport).to receive(:capacity).and_return(Airport::DEFAULT_CAPACITY) #the default capacity
     allow(airport).to receive(:docked_planes).and_return([]) #by default the airport is empty
+    allow(airport).to receive(:add_plane).and_return([subject])
+    allow(airport).to receive(:remove_plane).and_return([])
   end
 
   describe '.land_at' do
