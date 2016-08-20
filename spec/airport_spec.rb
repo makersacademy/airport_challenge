@@ -37,14 +37,20 @@ let(:plane) { double :plane }
 
     it 'makes a plane take off from the airport' do
       good_weather
-      plane_in_flight
-      airport.land(plane)
-      expect(airport.take_off(plane)).to eq plane
+      plane_landed
+      airport.take_off(plane)
+      expect(airport.planes).to eq []
     end
 
     it 'raises error if takeoff attempted in stormy weather' do
       bad_weather
       expect{airport.take_off(plane)}.to raise_error "Planes cannot take off in stormy weather"
+    end
+
+    it 'should not allow a flying plane to take off again' do
+      good_weather
+      plane_in_flight
+      expect{airport.take_off(plane)}.to raise_error "This plane is already flying"
     end
 
   end
@@ -62,6 +68,7 @@ let(:plane) { double :plane }
       good_weather
       plane_in_flight
       airport.land(plane)
+      plane_landed
       airport.take_off(plane)
       expect(airport.planes).not_to include plane
     end
