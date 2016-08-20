@@ -14,4 +14,10 @@ class Airport
     puts "Landed safely" if @in_airport.include?(aircraft)
   end
 
+  def request_depart(aircraft)
+    aircraft.take_off
+    @in_airport.delete(aircraft)
+    puts "aircraft departed" if !@in_airport.include?(aircraft)
+  end
+
 end
