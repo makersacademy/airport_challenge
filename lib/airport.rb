@@ -15,13 +15,14 @@ class Airport
     update_conditions(weather)
     fail "Stormy weather! It's too dangerous to land right now." if weather.stormy
     fail "Can't land! This airport is full ..." if full?
+    fail "That plane has already landed." if planes.include?(plane)
     planes.push(plane)
   end
 
   def takeoff(plane, weather)
     update_conditions(weather)
     fail "Stormy weather! It's too dangerous to takeoff right now." if weather.stormy
-    fail "That plane is not in this airport" if planes.include?(plane) == false 
+    fail "That plane is not in this airport" if planes.include?(plane) == false
     planes.delete(plane)
   end
 

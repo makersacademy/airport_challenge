@@ -16,7 +16,7 @@ describe Airport do
     end
 
     it 'also has a variable capacity' do
-      big_airport.capacity.times { big_airport.land(plane, weather)}
+      big_airport.capacity.times { big_airport.land((double :plane), weather)}
       expect {big_airport.land(plane, weather)}.to raise_error "Can't land! This airport is full ..."
     end
 
@@ -42,8 +42,13 @@ describe Airport do
     end
 
     it 'should raise an error if the airport is full' do
-      airport.capacity.times { airport.land(plane, weather)}
-      expect {airport.land(plane, weather)}.to raise_error "Can't land! This airport is full ..."
+      airport.capacity.times { airport.land((double :plane), weather)}
+      expect {airport.land(plane2, weather)}.to raise_error "Can't land! This airport is full ..."
+    end
+
+    it 'should raise on error if you have already landed the plane' do
+      airport.land(plane, weather)
+      expect {airport.land(plane, weather)}.to raise_error "That plane has already landed."
     end
 
   end
@@ -65,10 +70,10 @@ describe Airport do
 
     it 'should test for an edge case: planes can only take off from airports they are in' do
       airport.land(plane, weather)
-      airport.land(plane, weather)
+      airport.land(plane2, weather)
       expect { big_airport.takeoff(plane, weather)}.to raise_error "That plane is not in this airport"
     end
-    
+
   end
 
 
