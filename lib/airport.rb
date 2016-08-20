@@ -22,6 +22,7 @@ class Airport
 
   def take_off(plane)
     check_weather
+    check_in_airport(plane)
     plane.fly
     planes.delete(plane)
   end
@@ -46,6 +47,10 @@ private
 
   def check_in_flight(plane)
     fail "Plane's aleady down, Sir" if plane.in_flight == false
+  end
+
+  def check_in_airport(plane)
+    fail "Plane's already up there, Sir." if plane.in_flight == true
   end
 
 end
