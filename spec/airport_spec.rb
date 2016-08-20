@@ -19,4 +19,11 @@ describe Airport do
     expect(airport.take_off(plane)).to eq plane
   end
 
+  it "doesn't contain planes that did take off" do
+    airport = subject
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.planes).not_to include plane
+  end
+
 end
