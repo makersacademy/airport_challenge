@@ -1,4 +1,5 @@
 require 'Weather'
+require 'Airport'
 
 class Plane
   attr_reader :location
@@ -8,6 +9,10 @@ class Plane
   end               #in an airport, it is nil.
 
   def land_at(airport, current_weather)
+    if airport.capacity <= 0
+      return "There are no free spaces at that airport"
+    end
+
     if current_weather.stormy? != true
       @location = airport
     else
