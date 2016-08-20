@@ -4,6 +4,7 @@ describe Airport do
 
   let(:plane) {double :plane}
   let(:plane2) {double :plane2}
+  let(:weather) {double :weather}
 
   describe '#land' do
 
@@ -32,13 +33,19 @@ describe Airport do
     it 'planes instructed to take off and leaves airport' do
       plane = double(:plane, :ground => false, :fly => true)
       plane2 = double(:plane2, :ground => false)
+      allow(subject).to receive(:bad_weather).and_return false
       subject.land(plane)
       subject.land(plane2)
       subject.take_off(plane)
       expect(subject.planes).to eq [plane2]
     end
 
-    it 'planes cannot take off when weather is stormy'
+    it 'planes cannot take off when weather is stormy' do
+      plane = double(:plane, :ground => false, :fly => true)
+      allow(subject).to receive(:bad_weather).and_return true
+      subject.land(plane)
+      expect{subject.take_off(plane)}.to raise_error "Ach no, there's a storm a-brewin'!"
+    end
 
     it 'planes can only take off if they are landed'
 

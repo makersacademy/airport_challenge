@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -14,8 +15,13 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Ach no, there's a storm a-brewin'!" if bad_weather
     plane.fly
     planes.delete(plane)
+  end
+
+  def bad_weather
+    Weather.new.stormy
   end
 
 end
