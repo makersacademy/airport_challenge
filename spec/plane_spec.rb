@@ -1,5 +1,4 @@
 require 'plane'
-
 describe Plane do
 
 it "responds to 'landed?'" do
