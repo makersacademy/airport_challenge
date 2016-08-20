@@ -15,6 +15,7 @@ class Airport
   def land(plane)
     check_weather
     check_space
+    check_in_flight(plane)
     plane.ground
     planes << plane
   end
@@ -41,6 +42,10 @@ private
 
   def full?
     planes.count >= capacity
+  end
+
+  def check_in_flight(plane)
+    fail "Plane's aleady down, Sir" if plane.in_flight == false
   end
 
 end

@@ -6,6 +6,8 @@ class Weather
     @stormy = storm_level
   end
 
+  private
+
   def storm_level
   rand(11)>10 ? @stormy = true : @stormy = false
   end
