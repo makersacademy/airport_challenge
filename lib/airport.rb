@@ -3,16 +3,17 @@ require_relative './weather.rb'
 
 class Airport
 
-  attr_reader :weather
-  
+  attr_reader :planes , :weather
+
   def initialize
     @planes = []
     @weather = Weather.new
   end
 
   def land(plane)
+    fail "Planes cannot land in stormy weather" if @weather.stormy
+    fail "Planes cannot land when airport is full" if full?
     @planes << plane
-    self
   end
 
   def take_off(plane)
@@ -20,8 +21,8 @@ class Airport
     @planes.delete(plane)
   end
 
-  def planes
-    @planes
+  def full?
+    planes.count == 1 
   end
 
 end
