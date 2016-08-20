@@ -4,18 +4,15 @@ require 'Weather'
 class Plane
   attr_reader :location
 
-  def initialize
-    @location = "In hanger"
+  def initialize    #planes do not start off in airports and @location just
+    @location = nil #tracks which airport the plane is in. So, until its put
+  end               #in an airport, it is nil.
 
-  end
-
-  def land_at(airport)
-    current_weather = Weather.new
-
+  def land_at(airport, current_weather)
     if current_weather.stormy? != true
       @location = airport
     else
-      puts "The plane can not land in inclement weather. Please try landing again later."
+      @location
     end
   end
 
