@@ -1,3 +1,5 @@
-decribe Plane do
+require 'plane'
+
+describe Plane do
 
 end
