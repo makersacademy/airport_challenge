@@ -7,9 +7,12 @@ def initialize
   generate_weather
 end
 
+def weather_chance
+  1+rand(100)
+end
+
 def generate_weather
-  r = 1+rand(100)
-  if (1..75).include? r
+  if (1..80).include? weather_chance
     @forecast = "Sunny"
   else
    @forecast = "Stormy"
