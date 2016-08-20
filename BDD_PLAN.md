@@ -24,6 +24,8 @@ Tests 2 Write
 - [x] an Airport "allows controller to override default capacity"
 - [ ] an Airpot "only lets harboured plans take off"
 - [ ] an Airport "only lets a plane harbour once"
+- [x] weather shared example "is stormy when zeus returns 4"
+- [x] weather shared example "is sunny when zeus returns 1,2,3 or 5"
 
 an Airport "can harbour planes"
 1. Given: a plane and a airport

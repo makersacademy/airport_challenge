@@ -5,13 +5,15 @@ shared_examples_for 'weather_report' do
   #weather = double(weather, :rand => 4)
   subject {described_class.new}
 
-  it "is stormy when seeded 4" do
+  it "is stormy when zeus returns 4" do
     allow(subject).to receive(:zeus) {4}
-    allow(subject).to receive(:weather_report)
     expect(subject.weather_report).to eq("stormy")
   end
 
-  it "is sunny when seeded 1,2,3,5"
+  it "is sunny when zeus returns 1,2,3 or 5" do
+      allow(subject).to receive(:zeus) {3}
+      expect(subject.weather_report).to eq("sunny")
+    end
 end
 
 =begin

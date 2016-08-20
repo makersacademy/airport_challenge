@@ -1,4 +1,5 @@
 module Weather
+
   def zeus
     rand(5)
   end
