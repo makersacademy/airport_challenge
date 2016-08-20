@@ -17,6 +17,12 @@ Your code should defend against [edge cases](http://programmers.stackexchange.co
 
 Tests 2 Write
 
+- [x] an Airport "can harbour planes"
+- [x] an Airport "has planes take off"
+- [ ] "planes cannot fly when stormy"
+- [x] an Airport "does not accept planes when full"
+- [x] an Airport "allows controller to override default capacity"
+
 an Airport "can harbour planes"
 1. Given: a plane and a airport
 2. When: I tell the plane to land at the airport
@@ -33,10 +39,12 @@ an Airport "has planes take off"
 2. When: I prevent an airport from activity
 3. Then: I expect no landing or taking off from the airport
 ---
+an Airport "does not accept planes when full"
 1. Given: an airport is full
 2. When: I try to land planes in the airport
 3. Then: I expect to get a full error
 
+an Airport "allows controller to override default capacity"
 1. Given: an airport
 2. When: I make a new airport with a non-default capactity
 3. Then: I expect default airport capacity to be overriden
