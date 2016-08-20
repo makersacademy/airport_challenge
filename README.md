@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/TomStuart92/airport_challenge.svg?branch=master)](https://travis-ci.org/TomStuart92/airport_challenge)
 
-# README
+# README                                [![Build Status](https://travis-ci.org/TomStuart92/airport_challenge.svg?branch=master)](https://travis-ci.org/TomStuart92/airport_challenge)
+
 Taken together these files constitute a fully tested airport model.
 
 ## Install Instruction
@@ -8,13 +8,17 @@ Taken together these files constitute a fully tested airport model.
 To install these files from Github:
 1. Fork this repo, and clone to your local machine.
 2. Run the command gem install bundle (if you don't have bundle already) from the cloned file location.
-3. When the installation completes, run bundle install.
+3. When the installation completes, run bundle.
 4. Run IRB -r './lib/airport.rb'
 5. Rspec tests can be found at Rspec spec
 
 ## Approach to Solution
 
-My approach to this project was heavily influenced from the Boris Bikes Project (https://github.com/TomStuart92/boris-bikes).
+My approach to this project was heavily influenced from the Boris Bikes Project. (https://github.com/TomStuart92/boris-bikes).
+
+Plane objects are only responsible for tracking their own internal flying/landed state.
+The Weather class is responsible for providing a randomly generated boolean representing whether the weather is safe to fly in.
+The Airport class is responsible for landing and taking off objects. 
 
 I have focused on ensuring minimal dependencies between my classes.
 This was done using dependency injection, and limiting the number of public methods.
