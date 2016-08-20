@@ -4,16 +4,18 @@ require 'Weather'
 class Plane
   attr_reader :location
 
-  def initialize(location)
-    @location = location
+  def initialize
+    @location = "In hanger"
 
   end
 
   def land_at(airport)
-    if Weather.stormy? != true
+    current_weather = Weather.new
+
+    if current_weather.stormy? != true
       @location = airport
     else
-      puts "The plane can not land in inclement weather. Try again later."
+      puts "The plane can not land in inclement weather. Please try landing again later."
     end
   end
 
