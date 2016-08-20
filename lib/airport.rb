@@ -21,6 +21,7 @@ class Airport
   def takeoff(plane, weather)
     update_conditions(weather)
     fail "Stormy weather! It's too dangerous to takeoff right now." if weather.stormy
+    fail "That plane is not in this airport" if planes.include?(plane) == false 
     planes.delete(plane)
   end
 

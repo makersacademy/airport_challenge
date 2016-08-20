@@ -62,6 +62,15 @@ describe Airport do
       airport.land(plane2, weather)
       expect{airport.takeoff(plane, bad_weather)}.to raise_error "Stormy weather! It's too dangerous to takeoff right now."
     end
+
+    it 'should test for an edge case: planes can only take off from airports they are in' do
+      airport.land(plane, weather)
+      airport.land(plane, weather)
+      expect { big_airport.takeoff(plane, weather)}.to raise_error "That plane is not in this airport"
+    end
+    
   end
+
+
 
 end

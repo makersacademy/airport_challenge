@@ -45,6 +45,7 @@ puts
 # puts heathrow.full? # should equal false
 # heathrow.land(Plane.new, weather) # should result in a airport full runtime error
 
+
 puts "*" * 50
 puts "Feature test end"
 puts "*" * 50
