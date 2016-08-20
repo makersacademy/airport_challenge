@@ -1,4 +1,5 @@
-require "plane"
+require "./lib/plane.rb"
+require "./lib/weather.rb"
 
 class Airport
 
@@ -7,9 +8,13 @@ class Airport
   end
 
   def instruct_takeoff(plane)
-    plane.takeoff 
+    weather = Weather.new
+    if weather.random_weather == true
+      "You can't take off while the weather is stormy"
+    else
+      plane.takeoff
+    end
   end
-
 
 
 end
