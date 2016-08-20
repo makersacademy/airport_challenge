@@ -10,12 +10,13 @@ describe Plane do
   end
 
   context 'landing and takeoff' do
-    it 'can land at a specified airport and takeoff' do
+    it 'can land at a airport' do
       plane.land
-      expect(plane.landed?).to eq true
+      expect(plane.landed?).to be true
+    end
+    it 'can takeoff from an airport' do
       plane.takeoff
-      expect(plane.landed?).to eq false
+      expect(plane.landed?).to be false
     end
   end
-
 end

@@ -15,76 +15,68 @@ context 'initialization' do
   end
 end
 
-context 'normal landing and takeoff' do
-  describe '#land(plane)' do
+describe '#land(plane) operations' do
+  before(:example) do
+    @plane = double(:plane, landed?: false)
+    @plane2 = double(:plane, landed?: false)
+  end
+  context 'in normal landing scenario' do
     it 'can land multiple objects' do
-      plane = double(:plane, landed?: false)
-      plane2 = double(:plane, landed?: false)
-      expect(plane).to receive(:land)
-      airport.land(plane)
-      expect(plane2).to receive(:land)
-      airport.land(plane2)
-
-      expect(airport.instance_variable_get(:@landed_planes)).to eq([plane, plane2])
+      expect(@plane).to receive(:land)
+      airport.land(@plane)
+      expect(@plane2).to receive(:land)
+      airport.land(@plane2)
+      expect(airport.instance_variable_get(:@landed_planes)).to eq([@plane, @plane2])
     end
   end
-  describe '#takeoff(plane)' do
-    it 'can takeoff the correct object' do
-      plane = double(:plane, landed?: false)
-      plane2 = double(:plane, landed?: false)
-      expect(plane).to receive(:land)
-      airport.land(plane)
-      expect(plane2).to receive(:land)
-      airport.land(plane2)
-
-      allow(plane).to receive(:landed?).and_return(true)
-      expect(plane).to receive(:takeoff)
-      airport.takeoff(plane)
-      expect(airport.instance_variable_get(:@landed_planes)).to eq([plane2])
-    end
-  end
-end
-
-context 'defends against edge cases' do
-  describe '#land edge cases' do
+  context 'defends against edge cases' do
     it 'will not land objects if weather unsafe' do
       allow(Kernel).to receive(:rand).and_return(1)
-      plane = double(:plane, landed?: false)
-      expect(plane).to_not receive(:land)
-      expect { airport.land(plane) }.to raise_error 'Poor weather means the plane has to divert.'
+      expect(@plane).to_not receive(:land)
+      expect { airport.land(@plane) }.to raise_error 'Poor weather means the plane has to divert.'
     end
     it 'should not land objects when over capacity' do
-      plane = double(:plane, landed?: false)
-      expect(plane).to_not receive(:land)
-      expect {custom_airport.land(plane)}.to raise_error 'Airport is full, the plane has diverted.'
+      expect(@plane).to_not receive(:land)
+      expect {custom_airport.land(@plane)}.to raise_error 'Airport is full, the plane has diverted.'
     end
     it 'should prevent landed planes from landing again' do
-      plane = double(:plane, landed?: true)
-      expect(plane).to_not receive(:land)
-      expect {airport.land(plane)}.to raise_error 'That plane is at another airport.'
-    end
-  end
-  describe '#takeoff edge cases' do
-    it 'will not takeoff objects if weather unsafe' do
-      plane = double(:plane, landed?: false)
-      expect(plane).to receive(:land)
-      airport.land(plane)
-
-      allow(plane).to receive(:landed?).and_return(true)
-      allow(Kernel).to receive(:rand).and_return(1)
-      expect(plane).to_not receive(:takeoff)
-      expect { airport.takeoff(plane) }.to raise_error 'Poor weather means the plane can not takeoff.'
-    end
-    it 'should prevent objects taking off from wrong airport' do
-      plane = double(:plane, landed?: true)
-      expect(plane).to_not receive(:takeoff)
-      expect {airport.takeoff(plane)}.to raise_error 'That plane is at another airport'
-    end
-    it 'should prevent flying objects from taking off' do
-      plane = double(:plane, landed?: false)
-      expect(plane).to_not receive(:takeoff)
-      expect {airport.takeoff(plane)}.to raise_error 'That plane is currently flying'
+      allow(@plane).to receive(:landed?).and_return(true)
+      expect(@plane).to_not receive(:land)
+      expect {airport.land(@plane)}.to raise_error 'That plane is at another airport.'
     end
   end
 end
+
+describe '#takeoff(plane) operations' do
+  before(:example) do
+    @plane = double(:plane, landed?: true)
+    @plane2 = double(:plane, landed?: true)
+    airport.instance_variable_set(:@landed_planes,[@plane,@plane2])
+  end
+  context 'in normal takeoff scenario' do
+    it 'can takeoff the correct object' do
+      expect(@plane2).to receive(:takeoff)
+      airport.takeoff(@plane2)
+      expect(airport.instance_variable_get(:@landed_planes)).to eq([@plane])
+    end
+  end
+  context 'defends against edge cases' do
+    it 'will not takeoff objects if weather unsafe' do
+      allow(Kernel).to receive(:rand).and_return(1)
+      expect(@plane).to_not receive(:takeoff)
+      expect { airport.takeoff(@plane) }.to raise_error 'Poor weather means the plane can not takeoff.'
+    end
+    it 'should prevent objects taking off from wrong airport' do
+      plane3 = double(:plane, landed?: true)
+      expect(plane3).to_not receive(:takeoff)
+      expect {airport.takeoff(plane3)}.to raise_error 'That plane is at another airport'
+    end
+    it 'should prevent flying objects from taking off' do
+      plane3 = double(:plane, landed?: false)
+      expect(plane3).to_not receive(:takeoff)
+      expect {airport.takeoff(plane3)}.to raise_error 'That plane is currently flying'
+    end
+  end
+end
+
 end
