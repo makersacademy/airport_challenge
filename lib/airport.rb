@@ -10,7 +10,6 @@ class Airport
   def instruct_takeoff(plane)
     weather = Weather.new
     if weather.random_weather == true
-      "You can't take off while the weather is stormy"
     else
       plane.takeoff
     end
