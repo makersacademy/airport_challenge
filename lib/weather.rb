@@ -1,6 +1,8 @@
 
 class Weather
 
+  attr_reader :stormy
+
   def initialize
     @stormy = set_weather
   end
@@ -8,8 +10,8 @@ class Weather
   private
 
     def set_weather
-      num = rand(20)
-      true if num == 10
+      num = rand(3)
+      true if num == 2
     end
 
 end
