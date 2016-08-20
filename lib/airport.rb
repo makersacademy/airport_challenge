@@ -12,7 +12,10 @@ class Airport
   end
 
   def take_off (plane)
+    throw "Planes aren't allowed to take off during stormy weather" unless weather?
     planes.delete(plane)
   end
+
+
 
 end
