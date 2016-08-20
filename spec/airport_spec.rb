@@ -62,12 +62,17 @@ describe Airport do
     end
 
     it 'prevents take off if plane is flying' do
-      plane = double(:plane, :fly => true)
       allow(plane).to receive(:in_flight).and_return true
       expect{subject.take_off(plane)}.to raise_error "Plane's already up there, Sir."
     end
 
-    it 'only allows plane to take off from airport they are in'
+    it 'only allows plane to take off from airport they are in' do
+      plane = double(:plane, :ground => false, :in_flight => true)
+      airport2 = Airport.new
+      airport2.land(plane)
+      plane = double(:plane, :fly => false, :in_flight => false)
+      expect{subject.take_off(plane)}.to raise_error "Plane's in another airport, Sir."
+    end
 
   end
 

@@ -51,6 +51,7 @@ private
 
   def check_in_airport(plane)
     fail "Plane's already up there, Sir." if plane.in_flight == true
+    fail "Plane's in another airport, Sir." unless planes.include? plane
   end
 
 end
