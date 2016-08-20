@@ -15,6 +15,7 @@ describe Airport do
     it {is_expected.to respond_to(:land).with(1).argument}
 
     it 'lands plane' do
+      allow(subject).to receive(:bad_weather?).and_return false
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
@@ -25,11 +26,13 @@ describe Airport do
     end
 
     it 'prevents landing when airport is full' do
+      allow(subject).to receive(:bad_weather?).and_return false
       Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
       expect{subject.land(plane)}.to raise_error "Sorry, we've got more planes that you can shake a stick at."
     end
 
     it 'prevents landing if plane is grounded' do
+      allow(subject).to receive(:bad_weather?).and_return false
       allow(plane).to receive(:in_flight).and_return false
       expect{subject.land(plane)}.to raise_error "Plane's aleady down, Sir"
     end
@@ -62,6 +65,7 @@ describe Airport do
     end
 
     it 'prevents take off if plane is flying' do
+      allow(subject).to receive(:bad_weather?).and_return false
       allow(plane).to receive(:in_flight).and_return true
       expect{subject.take_off(plane)}.to raise_error "Plane's already up there, Sir."
     end
@@ -69,6 +73,8 @@ describe Airport do
     it 'only allows plane to take off from airport they are in' do
       plane = double(:plane, :ground => false, :in_flight => true)
       airport2 = Airport.new
+      allow(subject).to receive(:bad_weather?).and_return false
+      allow(airport2).to receive(:bad_weather?).and_return false
       airport2.land(plane)
       plane = double(:plane, :fly => false, :in_flight => false)
       expect{subject.take_off(plane)}.to raise_error "Plane's in another airport, Sir."
@@ -77,6 +83,7 @@ describe Airport do
   end
 
   it 'sets airport capacity' do
+    allow(subject).to receive(:bad_weather?).and_return false
     airport = Airport.new(2)
     expect(airport.capacity).to eq 2
   end

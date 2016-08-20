@@ -9,7 +9,7 @@ class Weather
   private
 
   def storm_level
-  rand(11)>10 ? @stormy = true : @stormy = false
+  rand(11)>7 ? @stormy = true : @stormy = false
   end
 
 end
