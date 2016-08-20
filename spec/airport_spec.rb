@@ -12,11 +12,16 @@ describe Airport do
 
     it 'lands plane' do
       plane = double(:plane, :ground => false)
+      allow(subject).to receive(:bad_weather).and_return false
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
 
-    it 'prevents landing when weather is stormy'
+    it 'prevents landing when weather is stormy' do
+      plane = double(:plane, :ground => false)
+      allow(subject).to receive(:bad_weather).and_return true
+      expect{subject.land(plane)}.to raise_error "Ach no, there's a storm a-brewin'!"
+    end
 
     it 'prevents landing when airport is full'
 
@@ -42,8 +47,9 @@ describe Airport do
 
     it 'planes cannot take off when weather is stormy' do
       plane = double(:plane, :ground => false, :fly => true)
-      allow(subject).to receive(:bad_weather).and_return true
+      allow(subject).to receive(:bad_weather).and_return false
       subject.land(plane)
+      allow(subject).to receive(:bad_weather).and_return true
       expect{subject.take_off(plane)}.to raise_error "Ach no, there's a storm a-brewin'!"
     end
 

@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Ach no, there's a storm a-brewin'!" if bad_weather
     plane.ground
     planes << plane
   end
