@@ -19,11 +19,11 @@ Tests 2 Write
 
 - [x] an Airport "can harbour planes"
 - [x] an Airport "has planes take off"
-- [ ] "planes cannot fly when stormy"
+- [x] "planes cannot fly when stormy"
 - [x] an Airport "does not accept planes when full"
 - [x] an Airport "allows controller to override default capacity"
 - [ ] an Airpot "only lets harboured plans take off"
-- [ ] an Airport "only lets a plane harbour once"
+- [x] an Airport "only lets a plane harbour once"
 - [x] weather shared example "is stormy when zeus returns 4"
 - [x] weather shared example "is sunny when zeus returns 1,2,3 or 5"
 
