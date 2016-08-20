@@ -2,11 +2,26 @@ require 'airport'
 
 describe Airport do
 
-  subject(:airport) { described_class.new }
+  subject(:airport) { described_class.new}
+  subject(:airport2) { described_class.new 100}
   let(:plane) { double :plane }
   let(:plane2) { double :plane2 }
   let(:weather) { double :weather, stormy: false }
   let(:bad_weather) { double :bad_weather, stormy: true }
+
+  describe '#initialize' do
+
+    it 'has a default capacity' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'also has a variable capacity' do
+      airport2.capacity.times { airport2.land(plane, weather)}
+      expect {airport2.land(plane, weather)}.to raise_error "Can't land! This airport is full ..."
+    end
+
+  end
+
 
   describe '#land' do
 
@@ -19,7 +34,7 @@ describe Airport do
     end
 
     it 'should raise an error if the airport is full' do
-      30.times { airport.land(plane, weather)}
+      airport.capacity.times { airport.land(plane, weather)}
       expect {airport.land(plane, weather)}.to raise_error "Can't land! This airport is full ..."
     end
 

@@ -28,16 +28,23 @@ puts "Here are the planes at the airport: #{airport.planes}"
 puts airport.planes
 puts
 
-# these are my stormy feature tests
+## these are my stormy feature tests
 # weather.is_stormy
 # airport.takeoff(plane, weather) # raises an error if airport.current_weather returns "weather.stormy == true'
 # airport.land(plane, weather) # raises an error if airport.current_weather returns "weather.stormy == true'
 
-29.times { airport.land(Plane.new, weather) }
-puts "Here are the planes at the airport: #{airport.planes}"
-puts airport.full?
-# airport.land(Plane.new, weather) # should result in a run time error "Airport is full!""
+## these are my full airport feature tests
+# 29.times { airport.land(Plane.new, weather) }
+# puts "Here are the planes at the airport: #{airport.planes}"
+# puts airport.full?
+# airport.land(Plane.new, weather) # should result in a airport full runtime error
 
+## these are my custom capacity feature test for Heathrow
+# heathrow = Airport.new 100
+# 99.times { heathrow.land(Plane.new, weather) }
+# puts "Here are the planes at the airport: #{heathrow.planes}"
+# puts heathrow.full? # should equal false
+# heathrow.land(Plane.new, weather) # should result in a airport full runtime error
 
 puts "*" * 50
 puts "Feature test end"
