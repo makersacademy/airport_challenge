@@ -2,48 +2,46 @@ require 'Plane.rb'
 
 describe Plane do
   let(:airport) {double :airport}
-  let(:weather) {double :weather}
+  let(:good_weather) {double :good_weather}
+  let(:bad_weather) {double :bad_weather}
+
+  before(:each) do
+    allow(good_weather).to receive(:stormy?).and_return(false)
+    allow(bad_weather).to receive(:stormy?).and_return(true)
+    allow(airport).to receive(:capacity).and_return(40)
+  end
 
   describe '.land_at' do
     it 'allows planes to land at a specific Airport' do
-      allow(weather).to receive(:stormy?).and_return(false) # this means weather is good
-
-      subject.land_at(airport, weather)
+      subject.land_at(airport, good_weather)
       expect(subject.location).to eq airport
     end
 
     it 'it does not allow planes to land when weather is bad' do
-      allow(weather).to receive(:stormy?).and_return(true) # this means weather is bad
-
-      subject.land_at(airport, weather)
+      subject.land_at(airport, bad_weather)
       expect(subject.location).to eq(nil)
     end
 
 
     it 'is possible to confirm if the plane has landed at an airport' do
-      allow(weather).to receive(:stormy?).and_return(false) # this means weather is good
-      subject.land_at("JFK", weather) #making sure the
-      expect(subject.confirm_location).to eq("The plane is currently at JFK.")
+      subject.land_at(airport, good_weather) #making sure the
+      expect(subject.confirm_location).to eq("The plane is currently at #{airport}.")
     end
 
     it 'confirms that the plane has landed when it successfully lands' do
-      allow(weather).to receive(:stormy?).and_return(false) # this means weather is good
-      expect(subject.land_at("JFK", weather)).to eq("The plane is currently at JFK.")
+      expect(subject.land_at(airport, good_weather)).to eq("The plane is currently at #{airport}.")
     end
   end
 
   describe '.take_off' do
     it 'confirms it has taken off when it successfully takes off' do
-      allow(weather).to receive(:stormy?).and_return(false) # this means weather is good
-      subject.land_at("LHR", weather)
-      expect(subject.take_off(weather)).to eq("The plane is currently in the air.")
+      subject.land_at(airport, good_weather)
+      expect(subject.take_off(good_weather)).to eq("The plane is currently in the air.")
     end
 
     it 'does not take off when the weather is bad' do
-      allow(weather).to receive(:stormy?).and_return(false) #for this test, to land the plane, it must be good weather first.
-      subject.land_at("LGW", weather)
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect(subject.take_off(weather)).to eq("Can not take off in stormy weather. The plane is currently at LGW.")
+      subject.land_at(airport, good_weather)
+      expect(subject.take_off(bad_weather)).to eq("Can not take off in stormy weather. The plane is currently at #{airport}.")
     end
   end
 
