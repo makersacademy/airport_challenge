@@ -8,12 +8,10 @@ describe Plane do
     expect(subject.landed?).to be(false)
   end
 
-=begin
-  it 'confirms it has landed after landing' do
+  it 'confirms landing status has changed after being allowed to land' do
     airport = Airport.new
-    airport.land(subject)
+    airport.allow_to_land(subject)
     expect(subject.landed?).to be(true)
   end
-=end
 
 end
