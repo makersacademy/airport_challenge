@@ -3,8 +3,9 @@ module Weather
     rand(5)
   end
 
-  def self.weather_report
-    if self.zeus == 4
+  def weather_report
+    zeus
+    if zeus == 4
        "stormy"
     else
        "sunny"
