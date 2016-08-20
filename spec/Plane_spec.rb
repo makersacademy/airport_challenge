@@ -26,7 +26,6 @@ describe Plane do
       expect(subject.location).to eq(nil)
     end
 
-
     it 'is possible to confirm if the plane has landed at an airport' do
       subject.land_at(airport, good_weather) #making sure the
       expect(subject.confirm_location).to eq("The plane is currently at #{airport}.")
@@ -54,4 +53,31 @@ describe Plane do
       expect(subject.take_off(bad_weather)).to eq("Can not take off in stormy weather. The plane is currently at #{airport}.")
     end
   end
+
+  it 'is not possible for a plane that is already flying to take off' do
+
+    pending('asdf')
+  end
+
+  it 'is not possible for a plane that is laneded to land again' do
+    pending
+  end
+
+  it 'is not possible for a plane landed one airport to land at another airport' do
+    pending
+  end
+
+  describe '.confirm_location' do
+    it "will confirm the plane's correct location when in the air" do
+      pending
+    end
+
+    it "will confirm the plane's correct location when in an airport" do
+      pending
+    end
+
+    
+
+  end
+
 end

@@ -31,7 +31,6 @@ class Plane
     confirm_location
   end
 
-
   def take_off(current_weather)
     return "The plane is already in the air" if @location == nil
 
@@ -43,8 +42,6 @@ class Plane
       "Can not take off in stormy weather. " + confirm_location
     end
   end
-
-
 
   def confirm_location
     if @location == nil

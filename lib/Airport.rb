@@ -10,6 +10,7 @@ class Airport
 
   def remove_plane(plane)
     @docked_planes.delete(plane)
+    @docked_planes #this line is included so that the method returns the empty array, and not the deleted plane
   end
 
   def add_plane(plane)

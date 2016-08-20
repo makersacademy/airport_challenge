@@ -15,4 +15,13 @@ describe Airport do
       expect(subject.capacity).to eq(40)
     end
   end
+
+  it 'a plane is docked when it lands' do
+    expect(subject.add_plane(plane)).to eq(subject.docked_planes)
+  end
+
+  it 'removes a plane when the plane takes off' do
+    subject.add_plane(plane)
+    expect(subject.remove_plane(plane)).to eq(subject.docked_planes)
+  end
 end
