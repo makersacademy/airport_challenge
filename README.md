@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TomStuart92/airport_challenge.svg?branch=master)](https://travis-ci.org/TomStuart92/airport_challenge)
+
 # README
 Taken together these files constitute a fully tested airport model.
 
