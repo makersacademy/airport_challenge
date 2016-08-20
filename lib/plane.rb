@@ -1,11 +1,10 @@
 # Creates plane objects for use with airport.rb class.
 class Plane
+  attr_reader :landed
+  alias_method :landed?, :landed
+
   def initialize
     @landed = false
-  end
-
-  def landed?
-    @landed
   end
 
   def land

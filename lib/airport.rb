@@ -29,15 +29,15 @@ class Airport
   attr_reader :capacity, :weather, :landed_planes
 
   def pre_landing_checks(plane)
-    raise "That plane is at another airport." if plane_landed?(plane)
-    raise 'Airport is full, the plane has diverted.' if airport_full?
-    raise 'Poor weather means the plane has to divert.' unless weather_safe?
+    fail "That plane is at another airport." if plane_landed?(plane)
+    fail 'Airport is full, the plane has diverted.' if airport_full?
+    fail 'Poor weather means the plane has to divert.' unless weather_safe?
   end
 
   def pre_takeoff_checks(plane)
-    raise 'That plane is currently flying' unless plane_landed?(plane)
-    raise 'That plane is at another airport' unless at_airport?(plane)
-    raise 'Poor weather means the plane can not takeoff.' unless weather_safe?
+    fail 'That plane is currently flying' unless plane_landed?(plane)
+    fail 'That plane is at another airport' unless at_airport?(plane)
+    fail 'Poor weather means the plane can not takeoff.' unless weather_safe?
   end
 
   def add_plane_to_airport(plane)
