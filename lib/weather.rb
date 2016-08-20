@@ -4,15 +4,15 @@ attr_reader :forecast
 
 def initialize
   @forecast = ""
-  generate_weather
+  generate_weather(weather_chance)
 end
 
 def weather_chance
   1+rand(100)
 end
 
-def generate_weather
-  if (1..80).include? weather_chance
+def generate_weather(num)
+  if (1..80).include? num
     @forecast = "Sunny"
   else
    @forecast = "Stormy"

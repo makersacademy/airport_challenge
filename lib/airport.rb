@@ -4,7 +4,7 @@ require_relative 'weather'
 class Airport
 
   attr_reader :planes
-  attr_reader :current_forecast
+  attr_accessor :current_forecast
 
   def initialize
     @planes = []
@@ -17,6 +17,7 @@ class Airport
   end
 
   def take_off
+    fail "Stormy weather, better sit tight" if current_forecast.forecast == "Stormy"
     plane = planes.pop
     plane.report_take_off
     plane
