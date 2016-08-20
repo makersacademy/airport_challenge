@@ -21,6 +21,8 @@ describe Airport do
 
     it 'tells a plane to take off from an airport and reports as departed' do
       plane = double(:plane, report_landed: true, report_take_off: false)
+      weather = double(:weather, forecast: "Sunny")
+      subject.current_forecast = weather
       subject.land_plane(plane)
       expect(subject.take_off).to eq plane
     end
@@ -29,7 +31,6 @@ describe Airport do
       plane = double(:plane, report_landed: true, report_take_off: false)
       weather = double(:weather, forecast: "Stormy")
       subject.current_forecast = weather
-      #puts subject.inspect
       subject.land_plane(plane)
       expect { subject.take_off }.to raise_error "Stormy weather, better sit tight"
     end
