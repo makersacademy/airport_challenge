@@ -1,6 +1,9 @@
 require 'airport'
+require 'weather_report_spec'
 
 describe Airport do
+  include_examples "weather_report"
+
   subject {described_class.new}
   let(:plane) {double(:plane)}
 
@@ -13,6 +16,10 @@ describe Airport do
     subject.take_off
     expect(subject.planes).not_to include plane
   end
+
+  it "only lets harboured plans take off"
+
+  it "only lets a plane harbour once"
 
   it "does not accept planes when full" do
       subject.capacity.times do

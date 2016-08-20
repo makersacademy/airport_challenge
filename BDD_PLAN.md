@@ -22,6 +22,8 @@ Tests 2 Write
 - [ ] "planes cannot fly when stormy"
 - [x] an Airport "does not accept planes when full"
 - [x] an Airport "allows controller to override default capacity"
+- [ ] an Airpot "only lets harboured plans take off"
+- [ ] an Airport "only lets a plane harbour once"
 
 an Airport "can harbour planes"
 1. Given: a plane and a airport
@@ -48,3 +50,9 @@ an Airport "allows controller to override default capacity"
 1. Given: an airport
 2. When: I make a new airport with a non-default capactity
 3. Then: I expect default airport capacity to be overriden
+
+edge case tests
+---
+an Airpot "only lets harboured plans take off"
+
+an Airport "only lets a plane harbour once"
