@@ -1,4 +1,5 @@
 require 'Plane.rb'
+require 'Airport.rb' #only required to fetch its DEFAULT_CAPACITY (see line 12ish)
 
 describe Plane do
   let(:airport) {double :airport}
@@ -8,7 +9,8 @@ describe Plane do
   before(:each) do
     allow(good_weather).to receive(:stormy?).and_return(false)
     allow(bad_weather).to receive(:stormy?).and_return(true)
-    allow(airport).to receive(:capacity).and_return(40)
+    allow(airport).to receive(:capacity).and_return(Airport::DEFAULT_CAPACITY) #the default capacity
+    allow(airport).to receive(:docked_planes).and_return([]) #by default the airport is empty
   end
 
   describe '.land_at' do
@@ -33,8 +35,9 @@ describe Plane do
     end
 
     it 'does not allow a plane to land when the airport is full' do
-      allow(airport).to receive(:capacity).and_return(0) #simulates a full airport
-      expect(subject.land_at(airport, good_weather)).to eq("There is no free spaces at that airport")
+      allow(airport).to receive(:capacity).and_return(4) # an airport with 4 spaces for planes
+      allow(airport).to receive(:docked_planes).and_return([subject,subject,subject,subject]) #and 4 planes in it
+      expect(subject.land_at(airport, good_weather)).to eq("There are no free spaces at that airport.")
     end
   end
 

@@ -15,29 +15,4 @@ describe Airport do
       expect(subject.capacity).to eq(40)
     end
   end
-
-  describe '.dock_plane' do
-    it 'is possible to dock a plane in the airport' do
-      subject.dock_plane(plane)
-      expect(subject.docked_planes).to eq([plane])
-    end
-
-    it 'is not possible do dock more planes than there are capacity spaces' do
-      subject.capacity.times do
-        subject.dock_plane(plane)
-      end
-      expect(subject.dock_plane(plane)).to eq("There are too many planes in the airport")
-    end
-
-
-  end
-
-
-  describe '.undock_plane' do
-
-
-  end
-
-
-
 end
