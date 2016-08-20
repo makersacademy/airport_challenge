@@ -6,4 +6,10 @@ class Airport
      plane.landed
   end
 
+  def instruct_takeoff(plane)
+    plane.takeoff 
+  end
+
+
+
 end
