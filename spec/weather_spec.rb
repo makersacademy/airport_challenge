@@ -2,9 +2,6 @@ require 'weather'
 
 describe Weather do
 
-  let(:plane) { double :plane}
-  let(:airport) { double :airport, takeoff: [plane], planes: [plane, plane2] }
-
   describe '#is_sunny' do
 
     it 'should set sunny to true' do

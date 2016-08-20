@@ -17,17 +17,24 @@ class Airport
     fail "Can't land! This airport is full ..." if full?
     fail "That plane has already landed." if planes.include?(plane)
     planes.push(plane)
+    plane.has_landed
   end
 
   def takeoff(plane, weather)
     update_conditions(weather)
     fail "Stormy weather! It's too dangerous to takeoff right now." if weather.stormy
+    fail "That plane is already flying" if flying(plane)
     fail "That plane is not in this airport" if planes.include?(plane) == false
     planes.delete(plane)
+    plane.is_flying
   end
 
   def full?
     planes.count >= capacity
+  end
+
+  def flying(plane)
+    plane.flying
   end
 
   def update_conditions(weather)
