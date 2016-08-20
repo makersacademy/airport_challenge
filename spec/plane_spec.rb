@@ -11,4 +11,9 @@ describe Plane do
     expect(subject.in_flight).to eq(false)
   end
 
+  it "is in flight if taken off" do
+    subject.fly
+    expect(subject.in_flight).to eq(true)
+  end
+
 end
