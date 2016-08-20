@@ -31,6 +31,11 @@ describe Plane do
     it 'confirms that the plane has landed when it successfully lands' do
       expect(subject.land_at(airport, good_weather)).to eq("The plane is currently at #{airport}.")
     end
+
+    it 'does not allow a plane to land when the airport is full' do
+      allow(airport).to receive(:capacity).and_return(0) #simulates a full airport
+      expect(subject.land_at(airport, good_weather)).to eq("There is no free spaces at that airport")
+    end
   end
 
   describe '.take_off' do
@@ -44,5 +49,4 @@ describe Plane do
       expect(subject.take_off(bad_weather)).to eq("Can not take off in stormy weather. The plane is currently at #{airport}.")
     end
   end
-
 end
