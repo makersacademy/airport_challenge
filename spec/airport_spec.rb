@@ -15,7 +15,7 @@ describe Airport do
 
   it "won't let a plane take-off if the weather is stormy" do
     plane = Plane.new
-    allow(subject.instruct_takeoff(plane)).to receive(:random_weather) { true }
+    allow(subject.instruct_takeoff(plane)).to receive(:stormy_weather) { true }
   end
 
 end
