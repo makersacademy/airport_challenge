@@ -6,7 +6,7 @@ class Plane
     @in_flight = true
   end
 
-  def land
+  def ground
     @in_flight = false
   end
 

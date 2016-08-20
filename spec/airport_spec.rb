@@ -9,6 +9,7 @@ describe Airport do
     it {is_expected.to respond_to(:land).with(1).argument}
 
     it "lands plane" do
+      plane = double(:plane, :ground => false)
       expect(subject.land(plane)).to eq [plane]
     end
 
@@ -19,11 +20,13 @@ describe Airport do
     it {is_expected.to respond_to(:take_off).with(1).argument}
 
     it 'instructs plane to take off' do
+      plane = double(:plane, :ground => false, :fly => true)
       subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
 
     it 'plane no longer at airport after take off' do
+      plane = double(:plane, :ground => false, :fly => true)
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes).to eq []
