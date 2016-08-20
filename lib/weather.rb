@@ -10,8 +10,8 @@ class Weather
   private
 
     def set_weather
-      num = rand(3)
-      true if num == 2
+      num = rand(20)
+      true if num == 10
     end
 
 end

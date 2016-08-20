@@ -19,7 +19,7 @@ let(:plane) { double :plane }
 
     it 'prevents landing when the airport is full' do
       allow(airport.weather).to receive(:stormy).and_return(nil)
-      airport.land(plane)
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
       expect{airport.land(plane)}.to raise_error "Planes cannot land when airport is full"
     end
 
@@ -56,6 +56,10 @@ let(:plane) { double :plane }
     end
 
   end
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
 
 
 end
