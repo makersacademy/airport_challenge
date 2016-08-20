@@ -1,5 +1,8 @@
 class Airport
 
+def initialize
+end
+
 def weather
 end
 
