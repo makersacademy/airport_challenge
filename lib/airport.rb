@@ -13,22 +13,30 @@ class Airport
   end
 
   def land(plane)
-    fail "Ach no, there's a storm a-brewin'!" if bad_weather?
-    fail "Sorry, we've got more planes that you can shake a stick at." if full?
+    check_weather
+    check_space
     plane.ground
     planes << plane
   end
 
   def take_off(plane)
-    fail "Ach no, there's a storm a-brewin'!" if bad_weather?
+    check_weather
     plane.fly
     planes.delete(plane)
   end
 
 private
 
+  def check_weather
+    fail "Ach no, there's a storm a-brewin'!" if bad_weather?
+  end
+
   def bad_weather?
     Weather.new.stormy
+  end
+
+  def check_space
+    fail "Sorry, we've got more planes that you can shake a stick at." if full?
   end
 
   def full?
