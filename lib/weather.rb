@@ -7,6 +7,11 @@ class Weather
     @stormy = false
   end
 
+  def random_weather
+    x = rand(1..100)
+    is_stormy if x > 90
+  end
+
   def is_stormy
     @stormy = true
   end
@@ -14,11 +19,5 @@ class Weather
   def is_sunny
     @sunny = true
   end
-
-  def random_weather
-    x = rand(1..100)
-    is_stormy if x > 90
-  end
-
 
 end

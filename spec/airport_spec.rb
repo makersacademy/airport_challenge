@@ -23,14 +23,6 @@ describe Airport do
 
   end
 
-  describe '#update_conditions' do
-
-    it 'updates current weather conditions for the aiport' do
-      expect(airport.update_conditions(weather)).to eq 10
-    end
-
-  end
-
   describe '#land' do
 
     it 'should instruct a plane to land and receive confirmation that it has landed' do
@@ -51,7 +43,6 @@ describe Airport do
       airport.land(plane, weather)
       expect {airport.land(plane, weather)}.to raise_error "That plane has already landed."
     end
-
 
   end
 
@@ -80,7 +71,5 @@ describe Airport do
     end
 
   end
-
-
 
 end

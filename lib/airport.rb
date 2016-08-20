@@ -4,6 +4,7 @@ require_relative 'weather'
 class Airport
 
   attr_reader :planes, :capacity
+
   DEFAULT_CAPACITY = 30
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -28,6 +29,8 @@ class Airport
     planes.delete(plane)
     plane.is_flying
   end
+
+private
 
   def full?
     planes.count >= capacity
