@@ -63,7 +63,9 @@ describe Airport do
 
   end
 
-  it 'sets default airport capacity'
-  it 'allows default airport capacity to be overridden'
+  it 'sets airport capacity' do
+    airport = Airport.new(2)
+    expect(airport.capacity).to eq 2
+  end
 
 end
