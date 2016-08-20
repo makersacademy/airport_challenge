@@ -16,6 +16,14 @@ class Plane
     end
   end
 
+  def take_off(current_weather)
+    if current_weather.stormy? != true
+      @location = nil #while the plane is in the air, it's location is nil
+    else
+      "Can not take off in stormy weather"
+    end
+  end
+
   def location?
     @location
   end
