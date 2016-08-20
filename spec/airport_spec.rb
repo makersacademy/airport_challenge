@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new}
-  subject(:airport2) { described_class.new 100}
+  subject(:big_airport) { described_class.new 100}
   let(:plane) { double :plane }
   let(:plane2) { double :plane2 }
   let(:weather) { double :weather, stormy: false }
@@ -16,17 +16,17 @@ describe Airport do
     end
 
     it 'also has a variable capacity' do
-      airport2.capacity.times { airport2.land(plane, weather)}
-      expect {airport2.land(plane, weather)}.to raise_error "Can't land! This airport is full ..."
+      big_airport.capacity.times { big_airport.land(plane, weather)}
+      expect {big_airport.land(plane, weather)}.to raise_error "Can't land! This airport is full ..."
     end
 
   end
 
-
   describe '#land' do
 
     it 'should instruct a plane to land and receive confirmation that it has landed' do
-      expect(airport.land(plane, weather)).to eq [plane]
+      airport.land(plane, weather)
+      expect(airport.planes).to eq [plane]
     end
 
     it 'should raise an error if weather is stormy' do
@@ -43,9 +43,10 @@ describe Airport do
   describe '#takeoff' do
 
     it 'should instruct a plane to take and receive confirmation that it is no longer in the airport' do
-      airport.land(plane, weather) #refactor later!
-      airport.land(plane2, weather) #refactor later!
-      expect(airport.takeoff(plane, weather)).to eq [plane2]
+      airport.land(plane, weather)
+      airport.land(plane2, weather)
+      airport.takeoff(plane, weather)
+      expect(airport.planes).to eq [plane2]
     end
 
     it 'should raise an error if weather is stormy' do

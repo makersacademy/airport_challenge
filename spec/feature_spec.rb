@@ -12,7 +12,6 @@ plane = Plane.new
 plane2 = Plane.new
 weather = Weather.new
 
-
 puts "Landing some planes"
 airport.land(plane2, weather)
 airport.land(plane, weather)
@@ -39,9 +38,9 @@ puts
 # puts airport.full?
 # airport.land(Plane.new, weather) # should result in a airport full runtime error
 
-## these are my custom capacity feature test for Heathrow
+# these are my custom capacity feature test for Heathrow
 # heathrow = Airport.new 100
-# 99.times { heathrow.land(Plane.new, weather) }
+# 100.times { heathrow.land(Plane.new, weather) }
 # puts "Here are the planes at the airport: #{heathrow.planes}"
 # puts heathrow.full? # should equal false
 # heathrow.land(Plane.new, weather) # should result in a airport full runtime error
