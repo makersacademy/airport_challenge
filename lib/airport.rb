@@ -12,20 +12,24 @@ class Airport
   end
 
   def land(plane, weather)
+    update_conditions(weather)
     fail "Stormy weather! It's too dangerous to land right now." if weather.stormy
     fail "Can't land! This airport is full ..." if full?
     planes.push(plane)
-    planes
   end
 
   def takeoff(plane, weather)
+    update_conditions(weather)
     fail "Stormy weather! It's too dangerous to takeoff right now." if weather.stormy
     planes.delete(plane)
-    planes
   end
 
   def full?
     planes.count >= capacity
+  end
+
+  def update_conditions(weather)
+    weather.random_weather
   end
 
 end

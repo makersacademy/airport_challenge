@@ -6,8 +6,8 @@ describe Airport do
   subject(:big_airport) { described_class.new 100}
   let(:plane) { double :plane }
   let(:plane2) { double :plane2 }
-  let(:weather) { double :weather, stormy: false }
-  let(:bad_weather) { double :bad_weather, stormy: true }
+  let(:weather) { double :weather, stormy: false, random_weather: 10 }
+  let(:bad_weather) { double :bad_weather, stormy: true, random_weather: 95 }
 
   describe '#initialize' do
 
@@ -18,6 +18,14 @@ describe Airport do
     it 'also has a variable capacity' do
       big_airport.capacity.times { big_airport.land(plane, weather)}
       expect {big_airport.land(plane, weather)}.to raise_error "Can't land! This airport is full ..."
+    end
+
+  end
+
+  describe '#update_conditions' do
+
+    it 'updates current weather conditions for the aiport' do
+      expect(airport.update_conditions(weather)).to eq 10
     end
 
   end
