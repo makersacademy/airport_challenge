@@ -9,10 +9,7 @@ class Airport
 
   def instruct_takeoff(plane)
     weather = Weather.new
-    if weather.random_weather == true
-    else
-      plane.takeoff
-    end
+    weather.random_weather ? plane.landed : plane.takeoff
   end
 
 
