@@ -1,4 +1,3 @@
-require 'Passenger'
 require 'Weather'
 
 class Plane
@@ -14,18 +13,24 @@ class Plane
     else
       @location
     end
+    confirm_location
   end
 
   def take_off(current_weather)
     if current_weather.stormy? != true
       @location = nil #while the plane is in the air, it's location is nil
+      confirm_location
     else
-      "Can not take off in stormy weather"
+      "Can not take off in stormy weather. " + confirm_location
     end
   end
 
-  def location?
-    @location
+  def confirm_location
+    if @location == nil
+      "The plane is currently in the air."
+    else
+      "The plane is currently at #{@location}."
+    end
   end
 
 end
