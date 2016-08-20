@@ -1,6 +1,6 @@
 require 'weather'
 describe Weather do
-  let(:weather) {Weather.new}
+  subject(:weather) {described_class.new}
 
   context 'behaviour' do
     it 'should update to a new weather state randomly' do

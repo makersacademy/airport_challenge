@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  let(:plane) {Plane.new}
+  subject(:plane) {described_class.new}
 
   context 'initialization' do
     it 'is initialized with default behaviour of flying' do
