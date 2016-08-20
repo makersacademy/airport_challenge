@@ -1,7 +1,9 @@
+require "plane"
+
 class Airport
 
-  def landed?
-    true
+  def instruct_land(plane)
+     plane.landed
   end
 
 end
