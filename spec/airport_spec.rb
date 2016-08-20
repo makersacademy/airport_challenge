@@ -16,7 +16,11 @@ describe Airport do
 
     it 'should raise an error if weather is stormy' do
       expect {airport.land(plane, bad_weather)}.to raise_error "Stormy weather! It's too dangerous to land right now."
+    end
 
+    it 'should raise an error if the airport is full' do
+      30.times { airport.land(plane, weather)}
+      expect {airport.land(plane, weather)}.to raise_error "Can't land! This airport is full ..."
     end
 
   end
