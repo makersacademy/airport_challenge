@@ -13,16 +13,16 @@ class Airport
   end
 
   def land(plane)
-    check_weather
     check_space
     check_in_flight(plane)
+    check_weather
     plane.ground
     planes << plane
   end
 
   def take_off(plane)
-    check_weather
     check_in_airport(plane)
+    check_weather
     plane.fly
     planes.delete(plane)
   end
