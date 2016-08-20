@@ -8,5 +8,11 @@ class Airport
     @docked_planes = []
   end
 
+  def remove_plane(plane)
+    @docked_planes.delete(plane)
+  end
 
+  def add_plane(plane)
+    @docked_planes << plane
+  end
 end
