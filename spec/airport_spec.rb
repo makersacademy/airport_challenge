@@ -29,6 +29,11 @@ describe Airport do
     expect(subject.land(plane, forecast)).to eq false
   end
 
+  it "allows to set a capacity for airports" do
+    airport = Airport.new(15)
+    expect(airport.capacity).to eq 15
+  end
+
   describe "behaviour during stormy weather" do
     let (:forecast) {double :forecast, :stormy? => true}
 
