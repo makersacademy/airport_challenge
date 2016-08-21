@@ -6,6 +6,14 @@ describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) { double :plane }
 
+  describe "#land" do
+    it 'raises an error when the aiport is full' do
+      plane = double(:plane)
+      10.times {subject.land(plane)}
+      expect { subject.land(plane) }.to raise_error 'Airport full'
+    end
+  end
+
   context 'the weather is fine' do
 
     before do
@@ -17,10 +25,6 @@ describe Airport do
       subject.takeoff(plane)
       expect(subject.planes).not_to include(plane)
     end
-  end
-
-
-  describe 'land' do
 
     it 'recieves a plane when one lands' do
       expect(subject.land(plane)).to eq [plane]
