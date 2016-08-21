@@ -6,10 +6,12 @@ class Airport
 
   def initialize
     @planes = []
+    @capacity =35
   end
 
   def land (plane, weather)
     fail "Planes aren't allowed to take off during stormy weather" if weather.stormy?
+    false unless @planes > @capacity
     planes << plane
     plane
   end
