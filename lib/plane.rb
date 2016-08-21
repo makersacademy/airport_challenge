@@ -9,4 +9,5 @@ attr_accessor :landed
   def landed?
     @landed
   end
+
 end

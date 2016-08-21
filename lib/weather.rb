@@ -1,7 +1,7 @@
 class Weather
 
   def weather
-    "stormy"
+    "good"
   end
 
 end

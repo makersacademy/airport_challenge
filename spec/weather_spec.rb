@@ -1,8 +1,10 @@
-require 'weather.rb'
+require 'weather'
 
 describe Weather do
 
   it "is stormy" do
-    expect(subject.weather).to eq "stormy"
+    airport = class_double("airport", :conditions => "stormy")
+    expect(airport.conditions).to eq "stormy"
   end
+
 end

@@ -3,7 +3,8 @@ require 'airport.rb'
 describe Airport do
 
   it "instructs plane to land" do
-    expect(subject.land).to be_landed
+    plane = Plane.new
+    expect(subject.land(plane)).to be_landed
   end
 
   it "instructs a plane to take off" do
@@ -12,8 +13,8 @@ describe Airport do
 
   end
 
-#   it "prevent take_off when stormy" do
-#   expect { subject.take_off }.to raise_error "Take off cancelled, too stormy"
-# end
+  # it "no take off in storms" do
+  #   expect { subject.take_off}.to raise_error "Too stormy"
+  # end
 
 end
