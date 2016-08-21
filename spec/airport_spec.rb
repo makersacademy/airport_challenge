@@ -21,4 +21,10 @@ describe Airport do
     expect { subject.take_off(plane)}.to raise_error "Too stormy"
   end
 
+  it "no landing in storms" do
+    subject.instance_variable_set(:@weather, "stormy")
+    plane = Plane.new
+    expect { subject.land(plane)}.to raise_error "Too stormy"
+  end
+
 end

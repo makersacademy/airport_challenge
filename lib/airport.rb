@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Too stormy" if conditions == "stormy"
     plane
   end
 
