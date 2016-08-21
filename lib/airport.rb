@@ -1,4 +1,5 @@
 require_relative 'weather'
+
 class Airport
 
   attr_accessor :planes
@@ -12,11 +13,9 @@ class Airport
     plane
   end
 
-  def take_off (plane)
-    throw "Planes aren't allowed to take off during stormy weather" unless weather.stormy?
+  def take_off (plane, weather)
+    fail "Planes aren't allowed to take off during stormy weather" if weather.stormy?
     planes.delete(plane)
   end
-
-
 
 end

@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   let (:plane) {double :plane}
-  let (:weather) {double :weather, :stormy? => true}
+  let (:forecast) {double :forecast, :stormy? => false}
 
   it "allows planes to land and confirms" do
     expect(subject.land(plane)).to eq plane
@@ -17,22 +17,25 @@ describe Airport do
   it "allows planes to take off" do
     airport = subject
     airport.land(plane)
-    expect(airport.take_off(plane)).to eq plane
+    expect(airport.take_off(plane, forecast)).to eq plane
   end
 
   it "doesn't contain planes that did take off" do
     airport = subject
     airport.land(plane)
-    airport.take_off(plane)
+    airport.take_off(plane, forecast)
     expect(airport.planes).not_to include plane
   end
 
-  it "prevents taking off when weather is stormy" do
-    airport = subject
-    airport.land(plane)
-    weather = double(:weather, :stormy? => false)
-    expect(airport.take_off(plane)).to raise_error "Planes aren't allowed to take off during stormy weather"
-  end
+  describe "behaviour during stormy weather" do
+    let (:forecast) {double :forecast, :stormy? => true}
 
+    it "prevents taking off when weather is stormy" do
+      airport = subject
+      airport.land(plane)
+      expect{airport.take_off(plane, forecast)}.to raise_error
+    end
+
+  end
 
 end
