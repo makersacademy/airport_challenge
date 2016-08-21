@@ -3,6 +3,8 @@ require_relative 'weather'
 
 class Airport
 
+attr_reader :planes
+
   def initialize
     @planes = []
   end
@@ -13,8 +15,6 @@ class Airport
 
   def takeoff(plane)
     fail 'It is too stormy to take off' if Weather.stormy?
-    @planes.pop
+    planes.delete(plane)
   end
-
-
 end
