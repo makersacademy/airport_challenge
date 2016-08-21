@@ -40,6 +40,11 @@ describe Plane do
       allow(airport).to receive(:docked_planes).and_return([subject,subject,subject,subject]) #and 4 planes in it
       expect(subject.land_at(airport, good_weather)).to eq("There are no free spaces at that airport.")
     end
+
+    it 'is not possible for a plane that is laneded to land again' do
+      subject.land_at(airport, good_weather)
+      expect(subject.land_at(airport, good_weather)).to eq("The plane is already on the ground at #{airport}")
+    end
   end
 
   describe '.take_off' do
@@ -52,32 +57,34 @@ describe Plane do
       subject.land_at(airport, good_weather)
       expect(subject.take_off(bad_weather)).to eq("Can not take off in stormy weather. The plane is currently at #{airport}.")
     end
-  end
 
-  it 'is not possible for a plane that is already flying to take off' do
-
-    pending('asdf')
-  end
-
-  it 'is not possible for a plane that is laneded to land again' do
-    pending
-  end
-
-  it 'is not possible for a plane landed one airport to land at another airport' do
-    pending
+    it 'is not possible for a plane that is already flying to take off' do
+      subject.land_at(airport, good_weather)
+      subject.take_off(good_weather)
+      expect(subject.take_off(good_weather)).to eq("The plane is already in the air")
+    end
   end
 
   describe '.confirm_location' do
     it "will confirm the plane's correct location when in the air" do
-      pending
+      subject.land_at(airport, good_weather)
+      subject.take_off(good_weather)
+      expect(subject.confirm_location).to eq("The plane is currently in the air.")
     end
 
     it "will confirm the plane's correct location when in an airport" do
-      pending
+      subject.land_at(airport, good_weather)
+      expect(subject.confirm_location).to eq("The plane is currently at #{airport}.")
     end
 
-    
+
 
   end
 
+  describe '.install_at' do
+    it 'will install a plane at an airport regardless of weather' do
+      subject.install_at(airport)
+      expect(subject.location).to eq(airport)
+    end
+  end
 end

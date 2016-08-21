@@ -1,9 +1,5 @@
 describe Weather do
 
-  it 'responds to the .stormy? method' do
-    expect(subject).to respond_to(:stormy?)
-  end
-
   describe 'random weather testing' do
     it "is stormy roughly 1 in every 10 'days'" do
       times_stormy = 0

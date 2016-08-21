@@ -17,6 +17,10 @@ class Plane
   end #returns true if the airport has space for the plane and false otherwise
 
   def land_at(airport, current_weather)
+    if self.location != nil #when the plane is not in the air it cannot land!
+      return "The plane is already on the ground at #{@location}"
+    end
+
     if vacency_check(airport) == false
       return "There are no free spaces at that airport."
     end
@@ -24,8 +28,7 @@ class Plane
     if current_weather.stormy? == true
       "Can't land, due to bad weather."
     else
-      @location = airport
-      airport.add_plane(self)
+      install_at(airport)
     end
 
     confirm_location
@@ -41,6 +44,17 @@ class Plane
     else
       "Can not take off in stormy weather. " + confirm_location
     end
+  end
+
+  def install_at(airport)
+    #this method is only to be used to install a plane at a location for the first time
+    #it is designed to simulate the shipping of the plane from the factory to its first airport 
+    if vacency_check(airport) == false
+      return "There are no free spaces at that airport."
+    end
+
+    @location = airport
+    airport.add_plane(self)
   end
 
   def confirm_location

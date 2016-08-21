@@ -16,12 +16,16 @@ describe Airport do
     end
   end
 
-  it 'a plane is docked when it lands' do
-    expect(subject.add_plane(plane)).to eq(subject.docked_planes)
+  describe '.add_plane' do
+    it 'a plane is docked when it lands' do
+      expect(subject.add_plane(plane)).to eq(subject.docked_planes)
+    end
   end
 
-  it 'removes a plane when the plane takes off' do
-    subject.add_plane(plane)
-    expect(subject.remove_plane(plane)).to eq(subject.docked_planes)
+  describe 'remove_plane' do
+    it 'removes a plane when the plane takes off' do
+      subject.add_plane(plane)
+      expect(subject.remove_plane(plane)).to eq(subject.docked_planes)
+    end
   end
 end
