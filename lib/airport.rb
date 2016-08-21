@@ -27,7 +27,7 @@ class Airport
     planes.delete(plane)
   end
 
-private
+  private
 
   def check_weather
     fail "Ach no, there's a storm a-brewin'!" if bad_weather?
