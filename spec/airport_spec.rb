@@ -12,6 +12,8 @@ describe Airport do
 
   end
 
-
+#   it "prevent take_off when stormy" do
+#   expect { subject.take_off }.to raise_error "Take off cancelled, too stormy"
+# end
 
 end
