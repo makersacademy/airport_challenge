@@ -45,6 +45,12 @@ Use of 'object-orientated design' principles:
         | Plane                 | Working                    | land, takeoff                    |
         | Weather               | Sunny, Stormy              | prevent_land, prevent_takeoff    |
         
+        |---------|:------------:|
+|Plane    |Functional?   |
+|Airport  |land          |
+|         |takeoff       |
+|Weather  |stormy?       |
+        
 3 class objects have been created:
         - The 'Airport' class has a default capacity and monitors the number of planes landing and taking off. Once capacity is reached, it prevents further planes from landing
         - The 'Plane' class can be instructed to takeoff from an airport and land at another airport
