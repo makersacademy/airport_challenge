@@ -3,7 +3,6 @@ require 'plane'
 describe Plane do
 
 subject(:plane) { described_class.new }
-
 let(:airport) { double :airport }
 
   describe '#landed' do
@@ -15,9 +14,11 @@ let(:airport) { double :airport }
   end
 
   describe '#taken_off' do
+
     it 'should return false if the plane has taken off' do
       expect(plane.taken_off).to eq false
     end
+
   end
 
 end

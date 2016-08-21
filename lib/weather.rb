@@ -1,6 +1,4 @@
-
 class Weather
-
 
   def stormy?
     rand(20) < 5

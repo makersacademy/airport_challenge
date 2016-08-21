@@ -29,6 +29,7 @@ class Airport
     @planes.delete(plane)
   end
 
+
   def full?
     planes.count >= @capacity
   end
