@@ -12,9 +12,8 @@ class Airport
     plane
   end
 
-  def take_off
+  def take_off(plane)
     fail "Too stormy" if conditions == "stormy"
-    plane = Plane.new
     plane.landed = false
     plane
   end

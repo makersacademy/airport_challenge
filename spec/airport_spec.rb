@@ -8,7 +8,8 @@ describe Airport do
   end
 
   it "instructs a plane to take off" do
-    plane = subject.take_off
+    plane = Plane.new
+    subject.take_off(plane)
     expect(plane.instance_variable_get(:@landed)).to eq false
 
   end
