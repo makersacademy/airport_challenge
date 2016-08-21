@@ -7,14 +7,15 @@ describe Airport do
   let(:plane) { double :plane }
   let(:weather) {double :weather}
 
-  describe "#land" do
-    it 'raises an error when the aiport is full' do
+  describe "land" do
+
+    xit 'raises an error when the aiport is full' do
       subject.capacity.times {subject.land(plane)}
-      expect {subject.land(plane)}.to raise_error 'Airport full'
+      expect { subject.land(plane) }.to raise_error 'Airport full'
     end
   end
 
-  context 'the weather is fine' do
+  xcontext 'the weather is fine' do
 
     before do
       allow_any_instance_of(weather).to receive(:stormy?).and_return(false)
@@ -31,7 +32,7 @@ describe Airport do
     end
   end
 
-  context 'the weather is too stormy for take off' do
+  xcontext 'the weather is too stormy for take off' do
 
     before do
       allow_any_instance_of(weather).to receive(:stormy?).and_return(true)

@@ -99,7 +99,9 @@ $ rspec
 
 ```
 
-Two tests, for the weather, are currently pending as I was not entirely sure how to stub the Weather so that it would only include a true value for stormy when testing the landing and takeoff method during a storm. These tests kept failing randomly and passing randomly, therefore I chose to make the tests pending, so that the other tests could be seen to pass.
+Two tests, for the weather, are currently pending as I was not entirely sure how to stub the Weather so that it would only include a true value for stormy when testing the landing and takeoff method during a storm. A similar error occurs with the capacity test of the airport, which has also been pended.  
+
+These tests kept failing randomly and passing randomly, therefore I chose to make the tests pending, so that the other tests that were passing, were easy to see.
 
 Authors
 -------
