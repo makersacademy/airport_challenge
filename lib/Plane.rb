@@ -6,6 +6,7 @@ class Plane
 
   def initialize
     @location = nil
+    @install_at_used = false #stops you from using the install_at method more than once
   end
 
   def vacency_check(airport) #checks to see if the aiport has space for the plane.
@@ -28,7 +29,7 @@ class Plane
     if current_weather.stormy? == true
       "Can't land, due to bad weather."
     else
-      install_at(airport)
+      set_location(airport)
     end
 
     confirm_location
@@ -46,15 +47,24 @@ class Plane
     end
   end
 
-  def install_at(airport)
-    #this method is only to be used to install a plane at a location for the first time
-    #it is designed to simulate the shipping of the plane from the factory to its first airport 
-    if vacency_check(airport) == false
-      return "There are no free spaces at that airport."
-    end
-
+  def set_location(airport)
     @location = airport
     airport.add_plane(self)
+  end
+
+  def install_at(airport)
+    #this method is only to be used to install a plane at a location for the first time
+    #it is designed to simulate the shipping of the plane from the factory to its first airport
+    if @install_at_used == false
+      if vacency_check(airport) == false
+        return "There are no free spaces at that airport."
+      else
+        set_location(airport)
+        @install_at_used = true
+      end
+    else
+      raise "You can only 'install' a plane at an airport once"
+    end
   end
 
   def confirm_location

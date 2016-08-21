@@ -77,14 +77,18 @@ describe Plane do
       expect(subject.confirm_location).to eq("The plane is currently at #{airport}.")
     end
 
-
-
   end
 
   describe '.install_at' do
     it 'will install a plane at an airport regardless of weather' do
       subject.install_at(airport)
       expect(subject.location).to eq(airport)
+    end
+
+    it 'is only possible to use once' do
+      subject.install_at(airport)
+      subject.take_off(good_weather)
+      expect{subject.install_at(airport)}.to raise_error("You can only 'install' a plane at an airport once")
     end
   end
 end
