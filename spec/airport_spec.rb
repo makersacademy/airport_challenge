@@ -32,7 +32,13 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error 'Too stormy to land!'
     end
 
-    it 'stops plane from landing if airport is full'
+    it 'stops plane from landing if airport is full' do
+      plane = double(:plane, :landed => false, :flying => true)
+      Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
+      message = 'Try another airport!'
+      expect{subject.land(plane)}.to raise_error (message)
+    end
+
     it 'plane can\t land if already at airport'
     it 'plane can\t land if at another airport'
 
@@ -58,8 +64,10 @@ describe Airport do
 
   describe '#capacity' do
 
-    it 'sets default airport capacity'
-    it 'allows default airport capacity to be overridden'
+    it 'sets airport capacity' do
+      airport = Airport.new(30)
+      expect(airport.capacity).to eq 30
+    end
 
   end
 end
