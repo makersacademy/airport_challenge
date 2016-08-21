@@ -3,12 +3,13 @@ require_relative 'weather'
 
 class Airport
 
+@planes = []
+
   def conditions
     @weather
   end
 
   def land(plane)
-    plane = Plane.new
     plane
   end
 

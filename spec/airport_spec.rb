@@ -4,7 +4,8 @@ describe Airport do
 
   it "instructs plane to land" do
     plane = Plane.new
-    expect(subject.land(plane)).to be_landed
+    subject.land(plane)
+    expect(plane).to be_landed
   end
 
   it "instructs a plane to take off" do
@@ -14,8 +15,10 @@ describe Airport do
 
   end
 
-  # it "no take off in storms" do
-  #   expect { subject.take_off}.to raise_error "Too stormy"
-  # end
+  it "no take off in storms" do
+    subject.instance_variable_set(:@weather, "stormy")
+    plane = Plane.new
+    expect { subject.take_off(plane)}.to raise_error "Too stormy"
+  end
 
 end
