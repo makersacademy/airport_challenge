@@ -2,7 +2,6 @@ require './lib/plane'
 require './lib/weather'
 
 class Airport
-  attr_reader :planes
   CAPACITY = 10
 
   def initialize(capacity = CAPACITY)
@@ -20,11 +19,14 @@ class Airport
 
   def take_off(plane)
     fail "no planes at the airport" if @planes.empty?
-    fail "This plane has already taken off from this airport" if !@planes.include?(plane)
+    msg = "This plane has already taken off from this airport"
+    fail msg if !@planes.include?(plane)
     fail "too stormy to take off" if weather_check == "stormy"
     @planes.delete(plane)
     plane.plane_taking_off
   end
+
+private
 
   def weather_check
     current_weather = Weather.new
@@ -34,5 +36,7 @@ class Airport
   def full?
     @planes.count >= CAPACITY
   end
+
+  attr_reader :planes
 
 end

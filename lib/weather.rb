@@ -4,6 +4,8 @@ class Weather
     @weather = weather_outlook
   end
 
+private
+
   def stormy?
     @weather == :stormy
   end

@@ -1,9 +1,12 @@
 class Plane
-attr_accessor :status
 
   def initialize
     @status = "flying"
   end
+
+private
+
+attr_accessor :status
 
   def plane_landed
     @status = "landed"
