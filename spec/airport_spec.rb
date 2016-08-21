@@ -17,7 +17,7 @@ describe Airport do
     it "landed plane should then be inside airport" do
       port = Airport.new
       plane = Plane.new
-      allow_any_instance_of(@weather).to receive(:stormy).and_return(:false)
+      allow(@weather).to receive(:stormy).and_return(:false)
       port.request_land(plane)
       expect(port.in_airport).to include(plane)
     end
@@ -33,6 +33,12 @@ describe Airport do
       5.times {subject.request_land(Plane.new)}
       expect{subject.request_land(Plane.new)}.to raise_error "Airport full"
     end
+
+    it "raises error when request_land is called on plane already landed" do
+      plane = Plane.new
+      subject.request_land(plane)
+      expect(subject.request_land(plane)).to raise_error "Plane already landed"
+    end
   end
 
 
@@ -46,14 +52,21 @@ describe Airport do
       plane = Plane.new
       port = Airport.new
       allow(@weather).to receive(:stormy?).and_return(false)
+      port.request_land(plane)
       port.request_depart(plane)
       expect(port.in_airport).not_to include(plane)
     end
 
     it "shows error when to stormy to take off" do
       plane = Plane.new
+      subject.request_land(plane)
       allow(@weather).to receive(:stormy?).and_return(true)
       expect{subject.request_depart(plane)}.to raise_error "its to dangerous to do that now"
+    end
+
+    it "raises error when request_depart is called on plane already in flight" do
+      plane = Plane.new
+      expect(subject.request_depart(plane)).to raise_error "Plane already in flight"
     end
   end
 
