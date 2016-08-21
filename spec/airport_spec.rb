@@ -23,4 +23,11 @@ describe Airport do
     end
   end
 
+  it 'removes plane from airport once it has taken off' do
+    plane = double(:plane)
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.landed_planes).to be_empty
+  end
+
 end
