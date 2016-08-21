@@ -2,6 +2,16 @@ require 'weather'
 
 describe Weather do
 
+  describe '#initialize' do
+    it 'should set "sunny" to true' do
+      expect(subject.sunny).to eq true
+    end
+
+    it 'should set "stormy" to false' do
+      expect(subject.stormy).to eq false
+    end
+  end
+
   describe '#is_sunny' do
 
     it 'should set sunny to true' do

@@ -12,6 +12,10 @@ describe Airport do
 
   describe '#initialize' do
 
+    it 'should set "planes" to an empty array' do
+      expect(airport.planes).to eq []
+    end
+
     it 'has a default capacity' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
