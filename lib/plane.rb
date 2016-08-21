@@ -5,4 +5,8 @@ class Plane
     true
   end
 
+  def takeoff?
+    true
+  end
+
 end
