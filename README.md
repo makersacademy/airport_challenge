@@ -128,7 +128,7 @@ I would like a default airport capacity that can be overridden as appropriate
 |         | take_off |
 |         | full? |
 |         | capacity |
-| Plane | |
+| Plane   | status |
 | Weather | stormy? |
 
 2. Work through first two user stories to define landing and taking off
