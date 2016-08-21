@@ -2,6 +2,8 @@ require 'weather'
 
 describe Weather do
 
+  let(:random_weather) { double :random_weather}
+
   describe '#initialize' do
     it 'should set "sunny" to true' do
       expect(subject.sunny).to eq true
@@ -12,16 +14,16 @@ describe Weather do
     end
   end
 
-  describe '#is_sunny' do
+  describe '#sunny' do
 
     it 'should set sunny to true' do
-      expect(subject.is_sunny).to eq true
+      expect(subject.sunny?).to eq true
     end
   end
 
-  describe '#is_stormy' do
+  describe '#stormy' do
     it 'should set stormy to true' do
-      expect(subject.is_stormy).to eq true
+      expect(subject.stormy?).to eq true
     end
   end
 

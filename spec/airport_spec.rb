@@ -4,9 +4,9 @@ describe Airport do
 
   subject(:airport) { described_class.new}
   subject(:big_airport) { described_class.new 100}
-  let(:plane) {double :plane, has_landed:false, is_flying: false, flying: false}
-  let(:flying_plane) {double :flying_plane, has_landed: false, is_flying: true, flying: true}
-  let(:plane2) { double :plane2, has_landed: true}
+  let(:plane) {double :plane, has_landed?:false, is_flying?: false, flying: false}
+  let(:flying_plane) {double :flying_plane, has_landed?: false, is_flying?: true, flying: true}
+  let(:plane2) { double :plane2, has_landed?: true}
   let(:weather) { double :weather, stormy: false, random_weather: 10 }
   let(:bad_weather) { double :bad_weather, stormy: true, random_weather: 95 }
 
@@ -22,7 +22,7 @@ describe Airport do
 
     it 'also has a variable capacity' do
       big_airport.capacity.times do
-        big_airport.land((double :plane, has_landed: true), weather)
+        big_airport.land((double :plane, has_landed?: true), weather)
       end
       expect {big_airport.land(plane, weather)}.to raise_error "Airport full!"
     end
@@ -41,7 +41,7 @@ describe Airport do
     end
 
     it 'should raise an error if the airport is full' do
-      airport.capacity.times { airport.land((double :plane, has_landed: true), weather)}
+      airport.capacity.times { airport.land((double :plane, has_landed?: true), weather)}
       expect {airport.land(plane2, weather)}.to raise_error "Airport full!"
     end
 

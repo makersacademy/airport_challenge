@@ -7,11 +7,11 @@ class Plane
     @landed = true
   end
 
-  def is_flying
+  def is_flying?
     flying = true
   end
 
-  def has_landed
+  def has_landed?
     landed = true
   end
 
