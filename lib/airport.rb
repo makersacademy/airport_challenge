@@ -5,17 +5,19 @@ class Airport
 
   attr_reader :planes
   attr_accessor :current_forecast
-  #DEFAULT_CAPACITY = 20
+  attr_reader :capacity
 
-  def initialize #(capacity = DEFAULT_CAPACITY)
+  DEFAULT_CAPACITY = 20
+
+  def initialize (capacity = DEFAULT_CAPACITY)
     @planes = []
     @current_forecast = Weather.new
-    #@capacity = capacity
+    @capacity = capacity
   end
 
   def land_plane(plane)
     fail "Delay landing!" if current_forecast.forecast == "Stormy"
-    fail "Full airport" if planes.length >= 1
+    fail "Full airport" if planes.length >= capacity
     plane.report_landed
     planes << plane
   end

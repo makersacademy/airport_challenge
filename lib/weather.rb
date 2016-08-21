@@ -8,7 +8,7 @@ def initialize
 end
 
 def weather_chance
-  1+rand(100)
+  1 + rand(100)
 end
 
 def generate_weather(num)

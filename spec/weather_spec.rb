@@ -15,11 +15,6 @@ describe Weather do
       expect(subject.generate_weather(subject.weather_chance)).to eq("Stormy")
     end
 
-    it 'generates no weather' do
-      allow(subject).to receive(:weather_chance).and_return(0)
-      expect(subject.generate_weather(subject.weather_chance)).to eq("Stormy")
-    end
-
   end
 
 end
