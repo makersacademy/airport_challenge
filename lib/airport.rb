@@ -18,9 +18,12 @@ def take_off(plane)
 end
 
 def landing(plane)
+  fail 'Capacity reached' if full?
   @ground << plane
 end
 
-
+def full?
+  @ground.length >= @capacity
+end
 
 end
