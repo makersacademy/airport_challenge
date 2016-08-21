@@ -8,7 +8,7 @@ class Weather
     @weather == :stormy
   end
 
-  OUTLOOKS = [:stormy, :fine, :fine, :fine, :fine]
+  OUTLOOKS = [:stormy, :fine, :fine, :fine, :fine].freeze
 
   def weather_outlook
     OUTLOOKS.sample
