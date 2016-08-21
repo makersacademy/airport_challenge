@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   let (:plane) {double :plane}
-  let (:weather) {double :weather, :forecast => true}
+  let (:weather) {double :weather, :forecast? => true}
 
   it "allows planes to land and confirms" do
     expect(subject.land(plane)).to eq plane
@@ -30,7 +30,7 @@ describe Airport do
   it "prevents taking off when weather is stormy" do
     airport = subject
     airport.land(plane)
-    weather = double(:weather?, :forecast => false)
+    weather = double(:weather, :forecast? => false)
     expect(airport.take_off(plane)).to raise_error "Planes aren't allowed to take off during stormy weather"
   end
 end
