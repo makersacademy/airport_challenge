@@ -38,6 +38,8 @@ Then planes can be landed and take off:
 Land and takeoff are contingent on good weather, and the plane being in the correct state.
 For example a plane cannot land if it has already landed at another airport.
 
+To create an airport with variable capacity - `airport= Airport.new( {capacity: 10})`.
+
 In IRB:
 
 ```

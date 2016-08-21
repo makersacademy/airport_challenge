@@ -23,8 +23,8 @@ feature 'Feature Testing' do
       error = 'Airport is full, the plane has diverted.'
       expect{ @planes[0..7].each { |x| airport.land(x) } }.to raise_error error
     end
-
   end
+
   describe 'Multiple planes taking off' do
     it 'can takeoff multiple planes' do
       airport = Airport.new
