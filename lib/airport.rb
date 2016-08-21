@@ -1,7 +1,8 @@
 require_relative 'plane'
 
 class Airport
-  attr_accessor :landed
+  attr_reader :landed_planes #allows reading of @landed_planes
+
   def initialize
     @landed_planes = []
   end
@@ -11,8 +12,8 @@ class Airport
     plane.landed = true
   end
 
-  # def landed?
-  #
-  # end
-
+  def takeoff(plane)
+    plane.landed = false
+    @landed_planes.delete(plane)
+  end
 end
