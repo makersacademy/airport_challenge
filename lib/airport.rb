@@ -25,25 +25,15 @@ class Airport
     end
   end
 
-  # def take_off
-  #   # fail "All flights grounded" if current_forecast.forecast == "Stormy"
-  #   # fail "Plane is not in airport" if empty?
-  #   # plane = planes.pop
-  #   # launch_plane(plane)
-  #   # plane.report_take_off
-  #   # plane
-  #   launch_plane(planes[-1])
-  # end
 
   def launch_plane(plane)
-    fail "All flights grounded" if current_forecast.forecast == "Stormy"
-    fail "Plane is not in airport" if empty?
+    fail "Flights grounded" if current_forecast.forecast == "Stormy"
     if find_plane(plane)
       plane.report_take_off
       planes.delete(plane)
       plane
     else
-      raise "Plane is not at airport"
+      raise "Plane not here"
     end
   end
 

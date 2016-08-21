@@ -15,7 +15,7 @@ describe Plane do
 
     it 'stops landed plane being landed again' do
       subject.report_landed(nil)
-      expect { subject.report_landed(nil) }.to raise_error "landed plane already"
+      expect { subject.report_landed(nil) }.to raise_error "Plane landed"
     end
 
   end
