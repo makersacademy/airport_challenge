@@ -25,6 +25,7 @@ class Airport
   def take_off(plane)
     fail 'Too stormy to take off!' if weather.stormy?
     check_if_flying(plane)
+    check_airport(plane)
     plane.flying
     confirm_take_off
     hangar.delete(plane)
@@ -37,7 +38,11 @@ class Airport
   def check_if_flying(plane)
     fail "Plane is already airborne" if plane.airborne? == true
   end
-  
+
+  def check_airport(plane)
+    fail "Plane is at another airport" if !hangar.include? plane
+  end
+
   def confirm_take_off
     puts "Take-off successful"
   end

@@ -47,10 +47,7 @@ describe Airport do
       message = "Plane is already airborne"
       expect{subject.take_off(plane)}.to raise_error (message)
     end
-
-    it 'stops landing if plane is at another airport'
-
-
+  end
 
   describe '#landed' do
 
@@ -76,7 +73,12 @@ describe Airport do
       expect{subject.take_off(plane)}.to raise_error 'Too stormy to take off!'
     end
 
-    it 'stops plane taking off from another airport'
+    it 'stops plane taking off from another airport' do
+      heathrow = Airport.new
+      heathrow.land(plane)
+      message = "Plane is at another airport"
+      expect{subject.take_off(plane)}.to raise_error (message)
+    end
 
   end
 
@@ -88,6 +90,4 @@ describe Airport do
     end
 
   end
-end
-
 end
