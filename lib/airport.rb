@@ -45,8 +45,6 @@ class Airport
     found
   end
 
-
-
 private
 
   attr_reader :planes
