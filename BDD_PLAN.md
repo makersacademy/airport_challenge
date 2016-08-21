@@ -1,14 +1,14 @@
 Domain Model
 ---------
 
-| Objects | Messages     | Attributes    
+| Objects | Messages     | Attributes  |
 | --------|:-------------:
 | Planes  | land, takeoff |
-| Airport | full?, in_airport         | capacity, planes
-| Weather | rand (zeus)   |sunny | stormy
+| Airport | full?, in_airport | capacity, planes
+| Weather | rand (zeus) |sunny, stormy
 
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport
+ planes that are already flying cannot takes off and/or be in an airport
 
 2do
 

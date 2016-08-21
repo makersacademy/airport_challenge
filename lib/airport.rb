@@ -30,7 +30,7 @@ DEFAULT_CAPACITY = 20
     @planes.pop
   end
 
-  private
+  protected
 
   def full?
     @planes.size >= 20
