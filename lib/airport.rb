@@ -13,7 +13,8 @@ class Airport
   end
 
   def land (plane, weather)
-    fail "Planes aren't allowed to take off during stormy weather" if weather.stormy?
+    fail "Planes aren't allowed to land during stormy weather" if weather.stormy?
+    #fail "Planes already landed aren't allowed to land again" unless plane.flying?
     if @planes.count >= @capacity
       false
     else
@@ -27,5 +28,7 @@ class Airport
     fail "Plane is already in the air" if plane.flying?
     planes.delete(plane)
   end
+
+
 
 end

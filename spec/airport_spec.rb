@@ -51,6 +51,10 @@ describe Airport do
     it "doesn't allow planes already flying to take off" do
       expect{subject.take_off(double(:flying? => true), forecast)}.to raise_error
     end
+    it "doesn't allow planes landed to land again" do
+      expect{subject.land(double(:flying? => false), forecast)}.to raise_error
+    end
+
   end
 
 end
