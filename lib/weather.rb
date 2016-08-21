@@ -1,17 +1,11 @@
 module Weather
 
   def zeus
-    rand(5)
-  end
-
-  def weather_report
-    zeus
-    #let's create a storm on 1/5 of days ie. day 4 of 5 possible
-    zeus == 4 ? "stormy" : "sunny"
+    rand(5) == 4 ? :stormy : :sunny
   end
 
   def stormy?
-    weather_report == "stormy"
+    zeus == :stormy
   end
 
 end

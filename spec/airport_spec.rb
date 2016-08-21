@@ -1,8 +1,8 @@
 require 'airport'
-require 'weather_report_spec'
+require 'weather_spec'
 
 describe Airport do
-  include_examples "weather_report"
+  include_examples "weather"
 
   subject {described_class.new}
   let(:plane) {double(:plane, :is_a? => true, :plane? => true)}
@@ -25,7 +25,6 @@ describe Airport do
   end
 
   it "has planes take off" do
-    #allow(subject).to receive(:weather_report) {"sunny"}
     subject.take_off
     expect(subject.planes).not_to include plane
   end
