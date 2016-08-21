@@ -79,7 +79,7 @@ Example BDD/TDD test:
 - Instruct plane to takeoff from airport 'new_airport.takeoff(plane)'
 - Instruct plane to land at airport 'new_airport.land(plane)'
 
-Landing and Takeoff are subject to weather being 'Sunny', aiport capacity being not full and plane status (e.g. plane cannot takeoff if already flying). 
+Landing and Takeoff are subject to weather being 'Sunny', aiport capacity not being full and plane status (e.g. plane cannot takeoff if already flying). 
 
 ###Author
 Tim Tang https://github.com/Tim3tang
