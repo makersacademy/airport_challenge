@@ -1,7 +1,8 @@
 class Weather
   def initialize
-    random = rand(1..10)
-    if random == 10 # one in ten chance of it being stormy.
+    x = 10
+    random = rand(1..x)
+    if random == x # one in x chance of it being stormy.
       @storming = true
     else
       @storming = false
