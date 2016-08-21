@@ -12,7 +12,7 @@ def weather_chance
 end
 
 def generate_weather(num)
-  if (1..80).include? num
+  if (1..80).cover? num
     @forecast = "Sunny"
   else
    @forecast = "Stormy"

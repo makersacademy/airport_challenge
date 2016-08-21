@@ -32,7 +32,7 @@ describe Airport do
       weather = double(:weather, forecast: "Stormy")
       subject.current_forecast = weather
       subject.land_plane(plane)
-      expect { subject.take_off }.to raise_error "Stormy weather, better sit tight"
+      expect { subject.take_off }.to raise_error "All flights grounded"
     end
 
   end
