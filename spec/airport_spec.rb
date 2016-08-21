@@ -24,6 +24,11 @@ describe Airport do
     expect(subject.planes).not_to include plane
   end
 
+  it "prevents landing when the airport is full" do
+    35.times {subject.land(plane, forecast)}
+    expect(subject.land(plane, forecast)).to eq false
+  end
+
   describe "behaviour during stormy weather" do
     let (:forecast) {double :forecast, :stormy? => true}
 
