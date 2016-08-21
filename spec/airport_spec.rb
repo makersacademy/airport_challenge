@@ -6,27 +6,30 @@ describe Airport do
 
   subject {described_class.new}
   let(:plane) {double(:plane, :is_a? => true, :plane? => true)}
+  #let(:stormy?) { :stormy? == false}
 
+  context '#land' do
+    it "can harbour planes" do
+      subject.land(plane)
+      expect(subject.planes).to include plane
+    end
 
-  it "can harbour planes" do
-    subject.land(plane)
-    expect(subject.planes).to include plane
+    it "can check whether a plane is harboured" do
+      subject.land(plane)
+      expect(subject.in_airport?(plane)).to eq true
+    end
+
+    it "only lets a plane harbour once" do
+      subject.land(plane)
+      expect{subject.land(plane)}.to raise_error "plane already landed"
+    end
+
   end
 
   it "has planes take off" do
     #allow(subject).to receive(:weather_report) {"sunny"}
     subject.take_off
     expect(subject.planes).not_to include plane
-  end
-
-  it "can check whether a plane is harboured" do
-    subject.land(plane)
-    expect(subject.in_airport?(plane)).to eq true
-  end
-
-  it "only lets a plane harbour once" do
-    subject.land(plane)
-    expect{subject.land(plane)}.to raise_error "plane already landed"
   end
 
   it "does not accept planes when full" do

@@ -1,6 +1,6 @@
 require 'plane'
 
-describe Planes do
+describe Plane do
 
   it "only allows plane objects to be passed into methods" do
     expect{subject.in_airport(nil) ;

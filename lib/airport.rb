@@ -2,11 +2,11 @@ require_relative 'weather'
 require_relative 'plane'
 
 class Airport
-  include Weather
-  include Planes
+
+include Weather
 
 DEFAULT_CAPACITY = 20
-  attr_reader :planes, :capacity
+attr_reader :planes, :capacity
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
@@ -17,7 +17,7 @@ DEFAULT_CAPACITY = 20
     raise "pass in plane objects only" unless arg.plane?
     @planes.include?(arg)
   end
-=begin
+
   def land(arg)
     raise "airport full, find another lol" if full?
     raise "plane already landed" if @planes.include?(arg)
@@ -26,17 +26,15 @@ DEFAULT_CAPACITY = 20
     @planes << arg
   end
 
-
   def take_off
    raise "stormy day, no flying" if stormy?
    @planes.pop
-=end
+ end
 
-  protected
+  private
 
   def full?
     @planes.size >= 20
   end
-
 
 end
