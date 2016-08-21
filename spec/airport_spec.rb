@@ -36,6 +36,7 @@ describe Airport do
 
   it 'cannot take off when weather is stormy' do
     plane = double(:plane)
+    allow(subject).to receive(:stormy?).and_return(false)
     subject.land(plane)
     allow(subject).to receive(:stormy?).and_return(true)
     expect {subject.take_off(plane)}.to raise_error 'Plane cannot take off due to a stormy conditions'
