@@ -1,15 +1,15 @@
-#Airport Challenge#
+#Airport Challenge
 
-##Description##
+##Description
 A program to control the flow of planes into and out of airports. Take off and landing are restricted when weather conditions are poor, and airports cannot accept landings once they have reached capacity. Capacity can be set by the user for each individual airport, but defaults to 20 when left unspecified.
 
-##Classes##
+##Classes
 This program has three classes:
 1. Airport
 2. Plane
 3. Weather
 
-**Airport**
+###Airport
 This class creates instances of airports and includes the methods `land` and `take_off` which take instances of the Plane class as arguments. Within these methods, the following checks are made:
 
 * the `in_flight` state of the plane
@@ -18,13 +18,13 @@ This class creates instances of airports and includes the methods `land` and `ta
 
 If all checks are passed, methods `ground` or `fly` are called in order to alter the plane's `in_flight` attribute. These are methods belonging to the Plane class - Airport is thus dependent on Plane.
 
-**Plane**
+###Plane
 This class creates instances of planes and includes the methods `ground` and `fly` as discussed above.
 
-**Weather**
+###Weather
 This class creates instances of weather each time the `check_weather` method is called from within Airport class. Weather conditions are created using a random number generator such that it the probability of a storm is 20%.
 
-##Feature test##
+##Feature test
 ```
 $irb
 2.3.0 :001 > require './lib/airport'
@@ -58,7 +58,7 @@ RuntimeError: Ach no, there's a storm a-brewin'!
 2.3.0 :011 > heathrow.land(plane3)
  => [#<Plane:0x007f93a387b9a8 @in_flight=false>]
 2.3.0 :012 > heathrow.land(plane3)
-RuntimeError: Plane's aleady down, Sir
+RuntimeError: Plane's aleady down, Sir.
 	from /Users/Billy/makers_academy/Projects/airport_challenge/lib/airport.rb:49:in `check_in_flight'
 	from /Users/Billy/makers_academy/Projects/airport_challenge/lib/airport.rb:17:in `land'
 	from (irb):12
@@ -78,4 +78,3 @@ RuntimeError: Plane's in another airport, Sir.
 	from (irb):15
 	from /Users/Billy/.rvm/rubies/ruby-2.3.0/bin/irb:11:in `<main>'
 ```
-k
