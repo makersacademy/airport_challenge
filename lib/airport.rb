@@ -1,4 +1,5 @@
 require_relative 'planes'
+require_relative 'weather'
 
 class Airport
 
@@ -15,6 +16,7 @@ end
   end
 
   def land(plane)
+    #fail 'its too stormy to take off' if stormy?
     fail 'The airport is full' if full?
     @planes << plane
   end
