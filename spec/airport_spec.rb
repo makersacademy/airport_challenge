@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
 
 subject(:airport) { described_class.new }
+subject(:airport_1) { described_class.new }
 let(:plane) { double :plane }
 
   describe '#land' do
@@ -37,6 +38,8 @@ let(:plane) { double :plane }
 
     it 'makes a plane take off from the airport' do
       good_weather
+      plane_in_flight
+      airport.land(plane)
       plane_landed
       airport.take_off(plane)
       expect(airport.planes).to eq []
@@ -51,6 +54,15 @@ let(:plane) { double :plane }
       good_weather
       plane_in_flight
       expect{airport.take_off(plane)}.to raise_error "This plane is already flying"
+    end
+
+    it 'should not allow a plane to take off unless it is at that airport' do
+      good_weather
+      plane_in_flight
+      airport.land(plane)
+      allow(airport_1.weather).to receive(:stormy).and_return(false)
+      plane_landed
+      expect{airport_1.take_off(plane)}.to raise_error "This plane is not at this airport"
     end
 
   end
