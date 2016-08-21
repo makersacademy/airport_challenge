@@ -11,6 +11,8 @@ describe Airport do
     expect(airport.instance_variable_get(:@capacity)).to eq 10
   end
 
+  it {is_expected.to respond_to :random_weather}
+
   it 'lands multiple planes' do
     plane, plane1 = Plane.new
     subject.landing(plane1)

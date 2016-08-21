@@ -9,6 +9,9 @@ def initialize(capacity = DEFAULT_CAPACITY)
   @capacity = capacity
 end
 
+def random_weather
+end
+
 def stormy?
   @weather = false
 end
