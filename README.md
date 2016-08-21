@@ -40,7 +40,7 @@ Defend against 'edge cases' and system inconsistencies such as instances of the 
 
 Use of 'object-orientated design' principles:
         | **Object**            | **Attribute**              | **Interactions**                 |
-        |-----------------------|:--------------------------:|---------------------------------:|
+        |:---------------------:|:--------------------------:|:--------------------------------:|
         | Airport               | Capacity                   | land, takeoff,                   |
         |                       |                            | prevent_land, prevent_takeoff    |
         | Plane                 | Working                    | land, takeoff                    |
