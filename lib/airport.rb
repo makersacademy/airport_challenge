@@ -4,7 +4,7 @@ class Airport
 
 def initialize
   @weather = true
-  @planes = []
+  @ground = []
   @sky = []
 end
 
@@ -17,7 +17,7 @@ def take_off(plane)
 end
 
 def landing(plane)
-  @planes << plane
+  @ground << plane
 end
 
 
