@@ -3,6 +3,10 @@ require 'airport'
 describe Airport do
 
   it {is_expected.to respond_to :stormy}
+  
+  it 'should have a default capacity of 20' do
+  expect(subject.instance_variable_get(:@capacity)).to eq 20
+  end
 
   it 'lands multiple planes' do
     plane = Plane.new
