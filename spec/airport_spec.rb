@@ -13,7 +13,6 @@ describe Airport do
 
   it {is_expected.to respond_to :random_weather}
 
-
   it 'lands multiple planes' do
     plane, plane1 = Plane.new
     subject.stub(:random_weather).and_return(0.5)
@@ -23,7 +22,7 @@ describe Airport do
   end
 
   it 'take off multiple planes' do
-    plane1 = Plane.new
+    plane1, plane = Plane.new
     plane = Plane.new
     subject.stub(:random_weather).and_return(0.5)
     subject.landing(plane1)
@@ -33,7 +32,7 @@ describe Airport do
     expect(subject.instance_variable_get(:@sky)).to eq [plane, plane1]
   end
 
-  it ' becomes stormy' do
+  it 'generates weather condition when taking off/landing' do
     subject.stub(:random_weather).and_return(0.5)
     subject.take_off
     expect(subject.instance_variable_get(:@weather)).to eq 0.5
@@ -49,6 +48,7 @@ describe Airport do
     subject.stub(:random_weather).and_return(0.01)
     expect {subject.take_off}.to raise_error "Cannot take off due to stormy weather"
   end
+
   it 'raises error when capacity is reached' do
     subject.stub(:random_weather).and_return(0.5)
     Airport::DEFAULT_CAPACITY.times {subject.landing Plane.new}
