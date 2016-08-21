@@ -10,9 +10,10 @@ describe Plane do
   context "weather is fine for these examples" do
     before do
       allow(airport).to receive(:weather_check).and_return(nil)
+      allow(airport).to receive(:land).and_return("landed")
     end
     it 'upon landing, changes plane status to landed' do
-      airport.land(plane)
+      plane.landed
       expect(plane.status).to eq "landed"
     end
   end

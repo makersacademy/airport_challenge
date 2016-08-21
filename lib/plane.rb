@@ -5,4 +5,8 @@ attr_accessor :status
     @status = "flying"
   end
 
+  def landed
+    @status = "landed"
+  end
+
 end
