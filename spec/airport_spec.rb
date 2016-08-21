@@ -2,31 +2,26 @@ require 'airport'
 
 describe Airport do
   let (:plane) {double :plane, :flying? => false}
+  let (:flying_plane) {double :flying_plane, :flying? => true}
+
   let (:forecast) {double :forecast, :stormy? => false}
 
   it "allows planes to land and confirms" do
-    expect(subject.land(plane, forecast)).to eq plane
+    expect(subject.land(flying_plane, forecast)).to eq flying_plane
   end
 
   it "stores landed airplanes" do
-    subject.land(plane, forecast)
-    expect(subject.planes).to include plane
+    subject.land(flying_plane, forecast)
+    expect(subject.planes).to include flying_plane
   end
 
   it "allows planes to take off" do
-    subject.land(plane, forecast)
-    expect(subject.take_off(plane, forecast)).to eq plane
-  end
-
-  it "doesn't contain planes that did take off" do
-    subject.land(plane, forecast)
-    subject.take_off(plane, forecast)
-    expect(subject.planes).not_to include plane
+    expect(subject).to respond_to(:take_off).with(2).arguments
   end
 
   it "prevents landing when the airport is full" do
-    35.times {subject.land(plane, forecast)}
-    expect(subject.land(plane, forecast)).to eq false
+    35.times {subject.land(flying_plane, forecast)}
+    expect(subject.land(flying_plane, forecast)).to eq false
   end
 
   it "allows to set a capacity for airports" do
@@ -38,8 +33,8 @@ describe Airport do
     let (:forecast) {double :forecast, :stormy? => true}
 
     it "prevents taking off when weather is stormy" do
-      subject.land(plane, double(:stormy? => false))
-      expect{subject.take_off(plane, forecast)}.to raise_error
+      subject.land(double(:flying? => true), double(:stormy? => false))
+      expect{subject.take_off(double(:flying? => false), forecast)}.to raise_error
     end
 
     it "prevents landing when weather is stormy" do
