@@ -3,6 +3,7 @@ require './lib/weather'
 
 class Airport
   attr_reader :planes
+  CAPACITY = 10
 
   def initialize
     @planes = []
@@ -10,6 +11,7 @@ class Airport
 
   def land(plane)
     raise "too stormy to land" if weather_check == "stormy"
+    raise 'Airport full' if full?
     @planes << plane
     plane.plane_landed
   end
@@ -23,6 +25,10 @@ class Airport
   def weather_check
     current_weather = Weather.new
     "stormy" if current_weather.stormy?
+  end
+
+  def full?
+    @planes.count >= CAPACITY
   end
 
 end
