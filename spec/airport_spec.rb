@@ -31,13 +31,12 @@ describe Airport do
     let (:forecast) {double :forecast, :stormy? => true}
 
     it "prevents taking off when weather is stormy" do
-      #airport = subject
       subject.land(plane)
       expect{subject.take_off(plane, forecast)}.to raise_error
     end
 
-    xit "prevents landing when weather is stormy" do
-
+    it "prevents landing when weather is stormy" do
+      expect{subject.land(plane)}.to raise_error
     end
 
 
