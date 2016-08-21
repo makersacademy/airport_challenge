@@ -18,6 +18,7 @@ class Airport
   def land_plane(plane)
     fail "Delay landing!" if current_forecast.forecast == "Stormy"
     fail "Full airport" if planes.length >= capacity
+    fail "already landed" if planes.include? plane
     plane.report_landed
     planes << plane
   end

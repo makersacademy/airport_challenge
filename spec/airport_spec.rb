@@ -5,21 +5,22 @@ describe Airport do
 
   let(:weather_is_sunny) { subject.current_forecast.generate_weather(80) }
   let(:weather_is_stormy) { subject.current_forecast.generate_weather(81) }
-  #let (:landed_plane) { double(:plane, report_landed: true)}
-  #let (:inflight_plane)
+  let (:plane) { double(:plane, report_landed: true, report_take_off: false)}
+
 
 
   describe '#initialize' do
     it "defaults capacity" do
       plane = double(:plane, report_landed: true)
       weather_is_sunny
-      described_class::DEFAULT_CAPACITY.times {subject.land_plane(plane)}
+      described_class::DEFAULT_CAPACITY.times {subject.land_plane(double(:plane2, report_take_off: true, report_landed: false))}
       weather_is_sunny
       expect { subject.land_plane(plane) }.to raise_error "Full airport"
     end
   end
 
   describe '#land_plane(plane)' do
+
 
     it 'lands a plane at an airport and reports plane as landed' do
       plane = double(:plane, report_landed: true)
@@ -28,19 +29,27 @@ describe Airport do
     end
 
     it 'prevents landing when weather is stormy' do
-      plane = double(:plane, report_take_off: false)
+      plane = double(:plane, report_take_off: true)
       weather_is_stormy
       expect { subject.land_plane(plane) }.to raise_error "Delay landing!"
     end
 
     it 'prevents landing when airport is full' do
-      plane = double(:plane, report_landed: true)
       weather_is_sunny
-      subject.capacity.times { subject.land_plane(plane) }
+      subject.capacity.times { subject.land_plane(double(:plane, report_take_off: true, report_landed: false)) }
       weather_is_sunny
       expect { subject.land_plane(plane) }.to raise_error "Full airport"
     end
-  end
+
+    it 'will not land a plane that is already landed' do
+      plane = double(:plane, report_landed: true)
+      weather_is_sunny
+      subject.land_plane(plane)
+      if subject.planes.include? plane
+        expect { subject.land_plane(plane) }.to raise_error "already landed"
+      end
+    end
+   end
 
   describe '#take_off' do
 
