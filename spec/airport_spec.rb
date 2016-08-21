@@ -4,9 +4,10 @@ describe Airport do
 subject(:airport) {described_class.new}
 subject(:custom_airport) {described_class.new(capacity: 0)}
 
+
 before do
   allow(STDOUT).to receive(:puts)
-  allow(Kernel).to receive(:rand).and_return(10)
+  allow_any_instance_of(Weather).to receive(:check_safe?).and_return(true)
 end
 
 context 'initialization' do
@@ -33,7 +34,7 @@ describe '#land(plane) operations' do
   end
   context 'defends against edge cases' do
     it 'will not land objects if weather unsafe' do
-      allow(Kernel).to receive(:rand).and_return(1)
+      allow_any_instance_of(Weather).to receive(:check_safe?).and_return(false)
       expect(@plane).to_not receive(:land)
 
       error= 'Poor weather means the plane has to divert.'
@@ -68,7 +69,7 @@ describe '#takeoff(plane) operations' do
   end
   context 'defends against edge cases' do
     it 'will not takeoff objects if weather unsafe' do
-      allow(Kernel).to receive(:rand).and_return(1)
+      allow_any_instance_of(Weather).to receive(:check_safe?).and_return(false)
       expect(@plane).to_not receive(:takeoff)
       error = 'Poor weather means the plane can not takeoff.'
       expect { airport.takeoff(@plane) }.to raise_error(error)
