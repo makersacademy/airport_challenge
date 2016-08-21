@@ -14,10 +14,13 @@ describe Airport do
   end
 
   it 'take off multiple planes' do
-    plane, plane1 = Plane.new
-    subject.take_off(plane1)
-    subject.take_off(plane)
-    expect(subject.instance_variable_get(:@sky)).to eq [plane1, plane]
+    plane1 = Plane.new
+    plane = Plane.new
+    subject.landing(plane1)
+    subject.landing(plane)
+    subject.take_off
+    subject.take_off
+    expect(subject.instance_variable_get(:@sky)).to eq [plane, plane1]
   end
 
   it 'the airport becomes stormy' do

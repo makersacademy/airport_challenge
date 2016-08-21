@@ -13,8 +13,8 @@ def stormy
   @weather = false
 end
 
-def take_off(plane)
-  @sky << plane
+def take_off
+  @sky << @ground.pop
 end
 
 def landing(plane)
