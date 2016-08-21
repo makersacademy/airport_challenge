@@ -27,14 +27,11 @@ class Airport
 
 
   def launch_plane(plane)
-    fail "Flights grounded" if current_forecast.forecast == "Stormy"
-    if find_plane(plane)
+    fail "No flights" if current_forecast.forecast == "Stormy"
+    fail "Plane not here" if find_plane(plane) == false
       plane.report_take_off
       planes.delete(plane)
       plane
-    else
-      raise "Plane not here"
-    end
   end
 
   def find_plane(plane)
