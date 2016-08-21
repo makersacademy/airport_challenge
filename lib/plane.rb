@@ -6,6 +6,7 @@ class Plane
   end
 
   def report_take_off
+    fail "Same plane cannot take off" if @landed == false
     @landed = false
   end
 

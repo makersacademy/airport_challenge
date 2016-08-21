@@ -11,7 +11,6 @@ describe Airport do
 
   describe '#initialize' do
     it "defaults capacity" do
-    #  plane = double(:plane, landed?: false)
       weather_is_sunny
       described_class::DEFAULT_CAPACITY.times {subject.land_plane(double(:plane, report_landed: true, landed?: false))}
       weather_is_sunny
@@ -22,7 +21,6 @@ describe Airport do
   describe '#land_plane(plane)' do
 
     it 'lands a plane at an airport and reports plane as landed' do
-      #plane = double(:plane, landed?: false, report_landed: true)
       weather_is_sunny
       expect(subject.land_plane(inflight_plane)).to eq [inflight_plane]
     end
