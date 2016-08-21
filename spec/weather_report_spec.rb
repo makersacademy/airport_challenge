@@ -13,4 +13,9 @@ shared_examples_for 'weather_report' do
       allow(subject).to receive(:zeus) {3}
       expect(subject.weather_report).to eq("sunny")
     end
+
+    it "stops planes taking off when stormy" do
+      allow(subject).to receive(:weather_report) {"stormy"}
+      expect{subject.take_off}.to raise_error "stormy day, no flying"
+    end
 end

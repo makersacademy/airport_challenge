@@ -3,6 +3,7 @@ require_relative 'plane'
 
 class Airport
   include Weather
+  include Planes
 
 DEFAULT_CAPACITY = 20
   attr_reader :planes, :capacity
@@ -16,7 +17,7 @@ DEFAULT_CAPACITY = 20
     raise "pass in plane objects only" unless arg.plane?
     @planes.include?(arg)
   end
-
+=begin
   def land(arg)
     raise "airport full, find another lol" if full?
     raise "plane already landed" if @planes.include?(arg)
@@ -25,10 +26,11 @@ DEFAULT_CAPACITY = 20
     @planes << arg
   end
 
+
   def take_off
-    raise "stormy day, no flying" if stormy?
-    @planes.pop
-  end
+   raise "stormy day, no flying" if stormy?
+   @planes.pop
+=end
 
   protected
 
@@ -36,12 +38,5 @@ DEFAULT_CAPACITY = 20
     @planes.size >= 20
   end
 
-  def plane?
-    is_a? Plane
-  end
-
-  def stormy?
-    weather_report == "stormy"
-  end
 
 end

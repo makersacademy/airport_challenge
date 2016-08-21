@@ -1,6 +1,5 @@
 require 'airport'
 require 'weather_report_spec'
-require 'plane'
 
 describe Airport do
   include_examples "weather_report"
@@ -14,12 +13,6 @@ describe Airport do
     expect(subject.planes).to include plane
   end
 
-  it "only allows plane objects to be passed into methods" do
-    expect{subject.in_airport(nil) ;
-       subject.land(nil)}.to raise_error
-        "pass in plane objects only"
-  end
-
   it "has planes take off" do
     #allow(subject).to receive(:weather_report) {"sunny"}
     subject.take_off
@@ -30,12 +23,6 @@ describe Airport do
     subject.land(plane)
     expect(subject.in_airport?(plane)).to eq true
   end
-
-  it "stops planes taking off when stormy" do
-    allow(subject).to receive(:weather_report) {"stormy"}
-    expect{subject.take_off}.to raise_error "stormy day, no flying"
-  end
-
 
   it "only lets a plane harbour once" do
     subject.land(plane)

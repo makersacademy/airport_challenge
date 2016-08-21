@@ -8,5 +8,9 @@ module Weather
     zeus
     zeus == 4 ? "stormy" : "sunny"
   end
+
+  def stormy?
+    weather_report == "stormy"
+  end
   
 end
