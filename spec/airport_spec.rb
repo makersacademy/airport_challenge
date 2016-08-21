@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   let (:plane) {double :plane, :flying? => false}
-  let (:flying_plane) {double :flying_plane, :flying? => true}
+  let (:flying_plane) {double :flying_plane, :flying? => true, :flying => ""}
 
   let (:forecast) {double :forecast, :stormy? => false}
 
@@ -22,6 +22,7 @@ describe Airport do
   it "doesn't contain planes that did take off" do
     a_plane = double
     allow(a_plane).to receive(:flying?).and_return(true, false)
+    allow(a_plane).to receive(:flying)
 
     subject.land(a_plane, forecast)
     subject.take_off(a_plane, forecast)
@@ -44,7 +45,8 @@ describe Airport do
     it "prevents taking off when weather is stormy" do
       a_plane = double
       allow(a_plane).to receive(:flying?).and_return(true, false)
-      
+      allow(a_plane).to receive(:flying)
+
       subject.land(a_plane, double(:stormy? => false))
       expect{subject.take_off(a_plane, forecast)}.to raise_error
     end

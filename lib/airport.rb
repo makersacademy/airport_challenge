@@ -1,5 +1,5 @@
 require_relative 'weather'
-#require_relative 'plane'
+require_relative 'plane'
 
 class Airport
 
@@ -19,7 +19,7 @@ class Airport
     if @planes.count >= @capacity
       false
     else
-      #plane.flying(false)
+      plane.flying(false)
       planes << plane
       plane
     end
@@ -28,6 +28,7 @@ class Airport
   def take_off (plane, weather)
     fail "Planes aren't allowed to take off during stormy weather" if weather.stormy?
     fail "Plane is already in the air" if plane.flying?
+    plane.flying(true)
     planes.delete(plane)
   end
 
