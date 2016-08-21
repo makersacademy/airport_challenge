@@ -11,9 +11,12 @@ class Airport
 
   def land (plane, weather)
     fail "Planes aren't allowed to take off during stormy weather" if weather.stormy?
-    false unless @planes > @capacity
-    planes << plane
-    plane
+    if @planes.count >= @capacity
+      false
+    else
+      planes << plane
+      plane
+    end
   end
 
   def take_off (plane, weather)
