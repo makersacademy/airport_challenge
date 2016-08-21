@@ -10,16 +10,11 @@ class Plane
   end
 
   def land_at(airport, current_weather)
-    if self.location != nil #when the plane is not in the air it cannot land!
-      return "The plane is already on the ground at #{@location}"
-    end
-
-    if vacency_check(airport) == false
-      return "There are no free spaces at that airport."
-    end
+    return "The plane is already on the ground at #{@location}" if self.location != nil
+    return "There are no free spaces at that airport." if vacency_check(airport) == false
 
     if current_weather.stormy? == true
-      "Can't land, due to bad weather."
+      puts "Can't land, due to bad weather."
     else
       set_location(airport)
     end

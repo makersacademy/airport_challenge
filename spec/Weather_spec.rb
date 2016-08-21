@@ -3,7 +3,7 @@ describe Weather do
   describe 'random weather testing' do
     it "is stormy roughly 1 in every 10 'days'" do
       times_stormy = 0
-      trials = 100000
+      trials = 100_000
 
       trials.times do
         weather = Weather.new

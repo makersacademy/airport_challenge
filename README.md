@@ -1,6 +1,7 @@
 Airport Challenge
 =================
 [![Build Status](https://travis-ci.org/jamesstonehill/airport_challenge.svg?branch=master)](https://travis-ci.org/jamesstonehill/airport_challenge)
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg)](https://coveralls.io/github/makersacademy/airport_challenge)
 
 This project is James Stonehill's solution to the Makers Academy Airport Challenge.
 
