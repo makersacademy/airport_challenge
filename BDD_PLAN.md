@@ -2,10 +2,10 @@ Domain Model
 ---------
 
 | Objects | Messages     | Attributes  |
-| --------|:-------------:
-| Planes  | land, takeoff |
-| Airport | full?, in_airport | capacity, planes
-| Weather | rand (zeus) |sunny, stormy
+| --------|:-------------:--- |
+| Planes  | land, takeoff |   |
+| Airport | full?, in_airport | capacity, planes|
+| Weather | rand (zeus) |sunny, stormy|
 
 
  planes that are already flying cannot takes off and/or be in an airport
