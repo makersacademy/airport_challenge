@@ -8,6 +8,7 @@ describe Airport do
   context "weather is fine for these examples" do
     before do
       allow(airport).to receive(:weather_check).and_return(nil)
+      allow(plane).to receive(:status).and_return("landed")
     end
   #instructs the plane to land and confirm it has landed
     it {expect(airport).to respond_to(:land).with(1).argument}
