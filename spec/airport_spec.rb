@@ -8,9 +8,8 @@ describe Airport do
 
   describe "#land" do
     it 'raises an error when the aiport is full' do
-      plane = double(:plane)
-      10.times {subject.land(plane)}
-      expect { subject.land(plane) }.to raise_error 'Airport full'
+      subject.capacity.times {subject.land(plane)}
+      expect {subject.land(plane)}.to raise_error 'Airport full'
     end
   end
 
