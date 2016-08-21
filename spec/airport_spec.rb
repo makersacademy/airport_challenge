@@ -4,14 +4,14 @@ describe Airport do
 
   describe 'land(plane)' do
     it 'confirms a plane has landed' do
-      allow(subject).to receive(:stormy?).and_return(false)
+      allow(subject).to receive(:stormy?) { false }
       plane = double(:plane, landed?: false)
       allow(plane).to receive(:report_landed)
       expect(subject.land(plane)).to eq "#{plane} has landed at #{subject}"
     end
 
     it 'cannot land a plane when at capacity' do
-      allow(subject).to receive(:stormy?).and_return(false)
+      allow(subject).to receive(:stormy?) { false }
       plane = double(:plane, landed?: false)
       allow(plane).to receive(:report_landed)
       subject.capacity.times {subject.land(plane)}
@@ -19,7 +19,7 @@ describe Airport do
     end
 
     it 'cannot land a plane currently at an airport' do
-      allow(subject).to receive(:stormy?).and_return(false)
+      allow(subject).to receive(:stormy?) { false }
       plane = double(:plane, landed?: false)
       allow(plane).to receive(:report_landed)
       subject.land(plane)
@@ -29,7 +29,7 @@ describe Airport do
   end
 
   it 'stores a plane at airport' do
-    allow(subject).to receive(:stormy?).and_return(false)
+    allow(subject).to receive(:stormy?) { false }
     plane = double(:plane, landed?: false)
     allow(plane).to receive(:report_landed)
     subject.land(plane)
@@ -38,7 +38,7 @@ describe Airport do
 
   describe 'take_off(plane)' do
     it 'takes off a plane and confirms it has left' do
-      allow(subject).to receive(:stormy?).and_return(false)
+      allow(subject).to receive(:stormy?) { false }
       plane = double(:plane, landed?: false)
       allow(plane).to receive(:report_landed)
       subject.land(plane)
@@ -49,12 +49,19 @@ describe Airport do
 
     it 'cannot take off a plane that is already in the air' do
       plane = double(:plane, landed?: false)
+      allow(subject).to receive(:stormy?) { false }
       expect {subject.take_off(plane)}.to raise_error "#{plane} is already in the air"
+    end
+
+    it 'cannot take off a plane not currently at the airport' do
+      allow(subject).to receive(:stormy?) { false }
+      plane = double(:plane, landed?: true)
+      expect {subject.take_off(plane)}.to raise_error "#{plane} is not currently landed at this airport"
     end
   end
 
   it 'removes plane from airport once it has taken off' do
-    allow(subject).to receive(:stormy?).and_return(false)
+    allow(subject).to receive(:stormy?) { false }
     plane = double(:plane, landed?: false)
     allow(plane).to receive(:report_landed)
     subject.land(plane)
@@ -65,17 +72,17 @@ describe Airport do
   end
 
   it 'cannot take off when weather is stormy' do
-    allow(subject).to receive(:stormy?).and_return(false)
+    allow(subject).to receive(:stormy?) { false }
     plane = double(:plane, landed?: false)
     allow(plane).to receive(:report_landed)
     subject.land(plane)
     allow(plane).to receive(:landed?).and_return(true)
-    allow(subject).to receive(:stormy?).and_return(true)
+    allow(subject).to receive(:stormy?) { true }
     expect {subject.take_off(plane)}.to raise_error 'Plane cannot take off due to stormy conditions'
   end
 
   it 'cannot land a plane when weather is stormy' do
-    allow(subject).to receive(:stormy?).and_return(true)
+    allow(subject).to receive(:stormy?) { true }
     plane = double(:plane, landed?: false)
     allow(plane).to receive(:report_landed)
     expect {subject.land(plane)}.to raise_error "Plane cannot land due to stormy conditions"

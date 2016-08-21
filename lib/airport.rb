@@ -23,6 +23,7 @@ class Airport
 
   def take_off(plane)
     fail "#{plane} is already in the air" if !plane.landed?
+    fail "#{plane} is not currently landed at this airport" if !landed_planes.include?(plane)
     fail 'Plane cannot take off due to stormy conditions' if stormy?
     landed_planes.delete(plane)
     plane.report_taken_off
