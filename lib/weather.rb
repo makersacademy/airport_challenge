@@ -6,11 +6,7 @@ module Weather
 
   def weather_report
     zeus
-    if zeus == 4
-       "stormy"
-    else
-       "sunny"
-    end
+    zeus == 4 ? "stormy" : "sunny"
   end
-    module_function :zeus
+  
 end

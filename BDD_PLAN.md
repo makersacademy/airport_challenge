@@ -1,19 +1,22 @@
-
-weather = Random number generator
-use stub to override weather to ensure consistent behaviour
-
 Domain Model
 ---------
 
-| Objects        | Messages     | Attributes    
-| ------------- |:-------------:
-| Planes     | land | takeoff |
-| Airport | is_full? |         | capacity_default_overridable
-| Aircraft Traffic Controller  | instruct_take_off_from_airport | confirm_not_in_airport | prevent planes when weather bad
-| Weather |                   |sunny | stormy
+| Objects | Messages     | Attributes    
+| --------|:-------------:
+| Planes  | land, takeoff |
+| Airport | full?, in_airport         | capacity, planes
+| Weather | rand (zeus)   |sunny | stormy
 
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport
+
+2do
+
+- [ ] refactor for single responsibility
+- [ ] calm zeus down he is destroying tests randomly
+- [ ] check all edge cases are covered
+- [ ] make md files prettier
+
 
 Tests 2 Write
 
@@ -23,9 +26,11 @@ Tests 2 Write
 - [x] an Airport "does not accept planes when full"
 - [x] an Airport "allows controller to override default capacity"
 - [ ] an Airpot "only lets harboured plans take off"
+- [x] an Airport "can check whether a plane is harboured"
 - [x] an Airport "only lets a plane harbour once"
 - [x] weather shared example "is stormy when zeus returns 4"
 - [x] weather shared example "is sunny when zeus returns 1,2,3 or 5"
+- [x] only plane objects can be passed as arguments
 
 an Airport "can harbour planes"
 1. Given: a plane and a airport
@@ -58,3 +63,5 @@ edge case tests
 an Airpot "only lets harboured plans take off"
 
 an Airport "only lets a plane harbour once"
+
+only plane objects can be passed as arguments

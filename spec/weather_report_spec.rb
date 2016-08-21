@@ -2,6 +2,7 @@ require 'weather'
 
 shared_examples_for 'weather_report' do
   subject {described_class.new}
+  let(:weather_report) { :weather_report == "sunny"}
 
   it "is stormy when zeus returns 4" do
     allow(subject).to receive(:zeus) {4}
