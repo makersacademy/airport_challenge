@@ -5,6 +5,7 @@ require 'weather'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) { double :plane }
+  let(:weather) {double :weather}
 
   describe "#land" do
     it 'raises an error when the aiport is full' do
@@ -16,7 +17,7 @@ describe Airport do
   context 'the weather is fine' do
 
     before do
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+      allow_any_instance_of(weather).to receive(:stormy?).and_return(false)
     end
 
     xit 'confirms the plane has taken off and is not in the airport' do
@@ -33,7 +34,7 @@ describe Airport do
   context 'the weather is too stormy for take off' do
 
     before do
-      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
+      allow_any_instance_of(weather).to receive(:stormy?).and_return(true)
     end
 
     xit 'does not allow a plane to take off if it is stormy' do
