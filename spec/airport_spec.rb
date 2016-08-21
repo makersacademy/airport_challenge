@@ -10,6 +10,7 @@ describe Airport do
     allow(plane).to receive(:take_off).and_return(true)
     allow(plane).to receive(:land).and_return(true)
     allow(Weather).to receive(:new).and_return(act_weather)
+    allow(act_weather).to receive(:stormy?).and_return(false)
   end
 
   describe "initialize" do
@@ -24,54 +25,47 @@ describe Airport do
     end
   end
 
-  describe "let_plane_to_take_off" do
+  describe "start_take_off" do
 
     it "responds to the method call" do
-      expect(subject).to respond_to(:let_plane_to_take_off).with(1).arguments
+      expect(subject).to respond_to(:start_take_off).with(1).arguments
     end
 
     it "lets a plane to take off from the airport in sunny weather" do
-      allow(act_weather).to receive(:sunny?).and_return true
-      subject.let_plane_to_land(plane)
-      expect(subject.let_plane_to_take_off(plane)).to eq("The plane has left the airport")
+      subject.start_landing(plane)
+      expect(subject.start_take_off(plane)).to eq("The plane has left the airport")
     end
 
     it "doesn't let a plane to take off in stormy weather" do
-      allow(act_weather).to receive(:sunny?).and_return(true)
-      subject.let_plane_to_land(plane)
-      allow(act_weather).to receive(:sunny?).and_return(false)
-      expect{subject.let_plane_to_take_off(plane)}.to raise_error
+      subject.start_landing(plane)
+      allow(act_weather).to receive(:stormy?).and_return(true)
+      expect{subject.start_take_off(plane)}.to raise_error
     end
 
     it "doesn't let the plane to take off if it's not at this airport" do
-      allow(act_weather).to receive(:sunny?).and_return(true)
-      expect{subject.let_plane_to_take_off(plane)}.to raise_error("Plane is not at the airport")
+      expect{subject.start_take_off(plane)}.to raise_error(RuntimeError)
     end
 
   end
 
-  describe "let_plane_to_land" do
+  describe "start_landing" do
 
     it "responds to the method call" do
-      expect(subject).to respond_to(:let_plane_to_land).with(1).arguments
+      expect(subject).to respond_to(:start_landing).with(1).arguments
     end
 
     it "lets a plane to land in sunny weather" do
-      allow(act_weather).to receive(:sunny?).and_return(true)
-      expect(subject.let_plane_to_land(plane)).to eq("The plane has landed")
+      expect(subject.start_landing(plane)).to eq("The plane has landed")
     end
 
     it "doesn't let a plane to land in stormy weather" do
-      allow(act_weather).to receive(:sunny?).and_return(false)
-      expect{subject.let_plane_to_land(plane)}.to raise_error
+      allow(act_weather).to receive(:stormy?).and_return(true)
+      expect{subject.start_landing(plane)}.to raise_error(RuntimeError)
     end
 
     it "doesn't let a plane to land if the airport if full" do
-      allow(act_weather).to receive(:sunny?).and_return(true)
-      subject.capacity.times { subject.let_plane_to_land(plane)}
-      expect{subject.let_plane_to_land(plane)}.to raise_error("Airport is full, plane cannot land at this airport")
+      subject.capacity.times { subject.start_landing(plane)}
+      expect{subject.start_landing(plane)}.to raise_error(RuntimeError)
     end
-
   end
-
 end

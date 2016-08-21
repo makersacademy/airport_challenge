@@ -17,12 +17,11 @@ class Plane
   end
 
   private
-  def landed?
+  def landed? #check if plane has landed
     !@flying
   end
 
-  def flying?
+  def flying? #check if plane has taken off
     @flying
   end
-
 end
