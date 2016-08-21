@@ -15,11 +15,13 @@ feature 'Feature Testing' do
 
     it 'can land multiple planes' do
       @planes[0..4].each {|plane| airport.land(plane)}
-      expect(airport.instance_variable_get(:@landed_planes)).to eq(@planes[0..4])
+      landed_planes = airport.instance_variable_get(:@landed_planes)
+      expect(landed_planes).to eq(@planes[0..4])
     end
 
     it 'will fail if pushed to capacity' do
-      expect{ @planes[0..7].each { |plane| airport.land(plane) } }.to raise_error 'Airport is full, the plane has diverted.'
+      error = 'Airport is full, the plane has diverted.'
+      expect{ @planes[0..7].each { |x| airport.land(x) } }.to raise_error error
     end
 
   end
