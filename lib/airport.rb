@@ -3,14 +3,18 @@ require_relative "weather"
 
 class Airport
 
-  def initialize
+  DEFAULT_CAPACITY = 5
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @in_airport = []
   end
 
-  attr_reader :in_airport
+  attr_reader :in_airport, :capacity
 
   def request_land(aircraft)
     conditions
+    fail "Plane already landed" if @in_airport.include?(aircraft)
     fail "Airport full" if full?
     aircraft.land
     @in_airport << aircraft
@@ -19,9 +23,10 @@ class Airport
 
   def request_depart(aircraft)
     conditions
+    fail "Plane already in flight" unless @in_airport.include?(aircraft)
     aircraft.take_off
     @in_airport.delete(aircraft)
-    puts "aircraft departed" if !@in_airport.include?(aircraft)
+    puts "aircraft departed" unless @in_airport.include?(aircraft)
   end
 
   private
@@ -31,7 +36,7 @@ class Airport
   end
 
   def full?
-    @in_airport.count >= 5
+    @in_airport.count >= @capacity
   end
 
 end

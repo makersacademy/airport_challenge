@@ -5,9 +5,8 @@ describe Airport do
 
   before do
     @weather = double(:weather)
-    #@plane = double(:plane)
+    #let(:plane) {double(:plane)}
   end
-
 
   context "#request_land" do
 
@@ -18,19 +17,19 @@ describe Airport do
     it "landed plane should then be inside airport" do
       port = Airport.new
       plane = Plane.new
-      allow(@weather).to receive(:stormy?).and_return(false)
+      allow_any_instance_of(@weather).to receive(:stormy).and_return(:false)
       port.request_land(plane)
       expect(port.in_airport).to include(plane)
     end
 
     it "shows error when to stormy to land" do
       plane = Plane.new
-      allow(@weather).to receive(:stormy?).and_return(true)
+      allow(subject).to receive(:stormy?).and_return(true)
       expect{subject.request_land(plane)}.to raise_error "its to dangerous to do that now"
     end
 
     it "raises error when airport is full" do
-      @weather.stub(:stormy?).and_return(false)
+      allow(@weather).to receive(:stormy?).and_return(false)
       5.times {subject.request_land(Plane.new)}
       expect{subject.request_land(Plane.new)}.to raise_error "Airport full"
     end
@@ -55,6 +54,14 @@ describe Airport do
       plane = Plane.new
       allow(@weather).to receive(:stormy?).and_return(true)
       expect{subject.request_depart(plane)}.to raise_error "its to dangerous to do that now"
+    end
+  end
+
+
+  describe "capacity" do
+    it "should take in custom capacity value" do
+      port = Airport.new(10)
+      expect(port.capacity).to eq(10)
     end
   end
 

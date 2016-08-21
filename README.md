@@ -64,7 +64,24 @@ I want to prevent landing when the airport is full
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+= METHODS IMPLEMENTED, FUNCTION TEST WORKING, NEED TO REVISIT STUBS ON RSPEC
 ```
+
+####################### COMMENTS ##########################
+All user stories have been actioned and tested in IRB (example below). Various RSpec test are passing/failing here and there due to random weather instances which I have not figured out how to stub properly.
+
+:003 > port = Airport.new(3)
+ => #<Airport:0x007fd0010a90f0 @capacity=3, @in_airport=[]>
+ :004 > plane1 = Plane.new
+ => #<Plane:0x007fd00109a708
+ :005 > port.request_land(plane1)
+RuntimeError: its to dangerous to do that now
+ :006 > port.request_land(plane1)
+Landed safely
+:007 > port.request_depart(plane1)
+aircraft departed
+
+###########################################################
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 

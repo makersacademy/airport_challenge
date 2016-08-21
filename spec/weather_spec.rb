@@ -7,7 +7,7 @@ describe Weather do
   end
 
   it "should return true if rand int. is in range (8..10)" do
-    allow(subject).to receive(:stormy) {true}
-    expect(subject.stormy).to eq(true)
+    allow(subject).to receive(:stormy?).and_return(true)
+    expect(subject.stormy?).to eq(true)
   end
 end

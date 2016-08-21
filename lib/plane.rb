@@ -7,7 +7,7 @@ class Plane
   end
 
   attr_accessor :in_flight
-  alias_method :in_flight?, :in_flight
+  alias in_flight? in_flight
 
   def land
     in_flight = false
