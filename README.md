@@ -124,11 +124,11 @@ I would like a default airport capacity that can be overridden as appropriate
 
 | Objects | Messages |
 | ------- | -------- |
-| Plane   | land |
+| Airport   | land |
 |         | take_off |
-| Airport | plane_check |
 |         | full? |
 |         | capacity |
+| Plane | |
 | Weather | stormy? |
 
 2. Work through first two user stories to define landing and taking off
