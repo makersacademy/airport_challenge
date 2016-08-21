@@ -11,6 +11,7 @@ class Airport
   def land(plane)
     raise "too stormy to land" if weather_check == "stormy"
     @planes << plane
+    plane.plane_landed
   end
 
   def take_off(plane)

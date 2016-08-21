@@ -13,7 +13,11 @@ describe Plane do
       allow(airport).to receive(:land).and_return("landed")
     end
     it 'upon landing, changes plane status to landed' do
-      plane.landed
+      plane.plane_landed
+      expect(plane.status).to eq "landed"
+    end
+    it 'upon taking off, changes plane status to flying' do
+      plane.plane_taking_off
       expect(plane.status).to eq "landed"
     end
   end
