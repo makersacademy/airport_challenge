@@ -12,6 +12,7 @@ class Airport
   end
 
   def land_plane(plane)
+    fail "Delay landing!" if current_forecast.forecast == "Stormy"
     plane.report_landed
     planes << plane
   end

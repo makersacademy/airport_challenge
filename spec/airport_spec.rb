@@ -10,7 +10,11 @@ describe Airport do
       expect(subject.land_plane(plane)).to eq [plane]
     end
 
-    skip 'prevents landing when weather is stormy' do
+    it 'prevents landing when weather is stormy' do
+      plane = double(:plane, report_take_off: false)
+      weather = double(:weather, forecast: "Stormy")
+      subject.current_forecast = weather
+      expect { subject.land_plane(plane) }.to raise_error "Delay landing!"
     end
 
     skip 'prevents landing when airport is full' do
@@ -29,9 +33,9 @@ describe Airport do
 
     it 'prevents planes taking off when weather is stormy' do
       plane = double(:plane, report_landed: true, report_take_off: false)
+      subject.land_plane(plane)
       weather = double(:weather, forecast: "Stormy")
       subject.current_forecast = weather
-      subject.land_plane(plane)
       expect { subject.take_off }.to raise_error "All flights grounded"
     end
 
