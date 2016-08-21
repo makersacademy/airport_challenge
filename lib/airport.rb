@@ -2,11 +2,14 @@ require_relative 'plane'
 class Airport
 
   def land
-    Plane.new
+    plane = Plane.new
+    plane
   end
 
   def take_off
-    Plane.new
-
+    plane = Plane.new
+    plane.landed = false
+    plane
   end
+
 end
