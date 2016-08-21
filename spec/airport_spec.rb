@@ -2,6 +2,10 @@ require 'airport'
 
 describe Airport do
 
+  before do
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return(false)
+  end
+
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
   let(:weather) { double :weather }
@@ -13,19 +17,18 @@ describe Airport do
 
     it 'instructs plane to land' do
       plane = double(:plane, :landed => false)
-      Weather.any_instance.stub(:stormy?).and_return(false)
       expect(subject.land(plane)).to eq [plane]
     end
 
     it 'docks plane in hangar' do
       plane = double(:plane, :flying => false, :landed => true)
-      Weather.any_instance.stub(:stormy?).and_return(false)
-      expect(subject.hangar).to include plane
+      subject.land(plane)
+      expect(subject.hangar).to eq [plane]
     end
 
     it 'stops plane from landing in stormy weather' do
       plane = double(:plane, :landed => false, :flying => true)
-      Weather.any_instance.stub(:stormy?).and_return(true)
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       expect{subject.land(plane)}.to raise_error 'Too stormy to land!'
     end
 
@@ -44,7 +47,7 @@ describe Airport do
     it 'stops plane from taking off in stormy weather' do
       plane = double(:plane, :landed => true, :flying => false)
       subject.land(plane)
-      Weather.any_instance.stub(:stormy?).and_return(true)
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       expect{subject.take_off(plane)}.to raise_error 'Too stormy to take off!'
     end
 
