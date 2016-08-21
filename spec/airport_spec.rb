@@ -43,25 +43,30 @@ describe Airport do
     end
   end
 
-  describe '#take_off' do
+  describe '#launch_plane' do
+    it 'raises an error if plane is not in airport' do
+        subject.land_plane(inflight_plane)
+        plane2 = double(:plane, report_take_off: false)
+        expect { subject.launch_plane(plane2) }.to raise_error "Plane is not at airport"
+    end
 
     it 'tells a plane to take off from an airport and reports as departed' do
       weather_is_sunny
       subject.land_plane(inflight_plane)
       weather_is_sunny
-      expect(subject.take_off).to eq inflight_plane
+      expect(subject.launch_plane(inflight_plane)).to eq inflight_plane
     end
 
     it 'prevents planes taking off when weather is stormy' do
       weather_is_sunny
       subject.land_plane(inflight_plane)
       weather_is_stormy
-      expect { subject.take_off }.to raise_error "All flights grounded"
+      expect { subject.launch_plane(inflight_plane) }.to raise_error "All flights grounded"
     end
 
     it 'prevents plane taking off if not in airport' do
       weather_is_sunny
-      expect { subject.take_off }.to raise_error "Plane is not in airport"
+      expect { subject.launch_plane(inflight_plane) }.to raise_error "Plane is not in airport"
     end
 
   end

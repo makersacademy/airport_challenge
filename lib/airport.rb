@@ -20,18 +20,45 @@ class Airport
     if plane.landed?
         raise "already landed"
     else
-      plane.report_landed
+      plane.report_landed(self)
       planes << plane
     end
   end
 
-  def take_off
+  # def take_off
+  #   # fail "All flights grounded" if current_forecast.forecast == "Stormy"
+  #   # fail "Plane is not in airport" if empty?
+  #   # plane = planes.pop
+  #   # launch_plane(plane)
+  #   # plane.report_take_off
+  #   # plane
+  #   launch_plane(planes[-1])
+  # end
+
+  def launch_plane(plane)
     fail "All flights grounded" if current_forecast.forecast == "Stormy"
     fail "Plane is not in airport" if empty?
-    plane = planes.pop
-    plane.report_take_off
-    plane
+    if find_plane(plane)
+      plane.report_take_off
+      planes.delete(plane)
+      plane
+    else
+      raise "Plane is not at airport"
+    end
   end
+
+  def find_plane(plane)
+    found = false
+    planes.each do |current_plane|
+      if current_plane == plane
+        found = true
+        break
+      end
+    end
+    found
+  end
+
+
 
 private
 
