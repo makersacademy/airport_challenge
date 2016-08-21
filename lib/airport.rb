@@ -17,4 +17,5 @@ class Airport
     raise "too stormy to take off" if current_weather.stormy?
     @planes.delete(plane)
   end
+
 end
