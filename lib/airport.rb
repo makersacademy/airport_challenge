@@ -17,13 +17,10 @@ class Airport
   end
 
   def take_off
-    if current_forecast.forecast == "Stormy"
-      raise "All flights grounded"
-    else
+    fail "All flights grounded" if current_forecast.forecast == "Stormy"
     plane = planes.pop
     plane.report_take_off
     plane
-    end
   end
 
 
