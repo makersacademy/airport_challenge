@@ -18,8 +18,13 @@ describe Airport do
       expect(airport.planes).to include plane
     end
     it 'will not allow planes to land if airport full' do
-      Airport::CAPACITY.times { subject.land(plane)}
-      expect { airport.land(plane) }.to raise_error 'Airport full'
+      Airport::CAPACITY.times { subject.land(Plane.new)}
+      expect { airport.land(Plane.new) }.to raise_error 'Airport full'
+    end
+    it 'cannot land the same plane twice' do
+      airport.land(plane)
+      msg = "This plane has already landed"
+      expect { airport.land(plane) }.to raise_error (msg)
     end
 
   #instructs the plane to take off and confirm no longer at airport
