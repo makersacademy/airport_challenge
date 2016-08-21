@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let (:plane) {double :plane}
+  let (:plane) {double :plane, :flying? => false}
   let (:forecast) {double :forecast, :stormy? => false}
 
   it "allows planes to land and confirms" do
@@ -49,7 +49,7 @@ describe Airport do
 
   describe "behaviour for edge cases" do
     it "doesn't allow planes already flying to take off" do
-      expect{subject.take_off(double(:flying? => true))}.to raise_error
+      expect{subject.take_off(double(:flying? => true), forecast)}.to raise_error
     end
   end
 
