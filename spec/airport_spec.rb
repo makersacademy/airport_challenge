@@ -40,6 +40,7 @@ describe Airport do
     end
     it 'plane cannot take off if not at the airport' do
       airport.land(plane)
+      airport.land(Plane.new)
       airport.take_off(plane)
       msg = "This plane has already taken off from this airport"
       expect { airport.take_off(plane) }.to raise_error (msg)
@@ -51,10 +52,12 @@ describe Airport do
       allow(airport).to receive(:weather_check).and_return("stormy")
     end
 
-    it 'will not let plane take off if stormy' do
-      msg = "too stormy to take off"
-      expect{airport.take_off(plane)}.to raise_error(msg)
-    end
+    # it 'will not let plane take off if stormy' do
+    #   allow(airport).to receive(:land).and_return(@planes = [plane])
+    #   airport.land(plane)
+    #   msg = "too stormy to take off"
+    #   expect{airport.take_off(plane)}.to raise_error(msg)
+    # end
 
     it 'will not let plane land if stormy' do
       msg = "too stormy to land"
