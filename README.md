@@ -49,14 +49,17 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
+= METHODS IMPLEMENTED, FUNCTION TEST WORKING, NEED TO REVISIT STUBS ON RSPEC
 
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
+= METHODS IMPLEMENTED, FUNCTION TEST WORKING, NEED TO REVISIT STUBS ON RSPEC
 
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
+= METHODS IMPLEMENTED, FUNCTION TEST WORKING, NEED TO REVISIT STUBS ON RSPEC
 
 As the system designer
 So that the software can be used for many different airports
