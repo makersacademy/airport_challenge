@@ -15,4 +15,12 @@ describe Airport do
     expect(subject.landed_planes).to include plane
   end
 
+  describe 'take_off(plane)' do
+    it 'takes off a plane and confirms it has left' do
+      plane = double(:plane)
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq "#{plane} has taken off from #{subject}"
+    end
+  end
+
 end

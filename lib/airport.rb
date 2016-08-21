@@ -11,4 +11,8 @@ class Airport
     "#{plane} has landed"
   end
 
+  def take_off(plane)
+    "#{plane} has taken off from #{self}"
+  end
+
 end
