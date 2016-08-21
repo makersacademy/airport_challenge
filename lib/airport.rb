@@ -38,7 +38,7 @@ private
   end
 
   def check_space
-    fail "Sorry, we've got more planes that you can shake a stick at." if full?
+    fail "Sorry, we've got more planes than you can shake a stick at." if full?
   end
 
   def full?
@@ -46,7 +46,7 @@ private
   end
 
   def check_in_flight(plane)
-    fail "Plane's aleady down, Sir" if plane.in_flight == false
+    fail "Plane's aleady down, Sir." if plane.in_flight == false
   end
 
   def check_in_airport(plane)

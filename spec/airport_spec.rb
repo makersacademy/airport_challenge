@@ -25,12 +25,12 @@ describe Airport do
 
     it 'prevents landing when airport is full' do
       Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
-      expect{subject.land(plane)}.to raise_error "Sorry, we've got more planes that you can shake a stick at."
+      expect{subject.land(plane)}.to raise_error "Sorry, we've got more planes than you can shake a stick at."
     end
 
     it 'prevents landing if plane is grounded' do
       allow(plane).to receive(:in_flight).and_return false
-      expect{subject.land(plane)}.to raise_error "Plane's aleady down, Sir"
+      expect{subject.land(plane)}.to raise_error "Plane's aleady down, Sir."
     end
 
   end
