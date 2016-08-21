@@ -18,7 +18,7 @@ describe Plane do
     end
     it 'upon taking off, changes plane status to flying' do
       plane.plane_taking_off
-      expect(plane.status).to eq "landed"
+      expect(plane.status).to eq "flying"
     end
   end
 end

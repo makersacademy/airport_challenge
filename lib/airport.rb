@@ -17,6 +17,7 @@ class Airport
   def take_off(plane)
     raise "too stormy to take off" if weather_check == "stormy"
     @planes.delete(plane)
+    plane.plane_taking_off
   end
 
   def weather_check
