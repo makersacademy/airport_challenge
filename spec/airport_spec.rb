@@ -3,12 +3,13 @@ require 'airport'
 describe Airport do
 
   let(:Weather) {double :Weather}
-  let(:plane) {double :plane}
+  let(:plane1) {double :plane1}
+  let(:plane2) {double :plane2}
   let(:act_weather) {double :act_weather}
 
   before(:each) do
-    allow(plane).to receive(:take_off).and_return(true)
-    allow(plane).to receive(:land).and_return(true)
+    allow(plane1).to receive(:take_off).and_return(true)
+    allow(plane1).to receive(:land).and_return(true)
     allow(Weather).to receive(:new).and_return(act_weather)
     allow(act_weather).to receive(:stormy?).and_return(false)
   end
@@ -32,18 +33,19 @@ describe Airport do
     end
 
     it "lets a plane to take off from the airport in sunny weather" do
-      subject.start_landing(plane)
-      expect(subject.start_take_off(plane)).to eq("The plane has left the airport")
+      subject.start_landing(plane1)
+      expect(subject.start_take_off(plane1)).to eq("The plane has left the airport")
     end
 
     it "doesn't let a plane to take off in stormy weather" do
-      subject.start_landing(plane)
+      subject.start_landing(plane1)
       allow(act_weather).to receive(:stormy?).and_return(true)
-      expect{subject.start_take_off(plane)}.to raise_error
+      expect{subject.start_take_off(plane1)}.to raise_error
     end
 
     it "doesn't let the plane to take off if it's not at this airport" do
-      expect{subject.start_take_off(plane)}.to raise_error(RuntimeError)
+      expect{subject.start_take_off(plane1
+        )}.to raise_error(RuntimeError)
     end
 
   end
@@ -55,17 +57,18 @@ describe Airport do
     end
 
     it "lets a plane to land in sunny weather" do
-      expect(subject.start_landing(plane)).to eq("The plane has landed")
+      expect(subject.start_landing(plane1)).to eq("The plane has landed")
     end
 
     it "doesn't let a plane to land in stormy weather" do
       allow(act_weather).to receive(:stormy?).and_return(true)
-      expect{subject.start_landing(plane)}.to raise_error(RuntimeError)
+      expect{subject.start_landing(plane1)}.to raise_error(RuntimeError)
     end
 
     it "doesn't let a plane to land if the airport if full" do
-      subject.capacity.times { subject.start_landing(plane)}
-      expect{subject.start_landing(plane)}.to raise_error(RuntimeError)
+      airport = Airport.new(1)
+      airport.start_landing(plane1)
+      expect{airport.start_landing(plane2)}.to raise_error(RuntimeError)
     end
   end
 end

@@ -20,19 +20,20 @@ class Airport
   end
 
   def check_conditions_to_take_off(plane)
-    fail "Plane is not at the airport" if !@planes.include?(plane)
-    fail "Due to stormy weather, plane cannot take off" if stormy?
+    fail "#{plane.class.name} is not at the airport" unless @planes.include?(plane)
+    fail "Due to stormy weather, #{plane.class.name} cannot take off" if stormy?
     "Take off is approved" #returns approval message
   end
 
   def start_landing(plane)
-    check_conditions_to_land #ask for approval to land
+    check_conditions_to_land(plane) #ask for approval to land
     land(plane) #instruct plane to land
   end
 
-  def check_conditions_to_land
-    fail "Airport is full, plane cannot land at this airport" if full?
-    fail "Due to stormy weather, plane cannot land" if stormy?
+  def check_conditions_to_land(plane)
+    fail "#{plane.class.name} is already at the airport" if @planes.include?(plane)
+    fail "Airport is full" if full?
+    fail "Due to stormy weather, #{plane.class.name} cannot land" if stormy?
     "Landing is approved" #returns approval message
   end
 
