@@ -1,4 +1,4 @@
-### Airport Challenge
+# Airport Challenge
 
 ## Description
 
@@ -12,7 +12,7 @@ There are three classes used in this program.
 2. Plane
 3. Weather
 
-# 1. Airport
+### 1. Airport
 
 * Properties
 
@@ -26,7 +26,7 @@ There are three classes used in this program.
   * `take_off(plane)` this removes a Plane object that is stored at the airport. This may fail if the weather requirements for take off are breached or if the plane is not grounded at the airport.
   * `full?` determines whether the airport has reached maximum capacity.
 
-# 2. Plane
+### 2. Plane
 
 * Properties
 
@@ -37,7 +37,7 @@ There are three classes used in this program.
   * `landed` changes the `grounded` status of the plane to `true`.
   * `taken_off` changes the `grounded` status of the plane to `false`.
 
-# 3. Weather
+### 3. Weather
 
 * Methods
 
