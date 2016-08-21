@@ -11,11 +11,15 @@ describe Airport do
       allow(plane).to receive(:plane_landed)
       allow(plane).to receive(:plane_taking_off)
     end
-  #instructs the plane to land and confirm it has landed
+    #instructs the plane to land and confirm it has landed
     it {expect(airport).to respond_to(:land).with(1).argument}
     it 'confirms the plane is at that airport once landed' do
       airport.land(plane)
       expect(airport.planes).to include plane
+    end
+    it 'will not allow planes to land if airport full' do
+      Airport::CAPACITY.times { subject.land(plane)}
+      expect { airport.land(plane) }.to raise_error 'Airport full'
     end
 
   #instructs the plane to take off and confirm no longer at airport
