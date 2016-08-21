@@ -14,6 +14,7 @@ describe Plane do
       plane.land
       expect(plane.landed?).to be true
     end
+
     it 'can takeoff from an airport' do
       plane.takeoff
       expect(plane.landed?).to be false
