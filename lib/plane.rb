@@ -1,23 +1,18 @@
 class Plane
 
-  attr_reader :flying
-
   #initialize a new plane instance
   def initialize
-    #@flying ivar stores the information whether the plane is in the air or not
-    @flying = false #plane is on the ground as default
-    @host_airport = "" #plane's host airport, if flying it should be nil
+    #in the air or not
+    @flying = true #plane is flying as default
   end
 
-  def land(airport)
-    raise "#{self.class.name} is already on the ground" if landed?
-    #airport's approval is needed for landing
+  def land
+    fail "#{self.class.name} is already on the ground" if landed?
     @flying = false #set the @flying ivar to false
   end
 
-  def take_off(airport)
-    raise "#{self.class.name} is already flying" if flying?
-    #take_off is possible is airport == @host_airport
+  def take_off
+    fail "#{self.class.name} is already flying" if flying?
     @flying = true #set the @flying ivar to true
   end
 
