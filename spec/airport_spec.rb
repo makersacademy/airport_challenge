@@ -2,8 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  it {is_expected.to respond_to(:take_off).with(1).argument}
-  it {is_expected.to respond_to(:landing).with(1).argument}
   it {is_expected.to respond_to :stormy}
 
   it 'lands multiple planes' do
@@ -13,9 +11,11 @@ describe Airport do
     expect(subject.landing(plane)).to eq [plane1, plane]
   end
 
-  it 'take off a plane' do
+  it 'take off multiple planes' do
     plane = Plane.new
-    expect(subject.take_off(plane)).to eq [plane]
+    plane1 = Plane.new
+    subject.take_off(plane1)
+    expect(subject.take_off(plane)).to eq [plane1, plane]
   end
 
   it 'the airport becomes stormy' do
