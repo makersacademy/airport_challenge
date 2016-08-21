@@ -8,6 +8,13 @@ describe Airport do
       plane = double(:plane)
       expect(subject.land(plane)).to eq "#{plane} has landed"
     end
+
+    it 'cannot land a plane when at capacity' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      plane = double(:plane)
+      subject.capacity.times {subject.land(plane)}
+      expect {subject.land(plane)}.to raise_error "#{subject} is currently at full capacity"
+    end
   end
 
   it 'stores a plane at airport' do
@@ -46,6 +53,10 @@ describe Airport do
     allow(subject).to receive(:stormy?).and_return(true)
     plane = double(:plane)
     expect {subject.land(plane)}.to raise_error "Plane cannot land due to stormy conditions"
+  end
+
+  it 'has a capacity' do
+    expect(subject.capacity).to eq 20
   end
 
 end
