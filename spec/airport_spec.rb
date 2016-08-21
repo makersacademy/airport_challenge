@@ -45,8 +45,12 @@ describe Airport do
     it "prevents landing when weather is stormy" do
       expect{subject.land(plane, forecast)}.to raise_error
     end
+  end
 
-
+  describe "behaviour for edge cases" do
+    it "doesn't allow planes already flying to take off" do
+      expect{subject.take_off(double(:flying? => true))}.to raise_error
+    end
   end
 
 end
