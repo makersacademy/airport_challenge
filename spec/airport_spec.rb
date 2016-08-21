@@ -6,7 +6,6 @@ describe Airport do
 
   subject {described_class.new}
   let(:plane) {double(:plane, :is_a? => true, :plane? => true)}
-  #let(:stormy?) { :stormy? == false}
 
   context '#land' do
     it "can harbour planes" do
@@ -23,7 +22,6 @@ describe Airport do
       subject.land(plane)
       expect{subject.land(plane)}.to raise_error "plane already landed"
     end
-
   end
 
   it "has planes take off" do

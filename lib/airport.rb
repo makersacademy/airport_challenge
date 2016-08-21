@@ -29,7 +29,7 @@ attr_reader :planes, :capacity
   def take_off
    raise "stormy day, no flying" if stormy?
    @planes.pop
- end
+  end
 
   private
 

@@ -11,11 +11,11 @@ Objects | Messages     | Attributes
 2do
 -----
 
-- [ ] refactor for single responsibility
-- [ ] Plane class needs to exist not just mixin
-- [ ] calm zeus down he is destroying tests randomly
+- [x] refactor for single responsibility
+- [x] Plane class needs to exist not just mixin
+- [x] calm zeus down he is destroying tests randomly
 - [ ] check all edge cases are covered
-- [ ] make md files prettier
+- [x] make md files prettier
 
 
 Tests 2 Write
