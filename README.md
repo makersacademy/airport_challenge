@@ -23,8 +23,8 @@ You can have a play in irb, simply:
 
 Or scroll down to see an example irb play
 
-Code lives in ./lib
-Tests in ./spec
+* Code lives in ./lib
+* Tests in ./spec
 
 Domain Model
 ---------
@@ -34,9 +34,6 @@ Objects | Messages     | Attributes
  Planes  | plane? |   
  Airport | full?, in_airport?, land, take_off,| capacity, planes
  Weather | zeus (rand), stormy? |
-
-
-- [ ] write my own README.md
 
 Tests
 ------
