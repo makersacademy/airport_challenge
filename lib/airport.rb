@@ -40,7 +40,7 @@ class Airport
   end
 
   def check_airport(plane)
-    fail "Plane is at another airport" if !hangar.include? plane
+    fail "Plane is at another airport" unless hangar.include? plane
   end
 
   def confirm_take_off
