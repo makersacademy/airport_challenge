@@ -1,8 +1,8 @@
 class Weather
 
   def stormy?
-    #0 means sunny, 1 means stormy
-    rand(2) == 1
+    #0 means stormy, rest means stormy
+    rand(10) == 0
   end
 
 end

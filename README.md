@@ -12,79 +12,45 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg)](https://coveralls.io/github/makersacademy/airport_challenge)
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
-Instructions
+Description
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+The Airport program controls the flow of planes at an airport. As at a regular airport, the planes can land and take off in sunny weather. Occasionally weather may be stormy, in that case the planes are not allowed to land or take off. Of course, a plane cannot land if it's already grounded at an airport, a plane cannot take off if it's already flying, furthermore a plane can only take off at an airport where it's located.
+Additionally, an airport has a maximum capacity of storing planes. This can be overridden when an airport instance is being initialised.
 
-Steps
--------
+The program has the following three separate classes in order to fulfill the requirements:
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+#### Airport class
+Airport class is used to create airport instances. During creation of an airport instance, the following ivars are initialized:
+* `@capacity`: stores the maximum capacity value of the airport. If Airport is initialized without defining the maximum capacity, the `DEFAULT_CAPACITY` is assigned to this ivar.
+* `@planes`: stores the landed planes in an Array
+* `@weather`: an instance of Weather is created and the object is stored in this ivar.
 
-Task
------
+Used public methods:
+* `take_off(plane)`: called if plane should be taken off. It calls the following methods inside the class: `check_conditions_to_take_off(plane)` and `instruct_to_take_off(plane)`
+* `check_conditions_to_take_off(plane)`: used by `take_off(plane)` method, in order to validate whether the conditions are suitable for a take off: it checks the weather condition and if the plane is located at the current airport. Relevant exceptions are raised if needed.
+* `land(plane)`: called if a plane should be landed. It calls the following methods inside the class: `check_conditions_to_land(plane)` and `instruct_to_land(plane)`
+* `check_conditions_to_land(plane)`: used by `land(plane)` method, in order to validate whether the conditions are suitable for a landing: it checks the weather condition and if the airport is able to store the plane. Relevant exceptions are raised if needed.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+Used private methods:
+* `full?`: checks if the airport if full
+* `stormy?`: by calling `@weather.stormy?` checks if the weather is stormy
+* `instruct_to_take_off(plane)`: calls the `take_off` method on the plane, deletes the plane in `@planes` ivar, then returns a confirmation of the successful take off.
+* `instruct_to_land(plane)`: calls the `land` method on the plane, add the plane to the `@planes` ivar, then returns a confirmation of the successful landing.
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+#### Weather class
+Weather class is responsible for providing weather information to the Airport class. During the creation of an airport instance, an instance of the Weather class is initialised.
+Used public methods:
+* `stormy?`: it can be asked whether the it's stormy or not. In the method a random number generator is used, and there is a 10% chance that the weather will be stormy.
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+#### Plane class
+By initialising this class, we can create a plane instance, that can be instructed by the traffic controllers located at the airport. It has an instance var called `@flying` which tells that the plane is flying (`@flying = true`) or not (`@flying = false`). Its default value is true.
+Used public methods:
+* `land`: set `@flying` to false. If it's already landed, an exception is raised.
+* `take_off`: set `@flying` to true. If it's already flying, an exception is raised.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Used private methods:
+* `flying?`: check if plane has taken off

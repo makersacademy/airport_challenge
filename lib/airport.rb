@@ -39,7 +39,7 @@ class Airport
   end
 
   private
-  #check whether the airport is full or not
+  #checks whether the airport is full or not
   def full?
     @planes.size >= @capacity
   end

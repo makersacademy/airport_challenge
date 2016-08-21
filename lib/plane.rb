@@ -7,7 +7,7 @@ class Plane
   end
 
   def land
-    fail "#{self.class.name} is already on the ground" if landed?
+    fail "#{self.class.name} is already on the ground" unless flying?
     @flying = false #set the @flying ivar to false
   end
 
@@ -17,10 +17,6 @@ class Plane
   end
 
   private
-  def landed? #check if plane has landed
-    !@flying
-  end
-
   def flying? #check if plane has taken off
     @flying
   end
