@@ -1,9 +1,7 @@
 # Creates a probalistic weather model for use with associated airport model.
 class Weather
-  def initialize(unsafe_prob = 2)
-    @unsafe_prob  = unsafe_prob
-  end
+UNSAFE = 2
   def check_safe?
-     Kernel.rand(1..10) > @unsafe_prob
+     Kernel.rand(1..10) > UNSAFE
   end
 end
