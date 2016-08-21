@@ -23,9 +23,10 @@ end
       allow(plane).to receive(:grounded).and_return(false)
       allow(plane).to receive(:landed)
       Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-      expect{airport.land(plane)}.to raise_error "Planes cannot land when airport is full"
+      msg = "Planes cannot land when airport is full"
+      expect{airport.land(plane)}.to raise_error msg
     end
-
+    
     it 'raises error if landing attempted in stormy weather' do
       allow(airport).to receive(:bad_weather?).and_return true
       msg = "Planes cannot land in stormy weather"
