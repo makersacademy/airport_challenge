@@ -51,4 +51,15 @@ describe Airport do
       expect{airport.land(plane)}.to raise_error(msg)
     end
   end
+
+  describe 'airport initialization' do
+    it 'should have a default capacity' do
+      expect(airport.instance_variable_get(:@capacity)).to eq Airport::CAPACITY
+    end
+
+    it 'can have a custom capacity' do
+      airport = Airport.new(30)
+      expect(airport.instance_variable_get(:@capacity)).to eq 30
+    end
+  end
 end
