@@ -2,27 +2,17 @@ Airport Challenge
 =================
 [![Build Status](https://travis-ci.org/jamesstonehill/airport_challenge.svg?branch=master)](https://travis-ci.org/jamesstonehill/airport_challenge)
 
-```
-        ______
-        _\____\___
-=  = ==(____JS____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
 This project is James Stonehill's solution to the Makers Academy Airport Challenge.
 
 ## **Overview**
-
 The bulk of the logic is centred around the plane object. It seemed to me that it was logically easier for a user to understand if the plane, as an autonomous and atomistic unit, was the main object that you dealt with. One option would have been to allow the airport to manage the taking off of planes, but I decided that plane.take_off(weather) was better than airport.release_plane(plane, weather).
 
 ### **Planes**
 
-Initialising a Plane: When a plane is created it's location is set to `nil` and it is not contained in any of the airport objects. This is the same for when the plane is in the air also. In order to start a plane at a specific airport, you should use the `plane.install_at(airport)` method. This method allows you to put a plane object into an airport without taking the weather into account as long as the airport has available space. This method should only be used once, as after a plane has been installed at an airport, it will tend to fly everywhere. 
+#### Initialising a Plane:
+When a plane is created it's location is set to `nil` and it is not contained in any of the airport objects. The plane's location is also set to nil when the plane is in the air, as the location variable is only supposed to contain airport objects.
+
+In order to start a plane at a specific airport, you should use the `plane.install_at(airport)` method. This method allows you to put a plane object into an airport without taking the weather into account as long as the airport has available space. This method should only be used once, as after a plane has been installed at an airport, it will tend to fly everywhere.
 
 #### Landing A Plane:
 In order to land a plane you need to apply the method land_at to a Plane object and provide the method two arguments
