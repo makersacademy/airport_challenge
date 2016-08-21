@@ -92,11 +92,11 @@ end
 private
 
   def bad_weather
-    allow(airport.weather).to receive(:stormy).and_return(true)
+    allow(airport.weather).to receive(:stormy?).and_return(true)
   end
 
   def good_weather
-    allow(airport.weather).to receive(:stormy).and_return(nil)
+    allow(airport.weather).to receive(:stormy?).and_return(false)
   end
 
   def plane_in_flight

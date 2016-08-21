@@ -4,10 +4,14 @@ describe Plane do
 
 subject(:plane) { described_class.new }
 
+let(:airport) { double :airport }
+
   describe '#landed' do
+
     it 'should return true if the plane has landed' do
       expect(plane.landed).to eq true
     end
+
   end
 
   describe '#taken_off' do
