@@ -28,9 +28,13 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 *TESTED*
 
-ensuring that planes can only take off from airports they are in
+***additional requirements/edge cases***
 
+ensuring that planes can only take off from airports they are in
+*TESTED*
 
 planes that are already flying cannot takes off and/or be in an airport
+*TESTED*
 
 planes that are landed cannot land again and must be in an airport
+*TESTED*

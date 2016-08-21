@@ -1,12 +1,12 @@
 require 'plane'
 
 describe Plane do
-  it "is landed on creation" do
-    expect(subject).not_to be_flying
+  it "is flying on creation" do
+    expect(subject).to be_flying
   end
 
   it "reacts to change of status" do
-    expect {subject.flying(true)}.to change{subject.flying?}.from(false).to(true)
+    expect {subject.flying(false)}.to change{subject.flying?}.from(true).to(false)
   end
 
 end
