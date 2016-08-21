@@ -55,8 +55,15 @@ describe Airport do
     expect {subject.land(plane)}.to raise_error "Plane cannot land due to stormy conditions"
   end
 
-  it 'has a capacity' do
-    expect(subject.capacity).to eq 20
+  describe 'capacity' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it 'can take an argument at instatiation as the capacity' do
+      subject = Airport.new 30
+      expect(subject.capacity).to eq 30
+    end
   end
 
 end
