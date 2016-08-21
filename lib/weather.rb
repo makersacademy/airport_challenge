@@ -1,2 +1,6 @@
 class Weather
-end 
+
+  def stormy?
+    true 
+  end
+end
