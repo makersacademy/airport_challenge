@@ -5,7 +5,7 @@ describe Airport do
 
   let(:weather_is_sunny) { subject.current_forecast.generate_weather(80) }
   let(:weather_is_stormy) { subject.current_forecast.generate_weather(81) }
-  let (:plane) { double(:plane, report_landed: true, report_take_off: false)}
+  let(:plane) { double(:plane, report_landed: true, report_take_off: false)}
 
 
 
@@ -49,7 +49,7 @@ describe Airport do
         expect { subject.land_plane(plane) }.to raise_error "already landed"
       end
     end
-   end
+  end
 
   describe '#take_off' do
 
