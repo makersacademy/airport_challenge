@@ -3,8 +3,8 @@ require 'plane'
 
 describe Airport do
 
-  let (:weather_is_sunny) { subject.current_forecast.generate_weather(80) }
-  let (:weather_is_stormy) { subject.current_forecast.generate_weather(81) }
+  let(:weather_is_sunny) { subject.current_forecast.generate_weather(80) }
+  let(:weather_is_stormy) { subject.current_forecast.generate_weather(81) }
   #let (:landed_plane) { double(:plane, report_landed: true)}
   #let (:inflight_plane)
 
