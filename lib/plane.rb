@@ -2,6 +2,7 @@ class Plane
 
 
   def report_landed
+    fail "landed plane already" if @landed == true
     @landed = true
   end
 
