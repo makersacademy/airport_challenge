@@ -1,4 +1,5 @@
 require_relative 'weather'
+#require_relative 'plane'
 
 class Airport
 
@@ -18,6 +19,7 @@ class Airport
     if @planes.count >= @capacity
       false
     else
+      #plane.flying(false)
       planes << plane
       plane
     end
