@@ -26,49 +26,48 @@ describe Airport do
     end
   end
 
-  describe "start_take_off" do
+  describe "take_off" do
 
     it "responds to the method call" do
-      expect(subject).to respond_to(:start_take_off).with(1).arguments
+      expect(subject).to respond_to(:take_off).with(1).arguments
     end
 
     it "lets a plane to take off from the airport in sunny weather" do
-      subject.start_landing(plane1)
-      expect(subject.start_take_off(plane1)).to eq("The plane has left the airport")
+      subject.land(plane1)
+      expect(subject.take_off(plane1)).to eq("The plane has left the airport")
     end
 
     it "doesn't let a plane to take off in stormy weather" do
-      subject.start_landing(plane1)
+      subject.land(plane1)
       allow(act_weather).to receive(:stormy?).and_return(true)
-      expect{subject.start_take_off(plane1)}.to raise_error
+      expect{subject.take_off(plane1)}.to raise_error
     end
 
     it "doesn't let the plane to take off if it's not at this airport" do
-      expect{subject.start_take_off(plane1
-        )}.to raise_error(RuntimeError)
+      expect{subject.take_off(plane1)}.to raise_error(RuntimeError)
     end
 
   end
 
-  describe "start_landing" do
+  describe "land" do
 
     it "responds to the method call" do
-      expect(subject).to respond_to(:start_landing).with(1).arguments
+      expect(subject).to respond_to(:land).with(1).arguments
     end
 
     it "lets a plane to land in sunny weather" do
-      expect(subject.start_landing(plane1)).to eq("The plane has landed")
+      expect(subject.land(plane1)).to eq("The plane has landed")
     end
 
     it "doesn't let a plane to land in stormy weather" do
       allow(act_weather).to receive(:stormy?).and_return(true)
-      expect{subject.start_landing(plane1)}.to raise_error(RuntimeError)
+      expect{subject.land(plane1)}.to raise_error(RuntimeError)
     end
 
     it "doesn't let a plane to land if the airport if full" do
       airport = Airport.new(1)
-      airport.start_landing(plane1)
-      expect{airport.start_landing(plane2)}.to raise_error(RuntimeError)
+      airport.land(plane1)
+      expect{airport.land(plane2)}.to raise_error(RuntimeError)
     end
   end
 end

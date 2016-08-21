@@ -12,11 +12,12 @@ class Airport
     #ivars are initialized
     @capacity = capacity
     @planes = []
+    @weather = Weather.new #create an instance of the Weather class
   end
 
-  def start_take_off(plane)
+  def take_off(plane)
     check_conditions_to_take_off(plane) #ask for approval to take off
-    take_off(plane) #instruct the plane to take off
+    instruct_to_take_off(plane) #instruct the plane to take off
   end
 
   def check_conditions_to_take_off(plane)
@@ -25,9 +26,9 @@ class Airport
     "Take off is approved" #returns approval message
   end
 
-  def start_landing(plane)
+  def land(plane)
     check_conditions_to_land(plane) #ask for approval to land
-    land(plane) #instruct plane to land
+    instruct_to_land(plane) #instruct plane to land
   end
 
   def check_conditions_to_land(plane)
@@ -44,16 +45,16 @@ class Airport
   end
 
   def stormy?
-    Weather.new.stormy?
+    @weather.stormy?
   end
 
-  def take_off(plane)
+  def instruct_to_take_off(plane)
     plane.take_off #calls the take_off method on the plane object
     @planes.delete(plane) #delete the plane in the @planes ivar
     "The plane has left the airport" #confirmation message is returned
   end
 
-  def land(plane)
+  def instruct_to_land(plane)
     plane.land #calls the land method on the plane object
     @planes << plane #add the plane to the @planes ivar
     "The plane has landed" #confirmation message is returned
