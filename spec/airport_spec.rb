@@ -19,6 +19,15 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(2).arguments
   end
 
+  it "doesn't contain planes that did take off" do
+    a_plane = double
+    allow(a_plane).to receive(:flying?).and_return(true, false)
+
+    subject.land(a_plane, forecast)
+    subject.take_off(a_plane, forecast)
+    expect(subject.planes).not_to include a_plane
+  end
+
   it "prevents landing when the airport is full" do
     35.times {subject.land(flying_plane, forecast)}
     expect(subject.land(flying_plane, forecast)).to eq false
@@ -33,8 +42,11 @@ describe Airport do
     let (:forecast) {double :forecast, :stormy? => true}
 
     it "prevents taking off when weather is stormy" do
-      subject.land(double(:flying? => true), double(:stormy? => false))
-      expect{subject.take_off(double(:flying? => false), forecast)}.to raise_error
+      a_plane = double
+      allow(a_plane).to receive(:flying?).and_return(true, false)
+      
+      subject.land(a_plane, double(:stormy? => false))
+      expect{subject.take_off(a_plane, forecast)}.to raise_error
     end
 
     it "prevents landing when weather is stormy" do
