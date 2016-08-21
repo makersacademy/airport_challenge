@@ -39,17 +39,12 @@ Defend against 'edge cases' and system inconsistencies such as instances of the 
 ##Design approach
 
 Use of 'object-orientated design' principles:
-        | **Object**            | **Attribute**              | **Interactions**                 |
-        | Airport               | Capacity                   | land, takeoff,                   |
-        |                       |                            | prevent_land, prevent_takeoff    |
-        | Plane                 | Working                    | land, takeoff                    |
-        | Weather               | Sunny, Stormy              | prevent_land, prevent_takeoff    |
-        
-        |---------|:------------:|
-|Plane    |Functional?   |
-|Airport  |land          |
-|         |takeoff       |
-|Weather  |stormy?       |
+
+        | Objects             | Attributes                   | Interactions                                        |
+        | :------------------ | :--------------------------- | :-------------------------------------------------- |
+        | Airport             | Capacity                     | land, takeoff, prevent_land, prevent_takeoff        |
+        | Plane               | Working                      | land, takeoff                                       |
+        | Weather             | Sunny, Stormy                | prevent_land, prevent_takeoff                       |
         
 3 class objects have been created:
         - The 'Airport' class has a default capacity and monitors the number of planes landing and taking off. Once capacity is reached, it prevents further planes from landing
@@ -64,17 +59,18 @@ Use of 'object-orientated design' principles:
         
 ##Validation
 
-Use of BDD/TDD: *[BDD]: Behaviour-driven development *[TDD]: Test-driven development
-      - Example test:   ```ruby
-                                describe Airport do #specification
-                                        context 'when sunny' do #context
-                                                it 'lets planes land' do #example
-                                                        plane = Plane.new #setup
-                                                        subject.land(plane) #execution
-                                                        expect(subject.land(plane)).to eq [plane] #expectation
-                                                end
-                                        end
-                                end```
+Example BDD/TDD test: 
+```ruby
+      describe Airport do #specification
+        context 'when sunny' do #context
+          it 'lets planes land' do #example
+             plane = Plane.new #setup
+             subject.land(plane) #execution
+             expect(subject.land(plane)).to eq [plane] #expectation
+          end
+        end
+      end
+```
 
 ##User instructions
 
