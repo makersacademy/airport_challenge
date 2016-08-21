@@ -16,8 +16,8 @@ end
   end
 
   def land(plane)
-    #fail 'its too stormy to take off' if stormy?
     fail 'The airport is full' if full?
+    fail 'its too stormy to land' if Weather.stormy?
     @planes << plane
   end
 
