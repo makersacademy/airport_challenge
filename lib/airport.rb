@@ -3,27 +3,30 @@ require_relative 'plane'
 class Airport
 DEFAULT_CAPACITY = 20
 def initialize(capacity = DEFAULT_CAPACITY)
-  @weather = true
+  @weather = 1
   @ground = []
   @sky = []
   @capacity = capacity
 end
 
 def random_weather
+  rand
 end
 
-def stormy?
-  @weather = false
+def stormy
+
 end
 
 def take_off
-  fail 'Cannot take off due to stormy weather' if @weather == false
+  @weather = random_weather
+  fail 'Cannot take off due to stormy weather' if @weather < 0.05
   @sky << @ground.pop
 end
 
 def landing(plane)
+  @weather = random_weather
   fail 'Capacity reached' if full?
-  fail 'Cannot land due to stormy weather' if @weather == false
+  fail 'Cannot land due to stormy weather' if @weather < 0.05
   @ground << plane
 end
 
