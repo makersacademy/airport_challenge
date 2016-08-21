@@ -54,7 +54,6 @@ describe Airport do
   describe '#take_off' do
 
     it 'tells a plane to take off from an airport and reports as departed' do
-      plane = double(:plane, report_landed: true, report_take_off: false)
       weather_is_sunny
       subject.land_plane(plane)
       weather_is_sunny
@@ -62,11 +61,18 @@ describe Airport do
     end
 
     it 'prevents planes taking off when weather is stormy' do
-      plane = double(:plane, report_landed: true, report_take_off: false)
       weather_is_sunny
       subject.land_plane(plane)
       weather_is_stormy
       expect { subject.take_off }.to raise_error "All flights grounded"
+    end
+
+    it 'prevents plane taking off if not in airport' do
+      weather_is_sunny
+      if subject.planes.length == 0
+        expect { subject.take_off }.to raise_error "Plane is not in airport"
+      end
+
     end
 
   end

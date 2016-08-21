@@ -16,19 +16,17 @@ class Airport
   end
 
   def land_plane(plane)
-    if !planes.include? plane
     fail "Delay landing!" if current_forecast.forecast == "Stormy"
     fail "Full airport" if planes.length >= capacity
+    fail "already landed" if planes.include? plane
     plane.report_landed
     planes << plane
-    else
-      raise "already landed"
-    end
   end
 
 
   def take_off
     fail "All flights grounded" if current_forecast.forecast == "Stormy"
+    fail "Plane is not in airport" if planes.length == 0
     plane = planes.pop
     plane.report_take_off
     plane
