@@ -3,7 +3,6 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :planes
   attr_accessor :current_forecast
   attr_reader :capacity
 
@@ -17,21 +16,34 @@ class Airport
 
   def land_plane(plane)
     fail "Delay landing!" if current_forecast.forecast == "Stormy"
-    fail "Full airport" if planes.length >= capacity
-    fail "already landed" if planes.include? plane
-    plane.report_landed
-    planes << plane
+    fail "Full airport" if full?
+    if plane.landed?
+        raise "already landed"
+    else
+      plane.report_landed
+      planes << plane
+    end
   end
-
 
   def take_off
     fail "All flights grounded" if current_forecast.forecast == "Stormy"
-    fail "Plane is not in airport" if planes.length == 0
+    fail "Plane is not in airport" if empty?
     plane = planes.pop
     plane.report_take_off
     plane
   end
 
+private
+
+  attr_reader :planes
+
+  def full?
+    planes.length >= capacity
+  end
+
+  def empty?
+    planes.empty?
+  end
 
 
 end
