@@ -7,6 +7,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Plane cannot land due to stormy conditions" if stormy?
     landed_planes << plane
     "#{plane} has landed"
   end
@@ -18,7 +19,7 @@ class Airport
   end
 
   def stormy?
-    true if rand(0) == 0
+    true if rand(5) == 0
   end
 
 end

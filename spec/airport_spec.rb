@@ -4,12 +4,14 @@ describe Airport do
 
   describe 'land(plane)' do
     it 'confirms a plane has landed' do
+      allow(subject).to receive(:stormy?).and_return(false)
       plane = double(:plane)
       expect(subject.land(plane)).to eq "#{plane} has landed"
     end
   end
 
   it 'stores a plane at airport' do
+    allow(subject).to receive(:stormy?).and_return(false)
     plane = double(:plane)
     subject.land(plane)
     expect(subject.landed_planes).to include plane
@@ -33,10 +35,16 @@ describe Airport do
   end
 
   it 'cannot take off when weather is stormy' do
-    allow(subject).to receive(:stormy?).and_return(true)
     plane = double(:plane)
     subject.land(plane)
+    allow(subject).to receive(:stormy?).and_return(true)
     expect {subject.take_off(plane)}.to raise_error 'Plane cannot take off due to a stormy conditions'
+  end
+
+  it 'cannot land a plane when weather is stormy' do
+    allow(subject).to receive(:stormy?).and_return(true)
+    plane = double(:plane)
+    expect {subject.land(plane)}.to raise_error "Plane cannot land due to stormy conditions"
   end
 
 end
