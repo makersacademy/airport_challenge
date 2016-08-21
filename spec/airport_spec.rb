@@ -13,10 +13,6 @@ describe Airport do
 
   it {is_expected.to respond_to :random_weather}
 
-  it 'gives me good weather if the random number is greater than .1' do
-    airport = Airport.new
-    airport.stub(:random_weather).and_return(0.5)
-  end
 
   it 'lands multiple planes' do
     plane, plane1 = Plane.new
@@ -46,13 +42,11 @@ describe Airport do
 
   it 'prevents landing when the weather is stormy' do
     subject.stub(:random_weather).and_return(0.01)
-    subject.stormy
     expect {subject.landing(Plane.new)}.to raise_error "Cannot land due to stormy weather"
   end
 
   it 'prevents take_off when the weather is stormy' do
     subject.stub(:random_weather).and_return(0.01)
-    subject.stormy
     expect {subject.take_off}.to raise_error "Cannot take off due to stormy weather"
   end
   it 'raises error when capacity is reached' do

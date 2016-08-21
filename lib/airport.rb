@@ -13,10 +13,6 @@ def random_weather
   rand
 end
 
-def stormy
-
-end
-
 def take_off
   @weather = random_weather
   fail 'Cannot take off due to stormy weather' if @weather < 0.05
