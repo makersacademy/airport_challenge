@@ -6,7 +6,8 @@ class Plane
     in_flight = true
   end
 
-  attr_reader :in_flight
+  attr_accessor :in_flight
+  alias_method :in_flight?, :in_flight
 
   def land
     in_flight = false
