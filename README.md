@@ -92,7 +92,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 My Approach to Challenge
 =====================
 
-Update the README with user stories and try to make a domain model
+1. Update the README with user stories and try to make a domain model
 
 **User Stories**
 
@@ -130,3 +130,23 @@ I would like a default airport capacity that can be overridden as appropriate
 |         | full? |
 |         | capacity |
 | Weather | stormy? |
+
+2. Work through first two user stories to define landing and taking off
+3. Feature test that a specific plane takes off rather than just any plane
+
+2.2.3 :001 > require './lib/airport'
+ => true
+2.2.3 :002 > airport = Airport.new
+ => #<Airport:0x007fc692121dc0 @planes=[]>
+2.2.3 :003 > plane1 = Plane.new
+ => #<Plane:0x007fc692113f68>
+2.2.3 :004 > plane2 = Plane.new
+ => #<Plane:0x007fc6920bd528>
+2.2.3 :005 > airport.land(plane1)
+ => [#<Plane:0x007fc692113f68>]
+2.2.3 :006 > airport.land(plane2)
+ => [#<Plane:0x007fc692113f68>, #<Plane:0x007fc6920bd528>]
+2.2.3 :007 > airport.take_off(plane1)
+ => #<Plane:0x007fc692113f68>
+2.2.3 :008 > airport.planes
+ => [#<Plane:0x007fc6920bd528>]
