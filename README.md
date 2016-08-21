@@ -89,10 +89,10 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
-Approach to Challenge
+My Approach to Challenge
 =====================
 
-Update the README with user stories and domain model
+Update the README with user stories and try to make a domain model
 
 **User Stories**
 
@@ -121,3 +121,12 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
 **Domain Model**
+
+| Objects | Messages |
+| ------- | -------- |
+| Plane   | land |
+|         | take_off |
+| Airport | plane_check |
+|         | full? |
+|         | capacity |
+| Weather | stormy? |
