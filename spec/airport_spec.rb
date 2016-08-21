@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
-  let(:weather) { double :weather }
+  let(:weather) { double :weather, :stormy => true }
 
   #instructs the plane to land and confirm it has landed
   before do
@@ -21,13 +21,15 @@ describe Airport do
   end
     it {expect(airport).to respond_to(:take_off).with(1).argument}
     it 'confirms the plane is not at that airport once taken off' do
+      airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes).to_not include plane
     end
 
   it 'will not let plane take off if stormy' do
     allow(weather).to receive(:stormy?).and_return(true)
-    expect{airport.take_off(plane)}.to raise_error("too stormy to take off")
+    msg = "too stormy to take off"
+    expect{airport.take_off(plane)}.to raise_error(msg)
   end
-  
+
 end
