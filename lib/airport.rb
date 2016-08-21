@@ -8,7 +8,8 @@ class Airport
     @planes = []
   end
 
-  def land (plane)
+  def land (plane, weather)
+    fail "Planes aren't allowed to take off during stormy weather" if weather.stormy?
     planes << plane
     plane
   end
