@@ -32,5 +32,14 @@ describe Airport do
   expect { subject.land Plane.new }.to raise_error 'Airport full'
   end
 
+  describe 'initialization' do
+      let(:plane) { double(:plane) }
+      it 'defaults capacity' do
+        described_class::DEFAULT_CAPACITY.times do
+          subject.land(plane)
+        end
+        expect{ subject.land(plane) }.to raise_error 'Airport full'
+      end
+    end
 
 end
