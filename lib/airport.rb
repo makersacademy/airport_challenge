@@ -6,7 +6,7 @@ def initialize(capacity = DEFAULT_CAPACITY)
   @weather = true
   @ground = []
   @sky = []
-  @capacity = 20
+  @capacity = capacity
 end
 
 def stormy
