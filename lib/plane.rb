@@ -8,6 +8,4 @@ class Plane
     @landed = false
   end
 
-
-
 end
