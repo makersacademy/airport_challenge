@@ -1,8 +1,8 @@
 require_relative 'plane'
 
 class Airport
-
-def initialize
+DEFAULT_CAPACITY = 20
+def initialize(capacity = DEFAULT_CAPACITY)
   @weather = true
   @ground = []
   @sky = []
