@@ -5,15 +5,13 @@ class Airport
 
   include AirTrafficControl
 
-  def initialize(capacity = 50)
+  DEFAULT_CAPACITY = 50
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @weather = "sunny"
     @capacity = capacity
     @planes = []
   end
-
-#  def set_weather(weather)
-#    @weather = weather
-#  end
 
   def prevent_take_off
     fail 'Take-off not permitted due to stormy weather. Await for further instructions!' if stormy?
