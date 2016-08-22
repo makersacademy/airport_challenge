@@ -1,6 +1,6 @@
-require 'airport'
-require 'plane'
-require 'weather'
+require_relative 'airport'
+require_relative 'plane'
+require_relative 'weather'
 
 describe Airport do
 
