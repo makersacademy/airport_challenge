@@ -34,7 +34,7 @@ private
   end
 
   def full?
-    @planes.count >= CAPACITY
+    @planes.count >= @capacity
   end
 
   attr_reader :planes

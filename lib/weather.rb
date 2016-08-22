@@ -4,13 +4,13 @@ class Weather
     @weather = weather_outlook
   end
 
-private
-
   def stormy?
-    @weather == :stormy
+    weather == :stormy
   end
 
   OUTLOOKS = [:stormy, :fine, :fine, :fine, :fine].freeze
+
+private
 
   def weather_outlook
     OUTLOOKS.sample

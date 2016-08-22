@@ -1,19 +1,17 @@
 class Plane
 
   def initialize
-    @status = "flying"
+    @status = :flying
   end
 
-private
-
-attr_accessor :status
+attr_reader :status
 
   def plane_landed
-    @status = "landed"
+    @status = :landed
   end
 
   def plane_taking_off
-    @status = "flying"
+    @status = :flying
   end
 
 end
