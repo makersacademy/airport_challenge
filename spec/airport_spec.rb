@@ -22,30 +22,30 @@ describe Airport do
     end
 
     it 'instructs plane to land' do
-      expect(subject.land plane).to eq [plane]
+      expect(subject.land(plane)).to eq [plane]
     end
 
     it 'stops plane from landing in stormy weather' do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
-      expect{subject.land plane}.to raise_error 'Too stormy to land!'
+      expect{subject.land(plane)}.to raise_error 'Too stormy to land!'
     end
 
     it 'stops plane from landing if airport is full' do
       Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
       message = 'Try another airport!'
-      expect{subject.land plane}.to raise_error message
+      expect{subject.land(plane)}.to raise_error message
     end
 
     it 'stops landing if plane is on the ground' do
       allow(plane).to receive(:airborne?).and_return false
       message = "Plane is already on the ground"
-      expect{subject.land plane}.to raise_error message
+      expect{subject.land(plane)}.to raise_error message
     end
 
     it 'stops plane taking off if already flying' do
       allow(plane).to receive(:airborne?).and_return true
       message = "Plane is already airborne"
-      expect{subject.take_off plane}.to raise_error message
+      expect{subject.take_off(plane)}.to raise_error message
     end
   end
 
@@ -58,27 +58,27 @@ describe Airport do
     end
 
     it 'instructs plane to take off' do
-      subject.land(plane)
-      expect(subject.take_off plane).to eq plane
+      subject.land plane
+      expect(subject.take_off(plane)).to eq plane
     end
 
     it 'docks plane in hangar' do
-      subject.land(plane)
+      subject.land plane
       expect(subject.hangar).to eq [plane]
     end
 
     it 'stops plane from taking off in stormy weather' do
-      subject.land(plane)
+      subject.land plane
       allow_any_instance_of(Weather).to receive(:stormy?).and_return(true)
       message = 'Too stormy to take off!'
-      expect{subject.take_off plane}.to raise_error message
+      expect{subject.take_off(plane)}.to raise_error message
     end
 
     it 'stops plane taking off from another airport' do
       heathrow = Airport.new
       heathrow.land(plane)
       message = "Plane is at another airport"
-      expect{subject.take_off plane}.to raise_error message
+      expect{subject.take_off(plane)}.to raise_error message
     end
 
   end
