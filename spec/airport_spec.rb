@@ -11,11 +11,6 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  # redundant
-  # it "has the ability to store a plane" do
-  #   expect([]).to be_empty
-  # end
-
   it "can store planes" do
     plane = Plane.new
     subject.land(plane)
@@ -33,20 +28,27 @@ describe Airport do
     expect(subject.landed_planes).not_to include plane
   end
 
-  it "raises error when full to capacity" do
-    4.times { subject.land(Plane.new) }
-    expect{ subject.land(Plane.new)}.to raise_error "No space"
+# passes if random weather changed in code to be stormy,
+# can't figure out how to change in rspec
+  it "cannot land when stormy" do
+    plane = Plane.new
+    expect{subject.land(plane)}.to raise_error "Mayday, MAYDAY... can't land in stormy weather"
   end
 
-    # describe "initialization" do
-    #   subject {Airport.new}
-    #   let(:plane) {Plane.new}
-    #   it "defaults capacity" do
-    #     described_class::DEFAULT_CAPACITY.times do
-    #       subject.land(plane)
-    #     end
-    #     expect { subject.land(plane) }.to raise_error "No space"
-    #   end
-    # end
+  describe "Airport capacity tests" do
+    it "raises error when full to capacity" do
+      4.times { subject.land(Plane.new) }
+      expect{ subject.land(Plane.new)}.to raise_error "No space"
+    end
 
+    it "has a default capacity" do
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
+    end
+
+    it "has a variable capacity which can be set when instantiating" do
+      airport = Airport.new(20)
+      19.times { airport.land Plane.new }
+      expect{airport.land Plane.new }.to raise_error "No space"
+    end
 end
