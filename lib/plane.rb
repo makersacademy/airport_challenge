@@ -3,15 +3,15 @@ class Plane
   attr_accessor :grounded
 
   def initialize
-    grounded = false
+    @grounded = false
   end
 
   def landed
-    grounded = true
+    @grounded = true
   end
 
   def taken_off
-    grounded = false
+    @grounded = false
   end
 
 end

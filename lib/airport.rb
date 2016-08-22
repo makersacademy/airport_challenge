@@ -1,9 +1,7 @@
-require_relative './plane.rb'
-require_relative './weather.rb'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-
-  attr_reader :weather
 
   DEFAULT_CAPACITY = 20
 
@@ -14,17 +12,13 @@ class Airport
   end
 
   def land(plane)
-    fail "Planes cannot land in stormy weather" if bad_weather?
-    fail "Planes cannot land when airport is full" if full?
-    fail "This plane is already at an airport" if plane.grounded == true
+    landing_checks(plane)
     plane.landed
     @planes << plane
   end
 
   def take_off(plane)
-    fail "Planes cannot take off in stormy weather" if bad_weather?
-    fail "This plane is already flying" if plane.grounded == false
-    fail "This plane is not at this airport" unless @planes.include? plane
+    take_off_checks(plane)
     plane.taken_off
     @planes.delete(plane)
   end
@@ -39,6 +33,22 @@ class Airport
 
     def bad_weather?
       @weather.stormy?
+    end
+
+    def plane_at_airport(plane)
+      @planes.include? plane
+    end
+
+    def landing_checks(plane)
+      fail "This plane is already at an airport" if plane.grounded == true
+      fail "Planes cannot land in stormy weather" if bad_weather?
+      fail "Planes cannot land when airport is full" if full?
+    end
+
+    def take_off_checks(plane)
+      fail "This plane is already flying" if plane.grounded == false
+      fail "This plane is not at this airport" unless plane_at_airport(plane)
+      fail "Planes cannot take off in stormy weather" if bad_weather?
     end
 
 end

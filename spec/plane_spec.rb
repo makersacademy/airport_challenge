@@ -2,8 +2,8 @@ require 'plane'
 
 describe Plane do
 
-subject(:plane) { described_class.new }
-let(:airport) { double :airport }
+  subject(:plane) { described_class.new }
+  let(:airport) { double :airport }
 
   describe '#landed' do
 

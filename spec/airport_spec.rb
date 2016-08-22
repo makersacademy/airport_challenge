@@ -13,20 +13,21 @@ end
 
   describe '#land' do
 
-    it 'lands a plane at the airport in good weather' do
+    before(:each) do
       allow(plane).to receive(:grounded).and_return(false)
       allow(plane).to receive(:landed)
+    end
+
+    it 'lands a plane at the airport in good weather' do
       expect(airport.land(plane)).to eq [plane]
     end
 
     it 'prevents landing when the airport is full' do
-      allow(plane).to receive(:grounded).and_return(false)
-      allow(plane).to receive(:landed)
       Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
       msg = "Planes cannot land when airport is full"
       expect{airport.land(plane)}.to raise_error msg
     end
-    
+
     it 'raises error if landing attempted in stormy weather' do
       allow(airport).to receive(:bad_weather?).and_return true
       msg = "Planes cannot land in stormy weather"
@@ -39,11 +40,9 @@ end
       msg =  "This plane is already at an airport"
       expect{airport.land(plane)}.to raise_error msg
     end
-
   end
 
   describe '#take_off' do
-
     before(:each) do
       allow(plane).to receive(:grounded).and_return(false)
       allow(plane).to receive(:landed).and_return(true)
@@ -77,11 +76,9 @@ end
       msg = "This plane is not at this airport"
       expect{airport_1.take_off(plane)}.to raise_error msg
     end
-
   end
 
   describe '#planes' do
-
     before(:each) do
       allow(plane).to receive(:grounded).and_return(false)
       allow(plane).to receive(:landed)
@@ -98,7 +95,6 @@ end
       airport.take_off(plane)
       expect(airport.instance_variable_get(:@planes)).not_to include plane
     end
-
   end
 
 end
