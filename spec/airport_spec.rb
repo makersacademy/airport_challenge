@@ -63,7 +63,7 @@ describe Airport do
       weather_is_sunny
       subject.land_plane(inflight_plane)
       weather_is_stormy
-      expect { subject.launch_plane(inflight_plane) }.to raise_error "No flights"
+      expect { subject.launch_plane(landed_plane) }.to raise_error "No flights"
     end
 
   end
