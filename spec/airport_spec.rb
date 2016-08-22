@@ -47,7 +47,7 @@ describe Airport do
     it 'raises an error if plane is not in airport' do
         weather_is_sunny
         subject.land_plane(inflight_plane)
-        plane2 = double(:plane, report_take_off: false, landed?: false)
+        plane2 = double(:plane, report_take_off: false, landed?: true)
         weather_is_sunny
         expect { subject.launch_plane(plane2) }.to raise_error "Plane not here"
     end
