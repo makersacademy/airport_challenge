@@ -91,4 +91,42 @@ describe Plane do
       expect{subject.install_at(airport)}.to raise_error("You can only 'install' a plane at an airport once")
     end
   end
+
+  describe 'feature tests' do
+    it 'will land and take off multiple planes' do
+      airport = Airport.new
+      plane1 = Plane.new
+      plane2 = Plane.new
+      plane3 = Plane.new
+      plane4 = Plane.new
+      plane5 = Plane.new
+      weather = Weather.new
+
+      puts airport
+      puts airport.docked_planes
+      puts
+
+      plane1.land_at(airport, weather)
+      plane2.land_at(airport, weather)
+      plane3.land_at(airport, weather)
+      plane4.land_at(airport, weather)
+      plane5.land_at(airport, weather)
+
+      puts airport
+      puts airport.docked_planes
+      puts
+
+      plane1.take_off(weather)
+      plane2.take_off(weather)
+      plane3.take_off(weather)
+      plane4.take_off(weather)
+      plane5.take_off(weather)
+
+      puts airport
+      puts airport.docked_planes
+      puts
+      
+      expect(airport.docked_planes).to eq([])
+    end
+  end
 end
