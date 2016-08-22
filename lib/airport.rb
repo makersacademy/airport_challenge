@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-  attr_accessor :current_forecast
+  attr_reader :current_forecast
   attr_reader :capacity
 
   DEFAULT_CAPACITY = 20
