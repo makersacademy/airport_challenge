@@ -2,14 +2,31 @@ require "./lib/plane.rb"
 require "./lib/weather.rb"
 
 class Airport
+  attr_reader :planes, :capacity, :weather
+  DEFAULT_CAPACITY = 50
 
-  def instruct_land(plane)
-     plane.landed
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
+    #@planes = []
+    @weather = Weather.new
   end
 
-  def instruct_takeoff(plane)
-    weather = Weather.new
-    weather.stormy_weather ? plane.landed : plane.takeoff
+  def take_off(plane)
+    if plane.landed? && !weather.stormy?
+      plane.flying?
+    #  @planes.delete(plane)
+    else
+      raise "Taking-off not permitted"
+    end
+  end
+
+  def land(plane)
+    if  plane.flying? && !weather.stormy? #&& @planes.length <= @capacity
+      plane.landed?
+    #  @planes << plane
+    else
+      raise "Landing not permitted"
+    end
   end
 
 

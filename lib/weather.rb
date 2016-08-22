@@ -1,8 +1,11 @@
 class Weather
 
-  def stormy_weather
-    weather = Random.rand(100)
-    weather > 20 ? false : true
+  def initialize
+    @stormy
   end
 
+  def stormy?
+    @stormy = false 
+    #@stormy = Random.rand(100) < 20 ? true : false
+  end
 end
