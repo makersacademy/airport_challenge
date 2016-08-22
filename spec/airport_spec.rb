@@ -3,17 +3,16 @@ require 'airport.rb'
 describe Airport do
 
   describe "Instructs a plane to" do
-  it "take off" do
-    plane = double(:plane, :landed => true)
-    subject.land(plane)
-    expect(subject.take_off(plane)).to eq plane
-
+    it "take off" do
+      plane = double(:plane)
+      subject.land(plane)
+      expect(subject.instance_variable_get(:@airborne)).to include plane
     end
 
-    it "land" do
-      plane = Plane.new
+    it "lands plane, checks plane is in planes array" do
+      plane = double(:plane, :landed => false)
       subject.land(plane)
-      expect(plane).to be_landed
+      expect(subject.instance_variable_get(:@planes)).to include plane
     end
   end
 
