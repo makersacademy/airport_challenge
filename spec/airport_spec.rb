@@ -2,6 +2,8 @@ require 'airport'
 
 describe Airport do
 
+  subject {described_class.new}
+
   let(:Weather) {double :Weather}
   let(:plane1) {double :plane1}
   let(:plane2) {double :plane2}

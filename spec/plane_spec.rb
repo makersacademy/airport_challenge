@@ -1,6 +1,8 @@
 require 'plane'
 
 describe Plane do
+
+  subject {described_class.new}
   let(:airport) {double :airport}
 
   before(:each) do

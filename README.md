@@ -24,7 +24,7 @@ Additionally, an airport has a maximum capacity of storing planes. This can be o
 The program has the following three separate classes in order to fulfill the requirements:
 
 #### Airport class
-Airport class is used to create airport instances. During creation of an airport instance, the following ivars are initialized:
+Airport class is used to create airport instances (use `Airport.new`). During creation of an airport instance, the following ivars are initialized:
 * `@capacity`: stores the maximum capacity value of the airport. If Airport is initialized without defining the maximum capacity, the `DEFAULT_CAPACITY` is assigned to this ivar.
 * `@planes`: stores the landed planes in an Array
 * `@weather`: an instance of Weather is created and the object is stored in this ivar.
@@ -42,12 +42,12 @@ Used private methods:
 * `instruct_to_land(plane)`: calls the `land` method on the plane, add the plane to the `@planes` ivar, then returns a confirmation of the successful landing.
 
 #### Weather class
-Weather class is responsible for providing weather information to the Airport class. During the creation of an airport instance, an instance of the Weather class is initialised.
+Weather class is responsible for providing weather information to the Airport class. During the creation of an airport instance, an instance of the Weather class is initialised (`Weather.new` is used).
 Used public methods:
 * `stormy?`: it can be asked whether the it's stormy or not. In the method a random number generator is used, and there is a 10% chance that the weather will be stormy.
 
 #### Plane class
-By initialising this class, we can create a plane instance, that can be instructed by the traffic controllers located at the airport. It has an instance var called `@flying` which tells that the plane is flying (`@flying = true`) or not (`@flying = false`). Its default value is true.
+By initialising this class, we can create a plane instance (use `Plane.new`), that can be instructed by the traffic controllers located at the airport. It has an instance var called `@flying` which tells that the plane is flying (`@flying = true`) or not (`@flying = false`). Its default value is true.
 Used public methods:
 * `land`: set `@flying` to false. If it's already landed, an exception is raised.
 * `take_off`: set `@flying` to true. If it's already flying, an exception is raised.

@@ -33,7 +33,7 @@ class Airport
 
   def check_conditions_to_land(plane)
     fail "#{plane.class.name} is already at the airport" if @planes.include?(plane)
-    fail "Airport is full" if full?
+    full?
     fail "Due to stormy weather, #{plane.class.name} cannot land" if stormy?
     "Landing is approved" #returns approval message
   end
@@ -41,7 +41,7 @@ class Airport
   private
   #checks whether the airport is full or not
   def full?
-    @planes.size >= @capacity
+    fail "Airport is full" if @planes.size >= capacity
   end
 
   def stormy?

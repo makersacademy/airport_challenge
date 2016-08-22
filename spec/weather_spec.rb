@@ -1,6 +1,9 @@
 require 'weather'
 
 describe Weather do
+
+  subject {described_class.new}
+
   describe "stormy?" do
 
     before(:each) do
