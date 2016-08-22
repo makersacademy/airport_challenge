@@ -15,7 +15,7 @@ class Airport
 
   def land(plane)
     if @weather.stormy == true
-      fail "Mayday, MAYDAY... can't land in stormy weather"
+      fail "Too stormy"
     else
       @landed_planes << plane
       plane.landed = true

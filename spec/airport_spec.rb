@@ -32,7 +32,7 @@ describe Airport do
 # can't figure out how to change in rspec
   it "cannot land when stormy" do
     plane = Plane.new
-    expect{subject.land(plane)}.to raise_error "Mayday, MAYDAY... can't land in stormy weather"
+    expect{subject.land(plane)}.to raise_error "Too stormy"
   end
 
   describe "Airport capacity tests" do
@@ -43,8 +43,8 @@ describe Airport do
 
     it "has a default capacity" do
         expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-      end
     end
+  end
 
     it "has a variable capacity which can be set when instantiating" do
       airport = Airport.new(20)
