@@ -12,8 +12,9 @@ class Airport
 
   attr_reader :in_airport, :capacity
 
-  def request_land(aircraft)
-    conditions
+  def request_land(aircraft, weather)
+    Weather.new
+    conditions(weather)
     fail "Plane already landed" if @in_airport.include?(aircraft)
     fail "Airport full" if full?
     aircraft.land
@@ -21,18 +22,20 @@ class Airport
     puts "Landed safely" if @in_airport.include?(aircraft)
   end
 
-  def request_depart(aircraft)
-    conditions
+  def request_depart(aircraft, weather)
+    Weather.new
+    conditions(weather)
     fail "Plane already in flight" unless @in_airport.include?(aircraft)
     aircraft.take_off
     @in_airport.delete(aircraft)
     puts "aircraft departed" unless @in_airport.include?(aircraft)
+    aircraft
   end
 
   private
 
-  def conditions
-    fail "its to dangerous to do that now" if Weather.stormy?
+  def conditions(weather)
+    fail "its to dangerous to do that now" if weather.stormy?
   end
 
   def full?

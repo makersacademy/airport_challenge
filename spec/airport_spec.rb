@@ -3,9 +3,13 @@ require 'weather'
 
 describe Airport do
 
-  before do
-    @weather = double(:weather)
-    #let(:plane) {double(:plane)}
+  let(:plane) {double(:plane)}
+  let(:good_weather) {double(:good_weather)}
+  let(:bad_weather) {double(:bad_weather)}
+
+  before(:each) do
+    allow(good_weather).to receive(:stormy?).and_return(false)
+    allow(bad_weather).to receive(:stormy?).and_return(true)
   end
 
   context "#request_land" do
@@ -17,27 +21,24 @@ describe Airport do
     it "landed plane should then be inside airport" do
       port = Airport.new
       plane = Plane.new
-      allow(@weather).to receive(:stormy).and_return(:false)
-      port.request_land(plane)
+      port.request_land(plane, good_weather)
       expect(port.in_airport).to include(plane)
     end
 
     it "shows error when to stormy to land" do
       plane = Plane.new
-      allow(subject).to receive(:stormy?).and_return(true)
-      expect{subject.request_land(plane)}.to raise_error "its to dangerous to do that now"
+      expect{subject.request_land(plane, bad_weather)}.to raise_error "its to dangerous to do that now"
     end
 
     it "raises error when airport is full" do
-      allow(@weather).to receive(:stormy?).and_return(false)
-      5.times {subject.request_land(Plane.new)}
-      expect{subject.request_land(Plane.new)}.to raise_error "Airport full"
+      5.times {subject.request_land(Plane.new, good_weather)}
+      expect{subject.request_land(Plane.new, good_weather)}.to raise_error "Airport full"
     end
 
     it "raises error when request_land is called on plane already landed" do
       plane = Plane.new
-      subject.request_land(plane)
-      expect(subject.request_land(plane)).to raise_error "Plane already landed"
+      subject.request_land(plane, good_weather)
+      expect{subject.request_land(plane, good_weather)}.to raise_error "Plane already landed"
     end
   end
 
@@ -51,22 +52,20 @@ describe Airport do
     it "departed plane should no longer be inside airport" do
       plane = Plane.new
       port = Airport.new
-      allow(@weather).to receive(:stormy?).and_return(false)
-      port.request_land(plane)
-      port.request_depart(plane)
+      port.request_land(plane, good_weather)
+      port.request_depart(plane, good_weather)
       expect(port.in_airport).not_to include(plane)
     end
 
     it "shows error when to stormy to take off" do
       plane = Plane.new
-      subject.request_land(plane)
-      allow(@weather).to receive(:stormy?).and_return(true)
-      expect{subject.request_depart(plane)}.to raise_error "its to dangerous to do that now"
+      subject.request_land(plane, good_weather)
+      expect{subject.request_depart(plane, bad_weather)}.to raise_error "its to dangerous to do that now"
     end
 
     it "raises error when request_depart is called on plane already in flight" do
       plane = Plane.new
-      expect(subject.request_depart(plane)).to raise_error "Plane already in flight"
+      expect{subject.request_depart(plane, good_weather)}.to raise_error "Plane already in flight"
     end
   end
 
