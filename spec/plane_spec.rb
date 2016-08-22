@@ -2,16 +2,28 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to (:landed?) }
+  subject { described_class.new }
+  let(:airport) { Airport.new }
 
-  it 'shows plane as not being landed by default' do
-    expect(subject.landed?).to be(false)
+  describe '#landed' do
+    it 'shows plane as flying by default' do
+      expect(subject.landed?).to be(false)
+    end
   end
 
-  it 'confirms landing status has changed after being allowed to land' do
-    airport = Airport.new
-    airport.allow_to_land(subject)
-    expect(subject.landed?).to be(true)
+  context 'after being allowed to land' do
+    it 'landed status is true' do
+      airport.allow_to_land(subject)
+      expect(subject.landed?).to be(true)
+    end
+  end
+
+  context 'after taking off' do
+    it 'landed status is false' do
+      airport.allow_to_land(subject)
+      airport.take_off(subject)
+      expect(subject.landed?).to be(false)
+    end
   end
 
 end
