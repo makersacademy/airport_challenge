@@ -4,7 +4,7 @@ require 'plane'
 describe Airport do
   before do
     subject() { described_class.new }
-    subject.set_weather("stormy")
+#    subject.set_weather("stormy")
   end
 
   describe "#prevent_take_off" do
@@ -13,7 +13,7 @@ describe Airport do
     end
 
     it "raises an error when there is no plane at the airport to take off" do
-      subject.set_weather("sunny")
+#      subject.set_weather("sunny")
       expect { subject.prevent_take_off }.to raise_error "Error! No plane to take-off!"
     end
   end

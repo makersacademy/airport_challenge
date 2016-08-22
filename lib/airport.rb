@@ -1,6 +1,9 @@
 require_relative "plane"
+require_relative "air_traffic_control"
 
 class Airport
+
+  include AirTrafficControl
 
   def initialize(capacity = 50)
     @weather = "sunny"
@@ -8,9 +11,9 @@ class Airport
     @planes = []
   end
 
-  def set_weather(weather)
-    @weather = weather
-  end
+#  def set_weather(weather)
+#    @weather = weather
+#  end
 
   def prevent_take_off
     fail 'Take-off not permitted due to stormy weather. Await for further instructions!' if stormy?
@@ -37,7 +40,4 @@ attr_reader :planes
     @planes.length >= @capacity
   end
 
-  def stormy?
-    @weather == "stormy"
-  end
 end
