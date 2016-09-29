@@ -5,9 +5,7 @@
 This program is a Makers Academy weekend assignment.
 It controls the flow of planes to and from an imaginary airport, dependent on weather conditions and airport capacity.
 
-###Build Status: WORK IN PROGRESS
-Method stub to fix weather conditions is not working, so the tests are failing randomly. All user stories addressed.
-Unit test coverage needs to be improved and code needs to be refactored
+###Build Status: Challenge complete
 
 ##How to Use:
 
