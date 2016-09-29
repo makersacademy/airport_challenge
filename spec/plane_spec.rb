@@ -1,28 +1,22 @@
-require 'plane'
-require 'airport'
-
 describe Plane do
-  subject(:plane) { Plane.new }
-  subject(:airport) { Airport.new }
 
-  describe 'it should be able to report where it is' do
+  let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
 
-    it 'landed' do
+  context 'in fine weather' do
+
+    it 'reports where it has landed' do
+      allow_any_instance_of(Airport).to receive(:stormy?).and_return(false)
       airport.land(plane)
       expect(plane.location).to eq :airport
     end
 
-  end
-
-  describe 'take-off' do
-
-    it 'taken-off' do
-      allow(airport).to receive (:stormy?) {false}
+    it 'reports that it has taken-off' do
+      allow_any_instance_of(Airport).to receive(:stormy?).and_return(false)
       airport.land(plane)
-      airport.take_off(plane)
+      airport.clear_for_take_off(plane)
       expect(plane.location).to eq :air
     end
-
-
   end
+
 end

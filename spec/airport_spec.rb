@@ -2,78 +2,116 @@ require 'airport'
 
 describe Airport do
 
-  plane = Plane.new
+  let(:airport) { Airport.new }
+  let(:plane) { Plane.new }
 
   context 'in clear weather' do
 
-    before(:each) {allow(subject).to receive(:stormy?).and_return(false)}
+      # As an air traffic controller
+      # So I can get passengers to a destination
+      # I want to instruct a plane to land at an airport and confirm that it has landed
 
-      it 'can tell a plane to land' do
-        expect(subject.land(plane)).to include plane
+      it 'can instruct a plane to land and confirm it has landed' do
+        weather_is_clear
+        airport.land(plane)
+        expect(airport.planes).to include plane
       end
 
-      it 'knows if a plane has landed' do
-        subject.land(plane)
-        expect(subject.planes).to include plane
+      # As an air traffic controller
+      # So I can get passengers on the way to their destination
+      # I want to instruct a plane to take off from an airport and confirm
+      # that it is no longer in the airport.
+
+      it 'instructs a plane to take-off, and confirms its no longer at the airport' do
+        weather_is_clear
+        airport.land(plane)
+        airport.clear_for_take_off(plane)
+        expect(airport.planes).not_to include plane
       end
+
+      # As an air traffic controller
+      # To ensure safety
+      # I want to prevent landing when the airport is full
 
       it 'should not allow planes to land when full' do
+        weather_is_clear
         airport = Airport.new(1)
         airport.land(plane)
         expect{airport.land(plane)}.to raise_error("Full")
       end
 
-      it 'should tell a plane to take-off' do
-        expect(subject).to respond_to(:take_off)
+      # As the system designer
+      # So that the software can be used for many different airports
+      # I would like a default airport capacity that can be
+      # overridden as appropriate
+
+      it 'is possible to set the default capacity of an airport' do
+        large_airport = Airport.new(50)
+        expect(large_airport.capacity).to eq 50
       end
 
-      it 'should know when a plane has taken-off' do
-        airport = Airport.new
-        airport.land(plane)
-        airport.take_off(plane)
-        expect(airport.planes).not_to eq plane
-      end
+      # Planes can only take off from airports they are in.
 
       it 'only allows planes that have landed to take-off' do
+        weather_is_clear
         plane2 = Plane.new
-        expect{subject.take_off(plane2)}.to raise_error "Error: that plane isn't at this airport"
+        expect{airport.clear_for_take_off(plane2)}.to raise_error "Error: that plane isn't at this airport"
       end
+
+      # Planes that are already flying cannot takes off and/or be in an airport.
 
       it 'does not allow planes that are already flying to take-off' do
-
+        weather_is_clear
         plane2 = Plane.new
         subject.land(plane2)
-        subject.take_off(plane2)
-        expect{subject.take_off(plane2)}.to raise_error "Error: that plane isn't at this airport"
+        subject.clear_for_take_off(plane2)
+        expect{subject.clear_for_take_off(plane2)}.to raise_error "Error: that plane isn't at this airport"
       end
 
-      it 'knows when a plane has taken-off' do
+      # Planes that are landed cannot land again and must be in an airport.
 
+      it 'knows when a plane has taken-off' do
+        weather_is_clear
         planeA = Plane.new
         planeB = Plane.new
-        planeC = Plane.new
-        subject.land(planeA)
-        subject.land(planeB)
-        subject.land(planeC)
-        subject.take_off(planeB)
-        expect(subject.planes).not_to include (planeB)
+        airport.land(planeA)
+        airport.land(planeB)
+        airport.clear_for_take_off(planeB)
+        expect(airport.planes).not_to include (planeB)
+        expect { airport.land(planeA) }.to raise_error "Error: that plane has already landed"
       end
 
   end
 
   context 'in bad weather' do
 
-    before(:each) {allow(subject).to receive(:stormy?).and_return(true)}
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent takeoff when weather is stormy
 
     it 'should prevent a plane taking off in a storm' do
-      airport = Airport.new
+      weather_is_clear
       airport.land(plane)
-      allow(airport).to receive(:stormy?).and_return(true)
-      expect{airport.take_off(plane)}.to raise_error("Storm")
+      weather_is_stormy
+      expect{ airport.clear_for_take_off(plane) }.to raise_error("Storm")
     end
 
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent landing when weather is stormy
+
     it 'planes should not be able to land in a storm' do
-      expect{subject.land(plane)}.to raise_error("Storm")
+      weather_is_stormy
+      expect{airport.land(plane)}.to raise_error("Storm")
     end
   end
+
+end
+
+def weather_is_stormy
+  allow_any_instance_of(Airport).to receive(:stormy?).and_return(true)
+end
+
+def weather_is_clear
+  allow_any_instance_of(Airport).to receive(:stormy?).and_return(false)
 end
