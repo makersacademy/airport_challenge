@@ -37,7 +37,10 @@ describe Airport do
   context "Plane is flying" do
 
     it "allows a flying plane to land" do
-        expect(subject.land(flying_plane)).to eq [flying_plane]
+      plane = Plane.new
+      subject.takeoff(plane)
+      subject.land(plane)
+      expect(plane).not_to be_flying
     end
 
     it "won't allow a flying plane to take off" do
@@ -45,7 +48,11 @@ describe Airport do
     end
 
     it "won't allow a plane to land if the airport is full" do
-        subject.capacity.times { subject.land(flying_plane) }
+        plane = Plane.new
+        subject.capacity.times do
+          plane.flying = true
+          subject.land(plane)
+        end
         expect{ subject.land(flying_plane) }.to raise_error "Cannot land. Airport is full."
     end
 

@@ -64,12 +64,18 @@ Feature 8: Plane responds to flying? DONE
 plane = Plane.new
 plane.flying      # should return false
 
-Feature 9: If plane takes off, flying equals true
+Feature 9: If plane takes off, flying equals true DONE (although stub didn't work)
 
 plane = Plane.new
 airport = Airport.new
 airport.takeoff(plane)
 plane.flying?     # should return true
 
-PROBLEM TO SORT OUT
-My array of grounded planes is not decreasing on takeoff
+Feature 10: If plane lands, flying equals false
+
+plane = Plane.new
+airport = Airport.new
+airport.takeoff(plane)
+plane.flying?     # should return true
+airport.land(plane)
+plane.flying?     # should return false
