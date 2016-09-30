@@ -58,3 +58,8 @@ plane = Plane.new
 airport = Airport.new
 airport.takeoff(plane)
 airport.takeoff(plane)  # should raise an error because the plane has taken off already
+
+Feature 8: Plane responds to flying?
+
+plane = Plane.new
+plane.flying      # should return false
