@@ -2,7 +2,7 @@ require './lib/plane'
 
 class Airport
     
-    attr_accessor :capacity :planes
+    attr_accessor :capacity, :planes
     
     DEFAULT_CAPACITY = 5
     
