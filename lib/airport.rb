@@ -11,6 +11,7 @@ class Airport
 
   def land (plane)
     fail "Cannot land. Airport is full." if full?
+    fail "Cannot land. Plane isn't flying." if !plane.flying?
     @planes_on_ground << plane
   end
 

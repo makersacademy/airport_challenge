@@ -41,3 +41,10 @@ airport = Airport.new
 airport.capacity.times { airport.land(Plane.new) }
 airport.full? (should equal true)
 airport.land(Plane.new) (should raise error)
+
+Feature 6: A plane cannot land unless it is flying DONE
+
+plane = Plane.new
+plane.flying?       # should equal to false
+airport = Airport.new
+airport.land(plane) # should raise an error
