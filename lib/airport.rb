@@ -16,6 +16,7 @@ class Airport
   end
 
   def takeoff (plane)
+    fail "Cannot take off. Plane is flying." if plane.flying?
     plane
   end
 

@@ -11,6 +11,9 @@ Airport to have default capacity that can be overridden
 
 FEATURE TESTS
 
+require './lib/airport.rb'
+require './lib/plane.rb'
+
 Feature 1: Land a plane in an airport DONE
 
 plane = Plane.new       # Create a plane
@@ -48,3 +51,10 @@ plane = Plane.new
 plane.flying?       # should equal to false
 airport = Airport.new
 airport.land(plane) # should raise an error
+
+Feature 7: A plane cannot take off unless it is on the ground (not flying) DONE
+
+plane = Plane.new
+airport = Airport.new
+airport.takeoff(plane)
+airport.takeoff(plane)  # should raise an error because the plane has taken off already

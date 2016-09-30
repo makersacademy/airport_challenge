@@ -22,6 +22,10 @@ describe Airport do
       expect(subject.takeoff(grounded_plane)).to eq grounded_plane
   end
 
+  it "won't allow a plane to takeoff if it's flying" do
+      expect{ subject.takeoff(flying_plane) }.to raise_error "Cannot take off. Plane is flying."
+  end
+
   it "has a default capacity" do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
   end
