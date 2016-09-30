@@ -59,7 +59,17 @@ airport = Airport.new
 airport.takeoff(plane)
 airport.takeoff(plane)  # should raise an error because the plane has taken off already
 
-Feature 8: Plane responds to flying?
+Feature 8: Plane responds to flying? DONE
 
 plane = Plane.new
 plane.flying      # should return false
+
+Feature 9: If plane takes off, flying equals true
+
+plane = Plane.new
+airport = Airport.new
+airport.takeoff(plane)
+plane.flying?     # should return true
+
+PROBLEM TO SORT OUT
+My array of grounded planes is not decreasing on takeoff

@@ -1,38 +1,54 @@
 require "airport"
+require "plane"
 
 describe Airport do
 
   let(:grounded_plane) { double :plane, flying?: false }
   let(:flying_plane) { double :plane, flying?: true }
 
-  it "allows a plane to land" do
-      expect(subject.land(flying_plane)).to eq [flying_plane]
+  describe "Airport has default but changeable capacity" do
+
+    it "has a default capacity" do
+        expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it "allows you to change the capacity" do
+        subject.capacity = 15
+        expect(subject.capacity).to eq 15
+    end
+
   end
 
-  it "won't allow a plane to land if the airport is full" do
-      subject.capacity.times { subject.land(flying_plane) }
-      expect{ subject.land(flying_plane) }.to raise_error "Cannot land. Airport is full."
+  context "Plane is grounded" do
+
+    it "allows a grounded plane to takeoff" do
+      # could not get my stub to work. something wrong with the syntax?
+        plane = Plane.new
+        subject.takeoff(plane)
+        expect(plane).to be_flying
+    end
+
+    it "won't allow a grounded plane to land" do
+        expect{ subject.land(grounded_plane) }.to raise_error "Cannot land. Plane isn't flying."
+    end
+
   end
 
-  it "won't allow a plane to land if it's not flying" do
-      expect{ subject.land(grounded_plane) }.to raise_error "Cannot land. Plane isn't flying."
-  end
+  context "Plane is flying" do
 
-  it "allows a plane to takeoff" do
-      expect(subject.takeoff(grounded_plane)).to eq grounded_plane
-  end
+    it "allows a flying plane to land" do
+        expect(subject.land(flying_plane)).to eq [flying_plane]
+    end
 
-  it "won't allow a plane to takeoff if it's flying" do
-      expect{ subject.takeoff(flying_plane) }.to raise_error "Cannot take off. Plane is flying."
-  end
+    it "won't allow a flying plane to take off" do
+        expect{ subject.takeoff(flying_plane) }.to raise_error "Cannot take off. Plane is flying."
+    end
 
-  it "has a default capacity" do
-      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
-  end
+    it "won't allow a plane to land if the airport is full" do
+        subject.capacity.times { subject.land(flying_plane) }
+        expect{ subject.land(flying_plane) }.to raise_error "Cannot land. Airport is full."
+    end
 
-  it "allows you to change the capacity" do
-      subject.capacity = 15
-      expect(subject.capacity).to eq 15
   end
 
 end

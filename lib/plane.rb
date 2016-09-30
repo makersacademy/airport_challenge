@@ -1,7 +1,9 @@
 class Plane
 
+  attr_accessor :flying
+
   def flying?
-    false
+    flying
   end
 
 end

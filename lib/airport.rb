@@ -1,3 +1,5 @@
+require_relative "plane"
+
 class Airport
 
   DEFAULT_CAPACITY = 10
@@ -17,6 +19,8 @@ class Airport
 
   def takeoff (plane)
     fail "Cannot take off. Plane is flying." if plane.flying?
+    plane.flying = true
+    @planes_on_ground.pop
     plane
   end
 
