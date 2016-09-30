@@ -1,12 +1,7 @@
 OBJECTS AND MESSAGES
-(I might be overcomplicating it with the air traffic controller object!)
 
-Air traffic controller <-- instruct landing (unless stormy or airport full) --> Plane
-Plane <-- lands (if flying) --> Airport
-Plane <-- confirm landing --> Air traffic controller
-Air traffic controller <-- instruct take off (unless stormy) --> Plane
-Plane  <-- takes off (if in airport and not flying) --> Airport
-Plane <-- confirm take off --> Air traffic controller
+Plane <-- lands (if flying, and if not stormy and airport not full) --> Airport
+Plane  <-- takes off (if in airport and not flying and not stormy) --> Airport
 Airport to have default capacity that can be overridden
 
 FEATURE TESTS
@@ -48,9 +43,9 @@ airport.land(Plane.new) (should raise error)
 Feature 6: A plane cannot land unless it is flying DONE
 
 plane = Plane.new
-plane.flying?       # should equal to false
+plane.flying?           # should equal to false
 airport = Airport.new
-airport.land(plane) # should raise an error
+airport.land(plane)     # should raise an error
 
 Feature 7: A plane cannot take off unless it is on the ground (not flying) DONE
 
@@ -62,20 +57,20 @@ airport.takeoff(plane)  # should raise an error because the plane has taken off 
 Feature 8: Plane responds to flying? DONE
 
 plane = Plane.new
-plane.flying      # should return false
+plane.flying            # should return false
 
 Feature 9: If plane takes off, flying equals true DONE (although stub didn't work)
 
 plane = Plane.new
 airport = Airport.new
 airport.takeoff(plane)
-plane.flying?     # should return true
+plane.flying?           # should return true
 
-Feature 10: If plane lands, flying equals false
+Feature 10: If plane lands, flying equals false DONE
 
 plane = Plane.new
 airport = Airport.new
 airport.takeoff(plane)
-plane.flying?     # should return true
+plane.flying?           # should return true
 airport.land(plane)
-plane.flying?     # should return false
+plane.flying?           # should return false
