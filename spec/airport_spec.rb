@@ -16,7 +16,11 @@ describe Airport do
   let(:flying_plane) { double(:plane, flying?: true)}
 
   describe "#add" do
-    it "should raise an error when adding a flying plane to airport" do
+    it "should raise an error when airport is full" do
+      Airport::DEFAULT_CAPACITY.times { subject.add(plane) }
+      expect {subject.add(plane)}.to raise_error "Cannot add. Airport is full!"
+    end
+    it "should raise an error when adding a flying plane" do
       expect {subject.add(flying_plane)}.to raise_error "Cannot add flying planes to airport"
     end
     it "should add a landed plane to airport" do
