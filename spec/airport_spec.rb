@@ -30,9 +30,11 @@ require 'plane'
         expect(airport.take_off(plane)).to eq "plane cannot take off, it's stormy"
       end
 
-      it "will not allow a plane to land if the airport is full" do
-        capacity.times { airport.land_plane(plane) }
-        expect(airport.land_plane(plane)).to eq "plane cannot land as the airport is full"
+    describe '#land_plane_full'
+     it "will not allow a plane to land if the airport is full" do
+
+       Airport::DEFAULT_CAPACITY.times {  subject.land_plane_full(plane) }
+        expect(subject.land_plane_full(plane)).to eq "plane cannot land as the airport is full"
       end
 
 

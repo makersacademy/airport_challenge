@@ -1,6 +1,7 @@
 require_relative 'weather'
 
 class Airport
+  #attr_reader :planes, :capacity
   DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -18,6 +19,19 @@ class Airport
     end
   end
 
+  def land_plane_full(plane)
+    if airport_full?
+      "plane cannot land as the airport is full"
+    else
+      @planes << plane
+    end
+
+  end
+
+  def airport_full?
+    @planes.count >= @capacity
+  end
+
   def take_off(plane)
     if random_weather == "sunny"
       @planes.delete(plane)
@@ -26,9 +40,4 @@ class Airport
       "plane cannot take off, it's stormy"
     end
   end
-
-  def airport_full?
-    @planes.count >= capacity
-  end
-
 end
