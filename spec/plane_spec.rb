@@ -16,4 +16,8 @@ describe Plane do
       expect(plane.plane_is_landed?).to eq false
     end
   end
+
+  describe '#proceed_to_land' do
+    it {is_expected.to respond_to (:proceed_to_land)}
+  end
 end
