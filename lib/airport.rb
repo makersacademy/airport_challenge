@@ -2,19 +2,19 @@ require './lib/plane.rb'
 
 class Airport
 
-  attr_reader :plane
+  attr_reader :planes
 
   def initialize
-    @plane = []
+    @planes = []
   end
 
-  def take_off(plane)
-    plane = @plane.pop
+  def take_off(planes)
+    planes = @planes.pop
   end
 
-  def landing(plane)
-    fail "There's no room at the inn!" if @plane.length == 1
-    @plane << plane
+  def landing(planes)
+    fail "There's no room at the inn!" if @planes.length >= 15
+    @planes << planes
   end
 
 end

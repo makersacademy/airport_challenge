@@ -19,8 +19,8 @@ describe Airport do
 
   it 'should not allow planes to land if full' do
     airport = Airport.new
+    15.times{airport.landing(Plane.new)}
     plane = Plane.new
-    airport.landing(plane)
     expect { airport.landing(plane)}.to raise_error("There's no room at the inn!")
   end
 
@@ -29,6 +29,12 @@ describe Airport do
     plane = Plane.new
     airport.landing(plane)
     expect(airport.take_off(plane)).to eq plane
+  end
+
+  it 'should not let more than 15 planes to land' do
+    airport = Airport.new
+    15.times{airport.landing(Plane.new)}
+      expect(airport.planes.length).to eq 15
   end
 
 
