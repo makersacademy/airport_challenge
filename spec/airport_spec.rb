@@ -48,4 +48,16 @@ describe Airport do
       expect { @airport.takeoff(@plane) }.to raise_error(@err2)
     end
   end
+
+  describe '#weather?' do
+    it 'returns true if weather is 2' do
+      @airport.weather = 2
+      expect(@airport.weather?).to eq(true)
+    end
+
+    it 'returns false if weather is 1' do
+      @airport.weather = 1
+      expect(@airport.weather?).to eq(false)
+    end
+  end
 end

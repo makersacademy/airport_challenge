@@ -24,6 +24,10 @@ class Airport
   end
 
   def weather?
-    true if @weather > 1
+    if @weather > 1
+      true
+    else
+      false
+    end
   end
 end
