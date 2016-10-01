@@ -11,9 +11,9 @@ attr_accessor :status
 
   def status?
     if plane.flying = true
-      status = 'flying'
+      status = 'Not in airport'
     else plane.flying = false
-      status = 'landed'
+      status = 'In airport'
     end
   end
 

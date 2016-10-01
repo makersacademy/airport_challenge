@@ -16,4 +16,17 @@ describe Airport do
     expect(plane.status).to eq('landed')
   end
 
+  it 'allow plane to takeoff from airport' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.takeoff(plane)
+    expect(plane.flying?).to eq(true)
+  end
+
+  it 'confirms plane is flying' do
+    plane = Plane.new
+    subject.takeoff(plane)
+    expect(plane.status).to eq('flying')
+  end
+
 end
