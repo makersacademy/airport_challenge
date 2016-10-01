@@ -1,7 +1,7 @@
 require 'plane.rb'
 
 describe Plane do
-	let(:airport) { double(:landed_planes => [], :weather => "") }
+	let(:airport) { double(:landed_planes => [], :weather => "", :capacity => 20) }
 
 	it { is_expected.to respond_to(:land).with(1).argument }
 	it { is_expected.to respond_to(:take_off) }
@@ -22,6 +22,11 @@ describe Plane do
 
 		it 'prevents a plane from taking off when stormy' do
 			expect(subject.land(double(:airport, :landed_planes => [], :weather => "stormy"))).to eq "Stormy weather. Unable to land."
+		end
+
+		it 'prevents landing when airport capacity is full' do
+			20.times { subject.land(airport) }
+			expect(subject.land(airport)).to eq "Unable to land. Airport full."
 		end
 
 	end

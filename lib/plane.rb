@@ -8,6 +8,8 @@ class Plane
 	def land(airport)
 		if airport.weather == "stormy"
 			"Stormy weather. Unable to land."
+		elsif airport.landed_planes.count >= airport.capacity
+			"Unable to land. Airport full." 
 		else
 			@current_airport = airport
 			airport.landed_planes << self
