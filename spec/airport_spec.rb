@@ -24,6 +24,11 @@ describe Airport do
     it 'allows read of weather' do
       expect(@airport.weather).to eq(10)
     end
+
+    it 'allows write of weather' do
+      @airport.weather = 2
+      expect(@airport.weather).to eq(2)
+    end
   end
 
   describe '#land' do
