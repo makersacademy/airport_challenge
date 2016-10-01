@@ -12,13 +12,12 @@ class Airport
     @list_taken_off_planes = []
   end
 
-
   def landed_planes(plane)
     stormy == true ? "The plane #{@plane_number} can't land due to stormy weather" :
     (@list_landed_planes.count < @capacity and @list_landed_planes.include?(plane)==false) ? (@list_landed_planes << plane and confirms_landed(plane)) : "The airport is full, the plane #{@plane_number} can't land"
   end
 
-  def confirms_landed(plane)
+  def confirms(plane)
   "The plane #{@plane_number} has landed"
   end
 
