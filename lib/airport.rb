@@ -9,7 +9,7 @@ class Airport
   end
 
   def take_off(plane)
-    @plane =- 1
+    plane = @plane.pop
   end
 
   def landing(plane)

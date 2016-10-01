@@ -20,7 +20,8 @@ describe Airport do
   it 'should see that a plane has left the airport' do
     airport = Airport.new
     plane = Plane.new
-    expect(airport.take_off(plane)).to eq -1
+    airport.landing(plane)
+    expect(airport.take_off(plane)).to eq plane
   end
 
 
