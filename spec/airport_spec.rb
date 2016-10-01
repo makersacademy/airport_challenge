@@ -5,12 +5,16 @@ describe Airport do
     @plane = Plane.new
   end
 
-  it 'lands a plane at an airport' do
+  it 'instructs a plane to land at an airport' do
     expect(subject.land(@plane)).to eq [@plane]
   end
 
   it 'confirms that a plane has landed' do
     subject.land(@plane)
     expect(subject.planes).to eq [@plane]
+  end
+
+  it 'instructs a plane to take off' do
+    expect(subject).to respond_to(:take_off)
   end
 end
