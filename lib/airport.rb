@@ -21,6 +21,7 @@ class Airport
 
   def takeoff (plane)
     fail "Cannot take off. Plane is flying." if plane.flying?
+    fail "Cannot take off due to storm." if weather == "stormy"
     plane.flying = true
     @planes_on_ground.pop
     plane
@@ -31,8 +32,8 @@ class Airport
   end
 
   def weather
-    "sunny"
-    # rand(9) == 0? "stormy" : "sunny"
+    # Approximately 1 times in 6, the weather will be stormy
+    rand(5) == 0? "stormy" : "sunny"
   end
 
 end

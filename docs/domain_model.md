@@ -75,11 +75,11 @@ plane.flying?           # should return true
 airport.land(plane)
 plane.flying?           # should return false
 
-Feature 10: You can check the weather at the airport DONE but not great as have useless test
+Feature 10: You can check the weather at the airport DONE (forced both sunny and stormy)
 airport = Airport.new
 airport.weather         # should return randomly sunny or stormy
 
-Feature 11: A plane cannot land if the weather is stormy
+Feature 11: A plane cannot land if the weather is stormy DONE
 
 plane = Plane.new
 airport = Airport.new
@@ -87,12 +87,38 @@ airport.takeoff(plane)
 airport.weather = stormy
 airport.land(plane)     # should raise an error "can't land plane in storm" or similar.
 
+Feature 12: A plane cannot take off if the weather is stormy
+
+plane = Plane.new
+airport = Airport.new
+airport.weather = stormy
+airport.takeoff(plane)  # should raise an error "can't take off in storm" or similar.
+
+Feature 13: A plane is not flying by default
+
+plane = Plane.new
+plane.flying?           # should return false
+
+
+
+
+
+
+
+
+
+Feature 13: You can check if the plane is in the airport or not
+
+plane = Plane.new
+airport = Airport.new
+airport.takeoff(plane)
+airport.land(Plane)
+
+
+
 REFACTORING NEEDED
-It shouldn't be 50:50 for sunny vs. stormy. Usually it's sunny but on rare occasions it's stormy.
 Put stubs back in instead of real Plane objects
-The random weather is causing my tests to fail randomly!
 Need to confirm that plane has landed
 Need to confirm that plans has taken off and is no longer in the airport
-
 Need a method to check if a plane is in the airport or not
 Need to read documentation on mocks.
