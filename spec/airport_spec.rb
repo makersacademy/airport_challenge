@@ -13,8 +13,14 @@ describe Airport do
     end
 
     it "allows you to change the capacity" do
-      subject.capacity = 15
-      expect(subject.capacity).to eq 15
+      subject.capacity = rand(100)
+      allow(subject).to receive(:weather) { "sunny" }
+      plane = Plane.new
+      subject.capacity.times do
+        plane.flying = true
+        subject.land(plane)
+      end
+      expect(subject.planes_on_ground.count).to eq subject.capacity
     end
 
   end
