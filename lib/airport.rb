@@ -23,7 +23,6 @@ class Airport
     plane.flying = true
     plane.in_airport = false
     planes_on_ground.delete(plane)
-    plane
   end
 
   def check_for_landing_issues (plane)
