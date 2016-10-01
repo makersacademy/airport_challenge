@@ -99,14 +99,26 @@ Feature 13: A plane is flying by default DONE
 plane = Plane.new
 plane.flying?           # should return true
 
-Feature 14: You can check if the plane is in the airport or not
+Feature 14: If the plane lands, it should be confirmed that it's in the airport
 
 plane = Plane.new
 airport = Airport.new
 airport.land(plane)
-airport.contains(plane)      # should return true
+plane.in_airport?      # should return true
+
+Feature 15: If the plane takes off, it should no longer be in the airport
+
+plane = Plane.new
+airport = Airport.new
+airport.land(plane)
+plane.in_airport?      # should return true
+airport.takeoff(plane)
+plane.in_airport?       # should return false
+
+
 
 REFACTORING NEEDED
+If plane not in airport, can't take off.
 Put stubs back in instead of real Plane objects
 Need to confirm that plane has landed
 Need to confirm that plans has taken off and is no longer in the airport

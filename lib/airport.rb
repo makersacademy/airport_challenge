@@ -24,6 +24,7 @@ class Airport
     fail "Cannot take off. Plane is flying." if plane.flying?
     fail "Cannot take off due to storm." if weather == "stormy"
     plane.flying = true
+    plane.in_airport = false
     @planes_on_ground.pop
     plane
   end
