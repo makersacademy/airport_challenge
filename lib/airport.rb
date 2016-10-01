@@ -24,10 +24,12 @@ class Airport
     end
   end
   
-  def take_off
+  def take_off(plane = planes[0])
+    fail "ERROR: There is no plane to take-off." if planes.empty?   # || plane.class.to_s != "Plane")
     @plane_status = "down"
     if airport_open?     #Checks weather on "take_off" call
-      planes.pop
+      planes.delete(plane)
+      #planes.pop
       @plane_status = "up"
     else
       puts "Weather is too stormy to allow planes to take-off." 
