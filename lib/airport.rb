@@ -18,9 +18,11 @@ class Airport
     @flight_log.last
   end
 
-  def take_off
+  def take_off(plane)
     raise 'Cannot take off due to bad weather' if stormy?
-    plane = @planes.pop
+    raise 'Plane is not in the airport' unless plane_exists?(plane)
+    runway = plane
+    @planes.delete_if {|plane| plane = runway}
     @flight_log << "Plane #{plane} took off"
     @flight_log.last
   end
@@ -35,6 +37,10 @@ class Airport
 
   def at_capacity?
     @planes.length == @capacity
+  end
+
+  def plane_exists?(plane)
+    @planes.include? plane
   end
 
   private
