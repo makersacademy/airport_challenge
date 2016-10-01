@@ -1,4 +1,5 @@
 require 'plane.rb'
+require 'weather.rb'
 
 class Airport
   def initialize
@@ -18,4 +19,7 @@ class Airport
     @planes
   end
 
+  def stormy(plane)
+  end
+  
 end
