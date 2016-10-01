@@ -121,6 +121,14 @@ of the class Plane
 -> airport spec file to test for the method take_off with one argument
 -> created take_off method in airport class
 
+# FIFTH USER STORY
+- prevent landing of plane when airport is full
+-> compare number of planes in gates array (see third user story) with airport capacity and prevent a landing if airport is full
+
+# SIXTH USER STORY
+- airport capacity can be altered
+-> while initializing an instance set the gate capacity size
+
 # THIRD USER STORY
 -> when landed planes are stored to the gates array
 -> messages and raising errors for land method

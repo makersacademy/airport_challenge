@@ -22,7 +22,7 @@ describe Airport do
   #4
   it "4. raises an error if plane attempts to land and no gates are available" do
     airport_size0 = Airport.new(0,false)
-    expect{airport_size0.land(plane)}.to raise_error "No gates available"
+    expect{airport_size0.land(plane)}.to raise_error "No gates available - cannot land plane"
   end
 
   #5
@@ -40,14 +40,6 @@ describe Airport do
   it "7. raises an error when there are no planes to depart for take_off method" do
     expect{airport.take_off(plane)}. to raise_error "There are no planes currently at the airport - No departures"
   end
-  #
-  #
-  #
-  # 4
-  # it "4. raises an error for take_off if weather is stormy" do
-  #   plane = Plane.new
-  #   airport.land
-  # end
 
 
 end

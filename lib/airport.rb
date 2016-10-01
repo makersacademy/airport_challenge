@@ -18,7 +18,7 @@ class Airport
   end
 
   def land(plane)
-    raise "No gates available" if @gates.count >= @gates_size
+    raise "No gates available - cannot land plane" if @gates.count >= @gates_size
     @gates << plane
     "The plane has landed"
   end
@@ -28,7 +28,5 @@ class Airport
     @gates.pop
     "The plane has departed"
   end
-
-
 
 end
