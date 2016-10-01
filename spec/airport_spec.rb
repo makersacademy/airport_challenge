@@ -57,11 +57,18 @@ describe Airport do
       expect { subject.takeoff(plane) }.to raise_error "Cannot take off due to storm."
     end
 
-    it 'confirms that the landed plane is in the airport' do
+    it "confirms that the landed plane is in the airport" do
       allow(subject).to receive(:weather) { "sunny" }
       plane = Plane.new
       subject.land(plane)
       expect(plane).to be_in_airport
+    end
+
+    it "won't allow a plane to take off if the plane is not in the airport" do
+      allow(subject).to receive(:weather) { "sunny" }
+      plane = Plane.new
+      plane.flying = false
+      expect { subject.takeoff(plane) }.to raise_error "Can't take off as plane is not in the airport."
     end
 
   end
@@ -95,7 +102,7 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Cannot land due to storm."
     end
 
-    it 'confirms that the flying plane is not in the airport' do
+    it "confirms that the flying plane is not in the airport" do
       allow(subject).to receive(:weather) { "sunny" }
       plane = Plane.new
       subject.land(plane)

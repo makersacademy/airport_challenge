@@ -116,6 +116,14 @@ airport.takeoff(plane)
 plane.in_airport?       # should return false
 
 
+Feature 16: If the plane isn't in the airport, it can't take off
+
+plane = Plane.new
+airport = Airport.new
+plane.flying = false
+plane.in_airport?       # should return false
+airport.takeoff(plane)  # should raise an error "can't take off as plane is not in the airport."
+
 
 REFACTORING NEEDED
 If plane not in airport, can't take off.
