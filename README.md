@@ -90,7 +90,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 
-########
+######## Dionysis Kastellanis #######
 October 01, 2016
 
 - Forked the repo on my personal Github account
@@ -111,3 +111,12 @@ October 01, 2016
 - creating a bike_spec file to test for an instance
 of the class Plane
 -> plane file to create the Plane class
+- test for the land method
+-> in the airport spec file expect an airport to respond to the land method taking a plane as an argument
+-> creating the land method in the airport file
+-- requiring relevant file where is needed
+
+# SECOND USER STORY
+- allow a plane to take off from the airport and confirm status that is has departed
+-> airport spec file to test for the method take_off with one argument
+-> created take_off method in airport class
