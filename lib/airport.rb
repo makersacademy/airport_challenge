@@ -1,12 +1,43 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+  
+  attr_accessor :planes, :plane, :plane_status
+  
+  def initialize
+    @planes = []
+  end
+  
+  def weather_good?
+    weather = weather_forecaster
+  end
     
-    #def 
-    
-    
+  def land_plane(plane)
+    planes << plane
+    plane_status = "down"
+  end
+  
+  def take_off
+    planes.pop
+    plane_status = "up"
+  end
     
 end
+
+airport = Airport.new
+plane = Plane.new
+puts airport.land_plane(plane)
+puts airport.planes.inspect
+
+puts airport.take_off
+puts airport.planes.inspect
+
+puts airport.weather_good?
+
+#puts plane.plane_status
+#puts plane.take_off
+#puts plane.plane_status
 
 
 =begin

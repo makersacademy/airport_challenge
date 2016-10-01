@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-    
+=begin   
     describe "Plane instructed to land." do
         
         it { is_expected.to respond_to :land_plane}
@@ -21,5 +21,5 @@ describe Plane do
         end
     end  
      
-     
+=end     
 end

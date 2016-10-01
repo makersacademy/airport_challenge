@@ -2,14 +2,21 @@
 OBJECT	                    MESSAGE
 + Air traffic controller
 + Pilot
+As an air traffic controller, So I can get passengers to a destination 
+I want to instruct a plane to land at an airport and confirm that it has landed
 Airport	                    Instr!: Land at airport!
 Plane                       Action!: land at airport!
 Airport	                    Qry?: Has plane landed?
-	
+
+As an air traffic controller, So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport	
 Airport 	                Instr!: Take-off from airport!
 Plane                       Action!: Take-off from airport!
 Airport	                    Qry?: Has plane taken-off?
-	
+
+As an air traffic controller, To ensure safety, I want to prevent landing when weather is stormy
+For overriding random weather behaviour, use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+You'll need to use a stub to override random weather to ensure consistent test behaviour.
 Airport	                    Qry?: Is weather stormy? Random function to determine this... Weather == stormy
 Airport	                    Instr!: Don't allow take-off if it's stormy!
 Plane                       Action!: Don't take-off as it's stormy!
@@ -17,13 +24,18 @@ Plane                       Action!: Don't take-off as it's stormy!
 Airport	                    Qry?: Is weather stormy? Random function to determine this... Weather != stormy
 Airport	                    Instr!: Don't allow landing if stormy!
 Plane	                    Action!: Don't land as it's stormy!
-	
+
+As an air traffic controller, To ensure safety, I want to prevent landing when the airport is full 	
 Airport	                    Qry?: Airport full?
 Airport	                    Instr!: Don't allow landing if full!
 Plane                       Action!: Don't land as airport is full!
 	
 Airport	                    Instr!: Set default airport capacity!
 
+defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) 
+such as inconsistent states of the system ensuring that planes can only take off from airports they are in; 
+planes that are already flying cannot takes off and/or be in an airport; 
+planes that are landed cannot land again and must be in an airport, etc.
 
 NOTES:
 I used the boris-bikes to a great degree to help me through this!
@@ -33,14 +45,14 @@ Airport Challenge
 =================
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+         ______
+         _\____\___
+=   = ==(____MA____)
+           \_____\___________________,-~~~~~~~`-.._         m          m   (birds)
+           /     o o o o o o o o o o o o o o o o  |\_
+           `~-.__       __..----..__                  )           =
+                 `---~~\___________/------------`````
+                 =  ===(_________)
 
 ```
 
