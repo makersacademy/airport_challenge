@@ -12,4 +12,11 @@ attr_reader :plane
     @planes << plane
   end
 
+  def take_off
+    @planes.pop
+  end
+
+  def empty?
+    @planes.empty?
+  end
 end
