@@ -17,7 +17,7 @@ describe Airport do
     expect(airport.landing(plane)).to eq [plane]
   end
 
-  it 'should not allow planes to land if full' do
+  it 'should not allow planes to land if at default capacity' do
     airport = Airport.new
     Airport::DEFAULT_CAPACITY.times{airport.landing(Plane.new)}
     plane = Plane.new
