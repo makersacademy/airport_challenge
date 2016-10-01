@@ -146,4 +146,6 @@ airport.planes_on_ground.pop  # should return plane2 that landed first
 REFACTORING OPPORTUNITIES
 Put stubs back in instead of real Plane objects
 Modules and mixins
+Are classes and methods as clean and as short as they can be?
 Feature spec
+Travis CI testing
