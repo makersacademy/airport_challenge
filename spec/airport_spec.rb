@@ -6,10 +6,11 @@ describe Airport do
   end
 
   it 'lands a plane at an airport' do
-    expect(subject.land(@plane)).to eq @plane
+    expect(subject.land(@plane)).to eq [@plane]
   end
 
   it 'confirms that a plane has landed' do
-    expect(subject.planes).to eq @plane
+    subject.land(@plane)
+    expect(subject.planes).to eq [@plane]
   end
 end
