@@ -4,42 +4,57 @@ describe Airport do
   subject(:airport) {described_class.new}
   plane = Plane.new
 
-  #1
+  #1 - User Story 1
   it "1. checks existance of the class Airport" do
     expect(airport.class).to eq Airport
   end
 
-  #2
+  #2 - User Story 1
   it "2. plane can land at airport - land method" do
     expect(airport).to respond_to(:land).with(1).argument
   end
 
-  #3
+  #3 - User Story 1
   it "3. confirmation message that the plane has landed" do
   expect(airport.land(plane)).to eq "The plane has landed"
   end
 
-  #4
+  #4 - User Story 5
   it "4. raises an error if plane attempts to land and no gates are available" do
-    airport_size0 = Airport.new(0,false)
-    expect{airport_size0.land(plane)}.to raise_error "No gates available - cannot land plane"
+    airport_size5 = Airport.new(5,false)
+    5.times do
+      airport_size5.land(Plane.new)
+    end
+    expect{airport_size5.land(Plane.new)}.to raise_error "No gates available - cannot land plane"
   end
 
-  #5
+  #5 - User Story 2
   it "5. a plane can depart from the airport - take_off method" do
     expect(airport).to respond_to(:take_off).with(1).argument
   end
 
-  #6
+  #6 - User Story 2
   it "6. confirmation message that the plane has departed" do
-    airport.land(plane)
+    airport.land(plane) # land a plane first
     expect(airport.take_off(plane)).to eq "The plane has departed"
   end
 
-  #7
+  #7 - User Story 2
   it "7. raises an error when there are no planes to depart for take_off method" do
     expect{airport.take_off(plane)}. to raise_error "There are no planes currently at the airport - No departures"
   end
+
+  #8 - User Story 6
+  it "8. defaults to 231 gates if no argument is given" do
+    expect(airport.gates_size).to eq Airport::AIRPORT_CAPACITY
+  end
+
+  #9 - User Story 6
+  it "9. airport capacity can be passed as an argument" do
+    airport_capacity_5 = Airport.new(5,false)
+    expect(airport_capacity_5.gates_size).to eq 5
+  end
+
 
 
 end

@@ -133,4 +133,5 @@ of the class Plane
 -> when landed planes are stored to the gates array
 -> messages and raising errors for land method
 -> messages and raising errors for take off method
+->> By default a new airport will have stormy weather set to false
 - plane should not take off if weather is stormy
