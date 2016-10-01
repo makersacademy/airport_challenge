@@ -11,11 +11,16 @@ describe Airport do
 
   it { is_expected.to respond_to :landing }
 
-
-  it 'should see that a plane has landed with increment in number' do
+  it 'should see that a plane has landed' do
     airport = Airport.new
     plane = Plane.new
-    expect(airport.landing(plane)).to eq 1
+    expect(airport.landing(plane)).to eq [plane]
+  end
+
+  it 'should see that a plane has left the airport' do
+    airport = Airport.new
+    plane = Plane.new
+    expect(airport.take_off(plane)).to eq -1
   end
 
 

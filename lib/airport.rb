@@ -5,14 +5,15 @@ class Airport
   attr_reader :plane
 
   def initialize
-    @plane = 0
+    @plane = []
   end
 
-  def take_off
+  def take_off(plane)
+    @plane =- 1
   end
 
   def landing(plane)
-    @plane =+ 1
+    @plane << plane
   end
 
 end
