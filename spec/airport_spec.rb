@@ -2,6 +2,7 @@ require "airport"
 
 describe Airport do
   subject(:airport) {described_class.new}
+  plane = Plane.new
 
   #1
   it "1. checks existance of the class Airport" do
@@ -14,14 +15,34 @@ describe Airport do
   end
 
   #3
-  it "3. a plane can depart from the airpot - take_off method" do
-    expect(airport).to respond_to(:take_off).with(1).argument
+  it "3. confirmation message that the plane has landed" do
+  expect(airport.land(plane)).to eq "The plane has landed"
   end
 
   #4
+  it "4. raises an error if plane attempts to land and no terminals are available" do
+    airport_size0 = Airport.new(0,false)
+    expect{airport_size0.land(plane)}.to raise_error "No terminals available"
+  end
+
+  #5
+  it "5. a plane can depart from the airport - take_off method" do
+    expect(airport).to respond_to(:take_off).with(1).argument
+  end
+
+  #6
+  it "6. confirmation message that the plane has departed" do
+    airport.land(plane) # landing a plane first
+    expect(airport.take_off(plane)).to eq "The plane has departed"
+  end
+
+  #
+  #
+  #
+  # 4
   # it "4. raises an error for take_off if weather is stormy" do
   #   plane = Plane.new
-  #   airpot.land
+  #   airport.land
   # end
 
 
