@@ -1,0 +1,6 @@
+require './lib/plane'
+require './lib/airport'
+plane1 = Plane.new
+plane2 = Plane.new
+airport = Airport.new
+ 
