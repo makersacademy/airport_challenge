@@ -2,6 +2,12 @@ require 'plane'
 require 'airport'
 
 describe Plane do
+
+  before do
+    @heathrow = Airport.new
+    @concorde = Plane.new
+  end
+
   it 'sets up instance variables correctly' do
     expect(subject.status).to eq "flight in progress"
     expect(subject.airport).to eq nil
@@ -16,24 +22,18 @@ describe Plane do
     it {should respond_to :land}
 
     it 'should be be visible as landed at the airport' do
-      heathrow = Airport.new
-      plane = Plane.new
-      plane.land(heathrow)
-      expect(heathrow.planes[0]).to eq plane
+      @concorde.land(@heathrow)
+      expect(@heathrow.planes[0]).to eq @concorde
     end
 
     it 'should change it\'s status to landed' do
-      heathrow = Airport.new
-      plane = Plane.new
-      plane.land(heathrow)
-      expect(plane.status).to eq "landed"
+      @concorde.land(@heathrow)
+      expect(@concorde.status).to eq "landed"
     end
 
     it 'should know which airport it has landed at' do
-      heathrow = Airport.new
-      plane = Plane.new
-      plane.land(heathrow)
-      expect(plane.airport).to eq heathrow
+      @concorde.land(@heathrow)
+      expect(@concorde.airport).to eq @heathrow
     end
   end
 
@@ -42,27 +42,21 @@ describe Plane do
     it {should respond_to :take_off}
 
     it 'should be visible as having left an airport' do
-      heathrow = Airport.new
-      plane = Plane.new
-      plane.land(heathrow)
-      plane.take_off
-      expect(heathrow.planes).to eq []
+      @concorde.land(@heathrow)
+      @concorde.take_off
+      expect(@heathrow.planes).to eq []
     end
 
     it 'should change it\'s status to flight in progress' do
-      heathrow = Airport.new
-      plane = Plane.new
-      plane.land(heathrow)
-      plane.take_off
-      expect(plane.status).to eq "flight in progress"
+      @concorde.land(@heathrow)
+      @concorde.take_off
+      expect(@concorde.status).to eq "flight in progress"
     end
 
     it 'should change it\'s airport to nil' do
-      heathrow = Airport.new
-      plane = Plane.new
-      plane.land(heathrow)
-      plane.take_off
-      expect(plane.airport).to eq nil
+      @concorde.land(@heathrow)
+      @concorde.take_off
+      expect(@concorde.airport).to eq nil
     end
   end
 
