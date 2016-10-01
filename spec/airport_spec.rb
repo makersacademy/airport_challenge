@@ -20,9 +20,9 @@ describe Airport do
   end
 
   #4
-  it "4. raises an error if plane attempts to land and no terminals are available" do
+  it "4. raises an error if plane attempts to land and no gates are available" do
     airport_size0 = Airport.new(0,false)
-    expect{airport_size0.land(plane)}.to raise_error "No terminals available"
+    expect{airport_size0.land(plane)}.to raise_error "No gates available"
   end
 
   #5
@@ -32,7 +32,7 @@ describe Airport do
 
   #6
   it "6. confirmation message that the plane has departed" do
-    airport.land(plane) # landing a plane first
+    airport.land(plane)
     expect(airport.take_off(plane)).to eq "The plane has departed"
   end
 
