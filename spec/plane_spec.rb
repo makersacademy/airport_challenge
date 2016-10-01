@@ -20,4 +20,10 @@ describe Plane do
       expect(subject).to be_flying
   end
 
+  it "sets flying to false on landing" do
+      allow(airport).to receive(:weather) { "sunny" }
+      airport.land(subject)
+      expect(subject).not_to be_flying
+  end
+
 end
