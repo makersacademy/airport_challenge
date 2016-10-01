@@ -9,11 +9,13 @@ describe Plane do
 
   it { is_expected.to respond_to (:flying?) }
 
-  it "is not flying by default" do
-      expect(subject).not_to be_flying
+  it "is flying by default" do
+      expect(subject).to be_flying
   end
 
   it "sets flying to true on taking off" do
+      allow(airport).to receive(:weather) { "sunny" }
+      airport.land(subject)
       airport.takeoff(subject)
       expect(subject).to be_flying
   end

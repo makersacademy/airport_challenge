@@ -36,7 +36,9 @@ describe Airport do
   context "Plane is grounded" do
 
     it "allows a grounded plane to takeoff" do
+      allow(subject).to receive(:weather) { "sunny" }
       plane = Plane.new
+      subject.land(plane)
       subject.takeoff(plane)
       expect(plane).to be_flying
     end
@@ -48,8 +50,10 @@ describe Airport do
     end
 
     it "won't allow a plane to take off if the weather is stormy" do
-      allow(subject).to receive(:weather) { "stormy" }
+      allow(subject).to receive(:weather) { "sunny" }
       plane = Plane.new
+      subject.land(plane)
+      allow(subject).to receive(:weather) { "stormy" }
       expect { subject.takeoff(plane) }.to raise_error "Cannot take off due to storm."
     end
 
@@ -60,7 +64,6 @@ describe Airport do
     it "allows a flying plane to land" do
       allow(subject).to receive(:weather) { "sunny" }
       plane = Plane.new
-      subject.takeoff(plane)
       subject.land(plane)
       expect(plane).not_to be_flying
     end
@@ -81,7 +84,6 @@ describe Airport do
 
     it "won't allow a plane to land if the weather is stormy" do
       plane = Plane.new
-      subject.takeoff(plane)
       allow(subject).to receive(:weather) { "stormy" }
       expect { subject.land(plane) }.to raise_error "Cannot land due to storm."
     end

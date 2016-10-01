@@ -94,10 +94,10 @@ airport = Airport.new
 airport.weather = stormy
 airport.takeoff(plane)  # should raise an error "can't take off in storm" or similar.
 
-Feature 13: A plane is not flying by default
+Feature 13: A plane is flying by default
 
 plane = Plane.new
-plane.flying?           # should return false
+plane.flying?           # should return true
 
 
 
@@ -122,3 +122,4 @@ Need to confirm that plane has landed
 Need to confirm that plans has taken off and is no longer in the airport
 Need a method to check if a plane is in the airport or not
 Need to read documentation on mocks.
+Refactor to make weather it's own class?
