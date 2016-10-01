@@ -10,8 +10,13 @@ describe Airport do
   end
 
   describe '#accessor' do
-    it 'allows read-write to plane_hangar' do
+    it 'allows read of plane_hangar' do
       expect(@airport.plane_hangar << @plane).to eq [@plane]
+    end
+
+    it 'allows write of plane_hangar' do
+      @airport.plane_hangar = [@plane, @plane]
+      expect(@airport.plane_hangar).to eq [@plane, @plane]
     end
 
     it 'allows read of weather' do
@@ -26,13 +31,21 @@ describe Airport do
     end
 
     it 'lands in good weather' do
-      @airport.weather = 10
-      expect(@airport.land(@plane)).to eq(true)
+      @airport.weather = 2
+      @airport.land(@plane)
+      expect(@airport.plane_hangar).to eq([@plane])
     end
 
     it 'does not land in bad weather' do
       @airport.weather = 1
       expect { @airport.land(@plane) }.to raise_error(@err1)
+    end
+
+    it 'confirms plane is no longer flying' do
+      @airport.land(@plane)
+    end
+
+    it 'confirms plane has landed' do
     end
   end
 
@@ -46,6 +59,12 @@ describe Airport do
       @airport.plane_hangar << @plane
       @airport.weather = 1
       expect { @airport.takeoff(@plane) }.to raise_error(@err2)
+    end
+
+    it 'confirms plane is flying' do
+    end
+
+    it 'confirms plane is no longer in airport' do
     end
   end
 

@@ -15,12 +15,16 @@ class Airport
   end
 
   def land(plane)
-    weather? ? @plane_hangar << plane : raise('Cannot land in bad weather')
-    return true
+    if weather?
+      plane.flying = false
+      @plane_hangar << plane
+    else
+      raise('Cannot land in bad weather')
+    end
   end
 
   def takeoff(plane)
-    weather? ? @plane_hangar.select {|x| x == plane } : raise('Cannot take off in bad weather')
+    weather? ? @plane_hangar[plane] : raise('Cannot take off in bad weather')
   end
 
   def weather?
