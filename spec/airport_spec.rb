@@ -9,7 +9,7 @@ describe Airport do
     @plane = Plane.new
   end
 
-  it "Test for existance of an airport" do
+  it "Existential airport" do
     expect(subject).to be_a Airport
   end
 
@@ -62,5 +62,9 @@ describe Airport do
     @airport.land_plane(@plane)
     expect{@airport.land_plane(@plane)}.to raise_error('Plane has already landed')
   end
+
+it "Airport should stand up to rush hour" do
+  expect{10.times do @airport.land_plane(Plane.new) end}.not_to raise_error
+end
 
 end

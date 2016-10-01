@@ -6,7 +6,7 @@ describe Plane do
     @plane = Plane.new
   end
 
-  it "Test for existance of a plane" do
+  it "Existential plane" do
     expect(subject).to be_a Plane
   end
 
