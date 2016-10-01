@@ -8,9 +8,12 @@ class Airport
   end
 
   def take_off
+    @planes.pop
+    "The plane has taken off"
   end
 
   def land(plane)
     @planes << plane
+    "The plane landed safely"
   end
 end
