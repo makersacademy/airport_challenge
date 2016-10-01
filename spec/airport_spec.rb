@@ -69,17 +69,13 @@ describe Airport do
       expect { subject.land(flying_plane) }.to raise_error "Cannot land. Airport is full."
     end
 
-=begin
-    before do
-      weather = "stormy"
-    end
-
     it "won't allow a plane to land if the weather is stormy" do
+      allow(subject).to receive(:weather) { "stormy" }
       plane = Plane.new
       subject.takeoff(plane)
       expect { subject.land(plane) }.to raise_error "Cannot land due to storm."
     end
-=end
+
   end
 
 end
