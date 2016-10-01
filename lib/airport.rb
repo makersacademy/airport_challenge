@@ -2,12 +2,11 @@
 class Airport
   attr_accessor :capacity, :airport_name
   DEFAULT_CAPACITY = 5
-  DEFAULT_AIRPORT = "airport"
 
-  def initialize(capacity = DEFAULT_CAPACITY, airport_name = "airport")
+  def initialize(capacity = DEFAULT_CAPACITY, airport_name = "airport(unnamed)")
     @planes = []
     @capacity = capacity
-    @airport_name = "airport"
+    @airport_name = airport_name
   end
 
   def random_weather
