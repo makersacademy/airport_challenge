@@ -61,4 +61,15 @@ describe Plane do
     end
   end
 
+  describe 'edge cases' do
+    it 'should not be able to take off if already in flight' do
+      expect {@concorde.take_off}.to raise_error "This plane is already in flight"
+    end
+    it 'should not be able to land if it is at another airport' do
+      @concorde.land(@heathrow)
+      expect {@concorde.land(Airport.new)}.to raise_error "This plane is not in flight"
+    end
+  end
+
+
 end

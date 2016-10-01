@@ -2,19 +2,20 @@ class Airport
 
   attr_reader :capacity, :weather, :planes
 
-  def initialize
-    @capacity = 20
+  DEFAULT_CAPACITY = 10
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @weather = "sunny"
     @planes = []
   end
 
   def accept_plane(plane)
     change_weather
-    if @weather == "stormy"
-      raise "Plane cannot land due to poor weather"
-    else
-      @planes << plane
-    end
+    raise "This plane has already landed" if plane_present(plane)
+    raise "Plane cannot land due to poor weather" if @weather == "stormy"
+    raise "Plane cannot land; airport is at capacity" if @planes.length == 10
+    @planes << plane
   end
 
   def plane_departs(plane)
