@@ -61,6 +61,11 @@ describe Airport do
     expect{airport.take_off}.to raise_error("It's blowing a gale out there!")
   end
 
+  it "should check that weather elements are random" do
+    airport = Airport.new
+    expect(airport.forecast).to eq Weather::ELEMENTS.sample
+  end
+
 
   it 'should get a plane, and check it\'s working' do
     plane = Plane.new
