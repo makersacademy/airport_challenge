@@ -4,15 +4,28 @@ describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {double :plane}
 
-  # before do
-  #   @planes = []
-  # end
+  describe "#initialize" do
+    context "user sets airport capacity" do
+      it "should allow user to set a capacity" do
+        airport.instance_variable_get("@capacity")
+      end
+    end
+
+    context "use defalt capacity" do
+      it "should use default capacity of 20 if no capacity is given" do
+        expect(airport.capacity).to eq 20
+      end
+    end
+  end
 
   describe '#land' do
 
-    it {is_expected.to respond_to(:land).with(1).argument}
+    it 'tells the plane to land' do
+      allow(plane).to receive(:land)
+      airport.land(plane)
+    end
 
-    it "allows the plane to land" do
+    it "has the plane after it has landed" do
       allow(plane).to receive(:land)
       airport.land(plane)
       expect(airport.planes).to include plane
@@ -34,7 +47,10 @@ describe Airport do
       airport.land(plane)
     end
 
-    it {is_expected.to respond_to(:take_off)}
+    it 'lets a plane take off' do
+      allow(plane).to receive(:take_off)
+      airport.take_off
+    end
 
     it 'should allow a plan to take off' do
       allow(plane).to receive(:take_off)
