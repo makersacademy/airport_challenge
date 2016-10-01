@@ -7,13 +7,16 @@ class Airport
     @planes = []
   end
 
+  private
+
   def add(plane)
-    fail "Cannot add. Airport is full!" if full?
-    fail "Cannot add flying planes to airport" if plane.flying?
+    fail_if_full
     planes << plane
   end
 
-  private
+  def fail_if_full
+    fail "Airport is full!" if full?
+  end
 
   def full?
     planes.count >= capacity
