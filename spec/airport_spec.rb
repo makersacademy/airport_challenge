@@ -10,4 +10,10 @@ describe Airport do
     expect(plane.flying?).to eq(false)
   end
 
+  it 'confirms plane has landed' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(plane.status).to eq('landed')
+  end
+
 end
