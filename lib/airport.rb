@@ -1,6 +1,6 @@
 
 class Airport
-  #attr_accessor :capacity, :airport_name
+  attr_accessor :capacity, :airport_name
   DEFAULT_CAPACITY = 5
   DEFAULT_AIRPORT = "airport"
 

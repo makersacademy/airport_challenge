@@ -9,6 +9,7 @@ require 'plane'
     let(:airport) { Airport.new }
 
     it { is_expected.to respond_to :land_plane}
+    it { is_expected.to respond_to :random_weather}
 
     it "instructs a plane to land" do
       allow(airport).to receive(:random_weather) { 'sunny' }
