@@ -46,7 +46,7 @@ describe Airport do
   describe '#takeoff' do
     it 'returns plane if weather is good' do
       @airport.plane_hangar << @plane
-      expect(@airport.takeoff(self.plane_hangar[@plane])).to eq([@plane])
+      expect(@airport.takeoff(@plane)).to eq(@plane)
     end
 
     it 'raises error if weather is bad' do
