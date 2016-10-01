@@ -1,6 +1,7 @@
 # this class takes care of the plane handling.
 #Landing and takeoff.
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :planes
