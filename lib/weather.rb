@@ -1,11 +1,8 @@
-class Weather
+  class Weather
 
-  def initialize
+    def random_weather
+      ["stormy", "sunny"].sample
+    end
+
+
   end
-
-  def random_weather
-    ["stormy", "sunny"].sample
-  end
-
-
-end
