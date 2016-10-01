@@ -12,8 +12,11 @@ describe Airport do
     it { is_expected.to respond_to :take_off }
   end
 
-  it 'it should get a plane, and check it\'s working' do
+  describe 'it should allow a plane to land' do
+  it { is_expected.to respond_to :landing }
+  end
 
+  it 'should get a plane, and check it\'s working' do
     plane = Plane.new
     expect(plane.working?).to eq true
   end
