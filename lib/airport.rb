@@ -26,14 +26,11 @@ class Airport
 
   def takeoff(plane)
     if weather?
-      temp_plane = @plane_hangar[plane]
-      puts 'works1'
+      index = @plane_hangar.index(plane)
+      temp_plane = @plane_hangar[index]
       @plane_hangar.delete(plane)
-      puts 'works2'
       temp_plane.flying = true
-      puts 'works3'
       return temp_plane
-      puts 'works4'
     else
       raise('Cannot takeoff in bad weather')
     end
