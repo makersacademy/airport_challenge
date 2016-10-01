@@ -120,3 +120,7 @@ of the class Plane
 - allow a plane to take off from the airport and confirm status that is has departed
 -> airport spec file to test for the method take_off with one argument
 -> created take_off method in airport class
+
+# THIRD USER STORY
+-> when landed planes are stored to the terminal
+- plane should not take off if weather is stormy
