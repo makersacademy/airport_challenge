@@ -54,6 +54,7 @@ class Airport
     weighted.each do |item, weight|
     return item if target <= weight
     target -= weight
+    end
   end
-end
+
 end
