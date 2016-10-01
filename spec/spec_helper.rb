@@ -1,5 +1,5 @@
 require 'coveralls'
 Coveralls.wear!
 
-require 'airport'
-require 'plane'
+require './lib/airport'
+require './lib/plane'
