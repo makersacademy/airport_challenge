@@ -63,4 +63,10 @@ describe Airport do
     expect {@heathrow.accept_plane(@concorde)}.to raise_error "Plane cannot land due to poor weather"
   end
 
+  it 'prevents departure if weather is stormy' do
+    @heathrow.accept_plane(@concorde)
+    allow(@heathrow).to receive(:weather_index).and_return 9
+    expect {@heathrow.plane_departs(@concorde)}.to raise_error "Plane cannot take off due to poor weather"
+  end
+
 end

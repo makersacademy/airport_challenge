@@ -19,7 +19,11 @@ class Airport
 
   def plane_departs(plane)
     change_weather
-    @planes.delete(plane)
+    if @weather == "stormy"
+      raise "Plane cannot take off due to poor weather"
+    else
+      @planes.delete(plane)
+    end
   end
 
   def plane_present(plane)
