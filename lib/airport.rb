@@ -1,6 +1,9 @@
 require 'plane'
+
 class Airport
-	def land
-		@land = Plane.new
+
+	def land(plane)
+		@land = plane
 	end 
+
 end 
