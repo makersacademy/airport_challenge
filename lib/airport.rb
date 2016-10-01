@@ -3,41 +3,60 @@ require_relative 'weather'
 
 class Airport
   
-  attr_accessor :planes, :plane, :plane_status
+  attr_accessor :planes, :plane, :plane_status, :runway_open     
   
   def initialize
     @planes = []
   end
   
-  def weather_good?
-    weather = weather_forecaster
+  def airport_open?
+    weather_forecaster == "good" ? @runway_open = true : @runway_open = false
   end
     
   def land_plane(plane)
-    planes << plane
-    plane_status = "down"
+    @plane_status = "up"
+    if airport_open?      #Checks weather on "land_plane" call
+      planes << plane
+      @plane_status = "down"
+    else
+      puts "Weather is too stormy to allow planes to land." 
+    end
   end
   
   def take_off
-    planes.pop
-    plane_status = "up"
+    @plane_status = "down"
+    if airport_open?     #Checks weather on "take_off" call
+      planes.pop
+      @plane_status = "up"
+    else
+      puts "Weather is too stormy to allow planes to take-off." 
+    end
   end
     
 end
 
+
+
 airport = Airport.new
+#puts "WEATHER FORECAST"
+#puts airport.airport_open?
+
 plane = Plane.new
-puts airport.land_plane(plane)
-puts airport.planes.inspect
+puts "PLANE INSTRUCTED TO LAND"
+airport.land_plane(plane)
+puts "Is the runway open?: #{airport.runway_open}"
+puts "Array of planes at airport: #{airport.planes.inspect}"
+puts "Plane status is: #{airport.plane_status}"
+puts
+plane = Plane.new
+airport.planes << plane
+puts "PLANE INSTRUCTED TO TAKE-OFF"
+airport.take_off
+puts "Is the runway open?: #{airport.runway_open}"
+puts "Array of planes at airport: #{airport.planes.inspect}"
+puts "Plane status is: #{airport.plane_status}"
 
-puts airport.take_off
-puts airport.planes.inspect
 
-puts airport.weather_good?
-
-#puts plane.plane_status
-#puts plane.take_off
-#puts plane.plane_status
 
 
 =begin
