@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/LMCMLJ/airport_challenge.svg?branch=master)](https://travis-ci.org/LMCMLJ/airport_challenge)
-
+[![Coverage
+Status](https://coveralls.io/repos/github/LMCMLJ/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/LMCMLJ/airport_challenge?branch=master)
 Airport Challenge
 =================
 Author: Michael Calvey
