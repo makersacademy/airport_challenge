@@ -23,7 +23,7 @@ describe Airport do
     end
 
     it 'should not land if the airport is full' do
-      5.times {airport.land(plane)}
+      Airport::DEFUALT_CAPACITY.times {airport.land(plane)}
       expect{airport.land(plane)}.to raise_error "Plane unable to land, airport full"
      end
   end
