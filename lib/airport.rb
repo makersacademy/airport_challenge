@@ -32,7 +32,7 @@ class Airport
 
   def weather
     "sunny"
-    #ßrand(2) == 0? "sunny" : "stormy"
+    #ßrand(9) == 0? "stormy" : "sunny"
   end
 
 end

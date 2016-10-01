@@ -27,7 +27,9 @@ describe Airport do
       expect(plane).to be_flying
     end
 
+    # Credit to Chet Sanghani for helping me out with the allow method here
     it "won't allow a grounded plane to land" do
+      allow(grounded_plane).to receive(:flying).with(no_args)
       expect { subject.land(grounded_plane) }.to raise_error "Cannot land. Plane isn't flying."
     end
 
