@@ -14,21 +14,12 @@ class Airport
   def receive_plane(plane)
     fail 'Airport full' if full?
       @planes << plane
-      plane.landed
-      register_airport(plane)
+      plane.successful_landing(self)
   end
 
   def release_plane(plane)
     @planes = @planes.select { |pl| pl != plane }
-    register_airport(plane)
-  end
-
-  def register_airport(plane)
-    if plane.landed
-      plane.set_airport(self)
-    else
-      plane.set_airport('')
-    end
+    plane.successful_takeoff
   end
 
   def plane_at_airport(plane)

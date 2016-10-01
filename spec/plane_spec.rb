@@ -9,12 +9,16 @@ describe Plane do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
-    it 'can land at a specific airport' do
+    it 'can land at a specific airport', focus: true do
+      subject.successful_takeoff
+      subject.current_airport = airport
       subject.land(airport)
       expect(airport.planes.last).to eq (subject)
     end
 
     it 'confirms that it has landed after a successful landing' do
+      subject.successful_takeoff
+      subject.current_airport = airport
       subject.land(airport)
       expect(subject.landed).to eq true
     end
@@ -24,12 +28,14 @@ describe Plane do
     end
 
     it 'reports that it is no longer landed after taking off' do
-      subject.land(airport)
+      subject.current_airport = airport
       subject.takeoff(airport)
       expect(subject.landed).to eq false
     end
 
     it 'can report which airport it is at after landing' do
+      subject.current_airport = airport
+      subject.takeoff(airport)
       subject.land(airport)
       expect(subject.current_airport).to eq airport
     end

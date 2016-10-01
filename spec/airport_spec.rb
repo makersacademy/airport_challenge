@@ -41,7 +41,7 @@ let(:plane) { Plane.new }
     expect(airport.capacity).to eq 20
   end
 
-  it 'should raise an error if a plane tries to land at a full airport', focus: true do
+  it 'should raise an error if a plane tries to land at a full airport' do
     airport = Airport.new(1)
     airport.receive_plane(plane)
     expect{airport.receive_plane(plane)}.to raise_error 'Airport full'
