@@ -4,7 +4,7 @@ class Airport
 
   def initialize
     @capacity = 20
-    @weather = "nice"
+    @weather = "sunny"
     @planes = []
   end
 
@@ -18,6 +18,15 @@ class Airport
 
   def plane_present(plane)
     @planes.include? plane
+  end
+
+  def weather_index
+    rand(10)
+  end
+
+  def change_weather
+    weather_array = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy", "stormy"]
+    @weather = weather_array[weather_index]
   end
 
 end
