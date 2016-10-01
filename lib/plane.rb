@@ -1,4 +1,6 @@
 require_relative 'airport'
+require_relative 'weather'
+
 class Plane
 	attr_accessor :landed
 
@@ -6,12 +8,14 @@ class Plane
 		@landed = true
 	end
 
-	def land(airport)
+	def land(airport, weather)
+		raise 'Too stormy to land!' if weather.stormy?
 		@landed = true
 		airport.landed_planes << self
 	end
 
-	def take_off(airport)
+	def take_off(airport, weather)
+		raise 'Too stormy to take off!' if weather.stormy?
 		@landed = false
 		airport.landed_planes.delete(self)
 	end

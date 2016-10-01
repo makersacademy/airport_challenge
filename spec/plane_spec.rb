@@ -3,29 +3,53 @@ require 'plane'
 describe Plane do
 
 	let(:airport) { double(:airport, :landed_planes => []) }
+	let(:weather) { double(:weather) }
+	let(:stormy_weather) { double(:weather) }
+
+	before(:each) { allow(weather).to receive(:stormy?).and_return(false) }
+	before(:each) { allow(stormy_weather).to receive(:stormy?).and_return(true) }
 
 
-	it { is_expected.to respond_to(:land).with(1).argument }
-	it { is_expected.to respond_to(:take_off) }
-	it { is_expected.to have_attributes(landed: true) }
+	it { is_expected.to respond_to(:land).with(2).argument }
+	it { is_expected.to respond_to(:take_off).with(2).argument }
 
 	describe '#land' do
+
 		it "lands at an airport" do
-			subject.take_off(airport)
-			subject.land(airport)
+			subject.take_off(airport, weather)
+			subject.land(airport, weather)
 			expect(subject).to be_landed
 			expect(airport.landed_planes).to include(subject)
 		end
+
+
+		it 'raises an error when trying to land in stormy weather' do
+	 		expect { subject.land(airport, stormy_weather) }.to raise_error 'Too stormy to land!'
+	 	end
+
 	end
 
-	describe '#take-off' do
-	 	it 'takes off from an airport', focus: :true do
-	 		subject.land(airport)
-	 		subject.take_off(airport)
+	describe '#take_off' do
+
+	 	it 'takes off from an airport' do
+	 		subject.land(airport, weather)
+	 		subject.take_off(airport, weather)
 	 		expect(subject).to_not be_landed
 	 		expect(airport.landed_planes).to_not include(subject)
 	 	end
+
+	 	it 'raises an error when trying to take off in stormy weather' do
+	 		expect { subject.take_off(airport, stormy_weather) }.to raise_error 'Too stormy to take off!'
+	 	end
 	end
-
-
 end
+
+
+	# extra code 
+	# --------------
+	# it 'has not landed in stormy weather' do
+	# 	 		subject.take_off(airport, weather)
+	# 	 		subject.land(airport, stormy_weather)
+	# 	 		expect(subject).to_not be_landed
+	# 	 		expect(airport.landed_planes).to_not include(subject)
+	# 	 	end
