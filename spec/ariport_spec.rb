@@ -29,10 +29,9 @@ describe Airport do
     end
 
     it "raise and error when the airport is full" do
-      30.times { airport.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
       expect{airport.land(plane)}.to raise_error "The airport is full at the moment, please wait for landing."
     end
-
   end
 
   describe "#take_off" do
@@ -41,6 +40,10 @@ describe Airport do
     it "confirms that the plane has taken off and it is no longer in the airport" do
       airport.take_off
       expect(airport.take_off).to eq "The plane has taken off and it is no longer in the airport"
+    end
+
+    it "allows to set a default capacity when a new instance of Airport is created" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
