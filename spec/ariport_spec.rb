@@ -3,29 +3,39 @@ require 'plane'
 
 describe Airport do
     subject(:airport) {described_class.new}
+    let(:plane) {double :plane}
 
-    before(:each) do
+    before do
       @landed = []
-      plane = Plane.new
     end
 
   describe "#land" do
     it {is_expected.to respond_to(:land).with(1).arguments}
+    before do
+      #plane = Plane.new
+      #airport.land(plane)
+    end
 
     it "allows the plane to land" do
-      plane = Plane.new
-      airport.land(plane)
+      #plane = Plane.new
+      #airport.land(plane)
       expect(@landed).to eq @landed << plane
     end
 
     it "confirms that the plane has landed" do
-      plane = Plane.new
+      #plane = Plane.new
       airport.land(plane)
       expect(airport.land(plane)).to eq "The plane has already landed"
     end
+
+    it "raise and error when the airport is full" do
+      30.times { airport.land(plane) }
+      expect{airport.land(plane)}.to raise_error "The airport is full at the moment, please wait for landing."
+    end
+
   end
 
-  describe "#take off" do
+  describe "#take_off" do
     it {is_expected.to respond_to(:take_off)}
 
     it "confirms that the plane has taken off and it is no longer in the airport" do
@@ -33,4 +43,5 @@ describe Airport do
       expect(airport.take_off).to eq "The plane has taken off and it is no longer in the airport"
     end
   end
+
 end
