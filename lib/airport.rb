@@ -2,10 +2,11 @@ require './lib/plane.rb'
 
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
   def initialize
     @planes = []
+    @capacity = 15
   end
 
   def take_off(planes)
@@ -13,7 +14,7 @@ class Airport
   end
 
   def landing(planes)
-    fail "There's no room at the inn!" if @planes.length >= 15
+    fail "There's no room at the inn!" if @planes.length >= @capacity
     @planes << planes
   end
 

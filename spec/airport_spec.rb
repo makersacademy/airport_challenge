@@ -37,6 +37,11 @@ describe Airport do
       expect(airport.planes.length).to eq 15
   end
 
+  it 'should have a capacity of 15 when given' do
+    airport = Airport.new
+    expect(airport.capacity).to eq 15
+  end
+
 
   it 'should get a plane, and check it\'s working' do
     plane = Plane.new
