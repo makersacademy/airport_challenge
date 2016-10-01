@@ -21,7 +21,7 @@ Airport	                    Qry?: Is weather stormy? Random function to determin
 Airport	                    Instr!: Don't allow take-off if it's stormy!
 Plane                       Action!: Don't take-off as it's stormy!
 ~~~
-Airport	                    Qry?: Is weather stormy? Random function to determine this... Weather != stormy
+Airport	                    Qry?: Is weather stormy? Random function to determine this... Weather != stormy   Test = "allow(die).to receive(:roll) { 3 }"
 Airport	                    Instr!: Don't allow landing if stormy!
 Plane	                    Action!: Don't land as it's stormy!
 
@@ -39,6 +39,10 @@ planes that are landed cannot land again and must be in an airport, etc.
 
 NOTES:
 I used the boris-bikes to a great degree to help me through this!
+
+Bad weather has a 70% chance of occurring. The random function to determine this is in weather.rb
+The weather call is made each time a plane takes off or lands so that 
+the take-off or landing can be aborted if the weather is bad.
 
 
 Airport Challenge

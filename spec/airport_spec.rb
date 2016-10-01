@@ -8,21 +8,39 @@ describe Airport do
         it { is_expected.to respond_to :land_plane}         #.with (1).argument
         plane = Plane.new
         it "Plane returns a status of 'down' when it lands." do
+
             expect(subject.land_plane(plane)).to eq "down"
         end    
     
     end
     
     describe "- Plane instructed to take-off." do
+        
+        
 
         it {is_expected.to respond_to :take_off}
         
         it "Plane returns a status of 'up' when it takes-off." do
+            #subject.planes << Plane.new
             expect(subject.take_off).to eq "up"
         end
-    end  
+    end
+    describe "- Plane instructed to land when there is no plane." do
+        it "Plane does not land if there is no plane object." do
+            plane = nil
+            plane = "123456789"
+            expect{subject.land_plane(plane)}.to raise_error("ERROR: There is no plane to land.")
+        end
+    end
     
-    
+=begin    
+    describe "- Plane instructed to take-off when there is no plane." do
+        it "Plane does not take off if there are no planes in the airport" do
+            subject.planes = []     #Empty array of planes at airport.
+            
+        end
+    end
+=end    
 end
 
 

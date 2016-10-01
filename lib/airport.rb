@@ -14,6 +14,7 @@ class Airport
   end
     
   def land_plane(plane)
+    fail "ERROR: There is no plane to land." if (plane.nil? || plane.class.to_s != "Plane")
     @plane_status = "up"
     if airport_open?      #Checks weather on "land_plane" call
       planes << plane
@@ -35,14 +36,21 @@ class Airport
     
 end
 
-
-
+=begin
+#Cannot land a plane if there is no plane object.
 airport = Airport.new
-#puts "WEATHER FORECAST"
-#puts airport.airport_open?
-
 plane = Plane.new
-puts "PLANE INSTRUCTED TO LAND"
+airport.land_plane(plane)
+  #plane = "I'm a little aeroplane up in the sky"
+  #airport.land_plane(plane)
+  #plane = nil
+  #airport.land_plane(plane)
+=end
+
+=begin
+airport = Airport.new
+plane = Plane.new
+puts "PLANE INSTRUCTED TO LAND - will not if weather is stormy"
 airport.land_plane(plane)
 puts "Is the runway open?: #{airport.runway_open}"
 puts "Array of planes at airport: #{airport.planes.inspect}"
@@ -50,13 +58,13 @@ puts "Plane status is: #{airport.plane_status}"
 puts
 plane = Plane.new
 airport.planes << plane
-puts "PLANE INSTRUCTED TO TAKE-OFF"
+puts "PLANE INSTRUCTED TO TAKE-OFF - will not if weather is stormy"
 airport.take_off
 puts "Is the runway open?: #{airport.runway_open}"
 puts "Array of planes at airport: #{airport.planes.inspect}"
 puts "Plane status is: #{airport.plane_status}"
 
-
+=end
 
 
 =begin
