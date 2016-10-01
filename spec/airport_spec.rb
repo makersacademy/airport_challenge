@@ -47,8 +47,8 @@ describe Airport do
 
   context "Plane is flying" do
 
-    # I need to force the weather to be sunny for this to pass consistently
     it "allows a flying plane to land" do
+      allow(subject).to receive(:weather) { "sunny" }
       plane = Plane.new
       subject.takeoff(plane)
       subject.land(plane)
@@ -59,8 +59,8 @@ describe Airport do
         expect { subject.takeoff(flying_plane) }.to raise_error "Cannot take off. Plane is flying."
     end
 
-    # I need to force the weather to be sunny for this to pass consistently
     it "won't allow a plane to land if the airport is full" do
+      allow(subject).to receive(:weather) { "sunny" }
       plane = Plane.new
       subject.capacity.times do
         plane.flying = true
