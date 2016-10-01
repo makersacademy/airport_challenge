@@ -23,9 +23,19 @@ describe Plane do
       expect(subject).to respond_to(:takeoff).with(1).argument
     end
 
-    it 'can take off from an airport' do
+    it 'reports that it is no longer landed after taking off' do
+      subject.land(airport)
       subject.takeoff(airport)
       expect(subject.landed).to eq false
+    end
+
+    it 'can report which airport it is at after landing' do
+      subject.land(airport)
+      expect(subject.current_airport).to eq airport
+    end
+
+    it 'cannot takeoff from an airport it is not currently at' do
+        expect{subject.takeoff(airport)}.to raise_error 'This plane is not at that airport'
     end
 
 end

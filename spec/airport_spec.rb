@@ -32,4 +32,19 @@ let(:plane) { Plane.new }
     expect(subject.plane_at_airport(plane)).to eq false
   end
 
+  it 'should have a default capacity' do
+    expect(subject.capacity).to eq 5
+  end
+
+  it 'should have a variable capacity' do
+    airport = Airport.new(20)
+    expect(airport.capacity).to eq 20
+  end
+
+  it 'should raise an error if a plane tries to land at a full airport', focus: true do
+    airport = Airport.new(1)
+    airport.receive_plane(plane)
+    expect{airport.receive_plane(plane)}.to raise_error 'Airport full'
+  end
+
 end
