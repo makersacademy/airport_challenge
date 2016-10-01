@@ -4,7 +4,7 @@ class AirTrafficController
 	    @weather = weather
 	end
 
-	def weather
-	 weather = false
+	def weather(weather = true)
+		 @weather
 	end 
 end
