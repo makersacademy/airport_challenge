@@ -4,6 +4,7 @@ require 'airport'
 describe Plane do
   it 'sets up instance variables correctly' do
     expect(subject.status).to eq "flight in progress"
+    expect(subject.airport).to eq nil
   end
 
   it 'should be able to confirm it\'s status' do
@@ -27,6 +28,13 @@ describe Plane do
       plane.land(heathrow)
       expect(plane.status).to eq "landed"
     end
+
+    it 'should know which airport it has landed at' do
+      heathrow = Airport.new
+      plane = Plane.new
+      plane.land(heathrow)
+      expect(plane.airport).to eq heathrow
+    end
   end
 
   describe 'taking off from an airport' do
@@ -47,6 +55,14 @@ describe Plane do
       plane.land(heathrow)
       plane.take_off
       expect(plane.status).to eq "flight in progress"
+    end
+
+    it 'should change it\'s airport to nil' do
+      heathrow = Airport.new
+      plane = Plane.new
+      plane.land(heathrow)
+      plane.take_off
+      expect(plane.airport).to eq nil
     end
   end
 

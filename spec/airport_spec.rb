@@ -27,4 +27,14 @@ describe Airport do
     expect(heathrow.planes).to eq []
   end
 
+  it {should respond_to :plane_present}
+
+  it 'can confirm if a plane is present in the airport' do
+    heathrow = Airport.new
+    plane = Plane.new
+    expect(heathrow.plane_present(plane)).to eq false
+    heathrow.accept_plane(plane)
+    expect(heathrow.plane_present(plane)).to eq true
+  end
+
 end
