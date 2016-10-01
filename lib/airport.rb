@@ -12,7 +12,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Cant land, the Airport is full" if full?
+    fail "Can't land, the Airport is full." if full?
     fail "Cant land, the plane isnt flying" if !plane.flying
     plane.flying = false
     @planes_landed << plane
@@ -28,7 +28,7 @@ class Airport
   end
 
   def full?
-    @planes_landed.count == DEFAULT_CAPACITY
+    @planes_landed.count >= DEFAULT_CAPACITY
   end
 
 end
