@@ -6,4 +6,8 @@ class Airport
 		@land = plane
 	end 
 
+	def take_off
+		@departure = @plane
+	end 
+
 end 

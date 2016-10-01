@@ -5,6 +5,7 @@ describe Airport do
 		@airport = Airport.new
 		@plane = Plane.new
 		@plane = @airport.land(@plane)
+		@plane = @airport.take_off
 		
 		#@plane = double(:plane)
 		#allow(@plane).to recieve()
@@ -13,7 +14,9 @@ end
 		expect(@airport).to respond_to :land 
 	 end 	
 
-	 it 'add a new instance variable for bike' do
+	 it 'add a new instance variable for plane' do
 	 		expect(@airport.land(@plane)).to eq(@plane)
 	 end 
+
+	 it { is_expected.to respond_to :take_off}
 end 
