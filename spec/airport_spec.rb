@@ -22,7 +22,6 @@ describe Airport do
   context "Plane is grounded" do
 
     it "allows a grounded plane to takeoff" do
-      # could not get my stub to work. something wrong with the syntax?
       plane = Plane.new
       subject.takeoff(plane)
       expect(plane).to be_flying
@@ -36,6 +35,7 @@ describe Airport do
 
   context "Plane is flying" do
 
+    # I need to force the weather to be sunny for this to pass consistently
     it "allows a flying plane to land" do
       plane = Plane.new
       subject.takeoff(plane)
@@ -47,6 +47,7 @@ describe Airport do
         expect { subject.takeoff(flying_plane) }.to raise_error "Cannot take off. Plane is flying."
     end
 
+    # I need to force the weather to be sunny for this to pass consistently
     it "won't allow a plane to land if the airport is full" do
       plane = Plane.new
       subject.capacity.times do
@@ -56,6 +57,17 @@ describe Airport do
       expect { subject.land(flying_plane) }.to raise_error "Cannot land. Airport is full."
     end
 
+=begin
+    before do
+      weather = "stormy"
+    end
+
+    it "won't allow a plane to land if the weather is stormy" do
+      plane = Plane.new
+      subject.takeoff(plane)
+      expect { subject.land(plane) }.to raise_error "Cannot land due to storm."
+    end
+=end
   end
 
 end

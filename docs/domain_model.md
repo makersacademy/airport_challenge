@@ -75,8 +75,18 @@ plane.flying?           # should return true
 airport.land(plane)
 plane.flying?           # should return false
 
-Feature 10: Weather is randomly sunny, cloudy or stormy
+Feature 10: You can check the weather at the airport DONE but not great as have useless test
+airport = Airport.new
+airport.weather         # should return randomly sunny or stormy
 
+Feature 11: A plane cannot land if the weather is stormy
+
+plane = Plane.new
+airport = Airport.new
+airport.takeoff(plane)
+airport.weather = stormy
+airport.land(plane)     # should raise an error "can't land plane in storm" or similar.
 
 REFACTORING NEEDED
 Put stubs back in instead of real Plane objects
+The random weather is causing my tests to fail randomly!

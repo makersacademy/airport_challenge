@@ -14,6 +14,7 @@ class Airport
   def land (plane)
     fail "Cannot land. Airport is full." if full?
     fail "Cannot land. Plane isn't flying." if !plane.flying?
+    fail "Cannot land due to storm." if weather == "stormy"
     plane.flying = false
     @planes_on_ground << plane
   end
@@ -27,6 +28,11 @@ class Airport
 
   def full?
     planes_on_ground.count == capacity
+  end
+
+  def weather
+    "sunny"
+    #ßrand(2) == 0? "sunny" : "stormy"
   end
 
 end

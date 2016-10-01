@@ -1,5 +1,5 @@
-require "plane"
-require "airport"
+require "plane.rb"
+require "airport.rb"
 
 describe Plane do
 
@@ -7,7 +7,7 @@ describe Plane do
     airport = Airport.new
   end
 
-  it {is_expected.to respond_to (:flying?) }
+  it { is_expected.to respond_to (:flying?) }
 
   it "sets flying to true on taking off" do
       airport.takeoff(subject)
