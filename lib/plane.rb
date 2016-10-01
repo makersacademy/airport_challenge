@@ -1,4 +1,8 @@
 class Plane
-	def land
+	def land(airport)
+	end
+
+	def landed?
+		true
 	end
 end
