@@ -1,14 +1,17 @@
-require_relative 'weather'
 
 class Airport
-  #attr_reader :planes, :capacity
+  #attr_accessor :capacity, :airport_name
   DEFAULT_CAPACITY = 5
   DEFAULT_AIRPORT = "airport"
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, airport_name = "airport")
     @planes = []
     @capacity = capacity
-    @airport = "airport"
+    @airport_name = "airport"
+  end
+
+  def random_weather
+    ["stormy", "sunny"].sample
   end
 
   def land_plane(plane)
