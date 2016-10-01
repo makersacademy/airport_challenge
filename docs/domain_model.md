@@ -87,34 +87,24 @@ airport.takeoff(plane)
 airport.weather = stormy
 airport.land(plane)     # should raise an error "can't land plane in storm" or similar.
 
-Feature 12: A plane cannot take off if the weather is stormy
+Feature 12: A plane cannot take off if the weather is stormy DONE
 
 plane = Plane.new
 airport = Airport.new
 airport.weather = stormy
 airport.takeoff(plane)  # should raise an error "can't take off in storm" or similar.
 
-Feature 13: A plane is flying by default
+Feature 13: A plane is flying by default DONE
 
 plane = Plane.new
 plane.flying?           # should return true
 
-
-
-
-
-
-
-
-
-Feature 13: You can check if the plane is in the airport or not
+Feature 14: You can check if the plane is in the airport or not
 
 plane = Plane.new
 airport = Airport.new
-airport.takeoff(plane)
-airport.land(Plane)
-
-
+airport.land(plane)
+airport.contains(plane)      # should return true
 
 REFACTORING NEEDED
 Put stubs back in instead of real Plane objects

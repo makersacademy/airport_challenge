@@ -16,6 +16,7 @@ class Airport
     fail "Cannot land. Plane isn't flying." if !plane.flying?
     fail "Cannot land due to storm." if weather == "stormy"
     plane.flying = false
+    plane.in_airport = true
     @planes_on_ground << plane
   end
 
