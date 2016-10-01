@@ -77,6 +77,16 @@ describe Airport do
       expect { subject.takeoff(plane) }.to raise_error "Can't take off as plane is not in the airport."
     end
 
+    it "allows you to instruct a specific plan to take off, not just the last one that landed" do
+      allow(subject).to receive(:weather) { "sunny" }
+      plane = Plane.new
+      subject.land(plane)
+      plane2 = Plane.new
+      subject.land(plane2)
+      subject.takeoff(plane)
+      expect(subject.planes_on_ground.pop).to eq plane2
+    end
+
   end
 
   context "Plane is flying" do

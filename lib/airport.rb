@@ -21,12 +21,13 @@ class Airport
   end
 
   def takeoff (plane)
+    puts plane
     fail "Cannot take off. Plane is flying." if plane.flying?
     fail "Cannot take off due to storm." if weather == "stormy"
     fail "Can't take off as plane is not in the airport." if !plane.in_airport?
     plane.flying = true
     plane.in_airport = false
-    @planes_on_ground.pop
+    @planes_on_ground.delete(plane)
     plane
   end
 

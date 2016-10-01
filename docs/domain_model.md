@@ -134,8 +134,16 @@ plane = Plane.new
 plane.in_airport = true
 plane.flying?           # should return false as plane is in an airport
 
-REFACTORING NEEDED
+Feature 20: When there are several planes grounded, you can instruct a specific plane to take off
+
+plane = Plane.new
+airport.land(plane)
+plane2 = Plane.new
+airport.land(plane2)
+airport.takeoff(plane)  
+airport.planes_on_ground.pop  # should return plane2 that landed first
+
+REFACTORING OPPORTUNITIES
 Put stubs back in instead of real Plane objects
-Refactor to make weather it's own class?
 Modules and mixins
 Feature spec
