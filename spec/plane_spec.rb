@@ -1,6 +1,7 @@
 require 'plane.rb'
 
 describe Plane do 
-skip
+
+	it {is_expected.to respond_to :departed}
 
 end 
