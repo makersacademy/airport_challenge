@@ -74,3 +74,9 @@ airport.takeoff(plane)
 plane.flying?           # should return true
 airport.land(plane)
 plane.flying?           # should return false
+
+Feature 10: Weather is randomly sunny, cloudy or stormy
+
+
+REFACTORING NEEDED
+Put stubs back in instead of real Plane objects

@@ -1,4 +1,4 @@
-require_relative "plane"
+require_relative "plane.rb"
 
 class Airport
 
