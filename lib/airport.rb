@@ -1,14 +1,15 @@
-#require_relative 'plane'
+require_relative 'plane'
 
-#class Airport
+class Airport
     
     
     
     
     
-#end
+end
 
 
+=begin
 #require_relative 'bike'
 require_relative 'plane'
 
@@ -45,3 +46,6 @@ class DockingStation
   end
 
 end
+
+
+=end
