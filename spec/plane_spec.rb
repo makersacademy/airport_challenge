@@ -3,12 +3,11 @@ require 'airport'
 
 describe Plane do
 
-let (:airport1) {Airport.new}
-let (:airport2) {Airport.new}
+let (:airport) {Airport.new}
 
   it 'lands at a specified airport and announces itself' do
     subject.take_off
-    expect(subject.land(airport1)).to eq 'Traffic control this is niner-niner-three. We have landed!'
+    expect(subject.land(airport)).to eq 'Traffic control this is niner-niner-three. We have landed!'
     expect(subject.landed).to eq true
     end
 
@@ -26,7 +25,7 @@ let (:airport2) {Airport.new}
 
   it 'cannot land while stormy' do
     subject.stormy = true
-    expect(subject.land(airport1)).to eq 'Traffic control WTF do we do it is MAJORLY STORMY'
+    expect(subject.land(airport)).to eq 'Traffic control WTF do we do it is MAJORLY STORMY'
     expect(subject.landed).to eq false
   end
 
