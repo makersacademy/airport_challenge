@@ -1,3 +1,26 @@
+
+OBJECT	                MESSAGE
+Air traffic controller	
+Airport	                Instr!: Land at airport!
+Airport	                Qry?: Has plane landed?
+	
+Airport 	            Instr!: Take off from airport!
+Airport	                Qry?: Has plane taken off?
+	
+Airport	                Qry?: Is weather stormy?
+Airport	                Instr!: Don't allow takeoff if stormy!
+Airport	                Instr!: Don't allow landing if stormy!
+	
+Airport	                Qry?: Airport full?
+Airport	                Instr!: Don't allow landing if full!
+	
+Airport	                Instr!: Set default airport capacity!
+
+
+NOTES:
+I used the boris-bikes to a great degree to help me through this!
+
+
 Airport Challenge
 =================
 
