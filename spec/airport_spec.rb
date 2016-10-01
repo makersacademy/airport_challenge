@@ -40,7 +40,7 @@ describe Airport do
       expect{airport.land(plane)}.to raise_error "Plane unable to land, airport full"
      end
 
-     complex 'trying to land in stormy weather' do
+     context 'trying to land in stormy weather' do
        it 'rasie error when trying to land in stormy weather' do
          allow(plane).to receive(:land)
          airport.land(plane)
