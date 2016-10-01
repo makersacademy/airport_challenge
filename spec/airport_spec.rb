@@ -8,4 +8,8 @@ describe Airport do
   it 'lands a plane at an airport' do
     expect(subject.land(@plane)).to eq @plane
   end
+
+  it 'confirms that a plane has landed' do
+    expect(subject.planes).to eq @plane
+  end
 end
