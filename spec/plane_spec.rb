@@ -6,6 +6,7 @@ describe Plane do
   before do
     @heathrow = Airport.new
     @concorde = Plane.new
+    allow(@heathrow).to receive(:weather_index).and_return 0
   end
 
   it 'sets up instance variables correctly' do

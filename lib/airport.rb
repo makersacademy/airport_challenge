@@ -9,10 +9,16 @@ class Airport
   end
 
   def accept_plane(plane)
-    @planes << plane
+    change_weather
+    if @weather == "stormy"
+      raise "Plane cannot land due to poor weather"
+    else
+      @planes << plane
+    end
   end
 
   def plane_departs(plane)
+    change_weather
     @planes.delete(plane)
   end
 
@@ -25,7 +31,7 @@ class Airport
   end
 
   def change_weather
-    weather_array = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "stormy", "stormy"]
+    weather_array = ["sunny", "sunny", "sunny", "sunny", "sunny", "sunny", "cloudy", "drizzle", "stormy", "stormy"]
     @weather = weather_array[weather_index]
   end
 

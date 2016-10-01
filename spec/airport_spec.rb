@@ -6,6 +6,7 @@ describe Airport do
   before do
     @heathrow = Airport.new
     @concorde = Plane.new
+    allow(@heathrow).to receive(:weather_index).and_return 0
   end
 
   it 'sets up instance variables correctly' do
@@ -40,8 +41,26 @@ describe Airport do
   it {should respond_to :change_weather}
 
   it 'can have changeable weather' do
-    allow(@heathrow).to receive(:weather_index).and_return 9
+    allow(@heathrow).to receive(:weather_index).and_return 6
     @heathrow.change_weather
-    expect(@heathrow.weather).to eq "stormy"
+    expect(@heathrow.weather).to eq "cloudy"
   end
+
+  it 'changes weather when a plane wants to land' do
+    allow(@heathrow).to receive(:weather_index).and_return 6
+    @heathrow.accept_plane(@concorde)
+    expect(@heathrow.weather).to eq "cloudy"
+  end
+
+  it 'changes weather when a plane wants to take off' do
+    allow(@heathrow).to receive(:weather_index).and_return 6
+    @heathrow.plane_departs(@concorde)
+    expect(@heathrow.weather).to eq "cloudy"
+  end
+
+  it 'prevents landing if weather is stormy' do
+    allow(@heathrow).to receive(:weather_index).and_return 9
+    expect {@heathrow.accept_plane(@concorde)}.to raise_error "Plane cannot land due to poor weather"
+  end
+
 end
