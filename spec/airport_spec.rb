@@ -36,6 +36,10 @@ describe Airport do
     expect(airport.take_off(plane)).to eq "The plane has departed"
   end
 
+  #7
+  it "7. raises an error when there are no planes to depart for take_off method" do
+    expect{airport.take_off(plane)}. to raise_error "There are no planes currently at the airport - No departures"
+  end
   #
   #
   #

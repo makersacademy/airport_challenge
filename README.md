@@ -123,4 +123,6 @@ of the class Plane
 
 # THIRD USER STORY
 -> when landed planes are stored to the terminal
+-> messages and raising errors for land method
+-> messages and raising errors for take off method
 - plane should not take off if weather is stormy
