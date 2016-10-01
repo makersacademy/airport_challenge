@@ -6,16 +6,17 @@ describe Plane do
     @plane = Plane.new
   end
 
-  describe '#exists?' do
-    it 'exists' do
+  describe '#flying?' do
+    it 'returns the state of flight' do
       expect(@plane).to respond_to(:flying?)
     end
-  end
 
-  describe '#flying' do
-    it 'allows changing of the flying var' do
-      @plane.flying = false
-      expect(@plane.flying).to eq false
+    it 'is flying at init' do
+      expect(@plane.flying?).to eq(true)
+    end
+
+    it 'can be set to initialize as not flying' do
+      expect(Plane.new(false).flying?).to eq(false)
     end
   end
 end

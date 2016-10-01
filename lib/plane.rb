@@ -6,6 +6,6 @@ class Plane
   end
 
   def flying?
-    @flying
+    return @flying
   end
 end

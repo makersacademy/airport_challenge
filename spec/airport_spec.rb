@@ -5,6 +5,7 @@ describe Airport do
   before :each do
     @airport = Airport.new
     @plane = double(:plane)
+    allow(@plane).to receive(:flying=).and_return(false)
     @err1 = 'Cannot land in bad weather'
     @err2 = 'Cannot take off in bad weather'
   end
@@ -40,31 +41,25 @@ describe Airport do
       @airport.weather = 1
       expect { @airport.land(@plane) }.to raise_error(@err1)
     end
-
-    it 'confirms plane is no longer flying' do
-      @airport.land(@plane)
-    end
-
-    it 'confirms plane has landed' do
-    end
   end
 
   describe '#takeoff' do
-    it 'returns plane from hangar if weather is good' do
+    it 'returns plane if weather is good' do
       @airport.plane_hangar << @plane
-      expect(@airport.takeoff(@plane)).to eq([@plane])
+      expect(@airport.takeoff(@airport.plane_hangar[@plane])).to eq([@plane])
     end
 
     it 'raises error if weather is bad' do
       @airport.plane_hangar << @plane
       @airport.weather = 1
-      expect { @airport.takeoff(@plane) }.to raise_error(@err2)
-    end
-
-    it 'confirms plane is flying' do
+      expect { @airport.takeoff(@plane) }.to raise_error #(@err2)
     end
 
     it 'confirms plane is no longer in airport' do
+      @airport.plane_hangar << @plane
+      @airport.weather = 10
+      @airport.takeoff(@plane)
+      expect(@airport.plane_hangar.empty?).to eq(true)
     end
   end
 
@@ -77,6 +72,13 @@ describe Airport do
     it 'returns false if weather is 1' do
       @airport.weather = 1
       expect(@airport.weather?).to eq(false)
+    end
+  end
+
+  describe '#full?' do
+    it 'returns whether the capacity has been reached as a bool' do
+      20.times {@airport.plane_hangar << @plane}
+      expect(@airport.full?).to eq(true)
     end
   end
 end
