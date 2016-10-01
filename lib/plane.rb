@@ -1,9 +1,13 @@
 class Plane
     
-    attr_accessor :plane_down
+    attr_reader :plane_status
 
     def land_plane
-        @plane_down = true
+        @plane_status = "down"
+    end
+    
+    def take_off
+        @plane_status = "up"
     end
 
 
@@ -11,7 +15,7 @@ end
 
 #plane = Plane.new
 #puts plane.land_plane
-#puts plane.plane_down
+#puts plane.plane_status
 
 
 

@@ -1,20 +1,28 @@
 
-OBJECT	                MESSAGE
-Air traffic controller	
-Airport	                Instr!: Land at airport!
-Airport	                Qry?: Has plane landed?
+OBJECT	                    MESSAGE
++ Air traffic controller
++ Pilot
+Airport	                    Instr!: Land at airport!
+Plane                       Action!: land at airport!
+Airport	                    Qry?: Has plane landed?
 	
-Airport 	            Instr!: Take off from airport!
-Airport	                Qry?: Has plane taken off?
+Airport 	                Instr!: Take-off from airport!
+Plane                       Action!: Take-off from airport!
+Airport	                    Qry?: Has plane taken-off?
 	
-Airport	                Qry?: Is weather stormy?
-Airport	                Instr!: Don't allow takeoff if stormy!
-Airport	                Instr!: Don't allow landing if stormy!
+Airport	                    Qry?: Is weather stormy? Random function to determine this... Weather == stormy
+Airport	                    Instr!: Don't allow take-off if it's stormy!
+Plane                       Action!: Don't take-off as it's stormy!
+~~~
+Airport	                    Qry?: Is weather stormy? Random function to determine this... Weather != stormy
+Airport	                    Instr!: Don't allow landing if stormy!
+Plane	                    Action!: Don't land as it's stormy!
 	
-Airport	                Qry?: Airport full?
-Airport	                Instr!: Don't allow landing if full!
+Airport	                    Qry?: Airport full?
+Airport	                    Instr!: Don't allow landing if full!
+Plane                       Action!: Don't land as airport is full!
 	
-Airport	                Instr!: Set default airport capacity!
+Airport	                    Instr!: Set default airport capacity!
 
 
 NOTES:
