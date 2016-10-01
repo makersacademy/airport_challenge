@@ -1,17 +1,22 @@
-require 'plane.rb'
-require 'weather.rb'
+require 'plane'
+require 'weather'
 
 class Airport
+
+  attr_reader :planes, :weather
+
   def initialize
     @planes = []
+    @weather = Weather.new
   end
 
   def land(plane)
+    fail 'Weather too stormy for landing' if @weather.stormy
     @planes << plane
-    self
   end
 
   def take_off(plane)
+    fail 'Weather too stormy for take off' if @weather.stormy
     @planes.delete(plane)
   end
 
@@ -19,7 +24,4 @@ class Airport
     @planes
   end
 
-  def stormy(plane)
-  end
-  
 end

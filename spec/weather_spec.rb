@@ -2,6 +2,6 @@ require 'weather'
 
 describe Weather do
 
-  it { is_expected.to respond_to(:stormy?) }
+  subject(:weather) { described_class.new }
 
 end
