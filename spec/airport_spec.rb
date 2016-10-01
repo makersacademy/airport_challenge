@@ -4,9 +4,28 @@ require 'weather'
 
 describe Airport do
   subject(:airport) {described_class.new}
-  # let(:plane) {double :plane}
+  let(:weather) { double :weather, stormy?: true  }
+
+
+  let(:plane) {double :plane}
   # let(:planes) {double :planes}
   plane = Plane.new
+
+
+  describe '#initialize' do
+  it 'sets default capacity' do
+    described_class::DEFAULT_CAPACITY.times do
+      subject.instruct_to_land(plane)
+    end
+    expect{ subject.instruct_to_land(plane) }.to raise_error 'Airport full'
+  end
+
+  it "allows a specific capacity to be set" do
+    airport = Airport.new(10)
+    10.times { airport.instruct_to_land(plane) }
+    expect {airport.instruct_to_land(plane)}.to raise_error "Airport full"
+  end
+end
 
   describe '#instruct_to_land' do
     it "tells a plane to land at the airport" do
@@ -14,13 +33,17 @@ describe Airport do
       # allow(planes).to receive(:land)
       expect( subject.instruct_to_land(plane) ).to eq plane
     end
+    it 'will not allow a plan to land during stormy weather' do
+      allow(subject).to receive(:clearance) { false }
+      expect{ subject.instruct_to_land(plane) }.to raise_error "Clearance for landing not granted: stormy weather"
+    end
   end
 
   describe '#clearance' do
     let(:weather) {double :weather}
     it "checks whether planes should be allowed to take off or land" do
-      allow(weather).to receive(:stormy).and_return :true
-      expect(@clearance).to eq false 
+      allow(weather).to receive(:stormy?).and_return :true
+      expect(@clearance).to eq false
     end
   end
 
