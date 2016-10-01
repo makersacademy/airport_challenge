@@ -7,6 +7,6 @@ class Plane
     end
    
     def flying?
-       @flying 
+       flying 
     end
 end
