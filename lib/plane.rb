@@ -1,4 +1,3 @@
-
 require_relative 'airport'
 
 class Plane
@@ -31,9 +30,13 @@ class Plane
     if @stormy == true
       @landed = false
       'Traffic control WTF do we do it is MAJORLY STORMY'
+    elsif airport.full?
+      @landed = false
+      fail 'Airport full!'
     else
-    @landed = true
-    'Traffic control this is niner-niner-three. We have landed!'
+      @landed = true
+      airport.planes << [self]
+      'Traffic control this is niner-niner-three. We have landed!'
     end
   end
 
