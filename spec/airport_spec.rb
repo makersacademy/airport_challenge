@@ -28,10 +28,10 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.landing(plane)
-    expect(airport.take_off(plane)).to eq plane
+    expect(airport.take_off).to eq plane
   end
 
-  it 'should not let more than 15 planes to land' do
+  it 'should allow 15 planes to land' do
     airport = Airport.new(15)
     15.times{airport.landing(Plane.new)}
     plane = Plane.new
@@ -46,6 +46,11 @@ describe Airport do
   it 'should have a default capacity of 20' do
     airport = Airport.new
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it 'should not allow a plane to take off if there aren\'t any planes' do
+    airport = Airport.new
+    expect{airport.take_off}.to raise_error("There aren't any planes!")
   end
 
 

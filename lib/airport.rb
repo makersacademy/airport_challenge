@@ -11,13 +11,24 @@ class Airport
     @capacity = capacity
   end
 
-  def take_off(planes)
+  def take_off
+    fail "There aren't any planes!" if empty?
     planes = @planes.pop
   end
 
   def landing(planes)
-    fail "There's no room at the inn!" if @planes.length >= @capacity
+    fail "There's no room at the inn!" if full?
     @planes << planes
+  end
+
+  private
+
+  def empty?
+    @planes.empty?
+  end
+
+  def full?
+    @planes.count == DEFAULT_CAPACITY
   end
 
 end
