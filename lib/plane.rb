@@ -22,7 +22,9 @@ class Plane
 
 
   def take_off
-    if @stormy == true
+    if @landed == false
+      fail 'Are you crazy, sir? This plane is already in the air!'
+    elsif @stormy == true
        @landed = true
        'Traffic control we are grounded. It is STORMY!'
     else @landed = false
@@ -37,7 +39,7 @@ end
 
   def land(airport)
     if @landed == true
-      fail 'plane is already on the ground!'
+      fail 'Are you crazy, sir? This plane is already on the ground!'
     elsif @stormy == true
       @landed = false
       'Traffic control WTF do we do it is MAJORLY STORMY'

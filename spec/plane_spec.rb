@@ -12,7 +12,7 @@ let (:airport2) {Airport.new}
     expect(subject.landed).to eq true
     end
 
-  it 'has a working random weather system' do
+  it 'has a working weather system' do
     subject.stub(:chance) { 8 }
     subject.weather
     expect(subject.stormy).to eq true
@@ -33,6 +33,12 @@ let (:airport2) {Airport.new}
 
   it 'cannot land if already landed' do
     subject.landed = true
-    expect{subject.land(airport1)}.to raise_error 'plane is already on the ground!'
+    expect{subject.land(airport1)}.to raise_error 'Are you crazy, sir? This plane is already on the ground!'
 end
+
+  it 'cannot take off if already in the air' do
+    subject.landed = false
+    expect{subject.take_off}.to raise_error 'Are you crazy, sir? This plane is already in the air!'
+  end
+
 end
