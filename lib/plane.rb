@@ -3,7 +3,7 @@ class Plane
     attr_accessor :flying
     
     def initialize
-        @flying = true
+        flying = true
     end
    
     def flying?
