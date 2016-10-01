@@ -17,6 +17,10 @@ describe Airport do
       expect(subject.capacity).to eq 15
     end
 
+  end
+
+  describe "Airport's weather conditions are variable" do
+
     it "allows you to check the weather (forcing it to be sunny)" do
       allow(subject).to receive(:weather) { "sunny" }
       expect(subject.weather).to eq "sunny"
