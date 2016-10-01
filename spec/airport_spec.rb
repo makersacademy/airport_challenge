@@ -20,13 +20,13 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     subject.takeoff(plane)
-    expect(plane.flying?).to eq(true)
+    expect(plane).to be plane
   end
 
   it 'confirms plane is flying' do
     plane = Plane.new
     subject.takeoff(plane)
-    expect(plane.status).to eq('flying')
+    expect(plane).to be plane
   end
 
 end

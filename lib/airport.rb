@@ -23,4 +23,14 @@ attr_accessor :grounded_planes
     puts "Plane has taken off"
   end
 
+  def weather
+    num = rand(6)
+    if num == 0
+      weather = 'stormy'
+    else
+      weather = 'fine'
+    end
+    weather
+  end
+
 end

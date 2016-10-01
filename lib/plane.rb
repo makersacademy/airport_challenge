@@ -2,8 +2,7 @@ require_relative 'airport'
 
 class Plane
 
-attr_accessor :flying
-attr_accessor :status
+attr_accessor :flying, :status
 
   def flying?
     flying
