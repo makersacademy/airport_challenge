@@ -9,6 +9,15 @@ class Airport
 
   def receive_plane(plane)
     @planes << plane
+    plane.landed
+  end
+
+  def release_plane(plane)
+    @planes = @planes.select { |pl| pl != plane }
+  end
+
+  def plane_at_airport(plane)
+    @planes.include? plane
   end
 
 end
