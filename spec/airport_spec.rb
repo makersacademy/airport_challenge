@@ -5,6 +5,8 @@ describe Airport do
 
   let(:grounded_plane) { double :plane, flying?: false }
   let(:flying_plane) { double :plane, flying?: true }
+
+  # Credit to Chet Sanghani for using let to instantiate plane object
   let(:plane) { Plane.new }
 
   describe "Airport has default but changeable capacity" do
@@ -39,52 +41,15 @@ describe Airport do
 
   end
 
-  context "Plane is grounded" do
-
-    it "allows a grounded plane to takeoff if it's sunny" do
-      allow(subject).to receive(:weather) { "sunny" }
-      subject.land(plane)
-      subject.takeoff(plane)
-      expect(plane).to be_flying
-    end
-
-    # Credit to Chet Sanghani for helping me out with the allow method here
-    it "won't allow a grounded plane to land" do
-      allow(grounded_plane).to receive(:flying).with(no_args)
-      expect { subject.land(grounded_plane) }.to raise_error "Cannot land. Plane isn't flying."
-    end
-
-    it "won't allow a plane to take off if the weather is stormy" do
-      allow(subject).to receive(:weather) { "sunny" }
-      subject.land(plane)
-      allow(subject).to receive(:weather) { "stormy" }
-      expect { subject.takeoff(plane) }.to raise_error "Cannot take off due to storm."
-    end
-
-    it "confirms that the landed plane is in the airport" do
-      allow(subject).to receive(:weather) { "sunny" }
-      subject.land(plane)
-      expect(plane).to be_in_airport
-    end
-
-    it "won't allow a plane to take off if the plane is not in the airport" do
-      allow(subject).to receive(:weather) { "sunny" }
-      plane.flying = false
-      expect { subject.takeoff(plane) }.to raise_error "Can't take off as plane is not in the airport."
-    end
-
-    it "allows you to instruct a specific plan to take off, not just the last one that landed" do
-      allow(subject).to receive(:weather) { "sunny" }
-      subject.land(plane)
-      plane2 = Plane.new
-      subject.land(plane2)
-      subject.takeoff(plane)
-      expect(subject.planes_on_ground.pop).to eq plane2
-    end
-
-  end
-
   context "Plane is flying" do
+
+    it "confirms that a flying plane is not in the airport" do
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.land(plane)
+      subject.takeoff(plane)
+      expect(plane).not_to be_in_airport
+    end
+
 =begin
     before do
       allow(flying_plane).to receive(:flying).and_return(false)
@@ -121,11 +86,49 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Cannot land due to storm."
     end
 
-    it "confirms that a flying plane is not in the airport" do
+  end
+
+  context "Plane is grounded" do
+
+    it "confirms that a landed plane is in the airport" do
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.land(plane)
+      expect(plane).to be_in_airport
+    end
+
+    it "allows a grounded plane to take off if it's sunny" do
       allow(subject).to receive(:weather) { "sunny" }
       subject.land(plane)
       subject.takeoff(plane)
-      expect(plane).not_to be_in_airport
+      expect(plane).to be_flying
+    end
+
+    # Credit to Chet Sanghani for helping me out with the method stub here
+    it "won't allow a grounded plane to land" do
+      allow(grounded_plane).to receive(:flying).with(no_args)
+      expect { subject.land(grounded_plane) }.to raise_error "Cannot land. Plane isn't flying."
+    end
+
+    it "won't allow a plane to take off if the weather is stormy" do
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.land(plane)
+      allow(subject).to receive(:weather) { "stormy" }
+      expect { subject.takeoff(plane) }.to raise_error "Cannot take off due to storm."
+    end
+
+    it "won't allow a plane to take off if the plane is not in the airport" do
+      allow(subject).to receive(:weather) { "sunny" }
+      plane.flying = false
+      expect { subject.takeoff(plane) }.to raise_error "Can't take off as plane is not in the airport."
+    end
+
+    it "allows you to instruct a specific plan to take off, not just the last one that landed" do
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.land(plane)
+      plane2 = Plane.new
+      subject.land(plane2)
+      subject.takeoff(plane)
+      expect(subject.planes_on_ground.pop).to eq plane2
     end
 
   end
