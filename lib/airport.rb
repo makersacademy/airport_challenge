@@ -15,14 +15,14 @@ class Airport
     check_for_landing_issues (plane)
     plane.flying = false
     plane.in_airport = true
-    @planes_on_ground << plane
+    planes_on_ground << plane
   end
 
   def takeoff (plane)
     check_for_takeoff_issues (plane)
     plane.flying = true
     plane.in_airport = false
-    @planes_on_ground.delete(plane)
+    planes_on_ground.delete(plane)
     plane
   end
 
