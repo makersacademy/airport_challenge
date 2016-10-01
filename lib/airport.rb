@@ -1,6 +1,8 @@
-# this class takes care of the plane handling. Landing
-# takeoff and the weather conditions over a specific airport.
+# this class takes care of the plane handling.
+#Landing and takeoff.
 
 
 class Airport
+
+
 end
