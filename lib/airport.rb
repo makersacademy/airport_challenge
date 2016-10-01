@@ -6,6 +6,7 @@ class Airport
   attr_reader :planes
 
   def take_off
+    @planes.pop
   end
 
   def land(plane)

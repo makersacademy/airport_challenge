@@ -20,6 +20,6 @@ describe Airport do
 
   it 'confirms that a plane has took off' do
     subject.land(@plane)
-    expect(subject.take_off).to eq [@plane]
+    expect(subject.take_off).to eq @plane
   end
 end
