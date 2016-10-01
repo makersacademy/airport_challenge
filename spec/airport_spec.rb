@@ -39,6 +39,14 @@ describe Airport do
       Airport::DEFUALT_CAPACITY.times {airport.land(plane)}
       expect{airport.land(plane)}.to raise_error "Plane unable to land, airport full"
      end
+
+     complex 'trying to land in stormy weather' do
+       it 'rasie error when trying to land in stormy weather' do
+         allow(plane).to receive(:land)
+         airport.land(plane)
+         expect{airport.land(plane)}.to raise_error "Weather is to bad to land"
+       end
+     end
   end
 
   describe '#take_off' do
