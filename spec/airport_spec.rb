@@ -6,9 +6,10 @@ describe Airport do
     describe "- Airport sends instructions to land." do
         
         it { is_expected.to respond_to :land_plane}         #.with (1).argument
+        
         plane = Plane.new
         it "Plane returns a status of 'down' when it lands." do
-
+            allow(subject).to receive(:airport_open?){true}           #This removes random weather factor.
             expect(subject.land_plane(plane)).to eq "down"
         end    
     
@@ -22,6 +23,7 @@ describe Airport do
         
         it "Plane returns a status of 'up' when it takes-off." do
             subject.planes << Plane.new
+            allow(subject).to receive(:airport_open?){true}           #This removes random weather factor.
             expect(subject.take_off).to eq "up"
         end
     end
