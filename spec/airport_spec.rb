@@ -17,6 +17,16 @@ describe Airport do
       expect(subject.capacity).to eq 15
     end
 
+    it "allows you to check the weather (forcing it to be sunny)" do
+      allow(subject).to receive(:weather) { "sunny" }
+      expect(subject.weather).to eq "sunny"
+    end
+
+    it "allows you to check the weather (forcing it to be stormy)" do
+      allow(subject).to receive(:weather) { "stormy" }
+      expect(subject.weather).to eq "stormy"
+    end
+
   end
 
   context "Plane is grounded" do

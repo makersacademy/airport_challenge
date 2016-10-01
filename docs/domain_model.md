@@ -88,10 +88,11 @@ airport.weather = stormy
 airport.land(plane)     # should raise an error "can't land plane in storm" or similar.
 
 REFACTORING NEEDED
+It shouldn't be 50:50 for sunny vs. stormy. Usually it's sunny but on rare occasions it's stormy.
 Put stubs back in instead of real Plane objects
 The random weather is causing my tests to fail randomly!
 Need to confirm that plane has landed
 Need to confirm that plans has taken off and is no longer in the airport
-It shouldn't be 50:50 for sunny vs. stormy. Usually it's sunny but on rare occasions it's stormy.
+
 Need a method to check if a plane is in the airport or not
 Need to read documentation on mocks.
