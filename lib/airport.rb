@@ -28,7 +28,7 @@ class Airport
   end
 
   def full?
-    @planes_landed.count >= 5
+    @planes_landed.count == DEFAULT_CAPACITY
   end
 
 end

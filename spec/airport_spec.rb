@@ -5,8 +5,6 @@ describe Airport do
     let(:flying_plane) {double :plane, flying?: true}
     let(:landed_plane) {double :plane, flying?: false}
     
-    
-    
     context "Launch tests" do
         
         it "let a grounded plane launch:" do
@@ -45,9 +43,14 @@ describe Airport do
             subject.capacity = 20 
             expect(subject.capacity).to eq 20
         end
+        
+        it "wont allow a plane to land if airport is full" do
+            Airport::DEFAULT_CAPACITY.times do
+                allow(flying_plane).to receive(:flying).and_return(true)   
+                subject.land(flying_plane)
+            end
+        allow(flying_plane).to receive(:flying).and_return(true)
+        expect { subject.land(flying_plane) }.to raise_error "Cant land, the Airport is full."
+        end
     end
-    
-
-    
-
 end
