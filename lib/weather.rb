@@ -1,13 +1,14 @@
 class Weather
 
   def forecast
+  
   end
 
-  def sunny
+  def sunny?
     "sunny"
   end
 
-  def stormy
+  def stormy?
     "stormy"
   end
 

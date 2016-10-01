@@ -28,7 +28,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.landing(plane)
-    expect(airport.take_off).to eq plane
+    expect(airport.take_off).to eq [plane]
   end
 
   it 'should allow 15 planes to land' do
