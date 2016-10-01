@@ -1,12 +1,18 @@
+require 'airport'
 require 'plane'
 
 describe Plane do
-  it 'lands at airport' do
-    expect(subject.land).to be true
+  airport = Airport.new
+  plane = Plane.new
+  it 'checks if the plane has landed' do
+    airport.land(plane)
+    expect(plane.landed?).to eq true
   end
 
-  it 'takes off from airport' do
-    expect(subject.take_off).to be true
+  it 'checks if the plane has taken off' do
+    airport.take_off(plane)
+    expect(plane.taken_off?).to eq false
   end
+
 
 end

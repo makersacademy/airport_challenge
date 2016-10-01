@@ -1,8 +1,17 @@
 class Plane
-  def land
-    true
+
+  attr_accessor :status
+
+  def initialize
+    @status = status
   end
-  def take_off
-    true
+
+  def landed?
+    @status
   end
+
+  def taken_off?
+    @status
+  end
+
 end
