@@ -1,23 +1,27 @@
 require_relative 'plane'
-class Airport
-  attr_accessor :planes
 
-  def initialize
+class Airport
+  attr_accessor :planes, :flight_log, :weather, :capacity
+
+  def initialize(capacity = 10)
+    @stormy = set_weather
     @planes = []
     @flight_log = []
+    @capacity = capacity
   end
 
   def land_plane(plane)
-    #Overwrite planes array with a single plane for testing
+    raise 'Cannot land due to no capacity' if at_capacity?
+    raise 'Cannot land due to bad weather' if stormy?
     @planes << plane
     @flight_log << "Plane #{plane} landed"
     @flight_log.last
   end
 
   def take_off
+    raise 'Cannot take off due to bad weather' if stormy?
     plane = @planes.pop
     @flight_log << "Plane #{plane} took off"
-    puts @flight_log
     @flight_log.last
   end
 
@@ -25,4 +29,16 @@ class Airport
     @flight_log
   end
 
+  def stormy?
+    @stormy == true
+  end
+
+  def at_capacity?
+    @planes.length == @capacity
+  end
+
+  private
+    def set_weather
+      (rand < 0.95) ? @stormy = true : @stormy = false
+    end
 end
