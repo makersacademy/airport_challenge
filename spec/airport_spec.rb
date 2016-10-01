@@ -80,6 +80,17 @@ describe Airport do
   end
 
   context "Plane is flying" do
+=begin
+    before do
+      allow(flying_plane).to receive(:flying).and_return(false)
+    end
+
+    it "allows a flying plane to land" do
+      allow(subject).to receive(:weather) { "sunny" }
+      subject.land(flying_plane)
+      expect(flying_plane).not_to be_flying
+    end
+=end
 
     it "allows a flying plane to land" do
       allow(subject).to receive(:weather) { "sunny" }
@@ -99,7 +110,7 @@ describe Airport do
         plane.flying = true
         subject.land(plane)
       end
-      expect { subject.land(flying_plane) }.to raise_error "Cannot land. Airport is full."
+      expect { subject.land(plane) }.to raise_error "Cannot land. Airport is full."
     end
 
     it "won't allow a plane to land if the weather is stormy" do

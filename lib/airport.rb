@@ -30,13 +30,15 @@ class Airport
     plane
   end
 
-  def full?
-    planes_on_ground.count == capacity
-  end
-
   def weather
     # Approximately 1 times in 6, the weather will be stormy
     rand(5) == 0? "stormy" : "sunny"
+  end
+
+private
+
+  def full?
+    planes_on_ground.count == capacity
   end
 
 end

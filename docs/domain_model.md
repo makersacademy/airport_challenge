@@ -75,11 +75,11 @@ plane.flying?           # should return true
 airport.land(plane)
 plane.flying?           # should return false
 
-Feature 10: You can check the weather at the airport DONE (forced both sunny and stormy)
+Feature 11: You can check the weather at the airport DONE (forced both sunny and stormy)
 airport = Airport.new
 airport.weather         # should return randomly sunny or stormy
 
-Feature 11: A plane cannot land if the weather is stormy DONE
+Feature 12: A plane cannot land if the weather is stormy DONE
 
 plane = Plane.new
 airport = Airport.new
@@ -87,26 +87,26 @@ airport.takeoff(plane)
 airport.weather = stormy
 airport.land(plane)     # should raise an error "can't land plane in storm" or similar.
 
-Feature 12: A plane cannot take off if the weather is stormy DONE
+Feature 13: A plane cannot take off if the weather is stormy DONE
 
 plane = Plane.new
 airport = Airport.new
 airport.weather = stormy
 airport.takeoff(plane)  # should raise an error "can't take off in storm" or similar.
 
-Feature 13: A plane is flying by default DONE
+Feature 14: A plane is flying by default DONE
 
 plane = Plane.new
 plane.flying?           # should return true
 
-Feature 14: If the plane lands, it should be confirmed that it's in the airport
+Feature 15: If the plane lands, it should be confirmed that it's in the airport
 
 plane = Plane.new
 airport = Airport.new
 airport.land(plane)
 plane.in_airport?      # should return true
 
-Feature 15: If the plane takes off, it should no longer be in the airport
+Feature 16: If the plane takes off, it should no longer be in the airport
 
 plane = Plane.new
 airport = Airport.new
@@ -115,8 +115,7 @@ plane.in_airport?      # should return true
 airport.takeoff(plane)
 plane.in_airport?       # should return false
 
-
-Feature 16: If the plane isn't in the airport, it can't take off
+Feature 17: If the plane isn't in the airport, it can't take off
 
 plane = Plane.new
 airport = Airport.new
@@ -124,12 +123,19 @@ plane.flying = false
 plane.in_airport?       # should return false
 airport.takeoff(plane)  # should raise an error "can't take off as plane is not in the airport."
 
+Feature 18: Planes that are flying can't be in an airport
+
+plane = Plane.new
+plane.in_airport?       # should return false as the plane is flying by default
+
+Feature 19: Planes that are grounded cannot be flying
+
+plane = Plane.new
+plane.in_airport = true
+plane.flying?           # should return false as plane is in an airport
 
 REFACTORING NEEDED
-If plane not in airport, can't take off.
 Put stubs back in instead of real Plane objects
-Need to confirm that plane has landed
-Need to confirm that plans has taken off and is no longer in the airport
-Need a method to check if a plane is in the airport or not
-Need to read documentation on mocks.
 Refactor to make weather it's own class?
+Modules and mixins
+Feature spec
