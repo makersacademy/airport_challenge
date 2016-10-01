@@ -5,13 +5,6 @@ class Plane < Airport
     @status = :in_flight
   end
 
-
-
-  # def clearance_from_airport
-  #   clearance_for_landing
-  # end
-
-
   def land
     @status = :landed
   end
@@ -23,5 +16,9 @@ class Plane < Airport
   def status
     @status
   end
+
+    # def clearance_from_airport
+    #   clearance_for_landing
+    # end
 
 end

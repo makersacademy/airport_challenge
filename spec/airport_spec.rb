@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   subject(:airport) {described_class.new}
@@ -11,8 +12,15 @@ describe Airport do
     it "tells a plane to land at the airport" do
       # allow(plane).to receive(:land)
       # allow(planes).to receive(:land)
-
       expect( subject.instruct_to_land(plane) ).to eq plane
+    end
+  end
+
+  describe '#clearance' do
+    let(:weather) {double :weather}
+    it "checks whether planes should be allowed to take off or land" do
+      allow(weather).to receive(:stormy).and_return :true
+      expect(@clearance).to eq false 
     end
   end
 
@@ -35,7 +43,6 @@ describe Airport do
     expect( subject.instruct_to_takeoff(plane) ).to eq plane
     end
   end
-
 end
 
   # describe '#clearance_for_landing' do
