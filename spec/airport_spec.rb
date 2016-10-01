@@ -28,7 +28,7 @@ describe Airport do
 
   describe 'prevents landing and take off at bad weather' do
     let(:weather) { Weather.new }
-    it 'prevents planes to take off in stormy weather' do
+    it 'checks if the weather is stormy weather' do
       expect(weather).to be_stormy
     end
 
