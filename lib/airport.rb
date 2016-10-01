@@ -13,10 +13,16 @@ DEFAULT_CAPACITY = 5
 
   def land(plane)
     fail "Airport is at capacity" if full?
+    fail "Can't land as already landed" if
+    plane.flying == false
+    plane.flying = false
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
+    fail "Can't take off as already flying" if plane.flying?
+    fail "Can't take off as plane doesn't exist" if self.exists(plane) == false
+    plane.flying = true
     @planes.pop
   end
 
@@ -26,5 +32,9 @@ DEFAULT_CAPACITY = 5
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def exists(plane)
+    @planes.include? plane
   end
 end
