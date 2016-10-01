@@ -18,8 +18,8 @@ describe Airport do
   end
 
   it 'should not allow planes to land if full' do
-    airport = Airport.new(15)
-    15.times{airport.landing(Plane.new)}
+    airport = Airport.new
+    Airport::DEFAULT_CAPACITY.times{airport.landing(Plane.new)}
     plane = Plane.new
     expect { airport.landing(plane)}.to raise_error("There's no room at the inn!")
   end
