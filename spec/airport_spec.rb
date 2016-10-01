@@ -5,13 +5,3 @@ describe Airport do
 	
 end
 
-# Possible Code
-# ------------
-# let(:plane) { double(:plane, :landed? => true ) }
-	# before(:each) { @airport = Airport.new}
-
-	# describe '#landed_planes' do
-	# 	it 'records landed planes' do
-			
-	# 	end
-	# end
