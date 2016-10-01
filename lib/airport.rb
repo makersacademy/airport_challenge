@@ -1,7 +1,7 @@
 require_relative 'plane.rb'
 
 class Airport
-  attr_reader = :planes
+  attr_reader :planes
 
   def initialize
     @planes = []
@@ -13,6 +13,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Plane unable to land, airport full" if @planes.count == 5
     @planes << plane
     "The plane landed safely"
   end
