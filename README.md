@@ -44,6 +44,18 @@ Bad weather has a 70% chance of occurring. The random function to determine this
 The weather call is made each time a plane takes off or lands so that 
 the take-off or landing can be aborted if the weather is bad.
 
+PROGRAM WORKINGS AND COMMANDS:
+airport = Airport.new
+land at airport = "airport.land_plane(plane)"
+take-off from airport = "airport.take_off(plane)"
+Allow/prevent landing/take-off is determined by random value (true or false) returned to "airport.airport_open?"
+This random value is determined by a function called "weather_forecaster".
+"airport.airport_open?" is itself called by both "airport.land_plane(plane)" and "airport.take_off(plane)".
+If the plane is prevented from landing because of the randomly generated bad weather, 
+the plane will not be entered into the array of planes at the airport.
+If the plane is prevented from taking-off because of the randomly generated bad weather, 
+the plane will not be removed from the the array of planes at the airport.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Airport Challenge
 =================

@@ -12,13 +12,10 @@ describe Airport do
             allow(subject).to receive(:airport_open?){true}           #This removes random weather factor.
             expect(subject.land_plane(plane)).to eq "down"
         end    
-    
     end
     
     describe "- Plane instructed to take-off." do
         
-        
-
         it {is_expected.to respond_to :take_off}
         
         it "Plane returns a status of 'up' when it takes-off." do
@@ -35,14 +32,13 @@ describe Airport do
         end
     end
     
-#=begin    
     describe "- Plane instructed to take-off when there is no plane." do
         it "Plane does not take off if there are no planes in the airport" do
             subject.planes = []     #Empty array of planes at airport.
             expect{subject.take_off}.to raise_error "ERROR: There is no plane to take-off."
         end
     end
-#=end    
+    
 end
 
 
