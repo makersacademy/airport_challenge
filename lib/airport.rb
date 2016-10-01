@@ -37,18 +37,10 @@ class Airport
   end
 
   def full?
-    if @plane_hangar.size == @capacity
-      true
-    else
-      false
-    end
+    if (@plane_hangar.size >= @capacity) then true else false end
   end
 
   def weather?
-    if @weather > 1
-      true
-    else
-      false
-    end
+    if (@weather > 1) then true else false end
   end
 end
