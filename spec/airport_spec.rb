@@ -19,4 +19,12 @@ describe Airport do
     end
     expect { subject.land(plane) }.to raise_error 'Airport is at capacity'
   end
+
+  it 'errors when at different airport capacities' do
+    airport = Airport.new 15
+    15.times do
+      airport.land(plane)
+    end
+    expect { airport.land(plane) }.to raise_error 'Airport is at capacity'
+  end
 end
