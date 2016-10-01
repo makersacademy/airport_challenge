@@ -17,7 +17,8 @@ describe Airport do
     expect(@airport).to respond_to :land_plane
     @airport.land_plane(@plane)
     expect(@airport.planes).to eq [@plane]
-    expect(@airport.land_plane(@plane)).to eq "Plane #{@plane} landed"
+    dumbo = Plane.new
+    expect(@airport.land_plane(dumbo)).to eq "Plane #{dumbo} landed"
   end
 
   it "Should allow planes to take off" do
@@ -54,6 +55,12 @@ describe Airport do
 
   it "Planes should not be able to take off if they are not in the airport" do
     expect{@airport.take_off(@plane)}.to raise_error('Plane is not in the airport')
+  end
+
+  it "Planes should not be able to land twice" do
+    expect{@airport.take_off(@plane)}.to raise_error('Plane is not in the airport')
+    @airport.land_plane(@plane)
+    expect{@airport.land_plane(@plane)}.to raise_error('Plane has already landed')
   end
 
 end

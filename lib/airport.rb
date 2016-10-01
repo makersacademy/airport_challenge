@@ -13,6 +13,7 @@ class Airport
   def land_plane(plane)
     raise 'Cannot land due to no capacity' if at_capacity?
     raise 'Cannot land due to bad weather' if stormy?
+    raise 'Plane has already landed' if plane_exists?(plane)
     @planes << plane
     @flight_log << "Plane #{plane} landed"
     @flight_log.last
@@ -21,6 +22,7 @@ class Airport
   def take_off(plane)
     raise 'Cannot take off due to bad weather' if stormy?
     raise 'Plane is not in the airport' unless plane_exists?(plane)
+
     runway = plane
     @planes.delete_if {|plane| plane = runway}
     @flight_log << "Plane #{plane} took off"
