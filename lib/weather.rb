@@ -1,8 +1,8 @@
 class Weather
-  attr_reader :stormy
   def initialize
     @stormy = random_weather
   end
+  attr_reader :stormy
 
   def random_weather
     rand(1..10) > 7
