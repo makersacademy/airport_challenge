@@ -1,17 +1,15 @@
 class Airport
   attr_accessor :plane_hangar
-  attr_accessor :weather  #if weather is 1, it is too stormy to fly
-  attr_accessor :capacity
+  attr_accessor :weather
 
   def initialize(weather = 10, capacity = 20)
     @weather = weather
     @plane_hangar = []
     @capacity = capacity
-    @prng = Random.new
   end
 
   def randomise_weather
-    @weather = @prng.rand(10)
+    @weather = Random.new.rand(10)
   end
 
   def land(plane)
@@ -26,6 +24,7 @@ class Airport
 
   def takeoff(plane)
     if weather?
+      raise 'Already flying!' if plane.flying? == true
       index = @plane_hangar.index(plane)
       temp_plane = @plane_hangar[index]
       @plane_hangar.delete(plane)

@@ -5,7 +5,8 @@ describe Airport do
   before :each do
     @airport = Airport.new
     @plane = double(:plane)
-    allow(@plane).to receive(:flying=).and_return(false)
+    allow(@plane).to receive(:flying?).and_return(false)
+    allow(@plane).to receive(:flying=).and_return(true)
     @err1 = 'Cannot land in bad weather'
     @err2 = 'Cannot take off in bad weather'
   end
