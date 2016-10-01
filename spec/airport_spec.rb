@@ -12,4 +12,11 @@ describe Airport do
     subject.take_off
     expect(subject.empty?).to eq(true)
   end
+
+  it 'errors when the airport is full' do
+    Airport::DEFAULT_CAPACITY.times do
+      subject.land(plane)
+    end
+    expect { subject.land(plane) }.to raise_error 'Airport is at capacity'
+  end
 end
