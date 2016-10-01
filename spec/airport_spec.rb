@@ -28,7 +28,7 @@ describe Airport do
     airport = Airport.new
     plane = Plane.new
     airport.landing(plane)
-    expect(airport.take_off).to eq [plane]
+    expect(airport.take_off).to eq plane
   end
 
   it 'should allow 15 planes to land' do
@@ -51,6 +51,14 @@ describe Airport do
   it 'should not allow a plane to take off if there aren\'t any planes' do
     airport = Airport.new
     expect{airport.take_off}.to raise_error("There aren't any planes!")
+  end
+
+  it 'should not allow a plane to take off it it\'s stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.landing(plane)
+    allow(airport).to receive(:stormy?).and_return(true)
+    expect{airport.take_off}.to raise_error("It's blowing a gale out there!")
   end
 
 

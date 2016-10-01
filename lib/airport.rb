@@ -1,7 +1,9 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 class Airport
 
+include Weather
 
   attr_reader :planes, :capacity
   DEFAULT_CAPACITY = 20
@@ -16,8 +18,8 @@ class Airport
   def take_off
     fail "There aren't any planes!" if empty?
     plane = @planes.pop
-    in_transit = []
-    in_transit << plane
+    fail "It's blowing a gale out there!" if stormy?
+    plane
   end
 
   def landing(planes)

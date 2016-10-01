@@ -1,15 +1,10 @@
-class Weather
+module Weather
 
   def forecast
-  
-  end
-
-  def sunny?
-    "sunny"
   end
 
   def stormy?
-    "stormy"
+    false
   end
 
 end
