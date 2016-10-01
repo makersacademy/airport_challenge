@@ -24,7 +24,7 @@ class Airport
     raise 'Plane is not in the airport' unless plane_exists?(plane)
 
     runway = plane
-    @planes.delete_if {|plane| plane = runway}
+    @planes.delete_if {|plane| plane === runway}
     @flight_log << "Plane #{plane} took off"
     @flight_log.last
   end
@@ -47,6 +47,6 @@ class Airport
 
   private
     def set_weather
-      (rand < 0.95) ? @stormy = true : @stormy = false
+      (rand > 0.95) ? @stormy = true : @stormy = false
     end
 end
