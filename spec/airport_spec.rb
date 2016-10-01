@@ -8,13 +8,13 @@ describe Airport do
     
     it 'lets a flying plane land' do
         plane = Plane.new
-        subject.launch(plane)
         subject.land(plane)
         expect(plane).not_to be_flying
     end
 
     it "allows a grounded plane to takeoff" do
         plane = Plane.new
+        subject.land(plane)
         subject.launch(plane)
         expect(plane).to be_flying
     end
