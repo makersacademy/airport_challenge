@@ -13,6 +13,7 @@ class Airport
   end
 
   def landing(plane)
+    fail "There's no room at the inn!" if @plane.length == 1
     @plane << plane
   end
 

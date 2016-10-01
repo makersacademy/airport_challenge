@@ -17,6 +17,13 @@ describe Airport do
     expect(airport.landing(plane)).to eq [plane]
   end
 
+  it 'should not allow planes to land if full' do
+    airport = Airport.new
+    plane = Plane.new
+    airport.landing(plane)
+    expect { airport.landing(plane)}.to raise_error("There's no room at the inn!")
+  end
+
   it 'should see that a plane has left the airport' do
     airport = Airport.new
     plane = Plane.new
