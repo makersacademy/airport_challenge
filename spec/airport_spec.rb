@@ -6,14 +6,9 @@ describe Airport do
   describe '#land' do
     it {is_expected.to respond_to(:land).with(1).argument}
 
-    it 'should land a plane' do
-      plane = Plane.new
-      expect(airport.land(plane)).to eq [plane]
-    end
-
     it 'should confirm that the plane has landed' do
       plane = Plane.new
-      expect(airport.land(plane)).to include 'The plane landed safely'
+      expect(airport.land(plane)).to eq 'The plane landed safely'
     end
 
   end
