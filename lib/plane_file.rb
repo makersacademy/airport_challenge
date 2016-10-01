@@ -7,4 +7,8 @@ class Plane
   def plane_is_landed?
     @plane_location
   end
+
+  def proceed_to_land
+
+  end
 end
