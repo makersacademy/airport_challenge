@@ -2,7 +2,7 @@ require_relative "plane.rb"
 
 class Airport
 
-  DEFAULT_CAPACITY = 10
+  DEFAULT_CAPACITY = 100
 
   attr_accessor :capacity, :planes_on_ground
 
