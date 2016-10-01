@@ -2,11 +2,13 @@ require './lib/plane.rb'
 
 class Airport
 
-  attr_reader :planes, :capacity
 
-  def initialize
+  attr_reader :planes, :capacity
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
-    @capacity = 15
+    @capacity = capacity
   end
 
   def take_off(planes)
