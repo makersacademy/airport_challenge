@@ -2,13 +2,8 @@ class Weather
 
 attr_reader :stormy
 
-  def initialize
-    @stormy = forecast
+  def stormy
+    rand(20) < 4
   end
 
-  private
-    def forecast
-      n = rand(10)
-      true if n == 1
-    end
 end
