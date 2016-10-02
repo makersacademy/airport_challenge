@@ -40,21 +40,30 @@ planes that are landed cannot land again and must be in an airport, etc.
 NOTES:
 I used the boris-bikes to a great degree to help me through this!
 
-Bad weather has a 70% chance of occurring. The random function to determine this is in weather.rb
+Bad weather has a 70% chance of occurring. The random function to determine this is in "weather.rb"
 The weather call is made each time a plane takes off or lands so that 
 the take-off or landing can be aborted if the weather is bad.
 
 PROGRAM WORKINGS AND COMMANDS:
 airport = Airport.new
 land at airport = "airport.land_plane(plane)"
-take-off from airport = "airport.take_off(plane)"
-Allow/prevent landing/take-off is determined by random value (true or false) returned to "airport.airport_open?"
-This random value is determined by a function called "weather_forecaster".
-"airport.airport_open?" is itself called by both "airport.land_plane(plane)" and "airport.take_off(plane)".
+take-off from airport = "airport.take_off(plane)". The parameter "plane" is optional for a take-off. If it is not
+supplied, then the first plane in the airport's planes array will "take-off".
+Allow/prevent landing/take-off (due to bad weather) is determined by random value (true or false) returned 
+to "airport.airport_open?"
+This random value is determined by a function called "weather_forecaster" in "weather.rb".
+The function "airport.airport_open?" calls the randomized weather determiner.
+"airport.airport_open?" is itself called by both "airport.land_plane(plane)" and "airport.take_off(plane)", 
+i.e. landing and taking-off do not necessarily use the same weather.
+Use "airport.runway_open" to check if the airport weather has determined that the airport is open (status of airport).
 If the plane is prevented from landing because of the randomly generated bad weather, 
 the plane will not be entered into the array of planes at the airport.
 If the plane is prevented from taking-off because of the randomly generated bad weather, 
 the plane will not be removed from the the array of planes at the airport.
+A plane cannot land if it has already landed.
+A plane cannot take-off if it has already taken off.
+A new airport can be initialized with a capacity of x (airport = Airport.new(10))but if no value is entered 
+the default capacity of the airport is set to 20.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Airport Challenge

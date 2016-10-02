@@ -42,6 +42,42 @@ describe Airport do
 end
 
 describe Airport do
+    describe "Try and land a plane when the weather is bad." do
+        it "Produces screen output saying the weather is too stormy to allow planes to land." do
+            plane = Plane.new
+            airport = Airport.new
+            allow(airport).to receive (:weather_forecaster) {"stormy"}
+            expect{airport.land_plane(plane)}.to output("Weather is too stormy to allow planes to land.\n").to_stdout
+        end    
+    end
+    
+    describe "Try and let a plane take-off when the weather is bad." do
+        it "Produces screen output saying the weather is too stormy to allow planes to take-off." do
+            plane = Plane.new
+            airport = Airport.new
+            airport.planes << plane
+            allow(airport).to receive (:weather_forecaster) {"stormy"}
+            expect{airport.take_off(plane)}.to output("Weather is too stormy to allow planes to take-off.\n").to_stdout
+        end    
+    end
+    
+    
+    
+    
+    
+    
+    
+    
+    describe "Try and land a plane when airport is full (default capacity)" do
+        it "Produces an error message if a plane tries to land when the airport is full." do
+            airport = Airport.new
+            airport.airport_capacity.times {airport.planes << Plane.new}
+            #puts airport.planes
+            expect {airport.land_plane(Plane.new)}.to raise_error "You cannot land because the airport is full."
+        end
+    end
+    
+    
  
     describe "Edge cases:" do
        before(:each) do         #Sets variables for the 2 tests below.

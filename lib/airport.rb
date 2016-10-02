@@ -3,10 +3,12 @@ require_relative 'weather'
 
 class Airport
   
-  attr_accessor :planes, :plane, :plane_status, :runway_open     
+  attr_accessor :planes, :plane, :plane_status, :runway_open, :airport_capacity     
   
-  def initialize
+  def initialize (capacity = 20)
     @planes = []
+    @airport_capacity = capacity    #Set to 20 if no capacity is provided.
+    @runway_open = true
   end
   
   def is_plane_at_airport?(plane)
@@ -16,8 +18,13 @@ class Airport
   def airport_open?
     weather_forecaster == "good" ? @runway_open = true : @runway_open = false
   end
+  
+  def is_airport_full?
+    planes.count == airport_capacity ? true : false
+  end
     
   def land_plane(plane)
+    fail "You cannot land because the airport is full." if is_airport_full?
     fail "ERROR: That plane has already landed." if is_plane_at_airport?(plane)
     fail "ERROR: There is no plane to land." if (plane.nil? || plane.class.to_s != "Plane")
     @plane_status = "up"
