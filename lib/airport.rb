@@ -11,6 +11,8 @@ class Airport
   end
 
   def take_off(plane)
+    raise "The plane is not in the airport!" if !planes.include?(plane)
+    plane.take_off
     planes.pop
   end
 end
