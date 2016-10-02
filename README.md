@@ -16,32 +16,26 @@ Airport Challenge
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+To create software that will control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 
-```
-As an air traffic controller
-So I can get passengers to a destination
-I want to instruct a plane to land at an airport and confirm that it has landed
+irb
+-----
 
-As an air traffic controller
-So I can get passengers on the way to their destination
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller
-To ensure safety
-I want to prevent takeoff when weather is stormy
-
-As an air traffic controller
-To ensure safety
-I want to prevent landing when weather is stormy
-
-As an air traffic controller
-To ensure safety
-I want to prevent landing when the airport is full
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+```Naomis-MBP:airport_challenge naomi$ irb
+2.3.0 :001 > require './lib/airport'
+ => true
+2.3.0 :002 > require './lib/weather'
+ => true
+2.3.0 :003 > require './lib/plane'
+ => true
+2.3.0 :004 > airport = Airport.new
+ => #<Airport:0x007f8fb9953b20>
+2.3.0 :005 > plane = Plane.new
+ => #<Plane:0x007f8fb994b588>
+2.3.0 :006 > stormy = Weather.new
+ => #<Weather:0x007f8fb9929870>
+2.3.0 :007 > airport.take_off(plane)
+ => #<Plane:0x007f8fb994b588>
+2.3.0 :008 > airport.land(plane)
+ => #<Plane:0x007f8fb994b588>
+2.3.0 :009 > ```
