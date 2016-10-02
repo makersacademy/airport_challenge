@@ -12,10 +12,10 @@ class Weather < Airport
 
   private
 
-  # def randomiser
-  #   rand(@weather.length-1)
-  # end
-  #
+  def randomiser
+    rand(@weather.length-1)
+  end
+
   def weather_forecast
     return @weather[randomiser]
   end

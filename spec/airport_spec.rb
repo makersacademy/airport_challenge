@@ -7,8 +7,6 @@ describe Airport do
   let(:weather) { double :weather, stormy?: true  }
   let(:plane) {double :plane}
 
-
-
   describe '#initialize' do
   it 'sets default capacity' do # need to stub this it uses default capacity
     allow(plane).to receive(:land)
@@ -24,13 +22,29 @@ describe Airport do
 end
 
   describe '#instruct_to_land' do
-    it "tells a plane to land at the airport" do
+    before do
       allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
+      subject.instruct_to_land(plane)
+      @landed_planes = []
+      @landed_planes << plane
+      plane.land
+    end
+    it "tells a plane to land at the airport" do
       expect( subject.instruct_to_land(plane) ).to eq plane
     end
-    it 'will not allow a plan to land during stormy weather' do
+    it 'will not allow a plane to land during stormy weather' do
       subject.clearance(weather)
       expect{ subject.instruct_to_land(plane) }.to raise_error "Clearance for landing not granted: stormy weather"
+    end
+    it 'will not allow a plane to land during stormy weather' do
+      airport = Airport.new(1)
+      airport.instruct_to_land(plane)
+      expect{ airport.instruct_to_land(plane) }.to raise_error "Clearance for landing not granted: airport full"
+    end
+    it 'stores the plane in the airport' do
+      subject.instruct_to_land(plane)
+      expect( @landed_planes.include?(plane) ).to eq true
     end
   end
 
@@ -52,22 +66,13 @@ end
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       subject.instruct_to_land(plane)
-      planes = []
-      planes << plane
       plane.land
+    end
+    it 'removes the plane for the airport' do
+      expect( subject.instruct_to_takeoff(plane) ).to eq plane
     end
     it 'tells landed planes to take off' do
     expect( subject.instruct_to_takeoff(plane) ).to eq plane
     end
   end
 end
-
-  # describe '#clearance_for_landing' do
-  #   it 'gives permission for planes to land' do
-  #     allow(plane).to receive(:land)
-  #     allow(plane).to receive(:status).and_return(:landed)
-  #     clearance_for_landing = true
-  #     plane.land
-  #     expect(plane.status).to eq :landed
-  #   end
-  # end

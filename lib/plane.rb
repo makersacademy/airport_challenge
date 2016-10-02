@@ -7,12 +7,12 @@ class Plane < Airport
   end
 
   def land
-    #fail "Cannot land: plane is already grounded" if @status == :landed
+    raise "Cannot land: plane is already grounded" if @status == :landed
     @status = :landed
   end
 
   def take_off
-    #fail "Cannot takeoff: plane is already in the air" if @status == :in_flight
+    raise "Cannot takeoff: plane is already in the air" if @status == :in_flight
     @status = :in_flight
   end
 
@@ -21,4 +21,5 @@ class Plane < Airport
   def status
     @status
   end
+
 end
