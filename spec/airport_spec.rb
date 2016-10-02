@@ -11,12 +11,7 @@ airport = Airport.new
   end
 
   it 'reads attr_reader' do
-    expect(airport).to respond_to(:plane)
-  end
-
-  it 'lands a plane' do
-    plane = Plane.new
-    expect(subject.land(plane)).to eq(plane)
+    expect(airport).to respond_to(:planes)
   end
 
   it 'plane takes off' do
@@ -24,9 +19,21 @@ airport = Airport.new
   end
 
   describe '#land' do
-    airport.land(Plane.new)
+    DEFAULT_CAPACITY = 20
+    DEFAULT_CAPACITY.times { airport.land(Plane.new) }
      it 'raises an error when airport is full' do
       expect {airport.land(Plane.new)}.to raise_error 'Airport is full'
      end
   end
+
+  it 'gives default capacity' do
+    expect(airport.capacity).to eq DEFAULT_CAPACITY
+  end
 end
+
+describe 'user-given capacity' do
+  airport = Airport.new(34)
+    it 'overrides default capacity' do
+      expect(airport.capacity).to eq 34
+    end
+  end
