@@ -6,12 +6,16 @@ def initialize
    @planes = [] 
 end
 
-def planes
-    @planes
+def flight_checker(plane)
+    @planes.include?(plane)
 end
     
 def land(plane)
      @planes.push(plane)
+end
+
+def depart(plane)
+    @planes.delete(plane)
 end
 
 end
