@@ -24,17 +24,24 @@ The aim is to allow the Airport have planes land and take off, based on random w
 * take_off(plane) - instructs a plane to take off from the Airport
     Will fail is the weather is stormy. Removes planes from the planes property
 
-* planes - calls the planes
-
 * full? - a private method for counting the number of planes in the airport
+
+* stormy_weather - private method for when the weather is stormy
+
+* plane_in_airport - private method for identifying if a given plane is in the given airport
+
+* check_for_landing - Fails for when a plane cannot land
+
+* check_for_take_off - Fails for when a plane cannot take off
 
 ## Planes
 
-* landed? - Checks if a plane has successfully landed, measures true
+* initialize - Activates the grounded property of the Plane class
+
+* landed - Checks if a plane has successfully landed, measures true
+
+* taken_off - Checks if a plane has taken off and is not in the airport
 
 ## Weather
 
-* initialize - activates the property of the class
-  @stormy = Holds the randomly selected forecast
-
-* forecast - Provides a random weather forecast of stormy or not stormy
+* stormy - A method which randomly selects a number to show if the weather is stormy or not
