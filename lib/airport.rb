@@ -1,5 +1,5 @@
 require_relative 'plane'
-require_relative 'stormy'
+require_relative 'weather'
 
 class Airport
   attr_accessor :capacity
