@@ -11,6 +11,12 @@ describe Airport do
     :confirm_takeoff => false)
   end
 
+  it 'can print how many planes are in the airport' do
+    allow(subject).to receive(:stormy?).and_return(false)
+    10.times {subject.land_plane(plane)}
+    expect(subject.list).to eq subject.planes
+  end
+
   context 'when a plane is landing in sunny weather' do
 
     it 'can confirm that 1 plane has landed' do

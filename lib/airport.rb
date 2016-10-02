@@ -29,6 +29,10 @@ class Airport
     planes
   end
 
+  def list
+    planes
+  end
+
   private
 
   def remove_plane_from_list(plane)
