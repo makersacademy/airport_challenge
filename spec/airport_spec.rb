@@ -13,21 +13,13 @@ describe Airport do
 
   context 'when landing a plane' do
     it 'instructs a plane to land' do
-      allow(plane).to receive(:landed?)
       expect(plane).to receive(:land)
       airport.land_plane(plane)
     end
-    it 'only docks a plane that has landed in the airport' do
+    it 'docks a plane that has landed in the airport' do
       allow(plane).to receive(:land)
-      allow(plane).to receive(:landed?).and_return true
       airport.land_plane(plane)
-      expect(airport.planes).to include plane 
-    end
-    it 'cannot dock a plane that has not landed' do
-      allow(plane).to receive(:land)
-      allow(plane).to receive(:landed?).and_return false
-      airport.land_plane(plane)
-      expect(airport.planes).not_to include plane
+      expect(airport.has_plane?(plane)).to be true 
     end
   end
 
@@ -51,7 +43,7 @@ describe Airport do
       airport.land_plane(plane_2)
       airport.land_plane(plane_3)
       airport.take_off(plane_2)
-      expect(airport.planes).not_to include plane_2
+      expect(airport.has_plane?(plane_2)).to be false
     end
   end
 
@@ -66,10 +58,6 @@ describe Airport do
       expect { airport.land_plane(plane) }.to raise_error('Plane cannot land in stormy weather!')
     end
   end
-
-# As an air traffic controller 
-# To ensure safety 
-# I want to prevent landing when the airport is full 
 
 # As the system designer
 # So that the software can be used for many different airports
