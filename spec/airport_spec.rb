@@ -22,6 +22,13 @@ describe Airport do
       allow(airport).to receive(:stormy?).and_return(true)
       expect{ airport.confirm_land(plane) }.to raise_error "Plane cannot land, it is too stormy."
     end
+
+    it 'raises an error if airport is at capacity' do
+      airport = Airport.new
+      allow(airport).to receive(:stormy?).and_return(false)
+      20.times {airport.confirm_land(plane) }
+      expect{ airport.confirm_land(plane) }.to raise_error "Plane cannot land as airport is at capacity."
+    end
   end
 
   context 'when a plane is taking off' do
