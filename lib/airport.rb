@@ -15,7 +15,6 @@ class Airport
 	def land(plane, weather)
 		raise 'Unsuitable weather for landing!' if weather.stormy?
 		raise "No space for planes in airport" if full?
-		
 		plane.land
 		@landed_planes << plane
 	end
