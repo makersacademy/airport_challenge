@@ -26,10 +26,6 @@ class Airport
     planes_on_ground.delete(plane)
   end
 
-  def list_planes
-    @planes_on_ground
-  end
-
   def weather
     # Approximately 1 times in 6, the weather will be stormy
     rand(5) == 0? "stormy" : "sunny"

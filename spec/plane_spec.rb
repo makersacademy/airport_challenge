@@ -7,16 +7,10 @@ describe Plane do
     airport = Airport.new
   end
 
-  it { is_expected.to respond_to (:flying?) }
-
   describe "Plane has a default status" do
 
     it "is flying by default" do
         expect(subject).to be_flying
-    end
-
-    it "knows its default 'location' is flying" do
-      expect(subject.get_location).to eq "Plane is flying"
     end
 
   end
@@ -38,9 +32,13 @@ describe Plane do
 
   end
 
-  describe "Plane's location'" do
+  describe "Plane has a location - either flying or in a specific airport" do
 
-    it "having landed, knows which airport it's in" do
+    it "knows its default 'location' is flying" do
+      expect(subject.get_location).to eq "Plane is flying"
+    end
+
+    it "having landed, knows exactly which airport it's in" do
         allow(airport).to receive(:weather) { "sunny" }
         airport.land(subject)
         expect(subject.get_location).to eq "Plane is at airport #{airport.airport_id}"
