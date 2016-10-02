@@ -16,6 +16,7 @@ describe Airport do
 	 	@error1 = 'Unsuitable weather for landing!' 
 	 	@error2 = "Too stormy to take off!"
 	 	@error3 = "No space for planes in airport"
+	 	@error4 = 'This plane is not currently landed here!'
 	 	allow(weather).to receive(:stormy?).and_return(false)
 	 	allow(stormy_weather).to receive(:stormy?).and_return(true)
 	 	allow(plane).to receive(:land)
@@ -35,18 +36,25 @@ describe Airport do
 			airport.land(plane, weather)
 			expect(airport.landed_planes).to include(plane)
 		end
+
 	end
 
 	describe '#take_off' do
 
 		it 'instructs the plane to take off' do
+			airport.land(plane, weather)
 			expect(plane).to receive(:take_off)
 			airport.take_off(plane, weather)
 		end
 
-		it 'takes off a plan from the airport' do
+		it 'takes off a plane from the airport' do
+			airport.land(plane, weather)
 			airport.take_off(plane, weather)
 			expect(airport.landed_planes).to_not include(plane)
+		end
+
+		it 'cannot take off a plane unless that plane is currently landed at the airport' do
+			expect { airport.take_off(plane, weather) }.to raise_error @error4
 		end
 
 	end
@@ -66,6 +74,7 @@ describe Airport do
 		end
 
 		it 'allows the plane to take off once weather clears up' do
+			airport.land(plane, weather)
 			expect { airport.take_off(plane, weather) }.to_not raise_error
 		end
 
