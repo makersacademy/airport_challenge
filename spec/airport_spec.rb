@@ -2,7 +2,13 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  subject(:airport) { described_class.new }
+  let(:weather) do 
+    weather_double = double(:weather)
+    allow(weather_double).to receive(:current_weather).and_return :sunny
+    weather_double
+  end
+  
+  subject(:airport) { described_class.new(weather) }
   let(:plane) { double(:plane) }
 
   context 'when landing a plane' do
@@ -35,7 +41,7 @@ describe Airport do
     end
     it 'cannot instruct a plane to take off if it is not in the airport' do
       allow(plane).to receive(:take_off)
-      expect{ airport.take_off(plane) }.to raise_error("The plane is not in the airport!")
+      expect{ airport.take_off(plane) }.to raise_error('The plane is not in the airport!')
     end
     it 'does not have a plane after it has taken off' do
       plane_1 = Plane.new
@@ -48,4 +54,12 @@ describe Airport do
       expect(airport.planes).not_to include plane_2
     end
   end
+
+  context 'when weather is stormy' do
+    it 'prevents plane from taking off' do
+      allow(weather).to receive(:current_weather).and_return :stormy
+      expect { airport.take_off(plane) }.to raise_error('Plane cannot take off in stormy weather!')
+    end
+  end
+  
 end
