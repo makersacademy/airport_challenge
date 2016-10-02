@@ -12,4 +12,9 @@ describe Airport do
   it 'has a capacity' do
     expect(subject).to respond_to :capacity
   end
+  it 'has an assaignable capacity' do
+   capacity = rand(200)
+   subject.capacity = capacity
+   expect(subject.capacity).to eq capacity
+  end
 end
