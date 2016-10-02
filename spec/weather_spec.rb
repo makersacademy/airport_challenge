@@ -8,14 +8,14 @@ describe Weather do
   end
 
   describe "#stormy?" do
-
-    it "can produce true as an output" do
-      expect(@test_arr).to include true
-    end
-
-    it "can produce false as an output" do
-      expect(@test_arr).to include false
+    context "when repeated" do
+      it "can produce true as an output" do
+        expect(@test_arr).to include true
+      end
+      it "can produce false as an output" do
+        expect(@test_arr).to include false
+      end
     end
   end
-  
+
 end
