@@ -42,22 +42,29 @@ describe Airport do
 end
 
 describe Airport do
+ 
     describe "Edge cases:" do
+       before(:each) do         #Sets variables for the 2 tests below.
+            @plane = Plane.new
+            @airport = Airport.new
+            allow(@airport).to receive(:airport_open?){true}           #This removes random weather factor.
+        end    
+        
         it "Does not allow a plane that has already landed to land again." do
-            plane = Plane.new
-            airport = Airport.new
-            allow(airport).to receive(:airport_open?){true}           #This removes random weather factor.
-            airport.land_plane(plane)
-            expect{airport.land_plane(plane)}.to raise_error "ERROR: That plane has already landed."
+            #plane = Plane.new
+            #airport = Airport.new
+            #allow(airport).to receive(:airport_open?){true}           #This removes random weather factor.
+            @airport.land_plane(@plane)
+            expect{@airport.land_plane(@plane)}.to raise_error "ERROR: That plane has already landed."
         end
         
         it "Does not allow a plane that has aready taken off to take-off again." do
-            plane = Plane.new
-            airport = Airport.new
-            allow(airport).to receive(:airport_open?){true}
-            airport.planes << plane        # "Land" plane at airport.
-            airport.take_off(plane)   
-            expect{airport.take_off(plane)}.to raise_error "ERROR: There is no plane to take-off."
+            #plane = Plane.new
+            #airport = Airport.new
+            #allow(airport).to receive(:airport_open?){true}
+            @airport.planes << @plane        # "Land" plane at airport.
+            @airport.take_off(@plane)   
+            expect{@airport.take_off(@plane)}.to raise_error "ERROR: There is no plane to take-off."
         end
     end
     
