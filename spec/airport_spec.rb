@@ -8,8 +8,11 @@ describe Airport do
 	let(:weather) { double(:weather) }
 	let(:stormy_weather) { double(:weather) }
 
+
+
 	before(:each) do
 	 	@default_capacity = Airport::DEFAULT_CAPACITY
+	 	@different_capacity = rand(1...@default_capacity)
 	 	@error1 = 'Unsuitable weather for landing!' 
 	 	@error2 = "Too stormy to take off!"
 	 	@error3 = "No space for planes in airport"
@@ -19,8 +22,7 @@ describe Airport do
 	 	allow(plane).to receive(:take_off)
 	end
 	
-	
-
+	it { is_expected.to have_attributes(landed_planes: [], capacity: @default_capacity) }
 
 	context '#land' do
 
@@ -69,19 +71,22 @@ describe Airport do
 
 	end
 
-	context 'airport capacity' do
+	context 'capacity' do
 
 		it 'returns true if airport is full' do
-
 			airport.capacity.times { airport.land(plane,weather) }
 			expect(airport.full?).to eq(true)
 		end
 
-		it 'does raises an error if plane tries to land in a full airport' do
+		it 'raises an error if plane tries to land in a full airport' do
 			airport.capacity.times { airport.land(plane, weather) }
 			expect { airport.land(plane, weather) }.to raise_error @error3
 		end 
-		
+
+		it 'can change from default capacity' do
+			diff_cap_airport = Airport.new(@different_capacity)
+			expect(diff_cap_airport.capacity).to_not eq(@default_capacity)
+		end
 	end
 
 end
