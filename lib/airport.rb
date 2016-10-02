@@ -3,28 +3,34 @@ require_relative 'weather'
 
 class Airport
   MAX = 5
-  attr_reader :capacity
+  attr_reader :capacity, :weather
 
 
-  def initialize(capacity = MAX)
+  def initialize(capacity = MAX, weather)
     @capacity = capacity
     @planes = []
     @weather = Weather.new
+
   end
 
   def land(plane)
-    fail "Can't land plane :( " if @weather.stormy?
+
+    #raise "Can't land plane :( " if weather.stormy?
     fail "Airport is full" if full?
     @planes << plane
     return @planes
     puts "#{plane} has landed"
   end
 
-  def take_off
-    fail "Can't take off :(" if @weather.stormy?
-    plane = @planes.pop
-    return plane
-    puts "#{plane} has taken off"
+  def take_off(runway)
+    #fail "Can't take off :(" if weather.stormy?
+    @planes.delete(runway)
+    return runway
+    puts "#{runway} has taken off"
+  end
+
+  def weather_conditions
+    puts weather.stormy?
   end
 
 private
@@ -32,5 +38,6 @@ private
 def full?
   @planes.length >= capacity
 end
+
 
 end

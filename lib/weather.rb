@@ -1,16 +1,9 @@
 class Weather
 
-  def initialize
-  @CONDITIONS = [:sunny,:stormy, :rain, :clear]
-  end
-
-  def set_conditions
-    n = rand(0..3)
-    @CONDITIONS[n]
-  end
 
   def stormy?
-    set_conditions == :stormy ? true : false
+    n = rand(0..5)
+    n > 3 ? true : false
   end
 
 end
