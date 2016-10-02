@@ -1,21 +1,26 @@
 require_relative './plane'
 
 class Airport
-  attr_accessor :planes, :weather
+  attr_accessor :planes, :capacity
 
-  def initialize(weather = Weather.new)
-    @weather = weather
+  def initialize
     @planes = []
+    @capacity = 30
   end
 
   def land(plane)
+    raise "Airport is full" if full?
     @planes << plane
-    "#{plane} has landed"
   end
 
   def takeoff(plane)
-    @planes.delete(plane)
-    "#{plane} has taken off"
+    @planes.pop
+  end
+
+private
+
+  def full?
+    @planes.length >= @capacity
   end
 
 end
