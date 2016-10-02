@@ -1,5 +1,6 @@
 class Plane
-  def initialize
+
+  def land
 
   end
 end
