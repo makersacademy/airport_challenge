@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Airport do
-  subject(:airport) { described_class.new(weather_forecast) }
+  subject(:airport) { described_class.new(20, weather_forecast) }
   let(:plane) { double :plane }
   let(:weather_forecast) { double :weather_forecast }
 
@@ -18,6 +18,15 @@ describe Airport do
       it 'should confirm a plane has landed' do
         airport.land(plane)
         expect(airport.planes).to include plane
+      end
+
+      context 'when full' do
+        it ' should prevent a plane from landing' do
+          20.times do
+            airport.land(plane)
+          end
+          expect { airport.land(plane) }.to raise_error 'Cannot land plane: airport full'
+        end
       end
     end
 

@@ -3,12 +3,14 @@ require_relative 'weather_forecast' # Is this necessary?
 class Airport
   attr_reader :planes
 
-  def initialize(weather_forecast)
+  def initialize(capacity, weather_forecast)
     @weather_forecast = weather_forecast
+    @capacity = capacity
     @planes = []
   end
 
   def land(plane)
+    raise 'Cannot land plane: airport full' if full?
     raise 'Cannot land plane: weather is stormy' if stormy?
     @planes.push(plane)
   end
@@ -19,6 +21,10 @@ class Airport
   end
 
   private
+
+  def full?
+    @planes.length >= @capacity
+  end
 
   def stormy?
     @weather_forecast.stormy?

@@ -1,5 +1,5 @@
 describe 'These are all the user stories' do
-  let(:airport) { Airport.new(weather_forecast) }
+  let(:airport) { Airport.new(20, weather_forecast) }
   let(:plane) { Plane.new }
   let(:weather_forecast) { WeatherForecast.new }
 
@@ -19,6 +19,18 @@ describe 'These are all the user stories' do
     # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
     it 'should instruct a plane to take off from an airport' do
       expect { airport.take_off(plane) }.not_to raise_error
+    end
+
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent landing when the airport is full
+    context 'when full' do
+      it 'should prevent planes from landing' do
+        20.times do
+          airport.land(plane)
+        end
+        expect { airport.land(plane) }.to raise_error 'Cannot land plane: airport full'
+      end
     end
   end
 
