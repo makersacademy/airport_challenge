@@ -24,6 +24,8 @@ class Airport
     @plane.delete(plane)
   end
 
+private
+
   def roll
     rand(2) + 1
   end

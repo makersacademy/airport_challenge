@@ -3,7 +3,7 @@ class Plane
 attr_accessor :land, :airport
 
   def initialize
-    @land = land
+    @land = false
   end
 
   def instruct_land
