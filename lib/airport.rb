@@ -1,7 +1,10 @@
+require_relative 'weather_forecast' # Is this necessary?
+
 class Airport
   attr_reader :planes
 
-  def initialize
+  def initialize(weather_forecast)
+    @weather_forecast = weather_forecast
     @planes = []
   end
 
@@ -18,6 +21,6 @@ class Airport
   private
 
   def stormy?
-    rand(1..6) > 4
+    @weather_forecast.stormy?
   end
 end
