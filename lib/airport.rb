@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  $weather = [:Stormy, :Sunny, :Cloudy, :Windy, :Rainey]
+
   DEFAULT_CAPACITY = 5
 
   attr_accessor :the_weather, :runway
@@ -18,7 +18,8 @@ class Airport
   end
 
   def change_weather
-   @the_weather = $weather.sample
+   @weather = [:Stormy, :Sunny, :Cloudy, :Windy, :Rainey]
+   @the_weather = @weather.sample
    @the_weather
   end
 

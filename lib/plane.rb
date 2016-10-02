@@ -17,11 +17,14 @@ class Plane
     @status
   end
 
+
   def land
     @status = :Landed
+    @passengers = 0
   end
 
   def fly
    @status = :Flying
+   @passengers = rand(100..250)
   end
 end

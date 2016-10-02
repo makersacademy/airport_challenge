@@ -6,8 +6,9 @@ describe Airport do
    subject(:airport) { described_class.new }
    let(:plane) {double :plane}
 
-    it { is_expected.to respond_to(:land_plane) }
-    it { is_expected.to respond_to(:take_off)   }
+    it { is_expected.to respond_to(:land_plane).with(1).argument }
+    it { is_expected.to respond_to(:take_off).with(1).argument   }
+    it { is_expected.to respond_to(:current_weather)             }
 
     it 'gives the ability to change the weather' do
       expect(airport.change_weather).not_to eq subject
