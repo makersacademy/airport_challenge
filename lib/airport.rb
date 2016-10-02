@@ -18,6 +18,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Sorry, just too stormy" if stormy?
     plane.lift_off
     @planes.delete(plane)
   end

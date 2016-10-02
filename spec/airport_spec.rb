@@ -11,6 +11,7 @@ describe Airport do
 
   describe 'land' do
     it 'tells a plane to land' do
+      allow(airport).to receive(:stormy?).and_return false
       airport.land(plane)
       expect(airport.planes).to include plane
     end
@@ -18,6 +19,7 @@ describe Airport do
 
   describe 'take-off' do
     it 'instructs a plane to take-off' do
+      allow(airport).to receive(:stormy?).and_return false
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes).to eq []
