@@ -3,7 +3,7 @@ require_relative 'stormy'
 
 class Airport
   attr_accessor :capacity
-  attr_accessor :list_landed_planes, :list_taken_off_planes
+  attr_reader :list_landed_planes, :list_taken_off_planes
 
   DEFAULT_CAPACITY = 50
   def initialize(capacity = DEFAULT_CAPACITY)
