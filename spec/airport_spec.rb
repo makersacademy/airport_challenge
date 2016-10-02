@@ -2,30 +2,25 @@ require 'airport'
 
 describe Airport do
 airport = Airport.new
-  it 'reads land method' do
-    expect(airport).to respond_to (:land)
-  end
 
-  it 'reads land argument' do
-    expect(airport).to respond_to(:land).with(1).argument
-  end
+  it { is_expected.to respond_to(:land) }
 
-  it 'reads attr_reader' do
-    expect(airport).to respond_to(:planes)
-  end
+  it { is_expected.to respond_to(:land).with(1).argument }
 
-  it 'reads takes off method' do
-    expect(airport).to respond_to(:take_off)
-  end
+  it { is_expected.to respond_to(:planes) }
+
+  it { is_expected.to respond_to(:take_off) }
 
   it 'raises an error when there are no planes available for take off' do
-      expect {airport.take_off}.to raise_error 'No planes available for take off'
+    message = 'No planes available for take off'
+      expect {airport.take_off}.to raise_error message
   end
 
   it 'raises an error when airport is full' do
     DEFAULT_CAPACITY = 20
     DEFAULT_CAPACITY.times { airport.land(Plane.new) }
-      expect {airport.land(Plane.new)}.to raise_error 'Airport is full'
+    message = 'Airport is full'
+      expect {airport.land(Plane.new)}.to raise_error message
   end
 
   it 'gives default capacity' do
