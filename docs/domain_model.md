@@ -6,8 +6,6 @@ Airport to have default capacity that can be overridden
 
 FEATURE TESTS
 
-require './lib/airport.rb'
-
 Feature 1: Land a plane in an airport DONE
 
 plane = Plane.new       # Create a plane
@@ -161,16 +159,3 @@ plane2 = Plane.new
 Heathrow.land(plane1)
 Gatwick.land(plane2)
 Gatwick.takeoff(plane1)     # should fail because plane is not in the airport
-
-REFACTORING OPPORTUNITIES
-No longer need in_airport? just get rid?
-Refactor in_airport? to be specific to an airport, not just in an airport generally
-If plane is at a different airport, it should give you that error if you try and tell it to takeoff
-Method: Where are all the planes?
-Put stubs back in instead of real Plane objects
-Modules and mixins
-Change names of grounded to something else
-Are classes and methods as clean and as short as they can be?
-Feature spec
-Travis CI testing
-Re-write my own readme to explain my approach

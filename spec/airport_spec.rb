@@ -78,6 +78,18 @@ describe Airport do
       expect(subject.planes_on_ground.include?(plane)).to eq true
     end
 
+    it "checks multiple airports to make sure the plane is definitely in THIS airport" do
+      Heathrow = Airport.new
+      allow(Heathrow).to receive(:weather) { "sunny" }
+      plane1 = Plane.new
+      Heathrow.land(plane1)
+      Gatwick = Airport.new
+      allow(Gatwick).to receive(:weather) { "sunny" }
+      plane2 = Plane.new
+      Gatwick.land(plane2)
+      expect { Gatwick.takeoff(plane1) }.to raise_error "Can't take off as plane is not in the airport."
+    end
+
     it "won't allow a plane to take off if the weather is stormy" do
       allow(subject).to receive(:weather) { "sunny" }
       subject.land(plane)
@@ -101,18 +113,6 @@ describe Airport do
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.planes_on_ground.include?(plane)).to eq false
-    end
-
-    it "checks multiple airports so you can only request planes in THIS airport to take off" do
-      Heathrow = Airport.new
-      allow(Heathrow).to receive(:weather) { "sunny" }
-      plane1 = Plane.new
-      Heathrow.land(plane1)
-      Gatwick = Airport.new
-      allow(Gatwick).to receive(:weather) { "sunny" }
-      plane2 = Plane.new
-      Gatwick.land(plane2)
-      expect { Gatwick.takeoff(plane1) }.to raise_error "Can't take off as plane is not in the airport."
     end
 
     it "instructs a specific plane to take off (not just the most recently landed)" do

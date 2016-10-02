@@ -13,6 +13,35 @@ Airport Challenge
 
 ```
 
+My approach to this challenge
+-----------------------------
+
+* Started early! Worked till 2am Friday night then started again the following morning and continued for the whole day. Then felt relaxed so I could enjoy Saturday night and Sunday daytime. Then back to it on Sunday night but felt relaxed about it. This was a good approach.
+* Attempted to extract a domain model from the user stories (see docs.domain_model.md)
+* Kept a track of the features I wanted to test (see same file) - I wrote over 20 but went through the whole RED - GREEN - REFACTOR cycle for each one before writing another. This approach was AMAZING for breaking the problem down into small solvable chunks.
+* RED: Tested each feature in IRB, then replicated the failure as a unit test
+* GREEN: Got the tests to pass using the simplest possible method
+* REFACTOR: Refactored the code and the tests for optimum readability and simplicity
+* After each feature (and sometimes more often) I pushed the changes to github
+* Kept a close eye on the pull request to check for coverage, CI tests and style guide violations
+* Discussed a few specific problems with Chet and Jen - I've credited them directly in the code for their contributions
+* Re-factored the names, structure and flow of my tests to make it clear that the user story criteria had been met
+
+Things I struggled with
+-----------------------
+* Initially, whether it should be airport.land(plane) or plane.land(airport) but my domain model pointed to the former (also it was the most similar to our docking_station model). I think this worked out well.
+* Using a mock for the plane object where I had methods in airport.rb that changed the plane's flying status from true to false or vice versa. I tried many things but never solved this so ended up largely using real Plane objects which I know is not ideal. Felt quite frustrated about this as it doesn't feel like it should be a big thing to solve.
+* Deciding if weather should be in its own class or not. I decided for ease that weather was a condition relating specifically to the airport, so I felt okay about putting a method inside that class. However in the real world, that's probably not how it should work.
+* Figuring out what caused my test coverage to go down to 99.3% but Tadas told me I could click on it and that enabled me to identify which method was lacking tests and get it back to 100%
+
+Refactoring opportunities / things I didn't get round to
+--------------------------------------------------------
+* Sort out my issue with mocks - use stubs instead of real Plane objects
+* Create a separate Weather class
+* Look into modules and mixins. I only got to chapter 21 of the previous exercise so haven't come across these yet
+* Writing the feature spec
+* Using Travis CI locally
+
 Instructions
 ---------
 
@@ -36,25 +65,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +102,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
