@@ -7,11 +7,7 @@ class Weather
   end
 
   def conditions
-    if rand(4) == 0
-      "stormy"
-    else
-      "sunny"
-    end
+    rand(4) == 0 ? "stormy" : "sunny"
   end
 
 end
