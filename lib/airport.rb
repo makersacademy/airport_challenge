@@ -10,8 +10,17 @@ class Airport
     @planes = []
   end
 
-  def take_off
-    @planes.pop
+  def actual_weather
+    weather = Weather.new
+    weather.stormy
+  end
+
+  def take_off(stormy_weather)
+    if stormy_weather == false
+      @planes.pop
+    else
+     'No take off due to storm'
+    end
   end
 
   def land(plane)

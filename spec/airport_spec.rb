@@ -1,12 +1,13 @@
 require 'airport'
 
 describe Airport do
-  let (:airport) { Airport.new}
+  let(:airport) { Airport.new}
+  let(:weather) { Weather.new}
   before :example do
     @plane = Plane.new
   end
 
-  describe 'landing and take off' do
+  describe 'Control centre' do
 
     it 'instructs a plane to land at an airport' do
       expect(subject.land(@plane)).to eq [@plane]
@@ -23,20 +24,18 @@ describe Airport do
 
     it 'confirms that a plane has took off' do
       subject.land(@plane)
-      expect(subject.take_off).to eq @plane
+      expect(subject.take_off(subject.actual_weather)).to eq @plane
     end
-  end
 
-  describe 'prevents landing and take off at bad weather' do
-    let(:weather) { Weather.new }
-    it 'checks if the weather is stormy' do
-      expect(weather).to be_stormy
+    it 'checks the actual_weather' do
+      expect(airport.actual_weather).to eq weather.stormy
     end
 
     it 'prevents take off in stormy weather' do
       airport.land(@plane)
-      expect(airport.take_off).to eq []
+      stormy_weather = true
+      expect(airport.take_off(stormy_weather)).to eq 'No take off due to storm'
     end
-
   end
+
 end
