@@ -9,4 +9,7 @@ describe Airport do
     100.times{ weather << subject.change_weather }
     expect(weather).to include('clear') and expect(weather).to include('clear') 
   end
+  it 'has a capacity' do
+    expect(subject).to respond_to :capacity
+  end
 end
