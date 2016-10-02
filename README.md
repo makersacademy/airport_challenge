@@ -24,7 +24,22 @@ We have a request from a client to write the software to control the flow of pla
 
 Used the forked README.md file to read User Stories.
 
-From there, ran feature tests through irb and used Rspec to create unit tests.
+From there, ran feature tests through irb and used Rspec to create unit tests.  Feature tests look as follows:
+
+```
+2.2.3 :001 > require './lib/airport'
+ => true
+2.2.3 :002 > airport = Airport.new
+ => #<Airport:0x007fe1940b6580 @planes=[], @capacity=20>
+2.2.3 :003 > plane1 = Plane.new
+ => #<Plane:0x007fe19409db20 @landed=false>
+2.2.3 :004 > airport.land_plane(plane1)
+ => #<Plane:0x007fe19409db20 @landed=true>
+2.2.3 :005 > airport.depart_plane(plane1)
+ => []
+2.2.3 :006 > airport.list
+ => []
+```
 
 Used random number generator to have a 1/00 chance of the airport being stormy, and therefore no planes will be able to land or depoart.
 
