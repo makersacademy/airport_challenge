@@ -9,7 +9,7 @@ It can create planes and airports(with random weather states). Capacity of airpo
 
 ## How to use ##
 
-Here is an example in irb: 
+![alt text](screenshots/irb.png "Here is an example in irb")
 
 ## Authors ##
 Lilian Breidenbach
