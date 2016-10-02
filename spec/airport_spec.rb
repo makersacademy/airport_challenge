@@ -26,8 +26,6 @@ end
       allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       subject.instruct_to_land(plane)
-      @landed_planes = []
-      @landed_planes << plane
       plane.land
     end
     it "tells a plane to land at the airport" do
@@ -44,7 +42,7 @@ end
     end
     it 'stores the plane in the airport' do
       subject.instruct_to_land(plane)
-      expect( @landed_planes.include?(plane) ).to eq true
+      expect( subject.instruct_to_land(plane) ).to eq plane
     end
   end
 
@@ -72,11 +70,12 @@ end
       expect( subject.instruct_to_takeoff(plane) ).to eq plane
     end
     it 'tells landed planes to take off' do
-    expect( subject.instruct_to_takeoff(plane) ).to eq plane
+      expect( subject.instruct_to_takeoff(plane) ).to eq plane
     end
     it 'will not allow a plane to take off during stormy weather' do
-    subject.clearance(weather)
-    expect{ subject.instruct_to_takeoff(plane) }.to raise_error "Clearance for takeoff not granted: stormy weather"
+      subject.clearance(weather)
+      expect{ subject.instruct_to_takeoff(plane) }.to raise_error "Clearance for takeoff not granted: stormy weather"
+    end
   end
-end
+
 end

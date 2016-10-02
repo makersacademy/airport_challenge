@@ -36,4 +36,5 @@ describe Plane do
       expect{subject.take_off}.to raise_error "Cannot takeoff: plane is already in the air"
     end
   end
+  
   end
