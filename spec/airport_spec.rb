@@ -35,7 +35,7 @@ describe Airport do
   end
 
   describe "#land" do
-    context "when given a plane"
+    context "when given a plane" do
       it "instructs the plane to land" do
         # expects plane to have its land method called
         expect(@plane).to receive(:land)
@@ -62,11 +62,22 @@ describe Airport do
   end
 
   describe "#stormy?" do
-    context "when @weather.stormy? is true" do
+    context "when weather.stormy? is true" do
       it "returns true" do
         allow(@weather).to receive(:stormy?).and_return true
         expect(@airport.stormy?).to eq true
       end
+    end
+  end
+
+  describe "#full?" do
+    context "when capacity is full" do
+      it "returns true" do
+        allow(@plane).to receive(:land)
+        10.times {@airport.land(@plane)}
+        expect(@airport.full?).to eq true
+      end
+    end
   end
 
 end
