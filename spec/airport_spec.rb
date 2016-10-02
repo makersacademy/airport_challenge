@@ -3,7 +3,7 @@ require 'airport'
 
 describe Airport do
 
-  it { should respond_to :cleared_landing, :cleared_takeoff }
+  it { should respond_to :cleared_landing, :cleared_takeoff, :weather }
 
   it 'clears for landing' do
     plane = Plane.new
