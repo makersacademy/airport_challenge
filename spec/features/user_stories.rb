@@ -1,4 +1,4 @@
-describe Airport do
+describe User_stories do
 #As an air traffic controller
 #So I can get passengers to a destination
 #I want to instruct a plane to land at an airport and confirm that it has landed
@@ -42,10 +42,10 @@ describe Airport do
 #To ensure safety
 #I want to prevent takeoff when weather is stormy
 
-  #it "airport can prevent takeoff when weather is stormy" do
-  #airport = Airport.new(50)
-  #plane = Plane.new
-#  weather = Weather.new
-  #expect { airport.take_off(plane) }.to raise_error "cannot take off due to stormy weather conditions"
-  #end
+  it "airport can prevent plane takeoff when weather is stormy" do
+  airport = Airport.new(50)
+  plane = Plane.new
+  allow(airport).to receive(:stormy).and_return true
+  expect { airport.take_off(plane) }.to raise_error "cannot take off due to stormy weather conditions"
+  end
 end
