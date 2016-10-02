@@ -60,9 +60,18 @@ describe Airport do
     it 'does not allow a plane to take-off that has already taken off' do
       allow(subject).to receive(:stormy?).and_return(false)
       current_plane = Plane.new
-      current_plane.confirm_land
+      subject.land_plane(current_plane)
       subject.depart_plane(current_plane)
       expect{ subject.depart_plane(current_plane)}.to raise_error "This plane has already taken off."
+    end
+
+    it 'raises an error when a plane attempts to depart from the wrong airport' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      airport_one = Airport.new
+      airport_two = Airport.new
+      plane_one = Plane.new
+      airport_one.land_plane(plane_one)
+      expect{ airport_two.depart_plane(plane_one) }.to raise_error "This plane cannot depart from this airport."
     end
 
     it 'raises an error if weather is stormy' do
@@ -70,6 +79,19 @@ describe Airport do
       subject.land_plane(plane)
       allow(subject).to receive(:stormy?).and_return(true)
       expect{ subject.depart_plane(plane) }.to raise_error "Plane cannot take off, it is too stormy."
+    end
+  end
+
+  describe '#list' do
+    before do
+      3.times do
+        allow(subject).to receive(:stormy?).and_return(false)
+        subject.land_plane(plane)
+      end
+    end
+    it 'produces a list of planes in the current airport' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect(subject.list).to eq subject.planes
     end
   end
 end

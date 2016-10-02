@@ -22,6 +22,8 @@ class Airport
   def depart_plane(plane)
     fail "Plane cannot take off, it is too stormy." if stormy?
     fail "This plane has already taken off." if plane.landed? == false
+    fail "This plane cannot depart from this airport." if planes.include?(plane) == false
+    # plane.confirm_existence_in_airport(plane)
     plane.confirm_takeoff
     planes.delete(plane)
     planes
@@ -32,6 +34,14 @@ class Airport
   end
 
   private
+
+  # def exists?(plane)
+  #   return true if planes.include?(plane)
+  # end
+
+  def correct_airport?
+    true
+  end
 
   def stormy?
     return true if rand(0..100) == 2
