@@ -39,7 +39,7 @@ describe Airport do
   end
 
   it "Airport should have definable capacity" do
-    #Testing automatic capacity
+    #Testing default capacity
     capacity_airport = Airport.new
     expect(capacity_airport).to have_attributes(:capacity => 10)
 
