@@ -44,7 +44,7 @@ describe Airport do
   describe '#take_off' do
     context 'when not stormy' do
       before do
-        allow(airport).to receive(:stormy).and_return false
+        allow(airport).to receive(:stormy?).and_return false
       end
 
       it "airport can instruct a plane to take off" do
@@ -58,7 +58,8 @@ describe Airport do
 
     context 'when stormy' do
       before do
-        allow(airport).to receive(:stormy).and_return true
+        allow(airport).to receive(:stormy?).and_return true
+        allow(airport).to receive(:stormy?).and_return true
       end
 
       it "airport can prevent plane from taking off due to stormy weather" do
