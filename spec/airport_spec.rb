@@ -13,10 +13,19 @@ describe Airport do
   end
 
   describe '#accept_plane(plane_name)' do
-    it 'allows a plane to land and adds it to list of planes at airport' do
+    it 'allows a plane to land and passes instruction to airport to add it to list of planes' do
       test_plane = Plane.new
       subject.accept_plane(test_plane)
       expect( subject.landed?(test_plane) ).to eq true
+    end
+  end
+
+  describe '#takeoff(airport_name)' do
+    it 'instructs plane to take off and passes instruction to airport to remove it from list of plane' do
+      test_plane = Plane.new
+      subject.accept_plane(test_plane)
+      subject.takeoff(test_plane)
+      expect( subject.landed?(test_plane) ).to eq false
     end
   end
 end

@@ -10,6 +10,10 @@ class Airport
     @planes_at_airport << plane_name
   end
 
+  def takeoff(plane_name)
+    @planes_at_airport.delete(plane_name)
+  end
+
   def landed?(plane_name)
     @planes_at_airport.include?(plane_name)
   end
