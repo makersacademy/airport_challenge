@@ -1,11 +1,11 @@
 class Weather
 
   def initialize
-  @CONDITIONS = [:stormy, :sunny, :rain, :clear]
+  @CONDITIONS = [:sunny,:stormy, :rain, :clear]
   end
 
   def set_conditions
-    n = rand(0..2)
+    n = rand(0..3)
     @CONDITIONS[n]
   end
 
