@@ -7,4 +7,10 @@ describe Airport do
     plane = Plane.new
     expect(subject.land(plane)).to be plane
     end
+
+    it 'lets a plane leave the airport' do
+    plane = Plane.new
+    expect(subject.take_off(plane)).to be plane
   end
+
+end
