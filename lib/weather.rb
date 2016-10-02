@@ -1,7 +1,7 @@
 class Weather
 
   def stormy?
-    stormy_weather == :stormy ? true : false
+    stormy_weather == :stormy
   end
 
   private

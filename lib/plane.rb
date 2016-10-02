@@ -1,13 +1,18 @@
 class Plane
-  
 
-  def status
+  def initialize(flying: true)
+    @flying = flying
   end
 
-  def flying?
-
+  def airborn?
+    @flying
   end
 
-  def landed?
+  def flying
+    @flying = true
+  end
+
+  def landed
+    @flying = false
   end
 end

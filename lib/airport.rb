@@ -11,17 +11,23 @@ class Airport
     @weather = weather
   end
 
-  def take_off
-    fail "Can't take off due to stormy conditions" if weather.stormy?
-    @planes.pop
-    "The plane has taken off"
-  end
-
   def land(plane)
     fail "Plane unable to land, airport full" if full?
     fail "Weather is too bad to land" if weather.stormy?
+    plane.landed
     @planes << plane
     "The plane landed safely"
+  end
+
+  def take_off(plane)
+    fail "Can't take off due to stormy conditions" if weather.stormy?
+    if @planes.include?(plane)
+      plane.flying
+      @planes.delete(plane)
+      "The plane has taken off"
+    else
+      fail "This plane is not in the airport"
+    end
   end
 
   private
