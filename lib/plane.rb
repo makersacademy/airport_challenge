@@ -1,6 +1,6 @@
 class Plane
 
-attr_accessor :land, :airport
+attr_accessor :land
 
   def initialize
     @land = false
