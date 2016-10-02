@@ -4,16 +4,12 @@ class Plane
 
 attr_accessor :flying, :status
 
-  def flying?
-    flying
+  def initialize
+    @flying = nil
   end
 
-  def status?
-    if plane.flying = true
-      status = 'Not in airport'
-    else plane.flying = false
-      status = 'In airport'
-    end
+  def flying?
+    @flying
   end
 
 

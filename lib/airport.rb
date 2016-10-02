@@ -3,23 +3,25 @@ require_relative 'plane'
 class Airport
 
 attr_reader :plane
-attr_accessor :grounded_planes
+
+attr_accessor :flying, :status, :grounded_planes, :weather
 
   def initialize
-    @grounded_planes = []
+    @weather = weather
+    @landed_planes = []
   end
 
   def land(plane)
+    fail 'The weather is stormy, no planes can land' if weather == 'stormy'
     plane.flying = false
-    plane.status = 'landed'
     puts "Plane has landed"
-    @grounded_planes << plane
+    @landed_planes << plane
   end
 
   def takeoff(plane)
-    @grounded_planes.pop
+    fail 'The weather is stormy, no planes can take off' if weather == 'stormy'
+    @landed_planes.pop
     plane.flying = true
-    plane.status = 'flying'
     puts "Plane has taken off"
   end
 
