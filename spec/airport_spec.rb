@@ -30,6 +30,13 @@ describe Airport do
       message = 'Sorry, just too stormy'
       expect{ airport.land(plane) }.to raise_error message
     end
+
+    it 'stops planes taking off' do
+      airport.land(plane)
+      allow(airport).to receive(:stormy?).and_return true
+      message = 'Sorry, just too stormy'
+      expect{ airport.take_off(plane) }.to raise_error message
+    end
   end
 
 
