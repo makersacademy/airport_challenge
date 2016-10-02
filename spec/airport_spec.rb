@@ -19,7 +19,7 @@ describe Airport do
     expect(airport.capacity).to eq 15
   end
 
-  it "only holds the default number of planes" do
+  it "prevents landing when the airport is full " do
     Airport::DEFAULT_CAPACITY.times do
       subject.land(Plane.new)
     end
@@ -27,13 +27,52 @@ describe Airport do
     end
 
   it "raises an error when a take-off is requested from an empty airport" do
-    expect{subject.take_off}.to raise_error "Airport is empty"
+    plane1 = Plane.new
+    @plane == 0
+    expect{subject.take_off(plane1)}.to raise_error "Airport is empty"
   end
 
-  it "allows planes to take-off" do
+
+  it "raises an error when a requested plane is not in the airport to take off" do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    subject.land(plane2)
+    expect{subject.take_off(plane1)}.to raise_error "That plane is not at this airport"
+  end
+
+  # it "allows planes to take-off" do
+  #   plane1 = Plane.new
+  #   subject.land(plane1)
+  #   expect(subject.take_off(plane1).to eq plane1
+  # end
+
+   it "allows a specific plane to take off when requested" do
+     plane1 = Plane.new
+     plane2 = Plane.new
+     subject.land(plane1)
+     subject.land(plane2)
+     subject.take_off(plane1)
+     new_array = @planes.delete(plane1)
+     expect(@planes).to eq new_array
+  end
+
+  it "only lets you land a plane once at an airport" do
     plane1 = Plane.new
     subject.land(plane1)
-    expect(subject.take_off).to eq plane1
+    expect{subject.land(plane1)}.to raise_error "That plane has already landed."
+  end
+
+  it "raises an error when you try to land in stormy conditions" do
+    plane1 = Plane.new
+    airport1 = Airport.new(5,true)
+    expect{airport1.land(plane1)}.to raise_error "The weather is too bad. Try again later."
+  end
+
+  it "raises an error when you try to take_off in stormy conditions" do
+    plane1 = Plane.new
+    airport1 = Airport.new(5,true)
+    @planes = [plane1]
+    expect{airport1.take_off(plane1)}.to raise_error "The weather is too bad. Try again later."
   end
 
 end
