@@ -13,7 +13,7 @@ This ap will:
 
 
 [*********************************************************************]
-    # Create a default airport and plane like so:
+        Create a default airport and plane in IRB like so:
 
 2.2.3 :001 > require './lib/airport'
  => true
@@ -23,7 +23,7 @@ This ap will:
  => #<Airport:0x007faf318b4ce0 @the_weather=:Cloudy, @runway=[], @capacity=5> #
 
 [*********************************************************************]
-        Create an airport with your own capacity like so:
+        Create an airport with your own capacity in IRB like so:
 
 2.2.3 :001 > require './lib/airport'
  => true
