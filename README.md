@@ -25,7 +25,7 @@ We have a request from a client to write the software to control the flow of pla
 
 Used the forked README.md file to read User Stories.
 
-From there, ran feature tests through irb and used Rspec to create unit tests.  Feature tests look as follows:
+From there, ran feature tests through irb and used Rspec to create unit tests.  An RSpec **feature** test that lands and takes off a number of planes is found in spec file. The feature tests as entered into irb look as follows:
 
 ```
 2.2.3 :001 > require './lib/airport'
@@ -42,13 +42,12 @@ From there, ran feature tests through irb and used Rspec to create unit tests.  
  => []
 ```
 
-Used random number generator to have a 1/00 chance of the airport being stormy, and therefore no planes will be able to land or depoart.
+Used random number generator to have a 1/00 chance of the airport being stormy, and therefore no planes will be able to land or depart.
 
 I attempted to to use a mocks and stubs to override random weather and ensure consistent test behaviour. I was not able to use these throughout the entire unit testing. Need to figure out a way of mocking the same plane that can land and take off, instead of a new mock instance of plane being called after the initial instance.
 
 My code defends against some edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-An RSpec **feature** test that lands and takes off a number of planes is found in spec file.
 
 
 

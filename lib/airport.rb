@@ -34,10 +34,6 @@ class Airport
 
   private
 
-  def correct_airport?
-    true
-  end
-
   def stormy?
     return true if rand(0..100) == 2
   end
