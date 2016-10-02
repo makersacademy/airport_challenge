@@ -9,15 +9,15 @@ class Weather < Airport
   def stormy?
     weather_forecast == :stormy
   end
-  
+
   private
 
-  def randomiser
-    rand(6)
-  end
-
-  def weather_forecast
-    return @weather[randomiser]
-  end
+  # def randomiser
+  #   rand(@weather.length-1)
+  # end
+  #
+  # def weather_forecast
+  #   return @weather[randomiser]
+  # end
 
 end
