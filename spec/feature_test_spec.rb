@@ -5,7 +5,8 @@ describe 'As an air traffic controller I' do
 
   before do
     @heathrow = Airport.new
-    @city = Airport.new(5)
+    @test_capacity = 5
+    @city = Airport.new(@test_capacity)
     @concorde = Plane.new
     @jumbo = Plane.new
     allow(@heathrow).to receive(:weather_index).and_return 0
@@ -43,7 +44,7 @@ describe 'As an air traffic controller I' do
   end
   it 'can prevent landing if airport is at max capacity' do
     allow(@city).to receive(:weather_index).and_return 0
-    5.times {Plane.new.land(@city)}
+    @test_capacity.times {Plane.new.land(@city)}
     expect {Plane.new.land(@city)}.to raise_error
   end
 end
