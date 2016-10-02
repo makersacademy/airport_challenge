@@ -6,5 +6,4 @@ enabled-upgraded.yml
 CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
-Gemfile
 Gemfile.lock
