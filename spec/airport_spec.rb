@@ -3,11 +3,16 @@ require 'plane'
 
 describe Airport do
 
-let(:stormy_airport) {Airport.new}
+   before(:each) do
+      @airport = Airport.new
+      @plane = Plane.new
+      allow(@airport).to receive_messages(:stormy => false)
+  end
 
   it { is_expected.to respond_to(:land) }
   it { is_expected.to respond_to(:take_off) }
   it { is_expected.to respond_to(:stormy) }
+
 
   it "creates an airport" do
     expect(described_class).to eq Airport
@@ -24,58 +29,47 @@ let(:stormy_airport) {Airport.new}
 
   it "prevents landing when the airport is full " do
     Airport::DEFAULT_CAPACITY.times do
-      subject.land(Plane.new)
+      @airport.land(Plane.new)
+
     end
-      expect{subject.land(Plane.new)}.to raise_error "Airport is full."
+      expect{@airport.land(Plane.new)}.to raise_error "Airport is full."
     end
 
   it "raises an error when a take-off is requested from an empty airport" do
-    plane1 = Plane.new
-    @plane == 0
-    expect{subject.take_off(plane1)}.to raise_error "Airport is empty"
+    @planes = 0
+    expect{@airport.take_off(@plane)}.to raise_error "Airport is empty"
   end
-
 
   it "raises an error when a requested plane is not in the airport to take off" do
-    plane1 = Plane.new
     plane2 = Plane.new
-    subject.land(plane2)
-    expect{subject.take_off(plane1)}.to raise_error "That plane is not at this airport"
+    @airport.land(plane2)
+    expect{@airport.take_off(@plane)}.to raise_error "That plane is not at this airport"
   end
 
-  # it "allows planes to take-off" do
-  #   plane1 = Plane.new
-  #   subject.land(plane1)
-  #   expect(subject.take_off(plane1).to eq plane1
-  # end
-
    it "allows a specific plane to take off when requested" do
-     plane1 = Plane.new
      plane2 = Plane.new
-     subject.land(plane1)
-     subject.land(plane2)
-     subject.take_off(plane1)
-     expect(subject.planes).not_to include(plane1)
+     @airport.land(@plane)
+     @airport.land(plane2)
+     @airport.take_off(@plane)
+     expect(@airport.planes).not_to include(@plane)
   end
 
   it "only lets you land a plane once at an airport" do
-    plane1 = Plane.new
-    subject.land(plane1)
-    expect{subject.land(plane1)}.to raise_error "That plane has already landed."
+    @airport.land(@plane)
+    @airport.stormy = false
+    expect{@airport.land(@plane)}.to raise_error "That plane has already landed."
   end
 
+
   it "raises an error when you try to land in stormy conditions" do
-    plane1 = Plane.new
-    airport1 = Airport.new
-    airport1.stormy == true
-    expect{airport1.land(plane1)}.to raise_error "The weather is too bad. Try again later."
+    allow(@airport).to receive_messages(:stormy => true)
+    expect{@airport.land(@plane)}.to raise_error "The weather is too bad. Try again later."
   end
 
   it "raises an error when you try to take_off in stormy conditions" do
-    plane1 = Plane.new
-    airport1 = Airport.new
-    airport1.land(plane1)
-    expect{airport1.take_off(plane1)}.to raise_error "The weather is too bad. Try again later."
+    allow(@airport).to receive_messages(:stormy => true)
+    @airport.land(@plane)
+    expect{@airport.take_off(@plane)}.to raise_error "The weather is too bad. Try again later."
   end
 
 end

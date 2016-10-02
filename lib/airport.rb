@@ -10,7 +10,7 @@ class Airport
     def  initialize(capacity=DEFAULT_CAPACITY)
       @planes = []
       @capacity = capacity
-      @stormy = [true, false, false].shuffle.sample
+      @stormy = random_weather
     end
 
     def land(plane_name)
@@ -18,7 +18,7 @@ class Airport
       fail "That plane has already landed." if @planes.include?(plane_name)
       fail "The weather is too bad. Try again later." if @stormy == true
       @planes << plane_name
-      #@in_air = false
+      @in_air = false
       end
 
     def take_off(plane_name)
@@ -26,7 +26,11 @@ class Airport
       fail "The weather is too bad. Try again later." if @stormy == true
       fail "That plane is not at this airport" unless @planes.include?(plane_name)
       @planes.delete(plane_name)
-      #@in_air = true
+      @in_air = true
+    end
+
+    def random_weather
+      [false, false, true].sample
     end
 
 end
