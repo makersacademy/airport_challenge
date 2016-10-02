@@ -1,7 +1,7 @@
 
-##Welcome to air traffic control!
+#Welcome to air traffic control!
 
-#This ap will:
+This ap will:
 
  #.Create an airport with either default capacity or
     the ability to change it yourself
@@ -12,7 +12,7 @@
  #.You can also check which planes are inside the airport
 
 
-#[*********************************************************************]
+[*********************************************************************]
     # Create a default airport and plane like so:
 
 2.2.3 :001 > require './lib/airport'
@@ -20,7 +20,7 @@
 2.2.3 :002 > plane = Plane.new
  => #<Plane:0x007faf32019710 @passengers=241, @status=:Flying>
 2.2.3 :003 > airport = Airport.new
- => #<Airport:0x007faf318b4ce0 @the_weather=:Cloudy, @runway=[], @capacity=5>
+ => #<Airport:0x007faf318b4ce0 @the_weather=:Cloudy, @runway=[], @capacity=5> #
 
 [*********************************************************************]
         Create an airport with your own capacity like so:
