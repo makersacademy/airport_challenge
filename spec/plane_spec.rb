@@ -1,8 +1,9 @@
 require 'plane'
 
 describe Plane do
+    let(:airport) { double(:airport)}
   it 'lands somewhere' do
-    subject.land(double(:airport))
+    subject.land(airport)
     expect(subject.state).to eq 'grounded'
   end
   it 'takes off' do
@@ -14,7 +15,7 @@ describe Plane do
     expect(subject.confirm).to eq 'flying'
   end
   it 'confirms state after landing' do
-    subject.land
+    subject.land(airport)
     expect(subject.confirm).to eq 'grounded'
   end
 end
