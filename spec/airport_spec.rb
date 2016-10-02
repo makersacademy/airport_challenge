@@ -33,20 +33,28 @@ describe Airport do
       expect(airport.actual_weather(weather)).to eq airport.stormy_weather
     end
 
-    it 'prevents take off in stormy weather' do
-      subject.land(@plane)
-      subject.actual_weather(weather)
-      expect(subject.take_off).to eq 'No take off due to storm'
-    end
+    describe 'prevents' do
 
-    it 'prevents landing in stormy weather' do
-      subject.actual_weather(weather)
-      expect(subject.land(@plane)).to eq 'No landing due to storm'
-    end
+      it 'take off in stormy weather' do
+        subject.land(@plane)
+        subject.actual_weather(weather)
+        expect(subject.take_off).to eq 'No take off due to storm'
+      end
 
-    it 'prevents landing when airport is full' do
-      ap = Airport.new
-      expect{(ap.capacity + 1).times {ap.land(@plane) }}.to raise_error('Airport is full')
+      it 'landing in stormy weather' do
+        subject.actual_weather(weather)
+        expect(subject.land(@plane)).to eq 'No landing due to storm'
+      end
+
+      it 'landing when airport is full' do
+        expect{(airport.capacity + 1).times {airport.land(@plane) }}.to raise_error('Airport is full')
+      end
+    end
+  end
+
+  describe 'System designer' do
+    it 'can change the default capacity' do
+      expect(Airport.new(60).capacity).to eq 60
     end
   end
 
