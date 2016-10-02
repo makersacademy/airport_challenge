@@ -15,10 +15,6 @@ describe Plane do
     expect(subject.airport).to eq nil
   end
 
-  it 'should be able to confirm it\'s status' do
-    expect(subject.confirm_status).to eq "Plane status:  flight in progress"
-  end
-
   describe 'landing at an airport' do
 
     it {should respond_to :land}

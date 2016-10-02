@@ -39,12 +39,12 @@ describe Airport do
 
   describe 'where planes are present' do
 
-    it {should respond_to :plane_present}
+    it {should respond_to :plane_present?}
 
     it 'can confirm if a plane is present in the airport' do
-      expect(@heathrow.plane_present(@concorde)).to eq false
+      expect(@heathrow.plane_present?(@concorde)).to eq false
       @heathrow.accept_plane(@concorde)
-      expect(@heathrow.plane_present(@concorde)).to eq true
+      expect(@heathrow.plane_present?(@concorde)).to eq true
     end
   end
 

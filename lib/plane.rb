@@ -7,10 +7,6 @@ class Plane
     @airport = nil
   end
 
-  def confirm_status
-    "Plane status:  #{@status}"
-  end
-
   def land(airport)
     raise "A #{airport.class} is not an airport" unless airport.class == Airport
     raise "This plane is not in flight" if @status == "landed"
