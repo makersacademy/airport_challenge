@@ -28,17 +28,17 @@ describe Airport do
 
   end
 
-  context "take-off" do
+  context "takeoff" do
 
     describe "#take_off" do
-      it "instruct plane to take off" do
+      it "instruct plane to takeoff" do
         expect(@plane).to receive(:take_off)
         subject.take_off(@plane)
       end
     end
 
     describe "#take_off" do
-      it "doesn't have the plane after take-off" do
+      it "doesn't have the plane after takeoff" do
         allow(@plane).to receive(:take_off)
         subject.planes << @plane
         subject.take_off(@plane)
