@@ -26,7 +26,6 @@ describe Airport do
   context 'when allowing planes to take off' do
     it 'instructs a plane to take off' do
       allow(plane).to receive(:land)
-      allow(plane).to receive(:landed?).and_return true
       airport.land_plane(plane)
       expect(plane).to receive(:take_off)
       airport.take_off(plane)
@@ -58,18 +57,21 @@ describe Airport do
       expect { airport.land_plane(plane) }.to raise_error('Plane cannot land in stormy weather!')
     end
   end
-
-# As the system designer
-# So that the software can be used for many different airports
-# I would like a default airport capacity that can be overridden as appropriate
   
   context 'when airport is full' do
     it 'prevents a plane from landing' do
       allow(plane).to receive(:land)
-      allow(plane).to receive(:landed?).and_return true
       Airport::DEFAULT_CAPACITY.times { airport.land_plane(plane) }
       expect { airport.land_plane(plane) }.to raise_error('Plane cannot land - airport is full!')
     end
+  end
+
+  it 'can be given a specific capacity' do
+    capacity = 1
+    airport = Airport.new(weather, capacity)
+    allow(plane).to receive(:land)
+    airport.land_plane(plane)
+    expect { airport.land_plane(plane) }.to raise_error('Plane cannot land - airport is full!')
   end
 
 end
