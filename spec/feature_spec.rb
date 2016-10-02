@@ -9,16 +9,16 @@ plane3 = Plane.new
 plane4 = Plane.new
 plane5 = Plane.new
 plane6 = Plane.new
-
-airport1.land_plane(plane1)
-airport1.land_plane(plane2)
-airport1.land_plane(plane3)
-
-airport2.land_plane(plane4)
-airport2.land_plane(plane5)
-airport2.land_plane(plane6)
-
-airport1.depart_plane(plane1)
+#
+# airport1.land_plane(plane1)
+# airport1.land_plane(plane2)
+# airport1.land_plane(plane3)
+#
+# airport2.land_plane(plane4)
+# airport2.land_plane(plane5)
+# airport2.land_plane(plane6)
+#
+# airport1.depart_plane(plane1)
 # airport2.depart_plane(plane2)
 # airport1.depart_plane(plane4)
 # airport1.depart_plane(plane6)
