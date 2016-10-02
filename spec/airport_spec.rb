@@ -4,7 +4,8 @@ describe Airport do
 
   before :each do
     @plane = double(:plane)
-    @weather = double(:weather)
+    @weather = double(:weather, :stormy? => false)
+    @airport = Airport.new(@weather)
   end
 
   context "land plane" do
@@ -14,15 +15,15 @@ describe Airport do
         # expects plane to have its land method called
         expect(@plane).to receive(:land)
         # call the airport.land(@plane) to call plane.land
-        subject.land @plane
+        @airport.land @plane
       end
     end
 
     describe "#land" do
       it "has the plane after it has landed" do
         allow(@plane).to receive(:land)
-        subject.land @plane
-        expect(subject.planes).to include @plane
+        @airport.land @plane
+        expect(@airport.planes).to include @plane
       end
     end
 
@@ -33,24 +34,32 @@ describe Airport do
     describe "#take_off" do
       it "instruct plane to takeoff" do
         expect(@plane).to receive(:take_off)
-        subject.take_off(@plane)
+        @airport.take_off(@plane)
       end
     end
 
     describe "#take_off" do
       it "doesn't have the plane after takeoff" do
         allow(@plane).to receive(:take_off)
-        subject.planes << @plane
-        subject.take_off(@plane)
-        expect(subject.planes).not_to include @plane
+        @airport.planes << @plane
+        @airport.take_off(@plane)
+        expect(@airport.planes).not_to include @plane
       end
+    end
+
+    it "doesn't allow takeoff if weather is stormy" do
+      allow(@plane).to receive(:take_off)
+      allow(@weather).to receive(:stormy?).and_return true
+      expect{@airport.take_off(@plane)}.to raise_error "Cannot takeoff due to stormy weather"
     end
 
   end
 
-  it "checks if weather is stormy" do
-    allow(@weather).to receive(:stormy?).and_return true
-    expect(subject.stormy?(@weather)).to eq true
+  describe "#stormy?" do
+    it "checks if weather is stormy" do
+      allow(@weather).to receive(:stormy?).and_return true
+      expect(@airport.stormy?).to eq true
+    end
   end
 
 end
