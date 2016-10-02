@@ -5,35 +5,41 @@ require './lib/plane'
 
 class Airport
 
-  def initialize
+  DEFAULT_CAPACITY = 1
+
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
     @weather = ["Sunny", "Stormy"]
+    @specified_capacity = capacity
   end
 
-  attr_reader :planes, :weather, :flying
+  attr_reader :planes, :weather, :specified_capacity
 
   def land?(plane)
-    fail "Plane is already grounded" if grounded
-    @planes[0] << plane
+    fail "Cannot land due to weather" if stormy?
+    @planes
+    fail "Plane is already grounded" if @flying
+    self.grounded?
+    @planes << plane
   end
 
-  def take_off?
+  def take_off?(plane)
     fail "Cannot fly due to weather" if stormy?
-    @planes.shift
+    plane -= @planes
   end
+
+  # private
 
   def stormy?
-    @weather.sample
+    @weather == "Stormy"
   end
 
-private
-
-  def in_air
-    self.flying = try
+  def grounded?
+    @flying ? false : true
   end
 
-  def grounded
-    !flying
+  def full?
+    @planes.count >= 1 ? true : false
   end
 
 end
