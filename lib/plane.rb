@@ -19,12 +19,4 @@ class Plane
   def set_as_landed
     @landed = true
   end
-
-  def fail_if_not_new
-    fail "Plane is not new!" unless is_new?
-  end
-
-  def is_new?
-    landed? == nil
-  end
 end
