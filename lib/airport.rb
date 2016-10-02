@@ -25,7 +25,6 @@ class Airport
     #raise "Can't take off :(" if weather.stormy?
     raise "Plane already in flight" if runway.flying?
     raise "Plane not in this airport" if present?(runway) == false
-    raise "Airport is empty" if empty?
     runway.taking_off
     @planes.delete(runway)
     return runway
@@ -39,10 +38,6 @@ private
 
   def full?
     @planes.length >= capacity
-  end
-
-  def empty?
-    @planes.length == 0
   end
 
   def present?(plane)
