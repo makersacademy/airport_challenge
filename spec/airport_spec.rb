@@ -14,8 +14,10 @@ describe Airport do
   describe 'it tells a plane to take off'
   it {is_expected.to respond_to(:takeoff).with(1).argument}
 
+  airplane = Plane.new
+
   describe 'it stores a landed plane'
-  it {expect(subject.plane).to eq(@plane)}
+  it {expect(subject.land(airplane)).to eq(airplane)}
 
   # expect(actual).to eq(expected)
 
