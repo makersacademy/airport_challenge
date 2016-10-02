@@ -10,20 +10,22 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'raises an error when weather is stormy' do
-      #to fix: will currently only work when whether is randomly stormy
-      expect { subject.land(double(plane)) }.to raise_error "Can't land when stormy"
+        #allow(subject).to receive(:check_weather).and_return('stormy')
+        plane = Plane.new
+        plane.on_ground = false
+        expect{subject.land(plane)}.to raise_error "Can't land when stormy"
     end
 
     it 'raises an error when airport is full' do
+      allow(subject).to receive(:check_weather).and_return('sunny')
       Airport::DEFAULT_CAPACITY.times do
         plane = Plane.new
         plane.on_ground = false
         subject.land(plane)
       end
-      expect {
         plane = Plane.new
         plane.on_ground = false
-        subject.land(plane) }.to raise_error "Airport full"
+        expect{subject.land(plane) }.to raise_error "Airport full"
     end
 
   end
@@ -33,11 +35,26 @@ describe Airport do
     it { is_expected.to respond_to(:takeoff).with(1).argument }
 
     it 'raises an error when weather is stormy' do
-      #to fix: will currently only work when whether is randomly stormy
-      expect { subject.takeoff(Plane.new) }.to raise_error "Can't take off when stormy"
+      #allow(subject).to receive(:check_weather).and_return('stormy')
+      plane = Plane.new
+      subject.add_new_plane(plane)
+      expect { subject.takeoff(plane) }.to raise_error "Can't takeoff when stormy"
     end
   end
 
+  describe '#find_plane'
+
+    it { is_expected.to respond_to(:find_plane).with(1).argument }
+
+    it 'finds a plane in an airport' do
+      plane = Plane.new
+      subject.add_new_plane(plane)
+      expect(subject.find_plane(plane)).to eq plane
+    end
+
+    it 'raises an error when plane not in airport' do
+      expect { subject.find_plane(Plane.new) }.to raise_error "Plane not in airport"
+    end
 
 
 end

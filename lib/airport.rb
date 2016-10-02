@@ -5,7 +5,7 @@ class Airport
   attr_reader :weather
   attr_accessor :capacity
 
-  CHANCE_OF_SUN = 1.0
+  CHANCE_OF_SUN = 0.0
   DEFAULT_CAPACITY = 200
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -18,7 +18,7 @@ class Airport
     check_weather
     fail "Plane not in flight" if plane.on_ground
     fail "Can't land when stormy" if @weather == 'stormy'
-    fail "Airport full" if @planes.count >= @capacity
+    fail "Airport full" if full?
     plane.on_ground = true
     @planes << plane
   end
@@ -39,7 +39,7 @@ class Airport
   end
 
   def check_weather
-    if rand < Airport::CHANCE_OF_SUN
+    if chance < Airport::CHANCE_OF_SUN
       @weather = 'sunny'
     else
       @weather = 'stormy'
@@ -47,9 +47,18 @@ class Airport
     @weather
   end
 
+  def chance
+    rand()
+  end
+
   def find_plane(plane)
     fail "Plane not in airport" if @planes.include?(plane) == false
-    puts "Plane in airport"
+    plane
   end
+
+  def full?
+    @planes.count >= @capacity
+  end
+
 
 end
