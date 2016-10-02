@@ -10,6 +10,10 @@ describe Plane do
     expect(subject).to respond_to :land
   end
 
+  it 'instructs a plane to takeoff' do
+    expect(subject).to respond_to :takeoff
+  end
+
   it 'confirms when it has landed' do
     airport = Airport.new
     subject.land(airport)
