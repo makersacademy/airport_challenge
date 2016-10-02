@@ -18,8 +18,7 @@ def land(plane)
   elsif full?
     print  "Sorry, the airport is full"
   else
-    @landed_plane = plane
-    @landed_plane.landed
+    @landed_plane = plane.landed
     @arrivals << @landed_plane
     confirm_landed
   end
