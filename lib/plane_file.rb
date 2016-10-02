@@ -4,6 +4,7 @@ class Plane
 
   attr_reader :plane_is_landed
 
+
   def initialize(plane_is_landed = false)
     @plane_is_landed = plane_is_landed
   end
