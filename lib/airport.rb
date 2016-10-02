@@ -3,8 +3,7 @@ require_relative 'weather.rb'
 
 class Airport
   DEFUALT_CAPACITY = 20
-  attr_reader :planes, :capacity
-  attr_accessor :weather
+  attr_reader :planes, :capacity, :weather
 
   def initialize(capacity: DEFUALT_CAPACITY, weather: Weather.new)
     @planes = []
@@ -13,6 +12,7 @@ class Airport
   end
 
   def take_off
+    fail "Can't take off due to stormy conditions" if weather.stormy?
     @planes.pop
     "The plane has taken off"
   end
@@ -27,6 +27,7 @@ class Airport
   private
 
   def full?
-    @planes.count == @capacity
+    @planes.count >= @capacity
   end
+
 end
