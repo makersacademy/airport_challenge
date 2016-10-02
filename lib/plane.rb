@@ -14,10 +14,6 @@ class Plane
     flying
   end
 
-  def in_airport?
-    in_airport
-  end
-
   # For a reason which I can't explain, this method won't work without the @ symbol.
   def set_location(airport_id)
     @location = "Plane is at airport #{airport_id}"

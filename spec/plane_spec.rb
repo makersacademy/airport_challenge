@@ -15,8 +15,8 @@ describe Plane do
         expect(subject).to be_flying
     end
 
-    it "is not in an airport by default" do
-      expect(subject).not_to be_in_airport
+    it "knows its default 'location' is flying" do
+      expect(subject.get_location).to eq "Plane is flying"
     end
 
   end
@@ -30,30 +30,17 @@ describe Plane do
         expect(subject).to be_flying
     end
 
-    it "sets in_airport to false on taking off" do
-        allow(airport).to receive(:weather) { "sunny" }
-        airport.land(subject)
-        airport.takeoff(subject)
-        expect(subject).not_to be_in_airport
-    end
-
     it "sets flying to false on landing" do
         allow(airport).to receive(:weather) { "sunny" }
         airport.land(subject)
         expect(subject).not_to be_flying
     end
 
-    it "sets in_airport to true on landing" do
-        allow(airport).to receive(:weather) { "sunny" }
-        airport.land(subject)
-        expect(subject).to be_in_airport
-    end
-
   end
 
   describe "Plane's location'" do
 
-    it "tells you which airport the plane is in (if landed)" do
+    it "having landed, knows which airport it's in" do
         allow(airport).to receive(:weather) { "sunny" }
         airport.land(subject)
         expect(subject.get_location).to eq "Plane is at airport #{airport.airport_id}"

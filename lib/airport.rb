@@ -16,7 +16,6 @@ class Airport
   def land (plane)
     check_for_landing_issues (plane)
     plane.flying = false
-    plane.in_airport = true
     plane.set_location (airport_id)
     planes_on_ground << plane
   end
@@ -24,7 +23,6 @@ class Airport
   def takeoff (plane)
     check_for_takeoff_issues (plane)
     plane.flying = true
-    plane.in_airport = false
     planes_on_ground.delete(plane)
   end
 
@@ -38,7 +36,7 @@ class Airport
   def check_for_takeoff_issues (plane)
     fail "Cannot take off. Plane is flying." if plane.flying?
     fail "Cannot take off due to storm." if weather == "stormy"
-    fail "Can't take off as plane is not in the airport." if !plane.in_airport? || planes_on_ground.include?(plane) == false
+    fail "Can't take off as plane is not in the airport." if planes_on_ground.include?(plane) == false
   end
 
   def list_planes

@@ -163,6 +163,7 @@ Gatwick.land(plane2)
 Gatwick.takeoff(plane1)     # should fail because plane is not in the airport
 
 REFACTORING OPPORTUNITIES
+No longer need in_airport? just get rid?
 Refactor in_airport? to be specific to an airport, not just in an airport generally
 If plane is at a different airport, it should give you that error if you try and tell it to takeoff
 Method: Where are all the planes?
