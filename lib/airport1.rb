@@ -10,11 +10,7 @@ class Airport
     @capacity = num
   end
 
-  attr_reader :planes
-  attr_reader :weather
-  attr_reader :capacity
-
-  #attr_reader :plane
+  attr_reader :planes, :weather, :capacity
 
   def land(plane)
     raise 'This plane cannot land due to stormy weather' if weather.stormy?
