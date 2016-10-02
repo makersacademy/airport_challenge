@@ -6,7 +6,6 @@ class Airport
   DEFAULT_CAPACITY = 5
 
   attr_accessor :the_weather, :runway
-  attr_reader :plane
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = change_weather)
     @runway = []
@@ -28,6 +27,7 @@ class Airport
    fail 'DANGER! Runway full' if full?
    fail 'This plane has already landed!' if include(plane)
    add_plane(plane)
+   plane.land
    @runway
   end
 
@@ -38,6 +38,7 @@ class Airport
   def take_off(plane)
    fail 'DANGER! Stormy weather' if the_weather == :Stormy
    fail 'That plane isn\'t in this airport!' if !include(plane)
+   plane.fly
    remove_plane(plane)
    @runway
   end

@@ -4,9 +4,7 @@ require 'airport'
 describe Airport do
 
    subject(:airport) { described_class.new }
-
-   #let(:plane) {double :plane, status?: :Flying}
-   #let(:landed_plane) {double :plane, status?: :Landed}
+   let(:plane) {double :plane}
 
     it { is_expected.to respond_to(:land_plane) }
     it { is_expected.to respond_to(:take_off)   }
@@ -37,20 +35,20 @@ describe Airport do
       subject(:airport) { described_class.new }
      it 'lands a plane' do
       allow(airport).to receive(:stormy?).and_return(false)
-      plane = double(:plane)
+      allow(plane).to receive(:land)
       expect(airport.land_plane(plane)).to eq [plane]
     end
 
     it 'won\'t land a plane if it is already in the airport' do
      allow(airport).to receive(:stormy?).and_return(false)
-     plane = double(:plane)
+     allow(plane).to receive(:land)
      airport.land_plane(plane)
      expect { airport.land_plane(plane) }.to raise_error 'This plane has already landed!'
     end
 
     it 'confirms that the plane has landed at the airport' do
       allow(airport).to receive(:stormy?).and_return(false)
-      plane = double(:plane)
+      allow(plane).to receive(:land)
       airport.land_plane(plane)
       expect(airport.landing_check(plane)).to eq true
     end
@@ -66,7 +64,7 @@ describe Airport do
 
     it "won't land a plane if the weather is stormy" do
       allow(airport).to receive(:stormy?).and_return(true)
-      plane = double(:plane)
+      allow(plane).to receive(:land)
       expect{ airport.land_plane(plane) }.to raise_error 'DANGER! Stormy weather'
     end
   end
@@ -76,30 +74,33 @@ describe Airport do
 
     it 'won\'t let you let a plane leave the airport that isn\'t there' do
       airport = described_class.new(1, :Sunny)
-      plane_1 = double(:plane)
-      plane_2 = double(:plane)
+      plane_1 = Plane.new
+      plane_2 = Plane.new
       airport.land_plane(plane_1)
       expect { airport.take_off(plane_2) }.to raise_error 'That plane isn\'t in this airport!'
     end
 
     it 'lets a plane leave the airport' do
      airport = described_class.new(1, :Sunny)
-     plane = double(:plane)
+     allow(plane).to receive(:fly)
+     allow(plane).to receive(:land)
      airport.land_plane(plane)
      expect(airport.take_off(plane)).to eq []
     end
 
     it 'won\'t let the plane take off if it\'s stormy' do
       airport = described_class.new(1, :Sunny)
-      plane = double(:plane)
+      allow(plane).to receive(:land)
       airport.land_plane(plane)
       airport = described_class.new(1, :Stormy)
+      allow(plane).to receive(:fly)
       expect{ airport.take_off(plane) }.to raise_error 'DANGER! Stormy weather'
     end
 
     it 'confirms that the plane has left the airport' do
       airport = described_class.new(1, :Sunny)
-      plane = double(:plane)
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:fly)
       airport.land_plane(plane)
       airport.take_off(plane)
       expect(airport.take_off_check(plane)).to eq true
