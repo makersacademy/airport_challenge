@@ -1,14 +1,16 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
+
   def initialize
     @planes = []
-    @weather = [:stormy, :sunny, :rain]
+    @weather = Weather.new
   end
 
   def land(plane)
-    raise "Can't land plane :( " if stormy?
+    raise "Can't land plane :( " if @weather.stormy?
     @planes << plane
     return @planes
     puts "#{plane} has landed"
@@ -20,9 +22,5 @@ class Airport
     puts "#{plane} has taken off"
   end
 
-  def stormy?
-    n = rand(0..3)
-    true if @weather[n] == :stormy
-  end
 
 end

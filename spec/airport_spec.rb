@@ -12,13 +12,12 @@ describe Airport do
     expect(airport.land(@plane)).to eq([@plane])
   end
 
-  it 'Should be able to land plane' do
+  it 'Should be able to take off' do
     airport.land(@plane)
     expect(airport.take_off).to eq(@plane)
   end
 
   it 'Should not allow planes to land if weather is stormy' do
-    weather = :stormy
     expect{airport.land(@plane)}.to raise_error("Can't land plane :( ")
   end
 
