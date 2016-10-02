@@ -20,6 +20,16 @@ describe Plane do
       subject.land(@airport)
       expect(subject.landed?).to eq true
     end
+
+    it "cannot land at full airport" do
+      airport = Airport.new(50)
+      50.times do
+        (Plane.new).land airport
+      end
+      (Plane.new).land airport
+      expect{(Plane.new).land(airport)}.to raise_error "Airport is full"
+    end
+
   end
 
   describe "#take_off" do

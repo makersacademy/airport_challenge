@@ -7,10 +7,13 @@ class Plane
   end
 
   def land airport
+    fail "Airport is full" if airport.landed_planes.count > 50
     airport.landed_planes << self
   end
 
   def take_off airport
     @landed = false
   end
+
+
 end
