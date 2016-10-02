@@ -7,7 +7,6 @@ describe Airport do
   it 'has differing weather conditions' do
     weather = []
     100.times{ weather << subject.change_weather }
-    p weather
     expect(weather).to include('clear') and expect(weather).to include('clear') 
   end
 end
