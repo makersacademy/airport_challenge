@@ -26,19 +26,6 @@ class Airport
     planes_on_ground.delete(plane)
   end
 
-  def check_for_landing_issues (plane)
-    fail "Cannot land. Airport is full." if full?
-    fail "Cannot land. Plane isn't flying." if !plane.flying?
-    fail "Cannot land due to storm." if weather == "stormy"
-  end
-
-  # Credit to Jen H for the planes_on_ground.include?(plane) == false idea
-  def check_for_takeoff_issues (plane)
-    fail "Cannot take off. Plane is flying." if plane.flying?
-    fail "Cannot take off due to storm." if weather == "stormy"
-    fail "Can't take off as plane is not in the airport." if planes_on_ground.include?(plane) == false
-  end
-
   def list_planes
     @planes_on_ground
   end
@@ -50,8 +37,21 @@ class Airport
 
 private
 
-  def full?
-    planes_on_ground.count == capacity
+def full?
+  planes_on_ground.count == capacity
+end
+
+  def check_for_landing_issues (plane)
+    fail "Cannot land. Airport is full." if full?
+    fail "Cannot land. Plane isn't flying." if !plane.flying?
+    fail "Cannot land due to storm." if weather == "stormy"
+  end
+
+  # Credit to Jen H for the planes_on_ground.include?(plane) == false idea
+  def check_for_takeoff_issues (plane)
+    fail "Cannot take off. Plane is flying." if plane.flying?
+    fail "Cannot take off due to storm." if weather == "stormy"
+    fail "Can't take off as plane is not in the airport." if planes_on_ground.include?(plane) == false
   end
 
 end
