@@ -9,10 +9,6 @@ class Plane
     @landed
   end
 
-  def flying?
-    landed? == false
-  end
-
   def fly_to(destination_airport)
     fail "NEW PLANE! Assign the plane to an airport first: airport.land(plane)" if landed?.nil?
     fail "Plane is already in that airport" if destination_airport == airport
