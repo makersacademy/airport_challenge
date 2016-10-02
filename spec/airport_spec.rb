@@ -3,8 +3,11 @@ require 'plane'
 
 describe Airport do
 
+let(:stormy_airport) {Airport.new}
+
   it { is_expected.to respond_to(:land) }
   it { is_expected.to respond_to(:take_off) }
+  it { is_expected.to respond_to(:stormy) }
 
   it "creates an airport" do
     expect(described_class).to eq Airport
@@ -52,8 +55,7 @@ describe Airport do
      subject.land(plane1)
      subject.land(plane2)
      subject.take_off(plane1)
-     new_array = @planes.delete(plane1)
-     expect(@planes).to eq new_array
+     expect(subject.planes).not_to include(plane1)
   end
 
   it "only lets you land a plane once at an airport" do
@@ -64,14 +66,15 @@ describe Airport do
 
   it "raises an error when you try to land in stormy conditions" do
     plane1 = Plane.new
-    airport1 = Airport.new(5,true)
+    airport1 = Airport.new
+    airport1.stormy == true
     expect{airport1.land(plane1)}.to raise_error "The weather is too bad. Try again later."
   end
 
   it "raises an error when you try to take_off in stormy conditions" do
     plane1 = Plane.new
-    airport1 = Airport.new(5,true)
-    @planes = [plane1]
+    airport1 = Airport.new
+    airport1.land(plane1)
     expect{airport1.take_off(plane1)}.to raise_error "The weather is too bad. Try again later."
   end
 
