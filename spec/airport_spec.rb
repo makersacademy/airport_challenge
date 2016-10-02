@@ -17,7 +17,7 @@ describe Airport do
     expect(subject.list).to eq subject.planes
   end
 
-  context 'when a plane is landing in sunny weather' do
+  describe '#land_plane' do
 
     it 'can confirm that 1 plane has landed' do
       allow(subject).to receive(:stormy?).and_return(false)
@@ -42,27 +42,19 @@ describe Airport do
       subject.land_plane(current_plane)
       expect{ subject.land_plane(current_plane)}.to raise_error "This plane has already landed."
     end
-  end
 
     it 'raises an error if weather is stormy' do
       allow(subject).to receive(:stormy?).and_return(true)
       expect{ subject.land_plane(plane) }.to raise_error "Plane cannot land, it is too stormy."
     end
+  end
 
-  context 'when a plane is taking off' do
-
-    it 'can confirm that 1 plane has taken off' do
+  describe '#depart_plane' do
+    it 'can confirm that 1 plane has taken off from it\'s current airport' do
       allow(subject).to receive(:stormy?).and_return(false)
       current_plane = Plane.new
       subject.land_plane(current_plane)
       expect( subject.depart_plane(current_plane) ). to eq subject.planes
-    end
-
-    it 'will only allow a plane to take off from the airport it is already in' do
-      allow(subject).to receive(:stormy?).and_return(false)
-      current_plane = Plane.new
-      subject.land_plane(current_plane)
-      expect(subject.depart_plane(current_plane)).to eq subject.planes
     end
 
     it 'does not allow a plane to take-off that has already taken off' do
@@ -79,7 +71,5 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(true)
       expect{ subject.depart_plane(plane) }.to raise_error "Plane cannot take off, it is too stormy."
     end
-
   end
-
 end

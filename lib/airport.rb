@@ -14,18 +14,16 @@ class Airport
     fail "Plane cannot land as airport is at capacity." if full?
     fail "Plane cannot land, it is too stormy." if stormy?
     fail "This plane has already landed." if plane.landed? == true
-    if plane.confirm_land
-      planes << plane
-      planes.last # returns last plane that landed
-    end
+    plane.confirm_land
+    planes << plane
+    planes.last # returns last plane that landed
   end
 
   def depart_plane(plane)
     fail "Plane cannot take off, it is too stormy." if stormy?
     fail "This plane has already taken off." if plane.landed? == false
-    if plane.confirm_takeoff
-      remove_plane_from_list(plane)
-    end
+    plane.confirm_takeoff
+    planes.delete(plane)
     planes
   end
 
@@ -34,10 +32,6 @@ class Airport
   end
 
   private
-
-  def remove_plane_from_list(plane)
-    planes.delete(plane)
-  end
 
   def stormy?
     return true if rand(0..100) == 2

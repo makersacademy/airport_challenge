@@ -12,4 +12,5 @@ airport.land_plane(plane3)
 
 airport.depart_plane(plane1)
 airport.depart_plane(plane2)
-airport.depart_plane(plane3)
+
+puts airport.list
