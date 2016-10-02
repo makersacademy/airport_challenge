@@ -2,11 +2,11 @@
 
 Program to control the flow of planes at an airport. The program is broken down into 3 distinct files/classes:
 
-* Airport (aiport.rb) - The main program which controls the takeoff and landing of aircraft.
+* **Airport (airport.rb)** - The main program which controls the takeoff and landing of planes.
 
-* Plane (plane.rb) - Responds to takeoff and landing, and stores the current airport.
+* **Plane (plane.rb)** - Responds to takeoff and landing, and stores the current airport.
 
-* Weather (weather.rb) - Randomly generates a current weather state.
+* **Weather (weather.rb)** - Randomly generates a current weather state.
 
 [![Build Status](https://travis-ci.org/JG075/airport_challenge.svg?branch=master)](https://travis-ci.org/JG075/airport_challenge)
 
