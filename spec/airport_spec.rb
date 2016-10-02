@@ -9,10 +9,11 @@ describe Airport do
 
   it 'should allows method land' do
     expect(airport).to respond_to :land
-    expect(airport.land(@plane)).to eq(@plane)
+    expect(airport.land(@plane)).to eq([@plane])
   end
 
   it 'Should be able to land plane' do
+    airport.land(@plane)
     expect(airport.take_off).to eq(@plane)
   end
 
