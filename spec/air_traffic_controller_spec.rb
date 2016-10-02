@@ -32,6 +32,9 @@ before :each do
 		expect(@air_traffic_controller.prevent_take_off(@weather)).to eq "Cancelled due to weather"
 	end
 		
+		it 'raises an exception when planes try to land if the weather is stormy' do 
+		expect(@air_traffic_controller.prevent_landing(@weather)).to eq "You are not permitted to land"
+	end
 end 
 
 

@@ -10,5 +10,11 @@ class AirTrafficController
 		 if @weather == @bad_weather
 		 	"Cancelled due to weather"
 		 end 
-	end 
+	end
+	
+	def prevent_landing(weather)
+		if @weather == @bad_weather
+			"You are not permitted to land"
+	 end 
+  end 
 end
