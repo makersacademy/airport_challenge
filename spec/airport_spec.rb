@@ -45,9 +45,18 @@ context 'Airport arrivals capacity' do
   end
 end
 
+  # context 'Weather is stormy'do
+  #   it "confirms planes can't land in storm" do
+  #
+  #   airport=Airport.new
+  #   airport.double(:weather, => 3)
+  #   expect(airport.land(plane)).to output("Sorry it's too stormy to and right now")
+  # end
 
+  end
 
-
+#
+# allow_any_instance_of(Widget).to receive(:name).and_return("Wibble")
 
 
 end
