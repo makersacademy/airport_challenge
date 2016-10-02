@@ -8,7 +8,15 @@ class Airport
     @planes = []
   end
 
+  def land(plane)
+    @planes << plane
+    plane::flying = false
+  end
 
+  def takeoff(plane)
+    @planes.delete(plane)
+    plane::flying = true
+  end
 
 end
 
