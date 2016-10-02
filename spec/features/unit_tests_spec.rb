@@ -19,11 +19,11 @@ describe Airport do
     expect { airport.take_off(plane) }
   end
 
-  #it "airport can confirm that the plane is no longer in the airport" do
-    #airport = Airport.new(50)
-    #plane = Plane.new
-    #expect { airport.take_off(plane) }
-  #end
+  it "airport can confirm that the plane is no longer in the airport" do
+    airport = Airport.new(50)
+    plane = Plane.new
+    expect { airport.take_off(plane) }
+  end
 
 #As an air traffic controller
 #To ensure safety

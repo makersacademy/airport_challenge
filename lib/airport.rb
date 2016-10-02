@@ -11,6 +11,6 @@ class Airport
   end
 
   def take_off(plane)
-    #@planes_in_airport -= 1
+    @planes_in_airport.pop
   end
 end

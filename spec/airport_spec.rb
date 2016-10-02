@@ -11,9 +11,9 @@ describe Airport do
     expect(airport).to respond_to(:take_off).with(1).argument
   end
 
-  #it 'airport can confirm that the plane is no longer in the airport' do
-    #expect(airport).to respond_to(:take_off).with(1).argument
-  #end
+  it 'airport can confirm that the plane is no longer in the airport' do
+    expect(airport).to respond_to(:take_off).with(1).argument
+  end
 
   it "airport does not allow plane to land when airport is at capacity" do
     50.times do
