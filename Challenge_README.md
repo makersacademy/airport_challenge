@@ -9,7 +9,7 @@ airport.rb, plane.rb, weather.rb
 
 airport_spec.rb, plane_spec.rb, weather_spec.rb
 
-Description: 
+Description:
 
 This build has been created in response to a request from a client to write the software to control the flow of planes at their airport.  The client stated that they wanted the following:
 
@@ -23,6 +23,7 @@ A TDD was used to create the software and used a combination of Rspec and Pry te
 
 Below is an example of the code in action:
 
+[[https://github.com/kathwath/airport_challenge/blob/master/Screenshot.png]]
 
 
 This demonstrates the ability to track the creation of an airport and plane, and check it lands, and then leaves the airport.
