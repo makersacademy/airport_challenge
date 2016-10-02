@@ -23,4 +23,10 @@ airport = Airport.new
     expect(airport).to respond_to(:take_off)
   end
 
+  describe '#land' do
+    airport.land(Plane.new)
+     it 'raises an error when airport is full' do
+      expect {airport.land(Plane.new)}.to raise_error 'Airport is full'
+     end
+  end
 end
