@@ -2,4 +2,29 @@ require "airport"
 
 describe Airport do
 
+  before :each do
+    @plane = double(:plane)
+  end
+
+  context "land plane" do
+
+    describe "#land" do
+      it "instructs the plane to land" do
+        # expects plane to have its land method called
+        expect(@plane).to receive(:land)
+        # call the airport.land(@plane) to call plane.land
+        subject.land @plane
+      end
+    end
+
+    describe "#land" do
+      it "has the plane after it has landed" do
+        allow(@plane).to receive(:land)
+        subject.land @plane
+        expect(subject.planes).to include @plane
+      end
+    end
+
+  end
+
 end
