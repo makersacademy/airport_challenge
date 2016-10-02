@@ -2,15 +2,13 @@ class Plane
 
 	attr_accessor :flying
 
-	def initialize
-		@flying = false
-	end
-
 	def land
+		raise 'Plane already landed!' if flying? == false
 		@flying = false
 	end
 
 	def take_off
+		raise 'Plane already in the air!' if flying?
 		@flying = true
 	end
 

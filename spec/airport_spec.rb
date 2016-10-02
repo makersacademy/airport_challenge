@@ -24,7 +24,7 @@ describe Airport do
 	
 	it { is_expected.to have_attributes(landed_planes: [], capacity: @default_capacity) }
 
-	context '#land' do
+	describe '#land' do
 
 		it 'instructs the plane to land' do
 			expect(plane).to receive(:land)
@@ -37,7 +37,7 @@ describe Airport do
 		end
 	end
 
-	context '#take_off' do
+	describe '#take_off' do
 
 		it 'instructs the plane to take off' do
 			expect(plane).to receive(:take_off)
