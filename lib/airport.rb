@@ -35,10 +35,6 @@ class Airport
 
   private
 
-  # def exists?(plane)
-  #   return true if planes.include?(plane)
-  # end
-
   def correct_airport?
     true
   end
