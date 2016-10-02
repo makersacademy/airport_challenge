@@ -3,19 +3,14 @@ require 'plane_file'
 class Airport
 
   def initialize
-    @planes = Array.new
+    @planes_at_airport = Array.new
   end
 
-  def land(plane_name)
-    @planes << plane_name
-    #plane_name.proceed_to_land
-  end
-
-  def which_planes
-    @planes
+  def accept_plane(plane_name)
+    @planes_at_airport << plane_name
   end
 
   def landed?(plane_name)
-    @planes.include?(plane_name)
+    @planes_at_airport.include?(plane_name)
   end
 end

@@ -2,25 +2,21 @@ require 'airport'
 require 'plane_file'
 
 describe Airport do
-  describe '#land(plane_name)' do
-    it 'instructs a plane to land' do
-      plane = double("plane")
-      subject.land(plane)
-      expect(subject.which_planes).to eq [plane]
-    end
-
-    it 'testing multiple planes to land' do
-      plane = double("plane")
-      3.times { subject.land(plane) }
-      expect(subject.which_planes).to eq [plane, plane, plane]
-    end
-  end
 
   describe '#landed?()' do
     it 'checks if a plane has landed' do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.landed?(plane)).to eq true
+      test_plane = Plane.new
+      test_airport = Airport.new
+      test_airport.accept_plane(test_plane)
+      expect( test_airport.landed?(test_plane) ).to eq true
+    end
+  end
+
+  describe '#accept_plane(plane_name)' do
+    it 'allows a plane to land and adds it to list of planes at airport' do
+      test_plane = Plane.new
+      subject.accept_plane(test_plane)
+      expect( subject.landed?(test_plane) ).to eq true
     end
   end
 end
