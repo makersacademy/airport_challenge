@@ -6,7 +6,8 @@ class Airport
   end
 
   def land_plane(plane)
-    planes << plane
+    plane.land
+    planes << plane if plane.landed?
   end
 
   def take_off(plane)
