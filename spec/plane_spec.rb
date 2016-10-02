@@ -15,4 +15,9 @@ describe Plane do
     expect(subject.landed?).to eq true
   end
 
+  it 'can be confirmed as taken off' do
+    subject.confirm_takeoff
+    expect(subject.landed?).to eq false
+  end
+
 end
