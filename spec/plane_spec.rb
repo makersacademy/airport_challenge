@@ -2,10 +2,10 @@ require './lib/plane'
 require './lib/airport'
 
 describe Plane do
-  let(:airport) {double("airport", :weather => "sun", :add => true, :remove => true, :planes => [1,2,3,subject], :capacity => 10)}
-  let(:airport2) {double("airport", :weather => "sun", :add => true, :remove => true, :planes => [1,2,3], :capacity => 10)}
-  let(:stormy_airport) {double("airport", :weather => "storm", :add => true, :remove => true, :planes => [1,2,3, subject], :capacity => 10)}
-  let(:full_airport) {double("airport", :planes => [1,2, subject], :capacity => 3, :weather => "sun", :add => true, :remove => true)}
+  let(:airport) {double("airport", :adverse_weather? => false, :add => true, :remove => true, :planes => [subject], :full? => false)}
+  let(:airport2) {double("airport", :adverse_weather? => false, :add => true, :remove => true, :planes => [], :full? => false)}
+  let(:stormy_airport) {double("airport", :adverse_weather? => true, :add => true, :remove => true, :planes => [subject], :full? => false)}
+  let(:full_airport) {double("airport", :planes => [subject], :adverse_weather? => false, :add => true, :remove => true, :full? => true)}
 
   it 'can take off from an airport' do
     expect(subject).to respond_to(:take_off).with(1).argument
@@ -38,15 +38,15 @@ describe Plane do
   end
 
   it "doesn't take off when the weather is stormy" do
-    expect{subject.take_off(stormy_airport)}.to raise_error("Cannot take off in adverse weather")
+    expect{subject.take_off(stormy_airport)}.to raise_error("Cannot complete: adverse weather")
   end
 
   it "doesn't land when the weather is stormy" do
-    expect{subject.land(stormy_airport)}.to raise_error("Cannot land in adverse weather")
+    expect{subject.land(stormy_airport)}.to raise_error("Cannot complete: adverse weather")
   end
 
   it "doesn't land when the airport has reached capacity" do
-    expect{subject.land(full_airport)}.to raise_error("Cannot land - airport is full")
+    expect{subject.land(full_airport)}.to raise_error("Cannot land at a full airport")
   end
 
   it "doesn't take off from an airport it's not in" do

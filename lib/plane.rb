@@ -5,28 +5,55 @@ class Plane
   end
 
   def take_off(airport)
-    fail "Already flying... Has taken off from airport " + @status[:airport].to_s if @status[:message] == "Has taken off"
-    fail "Cannot take off in adverse weather" if airport.weather == "storm"
-    fail "Cannot take off from an airport I'm not in" unless airport.planes.include?(self)
+    problems?("takeoff", airport)
     airport.remove(self)
-    @status = {message: "Has taken off", airport: airport}
+    set_status("Has taken off", airport)
   end
 
   def land(airport)
-    fail "Already landed... Landed at airport " + @status[:airport].to_s if @status[:message] == "Landed"
-    fail "Cannot land - airport is full" if airport.planes.count == airport.capacity
-    fail "Cannot land in adverse weather" if airport.weather == "storm"
+    problems?("landing",airport)
     airport.add(self)
-    @status = {message:"Landed", airport: airport}
+    set_status("Landed",airport)
   end
 
   def status
-    if @status[:message] == "Has taken off"
-      @status[:message] + " from airport "+ @status[:airport].to_s
-    elsif @status[:message] == "Landed"
-      @status[:message] + " at airport " + @status[:airport].to_s
+    if took_off?
+      take_off_message_formatted
+    elsif landed?
+      landing_message_formatted
     else
       @status[:message]
+    end
+  end
+
+  def landed?
+    @status[:message] == "Landed"
+  end
+
+  def took_off?
+    @status[:message] == "Has taken off"
+  end
+
+  def take_off_message_formatted
+    @status[:message] + " from airport "+ @status[:airport].to_s
+  end
+
+  def landing_message_formatted
+    @status[:message] + " at airport " + @status[:airport].to_s
+  end
+
+  def set_status(status, airport)
+    @status = {message: status, airport: airport}
+  end
+
+  def problems?(action, airport)
+    fail "Cannot complete: adverse weather" if airport.adverse_weather?
+    if action == "landing"
+      fail "Already landed... " + landing_message_formatted if landed?
+      fail "Cannot land at a full airport" if airport.full?
+    elsif action == "takeoff"
+      fail "Already flying... " + take_off_message_formatted if took_off?
+      fail "Cannot take off from an airport I'm not in" unless airport.planes.include?(self)
     end
   end
 

@@ -21,5 +21,13 @@ class Airport
     @planes.delete(plane)
   end
 
+  def adverse_weather?
+    self.weather == "storm"
+  end
+
+  def full?
+    @planes.count == @capacity
+  end
+
 
 end
