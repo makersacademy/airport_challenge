@@ -16,6 +16,11 @@ class Airport
 
   private
 
+  def take_off(plane, destination_airport)
+    planes.delete(plane)
+    destination_airport.land(plane)
+  end
+
   def fail_if_landed(plane)
     fail "Plane already landed!" if plane.landed?
   end

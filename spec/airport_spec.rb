@@ -27,4 +27,13 @@ describe Airport do
     end
   end
 
+  describe "#take_off" do
+    before { subject.land(new_plane) }
+
+    it "should remove plane from the airport" do
+      subject.send(:take_off, new_plane, described_class.new)
+      expect(subject.planes).not_to include new_plane
+    end
+  end
+
 end
