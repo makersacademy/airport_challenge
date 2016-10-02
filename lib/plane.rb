@@ -1,6 +1,7 @@
 class Plane
 
-  def land
-
+  def land(airport)
+    airport.cleared_landing(self)
   end
+
 end
