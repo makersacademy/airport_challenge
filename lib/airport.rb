@@ -1,21 +1,25 @@
 class Airport
+  DEFAULT_CAPACITY = 10
 attr_reader :status, :take_off, :land, :departure_arr, :arrivals
 
-def initialize
+def initialize (capacity=DEFAULT_CAPACITY)
   @departure_arr =[]
   @arrivals=[]
   @conditions = rand(10)
+  @capacity = capacity
 
 end
 
 def land(plane)
-  if @conditions >=3
-  @landed_plane = plane
-  @landed_plane.landed
-  @arrivals << @landed_plane
-  confirm_landed
+  if @conditions < 3
+    print "Sorry it's too stormy to land right now"
+  elsif @arrivals >= @capacity
+    print "Sorry, the airport is full"
   else
-  print "Sorry it's too stormy to land right now"
+    @landed_plane = plane
+    @landed_plane.landed
+    @arrivals << @landed_plane
+    confirm_landed
   end
 end
 
