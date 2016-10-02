@@ -1,10 +1,8 @@
+require './lib/weather'
 
 class AirTrafficController
-	def initialize (weather = true)
-	    @weather = weather
-	end
-
-	def weather(weather = true)
-		 @weather
+	def responds_to_weather(weather)
+			@reaction_to_weather = weather
 	end 
 end
+

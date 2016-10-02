@@ -3,7 +3,7 @@ require 'weather'
 describe Weather do
 
   it 'responds to weather' do 
-  	good_weather = Weather.new
-  	expect(good_weather).to be good_weather
+  	what_weather = Weather.new
+  	expect(what_weather).to be what_weather
   end  
 end
