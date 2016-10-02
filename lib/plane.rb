@@ -11,4 +11,7 @@ class Plane
   def take_off
     @state = 'flying'
   end
+  def confirm
+    @state
+  end
 end
