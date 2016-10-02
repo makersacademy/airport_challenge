@@ -1,55 +1,48 @@
 require 'airport'
 
 describe Airport do
-
+  subject(:airport) { described_class.new }
   let(:plane) {double(:plane)}
   context 'when a plane is landing' do
     it 'can confirm that 1 plane has landed' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      airport.confirm_land(plane)
-      expect(airport.planes.count).to eq 1
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.confirm_land(plane)
+      expect(subject.planes.count).to eq 1
     end
 
     it 'can confirm that a plane has landed and is in it\'s slot' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      expect(airport.confirm_land(plane)).to eq airport.planes[-1]
+      allow(subject).to receive(:stormy?).and_return(false)
+      expect(subject.confirm_land(plane)).to eq subject.planes[-1]
     end
 
     it 'raises an error if weather is stormy' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(true)
-      expect{ airport.confirm_land(plane) }.to raise_error "Plane cannot land, it is too stormy."
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect{ subject.confirm_land(plane) }.to raise_error "Plane cannot land, it is too stormy."
     end
 
     it 'raises an error if airport is at capacity' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      20.times {airport.confirm_land(plane) }
-      expect{ airport.confirm_land(plane) }.to raise_error "Plane cannot land as airport is at capacity."
+      allow(subject).to receive(:stormy?).and_return(false)
+      20.times {subject.confirm_land(plane) }
+      expect{ subject.confirm_land(plane) }.to raise_error "Plane cannot land as airport is at capacity."
     end
   end
 
   context 'when a plane is taking off' do
     it 'can confirm that 1 plane has taken off' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      airport.confirm_land(plane)
-      expect( airport.confirm_takeoff(plane) ). to eq subject.planes
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.confirm_land(plane)
+      expect( subject.confirm_takeoff(plane) ). to eq subject.planes
     end
 
     it 'raises an error if weather is stormy' do
-      airport = Airport.new
-      allow(airport).to receive(:stormy?).and_return(false)
-      airport.confirm_land(plane)
-      allow(airport).to receive(:stormy?).and_return(true)
-      expect{ airport.confirm_takeoff(plane) }.to raise_error "Plane cannot take off, it is too stormy."
+      allow(subject).to receive(:stormy?).and_return(false)
+      subject.confirm_land(plane)
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect{ subject.confirm_takeoff(plane) }.to raise_error "Plane cannot take off, it is too stormy."
     end
 
     it 'raises an error when the airport is empty' do
-      airport = Airport.new
-      expect{ airport.confirm_takeoff(:plane) }.to raise_error "There are no planes in airport."
+      expect{ subject.confirm_takeoff(:plane) }.to raise_error "There are no planes in airport."
     end
   end
 

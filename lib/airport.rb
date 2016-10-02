@@ -24,8 +24,10 @@ class Airport
     planes # returns array
   end
 
+  private
+
   def stormy?
-    return true if rand(0..250) == 2
+    return true if rand(0..100) == 2
   end
 
   def empty?
