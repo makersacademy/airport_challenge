@@ -7,6 +7,7 @@ describe Airport do
 	it { is_expected.to have_attributes(landed_planes: [], capacity: Airport::DEFAULT_CAPACITY) }
 	it { is_expected.to respond_to(:full?) }
 
+
 	describe 'full?' do
 
 		it 'returns true if airport is full' do
