@@ -1,0 +1,27 @@
+require './lib/plane'
+require './lib/airport'
+plane1 = Plane.new
+plane2 = Plane.new
+airport = Airport.new
+airport.weather.conditions = "sunny"
+airport.land(plane1)
+airport
+airport.weather.conditions = "sunny"
+airport.land(plane2)
+airport
+airport.weather.conditions = "sunny"
+airport.take_off(plane1)
+airport
+airport.weather.conditions = "sunny"
+airport.take_off(plane2)
+airport.weather.conditions = "stormy"
+airport.land(plane1)
+airport
+airport.weather.conditions = "sunny"
+airport.land(plane1)
+airport
+airport.weather.conditions = "stormy"
+airport.take_off(plane1)
+airport
+
+ 
