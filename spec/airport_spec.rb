@@ -48,6 +48,12 @@ require 'plane'
       expect(airport.capacity).to eq 3
     end
 
+    it "will not allow a plane that has landed to land again" do
+      landing_plane = plane
+      allow(airport).to receive(:random_weather) { 'sunny' }
+      airport.land_plane(landing_plane)
+      expect{airport.land_plane(landing_plane)}.to raise_error "error - that plane has already landed"
+    end
 
 
   end

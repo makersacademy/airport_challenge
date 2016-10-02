@@ -4,7 +4,7 @@ class Airport
   DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY, airport_name = "airport(unnamed)")
-    @planes = []
+    @landed_planes = []
     @capacity = capacity
     @airport_name = airport_name
   end
@@ -16,8 +16,8 @@ class Airport
 
   def land_plane(plane)
     if random_weather == "sunny"
-      @planes << plane
-      #@planes.last
+    fail "error - that plane has already landed" if @landed_planes.include? plane
+    @landed_planes << plane
       "Plane has landed"
     else
       "Plane cannot land as it is stormy"
@@ -28,18 +28,19 @@ class Airport
     if airport_full?
       "plane cannot land as the airport is full"
     else
-      @planes << plane
+      @landed_planes << plane
     end
 
   end
 
   def airport_full?
-    @planes.count >= @capacity
+    @landed_planes.count >= @capacity
   end
 
   def take_off(plane)
     if random_weather == "sunny"
-      @planes.delete(plane)
+      @flying_planes = []
+      @flying_planes << @landed_planes.pop
       "the plane has taken off"
     else
       "plane cannot take off, it's stormy"
@@ -56,5 +57,6 @@ class Airport
     target -= weight
     end
   end
+
 
 end
