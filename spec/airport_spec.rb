@@ -141,13 +141,17 @@ describe Airport do
     end
 
     it "won't allow a plane to take off if the plane is not in this particular airport" do
-      allow(subject).to receive(:weather) { "sunny" }
+
       Heathrow = Airport.new
-      Gatwick = Airport.new
+      allow(Heathrow).to receive(:weather) { "sunny" }
       plane1 = Plane.new
-      plane2 = Plane.new
       Heathrow.land(plane1)
+
+      Gatwick = Airport.new
+      allow(Gatwick).to receive(:weather) { "sunny" }
+      plane2 = Plane.new
       Gatwick.land(plane2)
+      
       expect { Gatwick.takeoff(plane1) }.to raise_error "Can't take off as plane is not in the airport."
     end
 
