@@ -9,6 +9,7 @@ include Weather
   DEFAULT_CAPACITY = 20
 
 
+
   def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
@@ -23,9 +24,10 @@ include Weather
   end
 
   def landing(planes)
+    fail "It's too windy to land!" if stormy?
+    planes = planes
     fail "There's no room to land this plane!" if full?
     @planes << planes
-
   end
 
   private

@@ -14,8 +14,8 @@ describe Airport do
   it { is_expected.to respond_to :landing }
 
   it "Should have a capacity of 15 when given" do
-    airport = Airport.new(15)
-    expect(airport.capacity).to eq 15
+    @airport = Airport.new(15)
+    expect(@airport.capacity).to eq 15
   end
 
   it "Should have a default capacity of 20" do
@@ -26,6 +26,12 @@ describe Airport do
 
       before do
         @plane = Plane.new
+        allow(@airport).to receive(:stormy?).and_return false
+      end
+
+      it "Should allow a plane to land" do
+        expect(@airport).to receive(:landing)
+        @airport.landing(@plane)
       end
 
       it "Should show that a plane has landed" do
@@ -33,13 +39,12 @@ describe Airport do
       end
 
       it "Should allow 15 planes to land" do
-        airport = Airport.new(15)
-        15.times{airport.landing(Plane.new)}
-        expect(airport.planes.count).to eq 15
+        15.times{@airport.landing(Plane.new)}
+        expect(@airport.planes.count).to eq 15
       end
 
-      xit "Should not allow a plane to land if it's stormy" do
-        allow(@airport).to receive(:stormy?) { :stormy }
+      it "Should not allow a plane to land if it's stormy" do
+        allow(@airport).to receive(:stormy?).and_return true
         expect{@airport.landing(@plane)}.to raise_error("It's too windy to land!")
       end
 
@@ -49,6 +54,11 @@ describe Airport do
       end
 
     describe "Take-off related elements of the brief"
+
+      it "Should allow a plane to land" do
+        expect(@airport).to receive(:take_off)
+        @airport.take_off
+      end
 
       it "Should not allow a plane to take off if there aren't any planes" do
         expect{@airport.take_off}.to raise_error("There aren't any planes!")
