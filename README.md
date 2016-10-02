@@ -1,5 +1,5 @@
 
-Welcome to air traffic control!
+"Welcome to air traffic control!
 
 This ap will:
 
@@ -39,4 +39,4 @@ This ap will:
 <airport>.take_off(<plane>) - Selected Plane leaves the airport
 <airport>.runway - gives list of planes on runway
 <airport>.change_weather - this allows you to alter the weather if its stormy..
-<plane>.status - Plane's current status
+<plane>.status - Plane's current status"
