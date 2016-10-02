@@ -20,7 +20,7 @@ airport = Airport.new
 
   it 'raises an error when there are no planes available for take off' do
       expect {airport.take_off}.to raise_error 'No planes available for take off'
-    end
+  end
 
   it 'raises an error when airport is full' do
     DEFAULT_CAPACITY = 20
