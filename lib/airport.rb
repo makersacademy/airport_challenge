@@ -1,3 +1,6 @@
+require_relative 'plane'
+require_relative 'weather'
+
 class Airport
 	
 	DEFAULT_CAPACITY = 21
@@ -10,7 +13,13 @@ class Airport
 	end
 
 	def land(plane)
+		plane.land
 		@landed_planes << plane
+	end
+
+	def take_off(plane)
+		plane.take_off
+		@landed_planes.delete(plane)
 	end
 
 	def full?
