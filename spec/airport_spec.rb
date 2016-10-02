@@ -2,6 +2,15 @@ require 'airport'
 
 describe Airport do
 
+  it "has default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it "has variable capacity" do
+    airport = Airport.new(1000)
+    expect(airport.capacity).to eq 1000
+  end
+
   it "should know 1 plane is landed" do
     plane = Plane.new
     plane.land(subject)
