@@ -3,7 +3,9 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) {double(:plane)}
+
   context 'when a plane is landing' do
+
     it 'can confirm that 1 plane has landed' do
       allow(subject).to receive(:stormy?).and_return(false)
       subject.confirm_land(plane)
@@ -28,10 +30,17 @@ describe Airport do
   end
 
   context 'when a plane is taking off' do
+
     it 'can confirm that 1 plane has taken off' do
       allow(subject).to receive(:stormy?).and_return(false)
       subject.confirm_land(plane)
       expect( subject.confirm_takeoff(plane) ). to eq subject.planes
+    end
+
+    it 'will only allow a plane to take off from the airport it is already in' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      current_plane = subject.confirm_land(plane)
+      expect(subject.confirm_takeoff(current_plane)).to eq subject.planes
     end
 
     it 'raises an error if weather is stormy' do

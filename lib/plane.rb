@@ -1,5 +1,12 @@
 class Plane
-  def allowed_to_land
-  end
 
+  def initialize
+    @landed = true
+  end
+  def landed?
+    @landed
+  end
+  def report_landed
+    @landed = true
+  end
 end
