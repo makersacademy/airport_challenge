@@ -12,7 +12,12 @@ end
 =begin
 weather = rand(10)
 
-if weather(1..3)
-	 false
+good_weather = Range.new(3,10)
+bad_weather = Range.new(0,2)
+
+if weather == good_weather
+	true
 else
+	false
+end 
 =end
