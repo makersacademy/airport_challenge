@@ -74,11 +74,10 @@ describe Airport do
     # end
   end
 
-context 'capacity' do
-  it "should set capacity on initialization" do
-    airport2 = Airport.new(30)
-    expect(airport2.capacity).to eq(30)
+  context 'capacity' do
+    it "should set capacity on initialization" do
+      airport2 = Airport.new(30)
+      expect(airport2.capacity).to eq(30)
+    end
   end
 end
-
- end
