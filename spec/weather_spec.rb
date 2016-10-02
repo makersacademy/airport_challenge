@@ -3,17 +3,21 @@ require "weather"
 describe Weather do
 
   before :each do
-    @test_arr = []
-    1000.times { @test_arr << subject.stormy? }
+    @weather = Weather.new
   end
 
   describe "#stormy?" do
-    context "when repeated" do
+    context "when #random_outlook is :stormy" do
       it "can produce true as an output" do
-        expect(@test_arr).to include true
+        allow(@weather).to receive(:random_outlook).and_return :stormy
+        expect(@weather.stormy?).to eq true
       end
+    end
+
+    context "when #random_outlook is :fine" do
       it "can produce false as an output" do
-        expect(@test_arr).to include false
+        allow(@weather).to receive(:random_outlook).and_return :fine
+        expect(@weather.stormy?).to eq false
       end
     end
   end
