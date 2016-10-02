@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   subject(:airport) { described_class.new }
@@ -37,12 +38,14 @@ describe Airport do
       expect{ airport.take_off(plane) }.to raise_error("The plane is not in the airport!")
     end
     it 'does not have a plane after it has taken off' do
-      allow(plane).to receive(:land)
-      allow(plane).to receive(:landed?).and_return true
-      allow(plane).to receive(:take_off)
-      airport.land_plane(plane)
-      airport.take_off(plane)
-      expect(airport.planes).not_to include plane
+      plane_1 = Plane.new
+      plane_2 = Plane.new
+      plane_3 = Plane.new
+      airport.land_plane(plane_1)
+      airport.land_plane(plane_2)
+      airport.land_plane(plane_3)
+      airport.take_off(plane_2)
+      expect(airport.planes).not_to include plane_2
     end
   end
 end
