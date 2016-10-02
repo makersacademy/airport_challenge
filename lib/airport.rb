@@ -8,7 +8,6 @@ class Airport
 
 	def take_off
 		@plane_departed = false
-
 	end 
 
 end 
