@@ -8,6 +8,10 @@ describe Plane do
       plane.land
       expect(plane.landed?).to be true 
     end
+    it 'cannot land if it has already landed' do
+      plane.land
+      expect { plane.land }.to raise_error("This plane has already landed!")
+    end
   end
 
   it 'does not land unless instructed to land' do
@@ -26,7 +30,7 @@ describe Plane do
     end
 
     it 'cannot take off if it is already airborne' do
-      expect { plane.take_off }.to raise_error("This plane is no longer in the airport")
+      expect { plane.take_off }.to raise_error("This plane is no longer in the airport!")
     end
   end
 
