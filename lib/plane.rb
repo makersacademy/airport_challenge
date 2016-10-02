@@ -5,18 +5,16 @@ class Plane
     @landed = nil
   end
 
-  def add_to(airport)
-    fail_if_not_new
-    airport.send(:add, self)
-    @airport = airport
-    set_as_landed
-  end
-
   def landed?
     @landed
   end
 
   private
+
+  def set_airport(airport)
+    @airport = airport
+    set_as_landed
+  end
 
   def set_as_landed
     @landed = true

@@ -7,11 +7,17 @@ class Airport
     @planes = []
   end
 
+  def land(plane)
+    fail_if_full
+    fail_if_landed(plane)
+    plane.send(:set_airport, self)
+    planes << plane
+  end
+
   private
 
-  def add(plane)
-    fail_if_full
-    planes << plane
+  def fail_if_landed(plane)
+    fail "Plane already landed!" if plane.landed?
   end
 
   def fail_if_full
