@@ -55,7 +55,7 @@ describe Airport do
 
     describe "Take-off related elements of the brief"
 
-      it "Should allow a plane to land" do
+      it "Should allow a plane to take off" do
         expect(@airport).to receive(:take_off)
         @airport.take_off
       end
