@@ -25,6 +25,9 @@ describe Plane do
       expect(plane.landed?).to be false
     end
 
+    it 'cannot take off if it is already airborne' do
+      expect { plane.take_off }.to raise_error("This plane is no longer in the airport")
+    end
   end
 
 end

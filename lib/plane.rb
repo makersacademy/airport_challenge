@@ -13,6 +13,7 @@ class Plane
   end
 
   def take_off
+    raise "This plane is no longer in the airport" if !landed?
     @landed = false
   end
 
