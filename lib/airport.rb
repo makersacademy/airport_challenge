@@ -8,14 +8,13 @@ def initialize(weather: Weather.new)
 end
   attr_reader:plane
 
-  @planes = []
-
   def land(plane)
      fail "Stormy weather" if @weather.stormy?
      @plane = plane
   end
 
   def take_off(plane)
+    fail "Plane can't take off due to stormy weather" if "weather.stormy?"
     @plane = nil
   end
 
