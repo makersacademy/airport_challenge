@@ -8,6 +8,8 @@ Program to control the flow of planes at an airport. The program is broken down 
 
 * Weather (weather.rb) - Randomly generates a current weather state.
 
+[![Build Status](https://travis-ci.org/JG075/airport_challenge.svg?branch=master)](https://travis-ci.org/JG075/airport_challenge)
+
 ## Run ##
 
 To run:
