@@ -17,12 +17,14 @@ describe Plane do
 	end
 
 	context 'taking off' do
+
 		it 'starts flying after taking off' do
 			plane.take_off
 			expect(plane).to be_flying
 		end
+		
 	end
-	
+
 end
 
 
