@@ -1,11 +1,10 @@
 require 'airport'
 
 describe Airport do
-    it { is_expected.to respond_to :full? }
+    it { is_expected.to respond_to(:land).with(1).argument }
 
-airport = Airport.new
-
-  it 'doesn\'t let a plane land when full' do
-    expect(airport.full?).to eq true
+    it 'lands a plane at the airport' do
+    plane = Plane.new
+    expect(subject.land(plane)).to be plane
+    end
   end
-end

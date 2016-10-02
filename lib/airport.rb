@@ -1,5 +1,6 @@
 class Airport
-  def full?
-    true
-  end
+
+    def land(plane)
+      plane
+    end
 end

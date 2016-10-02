@@ -1,5 +1,7 @@
+require 'airport'
+
 class Plane
-  def landed?
+  def landed
     true
   end
 end
