@@ -2,6 +2,12 @@ require 'plane'
 
 describe Plane do
   let(:plane) { Plane.new }
+  
+  context 'when first initialized' do
+    it 'is airborne' do
+      expect(plane.airborne?).to be true
+    end
+  end
 
   context 'when instructed to land' do
     it 'can land at an airport and confirm that it has landed' do
@@ -14,14 +20,9 @@ describe Plane do
     end
   end
   
-  it 'does not land unless instructed to land' do
-    expect(plane.landed?).to be false
-  end
-
   # As an air traffic controller 
   # So I can get passengers on the way to their destination 
   # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
   context 'when instructed to take off' do
     it 'can take off from an airport and confirm that it is no longer in the airport' do
       plane.land
