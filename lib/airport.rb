@@ -8,13 +8,22 @@ attr_reader :planes
   end
 
   def land(plane)
+    confirm_landing
     @planes << plane
-    #confirm_landing
+  end
+
+  def take_off(plane)
+    confirm_take_off
+    @planes.pop
   end
 
 private
 
   def confirm_landing
-      "The plane has landed"
+    puts "The plane has landed!"
+  end
+
+  def confirm_take_off
+    puts "The plane has taken-off!"
   end
 end
