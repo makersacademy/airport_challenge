@@ -21,8 +21,9 @@ describe Plane do
     it {is_expected.to respond_to (:proceed_to_land)}
 
     it 'plane undertakes landing procedure' do
+      airport = Airport.new
       test_plane = Plane.new
-      test_plane.proceed_to_land
+      test_plane.proceed_to_land(airport)
       expect(test_plane).to be_plane_is_landed
     end
   end

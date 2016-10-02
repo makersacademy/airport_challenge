@@ -1,3 +1,5 @@
+require 'airport'
+
 class Plane
 
   def initialize(plane_is_landed = false)
@@ -8,7 +10,8 @@ class Plane
     @plane_is_landed
   end
 
-  def proceed_to_land
+  def proceed_to_land(airport_name)
+    airport_name.land(self)
     @plane_is_landed = true
   end
 end
