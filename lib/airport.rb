@@ -27,15 +27,14 @@ class Airport
   end
 
   def weather
-    # Approximately 1 times in 6, the weather will be stormy
     rand(5) == 0? "stormy" : "sunny"
   end
 
 private
 
-def full?
-  planes_on_ground.count == capacity
-end
+  def full?
+    planes_on_ground.count == capacity
+  end
 
   def check_for_landing_issues (plane)
     fail "Cannot land. Airport is full." if full?
@@ -43,7 +42,7 @@ end
     fail "Cannot land due to storm." if weather == "stormy"
   end
 
-  # Credit to Jen H for the planes_on_ground.include?(plane) == false idea
+  # Credit to Jen Hanratty for the planes_on_ground.include?(plane) == false idea
   def check_for_takeoff_issues (plane)
     fail "Cannot take off. Plane is flying." if plane.flying?
     fail "Cannot take off due to storm." if weather == "stormy"

@@ -6,23 +6,10 @@ describe Airport do
   let(:landed_plane) { double :plane, flying?: false }
   let(:flying_plane) { double :plane, flying?: true }
 
-  # Credit to Chet Sanghani for using let to instantiate plane object whilst stub not working
+  # Credit to Chet Sanghani for using let to instantiate plane object so that it's reusable
   let(:plane) { Plane.new }
 
-
-=begin
-    before do
-      allow(flying_plane).to receive(:flying).and_return(false)
-    end
-
-    it "allows a flying plane to land" do
-      allow(subject).to receive(:weather) { "sunny" }
-      subject.land(flying_plane)
-      expect(flying_plane).not_to be_flying
-    end
-=end
-
-  # Credit to Chet Sanghani for helping me out with the method stub here
+  # Credit to Chet Sanghani for helping me out with the method stub in line 16
   context "Checks plane's eligibility for landing" do
 
     it "checks that the plane is flying" do
@@ -69,7 +56,7 @@ describe Airport do
   context "Checks plane's eligibilty for take off" do
 
     it "checks that the plane is not already flying" do
-        expect { subject.takeoff(flying_plane) }.to raise_error "Cannot take off. Plane is flying."
+      expect { subject.takeoff(flying_plane) }.to raise_error "Cannot take off. Plane is flying."
     end
 
     it "checks that the plane is in the airport" do

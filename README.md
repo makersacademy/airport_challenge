@@ -30,17 +30,18 @@ My approach to this challenge
 Things I struggled with
 -----------------------
 * Initially, whether it should be airport.land(plane) or plane.land(airport) but my domain model pointed to the former (also it was the most similar to our docking_station model). I think this worked out well.
-* Using a mock for the plane object where I had methods in airport.rb that changed the plane's flying status from true to false or vice versa. I tried many things but never solved this so ended up largely using real Plane objects which I know is not ideal. Felt quite frustrated about this as it doesn't feel like it should be a big thing to solve.
+* Using mocks. For example I had methods in airport.rb that changed the plane's flying status from true to false or vice versa but I could not get this to work with a mock. I tried many things but never solved this so ended up largely using real Plane objects which I know is not ideal. Felt quite frustrated about this as it doesn't feel like it should be a big thing to solve. Same issue with the real Airport instance in the plan spec. Sorry! I will learn how to do this.
 * Deciding if weather should be in its own class or not. I decided for ease that weather was a condition relating specifically to the airport, so I felt okay about putting a method inside that class. However in the real world, that's probably not how it should work.
 * Figuring out what caused my test coverage to go down to 99.3% but Tadas told me I could click on it and that enabled me to identify which method was lacking tests and get it back to 100%
 
 Refactoring opportunities / things I didn't get round to
 --------------------------------------------------------
-* Sort out my issue with mocks - use stubs instead of real Plane objects
+* Sort out my issue with mocks - use stubs instead of real Plane objects. Also attempt to replace the real Airport object used in the plane spec.
+* Find a way to stop repeating the line which forces sunny weather - it appears many times!
 * Create a separate Weather class
 * Look into modules and mixins. I only got to chapter 21 of the previous exercise so haven't come across these yet
-* Writing the feature spec
-* Using Travis CI locally
+* Write the feature spec
+* Use Travis CI locally
 
 Instructions
 ---------
