@@ -22,7 +22,7 @@ describe Plane do
 			plane.take_off
 			expect(plane).to be_flying
 		end
-		
+
 	end
 
 end

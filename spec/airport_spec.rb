@@ -6,14 +6,13 @@ describe Airport do
 	 	@default_capacity = Airport::DEFAULT_CAPACITY
 	 	@error1 = 'Unsuitable weather for landing!' 
 	 	@error2 = "Too stormy to take off!"
+	 	@error3 = "No space for planes in airport"
 	end
 	
 	subject(:airport) { described_class.new }
 	let(:plane) { double (:plane) }
 	let(:weather) { double(:weather) }
 
-	it { is_expected.to have_attributes(landed_planes: [], 
-									capacity: @default_capacity) }
 
 	context '#land' do
 
@@ -56,6 +55,7 @@ describe Airport do
 		end
 
 		it 'allows plane to land once weather clears up' do
+			allow(plane).to receive(:land)
 			allow(weather).to receive(:stormy?).and_return(false)
 			expect { airport.land(plane, weather) }.to_not raise_error 
 		end
@@ -65,19 +65,29 @@ describe Airport do
 			expect { airport.take_off(plane, weather) }.to raise_error @error2
 		end
 
-		it 'allows the plan to take off once weather clears up' do
+		it 'allows the plane to take off once weather clears up' do
+			allow(plane).to receive(:take_off)
 			allow(weather).to receive(:stormy?).and_return(false)
 			expect { airport.take_off(plane, weather) }.to_not raise_error
 		end
 
 	end
-	
+
 	context 'airport capacity' do
 
 		it 'returns true if airport is full' do
-			airport.capacity.times { airport.landed_planes.push(double(:plane)) }
+			allow(plane).to receive(:land)
+			allow(weather).to receive(:stormy?).and_return(false)
+			airport.capacity.times { airport.land(plane,weather) }
 			expect(airport.full?).to eq(true)
 		end
+
+		it 'does raises an error if plane tries to land in a full airport' do
+			allow(plane).to receive(:land)
+			allow(weather).to receive(:stormy?).and_return(false)
+			airport.capacity.times { airport.land(plane, weather) }
+			expect { airport.land(plane, weather) }.to raise_error @error3
+		end 
 		
 	end
 
