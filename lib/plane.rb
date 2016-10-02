@@ -1,7 +1,8 @@
+
 class Plane
 
   def initialize
-    
+
   end
 
   def flying?

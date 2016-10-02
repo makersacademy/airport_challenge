@@ -16,14 +16,10 @@ describe Airport do
 
   airplane = Plane.new
 
-  describe 'it stores a landed plane'
-  it {expect(subject.land(airplane)).to eq(airplane)}
+  # describe 'it stores more than 1 landed plane'
+  # 20.times {Airport.new.land(Plane.new)}
+  # it {expect(subject.land(airplane)).not_to raise_error 'Airport full' }
 
-  # expect(actual).to eq(expected)
-
-  # it {expect {subject.release}.to raise_error("No bikes available") if !@bikes}
-
-  # it {expect {docking_station.dock(Bike.new)}.to raise_error("Dock is full")}
 
 end
 
