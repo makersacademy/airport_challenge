@@ -1,4 +1,5 @@
 class Airport
+
   DEFAULT_CAPACITY = 10
 
   def initialize(weather, capacity=DEFAULT_CAPACITY)
@@ -34,4 +35,5 @@ class Airport
   def full?
     @planes.count == @capacity
   end
+
 end

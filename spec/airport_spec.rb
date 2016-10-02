@@ -9,7 +9,11 @@ describe Airport do
   end
   
   subject(:airport) { described_class.new(weather) }
+
   let(:plane) { double(:plane) }
+  before(:each) do
+    allow(plane).to receive(:land)
+  end
 
   context 'when landing a plane' do
     it 'instructs a plane to land' do
@@ -17,7 +21,6 @@ describe Airport do
       airport.land_plane(plane)
     end
     it 'docks a plane that has landed in the airport' do
-      allow(plane).to receive(:land)
       airport.land_plane(plane)
       expect(airport.has_plane?(plane)).to be true 
     end
@@ -25,7 +28,6 @@ describe Airport do
 
   context 'when allowing planes to take off' do
     it 'instructs a plane to take off' do
-      allow(plane).to receive(:land)
       airport.land_plane(plane)
       expect(plane).to receive(:take_off)
       airport.take_off(plane)
@@ -35,14 +37,10 @@ describe Airport do
       expect{ airport.take_off(plane) }.to raise_error('The plane is not in the airport!')
     end
     it 'does not have a plane after it has taken off' do
-      plane_1 = Plane.new
-      plane_2 = Plane.new
-      plane_3 = Plane.new
-      airport.land_plane(plane_1)
-      airport.land_plane(plane_2)
-      airport.land_plane(plane_3)
-      airport.take_off(plane_2)
-      expect(airport.has_plane?(plane_2)).to be false
+      allow(plane).to receive(:take_off)
+      airport.land_plane(plane)
+      airport.take_off(plane)
+      expect(airport.has_plane?(plane)).to be false
     end
   end
 
@@ -60,7 +58,6 @@ describe Airport do
   
   context 'when airport is full' do
     it 'prevents a plane from landing' do
-      allow(plane).to receive(:land)
       Airport::DEFAULT_CAPACITY.times { airport.land_plane(plane) }
       expect { airport.land_plane(plane) }.to raise_error('Plane cannot land - airport is full!')
     end
@@ -69,7 +66,6 @@ describe Airport do
   it 'can be given a specific capacity' do
     capacity = 1
     airport = Airport.new(weather, capacity)
-    allow(plane).to receive(:land)
     airport.land_plane(plane)
     expect { airport.land_plane(plane) }.to raise_error('Plane cannot land - airport is full!')
   end
