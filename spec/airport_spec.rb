@@ -129,8 +129,7 @@ describe Airport do
 
     it "checks that the weather is either sunny or stormy" do
       weather_conditions = ["sunny", "stormy"]
-      weather_at_airport = subject.weather
-      expect(weather_conditions.include?(weather_at_airport)).to eq true
+      expect(weather_conditions.include?(subject.weather)).to eq true
     end
 
     it "allows you to check the weather (forcing it to be sunny)" do
