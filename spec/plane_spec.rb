@@ -1,47 +1,49 @@
 require './lib/plane'
 require './lib/airport'
+require './lib/weather'
 
 describe Plane do
 
   let(:airport) { Airport.new }
+  let(:plane) { Plane.new(airport) }
 
-    it 'can land at an airport' do
-      expect(subject).to respond_to(:land).with(1).argument
-    end
+  before do
+    allow(Weather).to receive(:sunny?) {true}
+  end
 
-    it 'can land at a specific airport', focus: true do
-      subject.successful_takeoff
-      subject.current_airport = airport
-      subject.land(airport)
-      expect(airport.planes.last).to eq (subject)
-    end
+  it 'can land at an airport' do
+    expect(plane).to respond_to(:land).with(1).argument
+  end
 
-    it 'confirms that it has landed after a successful landing' do
-      subject.successful_takeoff
-      subject.current_airport = airport
-      subject.land(airport)
-      expect(subject.landed).to eq true
-    end
+  it 'can land at a specific airport' do
+    plane.takeoff(airport)
+    plane.land(airport)
+    expect(airport.planes.last).to eq (plane)
+  end
 
-    it 'can take off from an airport' do
-      expect(subject).to respond_to(:takeoff).with(1).argument
-    end
+  it 'confirms that it has landed after a successful landing' do
+    plane.takeoff(airport)
+    plane.land(airport)
+    expect(plane.landed).to eq true
+  end
 
-    it 'reports that it is no longer landed after taking off' do
-      subject.current_airport = airport
-      subject.takeoff(airport)
-      expect(subject.landed).to eq false
-    end
+  it 'can take off from an airport' do
+    expect(plane).to respond_to(:takeoff).with(1).argument
+  end
 
-    it 'can report which airport it is at after landing' do
-      subject.current_airport = airport
-      subject.takeoff(airport)
-      subject.land(airport)
-      expect(subject.current_airport).to eq airport
-    end
+  it 'reports that it is no longer landed after taking off' do
+    plane.takeoff(airport)
+    expect(plane.landed).to eq false
+  end
 
-    it 'cannot takeoff from an airport it is not currently at' do
-        expect{subject.takeoff(airport)}.to raise_error 'This plane is not at that airport'
-    end
+  it 'can report which airport it is at after landing' do
+    plane.takeoff(airport)
+    plane.land(airport)
+    expect(plane.current_airport).to eq airport
+  end
+
+  it 'cannot takeoff from an airport it is not currently at' do
+      expect{plane.takeoff(Airport.new)}.to raise_error 'This plane is not at that airport'
+  end
 
 end

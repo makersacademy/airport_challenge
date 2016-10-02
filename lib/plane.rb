@@ -1,12 +1,13 @@
 require_relative 'airport'
+require_relative 'weather'
 
 class Plane
   attr_reader :landed
   attr_accessor :current_airport
 
-  def initialize
+  def initialize(airport)
     @landed = true
-    @current_airport = nil
+    @current_airport = airport
   end
 
   def land(airport)
@@ -31,8 +32,3 @@ class Plane
   end
 
 end
-
-
-# planes that are already flying cannot takes off
-# and/or be in an airport; planes that are landed
-# cannot land again and must be in an airport, etc.

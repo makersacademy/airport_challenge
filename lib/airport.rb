@@ -1,6 +1,8 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
+
   attr_reader :planes
   attr_reader :capacity
 
@@ -12,14 +14,16 @@ class Airport
   end
 
   def receive_plane(plane)
-    fail 'Airport full' if full?
-      @planes << plane
-      plane.successful_landing(self)
+     fail "It's too dangerous for planes to land in the storm" unless Weather.sunny?
+      fail 'Airport full' if full?
+        @planes << plane
+        plane.successful_landing(self)
   end
 
   def release_plane(plane)
-    @planes = @planes.select { |pl| pl != plane }
-    plane.successful_takeoff
+    fail "It's too dangerous for planes to take off in the storm" unless Weather.sunny?
+      @planes = @planes.select { |pl| pl != plane }
+      plane.successful_takeoff
   end
 
   def plane_at_airport(plane)
