@@ -1,19 +1,18 @@
 require './lib/airport'
-require './lib/plane'
-require './lib/weather'
 
 describe Airport do
 
 let(:plane) { Plane.new(subject) }
 
   describe 'in good weather' do
+
     before do
       allow(Weather).to receive(:sunny?) {true}
     end
 
-    it 'receives a plane' do
-        expect(subject).to respond_to(:receive_plane).with(1).argument
-    end
+    it { is_expected.to respond_to(:receive_plane).with(1).argument }
+
+    it { is_expected.to respond_to(:release_plane).with(1).argument }
 
     it 'stores received planes' do
       subject.receive_plane(plane)
@@ -59,7 +58,8 @@ let(:plane) { Plane.new(subject) }
       airport = Airport.new
       plane = Plane.new(airport)
       airport.planes << plane
-      expect{airport.release_plane(plane)}.to raise_error "It's too dangerous for planes to take off in the storm"
+      message = "It's too dangerous for planes to take off in the storm"
+      expect{airport.release_plane(plane)}.to raise_error message
     end
   end
 end

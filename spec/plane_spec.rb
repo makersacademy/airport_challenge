@@ -1,6 +1,4 @@
 require './lib/plane'
-require './lib/airport'
-require './lib/weather'
 
 describe Plane do
 
