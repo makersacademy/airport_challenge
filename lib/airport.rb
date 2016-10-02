@@ -9,11 +9,16 @@ class Airport
     @planes = []
   end
   
+  def is_plane_at_airport?(plane)
+    planes.include? plane
+  end
+  
   def airport_open?
     weather_forecaster == "good" ? @runway_open = true : @runway_open = false
   end
     
   def land_plane(plane)
+    fail "ERROR: That plane has already landed." if is_plane_at_airport?(plane)
     fail "ERROR: There is no plane to land." if (plane.nil? || plane.class.to_s != "Plane")
     @plane_status = "up"
     if airport_open?      #Checks weather on "land_plane" call
@@ -25,7 +30,7 @@ class Airport
   end
   
   def take_off(plane = planes[0])
-    fail "ERROR: There is no plane to take-off." if planes.empty?   # || plane.class.to_s != "Plane")
+    fail "ERROR: There is no plane to take-off." if planes.empty? || !is_plane_at_airport?(plane)   # || plane.class.to_s != "Plane")
     @plane_status = "down"
     if airport_open?     #Checks weather on "take_off" call
       planes.delete(plane)
