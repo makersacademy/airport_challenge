@@ -19,8 +19,8 @@ airport = Airport.new
     expect(subject.land(plane)).to eq(plane)
   end
 
-  it 'confirms plane has landed' do
-    expect()
-    #expect successful plane landing to output the string 'Plane has landed!'
+  it 'plane takes off' do
+    expect(airport).to respond_to(:take_off)
   end
+
 end
