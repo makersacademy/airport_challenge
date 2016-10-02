@@ -1,5 +1,5 @@
 class Plane
-  # def landed
-  #   true
-  # end
+  def allowed_to_land
+  end
+
 end
