@@ -67,4 +67,21 @@ describe Airport do
     end
   end
 
+# As an air traffic controller 
+# To ensure safety 
+# I want to prevent landing when the airport is full 
+
+# As the system designer
+# So that the software can be used for many different airports
+# I would like a default airport capacity that can be overridden as appropriate
+  
+  context 'when airport is full' do
+    it 'prevents a plane from landing' do
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:landed?).and_return true
+      Airport::DEFAULT_CAPACITY.times { airport.land_plane(plane) }
+      expect { airport.land_plane(plane) }.to raise_error('Plane cannot land - airport is full!')
+    end
+  end
+
 end
