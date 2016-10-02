@@ -4,7 +4,10 @@ class Plane
   end
   attr_reader :in_air
 
-  def land
+  def landed?
     @in_air = false
   end
+  def taken_off?
+    @in_air = true
+  end  
 end
