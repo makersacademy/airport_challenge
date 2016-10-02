@@ -2,6 +2,8 @@ require 'plane'
 
 describe Plane do
   it {is_expected.to respond_to :landed? }
+  it {is_expected.to respond_to :flying? }
+  it {is_expected.to respond_to(:fly_to).with(1).argument }
 
   describe "initialization" do
     it "landed? should return nil at creation" do
@@ -9,8 +11,8 @@ describe Plane do
     end
   end
 
-  let(:airport) { double :airport }
-  let(:next_airport) { double :airport }
+  let(:airport) { double :airport, weather: :calm }
+  let(:next_airport) { double :airport, weather: :calm }
   let(:take_off) {
     subject.send(:set_airport, airport)
     allow(airport).to receive(:take_off)
@@ -41,6 +43,11 @@ describe Plane do
     it "should raise error if plane is already flying" do
       subject.send(:set_as_flying)
       expect { subject.fly_to(next_airport) }.to raise_error "Plane is already flying"
+    end
+
+    it "should raise error if the weather is stormy" do
+      allow(airport).to receive(:weather).and_return(:stormy)
+      expect { subject.fly_to(next_airport) }.to raise_error "Can't take off - weather is stormy!"
     end
 
     it "should return a landing confirmation message" do
