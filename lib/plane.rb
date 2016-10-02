@@ -1,12 +1,10 @@
 
 class Plane
 
+  attr_accessor :flying?
+
   def initialize
-
-  end
-
-  def flying?
-  #  return true if
+    @flying = true
   end
 
 end

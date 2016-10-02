@@ -7,11 +7,15 @@ class Airport
   end
 
   def land(plane)
+
     @planes << plane
+    plane.flying? = false
   end
 
   def takeoff(plane)
+
     @planes.pop
+    plane.flying? = true
   end
 
 end
