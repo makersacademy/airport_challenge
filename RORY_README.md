@@ -10,5 +10,9 @@ Decided to write the program and then write rspec tests afterwards. I am aware t
 
 SYNTAX - How do I check whether a class method stores the parameter passed to it as an instance variable?
 
-QUESTIONS - How do I remove a specific plane from an array? Pop only useful if it's on the end. This may be useful but haven't time to test it now: airport::planes.select { |a| a == self}
+QUESTIONS ---------------
+
+How do I remove a specific plane from an array? Pop only useful if it's on the end. This may be useful but haven't time to test it now: airport::planes.select { |a| a == self}
 SOLVED ABOVE - used Array.delete
+
+Why does my rspec look so different? Coveralls doesn't seem to have loaded properly. Missing my .....F.. at the top :(
