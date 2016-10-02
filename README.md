@@ -12,7 +12,12 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-The weather raises "Can't take off :(" if it is stormy. That comes from a seperate class. In the tests it kept returning nil when I tired to set the weather to a certain condidition so they kept randomdly passing and failing. I couldn't sort it out so in the end I commented it out so the other features woudl work. 
+It has three classes, Airport, Plane and Weather
+The weather raises "Can't take off :(" if it is stormy.  In the tests it kept returning an the error message from below when I tired to set the weather to a certain condidition so they kept randomly passing and failing. I couldn't sort it out so in the end I commented it out so the other features woudld work
+
+WARNING: An expectation of `:stormy?` was set on `nil`. To allow expectations on `nil` and suppress this message, set `config.allow_message_expectations_on_nil` to `true`. To disallow expectations on `nil`, set `config.allow_message_expectations_on_nil` to `false`. Called from /Users/elizabethwicks/Documents/Makers/airport/airport_challenge/spec/airport_spec.rb:17:in `block (3 levels) in <top (required)>'. 
+
+when I tired to set the weather to a certain condidition so they kept randomdly passing and failing. I couldn't sort it out so in the end I commented it out so the other features woudld work. 
 
 
 2.2.3 :001 > require './lib/airport'
