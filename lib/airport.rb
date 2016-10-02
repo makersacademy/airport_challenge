@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Sorry, just too stormy" if stormy?
     plane.landed
     @planes << plane
   end
@@ -19,6 +20,14 @@ class Airport
   def take_off(plane)
     plane.lift_off
     @planes.delete(plane)
+  end
+
+
+  private
+
+
+  def stormy?
+    return true if rand(1..30) == 1
   end
 
 

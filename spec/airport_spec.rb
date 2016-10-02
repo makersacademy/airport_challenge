@@ -3,7 +3,6 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new}
   let(:plane) {double :plane}
-  let(:weather) {double :weather}
 
   before do
     allow(plane).to receive(:landed)
@@ -27,7 +26,7 @@ describe Airport do
 
   describe 'stormy?' do
     it 'stops planes landing' do
-      allow(weather).to receive(:stormy?).and_return true
+      allow(airport).to receive(:stormy?).and_return true
       message = 'Sorry, just too stormy'
       expect{ airport.land(plane) }.to raise_error message
     end
