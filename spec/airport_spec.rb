@@ -4,6 +4,9 @@ describe Airport do
   let(:airport) { Airport.new}
   let(:weather) { Weather.new}
 
+
+
+
   before :example do
     @plane = Plane.new
   end
@@ -34,15 +37,19 @@ describe Airport do
     end
 
     describe 'prevents' do
-
+      before :example do
+        @weather = double(:weather)
+        allow(@weather).to receive(:storm).and_return(true)
+      end
       it 'take off in stormy weather' do
         subject.land(@plane)
-        subject.actual_weather(weather)
+        subject.actual_weather(@weather)
         expect(subject.take_off).to eq 'No take off due to storm'
       end
 
       it 'landing in stormy weather' do
-        subject.actual_weather(weather)
+
+        subject.actual_weather(@weather)
         expect(subject.land(@plane)).to eq 'No landing due to storm'
       end
 
