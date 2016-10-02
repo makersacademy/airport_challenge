@@ -33,13 +33,13 @@ Approach
 -----
 User stories to Domain model
 
--Objects: 
-Airport, plane, weather
+Objects: 
+- airport, plane, weather
 
--Methods: 
-Airport - instruct plane to land/ take off, confirm plane status, prevents landing/take off during stormy weather
-Plane - land/take off
-Weather - generates a random weather
+Methods: 
+- Airport - instruct plane to land/ take off, confirm plane status, prevents landing/take off during stormy weather
+- Plane - land/take off
+- Weather - generates a random weather
 
 Installation
 -------
