@@ -10,7 +10,7 @@ class Atc
 
   def land(plane)
     @plane = plane
-    fail 'Don\'t land, airport is full' if @land_arr.length >= @capacity
+    fail 'Dont land, airport is full' if @land_arr.length >= @capacity
       @land_arr << @plane
       @plane.landed = true
   end
