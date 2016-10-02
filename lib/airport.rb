@@ -18,7 +18,7 @@ class Airport
 private
 
   def stormy_weather_randomiser
-    rand(0...10)< 1 ? true : false
+    rand(0...10) < 1
   end
 
 end
