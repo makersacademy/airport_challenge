@@ -13,7 +13,7 @@ class Airport
   end
 
   def full
-    landed_planes.count > capacity
+    full = landed_planes.count > capacity
   end
 
 end

@@ -44,13 +44,16 @@ There were few ways to approach this problem - and I have seen both being used.
 Do the planes land at the airport, or does the airport land the planes? I think the former is more objectively correct, so I chose to give planes the command land and take-off, as opposed to the airport.
 
 **Classes**
+
 Plane - the largest class, with the take-off and land methods.
+
 Airport - a small class that contains a landed_planes array and handles the stormy weather outcome.
+
 Weather - contains a randomiser for determining a boolean outcome for whether there is a storm or not.
 
 I'll go through some of our user stories now, with examples of feature testing code in irb:
 
-**One**
+**User Story One**
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -68,7 +71,7 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 2.2.3 :005 > plane.landed?
  => true
 ```
-**Two**
+**User Story Two**
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
@@ -88,7 +91,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 2.2.3 :006 > plane.landed?
  => false
 ```
-**Three**
+**User Story Three**
 ```
 As an air traffic controller
 To ensure safety
@@ -102,7 +105,7 @@ I want to prevent landing when weather is stormy
 2.2.3 :006 > plane.land airport
 RuntimeError: Plane can't land when weather is stormy
 ```
-**Four**
+**User Story Four**
 ```
 As an air traffic controller
 To ensure safety
@@ -120,7 +123,7 @@ I want to prevent landing when the airport is full
 2.2.3 :016 > Plane.new.land airport
 RuntimeError: Airport is full
 ```
-**Five**
+**User Story Five**
 ```
 As the system designer
 So that the software can be used for many different airports
