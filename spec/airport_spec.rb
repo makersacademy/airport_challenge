@@ -56,10 +56,15 @@ describe Airport do
   end
 
   context 'when weather is stormy' do
-    it 'prevents plane from taking off' do
+    before(:each) do
       allow(weather).to receive(:current_weather).and_return :stormy
+    end
+    it 'prevents plane from taking off' do
       expect { airport.take_off(plane) }.to raise_error('Plane cannot take off in stormy weather!')
     end
+    it 'prevents plane from landing' do
+      expect { airport.land_plane(plane) }.to raise_error('Plane cannot land in stormy weather!')
+    end
   end
-  
+
 end
