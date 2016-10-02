@@ -2,6 +2,8 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
+include Weather
+
   attr_accessor :capacity
   attr_reader :list_landed_planes, :list_taken_off_planes
 

@@ -1,4 +1,7 @@
+module Weather
 
-def stormy
-rand(0..100) % 25 == 0
+  def stormy
+    rand(0..100) % 25 == 0
+  end
+  
 end
