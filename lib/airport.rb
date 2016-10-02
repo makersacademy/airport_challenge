@@ -18,7 +18,7 @@ class Airport
   end
 
   def actual_weather(weather)
-    @stormy_weather = weather.stormy #weather might change to stormy
+    @stormy_weather = weather.storm #weather might change to stormy
   end
 
   def take_off
