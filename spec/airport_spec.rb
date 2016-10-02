@@ -69,23 +69,4 @@ describe Airport do
     end
   end
 
-  describe "#stormy?" do
-    context "when weather.stormy? is true" do
-      it "returns true" do
-        allow(@weather).to receive(:stormy?).and_return true
-        expect(@airport.stormy?).to eq true
-      end
-    end
-  end
-
-  describe "#full?" do
-    context "when capacity is full" do
-      it "returns true" do
-        allow(@plane).to receive(:land)
-        10.times {@airport.land(@plane)}
-        expect(@airport.full?).to eq true
-      end
-    end
-  end
-
 end

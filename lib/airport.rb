@@ -24,6 +24,8 @@ class Airport
     @planes.delete(plane)
   end
 
+  private
+
   def stormy?
     @weather.stormy?
   end
