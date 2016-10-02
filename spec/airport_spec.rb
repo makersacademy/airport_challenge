@@ -1,8 +1,9 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new }
+  subject(:airport) { described_class.new(1) }
   let(:plane) { double :plane }
+  let(:another_plane) { double :another_plane }
 
   it { is_expected.to respond_to :land }
   it { is_expected.to respond_to :take_off }
@@ -23,6 +24,12 @@ describe Airport do
       allow(plane).to receive(:land)
       airport.land(plane)
       expect { airport.land(plane) }.to raise_error 'This plane has already landed'
+    end
+
+    it 'prevents landing when the airport is full' do
+      allow(plane).to receive(:land)
+      airport.land(plane)
+      expect { airport.land(another_plane) }.to raise_error 'This airport can\'t receive more planes'
     end
   end
 
