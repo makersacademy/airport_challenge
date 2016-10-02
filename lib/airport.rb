@@ -9,11 +9,17 @@ class Airport
   def initialize(capacity=DEFAULT_CAPACITY)
     @landed_planes = []
     @capacity = capacity
-    @stormy_weather = false
+    @stormy_weather = stormy_weather_randomiser
   end
 
   def full
     landed_planes.count > capacity
+  end
+
+private
+
+  def stormy_weather_randomiser
+    rand(0...10)< 1 ? true : false
   end
 
 end

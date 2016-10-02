@@ -11,16 +11,12 @@ describe Airport do
     expect(airport.capacity).to eq 1000
   end
 
-  it "should know 1 plane is landed" do
-    plane = Plane.new
-    plane.land(subject)
-    expect(subject.landed_planes).to eq [plane]
-  end
-
-  it "should know 2 planes are landed" do
-    plane1 = Plane.new
+  it "should know if 2 planes have landed" do
+    plane1 = double(:plane)
+    allow(plane1).to receive(:land).with(subject).and_return(subject.landed_planes << plane1)
+    plane2 = double(:plane)
+    allow(plane2).to receive(:land).with(subject).and_return(subject.landed_planes << plane2)
     plane1.land(subject)
-    plane2 = Plane.new
     plane2.land(subject)
     expect(subject.landed_planes).to eq [plane1,plane2]
   end
@@ -31,7 +27,14 @@ describe Airport do
     end
     expect(subject.full).to be true
   end
+  
+  describe "#stormy_weather" do
+    it {is_expected.to respond_to :stormy_weather }
 
-  it {is_expected.to respond_to :stormy_weather }
+    it "can set & get stormy weather" do
+      subject.stormy_weather=(true)
+      expect(subject.stormy_weather).to eq true
+    end
+  end
 
 end
