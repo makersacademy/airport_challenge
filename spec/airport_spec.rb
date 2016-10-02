@@ -8,6 +8,11 @@ describe Airport do
 
 
   context 'landing planes' do
+
+    before (:each) do
+      #allow(@weather).to receive(:stormy?) {false}
+    end
+
      it 'Should not allow planes to land if capacity is at max' do
        5.times{airport.land(Plane.new)}
        expect{airport.land(Plane.new).to raise_error("Airport is full")}
@@ -42,7 +47,7 @@ describe Airport do
 
     before (:each) do
       airport.land(plane)
-      #allow(@weather).to receive(:stormy?) {:sunny}
+      #allow(@weather).to receive(:stormy?) {false}
     end
 
     it 'Should be able to take off specific plane' do
@@ -69,5 +74,11 @@ describe Airport do
     # end
   end
 
+context 'capacity' do
+  it "should set capacity on initialization" do
+    airport2 = Airport.new(30)
+    expect(airport2.capacity).to eq(30)
+  end
+end
 
  end
