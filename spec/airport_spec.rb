@@ -1,11 +1,15 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   subject(:airport) {described_class.new}
-  let(:plane) {double :plane}
+  let(:plane) {Plane.new}
+  let(:weather) {Weather.new}
+
 
   describe "#land" do
+
     it "instructs a plane to land" do
       allow(plane).to receive(:land)
       expect(subject).to respond_to(:land).with(1).argument
@@ -14,6 +18,13 @@ describe Airport do
     it "confirms the plane has landed" do
       subject.land(plane)
       expect(subject.planes).to include(plane)
+    end
+
+    context "when the weather is stormy" do
+      it "prevents plane from landing with exceptions" do
+        allow(weather).to receive(:stormy?) {true}
+        expect{subject.land(plane)}.to raise_error "No landing, it's too stormy!"
+      end
     end
   end
 
@@ -34,7 +45,6 @@ describe Airport do
   end
 
   describe "capacity" do
-
     error = "Airport is full"
 
     it "doesn't accept new plane when full" do
@@ -49,7 +59,5 @@ describe Airport do
     end
 
   end
-
-
 
 end
