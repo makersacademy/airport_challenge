@@ -37,7 +37,7 @@ end
       subject.clearance(weather)
       expect{ subject.instruct_to_land(plane) }.to raise_error "Clearance for landing not granted: stormy weather"
     end
-    it 'will not allow a plane to land during stormy weather' do
+    it 'will not allow a plane to land if the airport is at capacity' do
       airport = Airport.new(1)
       airport.instruct_to_land(plane)
       expect{ airport.instruct_to_land(plane) }.to raise_error "Clearance for landing not granted: airport full"
@@ -74,5 +74,9 @@ end
     it 'tells landed planes to take off' do
     expect( subject.instruct_to_takeoff(plane) ).to eq plane
     end
+    it 'will not allow a plane to take off during stormy weather' do
+    subject.clearance(weather)
+    expect{ subject.instruct_to_takeoff(plane) }.to raise_error "Clearance for takeoff not granted: stormy weather"
   end
+end
 end
