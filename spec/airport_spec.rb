@@ -25,4 +25,13 @@ describe Airport do
     expect(subject.landed_planes).to eq [plane1,plane2]
   end
 
+  it "knows when it is full" do
+    41.times do
+      subject.landed_planes << Plane.new
+    end
+    expect(subject.full).to be true
+  end
+
+  it {is_expected.to respond_to :stormy_weather }
+
 end
