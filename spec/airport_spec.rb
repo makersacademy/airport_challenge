@@ -52,11 +52,19 @@ describe Airport do
       end
     end
 
-    context "when stormy? is true" do
+    context "when #stormy? is true" do
       it "raises an error" do
         allow(@plane).to receive(:land)
         allow(@weather).to receive(:stormy?).and_return true
         expect{@airport.land(@plane)}.to raise_error "Cannot land due to stormy weather"
+      end
+    end
+
+    context "when #full? is true" do
+      it "raises an error" do
+        allow(@plane).to receive(:land)
+        10.times {@airport.land(@plane)}
+        expect{@airport.land(@plane)}.to raise_error "Cannot land plane as airport is full"
       end
     end
   end
