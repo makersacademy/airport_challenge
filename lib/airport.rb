@@ -12,14 +12,14 @@ class Airport
   end
 
   def land(plane)
+    plane.landed
     @planes << plane
   end
 
   def take_off(plane)
-    @planes.pop
+    plane.lift_off
+    @planes.delete(plane)
   end
-
-
 
 
 
