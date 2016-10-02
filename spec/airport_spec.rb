@@ -127,6 +127,12 @@ describe Airport do
 
   describe "Airport's weather conditions are variable" do
 
+    it "checks that the weather is either sunny or stormy" do
+      weather_conditions = ["sunny", "stormy"]
+      weather_at_airport = subject.weather
+      expect(weather_conditions.include?(weather_at_airport)).to eq true
+    end
+
     it "allows you to check the weather (forcing it to be sunny)" do
       allow(subject).to receive(:weather) { "sunny" }
       expect(subject.weather).to eq "sunny"
