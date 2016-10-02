@@ -4,7 +4,7 @@ The B-raw Airport
 ```
         ______
         _\____\___
-=  = ==(____MA____)
+=  = ==(__B-raw___)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
@@ -43,6 +43,7 @@ Do the planes land at the airport, or does the airport land the planes? I think 
 
 I'll go through some of our user stories now, with examples of feature testing code in irb:
 
+ONE
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -60,28 +61,68 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 2.2.3 :005 > plane.landed?
  => true
 ```
+TWO
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
 ```
-As an air traffic controller
-To ensure safety
-I want to prevent takeoff when weather is stormy
+2.2.3 :001 > require './lib/airport'
+ => true
+2.2.3 :002 > airport=Airport.new
+ => #<Airport:0x007fc1ac851860 @landed_planes=[], @capacity=40, @stormy_weather=false>
+2.2.3 :003 > plane=Plane.new
+ => #<Plane:0x007fc1ac841e38>
+2.2.3 :004 > plane.land airport
+ => [#<Plane:0x007fc1ac841e38 @landed=true>]
+2.2.3 :005 > plane.take_off airport
+ => #<Plane:0x007fc1ac841e38 @landed=false>
+2.2.3 :006 > plane.landed?
+ => false
 ```
+THREE
 ```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
 ```
+2.2.3 :004 > airport = Airport.new
+ => #<Airport:0x007fef5209fe40 @landed_planes=[], @capacity=40, @stormy_weather=true>
+2.2.3 :005 > plane = Plane.new
+ => #<Plane:0x007fef52097588>
+2.2.3 :006 > plane.land airport
+RuntimeError: Plane can't land when weather is stormy
+```
+FOUR
+```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 ```
 ```
+2.2.3 :010 > airport = Airport.new
+ => #<Airport:0x007fef5204e888 @landed_planes=[], @capacity=40, @stormy_weather=false>
+2.2.3 :011 > 40.times do
+2.2.3 :012 >     (Plane.new).land airport
+2.2.3 :013?>   end
+ => 40
+2.2.3 :015 > airport
+ => [#<Plane:0x007fef52026f90 @landed=true>, #<Plane:0x007fef52026f68 @landed=true>, #<Plane:0x007fef52026f18 @landed=true>, #<Plane:0x007fef52026ec8 @landed=true>, #<Plane:0x007fef52026e28 @landed=true>, #<Plane:0x007fef52026e00 @landed=true>, #<Plane:0x007fef52026d88 @landed=true>, #<Plane:0x007fef52026d38 @landed=true>, #<Plane:0x007fef52026d10 @landed=true>, #<Plane:0x007fef52026ce8 @landed=true>, #<Plane:0x007fef52026cc0 @landed=true>, #<Plane:0x007fef52026c98 @landed=true>, #<Plane:0x007fef52026c70 @landed=true>, #<Plane:0x007fef52026c48 @landed=true>, #<Plane:0x007fef52026c20 @landed=true>, #<Plane:0x007fef52026bf8 @landed=true>, #<Plane:0x007fef52026bd0 @landed=true>, #<Plane:0x007fef52026ba8 @landed=true>, #<Plane:0x007fef52026b58 @landed=true>, #<Plane:0x007fef52026b08 @landed=true>, #<Plane:0x007fef52026ae0 @landed=true>, #<Plane:0x007fef52026ab8 @landed=true>, #<Plane:0x007fef52026a90 @landed=true>, #<Plane:0x007fef52026a40 @landed=true>, #<Plane:0x007fef52026a18 @landed=true>, #<Plane:0x007fef520269f0 @landed=true>, #<Plane:0x007fef520269c8 @landed=true>, #<Plane:0x007fef52026978 @landed=true>, #<Plane:0x007fef52026950 @landed=true>, #<Plane:0x007fef52026928 @landed=true>, #<Plane:0x007fef52026900 @landed=true>, #<Plane:0x007fef520268d8 @landed=true>, #<Plane:0x007fef520268b0 @landed=true>, #<Plane:0x007fef52026888 @landed=true>, #<Plane:0x007fef52026860 @landed=true>, #<Plane:0x007fef52026838 @landed=true>, #<Plane:0x007fef52026810 @landed=true>, #<Plane:0x007fef520267e8 @landed=true>, #<Plane:0x007fef52026798 @landed=true>, #<Plane:0x007fef52026748 @landed=true>, #<Plane:0x007fef5394b138 @landed=true>]
+2.2.3 :016 > Plane.new.land airport
+RuntimeError: Airport is full
+```
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+```
+```
+2.2.3 :002 > airport = Airport.new(2)
+ => #<Airport:0x007ff68a933ba8 @landed_planes=[], @capacity=2, @stormy_weather=false>
+ 2.2.3 :004 > 3.times do; Plane.new.land airport; end
+ 2.2.3 :005 > Plane.new.land airport
+RuntimeError: Airport is full
+
 ```
