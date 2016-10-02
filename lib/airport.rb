@@ -30,6 +30,4 @@ class Airport
 		true if @landed_planes.count >= @capacity
 	end
 
-
-
 end
