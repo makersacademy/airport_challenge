@@ -14,4 +14,17 @@ describe Plane do
     expect(plane.landed?).to be false
   end
 
+  # As an air traffic controller 
+  # So I can get passengers on the way to their destination 
+  # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+  context 'when instructed to take off' do
+    it 'can take off from an airport and confirm that it is no longer in the airport' do
+      plane.land
+      plane.take_off
+      expect(plane.landed?).to be false
+    end
+
+  end
+
 end
