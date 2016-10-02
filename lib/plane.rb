@@ -1,56 +1,29 @@
 require_relative 'airport'
+require_relative 'weather'
 
 class Plane
-
-  attr_accessor :landed, :stormy
-
+  attr_accessor :landed
+  alias_method :landed?, :landed
 
   def initialize
+    @landed = false
+  end
+
+  def land airport
+    fail "This is niner-niner-three - airport is full - we can't land!" if airport.full
+    fail "MAYDAY! this is niner-niner-three - we can't land in this storm!" if airport.stormy
+    fail "Sir, we're already here!" if landed
     @landed = true
-    @stormy = false
+    airport.planes << self
   end
 
-
-  def chance
-    rand(10)
+  def take_off airport
+    fail "Sir, are you crazy? We're already airborne!" if not landed
+    fail "Sir, are you crazy? This plane isn't at that airport!" unless airport.planes.include?(self)
+    fail "This is niner-niner-three - we can't take off in this storm!" if airport.stormy
+    @landed = false
+    airport.planes.delete(self)
   end
 
-
-  def weather
-    @stormy = true  if chance >= 7
-  end
-
-
-  def take_off
-    if @landed == false
-      fail 'Are you crazy, sir? This plane is already in the air!'
-    elsif @stormy == true
-       @landed = true
-       'Traffic control we are grounded. It is STORMY!'
-    else @landed = false
-        'Traffic control this is niner-niner-three. We have taken off!'
-    end
-  end
-
-def take_off_and_land(airport)
-  self.take_off
-  self.land(airport)
-end
-
-  def land(airport)
-    if @landed == true
-      fail 'Are you crazy, sir? This plane is already on the ground!'
-    elsif @stormy == true
-      @landed = false
-      'Traffic control WTF do we do it is MAJORLY STORMY'
-    elsif airport.full?
-      @landed = false
-      fail 'Airport full!'
-    else
-      @landed = true
-      airport.planes << [self]
-      'Traffic control this is niner-niner-three. We have landed!'
-    end
-  end
 
 end
