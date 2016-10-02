@@ -13,22 +13,22 @@ Airport Challenge
 
 ```
 
-Instructions
+Airport Program
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+This simple program enables an air traffic controller and system designer to control flows of planes at an airport. It allows planes to land and take off during good weathers so passengers will be safe.
 
-Steps
--------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Features
+---------
+
+- Allow plane to land and take off in the airport 
+- Confirm plane status (whether they have landed or taken off)
+- Prevent planes to land or take off during stormy weathers
+- Ensure planes that had taken off are not in airport and planes that have landed cannot land again
+
+------to be updated-------
+
 
 Task
 -----
