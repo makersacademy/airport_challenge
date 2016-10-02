@@ -12,9 +12,4 @@ class Weather
     end 
      # = Weather.new(rand(10))
   end
-
-	#def what_weather
-		#@weather
-	#end 
-
 end
