@@ -1,7 +1,12 @@
 require 'plane'
 
 describe Plane do
+  it 'lands' do
+    subject.land
+    expect(subject.state).to eq 'grounded'
+  end
   it 'takes off' do
-    expect(subject).to respond_to :take_off
+    subject.take_off
+    expect(subject.state).to eq 'flying'
   end
 end
