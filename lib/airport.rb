@@ -4,18 +4,25 @@ class Airport
 
   def initialize
     @planes = []
+    @weather = [:stormy, :sunny, :rain]
   end
 
   def land(plane)
-#puts "#{plane} has landed"
+    raise "Can't land plane :( " if stormy?
     @planes << plane
     return @planes
+    puts "#{plane} has landed"
   end
 
   def take_off
-    
-    @planes.pop
+    plane = @planes.pop
+    return plane
+    puts "#{plane} has taken off"
   end
 
+  def stormy?
+    n = rand(0..3)
+    true if @weather[n] == :stormy
+  end
 
 end
