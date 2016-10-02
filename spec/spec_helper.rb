@@ -1,3 +1,2 @@
-
 require 'coveralls'
 Coveralls.wear!
