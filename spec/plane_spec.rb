@@ -2,25 +2,16 @@ require 'plane'
 
 describe Plane do
 
-  it "is an instance of the Plane class" do
-    expect(subject.is_a?(Plane)).to eq(true)
-  end
+  describe "It shoild be an isntance of the Plane class"
+  it {expect(subject.is_a?(Plane)).to eq true}
 
-  xit "can be instructed to land" do
-    expect(subject.land).to eq true
-  end
+  describe "has an attribute 'landed'"
+  it {is_expected.to respond_to(:landed)}
 
-  it "informs me it has landed" do
-    expect(subject.land).to eq "#{subject} landed"
-  end
+  describe "'landed' attribute should be false"
+  it {expect(subject.landed).to eq false}
 
-  xit "can be instructed to takeoff" do
-    expect(subject.take_off).to eq true
-  end
-
-  it "informs me it has taken off" do
-    expect(subject.take_off).to eq "#{subject} has taken off"
-  end
-
+  describe "can have 'landed' attribute changed"
+  it {expect(subject.landed=true).to eq true}
 
 end

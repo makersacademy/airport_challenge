@@ -24,7 +24,6 @@ describe Airport do
   it {expect(jfk.space_to_land?).to eq false}
   it {expect(jfk.land(ba_99)).to eq "No more landing space"}
 
-
-
+  it {is_expected.to respond_to(:take_off).with(1).argument}
 
 end

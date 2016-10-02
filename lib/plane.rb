@@ -1,13 +1,8 @@
 class Plane
+  attr_accessor :landed
 
-  def land
-    true
-    "#{self} landed"
-  end
-
-  def take_off
-    true
-    "#{self} has taken off"
+  def initialize
+    @landed = false
   end
 
 end
