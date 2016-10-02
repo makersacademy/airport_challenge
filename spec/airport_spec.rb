@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'croissant'
 
 describe Airport do
 
@@ -65,6 +66,7 @@ describe Airport do
 
     it 'changes weather when a plane wants to take off' do
       allow(@heathrow).to receive(:weather_index).and_return 6
+      @heathrow.accept_plane(@concorde)
       @heathrow.plane_departs(@concorde)
       expect(@heathrow.weather).to eq "cloudy"
     end
@@ -97,6 +99,15 @@ describe Airport do
     it 'cannot accept a plane to land if it is already in the airport' do
       @heathrow.accept_plane(@concorde)
       expect {@heathrow.accept_plane(@concorde)}.to raise_error "This plane has already landed"
+    end
+    it 'cannot allow a croissant to land at the airport' do
+      expect{@heathrow.accept_plane(Croissant.new)}.to raise_error "A Croissant is not a plane"
+    end
+    it 'cannot allow a croissant to fly out from the airport' do
+      expect{@heathrow.plane_departs(Croissant.new)}.to raise_error "A Croissant is not a plane"
+    end
+    it 'cannot allow a plane to depart if it isn\'t actually there' do
+      expect{@heathrow.plane_departs(@concorde)}.to raise_error "This plane is not at this airport"
     end
   end
 end

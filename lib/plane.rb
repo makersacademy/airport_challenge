@@ -12,6 +12,7 @@ class Plane
   end
 
   def land(airport)
+    raise "A #{airport.class} is not an airport" unless airport.class == Airport
     raise "This plane is not in flight" if @status == "landed"
     airport.accept_plane(self)
     @status = "landed"

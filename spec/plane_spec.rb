@@ -1,5 +1,6 @@
 require 'plane'
 require 'airport'
+require 'croissant'
 
 describe Plane do
 
@@ -68,6 +69,9 @@ describe Plane do
     it 'should not be able to land if it is at another airport' do
       @concorde.land(@heathrow)
       expect {@concorde.land(Airport.new)}.to raise_error "This plane is not in flight"
+    end
+    it 'should not be able to land on a croissant' do
+      expect {@concorde.land(Croissant.new)}.to raise_error "A Croissant is not an airport"
     end
   end
 
