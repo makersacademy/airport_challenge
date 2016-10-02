@@ -41,6 +41,19 @@ describe Airport do
     end
   end
 
+  describe 'capacity' do
 
+    it 'has a default capacity' do
+      expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it 'does not allow planes to land at full airports' do
+      described_class::DEFAULT_CAPACITY.times do
+        airport.land(plane)
+      end
+      error = "Airport is full"
+      expect{ airport.land(plane) }.to raise_error error
+    end
+  end
 
 end
