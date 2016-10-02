@@ -21,29 +21,35 @@ class Air_Port
   #  fail "Too stormy to land" if stormy
     fail "Full Capacity reached, no landing!" if full?
     @airplanes << airplane
-    confirm_landing
+    #puts "plane landed"
   end
 
   def confirm_landing
-    true
+    #if in array "landed" else raise_error
+    fail "Plane has not landed" if not_landed
+    puts "plane landed"
   end
 
   def instruct_take_off(airplane)
   #  fail "Too stormy to take off" if stormy
-  #confirm_takeoff
+    @airplanes.delete(airplane)
   end
 
   def confirm_takeoff
-    #true
   end
-  #weather methods?
 
   private
   def stormy?
-    #@bikes.count >= DEFAULT_CAPACITY
   end
 
   def full?
     @airplanes.count >= DEFAULT_CAPACITY
+  end
+
+  def not_landed
+    @airplanes.include?
+  end
+
+  def not_takenoff
   end
 end

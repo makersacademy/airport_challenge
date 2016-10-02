@@ -43,13 +43,10 @@ describe 'airport' do
       expect(airport.airplanes).to eq([airplane])
     end
     it 'does not land beyond capacity (default or varied)' do
-    #  expect{(Air_Port::DEFAULT_CAPACITY+1).times{airport.land_plane(airplane)}}.to raise_error("Full Capacity reached, no landing!")
       expect{(airport.capacity+1).times{airport.land_plane(airplane)}}.to raise_error("Full Capacity reached, no landing!")
     end
-    it "returns true, to confirm landing" do
-      airport.land_plane(airplane)
-      expect(confirm_landing).to be(true)
-      #expect{airport.land_plane(airplane).confirm_landing}.to be true
+    it 'confirms plane landing' do
+      expect{airport.confirm_landing}.to raise_error("Plane has not landed")
     end
   end
 end
