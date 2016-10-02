@@ -3,11 +3,10 @@ require 'plane'
 describe Plane do
 
 	let(:airport) { double(:airport, :landed_planes => []) }
-	let(:full_airport) { double(:airport) }
 	let(:weather) { double(:weather) }
 	let(:stormy_weather) { double(:weather) }
 
-	before(:each) { allow(full_airport).to receive(:full?).and_return(true) }
+	before(:each) {allow(airport).to receive(:full?).and_return(false)}
 	before(:each) { allow(weather).to receive(:stormy?).and_return(false) }
 	before(:each) { allow(stormy_weather).to receive(:stormy?).and_return(true) }
 
@@ -29,6 +28,8 @@ describe Plane do
 	 	end
 
 	 	it 'cannot land when airport is full', focus: :true do
+	 		full_airport = double(:airport)
+	 		allow(full_airport).to receive(:full?).and_return(true) 
 	 		expect { subject.land(full_airport, weather) }.to raise_error "Airport is full!"
 	 	end
 
@@ -46,6 +47,7 @@ describe Plane do
 	 	it 'raises an error when trying to take off in stormy weather' do
 	 		expect { subject.take_off(airport, stormy_weather) }.to raise_error 'Too stormy to take off!'
 	 	end
+	 	
 	end
 
 end

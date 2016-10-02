@@ -1,13 +1,16 @@
 class Airport
 	
-	attr_accessor :landed_planes
+	DEFAULT_CAPACITY = 21
 
-	def initialize
+	attr_reader :landed_planes, :capacity
+
+	def initialize(capacity = DEFAULT_CAPACITY)
 		@landed_planes = []
+		@capacity = capacity
 	end
 
 	def full?
-		true if @landed_planes.count >= 20
+		true if @landed_planes.count >= @capacity
 	end
 
 end
