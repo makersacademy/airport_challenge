@@ -27,4 +27,16 @@ describe Airport do
 
   end
 
+  it "instruct plane to take off" do
+    expect(@plane).to receive(:take_off)
+    subject.take_off(@plane)
+  end
+
+  it "doesn't have the plane after take-off" do
+    allow(@plane).to receive(:take_off)
+    subject.planes << @plane
+    subject.take_off(@plane)
+    expect(subject.planes).not_to include @plane
+  end
+
 end
