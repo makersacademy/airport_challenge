@@ -5,8 +5,10 @@ class Plane
   end
 
   def land(airport)
-    @state = 'grounded'
-    @airport = airport
+    if airport.weather == 'clear'
+      @state = 'grounded'
+      @airport = airport
+    end
   end
 
   def take_off
