@@ -17,11 +17,11 @@ Airport	                    Qry?: Has plane taken-off?
 As an air traffic controller, To ensure safety, I want to prevent landing when weather is stormy
 For overriding random weather behaviour, use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 You'll need to use a stub to override random weather to ensure consistent test behaviour.
-Airport	                    Qry?: Is weather stormy? Random function to determine this... Weather == stormy
+Airport	                    Qry?: Is weather stormy? Random function to determine this.
 Airport	                    Instr!: Don't allow take-off if it's stormy!
 Plane                       Action!: Don't take-off as it's stormy!
 ~~~
-Airport	                    Qry?: Is weather stormy? Random function to determine this... Weather != stormy   Test = "allow(die).to receive(:roll) { 3 }"
+Airport	                    Qry?: Is weather stormy? Random function to determine this.
 Airport	                    Instr!: Don't allow landing if stormy!
 Plane	                    Action!: Don't land as it's stormy!
 
@@ -38,7 +38,7 @@ planes that are already flying cannot takes off and/or be in an airport;
 planes that are landed cannot land again and must be in an airport, etc.
 
 NOTES:
-I used the boris-bikes to a great degree to help me through this!
+I used the boris-bikes code to help me through this!
 
 Bad weather has a 70% chance of occurring. The random function to determine this is in "weather.rb"
 The weather call is made each time a plane takes off or lands so that 
@@ -64,6 +64,10 @@ A plane cannot land if it has already landed.
 A plane cannot take-off if it has already taken off.
 A new airport can be initialized with a capacity of x (airport = Airport.new(10))but if no value is entered 
 the default capacity of the airport is set to 20.
+The plane is given a status of "down" when it lands and "up" when it takes off by the airport.
+I chose not to initialize a plane with a status. The plane only gets a status when it lands or takes off.
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Airport Challenge
