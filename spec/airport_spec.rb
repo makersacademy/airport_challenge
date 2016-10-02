@@ -51,6 +51,14 @@ describe Airport do
         expect(@airport.planes).to include @plane
       end
     end
+
+    context "when stormy? is true" do
+      it "raises an error" do
+        allow(@plane).to receive(:land)
+        allow(@weather).to receive(:stormy?).and_return true
+        expect{@airport.land(@plane)}.to raise_error "Cannot land due to stormy weather"
+      end
+    end
   end
 
   describe "#stormy?" do
