@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :landed
+  attr_reader :landed
   alias_method :landed?, :landed
 
   def initialize

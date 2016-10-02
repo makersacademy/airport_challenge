@@ -6,7 +6,7 @@ describe Plane do
   let(:airport) {double(:airport, :full=>false, :stormy_weather=>false, :landed_planes=>[])}
   let(:full_airport) {double(:airport, :full=>true, :stormy_weather=>false, :landed_planes=>[])}
   let(:stormy_airport) {double(:airport, :full=>false, :stormy_weather=>true, :landed_planes=>[])}
-  
+
   describe "#land" do
 
     it "should know it is landed at an airport" do
