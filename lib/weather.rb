@@ -10,7 +10,7 @@ class Weather
   end
 
   def stormy?
-    set_conditions == :stormy
+    set_conditions == :stormy ? true : false
   end
 
 end
