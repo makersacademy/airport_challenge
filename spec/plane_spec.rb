@@ -13,4 +13,12 @@ it "has landed when flying is false" do
   expect(subject.landed).to eq false
 end
 
+it "has taken off when instructed" do
+subject.landed
+subject.take_off
+expect(subject.take_off).to eq true
+
+
+end
+
 end
