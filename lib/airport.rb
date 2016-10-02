@@ -1,12 +1,15 @@
 
 class Airport
-  attr_accessor :capacity, :airport_name
+
+  @@flying_planes = []
+  @@landed_planes = []
+
+  attr_accessor :capacity
   DEFAULT_CAPACITY = 5
 
-  def initialize(capacity = DEFAULT_CAPACITY, airport_name = "airport(unnamed)")
-    @landed_planes = []
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @airport_fleet = []
     @capacity = capacity
-    @airport_name = airport_name
   end
 
   def random_weather
@@ -16,8 +19,9 @@ class Airport
 
   def land_plane(plane)
     if random_weather == "sunny"
-    fail "error - that plane has already landed" if @landed_planes.include? plane
-    @landed_planes << plane
+    fail "error - that plane has already landed" if @@landed_planes.include? plane
+    @airport_fleet << plane && @@landed_planes << plane
+    @@flying_planes.pop
       "Plane has landed"
     else
       "Plane cannot land as it is stormy"
@@ -28,19 +32,20 @@ class Airport
     if airport_full?
       "plane cannot land as the airport is full"
     else
-      @landed_planes << plane
+      @@landed_planes << plane
     end
 
   end
 
   def airport_full?
-    @landed_planes.count >= @capacity
+    @@landed_planes.count >= @capacity
   end
 
   def take_off(plane)
     if random_weather == "sunny"
-      @flying_planes = []
-      @flying_planes << @landed_planes.pop
+      fail "error - that plane is already in the air" if @@flying_planes.include? plane
+      @@flying_planes << plane
+      @@landed_planes.pop && @airport_fleet.pop
       "the plane has taken off"
     else
       "plane cannot take off, it's stormy"
@@ -58,5 +63,12 @@ class Airport
     end
   end
 
+  #def flying?(plane)
+  #  @flying_planes.include?
+  #end
+
+#  def landed?(plane)
+  #  @landed_planes.include?
+#  end
 
 end

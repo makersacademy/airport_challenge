@@ -6,6 +6,7 @@ require 'plane'
   describe Airport do
 
     let(:plane) { double(Plane.new) }
+    let(:plane) { (Plane.new) }
     let(:airport) { (Airport.new) }
 
     it { is_expected.to respond_to :land_plane}
@@ -55,5 +56,11 @@ require 'plane'
       expect{airport.land_plane(landing_plane)}.to raise_error "error - that plane has already landed"
     end
 
+    it "will not allow a plane to take off which is already in the air" do
+      flying_plane = plane
+      allow(airport).to receive(:random_weather) { 'sunny' }
+      airport.take_off(flying_plane)
+      expect{airport.take_off(flying_plane)}.to raise_error "error - that plane is already in the air"
+    end
 
   end
