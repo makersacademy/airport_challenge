@@ -11,7 +11,7 @@ describe Airport do
   end
 
   it 'sets up instance variables correctly' do
-    expect(subject.capacity).to eq 10
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     expect(subject.weather).to eq "sunny"
     expect(subject.planes).to eq []
   end
@@ -37,7 +37,7 @@ describe Airport do
     end
   end
 
-  describe 'planes present in the airport' do
+  describe 'where planes are present' do
 
     it {should respond_to :plane_present}
 
@@ -86,7 +86,7 @@ describe Airport do
   describe 'managing capacity' do
 
     it 'prevents landing if the airport is at capacity' do
-      10.times{@heathrow.accept_plane(Plane.new)}
+      Airport::DEFAULT_CAPACITY.times{@heathrow.accept_plane(Plane.new)}
       expect {@heathrow.accept_plane(Plane.new)}.to raise_error "Plane cannot land; airport is at capacity"
     end
 
@@ -95,7 +95,7 @@ describe Airport do
     end
   end
 
-  describe 'edge cases' do
+  describe 'in an edge case scenario' do
     it 'cannot accept a plane to land if it is already in the airport' do
       @heathrow.accept_plane(@concorde)
       expect {@heathrow.accept_plane(@concorde)}.to raise_error "This plane has already landed"

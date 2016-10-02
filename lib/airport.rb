@@ -15,7 +15,7 @@ class Airport
     raise "A #{plane.class} is not a plane" unless plane.class == Plane
     raise "This plane has already landed" if plane_present(plane)
     raise "Plane cannot land due to poor weather" if @weather == "stormy"
-    raise "Plane cannot land; airport is at capacity" if @planes.length == 10
+    raise "Plane cannot land; airport is at capacity" if @planes.length == @capacity
     @planes << plane
   end
 

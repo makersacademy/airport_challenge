@@ -62,7 +62,7 @@ describe Plane do
     end
   end
 
-  describe 'edge cases' do
+  describe 'in an edge case scenario' do
     it 'should not be able to take off if already in flight' do
       expect {@concorde.take_off}.to raise_error "This plane is already in flight"
     end
@@ -74,6 +74,5 @@ describe Plane do
       expect {@concorde.land(Croissant.new)}.to raise_error "A Croissant is not an airport"
     end
   end
-
 
 end
