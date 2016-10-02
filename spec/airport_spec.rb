@@ -36,11 +36,13 @@ describe Airport do
   #6 - User Story 2
   it "6. confirmation message that the plane has departed" do
     airport.land(plane) # land a plane first
+    allow(airport).to receive(:stormy_weather).and_return false
     expect(airport.take_off(plane)).to eq "The plane has departed"
   end
 
   #7 - User Story 2
   it "7. raises an error when there are no planes to depart for take_off method" do
+    allow(airport).to receive(:stormy_weather).and_return(false)
     expect{airport.take_off(plane)}. to raise_error "There are no planes currently at the airport - No departures"
   end
 
@@ -55,6 +57,18 @@ describe Airport do
     expect(airport_capacity_5.gates_size).to eq 5
   end
 
+  #10 - User Story 3
+  it "10. raises and error when the weather is stormy and plane attempts to takeoff" do
+    airport.land(plane)
+    allow(airport).to receive(:stormy_weather).and_return(true)
+    expect{airport.take_off(plane)}.to raise_error "The weather is stormy, plane cannot takeoff"
+  end
 
+  #11 - User Story 3
+  it "11. does not raise an error wwhen the weather is not stormy and plane attempts to takeoff" do
+    airport.land(plane)
+    allow(airport).to receive(:stormy_weather).and_return(false)
+    expect{airport.take_off(plane)}.not_to raise_error
+  end
 
 end
