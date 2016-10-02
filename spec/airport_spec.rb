@@ -4,8 +4,6 @@ describe Airport do
   subject(:airport) { described_class.new}
   let(:plane) {double :plane}
 
-  it {is_expected.to respond_to :take_off}
-
   before do
     allow(plane).to receive(:landed)
   end
@@ -17,6 +15,13 @@ describe Airport do
     end
   end
 
+  describe 'take-off' do
+    it 'instructs a plane to take-off' do
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.planes).to eq []
+    end
+  end
 
 
 
