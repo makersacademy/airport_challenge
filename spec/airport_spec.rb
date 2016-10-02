@@ -1,5 +1,6 @@
 require './lib/airport'
 require './lib/plane'
+require './lib/weather'
 
 describe "Airport" do
   airport = Airport.new
@@ -41,6 +42,7 @@ context 'Airport arrivals capacity' do
   end
   it "allows user to change capactity" do
     airport3= Airport.new(3)
+    airport3.capacity
     expect(airport3.capacity).to eq(3)
   end
 end
@@ -52,11 +54,5 @@ end
   #   airport.double(:weather, => 3)
   #   expect(airport.land(plane)).to output("Sorry it's too stormy to and right now")
   # end
-
-  end
-
-#
 # allow_any_instance_of(Widget).to receive(:name).and_return("Wibble")
-
-
 end

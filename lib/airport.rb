@@ -1,21 +1,22 @@
 class Airport
+  require './lib/weather'
   DEFAULT_CAPACITY = 10
 attr_reader :status, :take_off, :land, :departure_arr, :arrivals, :capacity, :conditions
 attr_writer :capacity
 
-def initialize (capacity=DEFAULT_CAPACITY)
+def initialize (capacity=DEFAULT_CAPACITY, weather =Weather.new)
   @departure_arr =[]
   @arrivals=[]
   # @conditions = rand(10)
-  @conditions = 4
+  @weather = weather
   @capacity = capacity
 end
 
 def land(plane)
-  if @conditions < 3
+  if @weather.stormy?
     print "Sorry it's too stormy to land right now"
-  elsif @arrivals.length >= @capacity
-    print "Sorry, the airport is full"
+  elsif full?
+    print  "Sorry, the airport is full"
   else
     @landed_plane = plane
     @landed_plane.landed
@@ -33,7 +34,7 @@ def departures(plane)
 end
 
 def take_off
-  if @conditions < 3
+  if @weather.stormy?
     print "sorry it's too stormy to fly today."
   else
   @inflight_plane = @departure_arr.pop
@@ -42,9 +43,14 @@ def take_off
   end
 end
 
+
 def confirm_take_off
   print @departure_arr.length <= 0 ? "Plane has taken off" : "Take_off failed!"
 end
 
+private
+def full?
+  @arrivals.length >= @capacity
+end
 
 end
