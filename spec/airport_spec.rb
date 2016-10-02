@@ -4,9 +4,6 @@ describe Airport do
   let(:airport) { Airport.new}
   let(:weather) { Weather.new}
 
-
-
-
   before :example do
     @plane = Plane.new
   end
