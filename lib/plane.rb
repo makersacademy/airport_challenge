@@ -4,7 +4,7 @@ class Plane
     @flying = flying
   end
 
-  def airborn?
+  def airborne?
     @flying
   end
 

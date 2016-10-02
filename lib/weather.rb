@@ -6,7 +6,7 @@ class Weather
 
   private
 
-  CONDITIONS = [:stormy, :sunny, :sunny, :sunny, :sunny]
+  CONDITIONS = [:stormy, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny, :sunny]
 
   def stormy_weather
     CONDITIONS.sample

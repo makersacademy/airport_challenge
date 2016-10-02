@@ -52,7 +52,7 @@ describe Airport do
       it 'should change the status of the plane from flying to landed' do
         allow(plane).to receive(:land)
         sunny_airport.land(plane)
-        expect(plane.airborn?).to eq false
+        expect(plane.airborne?).to eq false
       end
      end
 
@@ -93,7 +93,7 @@ describe Airport do
       it 'should change the status of the plane from landed to flying' do
         allow(plane).to receive(:take_off)
         sunny_airport.take_off(plane)
-        expect(plane.airborn?).to eq true
+        expect(plane.airborne?).to eq true
       end
     end
 
