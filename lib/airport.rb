@@ -18,7 +18,7 @@ class Airport
   # end
 
   def stormy_weather
-    rand(1..10) > 1
+    rand(1..10) > 7
     # if rand(1..10) > 1
     #   @stormy = true # setting weather to stormy
     #   "The weather is stormy"
@@ -38,6 +38,7 @@ class Airport
   def take_off(plane)
     raise "The weather is stormy, plane cannot takeoff" if stormy_weather == true
     raise "There are no planes currently at the airport - No departures" if @gates.count == 0
+    raise "Plane is not in this airport, thus cannot takeoff" unless @gates.include?(plane)
     @gates.delete(plane)
     "The plane has departed"
   end
