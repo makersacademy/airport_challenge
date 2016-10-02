@@ -35,6 +35,17 @@ describe Airport do
     50.times do
       airport.land(plane)
     end
-    expect { airport.land(plane)}.to raise_error "airport is full, can't land plane"
+    expect { airport.land(plane) }.to raise_error "airport is full, can't land plane"
   end
+
+#As an air traffic controller
+#To ensure safety
+#I want to prevent takeoff when weather is stormy
+
+  #it "airport can prevent takeoff when weather is stormy" do
+  #airport = Airport.new(50)
+  #plane = Plane.new
+#  weather = Weather.new
+  #expect { airport.take_off(plane) }.to raise_error "cannot take off due to stormy weather conditions"
+  #end
 end
