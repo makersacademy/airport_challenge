@@ -67,4 +67,11 @@ describe Airport do
     end
   end
 
+  context "when instantiated with a capacity value" do
+    let(:airport) { described_class.new(weather, 30) }
+    it "sets a new capacity value" do
+      expect(airport.capacity).to eq 30
+    end
+  end
+
 end
