@@ -2,8 +2,10 @@ require './lib/plane'
 require './lib/airport'
 
 describe Plane do
-  let(:airport) {double("airport")}
-  let(:airport2) {double("airport")}
+  let(:airport) {double("airport", :weather => "sun", :add => true, :remove => true, :planes => [1,2,3,subject], :capacity => 10)}
+  let(:airport2) {double("airport", :weather => "sun", :add => true, :remove => true, :planes => [1,2,3], :capacity => 10)}
+  let(:stormy_airport) {double("airport", :weather => "storm", :add => true, :remove => true, :planes => [1,2,3, subject], :capacity => 10)}
+  let(:full_airport) {double("airport", :planes => [1,2, subject], :capacity => 3, :weather => "sun", :add => true, :remove => true)}
 
   it 'can take off from an airport' do
     expect(subject).to respond_to(:take_off).with(1).argument
@@ -14,53 +16,47 @@ describe Plane do
   end
 
   it 'tells the controller it has landed' do
-    allow(airport).to receive(:add).with(instance_of(Plane))
     subject.land(airport)
     expect(subject.status).to eq("Landed at airport " + airport.to_s)
   end
 
   it "makes airport add it to its planes when it lands" do
-    allow(airport).to receive(:add).with(instance_of(Plane))
-    subject.land(airport)
     expect(airport).to receive(:add).with(subject)
+    subject.land(airport)
   end
 
   it 'tells the controller it has taken off' do
-    allow(airport).to receive(:remove).with(instance_of(Plane))
+    subject.land(airport)
     subject.take_off(airport)
     expect(subject.status).to eq("Has taken off from airport " + airport.to_s)
   end
 
   it "makes airport remove it from its planes when it takes off" do
-    allow(airport).to receive(:remove).with(instance_of(Plane))
-    subject.take_off(airport)
+    subject.land(airport)
     expect(airport).to receive(:remove).with(subject)
+    subject.take_off(airport)
   end
 
   it "doesn't take off when the weather is stormy" do
-    allow(airport).to receive(:weather).and_return("storm")
-    expect{subject.take_off(airport)}.to raise_error("Cannot take off in adverse weather")
+    expect{subject.take_off(stormy_airport)}.to raise_error("Cannot take off in adverse weather")
   end
 
   it "doesn't land when the weather is stormy" do
-    allow(airport).to receive(:weather).and_return("storm")
-    expect{subject.land(airport)}.to raise_error("Cannot land in adverse weather")
+    expect{subject.land(stormy_airport)}.to raise_error("Cannot land in adverse weather")
   end
 
   it "doesn't land when the airport has reached capacity" do
-    allow(airport).to receive(:capacity).and_return(Airport::DEFAULT_CAPACITY)
-    expect{subject.land(airport)}.to raise_error("Cannot land - airport is full")
+    expect{subject.land(full_airport)}.to raise_error("Cannot land - airport is full")
   end
 
   it "doesn't take off from an airport it's not in" do
-    allow(airport).to receive(:planes).and_return([])
-    expect{subject.take_off(airport)}.to raise_error("Cannot take off from an airport I'm not in")
+    expect{subject.take_off(airport2)}.to raise_error("Cannot take off from an airport I'm not in")
   end
 
-  it "cannot take_off if it is flying" do
+  it "cannot take off if it is flying" do
     subject.take_off(airport)
     expect{subject.take_off(airport)}.to raise_error("Already flying... Has taken off from airport " + airport.to_s)
-    expect{subject.take_off(airport2)}.to raise_error("Already flying... Has taken off from airport " + airport.to_s)
+    expect{subject.take_off(full_airport)}.to raise_error("Already flying... Has taken off from airport " + airport.to_s)
   end
 
   it "cannot land again if it has already landed" do
