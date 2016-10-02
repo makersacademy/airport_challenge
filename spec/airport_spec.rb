@@ -6,7 +6,7 @@ describe Airport do
   let(:grounded_plane) { double :plane, flying?: false }
   let(:flying_plane) { double :plane, flying?: true }
 
-  # Credit to Chet Sanghani for using let to instantiate plane object
+  # Credit to Chet Sanghani for using let to instantiate plane object whilst stub not working
   let(:plane) { Plane.new }
 
   describe "Airport has default but changeable capacity" do
@@ -37,6 +37,24 @@ describe Airport do
     it "allows you to check the weather (forcing it to be stormy)" do
       allow(subject).to receive(:weather) { "stormy" }
       expect(subject.weather).to eq "stormy"
+    end
+
+  end
+
+  describe "Airport is unique and can list its own planes" do
+
+    it "allows you to retrieve the airport's unique ID" do
+      expect(subject.airport_id).to eq subject.object_id
+    end
+
+    it "returns a list of all the planes currently on the ground" do
+      allow(subject).to receive(:weather) { "sunny" }
+      plane_array = [Plane.new, Plane.new, Plane.new, Plane.new]
+      subject.land(plane_array[0])
+      subject.land(plane_array[1])
+      subject.land(plane_array[2])
+      subject.land(plane_array[3])
+      expect(subject.list_planes).to eq plane_array
     end
 
   end
@@ -116,10 +134,21 @@ describe Airport do
       expect { subject.takeoff(plane) }.to raise_error "Cannot take off due to storm."
     end
 
-    it "won't allow a plane to take off if the plane is not in the airport" do
+    it "won't allow a plane to take off if the plane is not in an airport" do
       allow(subject).to receive(:weather) { "sunny" }
       plane.flying = false
       expect { subject.takeoff(plane) }.to raise_error "Can't take off as plane is not in the airport."
+    end
+
+    it "won't allow a plane to take off if the plane is not in this particular airport" do
+      allow(subject).to receive(:weather) { "sunny" }
+      Heathrow = Airport.new
+      Gatwick = Airport.new
+      plane1 = Plane.new
+      plane2 = Plane.new
+      Heathrow.land(plane1)
+      Gatwick.land(plane2)
+      expect { Gatwick.takeoff(plane1) }.to raise_error "Can't take off as plane is not in the airport."
     end
 
     it "allows you to instruct a specific plan to take off, not just the last one that landed" do

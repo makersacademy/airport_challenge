@@ -7,7 +7,6 @@ Airport to have default capacity that can be overridden
 FEATURE TESTS
 
 require './lib/airport.rb'
-require './lib/plane.rb'
 
 Feature 1: Land a plane in an airport DONE
 
@@ -143,9 +142,34 @@ airport.land(plane2)
 airport.takeoff(plane)  
 airport.planes_on_ground.pop  # should return plane2 that landed first
 
+Feature 21: You can retrieve a list of planes in the airport
+
+Heathrow = Airport.new
+Gatwick = Airport.new
+plane1 = Plane.new
+plane2 = Plane.new
+Heathrow.land(plane1)
+Gatwick.land(plane2)
+Heathrow.list_planes      # should list all grounded planes
+
+Feature 21: You cannot instruct a plane that's in a different airport to take off
+
+Heathrow = Airport.new
+Gatwick = Airport.new
+plane1 = Plane.new
+plane2 = Plane.new
+Heathrow.land(plane1)
+Gatwick.land(plane2)
+Gatwick.takeoff(plane1)     # should fail because plane is not in the airport
+
 REFACTORING OPPORTUNITIES
+Refactor in_airport? to be specific to an airport, not just in an airport generally
+If plane is at a different airport, it should give you that error if you try and tell it to takeoff
+Method: Where are all the planes?
 Put stubs back in instead of real Plane objects
 Modules and mixins
+Change names of grounded to something else
 Are classes and methods as clean and as short as they can be?
 Feature spec
 Travis CI testing
+Re-write my own readme to explain my approach
