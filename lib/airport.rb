@@ -16,14 +16,13 @@ class Airport
     fail "This plane has already landed." if plane.landed? == true
     plane.confirm_land
     planes << plane
-    planes.last # returns last plane that landed
+    planes.last
   end
 
   def depart_plane(plane)
     fail "Plane cannot take off, it is too stormy." if stormy?
     fail "This plane has already taken off." if plane.landed? == false
     fail "This plane cannot depart from this airport." if planes.include?(plane) == false
-    # plane.confirm_existence_in_airport(plane)
     plane.confirm_takeoff
     planes.delete(plane)
     planes
