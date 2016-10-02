@@ -12,7 +12,7 @@ describe Airport do
 
   describe 'landing planes' do
       it 'has the plane after it has landed' do
-        plane = Plane.new
+        plane = double("plane", :in_air => true, :landed? => true)
         airport.land(plane)
         expect(airport.planes).to include plane
       end
@@ -21,8 +21,9 @@ describe Airport do
         expect{airport.land(plane)}.to raise_error "this plane has already landed"
       end
       it "raises error when airport is full and plane wants to land" do
-        airport.capacity.times {airport.land(Plane.new)}
-        expect{airport.land(Plane.new)}.to raise_error "airport is full"
+        plane = double("plane", :in_air => true, :landed? => true)
+        airport.capacity.times {airport.land(plane)}
+        expect{airport.land(plane)}.to raise_error "airport is full"
       end
   end
 
@@ -31,7 +32,7 @@ describe Airport do
       expect(airport).to respond_to(:take_off)
     end
     it 'it no longer has the plane after it has taken off' do
-      plane = Plane.new
+      plane = double("plane", :in_air => true, :taken_off? => false, :landed? => true)
       airport.land(plane)
       airport.take_off
       expect(airport.planes).not_to include plane

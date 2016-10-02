@@ -7,8 +7,4 @@ class Weather
   def random_weather
     rand(1..10) > 7
   end
-
-  def stormy?
-    stormy
-  end
 end
