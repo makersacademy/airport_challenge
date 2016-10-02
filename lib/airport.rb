@@ -29,14 +29,13 @@ class Airport
   end
 
   def land(plane)
-    #random_weather
+    raise "The weather is stormy, plane cannot land" if stormy_weather == true
     raise "No gates available - cannot land plane" if @gates.count >= @gates_size
     @gates << plane
     "The plane has landed"
   end
 
   def take_off(plane)
-    #random_weather
     raise "The weather is stormy, plane cannot takeoff" if stormy_weather == true
     raise "There are no planes currently at the airport - No departures" if @gates.count == 0
     @gates.delete(plane)

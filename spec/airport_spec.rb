@@ -16,12 +16,14 @@ describe Airport do
 
   #3 - User Story 1
   it "3. confirmation message that the plane has landed" do
-  expect(airport.land(plane)).to eq "The plane has landed"
+    allow(airport).to receive(:stormy_weather).and_return(false)
+    expect(airport.land(plane)).to eq "The plane has landed"
   end
 
   #4 - User Story 5
   it "4. raises an error if plane attempts to land and no gates are available" do
     airport_size5 = Airport.new(5,false)
+    allow(airport_size5).to receive(:stormy_weather).and_return(false)
     5.times do
       airport_size5.land(Plane.new)
     end
@@ -35,8 +37,8 @@ describe Airport do
 
   #6 - User Story 2
   it "6. confirmation message that the plane has departed" do
-    airport.land(plane) # land a plane first
     allow(airport).to receive(:stormy_weather).and_return false
+    airport.land(plane) # land a plane first
     expect(airport.take_off(plane)).to eq "The plane has departed"
   end
 
@@ -58,7 +60,8 @@ describe Airport do
   end
 
   #10 - User Story 3
-  it "10. raises and error when the weather is stormy and plane attempts to takeoff" do
+  it "10. raises an error when the weather is stormy and plane attempts to takeoff" do
+    allow(airport).to receive(:stormy_weather).and_return(false)
     airport.land(plane)
     allow(airport).to receive(:stormy_weather).and_return(true)
     expect{airport.take_off(plane)}.to raise_error "The weather is stormy, plane cannot takeoff"
@@ -66,9 +69,22 @@ describe Airport do
 
   #11 - User Story 3
   it "11. does not raise an error wwhen the weather is not stormy and plane attempts to takeoff" do
-    airport.land(plane)
     allow(airport).to receive(:stormy_weather).and_return(false)
+    airport.land(plane)
     expect{airport.take_off(plane)}.not_to raise_error
   end
+
+  #12 - User Story 4
+  it "12. raises an error when the weather is stormy and plane attempts to land" do
+    allow(airport).to receive(:stormy_weather).and_return(true)
+    expect{airport.land(plane)}.to raise_error "The weather is stormy, plane cannot land"
+  end
+
+  #13 - User Story 4
+  it "13. does not raise an error wwhen the weather is not stormy and plane attempts to land" do
+    allow(airport).to receive(:stormy_weather).and_return(false)
+    expect{airport.land(plane)}.not_to raise_error
+  end
+
 
 end
