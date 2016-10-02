@@ -43,7 +43,7 @@ context "Checks to see if plane DOESN'T take off in stormy weather"do
 
   context "Checks to see if airport is full"do
     it "Checks to see if airport is full"do
-      @ATC.land(@plane)
+      21.times {@ATC.land(@plane)}
       @ATC.weather = 1
       expect(@ATC.full).to eq "full"
     end
@@ -51,8 +51,8 @@ context "Checks to see if plane DOESN'T take off in stormy weather"do
 
   context "Checks to see if plane lands when airport is full"do
     it "Checks to see if plane lands when airport is full"do
-      @ATC.land_arr << @plane
-      expect(@ATC.land(@plane)).to raise_error('Don\'t land, airport is full')
+      21.times {@ATC.land_arr << @plane}
+      expect{@ATC.land(@plane)}.to raise_error('Don\'t land, airport is full')
     end
   end
 end

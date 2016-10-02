@@ -1,15 +1,16 @@
 class Atc
   attr_accessor :landed, :taken_off, :land, :take_off, :plane, :in_airport_method, :in_airport, :weather, :land_arr
+  DEFAULT_CAPACITY = 20
 
-  def initialize(weather = rand(1..2))
+  def initialize(weather = rand(1..2), capacity = DEFAULT_CAPACITY)
     @weather = weather
     @land_arr = []
-    @capacity = 1
+    @capacity = capacity
   end
 
   def land(plane)
     @plane = plane
-    fail 'Don\'t land, airport is full' if @land_arr.length > 0
+    fail 'Don\'t land, airport is full' if @land_arr.length >= @capacity
       @land_arr << @plane
       @plane.landed = true
   end
@@ -33,7 +34,7 @@ class Atc
   end
 
   def full
-    if @land_arr.length > 0
+    if @land_arr.length >= @capacity
     "full"
     else
     "not full"
