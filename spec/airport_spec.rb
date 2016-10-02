@@ -33,10 +33,23 @@ describe Airport do
     end
   end
 
-  it "doesn't accept new plane when full" do
+  describe "capacity" do
+
     error = "Airport is full"
-    30.times {subject.land(plane)}
-    expect{subject.land(plane)}.to raise_error error
+
+    it "doesn't accept new plane when full" do
+      subject.capacity.times {subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error error
+    end
+
+    it "allows default capacity to be override" do
+      airport = Airport.new(40)
+      40.times {airport.land(plane)}
+      expect {airport.land(plane)}.to raise_error error
+    end
+
   end
+
+
 
 end
