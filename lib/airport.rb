@@ -11,17 +11,20 @@ class Airport
   end
 
   def land(plane)
-
+    weather_good_today?
     raise "That plane has already landed!" unless !@planes.include?(plane)
+    raise "You cannot land in a storm" unless weather_today_good?
+    raise "This airport is full!" unless !full?
     confirm_landing
     @planes << plane
   end
 
   def take_off(plane)
-    raise "You cannot take off in a storm!" unless @weather == "Sunny"
-    raise "That plane is already flying!" unless @planes.include?(plane)
+    weather_good_today?
+    raise "That plane isn't in this airport!" unless @planes.include?(plane)
+    raise "You cannot take off in a storm!" unless weather_today_good?
     confirm_take_off
-    @planes.pop
+    @planes.delete(plane)
   end
 
   private
@@ -34,7 +37,16 @@ class Airport
     puts "The plane has taken-off!"
   end
 
-  def weather_today
+  def full?
+    return true if @planes.length >= @capacity
   end
 
+  def weather_good_today?
+    @weather = (rand(11))
+    if @weather < 6
+      true
+    else
+      false
+    end
+  end
 end
