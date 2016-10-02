@@ -135,3 +135,9 @@ of the class Plane
 -> messages and raising errors for take off method
 ->> By default a new airport will have stormy weather set to false
 - plane should not take off if weather is stormy
+-> stormy_weather method introduced in airport class that randomly will set the weather to stormy == true (3/10 times)
+-> raise error if stormy_weather is true
+
+# FOURTH USER STORY
+- plane should not land if weather is stormy
+-> raise error if stormy_weather is true
