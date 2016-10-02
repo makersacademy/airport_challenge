@@ -17,6 +17,7 @@ class Airport
     check_for_landing_issues (plane)
     plane.flying = false
     plane.in_airport = true
+    plane.set_location (airport_id)
     planes_on_ground << plane
   end
 

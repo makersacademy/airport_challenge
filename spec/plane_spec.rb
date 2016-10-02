@@ -50,15 +50,15 @@ describe Plane do
     end
 
   end
-=begin
+
   describe "Plane's location'" do
 
-    it "tells you which airport the plane is at" do
+    it "tells you which airport the plane is in (if landed)" do
         allow(airport).to receive(:weather) { "sunny" }
         airport.land(subject)
-        expect(subject.check_location).to eq airport
+        expect(subject.get_location).to eq "Plane is at airport #{airport.airport_id}"
     end
 
   end
-=end
+
 end
