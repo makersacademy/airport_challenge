@@ -7,17 +7,23 @@ describe Plane do
     it {is_expected.to respond_to (:plane_is_landed?)}
 
     it 'returns the landing status of landed plane as "true" ' do
-      plane = instance_double("plane", :plane_is_landed? => true)
-      expect(plane.plane_is_landed?).to eq true
+      test_plane = Plane.new(true)
+      expect(test_plane.plane_is_landed?).to eq true
     end
 
     it 'returns the landing status of non-landed plane as "false" ' do
-      plane = instance_double("plane", :plane_is_landed? => false)
-      expect(plane.plane_is_landed?).to eq false
+      test_plane = Plane.new(false)
+      expect(test_plane.plane_is_landed?).to eq false
     end
   end
 
   describe '#proceed_to_land' do
     it {is_expected.to respond_to (:proceed_to_land)}
+
+    it 'plane undertakes landing procedure' do
+      test_plane = Plane.new
+      test_plane.proceed_to_land
+      expect(test_plane).to be_plane_is_landed
+    end
   end
 end
