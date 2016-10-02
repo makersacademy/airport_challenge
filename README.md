@@ -1,3 +1,5 @@
+!(Travis CI badge)[https://travis-ci.org/hanrattyjen/airport_challenge.svg?branch=master]
+
 Airport Challenge
 =================
 
