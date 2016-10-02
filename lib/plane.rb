@@ -1,12 +1,23 @@
 class Plane
-  attr_reader :status
 
-  def take_off
-    @status = "Has taken off"
+  def take_off(airport)
+    airport.remove(self)
+    @status = {message: "Has taken off", airport: airport}
   end
 
-  def land
-    @status = "Landed"
+  def land(airport)
+    airport.add(self)
+    @status = {message:"Landed", airport: airport}
+  end
+
+  def status
+    if @status[:message] == "Has taken off"
+      @status[:message] + " from airport "+ @status[:airport].to_s
+    elsif @status[:message] == "Landed"
+      @status[:message] + " at airport " + @status[:airport].to_s
+    else
+      "Not in operation"
+    end
   end
 
 end

@@ -1,12 +1,25 @@
 class Airport
-  attr_reader :weather, :planes
+  @rng = Random.new
+  attr_reader :planes
   attr_accessor :capacity
   DEFAULT_CAPACITY = 10
 
   def initialize
-    @planes = [Plane.new, Plane.new, Plane.new]
-    #could use random number to generate x amount of planes?
+    @planes = []
     @capacity = DEFAULT_CAPACITY
   end
+
+  def weather
+    ["sun", "storm", "clouds", "fog", "rain", "snow"].sample(@rng).lowercase
+  end
+
+  def add(plane)
+    @planes << plane
+  end
+
+  def remove(plane)
+    @planes.delete(plane)
+  end
+
 
 end

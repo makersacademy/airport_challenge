@@ -2,13 +2,24 @@ require './lib/plane'
 require './lib/airport'
 
 describe Airport do
-  it 'has random weather' do
-    #write an actual proper test for this!
+  let(:plane) {double("plane")}
+
+  it 'has weather' do
     expect(subject).to respond_to(:weather)
   end
 
-  it 'houses landed planes' do
-    expect(subject.planes[0]).to be_a(Plane)
+  it "has no planes unless some have landed" do
+    expect(subject.planes).to eq([])
+  end
+
+  it 'can add planes to its list' do
+    subject.add(plane)
+    expect(subject.planes).to include(plane)
+  end
+
+  it 'can remove planes from its list' do
+    subject.remove(plane)
+    expect(subject.planes).not_to include(plane)
   end
 
   it 'has a default plane capcity' do
@@ -16,7 +27,7 @@ describe Airport do
   end
 
   it 'has capacity that can be changed' do
-    subject.capacity(20)
+    subject.capacity = 20
     expect(subject.capacity).to eq(20)
   end
 
