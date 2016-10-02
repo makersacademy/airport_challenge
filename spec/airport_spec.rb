@@ -14,7 +14,14 @@ let(:plane) { double :plane }
 
       it 'raises an error if the weather is too stormy for landing' do
         allow(airport.weather).to receive(:stormy).and_return(true)
-        expect{airport.land(plane)}.to raise_error 'Weather too stormy for landing'
+        message = 'Weather too stormy for landing'
+        expect{airport.land(plane)}.to raise_error message
+        end
+
+      it 'raises an error if a plane cannot land because the airport is full' do
+        Airport::DEFAULT_CAPACITY.times {airport.land(plane)}
+        message = 'Airport full, plane cannot land'
+        expect{airport.land(plane)}.to raise_error message 
         end
       end
 
@@ -27,7 +34,8 @@ let(:plane) { double :plane }
 
     it 'raises an error if the weather is too stormy for take off' do
       allow(airport.weather).to receive(:stormy).and_return(true)
-      expect{airport.take_off(plane)}.to raise_error 'Weather too stormy for take off'
+      message = 'Weather too stormy for take off'
+      expect{airport.take_off(plane)}.to raise_error message
     end
   end
 
