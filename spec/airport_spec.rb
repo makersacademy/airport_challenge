@@ -11,8 +11,17 @@ describe Airport do
   describe 'it lands a plane'
   it {is_expected.to respond_to(:land).with(1).argument}
 
-  # describe 'it stores a landed plane'
-  # it {is_expected.to}
+  describe 'it tells a plane to take off'
+  it {is_expected.to respond_to(:takeoff).with(1).argument}
+
+  describe 'it stores a landed plane'
+  it {expect(subject.plane).to eq(@plane)}
+
+  # expect(actual).to eq(expected)
+
+  # it {expect {subject.release}.to raise_error("No bikes available") if !@bikes}
+
+  # it {expect {docking_station.dock(Bike.new)}.to raise_error("Dock is full")}
 
 end
 

@@ -1,9 +1,11 @@
 class Plane
 
   def initialize
+    
   end
 
-  def status
+  def flying?
+  #  return true if
   end
 
 end
