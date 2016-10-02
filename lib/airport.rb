@@ -23,24 +23,23 @@ DEFAULT_CAPACITY = 5
 
   def takeoff(plane)
     fail 'The weather is stormy, no planes can take off' if weather == 'stormy'
+    fail 'The plane is not at this airport!' unless @landed_planes.include?(plane)
     @landed_planes.pop
     plane.flying = true
     puts "Plane has taken off"
   end
 
   def weather
-    num = rand(6)
-    if num == 0
-      weather = 'stormy'
-    else
-      weather = 'fine'
-    end
-    weather
+    weather = rand(6)
+    weather == 0 ? 'stormy' : 'fine'
   end
+
+private
+
+attr_reader :landed_planes
 
   def full?
-    @landed_planes.length >= capacity
+    @landed_planes.count >= capacity
   end
-
 
 end

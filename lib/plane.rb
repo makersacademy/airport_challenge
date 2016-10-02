@@ -2,8 +2,7 @@ require_relative 'airport'
 
 class Plane
 
-attr_accessor :flying, :status
-
+attr_accessor :flying, :status, :airport
   def initialize
     @flying = nil
   end
@@ -11,6 +10,5 @@ attr_accessor :flying, :status
   def flying?
     @flying
   end
-
 
 end
