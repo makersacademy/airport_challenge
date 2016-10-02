@@ -10,4 +10,8 @@ class Airport
     @capacity = capacity
   end
 
+  def conditions_good?
+    (Weather.new).stormy?
+  end
+
 end
