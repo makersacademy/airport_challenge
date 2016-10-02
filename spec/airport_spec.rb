@@ -43,6 +43,11 @@ describe Airport do
       subject.actual_weather(weather)
       expect(subject.land(@plane)).to eq 'No landing due to storm'
     end
+
+    it 'prevents landing when airport is full' do
+      ap = Airport.new
+      expect{(ap.capacity + 1).times {ap.land(@plane) }}.to raise_error('Airport is full')
+    end
   end
 
 end
