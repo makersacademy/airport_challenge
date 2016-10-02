@@ -31,6 +31,7 @@ class Airport
   def land(plane)
     raise "The weather is stormy, plane cannot land" if stormy_weather == true
     raise "No gates available - cannot land plane" if @gates.count >= @gates_size
+    raise "Plane is already landed" if @gates.include?(plane)
     @gates << plane
     "The plane has landed"
   end
@@ -38,7 +39,9 @@ class Airport
   def take_off(plane)
     raise "The weather is stormy, plane cannot takeoff" if stormy_weather == true
     raise "There are no planes currently at the airport - No departures" if @gates.count == 0
+    # raise "Plane is already flying" unless @gates.include?(plane) && defined?(@planes).nil?
     raise "Plane is not in this airport, thus cannot takeoff" unless @gates.include?(plane)
+
     @gates.delete(plane)
     "The plane has departed"
   end

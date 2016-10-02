@@ -99,7 +99,7 @@ describe Airport do
 
   context "inconsistent states" do
 
-    it "14. raise an error if plane attempts to takeoff from different airport" do
+    it "14. raises an error if plane attempts to takeoff from different airport" do
       allow(airport).to receive(:stormy_weather).and_return(false)
       airport2 = Airport.new
       allow(airport2).to receive(:stormy_weather).and_return(false)
@@ -107,6 +107,19 @@ describe Airport do
       airport2.land(plane2)
       airport.land(plane)
       expect{airport2.take_off(plane)}.to raise_error "Plane is not in this airport, thus cannot takeoff"
+    end
+
+    # it "15. raises an error if plane attempts to takeoff but it is already flying" do
+    #   allow(airport).to receive(:stormy_weather).and_return(false)
+    #   plane2 = Plane.new
+    #   airport.land(plane2)
+    #   expect{airport.take_off(plane)}.to raise_error "Plane is already flying"
+    # end
+
+    it "16. raises an error if there is an attempt to land a plane that has already landed " do
+      allow(airport).to receive(:stormy_weather).and_return(false)
+      airport.land(plane)
+      expect{airport.land(plane)}.to raise_error "Plane is already landed"
     end
 
   end
