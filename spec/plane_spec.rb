@@ -64,13 +64,17 @@ describe Plane do
     end
 
     it "fails when weather is stormy" do
-      expect{subject.take_off(stormy_airport)}.to raise_error "Plane can't take-off when weather is stormy"
+      airport = double(:airport, :full=>false, :stormy_weather=>false, :landed_planes=>[])
+      subject.land(airport)
+      allow(airport).to receive_messages(
+        :stormy_weather => true,
+        :landed_planes => [subject])
+      expect{subject.take_off(airport)}.to raise_error "Plane can't take-off when weather is stormy"
     end
 
     it "should only take off from an airport it is at" do
-      landed_airport = Airport.new
       random_airport = Airport.new
-      subject.land(landed_airport)
+      subject.land(airport)
       expect{subject.take_off(random_airport)}.to raise_error "Plane not landed at that airport"
     end
 

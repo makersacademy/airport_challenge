@@ -1,8 +1,7 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :landed_planes, :capacity
-  attr_accessor :stormy_weather
+  attr_reader :landed_planes, :capacity, :stormy_weather
 
   DEFAULT_CAPACITY = 40
 

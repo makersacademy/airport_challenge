@@ -27,13 +27,12 @@ describe Airport do
     end
     expect(subject.full).to be true
   end
-  
+
   describe "#stormy_weather" do
     it {is_expected.to respond_to :stormy_weather }
 
-    it "can set & get stormy weather" do
-      subject.stormy_weather=(true)
-      expect(subject.stormy_weather).to eq true
+    it "is a random boolean" do
+      expect([true, false]).to include subject.stormy_weather
     end
   end
 
