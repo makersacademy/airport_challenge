@@ -10,19 +10,23 @@ DEFAULT_CAPACITY = 20
     @capacity = capacity
   end
 
-  def take_off
-    @planes.pop
-  end
-
   def land(plane)
     raise 'Airport is full' if airport_full?
     @planes << plane
   end
 
+  def take_off
+    raise 'No planes available for take off' if no_planes?
+    @planes.pop
+  end
 
   private
     def airport_full?
       return true if @planes.length >= DEFAULT_CAPACITY
+    end
+
+    def no_planes?
+      return true if @planes.length == 0
     end
 
 end
