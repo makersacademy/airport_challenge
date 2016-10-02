@@ -13,7 +13,7 @@ class Airport
   end
 
   def take_off(plane)
-    fail 'Sorry no planes to take off' if @planes.empty?
+    fail 'Sorry no planes to take off' if empty?
     fail 'This plane is not at the airport' unless @planes.include? plane
     plane.status = false
     @planes.delete(plane)
@@ -27,5 +27,8 @@ class Airport
     end
   end
 
+  def empty?
+    @planes.length == 0
+  end 
 
 end
