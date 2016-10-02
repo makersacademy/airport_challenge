@@ -15,7 +15,10 @@ require 'plane'
 #I want to instruct a plane to land at an airport and confirm that it has landed
     it "instructs a plane to land" do
       allow(airport).to receive(:random_weather) { 'sunny' }
-      expect(airport.land_plane(plane)).to eq "Plane has landed"
+      #allow(double).to receive(:land_plane) { "Plane has landed" }
+      #expect(double.land_plane).to eq("Plane has landed")
+      plane1 = plane
+      expect(airport.land_plane(plane1)).to eq "Plane has landed"
     end
 
 #I want to prevent landing when weather is stormy
@@ -27,6 +30,7 @@ require 'plane'
 #I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
     it "instructs a plane to take off and confirms it is no longer at the airport" do
       allow(airport).to receive(:random_weather) { 'sunny' }
+      airport.land_plane(plane)
       expect(airport.take_off(plane)).to eq "the plane has taken off"
       end
 
