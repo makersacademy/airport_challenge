@@ -2,8 +2,12 @@ require 'airport'
 
 describe Airport do
 
-it "has a default capacity of 10 landing slots" do
-  expect(subject.landing_slots).to eq(10)
-end
+  it "is an instance of the Airport class" do
+    expect(subject.is_a?(Airport)).to eq true
+  end
+
+  it "has a default capacity of 5" do
+    expect(subject.capacity).to eq(5)
+  end
 
 end
