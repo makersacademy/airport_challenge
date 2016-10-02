@@ -7,70 +7,70 @@ describe Airport do
     @airport = Airport.new
   end
 
+  let (:plane) {double :plane}
+
   it { is_expected.to respond_to :take_off }
 
   it { is_expected.to respond_to :landing }
 
-  it 'should see that a plane has landed' do
-    airport = Airport.new
-    plane = Plane.new
-    expect(airport.landing(plane)).to eq [plane]
-  end
-
-  it 'should not allow planes to land if at default capacity' do
-    airport = Airport.new
-    Airport::DEFAULT_CAPACITY.times{airport.landing(Plane.new)}
-    plane = Plane.new
-    expect { airport.landing(plane)}.to raise_error("There's no room at the inn!")
-  end
-
-  it 'should see that a plane has left the airport' do
-    airport = Airport.new
-    plane = Plane.new
-    airport.landing(plane)
-    expect(airport.take_off).to eq plane
-  end
-
-  it 'should allow 15 planes to land' do
-    airport = Airport.new(15)
-    15.times{airport.landing(Plane.new)}
-    plane = Plane.new
-    expect(airport.planes.length).to eq 15
-  end
-
-  it 'should have a capacity of 15 when given' do
+  it "Should have a capacity of 15 when given" do
     airport = Airport.new(15)
     expect(airport.capacity).to eq 15
   end
 
-  it 'should have a default capacity of 20' do
-    airport = Airport.new
-    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  it "Should have a default capacity of 20" do
+    expect(@airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-  it 'should not allow a plane to take off if there aren\'t any planes' do
-    airport = Airport.new
-    expect{airport.take_off}.to raise_error("There aren't any planes!")
-  end
+    describe "Landing related elements of brief"
 
-  it 'should not allow a plane to take off it it\'s stormy' do
-    airport = Airport.new
-    plane = Plane.new
-    airport.landing(plane)
-    allow(airport).to receive(:stormy?).and_return(true)
-    expect{airport.take_off}.to raise_error("It's blowing a gale out there!")
-  end
+      before do
+        @plane = Plane.new
+      end
 
-  it "should check that weather elements are random" do
-    airport = Airport.new
-    expect(airport.forecast).to eq Weather::ELEMENTS.sample
-  end
+      it "Should show that a plane has landed" do
+        expect(@airport.landing(@plane)).to eq [@plane]
+      end
 
+      it "Should allow 15 planes to land" do
+        airport = Airport.new(15)
+        15.times{airport.landing(Plane.new)}
+        expect(airport.planes.count).to eq 15
+      end
 
-  it 'should get a plane, and check it\'s working' do
-    plane = Plane.new
-    expect(plane.working?).to eq true
-  end
+      xit "Should not allow a plane to land if it's stormy" do
+        allow(@airport).to receive(:stormy?) { :stormy }
+        expect{@airport.landing(@plane)}.to raise_error("It's too windy to land!")
+      end
 
+      it "Should not allow planes to land if at default capacity" do
+        Airport::DEFAULT_CAPACITY.times{@airport.landing(Plane.new)}
+        expect { @airport.landing(@plane)}.to raise_error("There's no room to land this plane!")
+      end
+
+    describe "Take-off related elements of the brief"
+
+      it "Should not allow a plane to take off if there aren't any planes" do
+        expect{@airport.take_off}.to raise_error("There aren't any planes!")
+      end
+
+      before do
+        @plane = Plane.new
+      end
+
+      it "Should see that a plane has left the airport" do
+        @airport.landing(@plane)
+        expect(@airport.take_off).to eq @plane
+      end
+
+      it "Should not allow a plane to take off it it's stormy" do
+        @airport.landing(@plane)
+        allow(@airport).to receive(:stormy?) { :stormy }
+        expect{@airport.take_off}.to raise_error("It's blowing a gale out there!")
+      end
+
+      it "Should get a plane, and check it's working" do
+        expect(@plane.working?).to eq true
+      end
 
 end

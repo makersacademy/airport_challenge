@@ -23,8 +23,9 @@ include Weather
   end
 
   def landing(planes)
-    fail "There's no room at the inn!" if full?
+    fail "There's no room to land this plane!" if full?
     @planes << planes
+
   end
 
   private
