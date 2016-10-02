@@ -107,7 +107,7 @@ describe Airport do
 
     it 'should only allow plans that are at the airport to take off' do
       allow(plane).to receive(:take_off)
-      expect{airport.take_off(plane)}.to raise_error 'This plane is not in the airport'
+      expect{sunny_airport.take_off(plane)}.to raise_error 'This plane is not in the airport'
     end
   end
 
