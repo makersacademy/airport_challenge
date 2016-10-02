@@ -16,8 +16,8 @@ class Weather < Airport
   #   rand(@weather.length-1)
   # end
   #
-  # def weather_forecast
-  #   return @weather[randomiser]
-  # end
+  def weather_forecast
+    return @weather[randomiser]
+  end
 
 end

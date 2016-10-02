@@ -5,20 +5,18 @@ require 'weather'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:weather) { double :weather, stormy?: true  }
-  landed_planes =
-
-
   let(:plane) {double :plane}
-  # let(:planes) {double :planes}
-  plane = Plane.new
+
 
 
   describe '#initialize' do
   it 'sets default capacity' do # need to stub this it uses default capacity
+    allow(plane).to receive(:land)
     4.times{ subject.instruct_to_land(plane) }
     expect(subject.instruct_to_land(plane)).to eq plane
   end
   it "allows a specific capacity to be set" do
+    allow(plane).to receive(:land)
     airport = Airport.new(10)
     10.times { airport.instruct_to_land(plane) }
     expect {airport.instruct_to_land(plane)}.to raise_error "Clearance for landing not granted: airport full"
@@ -27,8 +25,7 @@ end
 
   describe '#instruct_to_land' do
     it "tells a plane to land at the airport" do
-      # allow(plane).to receive(:land)
-      # allow(planes).to receive(:land)
+      allow(plane).to receive(:land)
       expect( subject.instruct_to_land(plane) ).to eq plane
     end
     it 'will not allow a plan to land during stormy weather' do
@@ -52,6 +49,8 @@ end
 
   describe '#instruct_to_take off' do
     before do
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:take_off)
       subject.instruct_to_land(plane)
       planes = []
       planes << plane

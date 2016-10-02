@@ -16,6 +16,8 @@ class Plane < Airport
     @status = :in_flight
   end
 
+  private
+
   def status
     @status
   end
