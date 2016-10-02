@@ -34,6 +34,18 @@ context 'Airport is full' do
   end
 end
 
+context 'Airport arrivals capacity' do
+  it "takes the DEFAULT_CAPACITY" do
+    default_airport = Airport.new
+    expect(default_airport.capacity).to eq(Airport::DEFAULT_CAPACITY)
+  end
+  it "allows user to change capactity" do
+    airport3= Airport.new(3)
+    expect(airport3.capacity).to eq(3)
+  end
+end
+
+
 
 
 

@@ -1,6 +1,7 @@
 class Airport
   DEFAULT_CAPACITY = 10
-attr_reader :status, :take_off, :land, :departure_arr, :arrivals
+attr_reader :status, :take_off, :land, :departure_arr, :arrivals, :capacity
+attr_writer :capacity
 
 def initialize (capacity=DEFAULT_CAPACITY)
   @departure_arr =[]
@@ -32,12 +33,12 @@ def departures(plane)
 end
 
 def take_off
-  if @conditions >= 3
+  if @conditions < 3
+    print "sorry it's too stormy to fly today."
+  else
   @inflight_plane = @departure_arr.pop
   @inflight_plane.airborne
   confirm_take_off
-  else
-    print "sorry it's too stormy to fly today."
   end
 end
 

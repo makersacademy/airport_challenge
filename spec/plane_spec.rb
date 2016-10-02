@@ -20,10 +20,6 @@ describe Plane do
     expect(boeing.status).to eq('flying')
     end
 
-    it 'confirms plane that departed is not at airport' do
-    expect(jfk.departure_arr).to eq []
-    end
-
 end
 
   context 'plane has landed' do
