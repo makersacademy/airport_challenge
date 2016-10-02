@@ -5,7 +5,7 @@ class Airport
   attr_reader :weather
   attr_accessor :capacity
 
-  CHANCE_OF_SUN = 0.9
+  CHANCE_OF_SUN = 1.0
   DEFAULT_CAPACITY = 200
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -47,12 +47,9 @@ class Airport
     @weather
   end
 
-  def check_planes
-    puts @planes
-  end
-
   def find_plane(plane)
     fail "Plane not in airport" if @planes.include?(plane) == false
     puts "Plane in airport"
   end
+
 end
