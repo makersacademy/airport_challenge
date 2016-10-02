@@ -28,6 +28,10 @@ describe Plane do
   end
 
   describe "#fly_to" do
+    it "should raise error if it's a new plane and hasn't been landed to any airport" do
+      expect { described_class.new.fly_to(airport) }.to raise_error "NEW PLANE! Assign the plane to an airport first: airport.land(plane)"
+    end
+
     before { subject.send(:set_airport, airport) }
 
     it "should raise error if plane is already in that airport" do
@@ -37,6 +41,11 @@ describe Plane do
     it "should raise error if plane is already flying" do
       subject.send(:set_as_flying)
       expect { subject.fly_to(next_airport) }.to raise_error "Plane is already flying"
+    end
+
+    it "should return a landing confirmation message" do
+      allow(airport).to receive(:take_off)
+      expect(subject.fly_to(next_airport)).to eq "Plane has successfully landed at destination."
     end
   end
 

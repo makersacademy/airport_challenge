@@ -10,6 +10,7 @@ class Plane
   end
 
   def fly_to(destination_airport)
+    fail "NEW PLANE! Assign the plane to an airport first: airport.land(plane)" if landed?.nil?
     fail "Plane is already in that airport" if destination_airport == airport
     fail "Plane is already flying" if landed? == false
     take_off(destination_airport)
@@ -34,6 +35,7 @@ class Plane
     set_as_flying
     reset_airports
     previous_airport.send(:take_off, self, destination_airport)
+    "Plane has successfully landed at destination."
   end
 
   def reset_airports
