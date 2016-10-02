@@ -11,14 +11,14 @@ class Airport
   def land(plane)
     fail 'This plane has already landed' if planes.include?(plane)
     fail 'This airport can\'t receive more planes' if full?
-    fail 'Landing not permited due to stormy weather' if weather.stormy?
+    fail 'Landing not permitted due to stormy weather' if weather.stormy?
     plane.land
     planes.push(plane)
   end
 
   def take_off(plane)
     fail 'This plane has not landed yet' unless planes.include?(plane)
-    fail 'Take off not permited due to stormy weather' if weather.stormy?
+    fail 'Take off not permitted due to stormy weather' if weather.stormy?
     plane.take_off
     planes.delete(plane)
   end
