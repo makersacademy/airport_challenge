@@ -6,4 +6,8 @@ class Airport
 		@landed_planes = []
 	end
 
+	def full?
+		true if @landed_planes.count >= 20
+	end
+
 end

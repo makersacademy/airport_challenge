@@ -10,6 +10,7 @@ class Plane
 
 	def land(airport, weather)
 		raise 'Too stormy to land!' if weather.stormy?
+		raise 'Airport is full!' if airport.full?
 		@landed = true
 		airport.landed_planes << self
 	end
