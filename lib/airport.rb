@@ -1,11 +1,11 @@
 require './lib/plane'
 
 class Airport
-    
+
     attr_accessor :capacity, :planes, :planes_landed
-  
+
   DEFAULT_CAPACITY = 5
-    
+
   def initialize (capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes_landed = []
@@ -32,8 +32,8 @@ class Airport
     @planes_landed.count >= DEFAULT_CAPACITY
   end
 
-  #set 6 for roughly once a week 30 for a month etc
-  # def weather
-  #   rand(6) == 0 ? "stormy" : "sunny"
-  # end
-end
+  set 6 for roughly once a week 30 for a month etc
+  def weather
+    rand(6) == 0 ? "stormy" : "sunny"
+  end
+end$
