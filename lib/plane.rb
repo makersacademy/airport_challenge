@@ -17,7 +17,6 @@ class Plane
     @status
   end
 
-
   def land
     @status = :Landed
     @passengers = 0

@@ -8,7 +8,7 @@ require 'plane'
    it { is_expected.to respond_to :status }
    it { is_expected.to respond_to :passengers? }
 
-   describe 'initalization' do
+ describe 'initalization' do
        it 'should have some passengers' do
        expect(subject.passengers?).to_not eq nil
       end
@@ -18,7 +18,7 @@ require 'plane'
       end
    end
 
-    describe 'status' do
+ describe 'status' do
       it 'should give the current flight status' do
         expect(subject.status).to be :Flying
       end

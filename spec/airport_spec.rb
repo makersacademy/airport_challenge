@@ -32,20 +32,20 @@ describe Airport do
 
   end
 
-    describe "#land_plane" do
-      subject(:airport) { described_class.new }
-      it 'lands a plane' do
-      allow(airport).to receive(:stormy?).and_return(false)
-      allow(plane).to receive(:land)
-      expect(airport.land_plane(plane)).to eq [plane]
-    end
+describe "#land_plane" do
+    subject(:airport) { described_class.new }
+    it 'lands a plane' do
+     allow(airport).to receive(:stormy?).and_return(false)
+     allow(plane).to receive(:land)
+     expect(airport.land_plane(plane)).to eq [plane]
+   end
 
     it 'won\'t land a plane if it is already in the airport' do
      allow(airport).to receive(:stormy?).and_return(false)
      allow(plane).to receive(:land)
      airport.land_plane(plane)
      expect { airport.land_plane(plane) }.to raise_error 'This plane has already landed!'
-    end
+   end
 
     it 'confirms that the plane has landed at the airport' do
       allow(airport).to receive(:stormy?).and_return(false)
@@ -70,8 +70,7 @@ describe Airport do
     end
   end
 
-
-  describe "#take_off" do
+ describe "#take_off" do
 
     it 'won\'t let you let a plane leave the airport that isn\'t there' do
       airport = described_class.new(1, :Sunny)
@@ -106,6 +105,5 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.take_off_check(plane)).to eq true
     end
-end
-
+  end
 end
