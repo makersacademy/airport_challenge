@@ -10,4 +10,7 @@ describe Weather do
 	 	expect(weather).to be_stormy
 	 end
 	
+	it 'stormy? returns true or false' do
+		expect([true, false]).to include(weather.stormy?)
+	end
 end
