@@ -10,14 +10,11 @@ describe 'airport' do
     it 'lands a plane (one by one - no restrictions)' do
       expect(airport).to respond_to(:land_plane).with(1).argument
     end
-    it 'responds to confirm_landing' do
-      expect(airport).to respond_to(:confirm_landing)
+    it 'responds to present plane' do
+      expect(airport).to respond_to(:present_plane?)
     end
     it 'instructs take off' do
       expect(airport).to respond_to(:instruct_take_off).with(1).argument
-    end
-    it 'responds to confirm_takeoff' do
-      expect(airport).to respond_to(:confirm_takeoff)
     end
   end
   context 'Airport capacity:' do
@@ -45,8 +42,19 @@ describe 'airport' do
     it 'does not land beyond capacity (default or varied)' do
       expect{(airport.capacity+1).times{airport.land_plane(airplane)}}.to raise_error("Full Capacity reached, no landing!")
     end
-    it 'confirms plane landing' do
-      expect{airport.confirm_landing}.to raise_error("Plane has not landed")
+    it 'confirms plane presence' do
+      #expect{airport.present_plan}.to raise_error("Plane has not landed")
+      expect(airport.present_plane?(airplane)).to eq false
+      airport.land_plane(airplane)
+      expect(airport.present_plane?(airplane)).to eq true
+    end
+  end
+
+  context 'planes taking off' do
+    it 'recognises a plane has takenoff' do
+      airport.land_plane(airplane)
+      airport.instruct_take_off(airplane)
+      expect(present_plane?(airplane)).to eq []
     end
   end
 end

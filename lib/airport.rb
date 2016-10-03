@@ -24,18 +24,14 @@ class Air_Port
     #puts "plane landed"
   end
 
-  def confirm_landing
-    #if in array "landed" else raise_error
-    fail "Plane has not landed" if not_landed
-    puts "plane landed"
+  def present_plane?(airplane)
+      #fail "Plane has not landed" if not_landed
+    @airplanes.include? airplane
   end
 
   def instruct_take_off(airplane)
   #  fail "Too stormy to take off" if stormy
     @airplanes.delete(airplane)
-  end
-
-  def confirm_takeoff
   end
 
   private
@@ -44,10 +40,6 @@ class Air_Port
 
   def full?
     @airplanes.count >= DEFAULT_CAPACITY
-  end
-
-  def not_landed
-    @airplanes.include?
   end
 
   def not_takenoff
