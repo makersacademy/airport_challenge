@@ -9,7 +9,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = change_weather)
     @runway = []
-    @the_weather = weather
+    @the_weather = change_weather
     @capacity = capacity
   end
 
@@ -18,8 +18,8 @@ class Airport
   end
 
   def change_weather
-   @weather = [:Stormy, :Sunny, :Cloudy, :Windy, :Rainey]
-   @the_weather = @weather.sample
+   $weather = [:Stormy, :Sunny, :Cloudy, :Windy, :Rainey]
+   @the_weather = $weather.sample
    @the_weather
   end
 
