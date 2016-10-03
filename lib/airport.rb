@@ -10,9 +10,11 @@ class Airport
   attr_reader :planes
   attr_accessor :stormy_weather
   attr_reader :capacity
+  attr_reader :flight_log
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @flight_log = []
     @capacity = capacity
     @stormy_weather = false #it's sunny
   end
@@ -33,6 +35,7 @@ class Airport
     fail('Airport is full') if full?
       if @stormy_weather == false
         @planes << plane
+        @flight_log << plane.plane_id
       else
         'No landing due to storm'
       end

@@ -53,6 +53,14 @@ describe Airport do
       it 'landing when airport is full' do
         expect{(airport.capacity + 1).times {airport.land(@plane) }}.to raise_error('Airport is full')
       end
+
+      it 'landing if plane has already landed' do
+        expect(airport.land(@plane)).to raise_error('Plane has already landed')
+      end
+
+      it 'takeoff if plane is already flying' do
+
+      end
     end
   end
 
