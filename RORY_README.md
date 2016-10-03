@@ -8,6 +8,8 @@ I want to write a test that checks whether the parameter I pass to a class metho
 
 9pm Sunday night - Decided to write the program and then write rspec tests afterwards. I am aware that this goes against the practice and purpose of TDD and decided to do it because my rspec syntax ability is very far behind where I want it to be and I will learn the syntax more quickly if I can isolate the thought process of writing the test from having to work out what the program needs to look like to pass it. My problem is not the process of TDD, but stumbling over rspec syntax due to my current low level rspec vocabulary. I am aware of the benefits and system of TDD.
 
+8am Monday morning - frustrated as I didn't get into the parts of rspec that I didn't get into during the week, which would have been the most valuable thing to learn. I still learned a lot and consolidated my knowledge of the code and rspec by studying by myself. I found the rspec documentation to be very confusing and incomplete. I feel that with better resources on the net I would have learned more but this is something I will have to get used to and overcome as a knowledge worker.
+
 SYNTAX - How do I check whether a class method stores the parameter passed to it as an instance variable?
 
 QUESTIONS ---------------
@@ -17,4 +19,4 @@ SOLVED ABOVE - used Array.delete
 
 Why does my rspec look so different? Coveralls doesn't seem to have loaded properly. Missing my .....F.. at the top :(
 
-  Why does my Plane flying status fail if I put a ? on the end? rspec tells me "syntax error, unexpected '='"
+  Why does my Plane flying status fail if I put a ? on the end? rspec tells me "syntax error, unexpected '='". Had to remove ?
