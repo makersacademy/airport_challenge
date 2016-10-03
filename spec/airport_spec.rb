@@ -4,8 +4,8 @@ require './lib/airport'
 describe Airport do
   let(:plane) {double("plane")}
 
-  it 'has weather' do
-    expect(subject).to respond_to(:weather)
+  it "can tell if weather is adverse or not" do
+    expect([true, false]).to include(subject.adverse_weather?)
   end
 
   it "has no planes unless some have landed" do

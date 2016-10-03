@@ -1,16 +1,12 @@
 class Airport
-  @rng = Random.new
   attr_reader :planes
   attr_accessor :capacity
   DEFAULT_CAPACITY = 10
+  POSSIBLE_WEATHER = ["sun", "storm", "clouds", "fog", "rain", "snow"]
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @planes = []
-    @capacity = DEFAULT_CAPACITY
-  end
-
-  def weather
-    ["sun", "storm", "clouds", "fog", "rain", "snow"].sample(@rng).lowercase
+    @capacity = capacity
   end
 
   def add(plane)
@@ -22,12 +18,15 @@ class Airport
   end
 
   def adverse_weather?
-    self.weather == "storm"
+    weather == "storm"
   end
 
   def full?
     @planes.count == @capacity
   end
 
-
+  private
+  def weather
+    POSSIBLE_WEATHER.sample.downcase
+  end
 end

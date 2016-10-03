@@ -26,6 +26,8 @@ class Plane
     end
   end
 
+  private
+
   def landed?
     @status[:message] == "Landed"
   end
