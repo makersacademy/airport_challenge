@@ -25,7 +25,7 @@ end
   context 'plane has landed' do
     it 'confirms plane has landed' do
       jfk.land(boeing)
-      expect(boeing.status).to eq('landed')
+      expect(boeing.status).to eq(boeing)
     end
 
     it 'confirms plane is in arrivals' do
