@@ -36,25 +36,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +73,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
@@ -88,3 +88,56 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+######## Dionysis Kastellanis #######
+October 01, 2016
+
+- Forked the repo on my personal Github account
+- Cloned it on my makers mac in "/Users/Dio22/Makers_Academy/Weekend_Challenges/Week1_airport_challenge"
+- `gem install bundle` to install any required gems for the current challenge
+- `bundle` to check if everything is installed properly. good to go now!
+- running rspec results in 0 examples
+- installing and initializing the makersinit gem
+
+# FIRST USER STORY
+- The user is an air traffic controller that wants to land a plane at the airport and get a confirm status that it has landed
+-> an airport class is required to create an airport or many airports
+-> a plane class is required to create planes
+-> land method that will land a plane at the airport
+- creating an airport_spec file to test for an instance of the class Airport
+-> creating a lib folder
+-> airport file to create the Airport class
+- creating a plane_spec file to test for an instance
+of the class Plane
+-> plane file to create the Plane class
+- test for the land method
+-> in the airport spec file expect an airport to respond to the land method taking a plane as an argument
+-> creating the land method in the airport file
+-- requiring relevant file where is needed
+
+# SECOND USER STORY
+- allow a plane to take off from the airport and confirm status that is has departed
+-> airport spec file to test for the method take_off with one argument
+-> created take_off method in airport class
+
+# FIFTH USER STORY
+- prevent landing of plane when airport is full
+-> compare number of planes in gates array (see third user story) with airport capacity and prevent a landing if airport is full
+
+# SIXTH USER STORY
+- airport capacity can be altered
+-> while initializing an instance set the gate capacity size
+
+# THIRD USER STORY
+-> when landed planes are stored to the gates array
+-> messages and raising errors for land method
+-> messages and raising errors for take off method
+->> By default a new airport will have stormy weather set to false
+- plane should not take off if weather is stormy
+-> stormy_weather method introduced in airport class that randomly will set the weather to stormy == true (3/10 times)
+-> raise error if stormy_weather is true
+
+# FOURTH USER STORY
+- plane should not land if weather is stormy
+-> raise error if stormy_weather is true
