@@ -2,7 +2,6 @@ require_relative 'plane.rb'
 
 class Airport
 
-  #attr_reader :bad_weather
   attr_accessor :capacity
 
   CHANCE_OF_STORM = 0.1
@@ -22,16 +21,16 @@ class Airport
   end
 
   def takeoff(plane)
-    fail "Plane already in air" if plane.on_ground == false
+    fail "Plane already in air" if !plane.on_ground
     fail "Can't takeoff when stormy" if !good_weather?
-    fail "Plane not in airport" if plane_in_airport?(plane) == false
+    fail "Plane not in airport" if !plane_in_airport?(plane)
     plane.on_ground = false
     @planes.delete(plane)
   end
 
   def add_new_plane(plane)
     fail "Plane already in airport" if plane_in_airport?(plane)
-    fail "Plane already in air" if plane.on_ground == false
+    fail "Plane already in air" if !plane.on_ground
     @planes << plane
   end
 
@@ -48,7 +47,7 @@ class Airport
   end
 
   def find_plane(plane)
-    fail "Plane not in airport" if plane_in_airport?(plane) == false
+    fail "Plane not in airport" if !plane_in_airport?(plane)
     plane
   end
 
