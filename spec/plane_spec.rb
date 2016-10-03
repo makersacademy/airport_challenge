@@ -6,13 +6,7 @@ describe Plane do
     expect(subject.status).to eq 'in flight'
   end
 
-  it 'instructs a plane to land' do
-    expect(subject).to respond_to :land
-  end
-
-  it 'instructs a plane to takeoff' do
-    expect(subject).to respond_to :takeoff
-  end
+  it { should respond_to :land, :takeoff}
 
   it 'confirms when it has landed' do
     airport = Airport.new

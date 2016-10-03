@@ -2,6 +2,8 @@ require_relative 'plane'
 
 class Airport
 
+  # add DEFAULT_CAPACITY constant
+
   attr_reader :planes, :weather
 
   def initialize
