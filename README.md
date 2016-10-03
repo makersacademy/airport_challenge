@@ -4,6 +4,13 @@ Airport Challenge
 Travis CI status badge:
 [![Build Status](https://travis-ci.org/LaszloBogacsi/airport_challenge.svg?branch=master)](https://travis-ci.org/LaszloBogacsi/airport_challenge)
 
+Task unfinished: (functionality to add)
+
+planning to add a plane tracking id to be able to instruct specific planes.
+Need to add the option for planes to allow to belong to an airport
+Need to add the option for planes to allow to be in the air only.
+Set default variables for planes (landed, location) to meet the edge cases.
+
 Task
 -----
 
