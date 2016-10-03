@@ -11,22 +11,22 @@ class Airport
   end
 
   def land(plane)
-    fail 'Cannot land, too stormy' if stormy?
+    #fail 'Cannot land, too stormy' if stormy?
     fail 'Cannot land, airport full' if @planes.length >= DEFAULT_CAPACITY
     @planes << plane
     plane::flying = false
   end
 
   def takeoff(plane)
-    fail 'Cannot take-off, too stormy' if stormy?
+  #  fail 'Cannot take-off, too stormy' if stormy?
     @planes.delete(plane)
     plane::flying = true
   end
 
   def stormy?
-    # add 2+ more fine's below for final checks
-    heavens = ['fine','stormy']
+    heavens = ['fine', 'fine', 'fine', 'stormy']
     return true if heavens.sample == 'stormy'
+    return 'fine'
   end
 
 end
