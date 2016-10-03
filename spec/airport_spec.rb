@@ -64,9 +64,9 @@ describe Airport do
 
   describe "Capacity tests" do
     it "Airport should have a default capacity" do
-      capacity_airport = Airport.new
-      expect(capacity_airport).to have_attributes(:capacity => 10)
+      expect(@airport).to have_attributes(:capacity => 10)
     end
+
     it "Airport should have a definable capacity" do
       capacity_airport = Airport.new(15)
       expect(capacity_airport).to have_attributes(:capacity => 15)
@@ -79,6 +79,6 @@ describe Airport do
 
     it "Airport should stand up to rush hour" do
       expect{10.times do @airport.land_plane(Plane.new) end}.not_to raise_error
-      end
+    end
   end
 end

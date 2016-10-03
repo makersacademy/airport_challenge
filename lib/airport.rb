@@ -62,5 +62,4 @@ class Airport
     def plane_exists?(plane)
       @planes.include? plane
     end
-
 end
