@@ -20,5 +20,9 @@ describe Airport do
     expect(airport.planes).to include plane
   end
 
-
+  it "won't allow landing plane if airport full" do
+    subject.capacity.times{ subject.land(plane) }
+    expect{ subject.land(plane) }.to raise_error "Airport is full. Unable to land."
+  end
+  
 end
