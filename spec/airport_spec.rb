@@ -85,4 +85,17 @@ describe Airport do
         end
     end
     
+   
+    
 end
+
+describe Airport do
+    describe "random weather" do
+        
+        it "produces 'stormy' or 'fine' weather" do
+            airport = Airport.new
+            expect(airport.airport_open?).to satisfy { |v| [true,false].include? v }
+        end
+        
+    end
+end    
