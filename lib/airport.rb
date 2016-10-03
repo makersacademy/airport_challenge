@@ -2,10 +2,8 @@ require_relative 'plane'
 
 class Airport
 
-
-  DEFAULT_CAPACITY = 5
-
   attr_reader :the_weather
+  DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = change_weather)
     @runway = []
@@ -57,6 +55,7 @@ class Airport
   end
 
  private
+
 
   def stormy?
    if the_weather == :Stormy then true else false end
