@@ -1,5 +1,6 @@
 Airport Challenge
 =================
+Travis CI build - https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
 
 ## Description
 This programme performs the function of monitoring aeroplane traffic at an airport.
