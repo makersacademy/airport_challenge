@@ -1,13 +1,11 @@
 
 require 'airport'
-require './lib/plane'
-
 
 DEFAULT_CAPACITY = 50
 
 describe Airport do
   subject(:airport) { described_class.new}
-
+  let (:plane) { double :plane }
 
   it { is_expected.to respond_to :land}
   it { is_expected.to respond_to :take_off}
@@ -21,16 +19,6 @@ describe Airport do
     airport.land(plane)
     expect(airport.planes).to include plane
   end
-
-
-
-#describe 'plane land' do
-
-#  it 'instructs plane to land' do
-#    airport.land(plane)
-#    expect(airport.planes).to include plane
-#  end
-#end
 
 
 end

@@ -1,11 +1,11 @@
-require './lib/plane'
+require_relative 'plane'
 
 class Airport
 
 
 	DEFAULT_CAPACITY = 50
 
-	attr_reader :planes, :DEFAULT_CAPACITY
+	attr_reader :planes, :capacity
 
 	def initialize(capacity = DEFAULT_CAPACITY)
 		@capacity = capacity
@@ -14,6 +14,7 @@ class Airport
 
 	def land(plane)
 		@planes << plane
+		puts "Landed"
 	end
 
 
@@ -24,7 +25,7 @@ class Airport
 	def full?
 
 		@planes.length >= capacity
-	
+
 	end
 
 
