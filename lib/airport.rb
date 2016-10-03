@@ -14,20 +14,17 @@ class Airport
   def land(plane)
     raise "Impossible to allow landing, weather is stormy!" if stormy?
     raise "The airport is full at the moment, please wait for landing." if full?
-    #plane.land
     @landed << plane
+    @flying.delete(plane)
     "The plane has already landed"
   end
 
   def take_off(plane)
     raise "Impossible to allow take off, weather is stormy!" if stormy?
-    if @landed.include?(plane)
+    raise "Planes can't take off from airports they aren't in" unless @landed.include?(plane)
       @flying << plane
       @landed.delete(plane)
       "The plane has taken off and it is no longer in the airport"
-    else
-      raise "Planes can't take off from airports they aren't in"
-    end
   end
 
   def full?

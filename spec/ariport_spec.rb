@@ -46,12 +46,6 @@ describe Airport do
       expect(airport).to respond_to(:take_off).with(1).argument
     end
 
-    # it "returns a plane" do
-    #   allow(weather).to receive(:stormy?).and_return false
-    #   airport.land(plane)
-    #   expect(airport.take_off(plane)).to eq plane
-    # end
-
     it "confirms that the plane has taken off and it is no longer in the airport" do
       allow(weather).to receive(:stormy?).and_return false
       airport.land(plane)

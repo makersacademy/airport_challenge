@@ -14,6 +14,4 @@ describe Weather do
       expect(weather.stormy?).to be false
     end
   end
-
-
 end
