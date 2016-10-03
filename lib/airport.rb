@@ -1,27 +1,26 @@
-require_relative 'plane'
+require './lib/plane'
 
 class Airport
 
-  DEFAULT_CAPACITY = 50
-  attr_writer :planes, :capacity
-  plane = Plane.new
 
-    def initialize(capacity = DEFAULT_CAPACITY)
-      @capacity = capacity
-      @planes = []
-    end
+	DEFAULT_CAPACITY = 50
 
-    def land(plane)
-      @planes << plane
-    end
+	attr_reader :planes, :DEFAULT_CAPACITY
 
-    def take_off(plane)
-    #plane.take_off
-    @planes.pop
-    end
+	def initialize(capacity = DEFAULT_CAPACITY)
+		@capacity = capacity
+		@planes = []
 
-    def full?
-      @planes.length >= capacity
-    end
+	end
+
+
+
+
+	def full?
+
+		@planes.length >= capacity
+	
+	end
+
 
 end
