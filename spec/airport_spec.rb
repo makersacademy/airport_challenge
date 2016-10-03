@@ -15,7 +15,6 @@ describe Airport do
 
   describe "Landing tests" do
     it "Should allow a plane to land" do
-      expect(@airport).to respond_to :land_plane
       @airport.land_plane(@plane)
       expect(@airport.planes).to eq [@plane]
     end
@@ -36,7 +35,6 @@ describe Airport do
     end
 
     it "Remove plane should remove plane" do
-      expect(@airport).to respond_to :take_off
       @airport.land_plane(@plane)
       @airport.take_off(@plane)
       expect(@airport.planes).to_not include(@plane)
@@ -50,12 +48,18 @@ describe Airport do
   end
 
   describe "Weather tests" do
-    it "Should not allow take off of landing during bad weather" do
+    it "Should not allow landing during bad weather" do
       #Forcing :stormy to return true
       allow(@airport).to receive_messages(:stormy? => true)
       expect{@airport.land_plane(@plane)}.to raise_error("Cannot land due to bad weather")
+    end
+
+    it "Should not allow take off during bad weather" do
+      #Forcing :stormy to return true
+      allow(@airport).to receive_messages(:stormy? => true)
       expect{@airport.take_off(@plane)}.to raise_error('Cannot take off due to bad weather')
     end
+
   end
 
   describe "Capacity tests" do
