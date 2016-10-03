@@ -15,10 +15,11 @@ describe Airport do
   it {is_expected.to respond_to(:takeoff).with(1).argument}
 
   airplane = Plane.new
+  port = Airport.new
 
-  # describe 'it stores more than 1 landed plane'
-  # 20.times {Airport.new.land(Plane.new)}
-  # it {expect(subject.land(airplane)).not_to raise_error 'Airport full' }
+  describe 'it stores no more than 20 planes'
+  20.times {port.land(Plane.new)}
+  it {expect(port.land(airplane)).to raise_error 'Cannot land, airport full' }
 
 
 end

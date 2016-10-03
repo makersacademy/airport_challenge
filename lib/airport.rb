@@ -4,12 +4,15 @@ class Airport
 
   attr_reader :planes
 
-  def initialize
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capcacity = DEFAULT_CAPACITY)
     @planes = []
   end
 
   def land(plane)
     fail 'Cannot land, too stormy' if self.weather == 'stormy'
+    fail 'Cannot land, airport full' if @planes.length >= DEFAULT_CAPACITY
     @planes << plane
     plane::flying = false
   end
