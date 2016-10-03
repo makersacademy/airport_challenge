@@ -27,3 +27,5 @@ Below is an example of the code in action:
 
 
 This demonstrates the ability to track the creation of an airport and plane, and check it lands, and then leaves the airport.
+
+Note - whilst all tests in Rspec are passing, there is a problem with planes landing when stormy in pry.  I have spent a number of hours trying to fix this, but have not been able to resolve it.  I am to review this code with my pair/cohort members to establish why this is the case; I will then push the updated code to ensure full completion of this challenge. 
