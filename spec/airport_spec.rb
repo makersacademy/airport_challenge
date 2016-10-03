@@ -34,7 +34,7 @@ describe Airport do
 
     describe "#land_plane" do
       subject(:airport) { described_class.new }
-     it 'lands a plane' do
+      it 'lands a plane' do
       allow(airport).to receive(:stormy?).and_return(false)
       allow(plane).to receive(:land)
       expect(airport.land_plane(plane)).to eq [plane]

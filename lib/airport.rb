@@ -45,7 +45,7 @@ class Airport
   end
 
   def take_off_check(plane)
-    if include(plane) then false else true end
+   if include(plane) then false else true end
   end
 
   def include(plane)
@@ -67,7 +67,7 @@ class Airport
   end
 
   def add_plane(plane)
-    @runway.push(plane)
+   @runway.push(plane)
   end
 
   def remove_plane(plane)
