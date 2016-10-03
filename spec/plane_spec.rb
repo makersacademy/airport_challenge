@@ -16,7 +16,7 @@ describe Plane do
 			expect(plane).to_not be_flying
 		end
 
-		it 'cannot if already landed' do
+		it 'cannot land if already landed' do
 			plane.land
 			expect { plane.land }.to raise_error { @error1 }
 		end

@@ -3,7 +3,7 @@ class Weather
 	attr_reader :stormy
 
 	def initialize
-		@stormy = false
+		@stormy = rand(0..10) > 7
 	end
 
 	def make_it_rain
