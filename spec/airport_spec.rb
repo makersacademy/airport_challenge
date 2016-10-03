@@ -9,7 +9,7 @@ describe Airport do
   let(:sunny_weather) { double :sunny_weather, :stormy? => false }
   subject(:sunny_airport) {described_class.new(weather: sunny_weather)}
 
-  let(:plane) {Plane.new}
+  let(:plane) {double("plane", :flying => true, :landed => true)}
 
   describe "#initialize" do
     context "user sets airport capacity" do
@@ -30,12 +30,11 @@ describe Airport do
     context 'land the planes on a clear day' do
 
       it 'tells a plane to land' do
-        allow(plane).to receive(:land)
+        expect(plane).to receive(:landed)
         sunny_airport.land(plane)
       end
 
       it "has a plane after it has landed" do
-        allow(plane).to receive(:land)
         sunny_airport.land(plane)
         expect(sunny_airport.planes).to include plane
       end
@@ -49,16 +48,10 @@ describe Airport do
         expect{sunny_airport.land(plane)}.to raise_error "Plane unable to land, airport full"
       end
 
-      it 'should change the status of the plane from flying to landed' do
-        allow(plane).to receive(:land)
-        sunny_airport.land(plane)
-        expect(plane.airborne?).to eq false
-      end
      end
 
      context 'trying to land in stormy weather' do
        it 'should not let the plane land' do
-         allow(plane).to receive(:land)
          expect(stormy_airport.planes).not_to include plane
        end
 
@@ -76,12 +69,10 @@ describe Airport do
       end
 
       it 'lets a plane take off' do
-        allow(plane).to receive(:take_off)
         sunny_airport.take_off(plane)
       end
 
       it 'should allow a plan to take off' do
-        allow(plane).to receive(:take_off)
         sunny_airport.take_off(plane)
         expect(sunny_airport.planes).not_to include plane
       end
@@ -90,11 +81,6 @@ describe Airport do
         expect(sunny_airport.take_off(plane)).to eq 'The plane has taken off'
       end
 
-      it 'should change the status of the plane from landed to flying' do
-        allow(plane).to receive(:take_off)
-        sunny_airport.take_off(plane)
-        expect(plane.airborne?).to eq true
-      end
     end
 
     context 'taking off on a stormy day' do
@@ -106,7 +92,6 @@ describe Airport do
     end
 
     it 'should only allow plans that are at the airport to take off' do
-      allow(plane).to receive(:take_off)
       expect{sunny_airport.take_off(plane)}.to raise_error 'This plane is not in the airport'
     end
   end
