@@ -18,8 +18,4 @@ class Plane
     @landed = false
   end
 
-  def airborne?
-    !@landed
-  end
-
 end
