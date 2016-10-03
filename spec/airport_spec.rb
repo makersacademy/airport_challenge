@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  include Weather
+
   it "has a limited capicity of planes" do
   expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
   end
