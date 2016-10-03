@@ -5,7 +5,7 @@ class Plane
   end
 
   def land
-    raise "This plane has already landed!" if landed?
+    raise 'This plane has already landed!' if landed?
     @landed = true
   end
 
@@ -14,7 +14,7 @@ class Plane
   end
 
   def take_off
-    raise "This plane is no longer in the airport!" if !landed?
+    raise 'This plane is no longer in the airport!' if !landed?
     @landed = false
   end
 
