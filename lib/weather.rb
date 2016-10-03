@@ -6,7 +6,8 @@ class Weather
 
   private
   def random_weather
-    rand(4)
+    # rand(4)
+    4
   end
 
 end
