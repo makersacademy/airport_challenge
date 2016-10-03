@@ -1,9 +1,10 @@
 require 'plane_file'
 
 class Airport
-
-  def initialize
+  DEFAULT_CAPACITY = 100
+  def initialize(capcity = DEFAULT_CAPACITY)
     @planes_at_airport = Array.new
+    @capacity = DEFAULT_CAPACITY
   end
 
   def accept_plane(plane_name)
@@ -16,5 +17,9 @@ class Airport
 
   def landed?(plane_name)
     @planes_at_airport.include?(plane_name)
+  end
+
+  def full?
+    @planes_at_airport.length >= @capacity
   end
 end

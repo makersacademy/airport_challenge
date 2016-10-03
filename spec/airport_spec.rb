@@ -28,4 +28,6 @@ describe Airport do
       expect( subject.landed?(test_plane) ).to eq false
     end
   end
+
+
 end
