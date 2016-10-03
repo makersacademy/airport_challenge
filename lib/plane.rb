@@ -1,13 +1,15 @@
+require_relative "airport1.rb"
+
 class Plane
   def initialize
-    @in_air = true
+    @in_air = 'flying'
   end
-  attr_reader :in_air
 
-  def landed?
-    @in_air = false
+  def change_status(status)
+    @in_air = status
   end
-  def taken_off?
-    @in_air = true
-  end  
+
+
+  attr_accessor :in_air
+
 end
