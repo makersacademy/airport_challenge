@@ -8,6 +8,7 @@ class Airport
     @weather = weather
     @capacity = capacity
     @landed = []
+    @flying = []
   end
 
   def land(plane)
@@ -20,9 +21,13 @@ class Airport
 
   def take_off(plane)
     raise "Impossible to allow take off, weather is stormy!" if stormy?
-    raise "Planes can't take off from airports they aren't in" unless @landed.include?(plane)
-    #@landed.pop
-    "The plane has taken off and it is no longer in the airport"
+    if @landed.include?(plane)
+      @flying << plane
+      @landed.delete(plane)
+      "The plane has taken off and it is no longer in the airport"
+    else
+      raise "Planes can't take off from airports they aren't in"
+    end
   end
 
   def full?

@@ -55,7 +55,6 @@ describe Airport do
     it "confirms that the plane has taken off and it is no longer in the airport" do
       allow(weather).to receive(:stormy?).and_return false
       airport.land(plane)
-      airport.take_off(plane)
       expect(airport.take_off(plane)).to eq "The plane has taken off and it is no longer in the airport"
     end
 
@@ -63,7 +62,7 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return false
       airport1 = Airport.new(weather, 200)
       airport1.land(plane)
-      expect {airport.take_off(plane)}.to raise_error "Planes can't take off from airports they aren't in"
+      expect {Airport.new(weather, 200).take_off(plane)}.to raise_error "Planes can't take off from airports they aren't in"
     end
 
     it "doesn't allow planes to take off when the weather is stormy" do
