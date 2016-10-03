@@ -19,8 +19,15 @@ describe Airport do
     
     it 'should return an error if the airport is full' do
     trial_plane = Plane.new
+    allow(subject).to receive(:storm_weather?).and_return(false)
     15.times {subject.land(trial_plane)}
-    expect{ subject.land(trial_plane) }.to raise_error 'Airport full'
+    expect{ subject.land(trial_plane) }.to raise_error 'The airport is currently full.'
+    end
+    
+    it 'raises an error if the plane tries to land during a storm' do
+    trial_plane = Plane.new
+    allow(subject).to receive(:storm_weather?).and_return(true)
+    expect{ subject.land(trial_plane) }.to raise_error 'Plane is unable to land due to adverse weather conditions.'
     end
     end
     

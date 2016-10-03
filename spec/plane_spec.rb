@@ -3,7 +3,7 @@ require 'plane'
 describe Plane do
 
   describe 'initialization' do
-    it 'defaults to a flying plane' do
+    it 'is a flying plane by defualt' do
       expect(subject.landed?).to eq false
     end
   end

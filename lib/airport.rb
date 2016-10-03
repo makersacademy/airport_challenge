@@ -15,7 +15,8 @@ def flight_checker(plane)
 end
     
 def land(plane)
-     fail 'Airport full' if full?
+     fail 'The airport is currently full.' if full?
+     fail 'Plane is unable to land due to adverse weather conditions.' if storm_weather?
      @planes.push(plane)
 end
 
@@ -29,4 +30,7 @@ def full?
     @planes.count >= @capacity
 end
 
+def storm_weather?
+    return true if rand(0..200) == 1 
+end
 end
