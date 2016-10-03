@@ -108,7 +108,7 @@ October 01, 2016
 - creating an airport_spec file to test for an instance of the class Airport
 -> creating a lib folder
 -> airport file to create the Airport class
-- creating a bike_spec file to test for an instance
+- creating a plane_spec file to test for an instance
 of the class Plane
 -> plane file to create the Plane class
 - test for the land method

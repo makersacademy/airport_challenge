@@ -23,7 +23,7 @@ describe Airport do
 
     #4 - User Story 5
     it "4. raises an error if plane attempts to land and no gates are available" do
-      airport_size5 = Airport.new(5,false)
+      airport_size5 = Airport.new(5)
       allow(airport_size5).to receive(:stormy_weather).and_return(false)
       5.times do
         airport_size5.land(Plane.new)
@@ -91,7 +91,7 @@ describe Airport do
 
     #9 - User Story 6
     it "9. airport capacity can be passed as an argument" do
-      airport_capacity_5 = Airport.new(5,false)
+      airport_capacity_5 = Airport.new(5)
       expect(airport_capacity_5.gates_size).to eq 5
     end
 
@@ -109,14 +109,7 @@ describe Airport do
       expect{airport2.take_off(plane)}.to raise_error "Plane is not in this airport, thus cannot takeoff"
     end
 
-    # it "15. raises an error if plane attempts to takeoff but it is already flying" do
-    #   allow(airport).to receive(:stormy_weather).and_return(false)
-    #   plane2 = Plane.new
-    #   airport.land(plane2)
-    #   expect{airport.take_off(plane)}.to raise_error "Plane is already flying"
-    # end
-
-    it "16. raises an error if there is an attempt to land a plane that has already landed " do
+    it "15. raises an error if there is an attempt to land a plane that has already landed " do
       allow(airport).to receive(:stormy_weather).and_return(false)
       airport.land(plane)
       expect{airport.land(plane)}.to raise_error "Plane is already landed"
