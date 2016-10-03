@@ -71,7 +71,7 @@ describe Airport do
 
   end
 
-  context "Scenarion with storm weather" do
+  context "Scenario with storm weather" do
 
       before do
         allow(airport).to receive(:storm).and_return(true)
