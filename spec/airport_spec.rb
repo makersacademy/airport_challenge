@@ -20,9 +20,16 @@ describe Airport do
     expect(airport.planes).to include plane
   end
 
+  it 'does not have the plane after take off' do
+    allow(plane).to receive(:take_off)
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.planes).to eq []
+  end
+
   it "won't allow landing plane if airport full" do
     subject.capacity.times{ subject.land(plane) }
     expect{ subject.land(plane) }.to raise_error "Airport is full. Unable to land."
   end
-  
+
 end
