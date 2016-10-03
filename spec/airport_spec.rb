@@ -50,20 +50,21 @@ describe Airport do
   end
 
   describe '#takeoff' do
-    it 'returns plane if weather is good' do
+    before :each do
       @airport.plane_hangar << @plane
+      @airport.weather = 10
+    end
+
+    it 'returns plane if weather is good' do
       expect(@airport.takeoff(@plane)).to eq(@plane)
     end
 
     it 'raises error if weather is bad' do
-      @airport.plane_hangar << @plane
       @airport.weather = 1
       expect { @airport.takeoff(@plane) }.to raise_error #(@err2)
     end
 
     it 'confirms plane is no longer in airport' do
-      @airport.plane_hangar << @plane
-      @airport.weather = 10
       @airport.takeoff(@plane)
       expect(@airport.plane_hangar.empty?).to eq(true)
     end
