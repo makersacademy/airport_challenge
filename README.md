@@ -17,7 +17,8 @@ instance variable for flying, which is changed based on whether the plane is out
  methods to land or takeoff new planes. It also contains a capacity for number
  of planes it can store.
 
-How to use: require all of the files within './lib/' and then instance as necessary.
+How to use: require all of the files within './lib/' in irb and then instance as
+ necessary.
 
 Testing: All of the code was driven by tests, as can be found in ./spec/
 
