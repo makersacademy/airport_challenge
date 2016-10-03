@@ -9,7 +9,7 @@ describe Airport do
   let(:sunny_weather) { double :sunny_weather, :stormy? => false }
   subject(:sunny_airport) {described_class.new(weather: sunny_weather)}
 
-  let(:plane) {double("plane", :flying => true, :landed => true)}
+  let(:plane) {double("plane", :flying => true, :landed => true, :airborne? => true)}
 
   describe "#initialize" do
     context "user sets airport capacity" do
@@ -63,12 +63,15 @@ describe Airport do
 
   describe '#take_off' do
 
+
     context 'taking off on a sunny day' do
       before do
         sunny_airport.land(plane)
+        allow(plane).to receive(:airborne?).and_return(false)
       end
 
       it 'lets a plane take off' do
+
         expect(plane).to receive(:flying)
         sunny_airport.take_off(plane)
       end
@@ -88,11 +91,13 @@ describe Airport do
 
       it 'should raise an error when trying to take off' do
         sunny_airport.land(plane)
+        allow(plane).to receive(:airborne?).and_return(false)
         expect{stormy_airport.take_off(plane)}.to raise_error 'Can\'t take off due to stormy conditions'
       end
     end
 
     it 'should only allow plans that are at the airport to take off' do
+      allow(plane).to receive(:airborne?).and_return(false)
       expect{sunny_airport.take_off(plane)}.to raise_error 'This plane is not in the airport'
     end
   end
