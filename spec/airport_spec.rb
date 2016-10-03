@@ -54,6 +54,16 @@ describe Airport do
       error = "Airport is full"
       expect{ airport.land(plane) }.to raise_error error
     end
+
+    it 'can be altered on initialization' do
+      airport = Airport.new(40)
+      described_class::DEFAULT_CAPACITY.times do
+        airport.land(plane)
+      end
+      expect{ airport.land(plane) }.not_to raise_error
+    end
+
+
   end
 
 end
