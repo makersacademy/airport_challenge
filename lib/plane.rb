@@ -9,12 +9,12 @@ class Plane
   end
 
   def land(airport)
-    airport.cleared_landing(self)
+    airport.clear_landing(self)
     @status = 'landed'
   end
 
   def takeoff(airport)
-    airport.cleared_takeoff(self)
+    airport.clear_takeoff(self)
     @status = 'in flight'
   end
 end

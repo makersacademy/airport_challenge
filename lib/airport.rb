@@ -8,15 +8,19 @@ class Airport
     @planes = []
   end
 
-  def cleared_landing(plane)
-    @planes << plane
+  def clear_landing(plane)
+    if (self.weather) == 'sunny'
+      @planes << plane
+    else
+      raise "#{plane} unable to land due to poor weather conditions"
+    end
   end
 
-  def cleared_takeoff(plane)
+  def clear_takeoff(plane)
     if (self.weather) == 'sunny'
       @planes.delete(plane)
     else
-      raise '#{self} has been grounded due to poor weather conditions'
+      raise "#{plane} has been grounded due to poor weather conditions"
     end
   end
 
