@@ -22,20 +22,20 @@ describe Airport do
 
       it 'has plane after it has landed' do
         allow(plane).to receive(:land)
-        airport.land(plane)
-        expect(airport.planes).to include plane
+        subject.land(plane)
+        expect(subject.planes).to include plane
       end
 
       it 'prevents plane from landing if already in airport' do
         allow(plane).to receive(:land)
-        airport.land(plane)
+        subject.land(plane)
         error = 'This plane has already landed'
         expect { airport.land(plane) }.to raise_error error
       end
 
       it 'prevents plane from landing when the airport is full' do
         allow(plane).to receive(:land)
-        airport.land(plane)
+        subject.land(plane)
         error = 'This airport can\'t receive more planes'
         expect { airport.land(another_plane) }.to raise_error error
       end
@@ -60,22 +60,22 @@ describe Airport do
       it 'instructs plane to take off' do
         allow(plane).to receive(:land)
         expect(plane).to receive(:take_off)
-        airport.land(plane)
-        airport.take_off(plane)
+        subject.land(plane)
+        subject.take_off(plane)
       end
 
       it 'doesn\'t have plane after take off' do
         allow(plane).to receive(:land)
         allow(plane).to receive(:take_off)
-        airport.land(plane)
-        airport.take_off(plane)
-        expect(airport.planes).not_to include plane
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.planes).not_to include plane
       end
 
       it 'prevents plane from taking off if not in airport' do
         allow(plane).to receive(:take_off)
         error = 'This plane has not landed yet'
-        expect { airport.take_off(plane) }.to raise_error error
+        expect { subject.take_off(plane) }.to raise_error error
       end
     end
 
@@ -84,10 +84,10 @@ describe Airport do
         allow(plane).to receive(:land)
         allow(plane).to receive(:take_off)
         allow(weather).to receive(:stormy?) { false }
-        airport.land(plane)
+        subject.land(plane)
         allow(weather).to receive(:stormy?) { true }
         error = 'Take off not permitted due to stormy weather'
-        expect { airport.take_off(plane) }.to raise_error error
+        expect { subject.take_off(plane) }.to raise_error error
       end
     end
   end
