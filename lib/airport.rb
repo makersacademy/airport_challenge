@@ -1,13 +1,17 @@
 class Airport
 
   attr_reader :planes
+  attr_accessor :capacity
 
   def initialize
     @planes = []
+    @capacity = 4
   end
 
   def land(plane)
     fail 'Sorry this plane has already landed' if @planes.include? plane
+    fail 'Sorry the airport is full' if full?
+    #fail 'Stormy weather, can\'t land' if stormy?
     plane.status = true
     @planes << plane
   end
@@ -29,6 +33,9 @@ class Airport
 
   def empty?
     @planes.length == 0
-  end 
+  end
 
+  def full?
+    @planes.length >= @capacity
+  end
 end

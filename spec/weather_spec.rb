@@ -3,10 +3,12 @@ require 'weather'
 describe Weather do
   weather = Weather.new
   it 'is sunny' do
+    weather.report = 'sun'
     expect(weather.sunny?).to eq true
   end
 
   it 'is stormy' do
+    weather.report = 'storm'
     expect(weather.stormy?).to eq true
   end
 
@@ -25,5 +27,5 @@ describe Weather do
     weather.change
     expect(weather.report).to eq 'storm'
   end
-
+  
 end

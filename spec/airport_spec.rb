@@ -1,9 +1,12 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   plane = Plane.new
   plane2 = Plane.new
+  weather = Weather.new
+
   it 'lets the plane land' do
     expect(subject.land(plane)).to include plane
   end
@@ -28,6 +31,17 @@ describe Airport do
     expect{subject.land(plane)}.to raise_error('Sorry this plane has already landed')
   end
 
+  it 'prevents planes from landing if it is full' do
+    plane3 = Plane.new
+    plane4 = Plane.new
+    plane5 = Plane.new
+    subject.land(plane)
+    subject.land(plane2)
+    subject.land(plane3)
+    subject.land(plane4)
+    expect{subject.land(plane5)}.to raise_error('Sorry the airport is full')
+  end
+
   it 'checks if sepecific plane has landed' do
     subject.land(plane)
     expect(subject.check(plane)).to eq true
@@ -40,7 +54,9 @@ describe Airport do
   end
 
   #it 'prevents landing if weather is stormy' do
-    #weather = 'stormy'
+    #weather.report = 'storm'
+    #allow(weather).to receive(:report).and_return('storm')
+    #weather.change
     #expect{subject.land(plane)}.to raise_error('Stormy weather, can\'t land')
   #end
 end

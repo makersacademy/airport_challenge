@@ -2,8 +2,8 @@ class Weather
 
   attr_accessor :report
 
-  def initialize
-    @report = 'sun'
+  def initialize (report = 'sun')
+    @report = report
   end
 
   def change
@@ -16,11 +16,11 @@ class Weather
   end
 
   def sunny?
-    true
+    true if @report == 'sun'
   end
 
   def stormy?
-    true
+    true if @report == 'storm'
   end
 
 end
