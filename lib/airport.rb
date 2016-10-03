@@ -46,7 +46,7 @@ class Airport
 
     def check_for_take_off(plane)
       fail 'Plane out flying' if plane.grounded == false
-      fail 'Plane at other airport' unless plane_in_airport(plane)
       fail 'Weather too stormy for take off' if stormy_weather
+      fail 'Plane at other airport' unless plane_in_airport(plane)
     end
 end

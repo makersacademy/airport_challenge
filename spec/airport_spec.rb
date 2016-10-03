@@ -51,6 +51,8 @@ end
     end
 
     it 'raises an error if the weather is too stormy for take off' do
+      allow(plane).to receive(:grounded).and_return true
+      allow(plane).to receive(:taken_off).and_return false
       allow(airport).to receive(:stormy_weather).and_return true
       message = 'Weather too stormy for take off'
       expect{airport.take_off(plane)}.to raise_error message
