@@ -8,8 +8,6 @@ describe Airport do
 	let(:weather) { double(:weather) }
 	let(:stormy_weather) { double(:weather) }
 
-
-
 	before(:each) do
 	 	@default_capacity = Airport::DEFAULT_CAPACITY
 	 	@different_capacity = rand(1...@default_capacity)
