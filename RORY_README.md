@@ -16,3 +16,5 @@ How do I remove a specific plane from an array? Pop only useful if it's on the e
 SOLVED ABOVE - used Array.delete
 
 Why does my rspec look so different? Coveralls doesn't seem to have loaded properly. Missing my .....F.. at the top :(
+
+  Why does my Plane flying status fail if I put a ? on the end? rspec tells me "syntax error, unexpected '='"
