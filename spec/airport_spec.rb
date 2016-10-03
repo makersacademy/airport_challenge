@@ -16,4 +16,8 @@ describe Airport do
     plane.takeoff(subject)
     expect(subject.planes).to be_empty
   end
+
+  it 'sets the weather' do
+    expect(subject.weather).to eq 'sunny' || 'stormy'
+  end
 end
