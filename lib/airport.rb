@@ -24,21 +24,15 @@ class Airport
   end
 
   def take_off
-    if @stormy_weather == false #if sunny
+    fail('No take off due to storm') if @stormy_weather
       @planes.pop
-    else
-     'No take off due to storm'
-    end
   end
 
   def land(plane)
     fail('Airport is full') if full?
-      if @stormy_weather == false
-        @planes << plane
-        @flight_log << plane.plane_id
-      else
-        'No landing due to storm'
-      end
+    fail('No landing due to storm') if @stormy_weather
+    @flight_log << plane.plane_id
+    @planes << plane
   end
 
   private

@@ -41,13 +41,13 @@ describe Airport do
       it 'take off in stormy weather' do
         subject.land(@plane)
         subject.actual_weather(@weather)
-        expect(subject.take_off).to eq 'No take off due to storm'
+        expect{(subject.take_off)}.to raise_error('No take off due to storm')
       end
 
       it 'landing in stormy weather' do
 
         subject.actual_weather(@weather)
-        expect(subject.land(@plane)).to eq 'No landing due to storm'
+        expect{(subject.land(@plane))}.to raise_error 'No landing due to storm'
       end
 
       it 'landing when airport is full' do
@@ -55,6 +55,7 @@ describe Airport do
       end
 
       it 'landing if plane has already landed' do
+        skip('test not finished yet')
         expect(airport.land(@plane)).to raise_error('Plane has already landed')
       end
 
