@@ -4,7 +4,7 @@ class Airport
 
   attr_accessor :plane, :weather, :capacity
 
-  def initialize
+  def initialize(capacity)
     @plane = []
     @weather = "sunny"
     @capacity = 5
@@ -24,18 +24,18 @@ class Airport
     @plane.delete(plane)
   end
 
-private
-
-  def roll
-    rand(2) + 1
-  end
-
   def generate
     if roll == 2
       @weather = "stormy"
     else
       @weather = "sunny"
     end
+  end
+
+  private
+
+  def roll
+    rand(2) + 1
   end
 
   def full?
