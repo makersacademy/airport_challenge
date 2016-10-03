@@ -48,6 +48,7 @@ describe Airport do
     end
 
     it 'does not allow planes to land at full airports' do
+      allow(airport).to receive(:stormy?).and_return false
       described_class::DEFAULT_CAPACITY.times do
         airport.land(plane)
       end
@@ -57,6 +58,7 @@ describe Airport do
 
     it 'can be altered on initialization' do
       airport = Airport.new(40)
+      allow(airport).to receive(:stormy?).and_return false
       described_class::DEFAULT_CAPACITY.times do
         airport.land(plane)
       end
