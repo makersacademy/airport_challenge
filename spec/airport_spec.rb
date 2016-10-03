@@ -13,6 +13,8 @@ describe Airport do
 
   it { is_expected.to respond_to :landing }
 
+  it { is_expected.to respond_to :stormy? }
+
   it "Should have a capacity of 15 when given" do
     @airport = Airport.new(15)
     expect(@airport.capacity).to eq 15
