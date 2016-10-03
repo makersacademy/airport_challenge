@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   let(:weather) do 
@@ -70,4 +71,23 @@ describe Airport do
     expect { airport.land_plane(plane) }.to raise_error('Plane cannot land - airport is full!')
   end
 
+  it 'can land and take off several planes' do
+    capacity = 3
+    airport = Airport.new(weather, capacity)
+    plane_1 = Plane.new
+    plane_2 = Plane.new
+    plane_3 = Plane.new
+    plane_4 = Plane.new
+    airport.land_plane(plane_1)
+    airport.land_plane(plane_2)
+    airport.land_plane(plane_3)
+    airport.take_off(plane_2)
+    airport.land_plane(plane_4)
+    airport.take_off(plane_3)
+    airport.take_off(plane_1)
+    expect(airport.has_plane?(plane_2)).to be false
+    expect(airport.has_plane?(plane_3)).to be false
+    expect(airport.has_plane?(plane_1)).to be false
+    expect(airport.has_plane?(plane_4)).to be true 
+  end
 end
