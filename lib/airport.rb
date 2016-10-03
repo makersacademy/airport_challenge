@@ -32,8 +32,8 @@ class Airport
     @planes_landed.count >= DEFAULT_CAPACITY
   end
 
-  set 6 for roughly once a week 30 for a month etc
+  #set 6 for roughly once a week 30 for a month etc
   def weather
     rand(6) == 0 ? "stormy" : "sunny"
   end
-end$
+end
