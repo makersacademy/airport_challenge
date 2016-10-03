@@ -2,31 +2,28 @@ require_relative 'plane.rb'
 
 class Airport
 
-  attr_reader :weather
+  #attr_reader :bad_weather
   attr_accessor :capacity
 
-  CHANCE_OF_STORM = 1.0
+  CHANCE_OF_STORM = 0.1
   DEFAULT_CAPACITY = 200
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @bad_weather = false
     @capacity = capacity
     @planes = []
   end
 
   def land(plane)
-    check_weather
     fail "Plane not in flight" if plane.on_ground
-    fail "Can't land when stormy" if @bad_weather
+    fail "Can't land when stormy" if !good_weather?
     fail "Airport full" if full?
     plane.on_ground = true
     @planes << plane
   end
 
   def takeoff(plane)
-    check_weather
     fail "Plane already in air" if plane.on_ground == false
-    fail "Can't takeoff when stormy" if @bad_weather
+    fail "Can't takeoff when stormy" if !good_weather?
     fail "Plane not in airport" if plane_in_airport?(plane) == false
     plane.on_ground = false
     @planes.delete(plane)
@@ -38,16 +35,8 @@ class Airport
     @planes << plane
   end
 
-  def check_weather
-    if chance > Airport::CHANCE_OF_STORM
-      @bad_weather = false
-    else
-      @bad_weather = true
-    end
-  end
-
-  def chance
-    rand()
+  def good_weather?
+    rand() > Airport::CHANCE_OF_STORM
   end
 
   def full?

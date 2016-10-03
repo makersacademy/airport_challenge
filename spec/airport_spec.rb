@@ -10,7 +10,8 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'raises an error when weather is stormy' do
-        #allow(subject).to receive(:check_weather).and_return(true)
+        allow(subject).to receive(:good_weather?).and_return(false)
+        #chance.expects(:rand).returns(0.5)
         allow(plane).to receive(:on_ground).and_return(false)
         expect{subject.land(plane)}.to raise_error "Can't land when stormy"
     end
@@ -21,7 +22,7 @@ describe Airport do
     end
 
     it 'raises an error when airport is full' do
-      allow(subject).to receive(:check_weather).and_return(false)
+      allow(subject).to receive(:good_weather?).and_return(true)
       Airport::DEFAULT_CAPACITY.times do
         plane = Plane.new
         plane.on_ground = false
@@ -39,8 +40,9 @@ describe Airport do
     it { is_expected.to respond_to(:takeoff).with(1).argument }
 
     it 'raises an error when weather is stormy' do
-      #allow(subject).to receive(:check_weather).and_return('stormy')
+      allow(subject).to receive(:good_weather?).and_return(false)
       allow(plane).to receive(:on_ground).and_return(true)
+      subject.add_new_plane(plane)
       expect { subject.takeoff(plane) }.to raise_error "Can't takeoff when stormy"
     end
 
@@ -68,7 +70,7 @@ describe Airport do
   describe '#initilize' do
     it 'should have a variable capacity' do
         airport = Airport.new(50)
-        allow(airport).to receive(:check_weather).and_return(false)
+        allow(airport).to receive(:good_weather?).and_return(true)
           50.times do
           plane = Plane.new
           plane.on_ground = false
