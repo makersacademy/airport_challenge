@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+
   subject(:airport) {Airport.new}
 
   let (:weather) {Weather.new}
@@ -10,7 +11,7 @@ describe Airport do
   context 'landing planes' do
 
     before (:each) do
-      #allow(@weather).to receive(:stormy?) {false}
+      allow(@weather).to receive(:stormy?) {false}
     end
 
      it 'Should not allow planes to land if capacity is at max' do
@@ -34,20 +35,19 @@ describe Airport do
        expect{airport.land(plane)}.to raise_error("Plane already landed")
      end
 
-      # context 'when stormy'
-      #   it 'Should not allow planes to land if weather is stormy' do
-      #     allow(weather).to receive(:Stormy) {true}
-      #     expect{airport.land(plane)}.to raise_error("Can't land plane :( ")
-      #   end
-      # end
-
-   end
+      context 'when stormy' do
+        it 'Should not allow planes to land if weather is stormy' do
+          allow(weather).to receive(:Stormy) {true}
+          expect{airport.land(plane)}.to raise_error("Can't land plane :( ")
+        end
+      end
+end
 
   context 'taking off' do
 
     before (:each) do
       airport.land(plane)
-      #allow(@weather).to receive(:stormy?) {false}
+      allow(@weather).to receive(:stormy?) {false}
     end
 
     it 'Should be able to take off specific plane' do
@@ -66,13 +66,14 @@ describe Airport do
       expect{airport.take_off(plane)}.to raise_error("Plane already in flight")
     end
 
-    # context 'taking off when stormy'
-    #   it "Shouldnt take off if stormy = true" do
-    #     allow(@weather).to receive(:stormy?) {:stormy}
-    #     expect{airport.take_off}.to raise_error("Can't take off :(")
-    #   end
-    # end
-  end
+
+    context 'taking off when stormy' do
+      it "Shouldnt take off if stormy = true" do
+        allow(@weather).to receive(:stormy?) {true}
+        expect{airport.take_off}.to raise_error("Can't take off :(")
+      end
+    end
+end
 
   context 'capacity' do
     it "should set capacity on initialization" do
