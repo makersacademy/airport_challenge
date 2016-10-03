@@ -69,6 +69,7 @@ describe Airport do
       end
 
       it 'lets a plane take off' do
+        expect(plane).to receive(:flying)
         sunny_airport.take_off(plane)
       end
 
