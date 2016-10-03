@@ -44,8 +44,6 @@ describe Plane do
 
   describe "#take_off" do
 
-    it { is_expected.to respond_to :take_off}
-
     it "should know it is not landed" do
       subject.land(airport)
       subject.take_off(airport)
