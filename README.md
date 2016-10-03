@@ -16,7 +16,7 @@ Airport Challenge
 My approach to this challenge
 -----------------------------
 
-* Started early! Worked till 2am Friday night then started again the following morning and continued for the whole day. Then felt relaxed so I could enjoy Saturday night and Sunday daytime. Then back to it on Sunday night but felt relaxed about it. This was a good approach.
+* Started early! Worked till 2am Friday night then started again the following morning and continued for the whole day. Then felt relaxed so I could enjoy Saturday night and Sunday daytime. Then back to it on Sunday night for final refactors and tidy ups. This felt like a good approach.
 * Attempted to extract a domain model from the user stories (see docs.domain_model.md)
 * Kept a track of the features I wanted to test (see same file) - I wrote over 20 but went through the whole RED - GREEN - REFACTOR cycle for each one before writing another. This approach was AMAZING for breaking the problem down into small solvable chunks.
 * RED: Tested each feature in IRB, then replicated the failure as a unit test
