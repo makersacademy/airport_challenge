@@ -12,25 +12,25 @@ class Airport
     raise 'Plane cannot land in stormy weather!' if weather.stormy?
     raise 'Plane cannot land - airport is full!' if full?
     plane.land
-    @planes << plane
+    planes << plane
   end
 
   def take_off(plane)
     raise 'Plane cannot take off in stormy weather!' if weather.stormy?
     raise 'The plane is not in the airport!' if !has_plane?(plane)
     plane.take_off
-    @planes.delete(plane)
+    planes.delete(plane)
   end
 
   def has_plane?(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 
   private
-  attr_reader :weather
+  attr_reader :weather, :capacity, :planes
 
   def full?
-    @planes.count == @capacity
+    planes.count == capacity
   end
 
 end
