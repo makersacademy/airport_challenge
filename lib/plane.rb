@@ -1,20 +1,17 @@
 class Plane
-
+  attr_reader :status
   def initialize
-    @landed = false
+    @status = :airborne
   end
 
   def land
-    raise 'This plane has already landed!' if landed
-    @landed = true
+    raise 'This plane has already landed!' if status == :landed
+    @status = :landed
   end
 
   def take_off
-    raise 'This plane is no longer in the airport!' if !landed
-    landed = false
+    raise 'This plane is no longer in the airport!' if status == :airborne
+    @status = :airborne
   end
-
-  private
-  attr_reader :landed
 
 end
