@@ -1,8 +1,11 @@
 class Weather
 
   def current_weather
-    weather = rand(1..5)
-    weather == 5 ? :stormy : :sunny
+    rand(1..5) == 5 ? :stormy : :sunny
+  end
+
+  def stormy?
+    current_weather == :stormy
   end
 
 end

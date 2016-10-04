@@ -3,12 +3,8 @@ require 'plane'
 require 'weather'
 
 describe Airport do
-  let(:weather) do 
-    weather_double = double(:weather)
-    allow(weather_double).to receive(:current_weather).and_return :sunny
-    weather_double
-  end
-  
+
+  let(:weather) { double :weather, :stormy? => false }
   subject(:airport) { described_class.new(weather) }
 
   let(:plane) { double(:plane) }
@@ -23,7 +19,7 @@ describe Airport do
     end
     it 'docks a plane that has landed in the airport' do
       airport.land_plane(plane)
-      expect(airport.has_plane?(plane)).to be true 
+      expect(airport.has_plane?(plane)).to be true
     end
   end
 
@@ -47,7 +43,7 @@ describe Airport do
 
   context 'when weather is stormy' do
     before(:each) do
-      allow(weather).to receive(:current_weather).and_return :stormy
+      allow(weather).to receive(:stormy?).and_return true
     end
     it 'prevents plane from taking off' do
       expect { airport.take_off(plane) }.to raise_error('Plane cannot take off in stormy weather!')
@@ -56,7 +52,7 @@ describe Airport do
       expect { airport.land_plane(plane) }.to raise_error('Plane cannot land in stormy weather!')
     end
   end
-  
+
   context 'when airport is full' do
     it 'prevents a plane from landing' do
       Airport::DEFAULT_CAPACITY.times { airport.land_plane(plane) }
@@ -88,6 +84,6 @@ describe Airport do
     expect(airport.has_plane?(plane_2)).to be false
     expect(airport.has_plane?(plane_3)).to be false
     expect(airport.has_plane?(plane_1)).to be false
-    expect(airport.has_plane?(plane_4)).to be true 
+    expect(airport.has_plane?(plane_4)).to be true
   end
 end
