@@ -2,19 +2,19 @@ require_relative './plane'
 require_relative './weather'
 
 class Airport
-  attr_accessor :planes, :capacity, :weather
+  attr_accessor :planes, :capacity, :weather_today
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY, weather_today = Weather.new)
     @planes = []
     @capacity = capacity
-    @weather = weather
+    @weather_today = weather_today
   end
 
   def land(plane)
+    raise "No landing, it's too stormy!" if weather_today.stormy?
     raise "Airport is full" if full?
-    raise "No landing, it's too stormy!" if false #not working yet
     @planes << plane
     "Plane arrived in the airport"
   end

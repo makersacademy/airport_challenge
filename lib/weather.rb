@@ -1,13 +1,15 @@
 class Weather
 
-  WEATHER = [:good, :stormy, :good, :good, :stormy, :good, :good]
+  def initialize(weather = 7)
+    @weather = weather
+  end
 
   def check_weather
-    @weather = WEATHER[rand(7)]
+    @weather = rand(10)
   end
 
   def stormy?
-    check_weather == :stormy
+    check_weather < 3
   end
 
 end
