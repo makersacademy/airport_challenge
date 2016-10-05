@@ -1,13 +1,11 @@
 class Weather
 
-   attr_reader :stormy
+  def sunny?
+    @conditions > 6
+  end
 
-   def initialize
-     @conditions = ["sunny", "sunny", "sunny", "sunny", "stormy"]
-   end
-
-   def stormy?
-     @conditions.sample == "stormy" ? true : false
-   end
-
+  private
+  def initialize
+    @conditions = rand(1..10)
+  end
 end

@@ -2,7 +2,8 @@ require 'weather'
 
 describe Weather do
 
-  describe "is an instance of the Weather class"
-  it {expect(subject.is_a?(Weather)).to eq true}
+  it "returns true or false" do
+    expect(subject.sunny?).to eq(true) | eq(false)
+  end
 
 end
