@@ -1,9 +1,9 @@
 class Plane
   def land
-    puts 'Landed'
+    'Landed'
   end
 
   def take_off
-    puts 'Departed'
+    'Departed'
   end
 end
