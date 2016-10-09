@@ -17,11 +17,16 @@ describe Plane do
     end
   end
 
-  # context "edge cases" do
-  #    it "plane landed cannot land again" do
-  #      allow(subject).to receive(:flying) {false}
-  #      expect{plane.land}.to raise_error "Plane has already landed"
-  #    end
-  #  end
+  context "edge cases" do
+      it "raises error when landed plane wants to land again" do
+       allow(subject).to receive(:flying) {false}
+       expect{plane.land}.to raise_error "Plane has already landed"
+      end
+
+      it "raises error when flying plane wants to take off" do
+        allow(subject).to receive(:flying) {true}
+        expect{plane.take_off}.to raise_error "Plane is not in the airport"
+      end
+   end
 
 end

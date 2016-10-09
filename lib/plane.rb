@@ -8,12 +8,15 @@ class Plane
   end
 
   def land
-    # raise "Plane has already landed" if flying == false
-    # "Plane landed"
-    @flying = false
+     raise "Plane has already landed" if flying == false
+     @flying = false
+     "Plane lands"
   end
 
   def take_off
+    raise "Plane is not in the airport" if flying == true
+    @flying = true
+    "Plane takes off"
   end
 
 end

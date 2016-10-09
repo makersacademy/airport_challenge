@@ -13,14 +13,14 @@ class Airport
   end
 
   def land(plane)
-    raise "No landing, it's too stormy!" if weather_today.stormy?
     raise "Airport is full" if full?
-    @planes << plane
+    raise "No landing, it's too stormy!" if weather_today.stormy?
+    @planes << plane if plane.land
     "Plane arrived in the airport"
   end
 
   def takeoff(plane)
-    @planes.pop
+    @planes.delete(plane) if plane.take_off
     "Plane has left the airport"
   end
 

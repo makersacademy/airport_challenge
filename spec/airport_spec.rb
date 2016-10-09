@@ -1,6 +1,4 @@
 require 'airport'
-require 'plane'
-require 'weather'
 
 describe Airport do
   subject(:airport) {described_class.new}
@@ -52,13 +50,13 @@ describe Airport do
     capacity_error = "Airport is full"
 
     it "doesn't accept new plane when full" do
-      fair_airport.capacity.times {fair_airport.land(plane)}
+      fair_airport.capacity.times {fair_airport.land(Plane.new)}
       expect{fair_airport.land(plane)}.to raise_error capacity_error
     end
 
     it "allows default capacity to be override" do
       new_airport = Airport.new(40, fair_weather)
-      40.times {new_airport.land(plane)}
+      40.times {new_airport.land(Plane.new)}
       expect {new_airport.land(plane)}.to raise_error capacity_error
     end
 
