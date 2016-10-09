@@ -21,7 +21,7 @@ Features
 - [x] Allow plane to land and take off from the airport
 - [x] Confirm plane status (whether they have landed or taken off)
 - [x] Prevent planes to land or take off during stormy weathers (pending)
-- [ ] Ensure planes that had taken off are not in airport and planes that have landed cannot land again
+- [x] Ensure planes that had taken off are not in airport and planes that have landed cannot land again
 - [x] Enable default capacity to be set
 
 
