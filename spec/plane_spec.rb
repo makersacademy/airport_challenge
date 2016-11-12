@@ -23,5 +23,12 @@ describe Plane do
     airport = Airport.new
     expect(subject.take_off(airport)).to eq true
   end
+  it "shouldn't land if the airport is full" do
+    airport = Airport.new
+    airport.weather = "sunny"
+    20.times {Plane.new.land(airport)}
+    subject.land(airport)
+    expect(airport.planes.count).to be 20
+  end
 
 end

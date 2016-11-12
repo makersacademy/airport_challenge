@@ -8,7 +8,7 @@ class Plane
   end
 
   def land(airport)
-    airport.take(self)
+    airport.take(self) unless airport.full?
     self.has_landed = true
     true
   end

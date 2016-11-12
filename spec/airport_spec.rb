@@ -65,19 +65,40 @@ describe Airport do
     allow(sunny).to receive(:random_weather) {'sunny'}
     plane = Plane.new
     airport = Airport.new(sunny)
-    plane.land(subject)
-    expect(subject.planes.count).to eq 1
+    plane.land(airport)
+    expect(airport.planes.count).to eq 1
   end
 
   it "should not let a plane land when the weather is stormy" do
     stormy = double("Weather")
     allow(stormy).to receive(:random_weather) {'stormy'}
     airport = Airport.new(stormy)
-
     plane = Plane.new
     plane.land(airport)
-    p airport.weather
     expect(airport.planes.count).to eq 0
   end
 
+  it "should allow a plane to take of when the weather is sunny" do
+    sunny = double("Weather")
+    allow(sunny).to receive(:random_weather) {'sunny'}
+    airport = Airport.new(sunny)
+    plane = Plane.new
+    plane.land(airport)
+    plane.take_off(airport)
+    expect(airport.planes.count).to eq 0
+  end
+
+  it "should not allow a plane to take off when the weather is stormy" do
+    airport = Airport.new
+    airport.weather = 'sunny'
+    plane = Plane.new
+    plane.land(airport)
+    airport.weather = 'stormy'
+    plane.take_off(airport)
+    expect(airport.planes.count).to eq 1
+  end
+
+  it "should take a default capacity of 20" do
+    expect(subject.capacity).to eq 20
+  end
 end
