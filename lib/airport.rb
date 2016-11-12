@@ -1,7 +1,9 @@
 require_relative 'plane'
 require_relative 'weather'
+require_relative 'messages_module'
 
 class Airport
+include Messages
 
   attr_reader :landing_bay, :capacity
 
@@ -22,7 +24,7 @@ DEFAULT_CAPACITY = 20
 
   def force_plane_to_take_off(plane)
     if the_weather_is_sunny?
-        puts "The plane has taken off\n"
+        puts plane_taken_off_message
         plane.switch_flying
         return delete_plane_from_the_landing_bay(plane)
     else
@@ -46,14 +48,6 @@ DEFAULT_CAPACITY = 20
 
   def allow_plane_to_land_on_landing_bay(plane)
     @landing_bay << plane
-  end
-
-  def bad_weather_message
-    "Safety hazard: can't take off right now due to stormy weather"
-  end
-
-  def loading_bay_is_too_full_to_land_planes
-    "Safety hazard: The loading bay has too many planes to land"
   end
 
 end

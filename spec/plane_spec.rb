@@ -47,7 +47,7 @@ require './lib/plane.rb'
        allow(airport).to receive(:store_plane).and_return(true)
        allow(airport).to receive(:capacity).and_return(20)
        allow(airport).to receive(:landing_bay).and_return([plane])
-       
+
        subject.land_at(airport)
 
        unless "Stormy" then expect(subject.flying).to eq false end

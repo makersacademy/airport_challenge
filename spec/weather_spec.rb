@@ -7,5 +7,6 @@ describe Weather do
     it "expects that if right now is called either Sunny or Stormy is called" do
       expect(subject.right_now).to eq("Sunny") | eq("Stormy")
     end
-  end
+
+    
 end

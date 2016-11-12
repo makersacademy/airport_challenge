@@ -18,9 +18,21 @@ describe Airport do
     it "Expects the airport to respond to it's force_plane_to_take_off method" do
       expect(subject).to respond_to(:force_plane_to_take_off).with(1).argument
     end
+
+    it "Expects that DEFAULT_CAPACITY is equal to 20 unless otherwise set by the user" do
+      expect(Airport::DEFAULT_CAPACITY).to eq 20
+    end
+
+    it "Expects that DEFAULT_CAPACITY is equal to 10 if the user sets it to 10 when
+    initiating a class" do
+      gatwick = Airport.new(10)
+
+      expect(gatwick.capacity).to eq 10
+    end
   end
 
-  context "Checks if the airport stores planes correctly" do
+  context "Checks if the airport stores and allows planes to take off correctly" do
+
     it "expecting that when a plane lands the landing bay is docked with a plane" do
       subject.store_plane(plane)
       subject.store_plane(plane)
@@ -44,6 +56,17 @@ describe Airport do
 
       unless "Stormy" then expect(subject.landing_bay.size).to eq 1 end
     end
+
+    it "checks that a plane will not land if the airport is at full capacity" do
+      allow(plane).to receive(:switch_flying).and_return(true)
+
+      20.times {subject.store_plane(plane)}
+
+      expect(subject.store_plane(plane)).to eq("Safety hazard: The loading bay has too many planes to land")
+    end
+
+    
+
 
 
   end
