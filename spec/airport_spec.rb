@@ -3,7 +3,7 @@ describe Airport do
 
   it { is_expected.to be_instance_of(Airport) }
 
-  describe "#capacity" do
+  context "@capacity" do
     it "has a default capacity that can be changed on airport creation" do
       expect((Airport.new(21)).capacity).to eq 21
     end
@@ -66,6 +66,10 @@ describe Airport do
       subject.land(plane)
       subject.weather = "stormy"
       expect { subject.take_off(plane) }.to raise_error("Take-off impossible due to stormy weather")
+    end
+
+    it "plane can take off only from an airport it is landed in" do
+      expect {subject.take_off(Plane.new)}.to raise_error("This plane is not present at this airport!")
     end
   end
 

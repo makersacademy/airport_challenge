@@ -24,6 +24,7 @@ class Airport
 
   def take_off(plane)
     raise "Take-off impossible due to stormy weather" if weather == "stormy"
+    raise "This plane is not present at this airport!" if !(planes.include? plane)
     planes.pop
   end
 
