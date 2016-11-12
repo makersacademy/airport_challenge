@@ -2,10 +2,77 @@ require_relative 'airport'
 require_relative 'weather'
 
 class Plane
-
 attr_accessor :flying
 
+  def land_at(airport)
+
+    if landing_bay_same_as_capacity?(airport)
+      return loading_bay_is_too_full_to_land_planes
+    end
+
+    if the_weather_is_sunny?
+    puts plane_landed_message
+    @flying = false
+    return make_plane_land_in_landing_bay(airport)
+
+    else
+      bad_weather_message
+    end
+
+  end
+
+  def take_off_from(airport)
+
+    if the_weather_is_sunny?
+        puts plane_taken_off_message
+        @flying = true
+        return  plane_leaves_loading_bay(airport) #delete method deletes froma array and returns
+
+     else
+        bad_weather_message
+     end
+
+  end
+
   def switch_flying
+    switch_to_opposite_value
+ end
+
+  private
+
+  def the_weather_is_sunny?
+    Weather.new.right_now == "Sunny"
+  end
+
+  def plane_leaves_loading_bay(airport)
+    airport.landing_bay.delete(self)
+  end
+
+  def landing_bay_same_as_capacity?(airport)
+    airport.landing_bay.length == airport.capacity
+  end
+
+  def loading_bay_is_too_full_to_land_planes
+    "Safety hazard: The loading bay has too many planes to land"
+  end
+
+  def bad_weather_message
+    "Safety hazard: can't take off right now due to stormy weather"
+  end
+
+  def make_plane_land_in_landing_bay(airport)
+    airport.landing_bay << self
+  end
+
+  def plane_landed_message
+    "plane has now landed at the airport\n"
+  end
+
+  def plane_taken_off_message
+    "The plane has now taken to the air\n"
+  end
+
+  def switch_to_opposite_value
     if @flying == false
      @flying = true
    else @flying == true
@@ -14,46 +81,6 @@ attr_accessor :flying
  end
 
 
-
-
-  def land_at(airport)
-
-    if airport.capacity == airport.landing_bay.length
-      return "Airport is to full to land this plane"
-    end
-
-    if Weather.new.right_now == "Sunny"
-    puts "The weather is sunny and so we can land .. \n"
-    puts "plane has now landed at the airport\n"
-    @flying = false
-    return airport.store_plane(self)
-
-    else
-      "Can't land right now due to stormy weather"
-    end
-  end
-
-  def take_off_from(airport)
-
-    if Weather.new.right_now == "Sunny"
-        puts "The plane has now taken to the air\n"
-        @flying = true
-        return  airport.landing_bay.delete(self) #delete method deletes froma array and returns
-
-     else
-        "Can't take off right now due to stormy weather"
-     end
-
-  end
-
-
-
-
-
-
-  # def take_off
-  #   "Plane is now flying"
-  # end
 
 
 end

@@ -13,28 +13,47 @@ DEFAULT_CAPACITY = 20
   end
 
   def store_plane(plane)
-    if @landing_bay.length == @capacity
-      return "Too full to land"
+    if landing_bay_same_as_capacity?
+      return loading_bay_is_too_full_to_land_planes
     else
-      @landing_bay << plane
+      allow_plane_to_land_on_landing_bay(plane)
     end
   end
 
   def force_plane_to_take_off(plane)
-
-    if Weather.new.right_now == "Sunny"
+    if the_weather_is_sunny?
         puts "The plane has taken off\n"
         plane.switch_flying
-        return @landing_bay.delete(plane)
-
+        return delete_plane_from_the_landing_bay(plane)
     else
-       "puts can't take off right now due to stormy weather"
+        puts bad_weather_message
     end
   end
 
+  private
 
+  def landing_bay_same_as_capacity?
+    @landing_bay.length == @capacity
+  end
 
+  def the_weather_is_sunny?
+    Weather.new.right_now == "Sunny"
+  end
 
+  def delete_plane_from_the_landing_bay(plane)
+     @landing_bay.delete(plane)
+  end
 
+  def allow_plane_to_land_on_landing_bay(plane)
+    @landing_bay << plane
+  end
+
+  def bad_weather_message
+    "Safety hazard: can't take off right now due to stormy weather"
+  end
+
+  def loading_bay_is_too_full_to_land_planes
+    "Safety hazard: The loading bay has too many planes to land"
+  end
 
 end
