@@ -6,11 +6,13 @@ class Airport
     @planes = []
   end
 
-  def land(aircraft)
+  def land(aircraft, weather)
+    unless stormy?(weather)
     @planes << aircraft
+    end
   end
 
-  def take_off
+  def take_off(weather)
     puts @weather
     unless stormy?(weather)
       @planes.pop

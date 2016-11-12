@@ -1,3 +1,4 @@
+
 require 'weather'
 
 describe Weather do
@@ -10,8 +11,11 @@ describe Weather do
     expect(subject).to respond_to(:random_number_generator)
   end
 
-  it 'should return random number between 1 and 10' do
-    expect(subject.random_number_generator).to be_kind_of(Fixnum)
+  it 'should return random number less than 11' do
+    expect(subject.random_number_generator).to be < 11
   end
 
+  it 'should return random number greater than 0' do
+    expect(subject.random_number_generator).to be > 0
+  end
 end
