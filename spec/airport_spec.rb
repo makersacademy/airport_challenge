@@ -26,6 +26,13 @@ describe Airport do
       expect {subject.land(Plane.new)}.to raise_error 'Airport is full'
     end
 
+    it 'changes the landed status of the plane' do
+      plane = Plane.new
+      plane.take_off
+      subject.land(plane)
+      expect(plane.landed?).to eq true
+    end
+
   end
 
   describe '#take_off' do
@@ -39,6 +46,13 @@ describe Airport do
     it 'raises an error if plane is not in airport' do
       plane = Plane.new
       expect {subject.take_off(plane)}.to raise_error 'Plane is not in airport'
+    end
+
+    it 'changes the landed status of a the plane' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(plane.landed?).to eq false
     end
 
   end
