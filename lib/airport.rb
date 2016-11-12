@@ -32,11 +32,13 @@ class Airport
 		end
 
 		def land_plane(plane)
+			# plane.landed
 			@planes << plane
 			"#{plane} has landed."
 		end
 
 		def release_plane(plane)
+			# plane.taken_off
 			plane_index = @planes.index(plane)
 			@planes.slice!(plane_index)
 			"#{plane} has left the airport."

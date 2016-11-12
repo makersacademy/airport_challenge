@@ -1,6 +1,6 @@
 module Weather
 
-	def self.stormy?
+	def stormy?
 		return true if random_number == 0
 		return false
 	end
