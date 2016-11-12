@@ -2,7 +2,7 @@ require './lib/airport.rb'
 require './lib/plane.rb'
 
 describe Airport do
-  context "landing a plane"
+  context "landing a plane" do
 
   it "should have a land_plane method" do
     expect(subject).to respond_to(:land_plane).with(1).argument
@@ -29,7 +29,9 @@ describe Airport do
     plane.landed_status = false
     expect(subject.land_plane(plane)).to eq true
   end
+end
 
+context "checking whether a plane has landed" do
   it "should have a check status method" do
     expect(subject).to respond_to(:has_plane_landed?).with(1).argument
   end
@@ -43,5 +45,12 @@ describe Airport do
     plane = Plane.new
     plane.landed_status = false
     expect(subject.has_plane_landed?(plane)).to eq "no"
+  end
+  end
+
+  context "allow planes to take off" do
+  it "should respond to a take off method" do
+    expect(subject).to respond_to(:take_off).with(1).argument
+  end
   end
 end

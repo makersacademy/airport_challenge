@@ -10,5 +10,8 @@ class Airport
     return "yes" if plane.landed_status == true
     "no" if plane.landed_status == false
   end
-  
+
+  def take_off(plane)
+  end
+
 end
