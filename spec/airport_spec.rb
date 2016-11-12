@@ -4,6 +4,8 @@ describe Airport do
 let(:airplane) {double :airplane}
 let(:airplane1) {double :airplane}
 let(:airplane2) {double :airplane}
+let(:stormy_weather) {double :weather}
+let(:nice_weather) {double :weather}
 
   context "Setup" do
     it "expects an airport class to exist" do
@@ -23,14 +25,19 @@ let(:airplane2) {double :airplane}
     expect(subject.airplanes_on_ground).to be_empty
   end
 
-  it "can access the Weather class" do
-    expect(subject.weather.class).to eq(Weather)
+  it "can tell if it is stormy" do
+    allow(stormy_weather).to receive(:stormy?).and_return(true)
+    expect(stormy_weather).to be_stormy
+  end
+
+  it "can tell if it is not stormy" do
+    allow(nice_weather).to receive(:stormy?).and_return(false)
+    expect(nice_weather).not_to be_stormy
   end
 end
 
 
   context "Landing" do
-
     it "expects airport to respond to a land_at_airport method and pass in a plane" do
       expect(subject).to respond_to(:land_at_airport).with(1).argument
     end
@@ -54,6 +61,11 @@ end
       expect{(subject.land_at_airport(airplane)).to raise_error("Sorry, airport full. Try somewhere else.")}
     end
 
+    it "expects an error message if the plane tries to land while it is stormy" do
+      allow(stormy_weather).to receive(:stormy?).and_return(true)
+      expect{(subject.land_at_airport(airplane)).to raise_error("You can't land in stormy weather!")}
+    end
+
   end
 
   context "Take Off" do
@@ -64,6 +76,11 @@ end
 
     it "expects an error message if there are no airples and one tries to take off" do
       expect{(subject.take_off).to raise_error("Sorry, a non existant airplane can not take off.")}
+    end
+
+    it "expects an error message if the plane tries to take off in stormy weather" do
+      allow(stormy_weather).to receive(:stormy?).and_return(true)
+      expect{(subject.take_off).to raise_error("You can't take off in stormy weather!")}
     end
 
     it "expects an airplane to leave the array when the take_off method is called" do
