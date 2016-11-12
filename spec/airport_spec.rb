@@ -10,6 +10,9 @@ describe Airport do
       plane = Plane.new
       expect(subject.land_plane(plane)).to eq plane
     end
+  end
+
+  describe "#plane" do 
     it "responds to #plane" do
       expect(subject).to respond_to :plane
     end
