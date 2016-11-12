@@ -2,9 +2,12 @@ class Weather
   attr_reader :stormy
 
   def initialize
-    stormy = rand(0..100)
-    @stormy = true if stormy >= 85
+    weather = rand(0..100)
+  if weather >= 85
+    @stormy = true
+  else
     @stormy = false
   end
+end
 
 end
