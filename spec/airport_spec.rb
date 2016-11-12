@@ -2,9 +2,9 @@ require "airport"
 
 describe Airport do
 
-  it "should park a plane" do
+  it "should dock a plane" do
     plane = Plane.new
-    subject.planes << plane
+    subject.dock(plane)
     expect(subject.planes).to include(plane)
   end
 
@@ -18,14 +18,20 @@ describe Airport do
 
   it "should not allow plane to taxi if stormy" do
     plane = Plane.new
-    airport = double
-    allow(airport).to receive(:taxi).and_raise("Too stormy to taxi plane")
-    expect{airport.taxi(plane)}.to raise_error("Too stormy to taxi plane")
+    allow(subject).to receive(:sunny?).and_return(false)
+    expect{subject.taxi(plane)}.to raise_error("Too stormy to taxi plane")
+  end
+
+  it "should not taxi the plane if already in the air" do
+    plane = Plane.new
+    allow(subject).to receive(:sunny?).and_return(true)
+    subject.dock(plane)
+    subject.taxi(plane)
+    expect{subject.taxi(plane)}.to raise_error("Plane already in the air")
   end
 
   it "should have a default capacity" do
-    airport = Airport.new
-    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   it "should not de able to have more planes than capacity" do

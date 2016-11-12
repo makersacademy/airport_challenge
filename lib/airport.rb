@@ -16,6 +16,7 @@ def dock(plane)
 end
 
 def taxi(plane)
+  fail "Plane already in the air" if !plane.landed
   fail "Too stormy to taxi plane" if !sunny?
   plane.landed = false
   planes.delete(plane)
