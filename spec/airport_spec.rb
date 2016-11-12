@@ -8,4 +8,10 @@ it "should park a plane" do
   expect(subject.planes).to include(plane)
 end
 
+it "should instruct a plane to take off" do
+  plane = Plane.new
+  subject.taxi(plane)
+  expect(subject.planes).not_to include(plane)
+end
+
 end

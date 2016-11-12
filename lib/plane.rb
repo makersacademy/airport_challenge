@@ -2,10 +2,10 @@ require_relative "airport.rb"
 
 class Plane
 
-attr_reader :landed
+attr_accessor :landed
 
 def initialize
-  @landed = false
+  @landed = true
 end
 
 def land(airport)
