@@ -35,6 +35,13 @@ describe Airport do
       (subject.capacity).times { subject.land(Plane.new)}
       expect { subject.land(Plane.new) }.to raise_error("This airport is full")
     end
+
+    it "Changes plane state to 'landed' when landing the plane" do
+      plane = Plane.new
+      subject.weather = "good"
+      subject.land(plane)
+      expect(plane.state).to eq "landed"
+    end
   end
 
   describe "#on_airport?" do
