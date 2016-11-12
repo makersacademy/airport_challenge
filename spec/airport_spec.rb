@@ -1,5 +1,5 @@
 require 'airport.rb'
-require 'plane.rb'
+# require 'plane.rb'
 
 describe Airport do
 
@@ -19,9 +19,13 @@ subject(:airport) {described_class.new}
   describe '#capacity' do
 
     it 'has a variable capacity' do
-      allow(plane).to receive(:land)
       subject.capacity = 60
-      60.times {subject.land(plane)}
+      60.times do
+        plane = double(:plane)
+        allow(plane).to receive(:land)
+        subject.land(plane)
+      end
+      plane = double(:plane)
       expect { subject.land(plane) }.to raise_error 'Airport is full'
     end
 
@@ -30,8 +34,9 @@ subject(:airport) {described_class.new}
   describe '#initialization' do
 
     it 'defaults capacity' do
-      allow(plane).to receive(:land)
       described_class::DEFAULT_CAPACITY.times do
+        plane = double(:plane)
+        allow(plane).to receive(:land)
         subject.land(plane)
       end
       expect { subject.land(plane) }.to raise_error 'Airport is full'
@@ -47,9 +52,19 @@ subject(:airport) {described_class.new}
       expect(subject.planes).to include plane
     end
 
+    it 'raises an error if plane is already in airport' do
+      plane = Plane.new
+      subject.land(plane)
+      expect {subject.land(plane)}.to raise_error 'Plane already in airport'
+    end
+
+
     it 'raises an error if airport is full' do
-      allow(plane).to receive(:land)
-      described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
+      described_class::DEFAULT_CAPACITY.times do
+        plane = double(:plane)
+        allow(plane).to receive(:land)
+        subject.land(plane)
+      end
       expect {subject.land(plane)}.to raise_error 'Airport is full'
     end
 

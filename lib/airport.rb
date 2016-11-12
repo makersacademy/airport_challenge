@@ -13,6 +13,7 @@ DEFAULT_CAPACITY = 50
   end
 
   def land(plane)
+    fail "Plane already in airport" if in_airport?(plane)
     fail "Airport is full" if full?
     plane.land
     @planes << plane
