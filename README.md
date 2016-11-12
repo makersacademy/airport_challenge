@@ -33,3 +33,5 @@ I have three classes - Airport, Airplane and Weather
   * has getter methods for all these three attributes
   * has a ```land``` method that takes a plane object as an argument. If the weather is fair, ie ```aiport.weather.condition == "Sunny"``` and the hangar ```NOT full?``` it will accept the aircraft as landing, and change its ```landed``` attribute to ```true``` and push it to the ```hangar```
   * has a ```taxi``` method that takes a plane object as an argument, and if the weather is fair, will remove that plane from the hangar and set its landed attribute to ```false```
+
+  [![Build Status](https://travis-ci.org/GeorgeSeeger/airport_challenge.svg?branch=master)](https://travis-ci.org/GeorgeSeeger/airport_challenge)
