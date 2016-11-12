@@ -14,4 +14,8 @@ describe Airport do
 			airport.land(plane)
 			expect(airport.planes).to include(plane)
 		end
+
+		it 'expects land to confirm a plane has landed' do
+			expect(airport.land(plane)).to eq "#{plane} has landed."
+		end
 end
