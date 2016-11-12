@@ -1,25 +1,26 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
 
-  context "When testing with landing scenario" do
+  context "land" do
 
     it "should be able to respond to land method" do
       expect(subject).to respond_to :land
     end
 
-    it "should be able to respond to is_stormy?" do
-      expect(subject).to respond_to :is_stormy?
+    it "should land the plane at an airport" do
+      expect(subject).to respond_to(:land).with(1).argument
     end
-    it "should return true if the weather is stormy" do
-      expect(subject.is_stormy?).to eq true
+
+    it "should be able to respond to landed? method" do
+      expect(subject).to respond_to :landed?
     end
-  end
 
-  context "When testing with taking off scenario" do
-
-    it "should be able to respond to take_off method" do
-      expect(subject).to respond_to :take_off
+    it "should be able to land at an airport and confirm it's landed" do
+      airport = Airport.new
+      subject.land(airport)
+      expect(subject).to be_landed
     end
 
   end

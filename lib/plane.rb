@@ -1,12 +1,10 @@
 class Plane
 
-  def land
+  def land(airport)
+    self.landed?
   end
 
-  def take_off
-  end
-
-  def is_stormy?
+  def landed?
     true
   end
 
