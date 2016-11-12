@@ -15,4 +15,9 @@ describe Airport do
     expect(subject.planes).to include(plane)
   end
 
+  it 'allows planes to take off' do
+    subject.land(plane)
+    expect(subject.take_off(plane)).to eq plane
+  end
+
 end
