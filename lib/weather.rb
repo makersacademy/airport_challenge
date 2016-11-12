@@ -1,17 +1,10 @@
 class Weather
-  attr_reader :weather_condition
+  attr_reader :stormy
 
   def initialize
-    set_weather_integer
-  end
-
-  def set_weather_integer
-    @weather_condition = rand(0..100)
-  end
-
-  def stormy?
-    return true if @weather_condition >= 85
-    return false
+    stormy = rand(0..100)
+    @stormy = true if stormy >= 85
+    @stormy = false
   end
 
 end

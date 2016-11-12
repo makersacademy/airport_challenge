@@ -1,7 +1,7 @@
 class Airplane
 
-  def landed?
-
-  end
+  # def landed?
+  # 
+  # end
 
 end

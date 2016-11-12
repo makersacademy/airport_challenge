@@ -1,15 +1,15 @@
-require "./lib/airplane.rb"
-require "./lib/weather.rb"
+require_relative "airplane.rb"
+require_relative "weather.rb"
 
 class Airport
   #SETUP
   attr_reader :airport_capacity, :airplanes_on_ground, :stormy
   AIRCRAFT_HANGERS = 10
 
-  def initialize(capacity=10)
+  def initialize(capacity=10, stormy = Weather.new)
     @airport_capacity = capacity
     @airplanes_on_ground = []
-    @stormy = Weather.new.stormy?
+    @stormy = stormy
   end
 
   #LANDING
