@@ -1,4 +1,5 @@
 require_relative 'plane.rb'
+require_relative 'weather.rb'
 
 class Airport
 
@@ -12,7 +13,8 @@ class Airport
     @planes << plane
   end
 
-  def take_off(plane)
+  def take_off(plane,weather)
+    raise "Cannot take off in stormy weather" if weather == "Stormy"
     planes.delete(plane)
   end
 
