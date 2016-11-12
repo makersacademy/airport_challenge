@@ -85,6 +85,14 @@ describe Airport do
     it "plane can take off only from an airport it is landed in" do
       expect {subject.take_off(Plane.new)}.to raise_error("This plane is not present at this airport!")
     end
+
+    it "does not allow airport to take off if it is already flying" do
+      plane = Plane.new
+      weather = "good"
+      subject.land(plane)
+      plane.state = "flying"
+      expect {subject.take_off}.to raise_error("This plane is already flying!")
+    end
   end
 
 end

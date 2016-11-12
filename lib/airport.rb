@@ -29,6 +29,7 @@ class Airport
   def take_off(plane = planes.last)
     raise "Take-off impossible due to stormy weather" if stormy?
     raise "This plane is not present at this airport!" if !(on_airport?(plane))
+    raise "This plane is already flying!" if plane.state == "flying"
     planes.delete(plane)
   end
 
