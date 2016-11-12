@@ -27,7 +27,7 @@ describe Airport do
       expect(plane).to receive(:land)
       airport.land plane
     end
-    it 'holds landed planes' do
+    it 'puts a landed plane in the airport' do
       allow(plane).to receive(:land)
       airport.land plane
       expect(airport.planes).to include plane
@@ -39,7 +39,7 @@ describe Airport do
       expect(plane).to receive(:take_off)
       airport.take_off plane
     end
-    it 'should not hold any planes that have taken off' do
+    it 'removes taken off planes from the airport' do
       allow(plane).to receive(:take_off)
       airport.planes << plane
       airport.take_off plane
