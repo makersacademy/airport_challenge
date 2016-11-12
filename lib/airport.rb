@@ -22,6 +22,7 @@ class Airport
 	end
 
 	def take_off?(plane)
+		fail "#{plane} is already flying." if plane.flying == true
 		fail "#{plane} does not exist at this airport." unless @planes.include?(plane)
 		return release_plane(plane) unless stormy?
 		fail "#{plane} cannot take off due to stormy weather."

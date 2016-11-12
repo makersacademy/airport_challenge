@@ -66,6 +66,7 @@ describe Airport do
 		end
 
 		it 'expects take off to raise error if weather is stormy' do
+			plane = double(:plane, :flying => false)
 			allow(airport).to receive(:stormy?) { true }
 			airport.planes << plane
 			expect{airport.take_off?(plane)}.to raise_error("#{plane} cannot take off due to stormy weather.")
@@ -80,18 +81,26 @@ describe Airport do
 		end
 
 		it 'expects plane to have left the airport after it has taken off' do
+			plane = double(:plane, :flying => false)
 			airport.planes << plane
 			airport.take_off?(plane)
 			expect(airport.planes).not_to include(plane)
 		end
 
 		it 'expects take off to be successful if weather is sunny' do
+			plane = double(:plane, :flying => false)
 			airport.planes << plane
 			expect(airport.take_off?(plane)).to eq "#{plane} has left the airport."
 		end
 
 		it 'expects planes that wish to take off to be at the airport' do
+			plane = double(:plane, :flying => false)
 			expect{airport.take_off?(plane)}.to raise_error("#{plane} does not exist at this airport.")
+		end
+
+		it 'expects planes that wish to take off to be grounded' do
+			plane = double(:plane, :flying => true)
+			expect{airport.take_off?(plane)}.to raise_error("#{plane} is already flying.")
 		end
 
 	end
