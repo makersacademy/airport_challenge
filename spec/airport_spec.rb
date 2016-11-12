@@ -37,17 +37,20 @@ describe Airport do
 
 		it 'expects to hold a plane after it has landed' do
 			plane = double(:plane, flying: true)
+			allow(plane).to receive(:landed)
 			airport.land?(plane)
 			expect(airport.planes).to include(plane)
 		end
 
 		it 'expects a landing to be successful if weather is sunny' do
 			plane = double(:plane, flying: true)
+			allow(plane).to receive(:landed)
 			expect(airport.land?(plane)).to eq "#{plane} has landed."
 		end
 
 		it 'expects planes to be unable to land when airport is full' do
 			plane = double(:plane, flying: true)
+			allow(plane).to receive(:landed)
 			airport.capacity.times {airport.land?(plane)}
 			expect{airport.land?(plane)}.to raise_error("Airport is full.")
 		end
@@ -82,6 +85,7 @@ describe Airport do
 
 		it 'expects plane to have left the airport after it has taken off' do
 			plane = double(:plane, :flying => false)
+			allow(plane).to receive(:taken_off)
 			airport.planes << plane
 			airport.take_off?(plane)
 			expect(airport.planes).not_to include(plane)
@@ -89,6 +93,7 @@ describe Airport do
 
 		it 'expects take off to be successful if weather is sunny' do
 			plane = double(:plane, :flying => false)
+			allow(plane).to receive(:taken_off)
 			airport.planes << plane
 			expect(airport.take_off?(plane)).to eq "#{plane} has left the airport."
 		end
