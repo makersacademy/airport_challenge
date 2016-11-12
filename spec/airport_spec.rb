@@ -46,7 +46,7 @@ describe Airport do
   it "should allow a plane to take off" do
     plane = Plane.new
     plane.land(subject)
-    expect(subject.release(plane)).to eq plane
+    expect(subject.release(plane)).to eq true
   end
 
   it "should confirm a plane is no longer inside once it took off" do

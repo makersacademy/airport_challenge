@@ -9,10 +9,12 @@ class Airport
 
   def take(plane)
     @planes << plane
+    true
   end
 
   def release(plane)
-     @planes.delete(plane)
+    @planes.delete(plane)
+    true
   end
 
 end
