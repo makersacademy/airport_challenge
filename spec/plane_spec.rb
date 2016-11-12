@@ -41,4 +41,22 @@ describe Plane do
     expect{subject.land(airport2)}.to raise_error("Already landed at another airport")
   end
 
+  it "two planes should take of from one airport and land at another" do
+    plane1 = Plane.new
+    plane2 = Plane.new
+    airport1 = Airport.new
+    airport2 = Airport.new
+    airport1.dock(plane1)
+    airport1.dock(plane2)
+    allow(airport1).to receive(:sunny?).and_return(true)
+    airport1.taxi(plane1)
+    airport1.taxi(plane2)
+    allow(plane1).to receive(:sunny?).and_return(true)
+    allow(plane2).to receive(:sunny?).and_return(true)
+    plane1.land(airport2)
+    plane2.land(airport2)
+    expect(airport1.planes.count).to eq(0)
+    expect(airport2.planes).to include(plane1)
+    expect(airport2.planes).to include(plane2)
+  end
 end
