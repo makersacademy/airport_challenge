@@ -13,7 +13,8 @@ class Airport
     @plane = plane
   end
 
-  def takeoff
+  def takeoff(plane)
+    true
   end
 
 

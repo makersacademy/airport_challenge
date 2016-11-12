@@ -26,6 +26,10 @@ describe Airport do
     it "responds to takeoff" do
       expect(subject).to respond_to :takeoff
     end
+    it "instructs a plane to takeoff" do
+      plane = Plane.new
+      expect(subject.takeoff(plane)).to eq true
+    end
   end
 
 
