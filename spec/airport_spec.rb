@@ -1,7 +1,12 @@
 require './lib/airport.rb'
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 describe Airport do
+before(:each) do
+  @plane = Plane.new
+  @weather = Weather.new
+end
 
  context "landing a plane" do
    it "should have a land_plane method" do
@@ -9,9 +14,8 @@ describe Airport do
    end
 
    it "should check arg given is a plane object" do
-     plane = Plane.new
-     allow(subject).to receive(:land_plane) {plane}
-     expect(subject.land_plane(plane)).to be_a Plane
+     allow(subject).to receive(:land_plane) {@plane}
+     expect(subject.land_plane(@plane)).to be_a Plane
    end
 
    it "should raise error if arg is not a plane" do
@@ -20,20 +24,17 @@ describe Airport do
    end
 
    it "should raise error if plane has already been landed" do
-     plane = Plane.new
-     expect{ subject.land_plane(plane) }.to raise_error("Plane has already landed")
+     expect{ subject.land_plane(@plane) }.to raise_error("Plane has already landed")
    end
 
    it "should change landed status to true if it was false" do
-     plane = Plane.new
-     plane.landed_status = false
-     expect{subject.land_plane(plane)}.to change {plane.landed_status}.from(false).to(true)
+     @plane.landed_status = false
+     expect{subject.land_plane(@plane)}.to change {@plane.landed_status}.from(false).to(true)
    end
 
    it "should return message that plane has landed" do
-     plane = Plane.new
-     plane.landed_status = false
-     expect(subject.land_plane(plane)).to eq "#{plane} has landed"
+     @plane.landed_status = false
+     expect(subject.land_plane(@plane)).to eq "#{@plane} has landed"
    end
  end
 
@@ -43,48 +44,39 @@ describe Airport do
    end
 
    it "should let user know if a plane has landed" do
-     plane = Plane.new
-     expect(subject.has_plane_landed?(plane)).to eq "yes"
+     expect(subject.has_plane_landed?(@plane)).to eq "yes"
    end
 
    it "should let user know if a plane has not landed" do
-     plane = Plane.new
-     plane.landed_status = false
-     expect(subject.has_plane_landed?(plane)).to eq "no"
+     @plane.landed_status = false
+     expect(subject.has_plane_landed?(@plane)).to eq "no"
    end
  end
 
  context "allow planes to take off" do
    it "should respond to a take off method" do
-     expect(subject).to respond_to(:take_off).with(1).argument
-   end
-
-   it "should not allow planes to take off if their landed_status is false" do
-     plane = Plane.new
-     plane.landed_status = false
-     allow(subject).to receive(:take_off) {false}
-     expect(subject.take_off(plane)).to eq false
+     expect(subject).to respond_to(:take_off).with(2).argument
    end
 
    it "should raise error if plane is still in the air" do
-     plane = Plane.new
-     plane.landed_status = false
-     expect{ subject.take_off(plane) }.to raise_error("Plane is still in the air")
+     @plane.landed_status = false
+     expect{ subject.take_off(@plane, @weather) }.to raise_error("Plane is still in the air")
    end
 
    it "taking off should change plane's landed_status to false" do
-     plane = Plane.new
-     expect{subject.take_off(plane)}.to change{plane.landed_status}.from(true).to(false)
+     expect{subject.take_off(@plane, @weather)}.to change{@plane.landed_status}.from(true).to(false)
    end
 
    it "should return message to let air controller know that plane has taken off" do
-   plane = Plane.new
-   expect(subject.take_off(plane)).to eq "#{plane} has taken off"
+     expect(subject.take_off(@plane, @weather)).to eq "#{@plane} has taken off"
    end
  end
 
   context "prevent take off when weather is stormy" do
-    it "should"
+    it "should raise error if weather is set to stormy" do
+      @weather.today = "stormy"
+      expect(subject.take_off(@plane, @weather)).to eq "Unable to take off because of the stormy weather"
+    end
   end
 
 end
