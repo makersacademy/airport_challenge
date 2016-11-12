@@ -4,7 +4,7 @@ require 'weather.rb'
 describe Airport do
 
   let(:weather) { double("weather", :check => "Sunny") }
-  let(:plane) {double("plane")}
+  let(:plane) { double("plane") }
 
   it 'expects an airport to exist' do
     expect(subject).to equal subject
@@ -46,6 +46,18 @@ describe Airport do
     expect{subject.land(plane,weather)}.to raise_error "Cannot land planes if the weather if stormy"
   end
 
+  it 'tests for the capacity of the airport to equal 12' do
+    expect(subject.capacity).to eq 12
+  end
 
+  it "tests that 12 planes can land at the airport" do
+    12.times{subject.land(plane,weather)}
+    expect(subject.planes.count).to eq 12
+  end
+
+  it 'tests that no more that 12 planes can land at an airport' do
+    12.times{subject.land(plane,weather)}
+    expect{subject.land(plane,weather)}.to raise_error "Sorry, Airport is full, please fly to another"
+  end
 
 end

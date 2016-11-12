@@ -52,9 +52,9 @@ I want to prevent takeoff when weather is stormy -->
 To ensure safety
 I want to prevent landing when weather is stormy -->
 
-As an air traffic controller
+<!-- As an air traffic controller
 To ensure safety
-I want to prevent landing when the airport is full
+I want to prevent landing when the airport is full -->
 
 As the system designer
 So that the software can be used for many different airports
