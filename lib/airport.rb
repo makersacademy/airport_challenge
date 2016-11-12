@@ -3,12 +3,13 @@ require "./lib/weather.rb"
 
 class Airport
   #SETUP
-  attr_reader :airport_capacity, :airplanes_on_ground
+  attr_reader :airport_capacity, :airplanes_on_ground, :weather
   AIRCRAFT_HANGERS = 10
 
   def initialize(capacity=10)
     @airport_capacity = capacity
     @airplanes_on_ground = []
+    @weather = Weather.new
   end
 
   #LANDING

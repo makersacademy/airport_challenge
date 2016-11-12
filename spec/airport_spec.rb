@@ -22,6 +22,10 @@ let(:airplane2) {double :airplane}
   it "expects no airplanes to be at the airport by default" do
     expect(subject.airplanes_on_ground).to be_empty
   end
+
+  it "can access the Weather class" do
+    expect(subject.weather.class).to eq(Weather)
+  end
 end
 
 
