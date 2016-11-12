@@ -15,9 +15,11 @@ class Weather
   end
 
   def weather_randomizer
-    condition = rand(1..10)
+    condition = rand(1..2)
     if condition == 1
       @current_weather = "stormy"
+    else
+      "not stormy"
     end
   end
 
