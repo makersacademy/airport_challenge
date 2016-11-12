@@ -1,4 +1,5 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 class Airport
 
