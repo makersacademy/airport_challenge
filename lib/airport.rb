@@ -13,7 +13,7 @@ class Airport
     true
   end
 
-  def take_off
+  def take_off(plane)
   end
 
 end

@@ -45,4 +45,8 @@ describe Airport do
     expect(subject).to respond_to(:take_off)
   end
 
+  it "take_off method should receive a plane as argument" do
+    expect(subject).to respond_to(:take_off).with(1).argument
+  end
+
 end
