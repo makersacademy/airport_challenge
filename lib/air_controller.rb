@@ -9,6 +9,7 @@ class AirportController
   end
 
   def land_plane(plane)
+    plane.landed?
     @planes = plane
   end
 

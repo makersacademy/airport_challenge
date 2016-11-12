@@ -26,10 +26,15 @@ it "should retrieve the planes from the airport/airport controller" do
   expect(subject.planes).to eq plane
 end
 
-it "landed planes should be landed?" do
+# it "landed planes should return true for landed?" do
+#   plane = Plane.new
+#   subject.land_plane(plane)
+#   expect(plane.landed?).to eq true
+# end
+
+it "planes that have not landed should not return true for landed?" do
   plane = Plane.new
-  subject.land_plane(plane)
-  expect(plane.landed?).to eq true
+  expect(plane.landed?).to eq false
 end
 
 
