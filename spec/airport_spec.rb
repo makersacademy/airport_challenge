@@ -34,6 +34,11 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it "should be able to specify capacity" do
+    airport = Airport.new(10)
+    expect(airport.capacity).to eq(10)
+  end
+
   it "should not de able to have more planes than capacity" do
     subject.capacity.times {subject.dock(Plane.new)}
     expect{subject.dock(Plane.new)}.to raise_error("Airport is full")
