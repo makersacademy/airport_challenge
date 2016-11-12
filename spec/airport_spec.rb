@@ -64,7 +64,7 @@ describe Airport do
       plane = Plane.new
       subject.weather = "good"
       subject.land(plane)
-      subject.take_off(plane)
+      subject.take_off
       expect(subject.planes).not_to include plane
     end
 

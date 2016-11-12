@@ -1,9 +1,11 @@
 require_relative "plane"
 class Airport
+
   DEFAULT_CAPACITY =  10
+  @weather = rand(101) >= 90 ? "good" : "stormy"
+
   attr_reader :planes
   attr_accessor :weather, :capacity
-  @weather = rand(101) >= 10 ? "good" : "stormy"
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -11,8 +13,8 @@ class Airport
   end
 
   def land(plane)
-    raise "Landing impossible due to stormy weather" if weather == "stormy"
-    raise "This airport is full" if planes.size >= capacity
+    raise "Landing impossible due to stormy weather" if stormy?
+    raise "This airport is full" if full?
     plane.state = "landed"
     planes << plane
   end
@@ -23,10 +25,19 @@ class Airport
     end
   end
 
-  def take_off(plane)
-    raise "Take-off impossible due to stormy weather" if weather == "stormy"
-    raise "This plane is not present at this airport!" if !(planes.include? plane)
-    planes.pop
+  def take_off(plane = planes.last)
+    raise "Take-off impossible due to stormy weather" if stormy?
+    raise "This plane is not present at this airport!" if !(on_airport?(plane))
+    planes.delete(plane)
+  end
+
+  private
+  def stormy?
+    weather == "stormy"
+  end
+
+  def full?
+    planes.size >= capacity
   end
 
 end
