@@ -2,18 +2,23 @@ require_relative 'plane.rb'
 
 class Airport
 
-  attr_reader :plane
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
 
   def land(plane)
-    fail "Airport is full" if @plane
+    fail "Airport is full" if @planes.count >= 50
     plane.land
-    @plane = plane
+    @planes << plane
   end
 
   def take_off(plane)
-    fail "Plane is not in airport" unless @plane
+    fail "Plane is not in airport" unless @planes.include?(plane)
     plane.take_off
-    @plane
+    @planes.delete(plane)
+    plane
   end
 
 
