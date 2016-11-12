@@ -20,19 +20,23 @@ describe Airport do
   end
 
   it "should save the planes inside a @planes instance variable" do
+    sunny = double("Weather")
+    allow(sunny).to receive(:random_weather) {'sunny'}
     plane1 = Plane.new
-    airport = subject
+    airport = Airport.new(sunny)
     plane1.land(airport)
-    expect(subject.planes.count).to eq 1
+    expect(airport.planes.count).to eq 1
   end
 
   it "should take multiple planes" do
+    sunny = double("Weather")
+    allow(sunny).to receive(:random_weather) {'sunny'}
     plane1 = Plane.new
     plane2 = Plane.new
-    airport = subject
+    airport = Airport.new(sunny)
     plane1.land(airport)
     plane2.land(airport)
-    expect(subject.planes.count).to eq 2
+    expect(airport.planes.count).to eq 2
   end
 
   it "should contain a release method " do
@@ -56,5 +60,24 @@ describe Airport do
     expect(subject.planes.count).to eq 0
   end
 
+  it "should let a plane land when the weather is sunny" do
+    sunny = double("Weather")
+    allow(sunny).to receive(:random_weather) {'sunny'}
+    plane = Plane.new
+    airport = Airport.new(sunny)
+    plane.land(subject)
+    expect(subject.planes.count).to eq 1
+  end
+
+  it "should not let a plane land when the weather is stormy" do
+    stormy = double("Weather")
+    allow(stormy).to receive(:random_weather) {'stormy'}
+    airport = Airport.new(stormy)
+
+    plane = Plane.new
+    plane.land(airport)
+    p airport.weather
+    expect(airport.planes.count).to eq 0
+  end
 
 end
