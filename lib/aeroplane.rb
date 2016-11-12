@@ -12,4 +12,8 @@ class Aeroplane
     true
   end
 
+  def confirm_taken_off
+    true
+  end
+
 end
