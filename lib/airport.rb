@@ -34,7 +34,7 @@ class Airport
   end
 
   def full?
-    @planes.count > 0
+    @planes.count >= 10
   end
 
 

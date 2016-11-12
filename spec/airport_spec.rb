@@ -62,11 +62,9 @@ describe Airport do
     expect(uses).not_to include(0, 6)
   end
 
-  it 'should not allow more than one plane to land' do
-    plane1 = plane
-    plane2 = plane
-    subject.land(plane1)
-    expect{ subject.land(plane2) }.to raise_error(RuntimeError, 'This airport is full, hope you have enough fuel!')
+  it 'should not allow more than 10 planes to land' do
+    10.times {subject.land(plane)}
+    expect{ subject.land(plane) }.to raise_error(RuntimeError, 'This airport is full, hope you have enough fuel!')
   end
 
 
