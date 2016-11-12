@@ -60,4 +60,9 @@ describe Airport do
     expect{subject.land(plane,weather)}.to raise_error "Sorry, Airport is full, please fly to another"
   end
 
+  it 'test that the airport capacity can be changed if required' do
+    airport2 = Airport.new(24)
+    expect(airport2.capacity).to eq 24
+  end
+
 end
