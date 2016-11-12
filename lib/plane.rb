@@ -2,11 +2,13 @@ require_relative 'airport'
 
 class Plane
 
+attr_reader :flying
 
 
   def land_at(airport)
     puts "plane has now landed at #{airport}"
-    airport.store_plane(self)
+    @flying = false
+    return airport.store_plane(self)
   end
 
 

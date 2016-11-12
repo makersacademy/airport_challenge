@@ -21,7 +21,14 @@ describe Airport do
       subject.store_plane(plane)
 
       expect(subject.landing_bay.shift).to eq plane
+    end
+
+    it "checks that planes are stored in an array" do
+      subject.store_plane(plane)
+      
       expect(subject.landing_bay.class).to eq Array
     end
+
+
   end
 end
