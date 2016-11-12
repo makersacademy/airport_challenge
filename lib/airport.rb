@@ -14,7 +14,8 @@ class Airport
 
   def force_plane_to_take_off(plane)
     puts "The plane has taken off\n"
-    @landing_bay.delete(plane)
+    plane.switch_flying
+    return @landing_bay.delete(plane)
   end
 
 

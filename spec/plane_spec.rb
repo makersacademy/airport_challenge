@@ -12,14 +12,18 @@ require './lib/plane.rb'
      it "expects plane to respond to take_off method" do
        expect(subject).to respond_to(:take_off_from).with(1).argument
      end
+
+     it "expects plane to respond to switch_flying method" do
+       expect(subject).to respond_to(:switch_flying)
+     end
    end
 
    context "expects plane land_at method will land the plane at the airport" do
 
      it "expects flying to return false when subject has landed" do
+       allow(airport).to receive(:store_plane).and_return(true)
 
-       heathrow = Airport.new
-       subject.land_at(heathrow)
+       subject.land_at(airport)
 
        expect(subject.flying).to eq false
      end
@@ -34,6 +38,17 @@ require './lib/plane.rb'
          expect(subject.flying).to eq true
        end
    end
+   context "expects that the switch flying method will change the state of the method flying" do
+
+     it "subjects flying method should return true if flying" do
+       allow(airport).to receive(:store_plane).and_return(true)
+
+       subject.land_at(airport)
+
+       expect(subject.flying).to eq false
+     end
+   end
+
 
  end
 

@@ -35,6 +35,9 @@ describe Airport do
     end
 
     it "checks that when a plane has taken off that it is removed from landing bay" do
+      allow(plane).to receive(:switch_flying).and_return(true)
+      allow(plane2).to receive(:switch_flying).and_return(true)
+
       subject.store_plane(plane)
       subject.store_plane(plane2)
       subject.force_plane_to_take_off(plane)
