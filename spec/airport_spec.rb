@@ -13,12 +13,19 @@ describe Airport do
 		end
 
 		it 'expects to hold a plane after it has landed' do
+			allow(airport).to receive(:check_weather) { "sunny" }
 			airport.land(plane)
 			expect(airport.planes).to include(plane)
 		end
 
-		it 'expects land to confirm a plane has landed' do
-			expect(airport.land(plane)).to eq "#{plane} has landed."
+		it 'expects landing to raise error if weather is stormy' do
+			allow(airport).to receive(:check_weather) { "stormy" }
+			expect{airport.land(plane)}.to raise_error("#{plane} cannot land due to stormy weather.")
+		end
+
+		it 'expects a landing to be successful if weather is sunny' do
+			allow(airport).to receive(:check_weather) { "sunny" }
+			expect{airport.land(plane).to eq "#{plane} has landed."}
 		end
 
 	end
