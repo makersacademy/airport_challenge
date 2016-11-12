@@ -17,6 +17,7 @@ DEFAULT_CAPACITY = 50
     @planes << plane
   end
 
+
   def take_off(plane)
     fail "Plane is not in airport" unless in_airport?(plane)
     plane.take_off
