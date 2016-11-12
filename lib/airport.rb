@@ -14,14 +14,14 @@ class Airport
 		@capacity = capacity
 	end
 
-	def land?(plane)
+	def land(plane)
 		fail "#{plane} is already on the ground." if plane.flying == false
 		full?
-		return land_plane(plane) unless stormy?
+		return accept_plane(plane) unless stormy?
 		fail "#{plane} cannot land due to stormy weather."
 	end
 
-	def take_off?(plane)
+	def take_off(plane)
 		fail "#{plane} is already flying." if plane.flying == true
 		fail "#{plane} does not exist at this airport." unless @planes.include?(plane)
 		return release_plane(plane) unless stormy?
@@ -34,7 +34,7 @@ class Airport
 			fail "Airport is full." if @planes.length >= @capacity
 		end
 
-		def land_plane(plane)
+		def accept_plane(plane)
 			plane.landed
 			@planes << plane
 			"#{plane} has landed."
@@ -46,4 +46,5 @@ class Airport
 			@planes.slice!(plane_index)
 			"#{plane} has left the airport."
 		end
+
 end
