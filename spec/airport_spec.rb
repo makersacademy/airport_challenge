@@ -21,6 +21,7 @@ describe Airport do
     end
   end
 
+
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
   describe '#take_off' do

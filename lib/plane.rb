@@ -6,6 +6,7 @@ attr_reader :landed
   end
 
   def land
+    fail "Plane is already on the ground." if @landed == true
     @landed = true
   end
 
