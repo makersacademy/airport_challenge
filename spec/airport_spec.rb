@@ -22,6 +22,7 @@ describe Airport do
 		end
 
 		it 'expects landing to raise error if weather is stormy' do
+			plane = double(:plane, flying: true)
 			allow(airport).to receive(:stormy?) { true }
 			expect{airport.land?(plane)}.to raise_error("#{plane} cannot land due to stormy weather.")
 		end
@@ -35,17 +36,25 @@ describe Airport do
 		end
 
 		it 'expects to hold a plane after it has landed' do
+			plane = double(:plane, flying: true)
 			airport.land?(plane)
 			expect(airport.planes).to include(plane)
 		end
 
 		it 'expects a landing to be successful if weather is sunny' do
+			plane = double(:plane, flying: true)
 			expect(airport.land?(plane)).to eq "#{plane} has landed."
 		end
 
 		it 'expects planes to be unable to land when airport is full' do
+			plane = double(:plane, flying: true)
 			airport.capacity.times {airport.land?(plane)}
 			expect{airport.land?(plane)}.to raise_error("Airport is full.")
+		end
+
+		it 'expects planes that wish to land to be flying' do
+			plane = double(:plane, :flying => false)
+			expect{airport.land?(plane)}.to raise_error("#{plane} is already on the ground.")
 		end
 
 	end
@@ -79,6 +88,10 @@ describe Airport do
 		it 'expects take off to be successful if weather is sunny' do
 			airport.planes << plane
 			expect(airport.take_off?(plane)).to eq "#{plane} has left the airport."
+		end
+
+		it 'expects planes that wish to take off to be at the airport' do
+			expect{airport.take_off?(plane)}.to raise_error("#{plane} does not exist at this airport.")
 		end
 
 	end
