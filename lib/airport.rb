@@ -7,6 +7,8 @@ class Airport
   end
 
   def has_plane_landed?(plane)
-    "yes"
+    return "yes" if plane.landed_status == true
+    "no" if plane.landed_status == false
   end
+  
 end

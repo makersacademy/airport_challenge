@@ -38,4 +38,10 @@ describe Airport do
     plane = Plane.new
     expect(subject.has_plane_landed?(plane)).to eq "yes"
   end
+
+  it "should let user know if a plane has not landed" do
+    plane = Plane.new
+    plane.landed_status = false
+    expect(subject.has_plane_landed?(plane)).to eq "no"
+  end
 end
