@@ -3,12 +3,15 @@ require 'airport'
 describe Airport do
 
   describe "#land_plane" do
-    it "responds to land_plane" do
+    it "responds to #land_plane" do
       expect(subject).to respond_to :land_plane
     end
     it "returns a landed plane" do
       plane = Plane.new
       expect(subject.land_plane(plane)).to eq plane
+    end
+    it "responds to #bike" do
+      expect(subject).to respond_to :plane
     end
   end
 
@@ -20,13 +23,7 @@ describe Airport do
       plane = Plane.new
       expect(subject.landed?(plane)).to eq plane
     end
-    # it "raises an error if we try to check a plane that hasn't landed" do
-    #   plane = Plane.new
-    #   expect(subject.landed?(plane)).to raise_error "Plane has not landed"
-    # end
   end
-
-
 
   describe "#takeoff" do
     it "responds to takeoff" do
