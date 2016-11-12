@@ -29,4 +29,14 @@ describe Airport do
     expect(airport.take_off).to eq plane
   end
 
+  it 'is expected to show that the plane is no longer in the airport' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.land(plane)
+    airport.take_off
+    expect(airport.planes).to eq []
+  end
+
+  it { is_expected.to respond_to :is_it_stormy?}
+
 end

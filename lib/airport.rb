@@ -17,4 +17,7 @@ class Airport
     @planes.pop
   end
 
+  def is_it_stormy?
+  end
+
 end
