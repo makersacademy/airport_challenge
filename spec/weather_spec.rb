@@ -7,8 +7,11 @@ describe Weather do
   it "should contain a radom_weather method" do
     expect(subject).to respond_to(:random_weather)
   end
-  # it "random_weather should return either stormy or sunny" do
-  #    expect(subject.random_weather).to eq "stormy"
-  # end
+   it "random_weather should return either stormy or sunny" do
+      expect(subject.random_weather).to match(/[sunnystormy]/)
+   end
+   it "random_weather should return either stormy or sunny" do
+      expect(subject.random_weather).to match(/[sunnystormy]/)
+   end
 
 end
