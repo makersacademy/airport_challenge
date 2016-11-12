@@ -11,12 +11,12 @@ class Airport
   #LANDING
 
   def land_at_airport(plane)
-
+    @airplanes_on_ground << plane
   end
 
-  def landed?
-
-  end
+  # def landed?
+  #
+  # end
 
 
   #TAKE OFF

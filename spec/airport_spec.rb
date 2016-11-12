@@ -1,7 +1,7 @@
 require "airport"
 
 describe Airport do
-
+let(:airplane) {double :airplane}
   context "Setup" do
     it "expects an airport class to exist" do
       expect(subject.class).to eq(Airport)
@@ -28,13 +28,18 @@ end
       expect(subject).to respond_to(:land_at_airport).with(1).argument
     end
 
-    it "expects airport to respond to a landed? method" do
-      expect(subject).to respond_to(:landed?)
+    it "expects a plane in the airplane_on_ground array if a plane has landed" do
+      subject.land_at_airport(airplane)
+      expect(subject.airplanes_on_ground).to include(airplane)
     end
 
-    # it "expects landed? to be true if the plane has landed" do
-    #   expect(subject).to be_landed
+    # it "expects airport to respond to a landed? method" do
+    #   expect(subject).to respond_to(:landed?)
     # end
+    #
+    # # it "expects landed? to be true if the plane has landed" do
+    # #   expect(subject).to be_landed
+    # # end
 
   end
 
