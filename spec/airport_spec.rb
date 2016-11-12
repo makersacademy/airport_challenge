@@ -3,6 +3,7 @@ require './lib/airport.rb'
 describe Airport do
 
   let(:plane) {double :plane}
+  let(:plane2) {double :plane}
 
   context "Make sure the class Airport responds to all of it's methods" do
 
@@ -12,6 +13,10 @@ describe Airport do
 
     it "Expects Airport to respond to it's store plane method" do
       expect(subject).to respond_to(:store_plane).with(1).argument
+    end
+
+    it "Expects the airport to respond to it's force_plane_to_take_off method" do
+      expect(subject).to respond_to(:force_plane_to_take_off).with(1).argument
     end
   end
 
@@ -25,8 +30,16 @@ describe Airport do
 
     it "checks that planes are stored in an array" do
       subject.store_plane(plane)
-      
+
       expect(subject.landing_bay.class).to eq Array
+    end
+
+    it "checks that when a plane has taken off that it is removed from landing bay" do
+      subject.store_plane(plane)
+      subject.store_plane(plane2)
+      subject.force_plane_to_take_off(plane)
+
+      expect(subject.landing_bay.size).to eq 1
     end
 
 
