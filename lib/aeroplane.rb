@@ -1,19 +1,17 @@
 class Aeroplane
+  attr_reader :confirm_landed, :confirm_taken_off
 
-  def land
-    true
+  def initialize
+    @confirm_landed = true
+    @confirm_taken_off = true
   end
 
-  def confirm_landed
-    true
+  def land
+    confirm_landed
   end
 
   def take_off
-    true
-  end
-
-  def confirm_taken_off
-    true
+    confirm_taken_off
   end
 
 end
