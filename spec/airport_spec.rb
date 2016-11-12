@@ -42,6 +42,13 @@ describe Airport do
       subject.land(plane)
       expect(plane.state).to eq "landed"
     end
+
+    it "doesn't allow a plane to land if it is already landed" do
+      plane = Plane.new
+      subject.weather = "good"
+      subject.land(plane)
+      expect {subject.land(plane)}.to raise_error("This plane is already landed")
+    end
   end
 
   describe "#on_airport?" do
