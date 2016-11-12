@@ -9,6 +9,7 @@ describe Weather do
     end
 
     it 'returns :sunny if it is sunny' do
+      subject.condition=(:sunny)
       expect(subject.condition).to eq :sunny
     end
 
