@@ -9,8 +9,15 @@ def initialize
 end
 
 def taxi(plane)
+  fail "Too stormy to taxi plane" if !sunny?
   plane.landed = false
   planes.delete(plane)
 end
 
+end
+
+
+
+def sunny?
+  [true, false].sample
 end
