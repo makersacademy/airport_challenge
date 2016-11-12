@@ -4,4 +4,8 @@ class Airport
     true
   end
 
+  def prevent_landing
+    true
+  end
+
 end

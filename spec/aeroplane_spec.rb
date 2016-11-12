@@ -11,11 +11,11 @@ describe Aeroplane do
   end
 
   it "should take off" do
-    expect(subject.take_off). to eq true
+    expect(subject.take_off).to eq true
   end
 
   it "should confirm it has taken off" do
     expect(subject.confirm_taken_off).to eq true
   end
-  
+
 end
