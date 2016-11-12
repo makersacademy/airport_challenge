@@ -14,6 +14,13 @@ class Airport
 
   def take_off(plane)
     plane.take_off
+    remove_from_airport(plane)
+  end
+
+  private
+
+  def remove_from_airport(plane)
+    @planes.delete(plane)
   end
 
 end
