@@ -9,8 +9,19 @@ class AirportController
   end
 
   def land_plane(plane)
+    raise "This plane has already been landed!" if is_this_plane_in_the_airport?(plane)
+    # raise "The airport is full!" if is_airport_full?
     plane.report_landing
-    @planes = plane
+    @planes << plane
+  end
+
+  def is_this_plane_in_the_airport?(plane)
+    @planes.include?(plane)
+  end
+
+  def is_airport_full?
+    return false if @planes.empty?
+    true
   end
 
   def take_off_plane

@@ -6,11 +6,6 @@ it "should respond to the method land_plane" do
   expect(subject).to respond_to (:land_plane)
 end
 
-it "land_plane should return an instance of a plane" do
-  plane = Plane.new
-  expect(subject.land_plane(plane)).to eq plane
-end
-
 it "should respond to the method take_off_plane" do
   expect(subject).to respond_to (:take_off_plane)
 end
@@ -19,12 +14,6 @@ it "a plane that has taken off should return true for taken_off?" do
   subject.planes << Plane.new
   plane = subject.take_off_plane
   expect(plane.taken_off?).to eq true
-end
-
-it "should retrieve the planes from the airport/airport controller" do
-  plane = Plane.new
-  subject.land_plane(plane)
-  expect(subject.planes).to eq plane
 end
 
 it "landed planes should return true for landed?" do
@@ -41,6 +30,17 @@ end
 it "should raise an error if you try to take_off a plane that is not in the airport" do
   expect{subject.take_off_plane}.to raise_error("There are no planes in the airport")
 end
+
+it "should raise an error if you to land a plane when the airport is full" do
+  subject.land_plane(Plane.new)
+  expect{subject.land_plane(Plane.new)}.to raise_error("The airport is full!")
+end
+
+# it "should raise an error if you try to land a plane, that has alreaded landed" do
+#   plane = Plane.new
+#   subject.land_plane(plane)
+#   expect{subject.land_plane(plane)}.to raise_error("This plane has already landed!")
+# end
 
 
 end
