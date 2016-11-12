@@ -14,4 +14,8 @@ attr_reader :planes
     else false
     end
   end
+
+  def take_off_plane(plane)
+    @planes.pop
+  end
 end
