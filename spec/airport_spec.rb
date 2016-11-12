@@ -11,33 +11,39 @@ describe Airport do
   end
 
   it 'expects an airport to accept a plane to land' do
-    expect(subject.land(plane)).to eq subject.planes
+    expect(subject.land(plane,weather)).to eq subject.planes
   end
 
   it 'expects an airport to be able to list its current planes' do
-    subject.land(plane)
-    subject.land(plane)
+    subject.land(plane,weather)
+    subject.land(plane,weather)
     subject.planes.inspect
     expect(subject.planes).to eq subject.planes
   end
 
   it 'expects a plane to take off from an airport if the weather is Sunny' do
     plane = plane
-    subject.land(plane)
+    subject.land(plane,weather)
     expect(subject.take_off(plane,weather)).to eq plane
   end
 
   it 'expects an airport not to contain a plane in it once taken off' do
-    subject.land(plane)
+    subject.land(plane,weather)
     subject.take_off(plane,weather.check)
     expect(subject.planes).to be_empty
   end
 
   it 'expects the plane not to be allowed to take off if the weather is bad' do
     weather = double("weather", :check => "Stormy")
-    subject.land(plane)
+    subject.land(plane,weather)
     weather = weather.check
     expect{subject.take_off(plane, weather)}.to raise_error("Cannot take off in stormy weather")
+  end
+
+  it 'expects an airport not to accept a plane to land if the weather is bad' do
+    weather = double("weather", :check => "Stormy")
+    weather = weather.check
+    expect{subject.land(plane,weather)}.to raise_error "Cannot land planes if the weather if stormy"
   end
 
 
