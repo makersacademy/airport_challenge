@@ -9,7 +9,7 @@ attr_reader :planes
     planes << plane
   end
 
-  def landed?(plane)
+  def on_airport?(plane)
     if planes.include? plane; true
     else false
     end
@@ -19,9 +19,4 @@ attr_reader :planes
     planes.pop
   end
 
-  def took_off?(plane)
-    if planes.include? plane; false
-    else true
-    end
-  end
 end

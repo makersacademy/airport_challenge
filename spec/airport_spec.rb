@@ -11,14 +11,14 @@ describe Airport do
     expect(plane).to eq subject.planes.last
   end
 
-  it "confirms that a plane is landed there" do
+  it "confirms that a plane is landed there/has not taken off" do
     plane = Plane.new
     subject.land(plane)
-    expect(subject.landed?(plane)).to eq true
+    expect(subject.on_airport?(plane)).to eq true
   end
 
-  it "informs if the plane is not landed at this airport" do
-    expect(subject.landed?(Plane.new)).to eq false
+  it "informs if the plane is not landed at this airport/has taken off" do
+    expect(subject.on_airport?(Plane.new)).to eq false
   end
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -28,19 +28,6 @@ describe Airport do
     subject.land(plane)
     subject.take_off(plane)
     expect(subject.planes).not_to include plane
-  end
-
-  it "confirms that plane is away" do
-    plane = Plane.new
-    subject.land(plane)
-    subject.take_off(plane)
-    expect(subject.took_off?(plane)).to eq true
-  end
-
-  it "informs that the plane has not taken off" do
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.took_off?(plane)).to eq false
   end
 
 end
