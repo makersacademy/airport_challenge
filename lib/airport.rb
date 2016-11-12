@@ -8,6 +8,7 @@ class Airport
 
 	def land(plane)
 		@planes << plane
+		"#{plane} has landed."
 	end
 
 end

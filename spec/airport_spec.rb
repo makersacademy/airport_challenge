@@ -6,7 +6,9 @@ describe Airport do
 		
 	let (:plane) {double :plane}
 
-		it { is_expected.to respond_to "land"}
+		it 'expects airport to land a plane' do
+			expect(airport).to respond_to(:land).with(1).argument
+		end
 
 		it 'expects to hold a plane after it has landed' do
 			airport.land(plane)
