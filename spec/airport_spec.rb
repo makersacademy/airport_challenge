@@ -6,10 +6,25 @@ describe Airport do
 let(:plane) {double :plane}
 subject(:airport) {described_class.new}
 
-  it 'returns planes which have landed' do
-    allow(plane).to receive(:land)
-    subject.land(plane)
-    expect(subject.planes).to eq [plane]
+  describe '#planes' do
+
+    it 'returns planes which have landed' do
+      allow(plane).to receive(:land)
+      subject.land(plane)
+      expect(subject.planes).to eq [plane]
+    end
+
+  end
+
+  describe '#capacity' do
+
+    it 'has a variable capacity' do
+      allow(plane).to receive(:land)
+      subject.capacity = 60
+      60.times {subject.land(plane)}
+      expect { subject.land(plane) }.to raise_error 'Airport is full'
+    end
+
   end
 
   describe '#initialization' do
@@ -21,7 +36,7 @@ subject(:airport) {described_class.new}
       end
       expect { subject.land(plane) }.to raise_error 'Airport is full'
     end
-    
+
   end
 
   describe '#land' do

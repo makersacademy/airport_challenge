@@ -4,7 +4,8 @@ class Airport
 
 DEFAULT_CAPACITY = 50
 
-  attr_reader :planes, :capacity
+  attr_reader :planes
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -22,7 +23,6 @@ DEFAULT_CAPACITY = 50
     fail "Plane is not in airport" unless in_airport?(plane)
     plane.take_off
     @planes.delete(plane)
-    plane
   end
 
   private
