@@ -1,11 +1,9 @@
+require_relative "airport.rb"
+
 class Plane
-
-  def land(airport)
-    
-  end
-
-  def has_landed
-    true
+  attr_accessor :has_landed
+  def initialize(has_landed = false)
+    @has_landed = has_landed
   end
 
 end
