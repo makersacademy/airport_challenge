@@ -2,6 +2,7 @@ require 'airport'
 describe Airport do
 
   it { is_expected.to be_instance_of(Airport) }
+
   describe "#land" do
     it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -17,6 +18,13 @@ describe Airport do
       subject.weather = "stormy"
       expect { subject.land(plane) }.to raise_error("Landing impossible due to stormy weather")
     end
+
+    it "Doesn't allow planes to land if full" do
+      subject.weather = "good"
+      (subject.capacity).times { subject.land(Plane.new)}
+      expect { subject.land(Plane.new) }.to raise_error("This airport is full")
+    end
+
   end
 
   describe "#on_airport?" do
