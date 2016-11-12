@@ -25,9 +25,17 @@ describe Airport do
 
   it "instructs a plane to take_off" do
     plane = Plane.new
+    subject.weather = "good"
     subject.land(plane)
     subject.take_off(plane)
     expect(subject.planes).not_to include plane
+  end
+
+  it "doesn't allow plane to take off if weather stormy" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.weather = "stormy"
+    expect { subject.take_off(plane) }.to raise_error("Take-off impossible due to stormy weather")
   end
 
 end
