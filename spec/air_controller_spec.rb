@@ -36,6 +36,16 @@ it "should raise an error if you to land a plane when the airport is full" do
   expect{subject.land_plane(Plane.new)}.to raise_error("The airport is full!")
 end
 
+it "should be able to set an airports capity" do
+  new_airport = AirportController.new(100)
+  expect(new_airport.capacity).to eq 100
+end
+
+it "if no capacity is given, then airport capacity is equal to a DEFAULT_CAPACITY" do
+  new_airport = AirportController.new
+  expect(new_airport.capacity).to eq 20
+end
+
 # it "should raise an error if you try to land a plane, that has alreaded landed" do
 #   plane = Plane.new
 #   subject.land_plane(plane)

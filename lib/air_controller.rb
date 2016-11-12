@@ -2,15 +2,16 @@ require_relative 'plane'
 
 class AirportController
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize
+  def initialize(capacity = 20)
     @planes = []
+    @capacity = capacity
   end
 
   def land_plane(plane)
     raise "This plane has already been landed!" if is_this_plane_in_the_airport?(plane)
-    # raise "The airport is full!" if is_airport_full?
+    raise "The airport is full!" if is_airport_full?
     plane.report_landing
     @planes << plane
   end
