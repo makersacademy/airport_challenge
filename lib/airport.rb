@@ -8,8 +8,16 @@ class Airport
     Plane.new
   end
 
-  def land(plane)
+  def plane=(plane)
     @plane = plane
+  end
+
+  def land(plane)
+    self.plane=(plane)
+  end
+
+  def remove_plane
+    self.plane=(nil)
   end
 
 end

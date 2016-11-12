@@ -16,4 +16,11 @@ describe Airport do
     expect(subject.plane).to eq plane
   end
 
+  it 'can remove a plane' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.remove_plane
+    expect(subject.plane).to eq nil
+  end
+
 end
