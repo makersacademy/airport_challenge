@@ -8,8 +8,14 @@ class Airport
     @plane
   end
 
+  def take_off(plane)
+    fail "This plane hasn't landed at this airport!" if !confirm_landed(plane)
+    @plane.delete(plane)
+    plane
+  end
+
   def confirm_landed(plane)
-    fail "No plane landed!" if @plane.nil?
+    return false if @plane.nil?
     @plane.include?(plane)
   end
 
