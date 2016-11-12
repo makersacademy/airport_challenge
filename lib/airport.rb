@@ -1,4 +1,5 @@
+require_relative  "plane.rb"
+
 class Airport
-  def confirm(plane)
-  end
+  attr_reader :planes
 end

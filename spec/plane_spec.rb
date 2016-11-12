@@ -7,10 +7,16 @@ describe Plane do
   it "should land" do
     expect(subject).to respond_to(:land)
   end
-  it "should land at an airport" do
+  it "land shold take an airport as an argument" do
     expect(subject).to respond_to(:land).with(1).argument
   end
-  it "should confirm that it has_landed" do
+  it "should contain a has_landed method" do
     expect(subject).to respond_to(:has_landed)
+  end
+  it "should confirm if a plane has landed" do
+    expect(subject.has_landed).to eq true
+  end
+  it "should confirm if a plane has not landed" do
+    expect(subject.has_landed).to eq false
   end
 end
