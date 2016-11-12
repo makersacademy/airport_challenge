@@ -7,6 +7,8 @@ class Airport
 	end
 
 	def land(plane)
+		fail "#{plane} cannot land as the airport is full." if full?
+
 		if check_weather == "sunny"
 			@planes << plane
 			"#{plane} has landed."
@@ -34,6 +36,10 @@ class Airport
 			else
 				"sunny"
 			end
+		end
+
+		def full?
+			
 		end
 
 end

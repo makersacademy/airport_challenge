@@ -28,6 +28,12 @@ describe Airport do
 			expect(airport.land(plane)).to eq "#{plane} has landed."
 		end
 
+		it 'expects planes to be unable to land when airport is full' do
+			allow(airport).to receive(:full?) { true }
+			allow(airport).to receive(:check_weather) { "sunny" }
+			expect{airport.land(plane)}.to raise_error("#{plane} cannot land as the airport is full.")
+		end
+
 	end
 
 	describe '#take_off' do
@@ -37,6 +43,7 @@ describe Airport do
 		end
 
 		it 'expects plane to have left the airport after it has taken off' do
+			allow(airport).to receive(:check_weather) { "sunny" }
 			airport.planes << plane
 			airport.take_off(plane)
 			expect(airport.planes).not_to include(plane)
