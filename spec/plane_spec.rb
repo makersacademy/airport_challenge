@@ -23,6 +23,31 @@ describe Plane do
       expect(subject).to be_landed
     end
 
+    it "should be at the airport which the plane has just landed" do
+      airport = Airport.new
+      subject.land(airport)
+      expect(airport.planes).to include(subject)
+    end
+
+  end
+
+  context "take off" do
+
+    it "should be able to respond to take_off method" do
+      expect(subject).to respond_to :take_off
+    end
+
+    it "should take off from an airport" do
+      expect(subject).to respond_to(:take_off).with(1).argument
+    end
+
+    it "should be no longer in the airport when the plane has taken off" do
+      airport = Airport.new
+      subject.land(airport)
+      taken_off_plane = subject.take_off(airport)
+      expect(airport.planes).not_to include(taken_off_plane)
+    end
+
   end
 
 end
