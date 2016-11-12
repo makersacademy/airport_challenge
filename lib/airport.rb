@@ -34,6 +34,4 @@ class Airport
     @planes.length == @total_capacity
   end
 
-
-
 end
