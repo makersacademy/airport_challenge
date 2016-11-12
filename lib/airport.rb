@@ -5,17 +5,23 @@ attr_reader :planes
     @planes = []
   end
 
-  def land_plane(plane)
-    @planes << plane
+  def land(plane)
+    planes << plane
   end
 
   def landed?(plane)
-    if @planes.include? plane; true
+    if planes.include? plane; true
     else false
     end
   end
 
-  def take_off_plane(plane)
-    @planes.pop
+  def take_off(plane)
+    planes.pop
+  end
+
+  def took_off?(plane)
+    if planes.include? plane; false
+    else true
+    end
   end
 end
