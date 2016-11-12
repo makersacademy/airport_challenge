@@ -10,5 +10,8 @@ describe Aeroplane do
     expect(subject.confirm_landed).to eq true
   end
 
+  it "should take off" do
+    expect(subject.take_off). to eq true
+  end
 
 end
