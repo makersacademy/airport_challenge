@@ -38,9 +38,9 @@ describe Airport do
 		end
 
 		it 'expects planes to be unable to land when airport is full' do
-			allow(airport).to receive(:full?) { true }
 			allow(airport).to receive(:check_weather) { "sunny" }
-			expect{airport.land(plane)}.to raise_error("#{plane} cannot land as the airport is full.")
+			airport.capacity.times {airport.land(plane)}
+			expect{airport.land(plane)}.to raise_error("Airport is full.")
 		end
 
 	end
