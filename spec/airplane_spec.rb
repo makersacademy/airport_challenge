@@ -38,7 +38,7 @@ describe Airplane do
 
   end
 
-  context "complex tests" do
+  context "take off and landing" do
 
     it "should start landed, take off and be flying, then land and be landed" do
       expect(subject).to be_landed
@@ -50,7 +50,7 @@ describe Airplane do
 
   end
 
-  context "bad weather tests" do
+  context "in case of bad weather" do
     let(:bad_weather) { double(:weather, :condition => "Stormy" )}
 
     it "should not take off in bad weather" do
