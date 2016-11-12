@@ -12,9 +12,14 @@ describe Airport do
     end
   end
 
-  describe "#plane" do 
+  describe "#plane" do
     it "responds to #plane" do
       expect(subject).to respond_to :plane
+    end
+    it "saves a plane that is landed" do
+      plane1 = Plane.new
+      subject.land_plane(plane1)
+      expect(subject.plane).to eq plane1
     end
   end
 
