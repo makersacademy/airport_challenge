@@ -7,12 +7,14 @@ describe Airport do
 
   it "tells a plane to land" do
     plane = Plane.new
+    weather = "good"
     subject.land(plane)
     expect(plane).to eq subject.planes.last
   end
 
   it "confirms that a plane is landed there/has not taken off" do
     plane = Plane.new
+    weather = "good"
     subject.land(plane)
     expect(subject.on_airport?(plane)).to eq true
   end
@@ -38,4 +40,9 @@ describe Airport do
     expect { subject.take_off(plane) }.to raise_error("Take-off impossible due to stormy weather")
   end
 
+  it "doesn't allow plane to land if weather stormy" do
+    plane = Plane.new
+    subject.weather = "stormy"
+    expect { subject.land(plane) }.to raise_error("Landing impossible due to stormy weather")
+  end
 end

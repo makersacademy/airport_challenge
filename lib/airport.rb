@@ -8,6 +8,7 @@ attr_accessor :weather
   end
 
   def land(plane)
+    raise "Landing impossible due to stormy weather" if weather == "stormy"
     planes << plane
   end
 
