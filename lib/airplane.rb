@@ -4,7 +4,6 @@ class Airplane
     @landed = true
   end
 
-
   def landed?
     @landed
   end

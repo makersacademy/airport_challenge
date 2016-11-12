@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   #force a fair weather airport
-  before {subject.weather.instance_variable_set(:@condition, "Sunny") } 
+  before {subject.weather.instance_variable_set(:@condition, "Sunny") }
 
   context "on creation" do
     it "should have somewhere to hold aircraft" do
@@ -34,10 +34,17 @@ describe Airport do
 
   context "when landing aircraft" do
     it "should allow aircraft to land" do
-      airplane = double(:plane, land!: nil, landed?: false)
+      airplane = double(:plane, land!: nil)
       expect(airplane).to receive(:land!).with subject.weather
       subject.land airplane
       expect(subject.hangar[0]).to eq airplane
+    end
+
+    it "should not allow aircraft to land when full" do
+      airplane = double(:plane, land!: nil)
+      subject.capacity.times{ subject.land(airplane) }
+      subject.land airplane
+      expect(subject.hangar.size).to eq subject.capacity
     end
   end
 
@@ -61,7 +68,7 @@ describe Airport do
       plane2 = double(:plane, take_off!: nil)
       subject.instance_variable_set(:@hangar, [plane1, plane2])
 
-      subject.taxi(plane1)
+      subject.taxi plane1
       expect(subject.hangar).not_to include plane1
       expect(subject.hangar).to include plane2
     end
@@ -72,7 +79,7 @@ describe Airport do
       subject.weather.instance_variable_set(:@condition, "Stormy")
       airplane = double(:plane, land!: nil)
 
-      subject.land(airplane)
+      subject.land airplane
       expect(subject.hangar).not_to include airplane
     end
 
