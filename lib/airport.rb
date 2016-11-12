@@ -3,12 +3,16 @@ require_relative 'weather.rb'
 
 class Airport
 
+  attr_reader :capacity
+
   def initialize
     @plane = []
+    @capacity = 100
   end
 
   def land(plane)
     fail "Due to bad weather, aircraft are unable to land." if check_weather == "stormy"
+    fail "Airport at full capacity, no space available." if @plane.size == capacity
     @plane.include?(plane) ? false : @plane << plane
   end
 

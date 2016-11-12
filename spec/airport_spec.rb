@@ -26,6 +26,11 @@ describe Airport do
       allow( subject ).to receive( :check_weather ){ "not stormy" }
       expect( subject.land( plane1 ) ).to be_truthy
     end
+    it "should not accept landing when airport is full" do
+      allow( subject ).to receive( :check_weather ){ "not stormy" }
+      allow( subject ).to receive( :capacity ){ 0 }
+      expect{ subject.land( plane1 ) }.to raise_error( "Airport at full capacity, no space available." )
+    end
   end
 
   describe "#confirm_landed" do
