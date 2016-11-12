@@ -2,10 +2,17 @@ require_relative "plane"
 
 class Airport
 
-attr_reader :planes
+attr_reader :planes, :capacity
+DEFAULT_CAPACITY = 15
 
-def initialize
+def initialize(capacity = DEFAULT_CAPACITY)
+  @capacity = capacity
   @planes = []
+end
+
+def dock(plane)
+  fail "Airport is full" if full?
+  planes << plane
 end
 
 def taxi(plane)
@@ -16,6 +23,9 @@ end
 
 end
 
+def full?
+  planes.count >= capacity
+end
 
 
 def sunny?

@@ -9,6 +9,7 @@ def initialize
 end
 
 def land(airport)
+  fail "Too stormy to land" if !sunny?
   airport.planes << self
   @landed = true
 end
