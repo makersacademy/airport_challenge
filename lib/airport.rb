@@ -1,13 +1,13 @@
 require_relative "plane"
 class Airport
   DEFAULT_CAPACITY =  10
-  attr_reader :planes, :capacity
-  attr_accessor :weather
+  attr_reader :planes
+  attr_accessor :weather, :capacity
   @weather = rand(101) >= 10 ? "good" : "stormy"
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = DEFAULT_CAPACITY
+    @capacity = capacity
   end
 
   def land(plane)

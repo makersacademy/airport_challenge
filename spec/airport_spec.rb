@@ -3,6 +3,17 @@ describe Airport do
 
   it { is_expected.to be_instance_of(Airport) }
 
+  describe "#capacity" do
+    it "has a default capacity that can be changed on airport creation" do
+      expect((Airport.new(21)).capacity).to eq 21
+    end
+
+    it "has a capacity that can be changed overtime" do
+      subject.capacity = 20
+      expect(subject.capacity).to eq 20
+    end
+  end
+
   describe "#land" do
     it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -24,7 +35,6 @@ describe Airport do
       (subject.capacity).times { subject.land(Plane.new)}
       expect { subject.land(Plane.new) }.to raise_error("This airport is full")
     end
-
   end
 
   describe "#on_airport?" do
