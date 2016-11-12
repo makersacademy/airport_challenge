@@ -1,4 +1,5 @@
 class Plane
+attr_reader :landed
 
   def initialize
     @landed = false
@@ -6,6 +7,10 @@ class Plane
 
   def land
     @landed = true
+  end
+
+  def take_off
+    @landed = false
   end
 
 end
