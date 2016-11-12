@@ -1,6 +1,8 @@
 require_relative "plane"
-class Airport
+require_relative "weather"
 
+class Airport
+  include Weather
   DEFAULT_CAPACITY =  10
   @weather = rand(101) >= 90 ? "good" : "stormy"
 
