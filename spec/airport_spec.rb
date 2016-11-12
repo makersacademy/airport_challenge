@@ -16,10 +16,10 @@ describe Airport do
     it "responds to #plane" do
       expect(subject).to respond_to :plane
     end
-    it "saves a plane that is landed" do
-      plane1 = Plane.new
-      subject.land_plane(plane1)
-      expect(subject.plane).to eq plane1
+    it "saves one plane that is landed" do
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect(subject.plane).to eq plane
     end
   end
 
@@ -27,9 +27,14 @@ describe Airport do
     it "responds to landed?" do
       expect(subject).to respond_to :landed?
     end
-    it "returns the plane we are checking" do
+    it "returns false if plane has not landed" do
       plane = Plane.new
-      expect(subject.landed?(plane)).to eq plane
+      expect(subject.landed?(plane)).to eq false
+    end
+    it "returns true if plane has landed" do
+      plane = Plane.new
+      subject.land_plane(plane)
+      expect(subject.landed?(plane)).to eq true
     end
   end
 
@@ -43,6 +48,7 @@ describe Airport do
     end
   end
 
+  describe
 
 
 

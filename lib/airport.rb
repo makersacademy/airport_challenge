@@ -12,7 +12,8 @@ class Airport
   end
 
   def landed?(plane)
-    plane
+    return true if @plane
+    false
   end
 
   def takeoff(plane)
