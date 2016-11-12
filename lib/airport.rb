@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :stormy
 
   def initialize
     @planes = []
@@ -11,6 +11,7 @@ class Airport
 
   def land(plane)
     raise "Due to inclement weather no planes can land" if @stormy
+    raise "This airport is full, hope you have enough fuel!" if check_full?
     @planes << plane
     "Flight #{plane} has landed."
   end
@@ -21,11 +22,20 @@ class Airport
   end
 
   def is_it_stormy?(number)
-    @stormy = number > 4? true : false
+    @stormy = number == 5? true : false
   end
 
   def number_generator
     rand(1..5)
   end
+
+  def check_full?
+    full?
+  end
+
+  def full?
+    @planes.count > 0
+  end
+
 
 end
