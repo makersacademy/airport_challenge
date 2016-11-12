@@ -10,8 +10,14 @@ describe Airport do
     expect(subject).to respond_to :plane
   end
 
-  it 'returns a plane when .plane is called' do
+  it 'returns a Plane when .plane is called' do
     expect(subject.plane).to be_kind_of Plane
+  end
+
+  it 'lands a Plane and can return the same Plane' do
+    plane = Plane.new
+    subject.land(Plane.new)
+    expect(subject.plane).to eq plane
   end
 
 end
