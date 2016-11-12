@@ -8,12 +8,12 @@ describe Airport do
     end
     it "allows controller to land a plane" do
       plane = Plane.new
-      expect(subject.land_plane(plane))
+      expect(subject.land_plane(plane)).to eq true
     end
-    it "returns the landed plane" do
-      plane = Plane.new
-      expect(subject.land_plane(plane)).to eq plane
-    end
+    # it "returns the landed plane" do
+    #   plane = Plane.new
+    #   expect(subject.land_plane(plane)).to eq plane
+    # end
   end
 
   describe "#landed?" do
