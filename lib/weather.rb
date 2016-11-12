@@ -4,12 +4,9 @@ module Weather
 		rand(5)
 	end
 
-	def Weather.check_weather
-		if random_number == 0
-			"stormy"
-		else
-			"sunny"
-		end
+	def self.check_weather
+		return "stormy" if random_number == 0
+		return "sunny"
 	end
 
 end
