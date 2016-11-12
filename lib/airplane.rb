@@ -9,12 +9,12 @@ class Airplane
     @landed
   end
 
-  def land!
-    @landed = true
+  def land!(weather)
+    @landed = true unless weather.condition == "Stormy"
   end
 
-  def take_off!
-    @landed = false
+  def take_off!(weather)
+    @landed = false unless weather.condition == "Stormy"
   end
 
   def flying?

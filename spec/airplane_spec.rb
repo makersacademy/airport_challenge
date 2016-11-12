@@ -2,6 +2,8 @@ require 'airplane'
 
 describe Airplane do
 
+  let(:weather) { double(:weather, condition: "Sunny") }
+
   context "sanity check" do
 
     it "should not be flying if it is landed" do
@@ -17,7 +19,7 @@ describe Airplane do
     end
 
     it "should be able to land" do
-      subject.land!
+      subject.land!(weather)
       expect(subject).to be_landed
     end
 
@@ -30,7 +32,7 @@ describe Airplane do
     end
 
     it "should be able to tell when it is flying" do
-      subject.take_off!
+      subject.take_off!(weather)
       expect(subject).to be_flying
     end
 
@@ -40,12 +42,27 @@ describe Airplane do
 
     it "should start landed, take off and be flying, then land and be landed" do
       expect(subject).to be_landed
-      subject.take_off!
+      subject.take_off!(weather)
       expect(subject).to be_flying
-      subject.land!
+      subject.land!(weather)
       expect(subject).to be_landed
     end
-    
+
+  end
+
+  context "bad weather tests" do
+    let(:bad_weather) { double(:weather, :condition => "Stormy" )}
+
+    it "should not take off in bad weather" do
+      subject.take_off!(bad_weather)
+      expect(subject).to be_landed
+    end
+
+    it "should not land in bad weather" do
+      subject.take_off!(weather)
+      subject.land!(bad_weather)
+      expect(subject).to be_flying
+    end
   end
 
 end
