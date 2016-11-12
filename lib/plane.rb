@@ -11,6 +11,7 @@ class Plane
   end
 
   def report_landing
+    @landed = true
   end
 
   def report_take_off

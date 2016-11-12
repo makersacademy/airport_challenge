@@ -5,16 +5,17 @@ class AirportController
   attr_reader :planes
 
   def initialize
-    @planes
+    @planes = []
   end
 
   def land_plane(plane)
-    plane.landed?
+    plane.report_landing
     @planes = plane
   end
 
   def take_off_plane
-    Plane.new
+    raise "There are no planes in the airport" if @planes.empty?
+    @planes.pop
   end
 
 
