@@ -29,8 +29,15 @@ describe Airport do
 			expect(airport).to respond_to(:take_off).with(1).argument
 		end
 
-		it 'expects take off to confirm a plane has taken off' do
-			expect(airport.take_off(plane)).to eq "#{plane} has taken off."
+		it 'expects take off to confirm a plane has left their airport' do
+			airport.planes << plane
+			expect(airport.take_off(plane)).to eq "#{plane} has left the airport."
+		end
+
+		it 'expects plane to have left the airport after it has taken off' do
+			airport.planes << plane
+			airport.take_off(plane)
+			expect(airport.planes).not_to include(plane)
 		end
 
 	end

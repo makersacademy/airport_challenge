@@ -12,7 +12,9 @@ class Airport
 	end
 
 	def take_off(plane)
-		"#{plane} has taken off."
+		plane_index = @planes.index(plane)
+		@planes.slice!(plane_index)
+		"#{plane} has left the airport."
 	end
 
 end
