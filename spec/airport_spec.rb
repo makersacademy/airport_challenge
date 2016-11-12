@@ -27,7 +27,13 @@ describe Airport do
    it "should change landed status to true if it was false" do
      plane = Plane.new
      plane.landed_status = false
-     expect(subject.land_plane(plane)).to eq plane.landed_status == true
+     expect{subject.land_plane(plane)}.to change {plane.landed_status}.from(false).to(true)
+   end
+
+   it "should return message that plane has landed" do
+     plane = Plane.new
+     plane.landed_status = false
+     expect(subject.land_plane(plane)).to eq "#{plane} has landed"
    end
  end
 
@@ -73,29 +79,12 @@ describe Airport do
 
    it "should return message to let air controller know that plane has taken off" do
    plane = Plane.new
-   expect(subject.take_off(plane)).to eq "Plane has taken off"
+   expect(subject.take_off(plane)).to eq "#{plane} has taken off"
    end
  end
 
- context "check that the plane is no longer at the airport" do
-   it "should respond to a method to check plane is not at the airport" do
-     plane = Plane.new
-     subject.take_off(plane)
-     expect(subject).to respond_to(:is_plane_at_airport?).with(1).argument
-   end
+  context "prevent take off when weather is stormy" do
+    it "should"
+  end
 
-   it "should return yes if plane is not at the airport" do
-     plane = Plane.new
-     subject.take_off(plane)
-     expect(subject.is_plane_at_airport?(plane)).to eq "no"
-   end
-
-   it "should return no if plane is still at the airport" do
-     plane = Plane.new
-     expect(subject.is_plane_at_airport?(plane)).to eq "yes"
-   end
-
-
-
- end
 end
