@@ -16,9 +16,13 @@ class Airport
 	end
 
 	def take_off(plane)
-		plane_index = @planes.index(plane)
-		@planes.slice!(plane_index)
-		"#{plane} has left the airport."
+		if check_weather == "sunny"
+			plane_index = @planes.index(plane)
+			@planes.slice!(plane_index)
+			"#{plane} has left the airport."
+		else
+			fail "#{plane} cannot take off due to stormy weather."
+		end
 	end
 
 	private

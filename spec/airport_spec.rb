@@ -25,7 +25,7 @@ describe Airport do
 
 		it 'expects a landing to be successful if weather is sunny' do
 			allow(airport).to receive(:check_weather) { "sunny" }
-			expect{airport.land(plane).to eq "#{plane} has landed."}
+			expect(airport.land(plane)).to eq "#{plane} has landed."
 		end
 
 	end
@@ -36,15 +36,22 @@ describe Airport do
 			expect(airport).to respond_to(:take_off).with(1).argument
 		end
 
-		it 'expects take off to confirm a plane has left their airport' do
-			airport.planes << plane
-			expect(airport.take_off(plane)).to eq "#{plane} has left the airport."
-		end
-
 		it 'expects plane to have left the airport after it has taken off' do
 			airport.planes << plane
 			airport.take_off(plane)
 			expect(airport.planes).not_to include(plane)
+		end
+
+		it 'expects take off to raise error if weather is stormy' do
+			allow(airport).to receive(:check_weather) { "stormy" }
+			airport.planes << plane
+			expect{airport.take_off(plane)}.to raise_error("#{plane} cannot take off due to stormy weather.")
+		end
+
+		it 'expects take off to be successful if weather is sunny' do
+			allow(airport).to receive(:check_weather) { "sunny" }
+			airport.planes << plane
+			expect(airport.take_off(plane)).to eq "#{plane} has left the airport."
 		end
 
 	end
