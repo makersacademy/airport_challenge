@@ -18,6 +18,7 @@ class Airport
     raise "This plane is already landed" if plane.state == "landed"
     plane.state = "landed"
     planes << plane
+    confirm(plane)
   end
 
   def on_airport?(plane)
@@ -26,11 +27,17 @@ class Airport
     end
   end
 
+  def confirm(plane)
+    on_airport?(plane) ? "The plane has landed" : "The plane has taken off"
+  end
+
   def take_off(plane = planes.last)
     raise "Take-off impossible due to stormy weather" if stormy?
     raise "This plane is not present at this airport!" if !(on_airport?(plane))
-    raise "This plane is already flying!" if plane.state == "flying"
+    raise "This plane cannot use an airport when flying!" if plane.state == "flying"
+    on_airport?(plane)
     planes.delete(plane)
+    confirm(plane)
   end
 
   private

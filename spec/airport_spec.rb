@@ -24,6 +24,12 @@ describe Airport do
       expect(plane).to eq subject.planes.last
     end
 
+    it "confirms that a plane has just landed" do
+      plane = Plane.new
+      weather = "good"
+      expect(subject.land(plane)).to eq "The plane has landed"
+    end
+
     it "doesn't allow plane to land if weather stormy" do
       plane = Plane.new
       subject.weather = "stormy"
@@ -75,6 +81,13 @@ describe Airport do
       expect(subject.planes).not_to include plane
     end
 
+    it "confirms that the plane has just taken off" do
+      plane = Plane.new
+      weather = "good"
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq "The plane has taken off"
+    end
+
     it "doesn't allow plane to take off if weather stormy" do
       plane = Plane.new
       subject.land(plane)
@@ -86,12 +99,12 @@ describe Airport do
       expect {subject.take_off(Plane.new)}.to raise_error("This plane is not present at this airport!")
     end
 
-    it "does not allow airport to take off if it is already flying" do
+    it "does not allow airport to use airport/take off if it is already flying" do
       plane = Plane.new
       weather = "good"
       subject.land(plane)
       plane.state = "flying"
-      expect {subject.take_off}.to raise_error("This plane is already flying!")
+      expect {subject.take_off}.to raise_error("This plane cannot use an airport when flying!")
     end
   end
 
