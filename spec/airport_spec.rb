@@ -33,6 +33,19 @@ end
       expect(subject.airplanes_on_ground).to include(airplane)
     end
 
+    it "expects airport to respond to a airport_full? method" do
+      expect(subject).to respond_to(:airport_full?)
+    end
+
+    it "expects airport_full to be true if there are as many (or more) airplanes on the ground as there are the airport capacity" do
+      subject.airport_capacity.times {subject.land_at_airport(airplane)}
+      expect(subject).to be_airport_full
+    end
+
+    it "expects an error message if there is no room at the airport" do
+      subject.airport_capacity.times {subject.land_at_airport(airplane)}
+      expect{(subject.land_at_airport(airplane)).to raise_error("Sorry, airport full. Try somewhere else.")}
+    end
     # it "expects airport to respond to a landed? method" do
     #   expect(subject).to respond_to(:landed?)
     # end
