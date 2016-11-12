@@ -11,4 +11,8 @@ describe Airport do
     expect(subject.land_plane(plane))
   end
 
+  it "repsponds to landed?" do
+    expect(subject).to respond_to :landed?
+  end
+
 end

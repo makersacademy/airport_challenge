@@ -6,4 +6,7 @@ class Airport
     true
   end
 
+  def landed?
+  end
+
 end
