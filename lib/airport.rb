@@ -1,4 +1,5 @@
 require "./lib/airplane.rb"
+require "./lib/weather.rb"
 
 class Airport
   #SETUP
