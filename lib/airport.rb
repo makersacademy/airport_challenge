@@ -31,5 +31,5 @@ end
 
 
 def sunny?
-  [true, false].sample
+  rand < 0.2 ? false : true
 end
