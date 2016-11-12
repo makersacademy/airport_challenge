@@ -1,12 +1,14 @@
 module Weather
 
-	def random_number
-		rand(5)
+	def self.stormy?
+		return true if random_number == 0
+		return false
 	end
 
-	def self.check_weather
-		return "stormy" if random_number == 0
-		return "sunny"
+	private
+
+	def random_number
+		rand(5)
 	end
 
 end

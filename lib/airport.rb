@@ -1,4 +1,5 @@
 require_relative 'weather'
+require_relative 'plane'
 
 class Airport
 
@@ -13,24 +14,15 @@ class Airport
 		@capacity = capacity
 	end
 
-	def land(plane)
+	def land?(plane)
 		full?
-		if check_weather == "sunny"
-			@planes << plane
-			"#{plane} has landed."
-		else
-			fail "#{plane} cannot land due to stormy weather."
-		end
+		return land_plane(plane) unless stormy?
+		fail "#{plane} cannot land due to stormy weather."
 	end
 
-	def take_off(plane)
-		if check_weather == "sunny"
-			plane_index = @planes.index(plane)
-			@planes.slice!(plane_index)
-			"#{plane} has left the airport."
-		else
-			fail "#{plane} cannot take off due to stormy weather."
-		end
+	def take_off?(plane)
+		return release_plane(plane) unless stormy?
+		fail "#{plane} cannot take off due to stormy weather."
 	end
 
 	private
@@ -39,4 +31,14 @@ class Airport
 			fail "Airport is full." if @planes.length >= @capacity
 		end
 
+		def land_plane(plane)
+			@planes << plane
+			"#{plane} has landed."
+		end
+
+		def release_plane(plane)
+			plane_index = @planes.index(plane)
+			@planes.slice!(plane_index)
+			"#{plane} has left the airport."
+		end
 end
