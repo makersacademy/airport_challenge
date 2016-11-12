@@ -10,7 +10,7 @@ describe Airport do
       plane = Plane.new
       expect(subject.land_plane(plane)).to eq plane
     end
-    it "responds to #bike" do
+    it "responds to #plane" do
       expect(subject).to respond_to :plane
     end
   end
