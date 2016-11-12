@@ -6,7 +6,8 @@ class Airport
     true
   end
 
-  def landed?
+  def landed?(plane)
+    true
   end
 
 end
