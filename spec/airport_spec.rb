@@ -10,4 +10,9 @@ describe Airport do
     expect(subject.land(plane)).to include(plane)
   end
 
+  it 'allows you to see landed planes, to confirm that they have landed' do
+    subject.land(plane)
+    expect(subject.planes).to include(plane)
+  end
+
 end
