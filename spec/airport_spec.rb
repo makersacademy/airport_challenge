@@ -67,6 +67,24 @@ describe Airport do
     expect{ subject.land(plane) }.to raise_error(RuntimeError, 'This airport is full, hope you have enough fuel!')
   end
 
+  it 'should be able to change the capacity' do
+    airport = Airport.new(15)
+    expect(airport.capacity).to eq 15
+  end
+
+  it 'DEFAULT_CAPACITY to be set at 10 if nothing else has been entered' do
+    expect(subject.capacity).to eq 10
+  end
+
+  it 'check DEFAULT_CAPACITY is set and is an interger' do
+    expect(Airport::DEFAULT_CAPACITY).to be_kind_of(Integer)
+  end
+
+  it 'check that capacity is equal to DEFAULT_CAPACITY when nothing else set' do
+    expect(Airport::DEFAULT_CAPACITY).to eq Airport::DEFAULT_CAPACITY
+  end
+
+
 
 
 end
