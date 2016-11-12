@@ -1,14 +1,15 @@
 require './lib/weather.rb'
 class Airport
-  attr_reader :planes, :weather, :number
+  attr_reader :planes, :weather, :number, :capacity
 
-  def initialize
+  def initialize(capacity = 20)
     @planes = []
+    @capacity = capacity
   end
 
   def land(aircraft, weather)
-    unless stormy?(weather)
-    @planes << aircraft
+    unless stormy?(weather) || full?
+      @planes << aircraft
     end
   end
 
@@ -23,7 +24,8 @@ class Airport
     weather
   end
 
-
-
+  def full?
+    @planes.count >= @capacity
+  end
 
 end

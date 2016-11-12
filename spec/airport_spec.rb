@@ -70,28 +70,22 @@ describe Airport do
       allow(weather).to receive(:weather_generator).and_return(false)
       expect(subject.stormy?(weather.weather_generator)).to eq false
     end
-
-
   end
-=begin
-  context 'weather module tests' do
 
-    it 'should respond to weather generator' do
-      expect(subject).to respond_to(:weather_generator)
+  context 'airport capacity tests' do
+
+    it 'should test for airport capacity' do
+      expect(subject.capacity).to eq 20
     end
 
-    it 'should respond to random number generator' do
-      expect(subject).to respond_to(:random_number_generator)
-    end
-
-    it 'should return random number less than 11' do
-      expect(subject.random_number_generator).to be < 11
-    end
-
-    it 'should return random number greater than 0' do
-      expect(subject.random_number_generator).to be > 0
+    it 'should test that planes cant land when airport is full' do
+      allow(weather).to receive(:weather_generator).and_return(false)
+      20.times { subject.land(plane, weather.weather_generator) }
+      count = subject.planes.count
+      subject.land(plane, weather.weather_generator)
+      expect(subject.planes.count).to eq count
     end
 
   end
-=end
+
 end
