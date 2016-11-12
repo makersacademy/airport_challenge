@@ -2,6 +2,9 @@ require "airport"
 
 describe Airport do
 let(:airplane) {double :airplane}
+let(:airplane1) {double :airplane}
+let(:airplane2) {double :airplane}
+
   context "Setup" do
     it "expects an airport class to exist" do
       expect(subject.class).to eq(Airport)
@@ -46,13 +49,6 @@ end
       subject.airport_capacity.times {subject.land_at_airport(airplane)}
       expect{(subject.land_at_airport(airplane)).to raise_error("Sorry, airport full. Try somewhere else.")}
     end
-    # it "expects airport to respond to a landed? method" do
-    #   expect(subject).to respond_to(:landed?)
-    # end
-    #
-    # # it "expects landed? to be true if the plane has landed" do
-    # #   expect(subject).to be_landed
-    # # end
 
   end
 
@@ -62,5 +58,23 @@ end
       expect(subject).to respond_to(:take_off)
     end
 
+    it "expects an error message if there are no airples and one tries to take off" do
+      expect{(subject.take_off).to raise_error("Sorry, a non existant airplane can not take off.")}
+    end
+
+    it "expects an airplane to leave the array when the take_off method is called" do
+      subject.land_at_airport(airplane)
+      subject.land_at_airport(airplane1)
+      subject.land_at_airport(airplane2)
+      expect(subject.take_off).to eq(airplane2)
+    end
+
+    it "expects the airplanes_on_ground array to reflect that an airplane has taken off when the take_off method is called" do
+      subject.land_at_airport(airplane)
+      subject.land_at_airport(airplane1)
+      subject.land_at_airport(airplane2)
+      subject.take_off
+      expect(subject.airplanes_on_ground).to eq([airplane, airplane1])
+    end
   end
 end
