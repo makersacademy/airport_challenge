@@ -1,26 +1,11 @@
+require './lib/airport.rb'
+
 describe Airport do
 
- context "Airport should respond to it's methods" do
+  context "Make sure the class Airport responds to all of it's methods" do
 
-  it "should respond to it's methods" do
-    expect(subject).to respond_to(:landing_bay)
+    it "Expects Airport to respond to it's landing_bay method" do
+      expect(subject).to respond_to(:landing_bay)
+    end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- end
-
 end
