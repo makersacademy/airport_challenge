@@ -4,8 +4,8 @@ class Aeroplane
     true
   end
 
-  def landed
-    :landed
+  def confirm_landed
+    true
   end
 
 end
