@@ -8,13 +8,13 @@ class Airport
   end
 
   def land(plane)
-    @plane << plane
-    @plane
+    fail "Due to bad weather, aircraft are unable to land." if check_weather == "stormy"
+    @plane.include?(plane) ? false : @plane << plane
   end
 
   def take_off(plane)
     fail "This plane hasn't landed at this airport!" if !confirm_landed(plane)
-    fail "Due to bad weather, all flights are grounded." if check_weather == "storm"
+    fail "Due to bad weather, all flights are grounded." if check_weather == "stormy"
     @plane.delete(plane)
     plane
   end

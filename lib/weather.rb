@@ -5,7 +5,7 @@ class Weather
   end
 
   def today
-    generator % 10 == 0 ? "storm" : "not storm"
+    generator % 10 == 0 ? "stormy" : "not stormy"
   end
 
 end

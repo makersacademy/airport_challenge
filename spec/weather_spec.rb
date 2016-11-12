@@ -17,13 +17,13 @@ describe Weather do
       expect( subject.today ).to be_truthy
     end
 
-    it "should return 'storm' when generator returns numbers divisible by 10" do
+    it "should return 'stormy' when generator returns numbers divisible by 10" do
       allow( subject ).to receive( :generator ).and_return( 10 )
-      expect( subject.today ).to eq( "storm" )
+      expect( subject.today ).to eq( "stormy" )
     end
-    it "should return 'not storm' when generator returns numbers not divisible by 10" do
+    it "should return 'not stormy' when generator returns numbers not divisible by 10" do
       allow( subject ).to receive( :generator ).and_return( 1 )
-      expect( subject.today ).to eq( "not storm" )
+      expect( subject.today ).to eq( "not stormy" )
     end
   end
 
