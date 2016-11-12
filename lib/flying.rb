@@ -1,7 +1,7 @@
 class Flying
 
-  def take_off(plane_name)
-    plane_name
+  def in_flight(plane_in_flight)
+    @in_flight_plane << plane_in_flight
   end
-
+   
 end
