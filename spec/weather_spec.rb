@@ -1,7 +1,7 @@
 require 'weather'
 
 describe Weather do
-  it "should respond to condiiton" do
+  it "should respond to condition" do
     expect(subject).to respond_to(:condition)
   end
 

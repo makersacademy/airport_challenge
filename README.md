@@ -18,7 +18,7 @@ My solution
 
 I have three classes - Airport, Airplane and Weather
 
-**WEATHER**
+**Weather**
   * has an attribute ```condition```, which can either be ```"Sunny"``` or ```"Stormy"``` initialised at random on creation
 
 **Airplane**
