@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Due to inclement weather no planes can land" if @stormy
     @planes << plane
     "Flight #{plane} has landed."
   end

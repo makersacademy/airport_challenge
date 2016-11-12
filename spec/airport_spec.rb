@@ -21,15 +21,12 @@ describe Airport do
   it { is_expected.to respond_to :take_off}
 
   it 'is expected to allow a plane to take off' do
-    plane = Plane.new
     subject.land(plane)
     subject.is_it_stormy?(4)
     expect(subject.take_off).to eq plane
   end
 
   it 'is expected to show that the plane is no longer in the airport' do
-    weather = Weather.new
-    plane = Plane.new
     subject.land(plane)
     subject.take_off
     expect(subject.planes).to eq []
@@ -37,21 +34,22 @@ describe Airport do
 
   it { is_expected.to respond_to :is_it_stormy?}
 
-  it 'is expected to prevent planes from taking off' do
+  it 'is expected to prevent planes from taking off if stormy' do
     subject.land(plane)
     subject.is_it_stormy?(5)
     expect{ subject.take_off }.to raise_error(RuntimeError, 'Due to inclement weather no planes can take off')
   end
 
+  it 'is expected to prevent planes from landing if stormy' do
+    subject.is_it_stormy?(5)
+    expect{ subject.land(plane) }.to raise_error(RuntimeError, 'Due to inclement weather no planes can land')
+  end
+
   it 'expected to return true if number is 5' do
-    weather = Weather.new
-    plane = Plane.new
     expect(subject.is_it_stormy?(5)).to eq true
   end
 
   it 'expect to return true if number is 4' do
-    weather = Weather.new
-    plane = Plane.new
     expect(subject.is_it_stormy?(4)).to eq false
   end
 
