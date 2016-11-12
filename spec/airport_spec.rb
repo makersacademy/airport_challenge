@@ -6,6 +6,15 @@ describe Airport do
 		
 	let (:plane) {double :plane}
 
+	it 'expects airports to have a default capacity' do
+		expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+	end
+
+	it 'expects new airports to accept a custom capacity' do
+		airport = Airport.new(10)
+		expect(airport.capacity).to eq (10)
+	end
+
 	describe '#land' do
 
 		it 'expects airport to land a plane' do
