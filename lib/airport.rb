@@ -14,6 +14,7 @@ class Airport
   end
 
   def take_off(plane)
+     @planes.select{|element| return plane if plane == element}
   end
 
 end
