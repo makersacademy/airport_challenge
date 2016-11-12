@@ -15,5 +15,13 @@ describe Plane do
     subject.has_landed = true
     expect(subject.has_landed).to eq true
   end
+  it "should land at an airport" do
+    airport = Airport.new
+    expect(subject.land(airport)).to eq true
+  end
+  it "should take off from an airport" do
+    airport = Airport.new
+    expect(subject.take_off(airport)).to eq true
+  end
 
 end

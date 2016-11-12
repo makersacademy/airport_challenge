@@ -7,14 +7,12 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def take(plane)
     @planes << plane
-    plane.has_landed = true
-    true
   end
 
-  def take_off(plane)
-     @planes.select{|element| return plane if plane == element}
+  def release(plane)
+     @planes.delete(plane)
   end
 
 end

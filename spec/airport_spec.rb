@@ -7,12 +7,12 @@ describe Airport do
     expect(subject).to be_a(Object)
   end
 
-  it "should have a land method" do
-    expect(subject).to respond_to(:land)
+  it "should have a take method" do
+    expect(subject).to respond_to(:take)
   end
 
-  it "should land a plane" do
-    expect(subject).to respond_to(:land).with(1).arguments
+  it "should take a plane" do
+    expect(subject).to respond_to(:take).with(1).arguments
   end
 
   it "should contain a getter method for the number of planes" do
@@ -22,39 +22,39 @@ describe Airport do
   it "should save the planes inside a @planes instance variable" do
     plane1 = Plane.new
     airport = subject
-    airport.land(plane1)
+    plane1.land(airport)
     expect(subject.planes.count).to eq 1
   end
 
-  it "should land multiple planes" do
+  it "should take multiple planes" do
     plane1 = Plane.new
     plane2 = Plane.new
     airport = subject
-    airport.land(plane1)
-    airport.land(plane2)
+    plane1.land(airport)
+    plane2.land(airport)
     expect(subject.planes.count).to eq 2
   end
 
-  it "should change the plane state to true once the plane has landed" do
-    plane = Plane.new
-    subject.land(plane)
-    expect(plane.has_landed).to eq true
+  it "should contain a release method " do
+    expect(subject).to respond_to(:release)
   end
 
-  it "should contain a take_off method " do
-    expect(subject).to respond_to(:take_off)
-  end
-
-  it "take_off method should receive a plane as argument" do
-    expect(subject).to respond_to(:take_off).with(1).argument
+  it "release method should receive a plane as argument" do
+    expect(subject).to respond_to(:release).with(1).argument
   end
 
   it "should allow a plane to take off" do
     plane = Plane.new
-    subject.land(plane)
-    expect(subject.take_off(plane)).to eq plane
+    plane.land(subject)
+    expect(subject.release(plane)).to eq plane
   end
 
-  
+  it "should confirm a plane is no longer inside once it took off" do
+    plane = Plane.new
+    plane.land(subject)
+    plane.take_off(subject)
+    expect(subject.planes.count).to eq 0
+  end
+
 
 end
