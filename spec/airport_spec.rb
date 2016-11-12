@@ -6,6 +6,22 @@ describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {double :plane}
 
+  describe '#status' do
+    it 'shows the status of a landed plane' do
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:landed).and_return(true)
+      airport.land plane
+      expect(airport.status plane).to eq "Landed"
+    end
+
+    it 'shows the status of a plane in the air' do
+      allow(plane).to receive_message_chain(:take_off)
+      allow(plane).to receive(:landed).and_return(false)
+      airport.take_off plane
+      expect(airport.status plane).to eq "In the air"
+    end
+  end
+
   describe '#land' do
     it 'lands a plane' do
       expect(plane).to receive(:land)

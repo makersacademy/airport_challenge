@@ -7,6 +7,11 @@ class Airport
     @planes = []
   end
 
+  def status(plane)
+    return "Landed" if plane.landed == true
+    return "In the air" if plane.landed == false
+  end
+
   def land(plane)
     plane.land
     @planes << plane
