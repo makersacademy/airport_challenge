@@ -25,6 +25,7 @@ describe Airport do
       expect(subject.planes.count).to eq 1
     end
   end
+
   it "should land multiple planes" do
     plane1 = Plane.new
     plane2 = Plane.new
@@ -33,4 +34,11 @@ describe Airport do
     airport.land(plane2)
     expect(subject.planes.count).to eq 2
   end
+
+  it "should change the plane state to true when plane has landed" do
+    plane = Plane.new
+    subject.land(plane)
+    expect(plane.has_landed).to eq true
+  end
+
 end

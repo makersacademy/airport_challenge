@@ -7,5 +7,6 @@ class Airport
   end
   def land(plane)
     @planes << plane
+    plane.has_landed = true
   end
 end
