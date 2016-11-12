@@ -20,6 +20,18 @@ it "take off plane and expect confirm plane has taken off" do
   expect(plane.taken_off?).to eq true
 end
 
+it "should retrieve the planes from the airport/airport controller" do
+  plane = Plane.new
+  subject.land_plane(plane)
+  expect(subject.planes).to eq plane
+end
+
+it "landed planes should be landed?" do
+  plane = Plane.new
+  subject.land_plane(plane)
+  expect(plane.landed?).to eq true
+end
+
 
 
 end
