@@ -18,16 +18,16 @@ describe Airport do
 
   it "should not allow plane to taxi if stormy" do
     plane = Plane.new
+    subject.dock(plane)
     allow(subject).to receive(:sunny?).and_return(false)
     expect{subject.taxi(plane)}.to raise_error("Too stormy to taxi plane")
   end
 
-  it "should not taxi the plane if already in the air" do
+  it "should not be able to taxi from another airport" do
     plane = Plane.new
-    allow(subject).to receive(:sunny?).and_return(true)
-    subject.dock(plane)
-    subject.taxi(plane)
-    expect{subject.taxi(plane)}.to raise_error("Plane already in the air")
+    airport = Airport.new
+    airport.dock(plane)
+    expect{subject.taxi(plane)}.to raise_error("Plane is not at this airport")
   end
 
   it "should have a default capacity" do

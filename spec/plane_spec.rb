@@ -21,6 +21,7 @@ describe Plane do
   it "should take off when taxied from airport" do
     airport = Airport.new
     allow(airport).to receive(:sunny?).and_return(true)
+    airport.dock(subject)
     airport.taxi(subject)
     expect(subject.landed).to be false
   end
@@ -39,4 +40,5 @@ describe Plane do
     subject.land(airport1)
     expect{subject.land(airport2)}.to raise_error("Already landed at another airport")
   end
+
 end
