@@ -2,6 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_reader :planes, :stormy
+  attr_writer :stormy
 
   def initialize
     @stormy = Weather.new.stormy?
@@ -20,6 +21,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Plane cannot take off during a storm." if @stormy
     plane.take_off
     remove_from_airport(plane)
   end
