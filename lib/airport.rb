@@ -3,15 +3,13 @@ require_relative 'plane'
 
 class Airport
 
-  def plane
-    @plane
-  end
+  attr_reader :plane
 
   def land_plane(plane)
     @plane = plane
   end
 
-  def landed?(plane)
+  def on_ground?(plane)
     return true if @plane
     false
   end

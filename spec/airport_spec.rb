@@ -23,18 +23,18 @@ describe Airport do
     end
   end
 
-  describe "#landed?" do
-    it "responds to landed?" do
-      expect(subject).to respond_to :landed?
+  describe "#on_ground?" do
+    it "responds to on_ground?" do
+      expect(subject).to respond_to :on_ground?
     end
-    it "returns false if plane has not landed" do
+    it "returns false if plane is not in the airport" do
       plane = Plane.new
-      expect(subject.landed?(plane)).to eq false
+      expect(subject.on_ground?(plane)).to eq false
     end
-    it "returns true if plane has landed" do
+    it "returns true if plane is in the airport" do
       plane = Plane.new
       subject.land_plane(plane)
-      expect(subject.landed?(plane)).to eq true
+      expect(subject.on_ground?(plane)).to eq true
     end
   end
 
@@ -48,7 +48,7 @@ describe Airport do
     end
   end
 
-  describe
+
 
 
 
