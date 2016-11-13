@@ -2,6 +2,7 @@ require_relative 'airport'
 require_relative 'weather'
 require_relative 'messages_module'
 require_relative 'weather'
+
 class Plane
 include Messages
 include Weather
@@ -13,19 +14,27 @@ attr_accessor :flying
       return loading_bay_is_too_full_to_land_planes
     end
 
+    if the_plane_is_flying? == false
+      return plane_is_on_the_ground_message
+    end
+
 
     if the_weather_is_sunny?
-    puts plane_landed_message
-    @flying = false
-    return make_plane_land_in_landing_bay(airport)
+      puts plane_landed_message
+      @flying = false
+      return make_plane_land_in_landing_bay(airport)
 
     else
-      bad_weather_message
+      return  bad_weather_message
     end
 
   end
 
   def take_off_from(airport)
+
+    if the_plane_is_flying? == true
+      return plane_is_in_the_air_already_message
+    end
 
     if the_weather_is_sunny?
         puts plane_taken_off_message
@@ -40,7 +49,7 @@ attr_accessor :flying
 
   def switch_flying
     switch_to_opposite_value
- end
+  end
 
   private
 
@@ -71,7 +80,12 @@ attr_accessor :flying
    end
  end
 
+ def the_plane_is_flying?
+   if @flying == true
+     return true
+   else
+     return false
+   end
+ end
 
-
-
-end
+ end

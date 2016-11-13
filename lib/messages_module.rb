@@ -20,4 +20,12 @@ def plane_taken_off_message
   "The plane has now taken to the air\n"
 end
 
+def plane_is_on_the_ground_message
+  "The plane has already landed"
+end
+
+def plane_is_in_the_air_already_message
+  "the plane is already flying"
+end
+
 end
