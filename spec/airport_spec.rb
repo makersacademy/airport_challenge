@@ -6,8 +6,7 @@ describe Airport do
 
   context "landing planes" do
     it "instructs planes to land" do
-      allow(airport).to receive(:land_plane)
-      airport.land_plane(plane)
+      expect(airport).to respond_to :land_plane
     end
     it "airport stores the plane after landing" do
       airport.land_plane(plane)
@@ -15,18 +14,7 @@ describe Airport do
     end
   end
 
-  context "#planes" do
-    it "can store more than one plane" do
-      plane1 = Plane.new
-      airport.land_plane(plane1)
-      plane2 = Plane.new
-      airport.land_plane(plane2)
-      expect(airport.planes).to eq [plane1, plane2]
-    end
-  end
-
   context "checking planes are in the airport" do
-    it { is_expected.to respond_to(:in_airport?).with(1).argument }
     it "returns false if plane is not in the airport" do
       expect(airport.in_airport?(plane)).to be false
     end
@@ -49,7 +37,13 @@ describe Airport do
     end
   end
 
-  context "capacity "
+  context "airport capacity" do
+    it "has a capacity" do
+      expect(airport).to respond_to :capacity
+    end
+
+
+  end
 
 
 
