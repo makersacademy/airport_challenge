@@ -58,9 +58,13 @@ describe Airport do
 
   describe 'error handling' do
     it 'Raises and error if you try to land a plane when the airport is full' do
-      airport = Airport.new
-      Airport::DEFAULT_CAPACITY.times {airport.receive_plane(Plane.new)}
-      expect { airport.receive_plane(Plane.new) }.to raise_error('Airport is full, no landing this time')
+      Airport::DEFAULT_CAPACITY.times {subject.receive_plane(Plane.new)}
+      expect { subject.receive_plane(Plane.new) }.to raise_error('Airport is full, no landing this time')
     end
+
+    it 'Raises an error if you try to ask a plane to take off but there are no planes' do
+      expect { subject.take_off }.to raise_error('The airport is empty, no planes to take off')
+    end
+
   end
 end
