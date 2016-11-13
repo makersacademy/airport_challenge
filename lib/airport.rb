@@ -15,7 +15,7 @@ class Airport
   end
 
   def land(plane)
-    if @planes.include?(plane)
+    if @planes.include?(plane) || plane.status == 'landed'
       raise 'This plane has already landed'
     else
       at_capacity
