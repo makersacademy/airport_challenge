@@ -41,7 +41,7 @@ describe Airport do
     it "has already landed, when we try to land again" do
         airport_for_2.land(plane)
         message = "The plane has already landed"
-        expect(airport_for_2.land(plane)).to eq message
+        expect{airport_for_2.land(plane)}.to raise_error message
     end
 
     it "cannot land if the airport is at full capacity" do
@@ -51,7 +51,7 @@ describe Airport do
 
     it "won't takes off if it hasn't landed in the airport" do
       message = "The plane hasn't landed here."
-      expect(airport.take_off(plane)).to eq message
+      expect{airport.take_off(plane)}.to raise_error message
     end
   end
 

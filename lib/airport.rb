@@ -18,13 +18,13 @@ attr_reader :capacity, :landed_planes
   def land(plane)
     return "Can not land in stormy weather" if stormy?
     return "The airport is full, can not land" if full?
-    return "The plane has already landed" if landed?(plane)
+    raise "The plane has already landed" if landed?(plane)
     @landed_planes << plane
   end
 
   def take_off(plane)
     return "Can not take off in stormy weather" if stormy?
-    return "The plane hasn't landed here." if !landed?(plane)
+    raise "The plane hasn't landed here." if !landed?(plane)
     @landed_planes.delete(plane)
   end
 
