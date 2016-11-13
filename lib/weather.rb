@@ -1,21 +1,21 @@
 class Weather
 
   def initialize
-    @stormy = false
+    @stormy = set_weather(random_number)
   end
 
   def stormy?
-    set_weather
     @stormy
   end
 
   private
 
-  def set_weather
-    weight = rand(3)
-    @stormy = weight == 0
-
+  def random_number
+    rand(3)
   end
 
+  def set_weather(number)
+    @stormy = (number == 0)
+  end
 
 end

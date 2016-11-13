@@ -6,9 +6,11 @@ describe Airport do
 
   subject(:airport) {described_class.new}
   let(:plane) {double :plane}
+  let(:weather) {double :weather, :stormy? => false}
 
   describe '#status' do
     it 'shows the status of a landed plane' do
+      allow(subject.stormy).to receive(:stormy?).and_return false
       allow(plane).to receive(:land)
       allow(plane).to receive(:landed).and_return(true)
       airport.land plane
@@ -25,6 +27,7 @@ describe Airport do
 
   describe '#land' do
     it 'lands a plane' do
+      allow(subject.stormy).to receive(:stormy?).and_return false
       expect(plane).to receive(:land)
       airport.land plane
     end
@@ -32,6 +35,11 @@ describe Airport do
       allow(plane).to receive(:land)
       airport.land plane
       expect(airport.planes).to include plane
+    end
+    it 'should not land during a storm' do
+      allow(subject.stormy).to receive(:stormy?).and_return true
+      allow(plane).to receive(:land)
+      expect{airport.land plane}.to raise_error "Plane cannot land during a storm."
     end
   end
 

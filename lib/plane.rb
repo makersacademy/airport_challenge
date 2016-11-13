@@ -1,3 +1,5 @@
+require_relative 'weather'
+
 class Plane
 attr_reader :landed
 
