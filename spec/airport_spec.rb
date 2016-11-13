@@ -45,4 +45,20 @@ describe Airport do
     end
   end
 
+  describe '#full?' do
+    it 'Returns true if the airport is full' do
+      Airport::DEFAULT_CAPACITY.times {subject.receive_plane(Plane.new)}
+      expect(subject.is_full?).to eq true
+    end
+
+    it 'Returns false if the airport is not full and below full capacity' do
+      expect(subject.is_full?).to eq false
+    end
+  end
+
+  # describe 'error handling' do
+  #   it 'Raises and erro if you try to land a plane when the airport is full' do
+  #
+  # end
+
 end

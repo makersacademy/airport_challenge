@@ -19,6 +19,10 @@ class Airport
   #   @planes.shift
   # end
 
+  def is_full?
+    @planes.count >= DEFAULT_CAPACITY
+  end
+
   def is_empty?
     @planes.empty?
   end
