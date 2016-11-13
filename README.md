@@ -1,5 +1,6 @@
 # Airport Challenge #
 
+
 This airport program has features for taking of and landing planes in an airport. I pushed planes into two separate arrays called `landed_planes` and `airborne_planes`. I did this to make things easier to understand and manage.
 
 I used an array of symbols and used `.sample` on the array to generate a random weather outcome and used stubs in my `rspec` tests to ensure the tests ran properly.
