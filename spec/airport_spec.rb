@@ -47,6 +47,13 @@ describe Airport do
     expect{subject.land(plane)}.to raise_error(RuntimeError, 'This plane has already landed')
   end
 
+  it 'changes the plane status back to "flying" upon take off' do
+    plane = Plane.new
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(plane.status).to eq 'flying'
+  end
+
   it 'does not allow planes to land when airport capacity is full' do
     Airport::DEFAULT_CAPACITY.times {subject.land(Plane.new)}
     expect{subject.land(Plane.new)}.to raise_error(RuntimeError, 'Airport is full')

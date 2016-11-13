@@ -34,6 +34,7 @@ class Airport
       too_stormy
     else
       @planes.delete(plane)
+      plane.status = 'flying'
       plane
     end
   end
