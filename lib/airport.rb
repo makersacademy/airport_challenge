@@ -2,11 +2,11 @@ require_relative 'plane.rb'
 
 class Airport
 
-  CAPACITY = 100
+  attr_accessor :capacity
 
-  def initialize
+  def initialize(capacity = 100)
     @planes = []
-    @capacity = CAPACITY
+    @capacity = capacity
   end
 
   def plane_count
