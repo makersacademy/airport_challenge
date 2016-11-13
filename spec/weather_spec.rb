@@ -4,7 +4,7 @@ describe Weather do
 
   describe "outputting the weather" do
 
-    it "returns stormy or clear" do
+    it "returns true" do
       expect(subject.stormy?).to be true
     end
 
