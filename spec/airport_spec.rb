@@ -2,26 +2,22 @@ require 'airport'
 
 describe Airport do
   subject(:airport) {described_class.new}
+  let(:plane) {Plane.new}
 
-  context "#land_plane" do
-    it "responds to #land_plane" do
-      expect(airport).to respond_to :land_plane
+  context "landing planes" do
+    it "planes can land" do
+      allow(airport).to receive :land_plane
     end
-    it "returns a landed plane" do
-      plane = Plane.new
+    it "landed plane is returned" do
       expect(airport.land_plane(plane)).to eq plane
+    end
+    it "airport stores the plane after landing" do
+      airport.land_plane(plane)
+      expect(airport.planes).to include(plane)
     end
   end
 
   context "#planes" do
-    it "responds to #planes" do
-      expect(airport).to respond_to :planes
-    end
-    it "saves one plane that is landed" do
-      plane = Plane.new
-      airport.land_plane(plane)
-      expect(airport.planes).to eq [plane]
-    end
     it "can store more than one plane" do
       plane1 = Plane.new
       airport.land_plane(plane1)
@@ -31,36 +27,29 @@ describe Airport do
     end
   end
 
-  context "#in_airport?" do
+  context "checking planes are in the airport" do
     it "responds to #in_airport?" do
       expect(airport).to respond_to :in_airport?
     end
     it "returns false if plane is not in the airport" do
-      plane = Plane.new
-      expect(airport.in_airport?(plane)).not_to be true
+      expect(airport.in_airport?(plane)).to be false
     end
     it "returns true if plane is in the airport" do
-      plane = Plane.new
       airport.land_plane(plane)
       expect(airport.in_airport?(plane)).to be true
     end
   end
 
-  context "#takeoff" do
+  context "planes taking off" do
     it "responds to #takeoff" do
       expect(airport).to respond_to :takeoff
     end
     it "instructs a plane to takeoff" do
-      plane = Plane.new
       expect(airport.takeoff(plane)).to eq plane
     end
     it "removes plane from airport after takeoff" do
-      plane = Plane.new
       airport.land_plane(plane)
-      puts "planes"
-      puts airport.planes
       airport.takeoff(plane)
-      puts airport.planes
       expect(airport.planes).not_to include(plane)
     end
   end
