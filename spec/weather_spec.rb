@@ -5,7 +5,7 @@ describe Weather do
   subject(:weather) {described_class.new}
 
   it 'can be sunny' do
-    allow(weather).to receive(:stormy).and_return false
+    allow(weather).to receive(:stormy?).and_return false
     expect(weather.stormy?).to be false
   end
 
