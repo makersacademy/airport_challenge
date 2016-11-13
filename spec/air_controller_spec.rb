@@ -28,11 +28,14 @@ it "planes that have not landed should not return true for landed?" do
 end
 
 it "should raise an error if you try to take_off a plane when the airport is empty" do
+  subject.take_off_plane
   expect{subject.take_off_plane}.to raise_error("There are no planes in the airport")
 end
 
 it "should raise an error if you try to land a plane when the airport is full" do
-  AirportController::DEFAULT_CAPACITY.times {subject.land_plane(Plane.new)}
+  subject.take_off_plane
+  capacity = AirportController::DEFAULT_CAPACITY
+  capacity.times {subject.land_plane(Plane.new)}
   expect{subject.land_plane(Plane.new)}.to raise_error("The airport is full!")
 end
 
@@ -46,9 +49,19 @@ it "if no capacity is given, then airport capacity is equal to a DEFAULT_CAPACIT
   expect(subject.capacity).to eq AirportController::DEFAULT_CAPACITY
 end
 
-it "called land_plane instantiates a new weather object" do
+it "calling land_plane instantiates a new weather object" do
   current_weather = subject.weather
   subject.land_plane(Plane.new)
+  expect(subject.weather).not_to eq current_weather
+end
+
+
+it "new instances of planes should have some planes inside the airport" do
+  expect(subject.planes).not_to eq []
+end
+it "calling take_off_plane also instantiates a new weather object" do
+  current_weather = subject.weather
+  subject.take_off_plane
   expect(subject.weather).not_to eq current_weather
 end
 
