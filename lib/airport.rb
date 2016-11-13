@@ -15,15 +15,20 @@ class Airport
   end
 
   def land(plane)
-    at_capacity
-    if @current_weather == "stormy"
-      too_stormy
+    if @planes.include?(plane)
+      raise 'This plane has already landed'
     else
-      @planes << plane
+      at_capacity
+      if @current_weather == "stormy"
+        too_stormy
+      else
+        @planes << plane
+      end
     end
   end
 
   def take_off(plane)
+    raise 'Plane not available for take off' if !(@planes.include?(plane))
     if @current_weather == "stormy"
       too_stormy
     else

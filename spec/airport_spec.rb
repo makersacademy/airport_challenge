@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
@@ -21,24 +22,33 @@ describe Airport do
     expect(subject.take_off(plane)).to eq plane
   end
 
+  it 'cannot instruct plane to take off from an airport where it is not present' do
+    expect{subject.take_off(plane)}.to raise_error(RuntimeError, 'Plane not available for take off')
+  end
+
+  it 'cannot allow a plane to land at an airport where it is already present' do
+    subject.land(plane)
+    expect{subject.land(plane)}.to raise_error(RuntimeError, 'This plane has already landed')
+  end
+
+  it 'does not allow planes to land when airport capacity is full' do
+    Airport::DEFAULT_CAPACITY.times {subject.land(Plane.new)}
+    expect{subject.land(Plane.new)}.to raise_error(RuntimeError, 'Airport is full')
+  end
+
   it 'can raise an error when weather is too stormy' do
     expect{subject.too_stormy}.to raise_error(RuntimeError, 'weather is too stormy')
   end
 
-  it 'does not allow planes to take off when weather is stormy' do
-    stormy_weather
-    expect{subject.take_off(plane)}.to raise_error(RuntimeError, 'weather is too stormy')
-  end
+  # it 'does not allow planes to take off when weather is stormy' do
+  #   stormy_weather
+  #   expect{subject.take_off(plane)}.to raise_error(RuntimeError, 'weather is too stormy')
+  # end
 
-  it 'does not allow planes to land when weather is stormy' do
-    stormy_weather
-    expect(subject.land(plane)).to raise_error(RuntimeError, 'weather is too stormy')
-  end
-
-  it 'does not allow planes to land when airport capacity is full' do
-    Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
-    expect{subject.land(plane)}.to raise_error(RuntimeError, 'Airport is full')
-  end
+  # it 'does not allow planes to land when weather is stormy' do
+  #   stormy_weather
+  #   expect(subject.land(plane)).to raise_error(RuntimeError, 'weather is too stormy')
+  # end
 
   it 'checks that DEFAULT_CAPACITY has been set and is an integer' do
     expect(Airport::DEFAULT_CAPACITY).to be_kind_of(Integer)
