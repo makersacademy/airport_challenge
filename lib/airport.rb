@@ -15,6 +15,7 @@ class Airport
   end
 
   def unpark_plane(plane)
+    raise "No such plane in the airport." unless @planes.include? plane
     @planes -= [plane]
   end
 

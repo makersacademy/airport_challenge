@@ -42,9 +42,23 @@ describe Plane do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
 
-    it "should be no longer in the airport when the plane has taken off" do
+    it "should be able to respond to taken_off? method" do
+      expect(subject).to respond_to :taken_off?
+    end
+
+    it "should return true when the plane is taken off" do
+      allow(airport).to receive(:unpark_plane)
+      subject.take_off(airport)
+      expect(subject.taken_off?).to eq true
+    end
+
+    it "should return false when the plane is not taken off" do
       allow(airport).to receive(:park_plane)
       subject.land(airport)
+      expect(subject.taken_off?).to eq false
+    end
+
+    it "should be no longer in the airport when the plane has taken off" do
       allow(airport).to receive(:unpark_plane)
       taken_off_plane = subject.take_off(airport)
       expect(subject).not_to be_landed

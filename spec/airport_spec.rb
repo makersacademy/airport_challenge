@@ -65,4 +65,12 @@ describe Airport do
 
   end
 
+  it "should take off from the airport in which the plane is landed" do
+    plane = double(:plane)
+    airport1 = Airport.new
+    airport2 = Airport.new
+    airport1.park_plane(plane)
+    expect{ airport2.unpark_plane(plane) }.to raise_error "No such plane in the airport."
+  end
+
 end

@@ -54,9 +54,19 @@ describe "ATC" do
       plane1 = Plane.new
       plane2 = Plane.new
       airport = Airport.new
+      plane1.land(airport)
+      plane2.land(airport)
       plane1.take_off(airport)
       plane2.take_off(airport)
       expect(airport.planes).not_to include(plane1,plane2)
+    end
+
+    it "should NOT take off again when the plane has just taken off" do
+      plane = Plane.new
+      airport = Airport.new
+      plane.land(airport)
+      plane.take_off(airport)
+      expect{ plane.take_off(airport)}.to raise_error "Can't take off again."
     end
 
   end
