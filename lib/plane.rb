@@ -4,4 +4,6 @@ def initialize
   @status
 end
 
+
+
 end
