@@ -101,7 +101,7 @@ end
     end
 
     it "should store the plane when it lands" do
-      subject.take_off(@plane)
+      @plane.landed_status = false
       subject.land(@plane)
       expect(subject.planes).to eq [@plane]
     end
