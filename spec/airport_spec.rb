@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+  subject(:airport) {described_class.new}
 
   context "#land_plane" do
     it "responds to #land_plane" do
@@ -62,7 +63,6 @@ describe Airport do
       puts subject.planes
       expect(subject.planes).not_to include(plane)
     end
-
   end
 
 
