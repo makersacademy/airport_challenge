@@ -68,3 +68,5 @@ History
 Project was forked from Makers Academy as part of a weekend challenge. The challenge was to create a program to the specification noted above (see: Description).
 My approach to solving this challenge involved using TDD. Further details of the creation process can be found in the commit descriptions on my [GitHub repository](https://github.com/kwilson541/airport_challenge/commits/master)
 Weather was initially included as a private method within airport, and later seperated to be a module so that it could be included in any later programs that would require a weather module.
+
+Travis CI status badge [![Build Status](https://travis-ci.org/kwilson541/airport_challenge.svg?branch=master)](https://travis-ci.org/kwilson541/airport_challenge)
