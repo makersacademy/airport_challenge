@@ -10,16 +10,23 @@ describe Airport do
       plane = Plane.new
       expect(subject.land_plane(plane)).to eq plane
     end
+    it "can land more than one plane" do
+      plane1 = Plane.new
+      subject.land_plane(plane1)
+      plane2 = Plane.new
+      subject.land_plane(plane2)
+      expect(subject.planes).to eq [plane1, plane2]
+    end
   end
 
-  describe "#plane" do
-    it "responds to #plane" do
-      expect(subject).to respond_to :plane
+  describe "#planes" do
+    it "responds to #planes" do
+      expect(subject).to respond_to :planes
     end
     it "saves one plane that is landed" do
       plane = Plane.new
       subject.land_plane(plane)
-      expect(subject.plane).to eq plane
+      expect(subject.planes).to eq [plane]
     end
   end
 
@@ -42,9 +49,9 @@ describe Airport do
     it "responds to takeoff" do
       expect(subject).to respond_to :takeoff
     end
-    it "instructs a plane to takeoff" do
+    it "instructs a plane to takeoff and returns it" do
       plane = Plane.new
-      expect(subject.takeoff(plane)).to eq true
+      expect(subject.takeoff(plane)).to eq plane
     end
   end
 
