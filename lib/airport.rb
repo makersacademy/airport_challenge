@@ -9,7 +9,7 @@ class Airport
     @plane = plane
   end
 
-  def on_ground?(plane)
+  def in_airport?(plane)
     return true if @plane
     false
   end
