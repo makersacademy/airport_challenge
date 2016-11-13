@@ -59,3 +59,7 @@ $ irb
  => "#<Plane:0x007ff5fc8bd040> has landed"
 ```
 ---------
+**Future Changes:**
+I would like to learn and use doubles properly in order to make my tests for efficient.
+I would also like to initially make a new instance of a plane belong to an Airport, and new planes can only be created if there is space for them.
+I would also like to add a message to let the user know when the weather has changed from Sunny to Stormy or vice versa. E.g. "The weather is now Sunny so the plane can now take off/land".
