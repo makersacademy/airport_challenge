@@ -39,10 +39,12 @@ describe Airport do
     end
 
     it "should delete the plane from the list" do
+      airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes.count).to eq 0
     end
     it "should confirm the plane has taken off" do
+      airport.land(plane)
       expect(airport.take_off(plane)).to eq "The plane #{plane} has taken off"
     end
   end
@@ -76,8 +78,24 @@ describe Airport do
       expect(airport1.capacity).to eq 5
     end
   end
+  describe "when trying to land a plane multiple times" do
+    before(:each) do
+      allow(weather).to receive(:stormy).and_return false
+    end
+    it "raises and error" do
+      airport.land(plane)
+      expect{airport.land(plane)}.to raise_error "Plane is already landed"
+    end
+  end
+  describe "when trying to take_off the same plane multiple times" do
+    before(:each) do
+      allow(weather).to receive(:stormy).and_return false
+    end
+    it "raises an error" do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect{airport.take_off(plane)}.to raise_error "The plane has already taken off"
+    end
 
-
-
-
+  end
 end

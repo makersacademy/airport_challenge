@@ -1,11 +1,11 @@
 class Weather
-  attr_reader :state
+  attr_reader :stormy
 
   def initialize
-    @state = stormy
+    @stormy = storm
   end
 
-  def stormy
+  def storm
     values[random] == :stormy
   end
 
