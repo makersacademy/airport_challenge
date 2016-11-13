@@ -20,19 +20,19 @@ describe Airport do
     end
   end
 
-  # describe '#take_off' do
-  #
-  #   before(:each) do
-  #     @plane = Plane.new
-  #     subject.receive_plane(@plane)
-  #   end
-  #
-  #   it { is_expected.to respond_to(:take_off) }
-  #
-  #   it 'Orders planes to take off from the airport' do
-  #     expect(subject.take_off).to be_kind_of(Plane)
-  #   end
-  # end
+  describe '#take_off' do
+
+    before(:each) do
+      @plane = Plane.new
+      subject.receive_plane(@plane)
+    end
+
+    it { is_expected.to respond_to(:take_off) }
+
+    it 'Orders planes to take off from the airport' do
+      expect(subject.take_off).to be_kind_of(Plane)
+    end
+  end
 
   describe '#empty?' do
     it 'Returns true if the airport is empty' do

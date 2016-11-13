@@ -15,9 +15,9 @@ class Airport
     @planes << plane
   end
 
-  # def take_off
-  #   @planes.shift
-  # end
+  def take_off
+    @planes.shift
+  end
 
   def is_full?
     @planes.count >= DEFAULT_CAPACITY
