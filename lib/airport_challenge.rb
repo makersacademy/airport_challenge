@@ -11,8 +11,11 @@ class Airport
 
   def land_plane(plane)
     puts "This plane has landed"
-    @planes_landed << plane
-    @planes_in_air.pop
+      @planes_landed << plane
+      # @planes_in_air.pop
+    if @planes_in_air.include?(plane)
+      @planes_in_air.delete(plane)
+    end
   end
 
   def take_off(plane)
@@ -21,9 +24,12 @@ class Airport
     @planes_landed.pop
   end
 
-  def confirm
-    @planes_landed
-    @planes_in_air
+  def confirm(plane)
+    if @planes_in_air.include?(plane)
+      puts "This plane is in flight"
+    else
+      puts "This plane is at the airport"
+    end
   end
 
 end
