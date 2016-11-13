@@ -2,12 +2,37 @@ require "airport"
 
 describe Airport do
 
-  describe '#take_off' do
-    it 'Checks whether plane has taken off and left airport' do
-      plane = Plane.new
-      expect(subject.take_off(plane)).to eq true
+  context '#receive_plane' do
+
+    before(:each) do
+      @plane = Plane.new
+      @plane2 = Plane.new
+      subject.receive_plane(@plane)
+      subject.receive_plane(@plane2)
+    end
+
+    it 'Can recieve a plane at the airport' do
+      expect(subject.planes.shift).to eq @plane
+    end
+
+    it 'The airport can receive more than one plane' do
+      expect(subject.planes).to include(@plane, @plane2)
     end
   end
+
+  # describe '#take_off' do
+  #
+  #   before(:each) do
+  #     @plane = Plane.new
+  #     subject.receive_plane(@plane)
+  #   end
+  #
+  #   it { is_expected.to respond_to(:take_off) }
+  #
+  #   it 'Orders planes to take off from the airport' do
+  #     expect(subject.take_off).to be_kind_of(Plane)
+  #   end
+  # end
 
   describe '#empty?' do
     it 'Returns true if the airport is empty' do
@@ -19,14 +44,5 @@ describe Airport do
       expect(subject.is_empty?).to eq false
     end
   end
-  # 
-  # describe 'inventory' do
-  #   it 'Returns how many planes are at the airport' do
-  #     plane = Plane.new
-  #     expect(subject.planes_at_airport).to eq 0
-  #   end
-  # end
-
-
 
 end
