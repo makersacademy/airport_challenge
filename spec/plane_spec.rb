@@ -38,7 +38,7 @@ describe Plane do
       expect(subject).to respond_to :take_off
     end
 
-    it "should take off from an airport" do
+    it "should respond to take_off method with 1 agrument" do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
 
@@ -47,6 +47,7 @@ describe Plane do
       subject.land(airport)
       allow(airport).to receive(:unpark_plane)
       taken_off_plane = subject.take_off(airport)
+      expect(subject).not_to be_landed
       expect(airport).to have_received(:unpark_plane).with(subject)
     end
 

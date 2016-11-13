@@ -39,6 +39,13 @@ describe "ATC" do
       expect{ plane4.land(airport) }.to raise_error "The airport is full."
     end
 
+    it "should NOT land again if it's just landed" do
+      plane = Plane.new
+      airport = Airport.new
+      plane.land(airport)
+      expect{ plane.land(airport) }.to raise_error "Can't land again."
+    end
+
   end
 
   context "The plane takes off" do
@@ -46,10 +53,10 @@ describe "ATC" do
     it "should be no longer at the airport when the plan has taken off" do
       plane1 = Plane.new
       plane2 = Plane.new
-      airport1 = Airport.new
-      plane1.take_off(airport1)
-      plane2.take_off(airport1)
-      expect(airport1.planes).not_to include(plane1,plane2)
+      airport = Airport.new
+      plane1.take_off(airport)
+      plane2.take_off(airport)
+      expect(airport.planes).not_to include(plane1,plane2)
     end
 
   end
