@@ -16,9 +16,8 @@ describe Airport do
       10.times{ airport.planes << Plane.new }
       expect{ airport.land_plane(Plane.new) }.to raise_error "Airport is full"
     end
-
   end
-  
+
   context "checking planes are in the airport" do
     it "returns false if plane is not in the airport" do
       expect(airport.in_airport?(plane)).to be false
@@ -50,7 +49,7 @@ describe Airport do
       expect(Airport.new(20).capacity).to be 20
     end
     it "has a default capacity" do
-      default_capacity = Airport::DEAFAULT_CAPACITY
+      default_capacity = Airport::DEFAULT_CAPACITY
       expect(airport.capacity).to be (default_capacity)
     end
   end
