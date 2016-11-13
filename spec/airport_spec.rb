@@ -17,6 +17,12 @@ describe Airport do
       it "should have a 'planes' getter method" do
         expect(@airport).to respond_to(:planes)
       end
+      it "should have a 'confirm_landing' method" do
+        expect(@airport).to respond_to(:confirm_landing)
+      end
+      it "should confirm if the plane has landed" do
+        expect(@airport.land(@plane)).to eq "The plane #{@plane} has landed"
+      end
       it "should keep track of the planes that landed" do
         expect(@airport.planes.count).to be 1
       end
@@ -30,6 +36,9 @@ describe Airport do
     it "should delete the plane from the list" do
       @airport.take_off(@plane)
       expect(@airport.planes.count).to eq 0
+    end
+    it "should confirm the plane has taken off" do
+      expect(@airport.take_off(@plane)).to eq "The plane #{@plane} has taken off"
     end
   end
 
