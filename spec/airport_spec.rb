@@ -46,15 +46,16 @@ describe Airport do
 
   describe "weather" do
     it{ is_expected.to respond_to :weather}
-
     it "tells us the weather is stormy" do
       allow(airport.weather).to receive(:stormy?).and_return true
       expect(airport.weather.stormy?).to eq true
     end
-  
+    it "tells us the weather is clear" do
+      allow(airport.weather).to receive(:stormy?).and_return false
+      expect(airport.weather.stormy?).to eq false
+    end
 
   end
-
 
   describe "airport capacity" do
     it "has a capacity" do
