@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -12,26 +13,28 @@ class Airport
     @capacity = capacity
   end
 
+  def weather
+  end
+
   def land_plane(plane)
     raise "Airport is full" if airport_full?
-    @planes << plane
-    plane
+    planes << plane
   end
 
   def in_airport?(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 
   def takeoff(plane)
     raise "Plane cannot takeoff because it is not in the airport" unless in_airport?(plane)
-    @planes.delete(plane)
+    planes.delete(plane)
     plane
   end
 
   private
 
   def airport_full?
-    @planes.count >= DEFAULT_CAPACITY
+    planes.count >= capacity
   end
 
 

@@ -42,8 +42,12 @@ describe Airport do
     it "raises an error when plane not in airport" do
       expect{ airport.takeoff(plane) }.to raise_error "Plane cannot takeoff because it is not in the airport"
     end
-    it "returns an error when w"
   end
+
+  describe "weather" do
+    it{ is_expected.to respond_to :weather}
+  end
+
 
   describe "airport capacity" do
     it "has a capacity" do
