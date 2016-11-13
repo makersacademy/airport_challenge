@@ -14,7 +14,7 @@ class Airport
   end
 
   def land_plane(plane)
-    raise "Error"
+    raise "Airport is full" if @planes.count >= DEAFAULT_CAPACITY
     @planes << plane
     plane
   end
