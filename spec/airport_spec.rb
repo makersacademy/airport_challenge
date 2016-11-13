@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
 
@@ -67,16 +68,11 @@ describe Airport do
     expect(subject.weather).to eq subject.weather
   end
 
-  # it 'does not allow planes to take off when weather is stormy' do
-  #   stormy_weather
-  #   expect{subject.take_off(plane)}.to raise_error(RuntimeError, 'weather is too stormy')
-  # end
-
-  # it 'does not allow planes to land when weather is stormy' do
-  #   plane = Plane.new
-  #   stormy_weather
-  #   expect{subject.land(plane)}.to raise_error(RuntimeError, 'weather is too stormy')
-  # end
+  it 'does not allow planes to land when weather is stormy' do
+    plane = Plane.new
+    allow(:weather).to receive(:stormy?).and_return(true)
+    expect{subject.land(plane)}.to raise_error(RuntimeError, 'weather is too stormy')
+  end
 
   it 'checks that DEFAULT_CAPACITY has been set and is an integer' do
     expect(Airport::DEFAULT_CAPACITY).to be_kind_of(Integer)
@@ -86,10 +82,6 @@ describe Airport do
     airport = Airport.new(30)
     expect(airport.capacity).to eq 30
   end
-
-  # def stormy_weather
-  #   allow(:weather).to receive(:stormy?) { true }
-  # end
 
 
 end
