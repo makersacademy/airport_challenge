@@ -1,5 +1,5 @@
 require 'airport'
-require 'Plane'
+require 'plane'
 
 describe Airport do
   let(:plane) { double :plane }
