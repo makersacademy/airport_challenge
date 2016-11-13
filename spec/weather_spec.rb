@@ -4,8 +4,8 @@ describe Weather do
 
   describe "outputting the weather" do
 
-    it "returns true" do
-      expect(subject.stormy?).to be true
+    it "returns stormy" do
+      allow(subject).to receive(:stormy?).and_return true
     end
 
   end
