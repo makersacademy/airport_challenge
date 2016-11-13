@@ -18,18 +18,22 @@ class Airport
     plane
   end
 
-  def airport_full?
-    @planes.count >= DEFAULT_CAPACITY
-  end
-
   def in_airport?(plane)
     @planes.include?(plane)
   end
 
   def takeoff(plane)
-    raise "Plane cannot takeoff because it is not in the airport" if !@planes.include?(plane)
+    raise "Plane cannot takeoff because it is not in the airport" unless in_airport?(plane)
     @planes.delete(plane)
     plane
   end
+
+  private
+
+  def airport_full?
+    @planes.count >= DEFAULT_CAPACITY
+  end
+
+
 
 end
