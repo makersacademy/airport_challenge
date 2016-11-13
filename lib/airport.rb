@@ -1,8 +1,7 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :planes
-  attr_accessor :stormy
+  attr_reader :planes, :stormy
 
   def initialize
     @stormy = Weather.new.stormy?
