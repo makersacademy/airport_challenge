@@ -17,16 +17,20 @@ A program to control the flow of planes at an airport. Planes can land and take 
 
 # Airport.rb
 
-  Contains main body of the program. A new instance of the Airport class is initialized with a random weather condition (stormy or not), and a default capacity of 5 planes.
+  Contains main body of the program. A new instance of the Airport class is initialized with a random weather condition (stormy or sunny), and a default capacity of 5 planes.
 
   Users can check the status of a plane by calling the #status(plane) method:
       e.g. airport.status plane1 #=> Landed / In the air
 
   Planes can be landed and taken off with the #landed(plane) and #take_off(plane) methods.
 
+  #report_weather returns "It is sunny." or "It is stormy." depending on weather conditions.
+
+  #check_new_weather sets the weather randomly to sunny or stormy and reports the new weather.
+
   Private methods:
    # remove_from_airport used to remove taken off planes from the airport's @planes array.
-   # bad_weather? stops a plane from taking off or landing during a storm.
+   # bad_weather_landing? & bad_weather_taking_off? stop a plane from taking off or landing during a storm.
    # full? stops a plane from landing if the aiport is at maximum capacity.
 
 # Plane.rb
