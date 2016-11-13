@@ -22,6 +22,7 @@ class Airport
       if @current_weather == "stormy"
         too_stormy
       else
+        plane.status = 'landed'
         @planes << plane
       end
     end

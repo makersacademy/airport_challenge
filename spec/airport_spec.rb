@@ -9,15 +9,24 @@ describe Airport do
   it {is_expected.to respond_to :land}
 
   it 'allows a plane to land' do
+    plane = Plane.new
     expect(subject.land(plane)).to include(plane)
   end
 
   it 'allows you to see landed planes, to confirm that they have landed' do
+    plane = Plane.new
     subject.land(plane)
     expect(subject.planes).to include(plane)
   end
 
+  it 'changes the state of landed planes to "landed"' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(plane.status).to eq 'landed'
+  end
+
   it 'allows planes to take off' do
+    plane = Plane.new
     subject.land(plane)
     expect(subject.take_off(plane)).to eq plane
   end
@@ -27,6 +36,7 @@ describe Airport do
   end
 
   it 'cannot allow a plane to land at an airport where it is already present' do
+    plane = Plane.new
     subject.land(plane)
     expect{subject.land(plane)}.to raise_error(RuntimeError, 'This plane has already landed')
   end

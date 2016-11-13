@@ -2,8 +2,6 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport) {double :airport}
-
   it 'is a plane' do
     plane = subject
     expect(subject).to eq plane
