@@ -1,6 +1,6 @@
 class Weather
 
-def initialize
+def weather_effect
   @weather_effect = 1 + rand(6)
   if @weather_effect <= 1
     @weather_effect = "stormy"

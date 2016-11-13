@@ -1,22 +1,16 @@
-require_relative "weather"
+#Airport <-- allow_takeoff --> an Aeroplane
+require_relative "aeroplane"
 
 class Airport
-  attr_accessor :full_capacity
+  attr_reader :plane
 
-  def initialize
-    @full_capacity = 20
+  def allow_takeoff
+    fail "Too stormy to allow take off" unless @plane
+    @plane
   end
 
-  def prevent_landing(capacity)
-    if capacity > @full_capacity
-      true
-    else
-      false
-    end
+  def land(plane)
+    @plane = plane
   end
 
-  def weather?
-    Weather.new
-  end
-  
 end
