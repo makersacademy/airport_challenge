@@ -16,8 +16,8 @@ class Airport
   def land(plane)
     raise "Landing impossible due to stormy weather" if stormy?
     raise "This airport is full" if full?
-    raise "This plane is already landed" if plane.state == "landed"
-    plane.state = "landed"
+    raise "This plane is already landed" if plane.state == :landed
+    plane.state = :landed
     planes << plane
     confirm(plane)
   end
@@ -35,9 +35,9 @@ class Airport
   def take_off(plane = planes.last)
     raise "Take-off impossible due to stormy weather" if stormy?
     raise "This plane is not present at this airport!" if !(on_airport?(plane))
-    raise "This plane cannot use an airport when flying!" if plane.state == "flying"
-    on_airport?(plane)
+    raise "This plane cannot use an airport when flying!" if plane.state == :flying
     planes.delete(plane)
+    plane.state = :flying
     confirm(plane)
   end
 
