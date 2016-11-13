@@ -1,15 +1,19 @@
 class Plane
 
 def initialize
-  @landed = true
+  @landed
 end
 
-def land=(boolean) #setter
+def land=(boolean) #setter, lands the plane
   @landed = boolean
 end
 
-def landed? #getter
+def landed? #getter, checks the status if its landed
   @landed
+end
+
+def land
+  self.land=(true)
 end
 
 def flying
