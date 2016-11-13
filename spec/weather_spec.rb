@@ -7,9 +7,14 @@ RSpec.describe Weather do
 
   it "should report the weather when asked" do
   expect(subject).to respond_to(:report)
-  expect(subject.report).to eq("Calm" || "Stormy")
 end
 
+it "should set the weather to stormy" do
+  expect(subject.stormy).to eq("stormy")
+end
 
+it "should set the weather to calm" do
+  expect(subject.calm).to eq("calm")
+end
 
 end
