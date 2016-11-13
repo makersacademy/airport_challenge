@@ -48,7 +48,7 @@ describe Airport do
     end
     it 'should not land during a storm' do
       airport.stormy = true
-      expect{airport.land plane}.to raise_error "Plane cannot land during a storm."
+      expect{airport.land plane}.to raise_error "Plane cannot do this during a storm."
     end
     it 'prevents landing when the airport is full' do
       airport.stormy = false
@@ -72,7 +72,7 @@ describe Airport do
     end
     it 'should not take off during a storm' do
       subject.stormy = true
-      expect{airport.take_off plane}.to raise_error "Plane cannot take off during a storm."
+      expect{airport.take_off plane}.to raise_error "Plane cannot do this during a storm."
     end
   end
 
