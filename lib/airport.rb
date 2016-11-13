@@ -1,8 +1,8 @@
 require './lib/plane.rb'
 require './lib/weather.rb'
+include Weather
 
 class Airport
-  include Weather
   attr_reader :landed_planes, :airborne_planes, :capacity
   DEFAULT_CAPACITY = 50
 
@@ -23,6 +23,8 @@ class Airport
     raise "Cannot take off under stormy weather conditions!" if stormy?
     @airborne_planes << @landed_planes.shift
   end
+
+  private
 
   def empty?
     @landed_planes.empty?
