@@ -1,5 +1,4 @@
 class Weather
-
   def initialize
     @stormy = set_weather(random_number)
   end

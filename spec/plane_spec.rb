@@ -6,7 +6,6 @@ describe Plane do
   let(:weather) {double :weather}
 
   describe '#land' do
-
     it 'should be able to land' do
       expect(plane.land).to eq true
     end
@@ -18,7 +17,6 @@ describe Plane do
   end
 
   describe '#take_off' do
-
     it 'should be able to take off' do
       plane = Plane.new(true)
       plane.take_off
