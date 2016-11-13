@@ -4,6 +4,8 @@ class Weather
     random_weather == :stormy
   end
 
+  private
+
   WEATHER = [:stormy, :sunny, :sunny]
 
   def random_weather

@@ -1,5 +1,4 @@
 require 'airport.rb'
-# require 'plane.rb'
 
 context 'Good weather' do
 
@@ -12,25 +11,11 @@ context 'Good weather' do
         allow(subject.weather).to receive(:stormy?) {false}
       end
 
-      it 'knows whens the weather is good' do
-        expect(subject.stormy?).to eq false
-      end
-
-      describe '#planes' do
-
-        it 'returns the planes which are landed at airport' do
-          allow(plane).to receive(:land)
-          subject.land(plane)
-          expect(subject.planes).to eq [plane]
-        end
-
-      end
-
       describe '#capacity' do
 
         it 'is variable' do
-          subject.capacity = 60
-          60.times do
+          subject.capacity = 2
+          2.times do
             plane = double(:plane)
             allow(plane).to receive(:land)
             subject.land(plane)
@@ -59,7 +44,7 @@ context 'Good weather' do
         it 'lands a plane in the airport' do
           allow(plane).to receive(:land)
           subject.land(plane)
-          expect(subject.planes).to include plane
+          expect(subject.in_airport?(plane)).to eq true
         end
 
         it 'changes the landed status of the plane' do
@@ -91,7 +76,7 @@ context 'Good weather' do
           allow(plane).to receive(:take_off)
           subject.land(plane)
           subject.take_off(plane)
-          expect(subject.planes).not_to include plane
+          expect(subject.in_airport?(plane)).to eq false
         end
 
         it 'changes the landed status of the plane' do
@@ -119,10 +104,6 @@ context 'Stormy weather' do
 
     before do
       allow(subject.weather).to receive(:stormy?) {true}
-    end
-
-    it 'knows when the weather is stormy' do
-      expect(subject.stormy?).to eq true
     end
 
     describe '.land' do

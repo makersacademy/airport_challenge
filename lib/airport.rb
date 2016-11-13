@@ -5,7 +5,7 @@ class Airport
 
 DEFAULT_CAPACITY = 1
 
-  attr_reader :planes, :weather
+  attr_reader :weather
   attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -14,18 +14,13 @@ DEFAULT_CAPACITY = 1
     @weather = Weather.new
   end
 
-  def stormy?
-    @weather.stormy?
-  end
-
   def land(plane)
-    fail "Too stormy to land" if stormy?
     fail "Plane already in airport" if in_airport?(plane)
     fail "Airport is full" if full?
+    fail "Too stormy to land" if stormy?
     plane.land
     @planes << plane
   end
-
 
   def take_off(plane)
     fail "Plane is not in airport" unless in_airport?(plane)
@@ -34,14 +29,20 @@ DEFAULT_CAPACITY = 1
     @planes.delete(plane)
   end
 
+  def in_airport?(plane)
+    @planes.include?(plane)
+  end
+
   private
+
+  attr_reader :planes
 
   def full?
     @planes.count >= capacity
   end
 
-  def in_airport?(plane)
-    @planes.include?(plane)
+  def stormy?
+    @weather.stormy?
   end
 
 end

@@ -16,8 +16,4 @@ describe Weather do
 
   end
 
-  describe '.random_weather' do
-    #it returns a random weather state from WEATHER
-  end
-
 end
