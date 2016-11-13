@@ -34,8 +34,8 @@ describe Airport do
   context 'when landing and taking off planes' do
 
     before(:each) do
-      @plane = Plane.new
-      @another_plane = Plane.new
+      @plane = instance_double("Plane")
+      @another_plane = instance_double("Plane")
       sunny_weather = instance_double("Weather", :condition => :sunny)
       subject.set_weather(sunny_weather)
       subject.land(@plane)
@@ -77,10 +77,10 @@ describe Airport do
       before(:each) do
         stormy_weather = instance_double("Weather", :condition => :stormy)
         subject.set_weather(stormy_weather)
+        @plane = instance_double("Plane")
       end
 
       it 'does not allow Planes to take off' do
-        @plane = Plane.new
         subject.planes << @plane
         message = 'Planes cannot take off while it is stormy'
         expect { subject.take_off(@plane) }.to raise_error(RuntimeError, message)
@@ -105,18 +105,21 @@ describe Airport do
 
         it 'does not allow planes to land when the airport is at capacity' do
           message = 'Planes cannot land at this airport, it is full'
-          Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-          expect { subject.land(Plane.new) }.to raise_error(RuntimeError, message)
+          Airport::DEFAULT_CAPACITY.times { subject.land(instance_double("Plane")) }
+          expect { subject.land(instance_double("Plane")) }.to raise_error(RuntimeError, message)
         end
 
       end
 
       context 'when there are inconsistent behaviours' do
 
+        before(:each) do
+          @plane = instance_double("Plane")
+        end
+
         it 'only lets planes take off from airports they in' do
           message = 'This plane can\'t take off from here. It hasn\'t landed here.'
-          plane = Plane.new
-          expect{ subject.take_off(plane) }.to raise_error(RuntimeError, message)
+          expect{ subject.take_off(@plane) }.to raise_error(RuntimeError, message)
         end
 
         # it 'doesn\'t let planes that have landed land again' do
