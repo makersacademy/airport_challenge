@@ -15,6 +15,7 @@ class Airport
   def land(plane)
     raise "Due to inclement weather no planes can land" if @stormy
     raise "This airport is full, hope you have enough fuel!" if check_full?
+    raise "This plane has already landed." if @planes.include?(plane)
     @planes << plane
     "Flight #{plane} has landed."
   end

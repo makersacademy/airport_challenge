@@ -1,4 +1,5 @@
 require 'airport'
+require 'Plane'
 
 describe Airport do
   let(:plane) { double :plane }
@@ -63,7 +64,7 @@ describe Airport do
   end
 
   it 'should not allow more than 10 planes to land' do
-    10.times {subject.land(plane)}
+    10.times {subject.land(Plane.new)}
     expect{ subject.land(plane) }.to raise_error(RuntimeError, 'This airport is full, hope you have enough fuel!')
   end
 
@@ -82,6 +83,11 @@ describe Airport do
 
   it 'check that capacity is equal to DEFAULT_CAPACITY when nothing else set' do
     expect(Airport::DEFAULT_CAPACITY).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it 'should prevent the same plane cannot land again' do
+    subject.land(plane)
+    expect{ subject.land(plane)}.to raise_error(RuntimeError, 'This plane has already landed.')
   end
 
 end
