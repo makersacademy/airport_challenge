@@ -34,10 +34,9 @@ describe Airport do
       expect( subject.land( plane1 ) ).to be_truthy
     end
     it "should not accept landing when airport is full" do
-      airport = Airport.new
-      allow( airport ).to receive( :check_weather ){ "not stormy" }
-      allow( airport ).to receive( :default_capacity ){ 0 }
-      expect{ airport.land( plane1 ) }.to raise_error( "Airport at full capacity, no space available." )
+      allow( subject ).to receive( :check_weather ){ "not stormy" }
+      subject.capacity = 0
+      expect{ subject.land( plane1 ) }.to raise_error( "Airport at full capacity, no space available." )
     end
   end
 
@@ -63,7 +62,7 @@ describe Airport do
     it "should return error when the plane hasn't landed before taking off" do
       allow( subject ).to receive( :check_weather ){ "not stormy" }
       subject.land( plane1 )
-      expect{ subject.take_off( plane2 ) }.to raise_error( "This plane hasn't landed at this airport!" )
+      expect{ subject.take_off( plane2 ) }.to raise_error( "This plane hasn't landed at this airport." )
     end
     it "should not exist the plane at airport after taking off" do
       allow( subject ).to receive( :check_weather ){ "not stormy" }

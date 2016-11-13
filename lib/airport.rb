@@ -3,21 +3,22 @@ require_relative 'weather.rb'
 
 class Airport
 
-  attr_accessor :default_capacity
+  attr_accessor :capacity
+  DEFAULT_CAPACITY = 100
 
   def initialize
     @plane = []
-    @default_capacity = 100
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)
     fail "Due to bad weather, aircraft are unable to land." if check_weather == "stormy"
-    fail "Airport at full capacity, no space available." if @plane.size == @default_capacity
+    fail "Airport at full capacity, no space available." if @plane.size == @capacity
     @plane.include?(plane) ? false : @plane << plane
   end
 
   def take_off(plane)
-    fail "This plane hasn't landed at this airport!" if !confirm_landed(plane)
+    fail "This plane hasn't landed at this airport." if !confirm_landed(plane)
     fail "Due to bad weather, all flights are grounded." if check_weather == "stormy"
     @plane.delete(plane)
     plane
