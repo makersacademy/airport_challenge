@@ -113,11 +113,19 @@ end
     end
 
     it "should raise error if airport is full when attempting to land" do
+      @plane.landed_status = false
       subject.planes = [@plane]
-      subject.take_off(@plane)
       expect{subject.land(@plane)}.to raise_error("Airport is full. Plane is unable to land")
     end
+  end
 
+  context "remove plane from airport once it has taken off" do
+
+    it "should return array with one less element after take off" do
+      subject.planes = [@plane]
+      subject.take_off(@plane)
+      expect(subject.planes).to eq []
+    end
   end
 
 end

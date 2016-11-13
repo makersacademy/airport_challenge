@@ -38,6 +38,7 @@ attr_accessor :weather, :capacity, :planes
       "Unable to take off because of the stormy weather"
     else
     plane.landed_status = false
+    @planes.delete(plane)
     "#{plane} has taken off"
     end
   end
