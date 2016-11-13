@@ -5,12 +5,12 @@ describe Airport do
 	subject(:airport) {described_class.new}
 
 	it 'expects airports to have a default capacity' do
-		expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+		expect(airport.instance_variable_get(:@capacity)).to eq Airport::DEFAULT_CAPACITY
 	end
 
 	it 'expects new airports to accept a custom capacity' do
 		airport = Airport.new(10)
-		expect(airport.capacity).to eq (10)
+		expect(airport.instance_variable_get(:@capacity)).to eq (10)
 	end
 
 	describe '#land' do
@@ -46,7 +46,7 @@ describe Airport do
 		it 'expects planes to be unable to land when airport is full' do
 			plane = double(:plane, flying: true)
 			allow(plane).to receive(:landed)
-			airport.capacity.times {airport.land(plane)}
+			(airport.instance_variable_get(:@capacity)).times {airport.land(plane)}
 			expect{airport.land(plane)}.to raise_error("Airport is full.")
 		end
 
