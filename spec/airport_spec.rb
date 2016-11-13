@@ -22,14 +22,6 @@ describe Airport do
       airport = Airport.new(40)
       expect(airport.airport_capacity).to eq(40)
     end
-
-    it "expects airport to respond to a airport_full? method" do
-      expect(airport).to respond_to(:airport_full?)
-    end
-
-    it "expects airport to respond to a take_off method" do
-      expect(airport).to respond_to(:take_off)
-    end
   end
 
 
@@ -39,10 +31,6 @@ describe Airport do
       allow(airplane).to receive(:landed) {true}
       allow(airplane1).to receive(:landed) {true}
 		end
-
-    it "expects airport to respond to a land_at_airport method and pass in a plane" do
-      expect(airport).to respond_to(:land_at_airport).with(1).argument
-    end
 
     it "expects a plane in the airplane_on_ground array if a plane has landed" do
       airport.land_at_airport(airplane)
