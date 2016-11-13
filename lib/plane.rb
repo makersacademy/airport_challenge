@@ -1,4 +1,4 @@
 class Plane
 
 
-end 
+end

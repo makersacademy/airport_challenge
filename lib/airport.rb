@@ -14,7 +14,6 @@ class Airport
   end
 
   def take_off(weather)
-    puts @weather
     unless stormy?(weather)
       @planes.pop
     end

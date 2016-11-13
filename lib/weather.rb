@@ -2,7 +2,7 @@ class Weather
 attr_reader :number, :weather
 
   def initialize
-    $weather = false
+    @weather = false
   end
 
   def weather_generator

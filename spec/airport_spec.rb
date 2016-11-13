@@ -33,7 +33,6 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
-
   end
 
   context 'tests planes taking off' do
