@@ -33,12 +33,6 @@ describe Airport do
         expect(plane).to eq subject.planes.last
       end
 
-      it "changes plane state to :landed during landing" do
-        plane = Plane.new
-        subject.land(plane)
-        expect(plane.state).to eq :landed
-      end
-
       it "confirms that a plane has just landed" do
         plane = Plane.new
         expect(subject.land(plane)).to eq "The plane has landed"
