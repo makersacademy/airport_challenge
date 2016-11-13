@@ -4,10 +4,12 @@ class Airport
   attr_reader :planes, :capacity
   attr_accessor :stormy
 
-  def initialize
+  DEFAULT_CAPACITY = 5
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @stormy = Weather.new.stormy?
     @planes = []
-    @capacity = 5
+    @capacity = capacity
   end
 
   def status(plane)

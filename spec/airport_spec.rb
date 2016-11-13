@@ -13,6 +13,17 @@ describe Airport do
     allow(plane).to receive(:take_off)
   end
 
+  context 'capacity' do
+    it 'has a default capacity of 5' do
+      expect(airport.capacity).to eq 5
+    end
+    it 'can be set manually' do
+      airport = Airport.new(10)
+      expect(airport.capacity).to eq 10
+    end
+  end
+
+
   describe '#status' do
     before do
       allow(weather).to receive(:stormy?).and_return false
