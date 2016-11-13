@@ -14,11 +14,11 @@ class Airport
   end
 
   def add(plane)
-    @planes << plane
+    planes << plane
   end
 
   def confirm_landing(plane)
-    "The plane #{plane} has landed" if @planes.include?(plane)
+    "The plane #{plane} has landed" if planes.include?(plane)
   end
 
   def take_off(plane)
@@ -27,11 +27,11 @@ class Airport
   end
 
   def delete(plane)
-    @planes.delete(plane)
+    planes.delete(plane)
   end
 
   def confirm_take_off(plane)
-    "The plane #{plane} has taken off"  unless @planes.include?(plane)
+    "The plane #{plane} has taken off"  unless planes.include?(plane)
   end
 
 end
