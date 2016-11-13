@@ -20,8 +20,14 @@ describe Plane do
   describe '#take_off' do
 
     it 'should be able to take off' do
+      plane = Plane.new(true)
       plane.take_off
       expect(plane.landed).to eq false
+    end
+    it 'should not take_off if already in the air' do
+      plane = Plane.new(true)
+      plane.take_off
+      expect{plane.take_off}.to raise_error "Plane is already in the air."
     end
   end
 
