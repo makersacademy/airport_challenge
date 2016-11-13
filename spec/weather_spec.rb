@@ -2,8 +2,8 @@ require "weather"
 
 describe Weather do
 
-  it "should either be stormy or not stormy" do
-   expect(subject.weather_effect).to eq("stormy") | eq("not stormy")
+  it "should instantiate with a random weather effect" do
+    expect(subject.instance_variable_get(:@weather_effect)).to eql("stormy") | eql("not stormy")
   end
 
 end

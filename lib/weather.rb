@@ -1,11 +1,13 @@
 class Weather
 
-def weather_effect
-  random_number = rand(3)
-  if random_number <= 1
-    "stormy"
+def initialize
+  @weather_effect = 1 + rand(6)
+  if @weather_effect <= 1
+    @weather_effect = "stormy"
+    @weather_effect
   else
-    "not stormy"
+    @weather_effect = "not stormy"
+    @weather_effect
   end
 end
 

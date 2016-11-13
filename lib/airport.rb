@@ -1,3 +1,5 @@
+require_relative "weather"
+
 class Airport
   attr_accessor :full_capacity
 
@@ -13,4 +15,8 @@ class Airport
     end
   end
 
+  def weather?
+    Weather.new
+  end
+  
 end
