@@ -24,8 +24,7 @@ class Airport
   end
 
   def in_airport?(plane)
-    return true if @planes.include?(plane)
-    false
+    @planes.include?(plane)
   end
 
   def takeoff(plane)
