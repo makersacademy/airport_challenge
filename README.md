@@ -4,5 +4,8 @@ My solution to the Makers Academy airport challenge. Forked from: https://github
 
 Three objects and associated tests have been created: Airport, Plane, and Weather.
 
+## How to Install
+Clone this repo to your local machine.
+
 ## Get Started
 In the project folder, run `./lib/airport`

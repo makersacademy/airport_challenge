@@ -6,26 +6,43 @@ describe Airport do
     expect(subject.get_plane).to be_kind_of Plane
   end
 
-  it 'responds to .plane' do
-    expect(subject).to respond_to :plane
+  it 'responds to .planes' do
+    expect(subject).to respond_to :planes
+  end
+
+  describe '#capacity' do
+
+    it 'has a capacity attribute' do
+      expect(subject).to respond_to :capacity
+    end
+
+    it 'has a default capacity of 20' do
+      expect(subject.capacity).to eq 20
+    end
+
   end
 
   context 'when landing and taking off planes' do
 
     before(:each) do
       @plane = Plane.new
+      @another_plane = Plane.new
       sunny_weather = instance_double("Weather", :condition => :sunny)
       subject.set_weather(sunny_weather)
       subject.land(@plane)
     end
 
     it 'lands a Plane and returns the same Plane' do
-      expect(subject.plane).to eq @plane
+      expect(subject.planes.shift).to eq @plane
+    end
+
+    it 'can land more than one plane' do
+      expect(subject.land(@another_plane)).to include(@plane, @another_plane)
     end
 
     it 'can take off a plane' do
-      subject.take_off_plane
-      expect(subject.plane).to eq nil
+      subject.take_off(@plane)
+      expect(subject.planes).to eq []
     end
 
   end
@@ -54,8 +71,10 @@ describe Airport do
       end
 
       it 'does not allow Planes to take off' do
+        @plane = Plane.new
+        subject.planes << @plane
         message = 'Planes cannot take off while it is stormy'
-        expect { subject.take_off_plane }.to raise_error(RuntimeError, message)
+        expect { subject.take_off(@plane) }.to raise_error(RuntimeError, message)
       end
 
       it 'does not allow Planes to land' do
@@ -65,13 +84,16 @@ describe Airport do
 
     end
 
-    describe 'when airport capacity is full' do
+    context 'when the airport is at capacity' do
 
-      it 'does not allow planes to land' do
+      before(:each) do
         sunny_weather = instance_double("Weather", :condition => :sunny)
         subject.set_weather(sunny_weather)
+        20.times { subject.land(Plane.new) }
+      end
+
+      it 'does not allow planes to land' do
         message = 'Planes cannot land at this airport, it is full'
-        subject.land(Plane.new)
         expect { subject.land(Plane.new) }.to raise_error(RuntimeError, message)
       end
 
