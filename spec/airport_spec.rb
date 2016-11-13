@@ -37,21 +37,23 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return false
     end
     it 'lands a plane' do
-      subject.stormy = false
+      airport.stormy = false
       expect(plane).to receive(:land)
       airport.land plane
     end
     it 'puts a landed plane in the airport' do
-      subject.stormy = false
+      airport.stormy = false
       airport.land plane
       expect(airport.planes).to include plane
     end
     it 'should not land during a storm' do
-      subject.stormy = true
+      airport.stormy = true
       expect{airport.land plane}.to raise_error "Plane cannot land during a storm."
     end
     it 'prevents landing when the airport is full' do
-
+      airport.stormy = false
+      airport.capacity.times {airport.land plane}
+      expect{airport.land plane}.to raise_error("The airport is full.")
     end
   end
 
@@ -63,6 +65,7 @@ describe Airport do
       airport.take_off plane
     end
     it 'removes taken off planes from the airport' do
+      airport.stormy = false
       airport.planes << plane
       airport.take_off plane
       expect(airport.planes).not_to include(plane)
