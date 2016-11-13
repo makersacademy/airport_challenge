@@ -5,9 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  @current_weather
-
-  attr_reader :planes, :current_weather, :capacity
+  attr_reader :planes, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -19,24 +17,16 @@ class Airport
       raise 'This plane has already landed'
     else
       at_capacity
-      if @current_weather == "stormy"
-        too_stormy
-      else
-        plane.status = 'landed'
-        @planes << plane
-      end
+      plane.status = 'landed'
+      @planes << plane
     end
   end
 
   def take_off(plane)
     raise 'Plane not available for take off' if !(@planes.include?(plane))
-    if @current_weather == "stormy"
-      too_stormy
-    else
       @planes.delete(plane)
       plane.status = 'flying'
       plane
-    end
   end
 
   def too_stormy
