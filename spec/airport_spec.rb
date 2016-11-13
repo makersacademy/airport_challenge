@@ -1,11 +1,11 @@
 require "airport"
 
 describe Airport do
-subject(:airport) { described_class.new }
 let(:airplane) {double :airplane}
 let(:airplane1) {double :airplane}
 let(:airplane2) {double :airplane}
 let(:weather) {double :weather}
+
 
   describe "Airport Setup" do
     it "expects an airport class to exist" do
@@ -16,21 +16,15 @@ let(:weather) {double :weather}
       expect(subject.airport_capacity).to eq Airport::AIRCRAFT_HANGERS
     end
 
-    it "expects airport to allow as many airplanes to land as the system maintainer sets" do
-      airport = Airport.new(40)
-      expect(airport.airport_capacity).to eq(40)
-  end
-
   it "expects no airplanes to be at the airport by default" do
     expect(subject.airplanes_on_ground).to be_empty
   end
 end
 
   context "NOT STORMY" do
-        describe "LANDING" do
-          before(:example) do
-            allow(weather).to receive(:stormy?).and_return(false)
-          end
+      before(:example) do
+        allow(weather).to receive(:stormy?).and_return(false)
+      end
           it "expects airport to respond to a land_at_airport method and pass in a plane" do
             expect(subject).to respond_to(:land_at_airport).with(1).argument
           end
@@ -44,6 +38,11 @@ end
             expect(subject).to respond_to(:airport_full?)
           end
 
+          it "expects airport to allow as many airplanes to land as the system maintainer sets" do
+            airport = Airport.new(40)
+            expect(airport.airport_capacity).to eq(40)
+        end
+
           it "expects airport_full to be true if there are as many (or more) airplanes on the ground as there are the airport capacity" do
             subject.airport_capacity.times {subject.land_at_airport(airplane)}
             expect(subject).to be_airport_full
@@ -55,10 +54,6 @@ end
           end
         end
 
-        context "TAKE OFF" do
-          before(:example) do
-            allow(weather).to receive(:weather).and_return(false)
-          end
           it "expects airport to respond to a take_off method" do
             expect(subject).to respond_to(:take_off)
           end
@@ -80,12 +75,10 @@ end
             subject.land_at_airport(airplane2)
             subject.take_off
           end
-        end
-      end
 
   context "Stormy" do
     before(:example) do
-    allow(weather).to receive(:stormy?).and_return(true)
+      allow(weather).to receive(:stormy?).and_return(true)
     end
       it "expects an error message if the plane tries to land while it is stormy" do
         expect{(stormy_airport.land_at_airport(airplane)).to raise_error("You can't land in stormy weather!")}
