@@ -3,7 +3,7 @@ require  "plane"
 require "weather"
 
 describe Airport do
-  subject (:airport) {described_class.new(20, weather)}
+  subject (:airport) {described_class.new( weather)}
   let (:plane) {double :plane}
   let (:weather) {double :weather}
   let (:plane2) {double :plane}
@@ -66,6 +66,17 @@ describe Airport do
       expect{airport.land(plane2)}.to raise_error "Cannot land plane if airport is full"
     end
   end
+  describe "when capacity" do
+    weather1 = Weather.new
+    airport1 = Airport.new(5,weather1)
+    it "should have a default value of 20" do
+      expect(airport.capacity).to eq 20
+    end
+    it "should allow for a custom value to be set" do
+      expect(airport1.capacity).to eq 5
+    end
+  end
+
 
 
 
