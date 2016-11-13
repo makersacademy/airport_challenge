@@ -3,21 +3,23 @@ require "./lib/weather.rb"
 
 class Airport
   #SETUP
-  attr_reader :airport_capacity, :airplanes_on_ground, :stormy
+  attr_reader :airport_capacity, :airplanes_on_ground
 
   AIRCRAFT_HANGERS = 10
-
 
   def initialize(capacity=AIRCRAFT_HANGERS)
     @airport_capacity = capacity
     @airplanes_on_ground = []
-    @stormy ||= Weather.new.stormy?
+  end
+
+  def stormy_at_airport?
+    Weather.new.stormy?
   end
 
   #LANDING
   def land_at_airport(plane)
     raise "Sorry, airport full. Try somewhere else." if airport_full?
-    raise "You can't land in stormy weather!" if @stormy == true
+    raise "You can't land in stormy weather!" if stormy_at_airport?
     @airplanes_on_ground << plane
   end
 
@@ -28,7 +30,7 @@ class Airport
   #TAKE OFF
   def take_off
     raise "Sorry, a non existant airplane can not take off." if @airplanes_on_ground == []
-    raise "You can't take off in stormy weather!" if @stormy == true
+    raise "You can't take off in stormy weather!" if stormy_at_airport?
     @airplanes_on_ground.pop
   end
 

@@ -3,15 +3,14 @@ require "airport"
 describe Airport do
   let(:airplane) {double :airplane}
   let(:airplane1) {double :airplane}
-  let(:airplane2) {double :airplane}
   let(:weather) {double :weather}
-  subject(:stormy_airport) { described_class.new }
+  subject(:stormy_airport) { described_class.new}
   subject(:nice_airport) {described_class.new}
 
   context "NOT STORMY AIRPORT" do
-    before(:each) do
-      allow(:nice_airport).to receive(:stormy).and_return(false)
-    end
+    before do
+			allow(nice_airport).to receive(:stormy_at_airport?) { false }
+		end
 
     it "expects an airport class to exist" do
       expect(nice_airport.class).to eq(Airport)
@@ -30,7 +29,6 @@ describe Airport do
     end
 
     it "expects a plane in the airplane_on_ground array if a plane has landed" do
-      # allow(nice_airport).to receive(:stormy).and_return(false)
       nice_airport.land_at_airport(airplane)
       expect(nice_airport.airplanes_on_ground).to include(airplane)
     end
@@ -45,13 +43,11 @@ describe Airport do
     end
 
     it "expects airport_full to be true if there are as many (or more) airplanes on the ground as there are the airport capacity" do
-      # allow(nice_airport).to receive(:stormy).and_return(false)
       nice_airport.airport_capacity.times {nice_airport.land_at_airport(airplane)}
       expect(nice_airport).to be_airport_full
     end
 
     it "expects an error message if there is no room at the airport" do
-      # allow(nice_airport).to receive(:stormy).and_return(false)
       nice_airport.airport_capacity.times {nice_airport.land_at_airport(airplane)}
       expect{(nice_airport.land_at_airport(airplane)).to raise_error("Sorry, airport full. Try somewhere else.")}
     end
@@ -65,26 +61,22 @@ describe Airport do
     end
 
     it "expects an airplane to leave the array when the take_off method is called" do
-      # allow(nice_airport).to receive(:stormy).and_return(false)
       nice_airport.land_at_airport(airplane)
       nice_airport.land_at_airport(airplane1)
-      nice_airport.land_at_airport(airplane2)
-      expect(nice_airport.take_off).to eq(airplane2)
+      expect(nice_airport.take_off).to eq(airplane1)
     end
 
     it "expects the airplanes_on_ground array to reflect that an airplane has taken off when the take_off method is called" do
-      # allow(nice_airport).to receive(:stormy).and_return(false)
       nice_airport.land_at_airport(airplane)
       nice_airport.land_at_airport(airplane1)
-      nice_airport.land_at_airport(airplane2)
       nice_airport.take_off
     end
   end
 
 
-  context "Stormy" do
-    before(:each) do
-      allow(:stormy_airport).to receive(:stormy).and_return(true)
+  context "STORMY AIRPORT" do
+    before do
+      allow(stormy_airport).to receive(:stormy_at_airport?) { true }
     end
     it "expects an error message if the plane tries to land while it is stormy" do
       expect{(stormy_airport.land_at_airport(airplane)).to raise_error("You can't land in stormy weather!")}
