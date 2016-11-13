@@ -13,10 +13,6 @@ class Airport
     @capacity = capacity
   end
 
-  def get_plane
-    Plane.new
-  end
-
   def set_weather(weather)
     self.weather=(weather)
   end

@@ -2,10 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  it "gets a plane" do
-    expect(subject.get_plane).to be_kind_of Plane
-  end
-
   it 'responds to .planes' do
     expect(subject).to respond_to :planes
   end
