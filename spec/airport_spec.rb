@@ -30,8 +30,8 @@ describe Airport do
   context 'when landing and taking off planes' do
 
     before(:each) do
-      @plane = instance_double("Plane", :flying? => true)
-      @another_plane = instance_double("Plane", :flying? => true)
+      @plane = Plane.new
+      @another_plane = Plane.new
       sunny_weather = instance_double("Weather", :condition => :sunny)
       subject.set_weather(sunny_weather)
       subject.land(@plane)
@@ -122,6 +122,13 @@ describe Airport do
           landed_plane = instance_double("Plane", :flying? => false)
           message = 'That plane cannot land. It has already landed.'
           expect{ subject.land(landed_plane) }.to raise_error(RuntimeError, message)
+        end
+
+        it 'doesn\'t let planes that are flying take off' do
+          flying_plane = instance_double("Plane", :flying? => true)
+          message = 'This plane can\'t take off because it is already flying'
+          subject.planes << flying_plane
+          expect{ subject.take_off(flying_plane) }.to raise_error(RuntimeError, message)
         end
 
       end
