@@ -1,6 +1,5 @@
 require_relative 'plane'
 
-
 class Airport
 
   attr_reader :planes
@@ -28,6 +27,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise "Error"
     @planes.delete(plane)
     plane
   end
