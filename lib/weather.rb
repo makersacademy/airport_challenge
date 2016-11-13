@@ -7,4 +7,4 @@ module Weather
           return "Stormy"
         end
     end
-end
+end #
