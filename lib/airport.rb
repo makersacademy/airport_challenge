@@ -1,25 +1,22 @@
-require_relative "airplane.rb"
-require_relative "weather.rb"
+require "./lib/airplane.rb"
+require "./lib/weather.rb"
 
 class Airport
   #SETUP
   attr_reader :airport_capacity, :airplanes_on_ground, :stormy
   AIRCRAFT_HANGERS = 10
 
-  def initialize(capacity=10, stormy_weather = Weather.new)
+
+  def initialize(capacity=10)
     @airport_capacity = capacity
     @airplanes_on_ground = []
-    @stormy_weather = stormy_weather
-  end
-
-  def weather_is_stormy?
-    @stormy_weather == true
+    @stormy = Weather.new.stormy?
   end
 
   #LANDING
   def land_at_airport(plane)
     raise "Sorry, airport full. Try somewhere else." if airport_full?
-    raise "You can't land in stormy weather!" if weather_is_stormy?
+    raise "You can't land in stormy weather!" if @stormy
     @airplanes_on_ground << plane
   end
 
