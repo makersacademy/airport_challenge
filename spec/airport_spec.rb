@@ -2,22 +2,33 @@ require "airport"
 
 describe Airport do
 
+  describe "initialization" do
+    subject { Airport.new }
+    let(:boeing) { Aeroplane.new }
+    it "defaults capacity" do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(boeing)
+      end
+      expect{ (subject.land(boeing)) }.to raise_error "Airport too full to allow the plane to land"
+    end
+  end
+
   describe "#allow_takeoff" do
     it "allows a plane to takeoff" do
-      plane = Aeroplane.new
-      subject.land(plane)
-      expect(subject.allow_takeoff).to eq plane
+      boeing = Aeroplane.new
+      subject.land(boeing)
+      expect(subject.allow_takeoff).to eq boeing
   end
 
   describe "#land" do
     it "raises an error when it is full" do
-      5.times { subject.land(Aeroplane.new) }
+      subject.capacity.times { subject.land(Aeroplane.new) }
       expect { subject.land(Aeroplane.new) }.to raise_error "Airport too full to allow the plane to land"
     end
   end
 
-    it "raises an error when it is too stormy to allow takeoff" do
-      expect { subject.allow_takeoff }.to raise_error "Too stormy to allow take off"
+    it "raises an error when it is not safe to allow takeoff" do
+      expect { subject.allow_takeoff }.to raise_error "Not safe to allow take off"
     end
   end
 
@@ -29,14 +40,8 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it "should respond to 'plane'" do
-    expect(subject).to respond_to(:planes)
-  end
-
-  it "returns landed planes" do
-    plane = Aeroplane.new
-    subject.land(plane)
-    expect(subject.planes.pop).to eq plane
+  it "has a default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
 end

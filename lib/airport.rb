@@ -2,21 +2,35 @@
 require_relative "aeroplane"
 
 class Airport
-  attr_reader :planes
+  DEFAULT_CAPACITY = 5
 
-  def initialize
+  attr_accessor :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @planes = []
   end
 
-  #edit below later
   def allow_takeoff
-    fail "Too stormy to allow take off" if @planes.empty?
+    fail "Not safe to allow take off" if not_safe?
     @planes.pop
   end
 
   def land(plane)
-    fail "Airport too full to allow the plane to land" if @planes.count >= 5
+    fail "Airport too full to allow the plane to land" if full?
     @planes << plane
+  end
+
+  private
+
+  attr_reader :planes
+
+  def full?
+    @planes.count >= capacity
+  end
+
+  def not_safe?
+    @planes.empty?
   end
 
 end
