@@ -17,12 +17,13 @@ attr_accessor :weather, :capacity, :planes
     raise("Airport is full. Plane is unable to land") if @planes.length == @capacity
 
     if @weather == :Stormy
+      check_weather
       "Unable to land plane in stormy weather"
     else
-    plane.landed_status = true
-    store(plane)
-    check_weather
-    "#{plane} has landed"
+      plane.landed_status = true
+      store(plane)
+      check_weather
+      "#{plane} has landed"
     end
 
   end
@@ -39,10 +40,10 @@ attr_accessor :weather, :capacity, :planes
       check_weather
       "Unable to take off because of the stormy weather"
     else
-    plane.landed_status = false
-    @planes.delete(plane)
-    check_weather
-    "#{plane} has taken off"
+      plane.landed_status = false
+      @planes.delete(plane)
+      check_weather
+      "#{plane} has taken off"
     end
   end
 
