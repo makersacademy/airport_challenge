@@ -16,11 +16,13 @@ end
 
    it "should raise error if arg is not a plane" do
      plane = "I'm not a plane"
-     expect{subject.land(plane)}.to raise_error("Only planes can be landed")
+     message = "Only planes can be landed"
+     expect{subject.land(plane)}.to raise_error(message)
    end
 
    it "should raise error if plane has already been landed" do
-     expect{subject.land(@plane)}.to raise_error("Plane has already landed")
+     message = "Plane has already landed"
+     expect{subject.land(@plane)}.to raise_error(message)
    end
 
    it "should change landed status to true if it was false" do
@@ -48,7 +50,8 @@ end
  context "allow planes to take off" do
    it "should raise error if plane is still in the air" do
      @plane.landed_status = false
-     expect{ subject.take_off(@plane) }.to raise_error("Plane is still in the air")
+     message = "Plane is still in the air"
+     expect{ subject.take_off(@plane) }.to raise_error(message)
    end
 
    it "taking off should change plane's landed_status to false" do
@@ -56,14 +59,16 @@ end
    end
 
    it "should return message to let air controller know that plane has taken off" do
-     expect(subject.take_off(@plane)).to eq "#{@plane} has taken off"
+     message = "#{@plane} has taken off"
+     expect(subject.take_off(@plane)).to eq message
    end
  end
 
   context "prevent take off when weather is stormy" do
     it "should return message that says weather is set to stormy and doesn't let plane take off" do
       subject.weather = :Stormy
-      expect(subject.take_off(@plane)).to eq "Unable to take off because of the stormy weather"
+      message = "Unable to take off because of the stormy weather"
+      expect(subject.take_off(@plane)).to eq message
     end
 
     it "should keep the plane's landed status as true if weather is stormy" do
@@ -77,7 +82,8 @@ end
     it "should return message that prevents landing in stormy weather" do
       subject.take_off(@plane)
       subject.weather = :Stormy
-      expect(subject.land(@plane)).to eq "Unable to land plane in stormy weather"
+      message = "Unable to land plane in stormy weather"
+      expect(subject.land(@plane)).to eq message
     end
   end
 
@@ -103,7 +109,8 @@ end
     it "should raise error if airport is full when attempting to land" do
       @plane.landed_status = false
       subject.planes = [@plane]
-      expect{subject.land(@plane)}.to raise_error("Airport is full. Plane is unable to land")
+      message = "Airport is full. Plane is unable to land"
+      expect{subject.land(@plane)}.to raise_error(message)
     end
   end
 
