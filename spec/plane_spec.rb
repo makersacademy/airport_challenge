@@ -2,6 +2,8 @@ require 'plane'
 
 describe Plane do
 
+  let(:airport) {double :airport}
+
   it 'is a plane' do
     plane = subject
     expect(subject).to eq plane
@@ -11,6 +13,9 @@ describe Plane do
     expect(subject.status).to eq 'flying'
   end
 
-
+  it 'The status of a landed plane can change from "flying" to "landed"' do
+    subject.status = 'landed'
+    expect(subject.status).to eq 'landed'
+  end
 
 end
