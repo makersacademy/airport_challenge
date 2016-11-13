@@ -1,21 +1,43 @@
 require "airplane"
 
 describe Airplane do
-subject(:Airplane) { described_class.new }
+subject(:airplane) { described_class.new }
 
-  context "Setup" do
     it "tests for an Airplane class" do
-      expect(subject.class).to eq(Airplane)
+      expect(airplane.class).to eq(Airplane)
     end
-  end
 
-  context "Landing" do
-    # it "expects airport to respond to a landed? method" do
-    #   expect(subject).to respond_to(:landed?)
-    # end
-    #
-    # it "expects landed? to be true if the plane has landed" do
-    #   expect(subject).to be_landed
-    # end
+    it "expects airplane to respond to a landed method" do
+      expect(airplane).to respond_to(:landed)
+    end
+
+    it "expects airplane to respond to a taken_off method" do
+      expect(airplane).to respond_to(:taken_off)
+    end
+
+    it "expects a plane to be flying by default" do
+      expect(airplane.flying).to eq(true)
+    end
+
+    it "expects not to be flying when it lands" do
+      airplane.landed
+      expect(airplane.flying).to be(false)
+    end
+
+    it "expects to be flying after it has taken off" do
+      airplane.taken_off
+      expect(airplane.flying).to be(true)
+    end
+
+    context "TAKE OFF" do
+      # it "expects airport to respond to a landed? method" do
+      #   expect(subject).to respond_to(:landed?)
+      # end
+      #
+      # it "expects landed? to be true if the plane has landed" do
+      #   expect(subject).to be_landed
+      # end
+
+
   end
 end

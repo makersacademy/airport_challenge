@@ -1,6 +1,6 @@
 class Weather
 
-  attr_accessor :weather_condition
+  attr_reader :weather_condition
 
   def set_weather_integer
     @weather_condition = rand(0..100)

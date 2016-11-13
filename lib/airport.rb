@@ -1,4 +1,3 @@
-require "./lib/airplane.rb"
 require "./lib/weather.rb"
 
 class Airport
@@ -17,10 +16,11 @@ class Airport
   end
 
   #LANDING
-  def land_at_airport(plane)
+  def land_at_airport(plane = Airplane.new)
     raise "Sorry, airport full. Try somewhere else." if airport_full?
     raise "You can't land in stormy weather!" if stormy_at_airport?
     @airplanes_on_ground << plane
+
   end
 
   def airport_full?
