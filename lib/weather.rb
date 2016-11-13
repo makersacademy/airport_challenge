@@ -1,9 +1,8 @@
 class Weather
 
-attr_accessor :today, :weathers
+attr_accessor :weathers
 
   def initialize
-    @today = "sunny"
     @weathers = ["Sunny", "Stormy", "Sunny", "Sunny"]
   end
 
