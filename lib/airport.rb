@@ -8,30 +8,34 @@ class Airport
     attr_reader :capacity
     attr_reader :planes_in_flight
 
-    # DEFAULT_CAPACITY = 10
+    DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = 10)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
     @planes_in_flight = []
   end
 
-  def plane_landed(plane_name, weather_now)
-      # raise "This airport is full to capacity, please go to the next nearest airport to land" if full?
+  def plane_landed(plane_name)
+    raise "This airport is full to capacity, please go to the next nearest airport to land" if full?
+    if plane_name.condition == :sunny
      @planes << plane_name
+     @planes.uniq!
      "Plane #{plane_name} has landed"
-
-  end
-
-  def taken_off(weather_now)
-    if weather_now == :sunny
-      @planes_in_flight << @planes.pop
-      "Plane #{@planes_in_flight.last} has taken off"
-    elsif weather_now == :stormy
-      "Flights are not allowed to take off due to weather condition"
+   elsif plane_name.condition == :stormy
+     raise "There is a storm at destination please divert to nearest airport"
     end
   end
-  # def full?
-  #   @planes.count == DEFAULT_CAPACITY
-  # end
+
+  def taken_off
+     raise "All planes are grounded until further notice due to bad weather" if @planes.index{|planes| planes.condition == :sunny} == nil
+     "Plane #{@planes_in_flight.last} has taken off" if @planes_in_flight << @planes.slice!(@planes.index{|planes| planes.condition == :sunny})
+  end
+
+private
+
+  def full?
+    @planes.count == @capacity
+  end
+
 end
