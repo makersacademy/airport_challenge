@@ -1,14 +1,16 @@
-require 'Weather'
+require './lib/weather.rb'
+require './lib/plane.rb'
 
 class Airport
 
-attr_accessor :weather
+attr_accessor :weather, :capacity
 
   def initialize
     @weather = Weather.new.todays_weather
+    @capacity = 1
   end
 
-  def land_plane(plane)
+  def land(plane)
     raise("Only planes can be landed") if !plane.instance_of? Plane
     raise("Plane has already landed") if plane.landed_status == true
 

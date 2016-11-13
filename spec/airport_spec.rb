@@ -10,31 +10,31 @@ end
 
  context "landing a plane" do
    it "should have a land_plane method" do
-     expect(subject).to respond_to(:land_plane).with(1).argument
+     expect(subject).to respond_to(:land).with(1).argument
    end
 
    it "should check arg given is a plane object" do
-     allow(subject).to receive(:land_plane) {@plane}
-     expect(subject.land_plane(@plane)).to be_a Plane
+     allow(subject).to receive(:land) {@plane}
+     expect(subject.land(@plane)).to be_a Plane
    end
 
    it "should raise error if arg is not a plane" do
      plane = "I'm not a plane"
-     expect{subject.land_plane(plane)}.to raise_error("Only planes can be landed")
+     expect{subject.land(plane)}.to raise_error("Only planes can be landed")
    end
 
    it "should raise error if plane has already been landed" do
-     expect{subject.land_plane(@plane)}.to raise_error("Plane has already landed")
+     expect{subject.land(@plane)}.to raise_error("Plane has already landed")
    end
 
    it "should change landed status to true if it was false" do
      @plane.landed_status = false
-     expect{subject.land_plane(@plane)}.to change {@plane.landed_status}.from(false).to(true)
+     expect{subject.land(@plane)}.to change {@plane.landed_status}.from(false).to(true)
    end
 
    it "should return message that plane has landed" do
      @plane.landed_status = false
-     expect(subject.land_plane(@plane)).to eq "#{@plane} has landed"
+     expect(subject.land(@plane)).to eq "#{@plane} has landed"
    end
  end
 
@@ -89,8 +89,17 @@ end
     it "should return message that prevents landing in stormy weather" do
       subject.take_off(@plane)
       subject.weather = "Stormy"
-      expect(subject.land_plane(@plane)).to eq "Unable to land plane in stormy weather"
+      expect(subject.land(@plane)).to eq "Unable to land plane in stormy weather"
     end
+  end
+
+  context "prevent landing when airport is full" do
+    it "should check for capacity of airport" do
+      expect(subject.capacity).to eq 1
+    end
+
+    it "should "
+
   end
 
 end
