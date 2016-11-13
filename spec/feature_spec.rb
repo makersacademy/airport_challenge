@@ -16,6 +16,29 @@ describe "ATC" do
       expect(airport1.planes).to include(plane2,plane1)
     end
 
+    it "should land if the airport is not full" do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      plane3 = Plane.new
+      airport = Airport.new(capacity = 3)
+      plane1.land(airport)
+      plane2.land(airport)
+      plane3.land(airport)
+      expect(airport.planes).to include(plane2,plane1,plane3)
+    end
+
+    it "should NOT land if the airport is full" do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      plane3 = Plane.new
+      plane4 = Plane.new
+      airport = Airport.new(capacity = 3)
+      plane1.land(airport)
+      plane2.land(airport)
+      plane3.land(airport)
+      expect{ plane4.land(airport) }.to raise_error "The airport is full."
+    end
+
   end
 
   context "The plane takes off" do
