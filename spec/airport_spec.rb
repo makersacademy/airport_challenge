@@ -42,14 +42,15 @@ describe Airport do
   end
 
   context "planes taking off" do
+      let(:plane_double) {double :plane_double}
     it "instructs a plane to take off" do
       allow(airport).to receive :takeoff
       airport.takeoff(plane)
     end
-    it "removes plane from airport after takeoff" do
-      airport.land_plane(plane)
-      airport.takeoff(plane)
-      expect(airport.planes).not_to include(plane)
+    it "removes the correct plane from the airport" do
+      airport.planes << plane_double
+      airport.takeoff(plane_double)
+      expect(airport.planes).not_to include plane_double
     end
   end
 
