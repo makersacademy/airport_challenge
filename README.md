@@ -21,8 +21,18 @@ Instructions
 3. When the installation completes, run `bundle` to download gems
 4. Run `irb` and begin using your airport!
 
+Start by initializing a new Airport and a new Plane.
+
+The plane will start off on the ground, so run `airport.take_off(<your_plane>)` to get it in the air. It will not take off if the weather is stormy.
+
+You can check the weather by calling `check_weather` on the Airport. This will let you know if the weather has changed to Sunny or if it's still Stormy.
+
+After either taking off or landing your plane, the weather may change to Stormy so you might not be able to take off/land. There is a 1 in 4 chance the weather will change to from Sunny to Stormy so keep trying to take off/land and the weather may update!
+
+If you try to "take off" whilst the plane is still in the air, or "land" the plane whilst it's still on the ground, you will receive an error message.
+
 ---------
-Example irb transcript:
+**Example irb transcript:**
 ```
 $ irb
 2.2.3 :001 > require './lib/airport.rb'
@@ -49,12 +59,3 @@ $ irb
  => "#<Plane:0x007ff5fc8bd040> has landed"
 ```
 ---------
-Start by initializing a new Airport and a new Plane.
-
-The plane will start off on the ground, so run `airport.take_off(<your_plane>)` to get it in the air. It will not take off if the weather is stormy.
-
-You can check the weather by calling `check_weather` on the Airport. This will let you know if the weather has changed to Sunny or if it's still Stormy.
-
-After taking off, or landing, your plane, the weather may change to Stormy so you might not be able to take off/land. There is a 1 in 4 chance the weather will change to from Sunny to Stormy so keep trying to take off/land and the weather may update!
-
-If you try to "take off" whilst the plane is still in the air, or "land" the plane whilst it's still on the ground, you will receive an error message.
