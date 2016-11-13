@@ -26,7 +26,6 @@ class Airport
     fail 'plane has already landed' if plane_has_landed
     fail 'Airport is full' if full?
     @planes << @plane
-    @planes
   end
 
   def plane_has_landed
@@ -35,7 +34,7 @@ class Airport
 
   def take_off(plane)
     fail 'plane cannot take off in stormy weather' if @weather.stormy?
-    fail 'no planes to take off' unless @planes.include? @plane
+    fail 'no planes to take off' unless plane_has_landed
     @planes.pop
   end
 
