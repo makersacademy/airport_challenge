@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sultanhq/airport_challenge.svg?branch=master)](https://travis-ci.org/sultanhq/airport_challenge)
+
 My Airport challenge
 ====================
 
@@ -74,4 +76,4 @@ This only required two tests..., one to check that the plane was landed and one 
 
 # Conclusion
 
-I believe that I was able to make a valid MVP by creating a suitable amount of tests, and using the most concise code to get these tests to pass. 
+I believe that I was able to make a valid MVP by creating a suitable amount of tests, and using the most concise code to get these tests to pass.
