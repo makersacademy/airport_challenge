@@ -6,7 +6,7 @@ require_relative 'weather'
 class Plane
 include Messages
 include Weather
-attr_accessor :flying
+attr_reader :flying
 
   def land_at(airport)
 
