@@ -4,7 +4,7 @@ describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {Plane.new}
 
-  context "landing planes" do
+  describe "landing planes" do
     it "instructs planes to land" do
       expect(airport).to respond_to :land_plane
     end
@@ -18,7 +18,7 @@ describe Airport do
     end
   end
 
-  context "checking planes are in the airport" do
+  describe "checking planes are in the airport" do
     it "returns false if plane is not in the airport" do
       expect(airport.in_airport?(plane)).to be false
     end
@@ -28,7 +28,7 @@ describe Airport do
     end
   end
 
-  context "planes taking off" do
+  describe "planes taking off" do
       let(:plane_double) {double :plane_double}
     it "instructs a plane to take off" do
       allow(airport).to receive :takeoff
@@ -39,12 +39,13 @@ describe Airport do
       airport.takeoff(plane_double)
       expect(airport.planes).not_to include plane_double
     end
-    it "raises an error when instructing plane not in airport to takeoff" do
+    it "raises an error when plane not in airport" do
       expect{ airport.takeoff(plane) }.to raise_error "Plane cannot takeoff because it is not in the airport"
     end
+    it "returns an error when w"
   end
 
-  context "airport capacity" do
+  describe "airport capacity" do
     it "has a capacity" do
       expect(airport).to respond_to :capacity
     end
