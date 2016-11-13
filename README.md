@@ -16,6 +16,8 @@ Airport Challenge
 Progress
 ---------
 
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+
 
 Description of the airport app
 -------
@@ -45,6 +47,3 @@ Features that are implemented:
  Full airport cannot land planes
  Variable and default capacity
  Errors raised for inconsistent actions
-
-
- 
