@@ -17,14 +17,6 @@ class Airport
     Plane.new
   end
 
-  def plane=(plane)
-    @plane = plane
-  end
-
-  def weather=(weather)
-    @weather = weather
-  end
-
   def set_weather(weather)
     self.weather=(weather)
   end
@@ -32,6 +24,7 @@ class Airport
   def land(plane)
     fail 'Planes cannot land while it is stormy' if stormy?
     fail 'Planes cannot land at this airport, it is full' if full?
+    fail 'That plane cannot land. It has already landed.' if plane.flying? == false
     @planes << plane
   end
 
@@ -50,6 +43,10 @@ class Airport
   end
 
   private
+  def weather=(weather)
+    @weather = weather
+  end
+
     def full?
       @planes.count >= DEFAULT_CAPACITY
     end

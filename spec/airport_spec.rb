@@ -34,8 +34,8 @@ describe Airport do
   context 'when landing and taking off planes' do
 
     before(:each) do
-      @plane = instance_double("Plane")
-      @another_plane = instance_double("Plane")
+      @plane = instance_double("Plane", :flying? => true)
+      @another_plane = instance_double("Plane", :flying? => true)
       sunny_weather = instance_double("Weather", :condition => :sunny)
       subject.set_weather(sunny_weather)
       subject.land(@plane)
@@ -98,15 +98,15 @@ describe Airport do
       before(:each) do
         sunny_weather = instance_double("Weather", :condition => :sunny)
         subject.set_weather(sunny_weather)
-
+        @plane = instance_double("Plane", :flying? => true)
       end
 
       describe 'when the airport is at capacity' do
 
         it 'does not allow planes to land when the airport is at capacity' do
           message = 'Planes cannot land at this airport, it is full'
-          Airport::DEFAULT_CAPACITY.times { subject.land(instance_double("Plane")) }
-          expect { subject.land(instance_double("Plane")) }.to raise_error(RuntimeError, message)
+          Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+          expect { subject.land(@plane) }.to raise_error(RuntimeError, message)
         end
 
       end
@@ -117,25 +117,20 @@ describe Airport do
           @plane = instance_double("Plane")
         end
 
-        it 'only lets planes take off from airports they in' do
+        it 'only lets planes take off from airports they\'re in' do
           message = 'This plane can\'t take off from here. It hasn\'t landed here.'
           expect{ subject.take_off(@plane) }.to raise_error(RuntimeError, message)
         end
 
-        # it 'doesn\'t let planes that have landed land again' do
-        #   message = 'That plane cannot land. It has already landed.'
-        #   plane = Plane.new
-        #   subject.land(plane)
-        #   expect{ subject.land(plane) }.to raise_error(RuntimeError, message)
-        # end
+        it 'doesn\'t let planes that have landed land again' do
+          landed_plane = instance_double("Plane", :flying? => false)
+          message = 'That plane cannot land. It has already landed.'
+          expect{ subject.land(landed_plane) }.to raise_error(RuntimeError, message)
+        end
 
       end
 
     end
-
-    # planes that are already flying cannot takes off
-    # planes that are flying cannotbe in an airport;
-    # planes that are landed cannot land again and must be in an airport, etc.
 
   end
 
