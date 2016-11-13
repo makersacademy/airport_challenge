@@ -27,19 +27,13 @@ describe Airport do
 
   context "NOT STORMY AIRPORT" do
     before do
-			allow(airport).to receive(:stormy_at_airport?) { false }
+      allow(airport).to receive(:stormy_at_airport?) { false }
       allow(airplane).to receive(:landed) {true}
-      allow(airplane1).to receive(:landed) {true}
-		end
+    end
 
     it "expects a plane in the airplane_on_ground array if a plane has landed" do
       airport.land_at_airport(airplane)
       expect(airport.airplanes_on_ground).to include(airplane)
-    end
-
-    it "expects airport_full if equal to or above capacity" do
-      airport.airport_capacity.times {airport.land_at_airport(airplane)}
-      expect(airport).to be_airport_full
     end
 
     it "expects an error message if there is no room at the airport" do

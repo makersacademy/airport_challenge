@@ -11,4 +11,5 @@ class Weather
     return true if @weather_condition >= 85
     return false
   end
+
 end
