@@ -36,17 +36,6 @@ end
    end
  end
 
- context "checking whether a plane has landed" do
-   it "should let user know if a plane has landed" do
-     expect(subject.has_plane_landed?(@plane)).to eq "yes"
-   end
-
-   it "should let user know if a plane has not landed" do
-     @plane.landed_status = false
-     expect(subject.has_plane_landed?(@plane)).to eq "no"
-   end
- end
-
  context "allow planes to take off" do
    it "should raise error if plane is still in the air" do
      @plane.landed_status = false
@@ -65,16 +54,10 @@ end
  end
 
   context "prevent take off when weather is stormy" do
-    it "should return message that says weather is set to stormy and doesn't let plane take off" do
+    it "should raise error if it is stormy" do
       subject.weather = :Stormy
       message = "Unable to take off because of the stormy weather"
-      expect(subject.take_off(@plane)).to eq message
-    end
-
-    it "should keep the plane's landed status as true if weather is stormy" do
-     subject.weather = :Stormy
-     subject.take_off(@plane)
-     expect(@plane.landed_status).to eq true
+      expect{subject.take_off(@plane)}.to raise_error(message)
     end
   end
 
@@ -82,8 +65,8 @@ end
     it "should return message that prevents landing in stormy weather" do
       subject.take_off(@plane)
       subject.weather = :Stormy
-      message = "Unable to land plane in stormy weather"
-      expect(subject.land(@plane)).to eq message
+      message = "Unable to land because of the stormy weather"
+      expect{subject.land(@plane)}.to raise_error(message)
     end
   end
 
