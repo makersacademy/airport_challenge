@@ -18,14 +18,14 @@ class Airport
       raise 'This plane has already landed'
     else
       at_capacity
-      raise 'weather is too stormy' if @weather.current_weather == 'stormy'
+      too_stormy if @weather.current_weather == 'stormy'
       plane.status = 'landed'
       @planes << plane
     end
   end
 
   def take_off(plane)
-    raise 'weather is too stormy' if @weather.current_weather == 'stormy'
+    too_stormy if @weather.current_weather == 'stormy'
     raise 'Plane not available for take off' if !(@planes.include?(plane))
       @planes.delete(plane)
       plane.status = 'flying'
