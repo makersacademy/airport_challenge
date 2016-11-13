@@ -1,9 +1,10 @@
 require_relative 'airport'
 require_relative 'weather'
 require_relative 'messages_module'
-
+require_relative 'weather'
 class Plane
 include Messages
+include Weather
 attr_accessor :flying
 
   def land_at(airport)
@@ -44,7 +45,7 @@ attr_accessor :flying
   private
 
   def the_weather_is_sunny?
-    Weather.new.right_now == "Sunny"
+    weather_today == "Sunny"
   end
 
   def plane_leaves_loading_bay(airport)

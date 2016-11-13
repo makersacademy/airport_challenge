@@ -29,6 +29,8 @@ require './lib/plane.rb'
        subject.land_at(airport)
 
       unless "Stormy" then expect(subject.flying).to eq false end
+      unless "Stormy" then expect(subject.flying).to eq false end
+      unless "Stormy" then expect(subject.flying).to eq false end
      end
    end
 
@@ -38,6 +40,8 @@ require './lib/plane.rb'
          heathrow = Airport.new
          subject.take_off_from(heathrow)
 
+        unless "Stormy" then expect(subject.flying).to eq true end
+        unless "Stormy" then expect(subject.flying).to eq true end
         unless "Stormy" then expect(subject.flying).to eq true end
        end
    end
@@ -50,6 +54,8 @@ require './lib/plane.rb'
 
        subject.land_at(airport)
 
+       unless "Stormy" then expect(subject.flying).to eq false end
+       unless "Stormy" then expect(subject.flying).to eq false end
        unless "Stormy" then expect(subject.flying).to eq false end
      end
    end

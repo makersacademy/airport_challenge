@@ -1,8 +1,10 @@
 require_relative 'plane'
 require_relative 'weather'
 require_relative 'messages_module'
+require_relative 'weather'
 
 class Airport
+include Weather
 include Messages
 
   attr_reader :landing_bay, :capacity
@@ -39,7 +41,7 @@ DEFAULT_CAPACITY = 20
   end
 
   def the_weather_is_sunny?
-    Weather.new.right_now == "Sunny"
+    weather_today == "Sunny"
   end
 
   def delete_plane_from_the_landing_bay(plane)
