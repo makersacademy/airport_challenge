@@ -8,4 +8,5 @@ describe Plane do
     expect(subject.flying).to eq true
   end
 
+
 end
