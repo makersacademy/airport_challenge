@@ -45,7 +45,7 @@ describe Airport do
 
   describe '#land' do
     before do
-      allow(weather).to receive(:stormy?).and_return false
+      allow(weather).to receive(:stormy?) {false}
     end
     it 'lands a plane' do
       airport.stormy = false
