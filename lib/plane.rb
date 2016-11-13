@@ -8,12 +8,18 @@ attr_reader :landed
   end
 
   def land
-    fail "Plane is already on the ground." if @landed == true
+    already_landed?
     @landed = true
   end
 
   def take_off
     @landed = false
+  end
+
+  private
+
+  def already_landed?
+    fail "Plane is already on the ground." if @landed
   end
 
 end

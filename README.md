@@ -15,7 +15,37 @@ Airport Challenge
 
 A program to control the flow of planes at an airport. Planes can land and take off if the weather is sunny. If the weather is stormy, no plans can land or take off.
 
+# Airport.rb
 
+  Contains main body of the program. A new instance of the Airport class is initialized with a random weather condition (stormy or not), and a default capacity of 5 planes.
+
+  Users can check the status of a plane by calling the #status(plane) method:
+      e.g. airport.status plane1 #=> Landed / In the air
+
+  Planes can be landed and taken off with the #landed(plane) and #take_off(plane) methods.
+
+  Private methods:
+   # remove_from_airport used to remove taken off planes from the airport's @planes array.
+   # bad_weather? stops a plane from taking off or landing during a storm.
+   # full? stops a plane from landing if the aiport is at maximum capacity.
+
+# Plane.rb
+
+ Contains the Plane class, by default initialized as "in the air", unless the user initializes it with the argument (true).
+
+ #land method is called by the Airplane class, but switches a plane's 'landed' status to true if it is false.
+
+ #take_off switches a plane's 'landed' status to false.
+
+# Weather.rb
+
+ Contains the Weather class, initialized with a random weather condition (stormy or not).
+
+ Weather is weighted towards sunny (not stormy) with a private method that generates a random number between 0 and 3. If the random number is 0, weather will be set to stormy.
+
+ # Tests
+
+ Testing was one of the main challenges with this program - particularly the random weather generator. Airport_spec.rb contains many attempts to use stubs to set a specific weather condition, but I could not get these to work in time. Because of this, I had to use an attr_accessor to set weather in each test, which very much violates the DRY principle.
 
 
 Instructions
