@@ -11,8 +11,8 @@ describe Airport do
 
   describe "#land" do
     it "raises an error when it is full" do
-      subject.land(Aeroplane.new)
-      expect { subject.land Aeroplane.new }.to raise_error "Airport too full to allow the plane to land"
+      5.times { subject.land(Aeroplane.new) }
+      expect { subject.land(Aeroplane.new) }.to raise_error "Airport too full to allow the plane to land"
     end
   end
 
@@ -30,13 +30,13 @@ describe Airport do
   end
 
   it "should respond to 'plane'" do
-    expect(subject).to respond_to(:plane)
+    expect(subject).to respond_to(:planes)
   end
 
   it "returns landed planes" do
     plane = Aeroplane.new
     subject.land(plane)
-    expect(subject.plane).to eq plane
+    expect(subject.planes.pop).to eq plane
   end
 
 end
