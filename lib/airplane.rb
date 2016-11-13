@@ -3,18 +3,26 @@ require_relative "airport.rb"
 class Airplane
 
   attr_accessor :landed
-  attr_accessor :taken_off
+
 
   def initialize
-    @landed = true
-    @taken_off = true
-  end
-
-  def land(airport)
     @landed = true
   end
 
   def take_off(airport)
-    @landed = false
+    if airport.is_ok_to_take_off?
+      @landed = false
+    else
+      @landed = true
+    end
   end
+
+  def land(airport)
+    if airport.is_ok_to_land?
+      @landed = true
+    else
+      @landed = false
+    end
+  end
+
 end
