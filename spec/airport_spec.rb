@@ -63,7 +63,7 @@ describe Airport do
     end
 
     it 'can overwrite its weather attribute' do
-      weather = Weather.new
+      weather = instance_double("Weather")
       subject.set_weather(weather)
       expect(subject.weather).to eq weather
     end
@@ -119,12 +119,19 @@ describe Airport do
           expect{ subject.take_off(plane) }.to raise_error(RuntimeError, message)
         end
 
+        # it 'doesn\'t let planes that have landed land again' do
+        #   message = 'That plane cannot land. It has already landed.'
+        #   plane = Plane.new
+        #   subject.land(plane)
+        #   expect{ subject.land(plane) }.to raise_error(RuntimeError, message)
+        # end
+
       end
 
     end
 
-    # planes can only take off from airports they are in
-    # planes that are already flying cannot takes off and/or be in an airport;
+    # planes that are already flying cannot takes off
+    # planes that are flying cannotbe in an airport;
     # planes that are landed cannot land again and must be in an airport, etc.
 
   end
