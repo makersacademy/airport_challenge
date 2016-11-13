@@ -36,6 +36,8 @@ describe Airport do
   context "NOT STORMY AIRPORT" do
     before do
 			allow(airport).to receive(:stormy_at_airport?) { false }
+      allow(airplane).to receive(:landed) {true}
+      allow(airplane1).to receive(:landed) {true}
 		end
 
     it "expects airport to respond to a land_at_airport method and pass in a plane" do
@@ -61,17 +63,6 @@ describe Airport do
       expect{(airport.take_off).to raise_error("Sorry, a non existant airplane can not take off.")}
     end
 
-    it "expects an airplane to leave the array when the take_off method is called" do
-      airport.land_at_airport(airplane)
-      airport.land_at_airport(airplane1)
-      expect(airport.take_off).to eq(airplane1)
-    end
-
-    it "expects less planes on ground when one takes off" do
-      airport.land_at_airport(airplane)
-      airport.land_at_airport(airplane1)
-      airport.take_off
-    end
   end
 
 
