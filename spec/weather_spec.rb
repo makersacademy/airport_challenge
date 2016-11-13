@@ -11,10 +11,13 @@ describe Weather do
   end
 
   describe "randomizing the weather" do
-    it { is_expected.to respond_to(:randomize) }
     it "outputs stormy" do
       allow(subject).to receive(:randomize).and_return(:stormy)
       expect(subject.randomize).to be :stormy
+    end
+    it "outputs clear" do
+      allow(subject).to receive(:randomize).and_return(:clear)
+      expect(subject.randomize).to be :clear
     end
   end
 
