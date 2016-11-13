@@ -9,10 +9,6 @@ before(:each) do
 end
 
  context "landing a plane" do
-   it "should have a land_plane method" do
-     expect(subject).to respond_to(:land).with(1).argument
-   end
-
    it "should check arg given is a plane object" do
      allow(subject).to receive(:land) {@plane}
      expect(subject.land(@plane)).to be_a Plane
@@ -39,10 +35,6 @@ end
  end
 
  context "checking whether a plane has landed" do
-   it "should have a check status method" do
-     expect(subject).to respond_to(:has_plane_landed?).with(1).argument
-   end
-
    it "should let user know if a plane has landed" do
      expect(subject.has_plane_landed?(@plane)).to eq "yes"
    end
@@ -54,10 +46,6 @@ end
  end
 
  context "allow planes to take off" do
-   it "should respond to a take off method" do
-     expect(subject).to respond_to(:take_off).with(1).argument
-   end
-
    it "should raise error if plane is still in the air" do
      @plane.landed_status = false
      expect{ subject.take_off(@plane) }.to raise_error("Plane is still in the air")
