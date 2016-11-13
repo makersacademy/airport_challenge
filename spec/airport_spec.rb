@@ -7,7 +7,14 @@ describe Airport do
       plane = Aeroplane.new
       subject.land(plane)
       expect(subject.allow_takeoff).to eq plane
+  end
+
+  describe "#land" do
+    it "raises an error when it is full" do
+      subject.land(Aeroplane.new)
+      expect { subject.land Aeroplane.new }.to raise_error "Airport too full to allow the plane to land"
     end
+  end
 
     it "raises an error when it is too stormy to allow takeoff" do
       expect { subject.allow_takeoff }.to raise_error "Too stormy to allow take off"

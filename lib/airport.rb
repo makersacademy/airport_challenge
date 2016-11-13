@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Airport too full to allow the plane to land" if @plane
     @plane = plane
   end
 
