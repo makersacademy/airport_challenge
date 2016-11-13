@@ -4,6 +4,10 @@ class Weather
     true
   end
 
+  CONDITIONS = [:stormy, :clear, :clear, :clear, :clear]
+
   def randomize
+    CONDITIONS.sample
   end
+
 end
