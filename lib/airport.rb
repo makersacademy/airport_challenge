@@ -15,10 +15,11 @@ DEFAULT_CAPACITY = 1
   end
 
   def stormy?
-    @weather.stormy
+    @weather.stormy?
   end
 
   def land(plane)
+    fail "Too stormy to land" if stormy?
     fail "Plane already in airport" if in_airport?(plane)
     fail "Airport is full" if full?
     plane.land
@@ -28,6 +29,7 @@ DEFAULT_CAPACITY = 1
 
   def take_off(plane)
     fail "Plane is not in airport" unless in_airport?(plane)
+    fail "Too stormy to take off" if stormy?
     plane.take_off
     @planes.delete(plane)
   end
