@@ -13,7 +13,7 @@ Airport Challenge
 
 ```
 
-A program to control the flow of planes at an airport. Planes can land and take off if the weather is sunny. If the weather is stormy, no plans can land or take off.
+A program to control the flow of planes at an airport. Planes can land and take off if the weather is sunny. If the weather is stormy, no planes can land or take off.
 
 # Airport.rb
 
