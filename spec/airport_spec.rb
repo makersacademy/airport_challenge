@@ -46,6 +46,12 @@ describe Airport do
 
   describe "weather" do
     it{ is_expected.to respond_to :weather}
+    it{ is_expected.to respond_to :stormy?}
+
+    # it "is initialized to stormy" do
+    #   allow(airport).to receive(:weather).and_return :stormy
+    #   expect(airport.weather).to be :stormy
+    # end
   end
 
 
