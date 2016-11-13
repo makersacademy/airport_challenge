@@ -5,9 +5,9 @@ class Airport
 
 attr_accessor :weather, :capacity, :planes
 
-  def initialize
+  def initialize(capacity = 1)
     @weather = Weather.new.todays_weather
-    @capacity = 1
+    @capacity = capacity
     @planes = []
   end
 
@@ -21,6 +21,7 @@ attr_accessor :weather, :capacity, :planes
     else
     plane.landed_status = true
     store(plane)
+    check_weather
     "#{plane} has landed"
     end
 
@@ -35,16 +36,22 @@ attr_accessor :weather, :capacity, :planes
     raise("Plane is still in the air") if plane.landed_status == false
 
     if @weather == "Stormy"
+      check_weather
       "Unable to take off because of the stormy weather"
     else
     plane.landed_status = false
     @planes.delete(plane)
+    check_weather
     "#{plane} has taken off"
     end
   end
 
   def store(plane)
     @planes << plane
+  end
+
+  def check_weather
+    @weather = Weather.new.todays_weather
   end
 
 

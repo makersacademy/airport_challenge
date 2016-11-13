@@ -120,11 +120,36 @@ end
   end
 
   context "remove plane from airport once it has taken off" do
-
     it "should return array with one less element after take off" do
       subject.planes = [@plane]
       subject.take_off(@plane)
       expect(subject.planes).to eq []
+    end
+  end
+
+  context "initializing with default capacity" do
+    context "with parameter" do
+      let(:airport) {Airport.new(2)}
+      it "should use specified parameter for capacity" do
+        expect(airport.capacity).to eq 2
+      end
+    end
+
+    context "without parameter" do
+      let(:airport) {Airport.new}
+      it "should use default if no parameter given" do
+        expect(airport.capacity).to eq 1
+      end
+    end
+  end
+
+  context "check weather to change weather" do
+    it "should respond to a check weather method" do
+      expect(subject).to respond_to(:check_weather)
+    end
+
+    it "should return a the Airport's weather instance" do
+      expect(subject.check_weather).to eq subject.weather
     end
   end
 
