@@ -42,7 +42,7 @@ describe Airport do
     #   expect(airport).to respond_to :capacity
     # end
     it "capacity can be set" do
-      expect(Airport.new(20).capacity).to eq 20
+      expect(Airport.new(20)).to have_capacity(20)
     end
 
 
