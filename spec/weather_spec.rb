@@ -10,7 +10,7 @@ describe Weather do
 	end
 	
 	it 'expects stormy? to be false when given random number 3' do
-		srand(1) #seed means next call to rand will return 3
+		srand(1) # seed means next call to rand will return 3
 		expect(airport.stormy?).to eq false
 	end
 

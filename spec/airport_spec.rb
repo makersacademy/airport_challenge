@@ -23,7 +23,7 @@ describe Airport do
 
 	end
 
-	describe '#land tests that require non-stormy weather' do
+	context '#land tests that require non-stormy weather' do
 
 		before do
 			allow(airport).to receive(:stormy?) { false }
@@ -67,7 +67,7 @@ describe Airport do
 
 	end
 
-	describe '#take_off tests that require non-stormy weather' do
+	context '#take_off tests that require non-stormy weather' do
 
 		before do
 			allow(airport).to receive(:stormy?) { false }
