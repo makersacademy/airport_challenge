@@ -20,7 +20,7 @@ describe Airport do
   it "Can talk to the plane to confirm it's taken off" do
     plane = Plane.new
     airport.take_off(plane)
-    expect(airport.confirm?(plane)).to eq true
+    expect(airport.confirm).to respond_to(:confirm)
   end
 
 end
