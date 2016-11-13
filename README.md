@@ -3,25 +3,53 @@ Airport Challenge [![Build Status](https://travis-ci.org/TudorTacal/airport_chal
 What is it?
 ==========
 
-This program is part of Makers Academy weekend challenges where students have to work alone and build a project using the concepts they learnt during the week.
+This program is part of Makers Academy weekend challenges where students have to work alone and build a project using the concepts they learnt during the previous week.
 
-The program describes a request from a client for a software that controls the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+This program tries to fulfil a request from a client for a software that controls the flow of planes at an airport. The planes can land and take off provided that the weather is not stormy. Occasionally it may be stormy, in which case no planes can land or take off.
 
-classes used Airport, Plane
+classes used Airport, Plane, Weather.
 
-The Airport class will do this and that.
+The Airport class will create an airport object that will land a plane and take off a plane. It has a default capacity of 20 and takes a Weather.new object as an argument.
+
+ Some methods:
+            - land(plane)
+            - take_off(plane)
+            - full?
+
+The Plane class will create a new plane object. A plane will be either flying or landed.
+
   Methods:
-            -
-            -
-            -
-The Plane class will do this and that.
-  Methods:
-            -
-            -
-            -
-            -
+            - flying
 
-To run the program first run bundle install. Then run ruby airport.rb from the terminal.
+The Weather class will create a weather object which will be initialized with a @stormy instance variable with true or false depending on a random number generator.
+
+ Methods:
+            - storm
+            - random
+            - values
+
+
+To run the program first run bundle install.
+Opent pry/irb form the terminal and -> require "./lib/airport.rb".
+
+'''
+require "./lib/airport.rb"
+=> true
+[4] pry(main)> weather = Weather.new
+=> #<Weather:0x007f83930f2ff8 @stormy=false>
+airport = Airport.new(weather)
+=> #<Airport:0x007f83928638d8
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007f83930f2ff8 @stormy=false>>
+ plane = Plane.new
+=> #<Plane:0x007f8392086408>
+[8] pry(main)> airport.land(plane)
+=> "The plane #<Plane:0x007f8392086408> has landed"
+[9] pry(main)> airport.take_off(plane)
+=> "The plane #<Plane:0x007f8392086408> has taken off"
+[10] pry(main)>
+'''
 
 This repository was cloned from https://github.com/makersacademy/airport_challenge.
 
