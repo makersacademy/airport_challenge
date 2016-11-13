@@ -26,6 +26,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'Planes cannot land at this airport, it is full' if @plane
     fail 'Planes cannot land while it is stormy' if stormy?
     self.plane=(plane)
   end
