@@ -5,7 +5,7 @@ require './lib/weather.rb'
 describe Airport do
 before(:each) do
   @plane = Plane.new
-  subject.weather = "Sunny"
+  subject.weather = :Sunny
 end
 
  context "landing a plane" do
@@ -62,12 +62,12 @@ end
 
   context "prevent take off when weather is stormy" do
     it "should return message that says weather is set to stormy and doesn't let plane take off" do
-      subject.weather = "Stormy"
+      subject.weather = :Stormy
       expect(subject.take_off(@plane)).to eq "Unable to take off because of the stormy weather"
     end
 
     it "should keep the plane's landed status as true if weather is stormy" do
-     subject.weather = "Stormy"
+     subject.weather = :Stormy
      subject.take_off(@plane)
      expect(@plane.landed_status).to eq true
     end
@@ -76,7 +76,7 @@ end
   context "prevent landing when weather is stormy" do
     it "should return message that prevents landing in stormy weather" do
       subject.take_off(@plane)
-      subject.weather = "Stormy"
+      subject.weather = :Stormy
       expect(subject.land(@plane)).to eq "Unable to land plane in stormy weather"
     end
   end

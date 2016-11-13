@@ -16,7 +16,7 @@ attr_accessor :weather, :capacity, :planes
     raise("Plane has already landed") if plane.landed_status == true
     raise("Airport is full. Plane is unable to land") if @planes.length == @capacity
 
-    if @weather == "Stormy"
+    if @weather == :Stormy
       "Unable to land plane in stormy weather"
     else
     plane.landed_status = true
@@ -35,7 +35,7 @@ attr_accessor :weather, :capacity, :planes
   def take_off(plane)
     raise("Plane is still in the air") if plane.landed_status == false
 
-    if @weather == "Stormy"
+    if @weather == :Stormy
       check_weather
       "Unable to take off because of the stormy weather"
     else

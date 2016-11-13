@@ -3,7 +3,7 @@ class Weather
 attr_accessor :weathers
 
   def initialize
-    @weathers = ["Sunny", "Stormy", "Sunny", "Sunny"]
+    @weathers = [:Sunny, :Stormy, :Sunny, :Sunny]
   end
 
   def randomise
