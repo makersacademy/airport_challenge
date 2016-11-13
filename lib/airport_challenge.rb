@@ -13,14 +13,12 @@ class Airport
   def land_plane(plane)
     puts "This plane has landed"
       @planes_landed << plane
-      # @planes_in_air.pop
     if @planes_in_air.include?(plane)
       @planes_in_air.delete(plane)
     end
   end
 
   def take_off(plane)
-    raise "Storm! Unable to land!" if storm?
     puts "All clear for take off!"
     @planes_in_air << plane
     @planes_landed.pop
