@@ -11,14 +11,22 @@ describe Airport do
       expect(subject.accept_plane(plane)).to eq "A plane has landed!"
     end
 
+    it "should not accept a plane if the airport is full" do
+      airport = subject
+      100.times { airport.accept_plane(Plane.new) }
+      expect{(subject.accept_plane(plane))}.to raise_error("Error: The airport is full!")
+    end
+
   end
 
   context "#release_plane" do
     plane = Plane.new
     it {is_expected.to respond_to :release_plane}
 
-    it "should confirm that a plane has taken off as long as airport has planes" do
-      expect(subject.release_plane(plane)).to eq "A plane has taken off!"
+    it "should confirm that a plane has taken off as long as the airport has planes" do
+      airport = subject
+      100.times { airport.accept_plane(Plane.new) }
+      expect(subject.release_plane(Plane.new)).to eq "A plane has taken off!"
     end
 
     it "should not release a plane if no planes are at the airport" do

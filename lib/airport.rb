@@ -14,11 +14,14 @@ class Airport
   end
 
   def accept_plane(plane)
+    raise "Error: The airport is full!" if full?
+    @planes << plane
     "A plane has landed!"
   end
 
   def release_plane(plane)
     raise "Error: The airport is empty!" if empty?
+    @planes.pop
     "A plane has taken off!"
   end
 
