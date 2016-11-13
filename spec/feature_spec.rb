@@ -76,6 +76,8 @@ describe "ATC" do
       allow(plane2).to receive (:weather) {1}
       plane1.land(airport)
       plane2.land(airport)
+      allow(plane1).to receive (:weather) {2}
+      allow(plane2).to receive (:weather) {1}
       plane1.take_off(airport)
       plane2.take_off(airport)
       expect(airport.planes).not_to include(plane1,plane2)
@@ -86,8 +88,19 @@ describe "ATC" do
       airport = Airport.new
       allow(plane).to receive (:weather) {2}
       plane.land(airport)
+      allow(plane).to receive (:weather) {1}
       plane.take_off(airport)
+      allow(plane).to receive (:weather) {1}
       expect{ plane.take_off(airport)}.to raise_error "Can't take off again."
+    end
+
+    it "should NOT take off if it's stormy" do
+      plane = Plane.new
+      airport = Airport.new
+      allow(plane).to receive (:weather) {1}
+      plane.land(airport)
+      allow(plane).to receive (:weather) {0}
+      expect{ plane.take_off(airport) }.to raise_error "It is stormy. We can't take off."
     end
 
   end

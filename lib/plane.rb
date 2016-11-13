@@ -13,6 +13,7 @@ class Plane
   end
 
   def take_off(airport)
+    raise "It is stormy. We can't take off." if self.weather == 0
     raise "Can't take off again." if @taken_off
     airport.unpark_plane(self)
     @taken_off = true

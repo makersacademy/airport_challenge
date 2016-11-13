@@ -50,6 +50,7 @@ describe Plane do
 
     it "should return true when the plane is taken off" do
       allow(airport).to receive(:unpark_plane)
+      allow(subject).to receive (:weather) {1}
       subject.take_off(airport)
       expect(subject.taken_off?).to eq true
     end
@@ -63,6 +64,7 @@ describe Plane do
 
     it "should be no longer in the airport when the plane has taken off" do
       allow(airport).to receive(:unpark_plane)
+      allow(subject).to receive (:weather) {1}
       taken_off_plane = subject.take_off(airport)
       expect(subject).not_to be_landed
       expect(airport).to have_received(:unpark_plane).with(subject)
