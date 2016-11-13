@@ -26,13 +26,17 @@ class Airport
   end
 
   def land(plane)
-    fail 'Planes cannot land while it is stormy' if self.weather.condition == :stormy
+    fail 'Planes cannot land while it is stormy' if stormy?
     self.plane=(plane)
   end
 
   def take_off_plane
-    fail 'Planes cannot take off while it is stormy' if self.weather.condition == :stormy
+    fail 'Planes cannot take off while it is stormy' if stormy?
     self.plane=(nil)
+  end
+
+  def stormy?
+    weather.condition == :stormy
   end
 
 end

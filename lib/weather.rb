@@ -3,7 +3,7 @@ class Weather
   attr_reader :condition
 
   def initialize
-    @condition = get_random_condition
+    @condition = set_random_condition
   end
 
   def condition=(condition)
@@ -14,6 +14,10 @@ class Weather
     rand(1..10)
   end
 
+  def determine_weather(number)
+    number >= 7 ? set_condition_stormy : set_condition_sunny
+  end
+
   def set_condition_stormy
     self.condition=(:stormy)
   end
@@ -22,12 +26,8 @@ class Weather
     self.condition=(:sunny)
   end
 
-  def get_weather(integer)
-    integer >= 7 ? set_condition_stormy : set_condition_sunny
-  end
-
-  def get_random_condition
-    get_weather(get_random_number)
+  def set_random_condition
+    determine_weather(get_random_number)
   end
 
 end
