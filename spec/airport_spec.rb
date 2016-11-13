@@ -18,7 +18,8 @@ describe Airport do
 		it 'expects landing to raise error if weather is stormy' do
 			plane = double(:plane, flying: true)
 			allow(airport).to receive(:stormy?) { true }
-			expect{airport.land(plane)}.to raise_error("#{plane} cannot land due to stormy weather.")
+			message = "#{plane} cannot land due to stormy weather."
+			expect{airport.land(plane)}.to raise_error message
 		end
 
 	end
@@ -33,7 +34,7 @@ describe Airport do
 			plane = double(:plane, flying: true)
 			allow(plane).to receive(:landed)
 			airport.land(plane)
-			expect(airport.planes).to include(plane)
+			expect(airport.instance_variable_get(:@planes)).to include(plane)
 		end
 
 		it 'expects a landing to be successful if weather is sunny' do
@@ -51,7 +52,8 @@ describe Airport do
 
 		it 'expects planes that wish to land to be flying' do
 			plane = double(:plane, :flying => false)
-			expect{airport.land(plane)}.to raise_error("#{plane} is already on the ground.")
+			message = "#{plane} is already on the ground."
+			expect{airport.land(plane)}.to raise_error message
 		end
 
 	end
@@ -61,8 +63,9 @@ describe Airport do
 		it 'expects take off to raise error if weather is stormy' do
 			plane = double(:plane, :flying => false)
 			allow(airport).to receive(:stormy?) { true }
-			airport.planes << plane
-			expect{airport.take_off(plane)}.to raise_error("#{plane} cannot take off due to stormy weather.")
+			(airport.instance_variable_get(:@planes)) << plane
+			message = "#{plane} cannot take off due to stormy weather."
+			expect{airport.take_off(plane)}.to raise_error message
 		end
 
 	end
@@ -76,26 +79,28 @@ describe Airport do
 		it 'expects plane to have left the airport after it has taken off' do
 			plane = double(:plane, :flying => false)
 			allow(plane).to receive(:taken_off)
-			airport.planes << plane
+			(airport.instance_variable_get(:@planes)) << plane
 			airport.take_off(plane)
-			expect(airport.planes).not_to include(plane)
+			expect(airport.instance_variable_get(:@planes)).not_to include(plane)
 		end
 
 		it 'expects take off to be successful if weather is sunny' do
 			plane = double(:plane, :flying => false)
 			allow(plane).to receive(:taken_off)
-			airport.planes << plane
+			(airport.instance_variable_get(:@planes)) << plane
 			expect(airport.take_off(plane)).to eq "#{plane} has left the airport."
 		end
 
 		it 'expects planes that wish to take off to be at the airport' do
 			plane = double(:plane, :flying => false)
-			expect{airport.take_off(plane)}.to raise_error("#{plane} does not exist at this airport.")
+			message = "#{plane} does not exist at this airport."
+			expect{airport.take_off(plane)}.to raise_error message
 		end
 
 		it 'expects planes that wish to take off to be grounded' do
 			plane = double(:plane, :flying => true)
-			expect{airport.take_off(plane)}.to raise_error("#{plane} is already flying.")
+			message = "#{plane} is already flying."
+			expect{airport.take_off(plane)}.to raise_error
 		end
 
 	end
