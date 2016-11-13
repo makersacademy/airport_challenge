@@ -44,7 +44,7 @@ describe Airport do
   it 'Checks that a plane cannot land at an airport if the weather is bad' do
     weather = double("weather", :check => "Stormy")
     weather = weather.check
-    message = "Cannot land planes if the weather if stormy"
+    message = "Cannot land planes if the weather is stormy"
     expect{subject.land(plane,weather)}.to raise_error message
   end
 
@@ -52,13 +52,13 @@ describe Airport do
     expect(subject.capacity).to eq 12
   end
 
-  it 'Checks that 12 planes can land at an airport' do
-    12.times{subject.land(double(:plane, :landed= => nil, :landed => false),weather)}
+  it 'Checks that only 12 planes(the "DEFAULT_CAPACITY") can land at an airport' do
+    subject.capacity.times{subject.land(double(:plane, :landed= => nil, :landed => false),weather)}
     expect(subject.planes.count).to eq 12
   end
 
   it 'Checks that planes cannot land at an airport when full' do
-    12.times{subject.land(double(:plane, :landed= => nil, :landed => false),weather)}
+    subject.capacity.times{subject.land(double(:plane, :landed= => nil, :landed => false),weather)}
     message =  "Sorry, Airport is full, please fly to another"
     expect{subject.land(plane,weather)}.to raise_error message
   end
