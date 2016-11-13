@@ -10,6 +10,14 @@ describe Airport do
     expect(subject).to respond_to :planes
   end
 
+  it 'responds to .is_full?' do
+    expect(subject).to respond_to :is_full?
+  end
+
+  it 'responds to .is_stormy?' do
+    expect(subject).to respond_to :is_stormy?
+  end
+
   describe '#capacity' do
 
     it 'has a capacity attribute' do
@@ -85,20 +93,39 @@ describe Airport do
 
     end
 
-    context 'when the airport is at capacity' do
+    context 'when it is sunny' do
 
       before(:each) do
         sunny_weather = instance_double("Weather", :condition => :sunny)
         subject.set_weather(sunny_weather)
-        Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+
       end
 
-      it 'does not allow planes to land' do
-        message = 'Planes cannot land at this airport, it is full'
-        expect { subject.land(Plane.new) }.to raise_error(RuntimeError, message)
+      describe 'when the airport is at capacity' do
+
+        it 'does not allow planes to land when the airport is at capacity' do
+          message = 'Planes cannot land at this airport, it is full'
+          Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+          expect { subject.land(Plane.new) }.to raise_error(RuntimeError, message)
+        end
+
+      end
+
+      context 'when there are inconsistent behaviours' do
+
+        it 'only lets planes take off from airports they in' do
+          message = 'This plane can\'t take off from here. It hasn\'t landed here.'
+          plane = Plane.new
+          expect{ subject.take_off(plane) }.to raise_error(RuntimeError, message)
+        end
+
       end
 
     end
+
+    # planes can only take off from airports they are in
+    # planes that are already flying cannot takes off and/or be in an airport;
+    # planes that are landed cannot land again and must be in an airport, etc.
 
   end
 

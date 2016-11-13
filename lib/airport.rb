@@ -37,15 +37,25 @@ class Airport
 
   def take_off(plane)
     fail 'Planes cannot take off while it is stormy' if stormy?
+    fail 'This plane can\'t take off from here. It hasn\'t landed here.' if !@planes.include?(plane)
     @planes.delete(plane)
   end
 
-  def stormy?
-    weather.condition == :stormy
+  def is_full?
+    full?
   end
 
-  def full?
-    @planes.count >= DEFAULT_CAPACITY
+  def is_stormy?
+    stormy?
   end
+
+  private
+    def full?
+      @planes.count >= DEFAULT_CAPACITY
+    end
+
+    def stormy?
+      weather.condition == :stormy
+    end
 
 end
