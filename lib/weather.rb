@@ -1,18 +1,13 @@
 class Weather
 
-  attr_reader :stormy
-
-  def initialize
-    @stormy = stormy?(random_number)
+  def stormy?
+    random_weather == :stormy
   end
 
-  def stormy?(random_number)
-    return true if random_number == 0
-    false
-  end
+  WEATHER = [:stormy, :sunny, :sunny]
 
-  def random_number
-    rand(5)
+  def random_weather
+    WEATHER.sample
   end
 
 end

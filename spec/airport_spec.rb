@@ -60,16 +60,18 @@ subject(:airport) {described_class.new}
 
   describe '#land' do
 
-    before do
-      allow(plane).to receive(:land)
-    end
+    # before do
+    #   allow(plane).to receive(:land)
+    # end
 
     it 'lands a plane' do
+      allow(plane).to receive(:land)
       subject.land(plane)
       expect(subject.planes).to include plane
     end
 
     it 'changes the landed status of the plane' do
+      expect(plane).to receive(:land)
       subject.land(plane)
     end
 
@@ -80,12 +82,9 @@ subject(:airport) {described_class.new}
     end
 
     it 'raises an error if airport is full' do
-      described_class::DEFAULT_CAPACITY.times do
-        plane = double(:plane)
-        allow(plane).to receive(:land)
-        subject.land(plane)
-      end
-      expect {subject.land(plane)}.to raise_error 'Airport is full'
+      allow(plane).to receive(:land)
+      subject.land(plane)
+      expect {subject.land(double :plane)}.to raise_error 'Airport is full'
     end
 
     #
@@ -109,13 +108,11 @@ subject(:airport) {described_class.new}
 
     it 'changes the landed status of the plane' do
       expect(plane).to receive(:take_off)
-      # allow(plane).to receive(:land)
       subject.land(plane)
       subject.take_off(plane)
     end
 
     it 'lets a plane take off from the airport' do
-      # allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
       subject.land(plane)
       subject.take_off(plane)

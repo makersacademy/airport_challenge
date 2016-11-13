@@ -3,7 +3,7 @@ require_relative 'weather.rb'
 
 class Airport
 
-DEFAULT_CAPACITY = 50
+DEFAULT_CAPACITY = 1
 
   attr_reader :planes, :weather
   attr_accessor :capacity
