@@ -37,3 +37,15 @@ end
 class Plane
 
 end
+
+class Weather
+  def forcast
+    weather = ["sunny", "sunny", "sunny", "fair", "sunny", "stormy", "sunny"]
+    selector = weather.length
+    random = rand(selector)
+    weather_select = weather[random] + " "
+    puts weather_select
+  end
+
+
+end

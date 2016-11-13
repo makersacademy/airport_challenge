@@ -24,3 +24,14 @@ describe Airport do
   end
 
 end
+
+describe Weather do
+
+  it "Is mostly sunny but sometimes stormy" do
+    weather = Weather.new
+    weather.weather_select
+    expect(weather.forcast).to respond_to(:forcast)
+  end
+
+
+end
