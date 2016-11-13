@@ -4,6 +4,14 @@ class Weather
   end
 
   def conditions
-    @weather
+    @weather = current_conditions
+  end
+
+private
+
+  CONDITIONS = [:stormy, :good, :good, :good]
+
+  def current_conditions
+    CONDITIONS[rand(CONDITIONS.length)]
   end
 end
