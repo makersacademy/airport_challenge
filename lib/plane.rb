@@ -1,7 +1,7 @@
 class Plane
 
-  def take_off
-    Plane.new
+  def landed?
+    true
   end
 
 end

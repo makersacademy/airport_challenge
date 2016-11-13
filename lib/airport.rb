@@ -1,7 +1,7 @@
 class Airport
 
   def land_plane
-    true
+    Plane.new
   end
 
 end
