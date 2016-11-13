@@ -13,7 +13,7 @@ Airport Challenge
 
 ```
 
-This is a simulation controls the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. This is the Makers Academy homework challenge for week 1.
+This is a simulation which controls the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. This is the Makers Academy homework challenge for week 1.
 
 Objectives
 ---------
@@ -25,7 +25,7 @@ Technologies used
 ------------------
 
 * Ruby
-* Rspec
+* RSpec
 * Git
 
 How to run it
