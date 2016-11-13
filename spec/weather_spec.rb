@@ -5,7 +5,8 @@ describe Weather do
   describe "outputting the weather" do
 
     it "returns stormy" do
-      allow(subject).to receive(:stormy?).and_return true
+      allow(subject).to receive(:randomize).and_return(:stormy)
+      expect(subject.stormy?).to be true
     end
 
   end
