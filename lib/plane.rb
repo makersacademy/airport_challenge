@@ -12,6 +12,7 @@ attr_accessor :flying
       return loading_bay_is_too_full_to_land_planes
     end
 
+
     if the_weather_is_sunny?
     puts plane_landed_message
     @flying = false
