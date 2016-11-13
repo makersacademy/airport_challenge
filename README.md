@@ -19,7 +19,7 @@ Instructions
 
 * Run this test in IRB or Pry
 * Create a new Airport (airport = Airport.new) - Bonus points if you get creative with the name!
-* Land some airplanes (airport.land_at_airport), be careful they can't take off in stormy weather!
+* Land some airplanes (airport.land_at_airport), be careful they can't take off or land in stormy weather.
 * Finally, let some airplanes take off! (airport.take_off)
 
 The Task as described:
