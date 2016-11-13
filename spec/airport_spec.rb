@@ -90,7 +90,7 @@ describe Airport do
       before(:each) do
         sunny_weather = instance_double("Weather", :condition => :sunny)
         subject.set_weather(sunny_weather)
-        20.times { subject.land(Plane.new) }
+        Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       end
 
       it 'does not allow planes to land' do
