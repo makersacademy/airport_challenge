@@ -17,7 +17,7 @@ class Airport
   def take_off(plane, weather)
     raise("Plane is still in the air") if plane.landed_status == false
 
-    if weather.today == "stormy"
+    if weather.todays_weather == "Stormy"
       "Unable to take off because of the stormy weather"
     else
     plane.landed_status = false

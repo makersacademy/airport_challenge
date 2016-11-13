@@ -6,8 +6,8 @@ describe Weather do
      expect(subject.weathers).to eq ["Sunny", "Stormy", "Sunny", "Sunny"]
    end
 
-   it "should select a weather for today" do
-     expect(subject.todays_weather).to eq "Sunny"
+   it "should return the weather for today as a string" do
+     expect(subject.todays_weather).to be_a(String)
    end
 
    it "should return stormy when given number 1" do

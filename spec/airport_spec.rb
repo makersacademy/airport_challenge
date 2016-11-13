@@ -68,14 +68,21 @@ end
    end
 
    it "should return message to let air controller know that plane has taken off" do
+     allow(@weather).to receive(:randomise) {0}
      expect(subject.take_off(@plane, @weather)).to eq "#{@plane} has taken off"
    end
  end
 
   context "prevent take off when weather is stormy" do
-    it "should raise error if weather is set to stormy" do
-      @weather.today = "stormy"
+    it "should return message that says weather is set to stormy and doesn't let plane take off" do
+      allow(@weather).to receive(:randomise) {1}
       expect(subject.take_off(@plane, @weather)).to eq "Unable to take off because of the stormy weather"
+    end
+
+    it "should keep the plane's landed status as true if weather is stormy" do
+     allow(@weather).to receive(:randomise) {1}
+     subject.take_off(@plane, @weather)
+     expect(@plane.landed_status).to eq true
     end
   end
 
