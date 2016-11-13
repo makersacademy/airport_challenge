@@ -2,13 +2,15 @@ require_relative "plane.rb"
 require_relative "weather.rb"
 
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :weather
 
-  def initialize
+  def initialize(weather = Weather.new)
+    @weather = weather
     @planes = []
   end
 
   def land(plane)
+    # raise "The plane can't land when the weather is stormy" if weather.stormy?
     add(plane)
     confirm_landing(plane)
   end

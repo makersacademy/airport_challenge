@@ -1,5 +1,6 @@
 require  "airport"
 require  "plane"
+require "weather"
 
 describe Airport do
   context "when created it" do
@@ -49,7 +50,17 @@ describe Airport do
     end
   end
   describe "when weather is stormy" do
-
+    before(:each) do
+      @airport = Airport.new
+      weather = double("Weather")
+      allow(weather).to receive(:stormy?).and_return true
+      error = "The plane can't land when the weather is stormy"
+    end
+    # it "should not let a plane land" do
+    #   expect{@airport.land(double("plane"))}.to raise_error error
+    # end
+    # it "should not let a plane take off" do
+    # end
   end
 
 
