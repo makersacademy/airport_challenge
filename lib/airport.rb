@@ -16,6 +16,7 @@ class Airport
   end
 
   def stormy?
+    true
   end
 
   def land_plane(plane)

@@ -48,6 +48,10 @@ describe Airport do
     it{ is_expected.to respond_to :weather}
     it{ is_expected.to respond_to :stormy?}
 
+    it "tells us the weather is stormy" do 
+      expect(airport.stormy?).to be true
+    end
+
     # it "is initialized to stormy" do
     #   allow(airport).to receive(:weather).and_return :stormy
     #   expect(airport.weather).to be :stormy
