@@ -7,6 +7,13 @@ describe Airport do
   let( :plane1 ){ double :plane1 }
   let( :plane2 ){ double :plane2 }
 
+  describe "capacity" do
+    it "should be overridden as appropriate" do
+      allow( subject ).to receive( :default_capacity ){ 0 }
+      expect( subject.default_capacity ).to eq 0
+    end
+  end
+
   describe "#land" do
     it { is_expected.to respond_to :land }
     it "should return truthy answer when plane lands" do
@@ -27,9 +34,10 @@ describe Airport do
       expect( subject.land( plane1 ) ).to be_truthy
     end
     it "should not accept landing when airport is full" do
-      allow( subject ).to receive( :check_weather ){ "not stormy" }
-      allow( subject ).to receive( :capacity ){ 0 }
-      expect{ subject.land( plane1 ) }.to raise_error( "Airport at full capacity, no space available." )
+      airport = Airport.new
+      allow( airport ).to receive( :check_weather ){ "not stormy" }
+      allow( airport ).to receive( :default_capacity ){ 0 }
+      expect{ airport.land( plane1 ) }.to raise_error( "Airport at full capacity, no space available." )
     end
   end
 
