@@ -39,8 +39,8 @@ describe Airport do
     #   airport.takeoff(plane_double)
     #   expect(airport.planes).not_to include plane_double
     # end
-    it "raises an error" do
-      expect{ airport.takeoff(plane) }.to raise_error "Error"
+    it "raises an error when instructing plane not in airport to takeoff" do
+      expect{ airport.takeoff(plane) }.to raise_error "Plane cannot takeoff because it is not in the airport"
     end
   end
 

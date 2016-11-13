@@ -27,7 +27,7 @@ class Airport
   end
 
   def takeoff(plane)
-    raise "Error"
+    raise "Plane cannot takeoff because it is not in the airport" if !@planes.include?(plane)
     @planes.delete(plane)
     plane
   end
