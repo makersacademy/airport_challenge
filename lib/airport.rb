@@ -15,9 +15,6 @@ class Airport
     @weather = Weather.new
   end
 
-  def stormy?
-    true
-  end
 
   def land_plane(plane)
     raise "Airport is full" if airport_full?
