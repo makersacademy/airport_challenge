@@ -32,10 +32,6 @@ class Airport
       plane
   end
 
-  def too_stormy
-    raise 'weather is too stormy'
-  end
-
   def at_capacity
     if full?
       raise 'Airport is full'
@@ -46,6 +42,10 @@ class Airport
 
   def full?
     @planes.count >= DEFAULT_CAPACITY
+  end
+
+  def too_stormy
+    raise 'weather is too stormy'
   end
 
 end

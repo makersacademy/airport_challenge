@@ -4,8 +4,6 @@ describe Weather do
 
   it {is_expected.to respond_to :current_weather}
 
-  it {is_expected.to respond_to :stormy?}
-
   it {is_expected.to respond_to :weather_randomizer}
 
   it 'can be stormy' do

@@ -5,7 +5,6 @@ require 'weather'
 describe Airport do
 
   let(:plane) { double :plane }
-  #let(:weather) { double :weather }
 
   it {is_expected.to respond_to :land}
 
@@ -58,10 +57,6 @@ describe Airport do
   it 'does not allow planes to land when airport capacity is full' do
     Airport::DEFAULT_CAPACITY.times {subject.land(Plane.new)}
     expect{subject.land(Plane.new)}.to raise_error(RuntimeError, 'Airport is full')
-  end
-
-  it 'can raise an error when weather is too stormy' do
-    expect{subject.too_stormy}.to raise_error(RuntimeError, 'weather is too stormy')
   end
 
   it 'has weather conditions' do
