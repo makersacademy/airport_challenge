@@ -5,8 +5,9 @@ describe Airport do
   let(:plane) {Plane.new}
 
   context "landing planes" do
-    it "planes can land" do
+    it "instructs planes to land" do
       allow(airport).to receive :land_plane
+      airport.land_plane(plane)
     end
     it "landed plane is returned" do
       expect(airport.land_plane(plane)).to eq plane
@@ -41,11 +42,9 @@ describe Airport do
   end
 
   context "planes taking off" do
-    it "responds to #takeoff" do
-      expect(airport).to respond_to :takeoff
-    end
-    it "instructs a plane to takeoff" do
-      expect(airport.takeoff(plane)).to eq plane
+    it "instructs a plane to take off" do
+      allow(airport).to receive :takeoff
+      airport.takeoff(plane)
     end
     it "removes plane from airport after takeoff" do
       airport.land_plane(plane)
