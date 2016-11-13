@@ -46,12 +46,11 @@ it "if no capacity is given, then airport capacity is equal to a DEFAULT_CAPACIT
   expect(subject.capacity).to eq AirportController::DEFAULT_CAPACITY
 end
 
-# it "plane should not land in bad weather" do
-#   weather = Weather.new
-#   subject.is_weather_okay?(weather)
-#
-#
-# end
+it "called land_plane instantiates a new weather object" do
+  current_weather = subject.weather
+  subject.land_plane(Plane.new)
+  expect(subject.weather).not_to eq current_weather
+end
 
 it "a plane that is already in the airport cannot be landed" do
   plane = Plane.new
