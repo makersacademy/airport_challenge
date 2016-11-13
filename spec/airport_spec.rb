@@ -98,7 +98,25 @@ end
       expect(subject.capacity).to eq 1
     end
 
-    it "should "
+    it "should check for planes array" do
+      expect(subject.planes).to eq subject.planes
+    end
+
+    it "should add instance of a Plane to the Airport's planes array" do
+     expect(subject.store(@plane)).to eq subject.planes
+    end
+
+    it "should store the plane when it lands" do
+      subject.take_off(@plane)
+      subject.land(@plane)
+      expect(subject.planes).to eq [@plane]
+    end
+
+    it "should raise error if airport is full when attempting to land" do
+      subject.planes = [@plane]
+      subject.take_off(@plane)
+      expect{subject.land(@plane)}.to raise_error("Airport is full. Plane is unable to land")
+    end
 
   end
 
