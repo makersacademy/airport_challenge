@@ -33,6 +33,7 @@ it "should raise an error if you try to take_off a plane when the airport is emp
 end
 
 it "should raise an error if you try to land a plane when the airport is full" do
+  allow(subject).to receive(:weather_is_bad).and_return false
   subject.take_off_plane
   capacity = AirportController::DEFAULT_CAPACITY
   capacity.times {subject.land_plane(Plane.new)}
@@ -49,27 +50,29 @@ it "if no capacity is given, then airport capacity is equal to a DEFAULT_CAPACIT
   expect(subject.capacity).to eq AirportController::DEFAULT_CAPACITY
 end
 
-it "calling land_plane instantiates a new weather object" do
-  current_weather = subject.weather
-  subject.land_plane(Plane.new)
-  expect(subject.weather).not_to eq current_weather
-end
-
 
 it "new instances of planes should have some planes inside the airport" do
   expect(subject.planes).not_to eq []
 end
-it "calling take_off_plane also instantiates a new weather object" do
-  current_weather = subject.weather
-  subject.take_off_plane
-  expect(subject.weather).not_to eq current_weather
+
+it "landing should not be possible during bad weather" do
+  allow(subject).to receive(:weather_is_bad).and_return true
+  plane = Plane.new
+  expect{subject.land_plane(plane)}.to raise_error("Landing not possible - bad weather!")
+end
+
+it "take off should not be possible during bad weather" do
+  allow(subject).to receive(:weather_is_bad).and_return true
+  expect{subject.take_off_plane}.to raise_error("Take off not possible - bad weather!")
 end
 
 it "a plane that is already in the airport cannot be landed" do
+  allow(subject).to receive(:weather_is_bad).and_return false
   plane = Plane.new
   subject.land_plane(plane)
   expect{subject.land_plane(plane)}.to raise_error("This plane has already landed!")
 end
+
 
 
 end

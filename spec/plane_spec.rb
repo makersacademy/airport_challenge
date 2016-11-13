@@ -18,4 +18,8 @@ describe Plane do
     expect(subject).to respond_to (:report_take_off)
   end
 
+  it "a plane that has not taken should return false for taken_off?" do
+    expect(subject.taken_off?).to eq false
+  end
+
 end

@@ -4,6 +4,7 @@ class Plane
 
   def initialize
     @landed = false
+    @taken_off = false
   end
 
   def landed?
@@ -15,10 +16,11 @@ class Plane
   end
 
   def report_take_off
+    @taken_off = true
   end
 
   def taken_off?
-    true
+    @taken_off
   end
 
 end
