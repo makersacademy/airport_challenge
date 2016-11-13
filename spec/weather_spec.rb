@@ -19,8 +19,8 @@ describe Weather do
       expect(weather).to respond_to(:random)
     end
     it "should return a random number from 0 to 3" do
-      srand(5)
-      expect(weather.random).to eq 3
+      subject = [0,1,2,3]
+      expect(subject).to include(weather.random)
     end
   end
   describe "values" do

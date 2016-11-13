@@ -3,16 +3,12 @@ require  "plane"
 require "weather"
 
 describe Airport do
-  context "when created it" do
-    it {is_expected.to be_a(Object)}
-    it {is_expected.to respond_to(:land)}
-    it {is_expected.to respond_to(:land).with(1).argument}
-    it {is_expected.to respond_to(:take_off).with(1).argument}
-  end
   describe "when landing a plane it" do
       before(:each) do
+        weather = double("Weather")
+        allow(weather).to receive(:stormy?).and_return false
+        @airport = Airport.new(weather)
         @plane = Plane.new
-        @airport = Airport.new
       end
       it "should have a 'planes' getter method" do
         expect(@airport).to respond_to(:planes)
@@ -33,8 +29,10 @@ describe Airport do
   end
   describe "when a plane takes off" do
     before(:each) do
+      weather = double("Weather")
+      allow(weather).to receive(:stormy?).and_return false
+      @airport = Airport.new(weather)
       @plane = Plane.new
-      @airport = Airport.new
       @airport.land(@plane)
     end
     it "should contain a 'delete(plane)' method" do
@@ -51,17 +49,19 @@ describe Airport do
   end
   describe "when weather is stormy" do
     before(:each) do
-      @airport = Airport.new
       weather = double("Weather")
       allow(weather).to receive(:stormy?).and_return true
-      error = "The plane can't land when the weather is stormy"
+      @airport = Airport.new(weather)
+      @plane = Plane.new
     end
-    # it "should not let a plane land" do
-    #   expect{@airport.land(double("plane"))}.to raise_error error
-    # end
-    # it "should not let a plane take off" do
-    # end
-  end
+    it "should not let a plane land" do
+      p @airport.weather.stormy?
+      expect{@airport.land(@plane)}.to raise_error("The plane can't land when the weather is stormy")
+    end
+    it "should not let a plane take off" do
+      expect{@airport.take_off(@plane)}.to raise_error("The plane can't take off when the weather is stormy")
+    end
+end
 
 
 end

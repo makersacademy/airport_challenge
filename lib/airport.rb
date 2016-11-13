@@ -10,7 +10,7 @@ class Airport
   end
 
   def land(plane)
-    # raise "The plane can't land when the weather is stormy" if weather.stormy?
+    raise "The plane can't land when the weather is stormy" if weather.stormy?
     add(plane)
     confirm_landing(plane)
   end
@@ -24,6 +24,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "The plane can't take off when the weather is stormy" if weather.stormy?
     delete(plane)
     confirm_take_off(plane)
   end
