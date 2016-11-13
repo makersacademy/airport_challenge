@@ -1,7 +1,6 @@
 class Plane
 
   def land(airport)
-    self.landed?
     airport.park_plane(self)
   end
 

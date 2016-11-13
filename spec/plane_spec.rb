@@ -1,9 +1,10 @@
 require 'plane'
-require 'airport'
 
 describe Plane do
 
-  context "land" do
+  let(:airport) { double(:airport) }
+
+  context "land the plane" do
 
     it "should be able to respond to land method" do
       expect(subject).to respond_to :land
@@ -18,20 +19,20 @@ describe Plane do
     end
 
     it "should be able to land at an airport and confirm it's landed" do
-      airport = Airport.new
+      allow(airport).to receive(:park_plane)
       subject.land(airport)
       expect(subject).to be_landed
     end
 
     it "should be at the airport which the plane has just landed" do
-      airport = Airport.new
+      allow(airport).to receive(:park_plane)
       subject.land(airport)
-      expect(airport.planes).to include(subject)
+      expect(airport).to have_received(:park_plane).with(subject)
     end
 
   end
 
-  context "take off" do
+  context "take off the plane" do
 
     it "should be able to respond to take_off method" do
       expect(subject).to respond_to :take_off
@@ -42,10 +43,11 @@ describe Plane do
     end
 
     it "should be no longer in the airport when the plane has taken off" do
-      airport = Airport.new
+      allow(airport).to receive(:park_plane)
       subject.land(airport)
+      allow(airport).to receive(:unpark_plane)
       taken_off_plane = subject.take_off(airport)
-      expect(airport.planes).not_to include(taken_off_plane)
+      expect(airport).to have_received(:unpark_plane).with(subject)
     end
 
   end
