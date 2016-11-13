@@ -25,8 +25,25 @@ describe Airport do
     end
 
     it "should be able to set airport capacity" do
-      airport = Airport.new(capacity=10)
+      airport = Airport.new(capacity = 10)
       expect(airport.capacity).to eq 10
+    end
+
+    it "should be able to park the plane if it's not full" do
+      plane1 = double(:plane)
+      plane2 = double(:plane)
+      airport = Airport.new(capacity = 2)
+      airport.park_plane([plane1,plane2])
+    end
+
+    it "should NOT park the plane if the airport is full" do
+      plane1 = double(:plane)
+      plane2 = double(:plane)
+      plane3 = double(:plane)
+      airport = Airport.new(capacity = 2)
+      airport.park_plane(plane1)
+      airport.park_plane(plane2)
+      expect{ airport.park_plane(plane3) }.to raise_error("The airport is full.")
     end
 
   end

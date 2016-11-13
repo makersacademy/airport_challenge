@@ -10,7 +10,8 @@ class Airport
   end
 
   def park_plane(plane)
-  @planes << plane 
+    raise "The airport is full." if @capacity == @planes.count
+    @planes << plane
   end
 
   def unpark_plane(plane)
