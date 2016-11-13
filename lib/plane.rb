@@ -1,6 +1,7 @@
 class Plane
 
   def land(airport)
+    raise "It is stormy. We can't land the plane." if self.weather == 0
     raise "Can't land again." if @landed
     airport.park_plane(self)
     @taken_off = false
@@ -21,6 +22,11 @@ class Plane
 
   def taken_off?
     @taken_off
+  end
+
+  def weather
+    #returning 0 should happen around 1/3
+    rand(0..2)
   end
 
 end

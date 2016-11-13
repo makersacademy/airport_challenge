@@ -9,6 +9,8 @@ describe "ATC" do
       plane1 = Plane.new
       plane2 = Plane.new
       airport1 = Airport.new
+      allow(plane1).to receive (:weather) {2}
+      allow(plane2).to receive (:weather) {1}
       plane1.land(airport1)
       plane2.land(airport1)
       expect(plane1).to be_landed
@@ -21,6 +23,9 @@ describe "ATC" do
       plane2 = Plane.new
       plane3 = Plane.new
       airport = Airport.new(capacity = 3)
+      allow(plane1).to receive (:weather) {2}
+      allow(plane2).to receive (:weather) {2}
+      allow(plane3).to receive (:weather) {2}
       plane1.land(airport)
       plane2.land(airport)
       plane3.land(airport)
@@ -33,6 +38,10 @@ describe "ATC" do
       plane3 = Plane.new
       plane4 = Plane.new
       airport = Airport.new(capacity = 3)
+      allow(plane1).to receive (:weather) {1}
+      allow(plane2).to receive (:weather) {2}
+      allow(plane3).to receive (:weather) {2}
+      allow(plane4).to receive (:weather) {2}
       plane1.land(airport)
       plane2.land(airport)
       plane3.land(airport)
@@ -42,8 +51,17 @@ describe "ATC" do
     it "should NOT land again if it's just landed" do
       plane = Plane.new
       airport = Airport.new
+      allow(plane).to receive (:weather) {2}
+      allow(plane).to receive (:weather) {2}
       plane.land(airport)
       expect{ plane.land(airport) }.to raise_error "Can't land again."
+    end
+
+    it "should NOT be able to land the plane if it's stormy" do
+      plane = Plane.new
+      airport = Airport.new
+      allow(plane).to receive (:weather) {0}
+      expect{ plane.land(airport) }.to raise_error "It is stormy. We can't land the plane."
     end
 
   end
@@ -54,6 +72,8 @@ describe "ATC" do
       plane1 = Plane.new
       plane2 = Plane.new
       airport = Airport.new
+      allow(plane1).to receive (:weather) {2}
+      allow(plane2).to receive (:weather) {1}
       plane1.land(airport)
       plane2.land(airport)
       plane1.take_off(airport)
@@ -64,6 +84,7 @@ describe "ATC" do
     it "should NOT take off again when the plane has just taken off" do
       plane = Plane.new
       airport = Airport.new
+      allow(plane).to receive (:weather) {2}
       plane.land(airport)
       plane.take_off(airport)
       expect{ plane.take_off(airport)}.to raise_error "Can't take off again."

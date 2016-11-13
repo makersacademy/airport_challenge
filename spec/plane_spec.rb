@@ -20,12 +20,14 @@ describe Plane do
 
     it "should be able to land at an airport and confirm it's landed" do
       allow(airport).to receive(:park_plane)
+      allow(subject).to receive (:weather) {1}
       subject.land(airport)
       expect(subject).to be_landed
     end
 
     it "should be at the airport which the plane has just landed" do
       allow(airport).to receive(:park_plane)
+      allow(subject).to receive (:weather) {2}
       subject.land(airport)
       expect(airport).to have_received(:park_plane).with(subject)
     end
@@ -54,6 +56,7 @@ describe Plane do
 
     it "should return false when the plane is not taken off" do
       allow(airport).to receive(:park_plane)
+      allow(subject).to receive (:weather) {2}
       subject.land(airport)
       expect(subject.taken_off?).to eq false
     end
@@ -63,6 +66,26 @@ describe Plane do
       taken_off_plane = subject.take_off(airport)
       expect(subject).not_to be_landed
       expect(airport).to have_received(:unpark_plane).with(subject)
+    end
+
+  end
+
+  context "Weather is stormy" do
+
+    let(:plane) { double(:plane) }
+
+    it "should respond to weather method" do
+      expect(subject).to respond_to :weather
+    end
+
+    it "should return 0 if it's stormy" do
+      allow(plane).to receive(:weather) {0}
+      expect(plane.weather).to eq 0
+    end
+
+    it "should NOT return 0 if it's NOT stormy" do
+      allow(plane).to receive(:weather) {1}
+      expect(plane.weather).not_to eq 0
     end
 
   end
