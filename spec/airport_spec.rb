@@ -16,8 +16,9 @@ describe Airport do
       expect(subject).to respond_to :capacity
     end
 
-    it 'has a default capacity of 20' do
-      expect(subject.capacity).to eq 20
+    it 'can be initialized with a capacity argument' do
+      airport = Airport.new(30)
+      expect(airport.capacity).to eq 30
     end
 
   end
