@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  DEFAULT_CAPACITY = 50
+  DEFAULT_CAPACITY = 10
 
   attr_reader :planes
 
@@ -12,6 +12,7 @@ class Airport
   end
 
   def receive_plane(plane)
+    raise 'Airport is full, no landing this time' if is_full?
     @planes << plane
   end
 

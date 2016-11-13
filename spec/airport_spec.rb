@@ -56,9 +56,11 @@ describe Airport do
     end
   end
 
-  # describe 'error handling' do
-  #   it 'Raises and erro if you try to land a plane when the airport is full' do
-  #
-  # end
-
+  describe 'error handling' do
+    it 'Raises and error if you try to land a plane when the airport is full' do
+      airport = Airport.new
+      Airport::DEFAULT_CAPACITY.times {airport.receive_plane(Plane.new)}
+      expect { airport.receive_plane(Plane.new) }.to raise_error('Airport is full, no landing this time')
+    end
+  end
 end
