@@ -9,6 +9,9 @@ class Airport
 
   def land(plane)
     @planes << plane
-    true
+  end
+
+  def take_off(plane)
+    @planes.delete(plane)
   end
 end
