@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 require 'weather'
 
-class WeatherStub < Weather
+class WeatherStub
   def initialize(weather)
     @weather = weather
   end
@@ -17,11 +17,11 @@ describe Airport do
 
   subject(:plane) {Plane.new}
   subject(:plane2) {Plane.new}
-  subject(:good_weather) {WeatherStub.new("good")}
-  subject(:stormy_weather) {WeatherStub.new("stormy")}
-  subject(:airport) {described_class.new(good_weather.conditions)}
-  subject(:stormy_airport) {described_class.new(stormy_weather.conditions)}
-  subject(:airport_for_2) {described_class.new(good_weather.conditions, 2)}
+  subject(:good_weather) {WeatherStub.new(:good)}
+  subject(:stormy_weather) {WeatherStub.new(:stormy)}
+  subject(:airport) {described_class.new(good_weather)}
+  subject(:stormy_airport) {described_class.new(stormy_weather)}
+  subject(:airport_for_2) {described_class.new(good_weather, 2)}
 
 
   context "should confirm that the plane " do

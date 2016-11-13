@@ -31,7 +31,7 @@ attr_reader :capacity, :landed_planes
   private
 
   def stormy?
-    @weather == "stormy"
+    @weather.conditions == :stormy
   end
 
   def full?
