@@ -1,5 +1,4 @@
 require_relative 'plane'
-require_relative 'weather'
 
 class AirportController
 
@@ -37,6 +36,8 @@ class AirportController
     return true if @planes.count >= @capacity
     false
   end
+
+
 
   def take_off_plane
     @attempted_take_off = true
