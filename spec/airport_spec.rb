@@ -63,6 +63,10 @@ describe Airport do
     expect{subject.too_stormy}.to raise_error(RuntimeError, 'weather is too stormy')
   end
 
+  it 'has weather conditions' do
+    expect(subject.weather).to eq subject.weather
+  end
+
   # it 'does not allow planes to take off when weather is stormy' do
   #   stormy_weather
   #   expect{subject.take_off(plane)}.to raise_error(RuntimeError, 'weather is too stormy')
