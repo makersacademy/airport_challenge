@@ -1,11 +1,12 @@
 
 class Airport
 
-  attr_reader :planes_landed, :planes_in_air
+  attr_reader :planes_landed, :planes_in_air, :weather
 
   def initialize
     @planes_landed = []
     @planes_in_air = []
+    @weather = Weather.new
   end
 
 
@@ -19,6 +20,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Storm! Unable to land!" if storm?
     puts "All clear for take off!"
     @planes_in_air << plane
     @planes_landed.pop
@@ -39,6 +41,14 @@ class Plane
 end
 
 class Weather
+
+  attr_reader :forcast
+
+  def initialize
+    @forcast = forcast
+  end
+
+
   def forcast
     weather = ["sunny", "sunny", "sunny", "fair", "sunny", "stormy", "sunny"]
     selector = weather.length
@@ -47,5 +57,8 @@ class Weather
     puts weather_select
   end
 
+  def stromy?
+    return true if @forcast == "stormy"
+  end
 
 end

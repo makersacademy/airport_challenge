@@ -8,7 +8,7 @@ describe Airport do
   it "Can confirm a plane has landed" do
     plane = Plane.new
     airport.land_plane(plane)
-    expect(airport.take_off(plane)).to eq false
+    # expect(airport.take_off(plane)).to eq false
   end
 
   it "Can give a command for planes to take off" do
@@ -23,14 +23,19 @@ describe Airport do
     expect(airport.confirm).to respond_to(:confirm)
   end
 
+  it "Doesn't allow plane to land in stormy weather" do
+    storm = Weather.new
+    expect(airport.land_plane.storm).to raise_error("Storm! Unable to land!")
+
+  end
+
 end
 
 describe Weather do
 
   it "Is mostly sunny but sometimes stormy" do
     weather = Weather.new
-    weather.weather_select
-    expect(weather.forcast).to respond_to(:forcast)
+    expect(weather.forcast.stormy?).to eq(Weather)
   end
 
 
