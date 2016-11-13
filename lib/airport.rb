@@ -25,6 +25,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'weather is too stormy' if @weather.current_weather == 'stormy'
     raise 'Plane not available for take off' if !(@planes.include?(plane))
       @planes.delete(plane)
       plane.status = 'flying'

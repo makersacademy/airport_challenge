@@ -5,7 +5,7 @@ require 'weather'
 describe Airport do
 
   let(:plane) { double :plane }
-  let(:weather) { double :weather }
+  #let(:weather) { double :weather }
 
   it {is_expected.to respond_to :land}
 
@@ -70,8 +70,14 @@ describe Airport do
 
   it 'does not allow planes to land when weather is stormy' do
     plane = Plane.new
-    allow(:weather).to receive(:stormy?).and_return(true)
+    allow(subject.weather).to receive(:current_weather).and_return('stormy')
     expect{subject.land(plane)}.to raise_error(RuntimeError, 'weather is too stormy')
+  end
+
+  it 'does not allow planes to take off when weather is stormy' do
+    plane = Plane.new
+    allow(subject.weather).to receive(:current_weather).and_return('stormy')
+    expect{subject.take_off(plane)}.to raise_error(RuntimeError, 'weather is too stormy')
   end
 
   it 'checks that DEFAULT_CAPACITY has been set and is an integer' do
