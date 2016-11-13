@@ -1,6 +1,7 @@
 require "weather"
 
 describe Weather do
+  subject(:weather) { described_class.new }
   let(:stormy_weather) {double :weather}
   let(:nice_weather) {double :weather}
 

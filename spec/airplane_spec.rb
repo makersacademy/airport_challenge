@@ -1,6 +1,7 @@
 require "airplane"
 
 describe Airplane do
+subject(:Airplane) { described_class.new }
 
   context "Setup" do
     it "tests for an Airplane class" do
