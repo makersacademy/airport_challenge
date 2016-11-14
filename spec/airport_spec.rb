@@ -8,12 +8,13 @@ describe Airport do
   subject(:airport_for_2) { described_class.new(2) }
   subject(:airport) { described_class.new }
 
-  before(:each) { allow(plane).to receive(:land) }
-  before(:each) { allow(plane).to receive(:take_off) }
+  before do
+    allow(plane).to receive(:land)
+    allow(plane).to receive(:take_off)
+    allow_any_instance_of(Weather).to receive(:stormy?).and_return false
+  end
 
   context 'landing a plane' do
-
-    before(:each) { allow_any_instance_of(Weather).to receive(:stormy?).and_return false }
 
     it 'creating an airport should create space for planes' do
       expect(airport.planes).to eq []
@@ -38,8 +39,6 @@ describe Airport do
 
   context 'confirming plane has landed' do
 
-    before(:each) { allow_any_instance_of(Weather).to receive(:stormy?).and_return false }
-
     it 'should confirm plane has landed' do
       airport.instruct_to_land(plane)
       expect(airport.landed?(plane)).to eq true
@@ -48,8 +47,6 @@ describe Airport do
   end
 
   context 'plane taking off' do
-
-    before(:each) { allow_any_instance_of(Weather).to receive(:stormy?).and_return false }
 
     before(:each) do
       airport.instruct_to_land(plane)
@@ -103,8 +100,6 @@ describe Airport do
 
   context 'capacity' do
 
-    before(:each) { allow_any_instance_of(Weather).to receive(:stormy?).and_return false }
-
     it 'can set a capacity for an airport' do
       expect(airport.total_capacity).not_to be_nil
     end
@@ -133,7 +128,5 @@ describe Airport do
     end
 
   end
-
-
 
 end
