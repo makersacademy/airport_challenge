@@ -17,7 +17,7 @@ class Airport
     if @planes.include?(plane) || plane.status == 'landed'
       raise 'This plane has already landed'
     else
-      at_capacity
+      raise 'Airport is full' if full?
       too_stormy if @weather.current_weather == 'stormy'
       plane.status = 'landed'
       @planes << plane
@@ -30,12 +30,6 @@ class Airport
       @planes.delete(plane)
       plane.status = 'flying'
       plane
-  end
-
-  def at_capacity
-    if full?
-      raise 'Airport is full'
-    end
   end
 
   private

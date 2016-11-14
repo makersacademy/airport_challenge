@@ -2,10 +2,6 @@ require 'weather'
 
 describe Weather do
 
-  it {is_expected.to respond_to :current_weather}
-
-  it {is_expected.to respond_to :weather_randomizer}
-
   it 'can be stormy' do
     allow(subject).to receive(:current_weather).and_return('stormy')
     expect(subject.current_weather).to eq 'stormy'
