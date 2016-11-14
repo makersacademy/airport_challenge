@@ -5,7 +5,7 @@ class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :planes, :weather, :capacity
 
-  def initialize(capacity=DEFAULT_CAPACITY, weather)
+  def initialize(capacity=DEFAULT_CAPACITY, weather = Weather.new)
     @weather = weather
     @planes = []
     @capacity = capacity
@@ -19,13 +19,7 @@ class Airport
     confirm_landing(plane)
   end
 
-  def add(plane)
-    planes << plane
-  end
 
-  def confirm_landing(plane)
-    "The plane #{plane} has landed" if planes.include?(plane)
-  end
 
   def take_off(plane)
     raise "The plane can't take off when the weather is stormy" if stormy?
@@ -34,20 +28,29 @@ class Airport
     confirm_take_off(plane)
   end
 
-  def delete(plane)
-    planes.delete(plane)
-  end
+  private
 
-  def confirm_take_off(plane)
-    "The plane #{plane} has taken off"  unless planes.include?(plane)
-  end
+    def add(plane)
+      planes << plane
+    end
 
-  def full?
-    planes.count == @capacity
-  end
+    def full?
+      planes.count >= capacity
+    end
 
-  def stormy?
-    @weather.stormy
-  end
+    def stormy?
+      @weather.is_stormy?
+    end
 
+    def delete(plane)
+      planes.delete(plane)
+    end
+
+    def confirm_take_off(plane)
+      "The plane #{plane} has taken off"  unless planes.include?(plane)
+    end
+
+    def confirm_landing(plane)
+      "The plane #{plane} has landed" if planes.include?(plane)
+    end
 end

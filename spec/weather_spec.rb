@@ -3,15 +3,15 @@ require "weather"
 describe Weather do
   subject(:weather) {described_class.new}
   it {is_expected.to be_a(Object)}
-  it "should have a 'stormy' predicate method" do
-    expect(weather).to respond_to(:storm)
+  it "should have a 'is_stormy?' predicate method" do
+    expect(weather).to respond_to(:is_stormy?)
   end
   describe "stormy" do
     module Boolean; end
     class TrueClass; include Boolean; end
     class FalseClass; include Boolean; end
     it "should return true or false" do
-      expect(weather.storm).to be_a(Boolean)
+      expect(weather.is_stormy?).to be_a(Boolean)
     end
   end
   describe "random" do
