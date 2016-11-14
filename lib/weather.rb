@@ -6,6 +6,10 @@ class Weather
   raise 'Cannot take off due to stormy weather' if stormy?
   end
 
+  def prevents_landing
+  raise 'Cannot land due to stormy weather' if stormy?
+  end
+
 private
 
   def stormy?

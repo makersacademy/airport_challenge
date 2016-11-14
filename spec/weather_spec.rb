@@ -16,4 +16,9 @@ it 'prevents planes from taking off when stormy' do
 # To ensure safety
 # I want to prevent landing when weather is stormy
 
+it 'prevents planes from landing when stormy' do
+  allow(weather).to receive(:stormy?).and_return true
+  expect { weather.prevents_landing }. to raise_error 'Cannot land due to stormy weather'
+  end
+
 end
