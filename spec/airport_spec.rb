@@ -52,7 +52,7 @@ describe Airport do
     end
 
     it 'can overwrite its weather attribute' do
-      weather = instance_double("Weather")
+      weather = double("Weather")
       subject.set_weather(weather)
       expect(subject.weather).to eq weather
     end
@@ -81,10 +81,6 @@ describe Airport do
 
     end
 
-    context 'when it is sunny' do
-
-    end
-
     describe 'when the airport is at capacity' do
 
       it 'does not allow planes to land when the airport is at capacity' do
@@ -104,7 +100,7 @@ describe Airport do
 
     end
 
-    context 'when there are inconsistent behaviours' do
+    describe 'when there are inconsistent behaviours' do
 
       it 'only lets planes take off from airports they\'re in' do
         message = 'This plane can\'t take off from here. It hasn\'t landed here.'
@@ -123,5 +119,7 @@ describe Airport do
       end
 
     end
+
   end
+  
 end
