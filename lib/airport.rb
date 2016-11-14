@@ -29,6 +29,7 @@ class Airport
     fail 'Planes cannot take off while it is stormy' if stormy?
     fail 'This plane can\'t take off from here. It hasn\'t landed here.' if !@planes.include?(plane)
     fail 'This plane can\'t take off because it is already flying' if plane.flying?
+    plane.flying=(true)
     @planes.delete(plane)
   end
 

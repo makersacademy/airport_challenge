@@ -50,6 +50,11 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
+    it 'sets plane to flying when it takes off' do
+      subject.take_off(@plane)
+      expect(@plane.flying?).to be true
+    end
+
   end
 
   context '#weather' do
