@@ -43,44 +43,35 @@ describe Airport do
 
 	describe '#take_off' do
 
-		before do
-			allow(grounded_plane).to receive(:taken_off)
+		it 'expects planes that wish to take off to be at the airport' do
+			message = "#{grounded_plane} does not exist at this airport."
+			expect{airport.take_off(grounded_plane)}.to raise_error message
 		end
 
-		it 'expects take off to raise error if weather is stormy' do
-			allow(airport).to receive(:stormy?) { false }
-			allow(plane).to receive(:flying) { true }
-			allow(plane).to receive(:landed)
-			airport.land(plane)
-			allow(plane).to receive(:flying) { false }
-			allow(airport).to receive(:stormy?) { true }
-			message = "#{plane} cannot take off due to stormy weather."
-			expect{airport.take_off(plane)}.to raise_error message
+		it 'expects planes that wish to take off to be grounded' do
+			message = "#{flying_plane} is already flying."
+			expect{airport.take_off(flying_plane)}.to raise_error message
 		end
 
-		context '#take_off tests that require non-stormy weather' do
-
+		context '#take_off tests that require a plane to have landed' do
+		
 			before do
 				allow(airport).to receive(:stormy?) { false }
-			end
-
-			it 'expects take off to be successful if weather is sunny' do
 				allow(plane).to receive(:flying) { true }
 				allow(plane).to receive(:landed)
 				airport.land(plane)
 				allow(plane).to receive(:flying) { false }
+			end
+
+			it 'expects take off to raise error if weather is stormy' do
+				allow(airport).to receive(:stormy?) { true }
+				message = "#{plane} cannot take off due to stormy weather."
+				expect{airport.take_off(plane)}.to raise_error message
+			end
+
+			it 'expects take off to be successful if weather is sunny' do
 				allow(plane).to receive(:taken_off)
 				expect(airport.take_off(plane)).to eq "#{plane} has left the airport."
-			end
-
-			it 'expects planes that wish to take off to be at the airport' do
-				message = "#{grounded_plane} does not exist at this airport."
-				expect{airport.take_off(grounded_plane)}.to raise_error message
-			end
-
-			it 'expects planes that wish to take off to be grounded' do
-				message = "#{flying_plane} is already flying."
-				expect{airport.take_off(flying_plane)}.to raise_error
 			end
 
 		end
