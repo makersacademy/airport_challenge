@@ -1,11 +1,8 @@
 class Plane
+  attr_reader :flying
 
-  def is_flying?
-    flying? == true
-  end
-
-  def is_landed?
-    flying? == false
+  def initialize
+    @flying = true
   end
 
   def set_flying
@@ -21,9 +18,4 @@ class Plane
   def flying=(boolean)
     @flying = boolean
   end
-
-  def flying?
-    @flying
-  end
-
 end
