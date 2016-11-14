@@ -5,7 +5,7 @@ class Weather
   end
 
   def conditions
-    return :good if @random.chance > 0.3
+    return :good if @random.create_number > 0.3
       :stormy
     end
 end
