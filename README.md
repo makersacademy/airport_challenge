@@ -2,14 +2,22 @@ Airport Challenge
 =================
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+
+  \----------------------------------\
+   \                                  \        __
+    \   Unicornelia                    \       | \
+     >  Airport challenge               >------|  \       ______
+    /   @Makers Academy - weekend task /       --- \_____/**|_|_\____  |
+   /                                  /          \_______ --------- __>-}
+  /----------------------------------/              /  \_____|_____/   |
+                                                    *         |
+                                                             {O}
+
+       /*\       /*\       /*\       /*\       /*\       /*\       /*\
+      |***|     |***|     |***|     |***|     |***|     |***|     |***|
+       \*/       \*/ ____  \*/       \*/       \*/       \*/       \*/
+        |         |  |  |   |         |         |         |         |
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ```
 
@@ -41,9 +49,12 @@ Completed tasks
 
 Features that are implemented:
 
- Plane status
- Plane landing
- Plane takeoff
- Full airport cannot land planes
- Variable and default capacity
- Errors raised for inconsistent actions
+ * Plane status
+ * Plane landing
+ * Plane takeoff
+ * Full airport cannot land planes
+ * Variable and default capacity
+ * Errors raised for inconsistent actions
+
+Future plans
+----------
