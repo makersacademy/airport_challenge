@@ -1,7 +1,11 @@
 class Plane
 
-  def flying?
-    @flying
+  def is_flying?
+    flying? == true
+  end
+
+  def is_landed?
+    flying? == false
   end
 
   def set_flying
@@ -18,5 +22,8 @@ class Plane
     @flying = boolean
   end
 
+  def flying?
+    @flying
+  end
 
 end

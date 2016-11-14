@@ -52,7 +52,7 @@ describe Airport do
 
     it 'sets plane to flying when it takes off' do
       subject.take_off(@plane)
-      expect(@plane.flying?).to be true
+      expect(@plane.is_flying?).to be true
     end
 
   end
@@ -133,13 +133,13 @@ describe Airport do
         end
 
         it 'doesn\'t let planes that have landed land again' do
-          landed_plane = instance_double("Plane", :flying? => false)
+          landed_plane = instance_double("Plane", :is_landed? => true)
           message = 'That plane cannot land. It has already landed.'
           expect{ subject.land(landed_plane) }.to raise_error(RuntimeError, message)
         end
 
         it 'doesn\'t let planes that are flying take off' do
-          flying_plane = instance_double("Plane", :flying? => true)
+          flying_plane = instance_double("Plane", :is_flying? => true)
           message = 'This plane can\'t take off because it is already flying'
           subject.planes << flying_plane
           expect{ subject.take_off(flying_plane) }.to raise_error(RuntimeError, message)
