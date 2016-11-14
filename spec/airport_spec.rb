@@ -1,13 +1,13 @@
 require 'airport.rb'
-require 'weather.rb'
+# require 'weather.rb'
 
 describe Airport do
 
   let(:weather) { double("weather", :check => "Sunny") }
   let(:plane) { double("plane", :landed= => nil, :landed => false) }
 
-  it 'Checks an airport exists' do
-    expect(subject).to equal subject
+  it 'Checks that an airport exists' do
+    expect(subject).to be_kind_of(Airport)
   end
 
   it 'Checks that a plane can land' do
@@ -58,7 +58,7 @@ describe Airport do
   it 'Checks that planes cannot land at an airport when full' do
     subject.capacity.times{subject.land(double(:plane, :landed= => nil, :landed => false), (weather).check)}
     message =  "Sorry, Airport is full, please fly to another"
-    expect{subject.land(plane,(weather).check)}.to raise_error message
+    expect{subject.land(plane, (weather).check)}.to raise_error message
   end
 
   it 'Checks for the capacity of the airport to equal 12' do
@@ -66,22 +66,24 @@ describe Airport do
     expect(airport2.capacity).to eq 24
   end
 
-end
 
-describe 'Edgecase Tests' do
-  subject = Airport.new
 
-  let(:weather) { double("weather", :check => "Sunny") }
-  let(:plane) { double("plane", :landed= => nil, :landed => true) }
+  context 'Edgecase Tests' do
+    subject = Airport.new
 
-  it 'Checks that the same plane cannot land twice' do
-    message =  "This plane has already landed"
-    expect{subject.land(plane, weather)}.to raise_error message
-  end
+    let(:weather) { double("weather", :check => "Sunny") }
+    let(:plane) { double("plane", :landed= => nil, :landed => true) }
 
-  it 'Checks that the same plane cannot take off twice' do
-    message = "That plane is not in this airport"
-    expect{subject.take_off(plane, weather)}.to raise_error message
+    it 'Checks that the same plane cannot land twice' do
+      message =  "This plane has already landed"
+      expect{subject.land(plane, (weather).check)}.to raise_error message
+    end
+
+    it 'Checks that the same plane cannot take off twice' do
+      message = "That plane is not in this airport"
+      expect{subject.take_off(plane, (weather).check)}.to raise_error message
+    end
+
   end
 
 end
