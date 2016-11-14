@@ -1,4 +1,3 @@
-#Airport <-- allow_takeoff --> an Aeroplane
 require_relative "aeroplane"
 require_relative "weather"
 
