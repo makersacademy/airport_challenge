@@ -124,6 +124,14 @@ RuntimeError: weather is too stormy
 from /Users/amanda/Desktop/makers_academy/weekend_challenges/airport_challenge/lib/airport.rb:42:in `too_stormy'
 ```
 
+* Airports have a `DEFAULT_CAPACITY` of 20, but this can be overridden when instantiating a new Airport
+
+```
+[2] pry(main)> airport = Airport.new(50)
+=> #<Airport:0x007fcd1c454a70 @capacity=50, @planes=[], @weather=#<Weather:0x007fcd1c454a20 @current_weather="not stormy">>
+[3] pry(main)>
+```
+
 * If `DEFAULT_CAPACITY` has been reached, no planes can land
 
 ```
