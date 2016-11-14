@@ -5,13 +5,13 @@ describe Weather do
 
   it "The weather can be stormy" do
     heathrow = airport.new
-    allow(heathrow).to receive(:stormy?) { true }
+    srand(17)
     expect(heathrow.stormy?).to eq true
   end
 
   it "The weather can be not-stormy" do
     heathrow = airport.new
-    allow(heathrow).to receive(:stormy?) { false }
+    srand(3)
     expect(heathrow.stormy?).to eq false
   end
 

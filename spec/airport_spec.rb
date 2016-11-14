@@ -1,10 +1,14 @@
 require 'airport'
 describe Airport do
-
   it { is_expected.to be_instance_of(Airport) }
 
   context "@capacity" do
-    it "has a default capacity that can be changed on airport creation" do
+
+    it "has a defeault capacity" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it "has capacity that can be changed on airport creation" do
       expect((Airport.new(21)).capacity).to eq 21
     end
 
