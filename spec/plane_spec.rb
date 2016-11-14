@@ -7,7 +7,7 @@ describe Plane do
   end
 
   it 'can be flying' do
-    subject.flying=(true)
+    subject.set_flying
     expect(subject.flying?).to eq true
   end
 

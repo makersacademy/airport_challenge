@@ -21,7 +21,7 @@ class Airport
     fail 'Planes cannot land while it is stormy' if stormy?
     fail 'Planes cannot land at this airport, it is full' if full?
     fail 'That plane cannot land. It has already landed.' if plane.flying? == false
-    plane.flying=(false)
+    plane.set_landed
     @planes << plane
   end
 
@@ -29,7 +29,7 @@ class Airport
     fail 'Planes cannot take off while it is stormy' if stormy?
     fail 'This plane can\'t take off from here. It hasn\'t landed here.' if !@planes.include?(plane)
     fail 'This plane can\'t take off because it is already flying' if plane.flying?
-    plane.flying=(true)
+    plane.set_flying
     @planes.delete(plane)
   end
 
