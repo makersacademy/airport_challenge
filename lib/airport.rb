@@ -17,13 +17,13 @@ class Airport
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
     raise 'The airport is empty, no planes to take off' if is_empty?
-    @planes.shift
+    @planes.delete(plane)
   end
 
   def is_full?
-    @planes.count >= DEFAULT_CAPACITY
+    @planes.count >= @capacity
   end
 
   def is_empty?
