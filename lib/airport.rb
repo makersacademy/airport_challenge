@@ -15,15 +15,20 @@ class Airport
 	def land(plane)
 		raise "#{plane} is already on the ground." if plane.flying == false
 		full?
-		return accept_plane(plane) unless stormy?
-		raise "#{plane} cannot land due to stormy weather."
+		raise "#{plane} cannot land due to stormy weather." if stormy?
+		accept_plane(plane)
 	end
 
 	def take_off(plane)
 		raise "#{plane} is already flying." if plane.flying == true
 		raise "#{plane} does not exist at this airport." unless @planes.include?(plane)
-		return release_plane(plane) unless stormy?
-		raise "#{plane} cannot take off due to stormy weather."
+		raise "#{plane} cannot take off due to stormy weather." if stormy?
+		release_plane(plane)
+	end
+
+	def confirm_location(plane)
+		return "#{plane} is at this airport." if @planes.include?(plane)
+		"#{plane} has not landed at this airport."
 	end
 
 	private
