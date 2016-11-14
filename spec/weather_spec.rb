@@ -2,10 +2,6 @@ require './lib/weather'
 
 describe Weather do
 
-  it 'generates weather code' do
-    expect(subject.weather_code).to be_a_kind_of(Float)
-  end
-
   it 'returns "true" when it is stormy' do
     subject.weather_code = 0.1
     expect(subject.stormy?).to eq true
