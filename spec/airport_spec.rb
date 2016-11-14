@@ -2,27 +2,12 @@ require 'airport'
 
 describe Airport do
 
-  it 'responds to .planes' do
-    expect(subject).to respond_to :planes
-  end
-
-  it 'responds to .is_full?' do
-    expect(subject).to respond_to :is_full?
-  end
-
-  it 'responds to .is_stormy?' do
-    expect(subject).to respond_to :is_stormy?
-  end
-
-  describe '#capacity' do
-
-    it 'has a capacity attribute' do
-      expect(subject).to respond_to :capacity
-    end
+  describe '#initialize' do
 
     it 'can be initialized with a capacity argument' do
       airport = Airport.new(30)
       expect(airport.capacity).to eq 30
+      
     end
 
   end

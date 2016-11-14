@@ -4,10 +4,6 @@ describe Weather do
 
   describe '#condition' do
 
-    it 'has a condition attribute' do
-      expect(subject).to respond_to :condition
-    end
-
     it 'returns :sunny if it is sunny' do
       subject.condition=(:sunny)
       expect(subject.condition).to eq :sunny
