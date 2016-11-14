@@ -16,10 +16,11 @@ class Airport
     end
 
     def is_full?
-      airport.count >= capacity
+      planes.count >= capacity
     end
 
     def land(plane)
+      fail ("airport is full") if is_full?
       plane.land
       planes << plane
     end

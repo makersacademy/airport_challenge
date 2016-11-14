@@ -30,11 +30,13 @@ describe Airport do
     expect(airport.planes).not_to include plane
   end
 
+  it "airport is full" do
+    airport.capacity.times {airport.land(plane)}
+    expect(airport.is_full?).to eq true
+  end
 
-
-  # it "airport is full" do
-  #   airport = Airport.new
-  #   airport.capacity
-  #   expect(airport.is_full?).to eq true
-  # end
+  it "can't land planes when airport is full" do
+    airport.capacity.times {airport.land(plane)}
+    expect{airport.land(plane)}.to raise_error("airport is full")
+  end
 end
