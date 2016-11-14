@@ -1,4 +1,4 @@
-AAirport Challenge
+Airport Challenge
 
         ______
         _\____\___
