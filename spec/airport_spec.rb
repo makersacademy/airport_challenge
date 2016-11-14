@@ -17,7 +17,7 @@ require 'airport.rb'
 
       it "should test that a plane has taken off from the airport" do
         airport.land_plane(plane)
-          expect(airport.take_off(plane)).to eq [plane]
+          expect(airport.take_off(plane)).to eq plane
       end
 
       it "should test that the planes avaiable will be shown when the method planes is called" do
@@ -46,9 +46,9 @@ require 'airport.rb'
         expect {airport.take_off(plane)}.to raise_error("Plane cannot take off as it is not currently in this airport")
       end
 
-      # it "should test that the plane in flight cannot take off again" do
-      #   flying_plane = airport.take_off(plane)
-      #   expect{airport.take_off(flying_plane)}.to raise_error("This plane is in flight")
+      # it "should raise an error that indicates that a plane in flight cannot be in airport" do
+      #   flying_plane = airport.land_plane(plane)
+      #     expect{flying_plane.airport}.to raise_error("Plane cannot be in airport as plane is already flying")
       # end
     end
 

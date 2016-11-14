@@ -25,7 +25,7 @@ class Airport
   def take_off(plane)
      raise "All planes are grounded until further notice due to bad weather" if stormy?
      raise "Plane cannot take off as it is not currently in this airport" unless @planes.include? plane
-     @in_flight_plane << plane
+     plane
  end
 
 private
