@@ -7,14 +7,6 @@ context "set up" do
     expect(subject.planes).not_to eq []
   end
 
-  it "should respond to the method land_plane" do
-    expect(subject).to respond_to (:land_plane)
-  end
-
-  it "should respond to the method take_off_plane" do
-    expect(subject).to respond_to (:take_off_plane)
-  end
-
 end
 
 context "Confirming a plane has taken off and landed" do
@@ -23,8 +15,9 @@ context "Confirming a plane has taken off and landed" do
     allow(subject).to receive(:weather_is_bad).and_return false
     plane = double(:plane)
     allow(plane).to receive(:report_take_off)
+    allow(plane).to receive(:report_landing)
     allow(plane).to receive(:taken_off?).and_return true
-    subject.planes << plane
+    subject.land_plane(plane)
     plane = subject.take_off_plane
     expect(plane.taken_off?).to eq true
   end
@@ -39,7 +32,7 @@ context "Confirming a plane has taken off and landed" do
   it "planes that have not landed should not return true for landed?" do
     allow(subject).to receive(:weather_is_bad).and_return false
     plane = double(:plane)
-    allow(plane).to receive(:landed?).and_return(false)
+    allow(plane).to receive(:landed?)
     expect(plane.landed?).to eq false
   end
 
@@ -109,7 +102,8 @@ context "Edge cases" do
     allow(subject).to receive(:weather_is_bad).and_return false
     plane = double(:plane)
     allow(plane).to receive(:report_take_off)
-    subject.planes << plane
+    allow(plane).to receive(:report_landing)
+    subject.land_plane(plane)
     take_off = subject.take_off_plane
     expect{subject.take_off_plane(take_off)}.to raise_error("This plane has already taken off!")
   end

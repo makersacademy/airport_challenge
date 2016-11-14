@@ -4,7 +4,7 @@ class AirportController
 
   DEFAULT_CAPACITY = 20
 
-  attr_reader :planes, :capacity
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = [Plane.new]
@@ -31,8 +31,10 @@ class AirportController
   end
 
   def weather_is_bad
-    number = rand(100)
-    return true if number > 90
+    upper_bound = 100
+    good_weather_upper_bound = 90
+    number = rand(upper_bound)
+    return true if number > good_weather_upper_bound
     false
   end
 
@@ -58,6 +60,12 @@ class AirportController
     else
       raise "This plane has already taken off!"
     end
+  end
+
+  private
+
+  def planes
+    @planes
   end
 
 end
