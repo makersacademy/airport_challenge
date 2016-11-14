@@ -19,18 +19,18 @@ DEFAULT_CAPACITY = 1
     fail "Airport is full" if full?
     fail "Too stormy to land" if stormy?
     plane.land
-    @planes << plane
+    planes << plane
   end
 
   def take_off(plane)
     fail "Plane is not in airport" unless in_airport?(plane)
     fail "Too stormy to take off" if stormy?
     plane.take_off
-    @planes.delete(plane)
+    planes.delete(plane)
   end
 
   def in_airport?(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 
   private
@@ -38,11 +38,11 @@ DEFAULT_CAPACITY = 1
   attr_reader :planes
 
   def full?
-    @planes.count >= capacity
+    planes.count >= capacity
   end
 
   def stormy?
-    @weather.stormy?
+    weather.stormy?
   end
 
 end
