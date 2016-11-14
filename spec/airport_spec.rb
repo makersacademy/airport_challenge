@@ -3,6 +3,9 @@ require './lib/plane.rb'
 require './lib/weather.rb'
 
 describe Airport do
+
+  let(:plane) { double("plane", :landed_status => true) }
+
 before(:each) do
   @plane = Plane.new
   subject.weather = :Sunny
@@ -38,9 +41,9 @@ end
 
  context "allow planes to take off" do
    it "should raise error if plane is still in the air" do
-     @plane.landed_status = false
+     allow(plane).to receive(:landed_status) { false }
      message = "Plane is still in the air"
-     expect{ subject.take_off(@plane) }.to raise_error(message)
+     expect{ subject.take_off(plane) }.to raise_error(message)
    end
 
    it "taking off should change plane's landed_status to false" do
