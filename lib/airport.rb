@@ -16,4 +16,14 @@ class Airport
     true
   end
 
+  def cannot_land(plane)
+    raise 'Cannot land as airport is full' if full?
+  end
+
+  private
+
+  def full?
+    true
+  end
+
 end

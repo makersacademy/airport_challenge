@@ -35,11 +35,15 @@ describe Airport do
     expect(airport.confirms_takeoff(plane)).to eq true
     end
 
-
   # As an air traffic controller
   # To ensure safety
   # I want to prevent landing when the airport is full
 
+  it 'prevents landing when the airport is full' do
+    airport = Airport.new
+    plane = Plane.new
+    expect { airport.cannot_land(plane) }.to raise_error "Cannot land as airport is full"
+    end
 
   # As the system designer
   # So that the software can be used for many different airports
