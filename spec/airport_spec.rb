@@ -44,6 +44,7 @@ describe Airport do
     it "expects an error message if there are no airples and one tries to take off" do
       expect{(airport.take_off).to raise_error("Sorry, a non existant airplane can not take off.")}
     end
+
   end
 
   context "STORMY AIRPORT" do
