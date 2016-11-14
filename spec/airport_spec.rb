@@ -4,12 +4,12 @@ describe Airport do
 
   let(:plane) { double :plane }
   let(:plane2) { double :plane }
-  let(:weather) { double :weather }
 
   subject(:airport_for_2) { described_class.new(2) }
   subject(:airport) { described_class.new }
 
   before(:each) { allow(plane).to receive(:land) }
+  before(:each) { allow(plane).to receive(:take_off) }
 
   context 'landing a plane' do
 
@@ -50,8 +50,6 @@ describe Airport do
   context 'plane taking off' do
 
     before(:each) { allow_any_instance_of(Weather).to receive(:stormy?).and_return false }
-    before(:each) { allow(plane).to receive(:take_off) }
-    before(:each) { allow(plane).to receive(:land) }
 
     before(:each) do
       airport.instruct_to_land(plane)
@@ -90,6 +88,8 @@ describe Airport do
     end
 
     it 'does not allow for take off if stormy' do
+      allow_any_instance_of(Weather).to receive(:stormy?).and_return false
+      airport.instruct_to_land(plane)
       allow_any_instance_of(Weather).to receive(:stormy?).and_return true
       expect { airport.instruct_to_take_off(plane) }.to raise_error
     end

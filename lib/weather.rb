@@ -3,11 +3,11 @@ class Weather
   attr_accessor :weather_code
 
   def initialize
-    @weather_code = 1 + rand(6)
+    @weather_code = rand
   end
 
   def stormy?
-    @weather_code < 3
+    @weather_code < 0.3
   end
 
 end
