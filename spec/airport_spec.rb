@@ -25,6 +25,11 @@ end
     expect(subject.number_of_planes).to eq 0
   end
 
+  it "prevents landing if the airport is full" do
+    5.times { subject.land_plane(@plane) }
+    expect { subject.land_plane(@plane) }.to raise_error "Plane cannot land if airport is full"
+  end
+
 end
 
 context "stormy" do
