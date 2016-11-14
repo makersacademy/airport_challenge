@@ -2,17 +2,19 @@ require_relative 'weather'
 
 class Plane
 
-    attr_reader :condition
-    
-  def initialize(condition = :sunny)
-    @condition = condition
+  @in_flight = true
+
+  def take_off
+    raise "Plane cannot take off as it is already in flight"
   end
 
-  # def permission_to_fly_or_land
-  #   @condition
-  # end
-  #
-  # def denied_permission_to_fly_or_land
-  #   @condition = :stormy
-  # end
+  def plane_landed
+    raise "Plane cannot land as it has already landed" unless @in_flight
+    @in_flight = false 
+  end
+
+  def airport
+    raise "Plane cannot be in airport as plane is already flying"
+  end
+
 end
