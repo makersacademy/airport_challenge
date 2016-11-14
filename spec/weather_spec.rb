@@ -1,18 +1,7 @@
-class GoodRandomnessStub
-  def create_number
-    1
-  end
-end
-
-class BadRandomnessStub
-  def create_random
-    0
-  end
-end
 
 describe Weather do
-  subject(:good_weather) {described_class.new(GoodRandomnessStub.new)}
-  subject(:bad_weather) {described_class.new(BadRandomnessStub.new)}
+  subject(:good_weather) {described_class.new(1)}
+  subject(:bad_weather) {described_class.new(0)}
 
   it "should return good conditions when you're lucky" do
     expect(good_weather.conditions).to eq :good

@@ -1,43 +1,41 @@
 require 'airport'
 require 'plane'
-require 'weather'
+require 'weatherstub'
 
-class GoodRandomnessStub
-  def chance
-    1
-  end
-end
-
-class BadRandomnessStub
-  def chance
-    0
-  end
-end
 
 describe Airport do
 
-  subject(:plane) {Plane.new}
-  subject(:plane2) {Plane.new}
-  subject(:good_weather) {Weather.new(GoodRandomnessStub.new)}
-  subject(:stormy_weather) {Weather.new(BadRandomnessStub.new)}
-  subject(:airport) {described_class.new(good_weather)}
-  subject(:stormy_airport) {described_class.new(stormy_weather)}
-  subject(:airport_for_2) {described_class.new(good_weather, 2)}
+  subject(:airport) {described_class.new(1, GoodWeatherStub.new)}
+  subject(:stormy_airport) {described_class.new(1, BadWeatherStub.new)}
+  subject(:airport_for_2) {described_class.new(2, GoodWeatherStub.new)}
+
+  let(:plane) {double :plane}
+  let(:plane2) {double :plane}
+
+
+  before (:each) {allow(plane).to receive(:land)}
+  before (:each) {allow(plane).to receive(:take_off)}
+  before (:each) {allow(plane2).to receive(:land)}
+  before (:each) {allow(plane2).to receive(:take_off)}
+
+  subject (:good_weather) {GoodWeatherStub.new}
+  subject (:bad_weather) {BadWeatherStub.new}
+
+
 
 
   context "should confirm that the plane " do
+
     it "has not landed" do
       expect(airport.landed?(plane)).to eq false
     end
 
     it "has landed" do
+
       airport.authorize_landing(plane)
       expect(airport.landed?(plane)).to eq true
     end
 
-    it "cannot land because of stormy weather" do
-        expect(stormy_airport.authorize_landing(plane)).to eq "Can not land in stormy weather"
-    end
 
     it "has already landed, when we try to land again" do
         airport_for_2.authorize_landing(plane)
@@ -46,6 +44,7 @@ describe Airport do
     end
 
     it "cannot land if the airport is at full capacity" do
+      
       airport.authorize_landing(plane)
       expect(airport.authorize_landing(plane2)).to eq "The airport is full, can not land"
     end
@@ -63,11 +62,9 @@ describe Airport do
       expect(airport.landed?(plane)).to eq false
     end
 
-    it "not to take off if weather conditions are stormy" do
-      airport.authorize_landing(plane)
-      expect(stormy_airport.authorize_take_off(plane)).to eq "Can not take off in stormy weather"
-    end
+
   end
+
 
   context "should have a default capacity " do
     it "when no other indicated" do
@@ -79,14 +76,26 @@ describe Airport do
     end
   end
 
-  it "expect the plane status to indicate it's not flying after landing" do
-    airport.authorize_landing(plane)
-    expect(plane.flying).to eq false
+context "In stormy weather " do
+
+
+
+it "cannot land because of stormy weather" do
+
+    expect(stormy_airport.authorize_landing(plane)).to eq "Can not land in stormy weather"
+end
+
+it "not to take off if weather conditions are stormy" do
+  allow_any_instance_of(Weather).to receive(:conditions).and_return(:good)
+  airport.authorize_landing(plane)
+  allow_any_instance_of(Weather).to receive(:conditions).and_return(:stormy)
+  message = "Can not take off in stormy weather"
+  expect(stormy_airport.authorize_take_off(plane)).to eq message
+end
+
   end
 
-  it "expect the plane to indicate it's flying after take off" do
-    airport.authorize_landing(plane)
-    airport.authorize_take_off(plane)
-    expect(plane.flying).to eq true  
+
+  it "expect to raise error when airport at full capacity" do
   end
 end
