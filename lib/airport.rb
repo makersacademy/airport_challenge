@@ -11,10 +11,11 @@ class Airport
     @total_capacity = capacity
   end
 
-  def land_plane(plane)
+  def instruct_to_land(plane)
     raise("Too stormy to land") if Weather.new.stormy?
     return "Airport full" if full?
     return "Plane has already landed" if landed?(plane)
+    plane.land
     @planes << plane
   end
 
@@ -22,14 +23,10 @@ class Airport
     @planes.include?(plane)
   end
 
-  def take_off_plane(plane)
+  def instruct_to_take_off(plane)
     raise("Too stormy to take off") if Weather.new.stormy?
+    return "Plane has already taken off" if !landed?(plane)
     @planes.delete(plane)
-    confirm_plane_take_off(plane)
-  end
-
-  def confirm_plane_take_off(plane)
-    "Plane #{plane} has taken off"
   end
 
   def full?
