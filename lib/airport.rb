@@ -27,7 +27,7 @@ class Airport
   end
 
   def stormy?
-    Weather.stormy?
+    Weather.new.stormy?
   end
 
 private
