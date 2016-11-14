@@ -1,10 +1,10 @@
 class Airport
 
-  def instructs_landing
+  def land(plane)
     true
   end
 
-  def confirms_landing
+  def confirms_landing(plane)
     true
   end
 
