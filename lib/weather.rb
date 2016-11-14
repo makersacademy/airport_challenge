@@ -1,8 +1,11 @@
 class Weather
 
 def weather_conditions
-  @stormy = stormy
-  @sunny = sunny
+  [:sunny, :sunny, :sunny, :stormy]
+end
+
+def stormy?
+  weather_conditions.sample == :stormy
 end
 
 end

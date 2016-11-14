@@ -1,37 +1,46 @@
-require 'airport'
-require 'plane'
-require 'weather'
+require './lib/airport'
+require './lib/plane'
+require './lib/weather'
 
 describe Airport do
 
-  it "responds to the instruction to land a plane" do
-    expect(subject).to respond_to :land_plane
-    #it { is_expected.to respond_to :land_plane }
-  end
+context "sunny" do
+
+before do
+  allow(subject.weather).to receive(:stormy?) {false}
+end
 
   it "allows a plane to land" do
-    plane = subject.land_plane
-    plane.landed?
-  end
-
-  it "responds to the instruction to takeoff a plane" do
-    expect(subject).to respond_to :take_off
-    #it { is_expected.to respond_to :take_off }
+    expect(subject.land_plane(@plane)).to eq subject.planes
   end
 
   it "allows a plane to takeoff" do
-    plane = subject.take_off
-    plane.taken_off?
+    subject.land_plane(@plane)
+    expect(subject.take_off(@plane)).to eq subject.plane
   end
 
-  #describe "stormy weather" do
-    it "raises an error when the weather is stormy" do
-      expect(subject).to respond_to :weather_conditions
-      #if weather_conditions == @stormy
-      #expect { subject.take_off }.to raise_error "Bad weather - no planes can take off"
-      #else land_plane
-      #end
-    end
-  #end
+  it "confirms that a plane is no longer in the airport" do
+    subject.land_plane(@plane)
+    subject.take_off(@plane)
+    expect(subject.number_of_planes).to eq 0
+  end
+
+end
+
+context "stormy" do
+
+  it "won't let a plane land when the weather is stormy" do
+    allow(subject.weather).to receive(:stormy?) {true}
+    expect { subject.land_plane(@plane) }.to raise_error "Plane cannot land in stormy weather"
+  end
+
+  it "won't let a plane takeoff when the weather is stormy" do
+    allow(subject.weather).to receive(:stormy?) {false}
+    subject.land_plane(@plane)
+    allow(subject.weather).to receive(:stormy?) {true}
+    expect { subject.take_off(@plane) }.to raise_error "Plane cannot takeoff in stormy weather"
+  end
+
+end
 
 end

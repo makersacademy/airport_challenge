@@ -2,8 +2,9 @@ require 'weather'
 
 describe Weather do
 
-  it "should respond to the weather conditions" do
-    expect(subject).to respond_to :weather_conditions
+  it "should return true if weather is stormy" do
+    allow(subject).to receive(:stormy?) {true}
+    expect(subject.stormy?).to eq true
   end
 
 end
