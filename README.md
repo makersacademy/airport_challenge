@@ -49,7 +49,7 @@ A program to control the flow of planes at an airport. Planes can land and take 
 
  # Tests
 
- Testing was one of the main challenges with this program - particularly the random weather generator. Airport_spec.rb contains many attempts to use stubs to set a specific weather condition, but I could not get these to work in time. Because of this, I had to use an attr_accessor to set weather in each test, which very much violates the DRY principle.
+ Testing was one of the main challenges with this program - particularly the random weather generator. Despite initially struggling to include stubs in my test, switching all instances of 'allow(weather) to allow_all_instances_of(Weather)' seems to have fixed the issue.
 
 
 Instructions
