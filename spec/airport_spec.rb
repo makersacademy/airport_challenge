@@ -5,7 +5,7 @@ describe Airport do
 	subject(:airport) {described_class.new}
 	let(:grounded_plane) {double(:plane, :flying => false)}
 	let(:flying_plane) {double(:plane, :flying => true)}
-	let(:plane) {double(:plane)}
+	let(:plane) {double(:plane, landed: nil, taken_off: nil)}
 
 	it 'expects airports to be full when capacity is reached' do
 		airport = Airport.new(0)
@@ -58,7 +58,6 @@ describe Airport do
 			before do
 				allow(airport).to receive(:stormy?) { false }
 				allow(plane).to receive(:flying) { true }
-				allow(plane).to receive(:landed)
 				airport.land(plane)
 				allow(plane).to receive(:flying) { false }
 			end
@@ -70,7 +69,6 @@ describe Airport do
 			end
 
 			it 'expects take off to be successful if weather is sunny' do
-				allow(plane).to receive(:taken_off)
 				expect(airport.take_off(plane)).to eq "#{plane} has left the airport."
 			end
 
@@ -82,13 +80,13 @@ describe Airport do
 
 		it 'expects to confirm that a landed plane exists at the airport' do
 			allow(airport).to receive(:stormy?) { false }
-			allow(flying_plane).to receive(:landed)
-			airport.land(flying_plane)
-			expect(airport.confirm_location(flying_plane)).to eq "#{flying_plane} is at this airport."
+			allow(plane).to receive(:flying) { true }
+			airport.land(plane)
+			expect(airport.confirm_location(plane)).to eq "#{plane} is at this airport."
 		end
 
 		it 'expects to confirm that a plane does not exist at the airport' do
-			expect(airport.confirm_location(grounded_plane)).to eq "#{grounded_plane} has not landed at this airport."
+			expect(airport.confirm_location(plane)).to eq "#{plane} has not landed at this airport."
 		end
 
 	end
