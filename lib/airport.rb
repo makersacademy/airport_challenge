@@ -3,7 +3,7 @@ require './lib/weather'
 
 class Airport
 DEFAULT_CAPACITY = 1
-attr_reader :capacity, :landed_planes
+attr_reader  :capacity, :landed_planes
   def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @landed_planes = []
     @weather = weather

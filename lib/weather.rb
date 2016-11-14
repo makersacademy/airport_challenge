@@ -1,8 +1,17 @@
 class Weather
-  def conditions
-    CONDITIONS[rand(CONDITIONS.length)]
+
+  def initialize(random = Randomness.new)
+    @random = random
   end
 
-private
-  CONDITIONS = [:stormy, :good, :good, :good]
+  def conditions
+    return :good if @random.chance > 0.3
+      :stormy
+    end
+end
+
+class Randomness
+  def create_number
+    rand
+  end
 end

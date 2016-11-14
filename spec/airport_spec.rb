@@ -2,23 +2,24 @@ require 'airport'
 require 'plane'
 require 'weather'
 
-class WeatherStub
-  def initialize(weather)
-    @weather = weather
+class GoodRandomnessStub
+  def chance
+    1
   end
+end
 
-  def conditions
-    @weather
+class BadRandomnessStub
+  def chance
+    0
   end
-
 end
 
 describe Airport do
 
   subject(:plane) {Plane.new}
   subject(:plane2) {Plane.new}
-  subject(:good_weather) {WeatherStub.new(:good)}
-  subject(:stormy_weather) {WeatherStub.new(:stormy)}
+  subject(:good_weather) {Weather.new(GoodRandomnessStub.new)}
+  subject(:stormy_weather) {Weather.new(BadRandomnessStub.new)}
   subject(:airport) {described_class.new(good_weather)}
   subject(:stormy_airport) {described_class.new(stormy_weather)}
   subject(:airport_for_2) {described_class.new(good_weather, 2)}

@@ -1,13 +1,10 @@
 require 'plane'
 
 describe Plane do
-  subject(:plane) {Plane.new}
+  subject(:plane) {described_class.new}
 
 
 
-    it "should have a setter method called flying" do
-      expect(plane).to respond_to(:flying)
-    end
     it "should receive a default argument of true" do
       expect(plane.flying).to eq true
     end
@@ -30,6 +27,6 @@ describe Plane do
 
     it "won't take off if the plane is already flying" do
       plane.land
-      expect{plane.land}.to raise_error("The plane has already landed!") 
+      expect{plane.land}.to raise_error("The plane has already landed!")
     end
 end
