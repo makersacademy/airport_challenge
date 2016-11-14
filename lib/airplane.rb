@@ -1,11 +1,7 @@
 require "./lib/airport.rb"
 
 class Airplane
-  attr_accessor :flying
-
-  def initialize
-    @flying = true
-  end
+  attr_reader :flying
 
   def landed
     @flying = false
@@ -14,4 +10,11 @@ class Airplane
   def taken_off
     @flying = true
   end
+
+private
+
+def initialize
+  @flying = true
+end
+
 end

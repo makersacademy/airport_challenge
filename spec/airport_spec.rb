@@ -27,7 +27,7 @@ describe Airport do
 
   context "NOT STORMY AIRPORT" do
     before do
-      allow(airport).to receive(:stormy_at_airport?) { false }
+      allow(airport).to receive(:stormy_at_airport?).and_return(false)
       allow(airplane).to receive(:landed) {true}
     end
 
@@ -44,13 +44,11 @@ describe Airport do
     it "expects an error message if there are no airples and one tries to take off" do
       expect{(airport.take_off).to raise_error("Sorry, a non existant airplane can not take off.")}
     end
-
   end
-
 
   context "STORMY AIRPORT" do
     before do
-      allow(airport).to receive(:stormy_at_airport?) { true }
+      allow(airport).to receive(:stormy_at_airport?).and_return(true)
     end
     it "expects an error message if the plane tries to land while it is stormy" do
       expect{(airport.land_at_airport(airplane)).to raise_error("You can't land in stormy weather!")}

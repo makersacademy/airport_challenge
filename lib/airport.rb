@@ -16,8 +16,13 @@ class Airport
   def take_off
     raise "Sorry, a non existant airplane can not take off." if @airplanes_on_ground == []
     raise "You can't take off in stormy weather!" if stormy_at_airport?
-    @airplanes_on_ground.pop.taken_off
+    airplane_taken_off = @airplanes_on_ground.pop
+    airplane_taken_off.taken_off
+    @airplanes_on_ground.push(airplane_taken_off)
+    @airplanes_on_ground.pop
+  
   end
+
 
   private
 
