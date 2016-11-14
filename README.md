@@ -60,6 +60,15 @@ Future plans
 ----------
 
 * Airport has to handle weather information and stop planes from taking off or landing when the weather is not sunny
+* App should follow which planes took off and which landed
+* Report on the status of the airport and number of planes it has
+* Planes that landed cannot land again
+* Planes that are flying cannot be at airport
+
+For this mainly needed:
+ - use test doubles
+ - random number generator to set the weather
+ - stub to override random weather to ensure consistent test behaviour
 
 
 Snippet from the app:
