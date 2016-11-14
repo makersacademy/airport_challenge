@@ -12,9 +12,9 @@ class Airport
   end
 
   def instruct_to_land(plane)
-    raise("Too stormy to land") if Weather.new.stormy?
-    return "Airport full" if full?
     return "Plane has already landed" if landed?(plane)
+    return "Airport full" if full?
+    raise("Too stormy to land") if Weather.new.stormy?
     plane.land
     @planes << plane
   end
@@ -24,8 +24,9 @@ class Airport
   end
 
   def instruct_to_take_off(plane)
-    raise("Too stormy to take off") if Weather.new.stormy?
     return "Plane has already taken off" if !landed?(plane)
+    raise("Too stormy to take off") if Weather.new.stormy?
+    plane.take_off
     @planes.delete(plane)
   end
 

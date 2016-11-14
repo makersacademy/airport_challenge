@@ -33,12 +33,6 @@ describe Airport do
       airport_for_2.instruct_to_land(plane)
       expect(airport_for_2.instruct_to_land(plane)).to eq "Plane has already landed"
     end
-    #
-    # it 'calls plane.land function' do
-    #   allow(plane).to receive(:land)
-    #   airport.instruct_to_land
-    #   expect(plane.land).to not_eq nil
-    # end
 
   end
 
@@ -56,6 +50,13 @@ describe Airport do
   context 'plane taking off' do
 
     before(:each) { allow_any_instance_of(Weather).to receive(:stormy?).and_return false }
+    before(:each) { allow(plane).to receive(:take_off) }
+    before(:each) { allow(plane).to receive(:land) }
+
+    before(:each) do
+      airport.instruct_to_land(plane)
+      airport.instruct_to_take_off(plane)
+    end
 
     it 'instructs a plane to take off' do
       allow(plane).to receive(:instruct_to_take_off)
@@ -63,20 +64,14 @@ describe Airport do
     end
 
     it 'does not have the plane after take off' do
-      airport.instruct_to_land(plane)
-      airport.instruct_to_take_off(plane)
       expect(airport.planes).not_to include plane
     end
 
     it 'has one less plane in the airport after take off' do
-      airport.instruct_to_land(plane)
-      airport.instruct_to_take_off(plane)
       expect(airport.planes.length).to eq 0
     end
 
     it 'does not allow the same plane to take off twice' do
-      airport.instruct_to_land(plane)
-      airport.instruct_to_take_off(plane)
       expect(airport.instruct_to_take_off(plane)).to eq "Plane has already taken off"
     end
 
@@ -96,7 +91,7 @@ describe Airport do
 
     it 'does not allow for take off if stormy' do
       allow_any_instance_of(Weather).to receive(:stormy?).and_return true
-      expect {airport.instruct_to_take_off(plane)}.to raise_error
+      expect { airport.instruct_to_take_off(plane) }.to raise_error
     end
 
     it 'allows for take off if not stormy' do
