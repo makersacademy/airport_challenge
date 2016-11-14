@@ -3,9 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :planes
-  attr_reader :capacity
-  attr_reader :weather
+  attr_reader :planes, :capacity, :weather
 
   DEFAULT_CAPACITY = 10
 
@@ -21,17 +19,21 @@ class Airport
     planes << plane
   end
 
+  def takeoff(plane = planes.first)
+    raise "Plane cannot takeoff because it is not in the airport" unless in_airport?(plane)
+    raise "Plane cannot take off because there is a storm" if stormy?
+    planes.delete(plane)
+  end
+
+  private
+
   def in_airport?(plane)
     planes.include?(plane)
   end
 
-  def takeoff(plane)
-    raise "Plane cannot takeoff because it is not in the airport" unless in_airport?(plane)
-    planes.delete(plane)
-    plane
+  def stormy?
+    weather.stormy?
   end
-
-  private
 
   def airport_full?
     planes.count >= capacity

@@ -18,15 +18,15 @@ describe Airport do
     end
   end
 
-  describe "checking planes are in the airport" do
-    it "returns false if plane is not in the airport" do
-      expect(airport.in_airport?(plane)).to be false
-    end
-    it "returns true if plane is in the airport" do
-      airport.land_plane(plane)
-      expect(airport.in_airport?(plane)).to be true
-    end
-  end
+  # describe "checking planes are in the airport" do
+  #   it "returns false if plane is not in the airport" do
+  #     expect(airport.in_airport?(plane)).to be false
+  #   end
+  #   it "returns true if plane is in the airport" do
+  #     airport.land_plane(plane)
+  #     expect(airport.in_airport?(plane)).to be true
+  #   end
+  # end
 
   describe "planes taking off" do
       let(:plane_double) {double :plane_double}
@@ -35,12 +35,19 @@ describe Airport do
       airport.takeoff(plane)
     end
     it "removes the correct plane from the airport" do
+      allow(airport.weather).to receive(:stormy?).and_return false
       airport.planes << plane_double
       airport.takeoff(plane_double)
       expect(airport.planes).not_to include plane_double
     end
     it "raises an error when plane not in airport" do
       expect{ airport.takeoff(plane) }.to raise_error "Plane cannot takeoff because it is not in the airport"
+    end
+    it "raises an error when plane tries to take off when stormy" do
+      allow(airport.weather).to receive(:stormy?).and_return true
+      airport.planes << plane_double
+      message = "Plane cannot take off because there is a storm"
+      expect{ airport.takeoff(plane_double) }.to raise_error(message)
     end
   end
 
