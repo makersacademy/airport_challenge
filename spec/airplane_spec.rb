@@ -9,39 +9,19 @@ describe "Airplane" do
 
   it "can land in airport" do
     plane = Airplane.new
-    airport = Airport.new
-    plane.land(airport)
+    plane.land
     expect(plane.landed).to eq true
   end
 
   it "can take off from airport" do
     plane = Airplane.new
-    airport = Airport.new
-    plane.take_off(airport)
+    plane.take_off
     expect(plane.landed).to eq false
   end
 
   it "confirm plane has taken off" do
     plane = Airplane.new
-    airport = Airport.new
-    plane.take_off(airport)
+    plane.take_off
     expect(plane.landed).to eq false
   end
 end
-  describe "weather" do
-    it "plane can't take off with stormy weather" do
-    plane = Airplane.new
-    airport = Airport.new
-    airport.weather = "stormy"
-    plane.take_off(airport)
-    expect(plane.landed).to eq true
-    end
-
-    it "plane can't land with stormy weather" do
-      plane = Airplane.new
-      airport = Airport.new
-      airport.weather = "stormy"
-      plane.land(airport)
-      expect(plane.landed).to eq false
-    end
-  end

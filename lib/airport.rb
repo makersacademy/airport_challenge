@@ -1,42 +1,30 @@
+require 'weather.rb'
+
 class Airport
 
-  attr_accessor :weather
-  attr_accessor :capacity
-  attr_accessor :airport
-  attr_accessor :plane
-  Capacity = 10
+  attr_reader :weather, :capacity, :planes
+  Default_Capacity = 10
 
-    def initialize(capacity = Capacity)
+    def initialize(capacity = Default_Capacity)
       @capacity = capacity
-      @weather = "sunny"
-      @airport = []
-    end
-    
-    def set_weather(new_weather)
-      @weather = new_weather
+      @weather = Weather.new
+      @planes = []
     end
 
-    def get_weather
-      @weather
-    end
-
-    def is_ok_to_take_off?
-      if @weather == "sunny"
-        true
-      end
-    end
-
-    def is_ok_to_land?
-      if @weather == "sunny"
-        true
-      end
+    def is_fair_weather?
+      weather.condition == :sunny
     end
 
     def is_full?
-      if @airport.count >= Capacity
-        true
-      else
-        false
-      end
+      airport.count >= capacity
+    end
+
+    def land(plane)
+      plane.land
+      planes << plane
+    end
+
+    def take_off(plane)
+      planes.delete(plane)
     end
 end
