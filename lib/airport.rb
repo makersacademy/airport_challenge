@@ -19,8 +19,6 @@ class Airport
     confirm_landing(plane)
   end
 
-
-
   def take_off(plane)
     raise "The plane can't take off when the weather is stormy" if stormy?
     raise "The plane has already taken off" unless planes.include?(plane)
