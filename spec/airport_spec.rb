@@ -2,12 +2,8 @@ require './lib/airport'
 require './lib/weather'
 describe Airport do
 
-  let(:plane) { double :plane}
-
-  it { is_expected.to respond_to(:land).with(1).argument }
-
-  it { is_expected.to respond_to(:plane) }
-
+  let(:plane) { double = Plane.new}
+  
   context 'weather is good' do
     before do
     allow(subject.weather).to receive(:stormy?) { false }
@@ -26,8 +22,6 @@ describe Airport do
       subject.land(@plane)
       expect { subject.land(@plane) }.to raise_error 'plane has already landed'
     end
-
-    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'instructs a plane to take off' do
       subject.land(@plane)
