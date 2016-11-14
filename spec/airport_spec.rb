@@ -44,7 +44,7 @@ describe Airport do
     end
 
     it "cannot land if the airport is at full capacity" do
-      
+
       airport.authorize_landing(plane)
       expect(airport.authorize_landing(plane2)).to eq "The airport is full, can not land"
     end
@@ -85,13 +85,7 @@ it "cannot land because of stormy weather" do
     expect(stormy_airport.authorize_landing(plane)).to eq "Can not land in stormy weather"
 end
 
-it "not to take off if weather conditions are stormy" do
-  allow_any_instance_of(Weather).to receive(:conditions).and_return(:good)
-  airport.authorize_landing(plane)
-  allow_any_instance_of(Weather).to receive(:conditions).and_return(:stormy)
-  message = "Can not take off in stormy weather"
-  expect(stormy_airport.authorize_take_off(plane)).to eq message
-end
+
 
   end
 
