@@ -3,8 +3,7 @@ require 'plane'
 describe Plane do
 
   describe '#landed?' do
-    it { is_expected.to respond_to 'landed?' }
-
+    
     it 'Returns true when plane has landed (confirms)' do
       subject.land=(true)
       expect(subject.landed?).to eq true
@@ -22,5 +21,4 @@ describe Plane do
       expect(subject.landed?).to eq false
     end
   end
-
 end

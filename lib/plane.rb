@@ -4,11 +4,11 @@ class Plane
     @landed
   end
 
-  def land=(boolean) #setter, lands the plane
+  def land=(boolean)
     @landed = boolean
   end
 
-  def landed? #getter, checks the status if its landed
+  def landed?
     @landed
   end
 
@@ -17,7 +17,7 @@ class Plane
   end
 
   def flying
-    self.land=(false) #calling the landed= method on the instance of the class itself
+    self.land=(false)
   end
 
 end
