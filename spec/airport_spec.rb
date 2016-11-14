@@ -4,7 +4,7 @@ describe Airport do
 
   let(:plane) {double :plane}
   let(:plane2) {double :plane}
-
+  let(:weather) {double :weather}
   context "Make sure the class Airport responds to all of it's methods" do
 
     it "Expects Airport to respond to it's landing_bay method" do
@@ -50,13 +50,14 @@ describe Airport do
       allow(plane).to receive(:switch_flying).and_return(true)
       allow(plane2).to receive(:switch_flying).and_return(true)
 
+      allow(weather).to receive(:weather_today) {1}
       subject.store_plane(plane)
       subject.store_plane(plane2)
       subject.force_plane_to_take_off(plane)
 
-      unless "Stormy" then expect(subject.landing_bay.size).to eq 1 end
-      unless "Stormy" then expect(subject.landing_bay.size).to eq 1 end
-      unless "Stormy" then expect(subject.landing_bay.size).to eq 1 end
+      expect(subject.landing_bay.size).to eq 1
+      # unless "Stormy" then expect(subject.landing_bay.size).to eq 1 end
+      # unless "Stormy" then expect(subject.landing_bay.size).to eq 1 end
     end
 
     it "checks that a plane will not land if the airport is at full capacity" do

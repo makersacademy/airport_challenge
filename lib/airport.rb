@@ -17,9 +17,10 @@ DEFAULT_CAPACITY = 20
   end
 
   def store_plane(plane)
+
     if landing_bay_same_as_capacity?
       return loading_bay_is_too_full_to_land_planes
-    else
+    else the_weather_is_sunny?
       allow_plane_to_land_on_landing_bay(plane)
     end
   end

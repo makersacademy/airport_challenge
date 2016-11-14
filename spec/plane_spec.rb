@@ -3,6 +3,8 @@ require './lib/plane.rb'
  describe Plane do
    let(:airport) {double :airport}
    let(:plane) {double :plane}
+   let(:weather) {double :weather}
+
 
    context "Expects that plane will respond to plane methods" do
 
@@ -25,12 +27,12 @@ require './lib/plane.rb'
        allow(airport).to receive(:store_plane).and_return(true)
        allow(airport).to receive(:capacity).and_return(20)
        allow(airport).to receive(:landing_bay).and_return([plane])
+       allow(weather).to receive(:weather_today).and_return("Sunny")
 
        subject.land_at(airport)
 
-      unless "Stormy" then expect(subject.flying).to eq false end
-      unless "Stormy" then expect(subject.flying).to eq false end
-      unless "Stormy" then expect(subject.flying).to eq false end
+       unless "Stormy" then expect(subject.flying).to eq false end
+
      end
 
      it "expects that the plan can not land if it is already landed" do

@@ -2,7 +2,6 @@
 module Messages
 
 
-
 def loading_bay_is_too_full_to_land_planes
   "Safety hazard: The loading bay has too many planes to land"
 end
