@@ -5,7 +5,6 @@ class Airport
   include Weather
   DEFAULT_CAPACITY =  10
 
-  attr_reader :planes
   attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -36,6 +35,8 @@ class Airport
   end
 
   private
+
+  attr_reader :planes
 
   def full?
     planes.size >= capacity
