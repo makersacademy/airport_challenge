@@ -5,14 +5,12 @@ describe Airport do
 	subject(:airport) {described_class.new}
 	let(:grounded_plane) {double(:plane, :flying => false)}
 	let(:flying_plane) {double(:plane, :flying => true)}
+	let(:plane) {double(:plane)}
 
-	it 'expects airports to have a default capacity' do
-		expect(airport.instance_variable_get(:@capacity)).to eq Airport::DEFAULT_CAPACITY
-	end
-
-	it 'expects new airports to accept a custom capacity' do
-		airport = Airport.new(10)
-		expect(airport.instance_variable_get(:@capacity)).to eq (10)
+	it 'expects airports to be full when capacity is reached' do
+		airport = Airport.new(0)
+		message = "Airport is full."
+		expect{airport.land(flying_plane)}.to raise_error message
 	end
 
 	describe '#land' do
@@ -27,21 +25,11 @@ describe Airport do
 
 			before do
 				allow(airport).to receive(:stormy?) { false }
-				allow(flying_plane).to receive(:landed)
-			end
-
-			it 'expects to hold a plane after it has landed' do
-				airport.land(flying_plane)
-				expect(airport.instance_variable_get(:@planes)).to include(flying_plane)
 			end
 
 			it 'expects a landing to be successful if weather is sunny' do
+				allow(flying_plane).to receive(:landed)
 				expect(airport.land(flying_plane)).to eq "#{flying_plane} has landed."
-			end
-
-			it 'expects planes to be unable to land when airport is full' do
-				(airport.instance_variable_get(:@capacity)).times {airport.land(flying_plane)}
-				expect{airport.land(flying_plane)}.to raise_error("Airport is full.")
 			end
 
 			it 'expects planes that wish to land to be flying' do
@@ -60,10 +48,14 @@ describe Airport do
 		end
 
 		it 'expects take off to raise error if weather is stormy' do
+			allow(airport).to receive(:stormy?) { false }
+			allow(plane).to receive(:flying) { true }
+			allow(plane).to receive(:landed)
+			airport.land(plane)
+			allow(plane).to receive(:flying) { false }
 			allow(airport).to receive(:stormy?) { true }
-			(airport.instance_variable_get(:@planes)) << grounded_plane
-			message = "#{grounded_plane} cannot take off due to stormy weather."
-			expect{airport.take_off(grounded_plane)}.to raise_error message
+			message = "#{plane} cannot take off due to stormy weather."
+			expect{airport.take_off(plane)}.to raise_error message
 		end
 
 		context '#take_off tests that require non-stormy weather' do
@@ -72,15 +64,13 @@ describe Airport do
 				allow(airport).to receive(:stormy?) { false }
 			end
 
-			it 'expects plane to have left the airport after it has taken off' do
-				(airport.instance_variable_get(:@planes)) << grounded_plane
-				airport.take_off(grounded_plane)
-				expect(airport.instance_variable_get(:@planes)).not_to include(grounded_plane)
-			end
-
 			it 'expects take off to be successful if weather is sunny' do
-				(airport.instance_variable_get(:@planes)) << grounded_plane
-				expect(airport.take_off(grounded_plane)).to eq "#{grounded_plane} has left the airport."
+				allow(plane).to receive(:flying) { true }
+				allow(plane).to receive(:landed)
+				airport.land(plane)
+				allow(plane).to receive(:flying) { false }
+				allow(plane).to receive(:taken_off)
+				expect(airport.take_off(plane)).to eq "#{plane} has left the airport."
 			end
 
 			it 'expects planes that wish to take off to be at the airport' do
@@ -100,14 +90,14 @@ describe Airport do
 	describe '#confirm_location' do
 
 		it 'expects to confirm that a landed plane exists at the airport' do
-			(airport.instance_variable_get(:@planes)) << grounded_plane
-			expect(airport.confirm_location(grounded_plane)).to eq "#{grounded_plane} is at this airport."
+			allow(airport).to receive(:stormy?) { false }
+			allow(flying_plane).to receive(:landed)
+			airport.land(flying_plane)
+			expect(airport.confirm_location(flying_plane)).to eq "#{flying_plane} is at this airport."
 		end
 
 		it 'expects to confirm that a plane does not exist at the airport' do
-			(airport.instance_variable_get(:@planes)) << grounded_plane
-			airport1 = Airport.new
-			expect(airport1.confirm_location(grounded_plane)).to eq "#{grounded_plane} has not landed at this airport."
+			expect(airport.confirm_location(grounded_plane)).to eq "#{grounded_plane} has not landed at this airport."
 		end
 
 	end
