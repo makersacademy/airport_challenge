@@ -29,6 +29,7 @@ class Airport
   end
 
   def take_off(plane)
+    plane_in_airport?(plane)
     bad_weather_taking_off?
     plane.take_off
     remove_from_airport(plane)
@@ -43,6 +44,10 @@ class Airport
 
   def remove_from_airport(plane)
     @planes.delete(plane)
+  end
+
+  def plane_in_airport?(plane)
+    fail "Plane is not at this airport." if (@planes.include? plane) == false
   end
 
   def bad_weather_landing?
