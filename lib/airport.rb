@@ -1,5 +1,6 @@
 #Airport <-- allow_takeoff --> an Aeroplane
 require_relative "aeroplane"
+require_relative "weather"
 
 class Airport
   DEFAULT_CAPACITY = 5
@@ -12,8 +13,10 @@ class Airport
   end
 
   def allow_takeoff
+
     fail "Not safe to allow take off" if not_safe?
     @planes.pop
+
   end
 
   def land(plane)

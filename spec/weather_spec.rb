@@ -2,8 +2,7 @@ require "weather"
 
 describe Weather do
 
-  it "should have a random weather effect" do
-    expect(subject.weather_effect).to eql("stormy") | eql("not stormy")
+  it "should sometimes be stormy" do
   end
 
 end
