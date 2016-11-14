@@ -18,14 +18,14 @@ class Airport
       raise 'This plane has already landed'
     else
       raise 'Airport is full' if full?
-      too_stormy if @weather.current_weather == 'stormy'
+      too_stormy
       plane.status = 'landed'
       @planes << plane
     end
   end
 
   def take_off(plane)
-    too_stormy if @weather.current_weather == 'stormy'
+    too_stormy
     raise 'Plane not available for take off' if !(@planes.include?(plane))
       @planes.delete(plane)
       plane.status = 'flying'
@@ -39,7 +39,7 @@ class Airport
   end
 
   def too_stormy
-    raise 'weather is too stormy'
+    raise 'weather is too stormy' if @weather.current_weather == 'stormy'
   end
 
 end
