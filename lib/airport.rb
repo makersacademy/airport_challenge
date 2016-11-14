@@ -46,7 +46,7 @@ class Airport
   end
 
     def full?
-      @planes.count >= DEFAULT_CAPACITY
+      @planes.count >= @capacity
     end
 
     def stormy?

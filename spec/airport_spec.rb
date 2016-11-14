@@ -105,6 +105,15 @@ describe Airport do
           expect { subject.land(@plane) }.to raise_error(RuntimeError, message)
         end
 
+        it 'does not allow planes to land at an airport at custom capacity' do
+          message = 'Planes cannot land at this airport, it is full'
+          subject = Airport.new(15)
+          sunny_weather = instance_double("Weather", :condition => :sunny)
+          subject.set_weather(sunny_weather)
+          15.times { subject.land(Plane.new) }
+          expect{ subject.land(Plane.new) }.to raise_error(RuntimeError, message)
+        end
+
       end
 
       context 'when there are inconsistent behaviours' do
