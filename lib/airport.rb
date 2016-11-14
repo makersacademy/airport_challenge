@@ -18,11 +18,11 @@ class Airport
     fail 'plane cannot land in stormy weather' if @weather.stormy?
     fail 'plane has already landed' if plane_has_landed(plane)
     fail 'Airport is full' if full?
-    @planes << plane
+    planedocking
   end
 
   def plane_has_landed(plane)
-    @planes.include? plane
+    planes_array_includes_plane(plane)
   end
 
   def take_off(plane)
@@ -31,12 +31,25 @@ class Airport
     @planes.pop
   end
 
+  def empty?
+    planecount == 0
+  end
+
+  private
+  def full?
+    planecount >= @capacity
+  end
+
+  def planedocking
+    @planes << plane
+  end
+
   def planecount
     @planes.length
   end
 
-  def full?
-    planecount >= @capacity
+  def planes_array_includes_plane(plane)
+    @planes.include? plane
   end
 
 end
