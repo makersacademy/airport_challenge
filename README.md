@@ -1,4 +1,4 @@
-https://travis-ci.org/mikehurl/airport_challenge.svg?branch=master
+[![Build Status](https://travis-ci.org/mikehurl/airport_challenge.svg?branch=master)](https://travis-ci.org/mikehurl/airport_challenge)
 Airport Challenge
 =================
 
