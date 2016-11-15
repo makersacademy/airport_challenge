@@ -1,3 +1,4 @@
+https://travis-ci.org/mikehurl/airport_challenge.svg?branch=master
 Airport Challenge
 =================
 
