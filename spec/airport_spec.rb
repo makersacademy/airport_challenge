@@ -3,7 +3,7 @@ require 'airport.rb'
   describe Airport do
 
     subject(:airport) {described_class.new}
-    let(:plane) { double :plane }
+    let(:plane) { double :plane, plane_landed: nil, take_off: nil }
 
     context "Test landing, taking off and planes at airport in sunny weather" do
 
@@ -11,8 +11,19 @@ require 'airport.rb'
         allow(airport).to receive(:stormy?).and_return false
       end
 
+      it "Should instruct the plane to land" do
+        expect(plane).to receive(:plane_landed)
+        airport.land_plane(plane)
+      end
+
       it "should test that plane has landed" do
           expect(airport.land_plane(plane)).to eq [plane]
+      end
+
+      it "should instruct the plane to take off" do
+        airport.land_plane(plane)
+        expect(plane). to receive(:take_off)
+        airport.take_off(plane)
       end
 
       it "should test that a plane has taken off from the airport" do
@@ -36,7 +47,10 @@ require 'airport.rb'
       end
 
       it "should raise an error when the amount of planes in the airport if full and a plane is trying to land" do
-        Airport::DEFAULT_CAPACITY.times {subject.land_plane double(:plane)}
+        Airport::DEFAULT_CAPACITY.times do
+          a_plane = Plane.new
+         subject.land_plane(a_plane)
+        end
           expect{airport.land_plane(plane)}.to raise_error("This airport is full to capacity, please go to the next nearest airport to land")
       end
 
@@ -46,10 +60,6 @@ require 'airport.rb'
         expect {airport.take_off(plane)}.to raise_error("Plane cannot take off as it is not currently in this airport")
       end
 
-      # it "should raise an error that indicates that a plane in flight cannot be in airport" do
-      #   flying_plane = airport.land_plane(plane)
-      #     expect{flying_plane.airport}.to raise_error("Plane cannot be in airport as plane is already flying")
-      # end
     end
 
         context "#Stormy weather" do

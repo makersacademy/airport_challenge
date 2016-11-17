@@ -18,6 +18,7 @@ class Airport
   def land_plane(plane)
     raise "This airport is full to capacity, please go to the next nearest airport to land" if full?
     raise "There is a storm at destination please divert to nearest airport" if stormy?
+    plane.plane_landed(self)
     @planes << plane
 
   end
@@ -25,7 +26,8 @@ class Airport
   def take_off(plane)
      raise "All planes are grounded until further notice due to bad weather" if stormy?
      raise "Plane cannot take off as it is not currently in this airport" unless @planes.include? plane
-     plane
+    plane.take_off
+    plane
  end
 
 private
