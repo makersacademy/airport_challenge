@@ -17,12 +17,12 @@ require 'airport.rb'
       end
 
       it "should test that plane has landed" do
-          expect(airport.land_plane(plane)).to eq [plane]
+          expect(airport.land_plane(plane)).to include plane
       end
 
       it "should instruct the plane to take off" do
         airport.land_plane(plane)
-        expect(plane). to receive(:take_off)
+        expect(plane).to receive(:take_off)
         airport.take_off(plane)
       end
 
@@ -31,11 +31,16 @@ require 'airport.rb'
           expect(airport.take_off(plane)).to eq plane
       end
 
-      it "should test that the planes avaiable will be shown when the method planes is called" do
+      it 'should return turn planes at the airport' do
         airport.land_plane(plane)
-          expect(airport.planes).to eq [plane]
+        expect(airport.planes).to include plane
       end
 
+      it 'should return turn planes at the airport' do
+        airport.land_plane(plane)
+        airport.take_off(plane)
+        expect(airport.planes).not_to include plane
+      end
     end
 
 

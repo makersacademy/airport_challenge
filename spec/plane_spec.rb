@@ -25,12 +25,11 @@ describe Plane do
   end
 
   context "airport" do
-
-
         it "should raise an error plane cannot be at airport, plane is already flying" do
       expect{ plane.airport }.to raise_error("Plane cannot be in airport as plane is already flying")
     end
 
+    
   end
 
 end
