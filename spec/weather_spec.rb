@@ -13,6 +13,14 @@ describe Weather do
     it "should return true or false" do
       expect(weather.is_stormy?).to be_a(Boolean)
     end
+    it "should return true is weather is stormy" do
+      allow(weather).to receive(:random).and_return(0)
+      expect(weather.is_stormy?).to eq(true)
+    end
+    it "should return false is weather is sunny" do
+      allow(weather).to receive(:random).and_return(1)
+      expect(weather.is_stormy?).to eq(false)
+    end
   end
   describe "random" do
     it "should be a method" do

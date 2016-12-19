@@ -32,7 +32,7 @@ The Weather class will create a weather object which will be initialized with a 
 To run the program first run bundle install.
 Opent pry/irb form the terminal and -> require "./lib/airport.rb".
 
-'''
+```
 require "./lib/airport.rb"
 => true
 [4] pry(main)> weather = Weather.new
@@ -49,7 +49,7 @@ airport = Airport.new(weather)
 [9] pry(main)> airport.take_off(plane)
 => "The plane #<Plane:0x007f8392086408> has taken off"
 [10] pry(main)>
-'''
+```
 
 This repository was cloned from https://github.com/makersacademy/airport_challenge.
 
