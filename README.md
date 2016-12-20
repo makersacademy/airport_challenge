@@ -42,7 +42,7 @@ How to Install
 1. Fork this repo
 2. Clone your forked repo to your local machine
 3. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle` to install the gems needed to run the program
+4. When the installation completes, run `bundle` to install the gems needed to run the program
 
 How to Use
 ==========
