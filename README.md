@@ -51,51 +51,51 @@ How to Use
 3. Create an airport and some planes
 
 ```
- 🐢  ᛬ require './lib/airport'
+ 🐢 : require './lib/airport'
 => true
- 🐢  ᛬ airport_1 = Airport.new
+ 🐢 : airport_1 = Airport.new
 => #<Airport:0x007fb8ab2ba348 @capacity=2, @planes=[]>
- 🐢  ᛬ airport_2 = Airport.new
+ 🐢 : airport_2 = Airport.new
 => #<Airport:0x007fb8ab25b028 @capacity=2, @planes=[]>
- 🐢  ᛬ plane_1 = Plane.new
+ 🐢 : plane_1 = Plane.new
 => #<Plane:0x007fb8ab211c48 @flying=true>
- 🐢  ᛬ plane_2 = Plane.new
+ 🐢 : plane_2 = Plane.new
 => #<Plane:0x007fb8ab168300 @flying=true>
 ```
 
 4. Land a plane (may encounter stormy weather)
 
 ```
- 🐢  ᛬ airport_1.land(plane_1)
+ 🐢 : airport_1.land(plane_1)
 RuntimeError: #<Plane:0x007fb8ab211c48> cannot land due to stormy weather.
- 🐢  ᛬ airport_1.land(plane_1)
+ 🐢 : airport_1.land(plane_1)
 => "#<Plane:0x007fb8ab211c48> has landed."
- 🐢  ᛬ airport_2.land(plane_2)
+ 🐢 : airport_2.land(plane_2)
 => "#<Plane:0x007fb8ab168300> has landed."
 ```
 
 5. Try taking off a plane from a different airport!
 
 ```
- 🐢  ᛬ airport_1.take_off(plane_2)
+ 🐢 : airport_1.take_off(plane_2)
 RuntimeError: #<Plane:0x007fb8ab168300> does not exist at this airport.
 ```
 
 6. Check whether a plane is at the airport
 
 ```
- 🐢  ᛬ airport_1.confirm_location(plane_1)
+ 🐢 : airport_1.confirm_location(plane_1)
 => "#<Plane:0x007fb8ab211c48> is at this airport."
- 🐢  ᛬ airport_1.confirm_location(plane_2)
+ 🐢 : airport_1.confirm_location(plane_2)
 => "#<Plane:0x007fb8ab168300> has not landed at this airport."
 ```
 
 7. Take off a plane from the correct airport
 
 ```
- 🐢  ᛬ airport_1.take_off(plane_1)
+ 🐢 : airport_1.take_off(plane_1)
 => "#<Plane:0x007fb8ab211c48> has left the airport."
- 🐢  ᛬ airport_2.take_off(plane_2)
+ 🐢 : airport_2.take_off(plane_2)
 => "#<Plane:0x007fb8ab168300> has left the airport."
 ```
 
