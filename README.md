@@ -48,8 +48,9 @@ How to Use
 ==========
 1. Open a terminal and run `irb` or `pry` (I prefer to use Pry)
 2. Require `./lib/airport`
-3. Create an airport and some planes
+3. Play!
 
+Create an airport and some planes:
 ```
  🐢 : require './lib/airport'
 => true
@@ -63,8 +64,7 @@ How to Use
 => #<Plane:0x007fb8ab168300 @flying=true>
 ```
 
-4. Land a plane (may encounter stormy weather)
-
+Land a plane (may encounter stormy weather):
 ```
  🐢 : airport_1.land(plane_1)
 RuntimeError: #<Plane:0x007fb8ab211c48> cannot land due to stormy weather.
@@ -74,15 +74,13 @@ RuntimeError: #<Plane:0x007fb8ab211c48> cannot land due to stormy weather.
 => "#<Plane:0x007fb8ab168300> has landed."
 ```
 
-5. Try taking off a plane from a different airport!
-
+Try taking off a plane from a different airport:
 ```
  🐢 : airport_1.take_off(plane_2)
 RuntimeError: #<Plane:0x007fb8ab168300> does not exist at this airport.
 ```
 
-6. Check whether a plane is at the airport
-
+Check whether a plane is at the airport:
 ```
  🐢 : airport_1.confirm_location(plane_1)
 => "#<Plane:0x007fb8ab211c48> is at this airport."
@@ -90,8 +88,7 @@ RuntimeError: #<Plane:0x007fb8ab168300> does not exist at this airport.
 => "#<Plane:0x007fb8ab168300> has not landed at this airport."
 ```
 
-7. Take off a plane from the correct airport
-
+Take off a plane from the correct airport:
 ```
  🐢 : airport_1.take_off(plane_1)
 => "#<Plane:0x007fb8ab211c48> has left the airport."
