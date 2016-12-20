@@ -53,7 +53,7 @@ describe Airport do
 			expect{airport.take_off(flying_plane)}.to raise_error message
 		end
 
-		context '#take_off tests that require a plane to have landed' do
+		context '#take_off tests that require a plane to be grounded' do
 		
 			before do
 				allow(airport).to receive(:stormy?) { false }
