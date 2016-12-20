@@ -13,78 +13,96 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+Description
+===========
+This is the Week 1 weekend challenge from Makers Academy. The challenge was to design an airport to the following specification:
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+* Multiple airports can be created
+* Multiple planes can be created
+* Airports have a default capacity for planes, but can be created with a custom capacity
+* Airports can allow planes to land and take off
+* Planes cannot land at an airport which is at capacity
+* Planes can only take off from airports at which they have landed
+* Planes cannot land if they are already on the ground
+* Planes cannot take off if they are already flying
+* Airports do not allow planes to land or take off when the weather is stormy
+EXTRA * You can check whether a specific plane has landed at a given airport
 
-Steps
--------
+My project consists of an Airport class, Plane class, and a Weather module which is included in the Airport class.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Technologies
+============
+* Code is written in Ruby
+* Testing done using RSpec
+* Coveralls used to assess test coverage
+* Travis CI used to check build status (badge displayed below)
 
-Task
------
+How to Install
+==============
+1. Fork this repo
+2. Clone your forked repo to your local machine
+3. Run the command `gem install bundle` (if you don't have bundle already)
+4. When the installation completes, run `bundle` to install the gems needed to run the program
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+How to Use
+==========
+1. Open a terminal and run `irb` or `pry` (I prefer to use Pry)
+2. Require `./lib/airport`
+3. Play!
 
+Create an airport and some planes:
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+ 🐢 : require './lib/airport'
+=> true
+ 🐢 : airport_1 = Airport.new
+=> #<Airport:0x007fb8ab2ba348 @capacity=2, @planes=[]>
+ 🐢 : airport_2 = Airport.new
+=> #<Airport:0x007fb8ab25b028 @capacity=2, @planes=[]>
+ 🐢 : plane_1 = Plane.new
+=> #<Plane:0x007fb8ab211c48 @flying=true>
+ 🐢 : plane_2 = Plane.new
+=> #<Plane:0x007fb8ab168300 @flying=true>
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Land a plane (may encounter stormy weather):
+```
+ 🐢 : airport_1.land(plane_1)
+RuntimeError: #<Plane:0x007fb8ab211c48> cannot land due to stormy weather.
+ 🐢 : airport_1.land(plane_1)
+=> "#<Plane:0x007fb8ab211c48> has landed."
+ 🐢 : airport_2.land(plane_2)
+=> "#<Plane:0x007fb8ab168300> has landed."
+```
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Try taking off a plane from a different airport:
+```
+ 🐢 : airport_1.take_off(plane_2)
+RuntimeError: #<Plane:0x007fb8ab168300> does not exist at this airport.
+```
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Check whether a plane is at the airport:
+```
+ 🐢 : airport_1.confirm_location(plane_1)
+=> "#<Plane:0x007fb8ab211c48> is at this airport."
+ 🐢 : airport_1.confirm_location(plane_2)
+=> "#<Plane:0x007fb8ab168300> has not landed at this airport."
+```
 
-Please create separate files for every class, module and test suite.
+Take off a plane from the correct airport:
+```
+ 🐢 : airport_1.take_off(plane_1)
+=> "#<Plane:0x007fb8ab211c48> has left the airport."
+ 🐢 : airport_2.take_off(plane_2)
+=> "#<Plane:0x007fb8ab168300> has left the airport."
+```
 
-In code review we'll be hoping to see:
+Optional: If you wish to run the tests for this project, enter `rspec` into your command line. If you wish to view the test coverage, enter `coveralls report` into your command line.
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+History
+=======
+* Project was forked from Makers Academy as part of a weekend challenge. The challenge was to create a program to the specification noted above (see: Description). I have tried to adhere to the single responsibility principle. I have also used private methods where applicable in my airport class. The only methods that are public are the ones which the user should interact with.
+* In order to account for random weather generation in my tests, I have used `srand` to manipulate the desired outcome of `rand` in my weather module.
+* My approach to solving this challenge involved using TDD. Further details of the creation process can be found in the commit descriptions on my [GitHub repository](https://github.com/kwilson541/airport_challenge/commits/master)
+* Weather was initially included as a private method within airport, and later seperated to be a module so that it could be included in any later programs that would require a weather module.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Travis CI status badge [![Build Status](https://travis-ci.org/kwilson541/airport_challenge.svg?branch=master)](https://travis-ci.org/kwilson541/airport_challenge)
