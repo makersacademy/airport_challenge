@@ -52,3 +52,6 @@ I would like a default airport capacity that can be overridden as appropriate
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
 
+### Technology Used
+* Ruby
+* RSpec, for testing
