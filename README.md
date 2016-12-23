@@ -23,12 +23,12 @@ Instructions
 2. if you don't have bundler, run the command 'gem install bundler'
 3. run 'bundle'
 4. open a REPL
-5. [!Alt text](./airport_screenshot.png)
+5. ![Alt text](./airport_screenshot.png)
 
 
 My approach
 -------
-  
+
 
 Task
 -----
