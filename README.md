@@ -27,7 +27,7 @@ Instructions
 
 My approach
 -------
-At the time of writing this code I am half way through Sandi Mets' 'Practical Object Oriented Design In Ruby' and I have only been test driving my development for five days. As a result my main objective in this task is to get a high test coverage and implement as many of the POODIR teachings as possible.
+At the time of writing this code I was half way through Sandi Mets' 'Practical Object Oriented Design In Ruby' and I had only been test driving my development for five days. As a result my main objective in this task is to get a high test coverage and implement as many of the POODIR teachings as possible.
 
 Retrospective
 -------
