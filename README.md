@@ -13,6 +13,45 @@ Airport Challenge
 
 ```
 
+A program to control the flow of planes at an airport. Planes can land and take off if the weather is sunny. If the weather is stormy, no planes can land or take off.
+
+# Airport.rb
+
+  Contains main body of the program. A new instance of the Airport class is initialized with a random weather condition (stormy or sunny), and a default capacity of 5 planes.
+
+  Users can check the status of a plane by calling the #status(plane) method:
+      e.g. airport.status plane1 #=> Landed / In the air
+
+  Planes can be landed and taken off with the #landed(plane) and #take_off(plane) methods.
+
+  #report_weather returns "It is sunny." or "It is stormy." depending on weather conditions.
+
+  #check_new_weather sets the weather randomly to sunny or stormy and reports the new weather.
+
+  Private methods:
+   # remove_from_airport used to remove taken off planes from the airport's @planes array.
+   # bad_weather_landing? & bad_weather_taking_off? stop a plane from taking off or landing during a storm.
+   # full? stops a plane from landing if the aiport is at maximum capacity.
+
+# Plane.rb
+
+ Contains the Plane class, by default initialized as "in the air", unless the user initializes it with the argument (true).
+
+ #land method is called by the Airplane class, but switches a plane's 'landed' status to true if it is false.
+
+ #take_off switches a plane's 'landed' status to false.
+
+# Weather.rb
+
+ Contains the Weather class, initialized with a random weather condition (stormy or not).
+
+ Weather is weighted towards sunny (not stormy) with a private method that generates a random number between 0 and 3. If the random number is 0, weather will be set to stormy.
+
+ # Tests
+
+ Testing was one of the main challenges with this program - particularly the random weather generator. Despite initially struggling to include stubs in my test, switching all instances of 'allow(weather) to allow_all_instances_of(Weather)' seems to have fixed the issue.
+
+
 Instructions
 ---------
 
@@ -36,25 +75,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +112,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
