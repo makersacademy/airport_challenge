@@ -1,16 +1,17 @@
 require 'airport'
 require 'plane'
-require 'weather'
 
 describe Airport do
 
-  subject(:airport) {described_class.new}
+  subject(:airport) {described_class.new(weather)}
   let(:plane) {double :plane}
   let(:weather) {double :weather}
 
   before do
     allow(plane).to receive(:land)
     allow(plane).to receive(:take_off)
+    allow(weather).to receive(:stormy?)
+    allow(weather).to receive(:set_weather)
   end
 
   context 'capacity' do
@@ -18,25 +19,27 @@ describe Airport do
       expect(airport.capacity).to eq 5
     end
     it 'can be set manually' do
-      airport = Airport.new(10)
+      airport = Airport.new(weather, 10)
       expect(airport.capacity).to eq 10
     end
   end
 
   context 'changing weather' do
     it 'randomly sets the weather to stormy' do
-      allow_any_instance_of(Weather).to receive(:stormy?) {true}
+      allow(weather).to receive(:set_weather)
+      allow(weather).to receive(:stormy?) {true}
       expect(airport.check_new_weather).to eq "It is stormy."
     end
     it 'randomly sets the weather to sunny' do
-      allow_any_instance_of(Weather).to receive(:stormy?) {false}
+      allow(weather).to receive(:stormy?) {false}
+      p weather.stormy?
       expect(airport.check_new_weather).to eq "It is sunny."
     end
   end
 
   context 'good weather' do
     before do
-      allow_any_instance_of(Weather).to receive(:stormy?) {false}
+      allow(weather).to receive(:stormy?) {false}
     end
     describe '#status' do
       it 'shows the status of a landed plane' do
@@ -53,6 +56,7 @@ describe Airport do
     end
 
     describe '#land' do
+
       it 'lands a plane' do
         expect(plane).to receive(:land)
         airport.land plane
@@ -80,14 +84,14 @@ describe Airport do
       end
       it 'does not allow planes to take off that are not at the airport' do
         airport.land(plane)
-        expect{(Airport.new).take_off(plane)}.to raise_error "Plane is not at this airport."
+        expect{(Airport.new(weather)).take_off(plane)}.to raise_error "Plane is not at this airport."
       end
     end
   end
 
   context 'stormy weather' do
     before do
-      allow_any_instance_of(Weather).to receive(:stormy?) {true}
+      allow(weather).to receive(:stormy?) {true}
     end
     it 'should not allow planes to take off during a storm' do
       airport.planes << plane

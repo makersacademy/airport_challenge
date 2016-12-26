@@ -13,7 +13,7 @@ class Weather
     rand(3)
   end
 
-  def set_weather(number)
+  def set_weather(number = random_number)
     @stormy = (number == 0)
   end
 
