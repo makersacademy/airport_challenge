@@ -1,6 +1,6 @@
 require_relative 'plane'
 
-class AirportController
+class Airport
 
   DEFAULT_CAPACITY = 20
 
@@ -21,21 +21,14 @@ class AirportController
   end
 
   def check_for_landing_exceptions(plane)
+    weather = Weather.new
     raise "The airport is full!" if airport_full?
     raise "This plane has already landed!" if plane_in_airport?(plane)
-    raise "Landing not possible - bad weather!" if weather_is_bad && @attempted_landing
+    raise "Landing not possible - bad weather!" if weather.bad_weather? && @attempted_landing
   end
 
   def plane_in_airport?(plane)
     @planes.include?(plane)
-  end
-
-  def weather_is_bad
-    upper_bound = 100
-    good_weather_upper_bound = 90
-    number = rand(upper_bound)
-    return true if number > good_weather_upper_bound
-    false
   end
 
   def airport_full?
@@ -51,8 +44,9 @@ class AirportController
   end
 
   def check_for_take_off_exceptions(plane)
+    weather = Weather.new
     raise "There are no planes in the airport" if @planes.empty?
-    raise "Take off not possible - bad weather!" if weather_is_bad && @attempted_take_off
+    raise "Take off not possible - bad weather!" if weather.bad_weather? && @attempted_take_off
     if plane.nil?
       released_plane = @planes.pop
     elsif @planes.include?(plane)
