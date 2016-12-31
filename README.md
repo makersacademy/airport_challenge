@@ -1,7 +1,6 @@
 # Airport Challenge
 
-[![Build Status]https://travis-ci.org/aabolade/airport_challenge.svg?branch=master](https://travis-ci.org/airport_challenge)
-
+[![Build Status](https://travis-ci.org/aabolade/airport_challenge.svg?branch=master)](https://travis-ci.org/airport_challenge)
 [![Coverage Status](https://coveralls.io/repos/github/aabolade/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/aabolade/airport_challenge?branch=master)
 
 
