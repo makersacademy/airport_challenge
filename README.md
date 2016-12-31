@@ -53,11 +53,11 @@ Approach and Technologies
 
 The project uses three main classes:
 
-**Airport**
+**Airport** responsible for taking off and landing planes. This includes preventing take off or landing when there is bad weather or if the airport is at full capacity.
 
-**Plane**
+**Plane** responsible for new instances of planes. There are two properties ```taken_off``` and ```landed``` that report whether the plane has taken off or landed.
 
-**Weather**
+**Weather** responsible for generating weather conditions for airport. The weather is only stormy 10% of the time.  Set using Ruby's rand class. Main challenge was to stub the behaviour of weather object to always be good during tests.
 
 Instructions and Installation
 =============================
@@ -66,14 +66,6 @@ Instructions and Installation
 2. Run the command `gem install bundle` (if you don't have bundle already)
 3. When the installation completes, run `bundle`
 
-
-
-
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Example
-=======
 
 Further Features
 ==============
