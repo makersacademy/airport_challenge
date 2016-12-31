@@ -1,6 +1,6 @@
 require 'air_controller'
 
-describe AirportController do
+describe Airport do
 
     subject(:airport) {described_class.new}
     let(:weather) { double :weather}
@@ -9,7 +9,7 @@ describe AirportController do
 
   describe "a group of tests that raise errors during bad weather" do
     before do
-      allow(weather).to receive(:bad_weather?).and_return true
+      allow(subject).to receive(:bad_weather?).and_return true
     end
 
     context "Tests for exceptions due to bad weather" do
@@ -48,11 +48,6 @@ describe AirportController do
         expect(plane.landed?).to eq true
       end
 
-      it "planes that have not landed should not return true for landed?" do
-        allow(plane).to receive(:landed?)
-        expect(plane.landed?).to eq false
-      end
-
     end
 
     context "Test for exceptions due to airport capacity" do
@@ -65,10 +60,8 @@ describe AirportController do
 
       it "should raise an error if you try to land a plane when the airport is full" do
         subject.take_off_plane
-        capacity = AirportController::DEFAULT_CAPACITY
-        plane = double(:plane)
-        allow(plane).to receive(:report_landing)
-        capacity.times {subject.land_plane(plane)}
+        capacity = Airport::DEFAULT_CAPACITY
+        capacity.times {subject.land_plane(Plane.new)}
         expect{subject.land_plane(plane)}.to raise_error("The airport is full!")
       end
 
@@ -78,12 +71,12 @@ describe AirportController do
 
       it "should be able to set an airports capity" do
         new_capacity = 100
-        new_airport = AirportController.new(new_capacity)
+        new_airport = Airport.new(new_capacity)
         expect(new_airport.capacity).to eq new_capacity
       end
 
       it "if no capacity is given, then airport capacity is equal to a DEFAULT_CAPACITY" do
-        expect(subject.capacity).to eq AirportController::DEFAULT_CAPACITY
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
       end
 
     end

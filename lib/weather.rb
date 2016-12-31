@@ -5,7 +5,6 @@ def bad_weather?
   good_weather_upper_bound = 90
   number = rand(upper_bound)
   return number > good_weather_upper_bound
-  false
 end
 
 

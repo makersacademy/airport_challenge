@@ -4,13 +4,14 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  attr_reader :capacity
+  attr_reader :capacity, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = [Plane.new]
     @capacity = capacity
     @attempted_take_off = false
     @attempted_landing = false
+    @weather = Weather.new
   end
 
   def land_plane(plane)
@@ -21,14 +22,17 @@ class Airport
   end
 
   def check_for_landing_exceptions(plane)
-    weather = Weather.new
     raise "The airport is full!" if airport_full?
     raise "This plane has already landed!" if plane_in_airport?(plane)
-    raise "Landing not possible - bad weather!" if weather.bad_weather? && @attempted_landing
+    raise "Landing not possible - bad weather!" if bad_weather?
   end
 
   def plane_in_airport?(plane)
     @planes.include?(plane)
+  end
+
+  def bad_weather?
+    weather.bad_weather?
   end
 
   def airport_full?
@@ -44,9 +48,8 @@ class Airport
   end
 
   def check_for_take_off_exceptions(plane)
-    weather = Weather.new
     raise "There are no planes in the airport" if @planes.empty?
-    raise "Take off not possible - bad weather!" if weather.bad_weather? && @attempted_take_off
+    raise "Take off not possible - bad weather!" if bad_weather? && @attempted_take_off
     if plane.nil?
       released_plane = @planes.pop
     elsif @planes.include?(plane)
