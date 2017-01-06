@@ -4,4 +4,8 @@ class Weather
 		rand(10)
 	end
 
+	def weather
+
+	end
+
 end
