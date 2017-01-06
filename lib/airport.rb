@@ -1,4 +1,5 @@
-require_relative 'plane'
+require_relative 'plane' 
+require_relative 'weather'
 
 class Airport
 	
@@ -9,7 +10,7 @@ class Airport
 	end
 
 	def take_off
-		@landed
+		@landed = nil
 	end
 
 end

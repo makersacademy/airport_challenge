@@ -11,10 +11,10 @@ describe Airport do
 
 	it {is_expected.to respond_to :take_off}
 
-	it 'allows something to take off' do
+	it 'allows planes to leave airport' do
 		plane = Plane.new
 		subject.land_plane(plane)
-		expect(subject.take_off).to eq plane
+		expect(subject.take_off).to eq nil
 	end
 
 end
