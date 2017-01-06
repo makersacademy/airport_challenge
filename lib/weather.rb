@@ -4,7 +4,7 @@ class Weather
 		rand(10)
 	end
 
-	def weather
+	def stormy?
 
 	end
 
