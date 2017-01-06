@@ -8,4 +8,8 @@ class Airport
 		@landed = plane
 	end
 
+	def take_off
+
+	end
+
 end
