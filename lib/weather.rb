@@ -5,7 +5,11 @@ class Weather
 	end
 
 	def stormy?
-
+		if generate_num == 1
+			true
+		else
+			false
+		end
 	end
 
 end
