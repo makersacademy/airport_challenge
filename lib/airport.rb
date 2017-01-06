@@ -9,7 +9,7 @@ class Airport
 	end
 
 	def take_off
-
+		@landed
 	end
 
 end
