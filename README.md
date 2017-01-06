@@ -37,6 +37,7 @@ Air Traffic Controller  |
 passengers |
 plane   | land (when not stormy or full airport)
         | takeoff
+weather | is stormy or sunny
 Airport | hold planes
         | has capacity which can be changed
 
