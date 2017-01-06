@@ -4,7 +4,7 @@ class Plane
   end
 
   def land airport
-    #check weather
+    @landed = true
   end
 
   def take_off
