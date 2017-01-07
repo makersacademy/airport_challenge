@@ -1,5 +1,7 @@
 require './lib/airport.rb'
 
-
+airport = Airport.new
 plane = Plane.new
-plane.land
+
+airport.land
+plane = airport.land

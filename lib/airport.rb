@@ -1,6 +1,6 @@
 class Airport
 
-  def land
+  def land(plane)
     puts "landed!"
   end
 end
