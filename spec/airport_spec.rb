@@ -8,8 +8,15 @@ describe Airport do
 
 	it 'can hold multiple planes' do
 		allow(subject).to receive(:stormy?).and_return false
-		10.times{subject.land_plane(Plane.new)}
+		subject.capacity.times{subject.land_plane(Plane.new)}
 		expect(subject.grounded.count).to eq 10
+	end
+
+	it 'can have a custom capacity' do
+		airport = Airport.new(5)
+		allow(airport).to receive(:stormy?).and_return false
+		airport.capacity.times{airport.land_plane(Plane.new)}
+		expect{airport.land_plane(Plane.new)}.to raise_error("The airport is full!")
 	end
 
 	describe '#land_plane' do
@@ -26,7 +33,7 @@ describe Airport do
 
 		it 'raises an error when airport is full' do
 			allow(subject).to receive(:stormy?).and_return false
-			10.times{subject.land_plane(Plane.new)}
+			subject.capacity.times{subject.land_plane(Plane.new)}
 		 	expect{subject.land_plane(Plane.new)}.to raise_error("The airport is full!")
 		end
 	end

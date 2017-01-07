@@ -4,15 +4,17 @@ include Weather
 
 class Airport
 	
-	attr_reader :grounded
+	attr_reader :grounded, :capacity
+	DEFAULT_CAPACITY = 10
 
-	def initialize
+	def initialize(capacity = DEFAULT_CAPACITY)
 		@grounded = []
+		@capacity = capacity
 	end
 
 	def land_plane(plane)
 		raise "Planes cannot land during storms!" if stormy?
-		raise "The airport is full!" if @grounded.count >= 10
+		raise "The airport is full!" if @grounded.count >= @capacity
 		@grounded << plane
 	end
 
