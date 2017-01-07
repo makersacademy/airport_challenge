@@ -11,6 +11,7 @@ class AirTrafficController
   end
 
   def instruct_to_land
+    raise "Landing not permitted in stormy weather" if @weather == "Stormy"
     @plane_to_instruct.landing = true unless !@plane_to_instruct
   end
 
