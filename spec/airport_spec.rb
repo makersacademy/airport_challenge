@@ -24,6 +24,7 @@ describe Airport do
 
   it 'should release a plane that has taken off' do
     plane = Plane.new
+    plane.land(subject)
     expect(plane.take_off(subject)).to eq(subject.planes)
   end
 end
