@@ -14,8 +14,13 @@ class Airport
   end
 
   def fleet(plane)
-    raise "Plane is already on the ground" if @planes.include?(plane)
-    @planes << plane
+    if plane.landing || plane.landed
+      raise "Plane is already on the ground" if @planes.include?(plane)
+      @planes << plane
+    elsif plane.taking_off || plane.taken_off
+      raise "Plane is already in the air" if !@planes.include?(plane)
+      @planes.delete(plane)
+    end
   end
 
 end

@@ -15,15 +15,14 @@ describe Airport do
   end
   it 'ensures that the same plane cannot land if it is already in the airport' do
     airport = Airport.new
-    plane = Plane.new
+    plane = Plane.new(airport)
     atc = AirTrafficController.new(plane)
     atc.instruct_to_land
-    plane.land(airport)
     expect{ plane.land(airport) }.to raise_error "Plane is already on the ground"
   end
   it 'ensures that the same plane cannot take off if it has already taken off' do
     airport = Airport.new
-    plane = Plane.new
+    plane = Plane.new(airport)
     atc = AirTrafficController.new(plane)
     atc.instruct_to_take_off
     plane.take_off(airport)

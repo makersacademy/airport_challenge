@@ -3,10 +3,12 @@ class Plane
   attr_reader :landed, :taken_off
   attr_accessor :landing, :taking_off
 
-  def initialize
+  def initialize(airport=nil)
     @landing = false
-    @landed = false
+    @landed = true
     @taking_off = false
+    @taken_off = false
+    airport.fleet(self) if airport
   end
 
   def clear_for_take_off?
@@ -14,7 +16,9 @@ class Plane
   end
 
   def take_off(airport)
-    airport.planes.delete(self)
+    @landed = false
+    airport.fleet(self)
+    @taking_off = false
     @taken_off = true
   end
 
@@ -27,7 +31,9 @@ class Plane
   end
 
   def land(airport)
+    @taken_off = false
     airport.fleet(self)
+    @landing = false
     @landed = true
   end
 
