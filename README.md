@@ -37,6 +37,9 @@ User Story 1
 -------------
 
 The first user story requires interaction between two new objects, Plane and Airport.
+
 My first decision was wether to create a land method on for the Plane or Airport class. I decided to go with the Plane using the land method because I felt that ```plane.land(airport)``` would make more sense to the user.
+
 The land method takes the airport as the parameter and returns it when called on a plane.
-Next I created the landed? method, which uses the instance variable landed to return a boolean. This is initialized to false when the place is created, and is set to false by the land method.
+
+Next I created the landed? method, which uses the instance variable landed to return a boolean. This is initialized to false when the place is created, and is set to true by the land method.

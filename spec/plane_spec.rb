@@ -5,6 +5,8 @@ describe Plane do
     
     it { is_expected.to respond_to(:landed?) }
     
+    it { is_expected.to respond_to(:take_off) }
+    
     describe '#land' do
         it 'lands at airport' do
             airport = Airport.new
@@ -12,6 +14,15 @@ describe Plane do
         end
     end
     
+    describe '#take_off' do
+        it 'sets @landed to false' do
+            airport = Airport.new
+            subject.land(airport)
+            subject.take_off
+            expect(subject.landed?).to eq false
+        end
+    end
+            
     describe '#landed?' do
         it 'returns true when landed' do
             airport = Airport.new
