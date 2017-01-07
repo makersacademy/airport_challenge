@@ -2,8 +2,6 @@
 
 ##1. Domain model
 
-![Class structure](/data/Airport Challenge.xml)
-
 Class | Attributes| Methods
 ------------ | ------------- |------------
 Plane| Landed (true : false), ID, airport_code |land_plane , take_off_plane 
