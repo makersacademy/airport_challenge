@@ -1,5 +1,5 @@
 class Plane
-  def fly?
-    true
+  def fly?(status = true)
+    status
   end
 end
