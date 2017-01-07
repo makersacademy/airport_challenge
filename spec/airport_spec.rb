@@ -4,11 +4,13 @@ describe Airport do
 
   it 'instructs a plane to land and confirm that it landed' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return(false)
     expect(subject.land(plane)).to eq plane
   end
 
  it 'instructs a plane to take off' do
     plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return(false)
     subject.land(plane)
     expect(subject.take_off(plane)).to eq plane
   end
@@ -18,16 +20,17 @@ describe Airport do
   end
 
   it 'prevents landing when weather is stormy' do
-    allow(subject).to receive(:stormy?) {true}
+    allow(subject).to receive(:stormy?).and_return(true)
     expect{subject.land(Plane.new)}.to raise_error
   end
 
   it 'prevents taking-off when weather is stormy' do
-    allow(subject).to receive(:stormy?) {true}
+    allow(subject).to receive(:stormy?).and_return(true)
     expect{subject.take_off(Plane.new)}.to raise_error
   end
 
   it 'prevents landing when the airport is full' do
+    allow(subject).to receive(:stormy?).and_return(false)
     Airport::DEF_CAPACITY.times {subject.land(Plane.new)}
     expect{subject.land(Plane.new)}.to raise_error('Airport Full')
   end
