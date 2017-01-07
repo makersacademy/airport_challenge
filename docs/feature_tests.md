@@ -6,6 +6,20 @@ airport.land(plane)
 airport.take_off(plane)
 airport.planes
 
+US3
+plane = Plane.new
+airport = Airport.new
+airport.land(plane)
+------ Error: Stormy Weather ---
+
+US3
+plane = Plane.new
+airport = Airport.new
+airport.take_off(plane)
+------ Error: Stormy Weather ---
+
+US4
+
 US5
 airport = Airport.new
 plane = Plane.new

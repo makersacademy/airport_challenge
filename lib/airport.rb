@@ -10,13 +10,19 @@ class Airport
   end
 
   def land(plane)
-      raise "Airport Full" if full?
+      raise 'Stormy Weather' if stormy?
+      raise 'Airport Full' if full?
       @planes << plane
       @planes[0]
   end
 
   def take_off(plane)
+    raise 'Stormy Weather' if stormy?
     @planes.pop
+  end
+
+  def stormy?
+    rand(2) == 1 ? true : false
   end
 
   def full?
