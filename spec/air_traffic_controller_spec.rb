@@ -1,4 +1,4 @@
-require 'air_traffic_controller'
+require 'airport'
 
 describe AirTrafficController do
   it 'is able to see a plane' do
@@ -19,7 +19,7 @@ describe AirTrafficController do
     plane = Plane.new
     atc = AirTrafficController.new(plane)
     atc.instruct_to_land
-    plane.land
+    plane.land(airport)
     expect(plane).to be_landed
     expect(airport.planes.include?(plane)).to eq true
   end

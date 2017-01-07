@@ -1,6 +1,3 @@
-require_relative 'airport'
-require_relative 'air_traffic_controller'
-
 class Plane
 
   attr_reader :landed, :taken_off
@@ -21,10 +18,11 @@ class Plane
   end
 
   def clear_to_land?
-    self.land if @landing
+    @landing
   end
 
-  def land
+  def land(airport)
+    airport.planes << self
     @landed = true
   end
 

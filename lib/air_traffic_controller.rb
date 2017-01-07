@@ -1,6 +1,3 @@
-require_relative 'airport'
-require_relative 'plane'
-
 class AirTrafficController
 
   attr_reader :plane_to_instruct
