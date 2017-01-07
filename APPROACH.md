@@ -31,6 +31,10 @@ User | type (Air traffic controller, System designer)| System designer - set_cap
   - _writing rspec unit tests first_
       * build the simplest code to pass each test
       * refactor as go along
+      * plane cannot take off or land if stormy
+      * plane cannot land if airport is full
+      * plane cannot land is already landed
+      * plane cannot take off if already in air
   
 ##4. Repeat for each class 
 
