@@ -32,7 +32,13 @@ describe AirTrafficController do
     expect(plane).to be_clear_for_take_off
   end
   it 'confirms that a plane is no longer in the airport' do
-
+    airport = Airport.new
+    plane = Plane.new
+    atc = AirTrafficController.new(plane)
+    atc.instruct_to_take_off
+    plane.take_off
+    expect(plane).to be_taken_off
+    expect(airport.planes.include?(plane)).to eq false
   end
 
 end
