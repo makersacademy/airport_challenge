@@ -42,7 +42,8 @@ describe Airport do
 		it 'allows planes to leave airport in good weather' do
 			plane = Plane.new
 			allow(subject).to receive(:stormy?).and_return false
-			expect(subject.take_off(plane)).to eq nil
+			subject.land_plane(plane)
+			expect(subject.take_off(plane)).to eq plane
 		end
 
 		it 'raises an error when stormy' do

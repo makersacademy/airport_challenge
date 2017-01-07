@@ -20,7 +20,7 @@ class Airport
 
 	def take_off(plane)
 		raise "Planes cannot take off during storms!" if stormy?
-		@grounded = nil
+		@grounded.delete(plane)
 	end
 
 	private
