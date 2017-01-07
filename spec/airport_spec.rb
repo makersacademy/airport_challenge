@@ -2,34 +2,23 @@ require 'airport'
 
 describe Airport do
 
-  describe "tests relating to planes landing" do
-
-    it "responds to the method 'land'" do
-      expect(subject).to respond_to(:land)
-    end
-
-    it "takes a plane as an argument" do
-      expect(subject).to respond_to(:land).with(1).argument
-    end
+  describe "#land" do
+    it { is_expected.to respond_to(:land)}
+    it { is_expected.to respond_to(:land).with(1).argument }
 
     it "stores the planes that are currently at the airport" do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.arrivals).to include(plane)
+        plane = Plane.new
+        airport = Airport.new
+        airport.land(plane)
+        expect(airport.arrivals).to include(plane)
     end
   end
 
-  describe "tests relating to planes taking off" do
+  describe "#depart" do
+    it { is_expected.to respond_to(:depart)}
+    it { is_expected.to respond_to(:depart).with(1).argument }
 
-    it "should respond to the method depart" do
-      expect(subject).to respond_to(:depart)
-      end
-
-    it "should take a plane as an argument" do
-      expect(subject).to respond_to(:depart).with(1).argument
-    end
-
-    it "should remove the plane from the list of parked planes after take off" do
+    it "removes the departed plane from the list of arrivals following departure" do
       plane = Plane.new
       airport = Airport.new
       airport.land(plane)
