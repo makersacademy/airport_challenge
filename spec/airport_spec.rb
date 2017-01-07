@@ -18,32 +18,32 @@ describe Airport do
   end
 
   describe "#plane_landed" do
-    it "adds plane to array" do
+    it "should add plane to array" do
       subject.plane_landed plane
       expect(subject.planes).to eq [plane]
     end
   end
 
   describe "#plane_taken_off" do
-    it "removes correct plane from array" do
+    it "should remove correct plane from array" do
       subject.instance_variable_set(:@planes, [other_plane,plane,other_plane])
       subject.plane_taken_off plane
       expect(subject.planes).to eq [other_plane,other_plane]
     end
   end
 
-  describe "#take_off_request?" do
+  describe "#take_off_request" do
     context "weather is good" do
       before(:each) do
         subject.instance_variable_set(:@weather_station, good_weather)
       end
-      it{expect(subject.take_off_request?).to eq true}
+      it{expect(subject.take_off_request).to eq "granted"}
     end
-    context "weather is good" do
+    context "weather is bad" do
       before(:each) do
         subject.instance_variable_set(:@weather_station, bad_weather)
       end
-      it{expect(subject.take_off_request?).to eq false}
+      it{expect(subject.take_off_request).to eq "denied : weather is bad"}
     end
   end
 
@@ -55,22 +55,24 @@ describe Airport do
     end
   end
 
-  describe "landing_request?" do
+  describe "#landing_request" do
     context "weather is good but airport is full" do
-      subject.capacity.times{subject.plane_landed plane}
-      it{expect(subject.landing_request plane).to eq false}
-    end
-    context "weather is good" do
-      before(:each) do
-        subject.instance_variable_set(:@weather_station, good_weather)
+      it "should eq \"denied : airport full\"" do
+        subject.capacity.times{subject.plane_landed plane}
+        expect(subject.landing_request).to eq "denied : airport full"
       end
-      it{expect(subject.landing_request?).to eq true}
     end
     context "weather is bad" do
       before(:each) do
         subject.instance_variable_set(:@weather_station, bad_weather)
       end
-      it{expect(subject.landing_request?).to eq false}
+      it{expect(subject.landing_request).to eq "denied : weather is bad"}
+    end
+    context "weather is good" do
+      before(:each) do
+        subject.instance_variable_set(:@weather_station, good_weather)
+      end
+      it{expect(subject.landing_request).to eq "granted"}
     end
   end
 

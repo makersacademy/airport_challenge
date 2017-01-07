@@ -18,12 +18,15 @@ class Airport
     @planes.delete plane
   end
 
-  def take_off_request?
-    !stormy?
+  def take_off_request
+    return "denied : weather is bad" if stormy?
+    return "granted"
   end
 
-  def landing_request?
-    !stormy? && !full?
+  def landing_request
+    return "denied : airport full" if full?
+    return "denied : weather is bad" if stormy?
+    return "granted"
   end
 
   def full?

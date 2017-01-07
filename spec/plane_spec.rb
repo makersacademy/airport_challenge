@@ -5,8 +5,7 @@ describe Plane do
     let(:airport) {double :nice_airport,stormy?: false}
 
     describe("#land") do
-      it{expect{subject.land airport}.not_to raise_error}
-      context "has landed without erroring" do
+      context "has landed" do
         before(:each) do
           subject.land airport
         end
@@ -70,8 +69,7 @@ describe Plane do
     describe("#take_off") do
       message = "plane not at that airport!"
       it{expect{subject.take_off other_airport}.to raise_error message}
-      it{expect{subject.take_off airport}.not_to raise_error}
-      context "has taken off without erroring" do
+      context "has taken off" do
         before(:each) do
           subject.take_off
         end
