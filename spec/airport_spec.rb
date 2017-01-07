@@ -8,4 +8,8 @@ describe Airport do
     expect(subject).to respond_to :capacity
     expect(subject.capacity).not_to be_nil
   end
+  it 'allows the default capacity to be overridden as appropriate' do
+    expect(subject.capacity = 5).to eq 5
+    expect(subject(50).capacity).to eq 50
+  end
 end
