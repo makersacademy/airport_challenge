@@ -9,5 +9,4 @@ attr_accessor :landed
 		true		
 	end
 
-
 end
