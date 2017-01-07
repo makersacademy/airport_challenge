@@ -6,4 +6,6 @@ class Airport
   def landing(plane)
     @plane = plane
   end
+
+
 end
