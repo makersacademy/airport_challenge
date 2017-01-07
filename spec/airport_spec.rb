@@ -16,7 +16,7 @@ describe Airport do
 
   describe "#land_plane" do
 
-    it "should put and plane in the empty landing bay and that plane should have a landed status" do
+    it "should park a plane in the empty landing bay and that plane should have a landed status" do
       plane = Plane.new
       airport = Airport.new
       landing_bay = airport.land_plane(plane)
@@ -24,5 +24,28 @@ describe Airport do
       expect(landing_bay[0].landed_status).to eq "Landed"
     end
 
+    it "should park many planes in the airport's landing bay" do
+      airport = Airport.new
+      #land 20 planes at the one airport
+      expect(20.times {airport.land_plane(Plane.new)}).to eq 20
+    end
+
   end
+
+  it { is_expected.to respond_to(:take_off) }
+
+  describe "#take_off" do
+
+    it "should allow a plane to take off" do
+      airport = Airport.new
+      #land 20 planes at the one airport
+      x = 20
+      x.times {airport.land_plane(Plane.new)}
+      #note: planes will take_off on a FIFO time-basis (to be checked with client)
+      expect(airport.take_off).to eq "Airbourne"
+    end
+
+  end
+
+
 end

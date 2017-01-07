@@ -13,10 +13,10 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 
 Proposed domain model:
 
-| Objects        | Measages      |
+| Objects        | Messages     |
 | ------------- |:-------------:|
 | ATC           |               |
-| Plane         | landed-status |
+| Plane         | landed_status |
 | Airport       | land_plane    |
 
 
@@ -31,11 +31,13 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 Proposed domain model:
 
-| Objects       | Measages      |
+| Objects       | Messages      |
 | ------------- |:-------------:|
 | ATC           |               |
-| Plane         | landed-status |
+| Plane         | landed_status |
 | Airport       | take_off      |
+
+The first iteration of the model assumes a first-in-first_out (FIFO) time-basis of landing and take-off. This is to be confirmed with the client.
 
 ####User Story 3:
 
@@ -48,7 +50,7 @@ I want to prevent takeoff when weather is stormy
 
 Proposed domain model:
 
-| Objects       | Measages      |
+| Objects       | Messages      |
 | ------------- |:-------------:|
 | ATC           |               |
 | [TBD]         | [TBD]         |
@@ -65,7 +67,7 @@ I want to prevent landing when weather is stormy
 
 Proposed domain model:
 
-| Objects       | Measages      |
+| Objects       | Messages      |
 | ------------- |:-------------:|
 | ATC           |               |
 | [TBD]         | [TBD]         |
@@ -82,7 +84,7 @@ I want to prevent landing when the airport is full
 
 Proposed domain model:
 
-| Objects       | Measages      |
+| Objects       | Messages      |
 | ------------- |:-------------:|
 | ATC           |               |
 | [TBD]         | [TBD]         |
@@ -99,7 +101,7 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 Proposed domain model:
 
-| Objects       | Measages      |
+| Objects       | Messages      |
 | ------------- |:-------------:|
 | SD            |               |
 | [TBD]         | [TBD]         |
