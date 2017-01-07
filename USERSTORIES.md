@@ -44,6 +44,9 @@ air_traffic_controller |
 weather | safe?
 plane | take_off
 
+**Notes:**
+
+Created a new class for weather. I think I want the weather class to have the method self.safe? which will evaluate to either true or false. If true then planes will take off. If false then planes will be unable to take off. I'll use a guard clause and raise in order to achieve this. I think .safe? will have to be a self method and I'll have to define. Will have to create maybe a self.safe? method that generates as either true or false
 
 ```
 As an air traffic controller
