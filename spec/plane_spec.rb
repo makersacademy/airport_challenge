@@ -2,27 +2,27 @@ require 'airport'
 
 describe Plane do
 
-  describe "#landed?" do
+  describe "#land" do
+    it {expect(subject).to respond_to(:land).with(1).argument}
 
     before do
-      @plane = Plane.new
       @airport = Airport.new
     end
 
-    context "if the plane has landed" do
+    context "if a plane lands" do
+      it { expect{subject.land(@airport)}.to change(@airport::planes, :count).from(0).to(1)}
+    end
+  end
 
-      it "returns true" do
-        @airport.land(@plane)
-        expect(@plane.landed?(@airport)).to eq true
-      end
+  describe "#take_off" do
+    it {expect(subject).to respond_to(:take_off).with(1).argument}
+    before do
+      @airport = Airport.new
+      subject.land(@airport)
     end
 
-    context "if the plane hasn't landed" do
-
-      it "returns false" do
-        expect(@plane.landed?(@airport)).to eq false
-      end
-    end
+    context "if a plane takes off"
+    it { expect{subject.take_off(@airport)}.to change{@airport.planes}}
   end
 
 end
