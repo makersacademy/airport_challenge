@@ -17,6 +17,10 @@ class Plane
     @taken_off = true
   end
 
+  def taken_off?
+    true
+  end
+
   def clear_to_land?
     @landing
   end
