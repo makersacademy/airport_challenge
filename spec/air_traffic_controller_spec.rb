@@ -42,5 +42,8 @@ describe AirTrafficController do
     expect(plane).to be_taken_off
     expect(airport.planes.include?(plane)).to eq false
   end
+  it 'prevents take off when weather is stormy' do
+    expect(subject).to respond_to :check_weather
+  end
 
 end

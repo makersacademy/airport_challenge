@@ -1,6 +1,6 @@
 class AirTrafficController
 
-  attr_reader :plane_to_instruct
+  attr_reader :plane_to_instruct, :weather
 
   def initialize(plane=nil)
     @plane_to_instruct = plane
