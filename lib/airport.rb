@@ -8,4 +8,8 @@ class Airport
     @plane = plane
   end
 
+  def departure
+    @plane
+  end
+
 end

@@ -1,6 +1,10 @@
 class Plane
 
-  def land_request
+  def land
+  true
+  end
+
+  def depart
   true
   end
 

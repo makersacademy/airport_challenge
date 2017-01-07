@@ -2,10 +2,18 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to :land_request }
+  it { is_expected.to respond_to :land }
 
   it 'responds to land request' do
-  subject.land_request
-  expect(subject.land_request).to eq true
+  subject.land
+  expect(subject.land).to eq true
   end
+
+  it { is_expected.to respond_to :depart }
+
+  it 'responds to depart request' do
+  expect(subject.depart).to eq true
+  end
+
+
 end
