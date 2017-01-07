@@ -6,4 +6,8 @@ describe Plane do
     expect(subject).to respond_to(:landed?)
   end
 
+  it 'responds to the method taken-off' do
+    expect(subject).to respond_to(:taken_off?)
+  end
+
 end
