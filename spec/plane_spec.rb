@@ -27,6 +27,13 @@ describe Plane do
     expect(subject.confirm_landed?).to eq(true)
   end
 
+  it 'should not return true to confirm_landed? after take_off' do
+    airport = Airport.new
+    subject.land(airport)
+    subject.take_off(airport)
+    expect(subject.confirm_landed?).to eq(false)
+  end
+
   it 'should respond to method confirm_take_off?' do
     expect(subject).to respond_to(:confirm_take_off?)
   end
