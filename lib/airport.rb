@@ -4,8 +4,12 @@ class Airport
     end
 
     def recieve_plane(plane)
-      @planes.push(plane)
-      return @planes[0]
+      if @planes.length == 0
+        @planes.push(plane)
+        return @planes[0]
+      else
+        fail 'airport full'
+      end
     end
 
     def takeoff_plane(plane)

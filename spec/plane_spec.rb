@@ -20,6 +20,20 @@ describe Plane do
     expect(plane.takeoff).to eq ['flying']
   end
 
+=begin
+  it 'cannot takeoff when stormy' do
+    plane = Plane.new
+    plane.land
+    expect(plane)
+  end
 
+
+  it 'plane wont land if airport full' do
+    plane = Plane.new
+    plane.land
+    plane2 = Plane.new
+    expect{plane2.land}.to raise_error("airport full")
+  end
+=end
 
 end

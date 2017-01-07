@@ -14,5 +14,12 @@ describe Airport do
     expect(subject.takeoff_plane(plane)).to eq []
   end
 
+  it 'airport wont accpet plane if full' do
+    plane = Plane.new
+    plane.land
+    subject.recieve_plane(plane)
+    plane2 = Plane.new
+    expect{subject.recieve_plane(plane2)}.to raise_error("airport full")
+  end
 
 end
