@@ -21,3 +21,18 @@ User | Type (Air traffic controller, System designer)| System designer - set_cap
 ##5. Run relevant feature test
   - _once enough code is implemented_
          _amend unit test and class as appropriate_
+ ##6. Feature Test cases:
+  -__Scenario__
+  
+  __Landing__
+  - Instruct a plane to land at an airport
+  - Confirm that plane has landed at instructed airport
+  - It becomes stormy as plane is coming in to land plane is prevented from landing
+  - Airport is full so plane is prevented from landing
+  
+  __Take off__
+  - instruct a plane to take off from an airport 
+  - confirm that it is no longer in the airport
+  - It becomes stormy as plane is preparing to take off plance is prevented from taking off
+
+
