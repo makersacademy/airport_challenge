@@ -8,8 +8,29 @@ describe Plane do
 
     context "plane is airborne" do
       it { is_expected.to respond_to(:land) }
-      it "confirms it has landed" do
-        expect(plane.land).to eq "Plane has landed"
+      
+      context "weather is sunny" do
+        before(:each) do
+          #ASK COACH WHY I CANNOT PUT THE WEATHER DOUBLE IN THE LEVEL ABOVE
+          weather = class_double("Weather").as_stubbed_const
+          allow(weather).to receive(:sunny?) { true }
+        end
+        it "can land when sunny" do
+          expect(plane.land). to eq "Plane has landed in sunny weather"
+        end
+        it "confirms it has landed" do
+          expect(plane.land).to include "Plane has landed"
+        end
+      end
+
+      context "weather is stormy" do
+        before(:each) do
+          weather = class_double("Weather").as_stubbed_const
+          allow(weather).to receive(:sunny?) { false }
+        end
+        it "cannot land when stormy" do
+          expect {plane.land}.to raise_error(RuntimeError, "Cannot land - weather is stormy!")
+        end
       end
     end
 

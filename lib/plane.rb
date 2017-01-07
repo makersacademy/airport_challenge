@@ -7,8 +7,9 @@ class Plane
 
   def land
     raise "Cannot land - already landed!" unless airborne?
+    raise "Cannot land - weather is stormy!" unless sunny?
     update_airborne(false)
-    "Plane has landed"
+    "Plane has landed in sunny weather"
   end
 
   def take_off
@@ -25,6 +26,10 @@ class Plane
 
   def update_airborne(status)
     @airborne = status
+  end
+
+  def sunny?
+    Weather.sunny?
   end
 
 end
