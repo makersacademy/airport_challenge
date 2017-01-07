@@ -14,18 +14,21 @@ describe Airport do
 		end
 
 		it 'raises an error when stormy' do
-			#airport = double("airport")
 			allow(subject).to receive(:stormy?).and_return true
-			expect{subject.land_plane(Plane.new)}.to raise_error 
+			expect{subject.land_plane(Plane.new)}.to raise_error("Planes cannot land during storms") 
 		end
 
 	end
 
 	describe '#take_off' do
-		it 'allows planes to leave airport' do
-			plane = Plane.new
-			subject.take_off
+		it 'allows planes to leave airport in good weather' do
+			allow(subject).to receive(:stormy?).and_return false
 			expect(subject.take_off).to eq nil
+		end
+
+		it 'raises an error when stormy' do
+			allow(subject).to receive(:stormy?).and_return true
+			expect{subject.take_off}.to raise_error("Planes cannot take off during storms")
 		end
 	end
 
