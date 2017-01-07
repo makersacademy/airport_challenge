@@ -1,4 +1,4 @@
-class Weather
+module Weather
 
 	def stormy?
 		rand(10) == 1 ? true : false 
