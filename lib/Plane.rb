@@ -1,5 +1,3 @@
-require_relative 'Airport'
-
 class Plane
 
 attr_reader :landed
