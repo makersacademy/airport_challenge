@@ -5,7 +5,6 @@ describe Plane do
     let(:airport) {double :nice_airport,stormy?: false}
 
     describe("#land") do
-      it{is_expected.to respond_to(:land).with(1).argument}
       it{expect{subject.land airport}.not_to raise_error}
       context "has landed without erroring" do
         before(:each) do
@@ -19,19 +18,15 @@ describe Plane do
     end
 
     describe("#take_off") do
-      it{is_expected.to respond_to :take_off}
       it{expect{subject.take_off}.to raise_error "plane already in the air!"}
     end
 
     describe("#stormy?") do
-      it{is_expected.to respond_to(:stormy?).with(0).arguments}
-      it{is_expected.to respond_to(:stormy?).with(1).arguments}
       it{expect{subject.stormy?}.to raise_error "plane location unknown!"}
       it{expect(subject.stormy? airport).to eq false}
     end
 
     describe("#landed?") do
-      it{is_expected.to respond_to :landed?}
       it{is_expected.not_to be_landed}
     end
 
@@ -41,24 +36,19 @@ describe Plane do
     let(:airport) {double :bad_airport,stormy?: true}
 
     describe("#land") do
-      it{is_expected.to respond_to(:land).with(1).argument}
       it{expect{subject.land airport}.to raise_error "can't land in storm"}
     end
 
     describe("#take_off") do
-      it{is_expected.to respond_to :take_off}
       it{expect{subject.take_off}.to raise_error "plane already in the air!"}
     end
 
     describe("#stormy?") do
-      it{is_expected.to respond_to(:stormy?).with(0).arguments}
-      it{is_expected.to respond_to(:stormy?).with(1).arguments}
       it{expect{subject.stormy?}.to raise_error "plane location unknown!"}
       it{expect(subject.stormy? airport).to eq true}
     end
 
     describe("#landed?") do
-      it{is_expected.to respond_to :landed?}
       it{is_expected.not_to be_landed}
     end
 
@@ -72,12 +62,10 @@ describe Plane do
     end
 
     describe("#land") do
-      it{is_expected.to respond_to(:land).with(1).argument}
       it{expect{subject.land airport}.to raise_error "can't land if already landed"}
     end
 
     describe("#take_off") do
-      it{is_expected.to respond_to :take_off}
       it{expect{subject.take_off}.not_to raise_error}
       it{expect{subject.take_off other_airport}.to raise_error "plane not at that airport!"}
       it{expect{subject.take_off airport}.not_to raise_error}
@@ -91,14 +79,10 @@ describe Plane do
     end
 
     describe("#stormy?") do
-      it{is_expected.to respond_to(:stormy?).with(0).arguments}
-      it{is_expected.to respond_to(:stormy?).with(1).arguments}
-      it{expect{subject.stormy?}.not_to raise_error}
       it{expect(subject.stormy?).to eq false}
     end
 
     describe("#landed?") do
-      it{is_expected.to respond_to :landed?}
       it{is_expected.to be_landed}
     end
 
@@ -106,30 +90,26 @@ describe Plane do
 
   context "on the ground in bad weather" do
     let(:airport) {double :bad_airport,stormy?: true}
-    before(:each) do # can't call land directly so direct interaction with variables was neccessary
+    before(:each) do
+      # can't call land normally because of storm
+      # so direct interaction with variables is neccessary
       subject.instance_variable_set(:@landed, true)
       subject.instance_variable_set(:@airport, airport)
     end
 
     describe("#land") do
-      it{is_expected.to respond_to(:land).with(1).argument}
       it{expect{subject.land airport}.to raise_error "can't land if already landed"}
     end
 
     describe("#take_off") do
-      it{is_expected.to respond_to :take_off}
       it{expect{subject.take_off}.to raise_error "can't take off in storm!"}
     end
 
     describe("#stormy?") do
-      it{is_expected.to respond_to(:stormy?).with(0).arguments}
-      it{is_expected.to respond_to(:stormy?).with(1).arguments}
-      it{expect{subject.stormy?}.not_to raise_error}
       it{expect(subject.stormy?).to eq true}
     end
 
     describe("#landed?") do
-      it{is_expected.to respond_to :landed?}
       it{is_expected.to be_landed}
     end
   end

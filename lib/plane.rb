@@ -1,5 +1,5 @@
 class Plane
-  attr_reader :airport
+  attr_reader :airport, :landed
   def initialize
     @landed = false
     @airport = nil
@@ -12,20 +12,20 @@ class Plane
     @airport = airport
   end
 
-  def take_off airport = @airport
+  def take_off location = airport
     raise "plane already in the air!" if !landed?
     raise "can't take off in storm!" if stormy?
-    raise "plane not at that airport!" if airport != @airport
+    raise "plane not at that airport!" if location != airport
     @landed = false
     @airport = nil
   end
 
   def landed?
-    @landed
+    landed
   end
 
-  def stormy? airport = @airport
-    raise "plane location unknown!" if airport == nil
-    airport.stormy?
+  def stormy? location = airport
+    raise "plane location unknown!" if location == nil
+    location.stormy?
   end
 end
