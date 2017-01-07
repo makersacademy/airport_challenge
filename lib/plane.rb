@@ -3,7 +3,7 @@ require_relative 'air_traffic_controller'
 
 class Plane
 
-  attr_reader :landed
+  attr_reader :landed, :taken_off
   attr_accessor :landing, :taking_off
 
   def initialize
@@ -13,11 +13,11 @@ class Plane
   end
 
   def clear_for_take_off?
-    true
+    self.take_off if @taking_off
   end
 
   def take_off
-    true
+    @taken_off = true
   end
 
   def clear_to_land?
