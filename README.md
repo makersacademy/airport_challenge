@@ -22,6 +22,8 @@ My approach to Challenge
 
 3) Spent most of the time understanding how to write stubs for unit testing.
 
+Travis CI Status Budge:
+[![Build Status](https://travis-ci.org/nenoch/airport_challenge.svg?branch=master)](https://travis-ci.org/nenoch/airport_challenge)
 
 Instructions
 ---------
