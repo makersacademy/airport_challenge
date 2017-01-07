@@ -2,10 +2,6 @@ require 'airport'
 
 describe Airport do
 
-	it {is_expected.to respond_to(:receive_plane).with(1).argument}
-	
-	it {is_expected.to respond_to(:release_plane).with(1).argument}
-
 	it 'can hold multiple planes' do
 		allow(subject).to receive(:stormy?).and_return false
 		subject.capacity.times{subject.receive_plane(Plane.new)}

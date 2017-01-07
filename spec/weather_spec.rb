@@ -2,8 +2,6 @@ require 'weather'
 
 describe Weather do 
 
-	it {is_expected.to respond_to :stormy?}
-
 	describe '#stormy?' do
 		it 'reports whether the weather is stormy' do
 			weather = double("weather")
