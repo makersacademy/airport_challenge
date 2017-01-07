@@ -1,0 +1,5 @@
+require './lib/airport.rb'
+
+
+plane = Plane.new
+plane.land
