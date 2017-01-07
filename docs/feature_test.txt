@@ -1,9 +1,13 @@
-require './lib/airport.rb'
 
+US1
 airport = Airport.new
-plane = Plane.new
-
-plane = airport.land
-plane.flying?
 airport.land(plane)
-airport.take_off
+airport.take_off(plane)
+
+US2
+plane = Plane.new
+airport = Airport.new
+airport.land(plane)
+airport.take_off(plane)
+airport.plane
+-- Error: Airport Full ---

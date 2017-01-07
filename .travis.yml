@@ -1,3 +1,6 @@
 script: bundle exec rspec spec
 rvm:
   - 2.2.3
+
+after_success:
+- CI=true TRAVIS=true coveralls --verbose
