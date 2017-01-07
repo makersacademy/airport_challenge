@@ -20,4 +20,10 @@ describe Airport do
   expect(subject.departure).to eq plane
   end
 
+  it { is_expected.to respond_to :stormy}
+
+  it 'prevents planes from departing if stormy' do
+  expect {subject.stormy == true }.to raise_error 'Unable to depart due to stormy weather'
+  end
+
 end
