@@ -6,6 +6,10 @@ class AirTrafficController
     @plane_to_instruct = plane
   end
 
+  def check_weather
+    
+  end
+
   def instruct_to_land
     @plane_to_instruct.landing = true unless !@plane_to_instruct
   end
