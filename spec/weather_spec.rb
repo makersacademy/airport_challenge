@@ -10,14 +10,14 @@ describe Weather do
     context "random generator sets status to sunny" do
       it ".sunny returns true" do
         allow(weather).to receive(:randomize) { 21 }
-        expect(weather.sunny?).to eq true
+        expect(weather).to be_sunny
       end
     end
 
     context "random generator sets status to not sunny" do
       it ".sunny returns false" do
         allow(weather).to receive(:randomize) { 20 }
-        expect(weather.sunny?).to eq false
+        expect(weather).not_to be_sunny
       end
     end
   end
