@@ -5,6 +5,12 @@ def set_sunny(state)
   allow(weather).to receive(:sunny?) { state }
 end
 
+def set_airport(name)
+  #let(:airport) { double(airport_name: name) }
+  airport = instance_double("Airport")
+  allow(airport).to receive(:airport_name) { name }
+end
+
 describe Plane do
 
   subject(:plane) { Plane.new }
@@ -20,12 +26,16 @@ describe Plane do
         before(:each) do
           #ASK COACH WHY I CANNOT PUT THE WEATHER DOUBLE IN THE LEVEL ABOVE
           set_sunny(true)
+          set_airport("Paris")
         end
         it "can land" do
           expect{plane.land}.not_to raise_error
         end
         it "confirms it has landed" do
           expect(plane.land).to include "Plane has landed"
+        end
+        it "confirms it has landed at the correct airport" do
+
         end
       end
 
