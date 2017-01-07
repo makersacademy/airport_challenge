@@ -4,16 +4,17 @@ include Weather
 
 class Airport
 	
-	attr_reader :landed
+	attr_reader :grounded
 
 	def land_plane(plane)
-		raise "Planes cannot land during storms" if stormy?
-		@landed = plane
+		raise "Planes cannot land during storms!" if stormy?
+		raise "The airport is full!" if @grounded
+		@grounded = plane
 	end
 
 	def take_off
-		raise "Planes cannot take off during storms" if stormy?
-		@landed = nil
+		raise "Planes cannot take off during storms!" if stormy?
+		@grounded = nil
 	end
 
 end
