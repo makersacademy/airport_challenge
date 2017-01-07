@@ -10,7 +10,7 @@ class Plane
   end
 
   def clear_for_take_off?
-    self.take_off if @taking_off
+    @taking_off
   end
 
   def take_off
@@ -18,7 +18,7 @@ class Plane
   end
 
   def taken_off?
-    true
+    @taken_off
   end
 
   def clear_to_land?

@@ -35,6 +35,8 @@ describe AirTrafficController do
     airport = Airport.new
     plane = Plane.new
     atc = AirTrafficController.new(plane)
+    atc.instruct_to_land
+    plane.land(airport)
     atc.instruct_to_take_off
     plane.take_off
     expect(plane).to be_taken_off
