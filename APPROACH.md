@@ -1,4 +1,4 @@
-#Approach to first challenge
+#Approach to first challenge    [BUILD] (https://travis-ci.org/olwend/airport_challenge.svg?branch=master)
 
 ##1. Domain model
 
@@ -14,18 +14,19 @@ User | type (Air traffic controller, System designer)| System designer - set_cap
   -__Scenario__
   __As an airtraffic controller I want to...__
   __Landing__
-  - Instruct a plane to land at an airport
-  - Confirm that plane has landed at instructed airport
-  - Prevent a plane from landing if it becomes stormy as plane is coming in 
-  - Prevent a plane from landing if airport is full 
+  
+  -[] Instruct a plane to land at an airport
+  -[] Confirm that plane has landed at instructed airport
+  -[] Prevent a plane from landing if it becomes stormy as plane is coming in 
+  -[]Prevent a plane from landing if airport is full 
   
   __Take off__
-  - Instruct a plane to take off from an airport 
-  - Confirm that it is no longer in the airport
-  - Prevent a plane from taking off if it becomes stormy as plane is coming in
+  - []Instruct a plane to take off from an airport 
+  - []Confirm that it is no longer in the airport
+  - []Prevent a plane from taking off if it becomes stormy as plane is coming in
   
   __Admin_System_designer__
-  - Set the capacity of a particular airport
+  - []Set the capacity of a particular airport
 
 ##3. Follow BDD for each class identified in domain model
   - _writing rspec unit tests first_
