@@ -1,18 +1,19 @@
 #require_relative 'plane'
-
 class Airport
 
-DEFAULT_CAPACITY = 0
-	def initiliaze(capacity =DEFAULT_CAPACITY)
-	@capacity =  capacity
-	@planes = 0
+	attr_accessor :capacity
+
+	DEFAULT_CAPACITY =10
+
+	def initialize(capacity = DEFAULT_CAPACITY)
+		@capacity =  capacity
+		@planes = []
 	end
 
 	def land(plane)
 		raise 'Airport is full' if full?
 		raise 'Weather is stormy, cannot land' if stormy?
-		plane.landed?
-
+		plane.landed = true
 	end
 
 	def take_off(plane)
