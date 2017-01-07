@@ -40,7 +40,7 @@ describe Airport do
 		it 'should remove plane from planes' do
 			allow(subject).to receive(:stormy?) {false}
 			subject.land(plane)
-			/to add a line to test array or count once a plane is has taken off/
+		/to add a line to test array or count once a plane is has taken off/
 		end
 	
 		it 'should raise error before take off about stormy weather 'do
@@ -53,9 +53,11 @@ describe Airport do
 	describe '#new_instance' do
 		it 'should return 0 if no capacity is given' do
 			expect{(subject::capacity).to eq 0}
+			expect{(subject::planes).to eq 0}
 		end
 		it 'shoud return the given value if capacity is given' do
 			expect{(subject(12)::capacity).to eq 12}
+			expect{(subject::planes).to eq 0}
 		end
 	end
 
