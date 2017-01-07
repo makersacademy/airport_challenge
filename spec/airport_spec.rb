@@ -16,4 +16,9 @@ describe Airport do
   it 'should reassign default capacity with override_capacity' do
     expect(subject.override_capacity(5)).to eq subject.capacity
   end
+
+  it 'should store a plane that has landed' do
+    plane = Plane.new
+    expect(plane.land(subject)).to eq(subject.planes)
+  end
 end
