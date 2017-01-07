@@ -7,22 +7,31 @@ describe Plane do
     describe("#land") do
       it{is_expected.to respond_to(:land).with(1).argument}
       it{expect{subject.land airport}.not_to raise_error}
+
       context "has landed without erroring" do
         before(:each) do
           subject.land airport
         end
+
         it {is_expected.to be_landed}
         it "should be landed at the aiport it was asked to land at" do
           expect(subject.airport).to eq airport
         end
+
       end
+
     end
 
     describe("#take_off") do
       it{is_expected.to respond_to :take_off}
       it{expect{subject.take_off}.to raise_error "plane already in the air!"}
     end
-    describe("#landed?") do
+
+    describe("#stormy?") do
+      it{is_expected.to respond_to(:stormy?).with(0).arguments}
+      it{is_expected.to respond_to(:stormy?).with(1).arguments}
+      it{expect{subject.stormy?}.to raise_error "plane location unknown!"}
+      it{expect(subject.stormy? airport).to eq false}
     end
 
     describe("#landed?") do
@@ -30,5 +39,100 @@ describe Plane do
       it{is_expected.not_to be_landed}
     end
 
+  end
+
+  context "in the air and bad weather" do
+    let(:airport) {double :bad_airport,stormy?: true}
+
+    describe("#land") do
+      it{is_expected.to respond_to(:land).with(1).argument}
+      it{expect{subject.land airport}.to raise_error "can't land in storm"}
+    end
+
+    describe("#take_off") do
+      it{is_expected.to respond_to :take_off}
+      it{expect{subject.take_off}.to raise_error "plane already in the air!"}
+    end
+
+    describe("#stormy?") do
+      it{is_expected.to respond_to(:stormy?).with(0).arguments}
+      it{is_expected.to respond_to(:stormy?).with(1).arguments}
+      it{expect{subject.stormy?}.to raise_error "plane location unknown!"}
+      it{expect(subject.stormy? airport).to eq true}
+    end
+
+    describe("#landed?") do
+      it{is_expected.to respond_to :landed?}
+      it{is_expected.not_to be_landed}
+    end
+
+  end
+
+  context "on the ground in good weather" do
+    let(:airport) {double :nice_airport,stormy?: false}
+    before(:each) do
+      subject.land airport
+    end
+
+    describe("#land") do
+      it{is_expected.to respond_to(:land).with(1).argument}
+      it{expect{subject.land airport}.to raise_error "can't land if already landed"}
+    end
+
+    describe("#take_off") do
+      it{is_expected.to respond_to :take_off}
+      it{expect{subject.take_off}.not_to raise_error}
+
+      context "has taken off without erroring" do
+        before(:each) do
+          subject.take_off
+        end
+
+        it{is_expected.not_to be_landed}
+        it{expect(subject.airport).to eq nil}
+      end
+
+    end
+
+    describe("#stormy?") do
+      it{is_expected.to respond_to(:stormy?).with(0).arguments}
+      it{is_expected.to respond_to(:stormy?).with(1).arguments}
+      it{expect{subject.stormy?}.not_to raise_error}
+      it{expect(subject.stormy?).to eq false}
+    end
+
+    describe("#landed?") do
+      it{is_expected.to respond_to :landed?}
+      it{is_expected.to be_landed}
+    end
+  end
+  context "on the ground in bad weather" do
+    let(:airport) {double :bad_airport,stormy?: true}
+    before(:each) do # can't call land directly so direct interaction with variables was neccessary
+      subject.instance_variable_set(:@landed, true)
+      subject.instance_variable_set(:@airport, airport)
+    end
+
+    describe("#land") do
+      it{is_expected.to respond_to(:land).with(1).argument}
+      it{expect{subject.land airport}.to raise_error "can't land if already landed"}
+    end
+
+    describe("#take_off") do
+      it{is_expected.to respond_to :take_off}
+      it{expect{subject.take_off}.to raise_error "can't take off in storm"}
+    end
+
+    describe("#stormy?") do
+      it{is_expected.to respond_to(:stormy?).with(0).arguments}
+      it{is_expected.to respond_to(:stormy?).with(1).arguments}
+      it{expect{subject.stormy?}.not_to raise_error}
+      it{expect(subject.stormy?).to eq true}
+    end
+
+    describe("#landed?") do
+      it{is_expected.to respond_to :landed?}
+      it{is_expected.to be_landed}
+    end
   end
 end
