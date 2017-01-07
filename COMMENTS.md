@@ -10,3 +10,10 @@ Detailing my approach
 
 ##Step 3:
 - Next step seemed to be to create some memory between the methods so that planes can be stored at different airports
+  - Have some concern at this stage that the airport and plane classes are too entangled - but decided to proceed for now and then maybe revisit in refactoring stage.
+
+##Step 4:
+- Next decided to move onto the user story that prevents a plane from landing if the airport is full. I'm now able to tackle this feature as there is memory (created in the previous step) for the airport to know how many planes are landed
+
+##Step 5:
+- I'm now going to address the confirmation methods which are not fully functional
