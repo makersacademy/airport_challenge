@@ -22,7 +22,7 @@ class Plane
   end
 
   def confirm_take_off?
-    true
+    !landing_status
   end
 
 end
