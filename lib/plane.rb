@@ -10,4 +10,7 @@ class Plane
 		@airborne = true
 	end
 
+	def on_ground
+		@airborne = false
+	end
 end

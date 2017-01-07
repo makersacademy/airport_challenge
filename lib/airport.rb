@@ -12,20 +12,24 @@ class Airport
 		@capacity = capacity
 	end
 
-	def land_plane(plane)
+	def receive_plane(plane)
 		raise "Planes cannot land during storms!" if stormy?
 		raise "The airport is full!" if full?
 		raise "That plane is already grounded!" if !flying?(plane)
+		plane.on_ground
 		@grounded << plane
 	end
 
-	def take_off(plane)
+	def release_plane(plane)
 		raise "Planes cannot take off during storms!" if stormy?
 		raise "That plane is not in the airport!" if !plane_present?(plane)
+		plane.in_air
 		@grounded.delete(plane)
 	end
 
+
 	private
+
 
 	def full?
 		@grounded.count >= @capacity
