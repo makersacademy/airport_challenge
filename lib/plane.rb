@@ -1,6 +1,7 @@
 class Plane
 
   def land(airport)
+    airport.store_plane(self)
   end
 
   def take_off(airport)

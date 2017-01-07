@@ -10,4 +10,8 @@ class Airport
     @capacity = new_capacity
   end
 
+  def store_plane(plane)
+    planes.push(plane)
+  end
+
 end
