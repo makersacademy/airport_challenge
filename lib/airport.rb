@@ -12,13 +12,12 @@ DEFAULT_CAPACITY = 0
 		raise 'Airport is full' if full?
 		raise 'Weather is stormy, cannot land' if stormy?
 		plane.landed?
-		#@planes += 1
+
 	end
 
 	def take_off(plane)
 		raise 'Weather is stormy, cannot take off' if stormy?
 		plane.landed = false
-		@planes -= 2
 	end
 
 	private 
@@ -30,8 +29,5 @@ DEFAULT_CAPACITY = 0
 	def full?
 		@capacity == 0
 	end
-
-	
-
 
 end
