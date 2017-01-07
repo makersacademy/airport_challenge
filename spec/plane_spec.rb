@@ -13,6 +13,10 @@ describe Plane do
     expect(subject).to respond_to(:take_off)
   end
 
+  it 'should take off from an airport' do
+    expect(subject).to respond_to(:take_off).with(1).argument
+  end
+
   it 'should respond to method confirm_landed?' do
     expect(subject).to respond_to(:confirm_landed?)
   end
