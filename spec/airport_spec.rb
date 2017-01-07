@@ -1,9 +1,9 @@
 require 'airport'
 
 describe Airport do
-  let(:landed_plane) {double :plane, landed?: true}
-  let(:air_plane) {double :plane, landed?: false}
-
+  let(:landed_plane) {double :plane}
+  let(:air_plane) {double :plane}
+  let(:generic_plane) {double :plane}
 
 	describe '#land' do
 		it {is_expected.to respond_to(:land).with(1).argument}
@@ -28,11 +28,10 @@ describe Airport do
 			expect{subject.land(air_plane).to eq true}
 		end
 
-		it 'should add plane to planes' do
+		it 'should add one to planes array' do
 			allow(subject).to receive(:full?) {false}
 			allow(subject).to receive(:stormy?) {false}
-			expect{subject.land(air_plane).to eq true}
-			expect{(subject::planes.count).to eq 1}
+			expect(subject.planes).to eq subject.land(air_plane)
 		end
 
 	end
@@ -54,11 +53,13 @@ describe Airport do
 			expect{subject.take_off(landed_plane)}.to raise_error('Weather is stormy, cannot take off')
 		end
 
-		/it 'should remove plane from planes' do
+		it 'should remove plane from planes' do
 			allow(subject).to receive(:stormy?) {false}
-			subject.take_off(landed_plane)
-		#to add a line to test array or count once a plane is has taken off
-		end/
+			subject.land(generic_plane)
+			subject.take_off(generic_plane)
+			expect{(subject.planes).to eq []}
+			
+		end
 
 	end
 
@@ -66,7 +67,7 @@ describe Airport do
 		it {is_expected.to respond_to(:capacity)}
 
 		it 'should return 10 if no capacity is given' do
-			expect{(Airport.new::capacity).to eq subject::DEFAULT_CAPACITY}
+			expect{(Airport.new.capacity).to eq subject::DEFAULT_CAPACITY}
 		end
 
 		it ' airport default capacity should return 10 if no capacity is given' do
@@ -74,8 +75,8 @@ describe Airport do
 		end
 
 		it 'shoud return the given value if capacity is given' do
-			
-			expect{(Airport.new(12)::capacity).to eq 18}
+			airport = Airport.new(12)
+			expect{(airport.capacity).to eq 18}
 		end
 
 	

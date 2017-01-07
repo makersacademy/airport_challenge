@@ -5,8 +5,4 @@ attr_accessor :landed
 	@landed = true
 	end
 
-	def landed?
-		true		
-	end
-
 end
