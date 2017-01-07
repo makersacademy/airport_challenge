@@ -51,6 +51,13 @@ describe Airport do
 			allow(subject).to receive(:stormy?).and_return true
 			expect{subject.take_off(plane)}.to raise_error("Planes cannot take off during storms!")
 		end
+
+		it 'raises and error is plane is not present' do
+			plane = Plane.new
+			allow(subject).to receive(:stormy?).and_return false
+			expect{subject.take_off(plane)}.to raise_error("That plane is not in the airport!")
+		end
+
 	end
 
 end

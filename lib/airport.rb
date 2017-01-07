@@ -20,6 +20,7 @@ class Airport
 
 	def take_off(plane)
 		raise "Planes cannot take off during storms!" if stormy?
+		raise "That plane is not in the airport!" if !plane_present?(plane)
 		@grounded.delete(plane)
 	end
 
@@ -27,6 +28,10 @@ class Airport
 
 	def full?
 		@grounded.count >= @capacity
+	end
+
+	def plane_present?(plane)
+		@grounded.include?(plane)
 	end
 
 end
