@@ -5,5 +5,8 @@ class Plane
 
   def take_off
   end
-  
+
+  def confirm_landed?
+  end
+
 end
