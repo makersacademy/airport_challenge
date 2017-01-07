@@ -30,11 +30,9 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Objects  | Messages
 ------------- | -------------
+Plane  | fly?
 Traffic Controller  | instruct_takeoff
 Traffic Controller  | instruct_landing
-Plane  | confirm_landing
-Plane | confirm_takeoff
-Plane  | fly?
 Traffic Controller | block_takeoff_if_stormy
 Traffic Controller | block_landing_if_stormy
 Traffic Controller | block_landing_if_full
