@@ -38,7 +38,7 @@ describe AirTrafficController do
     atc.instruct_to_land
     plane.land(airport)
     atc.instruct_to_take_off
-    plane.take_off
+    plane.take_off(airport)
     expect(plane).to be_taken_off
     expect(airport.planes.include?(plane)).to eq false
   end

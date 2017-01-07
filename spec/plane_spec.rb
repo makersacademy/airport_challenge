@@ -26,6 +26,10 @@ describe Plane do
   end
   it 'is able to take off' do
     expect(subject).to respond_to :take_off
-    expect(subject.take_off).to be true
+    airport = Airport.new
+    plane = Plane.new
+    atc = AirTrafficController.new(plane)
+    atc.instruct_to_take_off
+    expect(subject.take_off(airport)).to be true
   end
 end

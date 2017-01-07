@@ -13,7 +13,8 @@ class Plane
     @taking_off
   end
 
-  def take_off
+  def take_off(airport)
+    airport.planes.delete(self)
     @taken_off = true
   end
 
