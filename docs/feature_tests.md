@@ -6,6 +6,13 @@ airport.land(plane)
 airport.take_off(plane)
 airport.planes
 
+US5
+airport = Airport.new
+plane = Plane.new
+100.times {airport.land(plane)}
+airport.land(plane)
+---- Error: Airport Full ---
+
 US6
 plane = Plane.new
 airport_gatwick = Airport.new(120)

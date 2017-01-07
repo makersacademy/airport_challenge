@@ -17,6 +17,12 @@ describe Airport do
     expect(subject.planes).to be_empty
   end
 
+  it 'prevents landing when the airport is full' do
+    Airport::DEF_CAPACITY.times {subject.land(Plane.new)}
+    expect{subject.land(Plane.new)}.to raise_error
+  end
+
+
   it 'assigns default airport capacity' do
     expect(subject.capacity).to eq 100
   end
