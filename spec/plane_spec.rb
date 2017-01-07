@@ -45,6 +45,12 @@ describe Plane do
     expect(subject.confirm_take_off?).to eq(true)
   end
 
+  it 'should not return true to confirm_take_off? after landing' do
+    airport = Airport.new
+    subject.land(airport)
+    expect(subject.confirm_take_off?).to eq(false)
+  end
+
   it 'should not be able to land when already stored in an airport' do
     airport = Airport.new
     subject.land(airport)
