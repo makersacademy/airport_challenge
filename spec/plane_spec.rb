@@ -6,9 +6,9 @@ def set_sunny(state)
 end
 
 def set_airport(name)
-  #let(:airport) { double(airport_name: name) }
   airport = instance_double("Airport")
-  allow(airport).to receive(:airport_name) { name }
+  allow(airport).to receive(:airport_name) { "Paris" }
+  p airport
 end
 
 describe Plane do
@@ -36,6 +36,10 @@ describe Plane do
         end
         it "confirms it has landed at the correct airport" do
 
+          airport = instance_double("Airport")
+          allow(airport).to receive(:airport_name) { "Paris" }
+          p airport
+          expect(plane.land(airport)).to eq "Plane has landed in sunny weather at Paris"
         end
       end
 
