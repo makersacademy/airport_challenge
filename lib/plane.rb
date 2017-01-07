@@ -1,6 +1,7 @@
 class Plane
 
   def land(airport)
+    fail "Plane is already landed at #{airport}." if airport.planes.include? (self)
     airport.store_plane(self)
   end
 
