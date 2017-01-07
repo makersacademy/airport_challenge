@@ -7,6 +7,7 @@ class Plane
   end
 
   def confirm_landed?
+    true
   end
 
   def confirm_take_off?
