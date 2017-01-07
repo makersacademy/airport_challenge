@@ -43,5 +43,12 @@ describe Airport do
     expect(Airport.new(120).capacity).to eq 120
   end
 
+  it 'lands and takes off a number of planes' do
+    allow(subject).to receive(:stormy?).and_return(false)
+    90.times{subject.land(Plane.new)}
+    20.times{subject.take_off(Plane.new)}
+    expect(subject.planes.count).to eq 70
+  end
+
 
 end
