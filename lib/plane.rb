@@ -5,14 +5,14 @@ class Plane
     @airborne = airborne
   end
 
-  def land
+  def land(airport=Airport.new)
     raise "Cannot land - already landed!" unless airborne?
     raise "Cannot land - weather is stormy!" unless sunny?
     update_airborne(false)
     "Plane has landed in sunny weather"
   end
 
-  def take_off
+  def take_off(airport=Airport.new)
     raise "Cannot take off - already airborne!" if airborne?
     raise "Cannot take off - weather is stormy!" unless sunny?
     update_airborne(true)

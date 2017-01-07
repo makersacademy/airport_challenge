@@ -12,6 +12,7 @@ describe Plane do
   describe ".land" do
 
     it { is_expected.to respond_to(:land) }
+    it { is_expected.to respond_to(:land).with(1).argument }
 
     context "plane is airborne" do
 
@@ -21,7 +22,7 @@ describe Plane do
           set_sunny(true)
         end
         it "can land" do
-          expect(plane.land). to eq "Plane has landed in sunny weather"
+          expect{plane.land}.not_to raise_error
         end
         it "confirms it has landed" do
           expect(plane.land).to include "Plane has landed"
@@ -50,6 +51,7 @@ describe Plane do
   describe ".take_off" do
 
     it { is_expected.to respond_to(:take_off) }
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     context "plane is airborne" do
       it "cannot take off" do
@@ -65,7 +67,7 @@ describe Plane do
           set_sunny(true)
         end
         it "can be instructed to take off" do
-          expect(plane).to respond_to(:take_off)
+          expect{plane.take_off}.not_to raise_error
         end
         it "confirms it has taken off" do
           expect(plane.take_off).to eq "Plane has taken off"
