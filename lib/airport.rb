@@ -14,13 +14,19 @@ class Airport
 
 	def land_plane(plane)
 		raise "Planes cannot land during storms!" if stormy?
-		raise "The airport is full!" if @grounded.count >= @capacity
+		raise "The airport is full!" if full?
 		@grounded << plane
 	end
 
 	def take_off(plane)
 		raise "Planes cannot take off during storms!" if stormy?
 		@grounded = nil
+	end
+
+	private
+
+	def full?
+		@grounded.count >= @capacity
 	end
 
 end
