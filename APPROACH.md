@@ -4,8 +4,8 @@
 
 Class | Attributes| Methods
 ------------ | ------------- |------------
-Plane| landed (true : false), ID, airport_code |land_plane , take_off_plane 
-Airport | weather (sunny, stormy), code, capacity|land_plane, take_off_plane
+Plane| landed (true : false), ID, airport_code |land , take_off
+Airport | weather (sunny, stormy), code, capacity|land, take_off
 User | type (Air traffic controller, System designer)| System designer - set_capacity
 
 ##2. Write feature tests from user stories 
