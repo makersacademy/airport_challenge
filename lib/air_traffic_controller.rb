@@ -7,7 +7,7 @@ class AirTrafficController
   end
 
   def check_weather
-    
+    @weather = Weather.new.current_weather
   end
 
   def instruct_to_land
