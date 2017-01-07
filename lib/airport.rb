@@ -38,5 +38,5 @@ class Airport
   def empty?
     @planes.count == 0
   end
-  
+
 end
