@@ -12,13 +12,13 @@ class Airport
   end
 
   def instruct_landing(plane)
-    raise "There is no space in the airport" if @planes.count >= DEFAULT_CAPACITY
+    raise "There is no space in the airport" if full?
     plane.land
     @planes << plane
   end
 
   def instruct_take_off(plane)
-    raise "There are no planes in the airport" if @planes.count == 0
+    raise "There are no planes in the airport" if empty?
     plane.taken_off
     @planes.delete(plane)
   end
@@ -31,4 +31,12 @@ class Airport
     !@planes.include?(plane)
   end
 
+  def full?
+    @planes.count >= DEFAULT_CAPACITY
+  end
+
+  def empty?
+    @planes.count == 0
+  end
+  
 end
