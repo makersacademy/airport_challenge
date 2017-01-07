@@ -58,16 +58,18 @@ describe Plane do
     let(:airport) {double :nice_airport,stormy?: false}
     let(:other_airport) {double :bad_airport,stormy?: true}
     before(:each) do
-      subject.land airport
+      subject.instance_variable_set(:@landed, true)
+      subject.instance_variable_set(:@airport, airport)
     end
 
     describe("#land") do
-      it{expect{subject.land airport}.to raise_error "can't land if already landed"}
+      message = "can't land if already landed"
+      it{expect{subject.land airport}.to raise_error message}
     end
 
     describe("#take_off") do
-      it{expect{subject.take_off}.not_to raise_error}
-      it{expect{subject.take_off other_airport}.to raise_error "plane not at that airport!"}
+      message = "plane not at that airport!"
+      it{expect{subject.take_off other_airport}.to raise_error message}
       it{expect{subject.take_off airport}.not_to raise_error}
       context "has taken off without erroring" do
         before(:each) do
@@ -91,14 +93,13 @@ describe Plane do
   context "on the ground in bad weather" do
     let(:airport) {double :bad_airport,stormy?: true}
     before(:each) do
-      # can't call land normally because of storm
-      # so direct interaction with variables is neccessary
       subject.instance_variable_set(:@landed, true)
       subject.instance_variable_set(:@airport, airport)
     end
 
     describe("#land") do
-      it{expect{subject.land airport}.to raise_error "can't land if already landed"}
+      message = "can't land if already landed"
+      it{expect{subject.land airport}.to raise_error message}
     end
 
     describe("#take_off") do
