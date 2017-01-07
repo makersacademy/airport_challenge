@@ -4,12 +4,28 @@
 
 Class | Attributes| Methods
 ------------ | ------------- |------------
-Plane| Landed (true : false), ID, airport_code |land_plane , take_off_plane 
+Plane| landed (true : false), ID, airport_code |land_plane , take_off_plane 
 Airport | weather (sunny, stormy), code, capacity|land_plane, take_off_plane
-User | Type (Air traffic controller, System designer)| System designer - set_capacity
+User | type (Air traffic controller, System designer)| System designer - set_capacity
 
 ##2. Write feature tests from user stories 
-  - _1 acceptance test for each user story_
+  - Min_1 acceptance test for each user story_
+  - _Feature Test cases:_
+  -__Scenario__
+  __As an airtraffic controller I want to...__
+  __Landing__
+  - Instruct a plane to land at an airport
+  - Confirm that plane has landed at instructed airport
+  - Prevent a plane from landing if it becomes stormy as plane is coming in 
+  - Prevent a plane from landing if airport is full 
+  
+  __Take off__
+  - Instruct a plane to take off from an airport 
+  - Confirm that it is no longer in the airport
+  - Prevent a plane from taking off if it becomes stormy as plane is coming in
+  
+  __Admin_System_designer__
+  - Set the capacity of a particular airport
 
 ##3. Follow BDD for each class identified in domain model
   - _writing rspec unit tests first_
@@ -21,18 +37,6 @@ User | Type (Air traffic controller, System designer)| System designer - set_cap
 ##5. Run relevant feature test
   - _once enough code is implemented_
          _amend unit test and class as appropriate_
- ##6. Feature Test cases:
-  -__Scenario__
-  
-  __Landing__
-  - Instruct a plane to land at an airport
-  - Confirm that plane has landed at instructed airport
-  - It becomes stormy as plane is coming in to land plane is prevented from landing
-  - Airport is full so plane is prevented from landing
-  
-  __Take off__
-  - instruct a plane to take off from an airport 
-  - confirm that it is no longer in the airport
-  - It becomes stormy as plane is preparing to take off plance is prevented from taking off
+
 
 
