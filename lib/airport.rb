@@ -18,14 +18,12 @@ class Airport
 		raise 'Airport is full' if full?
 		raise 'Weather is stormy, cannot land' if stormy?
 		@planes << plane
-		@planes
 	end
 
 	def take_off(plane)
 		raise 'Weather is stormy, cannot take off' if stormy?
 		@planes.delete(plane)
 	end
-
 
 
 	private 
