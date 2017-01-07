@@ -1,0 +1,3 @@
+require "./lib/plane.rb"
+
+plane = Plane.new
