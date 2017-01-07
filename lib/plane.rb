@@ -14,6 +14,7 @@ class Plane
 
   def take_off
     raise "Cannot take off - already airborne!" if airborne?
+    raise "Cannot take off - weather is stormy!" unless sunny?
     update_airborne(true)
     "Plane has taken off"
   end
