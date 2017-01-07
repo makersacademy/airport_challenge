@@ -1,6 +1,6 @@
 class Plane
 
-  def land_request
+  def land
 
   end
 
