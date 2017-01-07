@@ -54,5 +54,13 @@ describe AirTrafficController do
       subject.instruct_to_land
            }.to raise_error "Landing not permitted in stormy weather"
   end
+  it 'prevents take off when weather is stormy' do
+    expect {
+      until subject.weather == "Stormy" do
+        subject.check_weather
+      end
+      subject.instruct_to_take_off
+           }.to raise_error "Landing not permitted in stormy weather"
+  end
 
 end
