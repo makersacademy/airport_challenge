@@ -2,7 +2,7 @@ require "plane"
 describe Plane do
 
   context "in the air and good weather" do
-    let(:airport) {double :nice_airport, stormy?: false,take_off_request: "granted",full?: false}
+    let(:airport) {double :nice_airport, stormy?: false, full?: false}
 
     describe("#land") do
       context "has landed" do
