@@ -11,6 +11,7 @@ class Airport
   end
 
   def store_plane(plane)
+    fail "Airport is currently full." unless planes.length < capacity
     planes.push(plane)
     return planes
   end
