@@ -12,9 +12,10 @@ class Plane
     @airport = airport
   end
 
-  def take_off
+  def take_off airport = @airport
     raise "plane already in the air!" if !landed?
-    raise "can't take off in storm" if stormy?
+    raise "can't take off in storm!" if stormy?
+    raise "plane not at that airport!" if airport != @airport
     @landed = false
     @airport = nil
   end
