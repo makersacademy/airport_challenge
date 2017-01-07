@@ -15,6 +15,7 @@ class Airport
 	def land_plane(plane)
 		raise "Planes cannot land during storms!" if stormy?
 		raise "The airport is full!" if full?
+		raise "That plane is already grounded!" if !flying?(plane)
 		@grounded << plane
 	end
 
@@ -32,6 +33,10 @@ class Airport
 
 	def plane_present?(plane)
 		@grounded.include?(plane)
+	end
+
+	def flying?(plane)
+		plane.airborne
 	end
 
 end

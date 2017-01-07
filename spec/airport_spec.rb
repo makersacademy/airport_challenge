@@ -36,6 +36,7 @@ describe Airport do
 			subject.capacity.times{subject.land_plane(Plane.new)}
 		 	expect{subject.land_plane(Plane.new)}.to raise_error("The airport is full!")
 		end
+
 	end
 
 	describe '#take_off' do

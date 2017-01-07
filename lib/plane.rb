@@ -5,5 +5,9 @@ class Plane
 	def initialize
 		@airborne = true
 	end
-	
+
+	def in_air
+		@airborne = true
+	end
+
 end
