@@ -14,7 +14,7 @@ class AirTrafficController
   end
 
   def instruct_to_take_off
-    
+    @plane_to_instruct.taking_off = true unless !@plane_to_instruct
   end
 
 end

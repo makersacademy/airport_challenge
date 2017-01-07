@@ -21,7 +21,7 @@ describe Plane do
     atc.instruct_to_take_off
     expect(plane).to be_clear_to_take_off
   end
-  it 'is able to land' do
+  it 'is able to take off' do
     expect(subject).to respond_to :take_off
     expect(subject.take_off).to be true
   end
