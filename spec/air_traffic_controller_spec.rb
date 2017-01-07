@@ -60,7 +60,7 @@ describe AirTrafficController do
         subject.check_weather
       end
       subject.instruct_to_take_off
-           }.to raise_error "Landing not permitted in stormy weather"
+    }.to raise_error "Takeoff not permitted in stormy weather"
   end
 
 end
