@@ -11,4 +11,10 @@ class Controller
     plane.status = false
     true
   end
+  def block_takeoff_if_stormy(stormy)
+    stormy
+  end
+  def block_landing_if_stormy(stormy)
+    stormy
+  end
 end

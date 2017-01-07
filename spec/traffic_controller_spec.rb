@@ -7,7 +7,7 @@ describe Controller do
     end
   end
 
-  describe 'instruct takeoff' do
+  describe 'instruct_takeoff' do
     it 'controller instructs for takeoff only a plane with fly status true' do
       message = "The plane is already flying"
       expect {subject.instruct_takeoff(Plane.new)}.to raise_error(message)
@@ -19,7 +19,7 @@ describe Controller do
     end
   end
 
-  describe 'instruct landing' do
+  describe 'instruct_landing' do
     it 'controller instructs for landing only a plane with fly status flase' do
       message = "The plane has already landed"
       expect {subject.instruct_landing(Plane.new(false))}.to raise_error(message)
@@ -29,5 +29,27 @@ describe Controller do
       expect(subject.instruct_landing(plane)).to eq(true)
       expect(plane.status).to eq(false)
     end
+  end
+
+  describe 'block_takeoff_if_stormy' do
+    it 'returns true if the weather is stromy' do
+      expect(subject.block_takeoff_if_stormy(true)).to eq(true)
+    end
+    it 'returns false if the weather is not stormy' do
+      expect(subject.block_takeoff_if_stormy(false)).to eq(false)
+    end
+  end
+
+  describe 'block_landing_if_stormy' do
+    it 'returns true if the weather is stromy' do
+      expect(subject.block_landing_if_stormy(true)).to eq(true)
+    end
+    it 'returns false if the weather is not stormy' do
+      expect(subject.block_landing_if_stormy(false)).to eq(false)
+    end
+  end
+
+  describe 'stormy random function' do
+
   end
 end
