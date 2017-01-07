@@ -33,6 +33,7 @@ describe Plane do
 
   it 'should return true to confirm_take_off? after take_off' do
     airport = Airport.new
+    subject.land(airport)
     subject.take_off(airport)
     expect(subject.confirm_take_off?).to eq(true)
   end
