@@ -6,7 +6,8 @@ describe Airport do
 
   it 'confirms a plane has landed' do
     plane = Plane.new
-    expect(subject.landed).to eq true
+    subject.landed(plane)
+    expect(subject.plane).to eq plane
   end
 
 end
