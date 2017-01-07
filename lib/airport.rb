@@ -13,7 +13,7 @@ attr_reader :landing_bay
     plane = plane
     plane.change_status("Landed")
     @landing_bay << plane
-    plane
+    
   end
 
 
