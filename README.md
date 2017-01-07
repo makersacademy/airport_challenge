@@ -38,8 +38,17 @@ User Story 1
 
 The first user story requires interaction between two new objects, Plane and Airport.
 
-My first decision was wether to create a land method on for the Plane or Airport class. I decided to go with the Plane using the land method because I felt that ```plane.land(airport)``` would make more sense to the user.
+My first decision was whether to create a land method for the Plane or Airport class. I decided to go with the Plane using the land method because I felt that ```plane.land(airport)``` would make more sense to the user.
 
 The land method takes the airport as the parameter and returns it when called on a plane.
 
 Next I created the landed? method, which uses the instance variable landed to return a boolean. This is initialized to false when the place is created, and is set to true by the land method.
+
+User Story 2
+-------------
+
+Before starting on this story I did some refactoring. I decided that the landed? method was superfluous and instead kept the landed state of the plane in an attribute reader.
+
+My first step was to implement the take_off method for the Plane class. When called ```plane.take_off``` it changes the @landed variable from true to false.
+
+To confirm that the plane is no longer at an airport, I created an airport attribute reader. This is initialized to :flying when the place is created. I then updated the land method to change @airport to the airport passed in. When take_off is called, it resets the @airport variable back to :flying.
