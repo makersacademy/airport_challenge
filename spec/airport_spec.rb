@@ -1,8 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) {double :plane}
-
+ 
+ let(:plane) {double :plane}
 
 	describe '#land' do
 		it {is_expected.to respond_to(:land).with(1).argument}
@@ -72,23 +72,18 @@ describe Airport do
 
 		context 'return defaults' do
 			it 'should return 10 if no capacity is given' do
-				expect{(Airport.new.capacity).to eq subject::DEFAULT_CAPACITY}
+				expect{(Airport.new::capacity).to eq subject::DEFAULT_CAPACITY}
 			end
 
 			it ' airport default capacity should return 10 if no capacity is given' do
-				expect{subject::DEFAULT_CAPACITY.to eq 10}
+			expect(Airport.new).to have_attributes(:capacity => 10)
 			end
 
 		end
-
-		context 'with arguments for new instance' do
-			let(:airport) {Airport.new(12)}
 
 			it 'shoud return 12' do
-				expect{(airport.capacity).to eq 12}
+			expect(Airport.new(12)).to have_attributes(:capacity => 12)
 			end
-		end
-	
 	end
 
 end
