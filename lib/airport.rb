@@ -1,4 +1,4 @@
-class DestAirport
+class Airport
     def initialize
       @planes = []
     end
@@ -8,7 +8,10 @@ class DestAirport
       return @planes[0]
     end
 
-
+    def takeoff_plane(plane)
+      @planes.pop
+      return @planes
+    end
 
 
 end

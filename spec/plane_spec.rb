@@ -1,7 +1,7 @@
 require './lib/plane.rb'
-require './lib/dest_airport.rb'
+require './lib/airport.rb'
 
-dest_airport = DestAirport.new
+dest_airport = Airport.new
 
 describe Plane do
 
@@ -12,10 +12,13 @@ describe Plane do
   it 'plane lands' do
     plane = Plane.new
     expect(plane.land).to eq ['landed']
-
   end
 
-
+  it 'plane takes off' do
+    plane = Plane.new
+    plane.land
+    expect(plane.takeoff).to eq ['flying']
+  end
 
 
 

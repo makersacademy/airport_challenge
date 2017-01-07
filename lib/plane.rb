@@ -10,9 +10,12 @@ class Plane
   def land
     @state.pop
     @state.push('landed')
-    
   end
 
+  def takeoff
+    @state.pop
+    @state.push('flying')
+  end
 
 
 
