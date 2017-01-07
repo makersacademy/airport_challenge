@@ -8,4 +8,8 @@ describe Airport do
   it 'should have a default capacity of 1' do
     expect(subject.capacity).to eq 1
   end
+
+  it 'should respond to method override_capacity' do
+    expect(subject).to respond_to :override_capacity
+  end
 end
