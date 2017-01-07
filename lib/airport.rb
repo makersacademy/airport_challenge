@@ -12,7 +12,7 @@ class Airport
 		@grounded = plane
 	end
 
-	def take_off
+	def take_off(plane)
 		raise "Planes cannot take off during storms!" if stormy?
 		@grounded = nil
 	end

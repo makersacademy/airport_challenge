@@ -4,7 +4,7 @@ describe Airport do
 
 	it {is_expected.to respond_to(:land_plane).with(1).argument}
 	
-	it {is_expected.to respond_to :take_off}
+	it {is_expected.to respond_to(:take_off).with(1).argument}
 
 	describe '#land_plane' do
 		it 'allows planes to land in good weather' do
@@ -19,6 +19,7 @@ describe Airport do
 		end
 
 		it 'raises an error when airport is full' do
+			allow(subject).to receive(:stormy?).and_return false
 			subject.land_plane(Plane.new)
 		 	expect{subject.land_plane(Plane.new)}.to raise_error("The airport is full!")
 		end
@@ -26,13 +27,15 @@ describe Airport do
 
 	describe '#take_off' do
 		it 'allows planes to leave airport in good weather' do
+			plane = Plane.new
 			allow(subject).to receive(:stormy?).and_return false
-			expect(subject.take_off).to eq nil
+			expect(subject.take_off(plane)).to eq nil
 		end
 
 		it 'raises an error when stormy' do
+			plane = Plane.new
 			allow(subject).to receive(:stormy?).and_return true
-			expect{subject.take_off}.to raise_error("Planes cannot take off during storms!")
+			expect{subject.take_off(plane)}.to raise_error("Planes cannot take off during storms!")
 		end
 	end
 
