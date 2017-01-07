@@ -12,6 +12,12 @@ class Airport
 
   def store_plane(plane)
     planes.push(plane)
+    return planes
+  end
+
+  def release_plane(plane)
+    planes.delete(plane)
+    return planes
   end
 
 end

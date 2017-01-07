@@ -5,6 +5,7 @@ class Plane
   end
 
   def take_off(airport)
+    airport.release_plane(self)
   end
 
   def confirm_landed?
