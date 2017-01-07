@@ -23,4 +23,12 @@ describe AirTrafficController do
     plane.land
     expect(plane).to be_landed
   end
+  it 'instructs planes to take off from an airport' do
+    Airport.new
+    plane = Plane.new
+    atc = AirTrafficController.new(plane)
+    atc.instruct
+    expect(plane).to be_clear_for_take_off
+  end
+
 end
