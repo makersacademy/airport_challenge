@@ -1,4 +1,4 @@
-# Airport Challenge
+# Airport Challenge <div align="right">[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg)](https://coveralls.io/github/makersacademy/airport_challenge)</div>
 ### [Makers Academy] (http://www.makersacademy.com) - Week 1 Solo Weekend Project
 
 ```
