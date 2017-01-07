@@ -14,21 +14,28 @@ attr_reader :planes, :weather, :capacity
   end
 
   def land plane
-    if stormy?
+    if plane.status == "landed"
+      raise "plane has already landed"
+    elsif  stormy?
     raise "no landing possible because of weather conditions"
     elsif full?
     raise "airport is full"
     else
     planes << plane
+    plane.status = "landed"
     "plane has landed"
     end
   end
 
   def take_off plane
+    if !planes.include?(plane)
+      raise "#{plane} is not at this airport"
+    end
     if stormy?
     raise "no take off possible because of weather conditions"
     else
     planes.pop
+    plane.status = "airborne"
     "plane has taken off"
     end
   end
