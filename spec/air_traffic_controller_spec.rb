@@ -42,9 +42,13 @@ describe AirTrafficController do
     expect(plane).to be_taken_off
     expect(airport.planes.include?(plane)).to eq false
   end
-  it 'prevents take off when weather is stormy' do
+  it 'can view the weather condition' do
     expect(subject).to respond_to :check_weather
     expect(Weather::WEATHER_CONDITIONS.include?(subject.check_weather)).to eq true
+  end
+  it 'prevents take off when weather is stormy' do
+    current_weather = "Stormy"
+    expect{ subject.instruct_to_land }.to raise_error "Landing not permitted in stormy weather"
   end
 
 end
