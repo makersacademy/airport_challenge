@@ -4,8 +4,8 @@
 
 Class | Attributes| Methods
 ------------ | ------------- |------------
-Plane| landed (true : false), ID, airport_code |land , take_off
-Airport | weather (sunny, stormy), code, capacity|land, take_off
+Plane| landed (true : false), - (Enhancement: ID, airport_code) |land , take_off
+Airport | weather (sunny, stormy), capacity,(Enhancement: Code)|land, take_off
 User | type (Air traffic controller, System designer)| System designer - set_capacity
 
 ##2. Write feature tests from user stories 
@@ -40,7 +40,7 @@ User | type (Air traffic controller, System designer)| System designer - set_cap
 
 ##5. Run relevant feature test
   - _once enough code is implemented_
-         _amend unit test and class as appropriate_
+         _amend unit test and class as appropriate based on test output_
 
 
 
