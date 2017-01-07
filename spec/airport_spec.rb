@@ -27,4 +27,12 @@ describe Airport do
     plane.land(subject)
     expect(plane.take_off(subject)).to eq(subject.planes)
   end
+
+  it 'should raise an error if plane attempts to land when full' do
+    first_plane = Plane.new
+    first_plane.land(subject)
+    second_plane = Plane.new
+    
+    expect(second_plane.land(subject)).to raise_error("Airport is currently full.")
+  end
 end
