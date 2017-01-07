@@ -13,4 +13,9 @@ class Airport
     @planes = []
   end
 
+  def fleet(plane)
+    raise "Plane is already on the ground" if @planes.include?(plane)
+    @planes << plane
+  end
+
 end

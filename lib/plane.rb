@@ -27,7 +27,7 @@ class Plane
   end
 
   def land(airport)
-    airport.planes << self
+    airport.fleet(self)
     @landed = true
   end
 
