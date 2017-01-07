@@ -10,6 +10,7 @@ describe Airport do
   end
   it 'allows the default capacity to be overridden as appropriate' do
     expect(subject.capacity = 5).to eq 5
-    expect(subject(50).capacity).to eq 50
+    airport = Airport.new(50)
+    expect(airport.capacity).to eq 50
   end
 end
