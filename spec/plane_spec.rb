@@ -6,14 +6,7 @@ describe Plane do
       expect(subject).to be_a(Plane)
     end
     it 'plane can fly, true by default' do
-      expect(subject.fly?).to eq(true)
-    end
-  end
-
-  describe 'checks that fly? function can get a parametor' do
-    it 'plane can recieve a flight status' do
-      expect(subject.fly?(true)).to eq(true)
-      expect(subject.fly?(false)).to eq(false)
+      expect(subject.status).to eq(true)
     end
   end
 

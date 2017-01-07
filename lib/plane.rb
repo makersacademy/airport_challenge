@@ -5,8 +5,4 @@ class Plane
   end
 
   attr_accessor :status
-
-  def fly?(status = true)
-    status
-  end
 end
