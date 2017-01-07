@@ -5,7 +5,7 @@ class Airport
     @capacity = 1
   end
 
-  def override_capacity
+  def override_capacity(new_capacity)
   end
 
 end
