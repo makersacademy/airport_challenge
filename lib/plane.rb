@@ -17,6 +17,7 @@ class Plane
     
     def take_off
         raise "Plane already flying" unless @landed
+        raise "Too stormy to take off" if airport.stormy?
         @landed = false
         @airport = :flying
     end

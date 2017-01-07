@@ -27,12 +27,15 @@ describe Plane do
         
         it 'can\'t land again when already landed' do
             error_message = "Plane already landed"
-            expect{subject.land(airport)}.to raise_error error_message
+            expect{ subject.land(airport) }.to raise_error error_message
         end
     end
     
     describe '#take_off' do
+        let(:airport) { double :airport }
+        
         before do
+            allow(airport).to receive(:stormy?).and_return(false)
             subject.land(airport)
             subject.take_off
         end
@@ -47,7 +50,14 @@ describe Plane do
         
         it 'can\'t take off when already flying' do
             error_message = "Plane already flying"
-            expect{subject.take_off}.to raise_error error_message
+            expect{ subject.take_off }.to raise_error error_message
+        end
+        
+        it 'can\'t take off when stormy' do
+            allow(airport).to receive(:stormy?).and_return(true)
+            subject.land(airport)
+            error_message = "Too stormy to take off"
+            expect{ subject.take_off }.to raise_error error_message
         end
     end
 end
