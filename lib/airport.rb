@@ -6,10 +6,14 @@ class Airport
 	
 	attr_reader :grounded
 
+	def initialize
+		@grounded = []
+	end
+
 	def land_plane(plane)
 		raise "Planes cannot land during storms!" if stormy?
-		raise "The airport is full!" if @grounded
-		@grounded = plane
+		raise "The airport is full!" if @grounded.count >= 10
+		@grounded << plane
 	end
 
 	def take_off(plane)

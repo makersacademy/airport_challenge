@@ -6,11 +6,17 @@ describe Airport do
 	
 	it {is_expected.to respond_to(:take_off).with(1).argument}
 
+	it 'can hold multiple planes' do
+		allow(subject).to receive(:stormy?).and_return false
+		10.times{subject.land_plane(Plane.new)}
+		expect(subject.grounded.count).to eq 10
+	end
+
 	describe '#land_plane' do
 		it 'allows planes to land in good weather' do
 			allow(subject).to receive(:stormy?).and_return false
 			plane = Plane.new
-			expect(subject.land_plane(plane)).to eq plane
+			expect(subject.land_plane(plane)).to eq [plane]
 		end
 
 		it 'raises an error when stormy' do
@@ -20,7 +26,7 @@ describe Airport do
 
 		it 'raises an error when airport is full' do
 			allow(subject).to receive(:stormy?).and_return false
-			subject.land_plane(Plane.new)
+			10.times{subject.land_plane(Plane.new)}
 		 	expect{subject.land_plane(Plane.new)}.to raise_error("The airport is full!")
 		end
 	end
