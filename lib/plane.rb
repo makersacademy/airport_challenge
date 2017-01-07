@@ -10,8 +10,10 @@ class Plane
   def land airport
     fail "can't land if already landed" if landed?
     fail "can't land in storm" if stormy? airport
+    fail "that airport is full!" if airport.full?
     @landed = true
     @airport = airport
+    true
   end
 
   def take_off location = airport
@@ -20,6 +22,7 @@ class Plane
     fail "plane not at that airport!" if location != airport
     @landed = false
     @airport = nil
+    true
   end
 
   def landed?

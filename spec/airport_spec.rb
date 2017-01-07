@@ -32,21 +32,6 @@ describe Airport do
     end
   end
 
-  describe "#take_off_request" do
-    context "weather is good" do
-      before(:each) do
-        subject.instance_variable_set(:@weather_station, good_weather)
-      end
-      it{expect(subject.take_off_request).to eq "granted"}
-    end
-    context "weather is bad" do
-      before(:each) do
-        subject.instance_variable_set(:@weather_station, bad_weather)
-      end
-      it{expect(subject.take_off_request).to eq "denied : weather is bad"}
-    end
-  end
-
   describe "#full?" do
     it{is_expected.not_to be_full}
     it "should return true when full" do
@@ -55,29 +40,8 @@ describe Airport do
     end
   end
 
-  describe "#landing_request" do
-    context "weather is good but airport is full" do
-      it "should eq \"denied : airport full\"" do
-        subject.capacity.times{subject.plane_landed plane}
-        expect(subject.landing_request).to eq "denied : airport full"
-      end
-    end
-    context "weather is bad" do
-      before(:each) do
-        subject.instance_variable_set(:@weather_station, bad_weather)
-      end
-      it{expect(subject.landing_request).to eq "denied : weather is bad"}
-    end
-    context "weather is good" do
-      before(:each) do
-        subject.instance_variable_set(:@weather_station, good_weather)
-      end
-      it{expect(subject.landing_request).to eq "granted"}
-    end
-  end
-
   describe "#initialize" do
-    it{expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY}
+    it{expect(Airport::DEFAULT_CAPACITY).to eq subject.capacity}
     it{expect(Airport.new(3).capacity).to eq 3}
     it "should create its own weather station if not given one" do
       expect(Airport.new.weather_station.class).to eq WeatherStation

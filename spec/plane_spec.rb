@@ -1,8 +1,8 @@
 require "plane"
 describe Plane do
 
-  context "in the air and fine weather" do
-    let(:airport) {double :nice_airport,stormy?: false}
+  context "in the air and good weather" do
+    let(:airport) {double :nice_airport, stormy?: false,take_off_request: "granted",full?: false}
 
     describe("#land") do
       context "has landed" do
@@ -13,6 +13,10 @@ describe Plane do
         it "should be landed at the aiport it was asked to land at" do
           expect(subject.airport).to eq airport
         end
+      end
+      it "should not land at a full airport" do
+        allow(airport).to receive(:full?).and_return(:true)
+        expect{subject.land airport}.to raise_error "that airport is full!"
       end
     end
 
@@ -32,7 +36,7 @@ describe Plane do
   end
 
   context "in the air and bad weather" do
-    let(:airport) {double :bad_airport,stormy?: true}
+    let(:airport) {double :bad_airport,stormy?: true,full?: false}
 
     describe("#land") do
       it{expect{subject.land airport}.to raise_error "can't land in storm"}
@@ -54,8 +58,8 @@ describe Plane do
   end
 
   context "on the ground in good weather" do
-    let(:airport) {double :nice_airport,stormy?: false}
-    let(:other_airport) {double :bad_airport,stormy?: true}
+    let(:airport)       {double :nice_airport,stormy?: false,full?: false}
+    let(:other_airport) {double :bad_airport ,stormy?: false,full?: false}
     before(:each) do
       subject.instance_variable_set(:@landed, true)
       subject.instance_variable_set(:@airport, airport)
@@ -89,7 +93,7 @@ describe Plane do
   end
 
   context "on the ground in bad weather" do
-    let(:airport) {double :bad_airport,stormy?: true}
+    let(:airport) {double :bad_airport,stormy?: true,full?: false}
     before(:each) do
       subject.instance_variable_set(:@landed, true)
       subject.instance_variable_set(:@airport, airport)

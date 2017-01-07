@@ -2,10 +2,10 @@ require_relative "weather_station"
 
 class Airport
   DEFAULT_CAPACITY = 5
-  attr_reader :weather_station, :capacity, :planes
+  attr_reader :weather_station, :planes , :capacity
 
-  def initialize(capacity = DEFAULT_CAPACITY, station = WeatherStation.new)
-    @capacity = capacity
+  def initialize(init_capacity = DEFAULT_CAPACITY, station = WeatherStation.new)
+    @capacity = init_capacity
     @weather_station = station
     @planes = []
   end
@@ -16,17 +16,6 @@ class Airport
 
   def plane_taken_off plane
     @planes.delete plane
-  end
-
-  def take_off_request
-    return "denied : weather is bad" if stormy?
-    return "granted"
-  end
-
-  def landing_request
-    return "denied : airport full" if full?
-    return "denied : weather is bad" if stormy?
-    return "granted"
   end
 
   def full?
