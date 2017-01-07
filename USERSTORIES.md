@@ -26,8 +26,8 @@ Object | Message
 ------ | -------
 air_traffic_controller |
 passenger |
-plane | taken_off
-airport | take_off?
+plane | take_off
+airport | taken_off?
 
 **Notes:**
 
@@ -37,7 +37,15 @@ Changed all the class methods that I had created. Now Airplane has the method .l
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
+```
+Object | Message
+------ | -----
+air_traffic_controller |
+weather | safe?
+plane | take_off
 
+
+```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
