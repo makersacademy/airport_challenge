@@ -1,90 +1,44 @@
-Airport Challenge
-=================
+#Approach to first challenge    [BUILD] (https://travis-ci.org/olwend/airport_challenge.svg?branch=master)
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+##1. Domain model
 
-```
+Class | Attributes| Methods
+------------ | ------------- |------------
+Plane| landed (true : false), - (Enhancement: ID, airport_code) |land , take_off
+Airport | weather (sunny, stormy), capacity,(Enhancement: Code)|land, take_off
+User | type (Air traffic controller, System designer)| System designer - set_capacity
 
-Instructions
----------
+##2. Write feature tests from user stories
+  - Min_1 acceptance test for each user story_
+  - _Feature Test cases:_
+  -__Scenario__
+  __As an airtraffic controller I want to...__
+  __Landing__
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+  -[] Instruct a plane to land at an airport
+  -[] Confirm that plane has landed at instructed airport
+  -[] Prevent a plane from landing if it becomes stormy as plane is coming in
+  -[]Prevent a plane from landing if airport is full
 
-Steps
--------
+  __Take off__
+  - []Instruct a plane to take off from an airport
+  - []Confirm that it is no longer in the airport
+  - []Prevent a plane from taking off if it becomes stormy as plane is coming in
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+  __Admin_System_designer__
+  - []Set the capacity of a particular airport
 
-Task
------
+##3. Follow BDD for each class identified in domain model
+  - _writing rspec unit tests first_
+      * build the simplest code to pass each test
+      * refactor as go along
+      * plane cannot take off or land if stormy
+      * plane cannot land if airport is full
+      * plane cannot land is already landed
+      * plane cannot take off if already in air
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+##4. Repeat for each class
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+##5. Run relevant feature test
+  - _once enough code is implemented_
+         _amend unit test and class as appropriate based on test output_
