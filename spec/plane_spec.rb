@@ -11,7 +11,7 @@ describe Plane do
     
     subject { described_class.new }
     let(:airport) { double :airport }
-    
+
     describe '#land' do
         before do
             subject.land(airport)
@@ -23,6 +23,11 @@ describe Plane do
         
         it 'it returns the airport it has landed at' do
             expect(subject.airport).to eq airport    
+        end
+        
+        it 'can\'t land again when already landed' do
+            error_message = "Plane already landed"
+            expect{subject.land(airport)}.to raise_error error_message
         end
     end
     
@@ -39,19 +44,10 @@ describe Plane do
         it 'sets current airport to flying' do
             expect(subject.airport).to eq :flying
         end
-    end
-    
-=begin
-    describe '#landed?' do
-        it 'returns true when landed' do
-            subject.land(airport)
-            expect(subject.landed?).to eq true
-        end
         
-        it 'returns false when not landed' do
-            expect(subject.landed?).to eq false
+        it 'can\'t take off when already flying' do
+            error_message = "Plane already flying"
+            expect{subject.take_off}.to raise_error error_message
         end
     end
-=end  
-
 end

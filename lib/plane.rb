@@ -10,16 +10,14 @@ class Plane
     end
     
     def land(airport)
+        raise "Plane already landed" if @landed
         @landed = true
         @airport = airport
     end
     
     def take_off
+        raise "Plane already flying" unless @landed
         @landed = false
         @airport = :flying
     end
-    
-    #def landed?
-    #    @landed
-    #end
 end
