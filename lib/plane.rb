@@ -1,5 +1,6 @@
 # plane class
 require 'airport.rb'
+require 'weather.rb'
 
 class Plane
   def initialize
@@ -7,7 +8,8 @@ class Plane
   end
 
   attr_reader :airport
-  def land(airport)
+  def land(airport, weather = 'ok')
+    raise "Weather is too stormy" if weather == 'stormy'
     airport.plane= self
     @airport = airport
   end
@@ -20,7 +22,12 @@ class Plane
     end
   end
 
-  def takeoff(airport)
+  # def stormy?
+  #   weather == 'stormy'
+  # end
+
+  def takeoff(airport, weather='ok')
+    raise "Weather is too stormy" if weather == 'stormy'
     airport.plane = nil
     @airport = nil
   end
