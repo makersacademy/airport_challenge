@@ -6,6 +6,7 @@ class Plane
   end
 
   def take_off(airport)
+    fail "Plane is not currently in #{airport} so cannot take off." unless airport.planes.include? (self)
     airport.release_plane(self)
   end
 
