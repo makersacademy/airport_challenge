@@ -19,13 +19,13 @@ describe Airport do
 
   it 'should store a plane that has landed' do
     plane = Plane.new
-    expect(plane.land(subject)).to eq(subject.planes)
+    expect{plane.land(subject)}.to change{ subject.planes.length }.by(1)
   end
 
   it 'should release a plane that has taken off' do
     plane = Plane.new
     plane.land(subject)
-    expect(plane.take_off(subject)).to eq(subject.planes)
+    expect{plane.take_off(subject)}.to change{ subject.planes.length }.by(-1)
   end
 
   it 'should raise an error if plane attempts to land when full' do
