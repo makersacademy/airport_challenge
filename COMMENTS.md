@@ -7,3 +7,6 @@ Detailing my approach
 
 ## Step 2:
 - Decided to define a plane class and test that it responds to all the methods/messages defined in the domain model
+
+##Step 3:
+- Next step seemed to be to create some memory between the methods so that planes can be stored at different airports
