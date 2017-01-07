@@ -11,9 +11,11 @@ class Airport
   end
 
   def plane_landed plane
+    @planes << plane
   end
 
   def plane_taken_off plane
+    @planes.delete plane
   end
 
   def take_off_request?

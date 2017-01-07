@@ -7,12 +7,6 @@ class Plane
     @airport = nil
   end
 
-  def plane_landed plane
-  end
-
-  def plane_taken_off plane
-  end
-  
   def land airport
     fail "can't land if already landed" if landed?
     fail "can't land in storm" if stormy? airport
