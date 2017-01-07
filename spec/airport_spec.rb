@@ -6,5 +6,6 @@ describe Airport do
   end
   it 'Has a maximum capacity of planes that it can hold' do
     expect(subject).to respond_to :capacity
+    expect(subject.capacity).not_to be_nil
   end
 end
