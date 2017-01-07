@@ -16,6 +16,7 @@ class AirTrafficController
   end
 
   def instruct_to_take_off
+    raise "Takeoff not permitted in stormy weather" if @weather == "Stormy"
     @plane_to_instruct.taking_off = true unless !@plane_to_instruct
   end
 
