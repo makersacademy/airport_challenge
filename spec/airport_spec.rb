@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) {described_class.new}
+  subject(:airport) {described_class.new(15)}
   let(:plane) {double :plane}
 
   describe 'Airport' do
@@ -37,6 +37,16 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       expect(plane.flying).to eq(false)
+    end
+  end
+
+  describe '#initialize' do
+    it "sets the airport's capacity" do
+      expect(subject.capacity).to eq(15)
+    end
+    it 'sets a default capacity' do
+      airport = Airport.new
+      expect(airport.capacity).to eq(20)
     end
   end
 end
