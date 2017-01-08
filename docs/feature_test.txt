@@ -20,6 +20,6 @@ Error: No landing slots available!
 US6
 plane = Plane.new
 airport_1 = Airport.new
-airport_1.capacity ---> 300
+airport_1.capacity = 200
 airport_2 = Airport.new
-airport_2.capacity ----> 1000
+airport_2.capacity = 1000
