@@ -4,14 +4,26 @@ class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :sunny
   attr_reader :capacity
+  attr_accessor :planes
+
 
 def initialize(capacity = DEFAULT_CAPACITY)
   @planes = []
   @capacity = capacity
+  @weather = sunny
+  #@landed =
+  #plane.@landed = status
 end
-def land_plane
-  @planes << plane
+#find way to pass plane with attr into array
+# somewhere do if plane.landed = false else raise_error
+#NOW NEED TO PASS IN LANDED AND NOT LANDED PLANES
+def land_plane#(plane_to_land = Plane.new)
+  plane_to_land = Plane.new
+  #raise_error(Runtimeerror)if plane_to_land.@landed = true
+  #plane_to_land.landed = true
+  @planes << plane_to_land
 end
+
 
 def takeoff_plane
   @planes.pop

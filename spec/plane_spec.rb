@@ -17,14 +17,15 @@ end
 #
  it 'controller can confirm plane is mid air' do
    plane1 = Plane.new
-   plane1.takeoff
    expect(plane1.landed). to eq false
  end
 
- it 'controller can confirm plane is landed' do
-   plane2 = Plane.new
-   expect(plane2.landed).to eq true
- end
+ # it 'controller can confirm plane is landed' do
+ #   plane2 = Plane.new
+ #   ema = Airport.new
+ #   ema.land_plane(plane2)
+ #   expect(plane2.landed).to eq true
+ # end
 
 
 # it 'plane takeoff will error if plane is already in air' do

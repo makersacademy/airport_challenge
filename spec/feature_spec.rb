@@ -4,18 +4,20 @@ require './lib/Airport'
 
 # As an airtraffic controller I want to...
 
-describe 'land plane' do
+describe 'take off and land planes' do
 #plane in air on way to airport - rework rspec
-  it 'instruct plane to takeoff and confirm it is in air' do
+  it 'instruct a plane to take off from an airport and confirm that it is no longer in the airport
+' do
     plane1 = Plane.new
     plane1.takeoff
     expect(plane1.landed). to eq false
   end
 
 #Instruct a plane to land at an airport and confirm landing  - rework rspec
-  it 'instruct plane to land and confirm landed' do
+  it 'instruct a plane to land at an airport and confirm that it has landed ' do
     plane1 = Plane.new
     plane1.land
+    #GET IT OUT OF ARRAY
     expect(plane1.landed). to eq true
   end
 # Confirm that plane has landed at instructed airport

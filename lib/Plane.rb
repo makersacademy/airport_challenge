@@ -3,7 +3,7 @@ class Plane
 attr_reader :landed
 
   def initialize
-    @landed = true
+    @landed = false
   end
 
   def takeoff
