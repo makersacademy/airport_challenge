@@ -1,20 +1,20 @@
 require './lib/airplane.rb'
-require './lib/weather.rb'
 
 
 
 class Airport
 
 attr_reader :landed_planes
-attr_reader :weather_today
+attr_accessor :stormy
 attr_reader :capacity
+attr_accessor :weather_generator
 
 DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @landed_planes = []
-    @weather_today = Weather.new.weather
+    #@stormy = weather_generator
   end
 
   def land_plane(plane)
@@ -40,8 +40,14 @@ DEFAULT_CAPACITY = 20
     "The plane has left"
   end
 
+  def weather_generator
+    if Kernel.rand(100) > 75
+      true
+    end
+  end
+
   def stormy?
-    fail "Storm preventing takeoff and landing." if @weather_today == "Stormy"
+    fail "Storm preventing takeoff and landing." if weather_generator
   end
 
   def full?
