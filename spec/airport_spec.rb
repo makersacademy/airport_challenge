@@ -18,6 +18,9 @@ describe Airport do
     it "saves false to @full?" do
       expect(airport.full?).to eq false
     end
+    it "saves empty array to @planes" do
+      expect(airport.planes).to eq []
+    end
   end
 
   describe "Instance of Airport" do
@@ -44,7 +47,15 @@ describe Airport do
 
 
       describe ".dock" do
+
         it { is_expected. to respond_to(:dock).with(1).argument }
+
+        it "adds a landed plane to @planes" do
+          plane = instance_double("Plane")
+          airport.dock(plane)
+          expect(airport.planes).to include (plane)
+        end
+
       end
     end
 
