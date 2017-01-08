@@ -25,42 +25,71 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport and confirm that it has landed
 
+```
+```
+
 - Plane and Airport classes defined and spec files created
 - Test written for land method (Airport)
 - land method defined for Airport class
 - Test written for landed? method (Plane)
 - landed? method defined for Plane class
 
+```
+```
+
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+```
 
 - Tests written for fly method (Airport) and flying? method (Plane
 - fly method defined (Airport class) flying? method defined (Plane class)
 - Initialize method defined (Airport class) to initialize empty airport
 - Edited method names for clarity and condensed 'fly? and 'landed?' method to singular status 'airborne'.
 - Initialize method defined (Plane class) to initialize plane with 'airborne' status set to false.
+```
+```
 
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
+```
+```
 
 - stormy? method created for Airport class to set weather conditions using rand
-- Test written and take_off method set to fail if weather stormy
+- Test written and 'take_off' method set to fail if weather stormy
+```
+```
 
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
+```
+```
 
-- Test written and land method set to fail if weather stormy
+- Test written and 'land' method set to fail if weather stormy
+```
+```
 
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
+```
+```
+
+- 'full?' and 'empty?' private methods for Airport class
+```
+```
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+```
+```
+- DEFAULT_CAPACITY set
+- Initialise Airport with default capacity
+- Option to set capacity on initialisation implemented
 ```
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
