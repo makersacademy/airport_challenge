@@ -12,6 +12,12 @@ describe Plane do
       expect(subject.land).to be_falsy
     end
 
+    it 'expect plane status to confirm plane has landed if landed' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.instruct_landing(plane)
+      expect(plane.status).to eq("The plane has landed")
+    end
   end
 
   describe do 'Planes Taking Off'
@@ -21,6 +27,14 @@ describe Plane do
 
     it 'plane flying status is true when taken off' do
       expect(subject.taken_off).to be_truthy
+    end
+
+    it 'expect plane status to confirm plane has taken off if taken off' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.instruct_landing(plane)
+      airport.instruct_take_off(plane)
+      expect(plane.status).to eq("The plane has taken off")
     end
 
   end

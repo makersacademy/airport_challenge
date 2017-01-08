@@ -15,7 +15,7 @@ describe Airport do
     it 'plane has landed and confirms landing' do
       plane = Plane.new
       subject.instruct_landing(plane)
-      expect(subject.landed?(plane)).to be_truthy
+      expect(plane.status).to eq("The plane has landed")
     end
 
     it 'raises error if plane has already landed' do
@@ -45,7 +45,7 @@ describe Airport do
       plane = Plane.new
       subject.instruct_landing(plane)
       subject.instruct_take_off(plane)
-      expect(subject.taken_off?(plane)).to be_truthy
+      expect(plane.status).to eq("The plane has taken off")
     end
 
     it 'raises error if plane has already taken-off (if there is more than one plane in the airport to begin with)' do
