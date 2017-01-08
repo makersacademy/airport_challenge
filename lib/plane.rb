@@ -8,6 +8,7 @@ class Plane
   def land(airport)
     raise "Cannot land - already landed!" unless airborne?
     raise "Cannot land - weather is stormy!" unless sunny?
+    raise "Cannot land - airport is full!" if airport_full?(airport)
     set_airborne(false)
     "Plane has landed in sunny weather at #{airport.airport_name}"
   end
@@ -31,6 +32,10 @@ class Plane
 
   def sunny?
     Weather.sunny?
+  end
+
+  def airport_full?(airport)
+    airport.full?
   end
 
 end

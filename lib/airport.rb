@@ -5,6 +5,7 @@ class Airport
 
   def initialize(name)
     @airport_name = name
+    @full = false
   end
 
 end

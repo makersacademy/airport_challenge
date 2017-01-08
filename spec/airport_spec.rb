@@ -12,6 +12,9 @@ describe Airport do
     it "saves argument to @airport_name" do
       expect(test_airport.airport_name).to eq "Paris"
     end
+    it "saves false to @full?" do
+      expect(test_airport.full?).to eq false
+    end
   end
 
   describe ".airport_name" do

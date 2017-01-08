@@ -30,24 +30,24 @@ describe Plane do
         end
         it "can land" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", full?: false)
           expect{plane.land(airport)}.not_to raise_error
         end
         it "confirms it has landed" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", full?: false)
           expect(plane.land(airport)).to include "Plane has landed"
         end
         it "confirms it has landed at the correct airport" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", full?: false)
           expect(plane.land(airport)).to eq "Plane has landed in sunny weather at Paris"
         end
         context "airport is full" do
           it "cannot land" do
             airport=instance_double("Airport")
             allow(airport).to receive(:full?) { true }
-            expect{plane.land(airport)}.to raise_error(RuntimeError,"Cannot land, airport is full!")
+            expect{plane.land(airport)}.to raise_error(RuntimeError,"Cannot land - airport is full!")
           end
         end
       end
