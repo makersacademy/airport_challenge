@@ -35,7 +35,7 @@ Users | Air traffic controller, System designer| System designer - Sets airport 
   - [] Prevent a plane from being instructed to take off if already in air
   
   __As an Admin_System_designer I want to...__
-  - [] Set the capacity of a particular airport
+  - [X] Set the capacity of a particular airport, override default
 
 ##4. Follow BDD for each user story building up classes identified in domain model
   -  This means writing rspec unit tests first
