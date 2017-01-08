@@ -1,4 +1,5 @@
 require "./lib/weather.rb"
+require "./lib/plane.rb"
 
 class Airport
 
@@ -17,7 +18,7 @@ attr_reader :planes, :weather, :capacity
     if plane.status == "landed"
       raise "plane has already landed"
     elsif  stormy?
-    raise "no landing possible because of weather conditions"
+    raise "no landing possible due to weather conditions"
     elsif full?
     raise "airport is full"
     else
@@ -29,10 +30,10 @@ attr_reader :planes, :weather, :capacity
 
   def take_off plane
     if !planes.include?(plane)
-      raise "#{plane} is not at this airport"
+      raise "plane is not at this airport"
     end
     if stormy?
-    raise "no take off possible because of weather conditions"
+    raise "no take off possible due to weather conditions"
     else
     planes.pop
     plane.status = "airborne"
