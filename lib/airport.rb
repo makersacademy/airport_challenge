@@ -8,7 +8,7 @@ class Airport
   def initialize(weather = Weather.new)
     @plane = plane
     @Weather = weather
-    @sunny = weather.sunny
+    @sunny = weather.sunshine
 
   end
 
@@ -25,5 +25,8 @@ class Airport
 
   end
 
+  def full?
+
+  end
 
 end

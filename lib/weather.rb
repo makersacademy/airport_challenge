@@ -1,15 +1,15 @@
 class Weather
 
-attr_accessor :sunny
+attr_accessor :sunshine
 
   def initialize
-    @sunny = true
+    @sunshine = true
 
   end
 
-  def sunny?
+  def sunshine?
 
-    @sunny = rand(1..30) == 1 ? false : true
+    @sunshine = rand(1..30) == 1 ? false : true
 
   end
 
