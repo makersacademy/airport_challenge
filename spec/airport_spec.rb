@@ -43,6 +43,22 @@ describe Airport do
     #     end
     #   end
     # end
+    describe ".capacity" do
+      it { is_expected.to respond_to(:capacity) }
+      context "specified capacity" do
+        subject(:airport) { Airport.new("Paris", 2) }
+        it "equals the specified capacity" do
+          expect(airport.capacity).to be 2
+        end
+      end
+      context "default capacity" do
+        subject(:airport) { Airport.new("Paris") }
+        it "has capacity equal to the default" do
+          expect(airport.capacity).to be Airport::DEFAULT_CAPACITY
+        end
+      end
+    end
+
     context "docking planes" do
 
 
@@ -54,6 +70,14 @@ describe Airport do
           plane = instance_double("Plane")
           airport.dock(plane)
           expect(airport.planes).to include (plane)
+        end
+        # it "sets @full? to true when capacity reached" do
+        #   allow(airport).to receive
+        # end
+        context "using default capacity" do
+          it "cannot dock more planes when full" do
+
+          end
         end
 
       end
