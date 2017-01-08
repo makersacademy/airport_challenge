@@ -1,6 +1,7 @@
 Airport Challenge
 =================
-week one challenge from makers academy
+first weekend challenge from maker's academy!
+
 User Stories
 -----
 
@@ -33,7 +34,7 @@ Domain model
 -----
 Objects  | Messages
 ------------- | -------------
-Air Traffic Controller  |
+Air Traffic Controller  | orders planes about
 passengers |
 plane   | land (when not stormy or full airport)
         | takeoff
@@ -41,6 +42,8 @@ weather | is stormy or sunny
 Airport | hold planes
         | has capacity which can be changed
 
-**BONUS**
+for my solution i'm using four classes, the decision i'm least sure on is giving each airport it's own weather system/station as this seems to break "single resposibility". However I feel it better matches what you might find in the real world. A solution might be to make Airport a class that contains AirportHanger and AirportWeather and have the Airport class just be a place to pass messages through to the appropriate parts.
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+usage
+-----
+pass `land_plane` or `take_off_plane` to a `AirTrafficControl` instance with the arguments `Plane, Airport`
