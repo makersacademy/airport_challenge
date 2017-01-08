@@ -17,6 +17,11 @@ describe Controller do
       expect(subject.instruct_takeoff(plane)).to eq(true)
       expect(plane.status).to eq(true)
     end
+    it 'prevent takeoff when the weather is stormy' do
+      plane = Plane.new(false)
+      expect(subject.instruct_takeoff(plane,true)).to eq(false)
+      expect(plane.status).to eq(false)
+    end
   end
 
   describe 'instruct_landing' do
@@ -28,6 +33,11 @@ describe Controller do
       plane = Plane.new
       expect(subject.instruct_landing(plane)).to eq(true)
       expect(plane.status).to eq(false)
+    end
+    it 'prevent landing when the weather is stormy' do
+      plane = Plane.new
+      expect(subject.instruct_landing(plane,true)).to eq(false)
+      expect(plane.status).to eq(true)
     end
   end
 
