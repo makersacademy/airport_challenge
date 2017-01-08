@@ -3,7 +3,7 @@ require 'weather'
 describe Weather do 
 
 	 describe '#stormy?' do
-	 	it 'returns truw when the weather is stormy' do
+	 	it 'returns true when the weather is stormy' do
 	 		weather = double(:weather)
 	 		allow(weather).to receive(:stormy?).and_return true
 	 		expect(weather.stormy?).to eq true
