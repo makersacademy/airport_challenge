@@ -4,7 +4,7 @@ describe Airport do
 
   describe '#land' do
     it 'lands a plane in the airport' do
-      allow(subject).to receive(:stormy) {false}
+      allow(subject).to receive(:stormy?) {false}
       plane = Plane.new
       expect(subject.land plane).to eq "#{plane} has landed"
     end
