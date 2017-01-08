@@ -1,6 +1,7 @@
-require 'airport'
+
 
 class Plane
+#require 'airport'
 attr_accessor :landed
 
   def initialize
@@ -8,6 +9,7 @@ attr_accessor :landed
   end
 
   def instruct_land(airport)
+    raise "Denied: plane already landed in airport." if airport::planes.include?(self)
     airport_full(airport)
     prevent_landing(airport)
     airport::planes << self
@@ -15,6 +17,8 @@ attr_accessor :landed
   end
 
   def instruct_takeoff(airport)
+    raise "Denied: plane not in airport." unless airport::planes.include?(self)
+    raise "Denied: plane already in flight." if self::landed == false
     prevent_takeoff(airport)
     airport::planes.delete(self)
     @landed = false

@@ -2,7 +2,7 @@ class Airport
 
 attr_accessor :planes, :stormy, :full
 
-  def initialize(capacity = 1)
+  def initialize(capacity = 5)
     @planes = []
     @stormy = false
     @capacity = capacity
