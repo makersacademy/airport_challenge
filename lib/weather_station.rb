@@ -1,3 +1,4 @@
+#sometimes says it's stormy :)
 class WeatherStation
   STORM_CHANCE = 5
 

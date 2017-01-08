@@ -2,24 +2,48 @@ require "air_traffic_control"
 describe AirTrafficControl do
   let(:airport) {double :airport,plane_landed: true,plane_taken_off: true}
   let(:plane)   {double :plane,take_off: true, land: true}
-  let(:plane_false)  {double :plane_false}
-
-  #allow(plane_false).to receive(:land).and_raise("error")
 
   describe "#land_plane" do
-    it{expect{subject.land_plane plane,airport}.not_to raise_error}
-    it "raises errors properly" do
-      allow(plane).to receive(:land).and_raise("error")
-      expect{subject.land_plane plane, airport}.to raise_error("error")
+    before(:each) do
+      allow(airport).to receive(:full?).and_return false
+      allow(airport).to receive(:stormy?).and_return false
+      allow(plane).to   receive(:landed?).and_return false
+    end
+    it "should land if all conditions are good" do
+      expect(subject.land_plane plane,airport).to eq true
+    end
+    it "should not land if airport is full" do
+      allow(airport).to receive(:full?).and_return true
+      expect(subject.land_plane plane,airport).to eq false
+    end
+    it "should not land if airport is stormy" do
+      allow(airport).to receive(:stormy?).and_return true
+      expect(subject.land_plane plane,airport).to eq false
+    end
+    it "should not land if plane is landed" do
+      allow(plane).to receive(:landed?).and_return true
+      expect(subject.land_plane plane,airport).to eq false
     end
   end
 
   describe "#take_off_plane" do
-    it{expect{subject.take_off_plane plane,airport}.not_to raise_error}
-    it "raises errors properly" do
-      allow(plane).to receive(:take_off).and_raise("error")
-      expect{subject.take_off_plane plane, airport}.to raise_error("error")
+    before(:each) do
+      allow(airport).to receive(:stormy?).and_return false
+      allow(plane).to   receive(:landed?).and_return true
+    end
+    it "should take_off if all conditions are good" do
+      expect(subject.take_off_plane plane,airport).to eq true
+    end
+    it "should not take_off if airport is stormy" do
+      allow(airport).to receive(:stormy?).and_return true
+      expect(subject.take_off_plane plane,airport).to eq false
+    end
+    it "should not take_off if plane is already flying" do
+      allow(plane).to receive(:landed?).and_return false
+      expect(subject.take_off_plane plane,airport).to eq false
     end
   end
-  it {is_expected.to respond_to(:take_off_plane).with(2).arguments}
+
 end
+
+  #'describe "#take_off_plane" do

@@ -1,3 +1,4 @@
+#manages it's own state
 class Plane
 
   attr_reader :airport, :landed
@@ -13,7 +14,6 @@ class Plane
     fail "that airport is full!" if airport.full?
     @landed = true
     @airport = airport
-    true
   end
 
   def take_off location = airport
@@ -22,7 +22,6 @@ class Plane
     fail "plane not at that airport!" if location != airport
     @landed = false
     @airport = nil
-    true
   end
 
   def landed?
