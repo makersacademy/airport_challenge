@@ -1,5 +1,7 @@
 require './lib/airport.rb'
 require './lib/plane.rb'
+require './lib/weather.rb'
+
 plane = Plane.new
 
 describe Airport do
@@ -14,7 +16,7 @@ describe Airport do
     expect(subject.takeoff_plane(plane)).to eq []
   end
 
-  it 'airport wont accpet plane if full' do
+  it 'airport wont accept plane if full' do
     plane = Plane.new
     plane.land
     subject.recieve_plane(plane)

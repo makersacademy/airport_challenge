@@ -1,15 +1,11 @@
 class Plane
 
-  attr_reader :state
+  attr_accessor :state
+  attr_accessor :weather
 
-  def initialize
+  def initialize(state='flying')
     @state = []
-    @state.push('flying')
-  end
-
-  def land
-    @state.pop
-    @state.push('landed')
+    @state.push(state)
   end
 
   def takeoff
@@ -17,7 +13,10 @@ class Plane
     @state.push('flying')
   end
 
-
+  def land
+    @state.pop
+    @state.push('landed')
+  end
 
 
 end

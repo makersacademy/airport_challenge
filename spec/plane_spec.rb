@@ -1,7 +1,9 @@
 require './lib/plane.rb'
 require './lib/airport.rb'
+require './lib/weather.rb'
 
-dest_airport = Airport.new
+
+airport = Airport.new
 
 describe Plane do
 
@@ -21,16 +23,18 @@ describe Plane do
   end
 
 =begin
-  it 'cannot takeoff when stormy' do
+
+  it 'cannot land when stormy' do
     plane = Plane.new
-    plane.land
-    expect(plane)
+    weather = Weather.new('stormy')
+    expect{plane.land}.to raise_error('cannot land when stormy')
   end
 
 
   it 'plane wont land if airport full' do
     plane = Plane.new
     plane.land
+    airport.recieve_plane(plane)
     plane2 = Plane.new
     expect{plane2.land}.to raise_error("airport full")
   end

@@ -1,21 +1,26 @@
 class Airport
-    def initialize
-      @planes = []
+attr_accessor :planes
+
+  def initialize(capacity=1)
+    @planes = []
+    @capacity = capacity
+  end
+
+  def recieve_plane(plane)
+    if full?
+      fail 'airport full'
+    else
+      @planes.push(plane)
+      return @planes[-1]
     end
+  end
 
-    def recieve_plane(plane)
-      if @planes.length == 0
-        @planes.push(plane)
-        return @planes[0]
-      else
-        fail 'airport full'
-      end
-    end
+  def takeoff_plane(plane)
+    @planes.delete(plane)
+    return @planes
+  end
+end
 
-    def takeoff_plane(plane)
-      @planes.pop
-      return @planes
-    end
-
-
+def full?
+  @planes.length >= @capacity
 end
