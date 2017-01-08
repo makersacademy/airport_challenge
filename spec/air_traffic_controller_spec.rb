@@ -41,6 +41,8 @@ describe AirTrafficController do
     expect(@airport.planes.include?(@plane)).to eq false
   end
   it 'can view the weather condition' do
+    weather_conditions = ["Sunny", "Stormy"]
+    expect(weather_conditions.include?(subject.check_weather)).to eq true
     expect(subject).to respond_to :check_weather
     allow(subject).to receive(:check_weather) { 'Stormy' }
     expect(Weather::WEATHER_CONDITIONS.include?(subject.check_weather)).to eq true
