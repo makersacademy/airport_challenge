@@ -15,6 +15,7 @@ class Plane
   end
 
   def take_off(airport)
+    raise "Cannot take off - am not landed at #{airport.airport_name}!" unless docked_at_airport?(airport)
     raise "Cannot take off - already airborne!" if airborne?
     raise "Cannot take off - weather is stormy!" unless sunny?
     set_airborne(true)
@@ -46,6 +47,10 @@ class Plane
 
   def undock_from_airport(airport)
     airport.undock(self)
+  end
+
+  def docked_at_airport?(airport)
+    airport.has_plane_docked?(self)
   end
 
 end

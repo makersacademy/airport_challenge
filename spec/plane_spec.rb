@@ -102,7 +102,7 @@ describe Plane do
     context "plane is airborne" do
       it "cannot take off" do
         airport = instance_double("Airport")
-        allow(airport).to receive(:airport_name) { "Paris" }
+        allow(airport).to receive_messages(airport_name: "Paris", has_plane_docked?: true)
         expect {plane.take_off(airport)}.to raise_error(RuntimeError, "Cannot take off - already airborne!")
       end
     end
@@ -116,38 +116,38 @@ describe Plane do
         end
         it "can be instructed to take off" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", has_plane_docked?: true)
           allow(airport).to receive(:undock)
           expect{plane.take_off(airport)}.not_to raise_error
         end
         it "confirms it has taken off" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", has_plane_docked?: true)
           allow(airport).to receive(:undock)
           expect(plane.take_off(airport)).to include "Plane has taken off"
         end
         it "cannot be instructed to take off from an airport it is not docked at" do
           wrong_airport = instance_double("Airport")
-          allow(wrong_airport).to receive(:airport_name) { "Frankfurt" }
-          allow(wrong_airport).to receive(:plane_docked?) { false }
-          expect{plane.take_off(wrong_airport)}.to raise_error(RuntimeError,"Cannot take off - plane is not landed at Frankfurt!")
+          allow(wrong_airport).to receive_messages(airport_name: "Frankfurt", has_plane_docked?: false)
+          allow(wrong_airport).to receive(:undock)
+          expect{plane.take_off(wrong_airport)}.to raise_error(RuntimeError,"Cannot take off - am not landed at Frankfurt!")
         end
         it "confirms it has taken off from the correct airport" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", has_plane_docked?: true)
           allow(airport).to receive(:undock)
           expect(plane.take_off(airport)).to eq "Plane has taken off from Paris"
         end
         it "is now airborne" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", has_plane_docked?: true)
           allow(airport).to receive(:undock)
           plane.take_off(airport)
           expect(plane.airborne).to be true
         end
         it "undocks with airport" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", has_plane_docked?: true)
           allow(airport).to receive(:undock)
           allow(airport).to receive(:planes) { [] }
           plane.take_off(airport)
@@ -161,7 +161,7 @@ describe Plane do
         end
         it "cannot take off" do
           airport = instance_double("Airport")
-          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive_messages(airport_name: "Paris", has_plane_docked?: true)
           expect { plane.take_off(airport) }.to raise_error(RuntimeError, "Cannot take off - weather is stormy!")
         end
       end
