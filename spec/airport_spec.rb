@@ -1,20 +1,19 @@
 require 'airport'
 
 describe Airport do
+    it { is_expected.to respond_to(:stormy?) }
     
+    it { is_expected.to respond_to(:planes) }
+    
+    subject { described_class.new }
+    
+    it 'has a default capacity' do
+        expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+    end
     
     describe '#stormy?' do
-        let(:weather) { double :weather }
-        subject { described_class.new weather }
-        
-        it 'can be stormy' do
-            allow(weather).to receive(:stormy?).and_return(true)
-            expect(subject.stormy?).to eq true
-        end
-        
-        it 'can be clear' do
-            allow(weather).to receive(:stormy?).and_return(false)
-            expect(subject.stormy?).to eq false
+        it 'returns a boolean' do
+            expect(subject.stormy?).to be(true).or be(false)
         end
     end
 end

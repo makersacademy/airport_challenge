@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+
+
 Task
 -----
 
@@ -52,3 +54,12 @@ Before starting on this story I did some refactoring. I decided that the landed?
 My first step was to implement the take_off method for the Plane class. When called ```plane.take_off``` it changes the @landed variable from true to false.
 
 To confirm that the plane is no longer at an airport, I created an airport attribute reader. This is initialized to :flying when the place is created. I then updated the land method to change @airport to the airport passed in. When take_off is called, it resets the @airport variable back to :flying.
+
+User Stories 3 and 4
+---------------------
+
+To implement the requirements of these 2 user stories, I decided to create a Weather class to handle the generation of random weather.
+
+One of the decisions I had to make was whether to base the current weather around the plane or the airport. I decided to go with initializing airport with a weather object as I felt it made more real world sense.
+
+Next I changed the land and take_off methods in the plane class to raise an error if the weather at the airport they are trying to land at is stormy.
