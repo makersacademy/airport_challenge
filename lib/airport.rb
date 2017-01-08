@@ -9,6 +9,7 @@ class Airport
   end
 
   def takeoff(plane)
+    fail "too inclement for flight!" unless weather_check=="balmy"
     "plane took off!"
   end
 
