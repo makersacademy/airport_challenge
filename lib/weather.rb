@@ -1,17 +1,16 @@
 class Weather
 
-attr_reader :stormy
+attr_accessor :sunny
 
   def initialize
-    @stormy = false
+    @sunny = true
 
   end
 
-  def stormy?
+  def sunny?
 
-    @stormy
-     #stormy = rand(1..30) == 1 ? true : false
-     #return @stormy
+    @sunny = rand(1..30) == 1 ? false : true
+
   end
 
 end
