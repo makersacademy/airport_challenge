@@ -32,7 +32,6 @@ Objects  | Messages
 ------------- | -------------
 Airport  | land
 Airport  | takeoff
-Weather  | stormy?
 
 
 Objects  | Messages
