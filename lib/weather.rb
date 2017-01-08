@@ -1,11 +1,13 @@
 class Weather
 
-attr_reader :status
-
-
-  def initialize
-    rand(100) <= 5 ? @status = "stormy" : @status = "sunny"
+  def status
+    condition <= 5 ? "stormy" : "sunny"
   end
 
+  private
+
+  def condition
+    rand(100)
+  end
 
 end
