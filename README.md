@@ -3,7 +3,11 @@ Airport Challenge
 What I did:
 1. Completed steps 1-3.
 2. Created a domain model with 6 + 3 user stories in docs/UserStories.md.
-3. 
+3. The initial commit passed in Travis. Coveralls yielded an error message:
+"Coveralls encountered an exception: RestClient::UnprocessableEntity. 422 Unprocessable Entity".
+The bundle... command exited with 0.
+4. 
+
 
 =================
 

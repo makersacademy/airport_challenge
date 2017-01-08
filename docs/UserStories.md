@@ -1,5 +1,7 @@
 # Airport Challenge
-## v.0.1
+## v.0.2
+
+What's new: Plane also has land and takeoff methods.
 
 ### Story 01
 
@@ -7,6 +9,7 @@
 | ---- | ---- |
 | ATC |  |
 | airport | land(plane) |
+| plane | land(airport) |
 | plane | status: landed @ airport |
 
 ### Story 02
@@ -15,6 +18,7 @@
 | ---- | ---- |
 | ATC |  |
 | airport | takeoff(plane) |
+| plane | takeoff |
 | plane | status: in-flight |
 
 ### Story 03
