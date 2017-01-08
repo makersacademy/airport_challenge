@@ -3,14 +3,12 @@ require_relative 'weather'
 
 class Airport
 
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 40
 
-  attr_accessor :plane, :weather, :sunny, :arrivals, :capacity
+  attr_accessor :plane, :sunny, :arrivals, :capacity
 
-  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
-    @plane = plane
-    @Weather = weather
-    @sunny = weather.sunshine
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @sunny = Weather.new.sunshine
     @arrivals = []
     @capacity = capacity
   end
@@ -24,8 +22,7 @@ class Airport
 
   def departure
     fail "Unable to depart due to stormy weather" unless @sunny
-
-      @arrivals.shift
+    @arrivals.shift
 
   end
 

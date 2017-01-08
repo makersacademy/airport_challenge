@@ -3,11 +3,11 @@ require_relative 'weather'
 class Plane
 
   def land
-  true
+    true
   end
 
   def depart
-  true
+    true
   end
 
 end
