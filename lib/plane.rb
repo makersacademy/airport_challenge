@@ -6,5 +6,4 @@ class Plane
     # true
     "I've landed!"
   end
-
 end
