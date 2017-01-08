@@ -22,7 +22,7 @@ describe Plane do
     before do
       @airport = Airport.new
       @plane = Plane.new
-      @plane.land(@airport)
+      @airport::planes << @plane
     end
 
 

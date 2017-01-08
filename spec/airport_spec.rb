@@ -14,7 +14,7 @@ describe Airport do
     context "if the plane has landed" do
 
       it "returns true" do
-        @plane.land(@airport)
+        @airport::planes << @plane
         expect(@airport.landed?(@plane)).to eq true
       end
     end
@@ -39,7 +39,7 @@ describe Airport do
     context "if the plane hasn't taken off" do
 
       it "returns false" do
-        @plane.land(@airport)
+        @airport::planes << @plane
         expect(@airport.taken_off?(@plane)).to eq false
       end
     end
