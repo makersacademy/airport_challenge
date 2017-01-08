@@ -2,6 +2,14 @@ require 'airport'
 
 describe Airport do
 
+  describe '#initialize' do
+  it 'returns DEFAULT_CAPACITY for airport if none is provided' do
+    expect{(Airport.new::capacity).to eq airport::DEFAULT_CAPACITY}
+  end
+  it 'sets capacity when specified on initializaion' do
+    expect{(Airport.new(10)::capacity).to eq 10}
+  end
+end
 
   describe '#land' do
     it 'instructs plane to land' do
