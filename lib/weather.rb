@@ -16,4 +16,8 @@ class Weather
     end
   end
 
+  def stormy?
+    self.current_weather == 'stormy'
+  end
+
 end

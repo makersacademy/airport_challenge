@@ -1,5 +1,4 @@
 # feature tests
-
 require 'plane.rb'
 require 'weather.rb'
 
@@ -46,41 +45,65 @@ end
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
 
-describe Plane do
-    it 'cannot take off in stormy weather' do
-      airport = Airport.new
-      weather = 'stormy'
-      subject.land(airport)
-      expect{subject.takeoff(airport, weather)}.to raise_error("Weather is too stormy")
-      expect(subject.confirm_takeoff(airport)).to eq false
-    end
-
-    it 'can take off otherwise' do
-      airport = Airport.new
-      weather = 'sunny'
-      subject.land(airport)
-      expect{subject.takeoff(airport, weather)}.not_to raise_error
-      expect(subject.confirm_takeoff(airport)).to eq true
-    end
-end
-
+# describe Plane do
+#     it 'cannot take off in stormy weather' do
+#       airport = Airport.new
+#       weather = 'stormy'
+#       subject.land(airport)
+#       expect{subject.takeoff(airport, weather)}.to raise_error("Weather is too stormy")
+#       expect(subject.confirm_takeoff(airport)).to eq false
+#     end
+#
+#     it 'can take off otherwise' do
+#       airport = Airport.new
+#       weather = 'sunny'
+#       subject.land(airport)
+#       expect{subject.takeoff(airport, weather)}.not_to raise_error
+#       expect(subject.confirm_takeoff(airport)).to eq true
+#     end
+# end
+#
+#
+# # As an air traffic controller
+# # To ensure safety
+# # I want to prevent landing when weather is stormy
+#
+# describe Plane do
+#     it 'cannot land in stormy weather' do
+#       airport = Airport.new
+#       weather = 'stormy'
+#       expect{subject.land(airport, weather)}.to raise_error("Weather is too stormy")
+#       expect(subject.confirm_landing(airport)).to eq false
+#     end
+#
+#     it 'can land otherwise' do
+#       airport = Airport.new
+#       weather = 'sunny'
+#       expect{subject.land(airport, weather)}.not_to raise_error
+#       expect(subject.confirm_landing(airport)).to eq true
+#     end
+# end
 
 # As an air traffic controller
 # To ensure safety
-# I want to prevent landing when weather is stormy
+# I want to prevent landing when the airport is full
 
 describe Plane do
-    it 'cannot land in stormy weather' do
-      airport = Airport.new
-      weather = 'stormy'
-      expect{subject.land(airport, weather)}.to raise_error("Weather is too stormy")
-      expect(subject.confirm_landing(airport)).to eq false
-    end
-
-    it 'can land otherwise' do
-      airport = Airport.new
-      weather = 'sunny'
-      expect{subject.land(airport, weather)}.not_to raise_error
-      expect(subject.confirm_landing(airport)).to eq true
-    end
+  it "can't land at a full airport" do
+    airport = Airport.new
+    weather = 'sunny'
+    subject.land(airport)
+    another_plane = Plane.new
+    expect{another_plane.land(airport)}.to raise_error("Airport is full")
+  end
 end
+
+#NEED TO TEST METHODS FOR:
+# FULL?
+# AT_AIRPORT?
+# STORMY?
+# register_in_airport
+# deregister_from_airport
+
+## GO THROUGH CHALLENGE CRITERIA AND WEEK NOTES AND FIX
+## make it interactive and intuitive?

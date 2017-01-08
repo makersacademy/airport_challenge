@@ -8,32 +8,33 @@ class Plane
   end
 
   attr_reader :airport
-  def land(airport, weather = 'ok')
-    raise "Weather is too stormy" if weather == 'stormy'
-    airport.plane= self
+
+  def register_airport(airport)
     @airport = airport
   end
 
-  def confirm_landing(airport)
-    if @airport == airport
-      return true
-    else
-      return false
-    end
+  def land(airport)
+    self.register_airport(airport)
   end
 
-  # def stormy?
-  #   weather == 'stormy'
-  # end
+  def at_airport?(airport)
+    @airport == airport && airport.has_plane?(self)
+  end
 
-  def takeoff(airport, weather='ok')
-    raise "Weather is too stormy" if weather == 'stormy'
-    airport.plane = nil
+  def confirm_landing(airport)
+    self.at_airport?(airport)
+  end
+
+  def deregister_airport(airport)
     @airport = nil
   end
 
+  def takeoff(airport)
+    self.deregister_airport(airport)
+  end
+
   def confirm_takeoff(airport)
-    if @airport == airport && airport.plane == self
+    if self.at_airport?(airport)
       return false
     else
       return true
