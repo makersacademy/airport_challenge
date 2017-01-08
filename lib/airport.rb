@@ -15,6 +15,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Bad weather conditions!" if stormy?
     @planes.pop
   end
 
