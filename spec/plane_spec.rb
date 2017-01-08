@@ -117,25 +117,29 @@ describe Plane do
         it "can be instructed to take off" do
           airport = instance_double("Airport")
           allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive(:undock)
           expect{plane.take_off(airport)}.not_to raise_error
         end
         it "confirms it has taken off" do
           airport = instance_double("Airport")
           allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive(:undock)
           expect(plane.take_off(airport)).to include "Plane has taken off"
         end
         it "confirms it has taken off from the correct airport" do
           airport = instance_double("Airport")
           allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive(:undock)
           expect(plane.take_off(airport)).to eq "Plane has taken off from Paris"
         end
         it "is now airborne" do
           airport = instance_double("Airport")
           allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive(:undock)
           plane.take_off(airport)
           expect(plane.airborne).to be true
         end
-        it "docks with airport" do
+        it "undocks with airport" do
           airport = instance_double("Airport")
           allow(airport).to receive(:airport_name) { "Paris" }
           allow(airport).to receive(:undock)

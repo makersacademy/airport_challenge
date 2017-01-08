@@ -32,6 +32,4 @@ class Airport
     @capacity <= @planes.length ? true : false
   end
 
-
-
 end

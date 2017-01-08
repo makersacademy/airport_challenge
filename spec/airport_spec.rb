@@ -69,24 +69,19 @@ describe Airport do
     context "undocking planes" do
       describe ".undock" do
         it { is_expected.to respond_to(:undock).with(1).argument  }
-      end
-      it "removes a taken off plane from @planes" do
-        plane = instance_double("Plane")
-        airport.dock(plane)
-        airport.undock(plane)
-        expect(airport.planes).not_to include plane
-      end
-      it "sets @full to false" do
-        plane = instance_double("Plane")
-        (Airport::DEFAULT_CAPACITY).times { airport.dock(plane) }
-        airport.undock(plane)
-        expect(airport.full?).to be false
+        it "removes a taken off plane from @planes" do
+          plane = instance_double("Plane")
+          airport.dock(plane)
+          airport.undock(plane)
+          expect(airport.planes).not_to include plane
+        end
+        it "sets @full to false" do
+          plane = instance_double("Plane")
+          (Airport::DEFAULT_CAPACITY).times { airport.dock(plane) }
+          airport.undock(plane)
+          expect(airport.full?).to be false
+        end
       end
     end
-
   end
-
-
-
-
 end
