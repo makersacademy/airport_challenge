@@ -6,4 +6,8 @@ class Plane
     # true
     "I've landed!"
   end
+
+  def confirm_not_in_airport?
+  end
+
 end
