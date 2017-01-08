@@ -4,6 +4,7 @@ class Plane
 
   def confirm_landed?
     # true
+    "I've landed!"
   end
 
 end
