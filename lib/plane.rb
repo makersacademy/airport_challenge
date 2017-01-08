@@ -10,7 +10,6 @@ class Plane
 
   def land(airport)
     @flying = true
-    #departed = false
     airport.land(self)
   end
 
