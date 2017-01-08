@@ -10,7 +10,7 @@ class Airport
 
   attr_accessor :planes
   attr_accessor :weather
-  attr_reader :capacity
+  attr_accessor :capacity
 
   def get_weather
     Weather.new.the_weather
@@ -29,6 +29,6 @@ class Airport
   end
 
   def full?
-    planes.length == self.capacity
+    self.planes.length == self.capacity
   end
 end

@@ -30,12 +30,15 @@ context "TESTING ACTION" do
     it 'throws error when airport full' do
       plane = Plane.new
       airport = Airport.new
-      airport.land(plane)
+      airport.capacity= 1
+      airport.weather= 'sunny'
+      subject.land(plane, airport)
       expect{subject.land(Plane.new, airport)}.to raise_error("Airport is full")
     end
     it 'doesnt throw error when airport is not full' do
       plane = Plane.new
       airport = Airport.new
+      airport.weather= 'sunny'
       expect{subject.land(Plane.new, airport)}.not_to raise_error
     end
     it 'can takeoff a plane at an airport from both perspectives' do
