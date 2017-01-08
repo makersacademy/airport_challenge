@@ -1,13 +1,19 @@
-
+require_relative 'weather'
 
 class Plane
 
+attr_reader :stormy
+
+  def initialize(stormy = Weather.new.stormy)
+    @stormy = stormy
+  end
+
   def land
-  true
+  @stormy
   end
 
   def depart
-  true
+  @stormy
   end
 
 end

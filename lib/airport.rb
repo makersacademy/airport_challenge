@@ -11,18 +11,18 @@ class Airport
   end
 
   def landed(plane)
-    if @stormy == true
-      fail "Unable to land due to stormy weather"
+    if @stormy == false
+      @plane = plane
     else
-    @plane = plane
+      fail "Unable to land due to stormy weather"
     end
   end
 
   def departure
-    if @stormy == true
-      fail "Unable to depart due to stormy weather"
-    else
+    if @stormy == false
       @plane
+    else
+      fail "Unable to depart due to stormy weather"
     end
   end
 
