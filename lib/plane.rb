@@ -10,6 +10,7 @@ class Plane
     raise "Cannot land - weather is stormy!" unless sunny?
     raise "Cannot land - airport is full!" if airport_full?(airport)
     set_airborne(false)
+    dock_at_airport(airport)
     "Plane has landed in sunny weather at #{airport.airport_name}"
   end
 
@@ -36,6 +37,10 @@ class Plane
 
   def airport_full?(airport)
     airport.full?
+  end
+
+  def dock_at_airport(airport)
+    airport.dock(self)
   end
 
 end

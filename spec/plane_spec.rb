@@ -31,17 +31,27 @@ describe Plane do
         it "can land" do
           airport = instance_double("Airport")
           allow(airport).to receive_messages(airport_name: "Paris", full?: false)
+          allow(airport).to receive(:dock)
           expect{plane.land(airport)}.not_to raise_error
         end
         it "confirms it has landed" do
           airport = instance_double("Airport")
           allow(airport).to receive_messages(airport_name: "Paris", full?: false)
+          allow(airport).to receive(:dock)
           expect(plane.land(airport)).to include "Plane has landed"
         end
         it "confirms it has landed at the correct airport" do
           airport = instance_double("Airport")
           allow(airport).to receive_messages(airport_name: "Paris", full?: false)
+          allow(airport).to receive(:dock)
           expect(plane.land(airport)).to eq "Plane has landed in sunny weather at Paris"
+        end
+        it "is no longer airborne" do
+          airport = instance_double("Airport")
+          allow(airport).to receive_messages(airport_name: "Paris", full?: false)
+          allow(airport).to receive(:dock)
+          plane.land(airport)
+          expect(plane.airborne).to be false
         end
         context "airport is full" do
           it "cannot land" do
