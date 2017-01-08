@@ -4,7 +4,7 @@ class Plane
     @flying = true
   end
 
-  def land
+  def land!
     @flying = false
   end
 

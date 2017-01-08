@@ -9,7 +9,7 @@ describe Plane do
 
   it 'the plane lands' do
     plane = Plane.new
-    expect { plane.land }
+    expect { plane.land! }
     .to change(plane, :flying?)
     .from(true).to(false)
   #  expect(subject.land).to respond_to(:land)
