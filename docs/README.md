@@ -20,31 +20,24 @@
 > User stories| Domain models
 ----------------------
 
-#####Plane |
+#####Object | Action
 -------|---------------
 plane  | (instruct to) land
 plane  | status: landed
 
--------|---------------
 plane  | (instruct to) take off
 plane  | status: not in airport
 
--------|---------------
 Stormy weather | Prevent takeoff
 
--------|---------------
 Stormy weather | prevent landing
 
--------|---------------
 Full airport | prevent landing
 
--------|---------------
 Default airport capacity | Can be overridden
 
 #####Test scopes:
-Plane landing (conditions)
-Plane takeoff (conditions)
-Plane status reporting
-Airport information
-Messages sent and received by airports
-Weather
+>Plane 'landed'/'airborne' status
+>Airports accept/refuse planes landing based on capacity
+>Airports have default capacity which can be overridden
+>Plane takeoff/landing in clear and stormy Weather
