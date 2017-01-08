@@ -15,6 +15,14 @@ describe Plane do
   #  expect(subject.land).to respond_to(:land)
   end
 
+  it "the plane takes off" do
+    plane = Plane.new
+    plane.land!
+    expect { plane.take_off!}
+    .to change(plane, :flying?)
+    .from(false).to(true)
+  end
+
 
 
 
