@@ -62,4 +62,10 @@ describe Plane do
     expect { subject.take_off(airport) }.to raise_error("Plane is not currently in #{airport} so cannot take off.")
   end
 
+  it 'should not be able to land when weather is stormy' do
+    airport = Airport.new
+    allow(Weather.new).to receive(:chance) { 95 }
+    expect { subject.land(airport) }.to raise_error("The weather is currently stormy and it is not safe to land.")
+  end
+
 end
