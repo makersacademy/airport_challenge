@@ -44,12 +44,15 @@ Progress
 8. Created a `Weather` class for Story 03, with corresponding Rspec file. Weather instances have random weather state. Airport instances can check for stormy weather and decline takeoffs in that case.
 9. Featured-tested manually and unit-tested for Stories 03 and 04.
 10. Featured-tested manually and unit-tested for Story 05. Changed airport objects to initialise with a capacity (that defaults to a constant) and a plane-holding array. Modified two other tests (in Stories 01 and 02) to accommodate the change from plane-holding generic variable to plane-holding array.
+11. Tested for Story 06.
 
 Problems
 ----
 
 1. At this point, I don't know my test coverage. Tests pass in Travis (with SimpleCov), but Coveralls with config doesn't work there. The error message is: "Coveralls encountered an exception: RestClient::UnprocessableEntity. 422 Unprocessable Entity.
 The bundle... command exited with 0."
-2. There might be a problem with Airport and Plane objects sharing similarly-named methods (takeoff and land). I might have renamed them 'send' and 'receive' for Airport objects.
-3. I am not 100% sure that all my tests really test for what I want them to.
-4. I am not convinced that my code is as simple as it could be.
+2. There might be a problem with Airport and Plane objects sharing similarly-named methods (takeoff and land). Maybe I should have renamed them 'send' and 'receive' for Airport objects.
+3. I realised I had done the codebase for Story 06 while working on the previous story. So I unintentionally wrote the code before the tests for Story 06 (because something similar was part of the Week 1 assignment).
+4. I haven't done the edge cases.
+5. I am not 100% sure that all my tests really test for what I want them to.
+6. I am not convinced that my code is as simple as it could be.

@@ -5,6 +5,7 @@ require 'weather'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
+  let(:largeairport) { described_class.new(15) }
 
   before do
     allow(plane).to receive(:land)
@@ -53,11 +54,26 @@ describe Airport do
     end
   end
 
-  context 'prevents landings when airport is full:' do
+  context 'prevents landings when airport is full (Story 05):' do
     it 'by politely refusing to land a new plane' do
       allow(subject).to receive(:full?).and_return(true)
       expect { subject.land(plane) }.to raise_error 'Airport is full, please head to LCY.'
     end
+  end
+
+  context 'uses software that can set plane capacity (Story 06):' do
+    it 'to a default value' do
+      expect(subject.instance_variable_get(:@capacity)).to eq 3
+    end
+
+    it 'set to a constant' do
+      expect(Airport).to be_const_defined(:CAPACITY)
+    end
+
+    it 'that can be overriden as appropriate' do
+      expect(largeairport.instance_variable_get(:@capacity)).to eq 15
+    end
+
   end
 
 end
