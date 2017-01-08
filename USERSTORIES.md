@@ -45,7 +45,7 @@ weather | stormy?
 plane | take_off
 
 **Notes:**
-Decided to create a new module Weather as weather did not need instances to be created, it just needed a method to test whether it was stormy or not. Created the #self.stormy? method which randomly generates a number from 0 - 9. If the number is less than 1 the weather is considered to be stormy. Incorporated this into the #take_off method of plane by creating a method #safe. Have just realised that I didn't need to do this though.
+Decided to create a new module Weather as weather did not need instances to be created, it just needed a method to test whether it was stormy or not. Created the #self.stormy? method which randomly generates a number from 0 - 9. If the number is less than 1 the weather is considered to be stormy. Incorporated this into the #take_off method of plane by creating a method #safe. safe will evaluate to an error if the weather is stormy, or true if not.
 
 
 ```
@@ -58,11 +58,28 @@ Object | Message
 air_traffic_controller |
 weather | stormy?
 plane | land
+
+**Notes:**
+Made this the same as the previous test
+
+
 ```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
+```
+Object | Message
+------- | -------
+air_traffic_controller |
+airport | full?
+plane | land
 
+**Notes:**
+I will need to create a constant that has a default capacity and set it to a number. When the airport is full no more planes can take off or land.
+
+
+
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate

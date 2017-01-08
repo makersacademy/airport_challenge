@@ -54,4 +54,33 @@ describe Plane do
 
 
   end
+
+  describe "#capacity" do
+    before do
+      @airport = Airport.new
+      @plane = Plane.new
+      allow(Weather).to receive(:stormy?) {false}
+      @plane.land(@airport)
+    end
+
+    it "tells us the capacity" do
+      p "Here",  @airport.capacity
+      expect(@airport.capacity).to eq(10)
+    end
+  end
+
+  describe "#full?" do
+    before do
+      @airport = Airport.new
+      @plane = Plane.new
+      allow(Weather).to receive(:stormy?) {false}
+    end
+    it { expect(@airport).to respond_to(:full?)}
+    context "if the airport is full" do
+      it "cannot land" do
+        10.times {Plane.new.land(@airport)}
+        expect{@plane.land(@airport)}.to raise_error
+      end
+    end
+  end
 end
