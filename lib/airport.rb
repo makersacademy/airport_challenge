@@ -19,6 +19,7 @@ class Airport
 
   def undock(plane)
     @planes.delete(plane)
+    set_full
   end
 
   private

@@ -76,6 +76,12 @@ describe Airport do
         airport.undock(plane)
         expect(airport.planes).not_to include plane
       end
+      it "sets @full to false" do
+        plane = instance_double("Plane")
+        (Airport::DEFAULT_CAPACITY).times { airport.dock(plane) }
+        airport.undock(plane)
+        expect(airport.full?).to be false
+      end
     end
 
   end
