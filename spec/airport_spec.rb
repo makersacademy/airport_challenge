@@ -20,7 +20,7 @@ describe Airport do
 
     it 'holds the actual plane after landing' do
       airport.land(plane)
-      expect(subject.planes).to eq plane
+      expect(subject.planes).to include plane
     end
   end
 
@@ -37,7 +37,7 @@ describe Airport do
 
     it 'confirms Elvis... err, the plane has left the building... err, the airport' do
       airport.takeoff(plane)
-      expect(subject.planes).to eq nil
+      expect(subject.planes).not_to include plane
     end
   end
 
@@ -50,6 +50,13 @@ describe Airport do
     it 'by politely refusing landings (Story 04)' do
       allow(subject).to receive(:stormy?).and_return(true)
       expect { subject.land(plane) }.to raise_error 'Sorry, no landings during stormy weather!'
+    end
+  end
+
+  context 'prevents landings when airport is full:' do
+    it 'by politely refusing to land a new plane' do
+      allow(subject).to receive(:full?).and_return(true)
+      expect { subject.land(plane) }.to raise_error 'Airport is full, please head to LCY.'
     end
   end
 

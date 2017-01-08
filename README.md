@@ -43,6 +43,7 @@ Progress
 7. Repeated the process for Story 02.
 8. Created a `Weather` class for Story 03, with corresponding Rspec file. Weather instances have random weather state. Airport instances can check for stormy weather and decline takeoffs in that case.
 9. Featured-tested manually and unit-tested for Stories 03 and 04.
+10. Featured-tested manually and unit-tested for Story 05. Changed airport objects to initialise with a capacity (that defaults to a constant) and a plane-holding array. Modified two other tests (in Stories 01 and 02) to accommodate the change from plane-holding generic variable to plane-holding array.
 
 Problems
 ----
