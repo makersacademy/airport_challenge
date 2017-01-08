@@ -91,4 +91,11 @@ airport | DEFAULT_CAPACITY
 
 **Notes**
 
-I want to give the capacity variable the DEFAULT_CAPACITY when no arguments are given.
+I want to give the capacity variable the DEFAULT_CAPACITY when no arguments are given. Have set the default initialisation of an Airport class to have the capacity 10.
+
+```
+Your code should defend against edge cases such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```
+**Notes**
+
+Currently, my code doesn't fit any of the edge cases. I need to rework the test to see if the plane has landed potentially to include a "status" as an instance variable that can be defined as 'flying' or 'landed'. I think when the plane has the landed status it should not be able to land and when it is flying it should not be able to take off. 
