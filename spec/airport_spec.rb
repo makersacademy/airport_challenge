@@ -1,6 +1,6 @@
 require "airport"
 require "plane"
-require "weather"
+#require "weather"
 
 #plane = Plane.new
 
@@ -9,26 +9,34 @@ describe Airport do
   describe 'initialization' do
     it 'deafults capacity' do
       plane = double(:plane, land: true)
+      allow(subject).to receive(:stormy?).and_return(false)
       described_class::DEFAULT_CAPACITY.times do
         subject.land(plane)
       end
-      expect { subject.land(plane) }.to raise_error 'No landing slots available!'
     end
   end
 
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
-    it 'lets plane to land' do
+    it 'lets plane land' do
       plane = double(:plane, land: true)
+      allow(subject).to receive(:stormy?).and_return(false)
       expect(subject.land(plane)).to eq plane
     end
 
     it 'raises an error when the capacity is full' do
+      allow(subject).to receive(:stormy?).and_return(false)
       plane = double(:plane, land: true)
       subject.capacity.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'No landing slots available!'
     end
+
+    it 'it raises error and prevents landing when weather is stormy' do
+      plane = double(:plane, land: true)
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect { subject.land(plane) }.to raise_error "Bad weather conditions!"
+  end
   end
 
   describe '#take_off' do

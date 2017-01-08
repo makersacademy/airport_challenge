@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Bad weather conditions!" if stormy?
     fail "No landing slots available!" if full?
     @planes << plane
     @planes[0]
@@ -21,6 +22,10 @@ class Airport
 
   def full?
     @planes.count >= capacity
+  end
+
+  def stormy?
+    true
   end
 
 end

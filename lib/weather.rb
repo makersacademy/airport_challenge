@@ -1,11 +1,8 @@
-class Weather
-  #OUTLOOK=[:stormy, :sunny]
-
-  def stormy?
-    true
-  end
-
-  def sunny?
-    true
-  end
-end
+# class Weather
+#
+#   # def stormy?
+#   #   rand(2) == 1 ? true : false
+#   # end
+#
+#
+# end
