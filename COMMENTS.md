@@ -32,6 +32,7 @@ Detailing my approach
 
 #### Step 9:
 - Linked Coveralls to my Github account and turned coveralls on for this repo
+- Have 98% test coverage
 
 Next steps
 --------------------
