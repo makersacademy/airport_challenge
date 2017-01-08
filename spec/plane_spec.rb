@@ -129,7 +129,20 @@ describe Plane do
           allow(airport).to receive(:airport_name) { "Paris" }
           expect(plane.take_off(airport)).to eq "Plane has taken off from Paris"
         end
-
+        it "is now airborne" do
+          airport = instance_double("Airport")
+          allow(airport).to receive(:airport_name) { "Paris" }
+          plane.take_off(airport)
+          expect(plane.airborne).to be true
+        end
+        it "docks with airport" do
+          airport = instance_double("Airport")
+          allow(airport).to receive(:airport_name) { "Paris" }
+          allow(airport).to receive(:undock)
+          allow(airport).to receive(:planes) { [] }
+          plane.take_off(airport)
+          expect(airport.planes).not_to include plane
+        end
       end
 
       context "weather is stormy" do

@@ -33,16 +33,6 @@ describe Airport do
       it { is_expected.to respond_to(:full?) }
     end
 
-    # describe ".accept_landing?" do
-    #   context "default airport capacity" do
-    #     context "airport is full" do
-    #       it "will not accept more planes" do
-    #         allow(airport).to receive(:full?) { true }
-    #         expect(airport.accept_landing(plane)).to
-    #       end
-    #     end
-    #   end
-    # end
     describe ".capacity" do
       it { is_expected.to respond_to(:capacity) }
       context "specified capacity" do
@@ -61,30 +51,32 @@ describe Airport do
 
     context "docking planes" do
 
-
       describe ".dock" do
-
-        it { is_expected. to respond_to(:dock).with(1).argument }
-
+        it { is_expected.to respond_to(:dock).with(1).argument }
         it "adds a landed plane to @planes" do
           plane = instance_double("Plane")
           airport.dock(plane)
           expect(airport.planes).to include (plane)
         end
-        # it "sets @full? to true when capacity reached" do
-        #   allow(airport).to receive
-        # end
-
         it "sets @full? to true when capacity reached" do
           plane = instance_double("Plane")
           (Airport::DEFAULT_CAPACITY).times { airport.dock(plane) }
           expect(airport.full?).to be true
         end
-
-
       end
     end
 
+    context "undocking planes" do
+      describe ".undock" do
+        it { is_expected.to respond_to(:undock).with(1).argument  }
+      end
+      it "removes a taken off plane from @planes" do
+        plane = instance_double("Plane")
+        airport.dock(plane)
+        airport.undock(plane)
+        expect(airport.planes).not_to include plane
+      end
+    end
 
   end
 
