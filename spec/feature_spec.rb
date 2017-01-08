@@ -10,10 +10,11 @@ describe "full feature test" do
     @plane = Plane.new
     @control = AirTrafficControl.new
     @capacity = 5
+    @airport = Airport.new
   end
 
   context "weather is good" do
-    before(:each){@airport = Airport.new @capacity, good_weather}
+    before(:each){allow(@airport).to receive(:stormy?).and_return false}
 
     it "will accept planes landing" do
       expect(@control.land_plane @plane, @airport).to eq true
@@ -29,7 +30,7 @@ describe "full feature test" do
   end
 
   context "weather is bad" do
-    before(:each){@airport = Airport.new 5, bad_weather}
+    before(:each){allow(@airport).to receive(:stormy?).and_return true}
 
     it "will not accept planes landing" do
       expect(@control.land_plane @plane, @airport).to eq false
