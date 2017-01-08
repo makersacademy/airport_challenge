@@ -2,8 +2,13 @@
 require_relative "plane"
 
 class Airport
-def plane_landed?
-  Plane.new
-end
+
+  def plane_landed?
+    Plane.new
+  end
+
+  def plane_take_off
+  end
+
 
 end
