@@ -1,5 +1,5 @@
 describe 'User Stories' do
-  let(:airport) { Airport.new }
+  let(:airport) { Airport.new(20) }
   let(:plane) { Plane.new }
   context 'when weather is not stormy' do
     before do
@@ -36,6 +36,18 @@ describe 'User Stories' do
     it 'prevents landing of planes' do
       expect { airport.land(plane) }.to raise_error 'Unable to land: Weather is stormy'
     end
-    
+
+  end
+
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when the airport is full
+  context 'when airport is full' do
+    it 'does not allow planes to land' do
+      20.times do
+        airport.land(plane)
+      end
+      expect { airport.land(plane) }.to raise_error 'Unable to land: Airport is full'
+    end
   end
 end
