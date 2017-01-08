@@ -1,3 +1,3 @@
 class Plane
-  #status :flying :landed
+  #status :flying 
 end
