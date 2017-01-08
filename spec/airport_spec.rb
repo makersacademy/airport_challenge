@@ -11,12 +11,18 @@ describe Airport do
   describe 'traffic management procedures' do
     it 'can land a plane' do
       plane = Plane.new
-      port = subject 
+      port = subject
       port.land(plane)
       expect(port.planes.last).to eq(plane)
     end
     it 'can takeoff a plane' do
-
+      port = subject
+      plane1 = Plane.new
+      port.land(plane1)
+      plane2 = Plane.new
+      port.land(plane2)
+      expect(port.takeoff(plane1)).to eq(plane1)
+      expect(port.planes).to eq([plane2])
     end
   end
 
