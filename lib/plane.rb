@@ -6,17 +6,25 @@ class Plane
   end
 
   def land(airport)
-    fail "Plane is already landed at #{airport}." if airport.planes.include? (self)
-    fail "The weather is currently stormy and it is not safe to land." if weather == "stormy"
+    land_exceptions(airport)
     airport.store_plane(self)
     @landing_status = true
   end
 
+  def land_exceptions(airport)
+    fail "Plane is already landed at #{airport}." if airport.planes.include? (self)
+    fail "The weather is currently stormy and it is not safe to land." if weather == "stormy"
+  end
+
   def take_off(airport)
-    fail "Plane is not currently in #{airport} so cannot take off." unless airport.planes.include? (self)
-    fail "The weather is currently stormy and it is not safe to depart." if weather == "stormy"
+    take_off_exceptions(airport)
     airport.release_plane(self)
     @landing_status = false
+  end
+
+  def take_off_exceptions(airport)
+    fail "Plane is not currently in #{airport} so cannot take off." unless airport.planes.include? (self)
+    fail "The weather is currently stormy and it is not safe to depart." if weather == "stormy"
   end
 
   def confirm_landed?
