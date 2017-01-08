@@ -3,20 +3,31 @@ Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://t
 
 # The Airport challenge:
 
-My approach to solve this challenge is to create 3 different classes to
-handle different aspects of the user story requirements:
+The part of the challenge that I was not able to complete is the requirement to defend for edge cases state as follows "Your code should defend against edge cases such inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc."
 
-**Airport class** that will handle the decision to allow a plane to land or take off. I will create 3 methods in this class. Please note that a new instance of this class have to be instantiated with a default capacity value and a Weather class instance  
+My current code contains the method land which handle the plane landing, the method take_off for managing taking off, full? which ensure the airport handle planes according to its capacity and stormy? which checks for the weather condition before landind or taking off.My approach to solve this part will be to create an array called flying_planes, and add to it planes that take off from the airport. When the method take_off is called on a plane object, I will check the flying_planes array to see wether its object_id is included in the array.  
 
-- A method landed  
-This method will rely on the output of a method called land in the class Plane to confirm that a plane has landed.
-
-- A method off_airport
-This method will rely on the output of a method called take_off in the class Plane to confirm that a planed took off and is no longer at the airport.
-
-- A method full? which will compare the variable @planes that contains the number of planes currently at the airport with the default capacity of the airport held in a constant called DEFAULT_CAPACITY. If @planes is greater than DEFAULT_CAPACITY this method will raise an error, otherwise it won't do anything.  
+If it is then the method take_off will throw an error. Similarly, when a plane lands it will be recorded in the @planes array, when the method land is called on a plane object, @planes array is checked to confirm that the plane has landed before it can take off again. This same approach will be used to make sure planes will take off only from airport they are in as the airport @planes array has to include the plane before it can take off or land there.
 
 
-**Plane class** which is responsible for landing and taking off plane. This class will have 2 methods. land and take_off. They both take as an argument instance created from Airport class. Since the instance from Airport class contains the weather condition, The method land will report that it is able to land the plane or not. If the plane can land, the result will be passed to the method landed in the airport class so that it can add a plane instance to Airport @planes variable. Similarly if the weather in the plane instance is clear, the method take_off will report to the method off_airport in Airport class so that it can remove a plane instance from the variable @planes.  
 
-**Weather class**, which will generate the weather condition randomly every time an instance of this class is  created. Two methods will be created under this class, a private method weather and normal one called stormy? The method weather is going to return a random value of an array that contains the weather condition stored as symbols. When the method weather is called it is going to generated data to the method stormy? The method stormy returns true if the data it receives is :stormy or false if the value is :clear.
+
+### airport.rb feature test
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007f844432bcc8 @capacity=1, @planes=[]>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007f84442d8870>
+[4] pry(main)> airport.land(plane)
+RuntimeError: You cannot land due to bad weather
+from /Users/Basile/Desktop/makers_2017/projects/airport_challenge/lib/airport.rb:20:in `land'
+[5] pry(main)> airport.land(plane)
+=> [#<Plane:0x007f84442d8870>]
+[6] pry(main)> airport.take_off(plane)
+RuntimeError: You cannot take off due to bad weather
+from /Users/Basile/Desktop/makers_2017/projects/airport_challenge/lib/airport.rb:25:in `take_off'
+[7] pry(main)> airport.take_off(plane)
+=> #<Plane:0x007f84442d8870>
+[8] pry(main)>

@@ -1,5 +1,8 @@
+
 require 'plane'
+
 describe Plane do
-  it {is_expected.to respond_to(:land)}
-  it {is_expected.to respond_to(:take_off)}
+  it " New insance class is Plane" do
+    expect(subject.class).to eq Plane
+  end
 end
