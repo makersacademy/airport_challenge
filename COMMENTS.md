@@ -24,3 +24,8 @@ Detailing my approach
 
 ##Step 7:
 - Now, I'm moving on to deal with the weather state. I'm not initially sure weather to make weather it's own class or a state of the airport class.
+  - Decided to set weather is its own class - thinking ahead, it could be possible for weather to grow considerably than it does now and then become too entangled with airport.
+  - Currently my use of stubs in the spec files is not very DRY. Need to find a way to set an overall environment and then when testing the stormy exceptions just set a different stub for those specific examples.
+
+#Step 8:
+- Next steps for development are to [1] figure out how to write an rspec feature test and [2] figure out a way to use let in rspec
