@@ -31,15 +31,15 @@ Users | Air traffic controller, System designer| System designer - Sets airport 
   __Control Take off__
   - [X] Instruct a plane to take off from an airport
   - [X] Confirm that it is no longer in the airport
-  - []Prevent a plane from being instructed to take off if it becomes stormy as plane is coming in
-  - []Prevent a plane from being instructed to take off if already in air
+  - [] Prevent a plane from being instructed to take off if it becomes stormy as plane is coming in
+  - [] Prevent a plane from being instructed to take off if already in air
   
   __As an Admin_System_designer I want to...__
-  - []Set the capacity of a particular airport
+  - [] Set the capacity of a particular airport
 
 ##4. Follow BDD for each user story building up classes identified in domain model
   -  This means writing rspec unit tests first
-      * build the simplest code to pass each test
+      * build the _simplest code_ to pass each test
       * _refactor_ as work goes along
        
 ##5. Repeat for each user story, keeping tests and code in spec and ruby files specific to responsible class
