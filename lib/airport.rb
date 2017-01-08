@@ -1,16 +1,18 @@
 class Airport
 
   attr_reader :planes
-  #
-  # DEFAULT_CAPACITY = 20
-  #
-  # def initialize(capacity = DEFAULT_CAPACITY)
-  #   @planes = []
-  #   @capacity = capacity
-  # end
+
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @planes = []
+    @capacity = capacity
+  end
 
   def land(plane)
     (weather == "sunny") ? true : false
+    @planes << plane
+    plane
   end
 
   def landed?

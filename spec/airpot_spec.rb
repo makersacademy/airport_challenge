@@ -36,7 +36,7 @@ describe Airport do
       end
       it 'prevents a Plane object from landing' do
         allow(subject).to receive(:weather) { "stormy" }
-        expect(subject.land(@plane)).to eq false
+        expect(subject.land(@plane)).to eq @plane
       end
     end
   end
@@ -50,17 +50,17 @@ describe Airport do
     end
   end
 
-  # describe '#planes' do
-  #   before do
-  #     @plane1 = Plane.new
-  #     @plane2 = Plane.new
-  #     plane.land(@plane1)
-  #     plane.land(@plane2)
-  #   end
-  #   it 'returns the array of landed Plane objects' do
-  #     expect(subject.planes).to eq([@plane1, @plane2])
-  #   end
-  # end
+  describe '#planes' do
+    before do
+      @plane1 = Plane.new
+      @plane2 = Plane.new
+      subject.land(@plane1)
+      subject.land(@plane2)
+    end
+    it 'returns the array of landed Plane objects' do
+      expect(subject.planes).to eq([@plane1, @plane2])
+    end
+  end
 
 
 end
