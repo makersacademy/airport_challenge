@@ -2,18 +2,18 @@ require 'plane'
 
 class Airport
   attr_accessor :weather, :capacity, :planes
-  def initialize(args)
-    @weather = args.fetch(:weather, forecast)
-    @capacity = args.fetch(:capacity, 20)
+  def initialize(weather, capacity = 20)
+    @weather = weather
+    @capacity = capacity
     @planes = []
   end
   def ask_to_land(plane)
     raise "Unable to land due to airport being full" if is_full?
-    raise "Unable to land due to weather being stormy" if is_stormy?
+    raise "Unable to land due to stormy weather" if is_stormy?
     @planes << plane
   end
   def ask_to_take_off(plane)
-    raise "Unable to take off due to weather being stormy" if is_stormy?
+    raise "Unable to take off due to stormy weather" if is_stormy?
     @planes.delete(plane)
   end
   def has_landed?(plane)
