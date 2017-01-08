@@ -10,7 +10,7 @@ class Weather
   end
 
   def randomizer
-    @random_button = rand(100)
+    @random_button = Kernel.rand(100)
   end
 
   def weather_generator
