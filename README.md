@@ -1,4 +1,4 @@
-Airport Challenge ![Travis build status](https://travis-ci.org/sliute/airport_challenge.svg?branch=master)
+# Airport Challenge ![Travis build status](https://travis-ci.org/sliute/airport_challenge.svg?branch=master)
 
 Task
 -----
