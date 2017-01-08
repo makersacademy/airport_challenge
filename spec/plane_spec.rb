@@ -15,7 +15,7 @@ describe "#status" do
 
   context "when on the ground" do
     it "is expected to confirm that the plane has landed" do
-      airport.land(plane)
+      airport.arrive(plane)
       expect(plane.status).to eq "The plane has landed"
     end
   end
@@ -25,7 +25,7 @@ end
   describe "Landing Tests:" do
     plane = Plane.new
     airport = Airport.new
-    airport.land(plane)
+    airport.arrive(plane)
     it { is_expected.to respond_to(:land_plane)}
     it { is_expected.to respond_to(:landed?)}
 
@@ -49,7 +49,7 @@ end
   describe "Take-Off Tests:" do
     plane = Plane.new
     airport = Airport.new
-    airport.land(plane)
+    airport.arrive(plane)
 
     it { is_expected.to respond_to(:take_off) }
     it { is_expected.to respond_to(:departed?) }
