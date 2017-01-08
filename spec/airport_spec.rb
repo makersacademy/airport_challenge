@@ -68,12 +68,12 @@ let(:air_plane) {double :plane, :landed? =>false}
 	describe '#initialize' do
 
 		context 'return defaults' do
-			it 'should return 10 if no capacity is given' do
+			it 'should return 1 if no capacity is given' do
 				expect{(Airport.new::capacity).to eq airport::DEFAULT_CAPACITY}
 			end
 
 			it ' airport default capacity should return 10 if no capacity is given' do
-			expect(Airport.new).to have_attributes(:capacity => 10)
+			expect(Airport.new).to have_attributes(:capacity => 1)
 			end
 
 		end
