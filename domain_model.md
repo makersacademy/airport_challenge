@@ -30,15 +30,9 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Objects  | Messages
 ------------- | -------------
+Plane  |
+Weather  |
 Airport  | land
 Airport  | takeoff
-
-
-Objects  | Messages
-------------- | -------------
 Traffic Controller  | instruct_takeoff
 Traffic Controller  | instruct_landing
-Traffic Controller | block_takeoff_if_stormy
-Traffic Controller | block_landing_if_stormy
-Traffic Controller | block_landing_if_full
-System designer | override_capacity

@@ -1,5 +1,7 @@
 require 'airport'
 
+#it { is_expected.to respond_to(:land).with(1).argument }
+
 describe Airport do
   number = 20
 
