@@ -1,6 +1,6 @@
 class Weather
 
-  def status
+  def current_weather
     condition <= 5 ? "stormy" : "sunny"
   end
 
