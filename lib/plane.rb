@@ -4,4 +4,7 @@ class Plane
     true
   end
 
+  def taken_off?
+    true
+  end
 end
