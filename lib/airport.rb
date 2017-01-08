@@ -2,12 +2,18 @@ require_relative 'plane'
 
 class Airport
 
-  def land(plane)
-    plane
+  def initialize
+    @planes = []
   end
 
-  def fly(plane)
-    plane
+  def land(plane)
+    @planes << plane
+    "#{plane} has landed"
+  end
+
+  def fly
+    fail 'No planes available' if @planes.empty?
+    "#{@planes.pop} has taken off"
   end
 
 end
