@@ -1,28 +1,30 @@
 require "plane.rb"
 
 describe Plane do
-  describe 'check plane basic functions' do
+  subject(:plane) { described_class.new }
+  subject(:plane1) { described_class.new(true) }
+  subject(:plane2) { described_class.new(false) }
+
+  describe 'check basic functions' do
     it 'plane exists' do
-      expect(subject).to be_a(Plane)
+      expect(plane).to be_a(Plane)
     end
     it 'plane can fly, true by default' do
-      expect(subject.status).to eq(true)
+      expect(plane.status).to eq(true)
     end
   end
 
   describe 'flight status can be assigned when the class is created' do
     it 'can assign no status to plane, true by default' do
-      expect(subject.status).to eq(true)
-    end
-
-    it 'can assign true status to plane' do
-      plane = Plane.new(true)
       expect(plane.status).to eq(true)
     end
 
+    it 'can assign true status to plane' do
+      expect(plane1.status).to eq(true)
+    end
+
     it 'can assign false status to plane' do
-      plane = Plane.new(false)
-      expect(plane.status).to eq(false)
+      expect(plane2.status).to eq(false)
     end
   end
 
