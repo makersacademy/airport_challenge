@@ -15,4 +15,7 @@ class Airport
     plane
   end
 
+  # def weather(type)
+  #   prevent_take_off if type == "stormy" end
+
 end

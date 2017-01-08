@@ -41,9 +41,13 @@ describe Airport do
   end
 
   #3rd story / 4th test
-  it 'prevents takeoff when weather is stormy' do
-  expect { subject.plane_take_off }.to raise_error 'Weather is stormy, you cannot take off'
-  end
+  it {is_expected.to respond_to :weather}
+
+
+
+  # it 'prevents takeoff when weather is stormy' do
+  # expect { subject.plane_take_off(plane, weather) }.to raise_error 'Weather is stormy, you cannot take off'
+  # # end
 
 
 
