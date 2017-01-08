@@ -25,5 +25,8 @@ describe Plane do
     it 'error when plane is already grounded' do
       expect{ subject.take_off(false) }.to raise_error("Cannot take off! Plane is already in the air")
     end
+    # it 'error when taking off in bad weather' do
+    #   expect(subject.stormy?(true)).to eq "Cannot take off! Bad Weather"
+    # end
   end
 end
