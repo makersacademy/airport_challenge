@@ -1,4 +1,5 @@
 class Plane
+
   def initialize
     @landed = false
   end
@@ -8,6 +9,6 @@ class Plane
       return 'In Flight.'
     elsif @landed == true
       return 'Landed.'
+    end
   end
-end
 end

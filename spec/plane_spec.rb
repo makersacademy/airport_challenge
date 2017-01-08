@@ -14,3 +14,14 @@ describe Plane do
     end
   end
 end
+
+describe Airport do
+
+  describe ".land" do
+      it "tells a plane to land" do
+        airport = Airport.new
+        plane = Plane.new
+        expect(airport).to respond_to(:land).with(1).argument
+    end
+  end
+end
