@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) {described_class.new(15)}
-  let(:plane) {double :plane}
+  plane = Plane.new
 
   describe 'Airport' do
     it { should respond_to(:take_off) }
@@ -14,14 +14,12 @@ describe Airport do
       it 'does not have a plane after taking off' do
         allow(airport).to receive(:stormy?).and_return(false)
         allow(plane).to receive(:take_off)
-        plane = Plane.new
         subject.land(plane)
         subject.take_off(plane)
         expect(subject.planes).not_to include(plane)
       end
       it 'confirms plane departed' do
         allow(airport).to receive(:stormy?).and_return(false)
-        plane = Plane.new
         subject.land(plane)
         subject.take_off(plane)
         expect(plane.flying).to eq(true)
@@ -30,7 +28,6 @@ describe Airport do
         allow(airport).to receive(:stormy?).and_return(false)
         airport1 = Airport.new
         allow(airport1).to receive(:stormy?).and_return(false)
-        plane = Plane.new
         subject.land(plane)
         error = "Plane cannot be found in this airport"
         expect{airport1.take_off(plane)}.to raise_error(error)
@@ -38,7 +35,6 @@ describe Airport do
     end
     context 'stormy' do
       it 'does not let a plane take off if stormy' do
-        plane = Plane.new
         allow(airport).to receive(:stormy?).and_return(true)
         error = "Plane cannot take off during storm"
         expect{subject.take_off(plane)}.to raise_error(error)
@@ -51,13 +47,11 @@ describe Airport do
       it 'has the plane after landing' do
         allow(airport).to receive(:stormy?).and_return(false)
         allow(plane).to receive(:land)
-        plane = Plane.new
         subject.land(plane)
         expect(subject.planes).to include(plane)
       end
       it 'confirms plane landed' do
         allow(airport).to receive(:stormy?).and_return(false)
-        plane = Plane.new
         subject.land(plane)
         expect(plane.flying).to eq(false)
       end
@@ -65,11 +59,10 @@ describe Airport do
         allow(airport).to receive(:stormy?).and_return(false)
         subject.capacity.times {subject.land(Plane.new)}
         error = "Airport full"
-        expect {subject.land(Plane.new)}.to raise_error(error)
+        expect {subject.land(plane)}.to raise_error(error)
       end
       it 'prevents same plane landing twice consecutively' do
         allow(airport).to receive(:stormy?).and_return(false)
-        plane = Plane.new
         subject.land(plane)
         error = "Plane already landed"
         expect {subject.land(plane)}.to raise_error(error)
@@ -79,7 +72,7 @@ describe Airport do
       it 'prevents the plane landing when its stormy' do
         allow(airport).to receive(:stormy?).and_return(true)
         error = "Cannot land plane when stormy"
-        expect {subject.land(Plane.new)}.to raise_error(error)
+        expect {subject.land(plane)}.to raise_error(error)
       end
     end
   end
