@@ -12,6 +12,7 @@ describe Airport do
     # expect(plane).to be_confirm_landed?
     expect(plane).to respond_to :confirm_landed?
   end
+
 end
 
 describe Airport do
