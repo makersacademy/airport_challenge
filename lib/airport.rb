@@ -12,10 +12,19 @@ attr_reader :landed_planes
   def land_plane(plane)
     @landed_planes << plane
     #print "The plane has landed."
-    print_confirm
+    print_landing
   end
 
-  def print_confirm
+  def takeoff
+    @landed_planes.pop
+    print_takeoff
+  end
+
+  def print_landing
     "The plane has landed"
+  end
+
+  def print_takeoff
+    "The plane has left"
   end
 end
