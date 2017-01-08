@@ -17,7 +17,7 @@ describe Plane do
 
   #2nd story / 4th test
   it "confirms to the airport it is not in the airport" do
-    expect(subject.confirm_not_in_airport).to eq("I'm not in the airport")
+    expect(subject.confirm_not_in_airport?).to eq("I'm not in the airport")
   end
 
 

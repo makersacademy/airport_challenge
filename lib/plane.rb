@@ -8,6 +8,7 @@ class Plane
   end
 
   def confirm_not_in_airport?
+    "I'm not in the airport"
   end
 
 end
