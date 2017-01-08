@@ -95,6 +95,7 @@ describe Plane do
 
   it 'should not be able to take_off when weather is stormy' do
     airport = Airport.new
+    allow(subject).to receive(:weather) { "sunny" }
     subject.land(airport)
     allow(subject).to receive(:weather) { "stormy" }
 
