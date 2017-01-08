@@ -16,7 +16,7 @@ class Plane
   end
 
   def take_off(airport)
-     unless !safe? || flying?
+     unless !safe? || flying? || not_in_airport?(airport)
        airport::planes.delete(self)
        @status = "flying"
      end
@@ -34,6 +34,10 @@ class Plane
 
   def landed?
     @status == "landed" ?  (raise "The plane has already landed") : false
+  end
+
+  def not_in_airport?(airport)
+    airport.planes.include?(self) ?  false : (raise "#{self} isn't in #{airport}")
   end
 
 end

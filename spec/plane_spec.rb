@@ -117,4 +117,23 @@ describe Plane do
     end
   end
 
+  describe "#not_in_airport?" do
+    before do
+      @airport = Airport.new
+      @plane = subject
+      allow(Weather).to receive(:stormy?) {false}
+      @plane.land(@airport)
+    end
+    context "plane tries to #take_off from airport it is in" do
+      it "takes off" do
+        expect{@plane.take_off(@airport)}.to change{@airport.planes}
+      end
+    end
+    context "plane tries to #take_off from airport it isn't in}" do
+      it "raises an error" do
+        expect{@plane.take_off(Airport.new)}.to raise_error
+      end
+    end
+  end
+
 end
