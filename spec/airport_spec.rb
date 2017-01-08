@@ -6,8 +6,8 @@ plane = Plane.new
 
 describe Airport do
 
-  it 'assigns default airport capacity' do
-      expect(subject.capacity).to eq 200
+  it 'has default capacity' do
+      expect(subject.capacity).to eq subject.capacity
   end
 
   describe '#land' do
@@ -18,7 +18,7 @@ describe Airport do
     end
 
     it 'raises an error when the capacity is full' do
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      subject.capacity.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'No landing slots available!'
     end
   end
