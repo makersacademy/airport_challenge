@@ -1,20 +1,17 @@
 require_relative 'airport.rb'
 
 class Plane
-  attr_accessor :landed
+  attr_accessor :flying
 
-
-=begin
   def take_off(airport)
-    departed = true
-    landed = false
+    @flying = false
+    airport.take_off(self)
   end
-=end
-
 
   def land(airport)
-    @landed = true
+    @flying = true
     #departed = false
     airport.land(self)
   end
+
 end

@@ -9,14 +9,21 @@ describe Airport do
     it { should respond_to(:planes) }
   end
 
-=begin
   describe '#take_off' do
-    it 'takes off planes' do
-      plane = subject.take_off
-      expect(plane).to be_departed
+    it 'does not have a plane after taking off' do
+      allow(plane).to receive(:take_off)
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).not_to include(plane)
+    end
+    it 'confirms plane departed' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(plane.flying).to eq(true)
     end
   end
-=end
 
   describe '#land' do
     it {should respond_to(:land).with(1).argument}
@@ -29,9 +36,7 @@ describe Airport do
     it 'confirms plane landed' do
       plane = Plane.new
       subject.land(plane)
-      expect(plane.landed).to eq(true)
+      expect(plane.flying).to eq(false)
     end
-
   end
-
 end
