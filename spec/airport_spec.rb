@@ -14,8 +14,6 @@ describe Airport do
   end
 
   describe '#land' do
-    it { is_expected.to respond_to(:land).with(1).argument }
-
     it 'lets plane land' do
       plane = double(:plane, land: true)
       allow(subject).to receive(:stormy?).and_return(false)
@@ -39,8 +37,6 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off) }
-
     it 'confirms that the plane is no longer at the airport' do
       expect(subject.planes).to be_empty
     end
