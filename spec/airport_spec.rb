@@ -28,6 +28,16 @@ describe Airport do
 end
 
 describe Airport do
-  #1st story / 1st test
+  #3rd story / 1st test
   it {is_expected.to respond_to :prevent_take_off}
+
+  #3rd story / 2nd test
+  it { is_expected.to respond_to(:prevent_take_off).with(1).argument }
+
+
+
+
+
+
+
 end
