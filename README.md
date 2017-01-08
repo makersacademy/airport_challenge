@@ -1,5 +1,5 @@
 #README#
-[travis-ci](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
 ##How I worked##
 I aimed to complete this challenge in a test driven manner, using manual feature tests within IRB and automated unit tests with rspec. I broke each user story down using a domain model (and a corresponding functional representation). Thereafter, I converted each individual user story into a failing manual feature test and then translated this into rspec as a new failing unit test. Code was then written thereafter. I have aimed to commit every test cycle so you can so my process.
@@ -41,6 +41,9 @@ RuntimeError: Cannot land plane when stormy
 2.2.3 :006 > XFJ3201.take_off(heathrow)
  => #<Plane:0x007fad3088d7b0 @flying=true>
  ```
+
+ N.B. Weather is random and the plane cannot land nor take off when weather is stormy
+
 ##Functional Representation##
 Objects | Messages
 ------- | --------
