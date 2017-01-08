@@ -6,4 +6,8 @@ class Airport
     plane
   end
 
+  def fly(plane)
+    plane
+  end
+
 end

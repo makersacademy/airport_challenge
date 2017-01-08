@@ -9,4 +9,11 @@ describe Airport do
     end
   end
 
+  describe '#fly' do
+    it 'instructs plane to take off' do
+      plane = Plane.new
+      expect(subject.fly plane).to eq plane
+    end
+  end
+
 end

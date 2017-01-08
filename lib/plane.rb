@@ -4,4 +4,8 @@ class Plane
     true
   end
 
+  def flying?
+    true
+  end
+
 end
