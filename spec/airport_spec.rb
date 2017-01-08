@@ -10,12 +10,12 @@ describe Airport do
 
   it 'can check the weather' do
     possible_weather = ["sunny", "stormy"]
-    expect(possible_weather).to include(airport.check_weather)
+    expect(possible_weather).to include(airport.weather)
   end
 
   context "when the weather is sunny" do
     before do
-      allow(airport).to receive(:check_weather).and_return('sunny')
+      allow(airport).to receive(:weather).and_return('sunny')
     end
 
     it 'plane can land at the airport' do
@@ -34,11 +34,17 @@ describe Airport do
 
   context "when the weather is stormy" do
     before do
-      allow(airport).to receive(:check_weather).and_return('stormy')
+      allow(airport).to receive(:weather).and_return('stormy')
     end
 
     it 'prevents landing' do
-      expect{ airport.land(plane) }.to raise_error("Too stormy to land!")
+      expect{ airport.land(plane) }
+      .to raise_error("Too stormy to land!")
+    end
+
+    it 'prevents take off' do
+      expect{ airport.take_off(plane) }
+      .to raise_error("Too stormy to take off!")
     end
   end
 end

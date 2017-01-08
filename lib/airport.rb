@@ -9,7 +9,7 @@ class Airport
   end
 
   def land(plane)
-    if check_weather == "sunny"
+    if weather == "sunny"
       plane.land!
       planes.push(plane)
     else
@@ -18,13 +18,17 @@ class Airport
   end
 
   def take_off(plane)
-    plane.take_off!
-    @planes.delete(plane)
+    if weather == "sunny"
+      plane.take_off!
+      @planes.delete(plane)
+    else
+      fail "Too stormy to take off!"
+    end
   end
 
-  def check_weather
-    weather = ["sunny", "sunny", "sunny", "stormy"]
-    weather.sample
+  def weather
+    possible_weather = ["sunny", "sunny", "sunny", "stormy"]
+    possible_weather.sample
   end
 
 
