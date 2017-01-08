@@ -21,7 +21,7 @@ feature 'Feature testing airport functionality' do
   def takes_off_three_planes
     3.times do
       @plane = @airport.planes.sample
-      @atc.instruct_to_take_off(@plane)
+      @atc.instruct_to_take_off(@plane, "Sunny")
       @plane.take_off(@airport)
       expect(@airport.airbourne_planes.include?(@plane)).to eq true
     end
@@ -30,7 +30,7 @@ feature 'Feature testing airport functionality' do
   def lands_three_planes
     3.times do
       @plane = @airport.airbourne_planes.sample
-      @atc.instruct_to_land(@plane)
+      @atc.instruct_to_land(@plane, "Sunny")
       @plane.land(@airport)
       expect(@airport.planes.include?(@plane)).to eq true
     end

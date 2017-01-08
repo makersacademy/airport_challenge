@@ -8,7 +8,7 @@ describe Plane do
   end
   it 'is able to receive instruction to land' do
     expect(subject).to respond_to :clear_to_land?
-    @atc.instruct_to_land
+    @atc.instruct_to_land(@plane, "Sunny")
     expect(@plane).to be_clear_to_land
   end
   it 'is able to land' do
@@ -17,12 +17,12 @@ describe Plane do
   end
   it 'is able to receive instruction to take off' do
     expect(subject).to respond_to :clear_for_take_off?
-    @atc.instruct_to_take_off
+    @atc.instruct_to_take_off(@plane, "Sunny")
     expect(@plane).to be_clear_for_take_off
   end
   it 'is able to take off' do
     expect(subject).to respond_to :take_off
-    @atc.instruct_to_take_off
+    @atc.instruct_to_take_off(@plane, "Sunny")
     expect(subject.take_off(@airport)).to be true
   end
 end

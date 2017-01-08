@@ -9,15 +9,13 @@ class AirTrafficController
     @weather = Weather.new.current_weather
   end
 
-  def instruct_to_land(plane = @plane_to_instruct)
-    # self.check_weather
-    raise 'Landing not permitted in stormy weather' if @weather == 'Stormy'
+  def instruct_to_land(plane = @plane_to_instruct, weather=self.check_weather)
+    raise 'Landing not permitted in stormy weather' if weather == 'Stormy'
     plane.landing = true if plane
   end
 
-  def instruct_to_take_off(plane = @plane_to_instruct)
-    # self.check_weather
-    raise 'Takeoff not permitted in stormy weather' if @weather == 'Stormy'
+  def instruct_to_take_off(plane = @plane_to_instruct, weather=self.check_weather)
+    raise 'Takeoff not permitted in stormy weather' if weather == 'Stormy'
     plane.taking_off = true if plane
   end
 end

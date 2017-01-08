@@ -18,11 +18,11 @@ describe Airport do
     expect(Airport.new(50).capacity).to eq 50
   end
   it 'ensures that the same plane cannot land if it is already in the airport' do
-    @atc.instruct_to_land
+    @atc.instruct_to_land(@plane, "Sunny")
     expect { @plane.land(@airport) }.to raise_error 'Plane is already on the ground'
   end
   it 'ensures that the same plane cannot take off if it has already taken off' do
-    @atc.instruct_to_take_off
+    @atc.instruct_to_take_off(@plane, "Sunny")
     @plane.take_off(@airport)
     expect { @plane.take_off(@airport) }.to raise_error 'Plane is already in the air'
   end
