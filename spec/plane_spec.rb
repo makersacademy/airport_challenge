@@ -24,8 +24,9 @@ describe Plane do
 
       context "weather is sunny" do
         before(:each) do
-          #ASK COACH WHY I CANNOT PUT THE WEATHER DOUBLE IN THE LEVEL ABOVE
+          #ASK COACH WHY I CANNOT PUT THE WEATHER CLASS DOUBLE IN THE LEVEL ABOVE
           set_sunny(true)
+          #ASK COACH WHY I CANNOT CREATE THE AIRPORT INSTANCE DOUBLE OUTSIDE OF THE IT STATEMENTS
           # set_airport("Paris")
         end
         it "can land" do
@@ -52,6 +53,14 @@ describe Plane do
           allow(airport).to receive(:dock)
           plane.land(airport)
           expect(plane.airborne).to be false
+        end
+        it "docks with airport" do
+          airport = instance_double("Airport")
+          allow(airport).to receive_messages(airport_name: "Paris", full?: false)
+          allow(airport).to receive(:dock)
+          allow(airport).to receive(:planes) { [plane] }
+          plane.land(airport)
+          expect(airport.planes).to include plane
         end
         context "airport is full" do
           it "cannot land" do
