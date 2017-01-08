@@ -2,7 +2,20 @@ require './lib/airport.rb'
 
 describe Airport do
   let(:plane) {double(:plane)}
-  let(:airport) {Airport.new}
+  let(:airport) {Airport.new()}
+
+describe 'Default Capacity' do
+  it 'should have a default capcity of 20' do
+    expect(Airport::DEFAULT_CAPACITY).to eq 20
+  end
+end
+
+describe 'User capacity parameter' do
+  it 'should allow the user to change the capacity of airport' do
+    bport = Airport::Airport.new(50)
+    expect(bport.capacity).to eq 50
+  end
+end
 
 describe 'Error testing' do
   before(:each) do
@@ -52,16 +65,17 @@ describe '#takeoff' do
     airport.land_plane(plane)
     expect(airport.takeoff).to include("The plane has left")
   end
+end
 
-
+describe '#full?' do
   it 'should raise an error if airport is full' do
 
     allow(airport).to receive(:weather_generator).and_return(false)
     airport.capacity.times{airport.land_plane plane}
     expect {airport.land_plane plane}.to raise_error('airport is full')
   end
-
 end
+
 
   #before do
   #  weather_today = "Stormy"

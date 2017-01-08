@@ -8,6 +8,7 @@ attr_reader :landed_planes
 attr_accessor :stormy
 attr_reader :capacity
 attr_accessor :weather_generator
+attr_accessor :initialize
 
 DEFAULT_CAPACITY = 20
 
