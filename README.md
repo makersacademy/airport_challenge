@@ -24,9 +24,9 @@ Structure
 
 Example Script
 ---------
-  new_plane = Plane.new
-  new_airport = Airport.new
-  Action.new.land(new_plane, new_airport)
+    new_plane = Plane.new
+    new_airport = Airport.new
+    Action.new.land(new_plane, new_airport)
 
 Error Cases
 ---------
