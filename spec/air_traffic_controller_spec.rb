@@ -12,7 +12,7 @@ describe AirTrafficController do
   end
   it 'instructs @planes to land at an @airport' do
     expect(subject).to respond_to :instruct_to_land
-    @atc.instruct_to_land
+    double(:atc).instruct_to_land
     expect(@plane).to be_clear_to_land
   end
   it 'confirms when a @plane has landed' do
