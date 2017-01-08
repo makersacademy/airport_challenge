@@ -1,3 +1,4 @@
-class Plane
-	
+class Airplane
+
+	end
 end
