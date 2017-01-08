@@ -34,7 +34,6 @@ I would like a default airport capacity that can be overridden as appropriate
 Progress
 ----
 
-What I did:
 1. Completed steps 1-3.
 2. Created a domain model with 6 + 3 (edge) user stories in docs/UserStories.md.
 3. Set up Travis CI.
