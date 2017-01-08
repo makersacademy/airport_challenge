@@ -18,11 +18,20 @@ describe Plane do
     it {expect(subject).to respond_to(:take_off).with(1).argument}
     before do
       @airport = Airport.new
-      subject.land(@airport)
+      @plane = Plane.new
+      @plane.land(@airport)
+
     end
 
     context "if a plane takes off"
     it { expect{subject.take_off(@airport)}.to change{@airport.planes}}
-  end
+    end
+
+    context "if the weather is not stormy" do
+      it "will take_off" do
+        allow(@plane).to receive(:safe?) {true}
+      #it { expect{subject.take_off(@airport)}.to change{@airport.planes}}
+      end
+    end
 
 end
