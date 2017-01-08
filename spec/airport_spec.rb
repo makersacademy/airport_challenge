@@ -4,6 +4,14 @@ require "airport"
 
 describe Airport do
 
-it {is_expected.to respond_to :plane_landed?}
+  #1st test
+  it {is_expected.to respond_to :plane_landed?}
+
+  #2nd test
+  it 'receives a plane' do
+    plane = subject.plane_landed?
+    expect(plane).to be_confirm_landed?
+  end
+
 
 end
