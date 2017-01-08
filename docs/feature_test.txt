@@ -1,13 +1,19 @@
 
 US1
-airport = Airport.new
-airport.land(plane)
-airport.take_off(plane)
-
-US2
 plane = Plane.new
 airport = Airport.new
 airport.land(plane)
+
+US2
+airport = Airport.new
+airport.land(plane)
 airport.take_off(plane)
-airport.plane
--- Error: Airport Full ---
+airport.planes
+
+
+US5
+airport = Airport.new
+plane = Plane.new
+200.times { airport.land(plane) }
+airport.land(plane)
+Error: Airport Full
