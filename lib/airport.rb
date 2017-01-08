@@ -3,11 +3,11 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :plane, :stormy
+  attr_accessor :plane, :stormy
 
-  def initialize(weather = Weather.new.stormy)
-    @stormy = weather
+  def initialize(weather = Weather.new)
     @plane = plane
+    @stormy = weather
   end
 
   def landed(plane)
@@ -28,8 +28,9 @@ class Airport
 
   #def stormy
 
-  #  @stormy = true
-
+    #@stormy = true
+     #stormy = rand(1..30) == 1 ? true : false
+     #return @stormy
   #end
 
 end

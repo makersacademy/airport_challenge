@@ -4,16 +4,12 @@ class Plane
 
 attr_reader :stormy
 
-  def initialize(stormy = Weather.new.stormy)
-    @stormy = stormy
-  end
-
   def land
-  @stormy
+  true
   end
 
   def depart
-  @stormy
+  true
   end
 
 end
