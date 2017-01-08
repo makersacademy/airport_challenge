@@ -32,8 +32,8 @@ describe Airport do
           #first ensure the weather is good by setting STORM_PROBABILITY TO 0
           stub_const("Weather::STORM_PROBABILITY", 0)
           airport = Airport.new
-          #land 20 planes at the one airport
-          expect(20.times {airport.land_plane(Plane.new)}).to eq 20
+          #land planes at the one airport
+          expect(Airport::DEFAULT_CAPACITY.times {airport.land_plane(Plane.new)}).to eq Airport::DEFAULT_CAPACITY
         end
     end
 
@@ -48,6 +48,19 @@ describe Airport do
       end
 
     end
+
+    context "landing in a full airport" do
+
+      it "should prevent landing when the airport is full" do
+        airport = Airport.new
+        #first ensure planes can both land and take-off for testing purposes so set STORM_PROBABILITY TO 0
+        stub_const("Weather::STORM_PROBABILITY", 0)
+        #now fill the aiport landing bay to capacity
+        Airport::DEFAULT_CAPACITY.times {airport.land_plane(Plane.new)}
+        #then try and land one more plane
+        expect {airport.land_plane(Plane.new)}.to raise_error "Airport Full Alert: Landing not permitted"
+      end
+    end
   end
 
   it { is_expected.to respond_to(:take_off) }
@@ -59,9 +72,8 @@ describe Airport do
         #first ensure the weather is good by setting STORM_PROBABILITY TO 0
         stub_const("Weather::STORM_PROBABILITY", 0)
         airport = Airport.new
-        #land 20 planes at the one airport
-        x = 20
-        x.times {airport.land_plane(Plane.new)}
+        #land planes at the one airport
+        Airport::DEFAULT_CAPACITY.times {airport.land_plane(Plane.new)}
         #note: planes will take_off on a FIFO time-basis (to be checked with client)
         expect(airport.take_off).to eq "Airbourne"
       end
@@ -72,11 +84,10 @@ describe Airport do
       it "should prevent take off in stormy weather" do
 
         airport = Airport.new
-        #land 20 planes at the one airport
-        x = 20
+        #land planes at the one airport
         #first ensure planes can land so set STORM_PROBABILITY TO 0
         stub_const("Weather::STORM_PROBABILITY", 0)
-        x.times {airport.land_plane(Plane.new)}
+        Airport::DEFAULT_CAPACITY.times {airport.land_plane(Plane.new)}
         #now ensure the weather is stormy for take-off by setting STORM_PROBABILITY TO 1
         stub_const("Weather::STORM_PROBABILITY", 1)
         expect {airport.take_off}.to raise_error "Stormy Weather Alert: Take-off not permitted"

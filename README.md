@@ -90,9 +90,10 @@ Proposed domain model:
 | Objects       | Messages      |
 | ------------- |:-------------:|
 | ATC           |               |
-| [TBD]         | [TBD]         |
-| [TBD]         | [TBD]         |
+| Airport       | land_plane    |
+| Airport       | at_capacity?  |
 
+The `land_plane` method of the Airport class will have access to a private `at_capacity` method in order to raise a error message.
 
 ####User Story 6:
 

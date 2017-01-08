@@ -6,12 +6,15 @@ include Weather
 
 attr_reader :landing_bay
 
+DEFAULT_CAPACITY = 5
+
   def initialize()
     @landing_bay = []
   end
 
   def land_plane(plane)
     raise "Stormy Weather Alert: Landing not permitted" if Weather.stormy?
+    raise "Airport Full Alert: Landing not permitted" if at_capacity?
     plane = plane
     plane.change_status("Landed")
     @landing_bay << plane
@@ -24,4 +27,9 @@ attr_reader :landing_bay
     take_off_plane.change_status("Airbourne")
   end
 
+private
+
+  def at_capacity?
+    @landing_bay.count == DEFAULT_CAPACITY
+  end
 end
