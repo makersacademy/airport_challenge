@@ -215,6 +215,8 @@ Please note that although it seems like the programme has less methods than orig
 * *I want to prevent landing when the airport is full* - realised in Airport class, with error raised in land function
 * *I would like a default airport capacity that can be overridden as appropriate* - realised in Airport class, capacity can be overridden during the creation of an instance
 
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg)](https://coveralls.io/github/makersacademy/airport_challenge)
+
 Instructions
 ---------
 *Just for the reference below you can find the original instructions*
