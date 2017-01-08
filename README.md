@@ -1,6 +1,9 @@
 Airport Challenge
 =================
 
+https://travis-ci.org/KatHicks/airport_challenge.svg?branch=master
+
+
 ```
         ______
         _\____\___
