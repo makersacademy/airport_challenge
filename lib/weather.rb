@@ -7,4 +7,5 @@ class Weather
   def check_weather
     chance < 85 ? "sunny" : "stormy"
   end
+  
 end
