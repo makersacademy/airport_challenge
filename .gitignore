@@ -7,3 +7,4 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 docs/domain_models
+test.rb

@@ -1,9 +1,10 @@
 require 'plane'
+require 'weather_station'
 
 class Airport
-  attr_accessor :weather, :capacity, :planes
-  def initialize(weather, capacity = 20)
-    @weather = weather
+  attr_reader :weather_report, :capacity, :planes
+  def initialize(weather_station, capacity = 20)
+    @weather_report = weather_station.report
     @capacity = capacity
     @planes = []
   end
@@ -25,11 +26,8 @@ class Airport
 
   private
 
-  def forecast
-    rand < 0.1 ? 'stormy' : 'fine'
-  end
   def is_stormy?
-    @weather == 'stormy'
+    @weather_report == 'stormy'
   end
   def is_full?
     @planes.size == @capacity
