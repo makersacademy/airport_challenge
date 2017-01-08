@@ -34,6 +34,11 @@ describe Airport do
   #3rd story / 2nd test
   it { is_expected.to respond_to(:prevent_take_off).with(1).argument }
 
+  #3rd story / 3rd test
+  it 'returns a grounded plane' do
+    plane = Plane.new
+    expect(subject.prevent_take_off(plane)).to eq plane
+  end
 
 
 
