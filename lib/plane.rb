@@ -1,7 +1,5 @@
-
-
 class Plane
-#require 'airport'
+
 attr_accessor :landed
 
   def initialize
