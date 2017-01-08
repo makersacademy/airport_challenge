@@ -1,8 +1,5 @@
 require "airport"
-require "plane"
-#require "weather"
-
-#plane = Plane.new
+require "weather"
 
 describe Airport do
 
@@ -29,13 +26,15 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(false)
       plane = double(:plane, land: true)
       subject.capacity.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error 'No landing slots available!'
+      message = 'No landing slots available!'
+      expect { subject.land(plane) }.to raise_error message
     end
 
     it 'raises error and prevents landing when weather is stormy' do
       plane = double(:plane, land: true)
       allow(subject).to receive(:stormy?).and_return(true)
-      expect { subject.land(plane) }.to raise_error "Bad weather conditions!"
+      message = "Bad weather conditions!"
+      expect { subject.land(plane) }.to raise_error message
     end
   end
 
@@ -49,7 +48,8 @@ describe Airport do
     it 'raises error and prevents taking off in stormy weather' do
       plane = double(:plane, land: true)
       allow(subject).to receive(:stormy?).and_return(true)
-      expect { subject.take_off(plane)}.to raise_error "Bad weather conditions!"
+      message = "Bad weather conditions!"
+      expect { subject.take_off(plane)}.to raise_error message
     end
   end
 end
