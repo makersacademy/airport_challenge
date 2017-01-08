@@ -10,31 +10,36 @@ class Airport
 def initialize(capacity = DEFAULT_CAPACITY)
   @planes = []
   @capacity = capacity
-  @weather = sunny
-  #@landed =
+  @sunny = true
   #plane.@landed = status
 end
 #find way to pass plane with attr into array
 # somewhere do if plane.landed = false else raise_error
 #NOW NEED TO PASS IN LANDED AND NOT LANDED PLANES
-def land_plane#(plane_to_land = Plane.new)
-  plane_to_land = Plane.new
+
+def land_plane(plane_to_land = Plane.new)
+  #plane_to_land = Plane.new
   #raise_error(Runtimeerror)if plane_to_land.@landed = true
   #plane_to_land.landed = true
+  raise 'Airport is closed due to stormy weather' if sunny?
+  raise 'Airport is full' if full?
+  plane_to_land.land
   @planes << plane_to_land
-end
 
+end
 
 def takeoff_plane
-  @planes.pop
+  taken_off = @planes.pop
+  #raise_error 'No plane on ground' if taken_off.landed = false
 end
 
-def sunny
-  #rand_number if 1 - 99
-#if x7 @weather = stormy
-#else @weather = sunny
-#check 7x and impact of float
-
+def full?
+    @planes.count >= @capacity
 end
 
+def sunny?
+  if (rand(100) < 0) then sunny = true
+  else   sunny = false
+  end
+end
 end

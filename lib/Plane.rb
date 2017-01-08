@@ -6,9 +6,11 @@ attr_reader :landed
     @landed = false
   end
 
-  def takeoff
-    @landed = false
-  end
+  # design means the plane disappears on take off
+  # new plane is created for landing
+   def takeoff
+     @landed = false
+   end
 
   def land
     @landed = true
