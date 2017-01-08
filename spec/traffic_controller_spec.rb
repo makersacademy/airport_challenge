@@ -7,6 +7,7 @@ describe Controller do
     end
   end
 
+  let(:controller) { double :controller }
   describe 'instruct_takeoff' do
     it 'controller instructs for takeoff only a plane with fly status true' do
       message = "The plane is already flying"
@@ -14,12 +15,14 @@ describe Controller do
     end
     it 'controller releases a plane and changes it fly status to true' do
       plane = Plane.new(false)
+      allow(controller).to receive(:stormy?).and_return(false)
       expect(subject.instruct_takeoff(plane)).to eq(true)
       expect(plane.status).to eq(true)
     end
     it 'prevent takeoff when the weather is stormy' do
       plane = Plane.new(false)
-      expect(subject.instruct_takeoff(plane,true)).to eq(false)
+      allow(controller).to receive(:stormy?).and_return(true)
+      expect(controller.instruct_takeoff(plane)).to eq(false)
       expect(plane.status).to eq(false)
     end
   end
@@ -31,15 +34,19 @@ describe Controller do
     end
     it 'controller accepts a plane and changes it fly status to false' do
       plane = Plane.new
+      allow(controller).to receive(:stormy?).and_return(false)
       expect(subject.instruct_landing(plane)).to eq(true)
       expect(plane.status).to eq(false)
     end
     it 'prevent landing when the weather is stormy' do
       plane = Plane.new
-      expect(subject.instruct_landing(plane,true)).to eq(false)
+      allow(controller).to receive(:stormy?).and_return(true)
+      expect(controller.instruct_landing(plane)).to eq(false)
       expect(plane.status).to eq(true)
     end
   end
+
+=begin
 
   describe 'block_takeoff_if_stormy' do
     it 'returns true if the weather is stromy' do
@@ -58,8 +65,11 @@ describe Controller do
       expect(subject.block_landing_if_stormy(false)).to eq(false)
     end
   end
+=end
 
   describe 'stormy random function' do
-
+    it 'dfd' do
+      allow(controller).to receive(:stormy?).and_return(true)
+    end
   end
 end
