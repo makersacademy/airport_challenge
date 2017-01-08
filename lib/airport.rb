@@ -1,4 +1,4 @@
-require 'plane'
+require_relative 'plane'
 
 class Airport
 
@@ -9,21 +9,25 @@ class Airport
   end
 
   def land(plane)
-    if plane.status == "flying"
-       planes << plane
-       puts "Airport is ready for the landing of #{plane} plane"
+    if plane.status == false
+      raise "The plane is already in airport"
     else
-       raise "The plane is already in airport"
+      plane.status = false
+      true
     end
   end
 
   def send(plane)
-    if plane.status == "landed"
-       planes.delete(plane)
-      puts "Airport is ready for sending #{plane} plane into the air"
+    if plane.status == true
+      raise "The plane is already flying"
     else
-      raise "The plane is not available"
+      plane.status = true
+      true
     end
   end
+    #   @planes.delete(plane)
+    #  puts "Airport is ready for sending #{plane} plane into the air"
+    #  else
 
-end
+
+  end
