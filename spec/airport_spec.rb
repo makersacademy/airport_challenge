@@ -8,13 +8,19 @@ describe Airport do
     end
   end
 
-  describe 'traffic management procedures' do
+  describe 'traffic management procedures: landing' do
     it 'can land a plane' do
       plane = Plane.new
       port = subject
       port.land(plane)
       expect(port.planes.last).to eq(plane)
     end
+    it 'raises an error if airport is full' do
+
+    end
+  end
+
+  describe 'traffic management procedures: takeoff' do
     it 'can takeoff a plane' do
       port = subject
       plane1 = Plane.new
@@ -23,6 +29,16 @@ describe Airport do
       port.land(plane2)
       expect(port.takeoff(plane1)).to eq(plane1)
       expect(port.planes).to eq([plane2])
+    end
+    message = "There is no such plane in the airport"
+    it 'raises an error if the airport is empty' do
+      expect {subject.takeoff(Plane.new)}.to raise_error(message)
+    end
+    it 'raises the same error if the airport does not have this plane' do
+      plane = Plane.new
+      port = subject
+      port.land(plane)
+      expect {subject.takeoff(Plane.new)}.to raise_error(message)
     end
   end
 
