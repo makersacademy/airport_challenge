@@ -22,20 +22,21 @@ describe Plane do
         end
         
         it 'can\'t land at full airports' do
-            plane1 = Plane.new
+            capacity = Airport::DEFAULT_CAPACITY
             error_message = "Airport full"
-            expect{ plane1.land(airport) }.to raise_error error_message
+            fill = Proc.new {capacity.times{ described_class.new.land(airport) } }
+            expect{ fill.call }.to raise_error error_message
         end
         
-        it 'adds itself to airport planes' do
-            expect(airport.planes).to include(subject)
+        it 'adds a :plane to airport planes' do
+            expect(airport.planes).to include(:plane)
         end
         
         it 'changes @landed state to true' do
             expect(subject.landed).to eq true
         end
         
-        it 'it returns the airport it has landed at' do
+        it 'it sets @airport to the airport it landed at' do
             expect(subject.airport).to eq airport    
         end
         
@@ -43,14 +44,7 @@ describe Plane do
             error_message = "Plane already landed"
             expect{ subject.land(airport) }.to raise_error error_message
         end
-=begin
-        # Currently breaks all other tests
-        it 'can only land at an instance of Aiport' do
-            subject.take_off
-            error_message = "Can only land at an Aiport"
-            expect{ subject.land("not_aiport") }.to raise_error error_message
-        end
-=end        
+     
         it 'can\'t land when stormy' do
             subject.take_off
             allow(airport).to receive(:stormy?).and_return(true)
@@ -66,6 +60,10 @@ describe Plane do
             allow(airport).to receive(:capacity).and_return(Airport::DEFAULT_CAPACITY)
             subject.land(airport)
             subject.take_off
+        end
+        
+        it 'removes a :plane from airport.planes' do
+            expect(airport.planes).to eq []
         end
         
         it 'sets @landed to false' do

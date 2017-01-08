@@ -10,31 +10,38 @@ class Plane
     end
     
     def land(airport)
-        #raise "Can only land at an airport" unless airport.instance_of?(Airport)
-        raise "Plane already landed" if @landed
-        raise "Airport full" if full?(airport)
-        raise "Too stormy to land" if airport.stormy?
+        landing_errors(airport)
         @landed = true
-        @airport = airport
-        park
+        park(airport)
     end
     
     def take_off
-        raise "Plane already flying" unless @landed
-        raise "Too stormy to take off" if airport.stormy?
-        un_park
+        take_off_errors
+        leave
         @landed = false
         @airport = :flying
     end
     
     private
     
-    def park
-        @airport.planes << self
+    def landing_errors(airport)
+        raise "Plane already landed" if @landed
+        raise "Airport full" if full?(airport)
+        raise "Too stormy to land" if airport.stormy?
     end
     
-    def un_park
-        @airport.planes.delete(self)
+    def take_off_errors
+        raise "Plane already flying" unless @landed
+        raise "Too stormy to take off" if airport.stormy?
+    end
+    
+    def park(airport)
+        airport.planes << :plane
+        @airport = airport
+    end
+    
+    def leave
+        @airport.planes.pop
     end
     
     def full?(airport)
