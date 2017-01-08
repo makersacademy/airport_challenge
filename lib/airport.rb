@@ -22,6 +22,7 @@ class Airport
 
   def land(plane)
     raise "Airport full" if full?
+    raise "Cannot land plane when stormy" if stormy?
     plane.flying = false
     @planes << plane
     self

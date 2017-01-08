@@ -38,21 +38,33 @@ describe Airport do
   end
 
   describe '#land' do
-    it {should respond_to(:land).with(1).argument}
-    it 'has the plane after landing' do
-      allow(plane).to receive(:land)
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.planes).to include(plane)
+    context 'not stormy' do
+      it 'has the plane after landing' do
+        allow(airport).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:land)
+        plane = Plane.new
+        subject.land(plane)
+        expect(subject.planes).to include(plane)
+      end
+      it 'confirms plane landed' do
+        allow(airport).to receive(:stormy?).and_return(false)
+        plane = Plane.new
+        subject.land(plane)
+        expect(plane.flying).to eq(false)
+      end
+      it 'prevents plane landing when airport full' do
+        allow(airport).to receive(:stormy?).and_return(false)
+        subject.capacity.times {subject.land(Plane.new)}
+        error = "Airport full"
+        expect {subject.land(Plane.new)}.to raise_error(error)
+      end
     end
-    it 'confirms plane landed' do
-      plane = Plane.new
-      subject.land(plane)
-      expect(plane.flying).to eq(false)
-    end
-    it 'prevents plane landing when airport full' do
-      subject.capacity.times {subject.land(Plane.new)}
-      expect {subject.land(Plane.new)}.to raise_error("Airport full")
+    context 'not stormy' do
+      it 'prevents the plane landing when its stormy' do
+        allow(airport).to receive(:stormy?).and_return(true)
+        error = "Cannot land plane when stormy"
+        expect {subject.land(Plane.new)}.to raise_error(error)
+      end
     end
   end
 
