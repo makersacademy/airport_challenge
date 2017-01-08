@@ -10,7 +10,8 @@ describe Airport do
   #2nd test
   it 'receives a plane' do
     plane = subject.plane_landed?
-    expect(plane).to be_confirm_landed?
+    # expect(plane).to be_confirm_landed?
+    expect(plane).to respond_to :confirm_landed?
   end
 
 
