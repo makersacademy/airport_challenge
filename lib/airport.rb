@@ -7,7 +7,7 @@ class Airport
   end
 
   def land(plane)
-    fail 'Stormy weather preventing landing' if stormy?
+    raise "Stormy weather preventing landing" if stormy?
     @planes << plane
     plane.airborne = false
     "#{plane} has landed"
