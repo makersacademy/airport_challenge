@@ -21,7 +21,8 @@ class Airport
     raise 'Stormy weather preventing take off' if stormy?
     raise 'No planes available' if empty?
     plane.airborne = true
-    "#{@planes.pop} has taken off"
+    @planes.delete plane
+    "#{plane} has taken off"
   end
 
   private
