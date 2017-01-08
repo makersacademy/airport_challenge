@@ -11,5 +11,8 @@ class Airport
     plane
   end
 
+  def prevent_take_off
+
+  end
 
 end
