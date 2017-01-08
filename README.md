@@ -45,9 +45,14 @@ As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 
+- stormy? method created for Airport class to set weather conditions using rand
+- Test written and take_off method set to fail if weather stormy
+
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
+
+- Test written and land method set to fail if weather stormy
 
 As an air traffic controller
 To ensure safety
