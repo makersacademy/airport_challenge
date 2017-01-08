@@ -23,11 +23,11 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
 ATC
-plane  | instruct to land
+plane  | (instruct to) land
 plane  | status: landed
 
 ATC
-plane  | instruct to take off
+plane  | (instruct to) take off
 plane  | status: not in airport
 
 ATC

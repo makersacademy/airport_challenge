@@ -3,6 +3,8 @@ require 'airport'
 
 describe Airport do
 
+end
+
 =begin
   describe '#instruct_landing' do
     it 'prevents plane landing in stormy weather' do
@@ -13,7 +15,6 @@ describe Airport do
     end
   end
 =end
-end
 
 =begin
 ATC

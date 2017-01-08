@@ -6,9 +6,7 @@ describe Plane do
     it 'lands plane' do
       @airport = Airport.new
       @plane = Plane.new
-      p "HERE", @plane
       @plane.instruct_land(@airport)
-      p "HERE", @plane
       expect(@plane::landed).to eq(true)
     end
   end
@@ -24,25 +22,66 @@ describe Plane do
 
   describe '#prevent_takeoff' do
     before do
-      @airport3 = Airport.new
-      @plane3 = Plane.new
-      @plane3.instruct_land(@airport3)
+      @airport = Airport.new
+      @plane = Plane.new
+      @plane.instruct_land(@airport)
     end
     context 'clear weather' do
-      it 'allows takeoff' do
-        allow(@plane3).to receive(:prevent_takeoff).and_return(false)
-        expect(@airport3.planes.include?(@plane3)).to eq(false)
+      it 'allows takeoff in clear weather' do
+        allow(@plane).to receive(:prevent_takeoff).and_return(false)
+        @plane.instruct_takeoff(@airport)
+        expect(@airport.planes.include?(@plane)).to eq(false)
       end
     end
     context 'If weather is stormy' do
-      it 'prevents takeoff' do
-        allow(@plane3).to receive(:prevent_takeoff).and_return(true)
-        expect(@airport3.planes.include?(@plane3)).to eq(true)
+      it 'prevents takeoff in stormy weather' do
+        allow(@plane).to receive(:prevent_takeoff).and_return(true)
+        expect(@airport.planes.include?(@plane)).to eq(true)
+      end
+    end
+  end
+
+  describe '#prevent_landing' do
+    before do
+      @airport = Airport.new
+      @plane = Plane.new
+    end
+    context 'clear weather' do
+      it 'allows landing in clear weather' do
+        allow(@plane).to receive(:prevent_landing).and_return(false)
+        @plane.instruct_land(@airport)
+        expect(@airport.planes.include?(@plane)).to eq(true)
+      end
+    end
+    context 'If weather is stormy' do
+      it 'prevents landing in stormy weather' do
+        allow(@plane).to receive(:prevent_landing).and_return(true)
+        expect(@airport.planes.include?(@plane)).to eq(false)
+      end
+    end
+  end
+
+  describe '#airport_full' do
+    before do
+      @airport = Airport.new(5)
+      @plane = Plane.new
+    end
+    context 'Airport full' do
+      it 'prevents landing when airport is at capacity' do
+        p "HERE", @airport
+      5.times { Plane.new.instruct_land(@airport) }
+      expect{@plane.instruct_land(@airport)}.to raise_error
+      end
+    end
+    context 'Airport not full' do
+      it 'permits landing when airport is below capacity' do
+      allow(@plane).to receive(:airport_full).and_return(false)
+      @plane.instruct_land(@airport)
+      expect(@airport.planes.include?(@plane)).to eq(true)
       end
     end
   end
 end
-
 =begin
 First user story and domain model:
 As an air traffic controller
