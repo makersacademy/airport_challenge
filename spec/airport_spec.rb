@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-
+=begin
   describe "#landed?" do
 
     it { expect(subject).to respond_to(:landed?).with(1).argument}
@@ -52,6 +52,7 @@ describe Airport do
 
     end
   end
+=end
 
   describe "#capacity" do
 

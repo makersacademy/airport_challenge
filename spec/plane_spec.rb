@@ -2,6 +2,30 @@ require 'airport'
 
 describe Plane do
 
+  describe "#status" do
+    before do
+      @airport = Airport.new
+      @plane = Plane.new
+      allow(Weather).to receive(:stormy?) {false}
+    end
+    context "when plane is still flying" do
+      it {expect(@plane.status).to eq("flying")}
+    end
+    context "when plane has landed" do
+      it "status will change to landed" do
+        @plane.land(@airport)
+        expect(@plane.status).to eq("landed")
+     end
+    end
+    context "when the plane has taken off" do
+      it "has the status flying" do
+        @plane.land(@airport)
+        @plane.take_off(@airport)
+        expect(@plane.status).to eq("flying")
+      end
+    end
+  end
+
   describe "#land" do
     it {expect(subject).to respond_to(:land).with(1).argument}
 
@@ -33,7 +57,8 @@ describe Plane do
     before do
       @plane = Plane.new
       @airport = Airport.new
-      @airport::planes << @plane
+      allow(Weather).to receive(:stormy?) {false}
+      @plane.land(@airport)
     end
 
     context "if the weather is safe" do
@@ -54,7 +79,7 @@ describe Plane do
 
 
   end
-  
+
   describe "#full?" do
     before do
       @airport = Airport.new
@@ -69,4 +94,27 @@ describe Plane do
       end
     end
   end
+
+  describe "#flying? and #landed?" do
+    it {expect(subject).to_not respond_to(:landed?)}
+    it {expect(subject).to_not respond_to(:flying?)}
+    before do
+      @airport = Airport.new
+      @plane = subject
+      allow(Weather).to receive(:stormy?) {false}
+    end
+
+    context "if the plane has #landed?" do
+      it "will not #land" do
+        @plane.land(@airport)
+        expect{@plane.land(@airport)}.to raise_error
+      end
+    end
+    context "if the plane is #flying?" do
+      it "will not #take_off" do
+        expect{@plane.take_off(@airport)}.to raise_error
+      end
+    end
+  end
+
 end
