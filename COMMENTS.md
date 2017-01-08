@@ -16,4 +16,11 @@ Detailing my approach
 - Next decided to move onto the user story that prevents a plane from landing if the airport is full. I'm now able to tackle this feature as there is memory (created in the previous step) for the airport to know how many planes are landed
 
 ##Step 5:
-- I'm now going to address the confirmation methods which are not fully functional
+- I'm now going to address the confirmation methods which are not fully functional.
+
+##Step 6:
+- Pull request: at this stage, I've decided to submit my first pull request having satisfied four out of six of the user stories.
+- Both Hound and Travis passed successfully and my test coverage is still 100%.
+
+##Step 7:
+- Now, I'm moving on to deal with the weather state. I'm not initially sure weather to make weather it's own class or a state of the airport class.
