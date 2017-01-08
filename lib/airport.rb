@@ -7,14 +7,19 @@ class Airport
 
 attr_reader :landed_planes
 attr_reader :weather_today
+attr_reader :capacity
 
-  def initialize
+DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @landed_planes = []
     @weather_today = Weather.new.weather
   end
 
   def land_plane(plane)
     stormy?
+    full?
     @landed_planes << plane
     #print "The plane has landed."
     print_landing
@@ -22,6 +27,7 @@ attr_reader :weather_today
 
   def takeoff
     stormy?
+    full?
     @landed_planes.pop
     print_takeoff
   end
@@ -36,5 +42,9 @@ attr_reader :weather_today
 
   def stormy?
     fail "Storm preventing takeoff and landing." if @weather_today == "Stormy"
+  end
+
+  def full?
+    fail 'airport is full' if @landed_planes.count >= @capacity
   end
 end

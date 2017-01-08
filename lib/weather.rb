@@ -2,6 +2,7 @@ class Weather
 
   attr_accessor :weather
   attr_reader :randomizer
+  attr_accessor :weather_generator
 
   DEFAULT_WEATHER = "Sunny"
   def initialize
