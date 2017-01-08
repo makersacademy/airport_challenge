@@ -29,9 +29,6 @@
 
 > User stories| Domain models
 ----------------------
-
-Object | Action
--------|---------------
 plane  | (instruct to) land
 plane  | status: landed
 plane  | (instruct to) take off
