@@ -7,7 +7,7 @@ class Plane
   end
 
   def landed?
-
+    self.land == true ? true : false
   end
 
   def take_off

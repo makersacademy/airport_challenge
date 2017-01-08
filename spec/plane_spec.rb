@@ -21,6 +21,7 @@ describe Plane do
   describe '#departed?' do
     context 'when Plane object has taken off' do
       it 'provide status of Plane object' do
+      allow(subject).to receive(:take_off) { true }
       expect(subject.departed?).to eq true
       end
     end
@@ -32,6 +33,15 @@ describe Plane do
       it 'prevents a Plane object from landing' do
         allow(subject).to receive(:weather) { "stormy" }
         expect(subject.land).to eq false
+      end
+    end
+  end
+
+  describe '#landed?' do
+    context 'when Plane object has landed' do
+      it 'provide status of Plane object' do
+        allow(subject).to receive(:land) { true }
+        expect(subject.landed?).to eq true
       end
     end
   end
