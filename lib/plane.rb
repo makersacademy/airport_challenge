@@ -1,9 +1,8 @@
 class Plane
   attr_accessor :status
 
-  def land(airport)
+  def land
     @status = 'landed'
-    @airport = airport
   end
 
 end

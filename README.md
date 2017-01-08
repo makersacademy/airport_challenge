@@ -4,9 +4,13 @@ What I did:
 1. Completed steps 1-3.
 2. Created a domain model with 6 + 3 user stories in docs/UserStories.md.
 3. The initial commit passed in Travis. Coveralls yielded an error message:
-"Coveralls encountered an exception: RestClient::UnprocessableEntity. 422 Unprocessable Entity".
-The bundle... command exited with 0.
-4. 
+"Coveralls encountered an exception: RestClient::UnprocessableEntity. 422 Unprocessable Entity.
+The bundle... command exited with 0."
+4. Feature tested in IRB then unit-tested with Rspec for Story 01. Updated the domain model.
+Commited and pushed. May have written too much Ruby code (some of it may not be covered by test).
+
+
+
 
 
 =================
