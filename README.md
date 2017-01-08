@@ -49,9 +49,10 @@ Objects | Messages
 ------- | --------
 Air traffic controller |
 Airport | land
-Plane | landed?
+Plane | land
+Plane | flying?
 Airport | take_off
-Plane | departed?
+Plane | take_off
 Stormy Weather | prevent_take_off
 Stormy Weather | prevent_landing
 Airport | full?
@@ -59,10 +60,9 @@ Airport | default_capacity
 
 
 ##Diagram##
-Plane <-- landed? -- > true/false  
-Plane <-- departed? --> true/false
-Airport <-- land --> lands plane
-Airport <-- take_off --> plane departs
+Plane <-- flying? -- > true/false  
+Airport or Plane<-- land --> lands plane
+Airport or Plane<-- take_off --> plane departs
 Stormy Weather <-- prevent_take_off --> prevents plane taking off
 Stormy Weather <-- prevent_landing --> prevents plane landing
 Airport <-- full? --> prevents plane landing
