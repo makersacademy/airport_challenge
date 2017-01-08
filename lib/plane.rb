@@ -33,6 +33,7 @@ class Plane
 
   def land_exceptions(airport)
     fail "Plane is already landed at #{airport}." if airport.planes.include? (self)
+    fail "Plane is already landed at another airport." if landing_status
     fail "The weather is currently stormy and it is not safe to land." if weather == "stormy"
   end
 
