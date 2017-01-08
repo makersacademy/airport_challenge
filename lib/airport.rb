@@ -1,39 +1,48 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
-  attr_accessor :arrivals, :departures, :runway_open
+  DEFAULT_CAPACITY = 20
 
-  def initialize
+  attr_reader :arrivals, :departures, :weather, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
     @arrivals = []
     @departures = []
-    @runway_open = true
+    @weather = weather
+    @capacity = capacity
 
   end
 
-  def arrive(plane)
-    plane::land_plane
-    @arrivals << plane
+  def land(plane)
+    if @weather.stormy == true
+      runway_closed
+    elsif @arrivals.length >= @capacity
+      airport_full
+    else
+      plane.land_plane
+      @arrivals << plane
+    end
   end
 
   def depart(plane)
-    check_weather
-    plane::take_off
-    @arrivals.delete(plane)
-    @departures << plane
-  end
-
-  def check_weather
-    weather = Weather.new
-    runway_open?(weather)
-  end
-
-  def runway_open?(weather)
-    if weather.current_weather == "Stormy"
-      @runway_open = false
+    if @weather.stormy == true
+      runway_closed
     else
-      @runway_open = true
+      plane.take_off
+      @arrivals.delete(plane)
+      @departures << plane
     end
+  end
+
+  def runway_closed
+    raise "The runway is closed due to poor weather conditions"
+  end
+
+  def airport_full
+    raise "The airport is closed as it has reached capacity"
+
   end
 
 end

@@ -1,21 +1,17 @@
 class Weather
 
-  attr_accessor :current_weather
+  attr_accessor :stormy
 
   def initialize
-    @current_weather = make_weather(random_num)
+    @stormy = get_weather(rand(1..10))
+
   end
 
-  def random_num
-    rand(1..10)
-  end
-
-  def make_weather(number)
-    if number < 7
-      @current_weather = "Sunny"
+  def get_weather(number)
+    if number > 6
+      @stormy = true
     else
-      @current_weather = "Stormy"
+      @stormy = false
     end
   end
-
 end
