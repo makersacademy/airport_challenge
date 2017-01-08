@@ -1,5 +1,5 @@
 require 'traffic_controller'
-
+=begin
 describe Controller do
   describe 'class existance' do
     it 'can create an instance of the class' do
@@ -46,7 +46,7 @@ describe Controller do
     end
   end
 
-=begin
+
 
   describe 'block_takeoff_if_stormy' do
     it 'returns true if the weather is stromy' do
@@ -65,7 +65,7 @@ describe Controller do
       expect(subject.block_landing_if_stormy(false)).to eq(false)
     end
   end
-=end
+
 
   describe 'stormy random function' do
     it 'dfd' do
@@ -73,3 +73,4 @@ describe Controller do
     end
   end
 end
+=end

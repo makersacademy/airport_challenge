@@ -12,8 +12,7 @@ describe Plane do
 
   describe 'flight status can be assigned when the class is created' do
     it 'can assign no status to plane, true by default' do
-      plane = Plane.new
-      expect(plane.status).to eq(true)
+      expect(subject.status).to eq(true)
     end
 
     it 'can assign true status to plane' do
@@ -26,4 +25,16 @@ describe Plane do
       expect(plane.status).to eq(false)
     end
   end
+
+  describe 'has a property airport that is not nil only when the plane is on the earth, London by dafault' do
+    it 'London by dafalt' do
+      expect(subject.airport).to eq("London")
+    end
+
+    it 'can assign other airport' do
+      plane = Plane.new(true,"Geneva")
+      expect(plane.airport).to eq("Geneva")
+    end
+  end
+
 end
