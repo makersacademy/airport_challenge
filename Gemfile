@@ -8,4 +8,3 @@ gem 'coveralls', require: false
 gem 'rubocop'
 gem 'reek'
 gem 'rake'
-gem 'pry'

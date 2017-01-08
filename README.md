@@ -36,12 +36,21 @@ Approach
 -----
 
 I approached the challenge by creating three modules:
-- Plane
-- Airport
-- Weather
+- `Plane`
+- `Airport`
+- `Weather`
 
 The user is able to create instances of plane and airport, and then proceed to land/take-off the planes at/from the given airports.
 
 I initially understood the challenge to only require one airport. For that reason, I created Weather such that no instances of it are required, it is a class module only. Since weather is generated randomly, and is not saved, it didn't think it was necessary to have it based on creating instances. Once I understood the challenge required multiple airports I did consider changing this, but even if weather instances were used, it would still be generated randomly and the functionality would be the same. However, it would be good for the system to be able to report the weather at a given location (i.e. as a future user story).
 
-All of the 
+All of the modules were written using TDD, and a spec file exists for each one. I've used verified doubles extensively as well as stubbed methods.
+
+Problems
+-----
+
+There is significant repeated code in the spec files, in particular `plane_spec.rb`. This tends to be where instance doubles are being used. While I was able to create a method `set_sunny` to provide my `Weather` class double to my tests, I was not able to achieve a similar solution for instance doubles. Whenever I tried to lift an instance double outside an `it` statements I received errors.
+
+As a priority learning objective I would like to understand this better, as I am sure there will be a way to implement this in a DRY fashion.
+
+*Note: there are some comments in `plane_spec.rb` that point to where I was having this problem.*
