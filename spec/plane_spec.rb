@@ -54,21 +54,7 @@ describe Plane do
 
 
   end
-
-  describe "#capacity" do
-    before do
-      @airport = Airport.new
-      @plane = Plane.new
-      allow(Weather).to receive(:stormy?) {false}
-      @plane.land(@airport)
-    end
-
-    it "tells us the capacity" do
-      p "Here",  @airport.capacity
-      expect(@airport.capacity).to eq(10)
-    end
-  end
-
+  
   describe "#full?" do
     before do
       @airport = Airport.new

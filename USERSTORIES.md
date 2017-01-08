@@ -75,12 +75,20 @@ airport | full?
 plane | land
 
 **Notes:**
+
 I will need to create a constant that has a default capacity and set it to a number. When the airport is full no more planes can take off or land.
-
-
 
 ```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+
+Object | Message
+------- | -------
+system_designer |
+airport | DEFAULT_CAPACITY
+
+**Notes**
+
+I want to give the capacity variable the DEFAULT_CAPACITY when no arguments are given.
