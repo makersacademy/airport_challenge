@@ -12,7 +12,7 @@ class Airport
   end
 
   def prevent_take_off(plane)
-
+    plane
   end
 
 end
