@@ -18,4 +18,8 @@ class Airport
     "#{@planes.pop} has taken off"
   end
 
+  def stormy?
+    rand > 0.5? true : false
+  end
+
 end
