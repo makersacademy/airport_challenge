@@ -1,5 +1,5 @@
 #README#
-https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+[travis-ci](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)
 
 ##How I worked##
 I aimed to complete this challenge in a test driven manner, using manual feature tests within IRB and automated unit tests with rspec. I broke each user story down using a domain model (and a corresponding functional representation). Thereafter, I converted each individual user story into a failing manual feature test and then translated this into rspec as a new failing unit test. Code was then written thereafter. I have aimed to commit every test cycle so you can so my process.
@@ -28,6 +28,19 @@ irb
 2.2.3 :001 > load './lib/airport.rb'
 ```
 
+##Sample Code###
+```
+2.2.3 :002 > heathrow = Airport.new
+ => #<Airport:0x007fad30897c38 @planes=[], @capacity=20>
+2.2.3 :003 > XFJ3201 = Plane.new
+ => #<Plane:0x007fad3088d7b0 @flying=false>
+2.2.3 :004 > XFJ3201.land(heathrow)
+RuntimeError: Cannot land plane when stormy
+2.2.3 :005 > XFJ3201.land(heathrow)
+ => #<Airport:0x007fad30897c38 @planes=[#<Plane:0x007fad3088d7b0 @flying=false>], @capacity=20>
+2.2.3 :006 > XFJ3201.take_off(heathrow)
+ => #<Plane:0x007fad3088d7b0 @flying=true>
+ ```
 ##Functional Representation##
 Objects | Messages
 ------- | --------
