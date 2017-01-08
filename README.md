@@ -1,7 +1,34 @@
 #README#
+https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+
+##How I worked##
+I aimed to complete this challenge in a test driven manner, using manual feature tests within IRB and automated unit tests with rspec. I broke each user story down using a domain model (and a corresponding functional representation). Thereafter, I converted each individual user story into a failing manual feature test and then translated this into rspec as a new failing unit test. Code was then written thereafter. I have aimed to commit every test cycle so you can so my process.
+
+I have tried to encapsulate my code as much as possible throughout and the end user should only ever be interacting with an instance of the Airport class, although the user (traffic controller) can also interact directly with the plane (beneficial for emergency landings for example).
+
+eg to land a plane, the end user would call land on the airport they are at, passing the plane they want to land as an argument airport.land(plane) and vice-versa for taking-off airport.take_off(plane). They could also instruct the plan to land at a specific airport i.e. plane.land(airport). No one can interact with a weather instance.
+
+##Installation Instructions##
+Clone the repository from [github](https://github.com/mbgimot/airport_challenge) and then move to the repository.
+
+```
+$ git clone git@github.com:mbgimot/airport_challenge.git
+$ cd airport_challenge
+```
+
+Load dependencies with bundle
+```
+$ gem install bundle
+$ bundle install
+```
+
+Load the app in IRB
+```
+irb
+2.2.3 :001 > load './lib/airport.rb'
+```
 
 ##Functional Representation##
-
 Objects | Messages
 ------- | --------
 Air traffic controller |
@@ -24,3 +51,6 @@ Stormy Weather <-- prevent_take_off --> prevents plane taking off
 Stormy Weather <-- prevent_landing --> prevents plane landing
 Airport <-- full? --> prevents plane landing
 Airport <-- default_capacity --> default capacity of planes of an airport
+
+##Contributors##
+Mitchell Goldbay [github](https://github.com/mbgimot/) [mitchellgoldbay@gmail.com](mailto: mitchellgoldbay@gmail.com)
