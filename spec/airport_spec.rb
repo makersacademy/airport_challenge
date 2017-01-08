@@ -66,7 +66,6 @@ let(:air_plane) {double :plane, :landed? =>false}
 	end
 
 	describe '#initialize' do
-		it {is_expected.to respond_to(:capacity)}
 
 		context 'return defaults' do
 			it 'should return 10 if no capacity is given' do
