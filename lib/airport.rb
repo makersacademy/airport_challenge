@@ -22,6 +22,10 @@ class Airport
     set_full
   end
 
+  def has_plane_docked?(plane)
+    @planes.include?(plane) ? true : false
+  end
+
   private
 
   def set_full

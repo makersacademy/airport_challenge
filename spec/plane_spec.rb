@@ -126,6 +126,12 @@ describe Plane do
           allow(airport).to receive(:undock)
           expect(plane.take_off(airport)).to include "Plane has taken off"
         end
+        it "cannot be instructed to take off from an airport it is not docked at" do
+          wrong_airport = instance_double("Airport")
+          allow(wrong_airport).to receive(:airport_name) { "Frankfurt" }
+          allow(wrong_airport).to receive(:plane_docked?) { false }
+          expect{plane.take_off(wrong_airport)}.to raise_error(RuntimeError,"Cannot take off - plane is not landed at Frankfurt!")
+        end
         it "confirms it has taken off from the correct airport" do
           airport = instance_double("Airport")
           allow(airport).to receive(:airport_name) { "Paris" }

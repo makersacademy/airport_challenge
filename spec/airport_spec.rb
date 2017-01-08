@@ -49,6 +49,19 @@ describe Airport do
       end
     end
 
+    describe ".has_plane_docked?" do
+      it { is_expected.to respond_to(:has_plane_docked?).with(1).argument }
+      it "returns true if plane is docked" do
+        plane = instance_double("Plane")
+        airport.dock(plane)
+        expect(airport).to have_plane_docked(plane)
+      end
+      it "returns false if plane is not docked" do
+        plane = instance_double("Plane")
+        expect(airport).not_to have_plane_docked(plane)
+      end
+    end
+
     context "docking planes" do
 
       describe ".dock" do
