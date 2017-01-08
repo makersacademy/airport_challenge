@@ -12,6 +12,17 @@ describe Airport do
     expect(subject.landing_bay).to be_empty
   end
 
+  it {is_expected.to respond_to(:capacity)}
+
+  it "should initialize with a default capacity (if not changed by user)" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it "should initialize with a bespoke capacity (if user wishes to override the default value)" do
+    airport = Airport.new(55)
+    expect(airport.capacity).to eq (55)
+  end
+
   it { is_expected.to respond_to(:land_plane).with(1).argument }
 
   describe "#land_plane" do

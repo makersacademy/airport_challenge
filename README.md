@@ -1,6 +1,6 @@
 ##First Week's Challenge
 
-###Domain model
+###User Stories and Proposed Domain Model
 
 ####User Story 1:
 
@@ -93,7 +93,7 @@ Proposed domain model:
 | Airport       | land_plane    |
 | Airport       | at_capacity?  |
 
-The `land_plane` method of the Airport class will have access to a private `at_capacity` method in order to raise a error message.
+The `land_plane` method of the Airport class will have access to a private `at_capacity?` method in order to raise a error message.
 
 ####User Story 6:
 
@@ -105,8 +105,18 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 Proposed domain model:
 
-| Objects       | Messages      |
-| ------------- |:-------------:|
-| SD            |               |
-| [TBD]         | [TBD]         |
-| [TBD]         | [TBD]         |
+| Objects       | Messages                          |
+| ------------- |:---------------------------------:|
+| SD            |                                   |
+| Airport       | initialise(bespoke capacity)      |
+| Airport       | capacity                          |
+
+User will be able to specify the airport capacity at instantiation the `Airport` class by passing the capacity as an argument to `Airport`.
+
+###Refactoring of Code
+
+The code in the test files needs to be refactored. For example, using `before` blocks and `doubles`. Time permitting further research in this regard would have been done in order to have more elegant test code.
+
+###Edge Cases
+
+Time permitting further thought would have gone into the edge cases e.g. erroring a call on `take_off` method when there are no planes in the `landing_bay`.  

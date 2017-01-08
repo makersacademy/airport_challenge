@@ -4,12 +4,13 @@ require_relative 'weather'
 class Airport
 include Weather
 
-attr_reader :landing_bay
+attr_reader :landing_bay, :capacity
 
 DEFAULT_CAPACITY = 5
 
-  def initialize()
+  def initialize(capacity=DEFAULT_CAPACITY)
     @landing_bay = []
+    @capacity = capacity
   end
 
   def land_plane(plane)
@@ -30,6 +31,6 @@ DEFAULT_CAPACITY = 5
 private
 
   def at_capacity?
-    @landing_bay.count == DEFAULT_CAPACITY
+    @landing_bay.count == @capacity
   end
 end
