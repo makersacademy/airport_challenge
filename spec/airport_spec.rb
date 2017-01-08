@@ -6,7 +6,7 @@ describe Airport do
     expect(Airport).to be_const_defined(:DEFAULT_CAPACITY)
   end
 
-  subject(:airport) { Airport.new("Paris") }
+  subject(:airport) { described_class.new("Paris") }
 
   describe ".new" do
     it "takes an argument" do
@@ -36,13 +36,13 @@ describe Airport do
     describe ".capacity" do
       it { is_expected.to respond_to(:capacity) }
       context "specified capacity" do
-        subject(:airport) { Airport.new("Paris", 2) }
+        subject(:airport) { described_class.new("Paris", 2) }
         it "equals the specified capacity" do
           expect(airport.capacity).to be 2
         end
       end
       context "default capacity" do
-        subject(:airport) { Airport.new("Paris") }
+        subject(:airport) { described_class.new("Paris") }
         it "has capacity equal to the default" do
           expect(airport.capacity).to be Airport::DEFAULT_CAPACITY
         end

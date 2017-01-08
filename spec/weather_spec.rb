@@ -1,7 +1,7 @@
 require "weather.rb"
 
 describe Weather do
-  subject(:weather) { Weather }
+  subject(:weather) { described_class }
 
   describe ".sunny?" do
 

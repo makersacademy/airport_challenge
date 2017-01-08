@@ -13,7 +13,7 @@ end
 
 describe Plane do
 
-  subject(:plane) { Plane.new }
+  subject(:plane) { described_class.new }
 
   describe ".land" do
 
