@@ -40,9 +40,11 @@ describe Airport do
     end
 
     it "returns the state of the new Weather class" do
+      # insert a stub?
+      # allow(die).to receive(:roll) { 3 }
+      allow(subject).to receive(:weather_check) {"stormy"}
       expect(subject.weather_check).to eq("stormy")
     end
 
   end
-
 end

@@ -9,5 +9,4 @@ attr_accessor :weather_status
         @weather_status = "balmy"
       end
   end
-
 end

@@ -13,7 +13,6 @@ class Airport
   end
 
   def weather_check
-    #have to actually make an instance of the Weather class
     weather = Weather.new
     weather::weather_status
   end
