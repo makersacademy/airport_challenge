@@ -3,9 +3,11 @@ require_relative 'weather'
 class Plane
 
   def land
+    (weather == "sunny") ? true : false
   end
 
   def landed?
+
   end
 
   def take_off
@@ -13,6 +15,7 @@ class Plane
   end
 
   def departed?
+    self.take_off == true ? true : false
   end
 
 private
