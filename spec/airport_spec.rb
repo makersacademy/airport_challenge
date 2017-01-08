@@ -18,7 +18,7 @@ describe Airport do
     end
 
     it 'raises an error when the capacity is full' do
-      200.times { subject.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error 'No landing slots available!'
     end
   end
