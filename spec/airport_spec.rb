@@ -10,18 +10,30 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'does not have a plane after taking off' do
-      allow(plane).to receive(:take_off)
-      plane = Plane.new
-      subject.land(plane)
-      subject.take_off(plane)
-      expect(subject.planes).not_to include(plane)
+    context 'not stormy' do
+      it 'does not have a plane after taking off' do
+        allow(airport).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:take_off)
+        plane = Plane.new
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(subject.planes).not_to include(plane)
+      end
+      it 'confirms plane departed' do
+        allow(airport).to receive(:stormy?).and_return(false)
+        plane = Plane.new
+        subject.land(plane)
+        subject.take_off(plane)
+        expect(plane.flying).to eq(true)
+      end
     end
-    it 'confirms plane departed' do
-      plane = Plane.new
-      subject.land(plane)
-      subject.take_off(plane)
-      expect(plane.flying).to eq(true)
+    context 'stormy' do
+      it 'does not let a plane take off if stormy' do
+        plane = Plane.new
+        allow(airport).to receive(:stormy?).and_return(true)
+        error = "Plane cannot take off during storm"
+        expect{subject.take_off(plane)}.to raise_error(error)
+      end
     end
   end
 

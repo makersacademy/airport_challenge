@@ -1,8 +1,10 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  attr_reader :planes
-  attr_accessor :capacity
+  attr_reader :planes, :capacity
+
+  include Weather
 
   DEFAULT_CAPACITY = 20
 
@@ -13,6 +15,7 @@ class Airport
 
 
   def take_off(plane)
+    raise "Plane cannot take off during storm" if stormy?
     plane.flying = true
     @planes.delete(plane)
   end
@@ -21,6 +24,7 @@ class Airport
     raise "Airport full" if full?
     plane.flying = false
     @planes << plane
+    self
   end
 
   def full?
