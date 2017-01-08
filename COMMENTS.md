@@ -37,6 +37,9 @@ Detailing my steps
 - Added status badges for travis and coveralls
 - Activated Hound CI on my Github account and again activated it for this repo
 
+#### Step 10:
+- Started trying to test for edge cases (at this point, ran out of time)
+
 Next steps
 --------------------
 
