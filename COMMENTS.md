@@ -28,4 +28,4 @@ Detailing my approach
   - Currently my use of stubs in the spec files is not very DRY. Need to find a way to set an overall environment and then when testing the stormy exceptions just set a different stub for those specific examples.
 
 #Step 8:
-- Next steps for development are to [1] figure out how to write an rspec feature test and [2] figure out a way to use let in rspec
+- Next steps for development are to figure out a way to use let in rspec to make my use of mocks in the spec file more DRY. Discovered before statements in Rspec which allow you to make a mock apply across the whole describe block. You can use `before` instead of `let` - got very stuck thinking that needed to use `let`.
