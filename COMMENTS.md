@@ -32,7 +32,8 @@ Detailing my approach
 
 #### Step 9:
 - Linked Coveralls to my Github account and turned coveralls on for this repo
-- Have 98% test coverage
+  - Have 98% test coverage
+- Activated Hound CI on my Github account and again activated it for this repo
 
 Next steps
 --------------------
