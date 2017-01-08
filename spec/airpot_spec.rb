@@ -4,7 +4,7 @@ require './lib/plane'
 describe Airport do
 
   it {is_expected.to respond_to :planes}
-  it {is_expected.to respond_to :land}
+  it {is_expected.to respond_to(:land).with(1).argument}
   it {is_expected.to respond_to :landed?}
   it {is_expected.to respond_to :take_off}
   it {is_expected.to respond_to :departed?}
@@ -31,9 +31,12 @@ describe Airport do
 
   describe '#landing:' do
     context 'when weather is stormy' do
+      before do
+        @plane = Plane.new
+      end
       it 'prevents a Plane object from landing' do
         allow(subject).to receive(:weather) { "stormy" }
-        expect(subject.land).to eq false
+        expect(subject.land(@plane)).to eq false
       end
     end
   end
