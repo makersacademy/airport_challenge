@@ -7,6 +7,7 @@ The airport is created by the system designer, when an airport e.g. EMA is onboa
 The air traffic controller uses an account permissioned for a single airport e.g. EMA and this airport is used in methods.
 These are set per user account and thus the rspec tests represent how the user story interacts with the application.
 The first action of air traffic controller will be to land a plane, this is how the plane comes to exist in the application.
+Similarly on take off the plane no longer exists in this domain. 
 
 ##2. Domain model
 
@@ -25,13 +26,13 @@ Users | Air traffic controller, System designer| System designer - Sets airport 
   __Control Landing__
   - [X] Instruct a plane to land at an airport
   - [X] Confirm that plane has landed at instructed airport
-  - [] Prevent a plane from being instructed to land if it becomes stormy as plane is coming in
-  - [] Prevent a plane from being instructed to land if airport is full
+  - [X] Prevent a plane from being instructed to land if it is stormy 
+  - [X] Prevent a plane from being instructed to land if airport is full
 
   __Control Take off__
   - [X] Instruct a plane to take off from an airport
   - [X] Confirm that it is no longer in the airport
-  - [] Prevent a plane from being instructed to take off if it becomes stormy as plane is coming in
+  - [X] Prevent a plane from being instructed to take off if it is stormy 
   - [] Prevent a plane from being instructed to take off if already in air
   
   __As an Admin_System_designer I want to...__
