@@ -4,22 +4,19 @@ require_relative 'weather'
 class Plane
 
   def land(airport)
-    raise "Unable to land as the weather is stormy" unless safe?
-    "#{self} has taken off successfully"
-    airport::planes << self
+    airport::planes << self unless !safe?
 
   end
 
   def take_off(airport)
-    raise "Unable to fly as weather is stormy" unless safe?
-      "#{self} has taken off successfully"
-      airport::planes.shift
+     airport::planes.shift unless !safe?
+
   end
 
   private
 
   def safe?
-    Weather.stormy?
+    Weather.stormy? ? (raise "Unable to fly as weather is stormy") : true
   end
 
 end

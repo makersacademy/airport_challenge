@@ -42,17 +42,23 @@ Object | Message
 ------ | -----
 air_traffic_controller |
 weather | stormy?
-plane | take_off_safe?
+plane | take_off
 
 **Notes:**
+Decided to create a new module Weather as weather did not need instances to be created, it just needed a method to test whether it was stormy or not. Created the #self.stormy? method which randomly generates a number from 0 - 9. If the number is less than 1 the weather is considered to be stormy. Incorporated this into the #take_off method of plane by creating a method #safe. Have just realised that I didn't need to do this though.
 
-Created a new class for weather. I think I want the weather class to have the method self.stormy? which will evaluate to either true or false. If true then planes will take off. If false then planes will be unable to take off. I'll use a guard clause and raise in order to achieve this. I think .safe? will have to be a self method and I'll have to define. Will have to create maybe a self.safe? method that generates as either true or false
 
 ```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
-
+```
+Object | Message
+------ | -----
+air_traffic_controller |
+weather | stormy?
+plane | land
+```
 As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full

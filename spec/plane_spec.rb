@@ -25,10 +25,6 @@ describe Plane do
       @airport::planes << @plane
     end
 
-
-  #  context "if a plane takes off" do
-  #  it {expect{subject.take_off(@airport)}.to change{@airport.planes}}
-  #  end
   end
   describe "#safe?" do
 
@@ -42,7 +38,7 @@ describe Plane do
 
     context "if the weather is safe" do
       it "will #take_off and #land" do
-        allow(@plane).to receive(:safe?).and_return( true )
+        allow(Weather).to receive(:stormy?).and_return( false )
         expect{@plane.take_off(@airport)}.to change{@airport.planes}
         expect{@plane.land(@airport)}.to change{@airport.planes}
       end
@@ -50,10 +46,7 @@ describe Plane do
 
     context "if the weather is not safe" do
       it "will not #take_off" do
-        #@plane = Plane.new
-        #@airport = Airport.new
-        #@plane.land(@airport)
-        allow(@plane).to receive(:safe?) {false}
+        allow(Weather).to receive(:stormy?) {true}
         expect{@plane.take_off(@airport)}.to raise_error
         expect{@plane.land(@airport)}.to raise_error
       end
