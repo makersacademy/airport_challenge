@@ -19,4 +19,18 @@ describe Plane do
 
   end
 
+  context 'can do simple takeoffs (Story 02):' do
+
+    it 'takes off when instructed to do so' do
+      expect(plane).to receive(:takeoff)
+      plane.takeoff
+    end
+
+    it 'believes it can fly... err, knows that it is flying' do
+      plane.takeoff
+      expect(subject.status).to eq 'inflight'
+    end
+
+  end
+
 end

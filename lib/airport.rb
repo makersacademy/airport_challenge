@@ -6,4 +6,8 @@ class Airport
     @planes = plane
   end
 
+  def takeoff(plane)
+    @planes = nil
+  end
+
 end

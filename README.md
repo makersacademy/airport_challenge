@@ -8,6 +8,8 @@ What I did:
 The bundle... command exited with 0."
 4. Feature tested in IRB then unit-tested with Rspec for Story 01. Updated the domain model.
 Commited and pushed. May have written too much Ruby code (some of it may not be covered by test).
+5. Wrote unit tests for both the airport and the plane (unlike step 4!)
+airport_spec.rb needed a plane double from the very beginning, while plane_spec.rb didn't.
 
 
 
