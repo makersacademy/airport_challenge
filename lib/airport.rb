@@ -14,6 +14,19 @@ class Airport
 
   def dock(plane)
     @planes << plane
+    set_full
   end
+
+  private
+
+  def set_full
+    @full = airport_full?
+  end
+
+  def airport_full?
+    @capacity <= @planes.length ? true : false
+  end
+
+
 
 end

@@ -74,11 +74,13 @@ describe Airport do
         # it "sets @full? to true when capacity reached" do
         #   allow(airport).to receive
         # end
-        context "using default capacity" do
-          it "cannot dock more planes when full" do
 
-          end
+        it "sets @full? to true when capacity reached" do
+          plane = instance_double("Plane")
+          (Airport::DEFAULT_CAPACITY).times { airport.dock(plane) }
+          expect(airport.full?).to be true
         end
+
 
       end
     end
