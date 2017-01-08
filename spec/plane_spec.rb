@@ -55,10 +55,17 @@ describe Plane do
     expect(subject.confirm_take_off?).to eq(false)
   end
 
-  it 'should not be able to land when already stored in an airport' do
+  it 'should not be able to land when already stored in that airport' do
     airport = Airport.new
     subject.land(airport)
     expect { subject.land(airport) }.to raise_error("Plane is already landed at #{airport}.")
+  end
+
+  it 'should not be able to land when already stored in another airport' do
+    airport = Airport.new
+    subject.land(airport)
+    second_airport = Airport.new
+    expect { subject.land(second_airport) }.to raise_error("Plane is already landed at another airport.")
   end
 
   it 'should not be able to takeoff if not already stored in an airport' do
