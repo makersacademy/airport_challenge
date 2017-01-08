@@ -7,6 +7,7 @@ class Plane
 
   def land(airport)
     fail "Plane is already landed at #{airport}." if airport.planes.include? (self)
+    fail "The weather is currently stormy and it is not safe to land." if weather == "stormy"
     airport.store_plane(self)
     @landing_status = true
   end
@@ -23,6 +24,10 @@ class Plane
 
   def confirm_take_off?
     !landing_status
+  end
+
+  def weather
+    Weather.new.check_weather
   end
 
 end
