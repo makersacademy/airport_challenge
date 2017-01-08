@@ -16,36 +16,71 @@ describe Airport do
 
   describe "#land_plane" do
 
-    it "should park a plane in the empty landing bay and that plane should have a landed status" do
-      plane = Plane.new
-      airport = Airport.new
-      landing_bay = airport.land_plane(plane)
-      expect(landing_bay.count).to eq 1
-      expect(landing_bay[0].landed_status).to eq "Landed"
+    context "good weather attempted landing" do
+
+        it "should park a plane in the empty landing bay and that plane should have a landed status" do
+          #first ensure the weather is good by setting STORM_PROBABILITY TO 0
+          stub_const("Weather::STORM_PROBABILITY", 0)
+          plane = Plane.new
+          airport = Airport.new
+          landing_bay = airport.land_plane(plane)
+          expect(landing_bay.count).to eq 1
+          expect(landing_bay[0].landed_status).to eq "Landed"
+        end
+
+        it "should park many planes in the airport's landing bay" do
+          #first ensure the weather is good by setting STORM_PROBABILITY TO 0
+          stub_const("Weather::STORM_PROBABILITY", 0)
+          airport = Airport.new
+          #land 20 planes at the one airport
+          expect(20.times {airport.land_plane(Plane.new)}).to eq 20
+        end
     end
 
-    it "should park many planes in the airport's landing bay" do
-      airport = Airport.new
-      #land 20 planes at the one airport
-      expect(20.times {airport.land_plane(Plane.new)}).to eq 20
-    end
+    context "stormy weather attempted landing" do
 
+      it "should prevent landing in stormy weather" do
+        #first ensure the weather is stormy by setting STORM_PROBABILITY TO 1
+        stub_const("Weather::STORM_PROBABILITY", 1)
+        plane = Plane.new
+        airport = Airport.new
+        expect {airport.land_plane(plane)}.to raise_error "Stormy Weather Alert: Landing not permitted"
+      end
+
+    end
   end
 
   it { is_expected.to respond_to(:take_off) }
 
   describe "#take_off" do
+    context "good weather attempted take-off" do
 
-    it "should allow a plane to take off" do
-      airport = Airport.new
-      #land 20 planes at the one airport
-      x = 20
-      x.times {airport.land_plane(Plane.new)}
-      #note: planes will take_off on a FIFO time-basis (to be checked with client)
-      expect(airport.take_off).to eq "Airbourne"
+      it "should allow a plane to take off" do
+        #first ensure the weather is good by setting STORM_PROBABILITY TO 0
+        stub_const("Weather::STORM_PROBABILITY", 0)
+        airport = Airport.new
+        #land 20 planes at the one airport
+        x = 20
+        x.times {airport.land_plane(Plane.new)}
+        #note: planes will take_off on a FIFO time-basis (to be checked with client)
+        expect(airport.take_off).to eq "Airbourne"
+      end
     end
 
+    context "stormy weather attempted take-off" do
+
+      it "should prevent take off in stormy weather" do
+
+        airport = Airport.new
+        #land 20 planes at the one airport
+        x = 20
+        #first ensure planes can land so set STORM_PROBABILITY TO 0
+        stub_const("Weather::STORM_PROBABILITY", 0)
+        x.times {airport.land_plane(Plane.new)}
+        #now ensure the weather is stormy for take-off by setting STORM_PROBABILITY TO 1
+        stub_const("Weather::STORM_PROBABILITY", 1)
+        expect {airport.take_off}.to raise_error "Stormy Weather Alert: Take-off not permitted"
+      end
+    end
   end
-
-
 end

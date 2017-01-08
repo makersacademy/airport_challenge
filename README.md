@@ -50,11 +50,13 @@ I want to prevent takeoff when weather is stormy
 
 Proposed domain model:
 
-| Objects       | Messages      |
-| ------------- |:-------------:|
-| ATC           |               |
-| [TBD]         | [TBD]         |
-| [TBD]         | [TBD]         |
+| Objects/Modules       | Messages      |
+| ----------------------|:-------------:|
+| ATC                   |               |
+| Airport               | take_off      |
+| Weather(mod)          | stormy?       |
+
+The Weather module will be included in the Airport class. The Weather module will have a configurable constant `STORM_PROBABILITY` that is set to 50%. For testing purposes the value of `STORM_PROBABILITY` will be stubbed at 100% (stormy weather) and 0% (good weather).
 
 ####User Story 4:
 
@@ -64,14 +66,15 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
-
 Proposed domain model:
 
-| Objects       | Messages      |
-| ------------- |:-------------:|
-| ATC           |               |
-| [TBD]         | [TBD]         |
-| [TBD]         | [TBD]         |
+| Objects/Modules       | Messages      |
+| ----------------------|:-------------:|
+| ATC                   |               |
+| Airport               | land_plane    |
+| Weather(mod)          | stormy?       |
+
+The Weather module will be included in the Airport class. The Weather module will have a configurable constant `STORM_PROBABILITY` that is set to 50%. For testing purposes the value of `STORM_PROBABILITY` will be stubbed at 100% (stormy weather) and 0% (good weather).
 
 ####User Story 5:
 
