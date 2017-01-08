@@ -25,6 +25,12 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport and confirm that it has landed
 
+- Plane and Airport classes defined and spec files created
+- Test written for land method (Airport)
+- land method defined for Airport class
+- Test written for landed? method (Plane)
+- landed? method defined for Plane class
+
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport

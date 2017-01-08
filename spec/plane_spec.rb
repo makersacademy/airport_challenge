@@ -1,9 +1,11 @@
 require 'plane'
 
 describe Plane do
-  describe '#land' do
-    it 'reports status of plane landing' do
-      expect(subject.land).to eq true
+
+  describe '#landed?' do
+    it 'returns true if plane has landed' do
+      expect(subject.landed?).to eq true
     end
   end
+
 end
