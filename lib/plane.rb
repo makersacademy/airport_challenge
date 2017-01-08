@@ -1,6 +1,6 @@
 class Plane
-  attr_accessor :status
-
+  attr_reader :status
+  
   def land
     @status = 'landed'
   end

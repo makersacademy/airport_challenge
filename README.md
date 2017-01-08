@@ -1,50 +1,4 @@
-Airport Challenge
-
-What I did:
-1. Completed steps 1-3.
-2. Created a domain model with 6 + 3 user stories in docs/UserStories.md.
-3. The initial commit passed in Travis. Coveralls yielded an error message:
-"Coveralls encountered an exception: RestClient::UnprocessableEntity. 422 Unprocessable Entity.
-The bundle... command exited with 0."
-4. Feature tested in IRB then unit-tested with Rspec for Story 01. Updated the domain model.
-Commited and pushed. May have written too much Ruby code (some of it may not be covered by test).
-5. Wrote unit tests for both the airport and the plane (unlike step 4!)
-airport_spec.rb needed a plane double from the very beginning, while plane_spec.rb didn't.
-
-
-
-
-
-=================
-
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Airport Challenge ![Travis build status](https://travis-ci.org/sliute/airport_challenge.svg?branch=master)
 
 Task
 -----
@@ -76,6 +30,49 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+
+Progress
+----
+
+What I did:
+1. Completed steps 1-3.
+2. Created a domain model with 6 + 3 (edge) user stories in docs/UserStories.md.
+3. Set up Travis CI.
+4. Created `Airport` and `Plane` classes for Stories 01 and 02, with corresponding Rspec files. Both have land and takeoff methods. Plane instances have a status variable. Airport instances can land one plane and have it take off.
+5. Feature tested in IRB then unit-tested with Rspec for Story 01. Updated the domain model. Committed and pushed.
+6. Wrote unit tests for both the airport and the plane in Story 01. airport_spec.rb needed a plane double from the very beginning, while plane_spec.rb didn't.
+7. Repeated the process for Story 02.
+8. Created a `Weather` class for Story 03, with corresponding Rspec file. Weather instances have random weather state. Airport instances can check for stormy weather and decline takeoffs in that case.
+9. Featured-tested manually and unit-tested for Story 03.
+
+Problems
+----
+
+1. At this point, I don't know my test coverage. Tests pass in Travis (with SimpleCov), but Coveralls with config doesn't work there. The error message is: "Coveralls encountered an exception: RestClient::UnprocessableEntity. 422 Unprocessable Entity.
+The bundle... command exited with 0."
+2. There might be a problem with Airport and Plane objects sharing similarly-named methods (takeoff and land). I might have renamed them 'send' and 'receive' for Airport objects.
+3. I am not 100% sure that all my tests really test for what I want them to.
+4. I am not convinced that my code is as simple as it could be.
+
+
+Instructions
+---------
+
+* Challenge time: rest of the day and weekend, until Monday 9am
+* Feel free to use google, your notes, books, etc. but work on your own
+* If you refer to the solution of another coach or student, please put a link to that in your README
+* If you have a partial solution, **still check in a partial solution**
+* You must submit a pull request to this repo with your code by 9am Monday morning
+
+Steps
+-------
+
+1. Fork this repo, and clone to your local machine
+2. Run the command `gem install bundle` (if you don't have bundle already)
+3. When the installation completes, run `bundle`
+4. Complete the following task:
+
+
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
