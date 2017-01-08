@@ -4,16 +4,24 @@ class Airport
     @planes = []
   end
 
+  def capacity
+    2
+  end
+
   def planes
     @planes
   end
 
   def land(plane)
-    if weather == "sunny"
+    if weather == "sunny" && planes.length < capacity
       plane.land!
       planes.push(plane)
     else
-      fail "Too stormy to land!"
+      if weather == "stormy"
+        fail "Too stormy to land!"
+      elsif planes.length >= capacity
+        fail "Sorry, airport full!"
+      end
     end
   end
 

@@ -13,6 +13,12 @@ describe Airport do
     expect(possible_weather).to include(airport.weather)
   end
 
+  it 'initialises with default capacity of 2' do
+    expect(airport.capacity).to eq 2
+  end
+
+
+
   context "when the weather is sunny" do
     before do
       allow(airport).to receive(:weather).and_return('sunny')
@@ -29,6 +35,12 @@ describe Airport do
       expect(plane).to receive(:take_off!)
       airport.take_off(plane)
       expect(airport.planes).to eq []
+    end
+
+    it 'prevents landing when airport is full' do
+      airport.capacity.times { airport.land(plane) }
+      expect{ airport.land(plane) }
+      .to raise_error("Sorry, airport full!")
     end
   end
 
