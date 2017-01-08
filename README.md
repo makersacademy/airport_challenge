@@ -119,4 +119,4 @@ The code in the test files needs to be refactored. For example, using `before` b
 
 ###Edge Cases
 
-Time permitting further thought would have gone into the edge cases e.g. erroring a call on `take_off` method when there are no planes in the `landing_bay`.  
+Time permitting further thought would have gone into the edge cases e.g. freeing up the runtime error when the weather has cleared, erroring a call on `take_off` method when there are no planes in the `landing_bay`.
