@@ -13,7 +13,6 @@ class Airport
     @capacity = capacity
   end
 
-
   def take_off(plane)
     raise "Plane cannot take off during storm" if stormy?
     raise "Plane cannot be found in this airport" unless plane_exists?(plane)
