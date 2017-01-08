@@ -67,8 +67,15 @@ describe Airport do
         error = "Airport full"
         expect {subject.land(Plane.new)}.to raise_error(error)
       end
+      it 'prevents same plane landing twice consecutively' do
+        allow(airport).to receive(:stormy?).and_return(false)
+        plane = Plane.new
+        subject.land(plane)
+        error = "Plane already landed"
+        expect {subject.land(plane)}.to raise_error(error)
+      end
     end
-    context 'not stormy' do
+    context 'stormy' do
       it 'prevents the plane landing when its stormy' do
         allow(airport).to receive(:stormy?).and_return(true)
         error = "Cannot land plane when stormy"

@@ -16,7 +16,7 @@ class Airport
 
   def take_off(plane)
     raise "Plane cannot take off during storm" if stormy?
-    raise "Plane cannot be found in this airport" unless @planes.include?(plane)
+    raise "Plane cannot be found in this airport" unless plane_exists?(plane)
     plane.flying = true
     @planes.delete(plane)
   end
@@ -24,6 +24,7 @@ class Airport
   def land(plane)
     raise "Airport full" if full?
     raise "Cannot land plane when stormy" if stormy?
+    raise "Plane already landed" if plane_exists?(plane)
     plane.flying = false
     @planes << plane
     self
@@ -31,5 +32,9 @@ class Airport
 
   def full?
     @planes.count >= capacity
+  end
+
+  def plane_exists?(plane)
+    @planes.include?(plane)
   end
 end
