@@ -19,7 +19,7 @@ end
 
 describe 'Error testing' do
   before(:each) do
-    allow(airport).to receive(:weather_generator).and_return(true)
+    allow(airport).to receive(:check).and_return(true)
   end
 
   it 'raises error if stormy' do
@@ -32,7 +32,7 @@ end
 
 describe '#land_plane' do
   before(:each) do
-    allow(airport).to receive(:weather_generator).and_return(false)
+    allow(airport).to receive(:check).and_return(false)
   end
   it {is_expected.to respond_to :land_plane }
   it 'actively lands planes' do
@@ -49,7 +49,7 @@ end
 describe '#takeoff' do
   it {is_expected.to respond_to :takeoff}
   before(:each) do
-    allow(airport).to receive(:weather_generator).and_return(false)
+    allow(airport).to receive(:check).and_return(false)
   end
 
   it 'makes a plane take off from airport' do
@@ -70,7 +70,7 @@ end
 describe '#full?' do
   it 'should raise an error if airport is full' do
 
-    allow(airport).to receive(:weather_generator).and_return(false)
+    allow(airport).to receive(:check).and_return(false)
     airport.capacity.times{airport.land_plane plane}
     expect {airport.land_plane plane}.to raise_error('airport is full')
   end
