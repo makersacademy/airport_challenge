@@ -30,8 +30,9 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Objects  | Messages
 ------------- | -------------
-Plane  | land
-Plane  | takeoff
+Airport  | land
+Airport  | takeoff
+Weather  | stormy?
 
 
 Objects  | Messages

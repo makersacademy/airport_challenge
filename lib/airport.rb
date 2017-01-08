@@ -10,7 +10,8 @@ class Airport
   attr_accessor :capacity
 
   def land(plane)
-
+    message = "The airport is full"
+    raise message if @planes.length == @capacity
     @planes << plane
   end
 

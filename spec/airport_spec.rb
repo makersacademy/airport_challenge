@@ -15,8 +15,11 @@ describe Airport do
       port.land(plane)
       expect(port.planes.last).to eq(plane)
     end
-    it 'raises an error if airport is full' do
-
+    message = "The airport is full"
+    it 'raises an error if the airport is full' do
+      port = Airport.new(20)
+      port.capacity.times {port.land(Plane.new)}
+      expect {port.land(Plane.new)}.to raise_error(message)
     end
   end
 
