@@ -43,6 +43,13 @@ describe Plane do
           allow(airport).to receive(:airport_name) { "Paris" }
           expect(plane.land(airport)).to eq "Plane has landed in sunny weather at Paris"
         end
+        context "airport is full" do
+          it "cannot land" do
+            airport=instance_double("Airport")
+            allow(airport).to receive(:full?) { true }
+            expect{plane.land(airport)}.to raise_error(RuntimeError,"Cannot land, airport is full!")
+          end
+        end
       end
 
       context "weather is stormy" do
@@ -103,6 +110,7 @@ describe Plane do
           allow(airport).to receive(:airport_name) { "Paris" }
           expect(plane.take_off(airport)).to eq "Plane has taken off from Paris"
         end
+
       end
 
       context "weather is stormy" do
