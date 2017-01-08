@@ -36,25 +36,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +73,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
@@ -88,3 +88,15 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+My notes
+-----
+I did not look at docs/review.md for this challenge and mainly tried to use skills i had learnt in the weeks challenge. I have completed all the user stories apart from the weather conditions. I struggled with finding out how to use testing doubles and stubs which made it hard to write rspec tests for it too.
+
+I approached this challenge by first making object - message tables for my user stories. I made files with a class in each and spec files for each: Plane, Airport and Weather. I used test-driven-development with rspec to first write tests and then write the code to satisfy them.
+
+I was unable to fully complete the challenge. I have not specified weather a plane can land/takeoff and airports receive/takeoff planes in different weather conditions but have implemented them in random conditions.
+I also was unsure on how to get my classes to communicate with each other in the ways I wanted them to. If I had been able to I would have merged my seperate methods for landing planes and airports accepting them and for takeoff too.
+I would plan on completing this challenge with more time by adding doubles and stubs to my tests once I understood them better.
+I do have all my tests passing. But I removed my weather tests as they were incomplete and so was my weather class.
