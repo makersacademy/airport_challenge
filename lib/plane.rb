@@ -8,7 +8,13 @@ class Plane
   end
 
   def take_off(airport)
-    airport::planes.shift
+    airport::planes.shift unless !safe?
+  end
+
+  private
+
+  def safe?
+
   end
 
 end
