@@ -38,6 +38,8 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 - Tests written for fly method (Airport) and flying? method (Plane
 - fly method defined (Airport class) flying? method defined (Plane class)
 - Initialize method defined (Airport class) to initialize empty airport
+- Edited method names for clarity and condensed 'fly? and 'landed?' method to singular status 'airborne'.
+- Initialize method defined (Plane class) to initialize plane with 'airborne' status set to false.
 
 As an air traffic controller
 To ensure safety

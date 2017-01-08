@@ -2,15 +2,9 @@ require 'plane'
 
 describe Plane do
 
-  describe '#landed?' do
-    it 'returns true if plane has landed' do
-      expect(subject.landed?).to eq true
-    end
-  end
-
-  describe '#flying?' do
-    it 'returns true if plane is flying' do
-      expect(subject.flying?).to eq true
+  describe '#new' do
+    it 'initializes a new plane that is not airborne' do
+      expect(subject::airborne).to eq false
     end
   end
 
