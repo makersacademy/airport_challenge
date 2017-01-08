@@ -4,4 +4,8 @@ class Airplane
 		true
 	end
 
+	def take_off
+		true
+	end
+	
 end
