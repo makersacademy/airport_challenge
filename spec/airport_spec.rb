@@ -17,7 +17,11 @@ describe Airport do
     expect(airport.capacity).to eq 2
   end
 
+  it 'can be initialised with a manually entered capacity' do
+    large_airport = Airport.new(default_capacity: 10)
+    expect(large_airport.capacity).to eq 10
 
+  end
 
   context "when the weather is sunny" do
     before do

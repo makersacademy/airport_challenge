@@ -1,11 +1,14 @@
 class Airport
 
-  def initialize
+  DEFAULT_CAPACITY = 2
+
+  def initialize(default_capacity: nil)
+    @capacity = default_capacity || DEFAULT_CAPACITY
     @planes = []
   end
 
   def capacity
-    2
+    @capacity
   end
 
   def planes
