@@ -15,6 +15,7 @@ class Plane
   end
 
   def take_off(airport)
+    raise "Not cleared for takeoff" if !clear_for_take_off? && !taken_off?
     @landed = false
     airport.fleet(self)
     @taking_off = false
@@ -30,6 +31,7 @@ class Plane
   end
 
   def land(airport)
+    raise "Not cleared for landing" if !clear_to_land? && !landed?
     @taken_off = false
     airport.fleet(self)
     @landing = false

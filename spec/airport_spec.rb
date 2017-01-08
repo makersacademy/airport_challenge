@@ -24,6 +24,7 @@ describe Airport do
   it 'ensures that the same plane cannot take off if it has already taken off' do
     @atc.instruct_to_take_off(@plane, "Sunny")
     @plane.take_off(@airport)
+    @atc.instruct_to_take_off(@plane, "Sunny")
     expect { @plane.take_off(@airport) }.to raise_error 'Plane is already in the air'
   end
 end
