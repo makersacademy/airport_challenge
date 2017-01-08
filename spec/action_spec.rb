@@ -9,7 +9,7 @@ context "TESTING ACTION" do
       airport = Airport.new
       airport.weather= 'sunny'
       subject.land(plane, airport)
-      did_land = (plane.current_airport == airport && airport.plane == plane)
+      did_land = (plane.current_airport == airport && airport.planes.include?(plane))
       expect(did_land).to eq true
     end
 
@@ -44,7 +44,7 @@ context "TESTING ACTION" do
       airport.weather= 'sunny'
       subject.land(plane, airport)
       subject.takeoff(plane, airport)
-      did_takeoff = (plane.current_airport != airport && airport.plane != plane)
+      did_takeoff = (plane.current_airport != airport && !airport.planes.include?(plane))
       expect(did_takeoff).to eq true
     end
 
@@ -63,5 +63,6 @@ context "TESTING ACTION" do
     end
 
   end
+
 
 end

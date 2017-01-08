@@ -3,7 +3,7 @@ require 'airport.rb'
 context 'Instructing airport to land a plane' do
   describe Airport do
     it 'has a plane attribute' do
-      expect(subject.respond_to?(:plane)).to eq true
+      expect(subject.respond_to?(:planes)).to eq true
     end
 
     it 'can be instructed to land' do
@@ -13,7 +13,7 @@ context 'Instructing airport to land a plane' do
     it 'lands a given plane' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.plane).to eq plane
+      expect(subject.planes).to include plane
     end
   end
 end
@@ -28,7 +28,7 @@ context 'Instructing airport to takeoff plane' do
       plane = Plane.new
       subject.land(plane)
       subject.takeoff(plane)
-      expect(subject.plane).not_to eq plane
+      expect(subject.planes).not_to include plane
     end
   end
 end

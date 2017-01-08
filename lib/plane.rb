@@ -1,5 +1,5 @@
 class Plane
-  def initialize
+  def initialize(airport=nil)
     @current_airport=nil
   end
 
@@ -12,6 +12,7 @@ class Plane
   def confirm_landing(airport)
     self.current_airport == airport
   end
+
 
   def takeoff(airport)
     self.current_airport= nil

@@ -2,13 +2,13 @@ class Airport
 
   DEFAULT_CAPACITY = 1
 
-  def initialize(plane=nil, capacity=DEFAULT_CAPACITY)
-    @plane = plane
+  def initialize(planes=[], capacity=DEFAULT_CAPACITY)
+    @planes = planes
     @weather = get_weather
     @capacity = capacity
   end
 
-  attr_accessor :plane
+  attr_accessor :planes
   attr_accessor :weather
   attr_reader :capacity
 
@@ -17,11 +17,11 @@ class Airport
   end
 
   def land(plane)
-    self.plane= plane
+    self.planes << plane
   end
 
   def takeoff(plane)
-    self.plane= nil
+    planes.delete(plane)
   end
 
   def stormy?
@@ -29,6 +29,6 @@ class Airport
   end
 
   def full?
-    self.plane != nil
+    planes.length == self.capacity
   end
 end
