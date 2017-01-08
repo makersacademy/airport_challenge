@@ -15,7 +15,7 @@ describe Plane do
       airport = Airport.new
       allow(airport).to receive(:stormy?).and_return(false)
       subject.land(airport)
-      expect(subject.flying).to eq(false)
+      expect(subject.flying).to be_falsey
     end
   end
 
@@ -29,8 +29,9 @@ describe Plane do
     it 'confirms plane departed' do
       airport = Airport.new
       allow(airport).to receive(:stormy?).and_return(false)
+      subject.land(airport)
       subject.take_off(airport)
-      expect(subject.flying).to eq(true)
+      expect(subject.flying).to be_truthy
     end
   end
 end

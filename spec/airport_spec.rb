@@ -26,6 +26,15 @@ describe Airport do
         subject.take_off(plane)
         expect(plane.flying).to eq(true)
       end
+      it "doesn't let a plane take off from wrong airport" do
+        allow(airport).to receive(:stormy?).and_return(false)
+        airport1 = Airport.new
+        allow(airport1).to receive(:stormy?).and_return(false)
+        plane = Plane.new
+        subject.land(plane)
+        error = "Plane cannot be found in this airport"
+        expect{airport1.take_off(plane)}.to raise_error(error)
+      end
     end
     context 'stormy' do
       it 'does not let a plane take off if stormy' do
