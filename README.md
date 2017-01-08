@@ -60,7 +60,7 @@ Traffic Controller  | instruct_landing
 
 Programme structure
 ------
-Classes and brief explanation of how to use them.
+**Classes and brief explanation of how to use them.**
 
 **Plane**
 Class "Plane" is created to store an instance of the plane type. Each plane as store a status representing whether they are currently flying or not. Bu default the status is true. Status can be accessed and changed from the outside of the class.
@@ -216,8 +216,8 @@ Please note that although it seems like the programme has less methods than orig
 * *I would like a default airport capacity that can be overridden as appropriate* - realised in Airport class, capacity can be overridden during the creation of an instance
 
 Instructions
-*Just for the reference below you can find the original instructions*
 ---------
+*Just for the reference below you can find the original instructions*
 
 * Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use google, your notes, books, etc. but work on your own

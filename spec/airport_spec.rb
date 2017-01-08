@@ -16,6 +16,7 @@ describe Airport do
   end
 
   describe 'traffic management procedures: landing' do
+    it { is_expected.to respond_to(:land).with(1).argument }
     it 'can land a plane' do
       plane = instance_double("Plane")
       port.land(plane)
@@ -30,6 +31,7 @@ describe Airport do
   end
 
   describe 'traffic management procedures: takeoff' do
+    it { is_expected.to respond_to(:takeoff).with(1).argument }
     it 'can takeoff a plane' do
       plane1 = instance_double("Plane")
       port.land(plane1)

@@ -4,6 +4,7 @@ describe Controller do
   subject(:controller) { described_class.new }
 
   describe 'instruct_landing' do
+    it { is_expected.to respond_to(:instruct_landing).with(3).argument }
     it 'controller instructs for takeoff only a plane with fly status true' do
       message = "The plane is already flying"
       expect {controller.instruct_takeoff(Plane.new, Airport.new)}.to raise_error(message)
@@ -30,6 +31,7 @@ describe Controller do
   end
 
   describe 'instruct_takeoff' do
+    it { is_expected.to respond_to(:instruct_takeoff).with(3).argument }
     it 'controller instructs for landing only a plane with fly status flase' do
       message = "The plane has already landed"
       expect {controller.instruct_landing(Plane.new(false), Airport.new)}.to raise_error(message)
