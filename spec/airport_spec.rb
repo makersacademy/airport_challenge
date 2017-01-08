@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-subject(:airport) { described_class.new }
+subject(:airport) { described_class.new}
 let(:land_plane) {double :plane, :landed? =>true}
 let(:air_plane) {double :plane, :landed? =>false}
 
