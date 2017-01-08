@@ -6,22 +6,21 @@ describe Airport do
     expect(Airport).to be_const_defined(:DEFAULT_CAPACITY)
   end
 
-  test_airport = Airport.new("Paris")
-  subject(:airport) { test_airport }
+  subject(:airport) { Airport.new("Paris") }
 
   describe ".new" do
     it "takes an argument" do
-      expect{test_airport}.not_to raise_error
+      expect{airport}.not_to raise_error
     end
     it "saves argument to @airport_name" do
-      expect(test_airport.airport_name).to eq "Paris"
+      expect(airport.airport_name).to eq "Paris"
     end
     it "saves false to @full?" do
-      expect(test_airport.full?).to eq false
+      expect(airport.full?).to eq false
     end
   end
 
-  describe "Airport.new" do
+  describe "Instance of Airport" do
 
     describe ".airport_name" do
       it { is_expected.to respond_to(:airport_name) }
@@ -31,18 +30,24 @@ describe Airport do
       it { is_expected.to respond_to(:full?) }
     end
 
-    describe "airport capacity" do
+    # describe ".accept_landing?" do
+    #   context "default airport capacity" do
+    #     context "airport is full" do
+    #       it "will not accept more planes" do
+    #         allow(airport).to receive(:full?) { true }
+    #         expect(airport.accept_landing(plane)).to
+    #       end
+    #     end
+    #   end
+    # end
+    context "docking planes" do
 
 
-
-      context "default airport capacity" do
-
-        it "cannot accept more planes when full" do
-
-        end
+      describe ".dock" do
+        it { is_expected. to respond_to(:dock).with(1).argument }
       end
-
     end
+
 
   end
 

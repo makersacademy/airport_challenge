@@ -10,4 +10,8 @@ class Airport
     @full = false
   end
 
+  def dock(plane)
+    
+  end
+
 end
