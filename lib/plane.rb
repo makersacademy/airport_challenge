@@ -11,6 +11,7 @@ class Plane
     
     def land(airport)
         raise "Plane already landed" if @landed
+        raise "Too stormy to land" if airport.stormy?
         @landed = true
         @airport = airport
     end

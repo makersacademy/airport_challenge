@@ -4,7 +4,7 @@ require_relative 'weather'
 class Airport
 
     
-    def initialize(weather: Weather.new)
+    def initialize(weather = Weather.new)
         @weather = weather
     end
     
