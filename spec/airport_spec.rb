@@ -17,4 +17,9 @@ end
 describe Airport do
   #2nd story / 1st test
   it {is_expected.to respond_to :plane_take_off}
+  #2nd story / 3rd test
+  it { is_expected.to respond_to(:plane_take_off).with(1).argument }
+
+
+
 end

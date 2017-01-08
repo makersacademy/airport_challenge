@@ -12,6 +12,6 @@ describe Plane do
 end
 
 describe Plane do
-  #Second story / 1st test
+  #Second story / 2nd test
   it {is_expected.to respond_to :confirm_not_in_airport?}
 end
