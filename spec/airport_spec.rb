@@ -28,6 +28,7 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.instruct_landing(Plane.new) }
       expect {subject.instruct_landing(Plane.new)}.to raise_error("There is no space in the airport")
     end
+
   end
 
   describe 'Planes Taking Off' do

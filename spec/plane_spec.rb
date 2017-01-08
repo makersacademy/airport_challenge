@@ -3,7 +3,7 @@ require 'airport'
 
 describe Plane do
 
-  describe do 'Landing Planes'
+  describe 'Landing Planes' do
     it 'responds to the method landed' do
       expect(subject).to respond_to(:land)
     end
@@ -20,7 +20,7 @@ describe Plane do
     end
   end
 
-  describe do 'Planes Taking Off'
+  describe 'Planes Taking Off' do
     it 'responds to the method taken-off' do
       expect(subject).to respond_to(:taken_off)
     end
