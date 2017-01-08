@@ -10,8 +10,12 @@ class Airport
     @capacity = new_capacity
   end
 
-  def store_plane(plane)
+  def check_capacity
     fail "Airport is currently full." unless planes.length < capacity
+  end
+
+  def store_plane(plane)
+    check_capacity
     planes.push(plane)
   end
 
