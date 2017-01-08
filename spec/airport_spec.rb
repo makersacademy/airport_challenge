@@ -20,11 +20,14 @@ describe Airport do
   #2nd story / 3rd test
   it { is_expected.to respond_to(:plane_take_off).with(1).argument }
 
+  #2nd story / 5th test
   it 'returns an airborne plane' do
     plane = Plane.new
     expect(subject.plane_take_off(plane)).to eq plane
   end
+end
 
-
-
+describe Airport do
+  #1st story / 1st test
+  it {is_expected.to respond_to :prevent_take_off}
 end
