@@ -13,6 +13,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Sorry, no landings during stormy weather!" if stormy?
     @planes = plane
   end
 

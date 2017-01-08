@@ -42,7 +42,7 @@ Progress
 6. Wrote unit tests for both the airport and the plane in Story 01. airport_spec.rb needed a plane double from the very beginning, while plane_spec.rb didn't.
 7. Repeated the process for Story 02.
 8. Created a `Weather` class for Story 03, with corresponding Rspec file. Weather instances have random weather state. Airport instances can check for stormy weather and decline takeoffs in that case.
-9. Featured-tested manually and unit-tested for Story 03.
+9. Featured-tested manually and unit-tested for Stories 03 and 04.
 
 Problems
 ----
