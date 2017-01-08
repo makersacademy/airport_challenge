@@ -1,9 +1,7 @@
 Airport Challenge
 =================
 
-[![Build Status](https://travis-ci.org/KatHicks/airport_challenge.svg?branch=master)](https://travis-ci.org/KatHicks/airport_challenge)
-
-[![Coverage Status](https://coveralls.io/repos/github/KatHicks/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/KatHicks/airport_challenge?branch=master)
+[![Build Status](https://travis-ci.org/KatHicks/airport_challenge.svg?branch=master)](https://travis-ci.org/KatHicks/airport_challenge) [![Coverage Status](https://coveralls.io/repos/github/KatHicks/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/KatHicks/airport_challenge?branch=master)
 
 
 ```
