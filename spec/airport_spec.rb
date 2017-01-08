@@ -1,4 +1,5 @@
 require './lib/airport.rb'
+require './lib/weather.rb'
 
 describe Airport do
 describe '#land_plane' do

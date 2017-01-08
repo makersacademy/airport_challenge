@@ -1,4 +1,5 @@
 require './lib/airplane.rb'
+require './lib/weather.rb'
 
 
 
@@ -7,6 +8,7 @@ class Airport
 attr_reader :landed_planes
   def initialize
     @landed_planes = []
+    @weather_today = Weather.new.weather
   end
 
   def land_plane(plane)
