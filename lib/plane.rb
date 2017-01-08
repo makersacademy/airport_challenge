@@ -14,6 +14,7 @@ class Plane
 
   def take_off(airport)
     fail "Plane is not currently in #{airport} so cannot take off." unless airport.planes.include? (self)
+    fail "The weather is currently stormy and it is not safe to depart." if weather == "stormy"
     airport.release_plane(self)
     @landing_status = false
   end
