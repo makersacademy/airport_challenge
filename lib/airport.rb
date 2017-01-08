@@ -8,4 +8,8 @@ class Airport
 
   attr_accessor :planes
   attr_accessor :capacity
+
+  def land(plane)
+    @planes << plane
+  end
 end
