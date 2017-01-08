@@ -17,4 +17,21 @@ class Action
     airport.takeoff(plane)
   end
 
+  def land_multiple(planes, airport)
+    raise "Weather is too stormy" if airport.stormy?
+    raise "Airport is full" if airport.full?
+      planes.each do |plane|
+        plane.land(airport)
+        airport.land(plane)
+      end
+  end
+
+  def takeoff_multiple(planes, airport)
+    raise "Weather is too stormy" if airport.stormy?
+    raise "Airport is full" if airport.full?
+      planes.each do |plane|
+        plane.takeoff(airport)
+        airport.takeoff(plane)
+      end
+  end
 end

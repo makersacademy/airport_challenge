@@ -39,7 +39,7 @@ context 'airport\'s weather' do
       expect(subject.respond_to?(:weather)).to eq true
     end
     it 'has get_weather returning either sunny or stormy' do
-      ok = (subject.get_weather=='sunny'||subject.get_weather=='stormy')
+      ok = (subject.weather=='sunny'||subject.weather=='stormy')
       expect(ok).to eq true
     end
     it 'has method stormy? returning true if stormy' do

@@ -35,12 +35,14 @@ context "TESTING ACTION" do
       subject.land(plane, airport)
       expect{subject.land(Plane.new, airport)}.to raise_error("Airport is full")
     end
+
     it 'doesnt throw error when airport is not full' do
       plane = Plane.new
       airport = Airport.new
       airport.weather= 'sunny'
       expect{subject.land(Plane.new, airport)}.not_to raise_error
     end
+
     it 'can takeoff a plane at an airport from both perspectives' do
       plane = Plane.new
       airport = Airport.new
@@ -64,8 +66,22 @@ context "TESTING ACTION" do
       airport.weather= 'sunny'
       expect{subject.takeoff(plane, airport)}.not_to raise_error
     end
+    it 'can land multiple planes' do
+      planes = [Plane.new, Plane.new]
+      airport = Airport.new
+      airport.weather= 'sunny'
+      expect{subject.land_multiple(planes, airport)}.not_to raise_error
+    end
+    it 'can takeoff multiple planes' do
+      plane_1 = Plane.new
+      plane_2 = Plane.new
+      planes = [Plane.new, Plane.new]
+      airport = Airport.new
+      airport.weather= 'sunny'
+      plane_1.land(airport)
+      plane_2.land(airport)
+      expect{subject.takeoff_multiple(planes, airport)}.not_to raise_error
+    end
 
   end
-
-
 end
