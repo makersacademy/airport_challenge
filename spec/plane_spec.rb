@@ -26,15 +26,4 @@ describe Plane do
     end
   end
 
-  describe 'has a property airport that is not nil only when the plane is on the earth, London by dafault' do
-    it 'London by dafalt' do
-      expect(subject.airport).to eq("London")
-    end
-
-    it 'can assign other airport' do
-      plane = Plane.new(true,"Geneva")
-      expect(plane.airport).to eq("Geneva")
-    end
-  end
-
 end
