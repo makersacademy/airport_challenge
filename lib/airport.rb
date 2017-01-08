@@ -9,8 +9,12 @@ class Airport
   end
 
   def land(plane)
-    plane.land!
-    planes.push(plane)
+    if check_weather == "sunny"
+      plane.land!
+      planes.push(plane)
+    else
+      fail "Too stormy to land!"
+    end
   end
 
   def take_off(plane)
