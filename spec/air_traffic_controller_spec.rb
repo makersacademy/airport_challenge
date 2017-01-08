@@ -12,7 +12,7 @@ describe AirTrafficController do
   end
   it 'instructs planes to land at an airport' do
     expect(subject).to respond_to :instruct_to_land
-    plane = instance_double("Plane(@airport)", clear_to_land?: true)
+    plane = instance_double('Plane(@airport)', clear_to_land?: true)
     expect(plane).to be_clear_to_land
   end
   it 'confirms when a plane has landed' do
@@ -25,7 +25,7 @@ describe AirTrafficController do
   end
   it 'instructs planes to take off from an airport' do
     expect(subject).to respond_to :instruct_to_take_off
-    plane = double("Plane", clear_for_take_off?: "true")
+    plane = double('Plane', clear_for_take_off?: 'true')
     expect(plane).to be_clear_for_take_off
     subject.instruct_to_take_off
     expect(@plane).to be_clear_for_take_off
@@ -42,27 +42,23 @@ describe AirTrafficController do
   end
   it 'can view the weather condition' do
     expect(subject).to respond_to :check_weather
-    allow(subject).to receive(:check_weather) { "Stormy" }
+    allow(subject).to receive(:check_weather) { 'Stormy' }
     expect(Weather::WEATHER_CONDITIONS.include?(subject.check_weather)).to eq true
   end
   it 'prevents take off when weather is stormy' do
-    allow(subject).to receive(:instruct_to_land).and_raise("Landing not permitted in stormy weather")
-    expect{ subject.instruct_to_land }.to raise_error "Landing not permitted in stormy weather"
-    expect {
-      until subject.weather == "Stormy" do
-        subject.check_weather
-      end
+    allow(subject).to receive(:instruct_to_land).and_raise('Landing not permitted in stormy weather')
+    expect { subject.instruct_to_land }.to raise_error 'Landing not permitted in stormy weather'
+    expect do
+      subject.check_weather until subject.weather == 'Stormy'
       subject.instruct_to_land
-          }.to raise_error "Landing not permitted in stormy weather"
+    end.to raise_error 'Landing not permitted in stormy weather'
   end
   it 'prevents take off when weather is stormy' do
-    allow(subject).to receive(:instruct_to_land).and_raise("Takeoff not permitted in stormy weather")
-    expect{ subject.instruct_to_land }.to raise_error "Takeoff not permitted in stormy weather"
-    expect {
-      until subject.weather == "Stormy" do
-        subject.check_weather
-      end
+    allow(subject).to receive(:instruct_to_land).and_raise('Takeoff not permitted in stormy weather')
+    expect { subject.instruct_to_land }.to raise_error 'Takeoff not permitted in stormy weather'
+    expect do
+      subject.check_weather until subject.weather == 'Stormy'
       subject.instruct_to_take_off
-    }.to raise_error "Takeoff not permitted in stormy weather"
+    end.to raise_error 'Takeoff not permitted in stormy weather'
   end
 end

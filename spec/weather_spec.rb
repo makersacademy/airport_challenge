@@ -6,11 +6,11 @@ describe Weather do
     expect(Weather::WEATHER_CONDITIONS.include?(subject.current_weather)).to eq true
   end
   it 'can be "Sunny"' do
-    allow(subject).to receive(:weather_generator) { "Sunny" }
-    expect(subject.weather_generator).to eq "Sunny"
+    allow(subject).to receive(:weather_generator) { 'Sunny' }
+    expect(subject.weather_generator).to eq 'Sunny'
   end
   it 'can be "Stormy"' do
-    allow(subject).to receive(:weather_generator) { "Stormy" }
-    expect(subject.weather_generator).to eq "Stormy"
+    allow(subject).to receive(:weather_generator) { 'Stormy' }
+    expect(subject.weather_generator).to eq 'Stormy'
   end
 end
