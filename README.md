@@ -91,9 +91,12 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 =================
 **Jaycee Cheong's approach**
-I started with a domain model as below 
+
+*I started with a domain model as below *
+
 |Object                |Message         |  
-|Air traffic controller|:-------------: |
+| -------------        |:-------------: |
+|Air traffic controller| |
 |Plane                 |land?           |
 |Airport               |landed          |
 |Weather               |stormy?         |
@@ -106,23 +109,33 @@ I started with a domain model as below
 |Weather               |stormy?         |
 |Airport               |raise_err(stormy)|
 
-**
+
 =================
 **How to use**
+
 Default capacity = 1
+
 To change default capacity, use `Airport.New new_capacity` on line 002
 
-On your terminal, run irb
-'''$ irb
+On your terminal, run irb and below is an example of how to use the program
+
+```
+$ irb
 2.2.3 :001 > airport = Airport.new
 => #<Airport:0x007f8802827698 @capacity=1, @planes=[], @weather=#<Weather:0x007f8802827648>> 
+
 2.2.3 :003 > plane = Plane.new
  => #<Plane:0x007f88020a63b0 @landed=true> 
+ 
 2.2.3 :003 > airport.land(plane)
  => #<Airport:0x007f8802827698 @capacity=1, @planes=[#<Plane:0x007f88020a63b0 @landed=true>], @weather=#<Weather:0x007f8802827648>>
+ 
 2.2.3 :004 > airport.take_off(plane)
-=> #<Airport:0x007f8802827698 @capacity=1, @planes=[], @weather=#<Weather:0x007f8802827648>>'''
+=> #<Airport:0x007f8802827698 @capacity=1, @planes=[], @weather=#<Weather:0x007f8802827648>>
+```
 
-You may see this error
-'''RuntimeError: Weather is stormy, cannot take off'''
+You may see this error:
+
+`RuntimeError: Weather is stormy, cannot take off`
+
 You can override it by running your command again once or more to generate a scenario where your weather is not stormy. 
