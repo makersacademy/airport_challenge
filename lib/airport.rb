@@ -14,20 +14,14 @@ class Airport
 
   def arrivals
     airport_full
-    if Weather.stormy_weather?
-      raise "Bad weather conditions to land"
-    else
-      @planes << Plane.new
-    end
+    raise "Bad weather conditions to land" if Weather.stormy_weather?
+    @planes << Plane.new
   end
 
   def departures
     airport_empty?
-    if Weather.stormy_weather?
-      raise "Bad weather conditions to depart"
-    else
-      @planes.pop
-    end
+    raise "Bad weather conditions to depart" if Weather.stormy_weather?
+    @planes.pop
     @planes
   end
 
