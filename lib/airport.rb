@@ -23,7 +23,7 @@ class Airport
   end
 
   def has_plane_docked?(plane)
-    @planes.include?(plane) ? true : false
+    planes.include?(plane) ? true : false
   end
 
   private
