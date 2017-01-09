@@ -95,15 +95,14 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 *I started with a domain model as below *
 
 |Object                |Message         |  
-| -------------        |:-------------: |
+| :-------------:      |:-------------: |
 |Air traffic controller| |
 |Plane                 |land?           |
 |Airport               |landed          |
 |Weather               |stormy?         |
 |Airport               |raise_err(stormy)|
-
-|Object                |Message         |  
-|Air traffic controller|:-------------: |
+|       ||      |
+|Air traffic controller| |
 |Plane                 |land?           |
 |Airport               |landed          |
 |Weather               |stormy?         |
