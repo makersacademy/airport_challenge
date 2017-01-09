@@ -17,8 +17,12 @@ Airport Challenge
 
 
 Shereen:
+---------
+
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/makersacademy/airport_challenge?branch=master)
 
 I have got halfway through the user stories, following the process of feature testing first in irb, then creating unit tests in RSpec, ensuring the error messages are the same, then changing the code in the implementation.
+
 
 Story 1
 As an air traffic controller
