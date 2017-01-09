@@ -1,7 +1,7 @@
 Airport Challenge
 =================
 
-[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)[![Coverage Status](https://coveralls.io/repos/github/dylanrhodius/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/dylanrhodius/airport_challenge?branch=master)
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge) [![Coverage Status](https://coveralls.io/repos/github/dylanrhodius/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/dylanrhodius/airport_challenge?branch=master)
 
 ```
         ______
@@ -9,11 +9,14 @@ Airport Challenge
 =  = ==(____MA____)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
+          `~-.__       __..----..__  DYLAN AIRLINES  )
                 `---~~\___________/------------`````
                 =  ===(_________)
 
 ```
+
+
+# Notes given by MA
 
 Instructions
 ---------
