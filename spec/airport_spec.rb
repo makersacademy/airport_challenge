@@ -2,6 +2,7 @@ require './lib/Airport'
 require './lib/Plane'
 
 describe Airport do
+       let(:sunny) { double :sunny}
 
     it 'responds to plane class method to take off' do
     expect(Airport.new).to respond_to :takeoff_plane
@@ -19,8 +20,8 @@ end
      expect(ema.planes.length).to eq(0)
 end
 
-#check for specific e.g. last plane - is it no longer in planes? 
-
+#check for specific e.g. last plane - is it no longer in planes?
+#expect({:a => 'b'}).to include(:a => 'b')
   it 'logs the plane as being in airport on landing' do
      ema = Airport.new
      ema.land_plane
@@ -30,12 +31,11 @@ end
  end
 #ADD THE DOUBLES
 # # Plane has state landed so cannot be landed again
-#  it 'can only land planes which are mid air i.e. landed is false' do
-#   ema = Airport.new
-#   #USE land_plane WITH PARAMETER PASSING IN LANDED PLANE
-#   ema.land_plane
-#   expect(ema.land_plane).to raise_error(Runtimeerror)
-# end
+ # it 'can only land planes which are not already on ground' do
+ #   ema = Airport.new
+ #   error_plane = ema.land_plane
+ #  expect{(ema.land_plane(error_plane))}.to raise_error 'Plane already on ground'
+ # end
 
 #More planes can be landed at that airport
   it 'logs more planes as being in airport on landing' do
@@ -69,17 +69,28 @@ end
       #plane = Plane.new .
       x = Airport::DEFAULT_CAPACITY+1
       expect {x.times {subject.land_plane}}.to raise_error 'Airport is full'
-    end
+  end
 
-# # Plane is in air so cannot take off
+#
+#   it 'weather is stormy so plane cannot land' do
+#
+#   allow(Airport).to receive(:sunny).and_return(false)
+#   expect {subject.land_plane}.to raise_error 'Airport is closed due to stormy weather'
+#   end
+#
+#   it 'weather is stormy so plane cannot take off' do
+#
+#   allow(Airport).to receive(:sunny).and_return(false)
+#   expect {subject.takeoff_plane}.to raise_error 'Airport is closed due to stormy weather'
+#   end
+#
+end
+
+# # Plane is in air so cannot take off _ WOULD USE DOUBLE
+#plane_to_take_off = Plane.new
+#=> #<Plane:0x007f98b0963a98 @landed=false>
+# plane_to_take_off.takeoff_plane
 #   it 'raises an error if plane is already in air' do
 #     plane = Plane.new
 #     expect {subject.takeoff_plane}.to raise_error 'No plane on ground'
 #   end
-
-#weather is stormy so plane cannot land
-#raise 'Airport is closed due to stormy weather'
-#weather is stormy so plane cannot take off
-
-
-end
