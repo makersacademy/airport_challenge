@@ -20,7 +20,7 @@ describe AirTrafficController do
     @plane.take_off(@airport)
     subject.instruct_to_land(@plane, "Sunny")
     @plane.land(@airport)
-    expect(@plane).to be_landed
+    expect(@plane.landed).to eq true
     expect(@airport.planes.include?(@plane)).to eq true
   end
   it 'instructs planes to take off from an airport' do
@@ -28,7 +28,7 @@ describe AirTrafficController do
     plane = double('Plane', clear_for_take_off?: 'true')
     expect(plane).to be_clear_for_take_off
     subject.instruct_to_take_off(@plane, "Sunny")
-    expect(@plane).to be_clear_for_take_off
+    expect(@plane.taking_off).to eq true
   end
   it 'confirms that a plane is no longer in the airport' do
     subject.instruct_to_take_off(@plane, "Sunny")
@@ -37,7 +37,7 @@ describe AirTrafficController do
     @plane.land(@airport)
     subject.instruct_to_take_off(@plane, "Sunny")
     @plane.take_off(@airport)
-    expect(@plane).to be_taken_off
+    expect(@plane.taken_off).to eq true
     expect(@airport.planes.include?(@plane)).to eq false
   end
   it 'can view the weather condition' do

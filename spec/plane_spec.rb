@@ -7,9 +7,8 @@ describe Plane do
     @atc = AirTrafficController.new(@plane)
   end
   it 'is able to receive instruction to land' do
-    expect(subject).to respond_to :clear_to_land?
     @atc.instruct_to_land(@plane, "Sunny")
-    expect(@plane).to be_clear_to_land
+    expect(@plane.landing).to eq true
   end
   it 'is not able to land if not cleared to' do
     @atc.instruct_to_take_off(@plane, "Sunny")
@@ -22,9 +21,8 @@ describe Plane do
     expect(subject.land(@airport)).to be true
   end
   it 'is able to receive instruction to take off' do
-    expect(subject).to respond_to :clear_for_take_off?
     @atc.instruct_to_take_off(@plane, "Sunny")
-    expect(@plane).to be_clear_for_take_off
+    expect(@plane.taking_off).to eq true
   end
   it 'is not able to take off if not cleared to' do
     expect { expect(subject.take_off(@airport)) }.to raise_error "Not cleared for takeoff"
