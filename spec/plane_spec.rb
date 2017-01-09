@@ -165,11 +165,6 @@ describe Plane do
           expect { plane.take_off(airport) }.to raise_error(RuntimeError, "Cannot take off - weather is stormy!")
         end
       end
-
-
     end
-
-
   end
-
 end
