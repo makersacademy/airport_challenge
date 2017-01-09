@@ -11,14 +11,6 @@ class Airport
     @capacity = capacity
   end
 
-  def landed?(plane)
-    @planes.include?(plane)
-  end
-
-  def taken_off?(plane)
-    @planes.include?(plane) ? false : true
-  end
-
   def full?
     @planes.count == @capacity ? (raise "Airport is full, cannot land") : false
   end
