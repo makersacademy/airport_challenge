@@ -7,19 +7,22 @@ class Airport
 
   DEFAULT_CAPACITY = 3
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
     @capacity = capacity
+    @weather = weather
   end
 
   def instruct_landing(plane)
     raise "There is no space in the airport" if full?
+    raise "The weather is too stormy to land" if stormy?
     plane.land
     @planes << plane
   end
 
   def instruct_take_off(plane)
     raise "There are no planes in the airport" if empty?
+    raise "The weather is too stormy to take off" if stormy?
     plane.taken_off
     @planes.delete(plane)
   end
@@ -30,6 +33,10 @@ class Airport
 
   def empty?
     @planes.count == 0
+  end
+
+  def stormy?
+    @weather == :stormy
   end
 
 end
