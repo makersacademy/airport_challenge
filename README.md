@@ -11,7 +11,9 @@
 
 I have got halfway through the user stories, following the process of feature testing first in irb, then creating unit tests in RSpec, ensuring the error messages are the same, then changing the code in the implementation.
 
-Story 1
+
+###Story 1
+```
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport and confirm that it has landed
@@ -31,10 +33,11 @@ IRB final test code:
 => #<Plane:0x007fc643851590>
 >> plane.confirm_landed?
 => "I've landed!"
-
+```
 
 
-Story 2:
+###Story 2:
+```
 As an air traffic controller
 So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
@@ -68,9 +71,10 @@ IRB final test code:
 => #<Plane:0x007fdf4b15adb0>
 >> plane.confirm_not_in_airport?
 => "I'm not in the airport"
-
+```
 
-Story 3:
+###Story 3:
+```
 As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
@@ -94,7 +98,7 @@ Airport - plane_landed?, plane_take_off, prevent_take_off (if weather = “storm
 => "I'm not in the airport"
 airport.weather
 >> airport.prevent_take_off(plane)	=> #<Plane:0x007fdf4b15adb0>
-
+```
 
 ```
         ______
