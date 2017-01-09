@@ -25,7 +25,7 @@ class Airport
   end
 
   def stormy?
-    self.weather == 'stormy'
+    self.weather == :stormy
   end
 
   def full?

@@ -8,7 +8,6 @@ class Weather
   attr_accessor :the_weather
 
   def set_weather
-    num = rand(10)
-    num == 1 ? the_weather= 'stormy' : the_weather= 'sunny'
+    rand(10) == 1 ? the_weather= :stormy : the_weather= :sunny
   end
 end

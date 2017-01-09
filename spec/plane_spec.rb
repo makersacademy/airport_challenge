@@ -10,7 +10,7 @@ context 'Instructing plane to land' do
     end
 
     it 'can confirm it landed' do
-      airport = Airport.new
+      airport = double(:airport)
       subject.land(airport)
       expect(subject.confirm_landing(airport)).to eq true
     end
@@ -21,14 +21,14 @@ context 'Instructing plane to takeoff' do
   describe Plane do
 
     it 'takes off at a given airport' do
-      airport = Airport.new
+      airport = double(:airport)
       subject.land(airport)
       subject.takeoff(airport)
       expect(subject.current_airport).to eq nil
     end
 
     it 'can confirm it took off' do
-      airport = Airport.new
+      airport = double(:airport)
       subject.land(airport)
       subject.takeoff(airport)
       expect(subject.confirm_takeoff(airport)).to eq true

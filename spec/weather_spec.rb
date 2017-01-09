@@ -11,7 +11,7 @@ describe Weather do
   end
 
   it 'can set weather to sunny or stormy' do
-    is_either = (subject.the_weather == 'sunny'||subject.the_weather == 'stormy')
+    is_either = (subject.the_weather == :sunny||subject.the_weather == :stormy)
     expect(is_either).to eq true
   end
 end
