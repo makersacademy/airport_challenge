@@ -29,11 +29,13 @@ class Airport
     self
   end
 
+  private
+
   def full?
-    @planes.count >= capacity
+    planes.count >= capacity
   end
 
   def plane_exists?(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 end
