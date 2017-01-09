@@ -33,7 +33,7 @@ Users | Air traffic controller, System designer| System designer - Sets airport 
   - [X] Instruct a plane to take off from an airport
   - [X] Confirm that it is no longer in the airport
   - [X] Prevent a plane from being instructed to take off if it is stormy 
-  - [] Prevent a plane from being instructed to take off if already in air
+  - [X] Prevent a plane from being instructed to take off if already in air
   
   __As an Admin_System_designer I want to...__
   - [X] Set the capacity of a particular airport, override default
