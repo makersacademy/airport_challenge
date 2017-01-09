@@ -1,4 +1,4 @@
-require 'Airplane'
+require './lib/airplane.rb'
 
 describe Airplane do
 
