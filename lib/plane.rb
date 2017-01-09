@@ -10,9 +10,7 @@ class Plane
     airport.fleet(self) if airport
   end
 
-  def clear_for_take_off?
-    @taking_off
-  end
+
 
   def take_off(airport)
     raise "Not cleared for takeoff" if !clear_for_take_off? && !taken_off?
@@ -22,13 +20,7 @@ class Plane
     @taken_off = true
   end
 
-  def taken_off?
-    @taken_off
-  end
 
-  def clear_to_land?
-    @landing
-  end
 
   def land(airport)
     raise "Not cleared for landing" if !clear_to_land? && !landed?
@@ -37,8 +29,19 @@ class Plane
     @landing = false
     @landed = true
   end
+  private
+  def clear_for_take_off?
+    @taking_off
+  end
 
   def landed?
     @landed
+  end
+  def taken_off?
+    @taken_off
+  end
+
+  def clear_to_land?
+    @landing
   end
 end
