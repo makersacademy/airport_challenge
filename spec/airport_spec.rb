@@ -70,6 +70,10 @@ end
       x = Airport::DEFAULT_CAPACITY+1
       expect {x.times {subject.land_plane}}.to raise_error 'Airport is full'
   end
+  it 'raises an error if take off instructed when no planes are on the ground' do
+      ema = Airport.new
+      expect {subject.takeoff_plane}.to raise_error 'No planes on ground'
+     end
 
 #
 #   it 'weather is stormy so plane cannot land' do
@@ -90,7 +94,7 @@ end
 #plane_to_take_off = Plane.new
 #=> #<Plane:0x007f98b0963a98 @landed=false>
 # plane_to_take_off.takeoff_plane
-#   it 'raises an error if plane is already in air' do
+#   it 'raises an error if no planes on the ground' do
 #     plane = Plane.new
 #     expect {subject.takeoff_plane}.to raise_error 'No plane on ground'
 #   end

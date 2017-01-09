@@ -13,6 +13,10 @@ it 'controller can instruct plane to take off' do
     expect(Plane.new).to respond_to :takeoff
 end
 
+it 'controller can check plane is on the ground' do
+    expect(Plane.new).to respond_to :on_ground?
+end
+
 # it ' a new plane instance '
 #
  it 'controller can confirm plane is mid air' do

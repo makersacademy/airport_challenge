@@ -15,6 +15,7 @@ attr_reader :landed
   def land
     @landed = true
   end
+  
   def on_ground?
     @landed == true
   end

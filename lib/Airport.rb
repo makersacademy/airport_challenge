@@ -29,6 +29,7 @@ def takeoff_plane
   #plane_to_take_off = @planes.last
   #raise_error 'No plane on ground' if @landed = false
   raise 'Airport is closed due to stormy weather' if !sunny?
+  raise 'No planes on ground' if @planes.empty?
   @planes.pop
 end
 
@@ -41,6 +42,8 @@ end
 def sunny?
   (rand(10) < 10)? sunny = true : sunny=false
 end
-
-
+def empty?
+  @planes == nil
+  return true
+end
 end
