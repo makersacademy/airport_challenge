@@ -1,5 +1,106 @@
-Airport Challenge
+
+
+
+
+# Airport Challenge
 =================
+##Shereen: My approach
+----------------------
+
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/makersacademy/airport_challenge?branch=master)
+
+I have got halfway through the user stories, following the "outside in" process of feature testing first in irb (in one terminal window), then creating unit tests in RSpec (in another terminal window), ensuring the error messages are the same before progressing to change the implementation code. I wanted to ensure the interface for all 6 stories passed irb feature testing before refactoring so didn't get to do that.
+
+I'm not sure how the plane variable in my methods in airport.rb was available to irb when I didn't use @ before it!
+
+
+###Story 1
+```
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
+
+Objects - Messages
+AirTrafficController
+Plane - confirm_landed?
+Airport - plane_landed?
+
+IRB final test code:
+
+>> require "./lib/airport.rb"
+=> true
+>> airport = Airport.new
+=> #<Airport:0x007fc643861c38>
+>> plane = airport.plane_landed?
+=> #<Plane:0x007fc643851590>
+>> plane.confirm_landed?
+=> "I've landed!"
+```
+
+
+###Story 2:
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+Objects -Messages
+AirTrafficController
+Plane - confirm_landed?, confirm_not_in_airport?
+Airport - plane_landed?, plane_take_off
+
+>> require "./lib/airport.rb"
+=> true
+>> airport = Airport.new
+=> #<Airport:0x007fc643861c38>
+>> plane = airport.plane_landed?
+=> #<Plane:0x007fc643851590>
+>> plane.confirm_landed?
+=> "I've landed!"
+airport.plane_take_off(plane)  		=> #<Plane:0x007fdf4b15adb0>
+plane.confirm_not_in_airport			I’m not in the airport
+
+IRB final test code:
+> require "./lib/airport.rb"
+=> true
+>> airport = Airport.new
+=> #<Airport:0x007fdf4b138198>
+>> plane = airport.plane_landed?
+=> #<Plane:0x007fdf4b15adb0>
+>> plane.confirm_landed?
+=> "I've landed!"
+>> airport.plane_take_off(plane)
+=> #<Plane:0x007fdf4b15adb0>
+>> plane.confirm_not_in_airport?
+=> "I'm not in the airport"
+```
+
+###Story 3:
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+Objects - Messages
+AirTrafficController
+Plane - confirm_landed?, confirm_not_in_airport?
+Airport - plane_landed?, plane_take_off, prevent_take_off (if weather = “stormy”)
+
+> require "./lib/airport.rb"
+=> true
+>> airport = Airport.new
+=> #<Airport:0x007fdf4b138198>
+>> plane = airport.plane_landed?
+=> #<Plane:0x007fdf4b15adb0>
+>> plane.confirm_landed?
+=> "I've landed!"
+>> airport.plane_take_off(plane)
+=> #<Plane:0x007fdf4b15adb0>
+>> plane.confirm_not_in_airport?
+=> "I'm not in the airport"
+airport.weather
+>> airport.prevent_take_off(plane)	=> #<Plane:0x007fdf4b15adb0>
+```
 
 ```
         ______
@@ -36,25 +137,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +174,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
