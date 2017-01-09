@@ -18,13 +18,14 @@ class Airport
 		raise 'Weather is stormy, cannot land' if stormy?
 		landed = true
 		@planes << plane
-		
+		self
 	end
 
 	def take_off(plane)
 		raise 'Weather is stormy, cannot take off' if stormy?
 		landed = false
 		@planes.delete(plane)
+		self
 	end
 
 
