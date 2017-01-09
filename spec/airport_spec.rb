@@ -5,7 +5,6 @@ describe Airport do
   plane = Plane.new
 
   describe "Airport" do
-    it { should respond_to(:take_off) }
     it { should respond_to(:planes) }
   end
 
