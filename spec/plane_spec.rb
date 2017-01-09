@@ -18,5 +18,4 @@ describe Plane do
     expect(subject.landed).to eq("Plane landed.")
   end
 
-
 end

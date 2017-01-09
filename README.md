@@ -20,5 +20,8 @@ This is my attempt at solving the Airport Challenge set by Makers Academy.
 * Still need to add tree directory
 * Still need to add short description of project
 * Still need to add short description of approach
+* Should not land same plane twice
+* Allow to choose plane to quit airport
+
 
 [Link to Makers Academy's instructions](https://github.com/dylanrhodius/airport_challenge/blob/master/MA_Instructions.md)

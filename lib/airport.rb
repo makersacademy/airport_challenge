@@ -4,6 +4,7 @@ require_relative 'weather'
 class Airport
 
   attr_reader :planes
+  attr_accessor :weather
 
   DEFAULT_CAPACITY = 2
 
@@ -26,10 +27,6 @@ class Airport
     raise "Plane cannot take off due to stormy weather." if self.weather == "stormy"
     plane = @planes.pop
     plane.departed
-  end
-
-  def weather
-    @weather
   end
 
 private
