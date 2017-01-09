@@ -61,12 +61,12 @@ Airport | default_capacity
 
 ##Diagram##
 Plane <-- flying? -- > true/false  
-Airport or Plane<-- land --> lands plane
-Airport or Plane<-- take_off --> plane departs
-Stormy Weather <-- prevent_take_off --> prevents plane taking off
-Stormy Weather <-- prevent_landing --> prevents plane landing
-Airport <-- full? --> prevents plane landing
-Airport <-- default_capacity --> default capacity of planes of an airport
+Airport or Plane<-- land --> lands plane  
+Airport or Plane<-- take_off --> plane departs  
+Stormy Weather <-- prevent_take_off --> prevents plane taking off  
+Stormy Weather <-- prevent_landing --> prevents plane landing  
+Airport <-- full? --> prevents plane landing  
+Airport <-- default_capacity --> default capacity of planes of an airport  
 
 ##Contributors##
 Mitchell Goldbay [github](https://github.com/mbgimot/) [mitchellgoldbay@gmail.com](mailto: mitchellgoldbay@gmail.com)
