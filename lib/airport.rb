@@ -6,7 +6,7 @@ class Airport
     @capacity = capacity
   end
 
-  attr_accessor :planes
+  attr_reader :planes
   attr_accessor :capacity
 
   def land(plane)

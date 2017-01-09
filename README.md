@@ -63,7 +63,7 @@ Programme structure
 **Classes and brief explanation of how to use them.**
 
 **Plane**
-Class "Plane" is created to store an instance of the plane type. Each plane as store a status representing whether they are currently flying or not. Bu default the status is true. Status can be accessed and changed from the outside of the class.
+Class "Plane" is created to store an instance of the plane type. Each plane as store a status representing whether they are currently flying or not. By default the status is true. Status can be accessed and changed from the outside of the class.
 
 ```
 [3] pry(main)> plane = Plane.new
