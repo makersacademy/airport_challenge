@@ -11,23 +11,6 @@
 
 I have got halfway through the user stories, following the process of feature testing first in irb, then creating unit tests in RSpec, ensuring the error messages are the same, then changing the code in the implementation.
 
-
-
-
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-
-
-
-
 Story 1
 As an air traffic controller
 So I can get passengers to a destination
@@ -111,6 +94,17 @@ Airport - plane_landed?, plane_take_off, prevent_take_off (if weather = “storm
 => "I'm not in the airport"
 airport.weather
 >> airport.prevent_take_off(plane)	=> #<Plane:0x007fdf4b15adb0>
+
+
+```
+        ______
+        _\____\___
+=  = ==(____MA____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
 
 ```
 
