@@ -27,6 +27,7 @@ Example Script
     new_plane = Plane.new
     new_airport = Airport.new
     Action.new.land(new_plane, new_airport)
+    Action.new.land_multiple([Plane.new, Plane.new, Plane.new], new_airport)
 
 Error Cases
 ---------
