@@ -1,3 +1,6 @@
+require_relative "weather.rb"
+require_relative "airport.rb"
+
 class Plane
   attr_reader :airborne
 

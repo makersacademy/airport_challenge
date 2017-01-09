@@ -1,6 +1,4 @@
 require "./lib/plane.rb"
-require "./lib/weather.rb"
-require "./lib/airport.rb"
 
 def make_airport(name, capacity=0)
   capacity == 0 ? Airport.new(name) : Airport.new(name, capacity)
