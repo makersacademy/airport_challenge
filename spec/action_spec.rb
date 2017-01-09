@@ -24,6 +24,7 @@ context "TESTING ACTION" do
       plane = Plane.new
       airport = Airport.new
       airport.weather= :sunny
+      puts "weather is #{airport.weather}"
       expect{subject.land(plane, airport)}.not_to raise_error
     end
 

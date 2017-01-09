@@ -31,4 +31,8 @@ class Airport
   def full?
     self.planes.length == self.capacity
   end
+
+  def has_plane?(plane)
+    self.planes.include?(plane)
+  end
 end

@@ -35,3 +35,14 @@ context 'Instructing plane to takeoff' do
     end
   end
 end
+
+context 'When asking if plane is at airport' do
+  describe Plane do
+    it 'can tell it is at an airport' do
+      airport = Airport.new
+      airport.weather= :sunny
+      Action.new.land(subject, airport)
+      expect(subject.is_at_airport?).to eq true
+    end
+  end
+end

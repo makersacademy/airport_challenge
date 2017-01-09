@@ -50,3 +50,14 @@ context 'airport capacity' do
     # end
   end
 end
+
+context 'when asking if airport has a plane' do
+  describe Airport do
+    it 'can tell if it has a given plane' do
+      plane = Plane.new
+      subject.weather= :sunny
+      Action.new.land(plane, subject)
+      expect(subject.has_plane?(plane)).to eq true
+    end
+  end
+end
