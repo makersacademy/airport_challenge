@@ -3,14 +3,6 @@ require 'airport.rb'
 
 context 'Instructing plane to land' do
   describe Plane do
-    it 'has an airport attribute' do
-      expect(subject.respond_to?(:current_airport)).to eq true
-    end
-
-    it 'can be instructed to land' do
-      expect(subject.respond_to?(:land)).to eq true
-    end
-
     it 'lands at a given airport' do
       airport = Airport.new
       subject.land(airport)
@@ -27,9 +19,6 @@ end
 
 context 'Instructing plane to takeoff' do
   describe Plane do
-    it 'can be instructed to takeoff' do
-      expect(subject.respond_to?(:takeoff)).to eq true
-    end
 
     it 'takes off at a given airport' do
       airport = Airport.new
