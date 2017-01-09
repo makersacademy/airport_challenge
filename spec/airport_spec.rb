@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
 subject(:airport) { described_class.new}
-let(:land_plane) {double :plane, :landed? =>true}
-let(:air_plane) {double :plane, :landed? =>false}
+let(:land_plane) {double :plane, :landed=>true}
+let(:air_plane) {double :plane, :landed =>false}
 
 	describe '#land' do
 		it {is_expected.to respond_to(:land).with(1).argument}
@@ -58,7 +58,6 @@ let(:air_plane) {double :plane, :landed? =>false}
 
 		it 'should remove plane from planes' do
 			allow(airport).to receive(:stormy?) {false}
-			airport.land(air_plane)
 			airport.take_off(air_plane)
 			expect{(airport.planes).to eq []}
 		end
