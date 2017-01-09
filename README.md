@@ -18,7 +18,7 @@ Airport Challenge
 
 Shereen:
 
-I have got halfway through the user stories, following the process of feature testing first in irb, then cretaing unit tests in RSpec, ensuring the error messages are the same, then changing the code in the implementation.
+I have got halfway through the user stories, following the process of feature testing first in irb, then creating unit tests in RSpec, ensuring the error messages are the same, then changing the code in the implementation.
 
 Story 1
 As an air traffic controller
