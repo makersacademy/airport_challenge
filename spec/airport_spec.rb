@@ -19,6 +19,8 @@ end
      expect(ema.planes.length).to eq(0)
 end
 
+#check for specific e.g. last plane - is it no longer in planes? 
+
   it 'logs the plane as being in airport on landing' do
      ema = Airport.new
      ema.land_plane
@@ -26,7 +28,7 @@ end
     #   ema.planes << plane
      expect(ema.planes.length).to eq(1)
  end
-
+#ADD THE DOUBLES
 # # Plane has state landed so cannot be landed again
 #  it 'can only land planes which are mid air i.e. landed is false' do
 #   ema = Airport.new
@@ -34,6 +36,7 @@ end
 #   ema.land_plane
 #   expect(ema.land_plane).to raise_error(Runtimeerror)
 # end
+
 #More planes can be landed at that airport
   it 'logs more planes as being in airport on landing' do
    ema = Airport.new
@@ -73,8 +76,9 @@ end
 #     plane = Plane.new
 #     expect {subject.takeoff_plane}.to raise_error 'No plane on ground'
 #   end
-#weather is stormy so plane cannot land
 
+#weather is stormy so plane cannot land
+#raise 'Airport is closed due to stormy weather'
 #weather is stormy so plane cannot take off
 
 
