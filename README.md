@@ -17,6 +17,8 @@ Airport Challenge
 
 This is my attempt at solving the Airport Challenge set by Makers Academy.
 
-* Add tree directory
+* Still need to add tree directory
+* Still need to add short description of project
+* Still need to add short description of approach
 
 [Link to Makers Academy's instructions](https://github.com/dylanrhodius/airport_challenge/blob/master/MA_Instructions.md)
