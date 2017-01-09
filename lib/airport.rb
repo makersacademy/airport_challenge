@@ -15,6 +15,7 @@ class Airport
 
   def fleet(plane)
     if plane.landing || plane.landed
+      raise 'Airport is full' if @planes.size >= @capacity
       raise 'Plane is already on the ground' if @planes.include?(plane)
       @airbourne_planes.delete(plane)
       @planes << plane
