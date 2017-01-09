@@ -1,7 +1,7 @@
 Airport Challenge
 =================
 
-[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge) 
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge) [![Coverage Status](https://coveralls.io/repos/github/dylanrhodius/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/dylanrhodius/airport_challenge?branch=master)
 
 ```
         ______
