@@ -3,6 +3,7 @@ require_relative "airport.rb"
 
 class Plane
   attr_reader :airborne
+  alias_method :airborne?, :airborne
 
   def initialize(airborne=true)
     @airborne = airborne
@@ -27,10 +28,6 @@ class Plane
   end
 
   private
-
-  def airborne?
-    self.airborne
-  end
 
   def set_airborne(status)
     @airborne = status

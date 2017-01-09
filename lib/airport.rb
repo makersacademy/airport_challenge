@@ -33,7 +33,7 @@ class Airport
   end
 
   def airport_full?
-    @capacity <= @planes.length ? true : false
+    capacity <= planes.length ? true : false
   end
 
 end
