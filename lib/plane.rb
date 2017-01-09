@@ -2,7 +2,7 @@ require_relative 'airport'
 
 class Plane
 
-def initialize (status = "Airborne")
+def initialize (status = "Airborne.")
   @status = status
 end
 

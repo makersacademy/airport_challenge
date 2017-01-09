@@ -65,5 +65,10 @@ describe Airport do
     end
   end
 
+  it 'returns the weather\'s status' do
+    allow(subject).to receive(:weather) { "sunny" }
+    expect(subject.weather).to eq("sunny")
+  end
+
 
 end
