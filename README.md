@@ -9,7 +9,9 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/makersacademy/airport_challenge?branch=master)
 
-I have got halfway through the user stories, following the process of feature testing first in irb, then creating unit tests in RSpec, ensuring the error messages are the same, then changing the code in the implementation.
+I have got halfway through the user stories, following the "outside in" process of feature testing first in irb (in one terminal window), then creating unit tests in RSpec (in another terminal window), ensuring the error messages are the same before progressing to change the implementation code. I wanted to ensure the interface for all 6 stories passed irb feature testing before refactoring so didn't get to do that.
+
+I'm not sure how the plane variable in my methods in airport.rb was available to irb when I didn't use @ before it!
 
 
 ###Story 1
