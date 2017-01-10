@@ -8,6 +8,8 @@ describe Airport do
 
   subject(:airport) { described_class.new("Paris") }
 
+  let(:plane) { instance_double("Plane") }
+
   describe ".new" do
     it "takes an argument" do
       expect{airport}.not_to raise_error
@@ -52,12 +54,10 @@ describe Airport do
     describe ".has_plane_docked?" do
       it { is_expected.to respond_to(:has_plane_docked?).with(1).argument }
       it "returns true if plane is docked" do
-        plane = instance_double("Plane")
         airport.dock(plane)
         expect(airport).to have_plane_docked(plane)
       end
       it "returns false if plane is not docked" do
-        plane = instance_double("Plane")
         expect(airport).not_to have_plane_docked(plane)
       end
     end
@@ -67,12 +67,10 @@ describe Airport do
       describe ".dock" do
         it { is_expected.to respond_to(:dock).with(1).argument }
         it "adds a landed plane to @planes" do
-          plane = instance_double("Plane")
           airport.dock(plane)
           expect(airport.planes).to include (plane)
         end
         it "sets @full? to true when capacity reached" do
-          plane = instance_double("Plane")
           (Airport::DEFAULT_CAPACITY).times { airport.dock(plane) }
           expect(airport.full?).to be true
         end
@@ -83,13 +81,11 @@ describe Airport do
       describe ".undock" do
         it { is_expected.to respond_to(:undock).with(1).argument  }
         it "removes a taken off plane from @planes" do
-          plane = instance_double("Plane")
           airport.dock(plane)
           airport.undock(plane)
           expect(airport.planes).not_to include plane
         end
         it "sets @full to false" do
-          plane = instance_double("Plane")
           (Airport::DEFAULT_CAPACITY).times { airport.dock(plane) }
           airport.undock(plane)
           expect(airport.full?).to be false
