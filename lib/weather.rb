@@ -1,5 +1,5 @@
 class Weather
-  def self.stormy_weather?
+  def stormy?
     rand(10) == 10 ? true : false
   end
 end

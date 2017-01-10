@@ -2,56 +2,64 @@ require 'airport'
 require 'weather'
 require 'plane'
 
+
 describe Airport do
 
-  it {expect(subject.class).to eq(Airport)}
   it {is_expected.to respond_to(:arrivals)}
   it {is_expected.to respond_to(:departures)}
   it {is_expected.to respond_to(:airport_full)}
   it {is_expected.to respond_to(:airport_empty?)}
-  it {is_expected.to respond_to(:capacity)}
   it {is_expected.to respond_to(:planes)}
+  it {is_expected.to respond_to(:capacity)}
 
   it 'arrival with proper weather' do
-    allow(Weather).to receive(:stormy_weather?) { false }
-    expect(subject.arrivals.empty?).to eq(false)
+    airport = Airport.new
+    allow(airport.weather).to receive(:stormy?).and_return(false)
+    expect(airport.arrivals.empty?).to eq(false)
   end
 
   it 'arrival with stormy weather' do
-    allow(Weather).to receive(:stormy_weather?) { true }
-    expect {subject.arrivals}.to raise_error("Bad weather conditions to land")
+    airport = Airport.new
+    allow(airport.weather).to receive(:stormy?) { true }
+    error_message = "Bad weather conditions to land"
+    expect {airport.arrivals}.to raise_error(error_message)
   end
 
   it 'depature with proper weather' do
-    airport = subject
-    allow(Weather).to receive(:stormy_weather?) { false }
+    airport = Airport.new
+    allow(airport.weather).to receive(:stormy?) { false }
     airport.arrivals
-    expect(airport.departures.empty?).to eq(true)
+    airport.departures
+    expect(airport.planes.empty?).to eq(true)
   end
 
   it 'depature with stormy weater' do
-    airport = subject
+    airport = Airport.new
     airport.planes << Plane.new
-    allow(Weather).to receive(:stormy_weather?) { true }
-    expect {airport.departures}.to raise_error("Bad weather conditions to depart")
+    allow(airport.weather).to receive(:stormy?) { true }
+    error_message = "Bad weather conditions to depart"
+    expect {airport.departures}.to raise_error(error_message)
   end
 
   it 'airport empty' do
-    expect {subject.departures}.to raise_error("No planes landed")
+    error_message = "No planes landed"
+    expect {subject.departures}.to raise_error(error_message)
   end
 
   it 'does not land if airport full' do
-    if !Weather.stormy_weather?
-      airport = subject
-      capacity = airport.capacity
-      capacity.times {airport.arrivals}
-      expect {airport.arrivals}.to raise_error("Airport is full")
-    end
+    airport = Airport.new
+    allow(airport.weather).to receive(:stormy?) { false }
+    capacity = airport.capacity
+    capacity.times {airport.arrivals}
+    error_message = "Airport is full"
+    expect {airport.arrivals}.to raise_error(error_message)
   end
 
   it 'change capacity' do
+    airport = Airport.new
     new_capacity = 30
-    expect(subject.capacity(new_capacity)).to eq(new_capacity)
+    airport.capacity = new_capacity
+    expect(airport.capacity).to eq(new_capacity)
   end
 
 end

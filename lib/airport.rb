@@ -4,41 +4,37 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  attr_reader :planes
   attr_accessor :capacity
+  attr_reader :planes, :weather
 
-  def initialize(planes = [], capacity = DEFAULT_CAPACITY)
+  def initialize(planes = [], capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = planes
     @capacity = capacity
+    @weather = weather
   end
 
   def arrivals
     airport_full
-    raise "Bad weather conditions to land" if Weather.stormy_weather?
+    error_message = "Bad weather conditions to land"
+    raise error_message if weather.stormy?
     @planes << Plane.new
   end
 
   def departures
     airport_empty?
-    raise "Bad weather conditions to depart" if Weather.stormy_weather?
+    error_message = "Bad weather conditions to depart"
+    raise error_message if weather.stormy?
     @planes.pop
-    @planes
   end
 
   def airport_full
-    raise "Airport is full" if @planes.length >= @capacity
+    error_message = "Airport is full"
+    raise error_message if @planes.length >= @capacity
   end
 
   def airport_empty?
-    raise "No planes landed" if @planes.empty?
-  end
-
-  def capacity(capacity = @capacity)
-    @capacity = capacity
-  end
-
-  def planes
-    @planes
+    error_message = "No planes landed"
+    raise error_message if @planes.empty?
   end
 
 end
