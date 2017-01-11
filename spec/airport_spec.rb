@@ -7,8 +7,6 @@ describe Airport do
 
   it {is_expected.to respond_to(:arrivals)}
   it {is_expected.to respond_to(:departures)}
-  it {is_expected.to respond_to(:airport_full)}
-  it {is_expected.to respond_to(:airport_empty?)}
   it {is_expected.to respond_to(:planes)}
   it {is_expected.to respond_to(:capacity)}
 

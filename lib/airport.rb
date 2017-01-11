@@ -27,6 +27,7 @@ class Airport
     @planes.pop
   end
 
+  private
   def airport_full
     error_message = "Airport is full"
     raise error_message if @planes.length >= @capacity
