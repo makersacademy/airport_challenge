@@ -1,0 +1,4 @@
+class Weather
+
+
+end
