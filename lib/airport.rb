@@ -3,13 +3,23 @@ require_relative 'plane'
 
 class Airport
 
+  def initialize(capacity)
+    @capacity = capacity
+    @planes = []
+  end
+
   def land(plane)
-    "Plane has landed"
+    raise "Cannot land plane: airport full." if full?
+    @planes << plane
   end
 
   def take_off(plane)
-    "Plane has taken off"
   end
 
+private
+
+  def full?
+    @planes.length >= @capacity
+  end
 
 end
