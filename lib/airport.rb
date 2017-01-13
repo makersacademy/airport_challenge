@@ -7,5 +7,9 @@ class Airport
     "Plane has landed"
   end
 
+  def take_off(plane)
+    "Plane has taken off"
+  end
+
 
 end
