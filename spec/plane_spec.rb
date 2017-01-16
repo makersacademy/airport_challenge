@@ -52,8 +52,6 @@ describe Plane do
   end
   describe "#safe?" do
 
-    it {expect(subject).to_not respond_to(:safe?)}
-
     before do
       @plane = Plane.new
       @airport = Airport.new
@@ -96,8 +94,7 @@ describe Plane do
   end
 
   describe "#flying? and #landed?" do
-    it {expect(subject).to_not respond_to(:landed?)}
-    it {expect(subject).to_not respond_to(:flying?)}
+
     before do
       @airport = Airport.new
       @plane = subject
@@ -112,7 +109,7 @@ describe Plane do
     end
     context "if the plane is #flying?" do
       it "will not #take_off" do
-        expect{@plane.take_off(@airport)}.to raise_error
+        expect{@plane.take_off(@airport)}.to raise_error("The plane is currently flying")
       end
     end
   end

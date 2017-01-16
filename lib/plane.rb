@@ -9,34 +9,34 @@ class Plane
   end
 
   def land(airport)
-    unless !safe? || airport.full? || landed?
+    unless weather_not_safe! || airport.full! || plane_landed!
       airport.planes << self
       @status = "landed"
     end
   end
 
   def take_off(airport)
-     unless !safe? || flying? || not_in_airport?(airport)
+    weather_not_safe! || flying! || not_in_airport!(airport)
        airport::planes.delete(self)
        @status = "flying"
-     end
+    # end
   end
 
   private
 
-  def safe?
-    Weather.stormy? ? (raise "Unable to fly as weather is stormy") : true
+  def weather_not_safe!
+    Weather.stormy? ? (raise "Unable to fly as weather is stormy") : false
   end
 
-  def flying?
+  def flying!
     @status == "flying" ? (raise "The plane is currently flying") : false
   end
 
-  def landed?
+  def plane_landed!
     @status == "landed" ?  (raise "The plane has already landed") : false
   end
 
-  def not_in_airport?(airport)
+  def not_in_airport!(airport)
     airport.planes.include?(self) ?  false : (raise "#{self} isn't in #{airport}")
   end
 
