@@ -4,60 +4,68 @@ require 'plane'
 
 
 describe Airport do
+  let(:weather){double('weather')}
+  let(:plane_one){double('plane')}
+  let(:plane_two){double('plane')}
+  subject(:airport){described_class.new(weather)}
+  subject(:other_airport){described_class.new(weather, plane_one, 30)}
 
-  it {is_expected.to respond_to(:arrivals)}
-  it {is_expected.to respond_to(:departures)}
-  it {is_expected.to respond_to(:planes)}
-  it {is_expected.to respond_to(:capacity)}
+  describe '#arrivals' do
+    it {is_expected.to respond_to(:arrivals)}
 
-  it 'arrival with proper weather' do
-    airport = Airport.new
-    allow(airport.weather).to receive(:stormy?).and_return(false)
-    expect(airport.arrivals.empty?).to eq(false)
+    it 'arrival with proper weather' do
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect(airport.arrivals(plane_one).empty?).to eq(false)
+    end
+
+    it 'arrival with stormy weather' do
+      allow(weather).to receive(:stormy?) { true }
+      error_message = "Bad weather conditions to land"
+      expect {airport.arrivals}.to raise_error(error_message)
+    end
+
+    it 'does not land if airport full' do
+      allow(weather).to receive(:stormy?) { false }
+      capacity = airport.capacity
+      capacity.times {airport.arrivals}
+      error_message = "Airport is full"
+      expect {airport.arrivals}.to raise_error(error_message)
+    end
   end
 
-  it 'arrival with stormy weather' do
-    airport = Airport.new
-    allow(airport.weather).to receive(:stormy?) { true }
-    error_message = "Bad weather conditions to land"
-    expect {airport.arrivals}.to raise_error(error_message)
+  describe '#departures' do
+    it {is_expected.to respond_to(:departures)}
+
+    it 'depature with proper weather' do
+      allow(weather).to receive(:stormy?) { false }
+      airport.arrivals(plane_one)
+      airport.departures
+      expect(airport.planes).to eq([])
+    end
+
+    it 'depature with stormy weater' do
+      allow(weather).to receive(:stormy?) { false }
+      airport.arrivals(plane_one)
+      allow(weather).to receive(:stormy?) { true }
+      error_message = "Bad weather conditions to depart"
+      expect {airport.departures}.to raise_error(error_message)
+    end
+
+    it 'airport empty' do
+      error_message = "No planes landed"
+      expect {airport.departures}.to raise_error(error_message)
+    end
   end
 
-  it 'depature with proper weather' do
-    airport = Airport.new
-    allow(airport.weather).to receive(:stormy?) { false }
-    airport.arrivals
-    airport.departures
-    expect(airport.planes.empty?).to eq(true)
+  describe '#planes' do
+    it {is_expected.to respond_to(:planes)}
   end
 
-  it 'depature with stormy weater' do
-    airport = Airport.new
-    airport.planes << Plane.new
-    allow(airport.weather).to receive(:stormy?) { true }
-    error_message = "Bad weather conditions to depart"
-    expect {airport.departures}.to raise_error(error_message)
-  end
+  describe '#capacity' do
+    it {is_expected.to respond_to(:capacity)}
 
-  it 'airport empty' do
-    error_message = "No planes landed"
-    expect {subject.departures}.to raise_error(error_message)
+    it 'change capacity' do
+      expect(other_airport.capacity).to eq(30)
+    end
   end
-
-  it 'does not land if airport full' do
-    airport = Airport.new
-    allow(airport.weather).to receive(:stormy?) { false }
-    capacity = airport.capacity
-    capacity.times {airport.arrivals}
-    error_message = "Airport is full"
-    expect {airport.arrivals}.to raise_error(error_message)
-  end
-
-  it 'change capacity' do
-    airport = Airport.new
-    new_capacity = 30
-    airport.capacity = new_capacity
-    expect(airport.capacity).to eq(new_capacity)
-  end
-
 end

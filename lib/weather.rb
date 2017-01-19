@@ -1,5 +1,5 @@
 class Weather
   def stormy?
-    rand(10) == 10 ? true : false
+    Kernel.rand(1..6) > 4
   end
 end
