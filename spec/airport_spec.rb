@@ -51,8 +51,7 @@ describe Airport do
       expect {airport.departures}.to raise_error(error_message)
     end
 
-    it 'airport empty' do
-      error_message = "No planes landed"
+    it 'airport empty' do      error_message = "No planes landed"
       expect {airport.departures}.to raise_error(error_message)
     end
   end
