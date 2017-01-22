@@ -1,5 +1,4 @@
-Airport Challenge
-=================
+# Airport Challenge
 
 [![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge) [![Coverage Status](https://coveralls.io/repos/github/dylanrhodius/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/dylanrhodius/airport_challenge?branch=master)
 
@@ -15,8 +14,7 @@ Airport Challenge
 
 ```
 
-The Task
------
+## The Task
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -44,12 +42,10 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 [Link to Makers Academy's instructions](https://github.com/dylanrhodius/airport_challenge/blob/master/MA_Instructions.md)
 
-My Approach to the Task
------
+## My Approach to the Task
 
 
-Installing the APP
------
+## Installing the APP
 Clone the repository from [GitHub](https://github.com/dylanrhodius/airport_challenge) and then move into that repository.
 
 ```
@@ -63,8 +59,7 @@ $ gem install bundle
 $ bundle install
 ```
 
-Using the APP
------
+## Using the APP
 Load the app in IRB
 ```
 $ irb
@@ -100,14 +95,12 @@ $ irb
  :014 > exit
 ```
 
-Further Developments
------
+## Further Developments
 * Should not be able to land same plane twice.
 * Allow to choose which plane to quit airport.
 
 
-Contributors
------
+## Contributors
 Used some of my colleague's GitHub repos for README references:
 
 * Mitchell Goldbay [github](https://github.com/mbgimot/)
