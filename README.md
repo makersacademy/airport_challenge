@@ -63,13 +63,13 @@ $ gem install bundle
 $ bundle install
 ```
 
-Load the app in IRB
-```
-irb
-```
-
 Using the APP
 -----
+Load the app in IRB
+```
+$ irb
+```
+
 ```
 :001 > require './lib/plane'
  => true
