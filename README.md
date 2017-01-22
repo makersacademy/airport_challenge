@@ -44,9 +44,13 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 [Link to Makers Academy's instructions](https://github.com/dylanrhodius/airport_challenge/blob/master/MA_Instructions.md)
 
-Installating the APP
+My Approach to the Task
 -----
-Clone the repository from [github](https://github.com/dylanrhodius/airport_challenge) and then move into that repository.
+
+
+Installing the APP
+-----
+Clone the repository from [GitHub](https://github.com/dylanrhodius/airport_challenge) and then move into that repository.
 
 ```
 $ git clone git@github.com:dylanrhodius/airport_challenge.git
@@ -100,3 +104,11 @@ Further Developments
 -----
 * Should not be able to land same plane twice.
 * Allow to choose which plane to quit airport.
+
+
+Contributors
+-----
+Used some of my colleague's GitHub repos for README references:
+
+* Mitchell Goldbay [github](https://github.com/mbgimot/)
+* Rick Clark [github](https://github.com/rkclark/)
