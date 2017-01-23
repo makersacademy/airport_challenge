@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/pedrocastanheira77/airport_challenge.svg?branch=master)](https://travis-ci.org/pedrocastanheira77/airport_challenge)
 [![Coverage Status](https://coveralls.io/repos/github/pedrocastanheira77/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/pedrocastanheira77/airport_challenge?branch=master)
 
+
 Airport Challenge
 =================
 
