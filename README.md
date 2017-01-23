@@ -52,6 +52,7 @@ In this application, several classes were created:
 * `Airport`
 * `Plane`
 * `Weather`
+
 The app allows to create several instances of an airport which are initialised with a random weather condition: either stormy (5% chance), or clear (95% chance). When stormy, planes can neither take-off or land. Different instances of plane objects can be created and then landed into an airport.
 
 ## Installing the APP
