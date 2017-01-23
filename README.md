@@ -15,6 +15,8 @@
 ```
 
 ## The Task
+An air traffic controller/airport simulation programme had to be created.
+
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -42,8 +44,15 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 [Link to Makers Academy's instructions](https://github.com/dylanrhodius/airport_challenge/blob/master/MA_Instructions.md)
 
-## My Approach to the Task
+## The Approach
 
+It was assumed that an airport instance would be handling take-off and landing requests. The same airport would be responsible for keeping track of all the planes. Following the single responsibility principle, this project's classes could have been further broken down.
+The application was developed following TDD principles.
+In this application, several classes were created:
+* `Airport`
+* `Plane`
+* `Weather`
+The app allows to create several instances of an airport which are initialised with a random weather condition: either stormy (5% chance), or clear (95% chance). When stormy, planes can neither take-off or land. Different instances of plane objects can be created and then landed into an airport.
 
 ## Installing the APP
 Clone the repository from [GitHub](https://github.com/dylanrhodius/airport_challenge) and then move into that repository.
