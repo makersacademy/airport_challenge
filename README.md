@@ -6,7 +6,6 @@
 ### Instructions
 
 * We were given from the end of the day on Friday until 9am on Monday to complete the challenge
-* Required to work on the challenge on our own
 
 ### Task
 
