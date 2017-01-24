@@ -84,7 +84,7 @@ You can see the full task and instructions given to us in [CONTRIBUTING.md](airp
 ### Dependencies
 
 * Written in **Ruby 2.2.3**
-* Tested using **RSpec** (for unit testing)
+* Tested using **RSpec**
 
 ### Steps in my development process
 
