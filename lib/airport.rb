@@ -1,4 +1,5 @@
 class Airport
+
   attr_reader :capacity, :planes
 
   def initialize
