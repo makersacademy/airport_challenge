@@ -1,6 +1,6 @@
 # Airport Challenge
 
-[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge) [![Coverage Status](https://coveralls.io/repos/github/dylanrhodius/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/dylanrhodius/airport_challenge?branch=master)
+[![Build Status](https://travis-ci.org/dylanrhodius/airport-challenge.svg?branch=master)](https://travis-ci.org/dylanrhodius/airport-challenge) [![Coverage Status](https://coveralls.io/repos/github/dylanrhodius/airport-challenge/badge.svg?branch=master)](https://coveralls.io/github/dylanrhodius/airport-challenge?branch=master)
 
 ```
         ______
@@ -42,7 +42,7 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
-[Link to Makers Academy's instructions](https://github.com/dylanrhodius/airport_challenge/blob/master/MA_Instructions.md)
+[Link to Makers Academy's instructions](https://github.com/dylanrhodius/airport-challenge/blob/master/MA_Instructions.md)
 
 ## The Approach
 
@@ -56,11 +56,11 @@ In this application, several classes were created:
 The app allows to create several instances of an airport which are initialised with a random weather condition: either stormy (5% chance), or clear (95% chance). When stormy, planes can neither take-off or land. Different instances of plane objects can be created and then landed into an airport.
 
 ## Installing the APP
-Clone the repository from [GitHub](https://github.com/dylanrhodius/airport_challenge) and then move into that repository.
+Clone the repository from [GitHub](https://github.com/dylanrhodius/airport-challenge) and then move into that repository.
 
 ```
-$ git clone git@github.com:dylanrhodius/airport_challenge.git
-$ cd airport_challenge
+$ git clone git@github.com:dylanrhodius/airport-challenge.git
+$ cd airport-challenge
 ```
 
 Load dependencies with bundle
