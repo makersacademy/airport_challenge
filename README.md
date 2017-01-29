@@ -106,7 +106,7 @@ $ irb
 ```
 
 ## Further Developments
-* Should not be able to land same plane twice.
+* Should not be able to land the same plane twice.
 * Allow to choose which plane to quit airport.
 
 
