@@ -29,10 +29,6 @@ My approach
 -------
 At the time of writing this code I was half way through Sandi Mets' 'Practical Object Oriented Design In Ruby' and I had only been test driving my development for five days. As a result my main objective in this task is to get a high test coverage and implement as many of the POODIR teachings as possible.
 
-Retrospective
--------
-I am writing this section 5 weeks after the last time I looked at this project. Looking back at this project has been very eye opening, 5 weeks ago I was proud of this code, I was happy with how it looked and at the time I couldn't see how it could get any better. 5 weeks later I can see that I obviously didn't fully understand instance variables and attribute readers/writers at the time of writing this, my understanding of POODIR was not as good as I thought at the time as my dependency injection is messy and long winded and the code itself is no where close to as readable as I had previously thought. However, I am now very curious as to how I will view this code in another 5 weeks, or even a year from now.
-
 Original specification
 -----
 
