@@ -20,8 +20,8 @@ A fully functional Airport model at which planes can land and take off complete 
 Instructions
 ---------
 1. Clone this repo
-2. if you don't have bundler, run the command 'gem install bundler'
-3. run 'bundle'
+2. if you don't have bundler, run the command `gem install bundler`
+3. run `bundle`
 4. open a REPL, and follow the example below
 ![Alt text](./airport_screenshot.png)
 
