@@ -6,10 +6,6 @@ describe Plane do
 
   context "land the plane" do
 
-    it "should be able to respond to land method" do
-      expect(subject).to respond_to :land
-    end
-
     it "should land the plane at an airport" do
       expect(subject).to respond_to(:land).with(1).argument
     end
@@ -35,10 +31,6 @@ describe Plane do
   end
 
   context "take off the plane" do
-
-    it "should be able to respond to take_off method" do
-      expect(subject).to respond_to :take_off
-    end
 
     it "should respond to take_off method with 1 agrument" do
       expect(subject).to respond_to(:take_off).with(1).argument
@@ -74,20 +66,24 @@ describe Plane do
 
   context "Weather is stormy" do
 
-    let(:plane) { double(:plane) }
+    # let(:plane) { Plane.new }
+    #
+    # it "should respond to weather method" do
+    #   expect(subject).to respond_to :weather
+    # end
+    #
+    # it "should return 0 if it's stormy" do
+    #   allow(plane).to receive(:weather) {0}
+    #   expect(plane.weather).to eq 0
+    # end
+    #
+    # it "should NOT return 0 if it's NOT stormy" do
+    #   allow(plane).to receive(:weather) {1}
+    #   expect(plane.weather).not_to eq 0
+    # end
 
     it "should respond to weather method" do
-      expect(subject).to respond_to :weather
-    end
-
-    it "should return 0 if it's stormy" do
-      allow(plane).to receive(:weather) {0}
-      expect(plane.weather).to eq 0
-    end
-
-    it "should NOT return 0 if it's NOT stormy" do
-      allow(plane).to receive(:weather) {1}
-      expect(plane.weather).not_to eq 0
+      expect(subject).to respond_to :stormy?
     end
 
   end

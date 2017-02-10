@@ -57,12 +57,12 @@ describe "ATC" do
       expect{ plane.land(airport) }.to raise_error "Can't land again."
     end
 
-    it "should NOT be able to land the plane if it's stormy" do
-      plane = Plane.new
-      airport = Airport.new
-      allow(plane).to receive (:weather) {0}
-      expect{ plane.land(airport) }.to raise_error "It is stormy. We can't land the plane."
-    end
+    # it "should NOT be able to land the plane if it's stormy" do
+    #   plane = Plane.new
+    #   airport = Airport.new
+    #   allow(plane).to receive (:weather) {0}
+    #   expect{ plane.land(airport) }.to raise_error "It is stormy. We can't land the plane."
+    # end
 
   end
 
@@ -94,14 +94,14 @@ describe "ATC" do
       expect{ plane.take_off(airport)}.to raise_error "Can't take off again."
     end
 
-    it "should NOT take off if it's stormy" do
-      plane = Plane.new
-      airport = Airport.new
-      allow(plane).to receive (:weather) {1}
-      plane.land(airport)
-      allow(plane).to receive (:weather) {0}
-      expect{ plane.take_off(airport) }.to raise_error "It is stormy. We can't take off."
-    end
+    # it "should NOT take off if it's stormy" do
+    #   plane = Plane.new
+    #   airport = Airport.new
+    #   allow(plane).to receive (:weather) {1}
+    #   plane.land(airport)
+    #   allow(plane).to receive (:weather) {0}
+    #   expect{ plane.take_off(airport) }.to raise_error "It is stormy. We can't take off."
+    # end
 
   end
 
