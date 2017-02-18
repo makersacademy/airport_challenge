@@ -7,6 +7,7 @@ class Plane
   end
 
   def take_off(airport)
+    self.status = "In-Flight"
   end
 
 end

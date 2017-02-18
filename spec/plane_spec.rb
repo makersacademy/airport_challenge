@@ -11,7 +11,7 @@ describe Plane do
     expect(@plane).to respond_to(:land).with(1).argument
   end
 
-  it "confirms that it has landed" do
+  it "changes status after landing" do
     expect(@plane).to respond_to(:status)
   end
 
@@ -27,5 +27,10 @@ describe Plane do
 
   it "takes off when instructed to take off" do
     expect(@plane).to respond_to(:take_off).with(1).argument
+  end
+
+  it "changes status after take off" do
+    @plane.take_off("LHR")
+    expect(@plane.status).to eq "In-Flight"
   end
 end
