@@ -5,7 +5,7 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
   it { is_expected.to respond_to(:confirm_landing) }
-  it { is_expected.to respond_to(:confirm_take_off) }
+  it { is_expected.to respond_to(:confirm_take_off).with(1).argument }
   it { is_expected.to respond_to(:current_status) }
   it { is_expected.to respond_to(:able_to_take_off?).with(1).argument }
 
@@ -43,7 +43,8 @@ describe Plane do
 
   describe '.confirm_take_off' do
     it "confirms that the plane has taken off" do
-      expect(subject.confirm_take_off).to eq "Plane has taken off"
+      "JFK" = Airport.new
+      expect(subject.confirm_take_off(airport)).to eq "Plane has taken off from JFK}"
     end
   end
 
