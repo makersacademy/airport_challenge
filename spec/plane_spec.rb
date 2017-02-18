@@ -12,7 +12,7 @@ describe Plane do
     expect(@plane).to respond_to(:land).with(1).argument
   end
 
-  it "changes status after landing" do
+  it "responds to status method" do
     expect(@plane).to respond_to(:status)
   end
 
@@ -21,7 +21,7 @@ describe Plane do
     expect(@plane.status).to eq "Landed"
   end
 
-  it "raises an error if invalid airport name passed, status remains unchanged" do
+  it "raises an error if invalid object type passed to land method, status remains unchanged" do
     expect {@plane.land(123)}.to raise_error("Invalid airport")
     expect(@plane.status).to eq "Landed"
   end
@@ -35,7 +35,7 @@ describe Plane do
     expect(@plane.status).to eq "In-Flight"
   end
 
-  it "only accepts strings as arguments" do
+  it "raises an error if invalid object type passed to take_off method, status remains unchanged" do
     expect {@plane.take_off(123)}.to raise_error("Invalid airport")
     expect(@plane.status).to eq "Landed"
   end
