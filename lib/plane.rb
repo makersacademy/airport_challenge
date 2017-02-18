@@ -7,6 +7,7 @@ class Plane
   end
 
   def take_off(airport)
+    fail "Invalid airport" unless airport.respond_to?(:chars)
     self.status = "In-Flight"
   end
 

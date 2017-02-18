@@ -33,4 +33,9 @@ describe Plane do
     @plane.take_off("LHR")
     expect(@plane.status).to eq "In-Flight"
   end
+
+  it "only accepts strings as arguments" do
+    expect {@plane.take_off(123)}.to raise_error("Invalid airport")
+    expect(@plane.status).to eq nil
+  end
 end
