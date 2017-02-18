@@ -6,7 +6,8 @@ describe Airport do
   describe "#landing", :landing do
     let(:plane) {Plane.new}
     it "instructs a plane to land" do
-      expect(airport.instruct_to_land(plane)).to eq plane
+      airport.instruct_to_land(plane)
+      expect(airport.plane).to eq plane
     end
 
     it "confirms the plane has landed" do
@@ -15,16 +16,15 @@ describe Airport do
     end
 
     it "reports the plane hasn't landed when it hasn't" do
-      expect{airport.confirm_landed(plane)}.to raise_error "There are no planes at the airport."
+      expect{airport.confirm_landed(plane)}.to raise_error "#{plane} is not in the airport."
     end
   end
 
   describe "#take_off", :takeoff do
     let(:plane) {Plane.new}
-    it "instructs a plane to take off" do
+    it "instructs a plane to take off", :instructs_takeoff do
       airport.instruct_to_land(plane)
-      airport.take_off(plane)
-      expect(airport.take_off(plane)).to eq "#{plane} has taken off."
+      expect(airport.take_off(plane)).to eq airport.plane_arr.delete_if  { |p| p == plane }
     end
 
     it "confirms the plane has taken off" do
@@ -32,7 +32,9 @@ describe Airport do
     end
 
     it "reports the plane hasn't taken off when it hasn't" do
-      expect{airport.confirm_takeoff}.to raise_error "Plane has not taken off"
+      plane2 = Plane.new
+      airport.instruct_to_land(plane2)
+      expect{airport.confirm_takeoff(plane2)}.to raise_error "#{plane2} is still in the airport."
     end
   end
 
