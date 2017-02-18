@@ -13,14 +13,14 @@ describe Airport do
 
   it 'allows planes to land' do
     plane = Plane.new
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to eq [plane]
   end
 
   it 'shows landed planes' do
     plane = Plane.new
     subject.land(plane)
     #tests that the airport stores the landed plane
-    expect(subject.plane).to eq plane
+    expect(subject.planes).to eq [plane]
   end
 
   describe '#take_off' do
@@ -39,10 +39,15 @@ describe Airport do
   end
 
   describe '#land' do
-    it 'raises an error when a plane lands at a full airport' do
-      plane = Plane.new
-      subject.land(plane)
+    # it 'raises an error when a plane lands at a full airport' do
+    #   subject.land(Plane.new)
+    #   expect { subject.land(Plane.new) }.to raise_error("Airport is full")
+    # end
+
+    it 'raises an error when a plane lands at an airport with capacity of 20 planes' do
+      20.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error("Airport is full")
     end
+
   end
 end
