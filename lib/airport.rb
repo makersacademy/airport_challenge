@@ -7,4 +7,7 @@ class Airport
     print "#{plane} has landed"
   end
 
+  def take_off(plane)
+    print "#{plane} is no longer in airport"
+  end
 end

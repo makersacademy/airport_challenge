@@ -9,7 +9,7 @@ describe Airport do
 
   it 'confirms plane is no longer in airport' do
     plane = Plane.new
-    expect { subject.take_off(plane) }.to output("#{plane} has taken off").to_stdout
+    expect { subject.take_off(plane) }.to output("#{plane} is no longer in airport").to_stdout
   end
 
 end
