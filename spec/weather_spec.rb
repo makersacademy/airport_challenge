@@ -1,9 +1,10 @@
 require 'weather'
 
-describe 'weather' do
+describe Weather do
 
   it 'is stormy' do
-    expect(subject.status).to eq "Stormy"
+    weather = Weather.new("stormy")
+    expect(weather.status).to eq "stormy"
   end
 
 end
