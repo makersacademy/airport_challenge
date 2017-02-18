@@ -27,7 +27,7 @@ describe Airport do
     describe '.full?' do
       it "checks if the airport is full" do
         10.times {(Plane.new).land(subject)}
-        expect(subject.full?).to eq true
+        expect(subject).to be_full
       end
     end
 

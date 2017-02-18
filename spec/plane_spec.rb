@@ -29,7 +29,7 @@ describe Plane do
   it "planes cannot land in an airport if they are already in an airport" do
     airport = Airport.new
     subject.land(airport)
-    expect(subject.able_to_land?).to eq false
+    expect(subject).not_to be_able_to_land
   end
 
 
@@ -79,7 +79,7 @@ describe Plane do
   describe '.able_to_take_off?' do
     it "checks if plane is in the specified airport" do
       airport = Airport.new
-      expect(subject.able_to_take_off?(airport)).to eq false
+      expect(subject).not_to be_able_to_take_off(airport)
     end
   end
 
