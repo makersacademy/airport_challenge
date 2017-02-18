@@ -9,11 +9,8 @@ class Airport
   end
 
   def take_off(plane)
-    if stormy?
-      raise "Cannot take off due to stormy conditions!"
-    else
-      print "#{plane} is no longer in airport"
-    end
+    raise "Cannot take off due to stormy conditions!" if stormy?
+    print "#{plane} is no longer in airport"
   end
 
 end
