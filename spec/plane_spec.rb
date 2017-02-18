@@ -6,26 +6,50 @@ describe Plane do
   it { is_expected.to respond_to(:take_off) }
   it { is_expected.to respond_to(:confirm_landing) }
   it { is_expected.to respond_to(:confirm_take_off) }
+  it { is_expected.to respond_to(:current_status) }
 
-  describe '#confirm_landing' do
+
+  describe '#current_status' do
+
+    it "expects current_status to indicate when plane is in airport" do
+      airport = Airport.new
+      subject.land(airport)
+      expect(subject.current_status).to eq "In airport"
+    end
+
+    it "expects current_status to indicate when plane is in the air" do
+      airport = Airport.new
+      subject.take_off
+      expect(subject.current_status).to eq "In air"
+    end
+
+  end
+
+
+  describe '.confirm_landing' do
     it "confirms that the plane has landed" do
       expect(subject.confirm_landing).to eq "Plane has landed"
     end
   end
 
-  describe '#confirm_take_off' do
+  describe '.confirm_take_off' do
     it "confirms that the plane has taken off" do
       expect(subject.confirm_take_off).to eq "Plane has taken off"
     end
   end
 
-  describe '#land' do
+  describe '.land' do
     it "lands the plane in an airport" do
       expect(subject.land(Airport.new)).to eq "Plane has landed"
     end
+
+    it "planes cannot land in the airport unless they are in the air" do
+
+    end
+
   end
 
-  describe '#take_off' do
+  describe '.take_off' do
 
 
   end
