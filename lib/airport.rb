@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :capacity, :planes, :weather
+  attr_reader :capacity, :planes
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
@@ -37,4 +37,7 @@ class Airport
     planes.count >= capacity
     # true or false depending on number of planes & capacity
   end
+
+  attr_reader :weather
+
 end
