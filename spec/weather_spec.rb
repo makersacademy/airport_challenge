@@ -1,7 +1,7 @@
 require 'weather'
 
 describe Weather do
-  before do
+  before(:each) do
     @weather = double(:weather)
   end
   it "has a is_stormy method" do
