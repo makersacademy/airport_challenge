@@ -5,6 +5,20 @@ describe Airport do
   it { is_expected.to respond_to :take_off }
   it { is_expected.to respond_to :land }
 
+  describe "capacity" do
+      context "without parameters" do
+        it "should use the default capacity of 20" do
+          expect(subject.capacity).to eq(20)
+        end
+      end
+      context "with parameters" do
+        let(:airport) { Airport.new(45)}
+        it "should allow the airport capacity to be overridden when necessary" do
+          expect(airport.capacity).to eq(45)
+        end
+      end
+  end
+
   it 'allows planes to take off' do
     plane = Plane.new
     subject.land(plane)
