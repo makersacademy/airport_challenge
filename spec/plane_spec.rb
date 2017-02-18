@@ -4,7 +4,8 @@ require 'plane'
 
 describe Plane do
   before(:each) do
-    @plane = Plane.new
+    @airport = Airport.new
+    @plane = Plane.new(@airport)
   end
 
   it "lands when instructed to land" do
@@ -16,13 +17,13 @@ describe Plane do
   end
 
   it "status changes to landed after landing" do
-    @plane.land("LHR")
-    expect(@plane.status).to eq "Landed at LHR"
+    @plane.land(@airport)
+    expect(@plane.status).to eq "Landed"
   end
 
   it "raises an error if invalid airport name passed, status remains unchanged" do
     expect {@plane.land(123)}.to raise_error("Invalid airport")
-    expect(@plane.status).to eq nil
+    expect(@plane.status).to eq "Landed"
   end
 
   it "takes off when instructed to take off" do
@@ -30,12 +31,12 @@ describe Plane do
   end
 
   it "changes status after take off" do
-    @plane.take_off("LHR")
+    @plane.take_off(@airport)
     expect(@plane.status).to eq "In-Flight"
   end
 
   it "only accepts strings as arguments" do
     expect {@plane.take_off(123)}.to raise_error("Invalid airport")
-    expect(@plane.status).to eq nil
+    expect(@plane.status).to eq "Landed"
   end
 end
