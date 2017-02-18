@@ -79,7 +79,18 @@ describe Airport do
     @airport.permission_to_take_off(ba_plane)
     @airport.permission_to_take_off(sa_plane)
     expect{@airport.permission_to_take_off(@plane)}.to raise_error("Airport empty")
+  end
 
+  it "allows plan from another aiport to land and take off" do
+    london_airport = Airport.new(2, double(:weather, :is_stormy? => false))
+    london_plane = Plane.new(london_airport)
+    london_airport.confirm_landing(london_plane)
+    new_york_airport = Airport.new(5, double(:weather, :is_stormy? => false))
+    new_york_plane = Plane.new(new_york_airport)
+    new_york_airport.confirm_landing(new_york_plane)
+    new_york_airport.permission_to_take_off(new_york_plane)
+    london_airport.permission_to_land(new_york_plane)
+    expect(new_york_plane.airport).to eq london_airport
   end
 
 end
