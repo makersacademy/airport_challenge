@@ -61,6 +61,10 @@ describe Plane do
 
   describe '.take_off' do
     it "removes the plane from its current airport" do
+      airport = Airport.new
+      subject.land(airport)
+      subject.take_off(airport)
+      expect(airport.planes).to eq []
     end
 
     it "prevents take_off unless the plane is in the airport" do
