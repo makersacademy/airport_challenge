@@ -2,18 +2,25 @@ require_relative 'plane'
 require_relative 'weather'
 require_relative 'controller'
 
-
 class Airport
+  CAPACITY = 15
 
-CAPACITY = 15
+  def initialize(capacity = CAPACITY)
+  @capacity = capacity
+  @planes = []
+  end
 
-def initialize
+  def land(plane)
 
-@planes = []
-end
+  end
 
-def land(plane)
+  def boarding
+    raise 'Weather is stormy, cannot land' if stormy?
+  end
 
-end
+
+  def stormy_weather
+    Weather.new.stormy?
+  end
 
 end
