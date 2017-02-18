@@ -13,4 +13,9 @@ describe Weather do
     allow(@weather).to receive(:is_stormy?){false}
     expect(@weather.is_stormy?).to eq false
   end
+
+  it "returns true when stormy" do
+    allow(@weather).to receive(:is_stormy?){true}
+    expect(@weather.is_stormy?).to eq true
+  end
 end
