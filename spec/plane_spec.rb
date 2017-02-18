@@ -24,4 +24,8 @@ describe Plane do
     expect {@plane.land(123)}.to raise_error("Invalid airport")
     expect(@plane.status).to eq nil
   end
+
+  it "takes off when instructed to take off" do
+    expect(@plane).to respond_to(:take_off)
+  end
 end
