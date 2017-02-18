@@ -7,3 +7,6 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 
+./spec/feature_spec.rb
+.gitignore
+spec/feature_spec.rb
