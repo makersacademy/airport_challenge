@@ -5,7 +5,10 @@ class Plane
   attr_reader :airport
 
   def land(airport)
-    @airport = airport
-    true
+    if airport.request_to_land(self)
+      @airport = airport
+      true
+    end
   end
+
 end
