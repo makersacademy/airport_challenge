@@ -7,3 +7,4 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 
+user_stories.txt
