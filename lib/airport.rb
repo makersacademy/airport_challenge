@@ -15,7 +15,8 @@ class Airport
 
   def permission_to_take_off(plane)
     fail "Weather stormy" if weather.is_stormy?
-    fail "Invalid request" if plane.status == "In-Flight"
+    fail "Invalid request" if (plane.status == "In-Flight" && plane.airport == self)
+    fail "Airport empty" if planes.count == 0
     plane.take_off(self)
     true
   end
@@ -33,6 +34,6 @@ class Airport
   end
 
   def confirm_take_off(plane)
-    planes.delete(plane) if plane.status == "In-Flight" && plane.airport == self
+    planes.delete(plane) if (plane.status == "In-Flight" && plane.airport == self)
   end
 end
