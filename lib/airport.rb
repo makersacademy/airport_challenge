@@ -7,6 +7,11 @@ class Airport
   end
 
   def is_full?
-    # true or false
+    false
+    # true or false depending on number of planes & capacity
+  end
+
+  def permission_to_land(plane)
+    true
   end
 end
