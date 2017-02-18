@@ -8,19 +8,23 @@ describe "airport-challenge" do
   end
 
   describe Airport do
-    it {is_expected.to respond_to (:land)}
+#    subject(:airport) { described_class.new }
+
+    it { is_expected.to respond_to(:land).with(1).argument }
 
     it "should land at the airport" do
       airplane = Plane.new
-      airport = Airport.new
-      expect(airport.land(airplane)).to eq("The plane has landed.")
+      expect(subject.land(airplane)).to eq("The plane has landed.")
     end
 
     it "should take off" do
-      airport = Airport.new
       airplane = Plane.new
-      airport.land(airplane)
-      expect(airport.take_off).to eq("The plane has taken off.")
+      subject.land(airplane)
+      expect(subject.take_off).to eq("The plane has taken off.")
+    end
+
+    it "should not take off if it is not at the airport" do
+      expect(subject.take_off).to eq nil
     end
 
   end
