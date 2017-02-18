@@ -26,6 +26,6 @@ describe Plane do
   end
 
   it "takes off when instructed to take off" do
-    expect(@plane).to respond_to(:take_off)
+    expect(@plane).to respond_to(:take_off).with(1).argument
   end
 end
