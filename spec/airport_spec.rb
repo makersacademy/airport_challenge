@@ -9,8 +9,9 @@ describe Airport do
 
   it "can keep track of a plane that has landed" do
     plane = Plane.new
-    plane.land(subject)
-    expect(subject.planes).to eq [plane]
+    airport = Airport.new
+    plane.land(airport)
+    expect(airport.planes).to eq [plane]
   end
 
 end
