@@ -9,9 +9,8 @@ describe Airport do
 
   it "confirms the plane is in the airport" do
     # expect(subject.landed?(plane)).to eq plane
-    new_plane = Plane.new
-    subject.land(new_plane)
-    expect(subject.in_airport).to include(new_plane)
+    subject.land(plane)
+    expect(subject.in_airport).to include(plane)
   end
 
   it "instructs a plane to take off" do
@@ -19,8 +18,7 @@ describe Airport do
   end
 
   it "confirms the plane is airborne"do
-    new_plane = Plane.new
-    subject.take_off(new_plane)
-    expect(subject.in_air).to include(new_plane)
+    subject.take_off(plane)
+    expect(subject.in_air).to include(plane)
   end
 end
