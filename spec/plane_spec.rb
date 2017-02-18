@@ -5,4 +5,5 @@ describe Plane do
   #   expect(subject).to respond_to :take_off
   # end
   it { is_expected.to respond_to :flying? }
+  it { is_expected.to respond_to :landed? }
 end

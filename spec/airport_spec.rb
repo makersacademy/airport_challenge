@@ -10,4 +10,10 @@ describe Airport do
     plane = subject.take_off
     expect(plane).to be_flying
   end
+
+  it 'allows planes to land' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(plane).to be_landed
+  end
 end
