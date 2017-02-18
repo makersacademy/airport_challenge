@@ -22,6 +22,7 @@ class Plane
 
   def take_off(airport)
     fail "Plane is not in this airport" unless able_to_take_off?(airport)
+    airport.planes.delete(self)
     @current_status = "In air"
     confirm_take_off
   end
