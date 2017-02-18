@@ -11,6 +11,8 @@ describe Plane do
       expect(subject.land(airport)).to eq "Plane has landed"
     end
 
+
+
   end
 
   describe '#take_off' do
