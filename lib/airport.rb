@@ -1,11 +1,11 @@
 class Airport
   attr_reader :plane
-  
+
   def instruct_to_land(plane)
-    true
+    @plane = plane
   end
 
-  def landed?
-    true
+  def landed?(plane)
+    @plane = plane
   end
 end
