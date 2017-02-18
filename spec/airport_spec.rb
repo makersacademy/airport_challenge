@@ -19,20 +19,22 @@ describe Airport do
     end
   end
 
-  # describe "#take_off", :takeoff do
-  #   it "instructs a plane to take off" do
-  #     expect(airport.take_off(plane)).to eq plane
-  #   end
-  #
-  #   it "confirms the plane has taken off" do
-  #     expect(airport.confirm_takeoff).to eq "#{plane} has taken off."
-  #   end
-  #
-  #   it "reports the plane hasn't taken off when it hasn't" do
-  #     expect{airport.confirm_takeoff}.to raise_error "Plane has not taken off"
-  #   end
-  #
-  # end
+  describe "#take_off", :takeoff do
+    let(:plane) {Plane.new}
+    it "instructs a plane to take off" do
+      airport.instruct_to_land(plane)
+      airport.take_off(plane)
+      expect(airport.take_off(plane)).to eq "#{plane} has taken off."
+    end
+
+    it "confirms the plane has taken off" do
+      expect(airport.confirm_takeoff(plane)).to eq "#{plane} has taken off."
+    end
+
+    it "reports the plane hasn't taken off when it hasn't" do
+      expect{airport.confirm_takeoff}.to raise_error "Plane has not taken off"
+    end
+  end
 
 
 end

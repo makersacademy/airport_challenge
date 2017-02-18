@@ -14,6 +14,18 @@ class Airport
     @plane = plane
   end
 
+  def take_off(plane)
+    @plane = plane
+    @plane_arr.delete_if { |y| y == plane }
+    "#{@plane} has taken off."
+  end
+
+  def confirm_takeoff(plane)
+    @plane = plane
+    fail "#{plane} is not in airport" if @plane_arr.include?(@plane)
+    "#{@plane} has taken off."
+  end
+
   def confirm_landed(plane)
     @plane = plane
     fail "There are no planes at the airport." if empty?
