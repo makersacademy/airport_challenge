@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
   let(:plane) {double(:plane)}
@@ -17,8 +18,12 @@ describe Airport do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
 
-  it "confirms the plane is airborne"do
+  it "confirms the plane is airborne" do
     subject.take_off(plane)
     expect(subject.in_air).to include(plane)
+  end
+
+  it "prevents take off if the weather is stormy" do
+    expect{subject.unsafe}.to raise_error("It isn't safe to fly.")
   end
 end
