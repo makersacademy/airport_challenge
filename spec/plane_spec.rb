@@ -9,5 +9,5 @@ describe Plane do
   it 'take_off?' do
     expect(subject).to respond_to(:take_off?)
   end
-
+  
 end
