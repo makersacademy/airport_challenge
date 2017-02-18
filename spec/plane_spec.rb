@@ -3,11 +3,11 @@ require 'airport'
 
 describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:take_off) }
+  it { is_expected.to respond_to(:take_off).with(1).argument }
   it { is_expected.to respond_to(:confirm_landing) }
   it { is_expected.to respond_to(:confirm_take_off) }
   it { is_expected.to respond_to(:current_status) }
-
+  it { is_expected.to respond_to(:able_to_take_off?).with(1).argument }
 
   describe '#current_status' do
 
@@ -19,10 +19,19 @@ describe Plane do
 
     it "expects current_status to indicate when plane is in the air" do
       airport = Airport.new
-      subject.take_off
+      subject.land(airport)
+      subject.take_off(airport)
       expect(subject.current_status).to eq "In air"
     end
 
+
+  end
+
+  describe '.able_to_land?'
+  it "planes cannot land in an airport if they are already in an airport" do
+    airport = Airport.new
+    subject.land(airport)
+    expect(subject.able_to_land?).to eq false
   end
 
 
@@ -43,15 +52,27 @@ describe Plane do
       expect(subject.land(Airport.new)).to eq "Plane has landed"
     end
 
-    it "planes cannot land in the airport unless they are in the air" do
-
+    it "raises exception if unable to land" do
+      airport = Airport.new
+      subject.land(airport)
+      expect{subject.land(airport)}.to raise_error "Plane is already in airport"
     end
-
   end
 
   describe '.take_off' do
+    it "removes the plane from its current airport" do
+    end
 
+    it "prevents take_off unless the plane is in the airport" do
+      expect{subject.take_off(Airport.new)}.to raise_error "Plane is not in this airport"
+    end
+  end
 
+  describe '.able_to_take_off?' do
+    it "checks if plane is in the specified airport" do
+      airport = Airport.new
+      expect(subject.able_to_take_off?(airport)).to eq false
+    end
   end
 
 end
