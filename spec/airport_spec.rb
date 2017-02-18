@@ -7,4 +7,9 @@ describe Airport do
     expect { subject.land(plane) }.to output("#{plane} has landed").to_stdout
   end
 
+  it 'confirms plane is no longer in airport' do
+    plane = Plane.new
+    expect { subject.take_off(plane) }.to output("#{plane} has taken off").to_stdout
+  end
+
 end
