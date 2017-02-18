@@ -17,14 +17,10 @@ class Airport
   # def landed?(plane)
   #   @plane = plane
   # end
-#if :safe
-  def take_off(plane)
+
+  def take_off(plane, safe)
     #adds plane to the in_air array
+    raise "It isn't safe to fly." if !safe
     @in_air.push(plane)
   end
-#else
-  def unsafe
-    raise "It isn't safe to fly."
-  end
-#end
 end

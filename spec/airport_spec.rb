@@ -15,15 +15,15 @@ describe Airport do
   end
 
   it "instructs a plane to take off" do
-    expect(subject).to respond_to(:take_off).with(1).argument
+    expect(subject).to respond_to(:take_off).with(2).argument
   end
 
   it "confirms the plane is airborne" do
-    subject.take_off(plane)
+    subject.take_off(plane, true)
     expect(subject.in_air).to include(plane)
   end
 
-  it "prevents take off if the weather is stormy" do
-    expect{subject.unsafe}.to raise_error("It isn't safe to fly.")
+  it "raises unsafe error" do
+    expect{subject.take_off(plane, false)}.to raise_error("It isn't safe to fly.")
   end
 end
