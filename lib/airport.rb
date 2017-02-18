@@ -1,5 +1,9 @@
 class Airport
-  def landing
+  def instruct_to_land
+    true
+  end
+
+  def landed?
     true
   end
 end
