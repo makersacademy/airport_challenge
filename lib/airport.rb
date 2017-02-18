@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
 
 def land(plane)
-  fail 'Cannot land, airport full' if @plane
+  # fail 'Cannot land, airport full' if @plane
   @plane = plane
 end
 
