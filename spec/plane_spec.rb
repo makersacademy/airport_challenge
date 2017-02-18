@@ -8,6 +8,6 @@ describe Plane do
   end
 
   it "confirms that it has landed" do
-
+    expect(subject).to respond_to(:status)
   end
 end
