@@ -1,10 +1,14 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe "airport-challenge" do
 
   describe Plane do
+  end
 
+  describe Weather do
+    it { is_expected.to respond_to(:stormy?) }
   end
 
   describe Airport do
@@ -20,11 +24,17 @@ describe "airport-challenge" do
     it "should take off" do
       airplane = Plane.new
       subject.land(airplane)
-      expect(subject.take_off).to eq("The plane has taken off.")
+      expect(subject.take_off(true)).to eq("The plane has taken off.")
     end
 
     it "should not take off if it is not at the airport" do
-      expect(subject.take_off).to eq nil
+      expect(subject.take_off(Weather.new.stormy?)).to eq nil
+    end
+
+    it "should not take off during stormy weather" do
+      airplane = Plane.new
+      subject.land(airplane)
+      expect(subject.take_off(Weather.new.stormy?)).not_to eq("The plane has taken off.")
     end
 
   end
