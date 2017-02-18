@@ -88,6 +88,7 @@ DEPENDENCIES
   reek
   rspec
   rubocop
+  simplecov
 
 RUBY VERSION
    ruby 2.2.3p173

@@ -3,4 +3,6 @@ rvm:
   - 2.2.3
 
 after_success:
-- CI=true TRAVIS=true coveralls --verbose
+- CI=true
+- TRAVIS=true
+- coveralls --verbose

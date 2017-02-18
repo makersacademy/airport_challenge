@@ -1,10 +1,17 @@
 require_relative 'plane'
 
 class Airport
-  def take_off
-    Plane.new
-  end
+attr_reader :plane
+
   def land(plane)
-    plane
+    @plane = plane
   end
+
+  def take_off
+    fail "Airport is empty" unless @plane
+    @plane
+  end
+
+
+
 end
