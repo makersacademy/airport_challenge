@@ -13,7 +13,13 @@ describe Airport do
 
   it 'allows planes to land' do
     plane = Plane.new
+    expect(subject.land(plane)).to eq plane
+  end
+
+  it 'shows that a plane has landed' do
+    plane = Plane.new
     subject.land(plane)
     expect(plane).to be_landed
   end
+
 end
