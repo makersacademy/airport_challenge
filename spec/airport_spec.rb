@@ -3,8 +3,9 @@ require 'airport'
 describe Airport do
   let(:plane) { Plane.new }
 
-  context 'good weather'do
+  context 'good weather' do
     it 'confirms plane has landed' do
+      allow(subject).to receive(:stormy?).and_return(false)
       expect { subject.land(plane) }.to output("#{plane} has landed").to_stdout
     end
 
@@ -16,8 +17,13 @@ describe Airport do
 
   context 'stormy weather' do
     it 'prevents take off' do
-      allow(subject).to receive(:stormy?).and_return(true) # stub!
+      allow(subject).to receive(:stormy?).and_return(true)
       expect{ subject.take_off(plane) }.to raise_error "Cannot take off due to stormy conditions!"
+    end
+
+    it 'prevents landing' do
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect{ subject.land(plane) }.to raise_error "Cannot land due to stormy conditions!"
     end
   end
 

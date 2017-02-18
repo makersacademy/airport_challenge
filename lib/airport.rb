@@ -5,6 +5,7 @@ class Airport
   include Weather
 
   def land(plane)
+    raise "Cannot land due to stormy conditions!" if stormy?
     print "#{plane} has landed"
   end
 
