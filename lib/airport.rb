@@ -1,5 +1,7 @@
 class Airport
-  def instruct_to_land
+  attr_reader :plane
+  
+  def instruct_to_land(plane)
     true
   end
 
