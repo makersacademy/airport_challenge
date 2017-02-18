@@ -2,13 +2,25 @@ require_relative 'plane'
 
 class Airport
 
-def land(plane)
-  # fail 'Cannot land, airport full' if @plane
-  @plane = plane
-end
+DEFAULT_CAPACITY = 50
 
-def take_off
-  @plane
-end
+  def initialize
+    @planes = []
+    @capacity = DEFAULT_CAPACITY
+  end
+
+  def land(plane)
+    fail 'Cannot land, airport full' if @planes.length >= @capacity
+    @planes << plane
+    plane
+  end
+
+  def take_off
+    @planes.pop
+  end
+
+  def set_capacity(capacity)
+    @capacity = capacity
+  end
 
 end
