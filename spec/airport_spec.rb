@@ -11,4 +11,8 @@ describe Airport do
     subject.instruct_to_land(plane)
     expect(subject.confirm_landed).to eq "#{plane} has landed"
   end
+
+  it "reports the plane hasn't landed when it hasn't" do
+    expect{subject.confirm_landed}.to raise_error "No plane has landed"
+  end
 end
