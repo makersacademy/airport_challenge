@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
 
@@ -37,7 +38,7 @@ describe Airport do
    it 'raises an error when stormy weather' do
     airport = Airport.new
     plane = Plane.new
-    airport.stormy?
+    airport.weather_stormy?
     expect { airport.land(plane) }.to raise_error 'Cannot land plane because of stormy weather or at full capacity'
    end
  end
