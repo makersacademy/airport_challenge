@@ -6,6 +6,7 @@ class Plane
 
   def land(airport)
     fail "Plane is already in airport" unless able_to_land?
+    fail "Airport is full" if airport.full?
     airport.planes << self
     @current_status = "In airport"
     confirm_landing

@@ -5,7 +5,7 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
   it { is_expected.to respond_to(:confirm_landing) }
-  it { is_expected.to respond_to(:confirm_take_off).with(1).argument }
+  it { is_expected.to respond_to(:confirm_take_off) }
   it { is_expected.to respond_to(:current_status) }
   it { is_expected.to respond_to(:able_to_take_off?).with(1).argument }
 
@@ -23,8 +23,6 @@ describe Plane do
       subject.take_off(airport)
       expect(subject.current_status).to eq "In air"
     end
-
-
   end
 
   describe '.able_to_land?'
@@ -43,8 +41,7 @@ describe Plane do
 
   describe '.confirm_take_off' do
     it "confirms that the plane has taken off" do
-      "JFK" = Airport.new
-      expect(subject.confirm_take_off(airport)).to eq "Plane has taken off from JFK}"
+      expect(subject.confirm_take_off).to eq "Plane has taken off"
     end
   end
 
@@ -53,10 +50,16 @@ describe Plane do
       expect(subject.land(Airport.new)).to eq "Plane has landed"
     end
 
-    it "raises exception if unable to land" do
+    it "raises exception if plane is not in air" do
       airport = Airport.new
       subject.land(airport)
       expect{subject.land(airport)}.to raise_error "Plane is already in airport"
+    end
+
+    it "raises exception if airport is full" do
+      airport = Airport.new
+      10.times {(Plane.new).land(airport)}
+      expect{Plane.new.land(airport)}.to raise_error "Airport is full"
     end
   end
 
