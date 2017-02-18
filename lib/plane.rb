@@ -6,5 +6,6 @@ class Plane
 
   def land(airport)
     @airport = airport
+    true
   end
 end
