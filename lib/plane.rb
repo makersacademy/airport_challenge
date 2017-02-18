@@ -9,11 +9,13 @@ class Plane
   def land(airport)
     fail "Invalid airport" unless airport.respond_to?(:is_full?) # duck typing
     self.status = "Landed"
+    airport.confirm_landing(self)
   end
 
   def take_off(airport)
     fail "Invalid airport" unless airport.respond_to?(:is_full?)
     self.status = "In-Flight"
+    airport.confirm_take_off(self)
   end
 
 end

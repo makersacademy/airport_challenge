@@ -32,17 +32,23 @@ describe Airport do
     expect(@airport.permission_to_land(@plane)).to be true
   end
 
+  it "gets a request from a landed plane to land, and it raises a status error" do
+    expect{@airport.permission_to_land(@plane)}.to raise_error("Invalid request")
+  end
+
+  it "gets a request from an in-flight plan to take off, and it raises a status error" do
+    @airport.permission_to_take_off(@plane)
+    expect{@airport.permission_to_take_off(@plane)}.to raise_error("Invalid request")
+  end
+
   it "airport gets a confirmation of landing from plane" do
     @airport.confirm_landing(@plane)
     expect(@airport.planes.last).to eq @plane
   end
 
   it "gets request from a plane to land, and it doesn't allow it to land because it is at capacity" do
-    @airport.capacity.times {@airport.confirm_landing(@plane)}
-    expect{@airport.permission_to_land(@plane)}.to raise_error("Invalid request")
+    (@airport.capacity+1).times {@airport.confirm_landing(@plane)}
+    expect{@airport.permission_to_land(@plane)}.to raise_error("Airport at capacity")
   end
 
-  it "returns true if it has no free spaces left" do
-
-  end
 end
