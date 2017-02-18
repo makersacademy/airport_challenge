@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
@@ -6,6 +7,10 @@ describe Airport do
     expect(subject.planes).to eq []
   end
 
-
+  it "can keep track of a plane that has landed" do
+    plane = Plane.new
+    plane.land(subject)
+    expect(subject.planes).to eq [plane]
+  end
 
 end
