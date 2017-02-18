@@ -10,6 +10,10 @@ describe Airport do
   end
 
   it "has a default capacity" do
-    expect(@airport.capacity).to eq 10
+    expect(@airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it "default capacity can be overriden" do
+    expect(Airport.new(15).capacity).to eq 15
   end
 end
