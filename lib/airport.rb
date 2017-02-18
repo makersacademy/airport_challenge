@@ -11,4 +11,9 @@ class Airport
     true
   end
 
+  def request_take_off(plane)
+    @planes.delete(plane)
+    true
+  end
+
 end

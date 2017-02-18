@@ -11,4 +11,11 @@ class Plane
     end
   end
 
+  def take_off(airport)
+    if airport.request_take_off(self)
+      @airport = nil
+      true
+    end
+  end
+
 end
