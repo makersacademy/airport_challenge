@@ -20,9 +20,6 @@ describe Airport do
     expect(Airport.new("EWR",15).capacity).to eq 15
   end
 
-  # it "returns false if it has free spaces" do # is_full? privately used by landing method
-  #   expect(@airport.is_full?).to be false
-  # end
 
   it "gets a request from a landed plane to take-off, and allows it to take-off", :focus => true do
     @airport.permission_to_land(@plane)

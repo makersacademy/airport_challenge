@@ -13,7 +13,6 @@ class Plane
   end
 
   def take_off
-    #fail "Invalid airport" unless airport.respond_to?(:permission_to_land)
     self.status = "In-Flight"
   end
 
