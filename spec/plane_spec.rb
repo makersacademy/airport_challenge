@@ -27,16 +27,16 @@ describe Plane do
   end
 
   it "takes off when instructed to take off" do
-    expect(@plane).to respond_to(:take_off).with(1).argument
+    expect(@plane).to respond_to(:take_off)
   end
 
   it "changes status after take off" do
-    @plane.take_off(@airport)
+    @plane.take_off
     expect(@plane.status).to eq "In-Flight"
   end
 
-  it "raises an error if invalid object type passed to take_off method, status remains unchanged" do
-    expect {@plane.take_off(123)}.to raise_error("Invalid airport")
-    expect(@plane.status).to eq "Brand New"
-  end
+  # it "raises an error if invalid object type passed to take_off method, status remains unchanged" do
+  #   expect {@plane.take_off(123)}.to raise_error("Invalid airport")
+  #   expect(@plane.status).to eq "Brand New"
+  # end
 end

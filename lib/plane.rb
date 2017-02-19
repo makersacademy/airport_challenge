@@ -1,9 +1,9 @@
 class Plane
-  attr_reader :status, :airport # plane can be at airport or in-flight
+  attr_reader :status, :airport
 
   def initialize(airport = "factory", status = "Brand New")
-    @airport = airport
-    @status = status
+    @airport = airport # this variable is passed in during the land or take_off instruction
+    @status = status # plane can be "Brand New", "Landed", "In-Flight"
   end
 
   def land(airport)
@@ -12,8 +12,8 @@ class Plane
     self.airport = airport
   end
 
-  def take_off(airport)
-    fail "Invalid airport" unless airport.respond_to?(:permission_to_land)
+  def take_off
+    #fail "Invalid airport" unless airport.respond_to?(:permission_to_land)
     self.status = "In-Flight"
   end
 

@@ -12,7 +12,7 @@ class Airport
     fail "Airport empty" if planes.count == 0
     fail "Weather stormy" if weather.is_stormy?
     fail "Invalid request" if (plane.status == "In-Flight" || plane.airport != self)
-    plane.take_off(self)
+    plane.take_off
     self.confirm_take_off(plane)
     true
   end
