@@ -1,13 +1,10 @@
 require 'weather'
 
 describe Weather do
-  # it 'has a weather_type method' do
-  #   expect(subject).to respond_to(:weather_type)
-  # end
-  let(:plane) {double(:plane)}
+  #it {is_expected.to respond_to(:weather)}
 
-  it "has a safe? method" do
-    expect(subject).to respond_to(:safe)
+  it "puts out a weather forecast" do
+    expect(subject).to respond_to(:todays_forecast)
   end
 end
 

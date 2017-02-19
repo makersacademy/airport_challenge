@@ -1,17 +1,10 @@
-require 'airport'
-
 class Weather
-attr_reader :safe
+#attr_reader :weather
 
-  def initialize
-    @weathers = ["sunny", "stormy"]
-  end
-
-  def safe?
-    if @weathers.sample == "sunny"
-     @safe = true
-    else
-     @safe = false
-    end
+  def todays_forecast
+    weather = ['stormy', 'sunny', 'showery', 'cloudy'].sample
   end
 end
+
+# My method unsafe and the attr_accessor and writer
+# That I tried earlier aren't connected
