@@ -17,20 +17,28 @@ describe Airport do
     end
 
   end
-  it "can keep track of a plane that has landed" do
-    plane = Plane.new
-    airport = Airport.new
-    allow(subject).to receive(:unsuitable_weather?).and_return(false)
-    plane.land(airport)
-    expect(airport.planes).to eq [plane]
-  end
+
+  describe "keeps track of planes" do
+    before :each do
+      @plane = Plane.new
+      #  allow(@plane).to receive(:land).with(Airport.new)
+      allow(@plane).to receive(:unsuitable_weather?).and_return(false)
+    end
+
+    it "can keep track of a plane that has landed" do
+      airport = Airport.new
+      @plane.land(airport)
+      expect(airport.planes).to eq [@plane]
+    end
 
     describe '.full?' do
       it "checks if the airport is full" do
-        10.times {(Plane.new).land(subject)}
+        @ten_planes = []
+        10.times {@ten_planes << Plane.new}
+        allow(subject).to receive(:planes).and_return(@ten_planes)
         expect(subject).to be_full
       end
     end
-
+  end
 
 end

@@ -1,8 +1,7 @@
 module Weather
 
   def stormy?
-    # (rand * 10) > 7
-    false
+    (rand * 10) > 7
   end
 
 end

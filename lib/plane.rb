@@ -44,6 +44,4 @@ class Plane
     stormy?
   end
 
-
-
 end

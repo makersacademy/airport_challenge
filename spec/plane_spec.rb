@@ -10,9 +10,10 @@ describe Plane do
   it { is_expected.to respond_to(:current_status) }
   it { is_expected.to respond_to(:able_to_take_off?).with(1).argument }
 
-  describe "airport double" do
+  describe "airport tests" do
     before :each do
       @airport = double("airport", :full? => false, :planes => [])
+      allow(subject).to receive(:unsuitable_weather?).and_return(false)
     end
 
   describe '#current_status' do
@@ -124,6 +125,5 @@ end
       expect(subject.confirm_take_off).to eq "Plane has taken off"
     end
   end
-
 
 end
