@@ -12,6 +12,11 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Usage guide
+---------
+
+* Run feature_test_capacity.rb to see the system is working.
+
 
 Instructions
 ---------
