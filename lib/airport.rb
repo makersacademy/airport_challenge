@@ -1,8 +1,10 @@
 require_relative 'plane'
-require 'weather'
+require_relative 'weather'
 
 class Airport
-  attr_reader :plane, :in_air, :in_airport, :take_off, :stormy
+  attr_reader :plane, :in_air, :in_airport, :take_off, :stormy, :full
+
+  DEFAULT_CAPACITY = 10
 
   def initialize
     @in_airport = []
@@ -14,33 +16,18 @@ class Airport
     @weather == "stormy" ? true : false
   end
 
+  def full?
+     @in_airport.size == DEFAULT_CAPACITY
+  end
+
   def land(plane)
-    if stormy?
-      raise "It isn't safe to land."
-    else
-      @in_airport.push(plane)
-    end
+    raise "It isn't safe to land." if stormy?
+    raise "The airport is full, you must wait." if full?
+    @in_airport.push(plane)
   end
 
   def take_off(plane)
-    if stormy?
-      raise "It isn't safe to fly."
-    else
-      @in_air.push(plane)
-    end
+    raise "It isn't safe to fly." if stormy?
+    @in_air.push(plane)
   end
 end
-
-# def landed?(plane)
-#   @plane = plane
-# end
-
-# def take_off(plane)
-#   # @unsafe = unsafe
-#   if @unsafe
-#   raise "It isn't safe to fly." #if :unsafe
-# else
-#   raise "Preparing for take off"
-#   @in_air.push(plane)
-# end
-# end
