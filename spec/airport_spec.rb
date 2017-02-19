@@ -1,17 +1,34 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
 
-before(:each) do
-  @plane = Plane.new
-end
+  context 'good weather' do
 
-  it 'Lands a plane' do
-    expect(subject.lands_plane(@plane)).to eq true
+  let(:weather) { double('weather', :current_weather => :fine)}
+  before(:each) do
+    @plane = Plane.new
   end
 
-  it 'Lets plane to take off' do
-    expect(subject.take_off(@plane)).to eq false #take_off is actually self.land hence equals false here
+    it 'Lands a plane' do
+      expect(subject.lands_plane(@plane, @weather)).to eq true
+    end
+
+    it 'Lets plane to take off' do
+      expect(subject.take_off(@plane)).to eq false #take_off is actually self.land hence equals false here
+    end
+  end
+
+  context 'bad weather' do
+
+    let(:weather) { double('weather', :current_weather => :stormy)}
+    before(:each) do
+      @plane = Plane.new
+    end
+
+    it 'Raises error if a plane tries to land in storm' do
+      expect { subject.lands_plane(@plane, weather.current_weather) }.to raise_error("Cannot land at airport due to adverse weather conditions")
+    end
   end
 
 end

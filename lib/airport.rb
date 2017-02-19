@@ -5,7 +5,8 @@ class Airport
 
 attr_reader :plane
 
-  def lands_plane(plane)
+  def lands_plane(plane, weather)
+      raise "Cannot land at airport due to adverse weather conditions" if weather == :stormy
       plane.land
     end
 

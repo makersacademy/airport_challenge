@@ -6,4 +6,8 @@ WEATHER_STATUS = [:stormy, :fine, :fine, :fine]
     @status = WEATHER_STATUS.sample
   end
 
+  def stormy?
+    @status == :stormy
+  end
+  
 end
