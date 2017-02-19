@@ -4,7 +4,7 @@ Airport Challenge
 
 Synopsis
 ========
-This is our first weekend challenge set at Makers. Our task was to produce software from a client request to control the flow of planes at an airport. 
+This is our first weekend challenge set at Makers. Our task was to produce software from a client request to control the flow of planes at an airport. All code was written with test first and all are passing
 
 Example of how to run code
 ==========================
