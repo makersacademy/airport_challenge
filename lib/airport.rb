@@ -9,15 +9,10 @@ class Airport
   end
 
   def request_to_land(plane)
-    conditions = @weather.sunny?
-    puts "The airport can't accept the plane because it's full!" if full?
-    puts "The weather conditions are not suitable for landing!" if conditions == false
-    if conditions && !full?
-      @planes << plane
-      true
-    else
-      false
-    end
+    raise "The weather conditions are not suitable for landing!" if @weather.sunny? == false
+    raise "The airport can't accept the plane because it's full!" if full?
+    @planes << plane
+    true
   end
 
   def full?

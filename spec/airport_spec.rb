@@ -61,14 +61,14 @@ describe Airport, :focus => true do
   it 'should prevent landing when it is stormy' do
     plane = Plane.new
     airport = Airport.new(weather_stormy)
-    expect(airport.request_to_land(plane)).to eq false
+    expect { airport.request_to_land(plane) }.to raise_error "The weather conditions are not suitable for landing!"
   end
 
   it 'should prevent landing when airport is full' do
     airport = Airport.new(weather_sunny)
     10.times { Plane.new.land(airport) }
     plane = Plane.new
-    expect(airport.request_to_land(plane)).to eq false
+    expect { airport.request_to_land(plane) }.to raise_error "The airport can't accept the plane because it's full!"
   end
 
 end
