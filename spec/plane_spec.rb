@@ -56,4 +56,11 @@ describe Plane do
     expect(plane.airport).to eq airport
   end
 
+  it "should raise an error if the airport it's taking off is wrong" do
+    gatwick = double(:airport)
+    heathrow = double(:airport)
+    plane = Plane.new(gatwick)
+    allow(heathrow).to receive(:request_take_off).and_return(true)
+    expect { plane.take_off(heathrow) }.to raise_error "The plane is in another airport!"
+  end
 end
