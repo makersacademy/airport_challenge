@@ -6,6 +6,6 @@ class Weather
 
   private
 
-  FORECAST = [ true, true, true, false ].sample
+  FORECAST = [ false, false, false, true ].sample
 
 end
