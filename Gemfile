@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.4.0'
+ruby '2.2.3'
 
 gem 'rspec'
 gem 'capybara'
