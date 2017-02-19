@@ -33,6 +33,7 @@ let(:plane) { double :plane }
  describe '#take_off' do
    it 'lets a plane take off' do
    plane = Plane.new
+   plane.landed
    expect(subject.take_off(plane)).to eq false
   end
  end
@@ -71,5 +72,13 @@ describe '#land' do
       expect{airport.land(plane)}.to raise_error message
     end
   end
+
+  describe '#take_off' do
+   it 'should not allow an in-the-air plane to take off again' do
+        allow(plane).to receive(:on_the_ground).and_return false
+        message =  "This plane is already in the air"
+        expect{airport.take_off(plane)}.to raise_error message
+      end
+    end
 
 end

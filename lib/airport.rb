@@ -22,6 +22,7 @@ def full?
   planes.count >= capacity
 end
 
+
 def land(plane)
   fail 'This plane is already on the ground at an airport' if plane.on_the_ground == true
   fail 'Cannot land plane because of stormy weather' if self.weather_stormy?
@@ -31,8 +32,8 @@ def land(plane)
 end
 
 def take_off(plane)
+  fail 'This plane is already in the air' if plane.on_the_ground == false
   fail 'Cannot let plane take off because of stormy weather' if self.weather_stormy?
-  
 
   plane.taken_off
 end
