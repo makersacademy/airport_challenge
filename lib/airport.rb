@@ -2,8 +2,8 @@ require './lib/plane.rb'
 require './lib/weather.rb'
 class Airport
 	DEFAULT_CAPACITY = 20
-	attr_reader :planes
-	attr_accessor :capacity 
+	attr_reader :planes, :capacity
+	  
 	def initialize(capacity = DEFAULT_CAPACITY)
 		@capacity = capacity
 		@planes = [] 
@@ -38,7 +38,7 @@ class Airport
 	@planes.count == @capacity
 	end
 	def stormy?
-		@weather.weather
+		@weather.weather == :stormy ? true : false
 	end
 	private
 	attr_reader :weather
