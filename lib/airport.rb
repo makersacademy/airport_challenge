@@ -1,8 +1,9 @@
 class Airport
-  attr_reader :capacity, :planes
+  attr_reader :capacity, :planes, :name
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+  def initialize(name, capacity = DEFAULT_CAPACITY, weather = Weather.new)
+    @name = name
     @capacity = capacity
     @planes = []
     @weather = weather
@@ -13,7 +14,7 @@ class Airport
     fail "Weather stormy" if weather.is_stormy?
     fail "Invalid request" if (plane.status == "In-Flight" || plane.airport != self)
     plane.take_off
-    self.confirm_take_off(plane)
+    confirm_take_off(plane)
     true
   end
 
@@ -22,7 +23,7 @@ class Airport
     fail "Weather stormy" if weather.is_stormy?
     fail "Invalid request" if plane.status == "Landed"
     plane.land(self)
-    self.confirm_landing(plane)
+    confirm_landing(plane)
     true
   end
 

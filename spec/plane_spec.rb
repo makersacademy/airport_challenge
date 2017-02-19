@@ -4,7 +4,7 @@ require 'plane'
 
 describe Plane do
   before(:each) do
-    @airport = Airport.new
+    @airport = Airport.new("LHR")
     @plane = Plane.new
   end
 
