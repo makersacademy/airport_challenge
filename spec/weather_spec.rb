@@ -2,10 +2,10 @@ require 'weather'
 
 describe Weather do
   before(:each) do
-    @weather = double(:weather)
+    @weather = Weather.new
   end
+
   it "responds to is_stormy method" do
-    allow(@weather).to receive(:is_stormy?)
     expect(@weather).to respond_to(:is_stormy?)
   end
 
