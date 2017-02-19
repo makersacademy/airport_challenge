@@ -9,14 +9,14 @@ class Plane
   def land(airport)
     checks_before_landing(airport)
     airport.planes << self
-    @current_status = "In airport"
+    @current_status = :in_airport
     confirm_landing
   end
 
   def take_off(airport)
     checks_before_takeoff(airport)
     airport.planes.delete(self)
-    @current_status = "In air"
+    @current_status = :in_air
     confirm_take_off
   end
 
@@ -34,7 +34,7 @@ private
   end
 
   def able_to_land?
-    self.current_status != "In airport"
+    self.current_status != :in_airport
   end
 
   def able_to_take_off?(airport)
