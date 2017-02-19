@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   let(:plane) { Plane.new }
+  let(:airport) { Airport.new }
 
   context 'good weather' do
     it 'confirms plane has landed' do
@@ -26,5 +27,20 @@ describe Airport do
       expect{ subject.land(plane) }.to raise_error "Cannot land due to stormy conditions!"
     end
   end
+
+  context 'airport is full' do
+    it 'prevents landing' do
+      allow(subject).to receive(:stormy).and_return(false)
+      subject.land(Plane.new)
+      expect{ subject.land(plane) }.to raise_error "Unable to land. Airport has reached its maximum capacity"
+    end
+  end
+
+  # describe 'as a system designer' do
+  #   it 'allows me to set a new dafault capacity' do
+  #     airport = Airport.new(20)
+  #     expect(airport.capacity).to eq 20
+  #   end
+  # end
 
 end
