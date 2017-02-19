@@ -26,11 +26,12 @@ describe Plane do
     end
   end
 
-  describe '.able_to_land?'
-  it "planes cannot land in an airport if they are already in an airport" do
-    airport = Airport.new
-    subject.land(airport)
-    expect(subject).not_to be_able_to_land
+  describe '.able_to_land?' do
+    it "planes cannot land in an airport if they are already in an airport" do
+      airport = Airport.new
+      subject.land(airport)
+      expect(subject).not_to be_able_to_land
+    end
   end
 
 
@@ -62,6 +63,16 @@ describe Plane do
       10.times {(Plane.new).land(airport)}
       expect{Plane.new.land(airport)}.to raise_error "Airport is full"
     end
+
+    it "prevents landing if weather is stormy" do
+      allow(subject).to receive(:unsuitable_weather?).and_return(true)
+      expect{subject.land(Airport.new)}.to raise_error "Plane cannot land due to stormy weather"
+    end
+
+    it "allows landing if weather is not stormy" do
+      allow(subject).to receive(:unsuitable_weather?).and_return(false)
+      expect{subject.land(Airport.new)}.not_to raise_error
+    end
   end
 
   describe '.take_off' do
@@ -76,11 +87,19 @@ describe Plane do
       expect{subject.take_off(Airport.new)}.to raise_error "Plane is not in this airport"
     end
 
-    # it "prevents take off if the weather is stormy" do
-    #   airport = Airport.new
-    #   subject.land(airport)
-    #   expect{subject.take_off(airport)}.to raise_error "Plane cannot take off due to stormy weather"
-    # end
+    it "prevents take off if the weather is stormy" do
+      airport = Airport.new
+      subject.land(airport)
+      allow(subject).to receive(:unsuitable_weather?).and_return(true)
+      expect{subject.take_off(airport)}.to raise_error "Plane cannot take off due to stormy weather"
+    end
+
+    it "allows take off if the weather is not stormy" do
+      airport = Airport.new
+      subject.land(airport)
+      allow(subject).to receive(:unsuitable_weather?).and_return(false)
+      expect{subject.take_off(airport)}.not_to raise_error
+    end
   end
 
   describe '.able_to_take_off?' do
@@ -90,20 +109,20 @@ describe Plane do
     end
   end
 
-  describe "check_weather"
+  describe "unsuitable_weather?" do
 
-   it "checks if weather is clear" do
-     plane = Plane.new
-     allow(plane).to receive(:unsuitable_weather?).and_return(false)
-     expect(plane.unsuitable_weather?).to eq false
+    it "checks if weather is clear" do
+      plane = Plane.new
+      allow(plane).to receive(:unsuitable_weather?).and_return(false)
+      expect(plane.unsuitable_weather?).to eq false
+    end
+
+    it "checks if weather is stormy" do
+      plane = Plane.new
+      allow(plane).to receive(:unsuitable_weather?).and_return(true)
+      expect(plane.unsuitable_weather?).to eq true
+    end
   end
-
-  it "checks if weather is stormy" do
-    plane = Plane.new
-    allow(plane).to receive(:unsuitable_weather?).and_return(true)
-    expect(plane.unsuitable_weather?).to eq true
- end
-
 
 
 end

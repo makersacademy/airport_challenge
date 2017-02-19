@@ -8,6 +8,7 @@ class Plane
 
   def land(airport)
     fail "Plane is already in airport" unless able_to_land?
+    fail "Plane cannot land due to stormy weather" if unsuitable_weather?
     fail "Airport is full" if airport.full?
     airport.planes << self
     @current_status = "In airport"

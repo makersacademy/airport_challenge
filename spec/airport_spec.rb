@@ -20,6 +20,7 @@ describe Airport do
   it "can keep track of a plane that has landed" do
     plane = Plane.new
     airport = Airport.new
+    allow(subject).to receive(:unsuitable_weather?).and_return(false)
     plane.land(airport)
     expect(airport.planes).to eq [plane]
   end
