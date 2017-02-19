@@ -24,22 +24,23 @@ describe Airport do
   # end
 
   it "gets a request from a landed plane to take-off, and allows it to take-off" do
-    @airport.confirm_landing(@plane)
+    @airport.permission_to_land(@plane)
     expect(@airport.permission_to_take_off(@plane)).to be true
   end
 
   it "gets a request from a in-flight plane to land, and allows it to land" do
-    @airport.confirm_landing(@plane)
+    @airport.permission_to_land(@plane)
     @airport.permission_to_take_off(@plane)
     expect(@airport.permission_to_land(@plane)).to be true
   end
 
   it "gets a request from a landed plane to land, and it raises a status error" do
+    @airport.permission_to_land(@plane)
     expect{@airport.permission_to_land(@plane)}.to raise_error("Invalid request")
   end
 
   it "gets a request from an in-flight plan to take off, and it raises a status error" do
-    @airport.confirm_landing(@plane)
+    @airport.permission_to_land(@plane)
     @airport.permission_to_take_off(@plane)
     expect{@airport.permission_to_take_off(@plane)}.to raise_error("Invalid request")
   end
@@ -55,8 +56,8 @@ describe Airport do
   end
 
 
-  it "gets a confirmation of landing from plane" do
-    @airport.confirm_landing(@plane)
+  it "confirms a plane has landed and counts it in" do
+    @airport.permission_to_land(@plane)
     expect(@airport.planes.last).to eq @plane
   end
 
@@ -74,8 +75,8 @@ describe Airport do
   it "doesn't allow any take offs from an empty airport" do
     ba_plane = Plane.new(@airport)
     sa_plane = Plane.new(@airport)
-    @airport.confirm_landing(ba_plane)
-    @airport.confirm_landing(sa_plane)
+    @airport.permission_to_land(ba_plane)
+    @airport.permission_to_land(sa_plane)
     @airport.permission_to_take_off(ba_plane)
     @airport.permission_to_take_off(sa_plane)
     expect{@airport.permission_to_take_off(@plane)}.to raise_error("Airport empty")
@@ -84,10 +85,10 @@ describe Airport do
   it "allows plan from another aiport to land and take off" do
     london_airport = Airport.new(2, double(:weather, :is_stormy? => false))
     london_plane = Plane.new(london_airport)
-    london_airport.confirm_landing(london_plane)
+    london_airport.permission_to_land(london_plane)
     new_york_airport = Airport.new(5, double(:weather, :is_stormy? => false))
     new_york_plane = Plane.new(new_york_airport)
-    new_york_airport.confirm_landing(new_york_plane)
+    new_york_airport.permission_to_land(new_york_plane)
     new_york_airport.permission_to_take_off(new_york_plane)
     london_airport.permission_to_land(new_york_plane)
     expect(new_york_plane.airport).to eq london_airport

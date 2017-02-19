@@ -23,7 +23,7 @@ describe Plane do
 
   it "raises an error if invalid object type passed to land method, status remains unchanged" do
     expect {@plane.land(123)}.to raise_error("Invalid airport")
-    expect(@plane.status).to eq "Landed"
+    expect(@plane.status).to eq "Brand New"
   end
 
   it "takes off when instructed to take off" do
@@ -37,6 +37,6 @@ describe Plane do
 
   it "raises an error if invalid object type passed to take_off method, status remains unchanged" do
     expect {@plane.take_off(123)}.to raise_error("Invalid airport")
-    expect(@plane.status).to eq "Landed"
+    expect(@plane.status).to eq "Brand New"
   end
 end

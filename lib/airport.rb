@@ -13,6 +13,7 @@ class Airport
     fail "Invalid request" if (plane.status == "In-Flight" || plane.airport != self)
     fail "Airport empty" if planes.count == 0
     plane.take_off(self)
+    self.confirm_take_off(plane)
     true
   end
 
@@ -21,6 +22,7 @@ class Airport
     fail "Weather stormy" if weather.is_stormy?
     fail "Invalid request" if plane.status == "Landed"
     plane.land(self)
+    self.confirm_landing(plane)
     true
   end
 
@@ -33,6 +35,7 @@ class Airport
   end
 
   private
+
   def is_full?
     planes.count >= capacity
     # true or false depending on number of planes & capacity
