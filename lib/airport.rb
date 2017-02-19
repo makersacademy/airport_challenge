@@ -1,30 +1,45 @@
 class Airport
-  attr_accessor :airplanes_landed
 
   def initialize(forecast)
     @forecast = forecast
     @airplanes_landed = []
   end
 
-  DEFAULT_CAPACITY = 10
 
   def land(airplane)
-    return if @forecast == true
-    return "Airport full." if full?
-    @airplanes_landed << airplane
-    "The plane has landed."
+    storm_check
+    @airplanes_landed << airplane unless full
+    plane_arrived
   end
 
   def take_off
-    return if @forecast == true || @airplanes_landed.empty?
-    @airplanes_landed.pop
-    "The plane has taken off."
+    storm_check
+    @airplanes_landed.pop unless empty
+    plane_left
   end
 
   private
 
-  def full?
-    true if @airplanes_landed.size >= DEFAULT_CAPACITY
+  DEFAULT_CAPACITY = 10
+
+  def plane_left
+    "The plane has taken off."
+  end
+
+  def plane_arrived
+    "The plane has landed."
+  end
+
+  def storm_check
+    fail "Storm Alert!" if @forecast == true
+  end
+
+  def full
+    fail "Airport full!" if @airplanes_landed.size >= DEFAULT_CAPACITY
+  end
+
+  def empty
+    fail "No planes available." if @airplanes_landed.empty?
   end
 
 end
