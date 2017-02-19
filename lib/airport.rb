@@ -1,9 +1,12 @@
+require 'weather'
+
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :weather
 
-  def initialize
+  def initialize(weather)
     @planes = []
+    @weather = weather
   end
 
   def request_to_land(plane)
@@ -12,8 +15,12 @@ class Airport
   end
 
   def request_take_off(plane)
-    @planes.delete(plane)
-    true
+    if @weather.sunny?
+      @planes.delete(plane)
+      true
+    else
+      false
+    end
   end
 
 end
