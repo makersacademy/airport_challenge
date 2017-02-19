@@ -31,15 +31,16 @@ describe Airport do
 
   describe "#permit_takeoff" do
     let(:plane_air) { double :plane_air, landed?: false }
-    let(:plane_landed) { double :plane_landed, landed?: true }
+    let(:plane_landed) { double :plane_landed, landed?: true, airport: airport }
+    let(:airport_two) { described_class.new }
 
     it "can tell a plane to takeoff" do
       expect(airport).to respond_to(:permit_takeoff)
     end
-    it "get the plane reference back if the weather is sunny" do
+    it "takeoff if the weather is sunny" do
       allow(airport).to receive(:sunny?) {true}
-      allow(plane_landed).to receive(:landed_here?) {true}
-      allow(plane_landed).to receive(:takeoff).and_return(nil)
+      allow(plane_landed).to receive(:takeoff)
+      airport.planes.push(plane_landed)
       expect(airport.permit_takeoff(plane_landed)).to eq plane_landed
     end
     it "raise an error if the weather is stormy" do
@@ -50,19 +51,16 @@ describe Airport do
       expect{airport.permit_takeoff(plane_air)}.to raise_error("This plane is already in the air.")
     end
     it "raise an error if the plane passed is landed but not at this airport" do
-      allow(airport).to receive(:sunny?).and_return(true)
-      allow(plane_landed).to receive(:landed_here?).and_return(false)
-      allow(plane_landed).to receive(:takeoff).and_return(nil)
-      expect{airport.permit_takeoff(plane_landed)}.to raise_error("This plane is at a different airport.")
+      allow(airport_two).to receive(:sunny?) {true}
+      allow(plane_landed).to receive(:takeoff)
+      expect{airport_two.permit_takeoff(plane_landed)}.to raise_error("This plane is at a different airport.")
     end
     it "removes the plane from an airport if it has taken off" do
       allow(airport).to receive(:sunny?) {true}
       allow(plane_air).to receive(:land).and_return(airport)
       airport.land_plane(plane_air)
-      airport.land_plane(plane_air)
       allow(plane_air).to receive(:landed?).and_return(true)
-      allow(plane_air).to receive(:landed_here?).and_return(true)
-      allow(plane_air).to receive(:takeoff).and_return(nil)
+      allow(plane_air).to receive(:takeoff)
       airport.permit_takeoff(plane_air)
       expect(airport.planes.length).to eq 0
     end

@@ -1,3 +1,4 @@
+require_relative 'weather_generator'
 class Airport
 
   DEFAULT_CAPACITY = 5
@@ -22,18 +23,15 @@ class Airport
   def permit_takeoff(plane)
     raise "This plane is already in the air." unless plane.landed?
     raise "The weather at the airport is stormy, you cannot takeoff." unless sunny?
-    raise "This plane is at a different airport." unless plane.landed_here?
+    raise "This plane is at a different airport." unless @planes.include?(plane)
     plane.takeoff
     @planes.delete(plane)
     plane
   end
 
-  def landed_here?(plane)
-    plane.airport == self
-  end
-
   def sunny?
-    return true unless WeatherGenerator.new.generate_random_weather(100) == 0
+    @weather_generator = WeatherGenerator.new
+    return true unless generator = @weather_generator.generate_random_weather(@storm_probability) == 0
   end
 
   def full?

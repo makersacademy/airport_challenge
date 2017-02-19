@@ -1,6 +1,6 @@
 class WeatherGenerator
 
-  def generate(storm_probability)
+  def generate_random_weather(storm_probability)
     raise "Invalid storm probability." if storm_probability > 100 || storm_probability < 0
     pick_array = []
     storm_probability.times{ pick_array.push(0) }
