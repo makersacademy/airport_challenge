@@ -40,12 +40,10 @@ class Airport
     "#{plane} has landed at its destination"
   end
 
-
   private
 
   def airport_full?
     @planes.length >= @capacity
   end
-
-
+  
 end
