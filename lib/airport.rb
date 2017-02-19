@@ -24,8 +24,12 @@ class Airport
 
   def plane_take_off(plane)
     if @planes.include?(plane)
-      @planes.delete(plane)
-      true
+      if stormy == true
+        raise "Weather is stormy, plane cannot take off."
+      else
+        @planes.delete(plane)
+        true
+      end
     else
       raise 'That plane is not in the airport.'
     end
@@ -37,6 +41,10 @@ class Airport
 
   def set_weather_calm
     @stormy = false
+  end
+
+  def change_capacity(new_cap)
+    @capacity = new_cap
   end
 
   private
