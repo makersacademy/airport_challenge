@@ -3,17 +3,19 @@ require 'spec_helper'
 describe Airport do
 
   # assume good weather for each test
-  before(:each) { allow(subject.weather).to receive(:is_stormy) { false } }
+  before(:each) {
+    allow(subject.weather).to receive(:is_stormy) { false }
+  }
 
-  # To land we expect a Plane as an argument
-  it {is_expected.to respond_to(:land).with(1).argument}
+  # new airport for each test
+  subject(:airport) { described_class.new }
 
-  it { is_expected.to respond_to(:takeoff) }
+  it "has a name" do
+    expect(airport.name).to eql "Mystery City Airport" # hardcoded the default value for the test
+  end
 
-  it { is_expected.to respond_to(:planes_in_hangar) }
-
-  it "should be able to find out the weather" do
-    is_expected.to respond_to(:weather)
+  it "can determine whether it's stormy" do
+    expect(airport.weather.is_stormy).to satisfy {|true_or_false| true_or_false.to_s == "true" || true_or_false.to_s == "false"} # Must be a better way to check for a Boolean response in rspec...
   end
 
   it "has a default capacity which is a number" do
@@ -23,7 +25,7 @@ describe Airport do
   it { is_expected.to respond_to(:capacity) }
 
   it "gets given its default capacity correctly" do
-    expect(subject.capacity).to eql Airport::DEFAULT_CAPACITY
+    expect(airport.capacity).to eql Airport::DEFAULT_CAPACITY
   end
 
   it "can have its default capacity be overridden" do
@@ -34,22 +36,29 @@ describe Airport do
 
     it "confirms whatever has landed" do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      expect(airport.land(plane)).to eq plane
     end
 
     it "throws an error if something other than a plane tries to land" do
-      expect{subject.land("boat")}.to raise_error "Landing rejected: That doesn't seem to be a plane."
+      expect{airport.land("boat")}.to raise_error "Sorry, that doesn't seem to be a plane."
     end
 
     it "will not accept a landing in stormy weather" do
-      allow(subject.weather).to receive(:is_stormy) { true }
-      expect{subject.land(Plane.new)}.to raise_error "Landing rejected: No planes can land in this stormy weather."
+      allow(airport.weather).to receive(:is_stormy) { true }
+      plane = Plane.new
+      expect{airport.land(plane)}.to raise_error "Landing sequence for #{plane.flight_number} rejected: No planes can land in this stormy weather."
     end
 
     it "will not accept landings when hangar is full" do
+      Airport::DEFAULT_CAPACITY.times {airport.land(Plane.new)}
       plane = Plane.new
-      Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
-      expect{subject.land(plane)}.to raise_error "Landing rejected: The hangar is full."
+      expect{airport.land(plane)}.to raise_error "Landing sequence for #{plane.flight_number} rejected: The hangar is full."
+    end
+
+    it "tells a plane it's landed" do
+      plane = Plane.new
+      airport.land(plane)
+      expect(plane.in_hangar).to be true
     end
 
   end
@@ -59,17 +68,42 @@ describe Airport do
     it "confirms whatever has taken off" do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.takeoff).to eq plane
+      expect(airport.takeoff).to eq plane
     end
 
     it "will not takeoff if it's stormy weather"do
       subject.land(Plane.new)
-      allow(subject.weather).to receive(:is_stormy) { true } # aiport's weather is bad, so we expect to cancel takeoff
-      expect{subject.takeoff}.to raise_error "Takeoff rejected: No planes can fly in this stormy weather."
+      allow(airport.weather).to receive(:is_stormy) { true } # aiport's weather is bad, so we expect to cancel takeoff
+      expect{airport.takeoff}.to raise_error "Takeoff rejected: No planes can fly in this stormy weather."
     end
 
     it "reminds you that you can't ask a plane to takeoff if there's no planes in the hangar" do
-      expect{subject.takeoff}.to raise_error "Takeoff rejected: No planes in the hangar."
+      expect{airport.takeoff}.to raise_error "Takeoff rejected: No planes in the hangar."
+    end
+
+    it "tells a plane it's taken off" do
+      plane = Plane.new
+      airport.land(plane)
+      expect(plane.in_hangar).to be true
+      airport.takeoff
+      expect(plane.in_hangar).to be false
+    end
+
+  end
+
+  describe "#check_hangar" do
+
+    it "tells you when the hangar is empty" do
+      expect(airport.check_hangar).to eql "The hangar is empty."
+    end
+
+    it "gives an array of strings (flight numbers) when it's not" do
+      3.times {airport.land(Plane.new)}
+      expect(airport.check_hangar).to be_an_instance_of Array
+      expect(airport.check_hangar.length).to eql 3
+      airport.check_hangar.each { |plane|
+        expect(plane).to be_an_instance_of String
+      }
     end
 
   end
