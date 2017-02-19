@@ -5,14 +5,14 @@ class Airport
   def initialize(name, capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @name = name
     @capacity = capacity
-    @planes = []
     @weather = weather
+    @planes = []
   end
 
   def permission_to_take_off(plane)
     fail "Airport empty" if planes.count == 0
     fail "Weather stormy" if weather.is_stormy?
-    fail "Invalid request" if (plane.status == "In-Flight" || plane.airport != self.name)
+    fail "Invalid request" if (plane.status == "In-Flight" || plane.location != self.name)
     plane.take_off
     confirm_take_off(plane)
     true
@@ -28,11 +28,11 @@ class Airport
   end
 
   def confirm_landing(plane)
-    planes << plane if (plane.status == "Landed" && plane.airport == self.name)
+    planes << plane if (plane.status == "Landed" && plane.location == self.name)
   end
 
   def confirm_take_off(plane)
-    planes.delete(plane) if (plane.status == "In-Flight" && plane.airport == self.name)
+    planes.delete(plane) if (plane.status == "In-Flight" && plane.location == self.name)
   end
 
   private

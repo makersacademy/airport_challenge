@@ -12,10 +12,6 @@ describe Airport do
   let(:new_york_airport ) {Airport.new("EWR", 5, double(:weather, :is_stormy? => false))}
   let(:new_york_plane)  {Plane.new}
 
-  # it "responds to is_full?" do # is_full? privately used by landing method
-  #   expect(@airport).to respond_to(:is_full?)
-  # end
-
   it "has a default capacity" do
     expect(@airport.capacity).to eq Airport::DEFAULT_CAPACITY
   end
@@ -45,12 +41,10 @@ describe Airport do
   end
 
   it "gets a request from an in-flight plan to take off, and it raises a status error" do
-    ba_plane = Plane.new
-    sa_plane = Plane.new
-    @airport.permission_to_land(ba_plane)
-    @airport.permission_to_land(sa_plane)
-    @airport.permission_to_take_off(ba_plane)
-    expect{@airport.permission_to_take_off(ba_plane)}.to raise_error("Invalid request")
+    @airport.permission_to_land(london_plane)
+    @airport.permission_to_land(new_york_plane)
+    @airport.permission_to_take_off(london_plane)
+    expect{@airport.permission_to_take_off(london_plane)}.to raise_error("Invalid request")
   end
 
   it "gets a request from a landed flight in another airport to take-off, and raises an error" do
@@ -77,12 +71,10 @@ describe Airport do
   end
 
   it "doesn't allow any take offs from an empty airport" do
-    ba_plane = Plane.new
-    sa_plane = Plane.new
-    @airport.permission_to_land(ba_plane)
-    @airport.permission_to_land(sa_plane)
-    @airport.permission_to_take_off(ba_plane)
-    @airport.permission_to_take_off(sa_plane)
+    @airport.permission_to_land(london_plane)
+    @airport.permission_to_land(new_york_plane)
+    @airport.permission_to_take_off(london_plane)
+    @airport.permission_to_take_off(new_york_plane)
     expect{@airport.permission_to_take_off(@plane)}.to raise_error("Airport empty")
   end
 
@@ -91,7 +83,7 @@ describe Airport do
     new_york_airport.permission_to_land(new_york_plane)
     new_york_airport.permission_to_take_off(new_york_plane)
     london_airport.permission_to_land(new_york_plane)
-    expect(new_york_plane.airport).to eq london_airport.name
+    expect(new_york_plane.location).to eq london_airport.name
   end
 
 end

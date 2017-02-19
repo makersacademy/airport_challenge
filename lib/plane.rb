@@ -1,15 +1,15 @@
 class Plane
-  attr_reader :status, :airport
+  attr_reader :status, :location
 
-  def initialize(airport = "factory", status = "Brand New")
-    @airport = airport # this variable is passed in during the land or take_off instruction
+  def initialize(location = "factory", status = "Brand New")
+    @location = location # this variable is passed in during the land or take_off instruction
     @status = status # plane can be "Brand New", "Landed", "In-Flight"
   end
 
-  def land(airport)
-    fail "Invalid airport" unless airport.respond_to?(:chars) # duck typing
+  def land(location)
+    fail "Invalid airport" unless location.respond_to?(:chars) # duck typing
     self.status = "Landed"
-    self.airport = airport
+    self.location = location
   end
 
   def take_off
@@ -18,5 +18,5 @@ class Plane
   end
 
   private
-  attr_writer :status, :airport
+  attr_writer :status, :location
 end
