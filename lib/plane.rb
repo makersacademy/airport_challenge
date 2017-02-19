@@ -1,11 +1,17 @@
 class Plane
 
+attr_reader :on_the_ground
+
+def initialize
+  @on_the_ground = false
+end
+
 def landed
-  true
+  @on_the_ground = true
 end
 
 def taken_off
-  false
+  @on_the_ground = false
 end
 
 
