@@ -3,6 +3,18 @@ require 'plane'
 
 describe Airport, :focus => true do
 
+  def weather_sunny
+    weather = double(:weather)
+    allow(weather).to receive(:sunny?).and_return(true)
+    weather
+  end
+
+  def weather_stormy
+    weather = double(:weather)
+    allow(weather).to receive(:sunny?).and_return(false)
+    weather
+  end
+
   it "should allow a plane to land" do
     expect(Airport.new(Weather.new).request_to_land(Plane.new)).to eq true
   end
@@ -15,18 +27,14 @@ describe Airport, :focus => true do
 
   it "should allow a plane to take off" do
     plane = Plane.new
-    weather = double(:weather)
-    allow(weather).to receive(:sunny?).and_return(true)
-    airport = Airport.new(weather)
+    airport = Airport.new(weather_sunny)
     plane.land(airport)
     expect(airport.request_take_off(plane)).to eq true
   end
 
   it 'should remove the information about a plane when it takes off' do
     plane = Plane.new
-    weather = double(:weather)
-    allow(weather).to receive(:sunny?).and_return(true)
-    airport = Airport.new(weather)
+    airport = Airport.new(weather_sunny)
     plane.land(airport)
     airport.request_take_off(plane)
     expect(airport.planes.count).to eq 0
@@ -35,9 +43,7 @@ describe Airport, :focus => true do
   it 'should remove planes after taking off' do
     plane_one = Plane.new
     plane_two = Plane.new
-    weather = double(:weather)
-    allow(weather).to receive(:sunny?).and_return(true)
-    airport = Airport.new(weather)
+    airport = Airport.new(weather_sunny)
     plane_one.land(airport)
     plane_two.land(airport)
     expect(airport.planes.count).to eq 2
@@ -47,9 +53,7 @@ describe Airport, :focus => true do
 
   it 'should prevent take off when it is stormy' do
     plane = Plane.new
-    weather = double(:weather)
-    allow(weather).to receive(:sunny?).and_return(false)
-    airport = Airport.new(weather)
+    airport = Airport.new(weather_stormy)
     plane.land(airport)
     expect(airport.request_take_off(plane)).to eq false
   end
