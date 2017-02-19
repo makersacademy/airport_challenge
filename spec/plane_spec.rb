@@ -5,10 +5,6 @@ require 'weather'
 describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
-  it { is_expected.to respond_to(:confirm_landing) }
-  it { is_expected.to respond_to(:confirm_take_off) }
-  it { is_expected.to respond_to(:current_status) }
-  it { is_expected.to respond_to(:able_to_take_off?).with(1).argument }
 
   describe "airport tests" do
     before :each do
@@ -31,25 +27,9 @@ describe Plane do
     end
   end
 
-
-    describe '.able_to_land?' do
-      it "planes cannot land in an airport if they are already in an airport" do
-        subject.land(@airport)
-        expect(subject).not_to be_able_to_land
-      end
-    end
-
-    describe '.able_to_take_off?' do
-      it "checks if plane is in the specified airport" do
-        expect(subject).not_to be_able_to_take_off(@airport)
-      end
-    end
-
-
-
   describe '.land' do
 
-    it "lands the plane in an airport" do
+    it "confirms the plane has landed in an airport" do
       expect(subject.land(@airport)).to eq "Plane has landed"
     end
 
@@ -76,6 +56,11 @@ describe Plane do
 
   describe '.take_off' do
 
+    it "confirms the plane has taken off" do
+      subject.land(@airport)
+      expect(subject.take_off(@airport)).to eq "Plane has taken off"
+    end
+
     it "removes the plane from its current airport" do
       subject.land(@airport)
       subject.take_off(@airport)
@@ -101,29 +86,48 @@ describe Plane do
 
 end
 
-  describe "unsuitable_weather?" do
 
-    it "checks if weather is clear" do
-      allow(subject).to receive(:unsuitable_weather?).and_return(false)
-      expect(subject.unsuitable_weather?).to eq false
-    end
+  # describe "unsuitable_weather?" do
+  #
+  #   it "checks if weather is clear" do
+  #     allow(subject).to receive(:unsuitable_weather?).and_return(false)
+  #     expect(subject.unsuitable_weather?).to eq false
+  #   end
+  #
+  #   it "checks if weather is stormy" do
+  #     allow(subject).to receive(:unsuitable_weather?).and_return(true)
+  #     expect(subject.unsuitable_weather?).to eq true
+  #   end
+  # end
+  #
+  # describe '.confirm_landing' do
+  #   it "confirms that the plane has landed" do
+  #     expect(subject.confirm_landing).to eq "Plane has landed"
+  #   end
+  # end
+  #
+  # describe '.confirm_take_off' do
+  #   it "confirms that the plane has taken off" do
+  #     expect(subject.confirm_take_off).to eq "Plane has taken off"
+  #   end
+  # end
 
-    it "checks if weather is stormy" do
-      allow(subject).to receive(:unsuitable_weather?).and_return(true)
-      expect(subject.unsuitable_weather?).to eq true
-    end
-  end
+  # describe '.able_to_land?' do
+  #   it "planes cannot land in an airport if they are already in an airport" do
+  #     subject.land(@airport)
+  #     expect(subject).not_to be_able_to_land
+  #   end
+  # end
+  #
+  # describe '.able_to_take_off?' do
+  #   it "checks if plane is in the specified airport" do
+  #     expect(subject).not_to be_able_to_take_off(@airport)
+  #   end
+  # end
 
-  describe '.confirm_landing' do
-    it "confirms that the plane has landed" do
-      expect(subject.confirm_landing).to eq "Plane has landed"
-    end
-  end
-
-  describe '.confirm_take_off' do
-    it "confirms that the plane has taken off" do
-      expect(subject.confirm_take_off).to eq "Plane has taken off"
-    end
-  end
+  # it { is_expected.to respond_to(:confirm_landing) }
+  # it { is_expected.to respond_to(:confirm_take_off) }
+  # it { is_expected.to respond_to(:current_status) }
+  # it { is_expected.to respond_to(:able_to_take_off?).with(1).argument }
 
 end
