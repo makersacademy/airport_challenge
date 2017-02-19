@@ -30,7 +30,8 @@ describe Airport, :feature_test do
         p "There are now #{small_airport.plane_arr.length} planes in the airport\
  and the capacity is still #{small_airport.capacity}."
         message = "#{plane2} is not in the airport."
-        expect{small_airport.confirm_landed(plane2)}.to raise_error message
+        p "Attempting to take off #{plane2} although not in airport, raises error message:"
+        p expect{small_airport.take_off(plane2)}.to raise_error message
       end
     end
   end
