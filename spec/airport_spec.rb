@@ -42,6 +42,7 @@ describe Airport do
 
   describe "#weather", :weather_tests do
     let(:plane) {Plane.new}
+    # NOT USING DOUBLES, JUST STUBS AS COULDN'T GET WORKING. PROBLEM?
     it "prevents the plane from landing during stormy weather" do
       # set weather to stormy
       allow_any_instance_of(Weather).to receive(:stormy?) { true }

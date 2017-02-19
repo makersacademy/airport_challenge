@@ -1,7 +1,7 @@
 module Weather
 
   def stormy?
-    true
+    false
   end
 
 end
