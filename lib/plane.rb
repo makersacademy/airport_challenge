@@ -7,6 +7,7 @@ class Plane
   end
 
   def land(airport)
+    raise "The plane has already landed!" if @airport != nil
     if airport.request_to_land(self)
       @airport = airport
       true

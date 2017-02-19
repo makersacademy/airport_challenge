@@ -63,4 +63,11 @@ describe Plane do
     allow(heathrow).to receive(:request_take_off).and_return(true)
     expect { plane.take_off(heathrow) }.to raise_error "The plane is in another airport!"
   end
+
+  it "should raise an error when a plane is instructed to land, but it's alredy landed" do
+    airport = double(:airport)
+    plane = Plane.new(airport_that_allows_landing)
+    expect { plane.land(airport_that_allows_landing) }.to raise_error "The plane has already landed!"
+  end
+
 end
