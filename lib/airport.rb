@@ -6,7 +6,7 @@ class Airport
   def initialize(capacity = 20)
     @planes = []
     @capacity = capacity
-    @stormy = false
+    @stormy = randomize_weather
   end
 
   def land_plane(plane)
@@ -24,7 +24,7 @@ class Airport
 
   def plane_take_off(plane)
     if @planes.include?(plane)
-      if stormy == true
+      if @stormy == true
         raise "Weather is stormy, plane cannot take off."
       else
         @planes.delete(plane)
@@ -47,6 +47,15 @@ class Airport
     @capacity = new_cap
   end
 
+  def randomize_weather
+    stormyness = Random.new
+    if stormyness.rand(8) >= 7
+      true
+    else
+      false
+    end
+  end
+
   private
 
   def airport_full?
@@ -56,5 +65,4 @@ class Airport
       false
     end
   end
-
 end
