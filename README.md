@@ -1,6 +1,7 @@
-Narayan's Airport Challenge [![Build Status](https://travis-ci.org/nryn/airport_challenge.svg?branch=master)](https://travis-ci.org/nryn/airport_challenge)
-
+Narayan's Airport Challenge 
 =================
+
+[![Build Status](https://travis-ci.org/nryn/airport_challenge.svg?branch=master)](https://travis-ci.org/nryn/airport_challenge)
 
 ```
         ______
