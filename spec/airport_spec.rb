@@ -2,12 +2,14 @@ require 'airport'
 
 describe Airport do
   let(:airport) {described_class.new}
+  let(:plane) {Plane.new}
+
+  before do
+    allow_any_instance_of(Weather).to receive(:stormy?) { false }
+  end
 
   describe "#landing", :landing do
-    let(:plane) {Plane.new}
     it "instructs a plane to land" do
-      airport.instruct_to_land(Plane.new)
-      airport.instruct_to_land(Plane.new)
       airport.instruct_to_land(plane)
       expect(airport.plane_arr).to include plane
     end
@@ -24,7 +26,6 @@ describe Airport do
   end
 
   describe "#take_off", :takeoff do
-    let(:plane) {Plane.new}
     it "instructs a plane to take off" do
       airport.instruct_to_land(plane)
       airport.take_off(plane)
@@ -44,8 +45,6 @@ describe Airport do
   end
 
   describe "#weather", :weather_tests do
-    let(:plane) {Plane.new}
-    # NOT USING DOUBLES, JUST STUBS, AS COULDN'T GET WORKING. PROBLEM?
     it "prevents the plane from landing during stormy weather" do
       # set weather to stormy
       allow_any_instance_of(Weather).to receive(:stormy?) { true }
@@ -54,14 +53,10 @@ describe Airport do
     end
 
     it "allows the plane to land when weather is NOT stormy" do
-      # set weather to NOT stormy
-      allow_any_instance_of(Weather).to receive(:stormy?) { false }
       expect(airport.instruct_to_land(plane)).to eq airport
     end
 
     it "prevents the plane from taking off during stormy weather" do
-      # set weather to NOT stormy so plane can land
-      allow_any_instance_of(Weather).to receive(:stormy?) { false }
       airport.instruct_to_land(plane)
       # storm occurs while plane is in airport
       allow_any_instance_of(Weather).to receive(:stormy?) { true }
@@ -70,35 +65,29 @@ describe Airport do
     end
 
     it "allows the plane to take off when weather is NOT stormy" do
-      # set weather to NOT stormy so plane can land
-      allow_any_instance_of(Weather).to receive(:stormy?) { false }
       airport.instruct_to_land(plane)
       expect(airport.take_off(plane)).to eq airport.plane_arr
     end
   end
 
   describe "#capacity", :capacity_tests do
-    let(:plane) {Plane.new}
     it "prevents planes from landing when airport is full" do
-      allow_any_instance_of(Weather).to receive(:stormy?) { false }
-      message = "Landing not permitted as max capacity has been reached."
       Airport::DEFAULT_CAPACITY.times{airport.instruct_to_land(Plane.new)}
+      message = "Landing not permitted as max capacity has been reached."
       expect{airport.instruct_to_land(plane)}.to raise_error message
     end
 
     it "sets the capacity of the airport to a given value" do
-      allow_any_instance_of(Weather).to receive(:stormy?) { false }
       bigger_airport = Airport.new(50)
       expect(bigger_airport.capacity).to eq(50)
     end
 
     it "allows default capacity to be overridden" do
-      allow_any_instance_of(Weather).to receive(:stormy?) { false }
       bigger_airport = Airport.new(50)
       49.times{bigger_airport.instruct_to_land(Plane.new)}
       expect(bigger_airport.instruct_to_land(Plane.new)).to eq bigger_airport
+      # SHOULD I ACTUALLY TEST FOR LENGTH OF PLANE ARRAY?
     end
-
   end
 
 end
