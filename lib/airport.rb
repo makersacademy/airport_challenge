@@ -10,25 +10,25 @@ class Airport
   end
 
   def initiate_take_off_procedure(plane)
-    fail "Airport empty" if planes.count == 0
-    fail "Weather stormy" if weather.is_stormy?
-    fail "Sorry, You are either flying or not at #{self.name}" if (plane.status == "In-Flight" || plane.location != self.name)
+    fail NotImplementedError, "Airport empty" if planes.count == 0
+    fail NotImplementedError, "Weather stormy" if weather.is_stormy?
+    fail NotImplementedError, "Sorry, You are either flying or not at #{self.name}" if (plane.status == "In-Flight" || plane.location != self.name)
     plane.take_off
     confirm_take_off(plane)
     true
   end
 
   def initiate_landing_procedure(plane)
-    fail "Airport at capacity" if is_full?
-    fail "Weather stormy" if weather.is_stormy?
-    fail "Sorry, You are already on ground" if plane.status == "Landed"
+    fail NotImplementedError, "Airport at capacity" if is_full?
+    fail NotImplementedError, "Weather stormy" if weather.is_stormy?
+    fail NotImplementedError, "Sorry, You are already on ground" if plane.status == "Landed"
     plane.land(self.name)
     confirm_landing(plane)
     true
   end
 
   private
-  
+
   def confirm_landing(plane)
     planes << plane if (plane.status == "Landed" && plane.location == self.name)
   end
