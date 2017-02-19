@@ -44,14 +44,14 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-# Approach
+## Approach
 
 Using the above User Stories, I created a Domain Model, as below:
 ```
  Plane <-- status --> 'landed' / 'flying'
  Airport <-- land_plane(plane) --> return string
  Airport <-- take_off --> return string
- Airport <-- full? & empty? / stormy? --> raise error
+ Airport <-- full? & empty? & stormy? --> raise error
  Airport <-- change_airport_capacity --> capacity = new_value
  Weather <-- stormy? --> true/false
 ```
