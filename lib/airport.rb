@@ -7,17 +7,15 @@ class Airport
   end
 
   def land(plane)
-    @plane = plane
-    @gateways << @plane
-    @gateways[-1]
+    @gateways << plane
+    @gateways.last
   end
 
   def confirm_landing
-    "The #{@gateways[-1]} has landed at #{self}."
+    "The #{@gateways.last} has landed at #{self}."
   end
 
   def take_off(plane)
-    @plane = plane
     @gateways -=[plane]
     @gateways
   end
