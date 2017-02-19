@@ -10,6 +10,8 @@ class Plane
     if airport.request_to_land(self)
       @airport = airport
       true
+    else
+      false
     end
   end
 
@@ -17,6 +19,8 @@ class Plane
     if airport.request_take_off(self)
       @airport = nil
       true
+    else
+      false
     end
   end
 
