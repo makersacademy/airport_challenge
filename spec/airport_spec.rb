@@ -12,8 +12,8 @@ describe "airport-challenge" do
 
   describe Airport do
 
-    let(:weather) { Weather.new.stormy? }
-    let(:airport) { Airport.new(weather) }
+    let(:weather) { Weather.new }
+    let(:airport) { Airport.new(weather.stormy?) }
 
   #  it { is_expected.to respond_to(:land).with(1).argument }
 
@@ -23,40 +23,35 @@ describe "airport-challenge" do
 
     it "should receive a plane" do
       allow(weather).to receive(:stormy?) { false }
-      airport = Airport.new(weather.stormy?)
       expect(airport.land(Plane.new)).to eq("The plane has landed.")
     end
 
     it "should allow a plane to takeoff" do
       allow(weather).to receive(:stormy?) { false }
-      airport = Airport.new(weather.stormy?)
       airport.land(Plane.new)
       expect(airport.take_off).to eq("The plane has taken off.")
     end
 
     it "should not allow take off during stormy weather" do
       airport.land(Plane.new)
-      allow(Weather.new).to receive(:stormy?) { true }
-      airport = Airport.new(Weather.new.stormy?)
+      allow(weather).to receive(:stormy?) { true }
+      airport = Airport.new(weather.stormy?)
       expect(airport.take_off).not_to eq("The plane has taken off.")
     end
 
     it "should not allow landing during stormy weather" do
       allow(weather).to receive(:stormy?) { true }
-      airport = Airport.new(weather.stormy?)
       expect(airport.land(Plane.new)).not_to eq("The plane has landed.")
     end
 
     it "should not allow landing when it is full" do
       allow(weather).to receive(:stormy?) { false }
-      airport = Airport.new(weather.stormy?)
       10.times{ airport.land(Plane.new) }
       expect(airport.land(Plane.new)).to eq("Airport full.")
     end
 
     it "should have an adjustable default capacity" do
       allow(weather).to receive(:stormy?) { false }
-      airport = Airport.new(weather.stormy?)
       10.times{ airport.land(Plane.new) }
       expect(airport.land(Plane.new)).to eq("Airport full.")
     end
