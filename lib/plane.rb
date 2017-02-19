@@ -1,6 +1,8 @@
 require_relative 'airport'
+require_relative 'weather'
 
 class Plane
+  include Weather
 
   attr_reader :current_status
 
@@ -23,6 +25,7 @@ class Plane
 
   def take_off(airport)
     fail "Plane is not in this airport" unless able_to_take_off?(airport)
+    fail "Plane cannot take off due to stormy weather" if unsuitable_weather?
     airport.planes.delete(self)
     @current_status = "In air"
     confirm_take_off
@@ -35,5 +38,11 @@ class Plane
   def confirm_take_off
     "Plane has taken off"
   end
+
+  def unsuitable_weather?
+    stormy?
+  end
+
+
 
 end

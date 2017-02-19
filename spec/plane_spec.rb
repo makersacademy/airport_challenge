@@ -1,5 +1,6 @@
 require 'plane'
 require 'airport'
+require 'weather'
 
 describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -71,9 +72,15 @@ describe Plane do
       expect(airport.planes).to eq []
     end
 
-    it "prevents take_off unless the plane is in the airport" do
+    it "prevents take off unless the plane is in the airport" do
       expect{subject.take_off(Airport.new)}.to raise_error "Plane is not in this airport"
     end
+
+    # it "prevents take off if the weather is stormy" do
+    #   airport = Airport.new
+    #   subject.land(airport)
+    #   expect{subject.take_off(airport)}.to raise_error "Plane cannot take off due to stormy weather"
+    # end
   end
 
   describe '.able_to_take_off?' do
@@ -82,5 +89,21 @@ describe Plane do
       expect(subject).not_to be_able_to_take_off(airport)
     end
   end
+
+  describe "check_weather"
+
+   it "checks if weather is clear" do
+     plane = Plane.new
+     allow(plane).to receive(:unsuitable_weather?).and_return(false)
+     expect(plane.unsuitable_weather?).to eq false
+  end
+
+  it "checks if weather is stormy" do
+    plane = Plane.new
+    allow(plane).to receive(:unsuitable_weather?).and_return(true)
+    expect(plane.unsuitable_weather?).to eq true
+ end
+
+
 
 end
