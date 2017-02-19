@@ -56,7 +56,7 @@ describe Airport do
     it "allows the plane to land when weather is NOT stormy" do
       # set weather to NOT stormy
       allow_any_instance_of(Weather).to receive(:stormy?) { false }
-      expect(airport.instruct_to_land(plane)).to eq airport.plane_arr
+      expect(airport.instruct_to_land(plane)).to eq airport
     end
 
     it "prevents the plane from taking off during stormy weather" do
