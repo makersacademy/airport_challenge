@@ -3,12 +3,11 @@ require_relative 'default_capacity_module'
 
 class Airport
 
-  attr_reader :taken_off, :landed, :current_plane, :plane
+  attr_reader :taken_off, :landed, :current_plane
 
   def initialize
     @landed = []
     @taken_off = []
-    #@landing_plane
     @current_plane = []
     @weather = 1
   end
