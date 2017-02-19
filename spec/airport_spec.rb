@@ -18,7 +18,8 @@ describe Airport do
     end
 
     it "reports the plane hasn't landed when it hasn't" do
-      expect{airport.confirm_landed(plane)}.to raise_error "#{plane} is not in the airport."
+      message = "#{plane} is not in the airport."
+      expect{airport.confirm_landed(plane)}.to raise_error message
     end
   end
 
@@ -37,7 +38,8 @@ describe Airport do
     it "reports the plane hasn't taken off when it hasn't" do
       plane2 = Plane.new
       airport.instruct_to_land(plane2)
-      expect{airport.confirm_takeoff(plane2)}.to raise_error "#{plane2} is still in the airport."
+      message = "#{plane2} is still in the airport."
+      expect{airport.confirm_takeoff(plane2)}.to raise_error message
     end
   end
 
@@ -47,7 +49,8 @@ describe Airport do
     it "prevents the plane from landing during stormy weather" do
       # set weather to stormy
       allow_any_instance_of(Weather).to receive(:stormy?) { true }
-      expect{airport.instruct_to_land(plane)}.to raise_error "Landing not permitted due to stormy weather."
+      message = "Landing not permitted due to stormy weather."
+      expect{airport.instruct_to_land(plane)}.to raise_error message
     end
 
     it "allows the plane to land when weather is NOT stormy" do
@@ -62,7 +65,8 @@ describe Airport do
       airport.instruct_to_land(plane)
       # storm occurs while plane is in airport
       allow_any_instance_of(Weather).to receive(:stormy?) { true }
-      expect{airport.take_off(plane)}.to raise_error "Takeoff not permitted due to stormy weather."
+      message = "Takeoff not permitted due to stormy weather."
+      expect{airport.take_off(plane)}.to raise_error message
     end
 
     it "allows the plane to take off when weather is NOT stormy" do
@@ -73,11 +77,14 @@ describe Airport do
     end
   end
 
-  # describe "#capacity", :capacity_tests do
-  #   let(:plane) {Plane.new}
-  #   it "prevents planes from landing when full" do
-  #
-  #   end
-  # end
+  describe "#capacity", :capacity_tests do
+    let(:plane) {Plane.new}
+    it "prevents planes from landing when airport is full" do
+      allow_any_instance_of(Weather).to receive(:stormy?) { false }
+      message = "Landing not permitted as max capacity has been reached."
+      10.times{airport.instruct_to_land(Plane.new)}
+      expect{airport.instruct_to_land(plane)}.to raise_error message
+    end
+  end
 
 end

@@ -10,13 +10,14 @@ class Airport
   attr_reader :plane
   attr_reader :plane_arr
 
-  def initialize#(capacity = AIRPORT_CAPACITY)
-    # @capacity = capacity
+  def initialize(capacity = AIRPORT_CAPACITY)
+    @capacity = capacity
     @plane_arr = []
   end
 
   def instruct_to_land(plane)
     @plane = plane
+    fail "Landing not permitted as max capacity has been reached." if at_capacity?
     fail "#{@plane} is still in the airport." if at_airport?
     fail "Landing not permitted due to stormy weather." if stormy?
     @plane_arr << @plane
@@ -43,7 +44,11 @@ class Airport
 
   private
   def at_airport?
-    @plane_arr.include?(@plane) ? true : false
+    @plane_arr.include?(@plane)
+  end
+
+  def at_capacity?
+    @plane_arr.length == @capacity
   end
 
 end
