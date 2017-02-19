@@ -4,8 +4,6 @@ describe Airport do
   before(:each) do
     @weather_sunny = double(:weather, :is_stormy? => false)
     @weather_stormy = double(:weather, :is_stormy? => true)
-    # @airport = Airport.new("LHR", Airport::DEFAULT_CAPACITY, @weather_double)
-    # @plane = Plane.new
   end
   let(:london_airport) {Airport.new("LHR", 2, @weather_sunny)}
   let(:london_plane) {Plane.new}

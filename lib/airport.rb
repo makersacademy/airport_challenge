@@ -34,12 +34,11 @@ class Airport
   end
 
   def confirm_take_off(plane)
-    planes.delete(plane) if plane.status == "In-Flight" 
+    planes.delete(plane) if plane.status == "In-Flight"
   end
 
   def is_full?
     planes.count >= capacity
-    # true or false depending on number of planes & capacity
   end
 
   attr_reader :weather
