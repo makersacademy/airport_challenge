@@ -2,9 +2,12 @@ require_relative '../lib/airport'
 require_relative '../lib/plane'
 require_relative '../lib/weather'
 
-london_airport = Airport.new("LHR") # arguments : name, capacity(opt), weather(opt)
+london_airport = Airport.new("LHR", 5) # arguments : name, capacity(opt), weather(opt)
+p "London airport has a capacity of #{london_airport.capacity}"
 new_york_airport = Airport.new("EWR")
-chicago_airport = Airport.new("ORD")
+p "New york airport has a default capacity of #{new_york_airport.capacity}"
+chicago_airport = Airport.new("ORD", 15)
+p "Chicago airport has a capacity of #{chicago_airport.capacity}"
 london_plane = Plane.new # arguments : location(opt), status(opt)
 # london_airport.initiate_landing_procedure(london_plane)
 new_york_plane = Plane.new
