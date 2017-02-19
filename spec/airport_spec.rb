@@ -55,7 +55,7 @@ describe Airport, :focus => true do
   it 'should prevent take off when it is stormy' do
     airport = Airport.new(weather_stormy)
     plane = Plane.new(airport)
-    expect(airport.request_take_off(plane)).to eq false
+    expect { airport.request_take_off(plane) }.to raise_error "The weather conditions are not suitable for take off!"
   end
 
   it 'should prevent landing when it is stormy' do

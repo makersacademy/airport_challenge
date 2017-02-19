@@ -25,13 +25,9 @@ class Airport
   end
 
   def request_take_off(plane)
-    if @weather.sunny?
-      @planes.delete(plane)
-      true
-    else
-      puts "The weather conditions are not suitable for take off!"
-      false
-    end
+    raise "The weather conditions are not suitable for take off!" if @weather.sunny? == false
+    @planes.delete(plane)
+    true
   end
 
 end
