@@ -16,4 +16,9 @@ it 'expects default plane status to be flying' do
   expect(plane.flying).to eq(true)
 end
 
+it 'can change flying to false' do
+  expect(plane.landed).to eq(false)
+end
+
+
 end

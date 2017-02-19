@@ -1,11 +1,11 @@
 class Weather
-  attr_reader :stormy
+  attr_reader :conditions
 
   def initialize
   @conditions = [:sunny, :stormy, :rainy, :windy, :humid, :chilly, :hot]
   end
 
-  def stormy
+  def storm?
   index = Random.rand(7)
   @conditions[index] == :stormy
   end
