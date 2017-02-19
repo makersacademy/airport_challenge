@@ -2,14 +2,16 @@ require 'airport'
 
 describe Airport do
   before(:each) do
-    @weather_double = double(:weather, :is_stormy? => false)
+    @weather_sunny = double(:weather, :is_stormy? => false)
+    @weather_stormy = double(:weather, :is_stormy? => true)
     # @airport = Airport.new("LHR", Airport::DEFAULT_CAPACITY, @weather_double)
     # @plane = Plane.new
   end
-  let(:london_airport) {Airport.new("LHR", 2, @weather_double)}
+  let(:london_airport) {Airport.new("LHR", 2, @weather_sunny)}
   let(:london_plane) {Plane.new}
-  let(:new_york_airport ) {Airport.new("EWR", 5, @weather_double)}
+  let(:new_york_airport ) {Airport.new("EWR", 5, @weather_sunny)}
   let(:new_york_plane)  {Plane.new}
+  let(:chicago_airport) {Airport.new("ORD", 2, @weather_stormy)}
 
   it "has a default capacity" do
     expect(Airport.new("BHR").capacity).to eq Airport::DEFAULT_CAPACITY
@@ -94,6 +96,16 @@ describe Airport do
     london_airport.initiate_landing_procedure(london_plane)
     london_airport.initiate_take_off_procedure(london_plane)
     expect(london_airport.planes.count).to eq 0
+  end
+
+  it "prevents landing when stormy" do
+    london_airport.initiate_landing_procedure(london_plane)
+    london_airport.initiate_take_off_procedure(london_plane)
+    expect{chicago_airport.initiate_landing_procedure(london_plane)}.to raise_error("Weather stormy")
+  end
+
+  it "prevents take_off when stormy" do
+    expect{chicago_airport.initiate_landing_procedure(london_plane)}.to raise_error("Weather stormy")
   end
 
 end
