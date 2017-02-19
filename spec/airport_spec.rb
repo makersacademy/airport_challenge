@@ -82,9 +82,23 @@ describe Airport do
     it "prevents planes from landing when airport is full" do
       allow_any_instance_of(Weather).to receive(:stormy?) { false }
       message = "Landing not permitted as max capacity has been reached."
-      10.times{airport.instruct_to_land(Plane.new)}
+      Airport::DEFAULT_CAPACITY.times{airport.instruct_to_land(Plane.new)}
       expect{airport.instruct_to_land(plane)}.to raise_error message
     end
+
+    it "sets the capacity of the airport to a given value" do
+      allow_any_instance_of(Weather).to receive(:stormy?) { false }
+      bigger_airport = Airport.new(50)
+      expect(bigger_airport.capacity).to eq(50)
+    end
+
+    it "allows default capacity to be overridden" do
+      allow_any_instance_of(Weather).to receive(:stormy?) { false }
+      bigger_airport = Airport.new(50)
+      49.times{bigger_airport.instruct_to_land(Plane.new)}
+      expect(bigger_airport.instruct_to_land(Plane.new)).to eq bigger_airport
+    end
+
   end
 
 end
