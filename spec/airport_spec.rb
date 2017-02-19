@@ -21,7 +21,7 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(false)
       allow(plane).to receive(:land)
       subject.land(plane)
-      expect(subject.in_airport).to include(plane)
+      expect(subject.planes).to include(plane)
     end
 
     it "wont allow a plane to land when the airport is full" do
@@ -48,7 +48,7 @@ describe Airport do
     it "confirms the plane is airborne" do
       allow(subject).to receive(:stormy?).and_return(false)
       subject.take_off(plane)
-      expect(subject.in_air).to include(plane)
+      expect(subject.planes).not_to include(plane)
     end
 
     context 'when stormy' do
