@@ -1,4 +1,4 @@
-#require 'coverage_helper'
+# require 'coverage_helper'
 
 require 'coveralls'
 Coveralls.wear!

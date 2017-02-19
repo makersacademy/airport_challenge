@@ -48,20 +48,20 @@ describe Airport do
 
   it "gets a request from a landed plane to land, and it raises a status error" do
     london_airport.permission_to_land(london_plane)
-    expect{london_airport.permission_to_land(london_plane)}.to raise_error("Invalid request")
+    expect{london_airport.permission_to_land(london_plane)}.to raise_error("Sorry, You are already on ground")
   end
 
   it "gets a request from an in-flight plan to take off, and it raises a status error" do
     london_airport.permission_to_land(london_plane)
     london_airport.permission_to_land(new_york_plane)
     london_airport.permission_to_take_off(london_plane)
-    expect{london_airport.permission_to_take_off(london_plane)}.to raise_error("Invalid request")
+    expect{london_airport.permission_to_take_off(london_plane)}.to raise_error("Sorry, You are either flying or not at #{london_airport.name}")
   end
 
   it "gets a request from a landed flight in another airport to take-off, and raises an error" do
     london_airport.permission_to_land(london_plane)
     new_york_airport.permission_to_land(new_york_plane)
-    expect {london_airport.permission_to_take_off(new_york_plane)}.to raise_error("Invalid request")
+    expect {london_airport.permission_to_take_off(new_york_plane)}.to raise_error("Sorry, You are either flying or not at #{london_airport.name}")
   end
 
   it "gets request from a plane to land, and it doesn't allow it to land because it is at capacity" do
