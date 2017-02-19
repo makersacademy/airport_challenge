@@ -5,18 +5,20 @@ class Airport
 
   include Weather
 
+  AIRPORT_CAPACITY = 10
+
   attr_reader :plane
   attr_reader :plane_arr
-  # attr_reader :stormy_or_not
 
-  def initialize
-    # set_weather
+  def initialize#(capacity = AIRPORT_CAPACITY)
+    # @capacity = capacity
     @plane_arr = []
   end
 
   def instruct_to_land(plane)
-    fail "Landing not permitted due to stormy weather." if stormy?
     @plane = plane
+    fail "#{@plane} is still in the airport." if at_airport?
+    fail "Landing not permitted due to stormy weather." if stormy?
     @plane_arr << @plane
   end
 
@@ -41,7 +43,7 @@ class Airport
 
   private
   def at_airport?
-    @plane_arr.include?(plane) ? true : false
+    @plane_arr.include?(@plane) ? true : false
   end
 
 end

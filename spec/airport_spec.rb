@@ -9,7 +9,7 @@ describe Airport do
       airport.instruct_to_land(Plane.new)
       airport.instruct_to_land(Plane.new)
       airport.instruct_to_land(plane)
-      expect(airport.plane_arr[-1]).to eq plane
+      expect(airport.plane_arr).to include plane
     end
 
     it "confirms the plane has landed" do
@@ -26,7 +26,8 @@ describe Airport do
     let(:plane) {Plane.new}
     it "instructs a plane to take off" do
       airport.instruct_to_land(plane)
-      expect(airport.take_off(plane)).to eq airport.plane_arr.delete_if  { |p| p == plane }
+      airport.take_off(plane)
+      expect(airport.plane_arr).not_to include plane
     end
 
     it "confirms the plane has taken off" do
@@ -42,7 +43,7 @@ describe Airport do
 
   describe "#weather", :weather_tests do
     let(:plane) {Plane.new}
-    # NOT USING DOUBLES, JUST STUBS AS COULDN'T GET WORKING. PROBLEM?
+    # NOT USING DOUBLES, JUST STUBS, AS COULDN'T GET WORKING. PROBLEM?
     it "prevents the plane from landing during stormy weather" do
       # set weather to stormy
       allow_any_instance_of(Weather).to receive(:stormy?) { true }
@@ -71,5 +72,12 @@ describe Airport do
       expect(airport.take_off(plane)).to eq airport.plane_arr
     end
   end
+
+  # describe "#capacity", :capacity_tests do
+  #   let(:plane) {Plane.new}
+  #   it "prevents planes from landing when full" do
+  #
+  #   end
+  # end
 
 end

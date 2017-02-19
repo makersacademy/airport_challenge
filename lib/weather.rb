@@ -1,7 +1,7 @@
 module Weather
 
   def stormy?
-    false
+    rand(10) == 1
   end
 
 end
