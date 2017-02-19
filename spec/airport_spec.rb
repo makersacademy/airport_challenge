@@ -58,8 +58,8 @@ describe Airport do
     #   expect { subject.land(Plane.new) }.to raise_error("Airport is full")
     # end
 
-    it 'raises an error when a plane lands at an airport with capacity of 20 planes' do
-      Airport::MAX_CAPACITY.times { subject.land(Plane.new) }
+    it 'raises an error when a plane lands at a full airport with capacity of 20 planes' do
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error("Airport is full")
     end
 

@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 MAX_CAPACITY = 20
-attr_reader :planes, :capacity
+attr_accessor :capacity
 
   def initialize(capacity = MAX_CAPACITY)
     @capacity = capacity
@@ -20,6 +20,9 @@ attr_reader :planes, :capacity
   end
 
 private
+
+attr_reader :planes
+
   def airport_full?
     @planes.count >= MAX_CAPACITY
   end
