@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport, :focus => true do
 
@@ -16,11 +17,11 @@ describe Airport, :focus => true do
   end
 
   it "should allow a plane to land" do
-    expect(Airport.new(Weather.new).request_to_land(Plane.new)).to eq true
+    expect(Airport.new(weather_sunny).request_to_land(Plane.new)).to eq true
   end
 
   it 'should store the information about landed planes' do
-    airport = Airport.new(Weather.new)
+    airport = Airport.new(weather_sunny)
     airport.request_to_land(Plane.new)
     expect(airport.planes.count).to eq 1
   end
@@ -56,6 +57,12 @@ describe Airport, :focus => true do
     airport = Airport.new(weather_stormy)
     plane.land(airport)
     expect(airport.request_take_off(plane)).to eq false
+  end
+
+  it 'should prevent landing when it is stormy' do
+    plane = Plane.new
+    airport = Airport.new(weather_stormy)
+    expect(airport.request_to_land(plane)).to eq false
   end
 
 end

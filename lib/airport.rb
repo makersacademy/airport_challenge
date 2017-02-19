@@ -1,5 +1,3 @@
-require 'weather'
-
 class Airport
 
   attr_reader :planes, :weather
@@ -10,8 +8,12 @@ class Airport
   end
 
   def request_to_land(plane)
-    @planes << plane
-    true
+    if @weather.sunny?
+      @planes << plane
+      true
+    else
+      false
+    end
   end
 
   def request_take_off(plane)
