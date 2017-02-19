@@ -1,7 +1,5 @@
 class Airport
 
-  DEFAULT_CAPACITY = 10
-
   attr_reader :planes, :weather, :capacity
 
   def initialize(weather, capacity = 10)
