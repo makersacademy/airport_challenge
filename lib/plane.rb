@@ -7,7 +7,7 @@ class Plane
   end
 
   def land(airport)
-    fail "Invalid airport" unless airport.respond_to?(:permission_to_land) # duck typing
+    fail "Invalid airport" unless airport.respond_to?(:chars) # duck typing
     self.status = "Landed"
     self.airport = airport
   end

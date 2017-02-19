@@ -17,7 +17,7 @@ describe Plane do
   end
 
   it "status changes to landed after landing" do
-    @plane.land(@airport)
+    @plane.land(@airport.name)
     expect(@plane.status).to eq "Landed"
   end
 

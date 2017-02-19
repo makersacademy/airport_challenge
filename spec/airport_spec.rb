@@ -8,9 +8,9 @@ describe Airport do
   end
 
   let(:london_airport) {Airport.new("LHR", 2, double(:weather, :is_stormy? => false))}
-  let(:london_plane) {Plane.new(london_airport)}
+  let(:london_plane) {Plane.new}
   let(:new_york_airport ) {Airport.new("EWR", 5, double(:weather, :is_stormy? => false))}
-  let(:new_york_plane)  {Plane.new(new_york_airport)}
+  let(:new_york_plane)  {Plane.new}
 
   # it "responds to is_full?" do # is_full? privately used by landing method
   #   expect(@airport).to respond_to(:is_full?)
@@ -54,11 +54,7 @@ describe Airport do
   end
 
   it "gets a request from a landed flight in another airport to take-off, and raises an error" do
-    #london_airport = Airport.new("LHR", 2, double(:weather, :is_stormy? => false))
-    #london_plane = Plane.new(london_airport)
     london_airport.permission_to_land(london_plane)
-    #new_york_airport = Airport.new("EWR", 5, double(:weather, :is_stormy? => false))
-    #new_york_plane = Plane.new(new_york_airport)
     new_york_airport.permission_to_land(new_york_plane)
     expect {london_airport.permission_to_take_off(new_york_plane)}.to raise_error("Invalid request")
   end
@@ -91,15 +87,11 @@ describe Airport do
   end
 
   it "allows plan from another aiport to land and take off" do
-    #london_airport = Airport.new("LHR", 2, double(:weather, :is_stormy? => false))
-    #london_plane = Plane.new(london_airport)
     london_airport.permission_to_land(london_plane)
-    #new_york_airport = Airport.new("EWR", 5, double(:weather, :is_stormy? => false))
-    #new_york_plane = Plane.new(new_york_airport)
     new_york_airport.permission_to_land(new_york_plane)
     new_york_airport.permission_to_take_off(new_york_plane)
     london_airport.permission_to_land(new_york_plane)
-    expect(new_york_plane.airport).to eq london_airport
+    expect(new_york_plane.airport).to eq london_airport.name
   end
 
 end
