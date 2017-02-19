@@ -21,6 +21,21 @@ describe "airport-challenge" do
       expect(subject.take_off).to eq nil
     end
 
+    it "should land" do
+      weather = Weather.new
+      allow(weather).to receive(:stormy?) { false }
+      subject = Airport.new(weather.stormy?)
+      expect(subject.land(Plane.new)).to eq("The plane has landed.")
+    end
+
+    it "should takeoff" do
+      weather = Weather.new
+      allow(weather).to receive(:stormy?) { false }
+      subject = Airport.new(weather.stormy?)
+      subject.land(Plane.new)
+      expect(subject.take_off).to eq("The plane has taken off.")
+    end
+
     it "should not take off during stormy weather" do
       subject.land(Plane.new)
       allow(Weather.new).to receive(:stormy?) { true }
