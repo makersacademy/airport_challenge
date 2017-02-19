@@ -1,9 +1,9 @@
 class Plane
 
-  # attr_accessor :status
-  #
-  # # def current_position
-  # #   @status
-  # # end
+  attr_accessor :status
+
+  def initialize
+    @status
+  end
 
 end
