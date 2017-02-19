@@ -14,15 +14,15 @@ class Airport
   def land(plane)
     landing_conditions(plane)
     plane.landed
-    confirm_landing
     @planes << plane
+    confirm_landing
   end
 
   def take_off(plane)
     take_off_conditions(plane)
     plane.flying
-    confirm_take_off
     @planes.delete(plane)
+    confirm_take_off
   end
 
 
@@ -38,6 +38,7 @@ class Airport
     raise "Plane is already flying" if plane.in_flight
     raise "Airport is empty" if airport_empty?
     raise "Too stormy for take off" if stormy?
+    raise "Plane isn't located at this airport" if !@planes.include?(plane)
   end
 
   def confirm_landing

@@ -1,16 +1,21 @@
 require 'plane'
 
 describe Plane do
-  # it 'responds to take_off' do
-  #   expect(subject).to respond_to :take_off
-  # end
+
   it { is_expected.to respond_to :flying }
   it { is_expected.to respond_to :landed }
 
-
   it 'can be flying' do
-    subject.flying
+    airport = Airport.new
+    airport.land(subject)
+    airport.take_off(subject)
     expect(subject.in_flight).to eq(true)
+  end
+
+  it 'can be landed' do
+    airport = Airport.new
+    airport.land(subject)
+    expect(subject.in_airport).to eq(true)
   end
 
   it 'checks a landed plane cannot be in flight' do
@@ -23,11 +28,10 @@ describe Plane do
     expect(subject.in_airport).to eq(false)
   end
 
-  describe '#landed' do
-    it 'tests a landed plane cannot be flying' do
-      plane = Plane.new
-      expect(plane.landed).to_not eq(plane.flying)
-    end
+  it 'checks a landed plane is stored at the airport' do
+    airport = Airport.new
+    airport.land(subject)
+    expect(airport.planes).to eq([subject])
   end
 
 end
