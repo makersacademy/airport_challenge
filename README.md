@@ -21,7 +21,8 @@ irb(main):005:0> port.confirm_landed(plane)
 irb(main):006:0> port.take_off(plane)
 => []
 irb(main):007:0> port.confirm_takeoff(plane)
-=> "#<Plane:0x007fb90601c6f8> has taken off."```
+=> "#<Plane:0x007fb90601c6f8> has taken off."
+```
 
 An edge case still exists where if confirm_takeoff is called passing in a plane which has never been at the airport, it will report that it has taken off. Perhaps this is just a badly worded return string, or maybe there should be a "planes that took off" array to check against so the airport has a log of the coming and goings.
 
