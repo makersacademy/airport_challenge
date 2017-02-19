@@ -1,38 +1,42 @@
 require 'plane'
 
 describe Plane do
-  
-  it "should land at an airport" do
-    plane = Plane.new
+
+  def airport_that_allows_landing
     airport = double(:airport)
     allow(airport).to receive(:request_to_land).and_return(true)
+    airport
+  end
+
+  def airport_that_allows_take_off
+    airport = double(:airport)
+    allow(airport).to receive(:request_take_off).and_return(true)
+    airport
+  end
+
+  it "should land at an airport" do
+    plane = Plane.new
+    airport = airport_that_allows_landing
     plane.land(airport)
     expect(plane.airport).to eq airport
   end
 
   it "should confirm it's landed" do
     plane = Plane.new
-    airport = double(:airport)
-    allow(airport).to receive(:request_to_land).and_return(true)
+    airport = airport_that_allows_landing
     expect(plane.land(airport)).to eq true
   end
 
   it "should take off from an airport" do
-    plane = Plane.new
-    airport = double(:airport)
-    allow(airport).to receive(:request_to_land).and_return(true)
-    allow(airport).to receive(:request_take_off).and_return(true)
-    plane.land(airport)
+    airport = airport_that_allows_take_off
+    plane = Plane.new(airport)
     plane.take_off(airport)
     expect(plane.airport).to eq nil
   end
 
   it "should confirm it took off" do
-    plane = Plane.new
-    airport = double(:airport)
-    allow(airport).to receive(:request_to_land).and_return(true)
-    allow(airport).to receive(:request_take_off).and_return(true)
-    plane.land(airport)
+    airport = airport_that_allows_take_off
+    plane = Plane.new(airport)
     expect(plane.take_off(airport)).to eq true
   end
 
