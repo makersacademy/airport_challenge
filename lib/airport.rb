@@ -3,15 +3,17 @@ require_relative 'default_capacity_module'
 
 class Airport
 
-  attr_reader :taken_off
+  attr_reader :taken_off, :landed, :current_plane, :plane
 
   def initialize
     @landed = []
     @taken_off = []
-    @latest_plane
+    #@latest_plane
     @landing_plane
-    @flying
+    #@flying
+    @current_plane = []
     @weather = 1
+    #@plane = []
     #@new_plane_landed = Plane.new #false
   end
 
@@ -45,25 +47,44 @@ class Airport
 
   def land_plane
     fail 'Airport full' if airport_full?
-    @landing_plane = Plane.new # false
-    @landed << @landing_plane
+    weather_generator
+    if stormy?
+      fail 'Stormy weather preventing landing'
+    else
+      @landing_plane = Plane.new # false
+      @landed << @landing_plane
+    end
+  end
+# consider removing this one and the test
+  def plane_left_airport?
+      if (@current_plane == @taken_off.pop) && !(@current_plane == nil)
+        true
+      else
+        false
+      end
   end
 
-  def plane_left_airport?
-    if (@current_plane == taken_off.pop)
+  def landed_planes
+    @landed.count
+  end
+
+  def available_plane?
+    if (landed_planes > 0)
       true
     else
       false
     end
-
   end
 
-  def take_off(plane=@landed.pop)
-    if stormy?
-      fail 'Stormy weather preventing take-off'
-    else
-      @current_plane = plane
-      @taken_off.push(@current_plane)
+  def take_off
+    fail 'No available planes' if !available_plane?
+    weather_generator
+      if stormy?
+        fail 'Stormy weather preventing take-off'
+      else
+        @current_plane = landed.pop
+        @taken_off.push(@current_plane)
+        plane_left_airport?
+      end
     end
   end
-end
