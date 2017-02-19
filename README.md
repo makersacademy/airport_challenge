@@ -21,9 +21,9 @@ Instructions
 
 * Run this test in IRB or Pry
 * Create a new Airport (`airport = Airport.new`)
-* Land planes (`airport.land_at_airport`)
+* Land planes (`airport.land(plane)`)
 * Planes can't take off or land in stormy weather.
-* Let planes take off! (`airport.take_off`)
+* Let planes take off! (`airport.take_off(plane)`)
 
 The Task as described:
 -----
