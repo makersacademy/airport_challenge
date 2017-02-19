@@ -40,4 +40,12 @@ describe Plane do
     expect(plane.take_off(airport)).to eq true
   end
 
+  it "should not land when airport doesn't give permission to land" do
+    plane = Plane.new
+    airport = double(:airport)
+    allow(airport).to receive(:request_to_land).and_return(false)
+    plane.land(airport)
+    expect(plane.airport).to eq nil
+  end
+
 end
