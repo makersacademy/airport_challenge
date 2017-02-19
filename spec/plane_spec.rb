@@ -2,12 +2,6 @@ require 'plane'
 
 describe Plane do
 
-  # it 'lands the plane' do
-  #
-  # end
-  #
-  # it 'instructs the plane to take off' do
-  #
-  # end
+  it {is_expected.to respond_to :landed?}
 
 end

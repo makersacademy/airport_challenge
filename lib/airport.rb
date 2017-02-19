@@ -1,4 +1,4 @@
-#require_relative 'plane'
+require_relative 'plane'
 
 class Airport
 
@@ -9,10 +9,6 @@ class Airport
   def land(plane)
     @gateways << plane
     @gateways.last
-  end
-
-  def confirm_landing
-    "The #{@gateways.last} has landed at #{self}."
   end
 
   def take_off(plane)

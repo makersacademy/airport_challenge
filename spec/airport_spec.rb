@@ -2,15 +2,14 @@ require 'airport'
 
 describe Airport do
   subject(:airport) {described_class.new}
-  let(:plane) {double :plane}
+  let(:plane) {double :plane, landed?: true}
 
   it "lands the plane in the airport" do
     expect(subject.land(plane)).to eq plane
   end
 
-  it "confirms the plane has landed" do
-    plane = subject.land(plane)
-    expect(subject.confirm_landing).to eq "The #{plane} has landed at #{subject}."
+  it "shows the plane has landed" do
+    expect(plane).to be_landed
   end
 
   it "gets the plane to take off from the airport" do
