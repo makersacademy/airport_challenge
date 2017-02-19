@@ -6,8 +6,10 @@ describe Airport do
   describe "#landing", :landing do
     let(:plane) {Plane.new}
     it "instructs a plane to land" do
+      airport.instruct_to_land(Plane.new)
+      airport.instruct_to_land(Plane.new)
       airport.instruct_to_land(plane)
-      expect(airport.plane).to eq plane
+      expect(airport.plane_arr[-1]).to eq plane
     end
 
     it "confirms the plane has landed" do
@@ -22,7 +24,7 @@ describe Airport do
 
   describe "#take_off", :takeoff do
     let(:plane) {Plane.new}
-    it "instructs a plane to take off", :instructs_takeoff do
+    it "instructs a plane to take off" do
       airport.instruct_to_land(plane)
       expect(airport.take_off(plane)).to eq airport.plane_arr.delete_if  { |p| p == plane }
     end
@@ -38,5 +40,35 @@ describe Airport do
     end
   end
 
+  describe "#weather", :weather_tests do
+    let(:plane) {Plane.new}
+    it "prevents the plane from landing during stormy weather" do
+      # set weather to stormy
+      allow_any_instance_of(Weather).to receive(:stormy?) { true }
+      expect{airport.instruct_to_land(plane)}.to raise_error "Landing not permitted due to stormy weather."
+    end
+
+    it "allows the plane to land when weather is NOT stormy" do
+      # set weather to NOT stormy
+      allow_any_instance_of(Weather).to receive(:stormy?) { false }
+      expect(airport.instruct_to_land(plane)).to eq airport.plane_arr
+    end
+
+    it "prevents the plane from taking off during stormy weather" do
+      # set weather to NOT stormy so plane can land
+      allow_any_instance_of(Weather).to receive(:stormy?) { false }
+      airport.instruct_to_land(plane)
+      # storm occurs while plane is in airport
+      allow_any_instance_of(Weather).to receive(:stormy?) { true }
+      expect{airport.take_off(plane)}.to raise_error "Takeoff not permitted due to stormy weather."
+    end
+
+    it "allows the plane to take off when weather is NOT stormy" do
+      # set weather to NOT stormy so plane can land
+      allow_any_instance_of(Weather).to receive(:stormy?) { false }
+      airport.instruct_to_land(plane)
+      expect(airport.take_off(plane)).to eq airport.plane_arr
+    end
+  end
 
 end
