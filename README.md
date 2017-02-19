@@ -12,11 +12,15 @@ Example of how to run code
 2.2.3 :001 > require './lib/airport'
  => true
 2.2.3 :002 > airport = Airport.new
- => #<Airport:0x007f91bb09d0b8 @capacity=20, @planes_in_airport=[]>
+ => #<Airport:0x007fe91a89cc58 @capacity=20, @planes_in_airport=[]>
 2.2.3 :003 > plane = airport.add_plane
- => [#<Plane:0x007f91bb08efb8>]
+ => #<Plane:0x007fe91a88eec8>
 2.2.3 :004 > airport.take_off(plane)
-[#<Plane:0x007f91bb08efb8>] is no longer in airport => #<Plane:0x007f91bb08efb8>
+#<Plane:0x007fe91a88eec8> is no longer in airport => #<Plane:0x007fe91a88eec8>
+2.2.3 :005 > plane.land?
+ => nil
+2.2.3 :006 > airport.land(plane)
+#<Plane:0x007fe91a88eec8> has landed => [#<Plane:0x007fe91a88eec8>]
 ```
 My approach to solving the challenge
 ====================================
