@@ -8,7 +8,7 @@ I created an Airport class, empty Plane class and a Weather module. I decided to
 The error handling is based on checking the passed plane against the plane array within the airport and against max capacity, as well as checking for storminess.
 
 ```
-irb
+$ irb
 irb(main):001:0> require './lib/airport.rb
 => true
 irb(main):002:0> port = Airport.new
