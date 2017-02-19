@@ -1,4 +1,6 @@
 class Plane
+  SPEED = 100
+
   attr_reader :flying, :flight, :landed
 
   def initialize
@@ -14,3 +16,8 @@ class Plane
   end
 
 end
+
+  class Concorde < Plane
+    SPEED = 200
+
+  end

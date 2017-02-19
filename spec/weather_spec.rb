@@ -19,5 +19,4 @@ require 'plane'
     expect(weather.conditions).to be_kind_of(Array)
   end
 
-
 end
