@@ -2,7 +2,8 @@
 
 | Object  | Messages     |
 |:-------:|:------------:|
-| plane   | take_off     |
+| plane   | flying?      |
+|         | take_of      |
 |         | land         |
 | airport | full?        |
 |         | set_capacity |
