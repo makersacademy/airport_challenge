@@ -1,0 +1,14 @@
+Object,Message
+Airport,prevent plane takeoffs when weather is stormy
+Airport,prevent plane landings when weather is stormy
+Airport,prevent plane landings when full
+Airport,have a default capacity that can be overridden
+Air Traffic Controller,
+Destination,
+Passenger,
+Plane,land at an airport
+Plane,confirm landing
+Plane,take off from an airport
+Plane,confirm it is no longer in the airport
+System Designer,
+Weather,be stormy sometimes
