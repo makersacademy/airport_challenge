@@ -18,26 +18,29 @@ def check_number_of_planes(airport)
   puts "Number of planes in airport: #{airport.planes.count}"
 end
 
-check_number_of_planes(gatwick)
-
-plane_one = Plane.new
-plane_one.land(gatwick)
-
-check_number_of_planes(gatwick)
-
-plane_two = Plane.new
-plane_two.land(gatwick)
-
-check_number_of_planes(gatwick)
-
-puts "land many planes (fail on 11th plane due to capacity)..."
-
 # Catch and output the error
 begin
-  9.times {
-    puts "Landed? #{Plane.new.land(gatwick)}"
+  11.times {
+    puts "Landing a plane..."
+    Plane.new.land(gatwick)
+    check_number_of_planes(gatwick)
+    puts ""
   }
 rescue StandardError => error
-  check_number_of_planes(gatwick)
+  puts error
+end
+
+puts ""
+puts "A plane is leaving..."
+plane = gatwick.planes[0]
+plane.take_off(gatwick)
+check_number_of_planes(gatwick)
+
+puts ""
+puts "Asking a plane by mistake to take off again..."
+
+begin
+  plane.take_off(gatwick)
+rescue StandardError => error
   puts error
 end
