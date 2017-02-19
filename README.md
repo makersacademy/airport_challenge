@@ -7,6 +7,22 @@ I created an Airport class, empty Plane class and a Weather module. I decided to
 
 The error handling is based on checking the passed plane against the plane array within the airport and against max capacity, as well as checking for storminess.
 
+‘‘‘irb
+irb(main):001:0> require './lib/airport.rb'
+=> true
+irb(main):002:0> port = Airport.new
+=> #<Airport:0x007fb90610e7a0 @capacity=10, @plane_arr=[]>
+irb(main):003:0> plane = Plane.new
+=> #<Plane:0x007fb90601c6f8>
+irb(main):004:0> port.instruct_to_land(plane)
+=> #<Airport:0x007fb90610e7a0 @capacity=10, @plane_arr=[#<Plane:0x007fb90601c6f8>], @plane=#<Plane:0x007fb90601c6f8>>
+irb(main):005:0> port.confirm_landed(plane)
+=> "#<Plane:0x007fb90601c6f8> has landed."
+irb(main):006:0> port.take_off(plane)
+=> []
+irb(main):007:0> port.confirm_takeoff(plane)
+=> "#<Plane:0x007fb90601c6f8> has taken off."‘‘‘
+
 An edge case still exists where if confirm_takeoff is called passing in a plane which has never been at the airport, it will report that it has taken off. Perhaps this is just a badly worded return string, or maybe there should be a "planes that took off" array to check against so the airport has a log of the coming and goings.
 
 All tests are grouped by context.
