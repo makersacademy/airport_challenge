@@ -12,11 +12,11 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+
 Task
 -----
-Week 1 challenge at Makers Academy:
+Week 1 challenge at Makers Academy: Create an airport with TDD and OOD in mind.
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -42,6 +42,17 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+Domain Model
+-----
+| Object  | Messages     |
+|:-------:|:------------:|
+| plane   | flying?      |
+|         | take_of      |
+|         | land         |
+| airport | full?        |
+|         | set_capacity |
+| weather | stormy?      | 
+
 Approach
 -----
 I created three classes: 
