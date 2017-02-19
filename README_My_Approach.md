@@ -6,8 +6,7 @@ I started with the first user case, converted it to functional representation as
 | ------------- |:-------------------------:|
 | Controller    |                           |
 | Plane         | land                      |
-| Airport       | confirm_landing           |
-|               |                           |
+| Airport       | confirm_landing           |                                         
 
 ```
 Plane <-- Land(airport) --> changes status
