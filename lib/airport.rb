@@ -8,24 +8,26 @@ class Airport
     @in_airport = []
     @in_air = []
     @weather = Weather.new.todays_forecast
-    #@todays_forecast = weather
-  end
-
-  def land(plane)
-    #adds plane to the in_airport array
-    @in_airport.push(plane)
   end
 
   def stormy?
     @weather == "stormy" ? true : false
   end
 
+  def land(plane)
+    if stormy?
+      raise "It isn't safe to land."
+    else
+      @in_airport.push(plane)
+    end
+  end
+
   def take_off(plane)
     if stormy?
-    raise "It isn't safe to fly."
-  else
-    @in_air.push(plane)
-  end
+      raise "It isn't safe to fly."
+    else
+      @in_air.push(plane)
+    end
   end
 end
 
