@@ -1,5 +1,4 @@
 require 'airport'
-#require 'weather'
 
 describe Airport do
   let(:plane) {double(:plane)}
