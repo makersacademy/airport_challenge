@@ -3,7 +3,6 @@ require_relative 'weather'
 require_relative 'controller'
 
 class Airport
-
   attr_reader :planes, :capacity, :weather
 
   CAPACITY = 15
@@ -17,20 +16,20 @@ class Airport
   def landing(plane)
     raise 'No more room for planes' if airport_full?
     raise 'Stormy weather, cannot land' if @weather
-
-    plane.landed
-    @planes << plane
+      plane.landed
+      @planes << plane
+      "#{plane} has landed!"
   end
 
   def boarding
+    raise 'The airport has no more planes' if @planes.empty?
     raise 'If array of planes are empty, cannot take of without a plane' if @planes.empty?
     raise 'Sorry, weather too stormy' if @weather
-    boarding_plane = @planes.last
-    boarding_plane.flight
-    @planes.push(boarding_plane)
-    @planes.pop
-
-    raise 'The airport has no more planes' if @planes.empty?
+      boarding_plane = @planes.pop
+      boarding_plane.flight
+      @planes.push(boarding_plane)
+      @planes.pop
+      "#{boarding_plane} has boarded!"
   end
 
   private
@@ -38,7 +37,6 @@ class Airport
   def airport_full?
     @planes.length >= @capacity
   end
-
 
 
 end
