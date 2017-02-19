@@ -1,12 +1,8 @@
 require 'plane'
 describe Plane do
-	describe 'plane respond to attributes' do
-		it 'respond to grounded' do
-		expect(subject.grounded).to eq false
-		end
-		it 'rspond to takeoff' do
+	# subject(:plane){described_class.new}
+	# let(:airport){double :airport}
+	it {is_expected.to respond_to :takeoff}
+	it {is_expected.to respond_to :grounded}
 
-		expect(subject.grounded).to eq false
-		end
-	end
 end

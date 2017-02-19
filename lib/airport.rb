@@ -1,53 +1,59 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 class Airport
 	DEFAULT_CAPACITY = 20
-	attr_reader :weather
-	attr_accessor :capacity, :planes
-	def initialize(capacity=DEFAULT_CAPACITY)
+	attr_reader :planes
+	attr_accessor :capacity 
+	def initialize(capacity = DEFAULT_CAPACITY)
 		@capacity = capacity
 		@planes = [] 
-		@weather = rand 1..2
+		@weather = Weather.new
 	end
 
 	def land(plane)
-		fail "Airport is full" if airport_full
-		#if @weather == 1			
+		if stormy?
+			fail "Bad weather can't land"
+		 elsif airport_full?
+		 	fail "Airport is full"		
+		else					
 			plane.grounded = true
 			plane.takeoff = false		
 			@planes.push(plane)
-		#else
-		#	fail "Weather is stormy for landing"
-		#end
+		end
 	end
 	def takeoff		
-		fail "Airport is empty" if airport_empty
+		if stormy?
+			raise "Bad weather can't takeoff"
+		elsif airport_empty?
+			fail "Airport is empty" 
 		#if @weather == 1
+		else			
+			allow_takeoff	
+		end
+	end
+	def airport_empty?
+		@planes.count == 0
+	end
+	def airport_full?
+	@planes.count == @capacity
+	end
+	def stormy?
+		@weather.weather
+	end
+	private
+	attr_reader :weather
+	def allow_takeoff
 			@planes.each do |plane|
 			plane.takeoff = true
 			plane.grounded = false
 			@planes.delete(plane)
 			return plane
-			end		
-		#else
-		#	fail "weather is too stormy to takeoff" 
-		#end	
+			end	
 	end
-	def airport_empty
-		@planes.count == 0
-	end
-	def airport_full
-	@planes.count == @capacity
-	end
-
 
 
 end		#Airport class
 
-# class Plane
-# 	attr_reader :grounded, :takeoff
-# 	def initialize(status = true, takeoff = false) 
-# 		@grounded = status
-# 		@takeoff = takeoff
-# 	end
 
-# end		
+
+		
