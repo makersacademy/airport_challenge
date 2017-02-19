@@ -3,8 +3,8 @@ require 'airport'
 describe Airport do
   before(:each) do
     @weather_double = double(:weather, :is_stormy? => false)
-    @airport = Airport.new("LHR", Airport::DEFAULT_CAPACITY, @weather_double)
-    @plane = Plane.new
+    # @airport = Airport.new("LHR", Airport::DEFAULT_CAPACITY, @weather_double)
+    # @plane = Plane.new
   end
   let(:london_airport) {Airport.new("LHR", 2, @weather_double)}
   let(:london_plane) {Plane.new}
@@ -47,15 +47,15 @@ describe Airport do
   end
 
   it "gets a request from a landed plane to land, and it raises a status error" do
-    @airport.permission_to_land(@plane)
-    expect{@airport.permission_to_land(@plane)}.to raise_error("Invalid request")
+    london_airport.permission_to_land(london_plane)
+    expect{london_airport.permission_to_land(london_plane)}.to raise_error("Invalid request")
   end
 
   it "gets a request from an in-flight plan to take off, and it raises a status error" do
-    @airport.permission_to_land(london_plane)
-    @airport.permission_to_land(new_york_plane)
-    @airport.permission_to_take_off(london_plane)
-    expect{@airport.permission_to_take_off(london_plane)}.to raise_error("Invalid request")
+    london_airport.permission_to_land(london_plane)
+    london_airport.permission_to_land(new_york_plane)
+    london_airport.permission_to_take_off(london_plane)
+    expect{london_airport.permission_to_take_off(london_plane)}.to raise_error("Invalid request")
   end
 
   it "gets a request from a landed flight in another airport to take-off, and raises an error" do
@@ -64,29 +64,17 @@ describe Airport do
     expect {london_airport.permission_to_take_off(new_york_plane)}.to raise_error("Invalid request")
   end
 
-
-  it "confirms a plane has landed and counts it in" do
-    @airport.permission_to_land(@plane)
-    expect(@airport.planes.last).to eq @plane
-  end
-
-  it "gets a confirmation of take-off from plane" do
-    @airport.confirm_take_off(@plane)
-    expect(@airport.planes.count).to eq 0
-
-  end
-
   it "gets request from a plane to land, and it doesn't allow it to land because it is at capacity" do
-    (@airport.capacity).times {@airport.permission_to_land(Plane.new(@airport, "In-Flight"))}
-    expect{@airport.permission_to_land(@plane)}.to raise_error("Airport at capacity")
+    (london_airport.capacity).times {london_airport.permission_to_land(Plane.new)}
+    expect{london_airport.permission_to_land(london_plane)}.to raise_error("Airport at capacity")
   end
 
   it "doesn't allow any take offs from an empty airport" do
-    @airport.permission_to_land(london_plane)
-    @airport.permission_to_land(new_york_plane)
-    @airport.permission_to_take_off(london_plane)
-    @airport.permission_to_take_off(new_york_plane)
-    expect{@airport.permission_to_take_off(@plane)}.to raise_error("Airport empty")
+    london_airport.permission_to_land(london_plane)
+    london_airport.permission_to_land(new_york_plane)
+    london_airport.permission_to_take_off(london_plane)
+    london_airport.permission_to_take_off(new_york_plane)
+    expect{london_airport.permission_to_take_off(Plane.new)}.to raise_error("Airport empty")
   end
 
   it "allows plan from another aiport to land and take off" do
@@ -95,6 +83,17 @@ describe Airport do
     new_york_airport.permission_to_take_off(new_york_plane)
     london_airport.permission_to_land(new_york_plane)
     expect(new_york_plane.location).to eq london_airport.name
+  end
+
+  it "Planes count increase after a successful landing" do
+    london_airport.permission_to_land(london_plane)
+    expect(london_airport.planes.count).to eq 1
+  end
+
+  it "Planes count decrease after a successful take_off" do
+    london_airport.permission_to_land(london_plane)
+    london_airport.permission_to_take_off(london_plane)
+    expect(london_airport.planes.count).to eq 0
   end
 
 end
