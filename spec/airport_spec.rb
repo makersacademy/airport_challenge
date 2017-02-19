@@ -81,10 +81,19 @@ describe Airport do
     end
   end
 
-  describe 'weather_generator', :focus_weather => true do
+  describe '#weather_generator', :focus_weather => true do
     it 'random weather generates a stormy weather condition' do
       allow(subject).to receive(:weather_generator).and_return(3)
       expect(subject.weather_generator).to eq 3
+    end
+  end
+
+  describe '#landed_planes' do
+    it 'confirms correct amount still at airport after multiple landings/take-offs' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      18.times { subject.land_plane }
+      13.times { subject.take_off }
+      expect(subject.landed_planes).to eq 5
     end
   end
 end
