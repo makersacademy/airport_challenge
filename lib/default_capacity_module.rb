@@ -1,5 +1,5 @@
 module DefaultCapacity
-LOW=10
-MEDIUM=20
+LOW=12
+MEDIUM=25
 HIGH=40
 end

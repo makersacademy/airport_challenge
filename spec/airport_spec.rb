@@ -12,30 +12,16 @@ describe Airport do
       expect(subject.land_plane).to eq plane
     end
 
-    let(:weather) { double :weather }
     it 'raises an error when trying to land when airport is full', :full => true do
-      #subject.land_plane double(:weather)
-      allow(weather).to receive(:weather_generator).and_return(1)
+      allow(subject).to receive(:stormy?).and_return(false)
       DefaultCapacity::MEDIUM.times { subject.land_plane }
       expect { subject.land_plane }.to raise_error 'Airport full'
     end
 
   # cannot work out how to test for a puts statement output.
   # use something like capybara?
+  # it 'tests to see whether the correct landing information is displayed after land command' do
 
-    # it 'tests to see whether the correct landing information is displayed after land command' do
-    #   allow(subject).to receive(:stormy?).and_return(false)
-    #   subject.land_plane
-    #   #allow(subject).to receive(:puts).and_return('There is currently 1 plane that has landed.')
-    #   expect(subject.land_plane).to eq('There is currently 1 plane that has landed.')
-    # end
-    #   it 'tests to see whether the correct landing information is displayed after land command' do
-    #
-    #   5.times { subject.land_plane }
-    #   #allow(subject).to receive(:puts).and_return('There is currently 1 plane that has landed.')
-    #   #expect(subject.land_plane).to output ('There is currently 1 plane that has landed.')
-    #   specify { expect { subject.land_plane }.to output('foo').to_stdout }
-    # end
 
     it 'raises an error when trying to land plane in stormy weather' do
       allow(subject).to receive(:stormy?).and_return(true)
@@ -45,7 +31,6 @@ describe Airport do
 
   describe '#confirm_landed?' do
     it 'confirms the correct plane has landed at airport' do
-      #plane = Plane.new
       allow(subject).to receive(:available_plane?).and_return(true)
       allow(subject).to receive(:stormy?).and_return(false)
       subject.land_plane

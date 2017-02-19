@@ -4,17 +4,26 @@ require_relative 'default_capacity_module'
 
 class Airport
 
-  attr_reader :taken_off, :landed, :current_plane, :weather
+  attr_reader :taken_off, :landed, :current_plane, :weather, :weather_condition
 
   def initialize
     @landed = []
     @taken_off = []
     @current_plane = []
     @weather = Weather.new
+    @weather_condition = 1
   end
 
   def confirm_landed?
     if (@current_plane == @landed[-1])
+      true
+    else
+      false
+    end
+  end
+
+  def stormy?
+    if (@weather_condition == 'stormy')
       true
     else
       false
@@ -28,23 +37,12 @@ class Airport
       false
     end
   end
-# will randomly decide whether it is stormy or not
-  # def stormy?(weather=@weather)
-  #   if (weather == 3)
-  #     true
-  #   else
-  #     false
-  #   end
-  # end
-  #
-  # def weather_generator
-  #   @weather = [1,1,2,2,2,2,3,4,5].sample
-  #end
+
 # will land plane if weather is not stormy and there is space available at airport
   def land_plane
     fail 'Airport full' if airport_full?
-    @weather.weather_generator
-    if @weather.stormy?
+    @weather_condition = @weather.weather_generator
+    if stormy?
       fail 'Stormy weather preventing landing'
     else
       #@landing_plane = Plane.new
@@ -88,11 +86,11 @@ class Airport
       false
     end
   end
-# will allow plane to take off if the weather is not stormy and there is an available plane
+  # will allow plane to take off if the weather is not stormy and there is an available plane
   def take_off
     fail 'No available planes' if !available_plane?
-    @weather.weather_generator
-      if @weather.stormy?
+    @weather_condition = @weather.weather_generator
+      if stormy?
         fail 'Stormy weather preventing take-off'
       else
         @current_plane = landed.pop
