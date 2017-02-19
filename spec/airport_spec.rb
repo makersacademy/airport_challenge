@@ -35,7 +35,7 @@ describe Airport do
       it "checks if the airport is full" do
         @ten_planes = []
         10.times {@ten_planes << Plane.new}
-        allow(subject).to receive(:planes).and_return(@ten_planes)
+        subject.instance_variable_set(:@planes, @ten_planes)
         expect(subject).to be_full
       end
     end
