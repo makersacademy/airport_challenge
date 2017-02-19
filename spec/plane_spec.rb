@@ -48,7 +48,7 @@ describe Plane do
     expect(plane.airport).to eq nil
   end
 
-  it "should no take off when airport doesn't give permission to take off" do
+  it "should not take off when airport doesn't give permission to take off" do
     airport = double(:airport)
     plane = Plane.new(airport)
     allow(airport).to receive(:request_take_off).and_return(false)
@@ -65,9 +65,14 @@ describe Plane do
   end
 
   it "should raise an error when a plane is instructed to land, but it's alredy landed" do
-    airport = double(:airport)
-    plane = Plane.new(airport_that_allows_landing)
-    expect { plane.land(airport_that_allows_landing) }.to raise_error "The plane has already landed!"
+    airport = airport_that_allows_landing
+    plane = Plane.new(airport)
+    expect { plane.land(airport) }.to raise_error "The plane has already landed!"
+  end
+
+  it "should raise an error when a plane that has alredy taken off tries to take off" do
+    airport = airport_that_allows_take_off
+    expect { subject.take_off(airport) }.to raise_error "The plane has already taken off!"
   end
 
 end
