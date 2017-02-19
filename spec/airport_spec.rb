@@ -4,7 +4,7 @@ describe Airport do
   before(:each) do
     weather_double = double(:weather, :is_stormy? => false)
     @airport = Airport.new(Airport::DEFAULT_CAPACITY, weather_double)
-    @plane = Plane.new(@airport)
+    @plane = Plane.new
   end
 
   # it "responds to is_full?" do # is_full? privately used by landing method
@@ -40,18 +40,21 @@ describe Airport do
   end
 
   it "gets a request from an in-flight plan to take off, and it raises a status error" do
-    @airport.permission_to_land(@plane)
-    @airport.permission_to_take_off(@plane)
-    expect{@airport.permission_to_take_off(@plane)}.to raise_error("Invalid request")
+    ba_plane = Plane.new
+    sa_plane = Plane.new
+    @airport.permission_to_land(ba_plane)
+    @airport.permission_to_land(sa_plane)
+    @airport.permission_to_take_off(ba_plane)
+    expect{@airport.permission_to_take_off(ba_plane)}.to raise_error("Invalid request")
   end
 
-  it "gets a request from a landed flight in another airport to take-off, and raises an error" , :focus => true do
+  it "gets a request from a landed flight in another airport to take-off, and raises an error" do
     london_airport = Airport.new(2, double(:weather, :is_stormy? => false))
     london_plane = Plane.new(london_airport)
-    london_airport.confirm_landing(london_plane)
+    london_airport.permission_to_land(london_plane)
     new_york_airport = Airport.new(5, double(:weather, :is_stormy? => false))
     new_york_plane = Plane.new(new_york_airport)
-    new_york_airport.confirm_landing(new_york_plane)
+    new_york_airport.permission_to_land(new_york_plane)
     expect {london_airport.permission_to_take_off(new_york_plane)}.to raise_error("Invalid request")
   end
 
@@ -73,8 +76,8 @@ describe Airport do
   end
 
   it "doesn't allow any take offs from an empty airport" do
-    ba_plane = Plane.new(@airport)
-    sa_plane = Plane.new(@airport)
+    ba_plane = Plane.new
+    sa_plane = Plane.new
     @airport.permission_to_land(ba_plane)
     @airport.permission_to_land(sa_plane)
     @airport.permission_to_take_off(ba_plane)

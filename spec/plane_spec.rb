@@ -5,7 +5,7 @@ require 'plane'
 describe Plane do
   before(:each) do
     @airport = Airport.new
-    @plane = Plane.new(@airport)
+    @plane = Plane.new
   end
 
   it "lands when instructed to land" do

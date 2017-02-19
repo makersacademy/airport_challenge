@@ -1,7 +1,7 @@
 class Plane
   attr_reader :status, :airport # plane can be at airport or in-flight
 
-  def initialize(airport, status = "Brand New")
+  def initialize(airport = "factory", status = "Brand New")
     @airport = airport
     @status = status
   end
