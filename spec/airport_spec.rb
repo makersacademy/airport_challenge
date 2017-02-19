@@ -35,6 +35,13 @@ describe "airport-challenge" do
       expect(subject.land(Plane.new)).not_to eq("The plane has landed.")
     end
 
+    it "should not land when airport is full" do
+      weather = Weather.new
+      allow(weather).to receive(:stormy?) { false }
+      subject = Airport.new(weather.stormy?)
+      subject.land(Plane.new)
+      expect(subject.land(Plane.new)).to eq("Airport full.")
+    end
 
   end
 

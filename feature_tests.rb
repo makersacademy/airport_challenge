@@ -11,6 +11,10 @@ airplane = Plane.new
 
 p airport.land(airplane)
 
+p airport.land(airplane)
+
 p airport.take_off
+
+p airport.land(airplane)
 
 #p airport.take_off(forecast)
