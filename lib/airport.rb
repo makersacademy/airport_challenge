@@ -18,7 +18,7 @@ class Airport
   def instruct_to_land(plane)
     @plane = plane
     fail "Landing not permitted as max capacity has been reached." if at_capacity?
-    fail "#{@plane} is still in the airport." if at_airport?
+    fail "#{@plane} is in the airport." if at_airport?
     fail "Landing not permitted due to stormy weather." if stormy?
     @plane_arr << @plane
     self
@@ -27,7 +27,7 @@ class Airport
   def take_off(plane)
     @plane = plane
     fail "#{@plane} is not in the airport." unless at_airport?
-    fail "Takeoff not permitted due to stormy weather." if stormy?
+    fail "Take off not permitted due to stormy weather." if stormy?
     @plane_arr.delete_if { |p| p == @plane }
   end
 
