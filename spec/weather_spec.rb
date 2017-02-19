@@ -2,8 +2,8 @@ require 'weather'
 require 'airport'
 
 describe Weather do
-
   let(:airport) { Airport.new }
+  
   it 'is stormy' do
     allow(airport).to receive(:stormy?) {true}
     expect(airport.stormy?).to eq(true)

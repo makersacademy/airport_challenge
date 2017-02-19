@@ -27,6 +27,7 @@ class Airport
   def add_plane
     plane = Plane.new
     @planes_in_airport << plane
+    return plane
   end
 
   private
