@@ -45,7 +45,6 @@ class Airport
     if stormy?
       fail 'Stormy weather preventing landing'
     else
-      #@landing_plane = Plane.new
       @current_plane = Plane.new
       @landed << @current_plane
       display_airport_information

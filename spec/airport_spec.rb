@@ -20,7 +20,7 @@ describe Airport do
 
   # cannot work out how to test for a puts statement output.
   # use something like capybara?
-  # it 'tests to see whether the correct landing information is displayed after land command' do
+  # to test to see whether the correct landing information is displayed after land command
 
 
     it 'raises an error when trying to land plane in stormy weather' do
