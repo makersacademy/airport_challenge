@@ -5,6 +5,7 @@ require 'plane'
 describe Airport do
 
 subject(:airport) { described_class.new }
+subject(:other_airport) { described_class.new }
 let(:plane) { double :plane }
 
   it 'responds to land plane' do
@@ -34,7 +35,7 @@ let(:plane) { double :plane }
    it 'lets a plane take off' do
    plane = Plane.new
    plane.landed
-   expect(subject.take_off(plane)).to eq false
+   expect(airport.instance_variable_get(:@planes)).to eq []
   end
  end
 
@@ -78,6 +79,17 @@ describe '#land' do
         allow(plane).to receive(:on_the_ground).and_return false
         message =  "This plane is already in the air"
         expect{airport.take_off(plane)}.to raise_error message
+      end
+    end
+
+  describe '#take_off' do
+   it 'should not allow take_off if plane not at airport' do
+        airport.land(plane)
+        airport.take_off(plane)
+        # allow(plane).to receive(:on_the_ground).and_return false
+        # allow(plane).to receive(:taken_off)
+        message =  "This plane is not at this airport"
+        expect{other_airport.take_off(plane)}.to raise_error message
       end
     end
 
