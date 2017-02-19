@@ -1,9 +1,9 @@
 class Plane
   attr_reader :status, :location
 
-  def initialize(location = "factory", status = "Brand New")
-    @location = location # this variable is passed in during the land or take_off instruction
-    @status = status # plane can be "Brand New", "Landed", "In-Flight"
+  def initialize
+    @location = "Factory" # this variable is passed in during the land or take_off instruction
+    @status = "Brand New" # plane can be "Brand New", "Landed", "In-Flight"
   end
 
   def land(location)

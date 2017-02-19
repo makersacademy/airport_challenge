@@ -8,6 +8,14 @@ describe Plane do
     @plane = Plane.new
   end
 
+  it "initial location is 'Factory'" do
+    expect(@plane.location).to eq "Factory"
+  end
+
+  it "initial state is 'Brand New'" do
+    expect(@plane.status).to eq "Brand New"
+  end
+
   it "lands when instructed to land" do
     expect(@plane).to respond_to(:land).with(1).argument
   end

@@ -8,7 +8,7 @@ new_york_airport = Airport.new("EWR")
 p "New york airport has a default capacity of #{new_york_airport.capacity}"
 chicago_airport = Airport.new("ORD", 15)
 p "Chicago airport has a capacity of #{chicago_airport.capacity}"
-london_plane = Plane.new # arguments : location(opt), status(opt)
+london_plane = Plane.new 
 # london_airport.initiate_landing_procedure(london_plane)
 new_york_plane = Plane.new
 chicago_plane = Plane.new
