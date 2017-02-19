@@ -21,78 +21,78 @@ describe Airport do
 
 
   it "gets a request from a landed plane to take-off, and allows it to take-off", :focus => true do
-    london_airport.permission_to_land(london_plane)
-    expect(london_airport.permission_to_take_off(london_plane)).to be true
+    london_airport.initiate_landing_procedure(london_plane)
+    expect(london_airport.initiate_take_off_procedure(london_plane)).to be true
   end
 
   it "confirms that a flight has taken off" do
-    london_airport.permission_to_land(london_plane)
-    london_airport.permission_to_take_off(london_plane)
+    london_airport.initiate_landing_procedure(london_plane)
+    london_airport.initiate_take_off_procedure(london_plane)
     expect(london_plane.status).to eq "In-Flight"
     expect(london_airport.planes).to_not include(london_plane)
   end
 
   it "gets a request from a in-flight plane to land, and allows it to land" do
-    london_airport.permission_to_land(london_plane)
-    london_airport.permission_to_take_off(london_plane)
-    expect(london_airport.permission_to_land(london_plane)).to eq true
+    london_airport.initiate_landing_procedure(london_plane)
+    london_airport.initiate_take_off_procedure(london_plane)
+    expect(london_airport.initiate_landing_procedure(london_plane)).to eq true
   end
 
   it "confirms that a flight has landed" do
-    london_airport.permission_to_land(london_plane)
-    london_airport.permission_to_take_off(london_plane)
-    london_airport.permission_to_land(london_plane)
+    london_airport.initiate_landing_procedure(london_plane)
+    london_airport.initiate_take_off_procedure(london_plane)
+    london_airport.initiate_landing_procedure(london_plane)
     expect(london_plane.status).to eq "Landed"
     expect(london_airport.planes).to include(london_plane)
   end
 
   it "gets a request from a landed plane to land, and it raises a status error" do
-    london_airport.permission_to_land(london_plane)
-    expect{london_airport.permission_to_land(london_plane)}.to raise_error("Sorry, You are already on ground")
+    london_airport.initiate_landing_procedure(london_plane)
+    expect{london_airport.initiate_landing_procedure(london_plane)}.to raise_error("Sorry, You are already on ground")
   end
 
   it "gets a request from an in-flight plan to take off, and it raises a status error" do
-    london_airport.permission_to_land(london_plane)
-    london_airport.permission_to_land(new_york_plane)
-    london_airport.permission_to_take_off(london_plane)
-    expect{london_airport.permission_to_take_off(london_plane)}.to raise_error("Sorry, You are either flying or not at #{london_airport.name}")
+    london_airport.initiate_landing_procedure(london_plane)
+    london_airport.initiate_landing_procedure(new_york_plane)
+    london_airport.initiate_take_off_procedure(london_plane)
+    expect{london_airport.initiate_take_off_procedure(london_plane)}.to raise_error("Sorry, You are either flying or not at #{london_airport.name}")
   end
 
   it "gets a request from a landed flight in another airport to take-off, and raises an error" do
-    london_airport.permission_to_land(london_plane)
-    new_york_airport.permission_to_land(new_york_plane)
-    expect {london_airport.permission_to_take_off(new_york_plane)}.to raise_error("Sorry, You are either flying or not at #{london_airport.name}")
+    london_airport.initiate_landing_procedure(london_plane)
+    new_york_airport.initiate_landing_procedure(new_york_plane)
+    expect {london_airport.initiate_take_off_procedure(new_york_plane)}.to raise_error("Sorry, You are either flying or not at #{london_airport.name}")
   end
 
   it "gets request from a plane to land, and it doesn't allow it to land because it is at capacity" do
-    (london_airport.capacity).times {london_airport.permission_to_land(Plane.new)}
-    expect{london_airport.permission_to_land(london_plane)}.to raise_error("Airport at capacity")
+    (london_airport.capacity).times {london_airport.initiate_landing_procedure(Plane.new)}
+    expect{london_airport.initiate_landing_procedure(london_plane)}.to raise_error("Airport at capacity")
   end
 
   it "doesn't allow any take offs from an empty airport" do
-    london_airport.permission_to_land(london_plane)
-    london_airport.permission_to_land(new_york_plane)
-    london_airport.permission_to_take_off(london_plane)
-    london_airport.permission_to_take_off(new_york_plane)
-    expect{london_airport.permission_to_take_off(Plane.new)}.to raise_error("Airport empty")
+    london_airport.initiate_landing_procedure(london_plane)
+    london_airport.initiate_landing_procedure(new_york_plane)
+    london_airport.initiate_take_off_procedure(london_plane)
+    london_airport.initiate_take_off_procedure(new_york_plane)
+    expect{london_airport.initiate_take_off_procedure(Plane.new)}.to raise_error("Airport empty")
   end
 
   it "allows plan from another aiport to land and take off" do
-    london_airport.permission_to_land(london_plane)
-    new_york_airport.permission_to_land(new_york_plane)
-    new_york_airport.permission_to_take_off(new_york_plane)
-    london_airport.permission_to_land(new_york_plane)
+    london_airport.initiate_landing_procedure(london_plane)
+    new_york_airport.initiate_landing_procedure(new_york_plane)
+    new_york_airport.initiate_take_off_procedure(new_york_plane)
+    london_airport.initiate_landing_procedure(new_york_plane)
     expect(new_york_plane.location).to eq london_airport.name
   end
 
   it "Planes count increase after a successful landing" do
-    london_airport.permission_to_land(london_plane)
+    london_airport.initiate_landing_procedure(london_plane)
     expect(london_airport.planes.count).to eq 1
   end
 
   it "Planes count decrease after a successful take_off" do
-    london_airport.permission_to_land(london_plane)
-    london_airport.permission_to_take_off(london_plane)
+    london_airport.initiate_landing_procedure(london_plane)
+    london_airport.initiate_take_off_procedure(london_plane)
     expect(london_airport.planes.count).to eq 0
   end
 
