@@ -27,6 +27,8 @@ class Airport
     true
   end
 
+  private
+  
   def confirm_landing(plane)
     planes << plane if (plane.status == "Landed" && plane.location == self.name)
   end
@@ -34,8 +36,6 @@ class Airport
   def confirm_take_off(plane)
     planes.delete(plane) if (plane.status == "In-Flight" && plane.location == self.name)
   end
-
-  private
 
   def is_full?
     planes.count >= capacity
