@@ -1,5 +1,6 @@
 require 'airport'
 include DefaultCapacity
+require 'weather'
 
 describe Airport do
 
@@ -11,8 +12,10 @@ describe Airport do
       expect(subject.land_plane).to eq plane
     end
 
-    it 'raises an error when trying to land when airport is full' do
-      allow(subject).to receive(:stormy?).and_return(false)
+    let(:weather) { double :weather }
+    it 'raises an error when trying to land when airport is full', :full => true do
+      #subject.land_plane double(:weather)
+      allow(weather).to receive(:weather_generator).and_return(1)
       DefaultCapacity::MEDIUM.times { subject.land_plane }
       expect { subject.land_plane }.to raise_error 'Airport full'
     end
@@ -42,7 +45,7 @@ describe Airport do
 
   describe '#confirm_landed?' do
     it 'confirms the correct plane has landed at airport' do
-      plane = Plane.new
+      #plane = Plane.new
       allow(subject).to receive(:available_plane?).and_return(true)
       allow(subject).to receive(:stormy?).and_return(false)
       subject.land_plane
