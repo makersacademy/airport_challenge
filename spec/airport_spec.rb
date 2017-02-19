@@ -53,9 +53,8 @@ describe Airport do
       subject.land(plane)
       subject.take_off(plane)
       expect { subject.take_off(plane) }.to raise_error 'Plane not at airport'
-
     end
-
+    
     it 'doesn\'t allow take off when weather too stormy' do
       takeoff_error = 'Cannot take off, too stormy'
       subject.land(plane)
