@@ -2,14 +2,13 @@ require 'airport'
 
 describe Airport do
   before(:each) do
-    weather_double = double(:weather, :is_stormy? => false)
-    @airport = Airport.new("LHR", Airport::DEFAULT_CAPACITY, weather_double)
+    @weather_double = double(:weather, :is_stormy? => false)
+    @airport = Airport.new("LHR", Airport::DEFAULT_CAPACITY, @weather_double)
     @plane = Plane.new
   end
-
-  let(:london_airport) {Airport.new("LHR", 2, double(:weather, :is_stormy? => false))}
+  let(:london_airport) {Airport.new("LHR", 2, @weather_double)}
   let(:london_plane) {Plane.new}
-  let(:new_york_airport ) {Airport.new("EWR", 5, double(:weather, :is_stormy? => false))}
+  let(:new_york_airport ) {Airport.new("EWR", 5, @weather_double)}
   let(:new_york_plane)  {Plane.new}
 
   it "has a default capacity" do
