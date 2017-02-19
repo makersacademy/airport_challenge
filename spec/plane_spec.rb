@@ -48,4 +48,12 @@ describe Plane do
     expect(plane.airport).to eq nil
   end
 
+  it "should no take off when airport doesn't give permission to take off" do
+    airport = double(:airport)
+    plane = Plane.new(airport)
+    allow(airport).to receive(:request_take_off).and_return(false)
+    plane.take_off(airport)
+    expect(plane.airport).to eq airport
+  end
+
 end
