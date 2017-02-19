@@ -2,21 +2,22 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :plane, :planes, :take_off, :stormy, :full
+  attr_reader :planes, :take_off, :stormy, :full
 
   DEFAULT_CAPACITY = 10
 
   def initialize
     @planes = [] #in airport
     @weather = Weather.new.todays_forecast
+    @capacity = DEFAULT_CAPACITY
   end
 
   def stormy?
-    @weather == "stormy" ? true : false
+    @weather == "stormy"
   end
 
   def full?
-     @planes.size == DEFAULT_CAPACITY
+     @planes.size == @capacity
   end
 
   def land(plane)
