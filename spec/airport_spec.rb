@@ -6,7 +6,7 @@ describe Airport do
   let(:plane) { double :plane }
 
   before do
-    allow(subject).to receive(:stormy?).and_return false
+    allow(Weather).to receive(:stormy?).and_return false
   end
 
   it 'is able to set capacity of airport' do
@@ -36,7 +36,7 @@ describe Airport do
 
     it 'doesn\'t land a plane when weather too stormy' do
       land_error = 'Cannot land, too stormy'
-      allow(subject).to receive(:stormy?).and_return(true)
+      allow(Weather).to receive(:stormy?).and_return(true)
       expect{ subject.land(plane) }.to raise_error land_error
     end
   end
@@ -59,7 +59,7 @@ describe Airport do
     it 'doesn\'t allow take off when weather too stormy' do
       takeoff_error = 'Cannot take off, too stormy'
       subject.land(plane)
-      allow(subject).to receive(:stormy?).and_return(true)
+      allow(Weather).to receive(:stormy?).and_return(true)
       expect{ subject.take_off(plane) }.to raise_error takeoff_error
     end
   end
