@@ -7,21 +7,18 @@ class Plane
   attr_reader :current_status
 
   def land(airport)
-    fail "Plane is already in airport" unless able_to_land?
-    fail "Plane cannot land due to stormy weather" if unsuitable_weather?
-    fail "Airport is full" if airport.full?
-    # checks_before_landing(airport)
+    checks_before_landing(airport)
     airport.planes << self
     @current_status = "In airport"
     confirm_landing
 
   end
 
-  # def checks_before_landing(airport)
-  #   fail "Plane is already in airport" unless able_to_land?
-  #   fail "Plane cannot land due to stormy weather" if unsuitable_weather?
-  #   fail "Airport is full" if airport.full?
-  # end
+  def checks_before_landing(airport)
+    fail "Plane is already in airport" unless able_to_land?
+    fail "Plane cannot land due to stormy weather" if unsuitable_weather?
+    fail "Airport is full" if airport.full?
+  end
 
   def able_to_land?
     self.current_status != "In airport"
