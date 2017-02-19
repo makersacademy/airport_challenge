@@ -13,18 +13,28 @@ class Airport
 
   def land(plane)
     raise "Airport is full" if airport_full?
+    raise "Too stormy for landing" if stormy?
+    #raise "Plane already landed" if @planes.include?(plane)
     plane.landed
     @planes << plane
   end
 
   def take_off
     raise "Airport is empty" if airport_empty?
+    raise "Too stormy for take off" if stormy?
+    #raise "Plane is already flying" if plane.in_flight?
     plane = @planes.pop
     plane.flying
     plane
   end
 
+
+
   private
+
+  def stormy?
+    Weather.new.randomize
+  end
 
   def airport_full?
     @planes.count == capacity

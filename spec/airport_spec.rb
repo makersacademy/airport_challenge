@@ -50,6 +50,7 @@ describe Airport do
   end
 
   describe "guard conditions" do
+
     it 'raises an error when there are no planes available to take off' do
       expect { subject.take_off }.to raise_error "Airport is empty"
     end
@@ -58,6 +59,23 @@ describe Airport do
       subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error("Airport is full")
     end
+
+    it 'raises an error when it is too stormy to take off' do
+
+    end
+
+    it 'raises an error when it is too stormy to land' do
+
+    end
+
+    it 'raises an error when if a plane tries to land that is already in airport' do
+
+    end
+
+    it 'raises an error when if a plane tries to take off that is already in flight' do
+
+    end
+
   end
 
 

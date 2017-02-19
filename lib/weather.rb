@@ -1,6 +1,8 @@
 class Weather
-  def stormy?(weight = 90)
+
+  def randomize(weight = 50)
     rand <= weight/100
-    rand > 0.5 ? false : true
+    rand > 0.5 ? true : false
   end
+
 end
