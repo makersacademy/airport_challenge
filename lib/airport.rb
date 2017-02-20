@@ -1,10 +1,9 @@
 class Airport
-
+  attr_accessor :airplanes_landed
   def initialize(forecast)
     @forecast = forecast
     @airplanes_landed = []
   end
-
 
   def land(airplane)
     storm_check
@@ -17,6 +16,7 @@ class Airport
     @airplanes_landed.pop unless empty
     plane_left
   end
+
 
   private
 

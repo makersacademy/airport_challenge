@@ -15,6 +15,13 @@ describe "airport-challenge" do
     let(:weather) { Weather.new }
     subject(:airport) { described_class.new(weather.stormy?) }
 
+    it "holds the number of landed planes" do
+      expect(airport.airplanes_landed).to be_an_instance_of Array
+    end
+
+    it "holds a number for the default capacity" do
+      expect(Airport::DEFAULT_CAPACITY).to be_an_instance_of Fixnum
+    end
 
     describe "#land(airplane)" do
       before(:each) do

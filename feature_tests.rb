@@ -3,22 +3,20 @@ require './lib/plane.rb'
 require './lib/weather.rb'
 
 
-forecast = Weather.new.stormy?
+p forecast = Weather.new.stormy?
 
-#forecast = false
+forecast = false
 
-airport = Airport.new(forecast)
+p airport = Airport.new(forecast)
 
-#p airport.take_off
+p airport.take_off
 
-p 9.times{p airport.land(Plane.new)}
+p 10.times{p airport.land(Plane.new)}
 
 plane = Plane.new
 
-#p airport.take_off
-
-#p airport.land(plane)
+p airport.take_off
 
 p airport.land(plane)
 
-p airport#.plane_list
+p airport.land(plane)
