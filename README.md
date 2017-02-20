@@ -1,4 +1,16 @@
-Airport Challenge
+# Airport Challenge #
+
+
+This airport program has features for taking of and landing planes in an airport. I pushed planes into two separate arrays called `landed_planes` and `airborne_planes`. I did this to make things easier to understand and manage.
+
+I used an array of symbols and used `.sample` on the array to generate a random weather outcome and used stubs in my `rspec` tests to ensure the tests ran properly.
+
+I didn't manage to account for the main flaw in the program that is, you can still call the `take_off` method on a flying plane, and likewise, call the `land` method on a landed plane.
+
+I ran out of time but I have the basis of how I might have solved these issues already in my plane.rb file. I was going to assign a true or false value to the `@flying` instance variable and use that to raise errors in my `land` and `take_off` methods, similar to how I did for capacity checks.
+
+This challenge was meant to teach us how to effectively double and stub our tests correctly. The random weather would need to be stubbed for my tests to consistently pass.
+
 =================
 
 ```
@@ -13,48 +25,47 @@ Airport Challenge
 
 ```
 
+What is it?
+---------
+A fully functional Airport model at which planes can land and take off complete with randomised weather restrictions.
+
 Instructions
 ---------
+1. Clone this repo
+2. if you don't have bundler, run the command `gem install bundler`
+3. run `bundle`
+4. open a REPL, and follow the example below
+![Alt text](./airport_screenshot.png)
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
+My approach
 -------
+At the time of writing this code I was half way through Sandi Mets' 'Practical Object Oriented Design In Ruby' and I had only been test driving my development for five days. As a result my main objective in this task was to get a high test coverage and implement as many of the POODIR teachings as possible.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
+Original specification
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,9 +84,9 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+You should be the judge of how much challenge you want this weekend.
 
 **BONUS**
 
@@ -88,3 +99,6 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+[![Build Status](https://travis-ci.org/Chrixs/airport_challenge.svg?branch=master)](https://travis-ci.org/Chrixs/airport_challenge)
