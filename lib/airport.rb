@@ -1,24 +1,35 @@
-require_relative 'plane'
-
+require_relative 'weather'
 class Airport
+  CAPACITY = 20
 
-  def initialize
-    @gateways = []
+  def initialize(weather, planes = [])
+    @planes = planes
+    @weather = weather
   end
 
   def land(plane)
-    @gateways << plane
-    @gateways.last
+    raise "You cannot land the same plane" if planes.include?(plane)
+    raise "The weather is too stormy for landing" if @weather.stormy?
+    raise "Landing is not permitted as airport has reached capacity" if self.full?
+    planes << plane
+    plane.land!
+    plane
   end
 
   def take_off(plane)
-    @gateways -=[plane]
-    @gateways
+    raise "The plane has already taken off" unless planes.include?(plane)
+    raise "The weather is too stormy for take_off" if @weather.stormy?
+    planes.reject! { |p| p == plane }
+    plane.take_off!
+    planes
   end
 
-  def empty_gateway(plane) # Consider using empty_gateway? instead
-    message = "The gateway is empty as #{plane} has taken off."
-    return message unless @gateways.include?(plane)
+  def full?
+    planes.count == CAPACITY
   end
+
+  private
+
+  attr_accessor :planes
 
 end
