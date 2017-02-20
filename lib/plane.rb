@@ -24,13 +24,13 @@ private
 
   def checks_before_landing(airport)
     fail "Plane is already in airport" unless able_to_land?
-    fail "Plane cannot land due to stormy weather" if unsuitable_weather?
+    fail "Plane cannot land due to stormy weather" if stormy?
     fail "Airport is full" if airport.full?
   end
 
   def checks_before_takeoff(airport)
     fail "Plane is not in this airport" unless able_to_take_off?(airport)
-    fail "Plane cannot take off due to stormy weather" if unsuitable_weather?
+    fail "Plane cannot take off due to stormy weather" if stormy?
   end
 
   def able_to_land?
@@ -47,10 +47,6 @@ private
 
   def confirm_take_off
     "Plane has taken off"
-  end
-
-  def unsuitable_weather?
-    stormy?
   end
 
 end

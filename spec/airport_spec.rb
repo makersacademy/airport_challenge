@@ -20,9 +20,10 @@ describe Airport do
   end
 
   describe "keeps track of planes" do
+
     before :each do
       @plane = Plane.new
-      allow(@plane).to receive(:unsuitable_weather?).and_return(false)
+      allow(@plane).to receive(:stormy?).and_return(false)
     end
 
     it "can keep track of a plane that has landed" do
@@ -32,9 +33,9 @@ describe Airport do
 
     describe '.full?' do
       it "checks if the airport is full" do
-        @ten_planes = []
-        10.times {@ten_planes << Plane.new}
-        airport.instance_variable_set(:@planes, @ten_planes)
+        ten_planes = []
+        10.times {ten_planes << Plane.new}
+        airport.instance_variable_set(:@planes, ten_planes)
         expect(airport).to be_full
       end
     end
