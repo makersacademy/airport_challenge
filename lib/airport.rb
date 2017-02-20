@@ -2,9 +2,10 @@ require_relative 'weather'
 class Airport
   CAPACITY = 20
 
-  def initialize(weather, planes = [])
+  def initialize(weather, planes = [], capacity = CAPACITY)
     @planes = planes
     @weather = weather
+    @capacity = capacity
   end
 
   def land(plane)
@@ -25,7 +26,7 @@ class Airport
   end
 
   def full?
-    planes.count == CAPACITY
+    planes.count == @capacity
   end
 
   private
