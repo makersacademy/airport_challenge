@@ -10,9 +10,9 @@ attr_reader :plane
       plane.land
     end
 
-  def take_off(plane)
-    plane.flying
-
-  end
+  def take_off(plane, weather)
+      raise "Cannot take off from airport due to adverse weather conditions" if weather == :stormy
+      plane.flying
+    end
 
 end

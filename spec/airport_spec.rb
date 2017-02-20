@@ -11,11 +11,11 @@ describe Airport do
   end
 
     it 'Lands a plane' do
-      expect(subject.lands_plane(@plane, @weather)).to eq true
+      expect(subject.lands_plane(@plane, weather.current_weather)).to eq true
     end
 
     it 'Lets plane to take off' do
-      expect(subject.take_off(@plane)).to eq false #take_off is actually self.land hence equals false here
+      expect(subject.take_off(@plane, weather.current_weather)).to eq false #take_off is actually self.land hence equals false here
     end
   end
 
@@ -28,6 +28,10 @@ describe Airport do
 
     it 'Raises error if a plane tries to land in storm' do
       expect { subject.lands_plane(@plane, weather.current_weather) }.to raise_error("Cannot land at airport due to adverse weather conditions")
+    end
+
+    it 'Raises error if a plane tries to take off in storm' do
+      expect{ subject.take_off(@plane, weather.current_weather) }.to raise_error("Cannot take off from airport due to adverse weather conditions")
     end
   end
 
