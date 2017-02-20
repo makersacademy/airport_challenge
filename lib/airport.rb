@@ -29,6 +29,7 @@ class Airport
 
   def take_off(plane)
     raise "It isn't safe to fly." if stormy?
+    raise "There are no planes in the airport." if planes.empty?
     planes.delete(plane)
   end
 end

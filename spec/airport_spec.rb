@@ -4,7 +4,7 @@ describe Airport do
   let(:plane) {double(:plane)}
 
   before(:each) do
-      allow(subject).to receive(:stormy?).and_return(false)
+    allow(subject).to receive(:stormy?).and_return(false)
   end
 
   it "checks for stormy weather" do
@@ -46,9 +46,13 @@ describe Airport do
     end
 
     it "confirms the plane is airborne" do
-      # allow(subject).to receive(:stormy?).and_return(false)
+      subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes).not_to include(plane)
+    end
+
+    it "raises error when there are no planes avaliable." do
+      expect{subject.take_off(plane)}.to raise_error("There are no planes in the airport.")
     end
 
     context "when stormy" do
