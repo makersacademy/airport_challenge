@@ -72,7 +72,7 @@ plane.take_off(airport)
 
 Example usage
 -----
-![Alt text](/Users/floraharvey/Downloads/Screenshot 2017-02-20 10.38.09.png)
+![Alt text](/Users/floraharvey/Projects/airport_challenge/Screenshot 2017-02-20 10.38.09.png)
 
 Suggested Future Extension
 -----
