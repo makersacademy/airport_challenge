@@ -30,6 +30,8 @@ How to use
 2.2.3 :006 > airport.land(plane)
 #<Plane:0x007fe91a88eec8> has landed => [#<Plane:0x007fe91a88eec8>]
 ```
+note: You may receive errors as there maybe stormy weather or the airport is full.
+
 My approach to solving the challenge
 ====================================
 I first began reading all material given, mainly focusing on the user stories and what the client wanted. Then began drawing a domain model to map out how I believe things will be structured and possible methods that may be required. After, I tried to prioritise the user stories seeing if any were linked or wether one would have to be done before the other. Now was the time to focus on one user story. The process would be run feature test in irb, discover the feature that would need to be create, create a unit test. Red-Green-Refactor. Once I complete writing sufficient simple code, I would run another feature test, and then move on to the next user story. 
