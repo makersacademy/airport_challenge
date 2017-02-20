@@ -8,6 +8,14 @@ This is our first weekend challenge set at Makers. Our task was to produce softw
 
 Example of how to run code
 ==========================
+How to use
+
+1) On your terminal , run the command gem install bundle (if you don't have bundle already)
+
+2) Once the installation completes, run bundle
+
+3) On your terminal, run irb and below is an example of how to use the program
+
 ```
 2.2.3 :001 > require './lib/airport'
  => true
