@@ -52,6 +52,7 @@ describe Airport do
       it 'Raises an error if landing is requested when airport is full' do
         subject.capacity.times {subject.lands_plane(@plane, weather.current_weather)}
         expect { subject.lands_plane(@plane, weather.current_weather) }.to raise_error("Airport is full, no landing")
-    end
+      end
+
   end
 end
