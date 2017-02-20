@@ -34,17 +34,4 @@ class Airport
 
   attr_accessor :planes
 
-  # def errors_stormy
-  #   raise "The weather is too stormy right now" if @weather.stormy?
-  # end
-
-  # def errors_landing
-  #   #   raise "You cannot land the same plane" if planes.include?(plane)
-  #   #   raise "Landing is not permitted as airport has reached capacity" if self.full
-  # end
-  #
-  # def errors_take_off
-  #   #   raise "The plane has already taken off" unless planes.include?(plane)
-  # end
-
 end
