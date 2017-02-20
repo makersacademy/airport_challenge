@@ -13,7 +13,6 @@ class Airport
   end
 
   def takeoff(plane)
-    fail "The hangar is empty." if @hangar.length == 0 #fail if empty
     fail "Plane not in hangar" unless @hangar.include?(plane)
     @hangar.pop #takes off by removing plane from array
   end
