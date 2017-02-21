@@ -15,7 +15,7 @@ class Airport
   end
 
   def confirm_landed?
-    if (@current_plane == @landed[-1])
+    if (current_plane == @landed[-1])
       true
     else
       false
@@ -23,7 +23,7 @@ class Airport
   end
 
   def stormy?
-    if (@weather_condition == 'stormy')
+    if (weather_condition == 'stormy')
       true
     else
       false
@@ -31,7 +31,7 @@ class Airport
   end
 
   def airport_full?
-    if (@landed.count == DefaultCapacity::MEDIUM)
+    if (landed.count == DefaultCapacity::MEDIUM)
       true
     else
       false
@@ -45,14 +45,14 @@ class Airport
     if stormy?
       fail 'Stormy weather preventing landing'
     else
-      @current_plane = Plane.new
-      @landed << @current_plane
+      current_plane = Plane.new
+      landed << @current_plane
       display_airport_information
     end
   end
   # checks to confirm that the same plane that was instructed to take off is the one that left the airport
   def plane_left_airport?
-      if (@current_plane == @taken_off[-1]) && !(@current_plane == nil)
+      if (current_plane == taken_off[-1]) && !(current_plane == nil)
         true
       else
         false
@@ -60,7 +60,7 @@ class Airport
   end
 
   def landed_planes
-    @landed.count
+    landed.count
   end
 
   def display_airport_information
@@ -69,9 +69,9 @@ class Airport
     plural = "planes that have"
     plural_are = "are currently"
 
-    if (@landed.count == 1)
+    if (landed.count == 1)
       puts "There #{singular_is} #{@landed.count} #{singular} landed."
-    elsif (@landed.count == 0)
+    elsif (landed.count == 0)
       puts "There #{plural_are} no #{plural} landed."
     else
       puts  "There #{plural_are} #{@landed.count} #{plural} landed."
@@ -92,8 +92,8 @@ class Airport
       if stormy?
         fail 'Stormy weather preventing take-off'
       else
-        @current_plane = landed.pop
-        @taken_off.push(@current_plane)
+        current_plane = landed.pop
+        taken_off.push(current_plane)
         display_airport_information
       end
     end

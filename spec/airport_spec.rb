@@ -30,6 +30,7 @@ describe Airport do
   end
 
   describe '#confirm_landed?' do
+
     it 'confirms the correct plane has landed at airport' do
       allow(subject).to receive(:available_plane?).and_return(true)
       allow(subject).to receive(:stormy?).and_return(false)
