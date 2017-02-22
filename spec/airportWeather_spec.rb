@@ -15,11 +15,11 @@ describe Airport do
         # set weather to stormy
         allow_any_instance_of(Weather).to receive(:stormy?) { true }
         message = "Landing not permitted due to stormy weather."
-        expect{airport.instruct_to_land(plane)}.to raise_error message
+        expect{airport.instruct_to_land(plane)}.to raise_error(message)
       end
 
       it "allows the plane to land when weather is NOT stormy" do
-        expect(airport.instruct_to_land(plane)).to eq airport
+        expect(airport.instruct_to_land(plane)).to eq(airport)
       end
     end
 
@@ -29,7 +29,7 @@ describe Airport do
         # storm occurs while plane is in airport
         allow_any_instance_of(Weather).to receive(:stormy?) { true }
         message = "Take off not permitted due to stormy weather."
-        expect{airport.take_off(plane)}.to raise_error message
+        expect{airport.take_off(plane)}.to raise_error(message)
       end
 
       it "allows the plane to take off when weather is NOT stormy" do

@@ -1,9 +1,7 @@
 require_relative 'plane'
-require_relative 'weather'
+require_relative 'weather_class'
 
 class Airport
-
-  include Weather
 
   DEFAULT_CAPACITY = 10
 
@@ -15,19 +13,19 @@ class Airport
     @plane_arr = []
   end
 
-  def instruct_to_land(plane)
+  def instruct_to_land(plane, weather = Weather.new)
     @plane = plane
     fail "Landing not permitted as max capacity has been reached." if at_capacity?
     fail "#{@plane} is in the airport." if at_airport?
-    fail "Landing not permitted due to stormy weather." if stormy?
+    fail "Landing not permitted due to stormy weather." if weather.stormy?
     @plane_arr << @plane
     self
   end
 
-  def take_off(plane)
+  def take_off(plane, weather = Weather.new)
     @plane = plane
     fail "#{@plane} is not in the airport." unless at_airport?
-    fail "Take off not permitted due to stormy weather." if stormy?
+    fail "Take off not permitted due to stormy weather." if weather.stormy?
     @plane_arr.delete_if { |p| p == @plane }
   end
 
