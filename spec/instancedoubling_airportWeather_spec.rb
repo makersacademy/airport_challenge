@@ -4,7 +4,7 @@ describe Airport do
   let(:airport) { described_class.new }
   let(:plane) { double }
 
-  describe "#weather", :test do
+  describe "#instance_doubles_weather", :test do
 
     context "checking LANDING with varying weather conditions" do
       it "prevents the plane from landing during stormy weather" do
@@ -21,7 +21,8 @@ describe Airport do
 
     context "checking TAKE OFF with varying weather conditions" do
       it "prevents the plane from taking off during stormy weather" do
-        airport.instruct_to_land(plane)
+        weather = instance_double("weather", stormy?: false )
+        airport.instruct_to_land(plane, weather)
         weather = instance_double("weather", stormy?: true )
         message = "Take off not permitted due to stormy weather."
         expect{airport.take_off(plane, weather)}.to raise_error(message)
@@ -29,7 +30,7 @@ describe Airport do
 
       it "allows the plane to take off when weather is NOT stormy" do
         weather = instance_double("weather", stormy?: false )
-        airport.instruct_to_land(plane)
+        airport.instruct_to_land(plane, weather)
         expect(airport.take_off(plane, weather)).to eq airport.plane_arr
       end
     end
