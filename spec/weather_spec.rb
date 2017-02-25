@@ -1,18 +1,13 @@
 require 'spec_helper'
 require 'weather'
 
-class DummyWeatherChecker
-end
-
 describe 'Weather' do
 
-  before :each do
-    @weather_checker = DummyWeatherChecker.new
-    @weather_checker.extend(Weather)
-  end
+let(:plane_class) { Class.new { include Weather } }
+let(:plane) {plane_class.new}
 
   it "returns stormy weather when rand is greater than 0.7" do
-    expect(@weather_checker.stormy?).to eq true
+    expect(plane.stormy?).to eq true
   end
 
 end

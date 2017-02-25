@@ -26,7 +26,7 @@ describe Plane do
       end
     end
 
-    describe '.land' do
+    describe '#land' do
 
       it "confirms the plane has landed in an airport" do
         expect(plane.land(airport)).to eq "Plane has landed"
@@ -52,7 +52,7 @@ describe Plane do
       end
     end
 
-    describe '.take_off' do
+    describe '#take_off' do
 
       it "confirms the plane has taken off" do
         plane.land(airport)
