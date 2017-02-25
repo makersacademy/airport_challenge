@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+The first individual weekend challenge at Makers Academy.
+
 ```
         ______
         _\____\___
@@ -44,8 +46,6 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
 How The Programme Works
 -----
 
@@ -59,21 +59,17 @@ The weather is simulated with a random 'stormy weather' generator. Weather will 
 
 How To Use
 -----
-To create a new airport:
-Airport.new
-To set the capacity of an airport:
-Airport.new(capacity)
-To create a new plane:
-Plane.new
-To land a plane in an airport:
-plane.land(airport)
-To make a plane take off from an airport:
-plane.take_off(airport)
+* Airport.new   # creates a new airport:
+* Airport.new(20)   # sets the capacity of an airport to 20
+* Plane.new   # creates a new plane:
+* plane.land(airport)   # lands a plane in an airport
+* plane.take_off(airport)   # makes a plane take off from an airport:
 
 Example usage
 -----
 ![Alt tag](https://github.com/FloraHarvey/airport_challenge/blob/master/Screenshot%202017-02-20%2010.38.09.png)
 
-Suggested Future Extension
+Struggles I encountered
 -----
-With more time, I would like to allow the user to add further properties to airports and planes, such as flight number. I would like to
+* Testing the right thing: when one class has a method that has a result on another class, I was sometimes unsure which class I should be testing. If I had more time I would like to decouple the classes further so that, for example, the plane.land method calls an airport.add_plane method, rather than directly adding planes to airport.
+* Using doubles: a related problem I had was using doubles when testing the above method. I found that the classes were too interlinked to use a plane double in the airport test.
