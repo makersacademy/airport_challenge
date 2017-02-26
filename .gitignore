@@ -7,3 +7,9 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 
+./spec/feature_spec.rb
+.gitignore
+<<<<<<< HEAD
+spec/feature_spec.rb
+=======
+>>>>>>> 9a7c0d6ab241de3bf574c8085f4743dd390a3fe7
