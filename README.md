@@ -66,4 +66,5 @@ Here is a an example of how the program works in irb
 ![Image usage in irb](https://github.com/Noora-q/airport_challenge/blob/master/irb_screenshot.png)
 
 Status
-https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master
+-----
+[![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
