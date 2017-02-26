@@ -69,4 +69,4 @@ Status
 -----
 [![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
 
-[![Coverage Status](https://coveralls.io/repos/github/Noora-q/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/Noora-q/airport_challenge?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg)](https://coveralls.io/github/makersacademy/airport_challenge)
