@@ -68,3 +68,5 @@ Here is a an example of how the program works in irb
 Status
 -----
 [![Build Status](https://travis-ci.org/makersacademy/airport_challenge.svg?branch=master)](https://travis-ci.org/makersacademy/airport_challenge)
+
+[![Coverage Status](https://coveralls.io/repos/github/Noora-q/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/Noora-q/airport_challenge?branch=master)
