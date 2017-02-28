@@ -127,18 +127,4 @@ describe Airport do
 
   end
 
-  describe 'confirmation messages' do
-
-    xit 'confirms that a plane has taken off' do
-      plane = Plane.new
-      subject.land(plane)
-      expect(subject.take_off(plane)).to eq("Take off successful.")
-    end
-
-    xit 'confirms that a plane has landed' do
-      plane = Plane.new
-      expect(subject.land(plane)).to eq("Landing successful.")
-    end
-  end
-
 end
