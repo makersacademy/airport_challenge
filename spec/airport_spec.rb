@@ -64,7 +64,7 @@ describe Airport do
     end
 
     it 'adds in_airport status to planes which have landed' do
-      expect(@plane).to have_attributes(:in_airport => true)
+      expect(@plane).to have_attributes(:in_flight => false)
     end
 
   end
@@ -118,12 +118,12 @@ describe Airport do
 
   describe 'confirmation messages' do
 
-    it 'confirms that a plane has taken off' do
+    xit 'confirms that a plane has taken off' do
       plane = Plane.new
       subject.land(plane)
       expect(subject.take_off(plane)).to eq("Take off successful.")
     end
-    it 'confirms that a plane has landed' do
+    xit 'confirms that a plane has landed' do
       plane = Plane.new
       expect(subject.land(plane)).to eq("Landing successful.")
     end

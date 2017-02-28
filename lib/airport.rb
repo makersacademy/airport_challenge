@@ -12,41 +12,31 @@ class Airport
   end
 
   def land(plane)
-    landing_conditions(plane)
-    plane.landed
+    check_landing_conditions(plane)
+    plane.land
     @planes << plane
-    confirm_landing
+    plane
   end
 
   def take_off(plane)
-    take_off_conditions(plane)
+    check_take_off_conditions(plane)
     plane.flying
     @planes.delete(plane)
-    confirm_take_off
   end
-
 
   private
 
-  def landing_conditions(plane)
+  def check_landing_conditions (plane)
     raise "Plane already landed" if @planes.include?(plane)
     raise "Airport is full" if airport_full?
     raise "Too stormy for landing" if stormy?
   end
 
-  def take_off_conditions(plane)
-    raise "Plane is already flying" if plane.in_flight
-    raise "Airport is empty" if airport_empty?
+  def check_take_off_conditions(plane)
     raise "Too stormy for take off" if stormy?
+    raise "Airport is empty" if airport_empty?
+    raise "Plane is already flying" if plane.in_flight
     raise "Plane isn't located at this airport" if !@planes.include?(plane)
-  end
-
-  def confirm_landing
-    "Landing successful."
-  end
-
-  def confirm_take_off
-    "Take off successful."
   end
 
   def stormy?
