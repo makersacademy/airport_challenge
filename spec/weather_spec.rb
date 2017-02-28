@@ -11,4 +11,5 @@ describe Weather do
   it 'tests that #randomize returns true when weighted to be stormy' do
     expect(subject.randomize(0)).to eq(false)
   end
+  
 end

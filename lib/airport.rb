@@ -2,7 +2,9 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
+
   MAX_CAPACITY = 20
+
   attr_accessor :capacity
   attr_reader :planes
 

@@ -9,27 +9,33 @@ describe Airport do
   describe 'capacity' do
 
     context 'without parameters' do
+
       it "should use the default capacity of 20" do
         expect(subject.capacity).to eq(20)
       end
+
     end
 
     context 'with parameters' do
       let(:airport) { Airport.new(45)}
+
       it "should allow the airport capacity to be overridden when necessary" do
         expect(airport.capacity).to eq(45)
       end
+
       it "should raise an error when the new capacity is exceeded" do
         airport.capacity.times { airport.land(Plane.new) }
         expect { airport.land(Plane.new) }.to raise_error("Airport is full")
       end
+
       it "test the capacity can be changed multiple times" do
         airport.capacity = 37
         expect(airport.capacity).to eq(37)
       end
-    end
-  end
 
+    end
+
+  end
 
   describe '#take_off' do
 
@@ -63,7 +69,12 @@ describe Airport do
       expect(subject.planes).to eq [@plane]
     end
 
-    it 'adds in_airport status to planes which have landed' do
+    it 'only lands flying planes' do
+      #tests that the airport stores the landed plane
+      expect{ subject.land(@plane) }.to raise_error("Plane already landed")
+    end
+
+    it 'checks landed planes are not flying' do
       expect(@plane).to have_attributes(:in_flight => false)
     end
 
@@ -123,6 +134,7 @@ describe Airport do
       subject.land(plane)
       expect(subject.take_off(plane)).to eq("Take off successful.")
     end
+
     xit 'confirms that a plane has landed' do
       plane = Plane.new
       expect(subject.land(plane)).to eq("Landing successful.")
