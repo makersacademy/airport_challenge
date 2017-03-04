@@ -1,34 +1,4 @@
-Airport Challenge
-=================
-
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+# Airport Challenge ![Travis build status](https://travis-ci.org/sliute/airport_challenge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/sliute/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/sliute/airport_challenge?branch=master)
 
 Task
 -----
@@ -36,55 +6,61 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+## How to Use
+```
+$ git clone https://github.com/sliute/airport_challenge.git
+$ cd airport_challenge
+$ rspec
+$ irb
+```
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Progress
+----
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+1. Completed steps 1-3.
+2. Created a domain model with 6 + 3 (edge) user stories in docs/UserStories.md.
+3. Set up Travis CI.
+4. Created `Airport` and `Plane` classes for Stories 01 and 02, with corresponding Rspec files. Both have land and takeoff methods. Plane instances have a status variable. Airport instances can land one plane and have it take off.
+5. Feature tested in IRB then unit-tested with Rspec for Story 01. Updated the domain model. Committed and pushed.
+6. Wrote unit tests for both the airport and the plane in Story 01. airport_spec.rb needed a plane double from the very beginning, while plane_spec.rb didn't.
+7. Repeated the process for Story 02.
+8. Created a `Weather` class for Story 03, with corresponding Rspec file. Weather instances have random weather state. Airport instances can check for stormy weather and decline takeoffs in that case.
+9. Featured-tested manually and unit-tested for Stories 03 and 04.
+10. Featured-tested manually and unit-tested for Story 05. Changed airport objects to initialise with a capacity (that defaults to a constant) and a plane-holding array. Modified two other tests (in Stories 01 and 02) to accommodate the change from plane-holding generic variable to plane-holding array.
+11. Tested for Story 06.
 
-Please create separate files for every class, module and test suite.
+Problems
+----
 
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+1. At this point, I don't know my test coverage. Tests pass in Travis (with SimpleCov), but Coveralls with config doesn't work there. The error message is: "Coveralls encountered an exception: RestClient::UnprocessableEntity. 422 Unprocessable Entity.
+The bundle... command exited with 0."
+2. There might be a problem with Airport and Plane objects sharing similarly-named methods (takeoff and land). Maybe I should have renamed them 'send' and 'receive' for Airport objects.
+3. I realised I had done the codebase for Story 06 while working on the previous story. So I unintentionally wrote the code before the tests for Story 06 (because something similar was part of the Week 1 assignment).
+4. I haven't done the edge cases.
+5. I am not 100% sure that all my tests really test for what I want them to.
+6. I am not convinced that my code is as simple as it could be.
