@@ -31,6 +31,14 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
+## How to Use
+```
+$ git clone https://github.com/sliute/airport_challenge.git
+$ cd airport_challenge
+$ rspec
+$ irb
+```
+
 Progress
 ----
 
