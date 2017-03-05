@@ -1,10 +1,61 @@
-Airport Challenge
+## Airport Challenge
 =================
-First solo weekend challenge for Makers Academy.
+#### Technologies: Ruby, RSpec
+### Week 1 solo weekend challenge for [Makers Academy] (http://www.makersacademy.com)
+[Outline](#outline) | [User Stories](#user-stories) | [Usage Instructions](#usage-instructions) 
 
-A small programme designed to simulate the take off and landing of aircraft from airports.
+```
+        ______
+        _\____\___
+=  = ==(____MA____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
 
-User stories
+```
+
+## Brief
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+
+## Outline
+
+
+## User Stories
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport and confirm that it has landed 
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
+
+## Usage Instructions
+* clone the repo and run bundle
+
+* run the application in irb
+
+
+
 ---------
 ```
 As an air traffic controller 
