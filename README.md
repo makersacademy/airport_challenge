@@ -56,6 +56,9 @@ I would like a default airport capacity that can be overridden as appropriate
 ## Usage Instructions
 * clone the repo and run bundle
 ```shell
+$ git clone https://github.com/samjones1001/airport_challenge
+$ cd airport_challenge
+$ bundle
 ```
 * run the application in irb
 ```shell
