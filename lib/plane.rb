@@ -7,7 +7,7 @@ class Plane
   end
 
   def status
-    if @landed
+    if @landed 
       "The plane has landed"
     else
       "The plane is flying"

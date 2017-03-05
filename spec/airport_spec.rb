@@ -71,6 +71,7 @@ describe Airport do
     context "calling depart when the plane has already left the airport" do
       it "raises an error when depart called if plane has already left" do
         plane = Plane.new
+        airport.weather.stormy = false
         airport.land(plane)
         airport.weather.stormy = false
         airport.depart(plane)

@@ -4,7 +4,6 @@ class Weather
 
   def initialize
     @stormy = get_weather(rand(1..10))
-
   end
 
   def get_weather(number)
