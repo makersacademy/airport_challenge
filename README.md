@@ -60,6 +60,10 @@ $ git clone https://github.com/samjones1001/airport_challenge
 $ cd airport_challenge
 $ bundle
 ```
+* run tests
+```shell
+$ rspec
+```
 * run the application in irb
 ```shell
 $ irb
