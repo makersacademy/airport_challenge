@@ -44,7 +44,7 @@ I would like a default airport capacity that can be overridden as appropriate
 **Steps taken**
 
 *User Story 1*
-- [ ] Feature and unit tested capacity to check if a plane has landed
-- [ ] Implemented capacity to check if a plane has landed
-- [ ] Feature and unit tested capacity to land a plane at airpot
-- [ ] Implemented capacity to land a plane at airport
+- [x] Feature and unit tested capacity to check if a plane has landed
+- [x] Implemented capacity to check if a plane has landed
+- [x] Feature and unit tested capacity to land a plane at airpot
+- [x] Implemented capacity to land a plane at airport
