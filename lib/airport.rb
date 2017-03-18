@@ -7,6 +7,7 @@ class Airport
   end
 
   def land(plane)
+    plane.land
     @planes.push(plane)
   end
 
