@@ -1,6 +1,4 @@
-require './lib/airport.rb'
 require './lib/plane.rb'
-arlanda = Airport.new
-plane1 = arlanda.create_new_plane
-arlanda.land(plane1)
-arlanda.landed?(plane1)
+require './lib/airport.rb'
+plane1 = Plane.new
+heathrow = Airport.new
