@@ -1,7 +1,8 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  
+
 attr_reader :planes_in_airport, :capacity
 DEFAULT_CAPACITY = 20
 
@@ -20,6 +21,7 @@ DEFAULT_CAPACITY = 20
   def take_off(plane)
     fail "Plane is in the air" if plane.flying?
     fail "Plane not in airport" unless self.planes_in_airport.include?(plane)
+    fail "Too stormy to take off" if self.stormy?
     plane.plane_takes_off
     @planes_in_airport.delete(plane)
   end

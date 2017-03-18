@@ -45,6 +45,7 @@ describe Airport do
     it 'can confirm plane is no longer in the airport' do
       allow(plane).to receive(:flying?) {false}
       allow(plane).to receive(:plane_takes_off)
+      allow(weather).to receive(:stormy?) {false}
       subject.planes_in_airport << plane
       subject.take_off(plane)
       expect(subject.planes_in_airport).not_to include plane
