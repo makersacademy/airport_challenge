@@ -22,7 +22,7 @@ describe Airport do
 	describe "#takeoff_from_airport" do   
 	  it "instructs plane to take off from airport" do
       plane = double("plane")
-      expect(subject.grant_takeoff_permission(plane)).to eq plane
+      expect(subject.takeoff_from_airport(plane)).to eq plane
 	  end
 	end
 
