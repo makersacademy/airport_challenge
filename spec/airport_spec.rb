@@ -8,6 +8,7 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'can confirm a plane has landed' do
+      allow(plane).to receive(:flying?) {true}
       subject.land(plane)
       expect(subject.planes_in_airport).to include plane
     end
@@ -23,9 +24,9 @@ describe Airport do
   end
 
   context 'plane not flying' do
-    it 'when plane is not flying, it cannot land again' do
+    it 'cannot land a plane that is not flying' do
       allow(plane).to receive(:flying?) {false}
-      expect(subject.land(plane)).to raise_error "Plane had already landed"
+      expect{subject.land(plane)}.to raise_error("Plane is on the ground")
     end
   end
 
