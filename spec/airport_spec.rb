@@ -16,5 +16,29 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to eq true
     end
+
+    it 'airport has the plane after landing' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.planes).to include plane
+    end
+  end
+
+  describe "#take_off" do
+
+    it 'responds to take_off' do
+      expect(subject).to respond_to :take_off
+    end
+
+    it 'take_off takes 1 argument' do
+      expect(subject).to respond_to(:take_off).with(1).argument
+    end
+
+    it 'airport no longer has the plane after taking off' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).not_to include plane
+    end
   end
 end

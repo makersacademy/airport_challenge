@@ -4,4 +4,8 @@ class Plane
     landed = true
   end
 
+  def take_off
+    take_off = true
+  end
+
 end
