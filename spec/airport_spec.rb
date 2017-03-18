@@ -8,14 +8,14 @@ describe Airport do
       expect(subject).to respond_to :release_plane
     end
 
-    it 'release one stored plane' do
+    it 'releases one stored plane' do
       aeroplane = Plane.new
       subject.accept_plane(aeroplane)
-      expect(subject.release_plane).to eq aeroplane
+      expect(subject.release_plane(aeroplane)).to eq aeroplane
     end
 
     it "doesn't release a plane when none are stored in airport" do
-      expect {subject.release_plane}.to raise_error "No planes here to fly!"
+      expect {subject.release_plane(Plane.new)}.to raise_error "No planes here to fly!"
     end
 
   end
@@ -31,7 +31,12 @@ describe Airport do
       20.times {subject.accept_plane(Plane.new)}
       expect {subject.accept_plane(Plane.new)}.to raise_error "Airport full!"
     end
+
+    it "doesn't accept plane when it is already stored" do
+      aeroplane = Plane.new
+      subject.accept_plane(aeroplane)
+      expect {subject.accept_plane(aeroplane)}.to raise_error "Plane already landed!"
+    end
+
+    end
   end
-
-
-end

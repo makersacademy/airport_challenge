@@ -9,24 +9,25 @@ class Airport
     @capacity = capacity
   end
 
-  def release_plane
+  def release_plane(plane)
     fail "No planes here to fly!" if empty?
-    planes.pop
+    plane.flying = true
+    planes.delete(plane)
   end
 
   def accept_plane(plane)
     fail "Airport full!" if full?
+    fail "Plane already landed!" if plane.flying == false
+    plane.flying = false
     planes << plane
   end
 
 
-
   private
-
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
   def full?
-    planes.count >= 20
+    planes.count >= capacity
   end
 
   def empty?
