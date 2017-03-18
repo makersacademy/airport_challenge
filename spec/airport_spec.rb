@@ -17,4 +17,24 @@ describe Airport do
     expect(subject.landed?(plane)).to eq true
   end
 
+  it 'causes a plane to take off' do
+    ba = 'BA'
+    aerlingus = 'Aer Lingus'
+    subject.land(ba)
+    subject.land(aerlingus)
+    expect(subject.take_off(ba)).to eq ba
+  end
+
+  it 'expects the plane to have taken off' do
+    ba = 'BA'
+    aerlingus = 'Aer Lingus'
+    subject.land(ba)
+    subject.land(aerlingus)
+    subject.take_off(ba)
+    expect(subject.landed?(ba)).to eq false
+    expect(subject.landed?(aerlingus)).to eq true
+  end
+
+
+
 end
