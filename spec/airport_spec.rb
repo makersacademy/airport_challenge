@@ -13,13 +13,18 @@ describe Airport do
 
   it 'confirms plane has landed' do
     expect(subject.plane_land(Plane.new)).to eq "A plane has landed"
-  end 
-
+  end
 
   it 'plane takes off' do
     subject.plane_land(Plane.new)
     subject.plane_takeoff
     expect(subject.planes).to eq []
   end
+
+  it 'confirms plane has taken off' do
+    subject.plane_land(Plane.new)
+    expect(subject.plane_takeoff).to eq "Plane has taken off"
+  end 
+
 
 end

@@ -14,6 +14,7 @@ attr_reader :planes
 
   def plane_takeoff
     @planes.pop
+    confirmation_takeoff
   end
 
   def confirmation_land
@@ -21,7 +22,7 @@ attr_reader :planes
   end
 
   def confirmation_takeoff
-    "A plane has taken off"
+    "Plane has taken off"
   end
 
 end
