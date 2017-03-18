@@ -9,8 +9,14 @@ class Plane
     @landed = true
   end
 
+  def take_off_plane
+    @landed = false
+  end
+
   def landed?
     @landed
   end
+
+attr_reader :landed
 
 end
