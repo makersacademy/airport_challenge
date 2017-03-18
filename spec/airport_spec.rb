@@ -10,4 +10,8 @@ describe Airport do
     end
   end
 
+  describe 'plane' do
+    it { is_expected.to respond_to(:plane) }
+  end
+
 end
