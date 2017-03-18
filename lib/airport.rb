@@ -5,17 +5,16 @@ class Airport
 
   def initialize
     @planes = []
-    @stormy_weather = false
   end
 
-  def land(plane)
+  def land(plane, weather)
+    fail 'Unable to land. Weather is stormy.' if weather == true
     plane.land
     @planes.push(plane)
   end
 
-  def takeoff(plane)
-    @stormy_weather = Stormy_Weather.new.report
-    fail 'Unable to takeoff. Weather is stormy.' if @stormy_weather == true
+  def takeoff(plane, weather)
+    fail 'Unable to takeoff. Weather is stormy.' if weather == true
     plane.takeoff
     @planes.pop
   end
