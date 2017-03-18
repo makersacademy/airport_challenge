@@ -8,5 +8,9 @@ attr_reader :planes_in_airport
   def land(plane)
     @planes_in_airport << plane
   end
-  
+
+  def take_off(plane)
+    @planes_in_airport.delete(plane)
+  end
+
 end
