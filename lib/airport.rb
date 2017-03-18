@@ -1,5 +1,5 @@
-require 'plane.rb'
-require 'weather.rb'
+require_relative 'plane.rb'
+require_relative 'weather.rb'
 
 class Airport
 
@@ -12,16 +12,19 @@ class Airport
   end
 
   def accept(plane)
+    raise 'Plane has already landed!' if plane.flying == false
+    raise 'Plane is already in the airport!' if planes.include?(plane)
     raise 'Airport full!' if full?
     raise 'Weather is too stormy!' if Weather::Weather == 'stormy'
     planes << plane
-    Plane.land(plane)
+    plane.land
   end
 
   def release(plane)
+    raise 'Plane is already flying!' if plane.flying == true
     raise 'Airport empty!' if empty?
     raise 'Weather is too stormy' if Weather::Weather == 'stormy'
-    Plane.takeoff(plane)
+    plane.takeoff
     planes.slice!(planes.index(plane))
   end
 
