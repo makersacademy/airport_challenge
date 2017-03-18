@@ -4,6 +4,12 @@ describe Airport do
 
   subject (:plane) { described_class.new }
 
+  describe '#initialize' do
+    it 'checks default capacity is set' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 
