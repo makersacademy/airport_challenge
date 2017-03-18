@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+  let(:plane) { double :plane }
 
   describe "#initialize" do
 
@@ -20,12 +21,13 @@ describe Airport do
     end
 
     it 'lands a plane' do
-      plane = Plane.new
+      plane = double(:plane, flying?: true, :land => true)
       expect(subject.land(plane)).to eq [plane]
     end
 
     it 'airport has the plane after landing' do
-      plane = Plane.new
+      plane = double(:plane, flying?: true)
+      allow(plane).to receive(:land)
       subject.land(plane)
       expect(subject.planes).to include plane
     end
