@@ -2,6 +2,16 @@ require 'airport.rb'
 
 describe Airport do
 
+  describe "#initialize" do
+    it "capacity can be user set" do
+      airport = Airport.new(3)
+      plane = double(:plane)
+      allow(airport).to receive(:fly_okay?).and_return(true)
+      3.times {airport.land_plane(plane)}
+      expect{ airport.land_plane(plane) }.to raise_error "Airport full!!!"
+    end
+  end
+
   describe "#land_plane" do
     it { is_expected.to respond_to :land_plane }
 
@@ -22,8 +32,14 @@ describe Airport do
     it "stops a plane landing if there is stormy weather" do
       plane = double(:plane)
       allow(subject).to receive(:fly_okay?).and_return(false)
-      allow(subject).to receive(:fly_okay?).and_return(false)
       expect{ subject.land_plane(plane) }.to raise_error "Landing delayed due stormy weather"
+    end
+
+    it "prevents plane from landing when airport full" do
+      plane = double(:plane)
+      allow(subject).to receive(:fly_okay?).and_return(true)
+      Airport::DEFAULT_CAPACITY.times {subject.land_plane(plane)}
+      expect{ subject.land_plane(plane) }.to raise_error "Airport full!!!"
     end
   end
 

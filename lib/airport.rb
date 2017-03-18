@@ -1,19 +1,22 @@
 require_relative "plane.rb"
 require_relative "weather.rb"
 
-
 class Airport
 
   include Weather
 
-  attr_reader :planes
+  DEFAULT_CAPACITY = 20
 
-  def initialize()
+  attr_reader :planes, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land_plane(plane)
     fail "Landing delayed due stormy weather" if fly_okay? != true
+    fail "Airport full!!!" if count_planes >= capacity
     planes.push(plane)
     "#{plane} has landed successfully"
   end
