@@ -76,9 +76,9 @@ describe Airport do
     end
 
     it 'prevents landing when weather is stormy' do
-      allow(weather).to receive(:stormy?) {true}
       allow(plane).to receive(:flying?) {true}
       allow(plane).to receive(:plane_lands)
+      allow(weather).to receive(:stormy?) {true}
       expect{subject.land(plane)}.to raise_error("Too stormy to land")
     end
   end
