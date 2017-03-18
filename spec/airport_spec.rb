@@ -25,6 +25,9 @@ describe Airport do
       subject.land(plane)
       expect(subject.take_off).to eq plane
     end
+    it 'raises an error if there are no planes' do
+      expect{subject.take_off}.to raise_error "No planes at the airport"
+    end
   end
 
 end

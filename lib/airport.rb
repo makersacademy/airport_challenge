@@ -8,6 +8,7 @@ class Airport
   end
 
   def take_off
+    raise "No planes at the airport" if !plane
     plane
   end
 
