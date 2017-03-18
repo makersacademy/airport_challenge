@@ -15,14 +15,14 @@ describe Airport do
 
     it 'lands planes in the Airport' do
       plane = double(:plane)
-      allow(subject).to receive(:stormy_weather?).and_return(2)
+      allow(subject).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:land_plane)
       expect(subject.land(plane)).to include plane
     end
 
     it 'does not allow landing when weather is stormy' do
       plane = double(:plane)
-      allow(subject).to receive(:stormy_weather?).and_return(9)
+      allow(subject).to receive(:stormy_weather?).and_return(true)
       allow(plane).to receive(:land_plane)
       expect{ subject.land(plane) }.to raise_error("Bad weather today. Cannot land.")
     end
@@ -30,8 +30,9 @@ describe Airport do
     it 'does not allow landing when airport is full' do
       plane = double(:plane)
       allow(plane).to receive(:land_plane)
-      20.times {subject.land(plane)}
-      expect(subject.land(plane)).to raise_error("Sorry. Airport full. Go away.")
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      subject.capacity.times {subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error("Sorry. Airport full. Go away.")
     end
 
   end
@@ -48,7 +49,7 @@ describe Airport do
     it 'allows planes to take off from Airport' do
       plane = double(:plane)
       planes = [plane]
-      allow(subject).to receive(:stormy_weather?).and_return(2)
+      allow(subject).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
       subject.take_off(plane)
       expect(planes).not_to include [plane]
@@ -56,7 +57,7 @@ describe Airport do
 
     it 'does not allow take off when weather is stormy' do
       plane = double(:plane)
-      allow(subject).to receive(:stormy_weather?).and_return(9)
+      allow(subject).to receive(:stormy_weather?).and_return(true)
       allow(plane).to receive(:take_off_plane)
       expect{ subject.take_off(plane) }.to raise_error("Bad weather today. Cannot take off.")
     end
@@ -67,8 +68,8 @@ describe Airport do
     it 'has a method that checks if the weather is stormy' do
       expect(subject).to respond_to(:stormy_weather?)
     end
-    it 'returns a number between 0 and 10' do
-      expect(subject.stormy_weather?).to be_between(0, 10).inclusive
+    it 'returns true or false' do
+      expect(subject.stormy_weather?).to eq(true).or eq(false)
     end
   end
 
