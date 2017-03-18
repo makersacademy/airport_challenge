@@ -26,4 +26,10 @@ class Airport
     planes.size
   end
 
+  def fly_okay?
+    return true if Weather.check_weather == "Safe to fly"
+    return false if Weather.check_weather == "Stormy"
+    fail "Something went wrong, try again"
+  end
+
 end

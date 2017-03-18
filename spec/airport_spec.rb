@@ -20,10 +20,22 @@ describe Airport do
 
   describe "#take_off" do
     it "lets a plane take off" do
-    plane = double(:plane)
-    subject.planes << [plane,plane]
-    subject.take_off(plane)
-    expect(subject.count_planes).to eq 1
+      plane = double(:plane)
+      subject.planes << [plane,plane]
+      subject.take_off(plane)
+      expect(subject.count_planes).to eq 1
+    end
+  end
+
+  describe "#fly_okay?" do
+    it "confirms planes can fly in normal weather" do
+    allow(Weather).to receive(:check_weather).and_return("Safe to fly")
+    expect(subject.fly_okay?).to eq true
+    end
+
+    it "confirms planes cann't fly in stormy weather" do
+    allow(Weather).to receive(:check_weather).and_return("Stormy")
+    expect(subject.fly_okay?).to eq false
     end
   end
 
