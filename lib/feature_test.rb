@@ -9,8 +9,8 @@ require './lib/airport'
 require  './lib/weather'
 
 
-
-
+weather = Weather.new
+weather.report
 
 plane = Plane.new # 1. create new object - plane
 airport = Airport.new # 2. create new object - airport
