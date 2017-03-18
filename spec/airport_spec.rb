@@ -34,4 +34,16 @@ plane1 = subject.create_new_plane
 subject.land(plane1)
 expect(subject.landed?(plane1)).to eq true
 end
+puts '--------PLANE TAKE OFF-----------'
+it "checks if airport reponds to take_off" do
+expect(subject).to respond_to(:take_off)
+end
+it "checks that airport responds to take_off with 1 argument" do
+  expect(subject).to respond_to(:take_off).with(1).argument
+end
+it "checks that plane takes off" do
+plane1 = subject.create_new_plane
+subject.take_off(plane1)
+expect(subject.landed?(plane1)).to eq false
+end
 end

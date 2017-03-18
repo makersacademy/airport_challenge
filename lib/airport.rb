@@ -7,6 +7,7 @@ class Airport
   def create_new_plane
     Plane.new
   end
+
   def land(plane)
     @landed << plane
   end
@@ -14,6 +15,9 @@ class Airport
     if @landed.include? plane
       true
     else false
-    end 
+    end
+  end
+  def take_off(plane)
+    @landed.delete(plane)
   end
 end
