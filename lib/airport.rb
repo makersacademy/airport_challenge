@@ -19,6 +19,7 @@ class Airport
   def accept_plane(plane)
     fail "Airport full!" if full?
     fail "Plane already landed!" if plane.flying == false
+    fail "Too stormy to land!" if plane.stormy == true
     plane.flying = false
     planes << plane
   end

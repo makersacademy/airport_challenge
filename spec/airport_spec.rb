@@ -44,5 +44,10 @@ describe Airport do
       expect {subject.accept_plane(aeroplane)}.to raise_error "Plane already landed!"
     end
 
+    it "can't accept plane if it is in stormy weather" do
+      plane = double(:plane, stormy: true, flying: true)
+      expect {subject.accept_plane(plane)}.to raise_error "Too stormy to land!"
+    end
+
     end
   end
