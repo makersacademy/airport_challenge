@@ -2,6 +2,13 @@ require 'airport'
 
 describe Airport do
 
+  describe "#initialize" do
+
+    it 'checks default maximum capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
   describe "#land" do
 
     it 'responds to land' do
@@ -26,6 +33,12 @@ describe Airport do
     it 'error raised if landing a plane when airport is full' do
       20.times {subject.land(Plane.new)}
       expect{subject.land(Plane.new)}.to raise_error("Airport Full")
+    end
+
+    it 'error raised if landing a plane that is not flying' do
+      plane = Plane.new
+      subject.land(plane)
+      expect{subject.land(plane)}.to raise_error("Plane already landed")
     end
 
   end
