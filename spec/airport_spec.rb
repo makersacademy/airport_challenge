@@ -7,10 +7,19 @@ describe Airport do
 	it {is_expected.to respond_to(:dock).with(1).argument }
 	it {is_expected.to respond_to(:allow_takeoff).with(1).argument }
   
+	describe "#instruct" do
+    it "gives instructions to a plane" do
+      plane = double("plane")
+      expect(subject.instruct(plane)).to eq [plane]
+    end
+	end
+
+
 	describe "#allow_landing" do 
 	  it "instructs plane to land at airport" do
 	    plane = double("plane")
-	    expect(subject.allow_landing(plane)).to eq plane
+	    subject.instruct(plane)
+	    expect(subject.allow_landing(plane)).to eq [plane]
 	  end
 
     it "confirms that plane has landed" do
@@ -22,8 +31,16 @@ describe Airport do
 
 	describe "#dock" do 
     it "docks plane at airport" do
-      plane = Plane.new
-      expect(subject.dock(plane)).to eq plane  
+      plane = double("plane")
+      subject.instruct(plane)
+      expect(subject.dock(plane)).to eq [plane]  
+    end	
+
+    it "raises error when plane has left airport" do
+      plane = double("bike")
+      
+      expect {subject.dock(plane)}.to raise_error "there are no docked planes"
+    
     end	
 
 	end
@@ -31,6 +48,7 @@ describe Airport do
 	describe "#allow_takeoff" do   
 	  it "instructs plane to take off from airport" do
       plane = double("plane")
+      subject.instruct(plane)
       expect(subject.allow_takeoff(plane)).to eq plane
 	  end
 	  
