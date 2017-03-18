@@ -22,8 +22,16 @@ describe Airport do
     it "lets a plane take off" do
       plane = double(:plane)
       subject.planes << [plane,plane]
+      allow(subject).to receive(:fly_okay?).and_return(true)
       subject.take_off(plane)
       expect(subject.count_planes).to eq 1
+    end
+
+    it "stops take off in the event of stormy weather" do
+      plane = double(:plane)
+      subject.planes << [plane,plane]
+      allow(subject).to receive(:fly_okay?).and_return(false)
+      expect{subject.take_off(plane)}.to raise_error "Flight canceled due stormy weather"
     end
   end
 

@@ -18,6 +18,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Flight canceled due stormy weather" if fly_okay? != true
     planes.delete(plane)
     "#{plane} has now taken off"
   end
@@ -27,9 +28,9 @@ class Airport
   end
 
   def fly_okay?
-    return true if Weather.check_weather == "Safe to fly"
-    return false if Weather.check_weather == "Stormy"
-    fail "Something went wrong, try again"
+    weather = Weather.check_weather
+    return false if weather == "Stormy"
+    return true if weather == "Safe to fly"
   end
 
 end

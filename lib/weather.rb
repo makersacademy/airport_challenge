@@ -6,7 +6,6 @@ module Weather
   end
 
   def check_weather
-
     return "Stormy" if rand_generator >= 95
     return "Safe to fly"
   end
@@ -15,5 +14,3 @@ module Weather
   module_function :rand_generator
 
 end
-
-50.times {puts Weather.check_weather}
