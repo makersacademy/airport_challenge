@@ -26,6 +26,11 @@ describe Airport do
       aeroplane = Plane.new
       expect(subject.accept_plane(aeroplane)).to eq [aeroplane]
     end
+
+    it "doesn't accept plane when capacity is full" do
+      20.times {subject.accept_plane(Plane.new)}
+      expect {subject.accept_plane(Plane.new)}.to raise_error "Airport full!"
+    end
   end
 
 

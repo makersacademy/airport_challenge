@@ -2,8 +2,11 @@ require './lib/plane.rb'
 
 class Airport
 
-  def initialize
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def release_plane
@@ -12,6 +15,7 @@ class Airport
   end
 
   def accept_plane(plane)
+    fail "Airport full!" if full?
     planes << plane
   end
 
@@ -20,6 +24,10 @@ class Airport
   private
 
   attr_reader :planes
+
+  def full?
+    planes.count >= 20
+  end
 
   def empty?
     planes.empty?
