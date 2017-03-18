@@ -22,5 +22,12 @@ describe Airport do
     end
   end
 
+  context 'plane not flying' do
+    it 'when plane is not flying, it cannot land again' do
+      allow(plane).to receive(:flying?) {false}
+      expect(subject.land(plane)).to raise_error "Plane had already landed"
+    end
+  end
+
 
 end
