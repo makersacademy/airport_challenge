@@ -17,6 +17,12 @@ describe Airport do
       allow(plane).to receive(:flying?) {false}
       expect{subject.land(plane)}.to raise_error("Plane is on the ground")
     end
+
+    it 'landed plane is not flying' do
+      allow(plane).to receive(:flying?) {true}
+      subject.land(plane)
+      expect(plane.flying?).to eq false
+    end
   end
 
   describe '#take_off' do
