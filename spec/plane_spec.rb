@@ -6,9 +6,15 @@ describe Plane do
 
   describe '#plane_lands' do
     it 'landed plane is not flying' do
-      # allow(airport).to receive(:land) { }
       subject.plane_lands
       expect(subject.flying?).to eq false
+    end
+  end
+
+  describe '#plane_takes_off' do
+    it 'after taking-off, plane is flying' do
+      subject.plane_takes_off
+      expect(subject.flying?).to eq true
     end
   end
 end
