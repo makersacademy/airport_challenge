@@ -7,6 +7,15 @@ describe Plane do
       subject.report_landing
       expect( subject.status ).to eq "landed"
     end
+
+    it '#report_take_off: confirms it has taken off' do
+      subject.report_take_off
+      expect( subject.status ).to eq "airborne"
+    end
+
+    it 'reports status of plane' do
+      expect( subject.status ).to eq "airborne"
+    end
   end
 
   describe "Loading passengers onto plane" do

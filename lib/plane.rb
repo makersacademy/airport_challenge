@@ -10,6 +10,10 @@ class Plane
     @status = "landed"
   end
 
+  def report_take_off
+    @status = "airborne"
+  end
+
   def load(passenger)
     seats << passenger
   end
