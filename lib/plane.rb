@@ -1,5 +1,7 @@
 class Plane
-  def status?
 
+  def land
+    landed = true
   end
+
 end
