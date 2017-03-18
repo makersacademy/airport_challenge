@@ -12,6 +12,15 @@ describe Airport do
         expect(subject.release(plane)).to eq plane
       end
 
+      it 'should not release planes when the weather is stormy' do
+        plane = double("plane", :flying => true, :land => false)
+        subject.accept(plane)
+        allow(plane).to receive(:flying).and_return(false)
+        allow(plane).to receive(:takeoff).and_return(false)
+        allow(subject).to receive(:stormy?).and_return(true)
+        expect {subject.release(plane)}.to raise_error 'Weather is too stormy!'
+      end
+
       it 'cannot take off planes when empty' do
         plane = double("plane", :flying => false)
         expect {subject.release(plane)}.to raise_error 'Airport empty!'

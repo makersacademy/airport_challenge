@@ -6,16 +6,21 @@ class Airport
   attr_reader :planes, :capacity
 
   DEFAULY_CAPACITY = 10
+
   def initialize(capacity = DEFAULY_CAPACITY)
     @planes = []
     @capacity = capacity
+  end
+
+  def stormy?
+    Weather.stormy?
   end
 
   def accept(plane)
     raise 'Plane has already landed!' if plane.flying == false
     raise 'Plane is already in the airport!' if planes.include?(plane)
     raise 'Airport full!' if full?
-    raise 'Weather is too stormy!' if Weather::Weather == 'stormy'
+    raise 'Weather is too stormy!' if stormy?
     planes << plane
     plane.land
   end
@@ -23,7 +28,7 @@ class Airport
   def release(plane)
     raise 'Plane is already flying!' if plane.flying == true
     raise 'Airport empty!' if empty?
-    raise 'Weather is too stormy' if Weather::Weather == 'stormy'
+    raise 'Weather is too stormy!' if stormy?
     plane.takeoff
     planes.slice!(planes.index(plane))
   end
