@@ -10,13 +10,17 @@ describe Airport do
     end
   end
 
-  describe 'plane' do
+  describe '#plane' do
     it { is_expected.to respond_to(:plane) }
     it 'returns the landed plane' do
       plane = Plane.new
       subject.land(plane)
       expect(subject.plane).to eq plane
     end
+  end
+
+  describe '#take_off' do
+    it { is_expected.to respond_to(:take_off).with(1).argument }
   end
 
 end
