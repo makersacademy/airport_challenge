@@ -2,6 +2,9 @@ require 'airport'
 
 
 describe Airport do
+	it {is_expected.to respond_to(:grant_landing_permission).with(1).argument }
+	it {is_expected.to respond_to(:confirm_landing).with(1).argument }
+	it {is_expected.to respond_to(:grant_takeoff_permission).with(1).argument }
   
 	describe 
 	it "instructs plane to land at airport" do
