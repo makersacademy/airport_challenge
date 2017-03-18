@@ -6,13 +6,13 @@ describe Plane do
       expect(subject).to respond_to(:flying?)
     end
 
-    it "returns false when new plane initialised" do
-      expect(subject.flying?).to eq(false)
+    it "Returns true when new plane initialised" do
+      expect(subject.flying?).to eq(true)
     end
 
-    it "can also return true if plane is flying" do
-      subject.take_off
-      expect(subject.flying?).to eq(true)
+    it "Can also return false if plane is grounded" do
+      subject.land 
+      expect(subject.flying?).to eq(false)
     end
   end
 end

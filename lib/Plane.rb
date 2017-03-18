@@ -1,7 +1,7 @@
 class Plane
 
   def initialize
-    @flying = false
+    @flying = true
   end
 
   def flying?
@@ -12,7 +12,11 @@ class Plane
     self.flying = true
   end
 
+  def land
+    self.flying = false
+  end
+
   private
-  
+
   attr_accessor :flying
 end
