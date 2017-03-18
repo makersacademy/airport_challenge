@@ -1,7 +1,12 @@
 require_relative 'plane'
 
 class Airport
-  def land(plane)
 
+  def initialize
+    @planes = []
+  end
+
+  def land(plane)
+    @planes << plane
   end
 end
