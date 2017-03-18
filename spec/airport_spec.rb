@@ -8,6 +8,11 @@ describe Airport do
     it 'checks default capacity is set' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
+
+    it 'checks default capacity can be overridden' do
+      subject = Airport.new(80)
+      expect(subject.capacity).to eq 80
+    end
   end
 
   describe '#land' do
