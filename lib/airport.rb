@@ -6,5 +6,7 @@ class Airport
 	  @plane = plane
 	end
 
-
+    def confirm_landing(plane)
+	  plane	
+	end	
 end
