@@ -1,7 +1,7 @@
 require_relative 'plane'
 
 class Airport
-attr_reader :planes
+attr_reader :planes, :weather
 
   def initialize
     @planes = []
@@ -13,6 +13,7 @@ attr_reader :planes
   end
 
   def plane_takeoff
+    fail if stormy?
     @planes.pop
     confirmation_takeoff
   end
@@ -23,6 +24,10 @@ attr_reader :planes
 
   def confirmation_takeoff
     "Plane has taken off"
+  end
+
+  def stormy?
+    [false, false, false, true].sample
   end
 
 end
