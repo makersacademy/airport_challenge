@@ -11,7 +11,10 @@ describe Airport do
     expect(subject.land(plane)).to eq [plane]
   end
 
-  # it 'checks a plane has landed'
-
+  it 'checks if a specific plane has landed' do
+    plane = 'plane'
+    subject.land(plane)
+    expect(subject.landed?(plane)).to eq true
+  end
 
 end
