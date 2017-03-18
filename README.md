@@ -57,8 +57,10 @@ Functional representation:
 Diagram of communication between objects and messages:
 
 ```
-Airport/Plane  <--- land             ---> plane lands
-Airport/Plane  <--- take_off         ---> plane takes off
+Plane          <--- plane_lands      ---> plane status no longer flying
+Airport        <--- land             ---> plane lands
+Plane          <--- plane_takes_off  ---> plane status flying
+Airport        <--- take_off         ---> plane takes off
 Plane          <--- flying?          ---> true/false
 Stormy Weather <--- prevent_take_off ---> prevents take off
 Stormy Weather <--- prevent_landing  ---> prevents landing
