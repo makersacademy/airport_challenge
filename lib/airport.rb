@@ -1,13 +1,14 @@
 require_relative 'plane'
 
 class Airport
-attr_reader :planes, :weather
+attr_reader :planes
 
   def initialize
     @planes = []
   end
 
   def plane_land(plane)
+    fail if stormy?
     @planes << plane
     confirmation_land
   end
