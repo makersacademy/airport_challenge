@@ -44,9 +44,9 @@ Functional representation:
 | Objects                  | Messages                 |
 | ------------------------ | ------------------------ |
 | Air Traffic Controller   |            |
-| Plane                    | land          |
+| Plane                    | plane_lands         |
 | Airport                  | land           |
-| Plane                    | take_off          |
+| Plane                    | plane_takes_off          |
 | Airport                  | take_off            |
 | Plane                    | flying?          |
 | Stormy Weather           | prevent_take_off         |

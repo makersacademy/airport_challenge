@@ -9,6 +9,7 @@ attr_reader :planes_in_airport
 
   def land(plane)
     fail "Plane is on the ground" unless plane.flying?
+    #plane.landed
     @planes_in_airport << plane
   end
 

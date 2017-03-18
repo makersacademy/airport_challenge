@@ -9,6 +9,7 @@ describe Airport do
 
     it 'can confirm a plane has landed' do
       allow(plane).to receive(:flying?) {true}
+      allow(plane).to receive(:landed)
       subject.land(plane)
       expect(subject.planes_in_airport).to include plane
     end
@@ -18,11 +19,6 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error("Plane is on the ground")
     end
 
-    it 'landed plane is not flying' do
-      allow(plane).to receive(:flying?) {true}
-      subject.land(plane)
-      expect(plane.flying?).to eq false
-    end
   end
 
   describe '#take_off' do
