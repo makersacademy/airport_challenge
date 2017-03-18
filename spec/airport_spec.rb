@@ -10,8 +10,17 @@ describe Airport do
     expect(subject.land(plane)).to eq true
     end
 
+    it 'adds the landed plane to planes array' do
+      expect(subject.add_plane(plane)).to eq [plane]
+    end
   end
 
-
+  describe '#take_off' do
+    it 'should take_off and confirm no longer in airport' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq []
+    end
+  end
 
 end
