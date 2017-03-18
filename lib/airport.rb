@@ -9,11 +9,12 @@ attr_reader :planes
 
   def plane_land(plane)
     @planes << plane
+    confirmation_land
   end
 
   def plane_takeoff
     @planes.pop
-  end 
+  end
 
   def confirmation_land
     "A plane has landed"
