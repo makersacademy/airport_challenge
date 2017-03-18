@@ -8,15 +8,21 @@ describe Airport do
       expect(subject).to respond_to :release_plane
     end
 
-    it 'releases an instance of plane when method called with argument' do
+    it 'release one stored plane' do
       aeroplane = Plane.new
-      expect(subject.release_plane(aeroplane)).to eq aeroplane
+      subject.accept_plane(aeroplane)
+      expect(subject.release_plane).to eq aeroplane
     end
+
+    it "doesn't release a plane when none are stored in airport" do
+      expect {subject.release_plane}.to raise_error "No planes here to fly!"
+    end
+
   end
 
   describe '#accepts_plane' do
 
-    it 'stores a plane when it is passed as an argument' do
+    it 'stores a plane when plane is passed as an argument' do
       aeroplane = Plane.new
       expect(subject.accept_plane(aeroplane)).to eq [aeroplane]
     end

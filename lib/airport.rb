@@ -3,15 +3,26 @@ require './lib/plane.rb'
 class Airport
 
   def initialize
-    @plane = []
+    @planes = []
   end
 
-  def release_plane(plane)
-    plane
+  def release_plane
+    fail "No planes here to fly!" if empty?
+    planes.pop
   end
 
   def accept_plane(plane)
-    @plane << plane
+    planes << plane
+  end
+
+
+
+  private
+
+  attr_reader :planes
+
+  def empty?
+    planes.empty?
   end
 
 end
