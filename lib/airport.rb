@@ -12,7 +12,12 @@ class Airport
 	  plane	
 	end	
 
+	def dock(plane)
+	  plane	
+	end
+
 	def allow_takeoff(plane)
 	  plane	
 	end
+
 end
