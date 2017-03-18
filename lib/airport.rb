@@ -11,6 +11,7 @@ class Airport
 
   def release_plane(plane)
     fail "No planes here to fly!" if empty?
+    fail "Too stormy to fly!" if plane.stormy == true
     plane.flying = true
     planes.delete(plane)
   end

@@ -18,6 +18,12 @@ describe Airport do
       expect {subject.release_plane(Plane.new)}.to raise_error "No planes here to fly!"
     end
 
+    it "can't release plane if it is in stormy weather" do
+      plane = double(:plane, stormy: true, flying: false)
+      subject.accept_plane(Plane.new)
+      expect {subject.release_plane(plane)}.to raise_error "Too stormy to fly!"
+    end
+
   end
 
   describe '#accepts_plane' do
