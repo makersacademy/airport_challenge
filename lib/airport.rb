@@ -1,7 +1,10 @@
 require_relative "plane.rb"
+require_relative "weather.rb"
 
 
 class Airport
+
+  include Weather
 
   attr_reader :planes
 
