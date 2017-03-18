@@ -1,8 +1,11 @@
 require 'plane'
-require 'airport'
+#require 'airport'
 
 describe Plane do
-  it { is_expected.to respond_to }
 
-describe DockingStation do
-  it { is_expected.to respond_to :release_bike}
+  # 1. #land - plane.land(airport)
+  it { is_expected.to respond_to(:land).with(1).argument }
+
+
+
+end
