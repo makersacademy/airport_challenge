@@ -20,6 +20,8 @@ plane.landed?
 # from an airport
 
 airport.takeoff(plane)
+plane.takeoff
+plane.landed?
 
 # Task - I want the plane to confirm it is no longer
 # at the airport

@@ -9,4 +9,7 @@ describe Plane do
   # 2. #land
   it { is_expected.to respond_to(:land) }
 
+  # 3. #takeoff
+  it { is_expected.to respond_to(:takeoff) }
+
 end
