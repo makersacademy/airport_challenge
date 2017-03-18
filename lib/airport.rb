@@ -1,14 +1,16 @@
 require_relative 'plane'
 
 class Airport
-attr_reader :planes_in_airport
+attr_reader :planes_in_airport, :capacity
 
   def initialize
     @planes_in_airport = []
+    @capacity = 20
   end
 
   def land(plane)
     fail "Plane is on the ground" unless plane.flying?
+    fail "Airport is full" if @planes_in_airport.length >= @capacity
     plane.plane_lands
     @planes_in_airport << plane
   end
