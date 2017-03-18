@@ -19,4 +19,19 @@ heathrow = Airport.new
 subject.land(heathrow)
 expect(subject.status).to eq heathrow
 end
+
+puts "--------PLANE TAKE OFF-----------"
+it "checks that plane responds to take_off" do
+expect(subject).to respond_to :takeoff
+end
+it "checks that plane status has changed to flying" do
+  expect(subject.takeoff).to eq "Flying"
+end
+=begin
+it "checks that planes cannot land if they are already in the airport" do
+heathrow = Airport.new
+subject.land(heathrow)
+expect(subject.land(heathrow)).to raise_error "Plane already in the airport!"
+end
+=end
 end
