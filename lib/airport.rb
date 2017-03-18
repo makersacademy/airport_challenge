@@ -7,12 +7,20 @@ attr_reader :planes
     @planes = []
   end
 
-  def land_plane(plane)
+  def plane_land(plane)
     @planes << plane
   end
 
-  def confirmation
+  def plane_takeoff
+    @planes.pop
+  end 
+
+  def confirmation_land
     "A plane has landed"
+  end
+
+  def confirmation_takeoff
+    "A plane has taken off"
   end
 
 end
