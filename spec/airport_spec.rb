@@ -19,6 +19,12 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error("Plane is on the ground")
     end
 
+    it 'does not allow landing when airport is full' do
+      allow(plane).to receive(:flying?) {true}
+      subject.capacity.times {subject.planes_in_airport << plane}
+      expect{subject.land(plane)}.to raise_error("Airport is full")
+    end
+
   end
 
   describe '#take_off' do

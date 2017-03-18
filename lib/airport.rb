@@ -21,5 +21,3 @@ attr_reader :planes_in_airport
   end
 
 end
-
-#planes can only take off from airports they are in

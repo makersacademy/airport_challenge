@@ -1,12 +1,9 @@
 require './lib/airport'
 require './lib/plane'
-gatwick = Airport.new
-munich = Airport.new
-easyjet = Plane.new
-gatwick.land(easyjet)
-easyjet.flying?
-munich.take_off(easyjet)
-easyjet.flying?
+airport = Airport.new
+plane = Plane.new
+airport.capacity.times {airport.planes_in_airport << plane}
+
 
 
 #planes can only take off from airports they are in
