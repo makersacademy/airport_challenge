@@ -1,0 +1,5 @@
+require './lib/airport.rb'
+require './lib/plane.rb'
+arlanda = Airport.new
+plane1 = arlanda.create_new_plane
+arlanda.land(plane1)
