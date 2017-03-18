@@ -13,7 +13,7 @@ Airport Challenge
 
 ```
 
-# Task
+### Task
 
 We were asked to write a program to control the flow of planes at an airport.
 
@@ -23,7 +23,7 @@ We were given user stories, which I first broke down using domain modelling. My 
 
 Care has been taken to ensure encapsulation was done as much as possible, so that the user (air traffic controller) can only interact with an instance of the Airport class.
 
-# Installation
+### Installation
 
 Clone repository:
 ```
@@ -37,7 +37,7 @@ $ gem install bundler
 $ bundle install
 ```
 
-# Domain model
+### Domain model
 
 Functional representation:
 
@@ -57,13 +57,13 @@ Functional representation:
 Diagram of communication between objects and messages:
 
 ```
-Airport/Plane <--- land ---> plane lands
-Airport/Plane <--- take_off ---> plane takes off
-Plane <--- flying? ---> true/false
+Airport/Plane  <--- land             ---> plane lands
+Airport/Plane  <--- take_off         ---> plane takes off
+Plane          <--- flying?          ---> true/false
 Stormy Weather <--- prevent_take_off ---> prevents take off
-Stormy Weather <--- prevent_landing ---> prevents landing
-Airport <--- full? ---> true/false
-Airport <--- default_capacity ---> default capacity
+Stormy Weather <--- prevent_landing  ---> prevents landing
+Airport        <--- full?            ---> true/false
+Airport        <--- default_capacity ---> default capacity
 ```
 
 <!-- ## README is updated
