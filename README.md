@@ -21,7 +21,7 @@ I aimed to complete this challenge by using a test-driven approach, using manual
 
 We were given user stories, which I first broke down using domain modelling. My resulting models were then converted into failing feature tests, then translated into RSpec as failing unit tests. Following that, I wrote my code.
 
-Care has been taken to ensure encapsulation was done as much as possible, so that the user (air traffic controller) can only interact with an instance of the Airport class.
+Care has been taken to ensure encapsulation was done as much as possible, so that the user (Air Traffic Controller) can only interact with an instance of the Airport class.
 
 ### Installation
 
