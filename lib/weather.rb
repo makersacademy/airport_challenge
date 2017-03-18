@@ -5,8 +5,8 @@ class Weather
   end
 
   def report
-    weather = rand(10)
-    if weather <= 8
+    generate_weather = rand(10)
+    if generate_weather <= 8
       @stormy_weather = false
     else @stormy_weather = true
     end

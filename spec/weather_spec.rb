@@ -7,7 +7,8 @@ describe Weather do
 
   # 2. #report - sets @stormy_weather to either true or false
   it '#report - sets @stormy_weather to either true or false' do
-    expect(subject.report).to eq("Draw").or eq("Win").or eq("Lose")
+    expect(subject.report).to eq(true).or eq(false)
   end
+
 
 end
