@@ -19,7 +19,7 @@ describe Airport do
     it 'should take_off and confirm no longer in airport' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.take_off(plane)).to eq []
+      expect(subject.take_off).to eq []
     end
   end
 
