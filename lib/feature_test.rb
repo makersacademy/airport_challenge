@@ -14,4 +14,7 @@ airport = Airport.new # 2. create new object - airport
 
 # Task - I want to instruct a plane to land at an airport
 airport.land(plane)
+
+# Task - I want to the plane to confirm it has landed
+plane.land
 plane.landed?
