@@ -13,6 +13,7 @@ class Airport
   end
 
   def land_plane(plane)
+    fail "Landing delayed due stormy weather" if fly_okay? != true
     planes.push(plane)
     "#{plane} has landed successfully"
   end

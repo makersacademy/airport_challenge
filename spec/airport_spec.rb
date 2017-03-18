@@ -8,13 +8,22 @@ describe Airport do
     it "accepts a plane to land" do
       plane = double(:plane)
       subject.land_plane(plane)
+      allow(subject).to receive(:fly_okay?).and_return(true)
       expect(subject.count_planes).to eq 1
     end
 
     it "accepts multiple planes" do
       plane = double(:plane)
+      allow(subject).to receive(:fly_okay?).and_return(true)
       10.times { subject.land_plane(plane) }
       expect(subject.count_planes).to eq 10
+    end
+
+    it "stops a plane landing if there is stormy weather" do
+      plane = double(:plane)
+      allow(subject).to receive(:fly_okay?).and_return(false)
+      allow(subject).to receive(:fly_okay?).and_return(false)
+      expect{ subject.land_plane(plane) }.to raise_error "Landing delayed due stormy weather"
     end
   end
 
