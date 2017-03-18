@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
 
   subject (:plane) { described_class.new }
+  subject (:weather) { described_class.new }
 
   describe '#initialize' do
     it 'checks default capacity is set' do
@@ -49,17 +50,25 @@ describe Airport do
       expect(subject.planes_in_airport).not_to include plane
     end
 
-    it 'cannot make a plane take off if it is flying' do
+    it 'cannot make a plane takeoff if it is flying' do
       allow(plane).to receive(:flying?) {true}
       expect{subject.take_off(plane)}.to raise_error("Plane is in the air")
     end
 
-    it 'planes can only take off from airports they are in' do
+    it 'planes can only takeoff from airports they are in' do
       allow(plane).to receive(:flying?) {false}
       allow(plane).to receive(:plane_takes_off)
       airport2 = Airport.new
       airport2.planes_in_airport << plane
       expect{subject.take_off(plane)}.to raise_error("Plane not in airport")
+    end
+
+    it 'prevents takeoff when weather is stormy' do
+      allow(plane).to receive(:flying?) {false}
+      allow(weather).to receive(:stormy?) {true}
+      allow(plane).to receive(:plane_takes_off)
+      subject.planes_in_airport << plane
+      expect{subject.take_off(plane)}.to raise_error("Too stormy to take off")
     end
   end
 

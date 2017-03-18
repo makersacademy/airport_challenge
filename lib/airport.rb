@@ -1,6 +1,7 @@
 require_relative 'plane'
 
 class Airport
+  
 attr_reader :planes_in_airport, :capacity
 DEFAULT_CAPACITY = 20
 
