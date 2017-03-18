@@ -1,7 +1,14 @@
+
+
 class Airport
 
-  def land(plane)
-    landed = true
+  def initialize
+    @planes = []
   end
+
+  def land(plane)
+    @planes.push(plane)
+  end
+
 
 end
