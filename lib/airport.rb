@@ -11,6 +11,7 @@ attr_reader :planes_in_airport
   end
 
   def take_off(plane)
+    fail "Plane is in the air" if flying?
     @planes_in_airport.delete(plane)
   end
 
