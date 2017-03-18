@@ -14,6 +14,7 @@ DEFAULT_CAPACITY = 20
   def land(plane)
     fail "Plane is on the ground" unless plane.flying?
     fail "Airport is full" if full?
+    fail "Too stormy to land" if self.stormy?
     plane.plane_lands
     @planes_in_airport << plane
   end

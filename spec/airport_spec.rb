@@ -22,6 +22,7 @@ describe Airport do
     it 'can confirm a plane has landed' do
       allow(plane).to receive(:flying?) {true}
       allow(plane).to receive(:plane_lands)
+      allow(weather).to receive(:stormy?) {false}
       subject.land(plane)
       expect(subject.planes_in_airport).to include plane
     end
@@ -68,15 +69,15 @@ describe Airport do
   context 'stormy weather' do
     it 'prevents takeoff when weather is stormy' do
       allow(plane).to receive(:flying?) {false}
-      allow(weather).to receive(:stormy?) {true}
       allow(plane).to receive(:plane_takes_off)
+      allow(weather).to receive(:stormy?) {true}
       subject.planes_in_airport << plane
       expect{subject.take_off(plane)}.to raise_error("Too stormy to take off")
     end
 
     it 'prevents landing when weather is stormy' do
-      allow(plane).to receive(:flying?) {true}
       allow(weather).to receive(:stormy?) {true}
+      allow(plane).to receive(:flying?) {true}
       allow(plane).to receive(:plane_lands)
       expect{subject.land(plane)}.to raise_error("Too stormy to land")
     end
