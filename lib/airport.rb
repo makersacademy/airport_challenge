@@ -1,9 +1,10 @@
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :conditions
 
   def initialize
     @planes = []
+    @conditions
   end
 
   def land(plane)
@@ -15,7 +16,12 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Stormy weather! Not safe to fly." if conditions == "stormy"
     planes.delete(plane)
+  end
+
+  def weather_conditions(condition)
+    @conditions = condition
   end
 
 end
