@@ -1,13 +1,16 @@
 =begin
-USER STORY 2
+USER STORY 3
 As an air traffic controller
-So I can get passengers on the way to their destination
-I want to instruct a plane to take off from an airport
-and confirm that it is no longer in the airport
+To ensure safety
+I want to prevent takeoff when weather is stormy
 =end
 
-require './lib/plane'
 require './lib/airport'
+require  './lib/weather'
+
+
+
+
 
 plane = Plane.new # 1. create new object - plane
 airport = Airport.new # 2. create new object - airport
