@@ -11,5 +11,9 @@ class Airport
     @planes.push(plane)
   end
 
+  def takeoff(plane)
+    @planes.pop
+  end
+
 
 end
