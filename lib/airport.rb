@@ -10,6 +10,7 @@ class Airport
   end
 
   def release_plane(plane)
+    weather_strength > 50 ? plane.stormy = true : plane.stormy = false
     fail "No planes here to fly!" if empty?
     fail "Too stormy to fly!" if plane.stormy == true
     plane.flying = true
@@ -17,6 +18,7 @@ class Airport
   end
 
   def accept_plane(plane)
+    weather_strength > 50 ? plane.stormy = true : plane.stormy = false
     fail "Airport full!" if full?
     fail "Plane already landed!" if plane.flying == false
     fail "Too stormy to land!" if plane.stormy == true
@@ -34,6 +36,10 @@ class Airport
 
   def empty?
     planes.empty?
+  end
+
+  def weather_strength
+    rand(100)
   end
 
 end

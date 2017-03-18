@@ -1,7 +1,7 @@
 require './lib/airport.rb'
 
 describe Airport do
-
+let(:plane) {double :plane}
   describe '#release_plane' do
 
     it 'responds to "release_plane"' do
@@ -9,9 +9,11 @@ describe Airport do
     end
 
     it 'releases one stored plane' do
-      aeroplane = Plane.new
-      subject.accept_plane(aeroplane)
-      expect(subject.release_plane(aeroplane)).to eq aeroplane
+      # aeroplane = Plane.new
+      allow(plane).to receive(:is_it_stormy).and_return(false)
+      allow(plane).to receive(:stormy).and_return(true)
+      subject.accept_plane(plane)
+      expect(subject.release_plane(plane)).to eq plane
     end
 
     it "doesn't release a plane when none are stored in airport" do
