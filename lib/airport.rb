@@ -9,6 +9,7 @@ attr_reader :planes
 
   def plane_land(plane)
     fail if stormy?
+    fail if full?
     @planes << plane
     confirmation_land
   end
@@ -29,6 +30,10 @@ attr_reader :planes
 
   def stormy?
     [false, false, false, true].sample
+  end
+
+  def full?
+    true if @planes.count > 100
   end
 
 end
