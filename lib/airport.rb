@@ -4,7 +4,7 @@ class Airport
 
 	attr_reader :plane
 
-	def land_at_airport(plane)
+	def allow_landing(plane)
 	  plane
 	end
 
@@ -12,7 +12,7 @@ class Airport
 	  plane	
 	end	
 
-	def takeoff_from_airport(plane)
+	def allow_takeoff(plane)
 	  plane	
 	end
 end
