@@ -8,7 +8,7 @@ describe Airport do
       expect( subject.capacity ).to eq Airport::DEFAULT_CAPACITY
     end
 
-    it 'assigns capacity when initialized' do
+    it 'overrides default capacity at initialization' do
       n = (0..1000)
       airport = Airport.new(n)
       expect( airport.capacity ).to eq n

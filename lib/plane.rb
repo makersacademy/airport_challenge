@@ -21,12 +21,4 @@ class Plane
 
 
   private
-  def airborne?
-    true if status == "airborne"
-  end
-
-  def landed?
-    true if status == "landed"
-  end
-
 end
