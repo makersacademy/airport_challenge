@@ -9,7 +9,7 @@ describe Airport do
 
     it 'can confirm a plane has landed' do
       allow(plane).to receive(:flying?) {true}
-      allow(plane).to receive(:landed)
+      allow(plane).to receive(:plane_lands)
       subject.land(plane)
       expect(subject.planes_in_airport).to include plane
     end
@@ -26,6 +26,7 @@ describe Airport do
 
     it 'can confirm plane is no longer in the airport' do
       allow(plane).to receive(:flying?) {false}
+      allow(plane).to receive(:plane_takes_off)
       subject.take_off(plane)
       expect(subject.planes_in_airport).not_to include plane
     end
