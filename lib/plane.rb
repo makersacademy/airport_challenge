@@ -16,7 +16,7 @@ class Plane
     @landed
   end
 
-private
+
 attr_writer :landed
 
 end

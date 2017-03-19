@@ -42,6 +42,7 @@ class Airport
     @capacity = number
   end
 
+private
 
   def full?
     planes.count >= capacity

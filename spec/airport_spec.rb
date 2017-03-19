@@ -4,15 +4,11 @@ describe Airport do
   let (:number) {double :number}
 
   describe '#land' do
-    it 'has a method that lands planes' do
-      expect(subject).to respond_to :land
-    end
+    it {is_expected.to respond_to(:land)}
 
-    it 'responds with one arguments' do
-      expect(subject).to respond_to(:land).with(1).argument
-    end
+    it { is_expected.to respond_to(:land).with(1).argument }
 
-    it 'tells the plane to land' do
+    it 'should tell the plane to land' do
       plane = double(:plane, landed?: false)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:land_plane)
@@ -20,7 +16,7 @@ describe Airport do
       subject.land(plane)
     end
 
-    it 'lands planes in the Airport' do
+    it 'should land planes in the Airport' do
       plane = double(:plane, landed?: false)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:land_plane)
@@ -29,14 +25,14 @@ describe Airport do
     end
 
 
-    it 'does not allow landing when weather is stormy' do
+    it 'should not allow landing when weather is stormy' do
       plane = double(:plane, landed?: false)
       allow(subject.weather).to receive(:stormy_weather?).and_return(true)
       allow(plane).to receive(:land_plane)
       expect{ subject.land(plane) }.to raise_error("Bad weather today. Cannot land.")
     end
 
-    it 'does not allow landing when airport is full' do
+    it 'should not allow landing when airport is full' do
       plane = double(:plane, landed?: false)
       allow(plane).to receive(:land_plane)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
@@ -44,7 +40,7 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error("Sorry. Airport full. Go away.")
     end
 
-    it 'raises error when trying to land a landed plane' do
+    it 'should raise error when trying to land a landed plane' do
       plane = double(:plane, landed?: true)
       allow(plane).to receive(:land_plane)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
@@ -54,15 +50,11 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'has a method that lets planes take off' do
-      expect(subject).to respond_to :take_off
-    end
+    it { is_expected.to respond_to(:take_off) }
 
-    it 'responds with one arguments' do
-      expect(subject).to respond_to(:take_off).with(1).argument
-    end
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
-    it 'tells the airport to take off the plane' do
+    it 'should tell the airport to take off the plane' do
       plane = double(:plane, landed?: true)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
@@ -70,7 +62,7 @@ describe Airport do
       subject.take_off(plane)
     end
 
-    it 'allows planes to take off from Airport' do
+    it 'should allow planes to take off from Airport' do
       plane = double(:plane, landed?: true)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
@@ -79,13 +71,13 @@ describe Airport do
       expect(subject.planes).not_to include [plane]
     end
 
-    it 'does not allow take off when weather is stormy' do
+    it 'should not allow take off when weather is stormy' do
       plane = double(:plane)
             allow(subject.weather).to receive(:stormy_weather?).and_return(true)
       expect{ subject.take_off(plane) }.to raise_error("Bad weather today. Cannot take off.")
     end
 
-    it 'raises an error when plane is not in airport' do
+    it 'should raise an error when plane is not in airport' do
       plane = double(:plane, landed?: true)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
@@ -95,15 +87,11 @@ describe Airport do
   end
 
   describe '#set_capacity' do
-    it 'has a method that overrides default airport capacity' do
-      expect(subject).to respond_to(:set_capacity)
-    end
+    it {is_expected.to respond_to(:set_capacity)}
 
-    it 'has a method that expects one argument' do
-      expect(subject).to respond_to(:set_capacity).with(1).argument
-    end
+    it { is_expected.to respond_to(:set_capacity).with(1).argument }
 
-    it 'changes the capacity to a different number' do
+    it 'should change the capacity to a different number' do
       number = double(:number)
       subject.set_capacity(number)
       expect(subject.capacity).to eq number
