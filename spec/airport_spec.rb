@@ -9,12 +9,19 @@ describe Airport do
     #   expect(subject.planes).to eq planes
     # end
 
-
-    it 'has a fixed capacity' do
+    it 'has sets default capacity as 30' do
       allow(subject).to receive(:stormy?) { false }
       30.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error "Airport full...jog on"
     end
+
+    it 'has a variable capacity' do
+      airport = Airport.new(50)
+      allow(airport).to receive(:stormy?) { false }
+      50.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error "Airport full...jog on"
+    end
+
   end
 
 
