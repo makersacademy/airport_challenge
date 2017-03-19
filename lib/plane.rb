@@ -1,24 +1,16 @@
 class Plane
-  attr_reader :status, :seats
+  attr_reader :status
 
   def initialize
-    @status = "airborne"
-    @seats = []
+    @status = :landed
   end
 
   def report_landing
-    @status = "landed"
+    @status = :landed
   end
 
   def report_take_off
-    @status = "airborne"
+    @status = :airborne
   end
 
-  def load(passenger)
-    seats << passenger
-  end
-
-
-
-  private
 end

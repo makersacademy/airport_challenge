@@ -3,6 +3,10 @@ require 'airport'
 describe Airport do
   let(:plane) { double :plane }
 
+  before do
+    allow(subject.weather).to receive(:stormy?) {false}
+  end
+
   describe "#initialize" do
     it 'defaults capacity' do
       expect( subject.capacity ).to eq Airport::DEFAULT_CAPACITY
@@ -61,6 +65,12 @@ describe Airport do
 
     it 'raises error if airport is empty' do
       expect{ subject.take_off(plane)}.to raise_error "There are no planes here"
+    end
+
+    it 'raises error if weather is too stormy for take off' do
+      subject.land(plane)
+      allow(subject.weather).to receive(:stormy?) {true}
+      expect{ subject.take_off(plane) }.to raise_error "The weather is too stormy for take off"
     end
   end
 

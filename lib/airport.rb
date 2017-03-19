@@ -12,35 +12,40 @@ class Airport
   end
 
   def land(plane)
-    if full
-      raise "The airport is full. You must land somewhere else"
-    elsif @landing_strip.include?(plane)
-      raise "This plane has already landed"
-    elsif @weather.stormy?
-      raise "The weather is too stormy. You cannot land now."
-    else
-    @landing_strip << plane
-    end
+    fail "This plane has already landed" if already_in_airport?(plane)
+    fail "The airport is full. You must land somewhere else" if full?
+    fail "The weather is too stormy. You cannot land now." if stormy?
+    landing_strip << plane
   end
 
   def take_off(plane)
-    if empty
-      raise "There are no planes here"
-    elsif @landing_strip.include?(plane) == false
-      raise "This plane is already airborne"
-    else
-    @landing_strip.delete(plane)
-    end
+    fail "There are no planes here" if empty?
+    fail "This plane is already airborne" if already_airborne?(plane)
+    fail "The weather is too stormy for take off" if stormy?
+    landing_strip.delete(plane)
   end
+
 
 private
 
-  def empty
-    @landing_strip.empty?
+  def already_in_airport?(plane)
+    landing_strip.include?(plane)
   end
 
-  def full
-    @landing_strip.count >= capacity
+  def already_airborne?(plane)
+    landing_strip.include?(plane) == false
+  end
+
+  def stormy?
+    weather.stormy?
+  end
+
+  def empty?
+    landing_strip.empty?
+  end
+
+  def full?
+    landing_strip.count >= capacity
   end
 
 end
