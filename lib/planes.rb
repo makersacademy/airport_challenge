@@ -1,18 +1,16 @@
 class Planes
-  attr_reader :landed
+  attr_reader :plane_landed
 
   def initialize
-    @landed = true
+    @plane_landed = true
   end
 
   def take_off
-    fail 'The plane has already taken off' if @landed == false
-    @landed = false
+    @plane_landed = false
   end
 
   def land
-    fail 'The plane has already landed' if @landed == true
-    @landed = true
+    @plane_landed = true
   end
 
 end
