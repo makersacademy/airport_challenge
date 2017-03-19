@@ -45,6 +45,7 @@ describe Plane do
   end
 
   describe "#takeoff" do
+    
     it "makes the plane take-off" do
       airport = double(:airport, land: "Plane already grounded")
       subject.land_at(airport)

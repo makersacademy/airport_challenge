@@ -14,7 +14,14 @@ describe Airport do
 
     end
 
-    it "stores plane into planes_in_airport" do
+    it "cannot be called by anything other than a plane" do
+      plane = double(:plane, flying?: true )
+      expect{ subject.land(plane) }.to raise_error("Only plane can control landing")
+
+    end
+
+    it "stores plane into planes_in_airport on landing" do
+      plane = double(:plane, flying?: false)
       subject.land(plane)
       expect(subject.landed_planes).to eq([plane])
     end

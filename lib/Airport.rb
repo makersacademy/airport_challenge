@@ -6,7 +6,7 @@ class Airport
 
 
   def land(plane)
-
+    fail "Only plane can control landing" if plane.flying? 
     self.landed_planes << plane
     return "Landed Successfully"
   end
