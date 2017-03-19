@@ -4,7 +4,7 @@ class Airport
 
   AIRPORT_CAPACITY = 20
 
-  attr_reader :capacity, :planes, :weather
+  attr_reader :capacity, :weather, :planes
 
   def initialize(weather: Weather.new)
     @weather = weather
@@ -15,34 +15,24 @@ class Airport
   public
 
   def land(plane)
-    if weather.stormy_weather?
-      fail "Bad weather today. Cannot land."
-    elsif full?
-      fail "Sorry. Airport full. Go away."
-    elsif plane.landed?
-    fail "This plane is already landed."
-    else
+    fail "Bad weather today. Cannot land." if weather.stormy_weather?
+    fail "Sorry. Airport full. Go away." if full?
+    fail "This plane is already landed." if plane.landed?
     plane.land_plane
     planes << plane
-    end
   end
 
   def take_off(plane)
-    if weather.stormy_weather?
-    fail "Bad weather today. Cannot take off."
-    elsif !planes.include? plane
-    fail "That plane is not in this airport"
-    else
+
+    fail "Bad weather today. Cannot take off." if weather.stormy_weather?
+    fail "That plane is not in this airport" unless planes.include? plane
     plane.take_off_plane
     planes.delete(plane)
-    end
   end
 
   def set_capacity(number)
     @capacity = number
   end
-
-private
 
   def full?
     planes.count >= capacity

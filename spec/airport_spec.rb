@@ -91,7 +91,7 @@ describe Airport do
 
     it { is_expected.to respond_to(:set_capacity).with(1).argument }
 
-    it 'should change the capacity to a different number' do
+    it 'should changes the capacity to a different number' do
       number = double(:number)
       subject.set_capacity(number)
       expect(subject.capacity).to eq number
