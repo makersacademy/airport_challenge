@@ -67,3 +67,7 @@ Stormy Weather <--- prevent_landing  ---> prevents landing
 Airport        <--- full?            ---> true/false
 Airport        <--- default_capacity ---> default capacity
 ```
+
+### To be completed
+
+Unfortunately, I did not have time to resarch testing Modules with rspec. As a result, there are currently no tests for my weather.rb module. The reason it exists is because it was originally created, test-driven, as a class.
