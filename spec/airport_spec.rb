@@ -16,14 +16,16 @@ describe Airport do
   describe '#launch' do
     it 'launches a plane' do
       plane = double('plane')
+      weather = double('weather', :stormy? => false)
       subject.land(plane)
-      expect(subject.launch).to eq plane
+      expect(subject.launch(weather)).to eq plane
     end
-    # it 'raises an error when weather is stormy' do
-    #   plane = double('plane')
-    #   subject.land(plane)
-    #   weather = double()
-    # end 
+    it 'raises an error if weather is stormy' do
+      plane = double('plane')
+      weather = double('weather', :stormy? => true)
+      subject.land(plane)
+      expect { subject.launch(weather) }.to raise_error 'Weather warning'
+    end
   end
 
   describe '#planes' do

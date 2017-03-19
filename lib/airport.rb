@@ -13,7 +13,8 @@ class Airport
     @planes << plane
   end
 
-  def launch
+  def launch(weather)
+    raise 'Weather warning' if weather.stormy?
     @planes.pop
   end
 
