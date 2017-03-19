@@ -2,7 +2,7 @@ require 'airplane'
 
 describe Airplane do
 
-  subject(:airplane) {Airplane.new}
+  subject(:airplane) {described_class.new}
   let(:airport) {double :airport}
 
   describe '#landed' do
