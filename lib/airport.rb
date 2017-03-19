@@ -12,4 +12,8 @@ class Airport
     @planes << plane
   end
 
+  def launch
+    @planes.pop 
+  end
+
 end

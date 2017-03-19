@@ -4,11 +4,20 @@ describe Airport do
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to :planes }
+  it { is_expected.to respond_to :launch }
 
   describe '#land' do
     it 'lands a plane' do
       plane = double('plane')
       expect(subject.land(plane)).to eq [plane]
+    end
+  end
+
+  describe '#launch' do
+    it 'launches a plane' do
+      plane = double('plane')
+      subject.land(plane)
+      expect(subject.launch).to eq plane
     end
   end
 
