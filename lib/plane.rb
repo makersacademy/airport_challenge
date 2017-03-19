@@ -1,21 +1,21 @@
 class Plane
 
-    attr_reader :landed_planes
+    attr_reader :landed
 
-    def initialize(landed_planes = false)
-      @landed_planes = landed_planes
+    def initialize(landed = false)
+      @landed = landed
     end
 
     def land_plane
-      @landed_planes = true
+      @landed = true
     end
 
     def plane_landed?
-      @landed_planes
+      @landed
     end
 
     def take_off_plane
-      @landed_planes = false
+      @landed = false
     end
 
 end
