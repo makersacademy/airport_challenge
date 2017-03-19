@@ -26,12 +26,12 @@ describe Airport do
   describe '#land' do
     it { is_expected.to respond_to(:land) }
 
-    # it 'cannot land if not airborne' do
-    #   allow(airport).to receive(:stormy?) { false }
-    #   airport.land(plane)
-    #   message = "Error - Plane not airborne"
-    #   expect(airport.land(plane)).to eq { message }
-    # end
+    it 'cannot land if not airborne' do
+      allow(airport).to receive(:stormy?) { false }
+      allow(plane).to receive(:airborne?) { false }
+      message = "Error - Plane not airborne"
+      expect { airport.land(plane) }.to raise_error { message }
+    end
   end
 
   describe '#successful_landing' do
