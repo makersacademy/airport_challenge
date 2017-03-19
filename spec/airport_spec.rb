@@ -3,21 +3,44 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) {double :plane}
-
-
-  it "checks plane has landed" do
-    plane = double(:plane, landed: true)
-    expect(subject.land(plane)).to include plane
-  end
-
-  it "plane can't land if airport is full" do
-    plane = double(:plane, landed: true)
-    subject.capacity.times {subject.land(plane)}
-    expect {subject.land(plane)}.to raise_error("Airport full")
-  end
+  let(:weather) {double :weather}
 
   it "Checks default maximum capacity" do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  describe "#land(plane)" do
+    before do
+      allow(plane).to receive(:land)
+    end
+
+    before do
+      weather = double(weather, stormy?: false)
+    end
+
+    it "plane can't land if airport is full" do
+      subject.capacity.times do
+        subject.land(plane)
+      end
+      expect {subject.land(plane)}.to raise_error("Airport full")
+    end
+
+
+    it "checks plane is in airport array" do
+      subject.land(plane)
+      expect(subject.send(:planes)).to include plane
+    end
+  end
+
+  describe "#take_off(plane)" do
+    before do
+      allow(plane).to receive(:take_off)
+    end
+
+    it "checks plane is no longer in airport array" do
+      subject.take_off(plane)
+      expect(subject.send(:planes)).not_to include plane
+    end
   end
 
 end
