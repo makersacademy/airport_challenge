@@ -14,6 +14,9 @@ class Airport
   end
 
   def land(plane)
+    selected_plane = plane
+    fail "Airplane has already landed at this airport" if already_in_airport?(selected_plane)
+    fail "This plane has already landed at a different airport" if selected_plane.landed
     fail "Airport full" if full?
     fail "Unable to land due to stormy weather" if weather.stormy?
     plane.land
@@ -21,6 +24,9 @@ class Airport
   end
 
   def take_off(plane)
+    selected_plane = plane
+    fail "This plane is already in transit" if selected_plane.in_transit
+    fail "Plane is not at this airport" unless already_in_airport?(selected_plane)
     fail "Unable to take_off due to stormy weather" if weather.stormy?
     plane.take_off
     selected_plane = planes.select {|x| x == plane}
@@ -33,6 +39,10 @@ class Airport
 
   def full?
     planes.length >= capacity ? true : false
+  end
+
+  def already_in_airport?(selected_plane)
+    (planes.include?(selected_plane)) ? true : false
   end
 
 end

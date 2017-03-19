@@ -12,7 +12,8 @@ describe Airport do
   describe "#land(plane)" do
     before do
       allow(plane).to receive(:land)
-      allow(weather).to receive(:stormy?).and_return false
+      allow(plane).to recieve(:landed)
+      allow(weather).to receive(:stormy?) { false }
     end
 
 #  did work before stomry? wont be set to false
@@ -28,14 +29,18 @@ describe Airport do
     #   subject.land(plane)
     #   expect(subject.send(:planes)).to include plane
     # end
-   end
+  end
 
   describe "#take_off(plane)" do
     before do
       allow(plane).to receive(:take_off)
+      allow(plane).to receive(:in_transit)
+      allow(plane).to receive(:land)
+      allow(plane).to receive(:landed)
     end
 
     it "checks plane is no longer in airport array" do
+      subject.land(plane)
       subject.take_off(plane)
       expect(subject.send(:planes)).not_to include plane
     end
