@@ -16,14 +16,14 @@ class Airport
   def release_plane(plane, airport)
     is_it_stormy(airport)
     reasons_to_fail_releasing(plane, airport)
-    plane.flying = true
+    plane.in_flight
     planes.delete(plane)
   end
 
   def accept_plane(plane, airport)
     is_it_stormy(airport)
     reasons_to_fail_accepting(plane, airport)
-    plane.flying = false
+    plane.land
     planes << plane
   end
 
@@ -51,7 +51,7 @@ class Airport
 
   def reasons_to_fail_accepting(plane, airport)
     fail "Airport full!" if full?
-    fail "Plane already landed!" if plane.flying == false
+    fail "Plane already landed!" if (airport.planes.include? (plane))
     fail "Too stormy to land!" if airport.stormy == true
   end
 
