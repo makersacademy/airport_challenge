@@ -4,9 +4,10 @@ describe Airport do
 
   let (:plane) {double :plane}
 
-  describe "#land" do
+  describe "#clear_landing" do
 
     it "has the method" do
+      expect(subject).to respond_to(:clear_landing)
 
     end
 
@@ -26,6 +27,9 @@ describe Airport do
       expect(subject.landed_planes).to eq([plane])
     end
 
+  end
+
+  describe "#clear_take_off" do
 
   end
 

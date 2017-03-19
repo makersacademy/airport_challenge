@@ -4,9 +4,13 @@ class Airport
     @landed_planes = []
   end
 
+  def clear_landing(plane)
+
+
+  end
 
   def land(plane)
-    fail "Only plane can control landing" if plane.flying? 
+    fail "Only plane can control landing" if plane.flying?
     self.landed_planes << plane
     return "Landed Successfully"
   end
