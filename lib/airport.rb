@@ -14,7 +14,7 @@ class Airport
 	  planes << plane
 	end
 
-	def allow_landing(plane)
+	def land(plane)
     planes
 	end
 
@@ -24,13 +24,9 @@ class Airport
 	  end
 	  landed_planes	
 	end	
-
-	# def dock(landed_plane)
-	#   raise "there are no docked planes" if landed_planes.empty?
-	#   landed_planes
-	# end
     
-	def allow_takeoff(landed_plane)
+	def takeoff(landed_plane)
+		raise "the plane has already departed" if landed_planes.empty?
 	  landed_planes.pop
 	end
 
