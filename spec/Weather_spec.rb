@@ -17,8 +17,6 @@ describe "Weather Module" do
 
     describe "Pseudo - Random Number outputs" do
 
-      #let (:weather) {Weather.new}
-
       it "Below 90 random output returns false" do
         allow(weather).to receive(:number_between_1_and_x).and_return(30)
         expect(weather.stormy?).to eq(false)

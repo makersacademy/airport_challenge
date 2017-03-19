@@ -1,9 +1,6 @@
 require "Plane"
 
 describe Plane do
-  #Double Syntax
-  #broken_bike = double(:bike, working?: false)
-  #let (:bike) { double :bike }
 
   let (:airport) {double :airport}
 

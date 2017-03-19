@@ -19,7 +19,9 @@ describe Airport do
     end
 
     it "checks it isn't stormy" do
-      expect{subject.clear_landing}. to raise_error("Too stormy to fly")
+      allow(subject).to receive(:stormy?).and_return(true)
+
+      expect{subject.clear_landing(plane)}. to raise_error("Too stormy to fly")
 
     end
 
