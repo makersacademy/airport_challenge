@@ -8,13 +8,21 @@ describe Airport do
     it { is_expected.to respond_to(:land) }
 
     it 'instructs a plane to land at a specific airport and confirm it has landed' do
-    expect(subject.land(plane)).to eq true
+      allow(subject).to receive(:stormy?) { false }
+      expect(subject.land(plane)).to eq true
     end
 
     it 'contains plane that has landed' do
+      allow(subject).to receive(:stormy?) { false }
       subject.land(plane)
       expect(subject.planes).to include plane
     end
+
+    it 'should prevent landing in stormy weather' do
+      allow(subject).to receive(:stormy?) { true }
+      expect { subject.land(plane) }.to raise_error "Cannot land due to bad weather"
+    end
+
   end
 
   describe '#add_plane' do
@@ -33,8 +41,9 @@ describe Airport do
     end
 
     it 'should prevent take_off if weather stormy' do
-      allow(subject).to receive(:stormy?) { true }
+      allow(subject).to receive(:stormy?) { false }
       subject.land(plane)
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(plane) }.to raise_error "Cannot take off due to bad weather"
     end
 
