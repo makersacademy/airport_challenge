@@ -2,6 +2,8 @@ require 'airport'
 
 describe Airport do
 
+  subject{Airport.new(2)}
+
   describe "#land" do
 
     it 'lands a plane' do
@@ -15,6 +17,12 @@ describe Airport do
       allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
       subject.weather_conditions(condition)
       expect{subject.land(plane)}.to raise_error("Too stormy to land!")
+    end
+
+    it 'stops a plane from landing if airport full' do
+      plane = "BA"
+      subject.capacity.times{subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error("Can't land airport full.")
     end
 
   end
