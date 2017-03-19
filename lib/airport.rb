@@ -14,7 +14,7 @@ class Airport
   def land(plane, weather = Weather.new)
     raise 'Airport is full' if full?
     raise 'Weather warning' if weather.stormy?
-    raise 'This plane has already landed' if @planes.include?(plane)
+    raise 'This plane has already landed' if !plane.flying?
     plane.descend
     @planes << plane
   end
