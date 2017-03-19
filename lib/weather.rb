@@ -1,4 +1,4 @@
-class Weather
+module Weather
 
   def stormy?
     @forecast == :stormy
