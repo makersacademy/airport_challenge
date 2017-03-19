@@ -45,21 +45,25 @@ describe Airport do
     end
   end
 
-  it 'causes a plane to take off' do
-    ba = 'BA'
-    aerlingus = 'Aer Lingus'
-    subject.land(ba)
-    subject.land(aerlingus)
-    expect(subject.take_off(ba)).to eq ba
-  end
+  describe "#take_off" do
 
-  it "doesn't allow plane to take off if stormy" do
-    ba = 'BA'
-    condition = Weather.new
-    allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
-    subject.land(ba)
-    subject.weather_conditions(condition)
-    expect{subject.take_off(ba)}.to raise_error("Stormy weather! Not safe to fly.")
+    it 'causes a plane to take off' do
+      ba = 'BA'
+      aerlingus = 'Aer Lingus'
+      subject.land(ba)
+      subject.land(aerlingus)
+      expect(subject.take_off(ba)).to eq ba
+    end
+
+    it "doesn't allow plane to take off if stormy" do
+      ba = 'BA'
+      stormy_weather_error = "Stormy weather! Not safe to fly."
+      condition = Weather.new
+      allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
+      subject.land(ba)
+      subject.weather_conditions(condition)
+      expect{subject.take_off(ba)}.to raise_error(stormy_weather_error)
+    end
   end
 
 end
