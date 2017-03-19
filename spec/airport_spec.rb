@@ -53,6 +53,11 @@ describe Airport do
       expect{subject.land(plane)}.to raise_error("Plane already landed")
     end
 
+    it 'error raised if landing a plane in stormy conditions' do
+      plane = double(:plane, flying?: true)
+      allow(subject.weather).to receive(:stormy?) {true}
+      expect{subject.land(plane)}.to raise_error("Weather Warning, can't land plane")
+    end
   end
 
   describe "#take_off" do
@@ -74,6 +79,17 @@ describe Airport do
       allow(plane).to receive(:take_off)
       subject.take_off(plane)
       expect(subject.planes).not_to include plane
+    end
+
+    it 'error raised if a plane takes off in stormy conditions' do
+      plane = double(:plane, flying?: true)
+      allow(plane).to receive(:land)
+      allow(subject.weather).to receive(:stormy?) {false}
+      subject.land(plane)
+      allow(plane).to receive(:flying?) {false}
+      allow(plane).to receive(:take_off)
+      allow(subject.weather).to receive(:stormy?) {true}
+      expect{subject.take_off(plane)}.to raise_error("Weather Warning, can't take off")
     end
   end
 end
