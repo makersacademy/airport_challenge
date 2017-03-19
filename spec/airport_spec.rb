@@ -76,6 +76,7 @@ describe Airport do
       expect{ airport2.take_off(airplane) }.to raise_error "Plane cannot take off as it is not at this airport"
     end
 
+
     it "raises an error when the weather is stormy" do
       allow(airport).to receive(:stormy?).and_return(false)
       airport.land_plane(airplane)
