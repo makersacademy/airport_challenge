@@ -1,13 +1,9 @@
 class Weather
-  attr_reader :stormy
-
-  def initialize
-    @stormy = false
-  end
 
 # change to random sunny or stormy generator later
   def stormy?
-    @stormy = [true, false].sample
+    num = rand(10)
+    @stormy = num.even? ? true : false
   end
 
 end
