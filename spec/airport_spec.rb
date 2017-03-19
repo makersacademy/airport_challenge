@@ -19,16 +19,23 @@ describe Airport do
       expect(heathrow[-1].landed?).to be_truthy
     end
 
+    # it "raises an error when the weather is stormy" do
+    #   allow(airport).to receive(:stormy).and_return(true)
+    #   expect{ airport.land_plane(airplane)}.to raise_error("Plane cannot land due to stormy weather")
+    # end
+
   end
 
   describe '#take_off' do
 
     it "instructs a plane to take off" do
+      allow(airport).to receive(:stormy?).and_return(false)
       airport.land_plane(airplane)
       expect(airport.take_off).to eq airplane
     end
 
     it "confirms a plane has taken off" do
+      allow(airport).to receive(:stormy?).and_return(false)
       landed_planes = airport.land_plane(airplane)
       airport.take_off
       expect(landed_planes).to eq []

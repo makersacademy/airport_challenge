@@ -23,7 +23,7 @@ private
   attr_reader :landed_planes
 
   def stormy?
-    true
+    rand(1..20) < 5 ? true : false
   end
 
 end
