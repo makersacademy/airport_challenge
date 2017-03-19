@@ -11,12 +11,13 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def land(plane, weather = Weather.new)
     raise 'Airport is full' if full?
+    raise 'Weather warning' if weather.stormy?
     @planes << plane
   end
 
-  def launch(weather)
+  def launch(weather = Weather.new)
     raise 'Airport empty' if @planes.empty?
     raise 'Weather warning' if weather.stormy?
     @planes.pop

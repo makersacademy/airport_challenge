@@ -9,12 +9,19 @@ describe Airport do
   describe '#land' do
     it 'lands a plane' do
       plane = double('plane')
-      expect(subject.land(plane)).to eq [plane]
+      weather = double('weather', :stormy? => false)
+      expect(subject.land(plane, weather)).to eq [plane]
+    end
+    it 'raises an error if weather is stormy' do
+      plane = double('plane')
+      weather = double('weather', :stormy? => true)
+      expect { subject.land(plane, weather) }.to raise_error 'Weather warning'
     end
     it 'raises an error if airport is at full capacity' do
       plane = double('plane')
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
-        expect { subject.land(plane) }.to raise_error 'Airport is full'
+      weather = double('weather', :stormy? => false)
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane, weather) }
+        expect { subject.land(plane, weather) }.to raise_error 'Airport is full'
      end
   end
 
@@ -22,13 +29,14 @@ describe Airport do
     it 'launches a plane' do
       plane = double('plane')
       weather = double('weather', :stormy? => false)
-      subject.land(plane)
+      subject.land(plane, weather)
       expect(subject.launch(weather)).to eq plane
     end
     it 'raises an error if weather is stormy' do
       plane = double('plane')
+      weather = double('weather', :stormy? => false)
+      subject.land(plane, weather)
       weather = double('weather', :stormy? => true)
-      subject.land(plane)
       expect { subject.launch(weather) }.to raise_error 'Weather warning'
     end
     it 'raises an error if there are no planes' do
@@ -40,7 +48,8 @@ describe Airport do
   describe '#planes' do
     it 'reports the planes that are in the airport' do
       plane = double('plane')
-      subject.land(plane)
+      weather = double('weather', :stormy? => false)
+      subject.land(plane, weather)
       expect(subject.planes).to eq [plane]
     end
   end
