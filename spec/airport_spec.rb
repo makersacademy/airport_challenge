@@ -12,21 +12,24 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
   it {is_expected.to respond_to(:take_off).with(1).argument }
 
-  it 'prints a list of all planes at the airport' do
-    boeing = double(:plane)
+  it 'confirms plane has landed at airport' do
+    boeing = double("plane", :airborne => true)
+    allow(boeing).to receive(:ground).and_return(:airborne => false)
     airport.land(boeing)
     expect(airport.hangar).to include boeing
   end
 
-  it 'confirms that the correct plane has left the airport' do
-    boeing = double(:plane)
-    airbus = double(:plane)
-    airport.land(boeing)
-    airport.land(airbus)
-    airport.take_off(boeing)
-    expect(airport.hangar).not_to include boeing
+  it 'raises an exception if trying to land a plane that has already landed somewhere' do
+    boeing = double("plane", :airborne => false)
+    allow(boeing).to receive(:ground)
+    expect {airport.land(boeing)}.to raise_error('Plane has already landed')
   end
 
+  it 'raises an exception when airplane that has taken off is told to take off again' do
+    boeing = double("plane", :airborne => true)
+    allow(boeing).to receive(:fly).and_return(:airborne => true)
+    expect {airport.take_off(boeing)}.to raise_error('Plane not in hangar')
+  end
 
 
 
