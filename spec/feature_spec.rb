@@ -3,3 +3,4 @@ plane = Plane.new
 plane.functioning?
 airport = Airport.new
 airport.land(plane)
+airport.planes
