@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) {"plane"}
-  let(:aerlingus) {"Aer Lingus"}
+  let(:plane) {:plane}
+  let(:aerlingus) {:aerlingus}
 
   describe "#land" do
     it 'lands a plane' do
@@ -12,14 +12,14 @@ describe Airport do
 
     it 'stops a plane from landing if stormy' do
       condition = Weather.new
-      allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
+      allow_any_instance_of(Weather).to receive(:forecast).and_return(:stormy)
       subject.weather_conditions(condition)
       expect{subject.land(plane)}.to raise_error("Too stormy to land!")
     end
 
     it 'allows a plane to land if fine' do
       condition = Weather.new
-      allow_any_instance_of(Weather).to receive(:forecast).and_return("fine")
+      allow_any_instance_of(Weather).to receive(:forecast).and_return(:fine)
       subject.weather_conditions(condition)
       expect(subject.land(plane)).to eq [plane]
     end
@@ -55,7 +55,7 @@ describe Airport do
 
     it 'allows a plane to take off if fine' do
       condition = Weather.new
-      allow_any_instance_of(Weather).to receive(:forecast).and_return("fine")
+      allow_any_instance_of(Weather).to receive(:forecast).and_return(:fine)
       subject.land(plane)
       subject.weather_conditions(condition)
       expect(subject.take_off(plane)).to eq plane
@@ -64,7 +64,7 @@ describe Airport do
     it "doesn't allow plane to take off if stormy" do
       stormy_weather_error = "Stormy weather! Not safe to fly."
       condition = Weather.new
-      allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
+      allow_any_instance_of(Weather).to receive(:forecast).and_return(:stormy)
       subject.land(plane)
       subject.weather_conditions(condition)
       expect{subject.take_off(plane)}.to raise_error(stormy_weather_error)

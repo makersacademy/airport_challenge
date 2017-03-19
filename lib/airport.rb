@@ -14,7 +14,7 @@ class Airport
   end
 
   def land(plane)
-    fail "Too stormy to land!" if @conditions == "stormy"
+    fail "Too stormy to land!" if @conditions == :stormy
     fail "Can't land airport full." if full?
     planes << plane
   end
@@ -24,7 +24,7 @@ class Airport
   end
 
   def take_off(plane)
-    fail "Stormy weather! Not safe to fly." if @conditions == "stormy"
+    fail "Stormy weather! Not safe to fly." if @conditions == :stormy
     planes.delete(plane)
   end
 
