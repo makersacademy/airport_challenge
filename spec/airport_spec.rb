@@ -85,4 +85,15 @@ describe Airport do
       expect(subject.is_sunny?).to eq(true).or eq(false)
     end
   end
+
+  describe 'Feature test' do
+    it 'Testing a number of landing and taking off planes' do
+      plane = double(:planes, land: true, take_off: false)
+      Airport::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+        subject.take_off(plane)
+      end
+      expect(subject.in_airport?(plane)).to eq false
+    end
+  end
 end
