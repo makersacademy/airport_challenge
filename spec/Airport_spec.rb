@@ -20,12 +20,14 @@ describe Airport do
 
     it "checks it isn't stormy" do
       allow(subject).to receive(:stormy?).and_return(true)
-
-      expect{subject.clear_landing(plane)}. to raise_error("Too stormy to fly")
+      expect{subject.clear_landing(plane)}.to raise_error("Too stormy to land")
 
     end
 
-    it "checks airport isn't full"
+    it "checks airport isn't full" do
+      allow(subject).to receive(:airport_full?).and_return(true)
+      expect{subject.clear_landing(plane)}.to raise_error("Airport full")
+    end
 
     it "makes sure the incoming object is a plane" do
 
@@ -41,6 +43,21 @@ describe Airport do
       plane = double(:plane, flying?: false)
       subject.land(plane)
       expect(subject.landed_planes).to eq([plane])
+    end
+
+  end
+
+  describe "#airport_full?" do
+
+    it "returns true when full" do
+      full_airport = []
+      Airport::DEFAULT_CAPACITY.times{full_airport << plane}
+      allow(subject).to receive(:landed_planes).and_return(full_airport)
+      expect(subject.airport_full?).to eq(true)
+    end
+
+    it "returns false when no full" do
+      expect(subject.airport_full?).to eq(false)
     end
 
   end
