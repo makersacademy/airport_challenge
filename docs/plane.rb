@@ -9,12 +9,19 @@ class Plane
 attr_reader :airborne
 
   def ground
-    @airborne = false
+    ground_plane
   end
 
   def fly
-    @airborne = true
+    fly_plane
   end
 
+private
 
+  def ground_plane
+    @airborne = false
+  end
+  def fly_plane
+    @rairborne = true
+  end
 end

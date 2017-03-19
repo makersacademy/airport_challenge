@@ -1,7 +1,7 @@
 require './docs/plane.rb'
 
 class Airport
-  WEATHER = ["stormy", "clear", "clear", "clear"]
+  WEATHER = [:stormy, :clear, :clear, :clear]
   def initialize(name="airport", skies = WEATHER.sample)
     @name = name
     @hangar = []
@@ -9,10 +9,11 @@ class Airport
     @weather = skies
   end
 
-
+  attr_reader :hangar, :weather
 
   def land(plane)
     raise 'Plane has already landed' unless plane.airborne
+    return 'Plane cannot land in stormy conditions' if (weather == :stormy)
     plane.ground
     hangar << plane
   end
@@ -28,11 +29,7 @@ class Airport
 
   attr_reader :hangar, :weather
 
-
-
   private
-
-
 
   def update_weather
     @weather = WEATHER.sample

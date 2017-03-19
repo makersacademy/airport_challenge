@@ -13,6 +13,7 @@ describe Airport do
   it {is_expected.to respond_to(:take_off).with(1).argument }
 
   it 'confirms plane has landed at airport' do
+    allow(airport).to receive(:weather).and_return(:clear)
     boeing = double("plane", :airborne => true)
     allow(boeing).to receive(:ground).and_return(:airborne => false)
     airport.land(boeing)
@@ -35,4 +36,10 @@ describe Airport do
     expect(airport).to respond_to (:check_weather)
   end
 
+  it 'expects a plane not to land if the airport is stormy' do
+    allow(airport).to receive(:weather).and_return(:stormy)
+    boeing = double("plane", :airborne => true)
+    allow(boeing).to receive(:ground).and_return(:airborne => false)
+    expect(airport.land(boeing)).to eq('Plane cannot land in stormy conditions')
+  end
 end
