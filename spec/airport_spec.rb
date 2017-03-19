@@ -33,6 +33,7 @@ describe Airport do
       end
     end
 
+
   describe 'initialization' do
     it 'has a variable capacity' do
       airport = Airport.new(50)

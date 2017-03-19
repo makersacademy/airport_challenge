@@ -1,10 +1,9 @@
 require_relative 'plane'
-require_relative 'weather'
 
 class Airport
 
   DEFAULT_CAPACITY = 10
-  attr_accessor :capacity
+  attr_accessor :capacity # sorry Roi
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -24,13 +23,14 @@ class Airport
     @planes.pop
   end
 
+
   private
+
   attr_reader :plane
 
   def full?
     @planes.count >= capacity
   end
-
 
 
 end
