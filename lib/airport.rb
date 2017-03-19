@@ -14,7 +14,7 @@ class Airport
 
   def weather_report
   	weather = rand(1..10)
-		if weather <= 3
+		if weather <= 4
 		  "stormy"
 		else
 		  "sunny"
@@ -23,7 +23,7 @@ class Airport
 
 	def land(plane)
 		fail "Landing denied, Airport is full" if full?
-
+		fail "Landing denied, weather report stormy" if weather_report == "stormy"
 		planes << plane
 	end
 
@@ -39,6 +39,11 @@ class Airport
 	  landed_planes.pop
 	end
 
+	def plane_status
+		puts "Planes in air #{planes}"
+		puts "Planes on ground #{landed_planes}"
+	end
+
   private 
 
     attr_reader :planes, :landed_planes, :weather, :capacity
@@ -50,6 +55,4 @@ class Airport
     def full?
       planes.length >= capacity
     end
-
-
 end
