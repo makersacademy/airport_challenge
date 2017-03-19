@@ -7,7 +7,7 @@ If your code isn't finished it's not ideal but acceptable as long as you explain
 - map messages (functions) to objects
 - map the information/data each object would need to hold
 - { Airport => Docking Station , Plane => Bike }
-- Made Stormy_Weather as a new class so a random variable can be stubbed more easily 
+- Made Stormy_Weather as a new class so a random variable can be mocked more easily 
 
 ** Features**
   * [x] Plane status
