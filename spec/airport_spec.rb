@@ -8,7 +8,10 @@ describe Airport do
     it 'sets the default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
-    it 'allows the default capacity to be overwritten'
+    it 'allows the default capacity to be overwritten' do
+      subject = Airport.new(35)
+      expect(subject.capacity).to eq 35
+    end
   end
 
   describe '#land(plane)' do
