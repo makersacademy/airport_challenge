@@ -1,4 +1,5 @@
 require './lib/plane.rb'
 require './lib/airport.rb'
+require './lib/weather_check.rb'
 plane1 = Plane.new
 heathrow = Airport.new
