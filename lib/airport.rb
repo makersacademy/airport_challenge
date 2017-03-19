@@ -2,8 +2,8 @@ require './lib/plane.rb'
 
 class Airport
 
-  attr_accessor :stormy
-  attr_reader :planes, :capacity
+  attr_accessor :stormy, :capacity
+  attr_reader :planes
 
   DEFAULT_CAPACITY = 20
 
