@@ -11,4 +11,10 @@ describe Plane do
     plane.ground
     expect(plane.airborne).to be false
   end
+
+  it 'expects the fly method to make the plane airborne' do
+    plane.fly
+    expect(plane.airborne).to be true
+  end
+
 end

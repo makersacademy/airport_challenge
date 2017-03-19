@@ -53,8 +53,10 @@ RuntimeError: Plane cannot take off in stormy conditions
 
 
 
+Possible improvements
+----------
 
-
+Rewrite take_off function to return error for plane not being in hangar even if it is stormy.
 
 
 Instructions
