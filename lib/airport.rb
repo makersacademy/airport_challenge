@@ -16,14 +16,16 @@ class Airport
 
   def land_plane(plane)
     fail "Landing delayed due stormy weather" if fly_okay? != true
-    fail "Airport full!!!" if count_planes >= capacity
+    fail "Airport full!!!" if count_planes >= capacity ####ADD FULL?####
     planes.push(plane)
+    plane.land
     "#{plane} has landed successfully"
   end
 
   def take_off(plane)
     fail "Flight canceled due stormy weather" if fly_okay? != true
     planes.delete(plane)
+    plane.take_off
     "#{plane} has now taken off"
   end
 
@@ -37,4 +39,7 @@ class Airport
     return true if weather == "Safe to fly"
   end
 
+  def full?
+    count_planes >= capacity.size
+  end
 end

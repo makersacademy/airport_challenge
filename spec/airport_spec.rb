@@ -6,6 +6,7 @@ describe Airport do
     it "capacity can be user set" do
       airport = Airport.new(3)
       plane = double(:plane)
+      allow(plane).to receive(:land) {}
       allow(airport).to receive(:fly_okay?).and_return(true)
       3.times {airport.land_plane(plane)}
       expect{ airport.land_plane(plane) }.to raise_error "Airport full!!!"
@@ -17,26 +18,30 @@ describe Airport do
 
     it "accepts a plane to land" do
       plane = double(:plane)
-      subject.land_plane(plane)
       allow(subject).to receive(:fly_okay?).and_return(true)
+      allow(plane).to receive(:land) {}
+      subject.land_plane(plane)
       expect(subject.count_planes).to eq 1
     end
 
     it "accepts multiple planes" do
       plane = double(:plane)
       allow(subject).to receive(:fly_okay?).and_return(true)
+      allow(plane).to receive(:land) {}
       10.times { subject.land_plane(plane) }
       expect(subject.count_planes).to eq 10
     end
 
     it "stops a plane landing if there is stormy weather" do
       plane = double(:plane)
+      allow(plane).to receive(:land) {}
       allow(subject).to receive(:fly_okay?).and_return(false)
       expect{ subject.land_plane(plane) }.to raise_error "Landing delayed due stormy weather"
     end
 
     it "prevents plane from landing when airport full" do
       plane = double(:plane)
+      allow(plane).to receive(:land) {}
       allow(subject).to receive(:fly_okay?).and_return(true)
       Airport::DEFAULT_CAPACITY.times {subject.land_plane(plane)}
       expect{ subject.land_plane(plane) }.to raise_error "Airport full!!!"
@@ -46,6 +51,7 @@ describe Airport do
   describe "#take_off" do
     it "lets a plane take off" do
       plane = double(:plane)
+      allow(plane).to receive(:take_off) {}
       subject.planes << [plane,plane]
       allow(subject).to receive(:fly_okay?).and_return(true)
       subject.take_off(plane)
@@ -62,14 +68,22 @@ describe Airport do
 
   describe "#fly_okay?" do
     it "confirms planes can fly in normal weather" do
-    allow(Weather).to receive(:check_weather).and_return("Safe to fly")
-    expect(subject.fly_okay?).to eq true
+      allow(Weather).to receive(:check_weather).and_return("Safe to fly")
+      expect(subject.fly_okay?).to eq true
     end
 
     it "confirms planes cann't fly in stormy weather" do
-    allow(Weather).to receive(:check_weather).and_return("Stormy")
-    expect(subject.fly_okay?).to eq false
+      allow(Weather).to receive(:check_weather).and_return("Stormy")
+      expect(subject.fly_okay?).to eq false
     end
   end
 
+  describe "#full" do
+    it 'returns false if capacity is full' do
+      plane = double(:plane)
+      allow(plane).to receive(:land) {}
+      20.times { subject.land_plane(plane) }
+      expect(subject.full?).to eq true
+    end
+  end
 end
