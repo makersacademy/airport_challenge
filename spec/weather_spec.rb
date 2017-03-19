@@ -3,7 +3,7 @@ require 'weather'
 describe Weather do
 
   describe '#generate_weather' do
-    it 'Has a method that generates random weather' do
+    it 'is a method that generates random weather' do
       expect(subject).to respond_to(:generate_weather)
     end
 
