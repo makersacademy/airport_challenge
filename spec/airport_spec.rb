@@ -2,6 +2,15 @@ require 'airport'
 
 describe Airport do
 
+  describe 'initialization' do
+    it 'should create a defined plane capacity' do
+      plane = double(:plane)
+      airport = Airport.new
+      subject.capacity.times {airport.land(plane)}
+      expect{airport.land(plane)}.to raise_error 'Sorry, the airport is full'
+    end
+  end
+
   describe '#land' do
     it 'should respond to land with one argument' do
       expect(subject).to respond_to(:land).with(1).argument
@@ -40,7 +49,6 @@ describe Airport do
       plane = double(:plane)
       subject.land(plane)
       subject.report_stormy
-      # 'Sorry, no taking off when the weather is stormy'
       expect{subject.take_off}.to raise_error 'Sorry, no taking off in stormy weather'
     end
 
