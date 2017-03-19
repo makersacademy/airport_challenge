@@ -24,13 +24,16 @@ describe Airport do
         expect(subject).to respond_to(:land).with(1).argument
       end
 
+      # have not passed this test
       it 'raises an error when it is stormy' do
         boeing = Plane.new
         weather = Weather.new
         allow(subject.weather).to receive(:generate_weather).and_return("Stormy")
+        subject.weather_condition(weather)
         expect{ subject.land(boeing) }.to raise_error("Too stormy to land the plane!")
       end
 
+      # have not passed this test
       it 'raises an error when airport capacity is full' do
           subject.capacity.times { subject.land Plane.new }
           expect { subject.land Plane new }.to raise_error("Not able to land, airport has reached its capacity.")
@@ -54,7 +57,7 @@ describe Airport do
         expect(subject).to respond_to(:take_off).with(1).argument
       end
     end
-
+    # have not passed this test
     describe '#full?' do
       it 'is a method that checks if the airport is full' do
         expect(subject).to respond_to :full?
