@@ -26,7 +26,7 @@ describe Airport do
   describe '#land' do
     it { is_expected.to respond_to(:land) }
 
-    it 'cannot land if not airborne' do
+    it 'raise error if not airborne' do
       allow(airport).to receive(:stormy?) { false }
       allow(plane).to receive(:airborne?) { false }
       message = "Error - Plane not airborne"
@@ -77,13 +77,24 @@ describe Airport do
 
 ###### Take off tests ######
   describe '#take_off' do
-    it 'should prevent take_off if weather stormy' do
+    before do
       allow(airport).to receive(:stormy?) { false }
       allow(plane).to receive(:airborne?) { true }
+    end
+    
+    it 'should prevent take_off if weather stormy' do
       airport.land(plane)
+      allow(plane).to receive(:airborne?) { false }
       allow(airport).to receive(:stormy?) { true }
       message = "Cannot take off due to bad weather"
       expect { airport.take_off(plane) }.to raise_error message
+    end
+
+    it 'raise error if if not landed' do
+      allow(airport).to receive(:stormy?) { false }
+      allow(plane).to receive(:airborne?) { true }
+      message = "Error - Plane not at airport"
+      expect { airport.take_off(plane) }.to raise_error { message }
     end
   end
 
@@ -92,7 +103,6 @@ describe Airport do
       allow(airport).to receive(:stormy?) { false }
       allow(plane).to receive(:airborne?) { true }
       airport.land(plane)
-      airport.take_off(plane)
     end
 
     it 'should confirm take off' do
@@ -101,10 +111,14 @@ describe Airport do
     end
 
     it 'should add a plane to airborne_planes array' do
+      allow(plane).to receive(:airborne?) { false }
+      airport.take_off(plane)
       expect(airport.airborne_planes).to include plane
     end
 
     it 'should NOT be in planes array' do
+      allow(plane).to receive(:airborne?) { false }
+      airport.take_off(plane)
       expect(airport.planes).to_not include plane
     end
 
