@@ -2,10 +2,12 @@ require_relative "plane"
 
 class Airport
 
-	attr_reader :planes
+	attr_reader :planes, :landed_planes
 
 	def initialize
       @planes = []
+      @landed_planes = []
+
 	end
 
 	def instruct(plane)
@@ -13,20 +15,23 @@ class Airport
 	end
 
 	def allow_landing(plane)
-	  planes
+    planes
 	end
 
-    def confirm_landing(plane)
-	  planes	
+  def confirm_landing(plane)
+	  planes.each do |plane|
+	    landed_planes << plane	
+	  end
+	  landed_planes	
 	end	
 
-	def dock(plane)
-	  raise "there are no docked planes" if planes.empty?
-	  planes
-	end
-
-	def allow_takeoff(plane)
-	  planes.pop	
+	# def dock(landed_plane)
+	#   raise "there are no docked planes" if landed_planes.empty?
+	#   landed_planes
+	# end
+    
+	def allow_takeoff(landed_plane)
+	  landed_planes.pop
 	end
 
 end
