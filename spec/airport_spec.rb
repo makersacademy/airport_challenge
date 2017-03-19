@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  subject(:plane) { described_class.new }
+  let(:plane) { double :plane }
 
   describe "#initialize" do
     it 'defaults capacity' do
@@ -31,8 +31,13 @@ describe Airport do
     end
 
     it 'raises error if airport is full' do
-      (0..Airport::DEFAULT_CAPACITY).each {|x| subject.landing_strip << x}
+      (0..subject.capacity).each {|x| subject.landing_strip << x}
       expect{ subject.land(plane) }.to raise_error "The airport is full. You must land somewhere else"
+    end
+
+    it 'raises error if weather is too stormy for landing' do
+      allow(subject.weather).to receive(:stormy?) {true}
+      expect{ subject.land(plane) }.to raise_error "The weather is too stormy. You cannot land now."
     end
 
   end
