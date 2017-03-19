@@ -6,12 +6,8 @@ class Plane
     @airborne = false
   end
 
-  def landed?
-    true
-  end
-
   def plane_status(status)
-    status == "airborne" ? @airborne = true : "landed"
+    status == "airborne" ? @airborne = true : @airborne = false
   end
 
   def airborne?
