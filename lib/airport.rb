@@ -3,7 +3,9 @@ require_relative 'plane'
 
 class Airport
 include Weather
+
 DEFAULT_CAPACITY = 25
+
 attr_reader :capacity, :all_planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -17,7 +19,7 @@ attr_reader :capacity, :all_planes
     @all_planes << plane
   end
 
-  def take_off(plane)
+  def take_off
     fail 'Stormy weather: no take-off' if stormy?
     @all_planes.pop
   end

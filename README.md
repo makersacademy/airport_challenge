@@ -40,6 +40,16 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+**Diagram**
+
+Object | Message
+-------|----------
+airport | land(plane)
+plane | landed?
+airport | take_off
+plane |left?
+weather | stormy?
+airport | full?
 
 **Steps taken**
 
@@ -63,21 +73,17 @@ I would like a default airport capacity that can be overridden as appropriate
 
 *User Story 4: Preventing landing during storms*
 - [x] Feature and unit tested capacity to prevent a plane from landing during storms
-- [x] Implemented a fail condition within the `land` method to prevent a plane from landing during storms
+- [x] Implemented a fail condition within the `land(plane)` method to prevent a plane from landing during storms
 
 *User Story 5: Preventing landing when airport is full*
 - [x] Feature and unit tested capacity to prevent a plane from landing if the airport is full
 - [x] Initialised capacity within Airport class
 - [x] Implemented `full?` method within the Airport class which asserts whether the airport is at capacity
-- [x] Implemented a fail condition within the `land` method to prevent a plane from landing if the airport is full
+- [x] Implemented a fail condition within the `land(plane)` method to prevent a plane from landing if the airport is full
 
 *User Story 6: Overriding airport capacity*
 - [x] Feature and unit tested capacity to set a custom airport capacity
-- [x] Implemented a fail condition within the `land` method to prevent a plane from landing during storms
-``it 'prevents landing when full' do
-  Airport::DEFAULT_CAPACITY.times { subject.land double :plane}
-  expect { subject.land double(:plane) }.to raise_error('Airport full: no landing')
-end``
+- [x] Implemented a fail condition within the `land(plane)` method to prevent a plane from landing during storms
 
 *Defending against edge cases*
 - [ ] Planes only take off from airports they are in
