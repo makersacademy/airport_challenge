@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Cannot land due to bad weather" if stormy?
     add_plane(plane)
     plane.landed?
   end
