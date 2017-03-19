@@ -7,7 +7,7 @@ class Airport
   end
 
   def land_plane(airplane)
-    airplane.landed?
+    raise "Plane cannot land due to stormy weather" if stormy?
     landed_planes << airplane
   end
 

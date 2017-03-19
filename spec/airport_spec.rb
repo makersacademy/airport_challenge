@@ -19,10 +19,10 @@ describe Airport do
       expect(heathrow[-1].landed?).to be_truthy
     end
 
-    # it "raises an error when the weather is stormy" do
-    #   allow(airport).to receive(:stormy).and_return(true)
-    #   expect{ airport.land_plane(airplane)}.to raise_error("Plane cannot land due to stormy weather")
-    # end
+    it "raises an error when the weather is stormy" do
+      allow(airport).to receive(:stormy?).and_return(true)
+      expect{ airport.land_plane(airplane) }.to raise_error("Plane cannot land due to stormy weather")
+    end
 
   end
 
@@ -43,7 +43,6 @@ describe Airport do
 
     it "raises an error when the weather is stormy" do
       allow(airport).to receive(:stormy?).and_return(true)
-      airport.land_plane(airplane)
       expect { airport.take_off }.to raise_error "Plane cannot take off due to stormy weather"
     end
 
