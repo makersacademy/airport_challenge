@@ -15,12 +15,13 @@ class Airport
 
   def land(plane)
     fail "Airport full" if full?
-    # fail "Unable to land due to stormy weather" if weather.stormy?
+    fail "Unable to land due to stormy weather" if weather.stormy?
     plane.land
     planes << plane
   end
 
   def take_off(plane)
+    fail "Unable to take_off due to stormy weather" if weather.stormy?
     plane.take_off
     selected_plane = planes.select {|x| x == plane}
     planes.delete_if {|x| x == plane}
