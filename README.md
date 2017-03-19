@@ -11,80 +11,220 @@ Airport Challenge
                 `---~~\___________/------------`````
                 =  ===(_________)
 
-```
 
-Instructions
----------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+## Introduction
 
-Steps
--------
+I undertook this project in order to help me better understand the principles of object oriented programming and test-driven development (TDD).
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+This program controls the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories provided beforehand:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+## Approach
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+In order to solve this, I took a four step approach:
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+1. **Domain modelling:** mapping out each noun (or object) and verb (or message) in each of the user stories. This allowed me to understand which classes I needed to create and the methods I would need to create so that I could move into feature testing.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+2. **Feature tests:** running the program through a REPL (in this case Pry), so that I was able to see errors and write unit tests accordingly.
+3. **Unit tests:** writing tests (or expectations) in Rspec to show the expected functionality of each particular method and watching these fail straight away. These are located in the spec folder.
+4. **Red-green-refactor:** writing code to make each individual unit test pass, refactoring my code to make it more readable and less verbose.
 
-Please create separate files for every class, module and test suite.
+## How to run this program
+### Installing this program
+- Fork and clone this project onto your machine.
+- Change directory (or CD) into the directory where this project is saved.
+- Launch your REPL (irb or Pry - I'm using Pry here)
 
-In code review we'll be hoping to see:
+### Running this program
+- Make sure you require the airport file
+- Create a new instance of the Airport and Plane classes
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007f9498a4a6f8
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007f9498a4a6a8>>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007f9498a033c0 @landed=false>
+```
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+Here you can see that we have an airport with no plane inside along with a capacity and an instance of the weather class, and a plane which has not yet landed.
 
-**BONUS**
+- Try to land the plane
+- Notice how sometimes the plane cannot land because of bad weather:
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007fa894429480
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007fa894429458>>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007fa8943d8698 @landed=false>
+[4] pry(main)> airport.land(plane)
+RuntimeError: This plane is already landed.
+```
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+But most of the time, it will land just fine:
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007fa894429480
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007fa894429458>>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007fa8943d8698 @landed=false>
+[4] pry(main)> airport.land(plane)
+=> [#<Plane:0x007fa8943d8698 @landed=true>]
+```
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+You'll notice that the plane is now marked as landed.
+
+Now try getting the plane to take off:
+
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007fb77b285890
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007fb77b285868>>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007fb77b246848 @landed=false>
+[4] pry(main)> airport.land(plane)
+=> [#<Plane:0x007fb77b246848 @landed=true>]
+[5] pry(main)> airport.take_off(plane)
+=> #<Plane:0x007fb77b246848 @landed=false>
+```
+
+And it works! It is no longer marked as landed. Watch out for bad weather though:
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007fb77b285890
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007fb77b285868>>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007fb77b246848 @landed=false>
+[4] pry(main)> airport.land(plane)
+=> [#<Plane:0x007fb77b246848 @landed=true>]
+[5] pry(main)> airport.take_off(plane)
+RuntimeError: Bad weather today. Cannot take off.
+```
+
+Try getting the plane to take off again:
+
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007f82d1abdde8
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007f82d1abdd98>>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007f82d1a75e80 @landed=false>
+[4] pry(main)> airport.land(plane)
+=> [#<Plane:0x007f82d1a75e80 @landed=true>]
+[5] pry(main)> airport.take_off(plane)
+=> #<Plane:0x007f82d1a75e80 @landed=false>
+[6] pry(main)> airport.take_off(plane)
+RuntimeError: That plane is not in this airport
+```
+
+As you can see, an error is raised because the plane is no longer there. If we do the reverse, see what happens:
+
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007fb77b285890
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007fb77b285868>>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007fb77b246848 @landed=false>
+[4] pry(main)> airport.land(plane)
+=> [#<Plane:0x007fb77b246848 @landed=true>]
+[5] pry(main)> airport.land(plane)
+RuntimeError: This plane is already landed.
+```
+
+Again, an error is raised saying that this plane has already landed.
+
+This airport doesn't have unlimited space, though. Normally it has a capacity of 20, but we can also override this:
+
+```
+[1] pry(main)> require './lib/airport'
+=> true
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007f8e75bdfed8
+ @capacity=20,
+ @planes=[],
+ @weather=#<Weather:0x007f8e75bdfeb0>>
+[3] pry(main)> airport.set_capacity(3)
+=> 3
+```
+
+What happens when we try to put more planes in there than there are spaces? Let's create a bunch of planes and try to land them all:
+
+```
+[4] pry(main)> plane1 = Plane.new
+=> #<Plane:0x007f8e75b2fbc8 @landed=false>
+[5] pry(main)> plane2 = Plane.new
+=> #<Plane:0x007f8e75af7868 @landed=false>
+[6] pry(main)> plane3 = Plane.new
+=> #<Plane:0x007f8e75ab6a48 @landed=false>
+[7] pry(main)> plane4 = Plane.new
+=> #<Plane:0x007f8e758ed0e0 @landed=false>
+[8] pry(main)> airport.land(plane1)
+=> [#<Plane:0x007f8e75b2fbc8 @landed=true>]
+[10] pry(main)> airport.land(plane2)
+=> [#<Plane:0x007f8e75b2fbc8 @landed=true>,
+ #<Plane:0x007f8e75af7868 @landed=true>]
+[11] pry(main)> airport.land(plane3)
+=> [#<Plane:0x007f8e75b2fbc8 @landed=true>,
+ #<Plane:0x007f8e75af7868 @landed=true>,
+ #<Plane:0x007f8e75ab6a48 @landed=true>]
+[14] pry(main)> airport.land(plane4)
+RuntimeError: Sorry. Airport full. Go away.
+```
+
+It doesn't allow you to land more planes than there are spaces!

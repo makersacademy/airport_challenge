@@ -7,6 +7,7 @@ class Airport
   attr_reader :capacity, :planes
 
   def initialize(weather: Weather.new)
+    @weather = weather
     @planes = []
     @capacity = AIRPORT_CAPACITY
   end
@@ -14,7 +15,7 @@ class Airport
   public
 
   def land(plane)
-    if stormy_weather?
+    if weather.stormy_weather?
       fail "Bad weather today. Cannot land."
     elsif full?
       fail "Sorry. Airport full. Go away."
@@ -27,7 +28,7 @@ class Airport
   end
 
   def take_off(plane)
-    if stormy_weather?
+    if weather.stormy_weather?
     fail "Bad weather today. Cannot take off."
     elsif !planes.include? plane
     fail "That plane is not in this airport"
@@ -40,8 +41,6 @@ class Airport
   def set_capacity(number)
     @capacity = number
   end
-
-  private
 
   attr_reader :weather
 
