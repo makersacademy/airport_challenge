@@ -41,7 +41,8 @@ class Airport
   def set_capacity(number)
     @capacity = number
   end
-
+  
+  private
   attr_reader :weather
 
   def full?
