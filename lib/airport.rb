@@ -7,9 +7,11 @@ class Airport
 
   def initialize
     @planes = []
+    @capacity = 20
   end
 
   def land(plane)
+    raise 'Airport is full' if @planes.count >= 20
     @planes << plane
   end
 

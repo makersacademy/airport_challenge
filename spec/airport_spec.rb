@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  it { is_expected.to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to :land }
   it { is_expected.to respond_to :planes }
   it { is_expected.to respond_to :launch }
 
@@ -11,6 +11,11 @@ describe Airport do
       plane = double('plane')
       expect(subject.land(plane)).to eq [plane]
     end
+    it 'raises an error if airport is at full capacity' do
+      plane = double('plane')
+      20.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error 'Airport is full' 
+     end
   end
 
   describe '#launch' do
