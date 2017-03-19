@@ -69,14 +69,4 @@ describe Airport do
     expect {airport.land(boeing)}.to raise_error("Airport is full, plane cannot land")
   end
 
-
-  # it 'expects a plane to land after storm has subsided' do
-  #   allow(airport).to receive(:weather).and_return(:stormy)
-  #   boeing = double("plane", :airborne => true)
-  #   allow(boeing).to receive(:ground).and_return(:airborne => false)
-  #   allow(airport).to receive(:check_weather).and_return(:update_weather)
-  #   airport.check_weather
-  #   expect(airport.land(boeing)).not_to eq('Plane cannot land in stormy conditions')
-  # end
-
 end

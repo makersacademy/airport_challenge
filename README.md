@@ -19,7 +19,42 @@ Airport Challenge
 
 Software created with Ruby.
 
-Allows Air Traffic Controllers to manage the takeoff and landing of planes to and from airports.
+Allows Air Traffic Controllers to manage the takeoff and landing of planes to and from airports. Weather is variable, and planes cannot land at or take off from airports which are stormy. By checking for updates on the weather, a controller can determine when it is safe for a plane to land.
+
+Example case
+------------
+
+2.2.3 :001 > require './docs/airport.rb'
+ => true
+2.2.3 :002 > boeing = Plane.new "Boeing 747"
+ => #<Plane:0x007fe34b10ea60 @name="Boeing 747", @airborne=true>
+2.2.3 :003 > heathrow = Airport.new "Heathrow"
+ => #<Airport:0x007fe34b0a4138 @name="Heathrow", @hangar=[], @capacity=5, @weather=:stormy>
+2.2.3 :004 > heathrow.land(boeing)
+RuntimeError: Plane cannot land in stormy conditions
+2.2.3 :005 > heathrow.check_weather
+ => :clear
+2.2.3 :006 > heathrow.land(boeing)
+ => [#<Plane:0x007fe34b10ea60 @name="Boeing 747", @airborne=false>]
+2.2.3 :007 > heathrow.hangar
+ => [#<Plane:0x007fe34b10ea60 @name="Boeing 747", @airborne=false>]
+ 2.2.3 :008 > heathrow.check_weather
+ => :stormy
+ 2.2.3 :009 > heathrow.take_off(boeing)
+RuntimeError: Plane cannot take off in stormy conditions
+2.2.3 :010 > heathrow.check_weather
+ => :clear
+2.2.3 :011 > heathrow.take_off(boeing)
+ => true
+2.2.3 :012> heathrow.hangar
+ => []
+2.2.3 :013 > boeing
+ => #<Plane:0x007fe34b10ea60 @name="Boeing 747", @airborne=true>
+
+
+
+
+
 
 
 Instructions
