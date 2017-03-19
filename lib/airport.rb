@@ -7,6 +7,7 @@ class Airport
   attr_reader :planes, :conditions, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
+    fail "Capacity of nil not allowed." if capacity == nil
     @capacity = capacity
     @planes = []
     @conditions

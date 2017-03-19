@@ -2,24 +2,31 @@ require 'airport'
 
 describe Airport do
 
+  let(:plane) {"plane"}
+  let(:aerlingus) {"Aer Lingus"}
+
   describe "#land" do
 
     it 'lands a plane' do
-      plane = 'plane'
       expect(subject.land(plane)).to eq [plane]
     end
 
     it 'stops a plane from landing if stormy' do
-      plane = 'ba'
       condition = Weather.new
       allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
       subject.weather_conditions(condition)
       expect{subject.land(plane)}.to raise_error("Too stormy to land!")
     end
 
+    it 'allows a plane to land if fine' do
+      condition = Weather.new
+      allow_any_instance_of(Weather).to receive(:forecast).and_return("fine")
+      subject.weather_conditions(condition)
+      expect(subject.land(plane)).to eq [plane]
+    end
+
     it 'stops a plane from landing if airport full' do
-      plane = "BA"
-      subject.capacity.times{subject.land(plane)}
+      subject.capacity.times{subject.land(aerlingus)}
       expect{subject.land(plane)}.to raise_error("Can't land airport full.")
     end
 
@@ -33,38 +40,52 @@ describe Airport do
     end
 
     it 'expects the plane to have taken off' do
-      ba = 'BA'
-      aerlingus = 'Aer Lingus'
-      subject.land(ba)
+      subject.land(plane)
       subject.land(aerlingus)
-      subject.take_off(ba)
-      expect(subject.landed?(ba)).to eq false
+      subject.take_off(plane)
+      expect(subject.landed?(plane)).to eq false
       expect(subject.landed?(aerlingus)).to eq true
     end
   end
 
   describe "#take_off" do
 
-    it 'causes a plane to take off' do
-      ba = 'BA'
-      aerlingus = 'Aer Lingus'
-      subject.land(ba)
+    it 'allows multiple planes to take off' do
+      subject.land(plane)
       subject.land(aerlingus)
-      expect(subject.take_off(ba)).to eq ba
+      expect(subject.take_off(plane)).to eq plane
+      expect(subject.take_off(aerlingus)).to eq aerlingus
+    end
+
+    it 'allows a plane to take off if fine' do
+      condition = Weather.new
+      allow_any_instance_of(Weather).to receive(:forecast).and_return("fine")
+      subject.land(plane)
+      subject.weather_conditions(condition)
+      expect(subject.take_off(plane)).to eq plane
     end
 
     it "doesn't allow plane to take off if stormy" do
-      ba = 'BA'
       stormy_weather_error = "Stormy weather! Not safe to fly."
       condition = Weather.new
       allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
-      subject.land(ba)
+      subject.land(plane)
       subject.weather_conditions(condition)
-      expect{subject.take_off(ba)}.to raise_error(stormy_weather_error)
+      expect{subject.take_off(plane)}.to raise_error(stormy_weather_error)
     end
   end
 
   it 'has a default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
+
+  describe 'initialization' do
+      subject { Airport.new(nil) }
+
+      it "doesn't permit nil capacity" do
+
+      expect { Airport.new(nil) }.to raise_error "Capacity of nil not allowed."
+    end
+  end
+
 end
