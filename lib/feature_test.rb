@@ -1,8 +1,9 @@
 =begin
-USER STORY 3
-As an air traffic controller
-To ensure safety
-I want to prevent landing when the airport is full
+USER STORY 6
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can
+be overridden as appropriate
 =end
 
 require './lib/plane'
@@ -10,8 +11,7 @@ require './lib/airport'
 
 
 plane = Plane.new
-airport = Airport.new
+airport = Airport.new(50)
 
-# I want to prevent landing when the airport is full
-10.times { airport.land(plane, false) }
-airport.land(plane, false)
+# I would like a default airport capacity that can
+# be overridden as appropriate
