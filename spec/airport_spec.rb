@@ -50,7 +50,7 @@ describe Airport do
     allow(airport).to receive(:weather).and_return(:stormy)
     boeing = double("plane", :airborne => true)
     allow(boeing).to receive(:ground).and_return(:airborne => false)
-    expect(airport.land(boeing)).to eq('Plane cannot land in stormy conditions')
+    expect {airport.land(boeing)}.to raise_error('Plane cannot land in stormy conditions')
   end
 
   it 'expects a plane not to take off if airport is stormy' do
@@ -58,8 +58,17 @@ describe Airport do
     boeing = double("plane", :airborne => false)
     allow(boeing).to receive(:fly).and_return(:airborne => true)
     allow(airport).to receive(:hangar).and_return([boeing])
-    expect(airport.take_off(boeing)).to eq('Plane cannot take off in stormy conditions')
+    expect { airport.take_off(boeing)}.to raise_error('Plane cannot take off in stormy conditions')
   end
+
+  it 'expects a plane not to land if capacity is full' do
+    allow(airport).to receive(:weather).and_return(:clear)
+    boeing = double("plane", :airborne => true)
+    allow(boeing).to receive(:ground).and_return(:airborne => false)
+    Airport::DEFAULT_CAPACITY.times { airport.land(boeing) }
+    expect {airport.land(boeing)}.to raise_error("Airport is full, plane cannot land")
+  end
+
 
   # it 'expects a plane to land after storm has subsided' do
   #   allow(airport).to receive(:weather).and_return(:stormy)
