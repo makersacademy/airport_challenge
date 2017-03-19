@@ -11,4 +11,12 @@ describe Airport do
     end
   end
 
+  describe '#planes' do
+    it 'reports the planes that are in the airport' do
+      plane = double('plane')
+      subject.land(plane)
+      expect(subject.planes).to eq [plane]
+    end
+  end
+
 end
