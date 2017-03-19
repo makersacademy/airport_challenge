@@ -7,13 +7,26 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
     it 'lands the plane' do
       plane = Plane.new
-      subject.land(plane)
-      expect(airport.planes.pop).to eq plane
+      airport.land(plane)
+      expect(airport.planes).to include plane
     end
-    it 'raises error when there is no more space at the airport' do
-      subject.land(Plane.new)
-      expect { airport.land(Plane.new)}.to raise_error "The airport is full"
+    context "when initialized with no capacity" do
+      it 'raises an error when the default capacity has been reached' do
+        described_class::DEFAULT_CAPACITY.times {airport.land(Plane.new) }
+        expect { airport.land(Plane.new) }.to raise_error "The airport is full"
+      end
     end
+    context "when capacity has been given" do
+      it 'raises an error when the capacity has been reached' do
+        airport = Airport.new(50)
+        airport.capacity.times { airport.land(Plane.new) }
+        expect{ airport.land(Plane.new) }.to raise_error "The airport is full"
+      end
+    end
+    # it 'does not allow planes to land when weather is stormy' do
+    #   weather = Weather.new
+    #   expect { airport.land(Plane.new) }.to raise_error "Weather is stormy and you cannot land"
+    # end
   end
 
   describe '#plane' do
@@ -21,7 +34,7 @@ describe Airport do
     it 'returns the landed plane' do
       plane = Plane.new
       airport.land(plane)
-      expect(airport.planes.pop).to eq plane
+      expect(airport.planes).to include plane
     end
   end
 
@@ -36,5 +49,12 @@ describe Airport do
       expect{airport.take_off}.to raise_error "No planes at the airport"
     end
   end
+
+  # describe '#get_forecast' do
+  #   it { is_expected.to respond_to(:get_forecast).with(1).argument }
+  #   it '' do
+  #
+  #   end
+  # end
 
 end
