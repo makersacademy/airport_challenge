@@ -28,6 +28,13 @@ describe Airport do
       expect {airport.release_plane(plane, airport)}.to raise_error "Too stormy to fly!"
     end
 
+    it "can't release plane if it isn't specifically stored in the airport" do
+      subject.stub(:stormy).and_return(false)
+      plane = Plane.new
+      subject.accept_plane(plane, subject)
+      expect {subject.release_plane(Plane.new, subject)}.to raise_error "That plane isn't stored here!"
+    end
+
   end
 
   describe '#accepts_plane' do

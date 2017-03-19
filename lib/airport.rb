@@ -3,6 +3,7 @@ require './lib/plane.rb'
 class Airport
 
   attr_accessor :stormy
+  attr_reader :planes, :capacity
 
   DEFAULT_CAPACITY = 20
 
@@ -14,7 +15,7 @@ class Airport
 
   def release_plane(plane, airport)
     is_it_stormy(airport)
-    reasons_to_fail_releasing(airport)
+    reasons_to_fail_releasing(plane, airport)
     plane.flying = true
     planes.delete(plane)
   end
@@ -25,9 +26,6 @@ class Airport
     plane.flying = false
     planes << plane
   end
-
-  private
-  attr_reader :planes, :capacity
 
   def full?
     planes.count >= capacity
@@ -45,9 +43,10 @@ class Airport
     weather_strength > 50 ? airport.stormy = true : airport.stormy = false
   end
 
-  def reasons_to_fail_releasing(airport)
+  def reasons_to_fail_releasing(plane, airport)
     fail "No planes here to fly!" if empty?
     fail "Too stormy to fly!" if airport.stormy == true
+    fail "That plane isn't stored here!" if !(airport.planes.include? (plane))
   end
 
   def reasons_to_fail_accepting(plane, airport)
