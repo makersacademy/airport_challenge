@@ -17,6 +17,10 @@ describe Airport do
       subject.land(plane)
       expect(subject.land(plane)).to include plane
     end
+    it 'prevents landing when full' do
+      Airport::DEFAULT_CAPACITY.times { subject.land double :plane}
+      expect { subject.land double(:plane) }.to raise_error 'Airport full'
+    end
   end
 
   describe '#take_off' do
