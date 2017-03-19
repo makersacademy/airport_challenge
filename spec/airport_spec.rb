@@ -20,10 +20,19 @@ describe Airport do
       expect { subject.land(plane, weather) }.to raise_error 'Weather warning'
     end
     it 'raises an error if airport is at full capacity' do
-      plane = double('plane', :descend => plane)
       weather = double('weather', :stormy? => false)
-      Airport::DEFAULT_CAPACITY.times { subject.land(plane, weather) }
+      Airport::DEFAULT_CAPACITY.times do
+        plane = double('plane', :descend => plane)
+        subject.land(plane, weather)
+      end
+      plane = double('plane', :descend => plane)
       expect { subject.land(plane, weather) }.to raise_error 'Airport is full'
+     end
+     it 'raises an error if this plane has already landed' do
+       plane = double('plane', :descend => plane)
+       weather = double('weather', :stormy? => false)
+       subject.land(plane, weather)
+       expect { subject.land(plane, weather)}.to raise_error 'This plane has already landed'
      end
   end
 
