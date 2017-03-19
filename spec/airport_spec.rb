@@ -8,6 +8,11 @@ describe Airport do
     it 'checks default maximum capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
+
+    it 'checks default capacity can be changed' do
+      subject = Airport.new(50)
+      expect(subject.capacity).to eq 50
+    end
   end
 
   describe "#land" do
@@ -21,25 +26,30 @@ describe Airport do
     end
 
     it 'lands a plane' do
-      plane = double(:plane, flying?: true, :land => true)
+      plane = double(:plane, flying?: true)
+      allow(plane).to receive(:land)
+      allow(subject.weather).to receive(:stormy?) {false}
       expect(subject.land(plane)).to eq [plane]
     end
 
     it 'airport has the plane after landing' do
       plane = double(:plane, flying?: true)
       allow(plane).to receive(:land)
+      allow(subject.weather).to receive(:stormy?) {false}
       subject.land(plane)
       expect(subject.planes).to include plane
     end
 
     it 'error raised if landing a plane when airport is full' do
-      20.times {subject.land(Plane.new)}
-      expect{subject.land(Plane.new)}.to raise_error("Airport Full")
+      plane = double(:plane, flying?: true)
+      allow(plane).to receive(:land)
+      allow(subject.weather).to receive(:stormy?) {false}
+      subject.capacity.times {subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error("Airport Full")
     end
 
     it 'error raised if landing a plane that is not flying' do
-      plane = Plane.new
-      subject.land(plane)
+      plane = double(:plane, flying?: false)
       expect{subject.land(plane)}.to raise_error("Plane already landed")
     end
 
@@ -56,8 +66,12 @@ describe Airport do
     end
 
     it 'airport no longer has the plane after taking off' do
-      plane = Plane.new
+      plane = double(:plane, flying?: true)
+      allow(plane).to receive(:land)
+      allow(subject.weather).to receive(:stormy?) {false}
       subject.land(plane)
+      allow(plane).to receive(:flying?) {false}
+      allow(plane).to receive(:take_off)
       subject.take_off(plane)
       expect(subject.planes).not_to include plane
     end

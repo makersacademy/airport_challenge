@@ -22,6 +22,7 @@ class Airport
 
   def take_off(plane)
     fail "Plane already taken off" if plane.flying?
+    fail "Plane isn't in the airport" unless planes.include?(plane)
     fail "Weather Warning, can't take off" if weather.stormy?
     plane.take_off
     @planes.delete(plane)
