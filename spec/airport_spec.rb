@@ -4,16 +4,7 @@ require 'airport'
 describe Airport do
 	it {is_expected.to respond_to(:land).with(1).argument }
 	it {is_expected.to respond_to(:confirm_landing).with(1).argument }
-	# it {is_expected.to respond_to(:dock).with(1).argument }
 	it {is_expected.to respond_to(:takeoff).with(1).argument }
-  
-	# describe "#instruct" do
- #    it "gives instructions to a plane" do
- #      plane = double("plane")
- #      expect(subject.instruct(plane)).to eq [plane]
- #    end
-	# end
-
 
 	describe "#land" do 
 	  it "instructs plane to land at airport" do
@@ -32,7 +23,6 @@ describe Airport do
       plane = double("plane")
       2.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error "Landing denied, Airport is full"
-
     end
 	end
 
@@ -51,7 +41,6 @@ describe Airport do
 
 	  it "raises error when plane has left airport" do
 	    landed_plane = double("landed_plane")
-
 	    expect {subject.takeoff(landed_plane)}.to raise_error "the plane has already departed"
 	  end    	
 
@@ -60,17 +49,9 @@ describe Airport do
 	describe "#weather_report" do
     it "creates a weather report" do
     	weather = double("weather")
-    	allow(weather).to receive(:weather)
-      expect(subject.weather_report).to eq "stormy"
+    	allow(weather).to receive(:roll)
+    	weather.roll
     end
-
-    # it "prevents plane takeoff if weather is stormy" do
-    #   plane = double("plane")
-    #   subject.instruct(plane)
-    # 	subject.confirm_landing(plane)
-    #   expect {subject.takeoff(plane)}.to raise_error "cannot take off due to stormy weather"
-    # end
-
 	end
 
 end
