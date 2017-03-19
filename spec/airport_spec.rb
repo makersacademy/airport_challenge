@@ -10,6 +10,7 @@ describe Airport do
     it { is_expected.to respond_to(:land_plane).with(1).argument }
 
     it "instructs a plane to land" do
+      allow(airport).to receive(:stormy?).and_return(false)
       expect(airport.land_plane(airplane)).to eq [airplane]
     end
 
