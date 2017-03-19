@@ -2,6 +2,10 @@ require './lib/airport.rb'
 
 describe Airport do
 
+  before do
+    allow(subject.weather).to receive(:is_sunny?) { false }
+  end
+
   describe 'Test airport capacity' do
     it 'Default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -41,7 +45,9 @@ describe Airport do
     end
 
     it 'Stormy weather for landing' do
-
+      allow(subject.weather).to receive(:is_sunny?) { true }
+      plane = double(:planes, land: true)
+      expect{ subject.land(plane) }.to raise_error 'The weather is too stormy to land'
     end
   end
 
@@ -67,7 +73,10 @@ describe Airport do
     end
 
     it 'Stormy weather for take off' do
-
+      plane = double(:planes, land: true)
+      subject.land(plane)
+      allow(subject.weather).to receive(:is_sunny?) { true }
+      expect{ subject.take_off(plane) }.to raise_error 'The weather is too stormy to take off'
     end
   end
 
