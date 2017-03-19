@@ -7,18 +7,17 @@ describe Airport do
 	# it {is_expected.to respond_to(:dock).with(1).argument }
 	it {is_expected.to respond_to(:takeoff).with(1).argument }
   
-	describe "#instruct" do
-    it "gives instructions to a plane" do
-      plane = double("plane")
-      expect(subject.instruct(plane)).to eq [plane]
-    end
-	end
+	# describe "#instruct" do
+ #    it "gives instructions to a plane" do
+ #      plane = double("plane")
+ #      expect(subject.instruct(plane)).to eq [plane]
+ #    end
+	# end
 
 
-	describe "#allow_landing" do 
+	describe "#land" do 
 	  it "instructs plane to land at airport" do
 	    plane = double("plane")
-	    subject.instruct(plane)
 	    expect(subject.land(plane)).to eq [plane]
 	  end
 
@@ -27,12 +26,20 @@ describe Airport do
 	    landed_plane = subject.land(plane)
 	    expect(subject.confirm_landing(landed_plane)).to eq landed_plane	
 	  end
+
+    it "raises an error when airport is at full capacity" do
+      airport = Airport.new(2)
+      plane = double("plane")
+      2.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error "Landing denied, Airport is full"
+
+    end
 	end
 
-	describe "#allow_takeoff" do   
-	  it "instructs a docked plane to take off from airport" do
+	describe "#takeoff" do   
+	  it "instructs a plane to take off from airport" do
     	plane = double("plane")
-    	subject.instruct(plane)
+    	subject.land(plane)
     	subject.confirm_landing(plane)
       expect(subject.takeoff(plane)).to eq plane
 	  end
@@ -44,6 +51,7 @@ describe Airport do
 
 	  it "raises error when plane has left airport" do
 	    landed_plane = double("landed_plane")
+
 	    expect {subject.takeoff(landed_plane)}.to raise_error "the plane has already departed"
 	  end    	
 
@@ -55,6 +63,13 @@ describe Airport do
     	allow(weather).to receive(:weather)
       expect(subject.weather_report).to eq "stormy"
     end
+
+    # it "prevents plane takeoff if weather is stormy" do
+    #   plane = double("plane")
+    #   subject.instruct(plane)
+    # 	subject.confirm_landing(plane)
+    #   expect {subject.takeoff(plane)}.to raise_error "cannot take off due to stormy weather"
+    # end
 
 	end
 
