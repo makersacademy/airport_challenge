@@ -45,7 +45,7 @@ Functional representation:
 | ------------------------ | ------------------------ |
 | Air Traffic Controller   |            |
 | Plane                    | plane_lands         |
-| Airport                  | land           |
+| Airport                  | land             |
 | Plane                    | plane_takes_off          |
 | Airport                  | take_off            |
 | Plane                    | flying?          |
