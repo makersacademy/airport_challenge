@@ -44,6 +44,16 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 
+As a docking station manager
+To ensure satisfied customers
+I want to prevent docking when the station is full
+
+---
+
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+
+As the docking station manager
+So that customers are happy
+I would like a default docking station capacity that can be overridden as appropriate

@@ -3,12 +3,20 @@ require 'airport'
 describe Airport do
 
   describe 'initialization' do
-    it 'should create a defined plane capacity' do
+    it 'should create a defined airport capacity' do
       plane = double(:plane)
       airport = Airport.new
       subject.capacity.times {airport.land(plane)}
       expect{airport.land(plane)}.to raise_error 'Sorry, the airport is full'
     end
+
+    it 'allows user to override default airport capacity' do
+      plane = double(:plane)
+      airport = Airport.new(90)
+      90.times {airport.land(plane)}
+      expect{airport.land(plane)}.to raise_error 'Sorry, the airport is full'
+    end
+
   end
 
   describe '#land' do
