@@ -23,6 +23,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "This plane isn't here!" if plane_in_airport?(plane) !=true
     fail "Flight canceled due stormy weather" if fly_okay? != true
     planes.delete(plane)
     plane.take_off
@@ -41,5 +42,11 @@ class Airport
 
   def full?
     count_planes >= capacity.size
+  end
+
+  private
+
+  def plane_in_airport?(plane)
+    planes.include?(plane)
   end
 end

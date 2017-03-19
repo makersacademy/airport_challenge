@@ -52,6 +52,7 @@ describe Airport do
     it "lets a plane take off" do
       plane = double(:plane)
       allow(plane).to receive(:take_off) {}
+      allow(subject).to receive(:plane_in_airport?).with(plane).and_return(true)
       subject.planes << [plane,plane]
       allow(subject).to receive(:fly_okay?).and_return(true)
       subject.take_off(plane)
@@ -61,8 +62,16 @@ describe Airport do
     it "stops take off in the event of stormy weather" do
       plane = double(:plane)
       subject.planes << [plane,plane]
+      allow(subject).to receive(:plane_in_airport?).with(plane).and_return(true)
       allow(subject).to receive(:fly_okay?).and_return(false)
       expect{subject.take_off(plane)}.to raise_error "Flight canceled due stormy weather"
+    end
+
+    it "cancels a take off is a plane isn't in the" do
+      plane = double(:plane)
+      allow(subject).to receive(:fly_okay?).and_return(true)
+      expect {subject.take_off(plane)}.to raise_error "This plane isn't here!"
+
     end
   end
 
