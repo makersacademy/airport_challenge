@@ -14,51 +14,38 @@ DEFAULT_CAPACITY = 1
 
   def land(plane)
     raise "There is no available space in this airport." if full?
-    raise "Plane can only land when flying." if ready_to_land?(plane) == false
-    raise "Plane cannot land due to stormy weather." if weather? == false
-    plane.status_land
+    raise "Plane can only land when flying." if ready_to_land?(plane)
+    raise "Plane cannot land due to stormy weather." if weather?
+    plane.landed
     @airplanes << plane
   end
 
-
  def takeoff(plane)
    raise "Plane cannot takeoff if not landed in airport." if ready_to_takeoff?(plane) == false
-   raise "Plane cannot takeoff due to stormy weather." if weather? == false
-   plane.status_takeoff #Not tested
+   raise "Plane cannot takeoff due to stormy weather." if weather?
+   plane.flying #Not tested
    @airplanes.delete(plane) #Not tested
 end
 
   def landed?(plane)
-    if @airplanes.include? plane
-      true
-    else
-      false
-    end
+    true if ready_to_takeoff?(plane)
   end
 
 private
 
 def ready_to_land?(plane)
-  if plane.status == "Flying"
-    true
-  else
-    false
-  end
+  true if plane.status == "Landed"
 end
 
 def ready_to_takeoff?(plane)
   if @airplanes.include? plane
     true
-  else
-    false
-  end
-end
-
-def full?
-if airplanes.count >= capacity
-  true
 else
   false
 end
+end
+
+def full?
+true if @airplanes.count >= @capacity
 end
 end

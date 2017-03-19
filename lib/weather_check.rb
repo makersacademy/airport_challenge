@@ -1,5 +1,9 @@
 module Weather
 def weather?
-  true
+  if rand(101) < 80
+    false
+  else
+    true
+end
 end
 end

@@ -9,8 +9,8 @@ describe "#Land Plane" do
   it "checks that land method returns new status landed" do
   plane1 = Plane.new
   allow(subject).to receive(:full?) {false}
-  allow(subject).to receive(:ready_to_land?) {true}
-  allow(subject).to receive(:weather?) {true}
+  allow(subject).to receive(:ready_to_land?) {false}
+  allow(subject).to receive(:weather?) {false}
   expect(subject.land(plane1)).to eq [plane1]
 end
 end
@@ -22,8 +22,8 @@ describe "#Landed?" do
 
 it "checks that landed? method returns true if plane is stored in instance variable airplanes" do
   plane1 = Plane.new
-  allow(subject).to receive(:ready_to_land?) {true}
-  allow(subject).to receive(:weather?) {true}
+  allow(subject).to receive(:ready_to_land?) {false}
+  allow(subject).to receive(:weather?) {false}
   subject.land(plane1)
   expect(subject.landed?(plane1)).to eq true
 end
@@ -38,7 +38,7 @@ end
 describe "#Ready_to_land?" do
 it "checks that plane cannot land if already at airport" do
 plane1 = Plane.new
-allow(subject).to receive(:weather?) {true}
+allow(subject).to receive(:weather?) {false}
 allow(subject).to receive(:full?) {false}
 subject.land(plane1)
 expect {subject.land(plane1)}.to raise_error "Plane can only land when flying."
@@ -46,8 +46,9 @@ end
 
 it "checks that plane cannot land if weather is stormy" do
   plane1 = Plane.new
-  allow(subject).to receive(:ready_to_land?) {true}
-  allow(subject).to receive(:weather?) {false}
+  allow(subject).to receive(:full?) {false}
+  allow(subject).to receive(:ready_to_land?) {false}
+  allow(subject).to receive(:weather?) {true}
   expect {subject.land(plane1)}.to raise_error "Plane cannot land due to stormy weather."
 end
 end
@@ -56,14 +57,14 @@ end
 describe "#Ready to Takeoff?" do
 it "checks that plane cannot takeoff if not in airport" do
 plane1 = Plane.new
-allow(subject).to receive(:weather?) {true}
+allow(subject).to receive(:weather?) {false}
 expect {subject.takeoff(plane1)}.to raise_error "Plane cannot takeoff if not landed in airport."
 end
 
 it "checks that plane cannot takeoff if weather is stormy" do
   plane1 = Plane.new
   allow(subject).to receive(:ready_to_takeoff?) {true}
-  allow(subject).to receive(:weather?) {false}
+  allow(subject).to receive(:weather?) {true}
   expect {subject.takeoff(plane1)}.to raise_error "Plane cannot takeoff due to stormy weather."
 end
 end
@@ -77,8 +78,8 @@ end
 it "checks that plane cannot land if airport is full" do
 plane1 = Plane.new
 allow(subject).to receive(:full?) {true}
-allow(subject).to receive(:ready_to_takeoff?) {true}
-allow(subject).to receive(:weather?) {true}
+allow(subject).to receive(:ready_to_land?) {false}
+allow(subject).to receive(:weather?) {false}
 expect {subject.land(plane1)}.to raise_error "There is no available space in this airport."
 end
 

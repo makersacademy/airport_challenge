@@ -5,11 +5,11 @@ class Plane
     @status = "Flying"
   end
 
-def status_land
+def landed
   @status = "Landed"
 end
 
-def status_takeoff
+def flying
   @status = "Flying"
 end
 end
