@@ -19,9 +19,19 @@ end
     end
 
     it 'no longer holds plane after take off' do
-      subject.takeoff(plane, stormy_weather)
       allow(stormy_weather).to receive(:report).and_return(false)
-      expect(subject.planes).not_to include(plane)
+      plane1 = Plane.new
+      subject.land(plane1, stormy_weather)
+      subject.takeoff(plane1, stormy_weather)
+      expect(subject.planes).not_to include(plane1)
+    end
+
+    it 'raises an error if you try to get a plane to take off already departed from airport' do
+      allow(stormy_weather).to receive(:report).and_return(false)
+      plane1 = Plane.new
+      subject.land(plane1, stormy_weather)
+      subject.takeoff(plane1, stormy_weather)
+      expect { subject.takeoff(plane1, stormy_weather) }.to raise_error "Plane has already taken off."
     end
 
     it 'raises an error on #takeoff if weather is stormy' do

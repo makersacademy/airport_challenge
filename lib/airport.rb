@@ -24,13 +24,13 @@ class Airport
 
   def takeoff(plane, weather)
     fail 'Unable to takeoff. Weather is stormy.' if weather == true
+    fail 'Plane has already taken off.' unless plane.landed?
     plane.takeoff
     @planes.pop
   end
 
 
   private
-
   attr_reader :plane
 
   def full?
