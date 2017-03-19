@@ -13,8 +13,8 @@ describe Airport do
     end
     it 'raises an error if airport is at full capacity' do
       plane = double('plane')
-      20.times { subject.land(plane) }
-        expect { subject.land(plane) }.to raise_error 'Airport is full' 
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error 'Airport is full'
      end
   end
 
