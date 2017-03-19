@@ -35,7 +35,8 @@ describe Airport do
 
   it "doesn't allow plane to take off if stormy" do
     ba = 'BA'
-    condition = "stormy"
+    condition = Weather.new
+    allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
     subject.land(ba)
     subject.weather_conditions(condition)
     expect{subject.take_off(ba)}.to raise_error("Stormy weather! Not safe to fly.")

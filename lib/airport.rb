@@ -1,3 +1,5 @@
+require_relative "weather"
+
 class Airport
 
   attr_reader :planes, :conditions
@@ -16,12 +18,12 @@ class Airport
   end
 
   def take_off(plane)
-    fail "Stormy weather! Not safe to fly." if conditions == "stormy"
+    fail "Stormy weather! Not safe to fly." if @conditions == "stormy"
     planes.delete(plane)
   end
 
-  def weather_conditions(condition)
-    @conditions = condition
+  def weather_conditions(weather)
+    @conditions = weather.forecast
   end
 
 end
