@@ -19,11 +19,12 @@ class Airport
     @planes << plane
   end
 
-  def launch(weather = Weather.new)
+  def launch(plane, weather = Weather.new)
     raise 'Airport empty' if @planes.empty?
     raise 'Weather warning' if weather.stormy?
-    @planes[-1].ascend
-    @planes.pop
+    @planes.delete(plane)
+    plane.ascend
+    plane
   end
 
   private

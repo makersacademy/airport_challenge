@@ -40,14 +40,14 @@ describe Airport do
       plane = double('plane', :descend => plane, :ascend => plane, :flying? => true)
       weather = double('weather', :stormy? => false)
       subject.land(plane, weather)
-      expect(subject.launch(weather)).to eq plane
+      expect(subject.launch(plane, weather)).to eq plane
     end
     it 'raises an error if weather is stormy' do
       plane = double('plane', :descend => plane, :flying? => true)
       weather = double('weather', :stormy? => false)
       subject.land(plane, weather)
       weather = double('weather', :stormy? => true)
-      expect { subject.launch(weather) }.to raise_error 'Weather warning'
+      expect { subject.launch(plane, weather) }.to raise_error 'Weather warning'
     end
     it 'raises an error if there are no planes' do
       weather = double('weather', :stormy? => false)
@@ -57,8 +57,16 @@ describe Airport do
       plane = double('plane', :descend => plane, :ascend => plane, :flying? => true)
       weather = double('weather', :stormy? => false)
       subject.land(plane, weather)
-      subject.launch(weather)
+      subject.launch(plane, weather)
       expect(plane).to have_received(:ascend)
+    end
+    it 'launches a specific plane' do
+      plane1 = double('plane1', :descend => plane1, :ascend => plane1, :flying? => true)
+      plane2 = double('plane2', :descend => plane2, :ascend => plane2, :flying? => true)
+      weather = double('weather', :stormy? => false)
+      subject.land(plane1, weather)
+      subject.land(plane2, weather)
+      expect(subject.launch(plane1, weather)).to eq plane1
     end
   end
 
