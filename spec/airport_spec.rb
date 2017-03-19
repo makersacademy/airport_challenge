@@ -26,23 +26,20 @@ describe Airport do
   end
 
   describe '#successful_landing' do
-    it 'should confirm landing' do
+    before do
       allow(airport).to receive(:stormy?) { false }
+      airport.land(plane)
+    end
+
+    it 'should confirm landing' do
       allow(airport).to receive(:land) { "The plane has successfully landed" }
     end
 
     it 'contains plane that has landed' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land(plane)
       expect(airport.planes).to include plane
     end
-    # it 'should add a plane to planes array' do
-    #   expect(airport.successful_landing(plane)).to eq [plane]
-    # end
 
     it 'should NOT be in airborne_planes array' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land(plane)
       expect(airport.airborne_planes).to_not include plane
     end
   end
@@ -76,22 +73,21 @@ describe Airport do
   end
 
   describe '#successful_take_off' do
-    it 'should confirm take off' do
+    before do
       allow(airport).to receive(:stormy?) { false }
+      airport.land(plane)
+      airport.take_off(plane)
+    end
+
+    it 'should confirm take off' do
       allow(airport).to receive(:take_off) { "Taken off successfully" }
     end
 
     it 'should add a plane to airborne_planes array' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land(plane)
-      airport.take_off(plane)
       expect(airport.airborne_planes).to include plane
     end
 
     it 'should NOT be in planes array' do
-      allow(airport).to receive(:stormy?) { false }
-      airport.land(plane)
-      airport.take_off(plane)
       expect(airport.planes).to_not include plane
     end
 
