@@ -7,7 +7,7 @@ class Airport
   attr_reader :planes, :conditions, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    fail "Capacity of nil not allowed." if capacity == nil
+    fail "Capacity of nil not allowed." if capacity.nil?
     @capacity = capacity
     @planes = []
     @conditions
@@ -31,6 +31,8 @@ class Airport
   def weather_conditions(weather)
     @conditions = weather.forecast
   end
+
+  private
 
   def full?
     planes.count >= capacity

@@ -6,7 +6,6 @@ describe Airport do
   let(:aerlingus) {"Aer Lingus"}
 
   describe "#land" do
-
     it 'lands a plane' do
       expect(subject.land(plane)).to eq [plane]
     end
@@ -29,12 +28,10 @@ describe Airport do
       subject.capacity.times{subject.land(aerlingus)}
       expect{subject.land(plane)}.to raise_error("Can't land airport full.")
     end
-
   end
 
   describe '#landed?' do
     it 'checks if a specific plane has landed' do
-      plane = 'plane'
       subject.land(plane)
       expect(subject.landed?(plane)).to eq true
     end
@@ -49,7 +46,6 @@ describe Airport do
   end
 
   describe "#take_off" do
-
     it 'allows multiple planes to take off' do
       subject.land(plane)
       subject.land(aerlingus)
@@ -75,17 +71,13 @@ describe Airport do
     end
   end
 
-  it 'has a default capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
-
   describe 'initialization' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    it "doesn't permit nil capacity" do
       subject { Airport.new(nil) }
-
-      it "doesn't permit nil capacity" do
-
       expect { Airport.new(nil) }.to raise_error "Capacity of nil not allowed."
     end
   end
-
 end
