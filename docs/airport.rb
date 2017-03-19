@@ -13,6 +13,10 @@ class Airport
     hangar << plane
   end
 
+  def take_off(plane)
+    hangar.each_index {|index| return hangar.slice!(index) }
+  end
+
   attr_reader :hangar
 
 end
