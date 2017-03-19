@@ -41,12 +41,12 @@ describe Airport do
       allow(airport).to receive(:stormy?) { true }
       expect { airport.land(plane) }.to raise_error "Cannot land due to bad weather"
     end
-
   end
 
-  describe '#add_plane' do
+
+  describe '#update_land_status' do
     it 'should add a plane' do
-      expect(airport.add_plane(plane)).to eq [plane]
+      expect(airport.update_land_status(plane)).to eq [plane]
     end
   end
 
@@ -55,7 +55,8 @@ describe Airport do
     it 'should take_off' do
       allow(airport).to receive(:stormy?) { false }
       airport.land(plane)
-      expect(airport.take_off(plane)).to eq plane
+      airport.take_off(plane)
+      expect(airport.planes).to_not include(plane)
     end
 
     it 'should prevent take_off if weather stormy' do
@@ -65,7 +66,14 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error "Cannot take off due to bad weather"
     end
 
-
+    # it 'should only be able to take off from an airport it is in' do
+    #   allow(airport).to receive(:stormy?) { false }
+    #   airport.land(plane)
+    #   airport2 = Airport.new
+    #   allow(airport2).to receive(:stormy?) { false }
+    #   expect { airport2.take_off(plane) }.to raise_error "Plane not in this airport"
+    #
+    # end
   end
 
 end
