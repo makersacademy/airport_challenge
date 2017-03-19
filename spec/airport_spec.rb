@@ -38,7 +38,7 @@ describe Airport do
       plane = double(:plane)
       allow(plane).to receive(:left?)
       subject.land(plane)
-      subject.take_off
+      subject.take_off(plane)
       expect(subject.all_planes).not_to include plane
     end
   end
@@ -46,15 +46,15 @@ describe Airport do
   describe 'stormy weather' do
     it 'does not allow take-off in storms' do
       plane = double(:plane)
+      all_planes = double(:all_planes)
       allow(weather).to receive(:stormy?) {true}
       allow(plane).to receive(:left?)
-      subject.all_planes << plane
       expect{subject.take_off(plane)}.to raise_error('Stormy weather: no take-off')
     end
     it 'does not allow landing in storms' do
       plane = double(:plane)
       allow(weather).to receive(:stormy?) {true}
-      allow(plane).to receive(:land)
+      allow(plane).to receive(:landed?)
       expect{subject.land(plane)}.to raise_error('Stormy weather: no landing')
     end
   end
