@@ -9,30 +9,30 @@ describe Airport do
       expect(subject).to respond_to :land
     end
 
-    it 'responds with one argument' do
-      expect(subject).to respond_to(:land).with(1).argument
+    it 'responds with two arguments' do
+      expect(subject).to respond_to(:land).with(2).argument
     end
 
     it 'lands planes in the Airport' do
       plane = double(:plane)
-      allow(subject).to receive(:stormy_weather?).and_return(false)
+      weather = double(:weather, stormy_weather?: false)
       allow(plane).to receive(:land_plane)
-      expect(subject.land(plane)).to include plane
+      expect(subject.land(plane, weather)).to include plane
     end
 
     it 'does not allow landing when weather is stormy' do
       plane = double(:plane)
-      allow(subject).to receive(:stormy_weather?).and_return(true)
+      weather = double(:weather, stormy_weather?: true)
       allow(plane).to receive(:land_plane)
-      expect{ subject.land(plane) }.to raise_error("Bad weather today. Cannot land.")
+      expect{ subject.land(plane, weather) }.to raise_error("Bad weather today. Cannot land.")
     end
 
     it 'does not allow landing when airport is full' do
       plane = double(:plane)
+      weather = double(:weather, stormy_weather?: false)
       allow(plane).to receive(:land_plane)
-      allow(subject).to receive(:stormy_weather?).and_return(false)
-      subject.capacity.times {subject.land(plane)}
-      expect{subject.land(plane)}.to raise_error("Sorry. Airport full. Go away.")
+      subject.capacity.times {subject.land(plane, weather)}
+      expect{subject.land(plane, weather)}.to raise_error("Sorry. Airport full. Go away.")
     end
 
   end
@@ -42,35 +42,25 @@ describe Airport do
       expect(subject).to respond_to :take_off
     end
 
-    it 'responds with one argument' do
-      expect(subject).to respond_to(:take_off).with(1).argument
+    it 'responds with two argument' do
+      expect(subject).to respond_to(:take_off).with(2).argument
     end
 
     it 'allows planes to take off from Airport' do
+      weather = double(:weather, stormy_weather?: false)
       plane = double(:plane)
       planes = [plane]
-      allow(subject).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
-      subject.take_off(plane)
+      subject.take_off(plane, weather)
       expect(planes).not_to include [plane]
     end
 
     it 'does not allow take off when weather is stormy' do
       plane = double(:plane)
-      allow(subject).to receive(:stormy_weather?).and_return(true)
-      allow(plane).to receive(:take_off_plane)
-      expect{ subject.take_off(plane) }.to raise_error("Bad weather today. Cannot take off.")
+      weather = double(:weather, stormy_weather?: true)
+      expect{ subject.take_off(plane, weather) }.to raise_error("Bad weather today. Cannot take off.")
     end
 
-  end
-
-  describe '#stormy_weather?' do
-    it 'has a method that checks if the weather is stormy' do
-      expect(subject).to respond_to(:stormy_weather?)
-    end
-    it 'returns true or false' do
-      expect(subject.stormy_weather?).to eq(true).or eq(false)
-    end
   end
 
 end

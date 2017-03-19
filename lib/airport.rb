@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 class Airport
 
   AIRPORT_CAPACITY = 20
@@ -12,25 +13,17 @@ class Airport
 
   public
 
-  def land(plane)
-    fail "Bad weather today. Cannot land." if stormy_weather?
+  def land(plane, weather)
+    fail "Bad weather today. Cannot land." if weather.stormy_weather?
     fail "Sorry. Airport full. Go away." if full?
     plane.land_plane
     planes << plane
   end
 
-  def take_off(plane)
-    fail "Bad weather today. Cannot take off." if stormy_weather?
+  def take_off(plane, weather)
+    fail "Bad weather today. Cannot take off." if weather.stormy_weather?
     plane.take_off_plane
     planes.delete(plane)
-  end
-
-  def stormy_weather?
-    random_number = rand(10)
-    if random_number > 8
-      true
-    else false
-    end
   end
 
   private
