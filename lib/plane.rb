@@ -2,7 +2,7 @@ class Plane
   attr_reader :status
 
   def initialize
-    @status = :landed
+    @status = :airborne
   end
 
   def report_landing
