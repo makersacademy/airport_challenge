@@ -16,6 +16,7 @@ class Airport
   end
 
   def take_off(airplane)
+    raise "Plane cannot take off as it is not at this airport" unless landed_planes.include?(airplane)
     raise "Plane cannot take off due to stormy weather" if stormy?
     landed_planes.delete(airplane)
   end
