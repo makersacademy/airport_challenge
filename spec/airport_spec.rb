@@ -66,4 +66,10 @@ describe Airport do
     end
 	end
 
+	describe "#capacity" do 
+	  it "specifies larger airport capacity" do 
+	    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+	  end
+	end
+
 end
