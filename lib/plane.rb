@@ -9,29 +9,41 @@ class Plane
   end
 
   def land(airport)
-    if land_status? #If passing, land.
-       @status = airport #Change status
-     else
-      raise "Plane can only land if status is set to flying." #If not, raise error.
-     end
+    if land_status? && weather_check? #If passing, land.
+      @status = airport #Land the plane.
+    elsif land_status? == false #Is NOT TRUE. WHY
+      raise "Plane can only land if status is set to flying."
+   else
+     raise "Plane cannot land due to stormy weather."
    end
+ end
 
   def takeoff(airport)
-    if takeoff_status?(airport) #If at the airport where landed, takeoff.
+    if takeoff_status?(airport) && weather_check? #If at the airport where landed, takeoff.
       @status = "Flying" #Change status.
-    else
+    elsif takeoff_status?(airport) == false
       raise "Plane can only takeoff if it's located at the airport where it landed." #If not, raise error.
+    else
+      raise "Plane cannot takeoff due to stormy weather."
     end
   end
 
   private
 
 def land_status?
-  true if @status == "Flying"
+  if @status == "Flying"
+    true
+  else
+    false
+  end
 end
 
 def takeoff_status?(airport)
-  true if @status == airport
+  if @status == airport
+  true
+else
+  false
+end
 end
 end
 

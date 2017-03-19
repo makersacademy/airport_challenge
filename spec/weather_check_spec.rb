@@ -6,4 +6,7 @@ it "checks that weather_check? returns true or false" do
 expect(subject.weather_check?).to eq true
 end
 end
-=end 
+=end
+
+
+#CALLING THE METHOD IN THE CLASS.
