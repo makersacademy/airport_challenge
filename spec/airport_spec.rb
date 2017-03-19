@@ -4,10 +4,10 @@ describe Airport do
 
   describe '#land' do
     it 'tells the plane to descend' do
-      plane = Plane.new
+      plane = double('plane', :descend => plane)
       weather = double('weather', :stormy? => false)
       subject.land(plane, weather)
-      expect(plane).not_to be_flying
+      expect(plane).to have_received(:descend)
     end
     it 'puts the plane in the airport' do
       plane = double('plane', :descend => plane)
@@ -46,11 +46,11 @@ describe Airport do
       expect { subject.launch(weather) }. to raise_error 'Airport empty'
     end
     it 'tells the plane to ascend' do
-      plane = Plane.new
+      plane = double('plane', :descend => plane, :ascend => plane)
       weather = double('weather', :stormy? => false)
       subject.land(plane, weather)
       subject.launch(weather)
-      expect(plane).to be_flying
+      expect(plane).to have_received(:ascend)
     end
   end
 
