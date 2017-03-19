@@ -4,6 +4,20 @@ describe Airport do
  let(:plane)   { Plane.new }
  let(:weather) { Weather.new }
 
+  describe '#initialization' do
+    # it 'creates a empty array for planes' do
+    #   expect(subject.planes).to eq planes
+    # end
+
+
+    it 'has a fixed capacity' do
+      allow(subject).to receive(:stormy?) { false }
+      30.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error "Airport full...jog on"
+    end
+  end
+
+
   describe '#land' do
     it { is_expected.to respond_to(:land) }
 
@@ -33,10 +47,9 @@ describe Airport do
 
 
   describe '#take_off' do
-
     it 'should take_off' do
-      subject.land(plane)
       allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
 
