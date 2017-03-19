@@ -4,6 +4,8 @@ class Airport
 
 	DEFAULT_CAPACITY = 2
 
+	attr_accessor :capacity
+
 	def initialize(capacity=DEFAULT_CAPACITY )
       @planes = []
       @landed_planes = []
@@ -48,7 +50,7 @@ class Airport
 
   private 
 
-    attr_reader :planes, :landed_planes, :weather, :capacity
+    attr_reader :planes, :landed_planes, :weather
 
     def empty?
       landed_planes.empty?
