@@ -1,11 +1,14 @@
 require 'weather'
 
 describe Weather do
+
   it 'expects an instance of the weather class' do
-    expect(Weather.new.class).to eq Weather
+    expect(subject.class).to eq Weather
   end
-  # 
-  # it "won't take off if the weather is stormy" do
-  #   allow(conditions).to recieve(:take_off) {"stormy"}
-  # end
+
+  it 'can sometimes be stormy' do
+    allow_any_instance_of(Random).to receive(:rand).and_return(1)
+    expect(subject.forecast).to eq "stormy"
+  end
+
 end
