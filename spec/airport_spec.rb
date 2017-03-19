@@ -27,4 +27,23 @@ it { is_expected.to respond_to :takeoff}
 it { is_expected.to respond_to(:takeoff).with(1).argument }
 
 end
+
+describe "#Land Status?" do
+it "checks that plane cannot land if already at airport" do
+plane1 = Plane.new
+subject.land(plane1)
+expect {subject.land(plane1)}.to raise_error "Plane already in airport."
 end
+end
+
+describe "#Takeoff Status?" do
+it "checks that plane cannot takeoff if not in airport" do
+plane1 = Plane.new
+expect {subject.takeoff(plane1)}.to raise_error "Plane cannot takeoff if not landed in airport."
+end
+end
+end
+
+
+#Plane cannot land in a different airport.
+#Plane cannot takeoff if in a different airport.
