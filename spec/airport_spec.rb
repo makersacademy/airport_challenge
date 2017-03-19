@@ -81,8 +81,7 @@ describe Airport do
   describe "#full" do
     it 'returns false if capacity is full' do
       plane = double(:plane)
-      allow(plane).to receive(:land) {}
-      20.times { subject.land_plane(plane) }
+      20.times { subject.planes << [plane] }
       expect(subject.full?).to eq true
     end
   end
