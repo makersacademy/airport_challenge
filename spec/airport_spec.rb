@@ -1,7 +1,6 @@
 require 'airport'
 describe Airport do
   let (:plane) {double :plane}
-  let (:planes) {double :planes}
   let (:number) {double :number}
 
   describe '#land' do
@@ -108,16 +107,6 @@ describe Airport do
       number = double(:number)
       subject.set_capacity(number)
       expect(subject.capacity).to eq number
-    end
-  end
-
-  describe '#stormy_weather?' do
-    it 'has a method that checks the weather' do
-      expect(subject).to respond_to(:stormy_weather?)
-    end
-
-    it 'returns true or false' do
-      expect(subject.stormy_weather?).to eq(true).or eq(false)
     end
   end
 
