@@ -1,11 +1,14 @@
+require_relative "Weather"
+
 class Airport
+  include Weather
   attr_reader :landed_planes
   def initialize
     @landed_planes = []
   end
 
   def clear_landing(plane)
-
+    fail "Too stormy to fly" if stormy?
 
   end
 

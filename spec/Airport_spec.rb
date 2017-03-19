@@ -4,12 +4,26 @@ describe Airport do
 
   let (:plane) {double :plane}
 
+  describe "weather module" do
+    it "module methods included" do
+    expect(subject).to respond_to(:stormy?)
+    #p subject.methods
+    end
+  end
+
   describe "#clear_landing" do
 
     it "has the method" do
       expect(subject).to respond_to(:clear_landing)
 
     end
+
+    it "checks it isn't stormy" do
+      expect{subject.clear_landing}. to raise_error("Too stormy to fly")
+
+    end
+
+    it "checks airport isn't full"
 
     it "makes sure the incoming object is a plane" do
 

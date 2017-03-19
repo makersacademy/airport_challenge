@@ -1,16 +1,23 @@
 require "Weather"
 
-describe Weather do
+
+describe "Weather Module" do
+
+  class TestClass
+    include Weather
+  end
+
+  let(:weather) {TestClass.new}
 
   describe "#stormy?" do
 
     it "responds to stormy?" do
-      expect(subject).to respond_to(:stormy?)
+      expect(weather).to respond_to(:stormy?)
     end
 
     describe "Pseudo - Random Number outputs" do
 
-      let (:weather) {Weather.new}
+      #let (:weather) {Weather.new}
 
       it "Below 90 random output returns false" do
         allow(weather).to receive(:number_between_1_and_x).and_return(30)
