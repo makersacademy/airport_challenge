@@ -3,6 +3,7 @@ describe Airport do
   let (:plane) {double :plane}
   let (:planes) {double :planes}
   let (:weather) {double :weather}
+  let (:number) {double :number}
 
   describe '#land' do
     it 'has a method that lands planes' do
@@ -61,6 +62,22 @@ describe Airport do
       expect{ subject.take_off(plane, weather) }.to raise_error("Bad weather today. Cannot take off.")
     end
 
+  end
+
+  describe '#set_capacity' do
+    it 'has a method that overrides default airport capacity' do
+      expect(subject).to respond_to(:set_capacity)
+    end
+
+    it 'has a method that expects one argument' do
+      expect(subject).to respond_to(:set_capacity).with(1).argument
+    end
+
+    it 'changes the capacity to a different number' do
+      number = double(:number)
+      subject.set_capacity(number)
+      expect(subject.capacity).to eq number
+    end
   end
 
 end

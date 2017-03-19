@@ -26,6 +26,10 @@ class Airport
     planes.delete(plane)
   end
 
+  def set_capacity(number)
+    @capacity = number
+  end
+
   private
 
   def full?
