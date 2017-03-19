@@ -58,6 +58,7 @@ describe Plane do
     end
 
     it "Can't take off if it's already flying" do
+      expect{ subject.take_off}.to raise_error("Plane already in flight")
 
     end
 

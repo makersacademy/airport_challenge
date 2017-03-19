@@ -5,12 +5,13 @@ class Plane
   def initialize
     @flying = true
   end
-  
+
   def flying?
     flying
   end
 
   def take_off
+    fail "Plane already in flight" if flying?
     self.flying = true
   end
 
