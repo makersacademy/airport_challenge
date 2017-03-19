@@ -2,9 +2,21 @@ require 'airport'
 
 describe Airport do
 
-  it 'lands a plane' do
-    plane = 'plane'
-    expect(subject.land(plane)).to eq [plane]
+  describe "#land" do
+
+    it 'lands a plane' do
+      plane = 'plane'
+      expect(subject.land(plane)).to eq [plane]
+    end
+
+    it 'stops a plane from landing if stormy' do
+      plane = 'ba'
+      condition = Weather.new
+      allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
+      subject.weather_conditions(condition)
+      expect{subject.land(plane)}.to raise_error("Too stormy to land!")
+    end
+
   end
 
   describe '#landed?' do
