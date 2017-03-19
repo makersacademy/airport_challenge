@@ -28,7 +28,7 @@ describe Airport do
 	    expect(subject.confirm_landing(landed_plane)).to eq landed_plane	
 	  end
 	end
-	
+
 	describe "#allow_takeoff" do   
 	  it "instructs a docked plane to take off from airport" do
     	plane = double("plane")
@@ -46,6 +46,15 @@ describe Airport do
 	    landed_plane = double("landed_plane")
 	    expect {subject.takeoff(landed_plane)}.to raise_error "the plane has already departed"
 	  end    	
+
+	end
+
+	describe "#weather_report" do
+    it "creates a weather report" do
+    	weather = double("weather")
+    	allow(weather).to receive(:weather)
+      expect(subject.weather_report).to eq "stormy"
+    end
 
 	end
 
