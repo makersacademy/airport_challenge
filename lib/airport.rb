@@ -22,6 +22,7 @@ class Airport
   def launch(plane, weather = Weather.new)
     raise 'Airport empty' if @planes.empty?
     raise 'Weather warning' if weather.stormy?
+    raise 'That plane is not here' if !@planes.include?(plane)
     @planes.delete(plane)
     plane.ascend
     plane

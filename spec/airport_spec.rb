@@ -68,6 +68,13 @@ describe Airport do
       subject.land(plane2, weather)
       expect(subject.launch(plane1, weather)).to eq plane1
     end
+    it 'raises an error if the plane is not at the airport' do
+      plane = double('plane', :descend => plane, :flying? => true)
+      fakeplane = double('fakeplane', :ascend => fakeplane)
+      weather = double('weather', :stormy? => false)
+      subject.land(plane)
+      expect { subject.launch(fakeplane, weather) }.to raise_error 'That plane is not here'
+    end
   end
 
 end
