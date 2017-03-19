@@ -48,7 +48,7 @@ describe Airport do
 
 
     it "stores plane into planes_in_airport on landing" do
-      plane = double(:plane, flying?: false)
+      plane = double(:plane, flying?: false, land_at: nil)
       subject.commence_landing(plane)
       expect(subject.landed_planes).to eq([plane])
     end

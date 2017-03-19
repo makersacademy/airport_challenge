@@ -18,7 +18,6 @@ class Plane
   def land_at(airport)
     fail "Plane already grounded" if !flying?
     self.flying = false
-    airport.land(self)
   end
 
   private

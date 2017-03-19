@@ -29,9 +29,7 @@ class Airport
   def commence_landing(plane)
     #fail "Only plane can control landing" if plane.flying?
     clear_landing
-
-    #NEED TO AMEND PLANE METHOD FOR LANDING
-
+    plane.land_at(self)
     self.landed_planes << plane
     return "Landed Successfully"
   end
