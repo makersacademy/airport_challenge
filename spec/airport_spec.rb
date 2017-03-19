@@ -3,8 +3,12 @@ require 'plane'
 
 describe Airport do
 
+  it 'Has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
     describe '#land' do
-      it 'Has a method that lands planes' do
+      it 'Is a method that lands planes' do
         expect(subject).to respond_to :land
       end
 
@@ -35,6 +39,12 @@ describe Airport do
 
       it 'Responds with one argument' do
         expect(subject).to respond_to(:take_off).with(1).argument
+      end
+    end
+
+    describe '#full?' do
+      it 'Is a method that checks if the airport is full' do
+        expect(subject).to respond_to :full?
       end
     end
 
