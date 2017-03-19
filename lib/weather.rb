@@ -3,7 +3,7 @@ class Stormy_Weather
   STORM_PROBABILITY = 2
 
   def report
-    if generate_weather <= STORM_PROBABILITY 
+    if random_weather <= STORM_PROBABILITY
       true
     else false
     end
@@ -12,7 +12,7 @@ class Stormy_Weather
   private
 
   def generate_weather
-    @random_weather = rand(11)
+    random_weather = rand(11)
   end
 
 
