@@ -15,9 +15,9 @@ class Airport
     landed_planes << airplane
   end
 
-  def take_off
+  def take_off(airplane)
     raise "Plane cannot take off due to stormy weather" if stormy?
-    landed_planes.pop
+    landed_planes.delete(airplane)
   end
 
 

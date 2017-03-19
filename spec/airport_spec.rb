@@ -57,19 +57,23 @@ describe Airport do
     it "instructs a plane to take off" do
       allow(airport).to receive(:stormy?).and_return(false)
       airport.land_plane(airplane)
-      expect(airport.take_off).to eq airplane
+      expect(airport.take_off(airplane)).to eq airplane
     end
 
     it "confirms a plane has taken off" do
       allow(airport).to receive(:stormy?).and_return(false)
       landed_planes = airport.land_plane(airplane)
-      airport.take_off
+      airport.take_off(airplane)
       expect(landed_planes).to eq []
     end
 
+    # it "only takes off planes at the airport" do
+    #   airport
+    # end
+
     it "raises an error when the weather is stormy" do
       allow(airport).to receive(:stormy?).and_return(true)
-      expect { airport.take_off }.to raise_error "Plane cannot take off due to stormy weather"
+      expect { airport.take_off(airplane) }.to raise_error "Plane cannot take off due to stormy weather"
     end
 
 
