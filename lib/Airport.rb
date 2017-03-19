@@ -21,18 +21,26 @@ class Airport
     fail "Airport full" if airport_full?
   end
 
-  def clear_take_off
-    fail "Too stormy to take off" if stormy?
-  end
-
-
   def commence_landing(plane)
-    #fail "Only plane can control landing" if plane.flying?
     clear_landing
     plane.land_at(self)
     self.landed_planes << plane
     return "Landed Successfully"
   end
+
+  def clear_take_off
+    fail "Too stormy to take off" if stormy?
+  end
+
+
+  def commence_take_off(plane)
+    clear_take_off
+    plane.take_off(self)
+    self.landed_planes = landed_planes.select!{|landed_plane| landed_plane if landed_plane != plane}
+    return "Take-off Successful"
+  end
+
+
 
 private
 attr_reader :capacity

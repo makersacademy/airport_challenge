@@ -10,7 +10,7 @@ class Plane
     flying
   end
 
-  def take_off
+  def take_off(airport)
     fail "Plane already in flight" if flying?
     self.flying = true
   end

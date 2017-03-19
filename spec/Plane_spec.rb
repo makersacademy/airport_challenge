@@ -46,7 +46,7 @@ describe Plane do
     it "makes the plane take-off" do
       airport = double(:airport, land: "Plane already grounded")
       subject.land_at(airport)
-      subject.take_off
+      subject.take_off(airport)
       expect(subject.flying?).to eq(true)
     end
 
@@ -55,7 +55,7 @@ describe Plane do
     end
 
     it "Can't take off if it's already flying" do
-      expect{ subject.take_off}.to raise_error("Plane already in flight")
+      expect{ subject.take_off(airport)}.to raise_error("Plane already in flight")
 
     end
 
