@@ -68,6 +68,7 @@ describe Airport do
       plane = double(:plane, flying?: false)
       allow(plane).to receive(:plane_takes_off)
       allow(weather).to receive(:stormy?) {true}
+      #weather = double(:plane, stormy?: true)
       subject.planes_in_airport << plane
       expect{subject.take_off(plane)}.to raise_error("Too stormy to take off")
     end
@@ -76,6 +77,7 @@ describe Airport do
       plane = double(:plane, flying?: true)
       allow(plane).to receive(:plane_lands)
       allow(weather).to receive(:stormy?) {true}
+      #weather = double(:plane, stormy?: true)
       expect{subject.land(plane)}.to raise_error("Too stormy to land")
     end
   end
