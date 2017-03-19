@@ -2,8 +2,14 @@ require 'airport'
 
 describe Airport do
   subject(:airport) {described_class.new}
-
   it { is_expected.to respond_to(:land).with(1).argument }
+
+  describe '#initialize' do
+    it 'sets the default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    it 'allows the default capacity to be overwritten'
+  end
 
   describe '#land(plane)' do
     it 'allows a plane to land' do
@@ -23,14 +29,7 @@ describe Airport do
     end
   end
 
-  describe '#initialize' do
-    it 'sets the default capacity' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-    end
-  end
-
   describe '#take_off' do
-
     it 'sends a message when plane is no longer in airport' do
     plane = double(:plane)
     allow(plane).to receive(:left?)
