@@ -1,13 +1,14 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) {described_class.new}
-  it { is_expected.to respond_to(:land).with(1).argument }
+  subject(:plane) {described_class.new}
+  subject(:weather) {described_class.new}
 
   describe '#initialize' do
     it 'sets the default capacity' do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
+
     it 'allows the default capacity to be overwritten' do
       subject = Airport.new(35)
       expect(subject.capacity).to eq 35
@@ -28,19 +29,34 @@ describe Airport do
     end
     it 'prevents landing when full' do
       Airport::DEFAULT_CAPACITY.times { subject.land double :plane}
-      expect { subject.land double(:plane) }.to raise_error 'Airport full'
+      expect { subject.land double(:plane) }.to raise_error('Airport full: no landing')
     end
   end
 
   describe '#take_off' do
     it 'sends a message when plane is no longer in airport' do
-    plane = double(:plane)
-    allow(plane).to receive(:left?)
-    subject.land(plane)
-    subject.take_off
-    expect(subject.all_planes).not_to include plane
+      plane = double(:plane)
+      allow(plane).to receive(:left?)
+      subject.land(plane)
+      subject.take_off
+      expect(subject.all_planes).not_to include plane
+    end
   end
-end
 
+  describe 'stormy weather' do
+    it 'does not allow take-off in storms' do
+      plane = double(:plane)
+      allow(weather).to receive(:stormy?) {true}
+      allow(plane).to receive(:left?)
+      subject.all_planes << plane
+      expect{subject.take_off(plane)}.to raise_error('Stormy weather: no take-off')
+    end
+    it 'does not allow landing in storms' do
+      plane = double(:plane)
+      allow(weather).to receive(:stormy?) {true}
+      allow(plane).to receive(:land)
+      expect{subject.land(plane)}.to raise_error('Stormy weather: no landing')
+    end
+  end
 
 end
