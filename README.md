@@ -67,10 +67,3 @@ Stormy Weather <--- prevent_landing  ---> prevents landing
 Airport        <--- full?            ---> true/false
 Airport        <--- default_capacity ---> default capacity
 ```
-
-<!-- ## README is updated
-
-* If your code isn't finished it's not ideal but acceptable as long as you explain in your README where you got to and how you would plan to finish the challenge.
-
-## Instructions in README
-It's a great idea to show the full story of how your app is used (from a user's perspective) in the README, i.e. a code example or irb transcript -->
