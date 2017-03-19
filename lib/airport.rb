@@ -26,20 +26,23 @@ class Airport
 	def land(plane)
 		fail "Landing denied, Airport is full" if full?
 		fail "Landing denied, weather report stormy" if weather_report == "stormy"
+		puts "Fasten seatbelts, plane landing..."
 		planes << plane
+		
 	end
 
   def confirm_landing(plane)
 	  planes.each do |plane|
 	    landed_planes << plane	
 	  end
+	  puts "Plane has landed! Docked at bridge for passengers."
 	  landed_planes
-
   end	
     
 	def takeoff(landed_plane)
-		fail "the plane has already departed" if empty?
-		fail "Take off denied, weather report stormy" if weather_report == "stormy" 
+		fail "the flight has already departed" if empty?
+		fail "Take off denied, weather report stormy" if stormy? 
+    puts "Fasten seatbelts, plane taking off..."
 	  landed_planes.pop
 	end
 
@@ -58,5 +61,9 @@ class Airport
 
     def full?
       planes.length >= capacity
+    end
+
+    def stormy?
+    	weather_report == "stormy"
     end
 end
