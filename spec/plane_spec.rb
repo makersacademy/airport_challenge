@@ -1,15 +1,20 @@
 require 'plane'
-#require 'airport'
 
 describe Plane do
 
-  # 1. #landed?
-  it { is_expected.to respond_to(:landed?) }
+  it '#land instructs planes to land' do
+    subject.land
+    expect(subject).to be_landed
+  end
 
-  # 2. #land
-  it { is_expected.to respond_to(:land) }
+  it '#landed? confirms planes have landed' do
+    subject.land
+    expect(subject.landed?).to eq(true)
+  end
 
-  # 3. #takeoff
-  it { is_expected.to respond_to(:takeoff) }
+  it '#takeoff means planes are no longer landed' do
+    subject.takeoff
+    expect(subject.landed?).to eq(false)
+  end
 
 end

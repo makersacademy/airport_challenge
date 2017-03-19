@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
 
   DEFAULT_CAPACITY = 10
-  attr_accessor :capacity # sorry Roi
+  attr_reader :capacity 
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
