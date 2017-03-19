@@ -19,6 +19,11 @@ describe Airport do
       subject.land(plane)
       expect(subject.launch).to eq plane
     end
+    # it 'raises an error when weather is stormy' do
+    #   plane = double('plane')
+    #   subject.land(plane)
+    #   weather = double()
+    # end 
   end
 
   describe '#planes' do

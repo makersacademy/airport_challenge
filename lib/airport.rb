@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -13,7 +14,7 @@ class Airport
   end
 
   def launch
-    @planes.pop 
+    @planes.pop
   end
 
 end
