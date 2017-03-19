@@ -3,7 +3,25 @@ require 'airport'
 describe Airport do
 
   subject(:airport) {Airport.new}
-  let(:airplane) {Airplane.new}
+  let(:airplane) {double :airplane}
+
+  describe 'initialization' do
+
+    it 'sets airport capacity equal to the default capacity if no argument is passed' do
+      allow(airport).to receive(:stormy?).and_return(false)
+      Airport::DEFAULT_CAPACITY.times { airport.land_plane(airplane) }
+      expect { airport.land_plane(airplane) }.to raise_error "Plane cannot land. The airport is full"
+    end
+
+    it 'overrides the default capacity with the argument passed' do
+      random_capacity = rand(1..1000)
+      heathrow = Airport.new(random_capacity)
+      allow(heathrow).to receive(:stormy?).and_return(false)
+      random_capacity.times { heathrow.land_plane(airplane) }
+      expect { heathrow.land_plane(airplane) }.to raise_error "Plane cannot land. The airport is full"
+    end
+
+  end
 
   describe '#land_plane' do
 
