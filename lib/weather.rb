@@ -1,5 +1,11 @@
 class Weather
   def stormy?
-    rand(4) == 1
+    conditions = [:stormy, :sunny, :sunny, :sunny]
+    conditions[chance-1] == :stormy
+  end
+
+  private
+  def chance
+    rand(4)
   end
 end

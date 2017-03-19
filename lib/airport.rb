@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_reader :planes, :capacity
@@ -24,7 +25,7 @@ class Airport
   # def get_forecast(weather)
   # end
   private
-  # attr_reader :capacity
+  # attr_reader :planes
 
   def full?
     planes.count >= capacity
