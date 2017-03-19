@@ -31,17 +31,19 @@ class Airport
 	  planes.each do |plane|
 	    landed_planes << plane	
 	  end
-	  landed_planes	
+	  landed_planes
+
   end	
     
 	def takeoff(landed_plane)
-		fail "the plane has already departed" if empty? 
+		fail "the plane has already departed" if empty?
+		fail "Take off denied, weather report stormy" if weather_report == "stormy" 
 	  landed_planes.pop
 	end
 
 	def plane_status
-		puts "Planes in air #{planes}"
-		puts "Planes on ground #{landed_planes}"
+		puts "Number of Planes: #{planes}, #{planes.count} total."
+		puts "Planes on ground: #{landed_planes}, #{landed_planes.count} total."
 	end
 
   private 
