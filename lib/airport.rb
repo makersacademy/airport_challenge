@@ -22,7 +22,7 @@ class Airport
     raise 'Airport empty' if @planes.empty?
     raise 'Weather warning' if weather.stormy?
     @planes[-1].ascend
-    @planes.pop 
+    @planes.pop
   end
 
   private
