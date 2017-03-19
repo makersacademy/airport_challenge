@@ -4,6 +4,5 @@ class Weather
       number = Random.new.rand(0..10)
       number == 1 ? "Stormy" : "Sunny"
     end
-
-
+    
 end
