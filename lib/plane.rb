@@ -7,7 +7,7 @@ class Plane
   end
 
   def plane_status(status)
-    status == "airborne" ? @airborne = true : @airborne = false
+    status == :airborne ? @airborne = true : @airborne = false
   end
 
   def airborne?

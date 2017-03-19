@@ -7,11 +7,11 @@ let(:plane) { subject }
     it { is_expected.to respond_to(:plane_status) }
 
     it 'should update to true if airborne' do
-      expect(plane.plane_status("airborne")).to eq true
+      expect(plane.plane_status(:airborne)).to eq true
     end
 
     it 'should update to false if landed' do
-      expect(plane.plane_status("landed")).to eq false
+      expect(plane.plane_status(:landed)).to eq false
     end
   end
 
