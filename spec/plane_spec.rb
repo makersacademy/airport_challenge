@@ -1,10 +1,10 @@
 require 'plane'
 describe Plane do
-  describe '#landed?' do
-    it { is_expected.to respond_to(:landed?) }
+  describe '#landed' do
+    it { is_expected.to respond_to(:landed) }
 
     it 'should report as not landed before being landed by Airport' do
-      expect(subject).not_to be_landed
+      expect(subject).not_to be true
     end
   end
 
@@ -14,7 +14,7 @@ describe Plane do
 
     it 'should mark plane as landed' do
       subject.land_plane
-      expect(subject).to be_landed
+      expect(subject.landed).to be true
     end
   end
 
@@ -23,7 +23,7 @@ describe Plane do
 
     it 'should mark plane as not landed' do
       subject.take_off_plane
-      expect(subject).not_to be_landed
+      expect(subject.landed).not_to be true
     end
   end
 

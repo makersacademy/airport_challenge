@@ -17,20 +17,19 @@ class Airport
   def land(plane)
     fail "Bad weather today. Cannot land." if weather.stormy_weather?
     fail "Sorry. Airport full. Go away." if full?
-    fail "This plane is already landed." if plane.landed?
+    fail "This plane is already landed." if plane.landed
     plane.land_plane
     planes << plane
   end
 
   def take_off(plane)
-
     fail "Bad weather today. Cannot take off." if weather.stormy_weather?
     fail "That plane is not in this airport" unless planes.include? plane
     plane.take_off_plane
     planes.delete(plane)
   end
 
-  def set_capacity(number)
+  def change_capacity(number)
     @capacity = number
   end
 

@@ -198,7 +198,7 @@ This airport doesn't have unlimited space, though. Normally it has a capacity of
  @capacity=20,
  @planes=[],
  @weather=#<Weather:0x007f8e75bdfeb0>>
-[3] pry(main)> airport.set_capacity(3)
+[3] pry(main)> airport.change_capacity(3)
 => 3
 ```
 
