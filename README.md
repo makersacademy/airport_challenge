@@ -90,15 +90,6 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
 
 
-***name of the projects and all sub-modules and libraries (sometimes they are named different and very confusing to new users)
-descriptions of all the project, and all sub-modules and libraries
-5-line code snippet on how its used (if it's a library)
-copyright and licensing information (or "Read LICENSE")
-instruction to grab the documentation
-instructions to install, configure, and to run the programs
-instruction to grab the latest code and detailed instructions to build it (or quick overview and "Read INSTALL")
-list of authors or "Read AUTHORS"
-instructions to submit bugs, feature requests, submit patches, join mailing list, get announcements, or join the user or dev community in other forms
-other contact info (email address, website, company name, address, etc)
-a brief history if it's a replacement or a fork of something else
-legal notices (crypto stuff****
+
+The work completed:
+Have applied all user stories, however did not have enough time to fully satisfy all the edge cases. User story 3 (taking off plane) has not been completed and the tests in the spec file for this has not passed. 
