@@ -17,8 +17,6 @@ describe Airport do
   end
 
   describe '#land' do
-    it { is_expected.to respond_to(:land).with(1).argument }
-
     it 'can confirm a plane has landed' do
       allow(plane).to receive(:flying?) {true}
       allow(plane).to receive(:plane_lands)
@@ -41,8 +39,6 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off).with(1).argument }
-
     it 'can confirm plane is no longer in the airport' do
       allow(plane).to receive(:flying?) {false}
       allow(plane).to receive(:plane_takes_off)
@@ -81,7 +77,6 @@ describe Airport do
       allow(weather).to receive(:stormy?) {true}
       expect{subject.land(plane)}.to raise_error("Too stormy to land")
     end
-  end
-
+  end 
 
 end
