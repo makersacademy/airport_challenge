@@ -2,19 +2,25 @@ require_relative 'plane'
 
 class Airport
 
-	def initialize(weather=3)
+	DEFAULT_CAPACITY = 2
+
+	attr_reader :planes, :landed_planes, :weather, :capacity
+
+	def initialize(weather=3, capacity=DEFAULT_CAPACITY )
       @planes = []
       @landed_planes = []
       @weather = weather
+      @capacity = capacity
 
 	end
 
-	def instruct(plane)
-	  planes << plane
-	end
+	# def instruct(plane)
+	#   planes << plane
+	# end
 
 	def land(plane)
-    planes
+		raise "Landing denied, Airport is full" if planes.length >= capacity
+    planes << plane
 	end
 
   def confirm_landing(plane)
@@ -25,11 +31,13 @@ class Airport
 	end	
     
 	def takeoff(landed_plane)
-		raise "the plane has already departed" if empty?
+		raise "the plane has already departed" if empty? 
+		# raise "cannot take off due to stormy weather" if false
+		
 	  landed_planes.pop
 	end
 
-	def weather_report
+  def weather_report
 		if weather <= 3
 		  "stormy"
 		else
@@ -37,12 +45,15 @@ class Airport
 		end
 	end
 
-	private  
-  attr_reader :planes, :landed_planes, :weather
+	private 
 
   def empty?
     landed_planes.empty?
-  end	
+  end
+
+  # def stormy?
+  #   weather_report
+  # end
 
 
 end
