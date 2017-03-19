@@ -80,4 +80,18 @@ Verbs: As an air traffic controller, To ensure safety, I want to **prevent landi
 
 ### Messages:
 Airport => Full?
-Plane => Prevent landing when airport is full
+Airport => Prevent landing when airport is full
+
+## Sixth User Story:
+As the system designer, So that the software can be used for many different airports, I would like a default airport capacity that can be overridden as appropriate
+
+Nouns: As the **system designer**, So that the software can be used for many different airports, I would like a **default airport capacity** that can be overridden as appropriate
+Verbs: As the system designer, So that the software can be used for many different airports, I would like a default airport capacity that can be **overridden as appropriate**
+
+### Objects:
+1. User (System Designer)
+2. Airport
+3. Plane
+
+### Messages:
+Airport => Capacity to be overridden
