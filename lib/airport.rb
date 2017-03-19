@@ -17,6 +17,7 @@ class Airport
   end
 
   def launch(weather)
+    raise 'Airport empty' if @planes.empty?
     raise 'Weather warning' if weather.stormy?
     @planes.pop
   end

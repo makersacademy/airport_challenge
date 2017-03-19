@@ -31,6 +31,10 @@ describe Airport do
       subject.land(plane)
       expect { subject.launch(weather) }.to raise_error 'Weather warning'
     end
+    it 'raises an error if there are no planes' do
+      weather = double('weather', :stormy? => false)
+      expect { subject.launch(weather) }. to raise_error 'Airport empty'
+    end
   end
 
   describe '#planes' do
