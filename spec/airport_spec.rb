@@ -81,6 +81,12 @@ allow(subject).to receive(:ready_to_takeoff?) {true}
 allow(subject).to receive(:weather?) {true}
 expect {subject.land(plane1)}.to raise_error "There is no available space in this airport."
 end
+
+it "allows engineers to rewrite capacity" do
+  n = rand(0..50)
+  subject.capacity = n
+  expect(subject.capacity).to eq n
+end
 end
 end
 
