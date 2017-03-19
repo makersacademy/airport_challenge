@@ -43,8 +43,43 @@ I would like a default airport capacity that can be overridden as appropriate
 
 **Steps taken**
 
-*User Story 1*
+*User Story 1: Landing & confirming a plane has landed*
 - [x] Feature and unit tested capacity to check if a plane has landed
-- [x] Implemented capacity to check if a plane has landed
+- [x] Implemented `landed?` method to check if a plane has landed
 - [x] Feature and unit tested capacity to land a plane at airpot
-- [x] Implemented capacity to land a plane at airport
+- [x] Implemented `land(plane)` method to land a plane at airport
+
+*User Story 2: Taking-off & confirming a plane has taken-off*
+- [x] Feature and unit tested capacity to check if a plane has taken-off
+- [x] Implemented `left?` method within the Plane class to check if a plane has taken-off
+- [x] Feature and unit tested capacity to take-off a plane from an airpot
+- [x] Implemented `take_off` method within the Airport class to take-off a plane from an airpot
+
+*User Story 3: Preventing take-off during storms*
+- [x] Feature and unit tested capacity to check if weather is stormy
+- [x] Implemented `stormy?` method within the Weather module to check if weather is stormy
+- [x] Feature and unit tested capacity to prevent a plane from taking off during storms
+- [x] Implemented a fail condition within the `take_off` method to prevent a plane from taking-off during storms
+
+*User Story 4: Preventing landing during storms*
+- [x] Feature and unit tested capacity to prevent a plane from landing during storms
+- [x] Implemented a fail condition within the `land` method to prevent a plane from landing during storms
+
+*User Story 5: Preventing landing when airport is full*
+- [x] Feature and unit tested capacity to prevent a plane from landing if the airport is full
+- [x] Initialised capacity within Airport class
+- [x] Implemented `full?` method within the Airport class which asserts whether the airport is at capacity
+- [x] Implemented a fail condition within the `land` method to prevent a plane from landing if the airport is full
+
+*User Story 6: Overriding airport capacity*
+- [x] Feature and unit tested capacity to set a custom airport capacity
+- [x] Implemented a fail condition within the `land` method to prevent a plane from landing during storms
+``it 'prevents landing when full' do
+  Airport::DEFAULT_CAPACITY.times { subject.land double :plane}
+  expect { subject.land double(:plane) }.to raise_error('Airport full: no landing')
+end``
+
+*Defending against edge cases*
+- [ ] Planes only take off from airports they are in
+- [ ] Planes already flying cannot take off or be in an airport
+- [ ] Planes that are landed cannot land again and must be in airport
