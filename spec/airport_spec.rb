@@ -31,8 +31,8 @@ describe Airport do
     expect {airport.take_off(boeing)}.to raise_error('Plane not in hangar')
   end
 
-
-
-
+  it 'expects airports to have a weather status' do
+    expect(airport).to respond_to (:check_weather)
+  end
 
 end

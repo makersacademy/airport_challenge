@@ -1,10 +1,12 @@
 require './docs/plane.rb'
 
 class Airport
-  def initialize(name="airport")
+  WEATHER = ["stormy", "clear", "clear", "clear"]
+  def initialize(name="airport", skies = WEATHER.sample)
     @name = name
     @hangar = []
     @capacity
+    @weather = skies
   end
 
 
@@ -20,9 +22,21 @@ class Airport
     raise 'Plane not in hangar'
   end
 
-  attr_reader :hangar
+  def check_weather
+    update_weather
+  end
+
+  attr_reader :hangar, :weather
+
+
 
   private
+
+
+
+  def update_weather
+    @weather = WEATHER.sample
+  end
 
   def include?(plane)
     hangar.include?(plane)
