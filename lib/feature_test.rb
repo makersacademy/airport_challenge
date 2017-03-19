@@ -11,7 +11,7 @@ airport.take_off
 
 
 require './lib/weather'
-def forecast
+def weather
 weather = []
 weather_select = Random.new
 weather_select = weather_select.rand(2)
@@ -21,3 +21,16 @@ else
   weather << 'sunny'
 end
 end
+
+if weather.include? 'stormy'
+
+end
+
+
+
+let (:plane) { double :plane}
+it 'does not allow take-off in storms' do
+  plane = double :plane
+  allow(plane).to receive(:stormy).and_return(true)
+  subject.land(plane)
+  expect {subject.take_off}.to raise_error 'No take-off when weather is stormy'

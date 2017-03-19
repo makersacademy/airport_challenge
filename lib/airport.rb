@@ -1,14 +1,22 @@
+require_relative 'weather'
+
 class Airport
 
+attr_reader :plane, :weather
+
   def initialize
-    @airport = []
+    @all_planes = []
+    @weather
   end
 
   def land(plane)
-    @airport << plane
+    @all_planes << plane
   end
 
   def take_off
-    @airport.pop
+    fail 'Stormy weather' if :stormy?
+    @all_planes.pop
+    self
   end
+
 end
