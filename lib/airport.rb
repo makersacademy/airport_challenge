@@ -11,6 +11,10 @@ class Airport
     landed_planes << airplane
   end
 
+  def take_off
+    landed_planes.pop
+  end
+
 private
 
 attr_reader :landed_planes
