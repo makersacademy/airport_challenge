@@ -2,8 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :planes
-  attr_accessor :stormy
+  attr_reader :planes, :stormy
 
   def initialize
     @planes = []
@@ -19,11 +18,12 @@ class Airport
   end
 
   def take_off
-    raise 'Sorry' if @stormy == true
+    raise 'Sorry, no taking off in stormy weather' if @stormy == true
     planes.pop
   end
 
   def land(plane)
+    raise 'Sorry, no landing in stormy weather' if stormy == true
     planes << plane
   end
 end
