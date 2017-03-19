@@ -12,12 +12,14 @@ class Airport
   def land_plane(airplane)
     raise "Plane cannot land. The airport is full" if full?
     raise "Plane cannot land due to stormy weather" if stormy?
+    airplane.landed(self)
     landed_planes << airplane
   end
 
   def take_off(airplane)
     raise "Plane cannot take off as it is not at this airport" unless landed_planes.include?(airplane)
     raise "Plane cannot take off due to stormy weather" if stormy?
+    airplane.taken_off
     landed_planes.delete(airplane)
   end
 

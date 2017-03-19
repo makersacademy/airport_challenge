@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   subject(:airport) {Airport.new}
-  let(:airplane) {double :airplane}
+  let(:airplane) {double :airplane, taken_off: nil, landed: nil}
 
   describe 'initialization' do
 
@@ -34,9 +34,9 @@ describe Airport do
 
     it "confirms plane has landed" do
       allow(airport).to receive(:stormy?).and_return(false)
-      allow(airplane).to receive(:landed?).and_return(true)
+      allow(airplane).to receive(:landed).and_return(true)
       heathrow = airport.land_plane(airplane)
-      expect(heathrow[-1].landed?).to be_truthy
+      expect(heathrow[-1].landed).to be_truthy
     end
 
     it "raises an error when the weather is stormy" do
