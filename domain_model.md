@@ -12,9 +12,9 @@ Verbs: As an air traffic controller, so i can get to a destination, I want to in
 3. Plane
 
 ### Messages:
-Plane => Status
-Plane => Land
-Plane => Check status to see if plane has landed
+1. Plane => Status
+2. Airport => Land
+3. Airport => Check status to see if plane has landed
 
 ## Second User Story:
 As an Air Traffic Controller, so I can get passengers on the way to their destination, I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport.
@@ -27,6 +27,11 @@ Verbs: As an Air Traffic Controller, so I can get passengers on the way to their
 2. Airport
 3. Plane
 
+
+### Messages:
+1. Plane => Status changed to "Flying"
+2. Airport => Takeoff
+3. Airport => Confirm Takeoff
 
 
 ## Third User Story:
@@ -43,8 +48,36 @@ Verbs: As an Air Traffic Controller, To ensure safety, I want to **prevent takeo
 
 ### Messages:
 Weather => Provide weather check
-Airport => Prevent take off when weather is stormy
+Plane => Prevent take off when weather is stormy
+
+
+## Fourth User Story:
+As an Air Traffic Controller, To ensure safety, I want to prevent landing when weather is stormy.
+
+Nouns: As an **Air Traffic Controller**, To ensure safety, I want to prevent landing when **weather** is stormy.
+Verbs: As an Air Traffic Controller, To ensure safety, I want to **prevent landing** when weather is stormy.
+
+### Objects:
+1. User (Air Traffic Controller)
+2. Airport
+3. Plane
+4. Weather
 
 ### Messages:
-Airport => Take off Plane
-Airport => Confirm Take off
+Weather => Provide weather check
+Plane => Prevent landing when weather is stormy
+
+## Fifth User Story:
+As an air traffic controller, To ensure safety, I want to prevent landing when the airport is full.
+
+Nouns: As an **air traffic controller**, To ensure safety, I want to prevent landing when the **airport** is full.
+Verbs: As an air traffic controller, To ensure safety, I want to **prevent landing** when the airport is full.
+
+### Objects:
+1. User (Air Traffic Controller)
+2. Airport
+3. Plane
+
+### Messages:
+Airport => Full?
+Plane => Prevent landing when airport is full
