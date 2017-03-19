@@ -8,4 +8,4 @@ gem 'coveralls', require: false
 gem 'rubocop'
 gem 'reek'
 gem 'rake'
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test

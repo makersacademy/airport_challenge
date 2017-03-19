@@ -2,8 +2,6 @@ require 'airport'
 
 describe Airport do
 
-  subject{Airport.new(2)}
-
   describe "#land" do
 
     it 'lands a plane' do
@@ -66,4 +64,7 @@ describe Airport do
     end
   end
 
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 end
