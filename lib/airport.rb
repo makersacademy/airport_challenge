@@ -16,12 +16,14 @@ class Airport
   def land(plane, weather)
     fail "Bad weather today. Cannot land." if weather.stormy_weather?
     fail "Sorry. Airport full. Go away." if full?
+    fail "This plane is already landed." if plane.landed?
     plane.land_plane
     planes << plane
   end
 
   def take_off(plane, weather)
     fail "Bad weather today. Cannot take off." if weather.stormy_weather?
+    fail "Plane is already in the air!" if !plane.landed?
     plane.take_off_plane
     planes.delete(plane)
   end

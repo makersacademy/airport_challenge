@@ -15,7 +15,7 @@ describe Airport do
     end
 
     it 'lands planes in the Airport' do
-      plane = double(:plane)
+      plane = double(:plane, landed?: false)
       weather = double(:weather, stormy_weather?: false)
       allow(plane).to receive(:land_plane)
       expect(subject.land(plane, weather)).to include plane
@@ -29,11 +29,18 @@ describe Airport do
     end
 
     it 'does not allow landing when airport is full' do
-      plane = double(:plane)
+      plane = double(:plane, landed?: false)
       weather = double(:weather, stormy_weather?: false)
       allow(plane).to receive(:land_plane)
       subject.capacity.times {subject.land(plane, weather)}
       expect{subject.land(plane, weather)}.to raise_error("Sorry. Airport full. Go away.")
+    end
+
+    it 'raises error when trying to land a landed plane' do
+      plane = double(:plane, landed?: true)
+      weather = double(:weather, stormy_weather?: false)
+      allow(plane).to receive(:land_plane)
+      expect{ subject.land(plane, weather) }.to raise_error("This plane is already landed.")
     end
 
   end
@@ -49,7 +56,7 @@ describe Airport do
 
     it 'allows planes to take off from Airport' do
       weather = double(:weather, stormy_weather?: false)
-      plane = double(:plane)
+      plane = double(:plane, landed?: true)
       planes = [plane]
       allow(plane).to receive(:take_off_plane)
       subject.take_off(plane, weather)
@@ -62,6 +69,12 @@ describe Airport do
       expect{ subject.take_off(plane, weather) }.to raise_error("Bad weather today. Cannot take off.")
     end
 
+    it 'returns error when trying to take off a plane not yet landed' do
+      plane = double(:plane, landed?: false)
+      weather = double(:weather, stormy_weather?: false)
+      allow(plane).to receive(:take_off_plane)
+      expect{ subject.take_off(plane, weather) }.to raise_error("Plane is already in the air!")
+    end
   end
 
   describe '#set_capacity' do
