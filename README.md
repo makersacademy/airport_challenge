@@ -61,8 +61,7 @@ In order to solve this, I took a four step approach:
 - Launch your REPL (irb or Pry - I'm using Pry here)
 
 ### Running this program
-- Make sure you require the airport file
-- Create a new instance of the Airport and Plane classes
+Make sure you require the airport file and then create a new instance of the Airport and Plane classes:
 
 ```
 [1] pry(main)> require './lib/airport'
