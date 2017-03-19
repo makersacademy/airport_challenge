@@ -13,11 +13,22 @@ describe Airport do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
+    it 'tells the plane to land' do
+      plane = double(:plane, landed?: false)
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      allow(plane).to receive(:land_plane)
+      expect(subject).to receive(:land)
+      subject.land(plane)
+    end
+
     it 'lands planes in the Airport' do
       plane = double(:plane, landed?: false)
+      allow(subject).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:land_plane)
-      expect(subject.land(plane)).to include plane
+      subject.land(plane)
+      expect(subject.planes).to include plane
     end
+
 
     it 'does not allow landing when weather is stormy' do
       plane = double(:plane)
@@ -37,6 +48,7 @@ describe Airport do
     it 'raises error when trying to land a landed plane' do
       plane = double(:plane, landed?: true)
       allow(plane).to receive(:land_plane)
+      allow(subject).to receive(:stormy_weather?).and_return(false)
       expect{ subject.land(plane) }.to raise_error("This plane is already landed.")
     end
 
@@ -51,13 +63,21 @@ describe Airport do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
 
-    it 'allows planes to take off from Airport' do
+    it 'tells the airport to take off the plane' do
       plane = double(:plane, landed?: true)
-      planes = [plane]
       allow(subject).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
+      expect(subject).to receive(:take_off)
       subject.take_off(plane)
-      expect(planes).not_to include [plane]
+    end
+
+    it 'allows planes to take off from Airport' do
+      plane = double(:plane, landed?: true)
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      allow(plane).to receive(:take_off_plane)
+      subject.planes.push(plane)
+      subject.take_off(plane)
+      expect(subject.planes).not_to include [plane]
     end
 
     it 'does not allow take off when weather is stormy' do
@@ -66,11 +86,12 @@ describe Airport do
       expect{ subject.take_off(plane) }.to raise_error("Bad weather today. Cannot take off.")
     end
 
-    it 'returns error when trying to take off a plane not yet landed' do
-      plane = double(:plane, landed?: false)
+    it 'raises an error when plane is not in airport' do
+      plane = double(:plane, landed?: true)
       allow(subject).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
-      expect{ subject.take_off(plane) }.to raise_error("Plane is already in the air!")
+      subject.planes.delete(plane)
+      expect { subject.take_off(plane) }.to raise_error("That plane is not in this airport")
     end
   end
 

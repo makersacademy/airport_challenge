@@ -4,7 +4,6 @@ class Plane
     @landed = false
   end
 
-  public
   def land_plane
     @landed = true # Need to work out why I had to keep the @s in here!
   end
@@ -18,6 +17,6 @@ class Plane
   end
 
 private
-attr_accessor :landed
+attr_writer :landed
 
 end
