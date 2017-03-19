@@ -1,3 +1,5 @@
+require_relative "Airport"
+
 class Plane
 
   def initialize
@@ -12,11 +14,14 @@ class Plane
     self.flying = true
   end
 
-  def land
+  def land_at(airport)
+    fail "Plane already grounded" if !flying?
     self.flying = false
+    airport.land(self)
   end
 
   private
 
   attr_accessor :flying
+
 end
