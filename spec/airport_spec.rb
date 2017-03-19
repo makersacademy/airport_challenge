@@ -14,6 +14,7 @@ describe Airport do
     end
 
     it "confirms plane has landed" do
+      allow(airport).to receive(:stormy?).and_return(false)
       allow(airplane).to receive(:landed?).and_return(true)
       heathrow = airport.land_plane(airplane)
       expect(heathrow[-1].landed?).to be_truthy
@@ -22,6 +23,12 @@ describe Airport do
     it "raises an error when the weather is stormy" do
       allow(airport).to receive(:stormy?).and_return(true)
       expect{ airport.land_plane(airplane) }.to raise_error("Plane cannot land due to stormy weather")
+    end
+
+    it "raises an error when the airport is full" do
+      allow(airport).to receive(:stormy?).and_return(false)
+      Airport::DEFAULT_CAPACITY.times { airport.land_plane(airplane) }
+      expect { airport.land_plane(airplane).to raise_error "Plane cannot land. The airport is full"}
     end
 
   end

@@ -2,11 +2,14 @@ require_relative 'airplane'
 
 class Airport
 
+  DEFAULT_CAPACITY = 50
+
   def initialize
     @landed_planes = []
   end
 
   def land_plane(airplane)
+    # raise "Plane cannot land. The airport is full"
     raise "Plane cannot land due to stormy weather" if stormy?
     landed_planes << airplane
   end
@@ -15,7 +18,6 @@ class Airport
     raise "Plane cannot take off due to stormy weather" if stormy?
     landed_planes.pop
   end
-
 
 
 private
