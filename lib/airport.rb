@@ -18,6 +18,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Error - Plane not airborne" if plane.airborne? == false
     landing_permission(plane)
     successful_landing(plane)
   end
@@ -29,7 +30,7 @@ class Airport
 
   def successful_landing(plane)
     airborne_planes.delete(plane)
-    plane.plane_status("landed")
+    plane.plane_status(:landed)
     planes << plane
     "The plane has successfully landed"
   end
@@ -41,11 +42,10 @@ class Airport
 
   def successful_take_off(plane)
     planes.delete(plane)
-    plane.plane_status("airborne")
+    plane.plane_status(:airborne)
     airborne_planes << plane
     "Taken off successfully"
   end
-
 
   private
 

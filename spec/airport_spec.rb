@@ -10,8 +10,10 @@ describe Airport do
 
     it 'has sets default capacity as 30' do
       allow(airport).to receive(:stormy?) { false }
+      allow(plane).to receive(:airborne?) { true }
       30.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error "Airport full...jog on"
+      message = "Airport full...jog on"
+      expect { airport.land(plane) }.to raise_error message
     end
 
     it 'has a variable capacity' do
@@ -23,35 +25,46 @@ describe Airport do
 ###### Landing tests ######
   describe '#land' do
     it { is_expected.to respond_to(:land) }
+
+    # it 'cannot land if not airborne' do
+    #   allow(airport).to receive(:stormy?) { false }
+    #   airport.land(plane)
+    #   message = "Error - Plane not airborne"
+    #   expect(airport.land(plane)).to eq { message }
+    # end
   end
 
   describe '#successful_landing' do
     before do
       allow(airport).to receive(:stormy?) { false }
-      airport.land(plane)
+      allow(plane).to receive(:airborne?) { true }
     end
 
     it 'should confirm landing' do
-      allow(airport).to receive(:land) { "The plane has successfully landed" }
+      expect(airport).to receive(:land)
+      airport.land(plane)
     end
 
     it 'contains plane that has landed' do
+      airport.land(plane)
       expect(airport.planes).to include plane
     end
 
     it 'should NOT be in airborne_planes array' do
+      airport.land(plane)
       expect(airport.airborne_planes).to_not include plane
     end
   end
 
   describe '#landing_permission' do
+    before do
+      allow(plane).to receive(:airborne?) { true }
+    end
     it 'should prevent landing in stormy weather' do
       allow(airport).to receive(:stormy?) { true }
-      expect { airport.land(plane) }.to raise_error "Cannot land due to bad weather"
+      message = "Cannot land due to bad weather"
+      expect { airport.land(plane) }.to raise_error message
     end
-
-    #TODO
-    # Airport full if plane attempts to land
 
     it 'if airport full should not allow more to land' do
       airport = Airport.new(45)
@@ -66,21 +79,25 @@ describe Airport do
   describe '#take_off' do
     it 'should prevent take_off if weather stormy' do
       allow(airport).to receive(:stormy?) { false }
+      allow(plane).to receive(:airborne?) { true }
       airport.land(plane)
       allow(airport).to receive(:stormy?) { true }
-      expect { airport.take_off(plane) }.to raise_error "Cannot take off due to bad weather"
+      message = "Cannot take off due to bad weather"
+      expect { airport.take_off(plane) }.to raise_error message
     end
   end
 
   describe '#successful_take_off' do
     before do
       allow(airport).to receive(:stormy?) { false }
+      allow(plane).to receive(:airborne?) { true }
       airport.land(plane)
       airport.take_off(plane)
     end
 
     it 'should confirm take off' do
-      allow(airport).to receive(:take_off) { "Taken off successfully" }
+      message = "Taken off successfully"
+      allow(airport).to receive(:take_off) { message }
     end
 
     it 'should add a plane to airborne_planes array' do
