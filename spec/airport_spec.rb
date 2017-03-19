@@ -21,7 +21,7 @@ describe Airport do
       plane = double('plane')
       weather = double('weather', :stormy? => false)
       Airport::DEFAULT_CAPACITY.times { subject.land(plane, weather) }
-        expect { subject.land(plane, weather) }.to raise_error 'Airport is full'
+      expect { subject.land(plane, weather) }.to raise_error 'Airport is full'
      end
   end
 
