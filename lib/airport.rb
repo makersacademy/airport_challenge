@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :planes, :capacity, :weather
+  attr_reader :planes, :weather
 
   DEFAULT_CAPACITY = 100
 
@@ -14,7 +14,7 @@ class Airport
 
   def land(plane)
     raise "The airport is full" if full?
-    # raise "Weather is stormy and you cannot land" if weather.stormy?
+    raise "Stormy weather. Landing not permitted." if weather.stormy?
     planes << plane
   end
 
@@ -24,19 +24,11 @@ class Airport
     planes.delete(plane)
   end
 
-  def get_forecast
-    weather = Weather.new
-    weather.stormy?
-  end
   private
   attr_reader :capacity
 
   def full?
     planes.count >= capacity
-  end
-
-  def empty?
-    planes.empty?
   end
 
 end
