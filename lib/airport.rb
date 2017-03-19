@@ -1,8 +1,7 @@
-require_relative 'weather'
 
 class Airport
 
-attr_reader :plane, :weather
+attr_reader :plane
 
   def initialize
     @all_planes = []
@@ -14,9 +13,7 @@ attr_reader :plane, :weather
   end
 
   def take_off
-    fail 'Stormy weather' if :stormy?
     @all_planes.pop
-    self
   end
 
 end

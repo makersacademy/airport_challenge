@@ -20,17 +20,8 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it 'takes-off planes' do
-      plane = double :plane
-      allow(plane).to receive(:take_off)
-      subject.take_off
-      expect(subject.take_off).to be_left
-    end
-    it 'does not allow take-off in storms' do
-      weather = double :weather
-      allow(weather).to receive(:stormy?).and_return(true)
-      message = 'Stormy weather'
-      expect{subject.take_off}.to raise_error message
+    it { is_expected.to respond_to(:take_off) }
   end
-end
+
+
 end
