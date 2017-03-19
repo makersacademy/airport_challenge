@@ -12,23 +12,23 @@ describe Airport do
   describe "#land(plane)" do
     before do
       allow(plane).to receive(:land)
-      allow(plane).to recieve(:landed)
+      allow(plane).to receive(:landed)
       allow(weather).to receive(:stormy?) { false }
     end
 
-#  did work before stomry? wont be set to false
+#  did work before stormy?, won't always be set to false
     # it "plane can't land if airport is full" do
     #   subject.capacity.times do
     #     airport.land(plane)
     #   end
-    #   expect {airport.land(plane)}.to raise_error("Airport full")
+    #   expect {airport.land(plane2)}.to raise_error("Airport full")
     # end
-    #
-    #
-    # it "checks plane is in airport array" do
-    #   subject.land(plane)
-    #   expect(subject.send(:planes)).to include plane
-    # end
+
+
+    it "checks plane is in airport array" do
+      subject.land(plane)
+      expect(subject.send(:planes)).to include plane
+    end
   end
 
   describe "#take_off(plane)" do
