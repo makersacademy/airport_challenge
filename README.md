@@ -81,6 +81,7 @@ from /Users/vivientang/Dropbox/makersProjects/airport_challenge/lib/airport.rb:2
 Approach to solving the challenge
 -----
 A TDD approach was used to solve this challenge, by running feature tests in pry and unit tests in Rspec. 
+The review.md file was used to help refactor my code.
 
 1. Created an Airport class which could land, store, and take off planes.
 2. Created a Plane class which could land and take off from airports.
