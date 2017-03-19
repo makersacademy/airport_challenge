@@ -91,3 +91,30 @@ The review.md file was used to help refactor my code.
 6. Included Weather class in Airport, to raise errors when conditions are stormy.
 7. Refactored. 
 
+Bonus
+-----
+Write an RSpec feature test that lands and takes off a number of planes:
+```
+[12] pry(main)> airport.landing_strip
+=> [#<Plane:0x007fa16f322b80 @status=:airborne>,
+ #<Plane:0x007fa16f2eb338 @status=:airborne>]
+[13] pry(main)> airport.take_off(plane1, plane2)
+ArgumentError: wrong number of arguments (2 for 1)
+from /Users/vivientang/Dropbox/makersProjects/airport_challenge/lib/airport.rb:21:in `take_off'
+```
+Could write a unit test:
+```
+#from './lib/airport_spec.rb
+
+describe Airport do
+
+    subject(:airport) { described_class.new }
+    let(:plane) { double :plane }
+    
+    describe '#land' do
+        it 'allows multiple planes to land at the same time' do
+        expect(airport.land(plane, :another_plane)).to eq [[plane, :another_plane]]
+      end
+     end
+```
+And then add a splat argument into the #land and #take_off methods to accept multiple planes if desired.
