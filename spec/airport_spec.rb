@@ -48,7 +48,14 @@ describe Airport do
 	  it "raises error when plane has left airport" do
 	    landed_plane = double("landed_plane")
 	    expect {subject.takeoff(landed_plane)}.to raise_error "the plane has already departed"
-	  end    	
+	  end 
+
+	  it "prevents takeoff if weather is stormy" do
+    	plane = double("plane")
+      subject.land(plane)
+      subject.confirm_landing(plane)
+      expect {subject.weather_report}.to raise_error "Take off denied, weather report stormy"
+    end   	
 	end
 
 	describe "#weather_report" do
