@@ -24,6 +24,12 @@ describe Airport do
       2.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error "Landing denied, Airport is full"
     end
+
+    it "prevents landing if weather is stormy" do
+    	plane = double("plane")
+      subject.land(plane)
+      expect {subject.weather_report}.to raise_error "Landing denied, weather report stormy"
+    end
 	end
 
 	describe "#takeoff" do   
@@ -43,7 +49,6 @@ describe Airport do
 	    landed_plane = double("landed_plane")
 	    expect {subject.takeoff(landed_plane)}.to raise_error "the plane has already departed"
 	  end    	
-
 	end
 
 	describe "#weather_report" do
