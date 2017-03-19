@@ -1,7 +1,9 @@
 require_relative "Weather"
+require_relative "Plane"
 
 class Airport
   include Weather
+
   DEFAULT_CAPACITY = 20
 
   attr_reader :landed_planes
@@ -24,8 +26,12 @@ class Airport
   end
 
 
-  def land(plane)
-    fail "Only plane can control landing" if plane.flying?
+  def commence_landing(plane)
+    #fail "Only plane can control landing" if plane.flying?
+    clear_landing
+
+    #NEED TO AMEND PLANE METHOD FOR LANDING
+
     self.landed_planes << plane
     return "Landed Successfully"
   end

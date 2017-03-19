@@ -1,7 +1,6 @@
 require_relative "Airport"
 
 class Plane
-  require "Weather"
 
   def initialize
     @flying = true

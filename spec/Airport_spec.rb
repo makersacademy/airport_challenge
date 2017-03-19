@@ -10,7 +10,6 @@ describe Airport do
     #p subject.methods
     end
   end
-
   describe "#clear_landing" do
 
     it "has the method" do
@@ -32,16 +31,25 @@ describe Airport do
     it "makes sure the incoming object is a plane" do
 
     end
+  end
 
-    it "cannot be called by anything other than a plane" do
-      plane = double(:plane, flying?: true )
-      expect{ subject.land(plane) }.to raise_error("Only plane can control landing")
+  describe "#commence_landing" do
 
+    # it "cannot be called by anything other than a plane" do
+    #   plane = double(:plane, flying?: true )
+    #   expect{ subject.commence_landing(plane) }.to raise_error("Only plane can control landing")
+    #
+    # end
+    it "raises 'Failed landing checks' if #clear_landing fails" do
+      allow(subject).to receive(:clear_landing).and_return(false)
+      expect{subject.commence_landing(plane)}.to raise_error("Failed landing checks")
     end
+
+
 
     it "stores plane into planes_in_airport on landing" do
       plane = double(:plane, flying?: false)
-      subject.land(plane)
+      subject.commence_landing(plane)
       expect(subject.landed_planes).to eq([plane])
     end
 
@@ -56,17 +64,19 @@ describe Airport do
       expect(subject.airport_full?).to eq(true)
     end
 
-    it "returns false when no full" do
+    it "returns false when not full" do
       expect(subject.airport_full?).to eq(false)
     end
 
   end
 
   describe "#clear_take_off" do
+
     it "checks it isn't stormy" do
       allow(subject).to receive(:stormy?).and_return(true)
       expect{subject.clear_take_off}.to raise_error("Too stormy to take off")
     end
+
   end
 
 end
