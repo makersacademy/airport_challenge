@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
- let(:plane) { Plane.new }
+ let(:plane)   { Plane.new }
+ let(:weather) { Weather.new }
 
   describe '#land' do
     it { is_expected.to respond_to(:land) }
@@ -10,17 +11,34 @@ describe Airport do
     expect(subject.land(plane)).to eq true
     end
 
-    it 'adds the landed plane to planes array' do
+    it 'contains plane that has landed' do
+      subject.land(plane)
+      expect(subject.planes).to include plane
+    end
+  end
+
+  describe '#add_plane' do
+    it 'should add a plane' do
       expect(subject.add_plane(plane)).to eq [plane]
     end
   end
 
+
   describe '#take_off' do
-    it 'should take_off and confirm no longer in airport' do
-      plane = Plane.new
+
+    it 'should take_off' do
       subject.land(plane)
-      expect(subject.take_off).to eq []
+      allow(subject).to receive(:stormy?) { false }
+      expect(subject.take_off(plane)).to eq plane
     end
+
+    it 'should prevent take_off if weather stormy' do
+      allow(subject).to receive(:stormy?) { true }
+      subject.land(plane)
+      expect { subject.take_off(plane) }.to raise_error "Cannot take off due to bad weather"
+    end
+
+
   end
 
 end
