@@ -19,6 +19,7 @@ class Airport
   end
 
   def take_off(plane)
+    return 'Plane cannot take off in stormy conditions' if (weather == :stormy)
     hangar.each {|docked_plane| return (hangar.slice!(hangar.index(plane))).fly if docked_plane == plane && !plane.airborne }
     raise 'Plane not in hangar'
   end

@@ -22,6 +22,6 @@ private
     @airborne = false
   end
   def fly_plane
-    @rairborne = true
+    @airborne = true
   end
 end
