@@ -19,7 +19,6 @@ describe Plane do
     expect(plane).to respond_to :take_off
     expect(plane.take_off).to eq true
     expect(plane.landed?).to_not eq true
-    # expect(plane.take_off).not_to eq plane.landed?
   end
 
   it "doesn't take off if stormy weather" do

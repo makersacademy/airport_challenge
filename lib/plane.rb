@@ -18,10 +18,7 @@ class Plane
 
   def take_off
     @land = false
-    @take_off = true
-    if weather == 6
-      @take_off = false
-    end
+    @take_off = weather == 6 ? false : true
     return @take_off
   end
 
