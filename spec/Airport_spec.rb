@@ -20,13 +20,13 @@ describe Airport do
 
     it "checks it isn't stormy" do
       allow(subject).to receive(:stormy?).and_return(true)
-      expect{subject.clear_landing(plane)}.to raise_error("Too stormy to land")
+      expect{subject.clear_landing}.to raise_error("Too stormy to land")
 
     end
 
     it "checks airport isn't full" do
       allow(subject).to receive(:airport_full?).and_return(true)
-      expect{subject.clear_landing(plane)}.to raise_error("Airport full")
+      expect{subject.clear_landing}.to raise_error("Airport full")
     end
 
     it "makes sure the incoming object is a plane" do
@@ -63,7 +63,10 @@ describe Airport do
   end
 
   describe "#clear_take_off" do
-
+    it "checks it isn't stormy" do
+      allow(subject).to receive(:stormy?).and_return(true)
+      expect{subject.clear_take_off}.to raise_error("Too stormy to take off")
+    end
   end
 
 end

@@ -14,9 +14,13 @@ class Airport
     landed_planes.length >= capacity
   end
 
-  def clear_landing(plane)
+  def clear_landing
     fail "Too stormy to land" if stormy?
     fail "Airport full" if airport_full?
+  end
+
+  def clear_take_off
+    fail "Too stormy to take off" if stormy?
   end
 
 
