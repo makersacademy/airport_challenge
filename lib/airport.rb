@@ -16,9 +16,9 @@ class Airport
     planes << plane
   end
 
-  def take_off
-    raise "No planes at the airport" if empty?
-    planes.pop
+  def take_off(plane)
+    raise "The plane can't be found at the airport" unless planes.include?(plane)
+    planes.delete(plane)
   end
 
   # def get_forecast(weather)
