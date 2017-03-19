@@ -48,7 +48,7 @@ Verbs: As an Air Traffic Controller, To ensure safety, I want to **prevent takeo
 
 ### Messages:
 Weather => Provide weather check
-Plane => Prevent take off when weather is stormy
+Airport => Prevent take off when weather is stormy
 
 
 ## Fourth User Story:
@@ -65,7 +65,7 @@ Verbs: As an Air Traffic Controller, To ensure safety, I want to **prevent landi
 
 ### Messages:
 Weather => Provide weather check
-Plane => Prevent landing when weather is stormy
+Airport => Prevent landing when weather is stormy
 
 ## Fifth User Story:
 As an air traffic controller, To ensure safety, I want to prevent landing when the airport is full.
