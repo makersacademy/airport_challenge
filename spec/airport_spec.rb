@@ -2,9 +2,6 @@ require 'airport'
 describe Airport do
 
   describe '#land' do
-    it {is_expected.to respond_to(:land)}
-
-    it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'should tell the plane to land' do
       plane = double(:plane, landed: false)
@@ -14,7 +11,7 @@ describe Airport do
       subject.land(plane)
     end
 
-    it 'should land planes in the Airport' do
+    it 'should have plane in the Airport' do
       plane = double(:plane, landed: false)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:land_plane)
@@ -48,9 +45,6 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off) }
-
-    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'should tell the airport to take off the plane' do
       plane = double(:plane, landed: true)
@@ -60,13 +54,13 @@ describe Airport do
       subject.take_off(plane)
     end
 
-    it 'should allow planes to take off from Airport' do
+    it 'should remove plane from Airport' do
       plane = double(:plane, landed: true)
       allow(subject.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
       subject.planes.push(plane)
       subject.take_off(plane)
-      expect(subject.planes).not_to include [plane]
+      expect(subject.planes).not_to include(plane)
     end
 
     it 'should not allow take off when weather is stormy' do
@@ -85,9 +79,6 @@ describe Airport do
   end
 
   describe '#set_capacity' do
-    it {is_expected.to respond_to(:change_capacity)}
-
-    it { is_expected.to respond_to(:change_capacity).with(1).argument }
 
     it 'should change the capacity to a different number' do
       number = double(:number)

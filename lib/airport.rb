@@ -6,7 +6,7 @@ class Airport
 
   attr_reader :capacity, :weather, :planes
 
-  def initialize(weather: Weather.new)
+  def initialize(weather: Weather.new) # A little bit unsure about the syntax here
     @weather = weather
     @planes = []
     @capacity = AIRPORT_CAPACITY
@@ -15,9 +15,9 @@ class Airport
   public
 
   def land(plane)
+    fail "This plane is already landed." if plane.landed
     fail "Bad weather today. Cannot land." if weather.stormy_weather?
     fail "Sorry. Airport full. Go away." if full?
-    fail "This plane is already landed." if plane.landed
     plane.land_plane
     planes << plane
   end
@@ -33,6 +33,7 @@ class Airport
     @capacity = number
   end
 
+  private
   def full?
     planes.count >= capacity
   end
