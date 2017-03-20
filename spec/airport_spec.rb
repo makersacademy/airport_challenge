@@ -2,11 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  #lookup benefits of naming subjects explicitly
-  #subject(:airport) {described_class.new}
   let(:plane) {Plane.new}
-  #let(:weather) {Weather.new}
-
 
   describe '#initialize' do
     it 'checks default capacity is set' do
@@ -50,10 +46,6 @@ describe Airport do
   end
 
   describe '#take_off' do
-    # How to create plane double first??
-    # before do
-    #   allow(plane).to receive(:plane_takes_off)
-    # end
     it 'instructs the plane to takeoff' do
       plane = double(:plane, flying?: false)
       allow(subject).to receive(:stormy?) {false}
