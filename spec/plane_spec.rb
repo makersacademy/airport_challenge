@@ -2,7 +2,7 @@ require 'Plane'
 
 describe Plane do
 
-  subject (:airport) { described_class.new }
+  let(:airport) {Airport.new}
 
   describe '#plane_lands' do
     it 'plane is initially flying' do

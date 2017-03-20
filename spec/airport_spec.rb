@@ -3,8 +3,8 @@ require 'airport'
 describe Airport do
 
   #lookup benefits of naming subjects explicitly
-  subject (:plane) { described_class.new }
-  subject (:weather) { described_class.new }
+  let(:plane) {Plane.new}
+  let(:weather) {Weather.new}
 
 
   describe '#initialize' do
