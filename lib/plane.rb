@@ -6,11 +6,13 @@ class Plane
   end
 
   def report_landing
-    @status = :landed
+    self.status = :landed
   end
 
   def report_take_off
-    @status = :airborne
+    self.status = :airborne
   end
 
+private
+  attr_writer :status
 end
