@@ -35,8 +35,8 @@ Here are the five steps that make me a successful air traffic controller.
 1. **Extracing a Domain Model from User Stories:** I write down all the nouns (Objects) and verbs (Messages) from the user stories. The Messages describe how the objects within the system interact.
 2. **Diagraming the Domain Model:** Objects and Messages are the cornerstones of the Object Oriented Programming. I draw them out and to I have a trustworthy guide throughout the entire journey.
 3. **Feature test the interaction between the Objects:** Read-Eval-Print Loop (REPL) is my interactive friend which provides immediate feedback on whether my airport and planes are communicating properly. I recently upgraded my system with a customized *pry*.
-4. **Write unit test to guard your code:** RSpec is where the whole magic happens. A Behaviour-Driven Development tool for Ruby, RSpec allows me to combine my domain driven design and test-driven development. It tells me each morning whether the airport if fully functional.
-5. **Create and conquer:** Based on my unit tests, I can now build and improve my airport. Fix a red failing test my making it green and then refactor.    
+4. **Write unit test to guard your code:** RSpec is where the whole magic happens. A Behaviour-Driven Development tool for Ruby, RSpec allows me to combine my domain driven design and test-driven development. It tells me each morning whether the airport is fully functional.
+5. **Create and conquer:** Based on my unit tests, I can now build and improve my airport. Fix a red failing test by making it green and then refactor.    
 
 Steps
 -------
