@@ -29,13 +29,14 @@ describe Airport do
         expect {subject.release(plane)}.to raise_error 'Airport empty!'
       end
 
-      # Redundant test case, as testing integration between classes reserved for feature testing for now..?
-      #it 'should call takeoff on planes' do
-      #  plane = double("plane", :flying => true, :land => false)
-      #  subject.accept(plane)
-      #  subject.release(plane)
-      #  expect(plane.flying).to eq true
-      #end
+      it 'should call takeoff on planes taking off' do
+        allow(subject).to receive(:stormy?).and_return(false)
+        plane = double("plane", :flying => true, :land => false)
+        subject.accept(plane)
+        allow(plane).to receive(:flying).and_return(false)
+        expect(plane).to receive(:takeoff)
+        subject.release(plane)
+      end
 
       it 'should throw an error when releasing a flying plane' do
         allow(subject).to receive(:stormy?).and_return(false)
@@ -60,12 +61,12 @@ describe Airport do
       expect {subject.accept(double("plane", :flying => true, :land => false))}.to raise_error 'Airport full!'
     end
 
-    # Redundant test case, as integraton between classes reserved for feature testing for now...?
-    #it 'should set landing planes to landed' do
-    #  plane = Plane.new
-    #  subject.accept(plane)
-    #  expect(plane.flying).to eq false
-    #end
+    it 'should call land on landing planes' do
+      allow(subject).to receive(:stormy?).and_return(false)
+      plane = plane = double("plane", :flying => true)
+      expect(plane).to receive(:land)
+      subject.accept(plane)
+    end
 
     it 'should throw an error when accepting a landed plane' do
       allow(subject).to receive(:stormy?).and_return(false)
