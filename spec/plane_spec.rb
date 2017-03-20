@@ -12,5 +12,4 @@ describe Plane do
       expect(plane.landing).to be_truthy
     end
   end
-
 end
