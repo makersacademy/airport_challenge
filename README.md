@@ -37,7 +37,7 @@ $ gem install bundler
 $ bundle install
 ```
 
-### Use example
+### Example of use
 
 <!-- Update to add instructions of how app is used from a users perspective, with IRB transcript -->
 <!-- add user stories -->
