@@ -1,8 +1,7 @@
 require './docs/airport.rb'
 
 class Plane
-  def initialize(plane="plane", airborne = true)
-    @name = plane
+  def initialize(airborne = true)
     @airborne = airborne
   end
 
@@ -18,10 +17,12 @@ attr_reader :airborne
 
 private
 
+attr_writer :airborne
+
   def ground_plane
-    @airborne = false
+    self.airborne = false
   end
   def fly_plane
-    @airborne = true
+    self.airborne = true
   end
 end
