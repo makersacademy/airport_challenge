@@ -2,40 +2,35 @@ require 'airport'
 
 describe Airport do
 
-  # before do
-  #   allow(weather).to receive(:stormy) {false}
-  # end
-
   describe '#land' do
+
+    before(:example) do
+    @plane = double('plane', :descend => @plane, :flying? => true)
+    @weather = double('weather', :stormy? => false)
+    end
+
     it 'tells the plane to descend' do
-      plane = double('plane', :descend => plane, :flying? => true)
-      weather = double('weather', :stormy? => false)
-      subject.land(plane, weather)
-      expect(plane).to have_received(:descend)
+      subject.land(@plane, @weather)
+      expect(@plane).to have_received(:descend)
     end
     it 'puts the plane in the airport' do
-      plane = double('plane', :descend => plane, :flying? => true)
-      weather = double('weather', :stormy? => false)
-      expect(subject.land(plane, weather)).to eq [plane]
+      expect(subject.land(@plane, @weather)).to eq [@plane]
     end
     it 'raises an error if weather is stormy' do
-      plane = double('plane', :flying? => true)
       weather = double('weather', :stormy? => true)
-      expect { subject.land(plane, weather) }.to raise_error 'Weather warning'
+      expect { subject.land(@plane, weather) }.to raise_error 'Weather warning'
     end
     it 'raises an error if airport is at full capacity' do
-      weather = double('weather', :stormy? => false)
       Airport::DEFAULT_CAPACITY.times do
         plane = double('plane', :descend => plane, :flying? => true)
-        subject.land(plane, weather)
+        subject.land(plane, @weather)
       end
       plane = double('plane', :descend => plane, :flying? => true)
-      expect { subject.land(plane, weather) }.to raise_error 'Airport is full'
+      expect { subject.land(plane, @weather) }.to raise_error 'Airport is full'
      end
      it 'raises an error if this plane has already landed' do
        plane = double('plane', :descend => plane, :flying? =>false)
-       weather = double('weather', :stormy? => false)
-       expect { subject.land(plane, weather)}.to raise_error 'This plane has already landed'
+       expect { subject.land(plane, @weather)}.to raise_error 'This plane has already landed'
      end
   end
 
