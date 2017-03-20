@@ -1,7 +1,8 @@
 require 'plane'
 
 describe Plane do
-  let(:plane) { double :plane}
+  # let(:plane) { double :plane}
+  # airport(:airport) { double :airport }
 
   describe '#land' do
 
