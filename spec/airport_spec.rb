@@ -8,7 +8,7 @@ describe Airport do
 
   describe 'Landing' do
 
-  it 'lands plane' do
+  it 'plane lands' do
       allow(subject).to receive(:stormy?) { false }
       plane = double(:plane)
       subject.plane_land(plane)
@@ -43,12 +43,12 @@ describe Airport do
       allow(subject).to receive(:stormy?) { false }
       subject.plane_land(double(:plane))
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.plane_takeoff }.to raise_error
+      expect { subject.plane_takeoff }.to raise_error "Weather too stormy to take off"
     end
 
     it 'raises an error when trying to land, if weather is stormy' do
       allow(subject).to receive(:stormy?) { true }
-      expect { subject.plane_land(double(:plane)) }.to raise_error
+      expect { subject.plane_land(double(:plane)) }.to raise_error "Weather too stormy to land"
     end
   end
 

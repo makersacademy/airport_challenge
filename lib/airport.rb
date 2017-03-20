@@ -10,14 +10,14 @@ DEFAULT_CAPACITY = 100
   end
 
   def plane_land(plane)
-    fail if stormy?
+    fail "Weather too stormy to land" if stormy?
     fail if full?
     @planes << plane
     confirmation_land
   end
 
   def plane_takeoff
-    fail if stormy?
+    fail "Weather too stormy to take off" if stormy?
     @planes.pop
     confirmation_takeoff
   end
