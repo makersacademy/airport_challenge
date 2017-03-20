@@ -1,7 +1,5 @@
 require 'airport'
 describe Airport do
-  let(:plane) {double :plane}
-  let(:number) {double :number}
 
   describe '#land' do
     it {is_expected.to respond_to(:land)}
