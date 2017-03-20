@@ -2,8 +2,10 @@ require 'airport'
 
 describe Airport do
 
+  #lookup benefits of naming subjects explicitly
   subject (:plane) { described_class.new }
   subject (:weather) { described_class.new }
+
 
   describe '#initialize' do
     it 'checks default capacity is set' do
@@ -17,7 +19,7 @@ describe Airport do
   end
 
   describe '#land' do
-    it 'can confirm a plane has landed' do
+    it 'has plane after it has landed' do
       plane = double(:plane, flying?: true)
       allow(plane).to receive(:plane_lands)
       allow(weather).to receive(:stormy?) {false}
@@ -39,6 +41,11 @@ describe Airport do
   end
 
   describe '#take_off' do
+    # How to create plane double first??
+    # before do
+    #   allow(plane).to receive(:plane_takes_off)
+    # end
+
     it 'can confirm plane is no longer in the airport' do
       plane = double(:plane, flying?: false)
       allow(plane).to receive(:plane_takes_off)
@@ -63,10 +70,13 @@ describe Airport do
   end
 
   context 'stormy weather' do
+    before do
+      allow(weather).to receive(:stormy?) {true}
+    end
+
     it 'prevents takeoff when weather is stormy' do
       plane = double(:plane, flying?: false)
       allow(plane).to receive(:plane_takes_off)
-      allow(weather).to receive(:stormy?) {true}
       subject.planes_in_airport << plane
       expect{subject.take_off(plane)}.to raise_error("Too stormy to take off")
     end
@@ -74,7 +84,6 @@ describe Airport do
     it 'prevents landing when weather is stormy' do
       plane = double(:plane, flying?: true)
       allow(plane).to receive(:plane_lands)
-      allow(weather).to receive(:stormy?) {true}
       expect{subject.land(plane)}.to raise_error("Too stormy to land")
     end
   end
