@@ -1,45 +1,54 @@
 require 'airport'
 describe Airport do
 
+  subject(:airport) { described_class.new }
+
   describe '#land' do
 
     it 'should tell the plane to land' do
       plane = double(:plane, airborne: true)
-      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      allow(airport.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:land_plane)
-      expect(subject).to receive(:land)
-      subject.land(plane)
+      expect(airport).to receive(:land)
+      airport.land(plane)
     end
 
     it 'should have plane in the Airport' do
       plane = double(:plane, airborne: true)
-      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      allow(airport.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:land_plane)
-      subject.land(plane)
-      expect(subject.planes_in_airport).to include plane
+      airport.land(plane)
+      expect(airport.planes_in_airport).to include plane
     end
 
-
-    it 'should not allow landing when weather is stormy' do
-      plane = double(:plane, airborne: true)
-      allow(subject.weather).to receive(:stormy_weather?).and_return(true)
-      allow(plane).to receive(:land_plane)
-      expect{ subject.land(plane) }.to raise_error("Bad weather today. Cannot land.")
+    context 'when stormy' do
+      it 'should not allow landing when weather is stormy' do
+        plane = double(:plane, airborne: true)
+        allow(airport.weather).to receive(:stormy_weather?).and_return(true)
+        allow(plane).to receive(:land_plane)
+        message = "Bad weather today. Cannot land."
+        expect{ airport.land(plane) }.to raise_error message
+      end
     end
 
-    it 'should not allow landing when airport is full' do
-      plane = double(:plane, airborne: true)
-      allow(plane).to receive(:land_plane)
-      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
-      subject.capacity.times {subject.land(plane)}
-      expect{subject.land(plane)}.to raise_error("Sorry. Airport full. Go away.")
+    context 'when full' do
+      it 'should raise an error' do
+        plane = double(:plane, airborne: true)
+        allow(plane).to receive(:land_plane)
+        allow(airport.weather).to receive(:stormy_weather?).and_return(false)
+        airport.capacity.times {airport.land(plane)}
+        message = "Sorry. Airport full. Go away."
+        expect{airport.land(plane)}.to raise_error message
+      end
     end
+
 
     it 'should raise error when trying to land a landed plane' do
       plane = double(:plane, airborne: false)
       allow(plane).to receive(:land_plane)
-      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
-      expect{ subject.land(plane) }.to raise_error("This plane is already landed.")
+      allow(airport.weather).to receive(:stormy_weather?).and_return(false)
+      message = "This plane is already landed."
+      expect{ airport.land(plane) }.to raise_error message
     end
 
   end
@@ -48,33 +57,37 @@ describe Airport do
 
     it 'should tell the airport to take off the plane' do
       plane = double(:plane, airborne: false)
-      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      allow(airport.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
-      expect(subject).to receive(:take_off)
-      subject.take_off(plane)
+      expect(airport).to receive(:take_off)
+      airport.take_off(plane)
     end
 
     it 'should remove plane from Airport' do
       plane = double(:plane, airborne: false)
-      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      allow(airport.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
-      subject.planes_in_airport.push(plane)
-      subject.take_off(plane)
-      expect(subject.planes_in_airport).not_to include(plane)
+      airport.planes_in_airport.push(plane)
+      airport.take_off(plane)
+      expect(airport.planes_in_airport).not_to include(plane)
     end
 
-    it 'should not allow take off when weather is stormy' do
-      plane = double(:plane)
-            allow(subject.weather).to receive(:stormy_weather?).and_return(true)
-      expect{ subject.take_off(plane) }.to raise_error("Bad weather today. Cannot take off.")
+    context 'when stormy' do
+      it 'should raise an error' do
+        plane = double(:plane)
+        allow(airport.weather).to receive(:stormy_weather?).and_return(true)
+        message = "Bad weather today. Cannot take off."
+        expect{ airport.take_off(plane) }.to raise_error message
+      end
     end
 
     it 'should raise an error when plane is not in airport' do
       plane = double(:plane, airborne: false)
-      allow(subject.weather).to receive(:stormy_weather?).and_return(false)
+      allow(airport.weather).to receive(:stormy_weather?).and_return(false)
       allow(plane).to receive(:take_off_plane)
-      subject.planes_in_airport.delete(plane)
-      expect { subject.take_off(plane) }.to raise_error("That plane is not in this airport")
+      airport.planes_in_airport.delete(plane)
+      message = "Plane is not in this airport"
+      expect { airport.take_off(plane) }.to raise_error message
     end
   end
 
@@ -82,8 +95,8 @@ describe Airport do
 
     it 'should change the capacity to a different number' do
       number = double(:number)
-      subject.change_capacity(number)
-      expect(subject.capacity).to eq number
+      airport.change_capacity(number)
+      expect(airport.capacity).to eq number
     end
   end
 

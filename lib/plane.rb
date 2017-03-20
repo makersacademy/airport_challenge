@@ -1,6 +1,8 @@
 class Plane
 # describes the plane only and its methods
-attr_reader :airborne
+  public
+
+  attr_reader :airborne
 
   def initialize
     @airborne = true
@@ -15,8 +17,8 @@ attr_reader :airborne
   end
 
 
-private
+  private
 
-attr_writer :airborne
+  attr_writer :airborne
 
 end
