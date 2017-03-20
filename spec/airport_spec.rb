@@ -72,7 +72,7 @@ describe Airport do
       plane = double('plane', :descend => plane, :flying? => true)
       fakeplane = double('fakeplane', :ascend => fakeplane)
       weather = double('weather', :stormy? => false)
-      subject.land(plane)
+      subject.land(plane, weather)
       expect { subject.launch(fakeplane, weather) }.to raise_error 'That plane is not here'
     end
   end
