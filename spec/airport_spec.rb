@@ -2,6 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
+#TODO don't quite get how not to use Plane.new
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
 
