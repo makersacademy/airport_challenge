@@ -18,8 +18,7 @@ class Airport
     fail "Plane is on the ground" unless plane.flying?
     fail "Airport is full" if full?
     fail "Too stormy to land" if stormy?
-    plane.plane_lands
-    planes_in_airport << plane
+    execute_landing(plane)
   end
 
   def take_off(plane)
@@ -27,16 +26,23 @@ class Airport
     fail "Plane is in the air" if plane.flying?
     fail "Plane not in airport" unless plane_in_airport?(plane)
     fail "Too stormy to take off" if stormy?
-    plane.plane_takes_off
-    planes_in_airport.delete(plane)
+    execute_take_off(plane)
   end
 
   private
 
-#how to make planes_in_airport private and pass rspec tests
+  def execute_landing(plane)
+    plane.plane_lands
+    planes_in_airport << plane
+  end
+
+  def execute_take_off(plane)
+    plane.plane_takes_off
+    planes_in_airport.delete(plane)
+  end
 
   def full?
-    planes_in_airport.length >= @capacity
+    planes_in_airport.length >= capacity
   end
 
   def plane_in_airport?(plane)
