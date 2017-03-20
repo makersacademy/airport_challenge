@@ -37,6 +37,35 @@ $ gem install bundler
 $ bundle install
 ```
 
+### Use example
+
+<!-- Update to add instructions of how app is used from a users perspective, with IRB transcript -->
+<!-- add user stories -->
+To land a plane, then take it off again in IRB:
+
+```
+$ irb
+2.2.3 :001 > require './lib/airport'
+ => true
+2.2.3 :002 > require './lib/plane'
+ => false
+2.2.3 :003 > require './lib/weather'
+ => false
+2.2.3 :004 > airport = Airport.new
+ => #<Airport:0x007fab8f87fae0 @planes_in_airport=[], @capacity=20>
+2.2.3 :005 > plane = Plane.new
+ => #<Plane:0x007fab8f86d6b0 @flying=true>
+2.2.3 :006 > airport.land(plane)
+ => [#<Plane:0x007fab8f86d6b0 @flying=false>]
+2.2.3 :007 > airport.take_off(plane)
+RuntimeError: Too stormy to take off
+	from /Users/nadeemmalik/airport_challenge/lib/airport.rb:29:in `take_off'
+	from (irb):7
+	from /Users/nadeemmalik/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :008 > airport.take_off(plane)
+ => #<Plane:0x007fab8f86d6b0 @flying=true>
+```
+
 ### Domain model
 
 Functional representation:
@@ -65,10 +94,6 @@ Weather        <--- stormy?          ---> true/false
 Airport        <--- full?            ---> true/false
 Airport        <--- default_capacity ---> default capacity
 ```
-
-<!-- Update to add instructions of how app is used from a users perspective, with IRB transcript -->
-<!-- add user stories -->
-
 
 ### To be completed
 
