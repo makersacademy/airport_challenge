@@ -7,16 +7,19 @@ class Plane
   end
 
   def in_airport?
-    return true if landed == true
-    return false if landed == false
-    fail "Error"
+    landed == true ? true : false
   end
 
   def land
-    @landed = true
+    self.landed = true
   end
 
   def take_off
-    @landed = false
+    self.landed = false
   end
+
+  private
+
+  attr_writer :landed
+
 end
