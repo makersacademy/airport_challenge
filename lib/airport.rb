@@ -14,7 +14,6 @@ class Airport
   end
 
   def land(plane)
-
     fail "Plane is on the ground" unless plane.flying?
     fail "Airport is full" if full?
     fail "Too stormy to land" if stormy?
@@ -22,7 +21,6 @@ class Airport
   end
 
   def take_off(plane)
-
     fail "Plane is in the air" if plane.flying?
     fail "Plane not in airport" unless plane_in_airport?(plane)
     fail "Too stormy to take off" if stormy?
