@@ -2,7 +2,7 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new }
-  subject(:plane) { described_class.new }
+  let(:plane) {double :plane} # not sure I completely get why this goes here
 
   describe '#land' do
     context 'when not stormy' do
