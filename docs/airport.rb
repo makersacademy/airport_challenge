@@ -50,7 +50,7 @@ attr_writer :weather
   end
 
   def update_weather
-    weather = WEATHER.sample
+    self.weather = WEATHER.sample
   end
 
   def include?(plane)
