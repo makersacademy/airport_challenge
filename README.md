@@ -13,78 +13,84 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+### Task
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+We were asked to write a program to control the flow of planes at an airport.
 
-Steps
--------
+I aimed to complete this challenge by using a test-driven approach, using manual feature tests within IRB and automated unit tests using RSpec.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+We were given user stories, which I first broke down using domain modelling. My resulting models were then converted into failing feature tests, then translated into RSpec as failing unit tests. Following that, I wrote my code.
 
-Task
------
+Care has been taken to ensure encapsulation was done as much as possible, so that the user (Air Traffic Controller) can only interact with an instance of the Airport class.
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+### Installation
 
+Clone repository:
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+$ git clone git@github.com:nazwhale/airport_challenge.git
+$ cd airport_challenge
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Install dependencies with bundle:
+```
+$ gem install bundler
+$ bundle install
+```
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+### Example of use
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+<!-- Update to add instructions of how app is used from a users perspective, with IRB transcript -->
+<!-- add user stories -->
+To land a plane, then take it off again in IRB:
 
-Please create separate files for every class, module and test suite.
+```
+$ irb
+2.2.3 :001 > require './lib/airport'
+ => true
+2.2.3 :002 > require './lib/plane'
+ => false
+2.2.3 :003 > require './lib/weather'
+ => false
+2.2.3 :004 > airport = Airport.new
+ => #<Airport:0x007fab8f87fae0 @planes_in_airport=[], @capacity=20>
+2.2.3 :005 > plane = Plane.new
+ => #<Plane:0x007fab8f86d6b0 @flying=true>
+2.2.3 :006 > airport.land(plane)
+ => [#<Plane:0x007fab8f86d6b0 @flying=false>]
+2.2.3 :007 > airport.take_off(plane)
+RuntimeError: Too stormy to take off
+	from /Users/nadeemmalik/airport_challenge/lib/airport.rb:29:in `take_off'
+	from (irb):7
+	from /Users/nadeemmalik/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :008 > airport.take_off(plane)
+ => #<Plane:0x007fab8f86d6b0 @flying=true>
+```
 
-In code review we'll be hoping to see:
+### Domain model
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+Functional representation:
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+| Objects                  | Messages                 |
+| ------------------------ | ------------------------ |
+| Air Traffic Controller   |            |
+| Plane                    | plane_lands         |
+| Airport                  | land(plane)             |
+| Plane                    | plane_takes_off          |
+| Airport                  | take_off(plane)            |
+| Plane                    | flying?          |
+| Weather                  | stormy?         |
+| Airport                  | full?           |
+| Airport                  | default_capacity          |
 
-**BONUS**
+Diagram of communication between objects and messages:
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
+Plane          <--- plane_lands      ---> plane status no longer flying
+Airport        <--- land(plane)      ---> plane lands
+Plane          <--- plane_takes_off  ---> plane status flying
+Airport        <--- take_off(plane)  ---> plane takes off
+Plane          <--- flying?          ---> true/false
+Weather        <--- stormy?          ---> true/false
+Airport        <--- full?            ---> true/false
+Airport        <--- default_capacity ---> default capacity
+```
