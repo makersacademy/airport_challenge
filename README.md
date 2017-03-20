@@ -16,7 +16,7 @@ I used simplecov to allow me to see if I was covering all of the methods within 
 
 Clone repository:
 ```
-$ git clone git@github.com:makersacademy/airport_challenge.git
+$ git clone git@github.com:kittysquee/airport_challenge.git
 ```
 
 Install dependencies:
