@@ -17,7 +17,7 @@ end
     it 'instructs planes to take off' do
       expect { subject.to receive :takeoff }
     end
-
+# Plane.new to use double?
     it 'no longer holds plane after take off' do
       allow(stormy_weather).to receive(:report).and_return(false)
       plane1 = Plane.new
