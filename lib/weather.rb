@@ -1,9 +1,11 @@
 module Weather
 
-  Determiner = rand(10)
-
   def self.stormy?
-    Determiner < 2 ? true : false
+    Determiner < 2
   end
+
+  private
+
+  Determiner = rand(10)
 
 end

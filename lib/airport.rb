@@ -12,28 +12,36 @@ class Airport
     @capacity = capacity
   end
 
-  def stormy?
-    Weather.stormy?
-  end
-
   def accept(plane)
-    raise 'Plane has already landed!' if plane.flying == false
-    raise 'Plane is already in the airport!' if planes.include?(plane)
-    raise 'Airport full!' if full?
-    raise 'Weather is too stormy!' if stormy?
+    accept_check(plane)
     planes << plane
     plane.land
   end
 
   def release(plane)
-    raise 'Plane is already flying!' if plane.flying == true
-    raise 'Airport empty!' if empty?
-    raise 'Weather is too stormy!' if stormy?
+    release_check(plane)
     plane.takeoff
     planes.slice!(planes.index(plane))
   end
 
   private
+
+  def accept_check(plane)
+    raise 'Plane has already landed!' unless plane.flying
+    raise 'Plane is already in the airport!' if planes.include?(plane)
+    raise 'Airport full!' if full?
+    raise 'Weather is too stormy!' if stormy?
+  end
+
+  def release_check(plane)
+    raise 'Plane is already flying!' if plane.flying
+    raise 'Airport empty!' if empty?
+    raise 'Weather is too stormy!' if stormy?
+  end
+
+  def stormy?
+    Weather.stormy?
+  end
 
   def full?
     planes.count >= capacity
