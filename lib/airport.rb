@@ -29,6 +29,10 @@ class Airport
 
   private
 
+  def stormy?
+    Weather.stormy?
+  end
+
   def execute_landing(plane)
     plane.plane_lands
     planes_in_airport << plane

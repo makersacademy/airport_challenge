@@ -3,8 +3,9 @@ require 'airport'
 describe Airport do
 
   #lookup benefits of naming subjects explicitly
+  #subject(:airport) {described_class.new}
   let(:plane) {Plane.new}
-  let(:weather) {Weather.new}
+  #let(:weather) {Weather.new}
 
 
   describe '#initialize' do
@@ -21,7 +22,7 @@ describe Airport do
   describe '#land' do
     it 'instructs the plane to land' do
       plane = double(:plane, flying?: true)
-      allow(weather).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) {false}
       expect(subject).to receive(:land)
       subject.land(plane)
     end
@@ -29,7 +30,7 @@ describe Airport do
     it 'has plane after it has landed' do
       plane = double(:plane, flying?: true)
       allow(plane).to receive(:plane_lands)
-      allow(weather).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) {false}
       subject.land(plane)
       expect(subject.planes_in_airport).to include plane
     end
@@ -55,14 +56,14 @@ describe Airport do
     # end
     it 'instructs the plane to takeoff' do
       plane = double(:plane, flying?: false)
-      allow(weather).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) {false}
       expect(subject).to receive(:take_off)
       subject.take_off(plane)
     end
 
     it 'does not have plane after it has taken off' do
       plane = double(:plane, flying?: false)
-      allow(weather).to receive(:stormy?) {false}
+      allow(subject).to receive(:stormy?) {false}
       allow(plane).to receive(:plane_takes_off)
       subject.planes_in_airport << plane
       subject.take_off(plane)
@@ -86,7 +87,7 @@ describe Airport do
 
   context 'stormy weather' do
     before do
-      allow(weather).to receive(:stormy?) {true}
+      allow(subject).to receive(:stormy?) {true}
     end
 
     it 'prevents takeoff when weather is stormy' do
