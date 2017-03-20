@@ -1,21 +1,24 @@
 require 'airport'
 
+#I'd like to learn more about before-do-end. I feel like I'm repeating stubs way too often!
+
 describe Airport do
   subject(:airport) {described_class.new}
-  let(:plane) {Plane.new}
+  let(:plane) {double(:plane)}
 
   describe 'initialization' do
     it 'should create a defined airport capacity' do
-      allow(airport).to receive(:stormy).and_return(false)
-      subject.capacity.times {airport.land(plane)}
+      full_airport = []
+      subject.capacity.times {full_airport << plane}
+      allow(airport).to receive(:planes) {full_airport}
+      allow(airport).to receive(:stormy) {false}
+      allow(plane).to receive(:landed) {false}
       expect{airport.land(plane)}.to raise_error 'Sorry, the airport is full'
     end
 
     it 'allows user to override default airport capacity' do
-      allow(airport).to receive(:stormy).and_return(false)
       airport = Airport.new(90)
-      90.times {airport.land(plane)}
-      expect{airport.land(plane)}.to raise_error 'Sorry, the airport is full'
+      expect(airport.capacity).to eq(90)
     end
 
   end
@@ -26,14 +29,17 @@ describe Airport do
     end
 
     it 'should prevent landing when weather is stormy' do
-      subject.report_stormy
+      allow(plane).to receive(:landed) {false}
+      allow(airport).to receive(:stormy) {true}
       expect{subject.land(plane)}.to raise_error 'Sorry, no landing in stormy weather'
     end
   end
 
   describe '#planes' do
-    it 'should return the planes at the airport' do
+    it 'should land a plane into an array' do
       allow(airport).to receive(:stormy) {false}
+      allow(plane).to receive(:landed) {false}
+      allow(plane).to receive(:land) {false}
       subject.land(plane)
       expect(subject.planes).to eq [plane]
     end
@@ -42,18 +48,21 @@ describe Airport do
   describe '#take_off' do
     it 'should have a plane take off' do
       allow(airport).to receive(:stormy) {false}
-      subject.land(plane)
+      # subject.land(plane)
+      allow(airport).to receive (:planes) {[plane]}
+      allow(plane).to receive(:fly) {false}
       expect(subject.take_off).to eq plane
     end
 
-    it 'confirms that plane has taken off' do
+    it 'confirms that plane has taken off' do   #issues with stubbing
       allow(airport).to receive(:stormy) {false}
+      # allow(plane).to receive(:landed) {false}
       subject.land(plane)
       subject.take_off
       expect(subject.planes).to eq []
     end
 
-    it 'prevents take-off when weather is stormy' do
+    it 'prevents take-off when weather is stormy' do    #issues with stubbing
       allow(airport).to receive(:stormy) {true}
       allow(airport).to receive(:take_off)
       allow(airport).to receive(:land)
