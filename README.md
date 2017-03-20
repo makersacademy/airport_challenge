@@ -50,11 +50,6 @@ Viviens-MacBook-Pro:airport_challenge vivientang$ pry
 => [#<Plane:0x007fdafb956ba8 @status=:airborne>]
 [8] pry(main)> plane.report_landing
 => :landed
-[9] pry(main)>
-- Airport.new 
-- Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 ```
 ##### To take off a plane and confirm its take-off:
 ```
