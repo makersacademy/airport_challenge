@@ -7,11 +7,14 @@ class Plane
   end
 
   def plane_status(status)
-    status == :airborne ? @airborne = true : @airborne = false
+    status == :airborne ? self.airborne = true : self.airborne = false
   end
 
   def airborne?
-    @airborne
+    airborne
   end
+
+  private
+  attr_writer :airborne
 
 end
