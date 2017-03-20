@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-let(:plane) { subject }
+subject(:plane) { described_class.new }
 
   describe '#plane_status' do
     it { is_expected.to respond_to(:plane_status) }

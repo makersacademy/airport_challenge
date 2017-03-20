@@ -1,7 +1,7 @@
 require 'weather'
 
 describe Weather do
-  let(:weather) { Weather.new }
+  subject(:weather) { described_class.new }
 
   describe '#stormy?' do
     it 'is stormy if even number' do
