@@ -45,12 +45,11 @@ Functional representation:
 | ------------------------ | ------------------------ |
 | Air Traffic Controller   |            |
 | Plane                    | plane_lands         |
-| Airport                  | land             |
+| Airport                  | land(plane)             |
 | Plane                    | plane_takes_off          |
-| Airport                  | take_off            |
+| Airport                  | take_off(plane)            |
 | Plane                    | flying?          |
-| Stormy Weather           | prevent_take_off         |
-| Stormy Weather           | prevent_landing         |
+| Weather                  | stormy?         |
 | Airport                  | full?           |
 | Airport                  | default_capacity          |
 
@@ -58,12 +57,11 @@ Diagram of communication between objects and messages:
 
 ```
 Plane          <--- plane_lands      ---> plane status no longer flying
-Airport        <--- land             ---> plane lands
+Airport        <--- land(plane)      ---> plane lands
 Plane          <--- plane_takes_off  ---> plane status flying
-Airport        <--- take_off         ---> plane takes off
+Airport        <--- take_off(plane)  ---> plane takes off
 Plane          <--- flying?          ---> true/false
-Stormy Weather <--- prevent_take_off ---> prevents take off
-Stormy Weather <--- prevent_landing  ---> prevents landing
+Weather        <--- stormy?          ---> true/false
 Airport        <--- full?            ---> true/false
 Airport        <--- default_capacity ---> default capacity
 ```

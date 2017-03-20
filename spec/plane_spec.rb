@@ -6,7 +6,7 @@ describe Plane do
 
   describe '#plane_lands' do
     it 'plane is initially flying' do
-      expect(subject.flying?).to eq true
+      expect(subject.flying?).to eq false
     end
   end
 
