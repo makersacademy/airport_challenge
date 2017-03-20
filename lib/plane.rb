@@ -7,15 +7,27 @@ class Plane
     end
 
     def land_plane
-      @landed = true
+      set_land
     end
 
     def plane_landed?
-      @landed
+      landed
     end
 
     def take_off_plane
-      @landed = false
+      set_fly
+    end
+
+    private
+
+    attr_writer :landed
+
+    def set_land
+      landed = true
+    end
+
+    def set_fly
+      landed = false
     end
 
 end

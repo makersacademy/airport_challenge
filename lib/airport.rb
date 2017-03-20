@@ -1,4 +1,3 @@
-require_relative 'weather'
 require_relative 'plane'
 
 class Airport
@@ -14,9 +13,10 @@ class Airport
     end
 
     def land(boeing)
-      fail "Not able to land, plane has already landed" if plane_landed?
+      fail "Not able to land, plane has already landed" if boeing.plane_landed?
       fail "Too stormy to land the plane!" if weather == "Stormy"
       fail "Not able to land, airport has reached its capacity" if full?
+      boeing.land_plane
       all_planes << boeing
     end
 
@@ -25,14 +25,14 @@ class Airport
       all_planes.delete(boeing)
     end
 
-    def weather_condition(weather)
-      @weather = weather.generate_weather
-    end
-
-private
+    private
 
     def full?
-      all_planes.count >= capacity
+      @all_planes.count >= @capacity
+    end
+
+    def stormy?
+      rand(1..10) > 5
     end
 
 end
