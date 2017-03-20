@@ -11,7 +11,7 @@ describe Airport do
       end
       it 'should tell the plane to land' do
         plane = double(:plane, airborne: true)
-        allow(plane).to receive(:land_plane)
+        allow(plane).to receive(:land_plane) # can't put this into before block?
         expect(airport).to receive(:land)
         airport.land(plane)
       end
