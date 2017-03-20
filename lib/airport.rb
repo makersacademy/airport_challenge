@@ -15,10 +15,10 @@ class Airport
 
   def land(plane)
     selected_plane = plane
-    fail "Unable to land due to stormy weather" if weather.stormy?
     fail "Airplane has already landed at this airport" if already_in_airport?(selected_plane)
     fail "This plane has already landed at a different airport" if selected_plane.landed
     fail "Airport full" if full?
+    fail "Unable to land due to stormy weather" if weather.stormy?
     plane.land
     planes << plane
   end
