@@ -5,9 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY = 30
 
-  attr_reader   :planes
-  attr_reader   :airborne_planes
-  attr_reader   :weather
+  attr_reader   :planes, :airborne_planes, :weather
   attr_accessor :capacity
 
   def initialize(capacity=DEFAULT_CAPACITY)
@@ -19,13 +17,9 @@ class Airport
 
   def land(plane)
     raise "Error - Plane not airborne" if plane.airborne? == false
-    landing_permission(plane)
-    successful_landing(plane)
-  end
-
-  def landing_permission(plane)
     raise "Cannot land due to bad weather" if stormy?
     raise "Airport full...jog on" if full?
+    successful_landing(plane)
   end
 
   def successful_landing(plane)
