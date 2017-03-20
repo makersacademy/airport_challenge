@@ -30,7 +30,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Error - Plane not at airport" if plane.airborne? == true
+    raise "Error - Plane already airborne" if plane.airborne? == true
     raise "Cannot take off due to bad weather" if stormy?
     successful_take_off(plane)
   end
