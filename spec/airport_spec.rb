@@ -42,7 +42,8 @@ describe Airport do
     it 'does not allow landing when airport is full' do
       plane = double(:plane, flying?: true)
       subject.capacity.times {subject.planes_in_airport << plane}
-      expect{subject.land(plane)}.to raise_error("Airport is full")
+      message = "Airport is full"
+      expect{subject.land(plane)}.to raise_error message
     end
 
   end
@@ -70,14 +71,16 @@ describe Airport do
 
     it 'cannot make a plane takeoff if it is flying' do
       plane = double(:plane, flying?: true)
-      expect{subject.take_off(plane)}.to raise_error("Plane is in the air")
+      message = "Plane is in the air"
+      expect{subject.take_off(plane)}.to raise_error message
     end
 
     it 'planes can only takeoff from airports they are in' do
       plane = double(:plane, flying?: false)
       airport2 = Airport.new
       airport2.planes_in_airport << plane
-      expect{subject.take_off(plane)}.to raise_error("Plane not in airport")
+      message = "Plane not in airport"
+      expect{subject.take_off(plane)}.to raise_error message
     end
   end
 
@@ -89,12 +92,14 @@ describe Airport do
     it 'prevents takeoff when weather is stormy' do
       plane = double(:plane, flying?: false)
       subject.planes_in_airport << plane
-      expect{subject.take_off(plane)}.to raise_error("Too stormy to take off")
+      message = "Too stormy to take off"
+      expect{subject.take_off(plane)}.to raise_error message
     end
 
     it 'prevents landing when weather is stormy' do
       plane = double(:plane, flying?: true)
-      expect{subject.land(plane)}.to raise_error("Too stormy to land")
+      message = "Too stormy to land"
+      expect{subject.land(plane)}.to raise_error message
     end
   end
 
