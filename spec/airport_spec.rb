@@ -19,6 +19,14 @@ describe Airport do
   end
 
   describe '#land' do
+    it 'instructs the plane to land' do
+      plane = double(:plane, flying?: true)
+      allow(plane).to receive(:plane_lands)
+      allow(weather).to receive(:stormy?) {false}
+      expect(subject).to receive(:land)
+      subject.land(plane)
+    end
+
     it 'has plane after it has landed' do
       plane = double(:plane, flying?: true)
       allow(plane).to receive(:plane_lands)
@@ -45,8 +53,15 @@ describe Airport do
     # before do
     #   allow(plane).to receive(:plane_takes_off)
     # end
+    it 'instructs the plane to takeoff' do
+      plane = double(:plane, flying?: false)
+      allow(plane).to receive(:plane_takes_off)
+      allow(weather).to receive(:stormy?) {false}
+      expect(subject).to receive(:take_off)
+      subject.take_off(plane)
+    end
 
-    it 'can confirm plane is no longer in the airport' do
+    it 'does not have plane after it has taken off' do
       plane = double(:plane, flying?: false)
       allow(plane).to receive(:plane_takes_off)
       allow(weather).to receive(:stormy?) {false}
