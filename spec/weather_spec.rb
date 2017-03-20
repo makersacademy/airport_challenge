@@ -7,3 +7,4 @@ describe Stormy_Weather do
   end
 
 end
+  
