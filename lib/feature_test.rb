@@ -34,3 +34,10 @@ it 'does not allow take-off in storms' do
   allow(plane).to receive(:stormy).and_return(true)
   subject.land(plane)
   expect {subject.take_off}.to raise_error 'No take-off when weather is stormy'
+
+
+require './lib/airport'
+require './lib/plane'
+airport = Airport.new
+plane = Plane.new
+airport.land(plane)

@@ -19,7 +19,7 @@ attr_reader :capacity, :all_planes
     @all_planes << plane
   end
 
-  def take_off
+  def take_off(plane)
     fail 'Stormy weather: no take-off' if stormy?
     @all_planes.pop
   end

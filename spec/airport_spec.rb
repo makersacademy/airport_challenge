@@ -1,8 +1,9 @@
 require 'airport'
+require 'weather'
 
 describe Airport do
   subject(:plane) {described_class.new}
-  subject(:weather) {described_class.new}
+  subject(:weather) {described_class.new} #not sure how to format this for a module
 
   describe '#initialize' do
     it 'sets the default capacity' do
@@ -18,7 +19,6 @@ describe Airport do
   describe '#land(plane)' do
     it 'allows a plane to land' do
       plane = double :plane
-      allow(plane).to receive(:land)
       subject.land(plane)
     end
     it 'holds planes after landing' do
