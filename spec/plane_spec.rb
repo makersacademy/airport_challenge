@@ -2,6 +2,10 @@ require 'plane'
 
   describe Plane do
 
+  #responsible for flying up and down
+
+  subject(:plane) { described_class.new }
+
     describe '#flying' do
       it 'describes the status of the plane' do
       expect(subject).to be_flying

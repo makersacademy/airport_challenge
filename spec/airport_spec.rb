@@ -2,6 +2,10 @@ require 'airport'
 
 describe Airport do
 
+  # before do
+  #   allow(weather).to receive(:stormy) {false}
+  # end
+
   describe '#land' do
     it 'tells the plane to descend' do
       plane = double('plane', :descend => plane, :flying? => true)
@@ -15,7 +19,7 @@ describe Airport do
       expect(subject.land(plane, weather)).to eq [plane]
     end
     it 'raises an error if weather is stormy' do
-      plane = double('plane')
+      plane = double('plane', :flying? => true)
       weather = double('weather', :stormy? => true)
       expect { subject.land(plane, weather) }.to raise_error 'Weather warning'
     end
