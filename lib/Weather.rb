@@ -9,8 +9,7 @@ module Weather
 
   def stormy?
 
-    p = number_between_1_and_x(100)
-    return p > 90
+    number_between_1_and_x(100) > 90
 
   end
 
