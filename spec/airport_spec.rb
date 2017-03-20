@@ -38,7 +38,7 @@ describe Airport do
     #       subject.capacity.times { subject.land Plane.new }
     #       expect { subject.land Plane new }.to raise_error("Not able to land, airport has reached its capacity.")
     #   end
-    # end
+    end
 
     describe '#take_off' do
       it 'has a method that takes off planes' do
