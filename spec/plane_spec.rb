@@ -2,24 +2,24 @@ require 'plane'
 describe Plane do
   describe '#landed' do
 
-    it 'should report as not landed before being landed by Airport' do
-      expect(subject).not_to be true
+    it 'should report as airborne before being landed by Airport' do
+      expect(subject.airborne).to be true
     end
   end
 
   describe '#land_plane' do
 
-    it 'should mark plane as landed' do
+    it 'should mark plane as not airborne' do
       subject.land_plane
-      expect(subject.landed).to be true
+      expect(subject.airborne).to be false
     end
   end
 
   describe '#take_off_plane' do
 
-    it 'should mark plane as not landed' do
+    it 'should mark plane as airborne' do
       subject.take_off_plane
-      expect(subject.landed).not_to be true
+      expect(subject.airborne).to be true
     end
   end
 

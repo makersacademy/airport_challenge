@@ -1,17 +1,22 @@
 class Plane
 # describes the plane only and its methods
+attr_reader :airborne
+
   def initialize
-    @landed = false
+    @airborne = true
   end
 
   def land_plane
-    @landed = true
+    self.airborne = false
   end
 
   def take_off_plane
-    @landed = false
+    self.airborne = true
   end
 
-attr_reader :landed
+
+private
+
+attr_writer :airborne
 
 end
