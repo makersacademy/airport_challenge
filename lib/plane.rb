@@ -6,7 +6,7 @@ class Plane
     @airborne = false
   end
 
-  def plane_status(status)
+  def update_plane_status(status)
     status == :airborne ? self.airborne = true : self.airborne = false
   end
 
