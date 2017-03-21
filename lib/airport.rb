@@ -37,4 +37,5 @@ class Airport
   def full?
     @planes.count >= capacity
   end
+
 end

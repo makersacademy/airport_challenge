@@ -1,19 +1,27 @@
-require './lib/planes.rb'
+require 'planes'
 
 describe Planes do
-  it 'Test plane is landed at initialization' do
-    expect(subject.landed).to eq true
+
+  subject(:plane) { described_class.new }
+
+  context '#land' do
+    it 'Plane is landed at initialization' do
+      expect(plane.landed).to eq true
+    end
+
+    it 'Plane is landed after landing' do
+      plane.take_off
+      plane.land
+
+      expect(plane.landed).to eq true
+    end
   end
 
-  it 'Test plane takes off' do
-    subject.take_off
-    expect(subject.landed).to eq false
+  context '#take_off' do
+    it 'Plane is not landed after takes off' do
+      plane.take_off
+      expect(plane.landed).to eq false
+    end
   end
 
-  it 'Test plane lands' do
-    subject.take_off
-    subject.land
-
-    expect(subject.landed).to eq true
-  end
 end

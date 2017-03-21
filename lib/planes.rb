@@ -6,11 +6,14 @@ class Planes
   end
 
   def take_off
-    @landed = false
+    self.landed = false
   end
 
   def land
-    @landed = true
+    self.landed = true
   end
+
+  private
+  attr_writer :landed
 
 end
