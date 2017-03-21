@@ -2,16 +2,13 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-#TODO don't quite get how not to use Plane.new
-  let(:plane) { Plane.new }
-  let(:weather) { Weather.new }
-
+  let(:plane) { double(:plane) }
 
   describe '#initialization' do
-
     it 'has sets default capacity as 30' do
       allow(airport).to receive(:stormy?) { false }
       allow(plane).to receive(:airborne?) { true }
+      allow(plane).to receive(:update_plane_status)
       Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
       message = "Airport full...jog on"
       expect { airport.land(plane) }.to raise_error message
@@ -27,6 +24,7 @@ describe Airport do
   describe '#land' do
     before do
       allow(plane).to receive(:airborne?) { true }
+      allow(plane).to receive(:update_plane_status)
     end
 
     context 'when not airborne' do
@@ -62,6 +60,7 @@ describe Airport do
     before do
       allow(airport).to receive(:stormy?) { false }
       allow(plane).to receive(:airborne?) { true }
+      allow(plane).to receive(:update_plane_status)
     end
 
       it 'should confirm landing' do
@@ -89,6 +88,7 @@ describe Airport do
       before do
         allow(airport).to receive(:stormy?) { false }
         allow(plane).to receive(:airborne?) { true }
+        allow(plane).to receive(:update_plane_status)
       end
 
       context 'when not landed at this airport' do
@@ -115,6 +115,7 @@ describe Airport do
       before do
         allow(airport).to receive(:stormy?) { false }
         allow(plane).to receive(:airborne?) { true }
+        allow(plane).to receive(:update_plane_status)
         airport.land(plane)
       end
 

@@ -24,7 +24,7 @@ class Airport
 
   def successful_landing(plane)
     airborne_planes.delete(plane)
-    plane.plane_status(:landed)
+    plane.update_plane_status(:landed)
     planes << plane
     "The plane has successfully landed"
   end
@@ -37,7 +37,7 @@ class Airport
 
   def successful_take_off(plane)
     planes.delete(plane)
-    plane.plane_status(:airborne)
+    plane.update_plane_status(:airborne)
     airborne_planes << plane
     "Taken off successfully"
   end
