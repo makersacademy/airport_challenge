@@ -52,7 +52,7 @@ describe Airport do
         airport.take_off(plane)
       end
 
-      it 'should remove plane from Airport' do
+      it 'should remove plane from Airport' do 
         plane = double(:plane, airborne: false)
         airport.planes_in_airport.push(plane)
         airport.take_off(plane)
