@@ -76,7 +76,6 @@ describe Airport do
       allow(airport.weather).to receive(:stormy_weather?).and_return(true)
     end
     it 'should raise an error' do
-      plane = double(:plane)
       message = "Bad weather today. Cannot take off."
       expect{ airport.take_off(plane) }.to raise_error message
     end
@@ -86,7 +85,6 @@ describe Airport do
   describe '#set_capacity' do
 
     it 'should change the capacity to a different number' do
-      number = double(:number)
       airport.change_capacity(10)
       expect(airport.capacity).to eq 10
     end
