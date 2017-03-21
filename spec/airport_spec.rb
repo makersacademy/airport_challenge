@@ -1,6 +1,5 @@
 require 'airport'
 
-
 describe Airport do
   subject(:airport) { described_class.new}
   let(:plane) {double :plane}
@@ -8,19 +7,10 @@ describe Airport do
 
 	describe "#land" do
 	  it "instructs plane to land at airport" do
-      #it {is_expected.to respond_to(:land).with(1).argument }
 	    plane = double :plane
       allow(airport).to receive(:stormy?).and_return false
 	    expect(airport.land(plane)).to eq [plane]
 	  end
-
-    # it "confirms that plane has landed" do # fails due to clash with raised error: Landing denied, weather report stormy
-    #   #it {is_expected.to respond_to(:confirm_landing).with(1).argument }
-    #   plane = double :plane
-    #   allow(airport).to receive(:stormy?).and_return false
-	  #   landed_plane = subject.land(plane)
-	  #   expect(airport.confirm_landing(plane)).to eq landed_plane
-	  # end
 
     it "raises an error when airport is at full capacity" do
       airport = Airport.new(2)
@@ -29,7 +19,7 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error "Landing denied, Airport is full"
     end
 
-    it "prevents landing if weather is stormy" do # fails error as it says nothing is raised, missing random weather test
+    it "prevents landing if weather is stormy" do
     	plane = double :plane
       allow(airport).to receive(:stormy?).and_return(true)
       expect {airport.land(plane)}.to raise_error "Landing denied, weather report stormy"
@@ -37,8 +27,7 @@ describe Airport do
 	end
 
 	describe "#takeoff" do
-	  it "instructs a plane to take off from airport" do # fails due to clash with raised error: Landing denied, weather report stormy
-      #it {is_expected.to respond_to(:takeoff).with(1).argument }
+	  it "instructs a plane to take off from airport" do
       plane = double :plane
       allow(airport).to receive(:empty?). and_return false
       allow(airport).to receive(:stormy?). and_return false
@@ -59,7 +48,7 @@ describe Airport do
 	    expect {airport.takeoff(plane)}.to raise_error "the plane has already departed"
 	  end
 
-	  it "prevents takeoff if weather is stormy" do # fails due to clash with raised error: Landing denied, weather report stormy
+	  it "prevents takeoff if weather is stormy" do
     	plane = double :plane
       allow(airport).to receive(:stormy?). and_return false
       airport.land(plane)

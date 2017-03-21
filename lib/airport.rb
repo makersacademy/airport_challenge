@@ -8,19 +8,8 @@ class Airport
 
   def initialize(capacity=DEFAULT_CAPACITY )
     @planes = []
-    # @landed_planes = []
-    # @weather = weather
     @capacity = capacity
   end
-
-  # def weather_report
-  #   weather = rand(1..10)
-  #   if weather <= 4
-  #     "stormy"
-  #     else
-  #     "sunny"
-  #     end
-  # end
 
   def land(plane)
     fail "Landing denied, Airport is full" if full?
@@ -28,14 +17,6 @@ class Airport
     puts "Fasten seatbelts, plane landing..."
     planes << plane
   end
-
-  # def confirm_landing(plane)
-  #   planes.each do |plane|
-  #     landed_planes << plane
-  #   end
-  #   puts "Plane has landed! Docked at bridge for passengers."
-  #   landed_planes
-  #   end
 
   def takeoff(plane)
     fail "the plane has already departed" if empty?
