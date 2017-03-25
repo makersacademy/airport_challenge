@@ -20,8 +20,9 @@ If your code isn't finished it's not ideal but acceptable as long as you explain
   * [x] Errors raised for inconsistent actions
 
 ## Bonus Features
-  * [x] RSpec Feature test
+  * [ ] RSpec Feature test
 
 ## Next / Homework
 - Object ID's - takeoff and land specific planes (currently last-in first-out i.e. pop and push - as seen in Feature test)
 - Potential to expand Stormy_Weather class to weather system - assigning weather to numbers within the random number range based on probabilities
+- Go through Sam's video for refactoring
