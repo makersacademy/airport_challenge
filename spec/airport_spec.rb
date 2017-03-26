@@ -14,35 +14,41 @@ describe Airport do
     allow(plane).to receive(:takeoff)
   end
 
-
   describe '#takeoff' do
-    it 'instructs planes to take off' do
-      expect { airport.to receive :takeoff }
-      # also expect { airport.to respond_to(:takeoff).with(2).argument }
-    end
-# Plane.new to use double?
-    it 'no longer holds plane after take off' do
-      allow(stormy_weather).to receive(:report).and_return(false)
-      plane1 = Plane.new
-      plane1 = Plane.new #plane
-      airport.land(plane1, stormy_weather)
-      airport.takeoff(plane1, stormy_weather)
-      expect(airport.planes).not_to include(plane1)
+    context 'when not stormy' do
+      before do
+        allow(stormy_weather).to receive(:report).and_return(false)
+      end
+
+      it 'instructs planes to take off' do
+        expect { airport.to receive :takeoff }
+        # also expect { airport.to respond_to(:takeoff).with(2).argument }
+      end
+  # Plane.new to use double?
+      it 'no longer holds plane after take off' do
+        plane1 = Plane.new
+        plane1 = Plane.new #plane
+        airport.land(plane1, stormy_weather)
+        airport.takeoff(plane1, stormy_weather)
+        expect(airport.planes).not_to include(plane1)
+      end
+
+      it 'raises an error if you try to get a plane to take off already departed from airport' do
+        plane1 = Plane.new
+        airport.land(plane1, false)
+        airport.takeoff(plane1, false)
+        expect { airport.takeoff(plane1, false) }.to raise_error "Plane has already taken off."
+      end
     end
 
-    it 'raises an error if you try to get a plane to take off already departed from airport' do
-      allow(stormy_weather).to receive(:report).and_return(false)
-      plane1 = Plane.new
-      airport.land(plane1, stormy_weather)
-      airport.takeoff(plane1, stormy_weather)
-      expect { airport.takeoff(plane1, stormy_weather) }.to raise_error "Plane has already taken off."
-    end
-
-    it 'raises an error on #takeoff if weather is stormy' do
+  context 'when stormy' do
+    it 'raises an error' do
       allow(stormy_weather).to receive(:report).and_return(true)
       storm = stormy_weather.report
       expect { airport.takeoff(plane, storm) }.to raise_error "Unable to takeoff. Weather is stormy."
     end
+  end
+
   end
 
 
@@ -51,7 +57,6 @@ describe Airport do
       before do
         allow(stormy_weather).to receive(:report).and_return(false)
       end
-
 
       it 'instructs a plane to land' do
         expect { airport.to receive :land }
@@ -67,6 +72,16 @@ describe Airport do
         airport.land(plane1, stormy_weather)
         expect { airport.land(plane1, stormy_weather) }.to raise_error "Plane has already landed."
       end
+
+      context 'when full' do
+        it 'raises an error ' do
+          allow(stormy_weather).to receive(:report).and_return(false)
+          storm = stormy_weather.report
+          Airport::DEFAULT_CAPACITY.times { airport.land(plane, storm) }
+          expect { airport.land(plane, storm) }.to raise_error 'Airport at capacity.'
+        end
+      end
+
     end
 
     context 'when weather is stormy' do
@@ -77,14 +92,6 @@ describe Airport do
       end
     end
 
-    context 'when full' do
-      it 'raises an error ' do
-        allow(stormy_weather).to receive(:report).and_return(false)
-        storm = stormy_weather.report
-        Airport::DEFAULT_CAPACITY.times { airport.land(plane, storm) }
-        expect { airport.land(plane, storm) }.to raise_error 'Airport at capacity.'
-      end
-    end
 
   end
 

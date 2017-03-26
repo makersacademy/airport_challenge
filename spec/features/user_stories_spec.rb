@@ -14,7 +14,7 @@ describe 'User stories' do
   # So I can get passengers on the way to their destination
   # I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-  it 'so planes take off from airports, instruct plane to take off' do
+  it 'planes take off from airports, instruct plane to take off' do
     airport = Airport.new
     plane = Plane.new
     expect { airport.take_off(plane).not_to raise_error }
@@ -28,8 +28,7 @@ describe 'User stories' do
   it 'does not allow planes to land when stormy' do
     airport = Airport.new(20)
     plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return(true)
-    expect { airport.land(plane) }.to raise_error "Unable to land. Weather is stormy."
+    expect { airport.land(plane, true) }.to raise_error "Unable to land. Weather is stormy."
   end
 
 
