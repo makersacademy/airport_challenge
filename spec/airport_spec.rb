@@ -4,14 +4,15 @@ require 'weather'
 
 describe Airport do
   subject(:airpport) { described_class.new }
+  subject(:airport) { described_class.new }
   let(:plane) { double :plane }
   let(:stormy_weather) { double :stormy_weather }
 
-before do
-  allow(plane).to receive(:land)
-  allow(plane).to receive(:landed?)
-  allow(plane).to receive(:takeoff)
-end
+  before do
+    allow(plane).to receive(:land)
+    allow(plane).to receive(:landed?)#.and_return(false)
+    allow(plane).to receive(:takeoff)
+  end
 
 
   describe '#takeoff' do
@@ -19,10 +20,11 @@ end
       expect { airport.to receive :takeoff }
       # also expect { airport.to respond_to(:takeoff).with(2).argument }
     end
-
+# Plane.new to use double?
     it 'no longer holds plane after take off' do
       allow(stormy_weather).to receive(:report).and_return(false)
       plane1 = Plane.new
+      plane1 = Plane.new #plane
       airport.land(plane1, stormy_weather)
       airport.takeoff(plane1, stormy_weather)
       expect(airport.planes).not_to include(plane1)
@@ -50,7 +52,7 @@ end
         allow(stormy_weather).to receive(:report).and_return(false)
       end
 
-      end
+
       it 'instructs a plane to land' do
         expect { airport.to receive :land }
       end
