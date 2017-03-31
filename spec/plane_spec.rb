@@ -1,7 +1,7 @@
 require 'plane.rb'
 
 describe Plane do
-
+sadadsvdsvd
   describe '#initialize' do
     it 'checks planes that are created are not set to landed' do
     plane = Plane.new
