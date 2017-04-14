@@ -1,13 +1,17 @@
 class Airport
 
-  attr_reader :plane
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
 
   def land(plane)
-    @plane = plane
+    @planes << plane
   end
 
   def take_off
-    raise RuntimeError, "There are no planes" unless @plane
-    @plane
+    raise RuntimeError, "There are no planes" if @planes.empty?
+    @planes
   end
 end
