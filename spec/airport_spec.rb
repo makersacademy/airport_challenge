@@ -14,6 +14,9 @@ describe Airport do
       (Airport::DEFAULT_CAPACITY).times { subject.land(plane) }
       expect{subject.land(plane)}.to raise_error(RuntimeError)
     end
+    it 'does not land the same plane twice' do
+
+    end
   end
 
   describe '#take_off' do
