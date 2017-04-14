@@ -20,4 +20,11 @@ describe Airport do
     (Airport::DEFAULT_CAPACITY).times { subject.land(plane) }
     expect{subject.land(plane)}.to raise_error(RuntimeError)
   end
+  it 'sets a default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+  it 'allows defauly capacity to be overridden' do
+    airport = Airport.new(100)
+    expect(airport.capacity).to eq 100
+  end
 end
