@@ -1,0 +1,4 @@
+load './lib/airport.rb'
+jet = Plane.new
+jet.land_at("Heathrow")
+jet.takeoff
