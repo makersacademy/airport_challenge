@@ -1,0 +1,45 @@
+# I've disabled style cops, enabled most others.
+# Why? My feeling is that these style cops create lots of linter noise that
+# is hard for a beginner to handle. This focuses the linting into useful areas
+# that a beginner can more easily appreciate the utility of. E.g. method
+# length, unused variables, etc.
+
+AllCops:
+  DisabledByDefault: true
+
+Metrics:
+  Enabled: true
+
+Bundler:
+  Enabled: true
+
+Lint:
+  Enabled: true
+
+Performance:
+  Enabled: true
+
+Security:
+  Enabled: true
+
+# This one is definitely important though!
+Style/IndentationConsistency:
+  Enabled: true
+
+Metrics/LineLength:
+  # We set up error messages here and I don't want people suboptimising by making
+  # their variables shorter... so we'll relax this a bit. Usually lines lime this:
+  # ```
+  #    AIRPORT_REFUSED_MESSAGE = "Airport has refused our landing! Probably bad weather"
+  # ```
+  # Would get extracted to locales, but that's out of the fence here so.
+  Max: 120
+
+  # While test refactoring is good, I suspect it's out of scope for week 1
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/BlockLength:
+  # While test refactoring is good, I suspect it's out of scope for week 1
+  Exclude:
+    - 'spec/**/*'
