@@ -1,6 +1,9 @@
 class Airport
+
+  attr_reader :plane
+
   def land(plane)
-    Plane.new
+    @plane = plane
   end
 
   def take_off
