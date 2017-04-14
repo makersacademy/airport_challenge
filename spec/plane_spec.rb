@@ -1,7 +1,7 @@
 require './lib/plane'
 
 describe Plane do
-  let(:airport) { double :airport, weather: "Stormy" }
+  let(:airport) { double :airport, weather: "Stormy", name: "Test" }
 
   it "#planes can take off" do
     expect(subject).to respond_to(:takeoff)
@@ -31,7 +31,7 @@ describe Plane do
   it "cannot #land if already in #landed_at an #airport" do
     allow(airport).to receive(:weather).and_return("Sunny")
     subject.landed_at = airport
-    expect { subject.land_at(airport) }.to raise_error "Already landed at #{airport}"
+    expect { subject.land_at(airport) }.to raise_error "Already landed at Test"
   end
 
   it "cannot #land if #weather is #stormy #airport" do

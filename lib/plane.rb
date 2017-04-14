@@ -7,15 +7,15 @@ class Plane
     fail "Already in flight" if @landed_at.nil?
     airport = @landed_at
     fail "Cannot takeoff, weather stormy" if airport.weather == "Stormy"
-    puts "Taken off from #{landed_at}"
+    puts "Taken off"
     @landed_at = nil
   end
 
   def land_at(airport)
     fail "Cannot land, weather stormy" if airport.weather == "Stormy"
-    fail "Already landed at #{landed_at}" unless @landed_at.nil?
+    fail "Already landed at #{airport.name}" unless @landed_at.nil?
     @landed_at = airport
-    puts "Landed at #{landed_at}"
+    puts "Landed"
   end
 
 end
