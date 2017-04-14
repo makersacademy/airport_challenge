@@ -20,7 +20,12 @@ describe Airport do
     it {is_expected.to respond_to(:take_off)}
     it 'allows a plane to take off' do
       subject.land(plane)
-      expect(subject.take_off.pop).to be_instance_of(Plane)
+      expect(subject.take_off).to be_instance_of(Plane)
+    end
+    it 'removes a plane from the airport after take off' do
+      subject.land(plane)
+      subject.take_off
+      expect(subject.land(Plane.new)).not_to include(plane)
     end
     it 'raises an error when there are no planes' do
       expect{subject.take_off}.to raise_error(RuntimeError)

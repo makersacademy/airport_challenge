@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   DEFAULT_CAPACITY = 50
@@ -16,7 +18,7 @@ class Airport
 
   def take_off
     fail "There are no planes" if @planes.empty?
-    @planes
+    @planes.pop
   end
 
   private
