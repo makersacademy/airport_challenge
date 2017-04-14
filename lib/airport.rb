@@ -9,4 +9,9 @@ class Airport
   def confirm_landed(plane)
     @planes << plane
   end
+
+  def confirm_take_off
+    @planes.pop
+  end
+
 end
