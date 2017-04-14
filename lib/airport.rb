@@ -19,7 +19,7 @@ class Airport
     @planes
   end
 
-  #private
+  private
 
   def full?
     @planes.count >= @capacity ? true : false
