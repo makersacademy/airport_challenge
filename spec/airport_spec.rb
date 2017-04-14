@@ -11,6 +11,11 @@ describe Airport do
     expect(subject.plane).to eq plane
   end
   it 'allows a plane to take off' do
+    subject.land(plane)
     expect(subject.take_off).to be_instance_of(Plane)
   end
+  it 'raises an error when there are no planes' do
+    expect{subject.take_off}.to raise_error(RuntimeError)
+  end
+
 end

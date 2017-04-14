@@ -7,6 +7,7 @@ class Airport
   end
 
   def take_off
-    Plane.new
+    raise RuntimeError, "There are no planes" unless @plane
+    @plane
   end
 end
