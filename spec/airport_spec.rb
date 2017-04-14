@@ -16,4 +16,8 @@ describe Airport do
   it 'raises an error when there are no planes' do
     expect{subject.take_off}.to raise_error(RuntimeError)
   end
+  it 'raises an error when the airport is full' do
+    (Airport::DEFAULT_CAPACITY).times { subject.land(plane) }
+    expect{subject.land(plane)}.to raise_error(RuntimeError)
+  end
 end
