@@ -3,7 +3,11 @@ require 'plane'
 class Airport
 
   def land(plane)
-    "Plane has been instructed to land"
+    "Plane has landed"
+  end
+
+  def takeoff(plane)
+
   end
 
 end
