@@ -9,6 +9,10 @@ describe Airport do
   let(:weather) { double("Weather") }
   let(:airport) { double("Airport") }
 
+  it 'has a set capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe '#land' do
     it 'adds plane to docked planes' do
       allow(subject.weather).to receive(:stormy?).and_return(false)
@@ -20,6 +24,12 @@ describe Airport do
       allow(subject.weather).to receive(:stormy?).and_return(true)
       message = 'cannot land in stormy weather'
       expect { subject.land(plane) }.to raise_error message
+    end
+
+    it 'raises error when airport is full' do
+      allow(subject.weather).to receive(:stormy?).and_return(false)
+      50.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error 'airport full'
     end
   end
 
@@ -37,6 +47,11 @@ describe Airport do
       allow(subject.weather).to receive(:stormy?).and_return(true)
       message = 'cannot takeoff in stormy weather'
       expect { subject.takeoff(plane) }.to raise_error message
+    end
+
+    it 'raises error when no planes docked' do
+      allow(subject.weather).to receive(:stormy?).and_return(false)
+      expect { subject.takeoff(plane) }.to raise_error 'no planes to takeoff'
     end
   end
 
