@@ -25,9 +25,11 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def and_the_airport_should_confirm_with_the_plane_that_it_has_landed
+    # Verify using spy that dock_plane checks the plane has landed.
     spy_plane = spy(:plane)
     @airport.dock_plane(spy_plane)
     expect(spy_plane).to have_received(:has_landed?)
+
     expect(@plane.has_landed?).to eq true
   end
 

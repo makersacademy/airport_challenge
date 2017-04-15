@@ -4,7 +4,7 @@ class Plane
     self.landed = true
   end
 
-  def has_confirmed_landing?
+  def has_landed?
     landed
   end
 
