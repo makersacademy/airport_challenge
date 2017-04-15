@@ -41,5 +41,8 @@ describe Airport do
     expect(subject.slots[-1].object_id).to eq plane.object_id
   end
 
-
+  it 'Prevents landing when airport is full' do
+    Airport::SLOT_LIMIT.times { subject.land(Plane.new) }
+    expect{subject.land(Plane.new)}.to raise_error "All airport landing slots currently occupied"
+  end
 end
