@@ -4,19 +4,17 @@ class Airport
 
   def initialize
     @slots = []
-    @weather = "stormy"
+    @weather = "sunny"
   end
 
   def land(plane)
-    if @weather == "stormy"
-      fail "Weather conditions too dangerous for landing"
-    else
-      @slots.push(plane)
-    end
+    fail "Weather conditions too dangerous for landing" if @weather == "stormy"
+    @slots.push(plane)
   end
 
   def takeoff(slot_number)
     fail "Weather conditions too dangerous for take-off" if @weather == "stormy"
     @slots.delete_at(slot_number)
   end
+  
 end
