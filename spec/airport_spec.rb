@@ -17,7 +17,7 @@ describe Airport do
     it 'should confirm airplane landed' do
       plane = Airplane.new
       subject.land(plane)
-      expect(subject.landed?(plane)).to eq true
+      expect(subject.landed?(plane)).to eq true if Weather.stormy? == false
     end
 
     it 'should tell when airplane is not on land' do

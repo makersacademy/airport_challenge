@@ -4,7 +4,7 @@ require 'airplane'
 
 describe Weather do
   it 'should raise error when #stormy?' do
-    expect { !subject.stormy? }.to raise_error "No taking off allowed while weather is stormy."
+    expect { subject.check_weather }.to raise_error "No taking off or landing allowed while weather is stormy."
   end
 
   it 'planes should not #take_off when #stormy?' do
