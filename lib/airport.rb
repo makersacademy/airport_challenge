@@ -7,7 +7,7 @@ class Airport
   end
 
   def dock_plane(plane)
-
+    planes << plane
   end
 
 end
