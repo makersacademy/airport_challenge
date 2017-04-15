@@ -2,22 +2,30 @@ require './lib/plane'
 require './lib/weather'
 
 class Airport
-  attr_reader :hangar
+  DEFAULT_CAPACITY = 10
 
-  def initialize
+  attr_reader :hangar, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def land(plane)
-    fail 'Unable to land' if unsafe
+    fail 'Unable to land' if unsafe || full?
     @hangar << plane
+    return 'Plane landed safely'
   end
 
   def takeoff
-    fail 'Unable to takeoff' if empty?
+    fail 'Unable to takeoff' if empty? || unsafe
   end
 
   private
+
+  def full?
+    @hangar.count >= capacity
+  end
 
   def empty?
     @hangar.empty?
