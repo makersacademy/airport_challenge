@@ -13,8 +13,7 @@ class Plane
     airport = airport
     plane = plane
     weather = weather
-    if
-      (weather_check(weather) == "check") && (airport_capacity_check(airport) == "check") && (airplane_airborne(plane) == "check")
+    if landing_safety_check(airport, plane, weather) == true
       airport.planes.push plane
       change_status
       "#{@name} has landed in #{airport.name}"
@@ -27,8 +26,7 @@ class Plane
     airport = airport
     plane = plane
     weather = weather
-    if
-      (weather_check(weather) == "check") && (airplane_present(airport, plane) == "check")
+    if take_off_safety_check(airport, plane, weather) == true
       airport.planes.delete plane
       change_status
       "#{@name} has taken off from #{airport.name}"

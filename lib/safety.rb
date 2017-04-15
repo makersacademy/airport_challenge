@@ -33,4 +33,15 @@ module Safety
     end
   end
 
+  def landing_safety_check(airport, plane, weather)
+    (weather_check(weather) == "check") &&
+    (airport_capacity_check(airport) == "check") &&
+    (airplane_airborne(plane) == "check")
+  end
+
+  def take_off_safety_check(airport, plane, weather)
+    (weather_check(weather) == "check") &&
+    (airplane_present(airport, plane) == "check")
+  end
+
 end
