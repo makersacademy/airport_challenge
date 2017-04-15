@@ -11,8 +11,15 @@ describe Airport do
 
   describe '#land' do
     it 'adds plane to docked planes' do
+      allow(subject.weather).to receive(:stormy?).and_return(false)
       subject.land(plane)
       expect(subject.planes).to include plane
+    end
+
+    it 'raises error when stormy' do
+      allow(subject.weather).to receive(:stormy?).and_return(true)
+      message = 'cannot land in stormy weather'
+      expect { subject.land(plane) }.to raise_error message
     end
   end
 
@@ -25,8 +32,9 @@ describe Airport do
     end
 
     it 'raises error when stormy' do
-      allow(subject.weather).to receive(:stormy?).and_return(true)
+      allow(subject.weather).to receive(:stormy?).and_return(false)
       subject.land(plane)
+      allow(subject.weather).to receive(:stormy?).and_return(true)
       message = 'cannot takeoff in stormy weather'
       expect { subject.takeoff(plane) }.to raise_error message
     end
@@ -34,6 +42,7 @@ describe Airport do
 
   describe '#in_airport?' do
     it 'returns true when plane is docked' do
+      allow(subject.weather).to receive(:stormy?).and_return(false)
       subject.land(plane)
       expect(subject.in_airport?(plane)).to eq true
     end
