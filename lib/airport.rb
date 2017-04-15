@@ -8,4 +8,8 @@ attr_reader :plane
 		@plane = plane
 	end
 
+	def take_off
+		@plane
+	end
+
 end
