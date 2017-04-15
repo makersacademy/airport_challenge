@@ -1,4 +1,5 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
   attr_reader :hangar
@@ -7,7 +8,8 @@ class Airport
     @hangar = []
   end
 
-  def land_plane(plane)
+  def land(plane)
+    fail 'Unable to land' if unsafe
     @hangar << plane
   end
 
@@ -19,6 +21,10 @@ class Airport
 
   def empty?
     @hangar.empty?
+  end
+
+  def unsafe(weather = Weather.new)
+    weather.random_condition == :stormy ? true : false
   end
 
 end
