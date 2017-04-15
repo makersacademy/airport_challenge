@@ -1,14 +1,17 @@
 class Plane
 
-  def docked
+  attr_reader :landed
+
+  def land
     self.landed = true
+    confirm_landing
   end
 
-  def has_landed?
-    landed
+  def confirm_landing
+    landed ? "This plane has landed." : "This plane has not landed."
   end
 
   private
 
-  attr_accessor :landed
+  attr_writer :landed
 end

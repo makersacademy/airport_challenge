@@ -1,17 +1,35 @@
 require 'plane'
 
 describe Plane do
+  alias_method :plane, :subject
 
-  it { is_expected.to respond_to(:docked) }
+  describe '#land' do
+    it 'lands plane' do
+      plane.land
+      expect(plane.landed).to be true
+    end
 
-  describe '#has_landed?' do
-    context 'when plane has been docked' do
-      plane = Plane.new
-      plane.docked
-      it 'has landed' do
-        expect(plane).to have_landed
+    it 'confirms landing' do
+      expect(subject).to receive(:confirm_landing)
+      plane.land
+    end
+
+  end
+
+  describe '#confirm_landing' do
+    context 'plane has landed' do
+      it 'returns message confirming plane has landed' do
+        plane.land
+        expect(subject.confirm_landing).to eq "This plane has landed."
       end
     end
-  end 
+
+    context 'plane has not landed' do
+      it 'states plane has not landed if @landed = false' do
+        expect(subject.confirm_landing).to eq "This plane has not landed."
+      end
+    end
+
+  end
 
 end
