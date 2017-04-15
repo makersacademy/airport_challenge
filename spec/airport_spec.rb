@@ -7,7 +7,7 @@ describe Airport do
 
   describe '#dock_plane' do
     it 'adds plane to Airport\'s @planes array' do
-      plane = double(:plane)
+      plane = double(:plane, docked: true)
       subject.dock_plane(plane)
       expect(subject.planes).to include plane 
     end

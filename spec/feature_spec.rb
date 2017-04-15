@@ -25,9 +25,9 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def and_the_plane_should_confirm_that_it_has_landed
-    expect(@plane).to receive(:has_landed)
-    @plane.has_landed
-    expect(@plane).to have_landed
+    expect(@plane).to receive(:docked)
+    @plane.docked
+    expect(@plane).to have_confirmed_landing
   end
 
 end
