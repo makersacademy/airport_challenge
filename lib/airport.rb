@@ -1,10 +1,12 @@
 require_relative 'plane.rb'
+require_relative 'weather.rb'
 
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :weather
 
-  def initialize
+  def initialize(weather = Weather.new)
     @planes = []
+    @weather = weather
   end
 
   def land(plane)
@@ -13,6 +15,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise 'cannot takeoff in stormy weather' if @weather.stormy?
     plane.takeoff
     @planes -= [plane]
   end

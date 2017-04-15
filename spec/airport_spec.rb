@@ -6,19 +6,29 @@ describe Airport do
   it { is_expected.to respond_to :in_airport? }
 
   let(:plane) { Plane.new }
+  let(:weather) { double("Weather") }
+  let(:airport) { double("Airport") }
 
   describe '#land' do
-    it 'should add plane to docked planes' do
+    it 'adds plane to docked planes' do
       subject.land(plane)
       expect(subject.planes).to include plane
     end
   end
 
   describe '#takeoff' do
-    it 'should remove plane from docked planes' do
+    it 'removes plane from docked planes' do
+      allow(subject.weather).to receive(:stormy?).and_return(false)
       subject.land(plane)
       subject.takeoff(plane)
       expect(subject.planes).not_to include plane
+    end
+
+    it 'raises error when stormy' do
+      allow(subject.weather).to receive(:stormy?).and_return(true)
+      subject.land(plane)
+      message = 'cannot takeoff in stormy weather'
+      expect { subject.takeoff(plane) }.to raise_error message
     end
   end
 
