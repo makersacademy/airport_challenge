@@ -6,4 +6,7 @@ class Plane
   def land(plane)
     $planes_landed << plane
   end
+
+  def has_landed?(plane)
+  end
 end
