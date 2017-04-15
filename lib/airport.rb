@@ -11,4 +11,14 @@ class Airport
     @hangar << plane
   end
 
+  def takeoff
+    fail 'Unable to takeoff' if empty?
+  end
+
+  private
+
+  def empty?
+    @hangar.empty?
+  end
+
 end
