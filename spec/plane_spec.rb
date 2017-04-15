@@ -31,6 +31,11 @@ describe 'plane' do
     it 'tests whether the plane responds to :take_off' do
       expect(plane). to respond_to :take_off
     end
+
+    it 'moves the plane from the landed array to the in air array' do
+      plane.take_off(plane)
+      expect($planes_in_air).to include(plane)
+    end
   end
 
 end
