@@ -11,4 +11,11 @@ describe Plane do
     a.land(subject)
     expect(subject).to be_landed
   end
+
+  it 'is not landed after take_off' do
+    a = Airport.new
+    a.land(subject)
+    a.take_off
+    expect(subject).not_to be_landed
+  end
 end
