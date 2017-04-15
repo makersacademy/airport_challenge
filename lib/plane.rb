@@ -6,4 +6,11 @@ class Plane
 def landed
   @status = :landed
 end
+
+def took_off
+  @status = :flying
+end
+
+
+
 end

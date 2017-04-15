@@ -9,6 +9,14 @@ describe Plane do
     end
 end
 
+describe '#took_off' do
+  it "is expected to take off a landed plan"do
+  plane = Plane.new
+  plane.landed
+  expect(plane.took_off).to eq :flying
+end
+end
+
 
 
 end
