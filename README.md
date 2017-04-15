@@ -1,4 +1,15 @@
 # Makers Academy - Airport Challenge (Week 1 weekend challenge)
+```
+        ______
+        _\____\___
+=  = ==(____##____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
+
+```
 
 I wrote this project in the weekend of the week of Makers Academy. I was tasked with designing an air traffic control system, where planes could be instructed to take off and land, depending on the weather (which was randomised to be too stormy for a landing 1 in 10 times).
 
@@ -27,6 +38,32 @@ irb(main):007:0> port.confirm_takeoff(plane)
 ```
 
 
+## User stories:
+```
+As an air traffic controller 
+So I can get passengers to a destination 
+I want to instruct a plane to land at an airport and confirm that it has landed 
+
+As an air traffic controller 
+So I can get passengers on the way to their destination 
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent takeoff when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when weather is stormy 
+
+As an air traffic controller 
+To ensure safety 
+I want to prevent landing when the airport is full 
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+```
 
 ## Process:
 
