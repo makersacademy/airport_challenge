@@ -8,6 +8,6 @@ class Plane
   end
 
   def has_landed?(plane)
-    false
+    $planes_landed.include?(plane)
   end
 end

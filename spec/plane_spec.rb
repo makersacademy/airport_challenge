@@ -21,8 +21,7 @@ describe 'plane' do
     end
 
     it 'confirms that the plane has landed' do
-      plane.has_landed?(plane)
-      expect(plane). to be true
+      expect(plane.has_landed?(plane)). to be true
     end
 
   end
