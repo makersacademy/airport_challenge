@@ -10,4 +10,7 @@ class Plane
   def has_landed?(plane)
     $planes_landed.include?(plane)
   end
+
+  def take_off(plane)
+  end
 end
