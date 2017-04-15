@@ -7,6 +7,7 @@ Instructions for use:
 - Run ```bundle``` to install dependencies
 - Run ```rspec``` to view unit tests and feature test
 
+Example usage from the command line:
 ```
 $ irb
 irb(main):001:0> require './lib/airport.rb'
