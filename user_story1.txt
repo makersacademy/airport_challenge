@@ -1,0 +1,20 @@
+
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an
+airport and confirm that it has landed
+
+
+         DOMAIN MODEL
+
+
+  OBJECTS          MESSAGES
+
+controller
+passengers
+destination
+plane        =>  land_plane
+airport      =>  plane_landed?
+
+Plane <-- land_plane --> a plane
+airport <-- landed? --> true/false
