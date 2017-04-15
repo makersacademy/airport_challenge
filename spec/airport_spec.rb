@@ -9,8 +9,50 @@ describe Airport do
   let(:weather) { double("Weather") }
   let(:airport) { double("Airport") }
 
-  it 'has a set capacity' do
-    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  context 'capacity' do
+    it 'has a set default value' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'can be set lower at initialization' do
+      station = Airport.new(20)
+      expect(station.capacity).to eq 20
+    end
+
+    it 'can be set higher at initialization' do
+      station = Airport.new(100)
+      expect(station.capacity).to eq 100
+    end
+
+    it 'can be reassigned as needed' do
+      subject.adjust_capacity(75)
+      expect(subject.capacity).to eq 75
+    end
+
+    context 'errors' do
+      it 'raises error if reassigned to zero' do
+        expect { subject.adjust_capacity(0) }.to raise_error 'invalid capacity'
+      end
+
+      it 'raises error if reassigned to negative value' do
+        expect { subject.adjust_capacity(-13) }.to raise_error 'invalid capacity'
+      end
+
+      it 'raises error if set lower than current plane count' do
+        allow(subject.weather).to receive(:stormy?).and_return(false)
+        21.times { subject.land(plane) }
+        message = 'planes exceeed that capacity!'
+        expect { subject.adjust_capacity(20) }.to raise_error message
+      end
+
+      it 'raises error if initialzed with zero capacity' do
+        expect { Airport.new(0) }.to raise_error 'invalid capacity'
+      end
+
+      it 'raises error if initialzed with negative capacity' do
+        expect { Airport.new(-4) }.to raise_error 'invalid capacity'
+      end
+    end
   end
 
   describe '#land' do

@@ -6,10 +6,11 @@ class Airport
 
   DEFAULT_CAPACITY = 50
 
-  def initialize(weather = Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY)
+    fail 'invalid capacity' if capacity <= 0
     @planes = []
-    @weather = weather
-    @capacity = DEFAULT_CAPACITY
+    @weather = Weather.new
+    @capacity = capacity
   end
 
   def land(plane)
@@ -28,6 +29,12 @@ class Airport
 
   def in_airport?(plane)
     @planes.include?(plane)
+  end
+
+  def adjust_capacity(capacity)
+    raise 'invalid capacity' if capacity <= 0
+    raise 'planes exceeed that capacity!' if @planes.length > capacity
+    @capacity = capacity
   end
 
   private
