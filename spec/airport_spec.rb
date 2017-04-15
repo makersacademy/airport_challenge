@@ -3,18 +3,14 @@ require 'airport'
 describe Airport do
 
   it 'cannot overfill airport' do
-
     expect(subject.full?).to eq false
-
-    20.times do
+    subject.capacity.times do
       plane = double('plane', :land => true)
       weather = double('weather', :status => 'sunny')
       plane.land(weather, subject)
       subject.receive(plane)
     end
-
     expect(subject.full?).to eq true
-
   end
 
   it 'has a planes array' do

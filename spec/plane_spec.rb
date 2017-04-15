@@ -62,11 +62,11 @@ describe Plane do
 
   it 'cannot land when the airport is full' do
     weather = double('weather', :status => 'sunny')
-    airport = double('airport', :full? => true, :receive => [])    
+    airport = double('airport', :full? => true, :receive => [])
     expect { subject.land(weather, airport) }.to raise_error "Airport is at capacity"
   end
 
-  it 'can only take_off from airports that they are in' do
+  it 'can only take off from airports that they are in' do
     weather = double('weather', :status => 'sunny')
     airport1 = double('airport', :planes => [], :full? => false, :receive => [])
     airport2 = double('airport', :planes => [], :full? => false, :release => [])
@@ -74,10 +74,17 @@ describe Plane do
     expect { subject.take_off(weather, airport2) }.to raise_error "I am not in that airport"
   end
 
-  it "can only take_off if it's status is not 'in air'" do
+  it "can only take off if it's status is not 'in air'" do
     weather = double('weather', :status => 'sunny')
     airport = double('airport', :planes => [], :full? => false, :release => [subject])
     expect { subject.take_off(weather, airport) }.to raise_error "I am not in that airport"
+  end
+
+  it "cannot land again if it has landed" do
+    weather = double('weather', :status => 'sunny')
+    airport = double('airport', :planes => [], :full? => false, :receive => [])
+    subject.land(weather, airport)
+    expect { subject.land(weather, airport) }.to raise_error "I have already landed"
   end
 
 end

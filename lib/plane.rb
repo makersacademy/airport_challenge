@@ -8,6 +8,7 @@ class Plane
 
   def land(weather, airport)
     raise "Cannot land in #{weather.status} weather" if stormy(weather)
+    raise "I have already landed" if status == 'landed'
     raise "Airport is at capacity" if airport.full?
     airport.receive(self)
     @status = 'landed'
