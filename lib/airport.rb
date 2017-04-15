@@ -1,10 +1,13 @@
-class Airport
+require_relative './plane.rb'
+require_relative './weather.rb'
 
+class Airport
+  include Weather
   attr_accessor :slots, :weather, :slot_limit
 
   def initialize(limit = 30)
     @slots = []
-    @weather = "sunny"
+    @weather = weather
     @slot_limit = limit
   end
 
