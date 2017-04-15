@@ -11,7 +11,7 @@
 
 ```
 
-I wrote this project over the weekend of Makers Academy Week 1. I was tasked with designing an air traffic control system, where planes could be instructed to land and take off, depending on the weather (which was randomised to be too stormy for a landing/take off 1 in 10 times).
+I wrote this project over the weekend of Makers Academy Week 1. I was tasked with designing an air traffic control system using an object oriented approach in Ruby and TDD in RSpec. Planes can be instructed to land and take off from the airport, depending on the weather (which was randomised to be too stormy for a landing/take off 1 in 10 times).
 
 Instructions for use:
 - Clone this repo
