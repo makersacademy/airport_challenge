@@ -14,11 +14,11 @@ describe Airport do
   end
   describe '#land' do
     it 'raises error if land unavailable' do
-      plane = double(:plane, unsafe: true)
+      plane = double(:plane)
       expect { subject.land(plane) }.to raise_error 'Unable to land'
     end
     it 'lands plane safely' do
-      plane = double(:plane, unsafe: false)
+      plane = double(:plane)
       subject.land(plane)
       expect(subject.hangar).to include plane
     end

@@ -19,6 +19,8 @@ class Airport
 
   def takeoff
     fail 'Unable to takeoff' if empty? || unsafe
+    @hangar.pop
+    return 'Plane takeoff succesful'
   end
 
   private
