@@ -23,4 +23,15 @@ describe Airport do
   expect(subject.planes[0]).to eq nil
   end
 
+  it 'prevents takeoff if weather is stormy' do
+    subject.land_plane("test")
+    subject.weather = 0
+    expect { subject.plane_take_off }.to raise_error "Weather Stormy!"
+  end
+
+  it 'prevents landing if weather is stormy' do
+    subject.weather = 0
+    expect { subject.land_plane("test") }.to raise_error "Weather Stormy!"
+  end
+
 end
