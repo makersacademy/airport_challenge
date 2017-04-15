@@ -2,36 +2,46 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  plane = Plane.new
-
   describe '#land' do
+    let(:plane) {double :plane}
     it {is_expected.to respond_to(:land).with(1).argument}
     it 'allows a plane to land' do
-      expect(subject.land(plane).pop).to be_instance_of(Plane)
-      expect(subject.land(plane)).to eq [plane]
+      allow(plane).to receive(:landed?)
+      allow(plane).to receive(:landed)
+      expect(subject.land(plane)).to eq plane
     end
     it 'raises an error when the airport is full' do
-      (Airport::DEFAULT_CAPACITY).times { subject.land(plane) }
-      expect{subject.land(plane)}.to raise_error(RuntimeError)
+      allow(plane).to receive(:landed?)
+      allow(plane).to receive(:landed)
+      (Airport::DEFAULT_CAPACITY).times { subject.land(plane)}
+      expect{subject.land(plane)}.to raise_error("The airport is full")
     end
-    it 'does not land the same plane twice' do
-
+    it 'does not land the plane again if landed' do
+      allow(plane).to receive(:landed?).and_return(true)
+      expect{subject.land(plane)}.to raise_error("This plane has already landed")
     end
   end
 
   describe '#take_off' do
+    let(:plane) {double :plane}
     it {is_expected.to respond_to(:take_off)}
     it 'allows a plane to take off' do
+      allow(plane).to receive(:landed?)
+      allow(plane).to receive(:landed)
+      allow(plane).to receive(:flying)
       subject.land(plane)
-      expect(subject.take_off).to be_instance_of(Plane)
+      expect(subject.take_off).to eq plane
     end
     it 'removes a plane from the airport after take off' do
+      allow(plane).to receive(:landed?)
+      allow(plane).to receive(:landed)
+      allow(plane).to receive(:flying)
       subject.land(plane)
       subject.take_off
-      expect(subject.land(Plane.new)).not_to include(plane)
+      expect(subject.planes).not_to include(plane)
     end
     it 'raises an error when there are no planes' do
-      expect{subject.take_off}.to raise_error(RuntimeError)
+      expect{subject.take_off}.to raise_error("There are no planes")
     end
   end
 
