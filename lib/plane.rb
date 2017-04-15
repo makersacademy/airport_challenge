@@ -1,16 +1,19 @@
 class Plane
 
   def initialize(status = 'on ground')
-    @satus = status
+    @status = status
   end
 
-  def land(airport)
-    airport.planes << self
+  def land(weather, airport)
+    raise "Cannot land in #{weather.status} weather" if weather.status == 'stormy'
+    raise "Airport is at capacity" if airport.full?
+    airport.receive << self
     @status = 'landed'
   end
 
-  def take_off(weather)
+  def take_off(weather, airport)
     raise "Cannot take off in #{weather.status} weather" if weather.status == 'stormy'
+    airport.release(self)
     @status = 'in air'
   end
 

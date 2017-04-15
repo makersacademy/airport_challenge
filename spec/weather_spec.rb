@@ -13,5 +13,4 @@ describe Weather do
     expect(subject.status).to eq 'sunny'
   end
 
-
 end

@@ -15,36 +15,55 @@ describe Plane do
   end
 
   it 'can land at an airport and confirm that it has landed' do
-    airport = double('airport', :planes => [])
-    subject.land(airport)
+    weather = double('weather', :status => 'sunny')
+    airport = double('airport', :planes => [], :capacity => 20, :full? => false, :receive => [])
+    subject.land(weather, airport)
     expect(subject.confirm_status).to eq 'landed'
   end
 
   it 'take off from an airport and confirm that it is no longer in the airport' do
     weather = double('weather', :status => 'sunny')
-    subject.take_off(weather)
+    airport = double('airport', :release => subject)
+    subject.take_off(weather, airport)
     expect(subject.confirm_status).to eq 'in air'
   end
 
   it 'can take off when instructed' do
     weather = double('weather', :status => 'sunny')
-    subject.take_off(weather)
+    airport = double('airport', :planes => [], :full? => false, :release => [])
+    subject.take_off(weather, airport)
     expect(subject.confirm_status).to eq 'in air'
   end
 
   it 'can land at a specific airport' do
-    airport = double('airport', :planes => [])
-    subject.land(airport)
+    airport = double('airport', :planes => [], :full? => false, :receive => [])
+    weather = double('weather', :status => 'sunny')
+    subject.land(weather, airport)
   end
 
   it 'can take off in sunny weather' do
     weather = double('weather', :status => 'sunny')
-    expect { subject.take_off(weather) }.not_to raise_error
+    airport = double('airport', :planes => [], :full? => false, :release => [])
+    expect { subject.take_off(weather, airport) }.not_to raise_error
     expect(subject.confirm_status).to eq 'in air'
   end
 
   it 'cannot take off when weather is stormy' do
     weather = double('weather', :status => 'stormy')
+    airport = double('airport', :planes => [], :full? => false)
+    expect { subject.land(weather, airport) }.to raise_error "Cannot land in stormy weather"
+  end
+
+  it 'cannot take land when weather is stormy' do
+    weather = double('weather', :status => 'stormy')
+    airport = double('airport', :planes => [], :full? => false)
+    expect { subject.land(weather, airport) }.to raise_error "Cannot land in stormy weather"
+  end
+
+  it 'cannot land when the airport is full' do
+    weather = double('weather', :status => 'sunny')
+    airport = double('airport', :planes => [], :full? => true)
+    expect { subject.land(weather, airport) }.to raise_error "Airport is at capacity"
   end
 
 
