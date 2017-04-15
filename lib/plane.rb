@@ -1,10 +1,12 @@
 require_relative 'airport'
 class Plane
   attr_reader :plane
+  DEFAULT_CAPACITY = 100
   $planes_landed = []
   $planes_in_air = []
 
   def land(plane)
+    fail 'Airport is full.' if $planes_landed.count >= DEFAULT_CAPACITY
     $planes_landed << plane
   end
 
