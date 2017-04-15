@@ -15,9 +15,14 @@ describe 'plane' do
 
   describe 'has_landed?' do
     plane = Plane.new
-    it 'confirms that a plane has landed' do
-      plane.land(plane)
+    plane.land(plane)
+    it 'tests whether plane responds to :has_landed?' do
       expect(plane). to respond_to :has_landed?
+    end
+
+    it 'confirms that the plane has landed' do
+      plane.has_landed?(plane)
+      expect(plane). to be true
     end
 
   end

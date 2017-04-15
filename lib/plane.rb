@@ -8,5 +8,6 @@ class Plane
   end
 
   def has_landed?(plane)
+    false
   end
 end
