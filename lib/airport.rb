@@ -2,12 +2,12 @@ require_relative './safety'
 
 class Airport
   include Safety
-  attr_reader :planes, :capacity
+  attr_reader :name, :planes, :capacity
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    planes = []
-    @planes = planes
+  def initialize(name, capacity = DEFAULT_CAPACITY)
+    @name = name
+    @planes = []
     @capacity = capacity
   end
 
