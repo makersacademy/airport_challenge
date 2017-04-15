@@ -1,6 +1,9 @@
+require_relative 'airport'
 class Plane
   attr_reader :plane
-  def land
-    true
+  $planes_landed = []
+
+  def land(plane)
+    $planes_landed << plane
   end
 end

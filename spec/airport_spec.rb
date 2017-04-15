@@ -1,5 +1,5 @@
-# require 'airport'
-#
-# describe 'airport' do
-#
-# end
+require 'airport'
+
+describe 'airport' do
+
+end
