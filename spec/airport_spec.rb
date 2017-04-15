@@ -42,7 +42,14 @@ describe Airport do
   end
 
   it 'Prevents landing when airport is full' do
-    Airport::SLOT_LIMIT.times { subject.land(Plane.new) }
+    subject.slot_limit.times { subject.land(Plane.new) }
     expect{subject.land(Plane.new)}.to raise_error "All airport landing slots currently occupied"
+  end
+
+  it 'Sets a default slot limit that can be overriden upon initialization' do
+    airport = Airport.new(40)
+    40.times { airport.land(Plane.new) }
+    expect(airport.slot_limit).to eq 40
+    expect{airport.land(Plane.new)}.to raise_error "All airport landing slots currently occupied"
   end
 end

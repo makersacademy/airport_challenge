@@ -1,11 +1,11 @@
 class Airport
 
-  SLOT_LIMIT = 30
-  attr_accessor :slots, :weather
+  attr_accessor :slots, :weather, :slot_limit
 
-  def initialize
+  def initialize(limit = 30)
     @slots = []
     @weather = "sunny"
+    @slot_limit = limit
   end
 
   def land(plane)
@@ -19,7 +19,7 @@ class Airport
   end
 
   def full?
-    true if @slots.count >= SLOT_LIMIT
+    true if @slots.count >= @slot_limit
   end
 
 end
