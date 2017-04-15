@@ -6,4 +6,8 @@ class Airport
     @planes = []
   end
 
+  def dock_plane(plane)
+
+  end
+
 end
