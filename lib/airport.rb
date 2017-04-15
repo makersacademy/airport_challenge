@@ -1,16 +1,21 @@
 class Airport
 
-  attr_reader :plane, :planes
+  attr_reader :plane, :runways
 
   def take_off
-    return @planes.pop if !@planes.nil?
+    return @runways.pop unless @runways.nil?
     "No airplanes landed."
   end
 
   def land(plane)
     @plane = plane
-    @planes = []
-    @planes << plane
+    @runways = []
+    @runways << plane
+  end
+
+  def landed?(plane)
+    return true if @runways.include? plane
+    false
   end
 
 end
