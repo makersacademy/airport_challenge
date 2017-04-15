@@ -11,6 +11,12 @@ describe Airport do
       subject.dock_plane(plane)
       expect(subject.planes).to include plane 
     end
+
+    it 'should confirm with plane that it has landed' do
+      plane = double(:plane, :docked => true, :has_landed? => true)
+      expect(plane).to receive(:has_landed?)
+      subject.dock_plane(plane)
+    end
   end
 
 end
