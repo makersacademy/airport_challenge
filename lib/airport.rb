@@ -4,10 +4,10 @@ class Airport
 
   attr_accessor :weather, :name, :runway, :capacity
 
-  def initialize(name = "the Airport")
+  def initialize(name = 'the Airport', cap = 10)
     @name = name
     @runway = []
-    @capacity = 10
+    @capacity = cap
     rand(1..10) >= 9 ? @weather = "Stormy" : @weather = "Sunny"
     joke
   end
