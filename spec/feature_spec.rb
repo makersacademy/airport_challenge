@@ -17,7 +17,7 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def when_i_instruct_a_plane_to_land_at_an_airport
-    @plane.land_at(@airport)
+    @airport.dock_plane(@plane)
   end
 
   def then_the_plane_should_land_at_the_airport
@@ -27,6 +27,7 @@ feature 'Air_traffic_control', :type => :feature do
   def and_the_plane_should_confirm_that_it_has_landed
     expect(@plane).to receive(:has_landed)
     @plane.has_landed
+    expect(@plane).to have_landed
   end
 
 end
