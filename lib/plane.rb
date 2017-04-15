@@ -9,16 +9,43 @@ class Plane
     @status = 'airborne'
   end
 
-  def land(airport)
-    airport.planes.push self
-    @status = 'grounded'
-    "#{@name} has landed in #{airport.name}"
+  def land(airport, plane, weather)
+    airport = airport
+    plane = plane
+    weather = weather
+    if
+      (weather_check(weather) == "check") && (airport_capacity_check(airport) == "check") && (airplane_airborne(plane) == "check")
+      airport.planes.push plane
+      change_status
+      "#{@name} has landed in #{airport.name}"
+    else
+      "Landing aborted"
+    end
   end
 
-  def take_off(airport)
-    airport.planes.delete self
-    @status = 'airborne'
-    "#{@name} has taken off from #{airport.name}"
+  def take_off(airport, plane, weather)
+    airport = airport
+    plane = plane
+    weather = weather
+    if
+      (weather_check(weather) == "check") && (airplane_present(airport, plane) == "check")
+      airport.planes.delete plane
+      change_status
+      "#{@name} has taken off from #{airport.name}"
+    else
+      "Take off not possible"
+    end
+  end
+
+  private
+
+  def change_status
+    case
+    when @status == 'airborne'
+      @status = 'grounded'
+    when @status == 'grounded'
+      @status = 'airborne'
+    end
   end
 
 end

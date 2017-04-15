@@ -11,4 +11,8 @@ describe Airport do
     expect(airport1.capacity == 20).to eq true
   end
 
+  it 'should have a capacity of 40' do
+    airport1 = Airport.new("LaGuardia Airport", 40)
+    expect(airport1.capacity == 40).to eq true
+  end
 end
