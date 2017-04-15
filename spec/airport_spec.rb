@@ -13,4 +13,9 @@ describe Airport do
     expect(subject.takeoff(Plane.new)).to eq("Plane has taken off.")
   end
 
+  it "prevents takeoff when the weather is stromy" do
+    double(:stormy? => true)
+    expect{ subject.takeoff(Plane.new )}.to raise_error("Too stormy for takeoff.")
+  end
+
 end
