@@ -1,4 +1,4 @@
-#Makers Academy - Airport Challenge (Week 1 weekend challenge)
+# Makers Academy - Airport Challenge (Week 1 weekend challenge)
 
 I wrote this project in the weekend of the week of Makers Academy. I was tasked with designing an air traffic control system, where planes could be instructed to take off and land, depending on the weather (which was randomised to be too stormy for a landing 1 in 10 times).
 
