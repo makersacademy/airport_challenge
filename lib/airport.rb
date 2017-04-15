@@ -1,7 +1,9 @@
+require 'plane'
+
 class Airport
 
-  def land
-
+  def land(plane)
+    "Plane has been instructed to land"
   end
 
 end
