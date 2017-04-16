@@ -5,7 +5,7 @@ describe 'weather' do
     expect(report).to respond_to :stormy?
   end
 
-  # it 'tests if subject is stormy' do
-  #   expect(subject).to be true
-  # end
+  it 'tests if report is stormy' do
+    expect(report.stormy?).to be true
+  end
 end
