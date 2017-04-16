@@ -33,6 +33,19 @@ describe Atc do
     end
   end
 
+    describe "#instruct_takeoff" do
+    it "is a method that accepts 1 argument" do
+      atc = Atc.new
+      expect(atc).to respond_to(:instruct_takeoff).with(1).arguments
+    end
+
+    it "sets a Plane's location to 'in the sky'" do
+      atc = Atc.new
+      plane = Plane.new
+      expect(atc.instruct_takeoff(plane)).to eq('in the sky')
+    end
+  end
+
 end
 
 

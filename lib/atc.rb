@@ -10,5 +10,9 @@ class Atc
     plane.location
   end
 
+  def instruct_takeoff(plane)
+    plane.location = 'in the sky'
+  end
+
 end
 
