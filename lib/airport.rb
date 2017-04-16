@@ -13,6 +13,7 @@ class Airport
 
   def release_plane(plane)
     plane.take_off
+    planes.delete(plane)
   end
 
 end
