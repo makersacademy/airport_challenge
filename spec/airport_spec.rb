@@ -16,7 +16,9 @@ describe Airport do
 
     context 'climate parameter is not an instance of climate' do
       it 'raises error' do
-        expect{ Airport.new(55) }.to raise_error 'Error: Parameter is not a climate.'
+        not_a_climate = double(:climate)
+        allow(not_a_climate).to receive(:is_a?).with(Climate).and_return(false)
+        expect{ Airport.new(not_a_climate) }.to raise_error 'Error: Parameter is not a climate.'
       end
     end
   end
