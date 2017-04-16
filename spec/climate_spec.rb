@@ -13,7 +13,7 @@ describe Climate do
     end
   end
 
-  describe '#possible_climates' do
+  describe '#possible_conditions' do
     it 'includes :sunny' do
       expect(climate.possible_conditions).to include :sunny
     end
