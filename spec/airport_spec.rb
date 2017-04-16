@@ -84,6 +84,17 @@ describe Airport do
       end
     end
 
+    context 'airport is at maximum capacity' do
+      it 'does not allow plane to land' do
+        sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
+        plane = double(:plane, :land => true)
+        airport = Airport.new(sunny_climate)
+
+        airport.capacity.times { airport.build_plane }
+        expect { airport.dock_plane(plane) }.to raise_error "Error: Landing not possible when airport is full."
+      end
+    end
+
     context 'conditions are stormy' do
       it 'does not allow plane to land' do
         stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
