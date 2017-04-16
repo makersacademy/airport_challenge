@@ -79,5 +79,10 @@ describe Airport do
         allow(plane).to receive(:landed)
         expect{subject.land(plane)}.to raise_error("It is too stormy to land")
       end
+      it 'generates new weather on a new day' do
+        allow(subject).to receive(:stormy?).and_return(false)
+        subject.new_day
+        expect(subject).not_to be_stormy
+      end
   end
 end
