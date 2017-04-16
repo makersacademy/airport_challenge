@@ -19,6 +19,10 @@ it 'expects the plane to take_of from airport it is in' do
 end
 
 it 'raises' do
+  weather = double(:weather)
+  allow(weather).to receive(:status) {'sunny'}
+  weathers = class_double("Weather").as_stubbed_const
+  allow(weathers).to receive(:new) {weather}
 airport = Airport.new
 airport3 = Airport.new
 plane = Plane.new(true)

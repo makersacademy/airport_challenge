@@ -1,4 +1,5 @@
 require_relative 'airport'
+require_relative 'weather'
 
 class Plane
   attr_accessor :in_air, :in_other
@@ -8,6 +9,7 @@ class Plane
   end
 
   def land(airport,plane)
+    weather_check(Weather.new)
     airport.airport_check(plane)
     raise "plane already in airport" if plane.check(plane) == false
     plane.in_air = false
@@ -16,6 +18,7 @@ class Plane
   end
 
   def take_of(airport,plane)
+    weather_check(Weather.new)
     airport.airport_check(plane)
     fly_check(airport,plane)
     raise "plane already in air" if plane.check(plane) == true
@@ -39,5 +42,13 @@ class Plane
   raise "plane is not in this airport"
   end
 end
+
+ def weather_check(weather)
+   if weather.status == 'sunny'
+     "good to go"
+   elsif weather.status == 'stormy'
+     raise "bad weather"
+   end
+ end
 
 end
