@@ -7,13 +7,18 @@ describe Airport do
   it { is_expected.to respond_to(:planes) }
   it { is_expected.to respond_to(:capacity=) }
 
-  it 'is expected to initialize with a capacity of DEFAULT_CAPACITY' do
-    expect(Airport.new.capacity).to eq Airport::DEFAULT_CAPACITY
-  end
-
   describe '#initialize' do
+    it 'is expected to initialize with a capacity of DEFAULT_CAPACITY' do
+      expect(Airport.new.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
     it 'does not require user to provide climate parameter' do
       expect { Airport.new }.to_not raise_error
+    end
+
+    it 'accepts optional climate parameter' do
+      climate = double(:climate, :is_a? => true)
+      expect { Airport.new(climate) }.to_not raise_error
     end
 
     context 'climate parameter is not an instance of climate' do
@@ -29,7 +34,7 @@ describe Airport do
     it 'creates new plane in airport\'s dock' do
       expect(airport.planes).to be_empty
       airport.build_plane
-      expect(airport.planes.length).to eq 1
+      expect(airport.planes.count).to eq 1
       expect(airport.planes[0]).to be_an_instance_of(Plane)
     end
 
