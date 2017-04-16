@@ -114,6 +114,16 @@ describe Airport do
   end
 
   describe '#release_plane' do
+    context 'plane is not in the airport' do
+      it 'raises error' do
+        sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
+        plane = double(:plane, :take_off => true)
+        airport = Airport.new(sunny_climate)
+
+	expect(airport.planes).to be_empty
+        expect { airport.release_plane(plane) }.to raise_error "Error: This plane is not in the airport"
+      end
+    end
 
     it 'checks climate conditions' do
       sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
