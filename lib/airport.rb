@@ -11,5 +11,9 @@ class Airport
     puts "Plane landed"
     planes << plane
   end
- 
+
+  def take_off
+    planes.pop
+  end
+
 end
