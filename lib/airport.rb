@@ -15,16 +15,20 @@ class Airport
   end
 
   # 'Lands' planes by pushing them to the array. Fails if at capacity, or if weather is stormy.
-  def land(plane)
+  # Fails unless aircraft is already airborne. After landing, changes plane status to 'landed'
+  def land(aircraft)
     fail "Weather conditions too dangerous for landing" if @weather == "stormy"
     fail "All airport landing slots currently occupied" if full?
-    @slots.push(plane)
+    fail "Aircraft already landed" unless aircraft.status == "airborne"
+    @slots.push(aircraft); @slots[-1].status = "landed"
   end
 
   # Makes planes 'take off' by deleting them from the array. Fails if weather is stormy.
+  # Fails if aircraft status is already set to airborne, otherwise changes to airborne and takes off
   def takeoff(slot_number)
     fail "Weather conditions too dangerous for take-off" if @weather == "stormy"
-    @slots.delete_at(slot_number)
+    fail "Aircraft already airborne" if @slots[slot_number].status == "airborne"
+    @slots[slot_number].status = "airborne"; @slots.delete_at(slot_number)
   end
 
   # Returns true if number of array elements meets or exceeds the capacity specified in @slot_limit
