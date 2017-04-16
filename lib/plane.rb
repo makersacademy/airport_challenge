@@ -1,4 +1,4 @@
-require 'airport'
+require_relative 'airport'
 
 # Understand how to keep track of the plane's location
 

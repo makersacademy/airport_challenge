@@ -1,5 +1,5 @@
-require 'weather'
-require 'plane'
+require_relative 'weather'
+require_relative 'plane'
 # Understand how to manage planes
 
 class Airport
@@ -25,7 +25,7 @@ class Airport
 
   def take_off(plane)
     taking_off_criteria(plane)
-    @planes_in_airport.delete(plane)
+    @planes_in_airport.delete(plane.name)
     plane.taking_off
     print "The #{plane.name} took off succesfully"
   end
@@ -45,6 +45,10 @@ class Airport
 
   def change_capacity(n)
     @capacity = n
+  end
+
+  def weather_forecast
+    stormy? ? (print "Stormy") : (print "Clear")
   end
 
 private
