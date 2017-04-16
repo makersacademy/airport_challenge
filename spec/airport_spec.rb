@@ -3,7 +3,8 @@ require 'airport'
  describe Airport do
 
   it { is_expected.to respond_to :confirm_landed}
-  it {is_expected.to respond_to :confirm_take_off}
+  it { is_expected.to respond_to :confirm_take_off}
+  it { is_expected.to respond_to :weather_status  }
 
   it "confirms landing" do
     plane = Plane.new
