@@ -3,7 +3,6 @@ require_relative 'weather'
 class Plane
   attr_reader :plane
 
-
   def land(plane)
     fail 'Airport is full.' if $planes_landed.count >= Airport::DEFAULT_CAPACITY
     $planes_landed << plane
@@ -15,7 +14,7 @@ class Plane
 
   def take_off(plane)
     weather = Weather.new
-    fail 'Weather is stormy' if weather.stormy?
+    fail 'Weather is stormy' if weather.stormy? == true
     $planes_in_air << plane
   end
 
