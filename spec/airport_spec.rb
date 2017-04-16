@@ -17,10 +17,20 @@ describe Airport do
 
     it "a plane is received on take off" do
       plane = Plane.new
-      subject.land(plane) 
+      subject.land(plane)
       expect(subject.take_off).to eq plane
     end
 
+    it "unable to let a plane that doesn't exist take off" do
+      expect{ subject.take_off }.to raise_error "No planes available"
+    end
+
+    it "confirm that the plane is no longer at the airport" do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off
+      expect(subject.planes).should be_empty
+    end
   end
 
 end
