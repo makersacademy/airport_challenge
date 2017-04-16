@@ -54,4 +54,8 @@ describe Airport do
       expect(airport.capacity).to eq 100
     end
   end
+
+  describe '#weather' do
+      it {is_expected.to respond_to(:generate_weather)}
+  end
 end
