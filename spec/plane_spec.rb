@@ -20,7 +20,7 @@ describe Plane do
     context 'plane has landed' do
       it 'returns message confirming plane has landed' do
         plane.land
-        expect(plane.confirm_landing).to eq "This plane has landed."
+        expect(plane.land).to eq "This plane has landed."
       end
     end
 
