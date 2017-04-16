@@ -16,7 +16,6 @@ describe Plane do
 
   end
 
-  it {is_expected.to respond_to(:take_off)}
   describe '#take_off' do
     it 'makes plane take off' do
       plane.take_off
