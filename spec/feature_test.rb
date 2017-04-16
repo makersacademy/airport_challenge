@@ -1,4 +1,4 @@
-require './lib/plane'
+require './lib/plane.rb'
 
 plane = Plane.new
-plane.land
+plane.land(airport)
