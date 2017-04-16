@@ -7,7 +7,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:land).with(1).argument }
 
-  describe 'land' do
+  describe '#land' do
     it 'lands plane' do
     plane = double(:plane)
     subject.land(plane)
