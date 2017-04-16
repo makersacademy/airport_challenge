@@ -8,6 +8,7 @@ class Plane
   end
 
   def take_off
+    self.landed = false
   end
 
   def confirm_landing
