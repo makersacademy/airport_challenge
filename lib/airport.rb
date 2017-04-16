@@ -5,8 +5,8 @@ class Airport
   attr_reader :capacity, :planes
 
   def initialize(capacity = CAPACITY)
-    raise "Capactiy must be an integer greater than zero" unless capacity.is_a?(Integer)
-    raise "Capactiy must be an integer greater than zero" unless capacity > 0
+    raise "Capactiy must be an integer" unless capacity.is_a?(Integer)
+    raise "Capactiy must be greater than zero" unless capacity > 0
     @capacity = capacity
     @planes = []
   end

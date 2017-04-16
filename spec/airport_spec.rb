@@ -35,11 +35,15 @@ describe Airport do
       expect(airport_3.capacity).to eq 30
     end
 
-    it 'must be a non-negative integer for capacity' do
-      message = "Capactiy must be an integer greater than zero"
+    it 'must have an integer for capacity' do
+      message = "Capactiy must be an integer"
       expect { described_class.new('string') }.to raise_error message
-      expect { described_class.new(-1) }.to raise_error message
       expect { described_class.new(1.5) }.to raise_error message
+    end
+
+    it 'must have an non-negative for capacity' do
+      message = "Capactiy must be greater than zero"
+      expect { described_class.new(-1) }.to raise_error message
     end
 
   end
