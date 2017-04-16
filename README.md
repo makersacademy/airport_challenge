@@ -5,7 +5,7 @@ Steps taken/theory:
 1. Functional representation of user stories.
 2. Built the first structures using take_of and landing method in airport class.
 3. Rebuilt the structure again to try and follow the premise of single risponsibility.
-Functional representation 
+
 
 Objects  | Messages
 ------------- | -------------
