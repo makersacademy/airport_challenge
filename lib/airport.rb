@@ -8,7 +8,7 @@ class Airport
   end
 
   def land(plane)
-    puts "Plane landed"
+    plane.land_plane
     planes << plane
   end
 

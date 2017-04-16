@@ -3,7 +3,8 @@ require './lib/airport.rb'
 describe Airport do
 
   describe "#land a plane" do
-    it 'lands a plane when a plane is passed' do
+
+    it 'lands an argument when an argument is passed' do
       expect(subject).to respond_to(:land).with(1).argument
     end
 
@@ -12,6 +13,7 @@ describe Airport do
       expect(subject.land(plane)).to eq subject.planes
     end
   end
+
 
   describe "#let a plane take off" do
 
@@ -32,5 +34,9 @@ describe Airport do
       expect(subject.planes).to be_empty
     end
   end
+
+
+
+
 
 end
