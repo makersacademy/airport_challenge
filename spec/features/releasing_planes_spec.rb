@@ -10,7 +10,9 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def given_there_is_an_airport
-    @airport = Airport.new
+    climate = double(:climate, :conditions => :sunny)
+    allow(climate).to receive(:is_a?).with(Climate).and_return(true)
+    @airport = Airport.new(climate)
   end
 
   def and_there_is_a_plane_at_the_airport

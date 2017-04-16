@@ -1,8 +1,5 @@
 require 'airport'
 
-srand_sunny_weather = srand(1)
-srand_stormy_weather = srand(5)
-
 describe Airport do
   
   alias_method :airport, :subject
