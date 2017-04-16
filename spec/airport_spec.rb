@@ -10,11 +10,9 @@ describe Airport do
 
   describe "capacity" do
 
-    it 'responds to capacity' do
-      expect(airport).to respond_to :capacity
-    end
+    it { is_expected.to respond_to(:capacity) }
 
-    it 'reports full when act capacity' do
+    it 'reports full when at capacity' do
       expect(airport.full?).to eq false
       airport.capacity.times do
         allow(plane).to receive(:land)
@@ -48,9 +46,7 @@ describe Airport do
 
   describe "#release" do
 
-    it 'responds to release' do
-      expect(airport).to respond_to(:release).with(1).argument
-    end
+    it { is_expected.to respond_to(:release).with(1).argument }
 
     it 'cannot release planes that it does not have' do
       message = "Plane is not at that airport"
@@ -67,9 +63,7 @@ describe Airport do
 
   describe "#receive" do
 
-    it 'responds to receive' do
-      expect(airport).to respond_to(:receive).with(1).argument
-    end
+    it { is_expected.to respond_to(:receive).with(1).argument }
 
     it "cannot receive planes when at capacity" do
       airport.capacity.times do

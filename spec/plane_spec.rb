@@ -10,9 +10,7 @@ describe Plane do
 
   describe "#land" do
 
-    it 'can land' do
-      expect(plane).to respond_to :land
-    end
+    it { is_expected.to respond_to(:land) }
 
     it "cannot land again if it has landed" do
       allow(weather).to receive_messages(:status => :sunny)
@@ -38,9 +36,7 @@ describe Plane do
 
   describe "#take_off" do
 
-    it 'can take-off' do
-      expect(plane).to respond_to :take_off
-    end
+    it { expect(plane).to respond_to :take_off }
 
     it 'can take off in sunny weather' do
       allow(weather).to receive_messages(:status => :sunny)
@@ -67,9 +63,7 @@ describe Plane do
 
   describe "#confirm_status" do
 
-    it 'can confirm its status' do
-      expect(plane).to respond_to :confirm_status
-    end
+    it { is_expected.to respond_to :confirm_status }
 
     it 'can land at an airport and confirm that it has landed' do
       allow(weather).to receive_messages(:status => :sunny)
