@@ -29,21 +29,29 @@ describe Airport do
 
   describe '#conditions' do
     it 'checks climate\'s conditions' do
-      climate = airport.climate
-      expect(climate).to receive (:conditions)
+      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
+      airport = Airport.new(sunny_climate)
+
+      expect(sunny_climate).to receive (:conditions)
       airport.conditions
     end
   end
 
   describe '#dock_plane' do
     it 'tells plane to land' do
+      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
       plane = double(:plane, :land => true)
+      airport = Airport.new(sunny_climate)
+
       expect(plane).to receive(:land)
       airport.dock_plane(plane)
     end
 
     it 'adds plane to Airport\'s @planes array' do
+      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
       plane = double(:plane, :land => true)
+      airport = Airport.new(sunny_climate)
+
       airport.dock_plane(plane)
       expect(airport.planes).to include plane 
     end
@@ -51,33 +59,41 @@ describe Airport do
 
   describe '#release_plane' do
     it 'tells plane to take off' do
+      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
       plane = double(:plane, :land => true, :take_off => true)
+      airport = Airport.new(sunny_climate)
+
       airport.dock_plane(plane)
-      srand_sunny_weather
       expect(plane).to receive(:take_off)
       airport.release_plane(plane)
     end
 
     it 'removes plane from Airport\'s @planes array' do
+      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
       plane = double(:plane, :land => true, :take_off => true)
+      airport = Airport.new(sunny_climate)
+
       airport.dock_plane(plane)
-      expect(airport.planes).to include plane
-      srand_sunny_weather
       airport.release_plane(plane)
       expect(airport.planes).to_not include plane
     end
 
     it 'checks airport conditions' do
+      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
       plane = double(:plane, :land => true, :take_off => true)
+      airport = Airport.new(sunny_climate)
+
       airport.dock_plane(plane)
       expect(airport).to receive(:conditions)
-      srand_sunny_weather
       airport.release_plane(plane)
     end
 
     context 'conditions are stormy' do
       it 'does not allow take off' do
+        stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
         plane = double(:plane, :land => true, :take_off => true)
+        airport = Airport.new(stormy_climate)
+
         airport.dock_plane(plane)
         srand_stormy_weather
         expect{ airport.release_plane(plane) }.to raise_error 'Error: Take-off forbidden when weather is stormy.'
