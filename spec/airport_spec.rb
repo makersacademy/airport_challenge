@@ -35,6 +35,16 @@ describe Airport do
       end
     end
 
+    context 'when airport full' do
+      it 'gives an error due to maxed capacity' do
+        allow(subject).to receive(:storms?){false}
+        allow(subject).to receive(:full?){true}
+        message = "Landing not possible, airport at full capacity"
+        expect{ subject.land(plane) }.to raise_error message
+        end
+      end
+
+
   it { is_expected.to respond_to :take_off }
 
   describe '#take_off' do
@@ -100,8 +110,6 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect(subject.full?).to be true
       end
-
-
     end
 
   end
