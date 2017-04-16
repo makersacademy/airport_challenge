@@ -1,2 +1,4 @@
+require './lib/plane'
 
-plane.land(airport)
+plane = Plane.new
+plane.land
