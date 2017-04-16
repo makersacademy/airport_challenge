@@ -12,6 +12,12 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
+    it { is_expected.to respond_to :capacity }
+
+    it 'defaults capacity' do
+      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
   end
 
   describe '#land' do
@@ -28,13 +34,15 @@ describe Airport do
       expect(subject.planes).to include plane
     end
 
-    it 'should not let planes that are landed to land again' do
-      expect { subject.land(plane) }.to raise_error 'plane already landed'
-    end
+    # it 'should not let planes that are landed to land again' do
+    #   expect { subject.land(plane) }.to raise_error 'plane already landed'
+    # end
 
     it 'should not let planes land when airport is full' do
-      plane_2 = double(:plane)
-      expect { subject.land(plane_2) }.to raise_error 'airport full!'
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(double :plane)
+      end
+      expect { subject.land(double :plane) }.to raise_error 'airport full!'
     end
 
   end
