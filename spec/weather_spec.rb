@@ -3,20 +3,17 @@ require 'airport'
 require 'airplane'
 
 describe Weather do
-  it 'should raise error when #stormy?' do
-    expect { subject.check_weather }.to raise_error "No taking off or landing allowed while weather is stormy."
-  end
+  describe '#stormy?' do
+    it 'should raise error when weather is #stormy?' do
+      message = "No taking off or landing allowed while weather is stormy."
+      allow_any_instance_of(Weather).to receive(:stormy?) { raise message }
+      expect { subject.stormy? }.to raise_error message
+    end
 
-  it 'planes should not #take_off when #stormy?' do
-    airport = Airport.new
-    plane = Airplane.new
-    airport.land(plane)
-    expect { airport.take_off }.to raise_error "No taking off allowed while weather is stormy." if subject.stormy?
-  end
-
-  it 'planes should not #land when #stormy?' do
-    airport = Airport.new
-    plane = Airplane.new
-    expect { airport.land(plane) }.to raise_error "No taking off allowed while weather is stormy." if subject.stormy?
+    it 'should not raise error when weather is not #stormy?' do
+      message = "No taking off or landing allowed while weather is stormy."
+      allow_any_instance_of(Weather).to receive(:stormy?) { false }
+      expect(subject.stormy?).to eq false
+    end
   end
 end

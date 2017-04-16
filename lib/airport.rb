@@ -4,18 +4,19 @@ class Airport
 
   def initialize(capacity = 10)
     @capacity = capacity
+    @plane = plane
+    @weather = Weather.new
     @runways = []
     @capacity.times { @runways << Airplane.new }
   end
 
-  def take_off
-    return @runways.pop unless @runways.nil? || Weather.new.check_weather
+  def take_off(plane)
+    return @runways.delete(plane) unless @runways.nil? || @weather.stormy?
     "No airplanes landed at the moment."
   end
 
   def land(plane)
-    Weather.new.check_weather
-    @plane = plane
+    @weather.stormy?
     @runways << plane unless landed?(plane) || @runways.count == @capacity
   end
 
