@@ -4,7 +4,7 @@ class Weather
   end
 
   def generate_weather
-    @number = rand(2)
+    @number = rand(4)
   end
 
 end
