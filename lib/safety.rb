@@ -1,6 +1,6 @@
 module Safety
 
-  def weather_check?(weather = Weather.new)
+  def weather_check(weather = Weather.new)
     if weather.status == "sunny"
       "check"
     else
