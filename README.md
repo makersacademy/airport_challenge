@@ -6,6 +6,7 @@
 - Specific planes can take-off and land
 - Planes can be confirmed landed
 - Planes cannot take-off or land if weather conditions are bad (generated randomly)
+- User warned when airport is full or empty
 
 #### Example:
 
@@ -30,11 +31,11 @@
 [6] pry(main)> airport.take_off(plane)
 RuntimeError: No taking off or landing allowed while weather is stormy.
 from /Users/Fasolin/Projects/airport_challenge/lib/weather.rb:4:in `stormy?'
-[9] pry(main)> airport.take_off(plane)
+[7] pry(main)> airport.take_off(plane)
 => #<Airplane:0x007fa8b1acaba0>
-[10] pry(main)> airport.landed?(plane)
+[8] pry(main)> airport.landed?(plane)
 => false
-[11] pry(main)> airport.land(plane)
+[9] pry(main)> airport.land(plane)
 => [#<Airplane:0x007fa8b1acab78>,
  #<Airplane:0x007fa8b1acab28>,
  #<Airplane:0x007fa8b1acaa38>,
@@ -45,6 +46,10 @@ from /Users/Fasolin/Projects/airport_challenge/lib/weather.rb:4:in `stormy?'
  #<Airplane:0x007fa8b1aca970>,
  #<Airplane:0x007fa8b1aca948>,
  #<Airplane:0x007fa8b1acaba0>]
-[12] pry(main)> airport.landed?(plane)
+[10] pry(main)> airport.landed?(plane)
 => true
+[11] pry(main)> 10.times { airport.take_off(airport.runways[-1]) }
+RuntimeError: Airport is empty.
+[12] pry(main)> 10.times { airport.land(Airplane.new) }
+RuntimeError: Airport is full.
 ```
