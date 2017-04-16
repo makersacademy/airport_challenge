@@ -1,111 +1,143 @@
 require 'airport'
 
 describe Airport do
+  before do
+    allow(plane).to receive(:landed?)
+  end
+
   it { is_expected.to respond_to :land }
   it { is_expected.to respond_to :takeoff }
-  it { is_expected.to respond_to :in_airport? }
 
-  let(:plane) { Plane.new }
+  let(:plane) { double("Plane") }
   let(:weather) { double("Weather") }
-  let(:airport) { double("Airport") }
+  subject(:airport) { described_class.new }
 
-  context 'capacity' do
+  describe 'capacity' do
+
     it 'has a set default value' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
-    it 'can be set lower at initialization' do
-      station = Airport.new(20)
-      expect(station.capacity).to eq 20
-    end
-
-    it 'can be set higher at initialization' do
-      station = Airport.new(100)
-      expect(station.capacity).to eq 100
+    it 'can be set adjusted at initialization' do
+      expect(described_class.new(20).capacity).to eq 20
     end
 
     it 'can be reassigned as needed' do
-      subject.adjust_capacity(75)
-      expect(subject.capacity).to eq 75
+      airport.adjust_capacity(75)
+      expect(airport.capacity).to eq 75
     end
 
-    context 'errors' do
-      it 'raises error if reassigned to zero' do
-        expect { subject.adjust_capacity(0) }.to raise_error 'invalid capacity'
+    describe 'raises error' do
+      it 'if reassigned to zero' do
+        expect { airport.adjust_capacity(0) }.to raise_error 'Invalid capacity'
       end
 
-      it 'raises error if reassigned to negative value' do
-        expect { subject.adjust_capacity(-13) }.to raise_error 'invalid capacity'
+      it 'if reassigned to negative value' do
+        message = 'Invalid capacity'
+        expect { airport.adjust_capacity(-13) }.to raise_error message
       end
 
-      it 'raises error if set lower than current plane count' do
-        allow(subject.weather).to receive(:stormy?).and_return(false)
-        21.times { subject.land(plane) }
-        message = 'planes exceeed that capacity!'
-        expect { subject.adjust_capacity(20) }.to raise_error message
+      it 'if set lower than current plane count' do
+        allow(airport.weather).to receive(:stormy?).and_return(false)
+        allow(airport).to receive(:in_airport?).and_return(false)
+        allow(plane).to receive(:land).and_return(plane)
+        21.times { airport.land(plane) }
+        message = 'Planes already exceeed that capacity!'
+        expect { airport.adjust_capacity(20) }.to raise_error message
       end
 
-      it 'raises error if initialzed with zero capacity' do
-        expect { Airport.new(0) }.to raise_error 'invalid capacity'
+      it 'if initialzed with zero capacity' do
+        expect { described_class.new(0) }.to raise_error 'Invalid capacity'
       end
 
-      it 'raises error if initialzed with negative capacity' do
-        expect { Airport.new(-4) }.to raise_error 'invalid capacity'
+      it 'if initialzed with negative capacity' do
+        expect { described_class.new(-4) }.to raise_error 'Invalid capacity'
       end
     end
   end
 
   describe '#land' do
+    before do
+      allow(plane).to receive(:land).and_return(plane)
+      allow(airport.weather).to receive(:stormy?).and_return(false)
+    end
+
+    it 'instructs plane to land successfully' do
+      expect(airport.land(plane)).to eq [plane]
+    end
+
     it 'adds plane to docked planes' do
-      allow(subject.weather).to receive(:stormy?).and_return(false)
-      subject.land(plane)
-      expect(subject.planes).to include plane
+      airport.land(plane)
+      expect(airport.planes).to include plane
     end
 
-    it 'raises error when stormy' do
-      allow(subject.weather).to receive(:stormy?).and_return(true)
-      message = 'cannot land in stormy weather'
-      expect { subject.land(plane) }.to raise_error message
-    end
+    describe 'raises error' do
+      it 'when stormy' do
+        allow(airport.weather).to receive(:stormy?).and_return(true)
+        message = 'Cannot land in stormy weather'
+        expect { airport.land(plane) }.to raise_error message
+      end
 
-    it 'raises error when airport is full' do
-      allow(subject.weather).to receive(:stormy?).and_return(false)
-      50.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error 'airport full'
+      it 'when airport is full' do
+        allow(airport).to receive(:in_airport?).and_return(false)
+        50.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error 'Airport full'
+      end
+
+      it 'when plane is already landed there' do
+        airport.land(plane)
+        message = 'Plane is already in the airport'
+        expect { airport.land(plane) }.to raise_error message
+      end
+
+      it 'when trying to land a landed plane elsewhere' do
+        gatwick, heathrow = described_class.new, described_class.new
+        allow(gatwick.weather).to receive(:stormy?).and_return(false)
+        allow(heathrow.weather).to receive(:stormy?).and_return(false)
+        gatwick.land(plane)
+        message = 'Plane already landed elsewhere!'
+        allow(plane).to receive(:landed?).and_return(true)
+        expect { heathrow.land(plane) }.to raise_error message
+      end
+
+      it 'if passed string' do
+        expect { airport.land('plane') }.to raise_error 'Invalid plane'
+      end
+
+      it 'if passed an integer' do
+        expect { airport.land(1) }.to raise_error 'Invalid plane'
+      end
     end
   end
 
   describe '#takeoff' do
+    before do
+      allow(plane).to receive(:land).and_return(plane)
+      allow(plane).to receive(:takeoff).and_return(plane)
+      allow(airport.weather).to receive(:stormy?).and_return(false)
+    end
+
     it 'removes plane from docked planes' do
-      allow(subject.weather).to receive(:stormy?).and_return(false)
-      subject.land(plane)
-      subject.takeoff(plane)
-      expect(subject.planes).not_to include plane
+      airport.land(plane)
+      airport.takeoff(plane)
+      expect(airport.planes).not_to include plane
     end
 
     it 'raises error when stormy' do
-      allow(subject.weather).to receive(:stormy?).and_return(false)
-      subject.land(plane)
-      allow(subject.weather).to receive(:stormy?).and_return(true)
-      message = 'cannot takeoff in stormy weather'
-      expect { subject.takeoff(plane) }.to raise_error message
+      airport.land(plane)
+      allow(airport.weather).to receive(:stormy?).and_return(true)
+      message = 'Cannot takeoff in stormy weather'
+      expect { airport.takeoff(plane) }.to raise_error message
     end
 
     it 'raises error when no planes docked' do
-      allow(subject.weather).to receive(:stormy?).and_return(false)
-      expect { subject.takeoff(plane) }.to raise_error 'no planes to takeoff'
-    end
-  end
-
-  describe '#in_airport?' do
-    it 'returns true when plane is docked' do
-      allow(subject.weather).to receive(:stormy?).and_return(false)
-      subject.land(plane)
-      expect(subject.in_airport?(plane)).to eq true
+      expect { airport.takeoff(plane) }.to raise_error 'No planes to takeoff'
     end
 
-    it 'returns false when plane is not in airport' do
-      expect(subject.in_airport?(plane)).to eq false
+    it 'raises error when plane is not in the airport' do
+      message = 'Plane is not in the airport'
+      allow(airport).to receive(:empty?).and_return(false)
+      expect { airport.takeoff(plane) }.to raise_error message
     end
   end
 end
