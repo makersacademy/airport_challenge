@@ -2,22 +2,23 @@ require 'airport'
 
 describe Airport do
 
-  it { is_expected.to respond_to :land }
+  let(:plane) { Plane.new }
 
   it { is_expected.to respond_to(:land).with(1).argument }
 
-  it { is_expected.to respond_to :plane }
-
-  it 'tells a plane to land' do
-    plane = Plane.new
-    expect(subject.land(plane)).to eq plane
-    expect(plane).to be_landed
+  describe '#land' do
+    it 'instructs a plane to land' do
+      expect(subject.land(plane)).to eq plane
+    end
   end
 
-  it 'has the landed plane' do
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.plane).to eq plane
+  it { is_expected.to respond_to(:take_off).with(1).argument }
+
+  describe '#take_off' do
+    it 'instructs a plane to take off' do
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq plane
+    end
   end
 
 end
