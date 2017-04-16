@@ -23,8 +23,7 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def then_planes_should_be_unable_to_land
-    expect{ @airport.dock_plane(@plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
+    expect { @airport.dock_plane(@plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
   end
 
 end
-    

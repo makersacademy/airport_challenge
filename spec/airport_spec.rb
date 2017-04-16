@@ -8,14 +8,14 @@ describe Airport do
 
   describe '#initialize' do
     it 'does not require user to provide climate parameter' do
-      expect{ Airport.new }.to_not raise_error
+      expect { Airport.new }.to_not raise_error
     end
 
     context 'climate parameter is not an instance of climate' do
       it 'raises error' do
         not_a_climate = double(:climate)
         allow(not_a_climate).to receive(:is_a?).with(Climate).and_return(false)
-        expect{ Airport.new(not_a_climate) }.to raise_error 'Error: Parameter is not a climate.'
+        expect { Airport.new(not_a_climate) }.to raise_error 'Error: Parameter is not a climate.'
       end
     end
   end
@@ -30,14 +30,14 @@ describe Airport do
 
     it 'takes an optional argument that specifies a custom plane' do
       special_plane = Plane.new
-      expect{ airport.build_plane(special_plane) }.to_not raise_error
+      expect { airport.build_plane(special_plane) }.to_not raise_error
     end
 
     context 'a non-plane is specified' do
       it 'throws error' do
         non_plane = double(:plane)
         allow(non_plane).to receive(:is_a?).with(Plane).and_return(false)
-        expect{ airport.build_plane(non_plane) }.to raise_error "Error: The airport can only build planes."
+        expect { airport.build_plane(non_plane) }.to raise_error "Error: The airport can only build planes."
       end
     end
         
@@ -54,7 +54,7 @@ describe Airport do
       sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
       airport = Airport.new(sunny_climate)
 
-      expect(sunny_climate).to receive (:conditions)
+      expect(sunny_climate).to receive(:conditions)
       airport.conditions
     end
   end
@@ -86,7 +86,7 @@ describe Airport do
         plane = double(:plane, :land => true)
         airport = Airport.new(stormy_climate)
         
-        expect{ airport.dock_plane(plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
+        expect { airport.dock_plane(plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
       end
     end
 
@@ -133,11 +133,9 @@ describe Airport do
         airport = Airport.new(stormy_climate)
         airport.build_plane(plane)
 
-        expect{ airport.release_plane(plane) }.to raise_error 'Error: Take-off forbidden when weather is stormy.'
+        expect { airport.release_plane(plane) }.to raise_error 'Error: Take-off forbidden when weather is stormy.'
       end
     end
   end
 
 end
-
-

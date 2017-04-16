@@ -24,7 +24,7 @@ feature 'Air_traffic_control', :type => :feature do
   end
   
   def then_the_plane_should_be_unable_to_take_off
-    expect{ @airport.release_plane(@plane) }.to raise_error "Error: Take-off forbidden when weather is stormy."
+    expect { @airport.release_plane(@plane) }.to raise_error "Error: Take-off forbidden when weather is stormy."
   end 
 
 end
