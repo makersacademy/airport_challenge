@@ -16,10 +16,11 @@ describe Plane do
 
   end
 
+  it {is_expected to respond_to(:take_off)}
+
   describe '#confirm_landing' do
     context 'plane has landed' do
       it 'returns message confirming plane has landed' do
-        plane.land
         expect(plane.land).to eq "This plane has landed."
       end
     end

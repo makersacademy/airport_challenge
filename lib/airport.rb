@@ -11,4 +11,8 @@ class Airport
     planes << plane
   end
 
+  def release_plane(plane)
+    plane.take_off
+  end
+
 end

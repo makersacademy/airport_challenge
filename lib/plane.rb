@@ -7,6 +7,9 @@ class Plane
     confirm_landing
   end
 
+  def take_off
+  end
+
   def confirm_landing
     landed ? "This plane has landed." : "This plane has not landed."
   end

@@ -1,8 +1,11 @@
 require 'airport'
 
 describe Airport do
+  alias_method :airport, :subject
 
   it { is_expected.to respond_to(:planes) }
+
+  it { is_expected.to respond_to(:release_plane).with(1).argument }
 
   describe '#dock_plane' do
     it 'tells plane to land' do
@@ -17,5 +20,14 @@ describe Airport do
       expect(subject.planes).to include plane 
     end
   end
+
+  describe '#release_plane' do
+    it 'tells plane to take off' do
+      plane = double(:plane, :take_off => true)
+      expect(plane).to receive(:take_off)
+      airport.release_plane(plane)
+    end
+  end
+
 
 end
