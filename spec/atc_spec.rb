@@ -29,6 +29,7 @@ describe Atc do
       atc = Atc.new
       plane = Plane.new
       airport = Airport.new
+      airport.weather = 'clear'
       expect(atc.instruct_landing(plane, airport)).to eq(airport)
     end
     
@@ -53,7 +54,8 @@ describe Atc do
       expect(atc.instruct_takeoff(plane)).to eq('in the sky')
     end
   end
-
 end
+
+
 
 

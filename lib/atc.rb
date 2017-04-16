@@ -1,10 +1,13 @@
-require "plane.rb"
-require "airport.rb"
+load "plane.rb"
+load "airport.rb"
 
 class Atc
 
   def instruct_landing(plane, airport)
-    plane.location = airport
+    if airport.weather == 'stormy' 
+      raise "Cannot land as weather is stormy"
+    else plane.location = airport
+    end
   end
 
   def check_location(plane)
@@ -17,3 +20,11 @@ class Atc
 
 end
 
+# -- DEBUGGING PUTS STATEMENTS -- #
+
+# puts sandy = Atc.new
+# puts easyjet = Plane.new
+# puts heathrow = Airport.new
+# heathrow.weather = 'weather'
+# puts heathrow.weather
+# puts sandy.instruct_landing(easyjet, heathrow)
