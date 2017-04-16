@@ -6,7 +6,11 @@ class Atc
   def instruct_landing(plane, airport)
     if airport.weather == 'stormy' 
       raise "Cannot land as weather is stormy"
-    else plane.location = airport
+    elsif airport.is_full?
+      raise 'Cannot land as airport is full'
+    else 
+      airport.planes << plane
+      plane.location = airport
     end
   end
 
@@ -18,6 +22,7 @@ class Atc
     if plane.location.weather == 'stormy'
       raise "Cannot takeoff as weather is stormy"
     else
+      plane.location.planes.delete(plane)
       plane.location = 'in the sky'
     end
   end

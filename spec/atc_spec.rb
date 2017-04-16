@@ -27,9 +27,10 @@ describe Atc do
 
     it "if weather is clear sets a Plane's location to given Airport" do
       atc = Atc.new
-      plane = Plane.new
       airport = Airport.new
+      plane = Plane.new(airport)
       airport.weather = 'clear'
+      airport.planes = []
       expect(atc.instruct_landing(plane, airport)).to eq(airport)
     end
     
@@ -40,6 +41,16 @@ describe Atc do
       airport.weather = 'stormy'
       expect { atc.instruct_landing(plane, airport) }.to raise_error 'Cannot land as weather is stormy'
     end
+
+    it "will not land if airport is at capacity" do
+      atc = Atc.new
+      airport = Airport.new
+      10.times { airport.planes << Plane.new('test_plane') }
+      plane = Plane.new
+      airport.weather = 'clear'
+      expect { atc.instruct_landing(plane, airport) }.to raise_error 'Cannot land as airport is full'
+    end
+
   end
 
     describe "#instruct_takeoff" do
@@ -50,9 +61,8 @@ describe Atc do
 
     it "if weather is clear sets a Plane's location to 'in the sky'" do
       atc = Atc.new
-      plane = Plane.new
       airport = Airport.new
-      plane.location = airport
+      plane = Plane.new(airport)
       airport.weather = 'clear'
       expect(atc.instruct_takeoff(plane)).to eq('in the sky')
     end
