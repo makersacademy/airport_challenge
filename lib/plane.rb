@@ -3,7 +3,7 @@ class Plane
   attr_reader :landed
 
   def land
-    self.landed = true
+    landing_process
     confirm_landing
   end
 
@@ -14,4 +14,9 @@ class Plane
   private
 
   attr_writer :landed
+
+  def landing_process
+    self.landed = true
+  end
+
 end
