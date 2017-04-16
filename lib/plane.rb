@@ -22,7 +22,7 @@ class Plane
   end
 
   def confirm_status
-    @status
+    status
   end
 
   def flying?
@@ -32,4 +32,5 @@ class Plane
   def stormy(weather)
     weather.status == :stormy
   end
+  
 end

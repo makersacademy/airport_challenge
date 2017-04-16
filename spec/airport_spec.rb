@@ -5,16 +5,16 @@ describe Airport do
   subject(:airport) { described_class.new }
   subject(:airport_2) { described_class.new }
   let(:weather) { double :weather }
-  let(:aeroplane) { double :plane }
+  let(:plane) { double :plane }
 
   it 'cannot reports full when at capacity' do
     expect(airport.full?).to eq false
-      airport.capacity.times do
-        aeroplane = double('plane', :land => true)
-        allow(weather).to receive_messages(:status => :sunny)
-        aeroplane.land(weather, airport)
-        airport.receive(aeroplane)
-      end
+    airport.capacity.times do
+      plane = double('plane', :land => true)
+      allow(weather).to receive_messages(:status => :sunny)
+      plane.land(weather, airport)
+      airport.receive(plane)
+    end
     expect(airport.full?).to eq true
   end
 
@@ -44,26 +44,26 @@ describe Airport do
   end
 
   it 'receives landing planes into its planes array' do
-    allow(aeroplane).to receive_messages(:land => :landed)
+    allow(plane).to receive_messages(:land => :landed)
     allow(weather).to receive_messages(:status => :sunny)
-    aeroplane.land(weather, airport)
-    airport.receive(aeroplane)
+    plane.land(weather, airport)
+    airport.receive(plane)
     expect(airport.planes.count).to eq 1
   end
 
   it 'releases departing planes from its planes array' do
-    allow(aeroplane).to receive_messages(:take_off => :in_air, :land => true)
+    allow(plane).to receive_messages(:take_off => :in_air, :land => true)
     allow(weather).to receive_messages(:status => :sunny)
-    airport.receive(aeroplane)
+    airport.receive(plane)
     expect(airport.planes.count).to eq 1
-    aeroplane.take_off(weather, airport)
-    airport.release(aeroplane)
+    plane.take_off(weather, airport)
+    airport.release(plane)
     expect(airport.planes.count).to eq 0
   end
 
   it 'cannot release planes that it does not have' do
     message = "Plane is not at that airport"
-    expect { airport_2.release(aeroplane) }.to raise_error message
+    expect { airport_2.release(plane) }.to raise_error message
   end
 
 end

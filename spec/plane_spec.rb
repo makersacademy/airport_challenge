@@ -73,7 +73,6 @@ describe Plane do
     expect { plane.land(weather, airport) }.to raise_error message
   end
 
-
   it "cannot land again if it has landed" do
     allow(weather).to receive_messages(:status => :sunny)
     allow(airport).to receive_messages(:planes => [], :full? => false, :receive => [])
