@@ -1,7 +1,7 @@
 class Plane
 
-  def land
-
+  def landed?
+    "Landed"
   end
-  
+
 end
