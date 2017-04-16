@@ -9,9 +9,17 @@ describe Airport do
 
   describe '#land' do
     it 'lands plane' do
-    plane = double(:plane)
-    subject.land(plane)
-    expect(subject.planes).to include(plane)
+      plane = double(:plane)
+      subject.land(plane)
+      expect(subject.planes).to include(plane)
+    end
+  end
+
+  describe '#takeoff' do
+    it 'sends plane' do
+      plane = double(:plane)
+      subject.takeoff
+      expect(subject.planes).not_to include(plane)
     end
   end
 end

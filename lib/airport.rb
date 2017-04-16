@@ -1,3 +1,5 @@
+require './lib/plane'
+
 class Airport
 
   attr_reader :planes
@@ -9,6 +11,11 @@ class Airport
   def land(plane)
     @planes << plane
     return "The plane has landed."
+  end
+
+  def takeoff
+    @planes.pop
+    return "The plane has taken off"
   end
 
 end
