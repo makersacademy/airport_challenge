@@ -9,10 +9,14 @@ class Plane
 
   def take_off
     take_off_process
+    confirm_take_off
   end
 
   def confirm_landing
     landed ? "This plane has landed." : "This plane has not landed."
+  end
+
+  def confirm_take_off
   end
 
   private
