@@ -70,6 +70,13 @@ describe Airport do
       expect(subject.planes).to_not include plane
     end
 
+    it 'should raise error when trying to take off airborne plane' do
+      allow(weather).to receive(:condition) { 'sunny' }
+      subject.land(plane)
+      subject.take_off(plane)
+      expect { subject.take_off(plane) }.to raise_error 'already airborne'
+    end
+
   end
 
   describe 'weather condition' do
