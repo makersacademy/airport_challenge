@@ -49,6 +49,25 @@ describe Airport do
       airport.release_plane(plane)
       expect(airport.planes).to_not include plane
     end
+
+    it 'checks airport conditions' do
+      plane = double(:plane, :land => true, :take_off => true)
+      airport.dock_plane(plane)
+      expect(airport).to receive(:conditions)
+      airport.release_plane(plane)
+    end
+
+    context 'conditions are stormy' do
+      it 'does not allow take off' do
+        plane = double(:plane, :land => true, :take_off => true)
+        airport.dock_plane(plane)
+        srand(5)
+        expect{ airport.release_plane(plane) }.to raise_error 'Error: Take-off forbidden when weather is stormy.'
+      end
+    end
+
   end
 
 end
+
+
