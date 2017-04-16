@@ -13,6 +13,10 @@ describe Airport do
 		it "Should only accept integer as a parameter" do
 			 expect { airport.new("two") }.to raise_error
 		end
+		it "Should default capacity to DEFAULT_CAPACITY when no argument passed" do
+			airport = subject.new
+			expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+		end
 	end
 
 	describe  '#land' do

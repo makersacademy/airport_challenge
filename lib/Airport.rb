@@ -2,8 +2,8 @@ require 'Plane'
 
 class Airport
 
-	attr_reader :weather, :capacity
 	DEFAULT_CAPACITY = 20
+	attr_reader :weather, :capacity,  :landed
 
 	def initialize(capacity = DEFAULT_CAPACITY)
 		raise "Invalid capacity" unless capacity.is_a? Integer
