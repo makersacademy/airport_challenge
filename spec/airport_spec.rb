@@ -1,5 +1,6 @@
 require 'airport'
 
+
 describe Airport do
   it { expect(subject).to respond_to(:land).with(1).argument }
 
@@ -14,8 +15,8 @@ describe Airport do
   end
 
   it "prevents takeoff when the weather is stromy" do
-    double(:stormy? => true)
-    expect{ subject.takeoff(Plane.new )}.to raise_error("Too stormy for takeoff.")
+    #double(:stormy? => true)
+    expect{ subject.takeoff(Plane.new)}.to raise_error("Too stormy for takeoff.")
   end
 
 end
