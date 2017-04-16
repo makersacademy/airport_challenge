@@ -1,16 +1,16 @@
-require './lib/weather'
+require './lib/climate'
 
 class Airport
 
-  attr_reader :planes, :weather
+  attr_reader :planes, :climate
 
   def initialize
     @planes = []
-    @weather = Weather.new
+    @climate = Climate.new
   end
 
   def conditions
-    weather.conditions
+    climate.conditions
   end
 
   def dock_plane(plane)
