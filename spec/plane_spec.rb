@@ -1,7 +1,7 @@
 require 'plane'
 require 'weather'
-describe 'plane' do
-  describe ':land' do
+describe Plane do
+  describe '#land' do
     plane = Plane.new
     it 'tests whether an instance of plane responds to land method' do
       expect(plane).to respond_to :land
@@ -13,9 +13,8 @@ describe 'plane' do
     end
 
     it 'raises an error if a plane tries to land and the airport is full' do
-      Plane::DEFAULT_CAPACITY.times { plane.land(plane) }
-      puts $planes_landed
-      expect { plane.land(plane) }.to raise_error 'Airport is full.'
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error 'Airport is full.'
     end
   end
 
@@ -43,9 +42,12 @@ describe 'plane' do
       expect($planes_in_air).to include(plane)
     end
 
-    it 'tests whether the plane instance responds to the fail' do
-      expect(plane.take_off(plane)).to raise_error
-    end
+    # it 'tests whether the plane instance responds to the fail' do
+    #   weather = Weather.new
+    #   allow(weather).to receive(:stormy?) { 0 }
+    #   weather.stormy?
+    #   expect{ plane.take_off(plane) }.to raise_error 'Weather is stormy'
+    # end
   end
 
 end

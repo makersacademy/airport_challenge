@@ -1,6 +1,6 @@
 class Weather
   def stormy?
-    true if @number == 0
+    @number == 0
   end
 
   def generate_weather
