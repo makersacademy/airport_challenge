@@ -1,10 +1,10 @@
 class Weather
   def stormy?
-    true
+    true if @number = 0
   end
 
   def generate_weather
-    weather = 0
+    @number = rand(2)
   end
 
 end
