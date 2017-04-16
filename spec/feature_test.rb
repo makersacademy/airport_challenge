@@ -1,0 +1,1 @@
+airport = Airport.new
