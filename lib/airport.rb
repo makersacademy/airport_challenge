@@ -24,6 +24,7 @@ class Airport
   end
 
   def dock_plane(plane)
+    raise 'Error: Plane has already landed.' if plane.landed
     raise 'Error: Landing not possible when airport is full.' if planes.count >= capacity
     raise 'Error: Landing forbidden when weather is stormy.' if conditions == :stormy
     plane.land

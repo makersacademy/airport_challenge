@@ -70,10 +70,21 @@ describe Airport do
   end
 
   describe '#dock_plane' do
+
+    context 'plane has already landed' do
+      it 'raises error' do
+        sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
+        plane = double(:plane, :land => true, :landed => true)
+        airport = Airport.new(sunny_climate)
+
+        expect { airport.dock_plane(plane) }.to raise_error "Error: Plane has already landed."
+      end
+    end
+
     context 'conditions are sunny' do
       it 'tells plane to land' do
         sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-        plane = double(:plane, :land => true)
+        plane = double(:plane, :land => true, :landed => nil)
         airport = Airport.new(sunny_climate)
 
         expect(plane).to receive(:land)
@@ -82,7 +93,7 @@ describe Airport do
 
       it 'adds plane to Airport\'s @planes array' do
         sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-        plane = double(:plane, :land => true)
+        plane = double(:plane, :land => true, :landed => nil)
         airport = Airport.new(sunny_climate)
 
         airport.dock_plane(plane)
@@ -93,7 +104,7 @@ describe Airport do
     context 'airport is at maximum capacity' do
       it 'does not allow plane to land' do
         sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-        plane = double(:plane, :land => true)
+        plane = double(:plane, :land => true, :landed => nil)
         airport = Airport.new(sunny_climate)
 
         airport.capacity.times { airport.build_plane }
@@ -104,7 +115,7 @@ describe Airport do
     context 'conditions are stormy' do
       it 'does not allow plane to land' do
         stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
-        plane = double(:plane, :land => true)
+        plane = double(:plane, :land => true, :landed => nil)
         airport = Airport.new(stormy_climate)
         
         expect { airport.dock_plane(plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
@@ -127,7 +138,7 @@ describe Airport do
 
     it 'checks climate conditions' do
       sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-      plane = double(:plane, :land => true, :take_off => true)
+      plane = double(:plane, :land => true, :take_off => true, :landed => nil)
       airport = Airport.new(sunny_climate)
 
       airport.dock_plane(plane)
@@ -138,7 +149,7 @@ describe Airport do
     context 'conditions are sunny' do
       it 'tells plane to take off' do
         sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-        plane = double(:plane, :land => true, :take_off => true)
+        plane = double(:plane, :land => true, :take_off => true, :landed => nil)
         airport = Airport.new(sunny_climate)
 
         airport.dock_plane(plane)
@@ -148,7 +159,7 @@ describe Airport do
 
       it 'removes plane from Airport\'s @planes array' do
         sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-        plane = double(:plane, :land => true, :take_off => true)
+        plane = double(:plane, :land => true, :take_off => true, :landed => nil)
         airport = Airport.new(sunny_climate)
 
         airport.dock_plane(plane)
