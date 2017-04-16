@@ -94,7 +94,6 @@ describe Airport do
         airport = Airport.new(stormy_climate)
 
         airport.dock_plane(plane)
-        srand_stormy_weather
         expect{ airport.release_plane(plane) }.to raise_error 'Error: Take-off forbidden when weather is stormy.'
       end
     end
