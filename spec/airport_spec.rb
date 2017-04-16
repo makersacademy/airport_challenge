@@ -12,6 +12,12 @@ describe Airport do
     end
   end
 
+  it 'prevents landing when airport is full' do
+    message = 'Landing denied, airport is full!'
+    subject.land(plane)
+    expect{ subject.land(plane) }.to raise_error message
+  end
+
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
   describe '#take_off' do
