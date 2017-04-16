@@ -7,6 +7,12 @@ describe Airport do
 		it 'Should return instance of Airport when initialized' do
 			expect(airport).to respond_to(:new)
 		end
+		it "Should accept integer as a parameter" do
+			 expect { airport.new(2) }.to_not raise_error
+		end
+		it "Should only accept integer as a parameter" do
+			 expect { airport.new("two") }.to raise_error
+		end
 	end
 
 	describe  '#land' do
@@ -18,11 +24,9 @@ describe Airport do
 			it "Should accept one plane as a parameter" do
 			    expect { airport.land(@plane) }.to_not raise_error
 			end
-
 			it "Should not accept more than one plane as parameters" do
 			    expect { airport.land(@plane, @plane) }.to raise_error(ArgumentError)
 			end
-
 			it "Should return error when passing something other than a plane object" do
 			    expect { airport.land(airport) }.to raise_error(ArgumentError, 'Not a valid plane object')
 			end
@@ -32,11 +36,15 @@ describe Airport do
 			before(:each) do 
 				@plane = Plane.new
 			end
+			it "Should not land and raise error if airport is full" do
+				airport_full = Airport.new(0)
+			    expect { airport_full.land(@plane) }.to raise_error 'Airport full'
+			    expect(airport_full.at_airport?(@plane)).to be false
+			end
 			it "Should confirm that a plane has landed" do
 				airport.land(@plane)
 			    expect(airport.at_airport?(@plane)).to be_truthy
 			end
-
 			it "Should not land a plane if weather is stormy" do
 				airport.weather_update(:storm, true)
 				expect {airport.land(@plane)}.to raise_error 'Weather not safe enough'

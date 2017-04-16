@@ -2,17 +2,21 @@ require 'Plane'
 
 class Airport
 
-attr_reader :weather
+	attr_reader :weather, :capacity
+	DEFAULT_CAPACITY = 20
 
-	def initialize
+	def initialize(capacity = DEFAULT_CAPACITY)
+		raise "Invalid capacity" unless capacity.is_a? Integer
 		@landed = []
 		@weather = {sun: false, storm: false, rain: false, wind: 0}
+		@capacity = capacity
 	end
 
 	def land(plane)
 		plane_exist?(plane)
 		raise ArgumentError, 'Plane already landed' if at_airport?(plane)
 		safe_weather?
+		full?
 		@landed << {plane: plane, id: plane.id} 
 	end
 
@@ -41,6 +45,10 @@ attr_reader :weather
 	end
 
 	private
+
+	def full?
+		raise 'Airport full' if @landed.length >= @capacity
+	end
 
 	def plane_exist?(plane)
 		raise ArgumentError, 'Not a valid plane object' unless plane.class == Plane
