@@ -15,9 +15,12 @@ class Atc
   end
 
   def instruct_takeoff(plane)
-    plane.location = 'in the sky'
+    if plane.location.weather == 'stormy'
+      raise "Cannot takeoff as weather is stormy"
+    else
+      plane.location = 'in the sky'
+    end
   end
-
 end
 
 # -- DEBUGGING PUTS STATEMENTS -- #

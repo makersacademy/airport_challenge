@@ -25,7 +25,7 @@ describe Atc do
       expect(atc).to respond_to(:instruct_landing).with(2).arguments
     end
 
-    it "sets a Plane's location to given Airport" do
+    it "if weather is clear sets a Plane's location to given Airport" do
       atc = Atc.new
       plane = Plane.new
       airport = Airport.new
@@ -48,11 +48,24 @@ describe Atc do
       expect(atc).to respond_to(:instruct_takeoff).with(1).arguments
     end
 
-    it "sets a Plane's location to 'in the sky'" do
+    it "if weather is clear sets a Plane's location to 'in the sky'" do
       atc = Atc.new
       plane = Plane.new
+      airport = Airport.new
+      plane.location = airport
+      airport.weather = 'clear'
       expect(atc.instruct_takeoff(plane)).to eq('in the sky')
     end
+
+    it "will not takeoff if weather at given airport is stormy" do
+      atc = Atc.new
+      plane = Plane.new
+      airport = Airport.new
+      plane.location = airport
+      airport.weather = 'stormy'
+      expect { atc.instruct_takeoff(plane) }.to raise_error 'Cannot takeoff as weather is stormy'
+    end
+
   end
 end
 
