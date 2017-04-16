@@ -1,7 +1,7 @@
 require './lib/init.rb'
 
 feature 'Air_traffic_control', :type => :feature do
-  scenario 'landing planes' do
+  scenario 'releasing planes' do
     given_there_is_an_airport
     and_there_is_a_plane
     when_i_instruct_a_plane_to_take_off_from_an_airport
