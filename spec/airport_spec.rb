@@ -1,5 +1,6 @@
 require './lib/airport'
 require './lib/plane'
+require './lib/weather'
 
 describe Airport do
   it { is_expected.to be_instance_of(Airport) }

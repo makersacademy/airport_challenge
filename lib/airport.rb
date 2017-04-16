@@ -9,6 +9,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -33,8 +34,8 @@ class Airport
     @hangar.empty?
   end
 
-  def unsafe(weather = Weather.new)
-    weather.random_condition == :stormy ? true : false
+  def unsafe
+    @weather.stormy?
   end
 
 end
