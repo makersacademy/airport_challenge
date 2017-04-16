@@ -3,8 +3,7 @@ require_relative "plane.rb"
 class Atc
 
   def instruct_landing(plane, airport)
-    plane.land(airport)
-    puts "#{plane} is landing at #{airport}"
+    plane.location = airport
   end
 
   def check_location(plane)

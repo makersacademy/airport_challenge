@@ -1,21 +1,31 @@
 require "atc.rb"
+require "plane.rb"
+require "airport.rb"
+
 
 describe Atc do
   
   describe "#check_location" do
-    it "returns location of airplane" do
-    atc = Atc.new
-    expect(atc).to respond_to(:check_location).with(1).arguments
+    it "is a method that accepts 1 argument" do
+      atc = Atc.new
+      expect(atc).to respond_to(:check_location).with(1).arguments
     end
   end
 
   describe "#instruct_landing" do
-    it "instructs a plane to land at airport" do
-    atc = Atc.new
-    expect(atc).to respond_to(:instruct_landing).with(2).arguments
+    it "is a method that accepts 2 arguments" do
+      atc = Atc.new
+      expect(atc).to respond_to(:instruct_landing).with(2).arguments
+    end
+
+    it "sets a Plane's location to given Airport" do
+      atc = Atc.new
+      plane = Plane.new
+      airport = Airport.new
+      expect(atc.instruct_landing(plane, airport)).to eq(airport)
     end
   end
-  
 
 end
+
 
