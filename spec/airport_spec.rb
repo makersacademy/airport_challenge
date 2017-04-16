@@ -14,7 +14,7 @@ describe Airport do
       expect(airport).to respond_to :capacity
     end
 
-    it 'reports full when at capacity' do
+    it 'reports full when act capacity' do
       expect(airport.full?).to eq false
       airport.capacity.times do
         allow(plane).to receive(:land)
