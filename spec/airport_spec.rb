@@ -3,6 +3,7 @@ require 'plane.rb'
 
 describe Airport do
 
+
   it 'allows planes to land' do
     expect(subject).to respond_to :land_plane
   end
@@ -32,6 +33,11 @@ describe Airport do
   it 'prevents landing if weather is stormy' do
     subject.weather = 0
     expect { subject.land_plane("test") }.to raise_error "Weather Stormy!"
+  end
+
+  it 'prevents landing if airport is full' do
+    10.times { |plane| subject.land_plane(plane) }
+    expect { subject.land_plane("test") }.to raise_error "Airport Full!"
   end
 
 end

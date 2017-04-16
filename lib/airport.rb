@@ -1,32 +1,36 @@
 class Airport
 
-  # Weather is good when set to '1' and stormy when '0'
-  WEATHER = 1
+  DEFAULT_CAPACITY = 10
 
   attr_reader :planes
   attr_accessor :weather
 
-  def initialize(x = WEATHER)
+  def initialize(x = 1, y = DEFAULT_CAPACITY)
     @planes = []
+    # Weather is good when set to '1' and stormy when '0'
     @weather = x
+    @capacity = y
   end
 
   def land_plane(plane)
-    @planes << plane if !weather?
+    full?
+    weather?
+    @planes << plane
   end
 
   def plane_take_off
-    @planes.pop if !weather?
+    weather?
+    @planes.pop
   end
 
   def weather?
     raise ArgumentError, "Weather Stormy!", caller if @weather == 0
   end
 
-  def rand_weather
-    @weather = [0, 1].sample
+  def full?
+    raise ArgumentError, "Airport Full!", caller if @planes.count == @capacity
   end
 
-  private :weather?, :rand_weather
+  private :weather?, :full?
 
 end
