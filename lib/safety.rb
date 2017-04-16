@@ -43,7 +43,6 @@ module Safety
     end
   end
 
-
   def take_off_safety_check(airport, plane)
     if airplane_present(airport, plane) == "negative"
       "Take Off not possible: #{plane.name} not present"
