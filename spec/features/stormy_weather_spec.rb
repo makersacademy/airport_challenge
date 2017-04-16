@@ -9,7 +9,9 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def given_there_is_an_airport
-    @airport = Airport.new
+    weather = double(:weather, :conditions => :stormy)
+    allow(weather).to receive(:is_a?).with(Climate).and_return(true)
+    @airport = Airport.new(weather)
   end
 
   def and_there_is_a_plane_docked_at_the_airport
@@ -18,7 +20,6 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def when_the_weather_at_the_airport_is_stormy
-    srand(5)
     expect(@airport.conditions).to eq :stormy
   end
 
