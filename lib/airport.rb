@@ -33,6 +33,10 @@ class Airport
     @capacity = capacity
   end
 
+  def in_airport?(plane)
+    @planes.include?(plane)
+  end
+
   private
 
   def full?
@@ -55,13 +59,8 @@ class Airport
     @planes.length > capacity
   end
 
-  def in_airport?(plane)
-    @planes.include?(plane)
-  end
-
   def invalid_plane?(plane)
-    cases = [String, Integer, Airport, Weather]
-    cases.include?(plane.class)
+    [String, Integer, Airport, Weather].include?(plane.class)
   end
 
   def landing_checks(plane)
