@@ -1,12 +1,7 @@
-require 'plane'
-
-
+require_relative 'plane'
 class Airport
   attr_accessor :run_way
   def initialize
-    @run_way
+    @run_way = []
   end
-def land(plane)
-  @run_way = plane
-end
 end
