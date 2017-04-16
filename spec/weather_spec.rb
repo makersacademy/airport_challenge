@@ -18,6 +18,7 @@ describe 'weather' do
     end
 
     it 'tests if generate_weather can create an instance of weather' do
+      allow(weather).to receive(:generate_weather) { 0 }
       expect(weather.generate_weather). to eq 0
     end
   end
