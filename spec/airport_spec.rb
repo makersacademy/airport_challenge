@@ -18,28 +18,35 @@ describe Airport do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end
 
+    it 'can override capacity when appropriate' do
+      subject.capacity = 25
+      expect(subject.capacity).to eq 25
+    end
+
   end
 
   describe '#land' do
     before do
       allow(weather).to receive(:condition) { 'sunny' }
-      subject.land(plane)
     end
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'it should land a plane' do
+      subject.land(plane)
     end
 
     it 'should confirm plane has landed' do
+      subject.land(plane)
       expect(subject.planes).to include plane
     end
 
-    # it 'should not let planes that are landed to land again' do
-    #   expect { subject.land(plane) }.to raise_error 'plane already landed'
-    # end
+    it 'should not let planes that are landed to land again' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'plane already landed'
+    end
 
     it 'should not let planes land when airport is full' do
-      described_class::DEFAULT_CAPACITY.times do
+      subject.capacity.times do
         subject.land(double :plane)
       end
       expect { subject.land(double :plane) }.to raise_error 'airport full!'
