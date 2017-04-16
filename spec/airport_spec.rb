@@ -1,6 +1,10 @@
 require 'airport'
 
+srand_sunny_weather = srand(1)
+srand_stormy_weather = srand(5)
+
 describe Airport do
+  
   alias_method :airport, :subject
 
   it { is_expected.to respond_to(:planes) }
@@ -35,7 +39,9 @@ describe Airport do
 
   describe '#release_plane' do
     it 'tells plane to take off' do
-      plane = double(:plane, :take_off => true)
+      plane = double(:plane, :land => true, :take_off => true)
+      airport.dock_plane(plane)
+      srand_sunny_weather
       expect(plane).to receive(:take_off)
       airport.release_plane(plane)
     end
@@ -44,6 +50,7 @@ describe Airport do
       plane = double(:plane, :land => true, :take_off => true)
       airport.dock_plane(plane)
       expect(airport.planes).to include plane
+      srand_sunny_weather
       airport.release_plane(plane)
       expect(airport.planes).to_not include plane
     end
@@ -52,6 +59,7 @@ describe Airport do
       plane = double(:plane, :land => true, :take_off => true)
       airport.dock_plane(plane)
       expect(airport).to receive(:conditions)
+      srand_sunny_weather
       airport.release_plane(plane)
     end
 
@@ -59,7 +67,7 @@ describe Airport do
       it 'does not allow take off' do
         plane = double(:plane, :land => true, :take_off => true)
         airport.dock_plane(plane)
-        srand(5)
+        srand_stormy_weather
         expect{ airport.release_plane(plane) }.to raise_error 'Error: Take-off forbidden when weather is stormy.'
       end
     end
