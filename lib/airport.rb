@@ -1,31 +1,55 @@
 require 'weather'
-
-# Understand how to manage planes in different weather conditions
+require 'plane'
+# Understand how to manage planes
 
 class Airport
 
-  attr_reader :planes_in_airport
+  include Storm
 
-  def initialize(weather: Weather.new)
+  DEFAULT_CAPACITY = 10
+
+  attr_reader :name, :planes_in_airport, :capacity
+
+  def initialize(name = "A#" + "#{self}"[-5..-2])
     @planes_in_airport = []
-    @weather = weather
+    @capacity = DEFAULT_CAPACITY
+    @name = name.to_sym
   end
 
   def land(plane)
-    fail "Can't land due to stormy weather" if stormy?
-    @planes_in_airport << plane
-    print "The plane landed succesfully"
+    landing_criteria(plane)
+    plane.landing(@name)
+    @planes_in_airport << plane.name
+    print "The #{plane.name} landed succesfully"
   end
 
   def take_off(plane)
-    fail "Can't take off due to stormy weather" if stormy?
+    taking_off_criteria(plane)
     @planes_in_airport.delete(plane)
-    print "The plane took off succesfully"
+    plane.taking_off
+    print "The #{plane.name} took off succesfully"
   end
 
-  private
-  def stormy?
-    @weather.stormy?
+  def landing_criteria(plane)
+    fail "#{plane.name} already landed in this airport" if @planes_in_airport.include? plane.name
+    fail "#{plane.name} is not in the air" if plane.location != :up_in_the_air
+    fail "Can't land as the airport is full" if full?
+    fail "Can't land due to stormy weather" if stormy?
   end
-  
+
+  def taking_off_criteria(plane)
+    fail "#{plane.name} is not in this aiport" unless @planes_in_airport.include? plane.name
+    fail "#{plane.name} is in the air" if plane.location == :up_in_the_air
+    fail "Can't take off due to stormy weather" if stormy?
+  end
+
+  def change_capacity(n)
+    @capacity = n
+  end
+
+private
+  def full?
+    @planes_in_airport.count == @capacity
+  end
+
 end
