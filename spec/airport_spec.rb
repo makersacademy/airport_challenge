@@ -3,6 +3,7 @@ require 'plane'
 require 'weather'
 
 describe Airport do
+
   it { is_expected.to respond_to :land }
 
   let(:plane) { Plane.new }
@@ -34,7 +35,6 @@ describe Airport do
       end
     end
 
-
   it { is_expected.to respond_to :take_off }
 
   describe '#take_off' do
@@ -64,12 +64,12 @@ describe Airport do
         expect{ subject.take_off(plane)}.to raise_error message
       end
    end
-
   end
 
   it {is_expected.to respond_to :in_airport?}
 
   describe '#in_airport?' do
+
     it 'checks if landed plane is in airport' do
       allow(subject).to receive(:storms?){false}
       subject.land(plane)
@@ -89,4 +89,19 @@ describe Airport do
 
   end
 
-end
+ it {is_expected.to respond_to :full?}
+
+  describe '#full?' do
+
+    it 'returns full' do
+
+      allow(subject).to receive(:storms?){false}
+      allow(plane).to receive(:landed?){false}
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
+      expect(subject.full?).to be true
+      end
+
+
+    end
+
+  end
