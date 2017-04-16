@@ -35,7 +35,9 @@ describe Airport do
 
     context 'a non-plane is specified' do
       it 'throws error' do
-        expect{ airport.build_plane(55) }.to raise_error "Error: The airport can only build planes."
+        non_plane = double(:plane)
+        allow(non_plane).to receive(:is_a?).with(Plane).and_return(false)
+        expect{ airport.build_plane(non_plane) }.to raise_error "Error: The airport can only build planes."
       end
     end
         
@@ -58,47 +60,41 @@ describe Airport do
   end
 
   describe '#dock_plane' do
-    it 'tells plane to land' do
-      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-      plane = double(:plane, :land => true)
-      airport = Airport.new(sunny_climate)
+    context 'conditions are sunny' do
+      it 'tells plane to land' do
+        sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
+        plane = double(:plane, :land => true)
+        airport = Airport.new(sunny_climate)
 
-      expect(plane).to receive(:land)
-      airport.dock_plane(plane)
+        expect(plane).to receive(:land)
+        airport.dock_plane(plane)
+      end
+
+      it 'adds plane to Airport\'s @planes array' do
+        sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
+        plane = double(:plane, :land => true)
+        airport = Airport.new(sunny_climate)
+
+        airport.dock_plane(plane)
+        expect(airport.planes).to include plane 
+      end
     end
 
-    it 'adds plane to Airport\'s @planes array' do
-      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-      plane = double(:plane, :land => true)
-      airport = Airport.new(sunny_climate)
-
-      airport.dock_plane(plane)
-      expect(airport.planes).to include plane 
+    context 'conditions are stormy' do
+      it 'does not allow plane to land' do
+        stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
+        plane = double(:plane, :land => true)
+        airport = Airport.new(stormy_climate)
+        
+        expect{ airport.dock_plane(plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
+      end
     end
+
   end
 
   describe '#release_plane' do
-    it 'tells plane to take off' do
-      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-      plane = double(:plane, :land => true, :take_off => true)
-      airport = Airport.new(sunny_climate)
 
-      airport.dock_plane(plane)
-      expect(plane).to receive(:take_off)
-      airport.release_plane(plane)
-    end
-
-    it 'removes plane from Airport\'s @planes array' do
-      sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-      plane = double(:plane, :land => true, :take_off => true)
-      airport = Airport.new(sunny_climate)
-
-      airport.dock_plane(plane)
-      airport.release_plane(plane)
-      expect(airport.planes).to_not include plane
-    end
-
-    it 'checks airport conditions' do
+    it 'checks climate conditions' do
       sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
       plane = double(:plane, :land => true, :take_off => true)
       airport = Airport.new(sunny_climate)
@@ -108,25 +104,38 @@ describe Airport do
       airport.release_plane(plane)
     end
 
-    context 'conditions are stormy' do
-      it 'does not allow take off' do
-        stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
+    context 'conditions are sunny' do
+      it 'tells plane to take off' do
+        sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
         plane = double(:plane, :land => true, :take_off => true)
-        airport = Airport.new(stormy_climate)
+        airport = Airport.new(sunny_climate)
 
         airport.dock_plane(plane)
-        expect{ airport.release_plane(plane) }.to raise_error 'Error: Take-off forbidden when weather is stormy.'
+        expect(plane).to receive(:take_off)
+        airport.release_plane(plane)
       end
 
-      it 'does not allow landing' do
-        stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
+      it 'removes plane from Airport\'s @planes array' do
+        sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
         plane = double(:plane, :land => true, :take_off => true)
-        airport = Airport.new(stormy_climate)
-        
-        expect{ airport.dock_plane(plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
+        airport = Airport.new(sunny_climate)
+
+        airport.dock_plane(plane)
+        airport.release_plane(plane)
+        expect(airport.planes).to_not include plane
       end
     end
 
+    context 'conditions are stormy' do
+      it 'does not allow take off' do
+        stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
+        plane = double(:plane, :is_a? => true, :take_off => true)
+        airport = Airport.new(stormy_climate)
+        airport.build_plane(plane)
+
+        expect{ airport.release_plane(plane) }.to raise_error 'Error: Take-off forbidden when weather is stormy.'
+      end
+    end
   end
 
 end

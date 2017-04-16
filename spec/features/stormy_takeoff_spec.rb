@@ -16,7 +16,7 @@ feature 'Air_traffic_control', :type => :feature do
 
   def and_there_is_a_plane_docked_at_the_airport
     @plane = Plane.new
-    @airport.dock_plane(@plane)
+    @airport.build_plane(@plane)
   end
 
   def when_the_weather_at_the_airport_is_stormy
