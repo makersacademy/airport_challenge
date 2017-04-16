@@ -23,8 +23,6 @@ describe Airport do
         airport.receive(plane)
       end
       expect(airport.full?).to eq true
-      message = "Airport is at capacity"
-      expect { airport.receive(plane) }.to raise_error message
     end
 
     it 'has a default capacity' do
@@ -86,9 +84,14 @@ describe Airport do
   describe "#full?" do
 
     it 'prevents landing when the airport is full' do
-      allow(airport).to receive_messages(:full? => true)
+      airport.capacity.times do
+        allow(plane).to receive(:land)
+        allow(weather).to receive_messages(:status => :sunny)
+        plane.land(weather, airport)
+        airport.receive(plane)
+      end
       message = "Airport is at capacity"
-      expect {  airport.receive(plane) }.to raise_error message
+      expect { airport.receive(plane) }.to raise_error message
     end
 
   end

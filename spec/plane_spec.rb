@@ -26,7 +26,6 @@ describe Plane do
       allow(weather).to receive_messages(:status => :sunny)
       allow(airport).to receive_messages(:receive => plane)
       expect { plane.land(weather, airport) }.not_to raise_error
-      expect(plane.confirm_status).to eq :landed
     end
 
     it 'cannot land when weather is stormy' do
@@ -47,7 +46,6 @@ describe Plane do
       allow(weather).to receive_messages(:status => :sunny)
       allow(airport).to receive_messages(:release => [plane], :planes => [plane])
       expect { plane.take_off(weather, airport) }.not_to raise_error
-      expect(plane.confirm_status).to eq :in_air
     end
 
     it 'cannot take off when weather is stormy' do
