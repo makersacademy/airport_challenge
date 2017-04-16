@@ -25,7 +25,7 @@ describe Plane do
     end
 
     context 'plane has not landed' do
-      it 'states plane has not landed if @landed == false' do
+      it 'states plane has not landed' do
         expect(plane.confirm_landing).to eq "This plane has not landed."
       end
     end
