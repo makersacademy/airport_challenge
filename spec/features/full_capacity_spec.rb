@@ -19,7 +19,7 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def and_the_airport_is_at_maximum_capacity
-    airport.capacity.times { @airport.build_plane }
+    @airport.capacity.times { @airport.build_plane }
     expect(@airport.capacity).to eq @airport.planes.count
   end
 

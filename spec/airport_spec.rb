@@ -5,6 +5,7 @@ describe Airport do
   alias_method :airport, :subject
 
   it { is_expected.to respond_to(:planes) }
+  it { is_expected.to respond_to(:capacity=) }
 
   it 'is expected to initialize with a capacity of DEFAULT_CAPACITY' do
     expect(Airport.new.capacity).to eq Airport::DEFAULT_CAPACITY

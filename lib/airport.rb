@@ -3,7 +3,8 @@ require './lib/plane'
 
 class Airport
 
-  attr_reader :planes, :climate, :capacity
+  attr_reader :planes, :climate
+  attr_accessor :capacity
   DEFAULT_CAPACITY = 5
 
   def initialize(climate = Climate.new)
