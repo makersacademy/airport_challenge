@@ -56,7 +56,6 @@ describe Airport do
     end
 
     it 'planes are released from the planes array' do
-      allow(weather).to receive_messages(:status => :sunny)
       allow(plane).to receive(:land)
       airport.receive(plane)
       expect(airport.release(plane)).to eq plane
@@ -67,21 +66,11 @@ describe Airport do
   describe "#receive" do
 
     it 'responds to receive' do
-      expect(airport).to respond_to(:receive)
-    end
-
-    it 'planes are releived into the planes array' do
-      allow(weather).to receive_messages(:status => :sunny)
-      allow(plane).to receive(:land)
-      airport.receive(plane)
-      expect(airport.planes.include?(plane)).to be true
+      expect(airport).to respond_to(:receive).with(1).argument
     end
 
     it "cannot receive planes when at capacity" do
       airport.capacity.times do
-        allow(plane).to receive(:land)
-        allow(weather).to receive_messages(:status => :sunny)
-        plane.land(weather, airport)
         airport.receive(plane)
       end
       message = "Airport is at capacity"
@@ -93,7 +82,6 @@ describe Airport do
   describe "#full?" do
 
     it 'prevents landing when the airport is full' do
-      allow(weather).to receive_messages(:status => :sunny)
       allow(airport).to receive_messages(:full? => true)
       message = "Airport is at capacity"
       expect {  airport.receive(plane) }.to raise_error message

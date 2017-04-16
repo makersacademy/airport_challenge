@@ -42,7 +42,7 @@ describe Plane do
     it 'can take-off' do
       expect(plane).to respond_to :take_off
     end
-    
+
     it 'can take off in sunny weather' do
       allow(weather).to receive_messages(:status => :sunny)
       allow(airport).to receive_messages(:release => [plane], :planes => [plane])
@@ -58,7 +58,7 @@ describe Plane do
 
     it "cannot take off if already in-flight" do
       allow(weather).to receive_messages(:status => :sunny)
-      allow(airport).to receive_messages(:planes => [plane], :full? => false, :receive => [], :release => self)
+      allow(airport).to receive_messages(:planes => [plane], :full? => false, :receive => [], :release => plane)
       plane.land(weather, airport)
       plane.take_off(weather, airport)
       message = "I am already in the air"
@@ -80,7 +80,7 @@ describe Plane do
       expect(plane.confirm_status).to eq :landed
     end
 
-    it 'take off from an airport and confirm' do
+    it 'take off from an airport and confirm that it is in air' do
       allow(weather).to receive_messages(:status => :sunny)
       allow(airport).to receive_messages(:release => plane, :planes => [plane])
       plane.take_off(weather, airport)

@@ -2,7 +2,7 @@ class Plane
 
   attr_reader :status
 
-  def initialize(status = 'on ground')
+  def initialize(status = :on_ground)
     @status = status
   end
 

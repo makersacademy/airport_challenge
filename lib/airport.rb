@@ -25,4 +25,8 @@ class Airport
     @planes.count == capacity
   end
 
+  private
+
+  attr_reader :planes
+
 end
