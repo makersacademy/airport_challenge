@@ -9,15 +9,26 @@ attr_accessor :landed
 	end
 
 	def land(plane)
-		plane_id = plane.id
-		raise ArgumentError 'Plane already landed' if @landed.include?(plane_id)
-		raise ArgumentError 'Plane does not exist' if Plane.class_variable_get(:@@planes) < plane_id
-		
-		@landed << plane_id 
+		plane_exist?(plane)
+		raise ArgumentError, 'Plane already landed' if at_airport?(plane)
+		@landed << {plane: plane, id: plane.id}
 	end
 
-	def takeoff
-		@landed.pop
+	def at_airport?(plane)
+		there = false
+		@landed.each {|hash| there = true if hash[:id]==plane.id}
+		there
+	end
+
+	def plane_exist?(plane)
+		raise ArgumentError, 'Not a valid plane object' unless plane.class == Plane
+		raise ArgumentError, 'Plane does not exist' unless Plane.class_variable_get(:@@planes) >= plane.id
+	end
+
+	def takeoff(plane)
+		plane_exist?(plane)
+		raise ArgumentError, 'Plane not at this airport' unless at_airport?(plane)
+		@landed.delete_if {|hash| hash[:id] == plane.id}
 	end
 
 end
