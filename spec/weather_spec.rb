@@ -2,15 +2,17 @@ require 'weather'
 
 describe Weather do
 
+  subject(:weather) { described_class.new }
+
   it 'responds to status' do
-    expect(subject).to respond_to :status
+    expect(weather).to respond_to :status
   end
 
   it 'varies' do
-    allow(subject).to receive(:status).and_return('sunny', 'stormy', 'sunny')
-    expect(subject.status).to eq 'sunny'
-    expect(subject.status).to eq 'stormy'
-    expect(subject.status).to eq 'sunny'
+    allow(weather).to receive(:status).and_return(:sunny, :stormy, :sunny)
+    expect(weather.status).to eq :sunny
+    expect(weather.status).to eq :stormy
+    expect(weather.status).to eq :sunny
   end
 
 end
