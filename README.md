@@ -13,27 +13,10 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+There is a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  The following user stories were created:
 
 ```
 As an air traffic controller 
@@ -60,31 +43,61 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+Sum of the program
+-----
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+* This ruby program can create airports and planes with optional customised names. 
+* A plane can land from the air to an airport if the weather is not stormy and the airport still has capacity
+* Once a plane landed it confirms it
+* If a plane can't land it prints an error message containing the issue
+* A plane can take off from an airport to the air if the weather is not stormy
+* Once a plane took off it confirms it
+* If a plane can't take off it prints an error message containing the issue
+* A plane keeps track of it's current location
+* An airport keeps track of the planes currently in it
+* An airport's capacity can be manually changed (default capacity is 10)
+* Weather is generated randomly
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```
+Land:
+*PLANE IN THE AIR* -- land { checks weather for storm & airport capacity } --> *PLANE IN THE AIRPORT*
+Take off:
+*PLANE IN THE AIRPORT* -- take off { checks weather for storm } --> *PLANE IN THE AIR*
+```
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
+How the code is used
+-----
 
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
+[1] pry(main)> require "./lib/airport.rb"
+=> true
+[2] pry(main)> # create new airports with a capacity of 10
+[3] pry(main)> ldn = Airport.new("LDN")
+=> #<Airport:0x007ff81aa216a0 @capacity=10, @name=:LDN, @planes_in_airport=[]>
+[4] pry(main)> # change capacity of the airport
+[5] pry(main)> ldn.change_capacity(20)
+=> 20
+[6] pry(main)> ldn
+=> #<Airport:0x007ff81aa216a0 @capacity=20, @name=:LDN, @planes_in_airport=[]>
+[7] pry(main)> # create planes and keep track of their location
+[8] pry(main)> airbus = Plane.new("Airbus")
+=> #<Plane:0x007ff81b829ef0 @location=:up_in_the_air, @name=:Airbus>
+[9] pry(main)> # land planes to the airport
+[10] pry(main)> ldn.land(airbus)
+The Airbus landed succesfully=> nil
+[11] pry(main)> ldn
+=> #<Airport:0x007ff81aa216a0 @capacity=20, @name=:LDN, @planes_in_airport=[:Airbus]>
+[12] pry(main)> airbus
+=> #<Plane:0x007ff81b829ef0 @location=:LDN, @name=:Airbus>
+[13] pry(main)> # take off planes from the airport
+[14] pry(main)> ldn.take_off(airbus)
+The Airbus took off succesfully=> nil
+[15] pry(main)> ldn
+=> #<Airport:0x007ff81aa216a0 @capacity=20, @name=:LDN, @planes_in_airport=[]>
+[16] pry(main)> airbus
+=> #<Plane:0x007ff81b829ef0 @location=:up_in_the_air, @name=:Airbus>
+[17] pry(main)> # check the weather forecast for the airport for landing / taking off
+[18] pry(main)> ldn.weather_forecast
+Clear=> nil
+```
