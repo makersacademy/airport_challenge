@@ -1,25 +1,24 @@
-require_relative "airport.rb"
-
+require_relative 'airport.rb'
 class Plane
 
   def initialize
-    @ground_fleet = []
-  end
-
-  def land(plane)
-    @ground_fleet << plane
-
+    @status = 0
   end
 
   def landed?
-    true if @ground_fleet.count > 0
+    true if @status.nonzero?
   end
 
-  def take_off
-    @ground_fleet.pop
+  def ground
+    @status = 1
   end
 
-  def departed?
-    true if @ground_fleet.count == 0
+  def on_air?
+    true if @status.zero?
   end
+
+  def flying
+    @status = 0
+  end
+
 end
