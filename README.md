@@ -103,7 +103,7 @@ from /Users/vicky/Programmes/airport_challenge/lib/airport.rb:25:in `land'
  #<Plane:0x007fc60c0de2b8>]
 [13] pry(main)> newplane = Plane.new
 => #<Plane:0x007fc60c285288>
-[13] pry(main)> heathrow.land(newplane)
+[14] pry(main)> heathrow.land(newplane)
 RuntimeError: The airport is full, you must wait.
 from /Users/vicky/Programmes/airport_challenge/lib/airport.rb:26:in `land'
  ```
@@ -120,6 +120,6 @@ The user is able to create an instance of a plane and land/take-off the planes a
 
 A plane is unable to land or take-off if the weather is evaluated to stormy. The weather class randomly generates the forecast which is instantiated within the Airport class. If I had more time I would have changed this to be generated upon every take-off or landing.
 
-The maximum capactity for the airport is 10 planes, if there are too many planes at the airport at any given time. No plane will be allowed to land until another has taken off. 
+The maximum capactity for the airport is 10 planes, if there are too many planes at the airport at any given time no plane will be allowed to land until another has taken off. 
 
 The project was written using TDD, tested using RSpec. The project reports 99% test coverage with Coveralls.
