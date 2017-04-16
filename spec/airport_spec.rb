@@ -14,7 +14,14 @@ describe Airport do
 
   it 'prevents landing when airport is full' do
     message = 'Landing denied, airport is full!'
-    subject.land(plane)
+    described_class::DEFAULT_CAPACITY.times { subject.land(plane) }
+    expect{ subject.land(plane) }.to raise_error message
+  end
+
+  it 'sets default capacity' do
+    message = 'Landing denied, airport is full!'
+    p subject.set_capacity(100)
+    100.times { subject.land(plane) }
     expect{ subject.land(plane) }.to raise_error message
   end
 
