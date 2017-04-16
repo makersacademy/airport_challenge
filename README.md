@@ -1,10 +1,10 @@
 Airport Challenge
 =================
-
+[![Build Status](https://travis-ci.org/joestephens/airport_challenge.svg?branch=master)](https://travis-ci.org/joestephens/airport_challenge)
 ```
         ______
         _\____\___
-=  = ==(____MA____)
+=  = ==(__MRYOO7__)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
@@ -13,48 +13,31 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -65,26 +48,44 @@ Your task is to test drive the creation of a set of classes/modules to satisfy a
 
 Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Solution
+-----
 
-Please create separate files for every class, module and test suite.
+From the user stories, I picked up two key nouns for the domain model: Plane and Airport. I assumed that a Plane would take_off and land, and that Airport (or it's Air Traffic Control) would allow departures (depart) and arrivals (arrive) on it's runway.
 
-In code review we'll be hoping to see:
+| Noun          | Verb          |
+| ------------- | ------------- |
+| Plane         | land          |
+|               | take_off      |
+| Airport       | arrive        |
+|               | depart        |
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+I started off with by writing test spec for a Plane class (and then by implementing the class), as I assumed the plane would start off flying. I created methods inside Plane: land and take_off, which act to update the current location of the plane, and I have implemented edge cases to ensure a plane behaves as should (see above).
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+I then wrote and built upon test spec and code for an Airport class, which has functions arrive and depart that send a message to an instance of Plane to say it's okay to take off/land. Airport also has a stormy? method and an optional parameter for storm_probability. Planes can't take off if stormy? is true.
 
-**BONUS**
+Example Usage
+-----
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+```ruby
+require './lib/plane'
+require './lib/airport'
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+mry007  = Plane.new
+#=> #<Plane:0x007f95f201f858 @airport=nil>
+lhw     = Airport.new(capacity: 100, storm_probability: 50) # Airport takes optional parameters through a Hash object
+#=> #<Airport:0x007f95f209e158 @planes=[], @storm_probability=50, @capacity=100>
+sxf     = Airport.new
+#=> #<Airport:0x007f95f2094b80 @planes=[], @storm_probability=10, @capacity=20>
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+lhw.arrive(mry007)
+#=> RuntimeError: Plane can't land due to stormy weather.
+lhw.arrive(mry007)
+#=> #<Plane:0x007f95f201f858 @airport=#<Airport:0x007f95f209e158 @planes=[#<Plane:0x007f95f201f858 ...>], @storm_probability=50, @capacity=100>>
+lhw.depart(mry007)
+#=> RuntimeError: Plane can't take off due to stormy weather
+lhw.depart(mry007)
+#=> #<Plane:0x007f95f201f858 @airport=nil>
+sxf.arrive(mry007)
+#=> #<Plane:0x007f95f201f858 @airport=#<Airport:0x007f95f2094b80 @planes=[#<Plane:0x007f95f201f858 ...>], @storm_probability=10, @capacity=20>>
+```
