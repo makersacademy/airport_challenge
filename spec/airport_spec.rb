@@ -5,8 +5,6 @@ describe Airport do
 
   it { is_expected.to respond_to(:planes) }
 
-  it { is_expected.to respond_to(:conditions) }
-
   describe '#climate' do
     it 'returns an instance of the Climate class' do
       expect(airport.climate).to be_an_instance_of Climate
