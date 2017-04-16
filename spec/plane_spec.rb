@@ -42,6 +42,10 @@ describe 'plane' do
       plane.take_off(plane)
       expect($planes_in_air).to include(plane)
     end
+
+    it 'tests whether the plane instance responds to the fail' do
+      expect(plane.take_off(plane)).to raise_error
+    end
   end
 
 end

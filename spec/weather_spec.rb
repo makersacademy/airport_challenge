@@ -7,7 +7,8 @@ describe 'weather' do
     end
 
     it 'tests if report is stormy' do
-      expect(report.stormy?).to be true
+      allow(report).to receive(:stormy?) { 0 }
+      expect(report.stormy?).to eq 0
     end
   end
 
