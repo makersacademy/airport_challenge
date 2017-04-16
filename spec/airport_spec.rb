@@ -1,6 +1,6 @@
 require './lib/airport.rb'
 
-describe Airport do
+describe Airport do 
 
   describe "#land a plane" do
 
