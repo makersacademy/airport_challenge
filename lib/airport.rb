@@ -10,18 +10,24 @@ class Airport
   end
 
   def take_off(plane)
-    return @runways.delete(plane) unless @runways.nil? || @weather.stormy?
-    "No airplanes landed at the moment."
+    @runways.delete(plane) unless @weather.stormy? || empty
   end
 
   def land(plane)
-    @weather.stormy?
-    @runways << plane unless landed?(plane) || @runways.count == @capacity
+    @runways << plane unless landed?(plane) || full || @weather.stormy?
   end
 
   def landed?(plane)
     return true if @runways.include? plane
     false
+  end
+
+  def full
+    return raise "Airport is full." if @runways.count == @capacity
+  end
+
+  def empty
+    return raise "Airport is empty." if @runways.empty?
   end
 
 end

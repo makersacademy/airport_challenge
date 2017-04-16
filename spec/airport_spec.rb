@@ -69,7 +69,22 @@ describe Airport do
       10.times { subject.take_off(subject.runways[-1]) }
       expect(subject.runways.count).to eq 0
     end
+  end
 
+  describe '#full' do
+    it 'should return error when trying to land on full airport' do
+      allow_any_instance_of(Weather).to receive(:stormy?) { nil }
+      expect { subject.land(Airplane.new) }.to raise_error "Airport is full."
+    end
+  end
+
+  describe '#empty' do
+    it 'should return error when trying to take off from empty airport' do
+      allow_any_instance_of(Weather).to receive(:stormy?) { nil }
+      plane = subject.runways[-1]
+      10.times { subject.take_off(subject.runways[-1]) }
+      expect { subject.take_off(plane) }.to raise_error "Airport is empty."
+    end
   end
 
 end
