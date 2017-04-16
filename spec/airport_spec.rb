@@ -29,7 +29,7 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       subject.take_off
-      expect(subject.planes).should be_empty
+      expect(subject.planes).to be_empty
     end
   end
 
