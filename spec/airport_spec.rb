@@ -131,7 +131,7 @@ describe Airport do
         plane = double(:plane, :take_off => true)
         airport = Airport.new(sunny_climate)
 
-	expect(airport.planes).to be_empty
+        expect(airport.planes).to be_empty
         expect { airport.release_plane(plane) }.to raise_error "Error: This plane is not in the airport"
       end
     end
