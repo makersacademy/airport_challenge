@@ -17,6 +17,7 @@ class Plane
   end
 
   def confirm_take_off
+    "This plane is in the air." unless landed
   end
 
   private
