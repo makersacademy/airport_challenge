@@ -35,12 +35,12 @@ describe Plane do
   end
 
   it "cannot #land if #weather is #stormy #airport" do
-    expect { subject.land_at(airport) }.to raise_error "Cannot land, weather stormy"
+    expect { subject.land_at(airport) }.to raise_error "Cannot land, weather at Test stormy"
   end
 
   it "cannot #takeoff if #weather is #stormy #airport" do
     subject.landed_at = airport
-    expect { subject.takeoff }.to raise_error "Cannot takeoff, weather stormy"
+    expect { subject.takeoff }.to raise_error "Cannot takeoff, weather at Test stormy"
   end
 
   it "cannot #land_at a #full #airport" do

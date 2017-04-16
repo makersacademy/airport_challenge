@@ -22,11 +22,11 @@ class Plane
 
   def takeoff_check
     fail "Already in flight" if @landed_at.nil?
-    fail "Cannot takeoff, weather stormy" if @landed_at.weather == "Stormy"
+    fail "Cannot takeoff, weather at #{@landed_at.name} stormy" if @landed_at.weather == "Stormy"
   end
 
   def landing_check(airport)
-    fail "Cannot land, weather stormy" if airport.weather == "Stormy"
+    fail "Cannot land, weather at #{airport.name} stormy" if airport.weather == "Stormy"
     fail "Already landed at #{airport.name}" unless @landed_at.nil?
     fail "Cannot land, airport full" if airport.full?
   end
