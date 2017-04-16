@@ -1,7 +1,7 @@
 require './lib/init.rb'
 
 feature 'Air_traffic_control', :type => :feature do
-  scenario 'releasing planes' do
+  scenario 'stormy weather' do
     given_there_is_an_airport
     and_there_is_a_plane_docked_at_the_airport
     when_the_weather_at_the_airport_is_stormy
@@ -18,7 +18,8 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def when_the_weather_at_the_airport_is_stormy
-    expect(@airport.weather).to eq :stormy
+    srand(5)
+    expect(@airport.conditions).to eq :stormy
   end
 
   def then_planes_should_be_unable_to_take_off

@@ -9,6 +9,10 @@ class Airport
     @weather = Weather.new
   end
 
+  def conditions
+    weather.conditions
+  end
+
   def dock_plane(plane)
     plane.land
     planes << plane
