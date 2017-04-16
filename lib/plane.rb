@@ -10,22 +10,26 @@ class Plane
   end
 
   def land(airport, plane = self)
-    if landing_safety_check(airport, plane) == true
+    if landing_safety_check(airport, plane) != "safety checks passed"
+      landing_safety_check(airport, plane)
+    elsif weather_check == "negative"
+      "Landing aborted: Inclement weather"
+    else
       airport.planes.push plane
       change_status
       "#{@name} has landed in #{airport.name}"
-    else
-      "Landing aborted"
     end
   end
 
   def take_off(airport, plane = self)
-    if take_off_safety_check(airport, plane) == true
+    if take_off_safety_check(airport, plane) != "safety checks passed"
+      take_off_safety_check(airport, plane)
+    elsif weather_check == "negative"
+      "Take Off aborted: Inclement weather"
+    else
       airport.planes.delete plane
       change_status
       "#{@name} has taken off from #{airport.name}"
-    else
-      "Take off not possible"
     end
   end
 

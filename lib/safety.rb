@@ -34,14 +34,22 @@ module Safety
   end
 
   def landing_safety_check(airport, plane)
-    (weather_check == "check") &&
-    (airport_capacity_check(airport) == "check") &&
-    (airplane_airborne(plane) == "check")
+    if airplane_airborne(plane) == "negative"
+      "#{plane.name} already on the ground"
+    elsif airport_capacity_check(airport) == "negative"
+      "Landing aborted: #{airport.name} full"
+    else
+      "safety checks passed"
+    end
   end
 
+
   def take_off_safety_check(airport, plane)
-    (weather_check == "check") &&
-    (airplane_present(airport, plane) == "check")
+    if airplane_present(airport, plane) == "negative"
+      "Take Off not possible: #{plane.name} not present"
+    else
+      "safety checks passed"
+    end
   end
 
 end
