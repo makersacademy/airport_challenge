@@ -3,12 +3,14 @@ require './lib/plane'
 
 class Airport
 
-  attr_reader :planes, :climate
+  attr_reader :planes, :climate, :capacity
+  DEFAULT_CAPACITY = 5
 
   def initialize(climate = Climate.new)
     raise 'Error: Parameter is not a climate.' unless climate.is_a?(Climate)
     @planes = []
     @climate = climate
+    @capacity = DEFAULT_CAPACITY
   end
 
   def build_plane(plane = Plane.new)

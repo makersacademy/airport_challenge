@@ -6,6 +6,10 @@ describe Airport do
 
   it { is_expected.to respond_to(:planes) }
 
+  it 'is expected to initialize with a capacity of DEFAULT_CAPACITY' do
+    expect(Airport.new.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe '#initialize' do
     it 'does not require user to provide climate parameter' do
       expect { Airport.new }.to_not raise_error
