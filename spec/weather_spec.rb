@@ -12,15 +12,4 @@ describe 'weather' do
     end
   end
 
-  describe 'generate_weather' do
-    weather = Weather.new
-    it 'tests response to generate_weather method' do
-      expect(weather).to respond_to :generate_weather
-    end
-
-    it 'tests if generate_weather can create an instance of weather' do
-      allow(weather).to receive(:generate_weather) { 0 }
-      expect(weather.generate_weather). to eq 0
-    end
-  end
 end
