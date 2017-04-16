@@ -5,9 +5,6 @@ describe Airport do
     allow(plane).to receive(:landed?)
   end
 
-  it { is_expected.to respond_to :land }
-  it { is_expected.to respond_to :takeoff }
-
   let(:plane) { double("Plane") }
   let(:weather) { double("Weather") }
   subject(:airport) { described_class.new }

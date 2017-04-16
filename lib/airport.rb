@@ -7,7 +7,7 @@ class Airport
   DEFAULT_CAPACITY = 50
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    raise 'Invalid capacity' if capacity <= 0
+    raise 'Invalid capacity' if invalid_capacity?(capacity)
     @planes = []
     @weather = Weather.new
     @capacity = capacity
