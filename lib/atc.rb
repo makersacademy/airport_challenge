@@ -7,7 +7,8 @@ class Atc
   end
 
   def check_location(plane)
-    puts "Plane's current location: #{@location}"
+    plane.location
   end
 
 end
+

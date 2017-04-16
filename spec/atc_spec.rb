@@ -10,6 +10,13 @@ describe Atc do
       atc = Atc.new
       expect(atc).to respond_to(:check_location).with(1).arguments
     end
+
+    it "returns location of Plane instance" do
+      atc = Atc.new
+      plane = Plane.new
+      plane.location = "airport"
+      expect(atc.check_location(plane)).to eq("airport")
+    end
   end
 
   describe "#instruct_landing" do
