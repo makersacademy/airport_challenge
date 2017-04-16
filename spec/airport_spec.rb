@@ -2,7 +2,25 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { Plane.new }
+  # let(:plane) { Plane.new }
+  let(:plane) { double :plane }
+
+  before do
+    allow(Weather).to receive(:stormy?).and_return false
+  end
+
+  it 'will not let plane land when stormy' do
+    allow(Weather).to receive(:stormy?).and_return(true)
+    message = 'Too stormy to land!'
+    expect { subject.land(plane) }.to raise_error message
+  end
+
+  it 'will not allow plane to take off when stormy' do
+    subject.land(plane)
+    allow(Weather).to receive(:stormy?).and_return(true)
+    message = 'Too stormy to take off!'
+    expect { subject.take_off(plane) }.to raise_error message
+  end
 
   it { is_expected.to respond_to(:land).with(1).argument }
 

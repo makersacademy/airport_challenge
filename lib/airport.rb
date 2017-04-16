@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -11,13 +12,15 @@ class Airport
   end
 
   def land(plane)
+    fail 'Too stormy to land!' if Weather.stormy?
     fail 'Landing denied, airport is full!' if @planes.length >= @capacity
     @planes << plane
     plane
   end
 
   def take_off(plane)
-    raise 'Plane has left the airport!' unless planes.include? plane
+    fail 'Too stormy to take off!' if Weather.stormy?
+    fail 'Plane has left the airport!' unless planes.include? plane
     @planes.delete(plane)
   end
 
