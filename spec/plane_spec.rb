@@ -73,21 +73,6 @@ describe Plane do
     expect { plane.land(weather, airport) }.to raise_error message
   end
 
-  it 'can only take off from airports that they are in' do
-    allow(weather).to receive_messages(:status => :sunny)
-    allow(airport_1).to receive_messages(:planes => [], :full? => false, :receive => [])
-    allow(airport_2).to receive_messages(:planes => [], :full? => false)
-    plane.land(weather, airport_1)
-    message = "I am not in that airport"
-    expect { plane.take_off(weather, airport_2) }.to raise_error message
-  end
-
-  it "cannot take off from an airport that it has not landed at" do
-    allow(weather).to receive_messages(:status => :sunny)
-    allow(airport).to receive_messages(:planes => [], :full? => false, :release => [plane])
-    message = "I am not in that airport"
-    expect { plane.take_off(weather, airport) }.to raise_error message
-  end
 
   it "cannot land again if it has landed" do
     allow(weather).to receive_messages(:status => :sunny)

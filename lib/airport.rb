@@ -14,6 +14,7 @@ class Airport
   end
 
   def release(plane)
+    raise "Plane is not at that airport" unless planes.include?(plane)
     @planes.delete(plane)
   end
 

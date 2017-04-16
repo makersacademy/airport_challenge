@@ -17,7 +17,6 @@ class Plane
   def take_off(weather, airport)
     raise "Cannot take off in stormy weather" if stormy(weather)
     raise "I am already in the air" if flying?
-    raise "I am not in that airport" unless airport.planes.include?(self)
     airport.release(self)
     @status = :in_air
   end
