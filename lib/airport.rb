@@ -6,7 +6,7 @@ class Airport
   attr_accessor :planes
 
   def initialize (capacity = 10)
-    random_variable = rand(0..1)
+    random_variable = rand(0..10)
     random_variable == 1 ? @weather = 'stormy' : @weather = 'clear'
     @capacity = capacity
     @planes = []
@@ -26,8 +26,8 @@ end
 # heathrow.planes = ['easyjet', '777']
 # puts heathrow.planes
 
-heathrow = Airport.new(12)
-puts heathrow.capacity
-puts heathrow.planes 
-10.times { heathrow.planes << Plane.new('test_plane') }
-puts heathrow.planes
+# heathrow = Airport.new(12)
+# puts heathrow.capacity
+# puts heathrow.planes 
+# 10.times { heathrow.planes << Plane.new('test_plane') }
+# puts heathrow.planes
