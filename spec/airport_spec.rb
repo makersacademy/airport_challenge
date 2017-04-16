@@ -5,8 +5,6 @@ describe Airport do
 
   it { is_expected.to respond_to(:planes) }
 
-  it { is_expected.to respond_to(:release_plane).with(1).argument }
-
   describe '#dock_plane' do
     it 'tells plane to land' do
       plane = double(:plane, :land => true)
