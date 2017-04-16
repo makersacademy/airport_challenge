@@ -27,6 +27,18 @@ describe Airport do
       expect(airport.planes.length).to eq 1
       expect(airport.planes[0]).to be_an_instance_of(Plane)
     end
+
+    it 'takes an optional argument that specifies a custom plane' do
+      special_plane = Plane.new
+      expect{ airport.build_plane(special_plane) }.to_not raise_error
+    end
+
+    context 'a non-plane is specified' do
+      it 'throws error' do
+        expect{ airport.build_plane(55) }.to raise_error "Error: The airport can only build planes."
+      end
+    end
+        
   end
 
   describe '#climate' do

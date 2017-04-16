@@ -11,8 +11,9 @@ class Airport
     @climate = climate
   end
 
-  def build_plane
-    planes << Plane.new
+  def build_plane(plane = Plane.new)
+    raise 'Error: The airport can only build planes.' unless plane.is_a?(Plane)
+    planes << plane
   end
 
   def conditions
