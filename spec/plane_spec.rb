@@ -9,7 +9,7 @@ describe Plane do
       expect(plane.landed).to be true
     end
 
-    it 'confirms landing' do
+    it 'runs method to confirm landing' do
       expect(plane).to receive(:confirm_landing)
       plane.land
     end
@@ -38,7 +38,7 @@ describe Plane do
       expect(plane.landed).to be false
     end
 
-    it 'confirms take-off' do
+    it 'runs method to confirm take off' do
       expect(plane).to receive(:confirm_take_off)
       plane.take_off
     end
