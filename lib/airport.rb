@@ -18,6 +18,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Can't take off due to stormy weather" if stormy?
     @planes_in_airport.delete(plane)
     print "The plane took off succesfully"
   end
@@ -26,4 +27,5 @@ class Airport
   def stormy?
     @weather.stormy?
   end
+  
 end
