@@ -10,7 +10,7 @@ describe Plane do
     end
 
     it 'confirms landing' do
-      expect(subject).to receive(:confirm_landing)
+      expect(plane).to receive(:confirm_landing)
       plane.land
     end
 
