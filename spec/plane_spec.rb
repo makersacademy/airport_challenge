@@ -54,6 +54,7 @@ describe Plane do
 
     context 'plane has not taken off' do
       it 'reports that plane has not taken off' do
+        plane.land
         expect(plane.confirm_take_off).to eq "This plane has not taken off."
       end
     end
