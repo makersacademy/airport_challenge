@@ -12,10 +12,10 @@ describe 'plane' do
       expect($planes_landed). to include(plane)
     end
 
-    it 'raises an error if a plane tries to land and the airport is full' do
-      Plane::DEFAULT_CAPACITY.times { Plane.new.land Plane.new }
-      expect(Plane.new.land(Plane.new)).to raise_error 'Airport is full.'
-    end
+    # it 'raises an error if a plane tries to land and the airport is full' do
+    #   Plane::DEFAULT_CAPACITY.times { plane.land(plane) }
+    #   expect { plane.land(plane) }.to raise_error 'Airport is full.'
+    # end
   end
 
   describe 'landed?' do
