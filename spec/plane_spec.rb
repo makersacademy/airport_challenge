@@ -21,6 +21,11 @@ describe Plane do
       plane.take_off
       expect(plane.landed).to be false
     end
+
+    it 'confirms take-off' do
+      expect(plane).to receive(:confirm_take_off)
+      plane.take_off
+    end
   end
 
   describe '#confirm_landing' do
