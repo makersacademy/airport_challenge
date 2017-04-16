@@ -9,6 +9,7 @@ def initialize(weather = Weather.new)
 end
 
 def land(plane)
+  fail "Too stormy to land!" if weather.stormy?
   plane.land
   @landed_planes.push(plane)
 end
