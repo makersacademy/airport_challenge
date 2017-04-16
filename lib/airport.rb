@@ -10,4 +10,9 @@ def land(plane)
   plane.land
   @landed_planes.push(plane)
 end
+def takeoff(plane)
+  plane.takeoff
+  @landed_planes.delete(plane)
+
+end
 end
