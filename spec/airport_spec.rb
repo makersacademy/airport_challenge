@@ -9,6 +9,18 @@ describe Airport do
 
   it { is_expected.to respond_to(:planes) }
 
+  describe '#initialize' do
+    it 'does not require user to provide climate parameter' do
+      expect{ Airport.new }.to_not raise_error
+    end
+
+    context 'climate parameter is not an instance of climate' do
+      it 'raises error' do
+        expect{ Airport.new(55) }.to raise_error 'Error: Parameter is not a climate.'
+      end
+    end
+  end
+
   describe '#climate' do
     it 'returns an instance of the Climate class' do
       expect(airport.climate).to be_an_instance_of Climate

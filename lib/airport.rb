@@ -4,9 +4,10 @@ class Airport
 
   attr_reader :planes, :climate
 
-  def initialize
+  def initialize(climate = Climate.new)
+    raise 'Error: Parameter is not a climate.' unless climate.is_a?(Climate)
     @planes = []
-    @climate = Climate.new
+    @climate = climate
   end
 
   def conditions
