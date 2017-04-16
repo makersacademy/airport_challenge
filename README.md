@@ -1,8 +1,8 @@
-# Makers Academy - Airport Challenge (Week 1 weekend challenge)
+# Air Traffic Control Challenge
 ```
         ______
         _\____\___
-=  = ==(____##____)
+=  = ==(___-_-___)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
