@@ -15,6 +15,7 @@ class Airport
   end
 
   def dock_plane(plane)
+    raise 'Error: Landing forbidden when weather is stormy.' if conditions == :stormy
     plane.land
     planes << plane
   end

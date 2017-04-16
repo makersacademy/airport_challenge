@@ -102,7 +102,7 @@ describe Airport do
         plane = double(:plane, :land => true, :take_off => true)
         airport = Airport.new(stormy_climate)
         
-        expect{ @airport.release_plane(@plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
+        expect{ airport.dock_plane(plane) }.to raise_error "Error: Landing forbidden when weather is stormy."
       end
     end
 
