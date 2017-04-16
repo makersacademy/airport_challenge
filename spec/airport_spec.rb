@@ -20,6 +20,15 @@ describe Airport do
     end
   end
 
+  describe '#build_plane' do
+    it 'creates new plane in airport\'s dock' do
+      expect(airport.planes).to be_empty
+      airport.build_plane
+      expect(airport.planes.length).to eq 1
+      expect(airport.planes[0]).to be_an_instance_of(Plane)
+    end
+  end
+
   describe '#climate' do
     it 'returns an instance of the Climate class' do
       expect(airport.climate).to be_an_instance_of Climate

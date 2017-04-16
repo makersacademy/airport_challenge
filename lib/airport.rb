@@ -1,4 +1,5 @@
 require './lib/climate'
+require './lib/plane'
 
 class Airport
 
@@ -8,6 +9,10 @@ class Airport
     raise 'Error: Parameter is not a climate.' unless climate.is_a?(Climate)
     @planes = []
     @climate = climate
+  end
+
+  def build_plane
+    planes << Plane.new
   end
 
   def conditions
