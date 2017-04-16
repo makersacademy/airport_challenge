@@ -9,6 +9,7 @@ class Plane
   end
 
   def land(airport,plane)
+    capacity_check(airport)
     weather_check(Weather.new)
     airport.airport_check(plane)
     raise "plane already in airport" if plane.check(plane) == false
@@ -36,19 +37,24 @@ class Plane
   end
 
   def fly_check(airport,plane)
-  if airport.run_way.include?(plane) == false && plane.in_air == true
-  elsif
-    airport.run_way.include?(plane) == false && plane.in_air == false && plane.in_other == true
-  raise "plane is not in this airport"
+    if airport.run_way.include?(plane) == false && plane.in_air == true
+    elsif
+      airport.run_way.include?(plane) == false && plane.in_air == false && plane.in_other == true
+      raise "plane is not in this airport"
+    end
+  end
+
+  def weather_check(weather)
+    if weather.status == 'sunny'
+      "good to go"
+    elsif weather.status == 'stormy'
+      raise "bad weather"
+    end
+  end
+
+  def capacity_check(airport)
+    if airport.run_way.size >= airport.capacity
+      raise "full capacity"
   end
 end
-
- def weather_check(weather)
-   if weather.status == 'sunny'
-     "good to go"
-   elsif weather.status == 'stormy'
-     raise "bad weather"
-   end
- end
-
 end

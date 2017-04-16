@@ -1,9 +1,10 @@
 require_relative 'plane'
 class Airport
-  attr_accessor :run_way
+  attr_accessor :run_way, :capacity
 
-  def initialize
+  def initialize(capacity = 30)
     @run_way = []
+    @capacity = capacity
   end
 
   def airport_check(plane)
@@ -13,5 +14,4 @@ class Airport
     end
     plane
   end
-
 end
