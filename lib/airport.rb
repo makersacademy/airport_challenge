@@ -3,34 +3,31 @@ require_relative "weather.rb"
 
 class Airport
 
+  DEFAULT_CAPACITY = 25
+  
   attr_accessor :ground_fleet
+  attr_accessor :capacity
 
-  def initialize
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @ground_fleet = []
     @weather = Weather.new
+    @capacity = capacity
+
   end
 
   def land(plane)
-    if storms?
-      raise "No landing due to weather conditions."
-    elsif plane.landed?
-      raise "The plane has already landed"
-    else
-      plane.ground
-      @ground_fleet << plane
-    end
-
+    fail "No landing due to weather conditions." if storms?
+    fail "The plane has already landed" if plane.landed?
+    plane.ground
+    @ground_fleet << plane
   end
 
   def take_off(plane)
-    if storms?
-      raise "No taking off due to weather"
-    elsif plane.on_air?
-      raise "The plane has already taken off"      
-    else
-      plane.flying
-      @ground_fleet.delete(plane)
-    end
+    fail "No taking off due to weather" if storms?
+    fail "The plane has already taken off" if plane.on_air?
+    plane.flying
+    @ground_fleet.delete(plane)
   end
 
   def in_airport?(plane)
@@ -43,6 +40,10 @@ class Airport
 
   def storms?
     @weather.stormy?
+  end
+
+  def full?
+    true if @ground_fleet.count >= @capacity
   end
 
 end
