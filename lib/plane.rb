@@ -4,4 +4,8 @@ class Plane
     "Landed"
   end
 
+  def taken_off?
+    "Taken off"
+  end
+
 end
