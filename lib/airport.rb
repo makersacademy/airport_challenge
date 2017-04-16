@@ -4,7 +4,7 @@ require_relative "weather.rb"
 class Airport
 
   DEFAULT_CAPACITY = 25
-  
+
   attr_accessor :ground_fleet
   attr_accessor :capacity
 
@@ -24,6 +24,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Landing not possible, airport at full capacity" if full?
     fail "No taking off due to weather" if storms?
     fail "The plane has already taken off" if plane.on_air?
     plane.flying
