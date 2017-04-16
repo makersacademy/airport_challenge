@@ -1,4 +1,5 @@
-require_relative "plane.rb"
+require "plane.rb"
+require "airport.rb"
 
 class Atc
 

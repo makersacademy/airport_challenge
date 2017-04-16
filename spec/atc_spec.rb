@@ -31,6 +31,14 @@ describe Atc do
       airport = Airport.new
       expect(atc.instruct_landing(plane, airport)).to eq(airport)
     end
+    
+    it "will not land if weather at given airport is stormy" do
+      atc = Atc.new
+      plane = Plane.new
+      airport = Airport.new
+      airport.weather = 'stormy'
+      expect { atc.instruct_landing(plane, airport) }.to raise_error 'Cannot land as weather is stormy'
+    end
   end
 
     describe "#instruct_takeoff" do
