@@ -3,7 +3,14 @@ require './lib/weather'
 
 class Plane
   def land(airport)
-    airport.planes.push(self)
+    todays_weather = Weather.new
+    if todays_weather.stormy?
+      raise "Too stormy, can't land"
+    elsif airport.full?
+      raise "Airport is full, can't land"
+    else
+      airport.planes.push(self)
+    end
   end
 
   def landed?(airport)
