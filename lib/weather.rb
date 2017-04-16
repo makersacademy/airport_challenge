@@ -1,4 +1,6 @@
-class Weather
+module Weather
+
+  attr_reader :stormy
 
   STORM_RATE = 0.1
 
