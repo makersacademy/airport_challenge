@@ -5,6 +5,12 @@ describe Airport do
 
   it { is_expected.to respond_to(:planes) }
 
+  describe '#weather' do
+    it 'returns an instance of the Weather class' do
+      expect(airport.weather).to be_an_instance_of Weather
+    end
+  end
+
   describe '#dock_plane' do
     it 'tells plane to land' do
       plane = double(:plane, :land => true)
