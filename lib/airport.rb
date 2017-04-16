@@ -17,6 +17,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Landing not possible, airport at full capacity" if full?
     fail "No landing due to weather conditions." if storms?
     fail "The plane has already landed" if plane.landed?
     plane.ground
@@ -24,7 +25,6 @@ class Airport
   end
 
   def take_off(plane)
-    fail "Landing not possible, airport at full capacity" if full?
     fail "No taking off due to weather" if storms?
     fail "The plane has already taken off" if plane.on_air?
     plane.flying
