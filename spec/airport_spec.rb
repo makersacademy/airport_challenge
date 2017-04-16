@@ -27,6 +27,14 @@ describe Airport do
       expect(plane).to receive(:take_off)
       airport.release_plane(plane)
     end
+
+    it 'removes plane from Airport\'s @planes array' do
+      plane = double(:plane, :land => true, :take_off => true)
+      airport.dock_plane(plane)
+      expect(airport.planes).to include plane
+      airport.release_plane(plane)
+      expect(airport.planes).to_not include plane
+    end
   end
 
 end

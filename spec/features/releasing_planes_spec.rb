@@ -3,7 +3,7 @@ require './lib/init.rb'
 feature 'Air_traffic_control', :type => :feature do
   scenario 'releasing planes' do
     given_there_is_an_airport
-    and_there_is_a_plane
+    and_there_is_a_plane_at_the_airport
     when_i_instruct_a_plane_to_take_off_from_an_airport
     then_the_plane_should_take_off_from_the_aiport
     and_the_plane_should_confirm_it_has_left_the_airport
@@ -13,8 +13,9 @@ feature 'Air_traffic_control', :type => :feature do
     @airport = Airport.new
   end
 
-  def and_there_is_a_plane
+  def and_there_is_a_plane_at_the_airport
     @plane = Plane.new
+    @airport.dock_plane(@plane)
   end
 
   def when_i_instruct_a_plane_to_take_off_from_an_airport
