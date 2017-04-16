@@ -25,7 +25,7 @@ describe Airport do
 
   describe '#landed?' do
       it 'should confirm airplane landed' do
-        allow_any_instance_of(Weather).to receive(:stormy?) { false }
+        allow_any_instance_of(Weather).to receive(:stormy?) { nil }
         plane = subject.runways[-1]
         subject.take_off(plane)
         subject.land(plane)
@@ -33,7 +33,7 @@ describe Airport do
       end
 
       it 'should tell when airplane is not on land' do
-        allow_any_instance_of(Weather).to receive(:stormy?) { false }
+        allow_any_instance_of(Weather).to receive(:stormy?) { nil }
         plane = subject.runways[-1]
         subject.take_off(plane)
         expect(subject.landed?(plane)).to eq false
@@ -44,7 +44,7 @@ describe Airport do
     it { should respond_to(:take_off) }
 
     it 'should make airplane leave airport' do
-      allow_any_instance_of(Weather).to receive(:stormy?) { false }
+      allow_any_instance_of(Weather).to receive(:stormy?) { nil }
       plane = subject.runways[-1]
       subject.take_off(plane)
       expect(subject.runways.include? plane).to_not eq true

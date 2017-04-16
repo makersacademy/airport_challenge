@@ -1,10 +1,9 @@
 class Airport
 
-  attr_reader :plane, :runways
+  attr_reader :plane, :runways, :weather, :capacity
 
   def initialize(capacity = 10)
     @capacity = capacity
-    @plane = plane
     @weather = Weather.new
     @runways = []
     @capacity.times { @runways << Airplane.new }

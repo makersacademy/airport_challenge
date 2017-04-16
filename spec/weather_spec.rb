@@ -12,8 +12,8 @@ describe Weather do
 
     it 'should not raise error when weather is not #stormy?' do
       message = "No taking off or landing allowed while weather is stormy."
-      allow_any_instance_of(Weather).to receive(:stormy?) { false }
-      expect(subject.stormy?).to eq false
+      allow_any_instance_of(Weather).to receive(:stormy?) { nil }
+      expect(subject.stormy?).to eq nil
     end
   end
 end
