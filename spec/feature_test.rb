@@ -1,1 +1,2 @@
-airport = Airport.new
+
+plane.land(airport)
