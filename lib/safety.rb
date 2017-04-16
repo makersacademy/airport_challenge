@@ -1,6 +1,6 @@
 module Safety
 
-  def weather_check(weather)
+  def weather_check?(weather = Weather.new)
     if weather.status == "sunny"
       "check"
     else
@@ -33,14 +33,14 @@ module Safety
     end
   end
 
-  def landing_safety_check(airport, plane, weather)
-    (weather_check(weather) == "check") &&
+  def landing_safety_check(airport, plane)
+    (weather_check == "check") &&
     (airport_capacity_check(airport) == "check") &&
     (airplane_airborne(plane) == "check")
   end
 
-  def take_off_safety_check(airport, plane, weather)
-    (weather_check(weather) == "check") &&
+  def take_off_safety_check(airport, plane)
+    (weather_check == "check") &&
     (airplane_present(airport, plane) == "check")
   end
 

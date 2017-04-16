@@ -9,11 +9,10 @@ class Plane
     @status = 'airborne'
   end
 
-  def land(airport, plane, weather)
+  def land(airport, plane)
     airport = airport
     plane = plane
-    weather = weather
-    if landing_safety_check(airport, plane, weather) == true
+    if landing_safety_check(airport, plane) == true
       airport.planes.push plane
       change_status
       "#{@name} has landed in #{airport.name}"
@@ -22,11 +21,10 @@ class Plane
     end
   end
 
-  def take_off(airport, plane, weather)
+  def take_off(airport, plane)
     airport = airport
     plane = plane
-    weather = weather
-    if take_off_safety_check(airport, plane, weather) == true
+    if take_off_safety_check(airport, plane) == true
       airport.planes.delete plane
       change_status
       "#{@name} has taken off from #{airport.name}"
