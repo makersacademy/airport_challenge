@@ -45,6 +45,12 @@ describe Plane do
   end
 
   describe '#confirm_take_off' do
+    context 'plane has taken off' do
+      it 'returns message confirming plane has taken off' do
+        plane.take_off
+        expect(plane.confirm_take_off).to eq "This plane is in the air."
+      end
+    end
   end
 
 end
