@@ -11,5 +11,5 @@ class Airport
     puts "Plane landed"
     planes << plane
   end
-
+ 
 end
