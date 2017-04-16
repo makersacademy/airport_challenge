@@ -7,19 +7,19 @@ class Plane
   end
 
   def land(weather, airport)
-    raise "Cannot land in #{weather.status} weather" if stormy(weather)
-    raise "I have already landed" if status == 'landed'
+    raise "Cannot land in stormy weather" if stormy(weather)
+    raise "I have already landed" if status == :landed
     raise "Airport is at capacity" if airport.full?
     airport.receive(self)
-    @status = 'landed'
+    @status = :landed
   end
 
   def take_off(weather, airport)
-    raise "Cannot take off in #{weather.status} weather" if stormy(weather)
+    raise "Cannot take off in stormy weather" if stormy(weather)
     raise "I am already in the air" if flying?
     raise "I am not in that airport" unless airport.planes.include?(self)
     airport.release(self)
-    @status = 'in air'
+    @status = :in_air
   end
 
   def confirm_status
@@ -27,10 +27,10 @@ class Plane
   end
 
   def flying?
-    @status == 'in air' ? true : false
+    confirm_status == :in_air
   end
 
   def stormy(weather)
-    weather.status == 'stormy' ? true : false
+    weather.status == :stormy
   end
 end

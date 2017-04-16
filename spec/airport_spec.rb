@@ -39,7 +39,7 @@ describe Airport do
   end
 
   it 'receives landing planes into its planes array' do
-    plane = double('plane', :land => true)
+    plane = double('plane', :land => 'landed')
     weather = double('weather', :status => 'sunny')
     plane.land(weather, subject)
     subject.receive(plane)
@@ -47,7 +47,7 @@ describe Airport do
   end
 
   it 'releases departing planes from its planes array' do
-    plane = double('plane', :take_off => true, :land => true)
+    plane = double('plane', :take_off => 'in air', :land => true)
     weather = double('weather', :status => 'sunny')
     subject.receive(plane)
     expect(subject.planes.count).to eq 1
