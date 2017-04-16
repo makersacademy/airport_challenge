@@ -4,6 +4,7 @@ describe Airport do
 
   subject(:airport) { described_class.new }
   subject(:airport_2) { described_class.new }
+  subject(:airport_3) { described_class.new(30) }
   let(:weather) { double :weather }
   let(:plane) { double :plane }
 
@@ -35,8 +36,7 @@ describe Airport do
   end
 
   it 'can have capacity overridden' do
-    airport = Airport.new(30)
-    expect(airport.capacity).to eq 30
+    expect(airport_3.capacity).to eq 30
   end
 
   it 'cannot release planes that it does not have' do
@@ -50,6 +50,13 @@ describe Airport do
     plane.land(weather, airport)
     airport.receive(plane)
     expect(airport.release(plane)).to eq plane
+  end
+
+  it 'prevents landing when the airport is full' do
+    allow(weather).to receive_messages(:status => :sunny)
+    allow(airport).to receive_messages(:full? => true)
+    message = "Airport is at capacity"
+    expect {  airport.receive(plane) }.to raise_error message
   end
 
 end

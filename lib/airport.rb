@@ -10,6 +10,7 @@ class Airport
   end
 
   def receive(plane)
+    raise "Airport is at capacity" if full?
     @planes << plane
   end
 
