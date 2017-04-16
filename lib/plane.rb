@@ -8,7 +8,7 @@ class Plane
   end
 
   def take_off
-    self.landed = false
+    take_off_process
   end
 
   def confirm_landing
@@ -21,6 +21,10 @@ class Plane
 
   def landing_process
     self.landed = true
+  end
+
+  def take_off_process
+    self.landed = false
   end
 
 end
