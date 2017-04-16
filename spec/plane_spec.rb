@@ -20,13 +20,13 @@ describe Plane do
     context 'plane has landed' do
       it 'returns message confirming plane has landed' do
         plane.land
-        expect(subject.confirm_landing).to eq "This plane has landed."
+        expect(plane.confirm_landing).to eq "This plane has landed."
       end
     end
 
     context 'plane has not landed' do
       it 'states plane has not landed if @landed == false' do
-        expect(subject.confirm_landing).to eq "This plane has not landed."
+        expect(plane.confirm_landing).to eq "This plane has not landed."
       end
     end
 
