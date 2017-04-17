@@ -95,7 +95,8 @@ The program uses three classes to achieve the specification: `Airport`, `Plane` 
 @airport=
 #<Airport:0x007f8dff9a7650
 @capacity=20,
-@planes=[#<Plane:0x007f8dffcf6158 @airport=#<Airport:0x007f8dff9a7650 ...>>, #<Plane:0x007f8e00230c68...>],
+@planes=[#<Plane:0x007f8dffcf6158 @airport=#<Airport:0x007f8dff9a7650 ...>>,
+#<Plane:0x007f8e00230c68...>],
 @storm_probability=10,
 @weather_generator=#<WeatherGenerator:0x007f8e002bb8e0>>>
 [13] pry(main)> miami_international.permit_takeoff(plane2)
