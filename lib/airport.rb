@@ -18,10 +18,12 @@ class Airport
 
   def release_aircraft(plane)
     fail "Error: There are no planes to release." if empty?
+    fail "ERROR: Not valid plane." if !aircraft.include?(plane)
     aircraft.delete(plane)
   end
 
   private
+
   def full?
     aircraft.count >= 10
   end
