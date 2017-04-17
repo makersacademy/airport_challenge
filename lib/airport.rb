@@ -9,6 +9,7 @@ class Airport
 
   def land(plane)
     fail "Plane has aleady landed." unless plane.flying
+    fail "Too stormy for landing." if @weather
     plane.land
     "Plane has landed."
   end
