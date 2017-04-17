@@ -6,3 +6,4 @@ enabled-upgraded.yml
 CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
+rate_test.rb
