@@ -16,13 +16,18 @@ class Airport
     aircraft << plane
   end
 
-  def release_aircraft
-    fail "Error: There are no planes to release." if aircraft.empty?
-    aircraft.pop
+  def release_aircraft(plane)
+    fail "Error: There are no planes to release." if empty?
+    aircraft.delete(plane)
   end
 
+  private
   def full?
     aircraft.count >= 10
+  end
+
+  def empty?
+    aircraft.empty?
   end
 
 end
