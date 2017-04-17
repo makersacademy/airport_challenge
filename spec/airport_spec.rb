@@ -22,6 +22,10 @@ describe Airport do
 
   end
 
+  describe "#capacity" do
+    it { is_expected.to respond_to :capacity }
+  end
+  
   describe "#release_aircraft" do
     it { is_expected.to respond_to :release_aircraft }
 
