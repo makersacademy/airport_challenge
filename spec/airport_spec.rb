@@ -29,7 +29,6 @@ describe 'airport' do
 
   describe 'take_off' do
 
-
     it 'moves the plane from the landed array to the in air array' do
       weather = Weather.new
       stansted = Airport.new
@@ -41,10 +40,10 @@ describe 'airport' do
 
     it 'raises an error if the plane tries to take off in stormy weather' do
       gatwick = Airport.new
-      weather = Weather.new
-      allow(weather).to receive(:stormy) {true}
+      report = Weather.new
+      allow(report).to receive(:stormy) { 0 }
       expect { gatwick.take_off(Plane.new) }.to raise_error 'Weather is stormy'
     end
-    end
+  end
 
 end
