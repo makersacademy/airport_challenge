@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    raise 'Plane cannot land due to dangerous weather' if @conditions == :stormy
     @planes << plane
     return "The plane has landed."
   end
