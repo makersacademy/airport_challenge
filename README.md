@@ -69,7 +69,15 @@ Because I was still getting to grips with the testing syntax, TDD was a struggle
 
 ### Domain Modelling
 
-It was a challenge figuring out which object I should call my `land` method on. At first, I tried to call it on instances of `Plane`, but could not write the tests for this approach. I was using doubles, and I had to check that a `plane` had been saved to an airport's `@planes` array after landing. I could find no way to do this using doubles, and I decided RSpec was trying to tell me something! My inability to write the test with doubles suggested my `airport`s and `plane`s would be overly dependent on one another unless I made a change, so I decided that airports should `dock_planes` instead of having planes `land_at` airports. 
+It was a challenge figuring out which object I should call my `land` method on. At first, I tried to call it on instances of `Plane`, but could not write the tests for this approach. I was using doubles, and I had to check that a `plane` had been saved to an airport's `@planes` array after landing. 
+
+I could find no way to do this using doubles, as I needed to check that `plane.land_at(airport)` both changed `plane.land` to `true`, and saved `plane` to `airport.planes`. I decided RSpec was trying to tell me something! My inability to write the test with doubles suggested my `airport`s and `plane`s would be overly dependent on one another unless I made a change, so I decided that airports should `dock_planes` instead of having planes `land_at` airports. 
+
+With hindsight, I could have perhaps tested that 
+1. `airport` received a `save_plane` message with one argument when `plane.land_at(airport)` was called, and
+2. `airport` saved `save_planes`'s argument (the plane) when it received that message.
+
+However, I still don't know how I'd have checked that a `plane` passed itself as an argument when calling `save_plane` on `airport`.
 
 ### Features
 
