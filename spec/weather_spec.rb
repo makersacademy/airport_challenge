@@ -5,8 +5,6 @@ describe Weather do
   it { is_expected.to respond_to :stormy }
 
   it "Tests weather generation" do
-      expect(weather.stormy).to be(true).or be(false)
-    end
-
-
+    expect(weather.stormy).to be(true).or be(false)
+  end
 end

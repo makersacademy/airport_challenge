@@ -14,6 +14,9 @@ describe Airport do
     it "Has a attribute set to an instance of Plane post landing" do
       expect(airport.accept_aircraft(plane)).to eq airport.aircraft
     end
+
+
+    
   end
 
   context "#release_aircraft" do
