@@ -52,23 +52,25 @@ Review
 
 **The Good**
 
--> Code *should* be a complete solution to the user stories.
+* Code *should* be a complete solution to the user stories.
 
--> Code *should* guard against edge cases (such as 'teleportation' of planes)
+* Code *should* guard against edge cases (such as 'teleportation' of planes)
 
--> Tests pass and test coverage is high
+* Tests pass and test coverage is high
 
--> Rubocop gives all-clear (no offences)
+* Rubocop gives all-clear (no offences)
 
 **The Bad**
 
--> While all code was featured tested on IRB while it was being built, not all rspec unit tests were written before the actual code was inputted into the LIB files - this is a failing in terms of TDD.  Rspec unit tests were created thereafter, first in a failing state, and then to pass.
+* While all code was featured tested on IRB while it was being built, not all rspec unit tests were written before the actual code was inputted into the LIB files - this is a failing in terms of TDD.  Rspec unit tests were created thereafter, first in a failing state, and then to pass.
 
--> Code isn't as DRY as possible, e.g. The @@Plane #land and #take_off call another method twice (first to see if it passes and if it doesn't, a second time to generate the message indicating why it hasn't).
+* Code isn't as DRY as possible, e.g. The @@Plane #land and #take_off call another method twice (first to see if it passes and if it doesn't, a second time to generate the message indicating why it hasn't).
 
 **The Ugly**
 
--> Rspec tests (Require a lot of refactoring)
+* Rspec tests (Require a lot of refactoring)
+
+* On reflection, Safety module is probably unnecessary and the code within could be distributed to other classes in a simpler fashion. 
 
 
 Example of Code
