@@ -1,9 +1,10 @@
 Week 1, Makers Academy – Airport Challenge
 ====================
 
-
+<!-- 
 <div style="text-align:center"> ![](https://media.giphy.com/media/ArYyMzY10qNnq/giphy.gif)
-</div>
+</div> -->
+<img align="center" src="https://media.giphy.com/media/ArYyMzY10qNnq/giphy.gif">
 
 
 * Creating a program to manage planes landing and taking off at airports, using a TDD approach.
