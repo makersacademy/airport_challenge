@@ -20,7 +20,7 @@ class Airport
 
   def take_off(plane)
     weather = Weather.new
-    fail 'Weather is stormy' if weather.stormy? == true
+    fail 'Weather is stormy' if weather.stormy == true
     planes_in_air << plane
   end
 

@@ -1,6 +1,8 @@
 class Weather
-  def stormy?
-    @number = rand(4)
-    true if @number == 0
+  attr_reader :stormy
+
+
+  def number
+    @stormy = rand(4)
   end
 end

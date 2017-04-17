@@ -28,24 +28,23 @@ describe 'airport' do
   end
 
   describe 'take_off' do
-    it 'tests whether the plane responds to :take_off' do
+
+
+    it 'moves the plane from the landed array to the in air array' do
       weather = Weather.new
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect(Airport.new).to respond_to :take_off
+      stansted = Airport.new
+      spirit = Plane.new
+      allow(weather).to receive(:stormy).and_return(false)
+      stansted.take_off(spirit)
+      expect(stansted.planes_in_air).to include(spirit)
     end
 
-    # it 'moves the plane from the landed array to the in air array' do
-    #   weather = Weather.new
-    #   allow(weather).to receive(:stormy?).and_return(false)
-    #   Airport.new.take_off(Plane.new)
-    #   expect(Airport.new.planes_in_air).to include(Plane.new)
-    # end
-    #
-    # it 'raises an error if the plane tries to take off in stormy weather' do
-    #   weather = Weather.new
-    #   allow(weather).to receive(:stormy?).and_return(true)
-    #   expect { Airport.new.take_off(Plane.new) }.to raise_error 'Weather is stormy'
-    # end
+    it 'raises an error if the plane tries to take off in stormy weather' do
+      gatwick = Airport.new
+      weather = Weather.new
+      allow(weather).to receive(:stormy) {true}
+      expect { gatwick.take_off(Plane.new) }.to raise_error 'Weather is stormy'
+    end
     end
 
 end
