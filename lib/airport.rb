@@ -12,7 +12,7 @@ require_relative 'plane'
 
 
    def land(plane)
-
+     raise "Airport full" if @planes.length >= DEFAULT_CAPACITY
      @planes << plane
    end
 
