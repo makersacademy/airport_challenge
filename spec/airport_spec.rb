@@ -21,7 +21,7 @@ describe Airport do
 
     it "Removes #take_off object from attribute" do
       airport.land(plane)
-      airport.take_off(plane)
+      airport.take_off
       expect(airport.aircraft).to eq nil
     end
   end
