@@ -2,59 +2,59 @@ require 'airport'
 require 'weather'
 
 describe Airport do
+  subject {Airport.new(20)}
 
-it { is_expected.to respond_to(:confirm_landing).with(1).argument}
-it { is_expected.to respond_to(:confirm_takeoff).with(1).argument}
-it { is_expected.to respond_to :stormy_weather?}
+  it { is_expected.to respond_to :stormy_weather?}
+  it { is_expected.to respond_to(:confirm_landing).with(1).argument}
+  it { is_expected.to respond_to :confirm_takeoff}
+
+  describe '#confirm_landing' do
+
+     context 'if weather is fine' do
+        it "should confirm landing by adding a new plane to the array of planes in the airport" do
+        plane = Plane.new
+        allow(subject).to receive(:stormy_weather?).and_return(false)
+        expect(subject.confirm_landing(plane)).to eq [plane]
+        end
+     end
+
+     context 'if weather is stormy' do
+       it "should raise error and not confirm landing if the weather is stormy" do
+       plane = Plane.new
+       allow(subject).to receive(:stormy_weather?).and_return(true)
+       expect {subject.confirm_landing(plane)}.to raise_error 'Stormy weather, cannot land'
+       end
+     end
+
+     context 'if airport is full' do
+       it 'should raise errors and not confirm landing if aiport is full' do
+       plane = Plane.new
+       allow(subject).to receive(:stormy_weather?).and_return(false)
+       Airport::DEFAULT_CAPACITY.times { subject.confirm_landing Plane.new }
+       expect { subject.confirm_landing(plane)}.to raise_error 'Cannot land, airport full'
+       end
+     end
 end
 
-describe '#confirm_landing' do
+  describe '#confirm_takeoff' do
 
-  context 'if weather is fine' do
-    it "should confirm landing by adding a new plane  -the argument- to the array of planes in the airport" do
-      airport = Airport.new
+    context "if weather is fine" do
+      it "should confirm takeoff by popping a plane from the array of planes in the airport" do
       plane = Plane.new
-      allow(airport).to receive(:stormy_weather?).and_return(false)
-      expect(airport.confirm_landing(plane)).to eq [plane]
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      subject.confirm_landing(plane)
+      expect(subject.confirm_takeoff).to eq plane
+      end
     end
-  end
-  context 'if weather is stormy' do
-    it "should raise error and not confirm landing if the weather is stormy" do
-    airport = Airport.new
-    plane = Plane.new
-    allow(airport).to receive(:stormy_weather?).and_return(true)
-    expect {airport.confirm_landing(plane)}.to raise_error 'Stormy weather, cannot land'
-   end
-  end
-  context 'if aiport is full' do
-  it 'should raise erros and not confirm landing if aiport is full' do
-    airport = Airport.new
-    plane = Plane.new
-    allow(airport).to receive(:stormy_weather?).and_return(false)
-    airport.capacity.times { airport.confirm_landing Plane.new }
-    expect { airport.confirm_landing Plane.new }.to raise_error 'Cannot land, airport full'
-  end
+
+    context "if weather is stormy" do
+      it 'should raise error when confirming takeoff if weather is stormy - fail error' do
+      plane = Plane.new
+      subject.confirm_landing(plane)
+      allow(subject).to receive(:stormy_weather?).and_return(true)
+      expect {subject.confirm_takeoff}.to raise_error 'Stormy weather, cannot takeoff'
+      end
+    end
  end
 
-end
-
-describe '#confirm_takeoff' do
-  context "if weather is fine" do
-    it "should confirm takeoff by popping a plane from the array of planes in the airport" do
-      airport = Airport.new
-      plane = Plane.new
-      allow(airport).to receive(:stormy_weather?).and_return(false)
-      airport.confirm_landing(plane)
-      expect(airport.confirm_takeoff(plane)).to eq plane
-    end
-  end
-  context "if weather is stormy" do
-    it 'should raise error when confirming takeoff if weather is stormy - fail error' do
-      airport = Airport.new
-      plane = Plane.new
-      airport.confirm_landing(plane)
-      allow(airport).to receive(:stormy_weather?).and_return(true)
-    expect {airport.confirm_takeoff(plane)}.to raise_error 'Stormy weather, cannot takeoff'
-    end
-   end
-end
+ end
