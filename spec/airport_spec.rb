@@ -5,6 +5,9 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:terminal) }
   it { is_expected.to respond_to(:take_off) }
+  it 'has default capacity' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 
   describe '#land' do
     it 'raise error if unable to land' do
