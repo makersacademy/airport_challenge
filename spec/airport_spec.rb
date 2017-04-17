@@ -7,7 +7,7 @@ describe Airport do
   describe '#initalize' do
     it 'sets a default capacity for each airport' do
       plane = Plane.new
-      Weather.any_instance.stub(:rand_number).and_return(5)
+      Weather.any_instance.stub(:stormy?).and_return(false)
       Airport::DEFAULT_CAPACITY.times do
         subject.planes.push(plane)
       end
@@ -19,15 +19,17 @@ describe Airport do
   end
 end
 
-  it 'expect a plane that has landed to exist at the airport' do
-    plane = Plane.new
-    Weather.any_instance.stub(:rand_number).and_return(5)
-    plane.land(subject)
-    expect(subject.planes).to include plane
-  end
+  describe '#planes' do
+    it 'expect a plane that has landed to exist at the airport' do
+      plane = Plane.new
+      Weather.any_instance.stub(:stormy?).and_return(false)
+      plane.land(subject)
+      expect(subject.planes).to include plane
+    end
 
-  it 'expect a plane that has not landed to not exist at the airport' do
-    plane = Plane.new
-    expect(subject.planes).not_to include plane
+    it 'expect a plane that has not landed to not exist at the airport' do
+      plane = Plane.new
+      expect(subject.planes).not_to include plane
+    end
   end
 end

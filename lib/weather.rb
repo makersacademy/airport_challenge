@@ -1,11 +1,7 @@
+## This class is required to determine the weather conditions whenever a
+## plane is meant to land or take off. It produces stormy weather 20% of the time
 class Weather
-  attr_reader :rand_number
-
-  def rand_number
-    1 + rand(10)
-  end
-
   def stormy?
-    rand_number >= 8
+    1 + rand(10) >= 8
   end
 end
