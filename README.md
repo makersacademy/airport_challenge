@@ -38,19 +38,20 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
+### You can create an Airport, land planes, park them in the hangar and then takeoff again!
+### Weather permitting - You can rely on grade A air traffic controllers to help you out.
 
 ### How to run...
+
 
 ```ruby
 irb
 require './lib/airport'
 ```
 
-### From here you can create a docking station and use the 'Boris Bikes' program as you wish!
-
 ```ruby
-heathrow = Airport.new # creates a new airport with a default capacity of 10
-gatwick = Airport.new(18) # customise capacity when instantiating airport class
+gatwick = Airport.new # creates a new airport with a default capacity of 10
+heathrow = Airport.new(18) # customise capacity when instantiating airport class
 heathrow.land(Plane.new) # land planes in the airport, watch out for stormy weather!
 heathrow.hangar # this will return the @hangar array containing the Plane objects
 heathrow.takeoff # again watch out for bad weather conditions!
@@ -66,7 +67,7 @@ heathrow.takeoff # again watch out for bad weather conditions!
   User storied all refer to the 'air traffic controller' needing to carry out the tasks of safe landing/takeoff.
 
 - When returning error messages and confirmation of a successful landing or takeoff,
-  I decided to pass this behaviour to Plane - which are executed when the Plane object has carried out specific funcitons.
+  I decided to pass this behaviour to Plane - which are executed when the Plane object has carried out specific functions.
   This isolates these methods, and remove any hard-coded statements in the Airport methods.
 
 2. Writing concise, DRY tests to get the maximum test coverage using RSpec
