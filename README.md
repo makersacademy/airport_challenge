@@ -59,7 +59,7 @@ The program uses three classes to achieve the specification: `Airport`, `Plane` 
 
 ### Running
 - Run `pry`
-- Run the following commands
+- Example commands are shown below for two airports with varying storm probabilities:
 
 ```
 [1] pry(main)> require './lib/airport.rb'
