@@ -14,13 +14,13 @@ describe Weather do
       expect(subject.random_condition).to eq :stormy
     end
     describe '#stormy?' do
-      it 'should return true if #random_condition returns stormy' do
+      it 'should return true if #stormy? evaluates to stormy' do
         allow(subject).to receive(:random_condition) { :stormy }
-        expect(subject.random_condition).to eq :stormy
+        expect(subject.stormy?).to eq true
       end
-      it 'should return false if #random_condition returns stormy' do
+      it 'should return false if #stormy? evaluates to stormy' do
         allow(subject).to receive(:random_condition) { :sunny }
-        expect(subject.random_condition).to eq :sunny
+        expect(subject.stormy?).to eq false
       end
     end
   end

@@ -14,10 +14,20 @@ describe Airport do
     expect(subject.capacity).to eq 20
   end
   describe '#land' do
+    it 'raises error if #land unavailable due to #weather_unsafe returning true' do
+      allow(subject).to receive(:weather_unsafe?) { true }
+      allow(subject).to receive(:hangar_full?) { false }
+      expect { subject.land }.to raise_error 'Unable to land at airport'
+    end
+    it 'raises error if #land unavailable due to #hangar_full? returning true' do
+      allow(subject).to receive(:weather_unsafe?) { false }
+      allow(subject).to receive(:hangar_full?) { true }
+      expect { subject.land }.to raise_error 'Unable to land at airport'
+    end
     it 'lands plane and appends plane to @hangar array' do
       allow(subject).to receive(:weather_unsafe?) { false }
       allow(subject).to receive(:hangar_full?) { false }
-      expect(subject.land(Plane.new)).to eq 'Plane landed safely'
+      expect(subject.land).to eq 'Plane landed safely'
     end
     describe '#takeoff' do
       it 'plane takeoff succesful and removes instance of plane from @hangar array' do
@@ -25,16 +35,16 @@ describe Airport do
         allow(subject).to receive(:hangar_empty?) { false }
         expect(subject.takeoff).to eq 'Plane takeoff succesful'
       end
+      it 'raises error if #takeoff unavailable due to #weather_unsafe returning true' do
+        allow(subject).to receive(:weather_unsafe?) { true }
+        allow(subject).to receive(:hangar_full?) { false }
+        expect { subject.takeoff }.to raise_error 'Unable to takeoff from airport'
+      end
+      it 'raises error if #takeoff unavailable due to #hangar_empty? returning true' do
+        allow(subject).to receive(:weather_unsafe?) { false }
+        allow(subject).to receive(:hangar_full?) { true }
+        expect { subject.takeoff }.to raise_error 'Unable to takeoff from airport'
+      end
     end
   end
 end
-# it 'raises error if #land unavailable due to #weather_unsafe returning true' do
-#   allow(subject).to receive(:weather_unsafe?) { true }
-#   allow(subject).to receive(:hangar_full?) { false }
-#   expect(subject.land(Plane.new)).to raise_error 'Unable to land'
-# end
-# it 'raises error if #land unavailable due to #hangar_full? being returning true' do
-#   allow(subject).to receive(:weather_unsafe?) { false }
-#   allow(subject).to receive(:hangar_full?) { true }
-#   expect(subject.land(Plane.new)).to raise_error 'Unable to land'
-# end
