@@ -5,14 +5,20 @@ Week 1, Makers Academy – Airport Challenge
 
 * Creating a program to manage planes landing and taking off at airports, using a TDD approach.
 
-* Planes can land at an airport, and then take off, as long as the weather is not stormy (which is it 20% of the time). Planes cannot land if they have already landed, and cannot take off if they are already in the air. They also cannot take off from an airport unless they are already at that airport.
+* Planes can land at an airport, and then take off, as long as the weather is not stormy (which is it 20% of the time)
 
-* Tests written with RSpec. Rubocop used to check Ruby syntax and conventions.
+* Planes cannot land if they have already landed, and cannot take off if they are already in the air
+
+* Planes cannot take off from an airport unless they are already at that airport
+
+* Tests written with RSpec
+
+* Rubocop used to check Ruby syntax and conventions
 
 * Test coverage is 100%
 
 
-User stories covered:
+User stories specified and covered:
 -------
 
 ```
