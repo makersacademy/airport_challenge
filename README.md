@@ -1,15 +1,10 @@
 Week 1, Makers Academy – Airport Challenge
 ====================
 
-```  ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-```
+
+<div style="text-align:center"> ![](https://media.giphy.com/media/ArYyMzY10qNnq/giphy.gif)
+</div>
+
 
 * Creating a program to manage planes landing and taking off at airports, using a TDD approach.
 
@@ -53,5 +48,3 @@ Things to remember:
 -------
 * Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 * Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-![](https://media.giphy.com/media/ArYyMzY10qNnq/giphy.gif)
