@@ -31,6 +31,11 @@ describe Plane do
     it "Expects a plane to inform it has not landed if requested before landing" do
       expect(plane.confirm_landed).to eq "#{plane} is still in the air"
     end
-
   end
+
+  context "#take_off" do
+      it { is_expected.to respond_to :take_off }
+  end
+
+
 end
