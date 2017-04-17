@@ -64,7 +64,7 @@ Review
 
 -> While all code was featured tested on IRB while it was being built, not all rspec unit tests were written before the actual code was inputted into the LIB files - this is a failing in terms of TDD.  Rspec unit tests were created thereafter, first in a failing state, and then to pass.
 
--> Code isn't as DRY as possible, e.g. The @@Plane #land and #take_off call another method twice (first to see if it passes and if it doesn't, a secont time to generate the message indicating why it hasn't
+-> Code isn't as DRY as possible, e.g. The @@Plane #land and #take_off call another method twice (first to see if it passes and if it doesn't, a second time to generate the message indicating why it hasn't).
 
 **The Ugly**
 
