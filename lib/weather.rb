@@ -1,4 +1,4 @@
 class Weather
-  def stormy?
+  def generate_weather
   end
 end
