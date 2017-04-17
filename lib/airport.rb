@@ -16,6 +16,7 @@ class Airport
   end
 
   def takeoff
+    raise 'Plane cannot take off due to dangerous weather' if @conditions == :stormy
     @planes.pop
     return "The plane has taken off"
   end
