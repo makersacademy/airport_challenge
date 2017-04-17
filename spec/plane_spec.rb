@@ -1,7 +1,7 @@
 require './lib/plane.rb'
 
 describe Plane do
-  subject(:plane) {described_class.new}
+  subject(:plane) { described_class.new }
 
   context "#confirm the plane has landed" do
     it '#able to land a flying plane' do

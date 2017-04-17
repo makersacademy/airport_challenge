@@ -20,6 +20,7 @@ class Airport
   def take_off(plane)
     fail "No planes available" if empty?
     raise RuntimeError, "Take off cancelled due to stormy weather" if storm_outside?
+    plane.plane_take_off
     planes.pop
   end
 
