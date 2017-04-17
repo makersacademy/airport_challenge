@@ -1,4 +1,4 @@
-require 'airport'
+require_relative 'airport'
 
 class Plane
 
@@ -6,7 +6,9 @@ class Plane
     true
   end
 
-  def confirm_land
+
+  def takeoff(airport)
+    true
   end
 
 end
