@@ -2,10 +2,9 @@ require 'airport'
 
 describe 'airport' do
   describe '#land' do
-    # it 'tests whether an instance of plane responds to land method' do
-    #   plane = Plane.new
-    #   expect(plane).to respond_to :land
-    # end
+    it 'tests whether an instance of plane responds to land method' do
+      expect(Airport.new).to respond_to :land
+    end
 
     it 'tests whether a landed plan has been added to the array' do
       plane1 = Plane.new
