@@ -2,8 +2,14 @@ require_relative 'plane'
 
 class Airport
 
-def initialize
+DEFAULT_CAPACITY = 20
+
+attr_accessor :capacity
+
+def initialize(capacity = DEFAULT_CAPACITY)
+  @weather =  Random.rand(1..100)
   @planes = []
+  @capacity = capacity
 end
 
 def confirm_landing(plane)
@@ -11,9 +17,8 @@ def confirm_landing(plane)
 end
 
 def confirm_takeoff(plane)
-  @planes.pop
+  @planes.pop if @weather > 20
 end
-
 
 
 end
