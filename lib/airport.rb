@@ -12,12 +12,12 @@ class Airport
   end
 
   def land(plane)
-    fail 'cannot land' if :bad_weather?
+    fail 'cannot land' if :bad_weather? || :full?
     @terminal << plane; return 'landed safely'
   end
 
   def take_off
-    fail 'cannot take off' if :bad_weather?
+    fail 'cannot take off' if :bad_weather? || :empty?
     @terminal.pop; return 'take off successful'
   end
 
@@ -25,6 +25,14 @@ class Airport
 
   def bad_weather?
     @weather.stormy?
+  end
+
+  def full?
+    @terminal.count >= capacity
+  end
+
+  def empty?
+    @terminal.empty?
   end
 
 end

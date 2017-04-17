@@ -8,7 +8,11 @@ describe Airport do
   it 'has default capacity' do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
-
+  it 'allows variable capacity' do
+    capacity = double(:capacity)
+    subject = Airport.new(:capacity)
+    expect(subject.capacity).to eq :capacity
+  end
   describe '#land' do
     it 'raise error if unable to land' do
       plane = double(:plane)
