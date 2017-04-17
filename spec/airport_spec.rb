@@ -1,4 +1,5 @@
 require './lib/airport.rb'
+require_relative '../lib/plane'
 
 describe Airport do
   subject(:airport) { described_class.new }
@@ -17,6 +18,12 @@ describe Airport do
 
   context "#take_off aircraft" do
     it { is_expected.to respond_to :take_off }
+
+    it "Removes #take_off object from attribute" do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.aircraft).to eq nil
+    end
   end
 
 end
