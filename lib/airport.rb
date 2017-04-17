@@ -1,4 +1,5 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
 
