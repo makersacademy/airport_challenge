@@ -1,7 +1,6 @@
 require_relative 'plane'
 
-  class Airport
-
+ class Airport
    DEFAULT_CAPACITY = 50
    attr_reader :planes
 
@@ -10,14 +9,14 @@ require_relative 'plane'
      @planes = []
    end
 
-
    def land(plane)
-     raise "Airport full" if @planes.length >= DEFAULT_CAPACITY
-     @planes << plane
-   end
+     raise("The airport is at maximum capacity") if @planes.length >= @capacity
+      @planes << plane
+    end
 
-  def takeoff(plane)
 
-     @planes.pop
-   end
-  end
+   def takeoff
+      raise RuntimeError, ("Airport empty") if @planes = []
+      @planes.pop
+    end
+end
