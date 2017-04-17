@@ -5,8 +5,11 @@ class Plane
     plane
   end
 
-  def landed?
-    'Plane has landed'
+  def landed?(plane) # doesnt know what plane is
+    if plane == nil?
+      'plane has not landed'
+    else
+      'Plane has landed'
+    end
   end
-
 end

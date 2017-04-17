@@ -6,6 +6,7 @@ describe Plane do
     expect(subject.land(plane)).to equal plane
   end
 
+  
   it { is_expected.to respond_to :landed? }
 
 end

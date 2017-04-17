@@ -1,10 +1,10 @@
 require_relative 'plane'
 
 class Airport
-
+  attr_reader :plane
 
   def initialize
-    plane = plane
+    @plane = plane
   end
 
   def release_plane
@@ -12,10 +12,13 @@ class Airport
   end
 
   def land(plane)
-    plane
+    @plane = plane
   end
-
-  def plane
-
+  def landed?
+    if plane == nil?
+      'plane has not landed'
+    else
+      'Plane has landed'
+    end
   end
 end
