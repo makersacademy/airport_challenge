@@ -3,8 +3,16 @@ require './lib/airport.rb'
 class Plane
   attr_reader :landed
 
+  #def initialize
+  #  @landed = false
+  #end
+
   def land(airport)
     landing_schedule(airport)
+  end
+
+  def confirm_landed
+    landed ? "#{self} has landed" : "#{self} is still in the air"
   end
 
   private

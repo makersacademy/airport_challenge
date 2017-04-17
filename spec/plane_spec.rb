@@ -12,7 +12,7 @@ describe Plane do
     it "Expects plane to run a landing schedule after landing call" do
       expect(plane.land(airport)).to eq true
     end
-    
+
     it "Expects plane to have true #landed attribute once landing_schedule" do
       plane.land(airport)
       expect(plane.landed).to eq true
@@ -21,6 +21,16 @@ describe Plane do
 
   context "#landed" do
     it { is_expected.to respond_to :landed }
-  end
 
+
+    it "Expects a plane to confirm it has landed after it has" do
+      plane.land(airport)
+      expect(plane.confirm_landed).to eq "#{plane} has landed"
+    end
+
+    it "Expects a plane to inform it has not landed if requested before landing" do
+      expect(plane.confirm_landed).to eq "#{plane} is still in the air"
+    end
+
+  end
 end
