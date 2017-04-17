@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-w = Weather.new
+airport=Airport.new
 DEFAULT_CAPACITY = 20
 
 attr_accessor :capacity
@@ -13,12 +13,19 @@ def initialize(capacity = DEFAULT_CAPACITY)
 end
 
 def confirm_landing(plane)
-  @planes << plane unless w.stormy?
+fail 'Stormy weather, cannot land' if stormy_weather?
+@planes << plane
+
 end
 
 def confirm_takeoff(plane)
-  @planes.pop unless w.stormy?
+  fail 'Stormy weather, cannot takeoff' if stormy_weather?
+  @planes.pop
 end
 
+def stormy_weather?
+weather = Weather.new
+weather.stormy?
+end
 
 end
