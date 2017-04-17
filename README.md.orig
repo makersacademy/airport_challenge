@@ -1,40 +1,5 @@
-Airport Challenge Author README
-=================
-Author: arnoldmanzano
-
-![Travis CI status](https://travis-ci.org/arnoldmanzano/airport_challenge.svg?branch=master)
-
-To model the user stories in OOP, the main nouns are implemented as classes and the verb interactions between them are the methods. Classes and methods are written using test-first TDD approach.
-
-Airport is a class, and Plane is a class.
-Interaction between Airport and Plane are the methods on airport, that takes plane as argument.
-airport.land(plane)
-airport.take_off(plane)
-Airport maintains an array variable @planes to push/pop individual planes as they land/take_off.
-Airport capacity is an attribute  that is set upon initialize of new airport.
-Airport weather is an attribute (uses another class, more below) and is queried on implementing airport methods.
-
-Plane contains method to set its own attribute as currently landed or not.
-
-To maintain SRP, Weather is implemented as another class, and Airport interacts with it by querying the state of weather.
-Weather randomness is implemented by using #sample method of array.
-Weather testing uses srand to get fixed seed from .sample method.
-
-
 Airport Challenge
 =================
-
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
 
 Instructions
 ---------
@@ -48,10 +13,11 @@ Instructions
 Steps
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+1. Fill out your learning plan self review for the week: https://github.com/makersacademy/learning_plan (edit week 1 - you can edit directly on your Github fork)
+2. Fork this repo, and clone to your local machine
+3. Run the command `gem install bundle` (if you don't have bundle already)
+4. When the installation completes, run `bundle`
+3. Complete the following task:
 
 Task
 -----
