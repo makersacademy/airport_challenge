@@ -25,6 +25,7 @@ class Plane
   attr_writer :landed
 
   def landing_process
+    raise 'Error: Plane is already on the ground.' if landed
     self.landed = true
   end
 

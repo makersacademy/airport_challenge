@@ -14,6 +14,13 @@ describe Plane do
       plane.land
     end
 
+    context 'plane has already landed' do
+      it 'raises error' do
+        plane.land
+        expect { plane.land }.to raise_error "Error: Plane is already on the ground."
+      end
+    end
+
   end
 
   describe '#confirm_landing' do
