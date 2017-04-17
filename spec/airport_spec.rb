@@ -29,13 +29,13 @@ describe Airport do
     expect { subject.takeoff(plane) }.to raise_error("Plane is already flying.")
   end
 
-  it "prevents takeoff when the weather is stromy" do
+  it "prevents takeoff when the weather is stormy" do
     allow(plane).to receive(:flying).and_return(false)
     allow(weather).to receive(:stormy?).and_return(true)
     expect { subject.takeoff(plane) }.to raise_error("Too stormy for takeoff.")
   end
 
-  it "prevents landing when the weather is stromy" do
+  it "prevents landing when the weather is stormy" do
     allow(plane).to receive(:land)
     allow(weather).to receive(:stormy?).and_return(true)
     expect { subject.land(plane) }.to raise_error("Too stormy for landing.")
@@ -49,6 +49,11 @@ describe Airport do
     allow(plane).to receive(:land)
     (1..subject.capacity).each do subject.land(plane) end
     expect { subject.land(plane) }.to raise_error("Airport is at capacity.")
+  end
+
+  it "can set the defauly capacity on initialization" do
+    subject { Airport.new(Weather,10) }
+    expect(subject.capacity).to eq(10)
   end
 
 end
