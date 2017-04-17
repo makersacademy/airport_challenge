@@ -2,8 +2,11 @@ require './lib/plane'
 require './lib/weather'
 
 class Airport
+  DEFAULT_CAPACITY = 100
+  attr_accessor :capacity
 
   def initialize(weather)
+    @capacity = DEFAULT_CAPACITY
     @weather = weather.stormy?
   end
 

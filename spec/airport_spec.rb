@@ -41,4 +41,8 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error("Too stormy for landing.")
   end
 
+  it "has a default capacity" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
 end

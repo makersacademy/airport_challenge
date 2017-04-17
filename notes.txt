@@ -7,7 +7,7 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 objects: plane, airport
 methods: land
 
-----------------------
+----------------------x
 
 As an air traffic controller
 So I can get passengers on the way to their destination
@@ -16,7 +16,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 objects: plane, airport
 methods: land, takeoff
 
-----------------------
+----------------------x
 
 As an air traffic controller
 To ensure safety
@@ -25,7 +25,7 @@ I want to prevent takeoff when weather is stormy
 objects: plane, airport, weather
 methods: land, takeoff
 
-----------------------
+----------------------x
 
 As an air traffic controller
 To ensure safety
@@ -34,7 +34,7 @@ I want to prevent landing when weather is stormy
 objects: plane, airport, weather
 methods: land, takeoff
 
-----------------------
+----------------------x
 
 As an air traffic controller
 To ensure safety
