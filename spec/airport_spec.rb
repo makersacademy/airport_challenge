@@ -57,4 +57,12 @@ end
     end
  end
 
- end
+   context 'changing capacity for new airport' do
+     it 'changes the capacity when entering a new aiport' do
+       airport = Airport.new(30)
+       expect(airport.capacity).to eq 30
+     end
+     end
+
+
+   end
