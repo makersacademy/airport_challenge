@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/makersacademy/airport_challenge?branch=master)
 Airport Challenge
 =================
 
