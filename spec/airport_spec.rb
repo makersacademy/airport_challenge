@@ -21,6 +21,20 @@ describe Airport do
         expect(subject.land(Plane.new))
       end
 
+    describe "Confirms the plane has landed" do
+      it { is_expected.to respond_to(:landing_confirmation) }
+      it "confirms that the airplane landed on the terminal"do
+        expect(subject.landing_confirmation).to eq "Plane landed in the airport terminal"
+      end
+    end
+
+    describe "Confirms the palne has take off from terminal" do
+      it { is_expected.to respond_to(:takeoff_confirmation)}
+      it "confirms the plane has take of from terminal"do
+        expect(subject.takeoff_confirmation).to eq "Plane departed from the airport terminal"
+      end
+    end
+
       it 'raises an error if airport is full' do
         allow(subject).to receive(:stormy_weather?).and_return false
         50.times { subject.land(Plane.new) }

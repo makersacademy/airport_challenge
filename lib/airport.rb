@@ -17,9 +17,17 @@ class Airport
      @planes << plane
    end
 
+   def landing_confirmation
+      return  "Plane landed in the airport terminal" if @planes.length < 50
+   end
+
+   def takeoff_confirmation
+     return "Plane departed from the airport terminal" if !full?
+   end
+
    def takeoff
      fail "The flight is canceled due to stormy weather" if stormy_weather?
-     @planes.pop
+      @planes.pop
    end
 
   #  private
