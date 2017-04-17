@@ -22,7 +22,7 @@ describe Airport do
        it "should raise error and not confirm landing" do
        plane = Plane.new
        allow(subject).to receive(:stormy_weather?).and_return(true)
-       expect {subject.confirm_landing(plane)}.to raise_error 'Stormy weather, cannot land'
+       expect {subject.confirm_landing(plane)}.to raise_error "Stormy-no landing"
        end
      end
 
@@ -31,7 +31,7 @@ describe Airport do
        plane = Plane.new
        allow(subject).to receive(:stormy_weather?).and_return(false)
        Airport::DEFAULT_CAPACITY.times { subject.confirm_landing Plane.new }
-       expect { subject.confirm_landing(plane)}.to raise_error 'Cannot land, airport full'
+       expect { subject.confirm_landing(plane)}.to raise_error 'Airport full'
        end
      end
   end
@@ -59,7 +59,7 @@ describe Airport do
       it 'should raise error when confirming takeoff - fail error' do
       allow(subject).to receive(:stormy_weather?).and_return(true)
       #subject.confirm_landing(plane)
-      expect {subject.confirm_takeoff}.to raise_error 'Stormy weather, cannot takeoff'
+      expect {subject.confirm_takeoff}.to raise_error 'Stormy-cannot takeoff'
       end
     end
   end

@@ -13,13 +13,13 @@ attr_accessor :capacity, :planes
   end
 
   def confirm_landing(plane)
-    fail 'Stormy weather, cannot land' if stormy_weather?
-    fail 'Cannot land, airport full' if airport_full?
+    fail "Stormy-no landing" if stormy_weather?
+    fail 'Airport full' if airport_full?
     planes << plane
   end
 
   def confirm_takeoff
-    fail 'Stormy weather, cannot takeoff' if stormy_weather?
+    fail 'Stormy-cannot takeoff' if stormy_weather?
     fail 'No planes to takeoff' if airport_empty?
     planes.pop
   end
