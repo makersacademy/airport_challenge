@@ -19,7 +19,7 @@ describe Airport do
      end
 
      context 'if weather is stormy' do
-       it "should raise error and not confirm landing if the weather is stormy" do
+       it "should raise error and not confirm landing" do
        plane = Plane.new
        allow(subject).to receive(:stormy_weather?).and_return(true)
        expect {subject.confirm_landing(plane)}.to raise_error 'Stormy weather, cannot land'
@@ -27,7 +27,7 @@ describe Airport do
      end
 
      context 'if airport is full' do
-       it 'should raise errors and not confirm landing if aiport is full' do
+       it 'should raise errors and not confirm landing' do
        plane = Plane.new
        allow(subject).to receive(:stormy_weather?).and_return(false)
        Airport::DEFAULT_CAPACITY.times { subject.confirm_landing Plane.new }
@@ -48,10 +48,9 @@ end
     end
 
     context "if weather is stormy" do
-      it 'should raise error when confirming takeoff if weather is stormy - fail error' do
-      plane = Plane.new
-      subject.confirm_landing(plane)
+      it 'should raise error when confirming takeoff - fail error' do
       allow(subject).to receive(:stormy_weather?).and_return(true)
+      #subject.confirm_landing(plane)
       expect {subject.confirm_takeoff}.to raise_error 'Stormy weather, cannot takeoff'
       end
     end
@@ -61,6 +60,9 @@ end
      it 'changes the capacity when entering a new aiport' do
        airport = Airport.new(30)
        expect(airport.capacity).to eq 30
+     end
+     it 'has a default value' do
+       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
      end
      end
 
