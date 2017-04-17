@@ -13,6 +13,5 @@ describe Airport do
     it "has a attribute set to an instance of Plane post landing" do
       expect(airport.land(plane)).to eq airport.aircraft
     end
-
   end
 end
