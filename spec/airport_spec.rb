@@ -6,7 +6,7 @@ describe Airport do
   let(:plane) { double(:plane) }
   let(:aircraft) { double(:aircraft) }
 
-  context "#accept_aircraft" do
+  describe "#accept_aircraft" do
     it "Expects an airport to accept a landing aircraft" do
       expect(airport).to respond_to(:accept_aircraft).with(1).argument
     end
@@ -15,11 +15,14 @@ describe Airport do
       expect(airport.accept_aircraft(plane)).to eq airport.aircraft
     end
 
+    it "Accepts many aircraft" do
+      10.times { airport.accept_aircraft(plane) }
+      expect(airport.aircraft.count).to eq 10
+    end
 
-    
   end
 
-  context "#release_aircraft" do
+  describe "#release_aircraft" do
     it { is_expected.to respond_to :release_aircraft }
 
     it "Removes #take_off object from attribute" do
