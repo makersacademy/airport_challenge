@@ -24,8 +24,6 @@ You will also need `bundler`—if you haven't installed it, run `gem install bun
 This project is run in a REPL such as IRB (installed with Ruby), or Pry (`gem install pry`). Run `irb` or `pry` from the project root, followed by `require './lib/init.rb'`. You can then create planes and airports, and experiment with landings and takeoffs, as below:
 
 ```
-[1] pry(main)> require './lib/init.rb'
-=> true
 [2] pry(main)> airport = Airport.new
 => #<Airport:0x007f9ac8ba2c40
  @capacity=5,
@@ -35,26 +33,9 @@ This project is run in a REPL such as IRB (installed with Ruby), or Pry (`gem in
 => #<Plane:0x007f9ac8bdb1f8>
 [4] pry(main)> airport.dock_plane(plane)
 => "Plane has landed."
-[5] pry(main)> airport.dock_plane(Plane.new)
-=> "Plane has landed."
-[6] pry(main)> airport.dock_plane(Plane.new)
-=> "Plane has landed."
-[7] pry(main)> airport.dock_plane(Plane.new)
-=> "Plane has landed."
-[8] pry(main)> airport.dock_plane(Plane.new)
-=> "Plane has landed."
-[9] pry(main)> airport.dock_plane(Plane.new)
-RuntimeError: Error: Landing not possible when airport is full.
-from /Users/adc/makers_projects/airport_challenge/lib/airport.rb:27:in `dock_plane'
-[10] pry(main)> airport.capacity = 10
-=> 10
-[11] pry(main)> airport.dock_plane(Plane.new)
-=> "Plane has landed."
-[12] pry(main)> airport.dock_plane(Plane.new)
-RuntimeError: Error: Landing forbidden when weather is stormy.
-from /Users/adc/makers_projects/airport_challenge/lib/airport.rb:28:in `dock_plane'
-[13] pry(main)> airport.release_plane(plane)
-=> "Plane is in the air."
+[5] pry(main)> airport.release_plane(plane)
+RuntimeError: Error: Take-off forbidden when weather is stormy.
+from /Users/adc/makers_projects/airport_challenge/lib/airport.rb:36:in `release_plane'
 ```
 
 ## Running tests
