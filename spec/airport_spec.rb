@@ -35,13 +35,13 @@ describe Airport do
       it 'raises error if #takeoff unavailable due to #weather_unsafe returning true' do
         allow(subject).to receive(:plane) { :takeoff_problem }
         allow(subject).to receive(:weather_unsafe?) { true }
-        allow(subject).to receive(:hangar_full?) { false }
+        allow(subject).to receive(:hangar_empty?) { false }
         expect { subject.takeoff }.to raise_error 'Unable to takeoff from airport'
       end
       it 'raises error if #takeoff unavailable due to #hangar_empty? returning true' do
         allow(subject).to receive(:plane) { :takeoff_problem }
         allow(subject).to receive(:weather_unsafe?) { false }
-        allow(subject).to receive(:hangar_full?) { true }
+        allow(subject).to receive(:hangar_empty?) { true }
         expect { subject.takeoff }.to raise_error 'Unable to takeoff from airport'
       end
       it 'plane takeoff succesful and removes instance of plane from @hangar array' do

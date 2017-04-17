@@ -1,11 +1,9 @@
 class Weather
 
-  def initialize
-    @conditions = [:sunny, :sunny, :sunny, :stormy]
-  end
+  CONDITIONS = [:sunny, :sunny, :sunny, :stormy]
 
   def random_condition
-    @conditions.sample
+    CONDITIONS.sample
   end
 
   def stormy?
