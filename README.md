@@ -113,102 +113,59 @@ Despite my best efforts I was unable to remove the random behaviour of weather i
 Bellow is a pry transcript of how the program runs from a users perspective:
 
 ```
-[1] pry(main)> require './lib/airport'
+[[1] pry(main)> require './lib/airport'
 => true
-[2] pry(main)> require './lib/plane'
-=> true
-[3] pry(main)> airport = Airport.new
-=> #<Airport:0x007fc9b40e0e68 @capacity=2, @planes=[], @weather=#<Weather:0x007fc9b40e0d78>>
-[4] pry(main)> plane_one = Plane.new
-=> #<Plane:0x007fc9b392f6d8>
-[5] pry(main)> airport.land(plane_one)
-"Landed"
-=> [#<Plane:0x007fc9b392f6d8>]
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007fcf4f933e08 @capacity=2, @planes=[], @weather=#<Weather:0x007fcf4f933db8>>
+[3] pry(main)> plane_one = Plane.new
+=> #<Plane:0x007fcf4f90e798>
+[4] pry(main)> airport.land(plane_one)
+=> "Landed"
+[5] pry(main)> airport.planes
+=> [#<Plane:0x007fcf4f90e798>]
 [6] pry(main)> plane_two = Plane.new
-=> #<Plane:0x007fc9b423aef8>
+=> #<Plane:0x007fcf4f9fabe8>
 [7] pry(main)> airport.land(plane_two)
-"Landed"
-=> [#<Plane:0x007fc9b392f6d8>, #<Plane:0x007fc9b423aef8>]
+RuntimeError: Landing not permited due to poor weather conditions
+from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:17:in `land'
 [8] pry(main)> airport.land(plane_two)
-RuntimeError: This plane has already landed
-from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:18:in `land'
-[9] pry(main)> plane_three = Plane.new
-=> #<Plane:0x007fc9b40f2398>
-[10] pry(main)> airport.take_off(plane_three)
-RuntimeError: This plane has not landed yet
-from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:26:in `take_off'
+=> "Landed"
+[9] pry(main)> airport.planes
+=> [#<Plane:0x007fcf4f90e798>, #<Plane:0x007fcf4f9fabe8>]
+[10] pry(main)> plane_three = Plane.new
+=> #<Plane:0x007fcf50888228>
 [11] pry(main)> airport.land(plane_three)
 RuntimeError: This airport is full
 from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:19:in `land'
-[12] pry(main)> airport.take_off(plane_one)
-"Taken off"
-=> #<Plane:0x007fc9b392f6d8>
-[13] pry(main)> airport.land(plane_three)
-"Landed"
-=> [#<Plane:0x007fc9b423aef8>, #<Plane:0x007fc9b40f2398>]
+[12] pry(main)> airport.take_off(plane_two)
+=> "Taken off"
+[13] pry(main)> airport.planes
+=> [#<Plane:0x007fcf4f90e798>]
 [14] pry(main)> airport.land(plane_three)
 RuntimeError: Landing not permited due to poor weather conditions
 from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:17:in `land'
 [15] pry(main)> airport.land(plane_three)
-RuntimeError: This plane has already landed
-from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:18:in `land'
-[16] pry(main)> airport.take_off(plane_two)
-"Taken off"
-=> #<Plane:0x007fc9b423aef8>
+=> "Landed"
+[16] pry(main)> airport.take_off(plane_one)
+=> "Taken off"
 [17] pry(main)> airport.planes
-=> [#<Plane:0x007fc9b40f2398>]
-[18] pry(main)> airport.take_off(plane_three)
-"Taken off"
-=> #<Plane:0x007fc9b40f2398>
+=> [#<Plane:0x007fcf50888228>]
+[18] pry(main)> airport.land(plane_two)
+=> "Landed"
 [19] pry(main)> airport.planes
-=> []
-[20] pry(main)> airport.land(plane_two)
-RuntimeError: Landing not permited due to poor weather conditions
-from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:17:in `land'
-[21] pry(main)> airport.land(plane_two)
-"Landed"
-=> [#<Plane:0x007fc9b423aef8>]
-[22] pry(main)> airport.take_off(plane_two)
-"Taken off"
-=> #<Plane:0x007fc9b423aef8>
-[23] pry(main)> airport.land(plane_three)
-"Landed"
-=> [#<Plane:0x007fc9b40f2398>]
-[24] pry(main)> airport.land(plane_one)
-"Landed"
-=> [#<Plane:0x007fc9b40f2398>, #<Plane:0x007fc9b392f6d8>]
-[25] pry(main)> airport.take_off(plane_two)
+=> [#<Plane:0x007fcf50888228>, #<Plane:0x007fcf4f9fabe8>]
+[20] pry(main)> airport.take_off(plane_one)
 RuntimeError: This plane has not landed yet
 from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:26:in `take_off'
-[26] pry(main)> airport.land(plane_two)
-RuntimeError: This airport is full
-from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:19:in `land'
-[27] pry(main)> airport.take_off(plane_three)
-"Taken off"
-=> #<Plane:0x007fc9b40f2398>
-[28] pry(main)> airport.land(plane_two)
-"Landed"
-=> [#<Plane:0x007fc9b392f6d8>, #<Plane:0x007fc9b423aef8>]
-[29] pry(main)> airport.take_off(plane_one)
-"Taken off"
-=> #<Plane:0x007fc9b392f6d8>
-[30] pry(main)> airport.take_off(plane_three)
+[21] pry(main)> airport.take_off(plane_two)
+=> "Taken off"
+[22] pry(main)> airport.take_off(plane_three)
 RuntimeError: Take off not permited due to poor weather conditions
 from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:25:in `take_off'
-[31] pry(main)> airport.take_off(plane_three)
-RuntimeError: This plane has not landed yet
-from /Users/anthonycrisp/Desktop/Projects/Airport/airport_challenge/lib/airport.rb:26:in `take_off'
-[32] pry(main)> airport.land(plane_three)
-"Landed"
-=> [#<Plane:0x007fc9b423aef8>, #<Plane:0x007fc9b40f2398>]
-[33] pry(main)> airport.take_off(plane_two)
-"Taken off"
-=> #<Plane:0x007fc9b423aef8>
-[34] pry(main)> airport.take_off(plane_three)
-"Taken off"
-=> #<Plane:0x007fc9b40f2398>
-[35] pry(main)> airport.planes
+[23] pry(main)> airport.take_off(plane_three)
+=> "Taken off"
+[24] pry(main)> airport.planes
 => []
-[36] pry(main)>
+[25] pry(main)>
 
 ```
