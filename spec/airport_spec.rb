@@ -46,7 +46,6 @@ describe Airport do
 
   describe "#release" do
 
-    it { is_expected.to respond_to(:release).with(1).argument }
 
     it 'cannot release planes that it does not have' do
       message = "Plane is not at that airport"
@@ -63,7 +62,6 @@ describe Airport do
 
   describe "#receive" do
 
-    it { is_expected.to respond_to(:receive).with(1).argument }
 
     it "cannot receive planes when at capacity" do
       airport.capacity.times do
