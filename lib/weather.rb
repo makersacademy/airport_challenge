@@ -6,10 +6,6 @@ class Weather
   end
 
   def stormy?
-    if rand_number >= 8
-      true
-    else
-      false
-    end
+    rand_number >= 8
   end
 end

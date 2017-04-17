@@ -3,8 +3,9 @@ require 'airport'
 require 'weather'
 
 describe Airport do
-  describe 'initalization' do
-    it 'defaults capacity' do
+
+  describe '#initalize' do
+    it 'sets a default capacity for each airport' do
       plane = Plane.new
       Weather.any_instance.stub(:rand_number).and_return(5)
       Airport::DEFAULT_CAPACITY.times do
@@ -12,11 +13,11 @@ describe Airport do
       end
       expect { plane.land(subject) }.to raise_error "Airport is full, can't land"
     end
-  end
 
   it 'expect every new airport to have the capacity for planes' do
     expect(subject.planes).to eq []
   end
+end
 
   it 'expect a plane that has landed to exist at the airport' do
     plane = Plane.new
