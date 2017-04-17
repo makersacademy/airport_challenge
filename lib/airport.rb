@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  DEFAULT_CAPACITY = 6
+  DEFAULT_CAPACITY = 10
   attr_reader :terminal, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -13,12 +13,12 @@ class Airport
 
   def land(plane)
     fail 'cannot land' if :bad_weather? || :full?
-    @terminal << plane; return 'landed safely'
+    @terminal << plane
   end
 
   def take_off
     fail 'cannot take off' if :bad_weather? || :empty?
-    @terminal.pop; return 'take off successful'
+    @terminal.pop
   end
 
   private

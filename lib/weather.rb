@@ -9,7 +9,7 @@ class Weather
   end
 
   def stormy?
-    random_weather == stormy
+    random_weather == :stormy
   end
 
 end
