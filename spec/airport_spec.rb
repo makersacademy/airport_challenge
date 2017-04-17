@@ -20,15 +20,19 @@ describe Airport do
       expect(airport.aircraft.count).to eq 10
     end
 
-    it "raises an error if too many aircraft land" do
-      10.times { airport.accept_aircraft(plane) }
+    it "Raises an error if too many aircraft land" do
+      Airport::DEFAULT_CAPACITY.times { airport.accept_aircraft(plane) }
       expect { airport.accept_aircraft(plane) }.to raise_error "Cannot land: airport full."
     end
+
 
   end
 
   describe "#capacity" do
     it { is_expected.to respond_to :capacity }
+    it 'has a default capacity' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
   end
 
   describe "#release_aircraft" do
