@@ -1,11 +1,11 @@
 class Plane
 
   def landed
-     "Landed"
+  p "Landed"
   end
 
   def taken_off
-     "Taken off"
+  p   "Taken off"
   end
 
 end
