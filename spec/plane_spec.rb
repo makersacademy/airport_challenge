@@ -4,13 +4,13 @@ describe Plane do
   subject(:plane) { described_class.new }
   let(:airport) { Airport.new }
 
-  context "#land" do
+  describe "#land" do
     it "Expects a plane to respond to #land with an argument" do
       expect(plane).to respond_to(:land).with(1).argument
     end
 
     it "Expects plane to run a landing schedule after landing call" do
-      expect(plane.land(airport)).to eq true
+      expect(plane.land(airport)).to be_truthy
     end
 
     it "Expects plane to have true #landed attribute once landing_schedule" do
@@ -19,7 +19,7 @@ describe Plane do
     end
   end
 
-  context "#landed" do
+  describe "#landed" do
     it { is_expected.to respond_to :landed }
 
     it "Expects a plane to confirm it has landed after it has" do
@@ -33,16 +33,16 @@ describe Plane do
     end
   end
 
-  context "#take_off" do
+  describe "#take_off" do
     it { is_expected.to respond_to :take_off }
 
     it "Expects a plane to change #landed status once taken off" do
-      plane.take_off
+      plane.take_off(airport)
       expect(plane.landed).to eq false
     end
 
     it "Expects a plane to confirm it has taken off" do
-      plane.take_off
+      plane.take_off(airport)
       expect(plane.confirm_taken_off).to eq "#{plane} has taken off."
     end
 
@@ -52,7 +52,7 @@ describe Plane do
 
     it "Expects a plane to inform airport of take_off" do
       plane.land(airport)
-      plane.take_off
+      plane.take_off(airport)
       expect(airport.aircraft).to eq nil
     end
   end

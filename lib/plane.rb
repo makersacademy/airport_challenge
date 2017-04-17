@@ -9,10 +9,12 @@ class Plane
 
   def land(airport)
     landing_schedule(airport)
+    confirm_landed
   end
 
-  def take_off
-    take_off_schedule
+  def take_off(airport)
+    take_off_schedule(airport)
+    confirm_taken_off
   end
 
   def confirm_landed
@@ -32,7 +34,8 @@ class Plane
     self.landed = true
   end
 
-  def take_off_schedule
+  def take_off_schedule(airport)
+    airport.release_aircraft
     self.landed = false
   end
 
