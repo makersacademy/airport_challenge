@@ -4,6 +4,12 @@ require 'weather'
 
 describe Airport do
 
+  describe '#initialize' do
+    it 'sets capacity' do
+      expect(subject.capacity).to be Airport::DEFAULT_CAPACITY
+    end
+  end
+
     describe 'land' do
       it {should respond_to(:land)}
       it 'instructs plane to land' do
@@ -30,6 +36,7 @@ describe Airport do
       subject.land(Plane.new)
        expect{(subject.takeoff)}
      end
+
      it 'raises an error if airport is empty' do
        expect {subject.takeoff}.to raise_error(RuntimeError)
       end
