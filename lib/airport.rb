@@ -13,6 +13,7 @@ class Airport
 
   def land(plane)
     fail "The airport is full" if full?
+    raise RuntimeError, "Landing cancelled due to stormy weather" if storm_outside?
     plane.land_plane
     planes << plane
   end
@@ -33,8 +34,7 @@ class Airport
   end
 
   def storm_outside?
-    weather = Weather.new
-    weather.stormy?
+    :stormy?
   end
 
 end
