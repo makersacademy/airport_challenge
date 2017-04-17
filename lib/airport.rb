@@ -9,6 +9,10 @@ class Airport
 
   def land(plane)
     fail 'cannot land'
+    @terminal << plane; return 'landed safely'
   end
 
+  def take_off
+    fail 'cannot take off'
+  end
 end
