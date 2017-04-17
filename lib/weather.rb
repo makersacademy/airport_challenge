@@ -1,6 +1,8 @@
 class Weather
 
-  def random_condition
+  CONDITIONS = [:sunny, :sunny, :sunny, :stormy]
+
+  def condition_sample
     @conditions.sample
   end
 
@@ -8,4 +10,4 @@ class Weather
     random_condition == :stormy ? true : false
   end
 
-end 
+end
