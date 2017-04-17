@@ -49,5 +49,11 @@ describe Plane do
     it "Expects a plane to confirm has not taken off if still on ground" do
       expect(plane.confirm_taken_off).to eq "#{plane} is on the ground."
     end
+
+    it "Expects a plane to inform airport of take_off" do
+      plane.land(airport)
+      plane.take_off
+      expect(airport.aircraft).to eq nil
+    end
   end
 end
