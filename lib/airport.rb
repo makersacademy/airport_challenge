@@ -19,7 +19,7 @@ class Airport
 
   def take_off(plane)
     fail "No planes available" if empty?
-    #fail "Take off cancelled due to stormy weather" if weather_status
+    #fail "Take off cancelled due to stormy weather" if Weather::stormy
     plane.plane_take_off
     planes.pop
   end
