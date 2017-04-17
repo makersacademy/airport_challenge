@@ -35,6 +35,11 @@ describe Plane do
 
   context "#take_off" do
       it { is_expected.to respond_to :take_off }
+
+      it "Expects a plane to change #landed status once taken off" do
+        plane.take_off
+        expect(plane.landed).to eq false
+      end
   end
 
 
