@@ -1,4 +1,9 @@
 class Airport
-  def land(aircraft)
+
+  attr_reader :aircraft
+
+  def land(obj)
+    @aircraft = obj
   end
+
 end
