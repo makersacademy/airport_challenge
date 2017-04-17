@@ -20,7 +20,7 @@ Week 1, Makers Academy – Airport Challenge
 * Test coverage is 100%
 
 
-User stories:
+User stories covered:
 -------
 
 ```
@@ -49,7 +49,7 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-NB:
+Things to remember:
 -------
 * Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 * Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
