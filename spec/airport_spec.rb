@@ -18,6 +18,13 @@ describe 'airport' do
       Airport::DEFAULT_CAPACITY.times { logan.land(Plane.new) }
       expect { logan.land(Plane.new) }.to raise_error 'Airport is full.'
     end
+
+    it 'raises an error if a plane on the ground tries to land' do
+      detroit = Airport.new
+      plane2 = Plane.new
+      detroit.land(plane2)
+      expect {detroit.land(plane2)}.to raise_error 'Plane already landed.'
+    end
   end
 
   describe '#landed?' do
@@ -38,12 +45,12 @@ describe 'airport' do
       expect(stansted.planes_in_air).to include(spirit)
     end
 
-    it 'raises an error if the plane tries to take off in stormy weather' do
-      gatwick = Airport.new
-      report = Weather.new
-      allow(report).to receive(:stormy) { 0 }
-      expect { gatwick.take_off(Plane.new) }.to raise_error 'Weather is stormy'
-    end
+    # it 'raises an error if the plane tries to take off in stormy weather' do
+    #   gatwick = Airport.new
+    #   report = Weather.new
+    #   allow(report).to receive(:number) { 0 }
+    #   expect { gatwick.take_off(Plane.new) }.to raise_error 'Weather is stormy'
+    # end
   end
 
 end
