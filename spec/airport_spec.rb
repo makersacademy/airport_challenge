@@ -13,10 +13,11 @@ describe 'airport' do
       expect(heathrow.planes_landed).to include(plane1)
     end
 
-    # it 'raises an error if a plane tries to land and the airport is full' do
-    #   Airport::DEFAULT_CAPACITY.times { Airport.new.land(Plane.new) }
-    #   expect { Airport.new.land(Plane.new) }.to raise_error 'Airport is full.'
-    # end
+    it 'raises an error if a plane tries to land and the airport is full' do
+      logan = Airport.new
+      Airport::DEFAULT_CAPACITY.times { logan.land(Plane.new) }
+      expect { logan.land(Plane.new) }.to raise_error 'Airport is full.'
+    end
   end
 
   describe '#landed?' do
@@ -32,18 +33,18 @@ describe 'airport' do
       allow(weather).to receive(:stormy?).and_return(true)
       expect(Airport.new).to respond_to :take_off
     end
-  #
-  #   it 'moves the plane from the landed array to the in air array' do
-  #     weather = Weather.new
-  #     allow(weather).to receive(:stormy?).and_return(false)
-  #     plane.take_off(plane)
-  #     expect(planes_in_air).to include(plane)
-  #   end
 
+    # it 'moves the plane from the landed array to the in air array' do
+    #   weather = Weather.new
+    #   allow(weather).to receive(:stormy?).and_return(false)
+    #   Airport.new.take_off(Plane.new)
+    #   expect(Airport.new.planes_in_air).to include(Plane.new)
+    # end
+    #
     # it 'raises an error if the plane tries to take off in stormy weather' do
     #   weather = Weather.new
     #   allow(weather).to receive(:stormy?).and_return(true)
-    #   expect { plane.take_off(plane) }.to raise_error 'Weather is stormy'
+    #   expect { Airport.new.take_off(Plane.new) }.to raise_error 'Weather is stormy'
     # end
     end
 
