@@ -14,5 +14,6 @@ class Airport
 
   def take_off
     fail 'cannot take off'
+    @terminal.pop; return 'take off successful'
   end
 end
