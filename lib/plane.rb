@@ -6,16 +6,12 @@ def initialize
   @flying = true
 end
 
-def land_plane  
+def land_plane
   @flying = false
 end
 
-def status
-
+def plane_take_off
+  @flying = true
 end
 
-  #
-  # def exists?
-  #   true
-  # end
 end

@@ -35,7 +35,16 @@ describe Airport do
     end
   end
 
+  describe "#capacity" do
+    it {is_expected.to respond_to :capacity}
+  end
 
+  #   it "Prevent take off when weather is stormy" do
+  #     weather = Weather.new, stormy: true
+  #     plane = Plane.new
+  #     subject.land(plane)
+  #     expect{ subject.take_off }.to raise_error "Take off cancelled due to stormy weather"
+  #   end
 
 
 

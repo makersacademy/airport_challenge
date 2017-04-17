@@ -1,8 +1,14 @@
 class Weather
-attr_reader :stormy
+
+  attr_accessor :stormy
 
   def initialize
     @stormy = stormy
-  end 
+  end
+
+  def stormy
+    return true if rand(3) == 1
+    return false
+  end
 
 end
