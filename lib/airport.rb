@@ -36,6 +36,7 @@ class Airport
     raise 'Error: Take-off forbidden when weather is stormy.' if conditions == :stormy
     plane.take_off
     planes.delete(plane)
+    plane.confirm_take_off
   end
 
 end

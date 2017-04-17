@@ -70,7 +70,7 @@ describe Airport do
   describe '#dock_plane' do
     before(:example) do
       sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-      @plane = double(:plane, :take_off => true, :land => true, :confirm_landing => true)
+      @plane = double(:plane, :land => true, :confirm_landing => true)
       @airport = Airport.new(sunny_climate)
     end
 
@@ -101,7 +101,7 @@ describe Airport do
     context 'conditions are stormy' do
       before(:example) do
         stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
-        @plane = double(:plane, :is_a? => true, :take_off => true)
+        @plane = double(:plane, :is_a? => true, :land => true, :confirm_landing => true)
         @airport = Airport.new(stormy_climate)
       end
 
@@ -116,25 +116,25 @@ describe Airport do
 
     before(:example) do
       sunny_climate = double(:climate, :is_a? => true, :conditions => :sunny)
-      @plane = double(:plane, :take_off => true, :land => true, :confirm_landing => true)
+      @plane = double(:plane, :is_a? => true, :take_off => true, :confirm_take_off => true)
       @airport = Airport.new(sunny_climate)
     end
 
-    it 'checks climate conditions' do
-      @airport.dock_plane(@plane)
-      expect(@airport).to receive(:conditions)
+    it 'tells plane to confirm take off' do
+      @airport.build_plane(@plane)
+      expect(@plane).to receive(:confirm_take_off)
       @airport.release_plane(@plane)
     end
 
     context 'conditions are sunny' do
       it 'tells plane to take off' do
-        @airport.dock_plane(@plane)
+        @airport.build_plane(@plane)
         expect(@plane).to receive(:take_off)
         @airport.release_plane(@plane)
       end
 
       it 'removes plane from Airport\'s @planes array' do
-        @airport.dock_plane(@plane)
+        @airport.build_plane(@plane)
         @airport.release_plane(@plane)
         expect(@airport.planes).to_not include @plane
       end
@@ -143,7 +143,7 @@ describe Airport do
     context 'conditions are stormy' do
       before(:example) do
         stormy_climate = double(:climate, :is_a? => true, :conditions => :stormy)
-        @plane = double(:plane, :is_a? => true, :take_off => true)
+        @plane = double(:plane, :is_a? => true, :take_off => true, :confirm_take_off => true)
         @airport = Airport.new(stormy_climate)
       end
 
