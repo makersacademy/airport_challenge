@@ -3,12 +3,13 @@ require 'airport'
 describe Airport do
   let(:weather) { double :weather, stormy?: false }
   let(:plane) { instance_double Plane, :flying => true }
+  before { allow(plane).to receive(:land) }
+  before { allow(plane).to receive(:takeoff) }
   subject { Airport.new weather }
 
   it { expect(subject).to respond_to(:land).with(1).argument }
 
   it "Instructs a plane to land" do
-    allow(plane).to receive(:land)
     expect(subject.land(plane)).to eq("Plane has landed.")
   end
 
@@ -20,7 +21,6 @@ describe Airport do
   it { expect(subject).to respond_to(:takeoff).with(1).argument }
 
   it "Instructs a plane to take off" do
-    allow(plane).to receive(:takeoff)
     allow(plane).to receive(:flying).and_return(false)
     expect(subject.takeoff(plane)).to eq("Plane has taken off.")
   end
@@ -36,7 +36,6 @@ describe Airport do
   end
 
   it "prevents landing when the weather is stormy" do
-    allow(plane).to receive(:land)
     allow(weather).to receive(:stormy?).and_return(true)
     expect { subject.land(plane) }.to raise_error("Too stormy for landing.")
   end
@@ -46,13 +45,12 @@ describe Airport do
   end
 
   it "prevents a landing when the airport is full" do
-    allow(plane).to receive(:land)
     (1..subject.capacity).each do subject.land(plane) end
     expect { subject.land(plane) }.to raise_error("Airport is at capacity.")
   end
 
   it "can set the defauly capacity on initialization" do
-    airport = Airport.new(Weather,10)
+    airport = Airport.new(Weather, 10)
     expect(airport.capacity).to eq(10)
   end
 

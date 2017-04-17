@@ -5,7 +5,7 @@ class Airport
   DEFAULT_CAPACITY = 100
   attr_accessor :capacity, :planes
 
-  def initialize(weather, capacity = 100)
+  def initialize(weather, capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @weather = weather.stormy?
     @planes = []
@@ -24,6 +24,7 @@ class Airport
     fail "Plane is already flying." if plane.flying
     fail "Too stormy for takeoff." if @weather
     plane.takeoff
+    @planes.delete(plane)
     "Plane has taken off."
   end
 
