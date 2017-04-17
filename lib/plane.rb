@@ -2,12 +2,20 @@ require './lib/airport'
 
 class Plane
 
-  def land
-    return 'Plane landed safely'
+  def landing_confirmation
+    'Plane landed safely'
   end
 
-  def takeoff
-    return 'Plane takeoff succesful'
+  def takeoff_confirmation
+    'Plane takeoff succesful'
+  end
+
+  def landing_problem
+    'Unable to land'
+  end
+
+  def takeoff_problem
+    'Unable to takeoff'
   end
 
 end

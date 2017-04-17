@@ -4,39 +4,39 @@ require './lib/weather'
 class Airport
   DEFAULT_CAPACITY = 10
 
-  attr_reader :hangar, :capacity
+  attr_reader :hangar, :capacity, :plane, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
-    @weather = Weather.new
-    @plane = Plane.new
   end
 
-  def landing(plane)
-    fail 'Unable to land' if unsafe_weather? || full?
+  def land(plane)
+    fail plane.landing_problem if weather_unsafe?
+    fail plane.landing_problem if hangar_full?
     @hangar << plane
-    plane.land
+    plane.landing_confirmation
   end
 
-  def takeoff
-    fail 'Unable to takeoff' if unsafe_weather? || empty?
+  def takeoff(plane = Plane.new)
+    fail plane.takeoff_problem if weather_unsafe?
+    fail plane.takeoff_problem if hangar_empty?
     @hangar.pop
-    @plane.takeoff
+    plane.takeoff_confirmation
   end
 
-  private
+  # private
 
-  def full?
+  def hangar_full?
     @hangar.count >= capacity
   end
 
-  def empty?
+  def hangar_empty?
     @hangar.empty?
   end
 
-  def unsafe_weather?
-    @weather.stormy?
+  def weather_unsafe?(weather = Weather.new)
+    weather.stormy?
   end
 
 end
