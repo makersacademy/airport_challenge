@@ -1,15 +1,22 @@
 require 'plane'
 require 'airport'
+require 'weather'
+
 describe Airport do
 
     describe 'land' do
-      it {should respond_to(:land).with (1)}
+      it {should respond_to(:land)}
       it 'instructs plane to land' do
         expect(subject.land(Plane.new))
       end
       it 'raises an error if airport is full' do
         50.times{subject.land(Plane.new)}
         expect {subject.land(Plane.new)}.to raise_error("The airport is at maximum capacity")
+      end
+
+      it "stops plane to land if weather is stormy" do
+        50.times {subject.land(Plane.new) }
+        expect {subject.land(Plane.new)}.to raise_error(RuntimeError)
       end
     end
 
