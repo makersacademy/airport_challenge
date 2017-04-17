@@ -4,13 +4,13 @@ class Airport
 
   attr_reader :aircraft, :capacity
 
-  def initialize#(capacity)
-    #@capacity = capacity
+  def initialize
     @aircraft = []
   end
 
-  def accept_aircraft(aircraft)
-    @aircraft << aircraft
+  def accept_aircraft(plane)
+    fail "Cannot land: airport full." if  aircraft.count >= 10
+    aircraft << plane
   end
 
   def release_aircraft

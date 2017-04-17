@@ -22,7 +22,7 @@ describe Airport do
 
     it "raises an error if too many aircraft land" do
       10.times { airport.accept_aircraft(plane) }
-      expect(airport.accept_aircraft(plane)).to raise_error "Cannot land: airport full"
+      expect { airport.accept_aircraft(plane) }.to raise_error "Cannot land: airport full."
     end
 
   end
