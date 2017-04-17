@@ -73,7 +73,7 @@ It was a challenge figuring out which object I should call my `land` method on. 
 
 ### Features
 
-I experimented with RSpec's built-in feature capabilities this week. However, I don't think I used them very well, and I look forward to learning more about feature testing in weeks to come.
+I experimented with RSpec's built-in feature testing capabilities this week. However, I don't think I used them very well, and I look forward to learning more about feature testing in weeks to come.
 
 ## Other notes
 
