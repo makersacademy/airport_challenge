@@ -24,8 +24,6 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { airport.accept_aircraft(plane) }
       expect { airport.accept_aircraft(plane) }.to raise_error "Cannot land: airport full."
     end
-
-
   end
 
   describe "#capacity" do
@@ -40,8 +38,11 @@ describe Airport do
 
     it "Removes #take_off object from attribute" do
       airport.accept_aircraft(plane)
-      airport.release_aircraft
-      expect(airport.aircraft).to eq nil
+      expect(airport.release_aircraft).to eq plane
+    end
+
+    it "Raises exception if attempts to release aircraft when there are none" do
+      expect { airport.release_aircraft }.to raise_error "Error: There are no planes to release."
     end
   end
 

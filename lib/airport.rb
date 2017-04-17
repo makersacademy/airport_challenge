@@ -6,7 +6,7 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @aircraft = []
   end
@@ -17,12 +17,12 @@ class Airport
   end
 
   def release_aircraft
-    @aircraft = nil
+    fail "Error: There are no planes to release." if aircraft.empty?
+    aircraft.pop
   end
 
   def full?
     aircraft.count >= 10
   end
-
 
 end
