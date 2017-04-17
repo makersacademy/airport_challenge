@@ -13,6 +13,11 @@ describe Airport do
       subject.land(plane)
       expect(subject.planes).to include(plane)
     end
+    it 'raises an error if all runways are occupied' do
+      plane = double(:plane)
+      subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error 'No free runways'
+    end
   end
 
   describe '#takeoff' do
