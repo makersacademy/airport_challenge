@@ -6,7 +6,7 @@ This project maps the workings of a simple airport. Airports can dock, build, an
 
 You'll need Ruby to explore this project—instructions for getting it are available on ruby-lang's [installation page](https://www.ruby-lang.org/en/documentation/installation/). If you are on macOS or Linux, I recommend using [RVM](https://rvm.io).
 
-You will also need `bundler`—if you haven't installed it, run `gem install bundler`, then navigate to the project root and run `bundle install`.
+You will also need `bundler`—if you haven't installed it, run `gem install bundler`. Then navigate to the project root and run `bundle install`—which will install all the project's dependencies.
 
 ## Usage
 
