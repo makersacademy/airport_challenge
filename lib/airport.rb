@@ -1,9 +1,9 @@
+require_relative 'plane'
 
+ class Airport
 
-class Airport
+   def land_plane(plane)
+     @plane = plane
+   end
 
-  def landed?
-    true 
-  end
-
-end
+ end

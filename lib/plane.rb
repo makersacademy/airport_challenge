@@ -3,4 +3,8 @@
 class Plane
 
 
-end 
+  def landed?
+    true
+  end
+
+end
