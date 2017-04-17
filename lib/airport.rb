@@ -10,7 +10,7 @@ class Airport
 	end
 
 	def land(plane)
-		fail 'Airport is full' if full?
+		fail 'Airport is full' if planes.length >= capacity
 		# plane.land?
 		planes << plane
 	end
@@ -18,12 +18,6 @@ class Airport
 	def take_off(plane)
 		plane.take_off?
 		planes.pop
-	end
-
-	private
-
-	def full?
-		planes.length >= capacity
 	end
 
 	attr_accessor :planes, :capacity
