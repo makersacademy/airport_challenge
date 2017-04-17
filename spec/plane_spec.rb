@@ -8,7 +8,7 @@ describe Plane do
     it "Expects a plane to respond to #land with an argument" do
       expect(plane).to respond_to(:land).with(1).argument
     end
-
+    # outdated test?
     it "Expects plane to run a landing schedule after landing call" do
       expect(plane.land(airport)).to be_truthy
     end

@@ -1,3 +1,5 @@
+require './lib/weather.rb'
+
 class Airport
 
   attr_reader :aircraft
