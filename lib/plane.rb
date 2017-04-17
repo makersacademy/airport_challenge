@@ -2,11 +2,11 @@ require_relative 'airport'
 require_relative 'weather'
 
 class Plane
-  def land(airport)
-    true 
+  def land
+    true
   end
 
-  def takeoff(airport)
+  def takeoff
     true
   end
 

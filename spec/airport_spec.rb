@@ -11,7 +11,7 @@ describe Airport do
   describe '#confirm_landing' do
 
      context 'if weather is fine' do
-        it "should confirm landing by adding a new plane to the array of planes in the airport" do
+        it "should confirm landing by adding a new plane in the aiport" do
         plane = Plane.new
         allow(subject).to receive(:stormy_weather?).and_return(false)
         expect(subject.confirm_landing(plane)).to eq [plane]
@@ -34,12 +34,20 @@ describe Airport do
        expect { subject.confirm_landing(plane)}.to raise_error 'Cannot land, airport full'
        end
      end
-end
+  end
 
   describe '#confirm_takeoff' do
 
+    context 'if airport is empty' do
+      it 'should raise error at takeoff' do
+      allow(subject).to receive(:stormy_weather?).and_return(false)
+      subject.planes = []
+      expect {subject.confirm_takeoff}.to raise_error 'No planes to takeoff'
+      end
+    end
+
     context "if weather is fine" do
-      it "should confirm takeoff by popping a plane from the array of planes in the airport" do
+      it "should confirm takeoff by removing a plane from the airport" do
       plane = Plane.new
       allow(subject).to receive(:stormy_weather?).and_return(false)
       subject.confirm_landing(plane)
@@ -54,17 +62,18 @@ end
       expect {subject.confirm_takeoff}.to raise_error 'Stormy weather, cannot takeoff'
       end
     end
- end
+  end
 
    context 'changing capacity for new airport' do
      it 'changes the capacity when entering a new aiport' do
        airport = Airport.new(30)
        expect(airport.capacity).to eq 30
      end
-     it 'has a default value' do
+
+     it 'has a default value if nothing entered' do
        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
      end
-     end
-
-
    end
+
+
+end
