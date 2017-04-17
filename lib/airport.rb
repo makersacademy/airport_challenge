@@ -8,7 +8,6 @@ class Airport
   attr_accessor :ground_fleet
   attr_accessor :capacity
 
-
   def initialize(capacity = DEFAULT_CAPACITY)
     @ground_fleet = []
     @weather = Weather.new
@@ -27,6 +26,7 @@ class Airport
   def take_off(plane)
     fail "No taking off due to weather" if storms?
     fail "The plane has already taken off" if plane.on_air?
+    fail "Plane not in this aiport" unless @ground_fleet.include?(plane)
     plane.flying
     @ground_fleet.delete(plane)
   end
