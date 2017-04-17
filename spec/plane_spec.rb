@@ -16,12 +16,12 @@ describe Plane do
   end
   describe '#landing_problem' do
     it 'should return takeoff confirmation' do
-      expect(subject.landing_problem).to eq 'Unable to land'
+      expect(subject.landing_problem).to eq 'Unable to land at airport'
     end
   end
   describe '#takeoff_problem' do
     it 'should return takeoff confirmation' do
-      expect(subject.takeoff_problem).to eq 'Unable to takeoff'
+      expect(subject.takeoff_problem).to eq 'Unable to takeoff from airport'
     end
   end
 end

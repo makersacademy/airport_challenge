@@ -12,18 +12,18 @@ class Airport
   end
 
   def land(plane = Plane.new)
-    fail 'Unable to land at airport' if weather_unsafe? || hangar_full?
+    fail plane.landing_problem if weather_unsafe? || hangar_full?
     @hangar << plane
     plane.landing_confirmation
   end
 
   def takeoff(plane = Plane.new)
-    fail 'Unable to takeoff from airport' if weather_unsafe? || hangar_empty?
+    fail plane.takeoff_problem if weather_unsafe? || hangar_empty?
     @hangar.pop
     plane.takeoff_confirmation
   end
 
-  # private
+  private
 
   def hangar_full?
     @hangar.count >= capacity

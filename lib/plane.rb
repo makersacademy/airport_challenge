@@ -11,11 +11,11 @@ class Plane
   end
 
   def landing_problem
-    'Unable to land'
+    'Unable to land at airport'
   end
 
   def takeoff_problem
-    'Unable to takeoff'
+    'Unable to takeoff from airport'
   end
 
 end
