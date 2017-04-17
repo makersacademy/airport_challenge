@@ -9,11 +9,6 @@ describe Plane do
       expect(plane.landed).to be true
     end
 
-    it 'runs method to confirm landing' do
-      expect(plane).to receive(:confirm_landing)
-      plane.land
-    end
-
     context 'plane has already landed' do
       it 'raises error' do
         plane.land

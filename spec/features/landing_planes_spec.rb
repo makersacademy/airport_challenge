@@ -17,10 +17,12 @@ feature 'Air_traffic_control', :type => :feature do
 
   def and_there_is_a_plane
     @plane = Plane.new
+    @spy_plane = spy(:plane) # Used to check the instructions planes are sent while docking and releasing.
   end
 
   def when_i_instruct_a_plane_to_land_at_an_airport
-    @returned_message = @airport.dock_plane(@plane)
+    @airport.dock_plane(@plane)
+    @airport.dock_plane(@spy_plane)
   end
 
   def then_the_plane_should_land_at_the_airport
@@ -29,7 +31,7 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def and_the_plane_should_confirm_that_it_has_landed
-    expect(@returned_message).to eq "This plane has landed."
+    expect(@spy_plane).to have_received(:confirm_landing)
   end
 
 end

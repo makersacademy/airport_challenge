@@ -17,11 +17,14 @@ feature 'Air_traffic_control', :type => :feature do
 
   def and_there_is_a_plane_at_the_airport
     @plane = Plane.new
+    @spy_plane = spy(:plane) # Used to check the instructions planes are sent while docking and releasing.
     @airport.dock_plane(@plane)
+    @airport.dock_plane(@spy_plane)
   end
 
   def when_i_instruct_a_plane_to_take_off_from_an_airport
     @airport.release_plane(@plane)
+    @airport.release_plane(@spy_plane)
   end
 
   def then_the_plane_should_take_off_from_the_aiport
@@ -30,6 +33,6 @@ feature 'Air_traffic_control', :type => :feature do
   end
 
   def and_the_plane_should_confirm_it_has_left_the_airport
-    expect(@plane.take_off).to eq "This plane is in the air."
+    expect(@spy_plane).to have_received(:confirm_take_off)
   end
 end

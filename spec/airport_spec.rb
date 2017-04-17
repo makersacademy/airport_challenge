@@ -80,14 +80,14 @@ describe Airport do
         @airport.dock_plane(@plane)
       end
 
-      it 'tells plane to confirm landing' do
-        expect(@plane).to receive(:confirm_landing)
-        @airport.dock_plane(@plane)
-      end
-
       it 'adds plane to Airport\'s @planes array' do
         @airport.dock_plane(@plane)
         expect(@airport.planes).to include @plane 
+      end
+
+      it 'tells plane to confirm landing' do
+        expect(@plane).to receive(:confirm_landing)
+        @airport.dock_plane(@plane)
       end
     end
 
@@ -120,12 +120,6 @@ describe Airport do
       @airport = Airport.new(sunny_climate)
     end
 
-    it 'tells plane to confirm take off' do
-      @airport.build_plane(@plane)
-      expect(@plane).to receive(:confirm_take_off)
-      @airport.release_plane(@plane)
-    end
-
     context 'conditions are sunny' do
       it 'tells plane to take off' do
         @airport.build_plane(@plane)
@@ -137,6 +131,12 @@ describe Airport do
         @airport.build_plane(@plane)
         @airport.release_plane(@plane)
         expect(@airport.planes).to_not include @plane
+      end
+
+      it 'tells plane to confirm take off' do
+        @airport.build_plane(@plane)
+        expect(@plane).to receive(:confirm_take_off)
+        @airport.release_plane(@plane)
       end
     end
 
