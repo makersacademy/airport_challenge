@@ -37,13 +37,13 @@ describe Airport do
 
       it 'raises an error if airport is full' do
         allow(subject).to receive(:stormy_weather?).and_return false
-        50.times { subject.land(Plane.new) }
+        10.times { subject.land(Plane.new) }
         expect { subject.land(Plane.new) }.to raise_error("The airport is at maximum capacity")
       end
 
       it "stops plane to land if weather is stormy" do
         allow(subject).to receive(:stormy_weather?).and_return false
-        50.times { subject.land(Plane.new) }
+        10.times { subject.land(Plane.new) }
         expect { subject.land(Plane.new) }.to raise_error(RuntimeError)
       end
     end
