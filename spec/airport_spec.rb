@@ -16,8 +16,8 @@ describe Airport do
   end
 
   describe '#takeoff' do
-    it 'sends plane' do
-      plane = double(:plane)
+    let(:plane) { double :plane }
+    it 'tells plane to take off' do
       subject.takeoff
       expect(subject.planes).not_to include(plane)
     end
