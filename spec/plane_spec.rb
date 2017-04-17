@@ -40,6 +40,11 @@ describe Plane do
         plane.take_off
         expect(plane.landed).to eq false
       end
+
+      it "Expects a plane to confirm it has taken off" do
+        plane.take_off
+        expect(plane.confirm_taken_off).to eq "#{plane} has taken off."
+      end
   end
 
 
