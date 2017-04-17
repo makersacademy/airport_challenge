@@ -36,14 +36,20 @@ describe Airport do
   describe "#release_aircraft" do
     it { is_expected.to respond_to :release_aircraft }
 
-    it "Removes #take_off object from attribute" do
-      airport.accept_aircraft(plane)
-      expect(airport.release_aircraft).to eq plane
-    end
+    #it "Removes #take_off object from attribute" do
+    #  airport.accept_aircraft(plane)
+    #  expect(airport.release_aircraft).to eq plane
+    #end
 
     it "Raises exception if attempts to release aircraft when there are none" do
-      expect { airport.release_aircraft }.to raise_error "Error: There are no planes to release."
+      expect { airport.release_aircraft(plane) }.to raise_error "Error: There are no planes to release."
     end
+
+    it "Releases a specific aircraft" do
+      airport.accept_aircraft(plane)
+      expect(airport.release_aircraft(plane)).to eq plane
+    end
+
   end
 
 end
