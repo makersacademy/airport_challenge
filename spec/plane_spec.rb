@@ -6,14 +6,14 @@ describe Plane do
     expect(subject.flying).to eq true
   end
 
-  it { expect(subject).to respond_to(:land) }
+  it { is_expected.to respond_to(:land) }
 
   it "is not flying after #land is called" do
     subject.land
     expect(subject.flying).to eq false
   end
 
-  it { expect(subject).to respond_to(:takeoff) }
+  it { is_expected.to respond_to(:takeoff) }
 
   it "is flying after #takeoff called" do
     subject.takeoff

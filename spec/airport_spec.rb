@@ -7,7 +7,7 @@ describe Airport do
   before { allow(plane).to receive(:takeoff) }
   subject { Airport.new weather }
 
-  it { expect(subject).to respond_to(:land).with(1).argument }
+  it { is_expected.to respond_to(:land).with(1).argument }
 
   it "Instructs a plane to land" do
     expect(subject.land(plane)).to eq("Plane has landed.")
@@ -18,7 +18,7 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error("Plane has aleady landed.")
   end
 
-  it { expect(subject).to respond_to(:takeoff).with(1).argument }
+  it { is_expected.to respond_to(:takeoff).with(1).argument }
 
   it "Instructs a plane to take off" do
     allow(plane).to receive(:flying).and_return(false)
