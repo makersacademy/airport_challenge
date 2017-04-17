@@ -11,6 +11,9 @@ class Plane
     landing_schedule(airport)
   end
 
+  def take_off
+  end
+
   def confirm_landed
     landed ? "#{self} has landed" : "#{self} is still in the air"
   end
