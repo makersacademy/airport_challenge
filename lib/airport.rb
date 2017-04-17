@@ -13,13 +13,13 @@ require_relative 'weather'
 
    def land(plane)
      raise("The airport is at maximum capacity") if full?
-     raise RuntimeError, "The landing is canceled due to stormy weather" if stormy_weather?
+     raise RuntimeError, "The flight is canceled due to stormy weather" if stormy_weather?
       @planes << plane
     end
 
 
    def takeoff
-      raise RuntimeError, ("Airport is empty") if !full?
+      fail "The flight is canceled due to stormy weather"  if stormy_weather?
       @planes.pop
     end
 

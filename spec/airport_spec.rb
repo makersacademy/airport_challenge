@@ -38,9 +38,9 @@ describe Airport do
        expect{(subject.takeoff(plane))}
      end
 
-     it 'raises an error if airport is empty' do
+     it 'prvents the plane to take off if stormy' do
        allow(subject).to receive(:stormy_weather?).and_return(true )
-       expect {subject.takeoff}.to raise_error(RuntimeError)
+       expect {subject.land(Plane.new)}.to raise_error("The flight is canceled due to stormy weather")
       end
     end
   end
