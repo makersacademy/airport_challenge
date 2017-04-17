@@ -102,12 +102,6 @@ I would like a default airport capacity that can be overridden as appropriate.
 
 =================
 
-## Challenges
-
-Despite my best efforts I was unable to remove the random behaviour of weather in my tests.
-
-=================
-
 ## How to use
 
 Bellow is a pry transcript of how the program runs from a users perspective:
