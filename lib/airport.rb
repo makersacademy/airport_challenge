@@ -12,11 +12,13 @@ class Airport
   end
 
   def confirm_take_off
+    fail 'Cannot takeoff in stormy weather' if weather_status?
     @planes.pop
   end
 
-  def weather_status
-
+  def weather_status?
+    weather = Weather.new
+    weather.stormy?
   end
 
 end
