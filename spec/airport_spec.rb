@@ -4,6 +4,7 @@ require_relative '../lib/plane'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double(:plane) }
+  let(:weather) { double(:weather) }
   let(:aircraft) { double(:aircraft) }
 
   describe "#accept_aircraft" do
@@ -50,5 +51,11 @@ describe Airport do
       expect { airport.release_aircraft('not_a_plane') }.to raise_error "ERROR: Not valid plane."
     end
   end
-
+      # context "#stormy weather" do
+        # it "Raises exception if weather is stormy on take off" do
+        #  allow(:weather).to receive(:stormy).and_return(true)
+        #  airport.accept_aircraft(plane)
+        #  weather.stormy
+        #  expect { airport.release_aircraft(plane) }.to raise_error "NO TAKE-OFFS IN STORMS."
+      #  end
 end
