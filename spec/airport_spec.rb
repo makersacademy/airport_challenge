@@ -45,4 +45,10 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it "prevents a landing when the airport is full" do
+    allow(plane).to receive(:land)
+    (1...Airport::DEFAULT_CAPACITY).each do subject.land(plane) end
+    expect { subject.land(plane) }.to raise_error("Airport is at capacity.")
+  end
+
 end
