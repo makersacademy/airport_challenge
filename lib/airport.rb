@@ -6,7 +6,7 @@ class Airport
     @aircraft = obj
   end
 
-  def take_off(obj)
+  def take_off
     @aircraft = nil
   end
 

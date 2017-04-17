@@ -22,7 +22,6 @@ describe Plane do
   context "#landed" do
     it { is_expected.to respond_to :landed }
 
-
     it "Expects a plane to confirm it has landed after it has" do
       plane.land(airport)
       expect(plane.confirm_landed).to eq "#{plane} has landed"
@@ -35,22 +34,20 @@ describe Plane do
   end
 
   context "#take_off" do
-      it { is_expected.to respond_to :take_off }
+    it { is_expected.to respond_to :take_off }
 
-      it "Expects a plane to change #landed status once taken off" do
-        plane.take_off
-        expect(plane.landed).to eq false
-      end
+    it "Expects a plane to change #landed status once taken off" do
+      plane.take_off
+      expect(plane.landed).to eq false
+    end
 
-      it "Expects a plane to confirm it has taken off" do
-        plane.take_off
-        expect(plane.confirm_taken_off).to eq "#{plane} has taken off."
-      end
+    it "Expects a plane to confirm it has taken off" do
+      plane.take_off
+      expect(plane.confirm_taken_off).to eq "#{plane} has taken off."
+    end
 
-      it "Expects a plane to confirm has not taken off if still on ground" do
-        expect(plane.confirm_taken_off).to eq "#{plane} is on the ground."
-      end
+    it "Expects a plane to confirm has not taken off if still on ground" do
+      expect(plane.confirm_taken_off).to eq "#{plane} is on the ground."
+    end
   end
-
-
 end
