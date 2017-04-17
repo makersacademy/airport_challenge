@@ -13,26 +13,6 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
@@ -61,30 +41,63 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+# Structure
+The program uses three classes to achieve the specification: `Airport`, `Plane` and `WeatherGenerator`. Users can create an `Airport` with a custom capacity (default 5) and storm probability (default 10) by passing these values as arguments to the initialiser. The `Airport` is responsible for requesting that a plane lands or takes-off with responsibility for taking the action delegated to the `Plane` class. The `WeatherGenerator`'s `generate_random_weather` method can be passed a probability (0-100) and returns `0` for stormy and `1` for not stormy. This method is called by the `Airport` class to determine the current weather conditions.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+# Usage
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+### Installation
+- Clone the repo
+- cd to the project folder
+- Run `bundle` to install dependencies
 
-Please create separate files for every class, module and test suite.
+### Testing
+- Run `rspec`
 
-In code review we'll be hoping to see:
+### Running
+- Run `pry`
+- Run the following commands
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc.
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
+[1] pry(main)> require './lib/airport.rb'
+=> true
+[2] pry(main)> require './lib/plane.rb'
+=> true
+[3] pry(main)> require './lib/weather_generator.rb'
+=> false
+[4] pry(main)> miami_international = Airport.new(20, 10)
+=> #<Airport:0x007f8dff9a7650 @capacity=20, @planes=[], @storm_probability=10>
+[5] pry(main)> london_international = Airport.new(20, 100)
+=> #<Airport:0x007f8dffcdf660 @capacity=20, @planes=[], @storm_probability=100>
+[6] pry(main)> plane1 = Plane.new()
+=> #<Plane:0x007f8dffcf6158>
+[7] pry(main)> plane2 = Plane.new()
+=> #<Plane:0x007f8e00230c68>
+[8] pry(main)> plane3 = Plane.new()
+=> #<Plane:0x007f8e0025a158>
+[9] pry(main)> plane4 = Plane.new()
+=> #<Plane:0x007f8e018e7e20>
+[10] pry(main)> plane5 = Plane.new()
+=> #<Plane:0x007f8dffc2ebd0>
+[11] pry(main)> miami_international.land_plane(plane1)
+=> #<Plane:0x007f8dffcf6158
+@airport=
+#<Airport:0x007f8dff9a7650
+@capacity=20,
+@planes=[#<Plane:0x007f8dffcf6158 ...>],
+@storm_probability=10,
+@weather_generator=#<WeatherGenerator:0x007f8dffd343e0>>>
+[12] pry(main)> miami_international.land_plane(plane2)
+=> #<Plane:0x007f8e00230c68
+@airport=
+#<Airport:0x007f8dff9a7650
+@capacity=20,
+@planes=[#<Plane:0x007f8dffcf6158 @airport=#<Airport:0x007f8dff9a7650 ...>>, #<Plane:0x007f8e00230c68...>],
+@storm_probability=10,
+@weather_generator=#<WeatherGenerator:0x007f8e002bb8e0>>>
+[13] pry(main)> miami_international.permit_takeoff(plane2)
+=> #<Plane:0x007f8e00230c68 @airport=nil>
+[14] pry(main)> london_international.land_plane(plane2);
+RuntimeError: The weather at the airport is stormy, you cannot land.
+from /Users/projects/weekend_projects/airport_challenge/lib/airport.rb:17:in `land_plane'
+```
