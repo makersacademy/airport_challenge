@@ -8,7 +8,12 @@ describe Airport do
   describe '#land' do
     it 'raise error if unable to land' do
       plane = double(:plane)
-      expect { subject.land(plane) }.to raise_error(RuntimeError)
+      expect { subject.land(plane) }.to raise_error 'cannot land'
+    end
+    it 'land plane safely' do
+      plane = double(:plane)
+      subject.land(plane)
+      expect(subject.terminal).to include plane
     end
   end
 end
