@@ -1,4 +1,15 @@
 # Airport Challenge
+```
+        ______
+        _\____\___
+=  = ==(____MA____)
+          \_____\___________________,-~~~~~~~`-.._
+          /     o o o o o o o o o o o o o o o o  |\_
+          `~-.__       __..----..__                  )
+                `---~~\___________/------------`````
+                =  ===(_________)
+
+```
 
 This project maps the workings of a simple airport. Airports can dock, build, and release planes; planes can take off and land; and there are limitations on when airports allow landings and take offs, such as during stormy weather, or if the airport is full. 
 
@@ -6,7 +17,7 @@ This project maps the workings of a simple airport. Airports can dock, build, an
 
 You'll need Ruby to explore this project—instructions for getting it are available on ruby-lang's [installation page](https://www.ruby-lang.org/en/documentation/installation/). If you are on macOS or Linux, I recommend using [RVM](https://rvm.io).
 
-You will also need `bundler`—if you haven't installed it, run `gem install bundler`. Then navigate to the project root and run `bundle install`—which will install any missing project dependencies.
+You will also need `bundler`—if you haven't installed it, run `gem install bundler`. Then navigate to the project root and run `bundle install`—this will install any missing project dependencies.
 
 ## Usage
 
