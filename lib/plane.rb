@@ -9,16 +9,13 @@ class Plane
   ## The 'land' method lands planes in the specified airport, unless it's stormy,
   ## the airport is full, or it's already landed
   def land(airport)
-    todays_weather = Weather.new
-    if todays_weather.stormy?
+    if Weather.new.stormy?
       raise "Too stormy, can't land"
     elsif airport.full?
       raise "Airport is full, can't land"
-    elsif
-      self.landed?(airport)
+    elsif landed?(airport)
       raise "Cannot land, this plane has already landed in this airport"
-    else
-      airport.planes.push(self)
+    else airport.planes.push(self)
     end
   end
 
@@ -29,15 +26,12 @@ class Plane
 
   ## The 'take_off' method gets a plane to take off, unless it's stormy or if it's already taken off
   def take_off(airport)
-    todays_weather = Weather.new
-      if todays_weather.stormy?
-        raise "Too stormy, can't take off"
-      elsif
-        self.taken_off?(airport)
-        raise "This plane can't take off from an airport it's not in, or if it's already in the air!"
-      else
-        airport.planes.delete(self)
-      end
+    if Weather.new.stormy?
+      raise "Too stormy, can't take off"
+    elsif taken_off?(airport)
+      raise "The plane isn't at this airport, or it's in the air"
+    else airport.planes.delete(self)
+    end
   end
 
   ## The 'taken_off?' method checks whether or not a plane has taken off from the airport specified
