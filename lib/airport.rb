@@ -10,18 +10,19 @@ class Airport
     @hangar = []
     @capacity = capacity
     @weather = Weather.new
+    @plane = Plane.new
   end
 
-  def land(plane)
-    fail 'Unable to land' if unsafe || full?
+  def landing(plane)
+    fail 'Unable to land' if unsafe_weather? || full?
     @hangar << plane
-    return 'Plane landed safely'
+    plane.land
   end
 
   def takeoff
-    fail 'Unable to takeoff' if empty? || unsafe
+    fail 'Unable to takeoff' if unsafe_weather? || empty?
     @hangar.pop
-    return 'Plane takeoff succesful'
+    @plane.takeoff
   end
 
   private
@@ -34,7 +35,7 @@ class Airport
     @hangar.empty?
   end
 
-  def unsafe
+  def unsafe_weather?
     @weather.stormy?
   end
 
