@@ -10,7 +10,7 @@ describe Airport do
     expect(airport1.planes == []).to eq true
   end
 
-  it 'should have a default capacity of 20' do
+  it 'should have a default capacity of 5' do
     airport1 = Airport.new("Test_port")
     expect(airport1.capacity == 5).to eq true
   end
