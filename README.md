@@ -92,7 +92,7 @@ Example of Code
 2.4.0 :040 > 
 ```
 
-For a more comprehensive example of the above (not using IRB), go into the main folder and run the following:
+For a more comprehensive example of the above (not using IRB), go into the main folder on command-line and run the following:
 ```
 $ruby ./spec/feature_test.rb
 ```
