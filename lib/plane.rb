@@ -13,11 +13,11 @@ class Plane
   end
 
   def confirm_landing
-    landed ? "This plane has landed." : "This plane has not landed."
+    landed ? "Plane has landed." : "Plane has not landed."
   end
 
   def confirm_take_off
-    !landed ? "This plane is in the air." : "This plane has not taken off."
+    !landed ? "Plane is in the air." : "Plane has not taken off."
   end
 
   private

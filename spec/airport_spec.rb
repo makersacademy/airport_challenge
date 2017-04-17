@@ -156,7 +156,7 @@ describe Airport do
     context 'plane is not in the airport' do
       it 'raises error' do
         expect(@airport.planes).to be_empty
-        expect { @airport.release_plane(@plane) }.to raise_error "Error: This plane is not in the airport"
+        expect { @airport.release_plane(@plane) }.to raise_error "Error: Plane is not in the airport"
       end
     end
 

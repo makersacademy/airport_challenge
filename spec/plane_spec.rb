@@ -22,13 +22,13 @@ describe Plane do
     context 'plane has landed' do
       it 'returns message confirming plane has landed' do
         plane.land
-        expect(plane.confirm_landing).to eq "This plane has landed."
+        expect(plane.confirm_landing).to eq "Plane has landed."
       end
     end
 
     context 'plane has not landed' do
       it 'states plane has not landed' do
-        expect(plane.confirm_landing).to eq "This plane has not landed."
+        expect(plane.confirm_landing).to eq "Plane has not landed."
       end
     end
 
@@ -50,14 +50,14 @@ describe Plane do
     context 'plane has taken off' do
       it 'returns message confirming plane has taken off' do
         plane.take_off
-        expect(plane.confirm_take_off).to eq "This plane is in the air."
+        expect(plane.confirm_take_off).to eq "Plane is in the air."
       end
     end
 
     context 'plane has not taken off' do
       it 'reports that plane has not taken off' do
         plane.land
-        expect(plane.confirm_take_off).to eq "This plane has not taken off."
+        expect(plane.confirm_take_off).to eq "Plane has not taken off."
       end
     end
 

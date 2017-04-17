@@ -32,7 +32,7 @@ class Airport
   end
 
   def release_plane(plane)
-    raise 'Error: This plane is not in the airport' unless planes.include?(plane)
+    raise 'Error: Plane is not in the airport' unless planes.include?(plane)
     raise 'Error: Take-off forbidden when weather is stormy.' if conditions == :stormy
     plane.take_off
     planes.delete(plane)
