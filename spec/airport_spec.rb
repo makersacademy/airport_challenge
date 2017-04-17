@@ -2,35 +2,35 @@ require 'airport'
 
 describe Airport do
   let(:weather) { double :weather, stormy?: false }
-  let(:plane) { double :plane }
+  let(:plane) { instance_double Plane, :flying => true }
   subject { Airport.new weather }
 
   it { expect(subject).to respond_to(:land).with(1).argument }
 
   it "Instructs a plane to land" do
+    allow(plane).to receive(:land)
     expect(subject.land(plane)).to eq("Plane has landed.")
   end
 
   it "Won't land a plane that has already landed" do
-    subject.land(plane)
+    allow(plane).to receive(:flying).and_return(false)
     expect { subject.land(plane) }.to raise_error("Plane has aleady landed.")
   end
 
   it { expect(subject).to respond_to(:takeoff).with(1).argument }
 
   it "Instructs a plane to take off" do
-    plane.flying = false
+    allow(plane).to receive(:takeoff)
+    allow(plane).to receive(:flying).and_return(false)
     expect(subject.takeoff(plane)).to eq("Plane has taken off.")
   end
 
   it "won't instruct a plane to take off if it is already flying" do
-    plane.flying = false
-    subject.takeoff(plane)
     expect { subject.takeoff(plane) }.to raise_error("Plane is already flying.")
   end
 
   it "prevents takeoff when the weather is stromy" do
-    plane.flying = false
+    allow(plane).to receive(:flying).and_return(false)
     allow(weather).to receive(:stormy?).and_return(true)
     expect { subject.takeoff(plane) }.to raise_error("Too stormy for takeoff.")
   end
