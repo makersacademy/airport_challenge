@@ -52,8 +52,8 @@ describe Airport do
   end
 
   it "can set the defauly capacity on initialization" do
-    subject { Airport.new(Weather,10) }
-    expect(subject.capacity).to eq(10)
+    airport = Airport.new(Weather,10)
+    expect(airport.capacity).to eq(10)
   end
 
 end
