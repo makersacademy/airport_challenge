@@ -21,17 +21,17 @@ describe '#confirm_takeoff' do
     it "should confirm takeoff by popping a plane from the array of planes in the airport" do
     plane = Plane.new
     airport = Airport.new
-    airport.stormy_weather? == false
+    airport.stormy_weather?
     airport.confirm_landing(plane)
     expect(airport.confirm_takeoff(plane)).to eq plane
     end
   end
   context "weather is stormy" do
-    it 'should fail to confirm takeoff if weather is stormy - fail error' do
+    it 'should raise error when confirming takeoff if weather is stormy - fail error' do
     plane = Plane.new
     airport = Airport.new
     airport.confirm_landing(plane)
-    airport.stormy_weather? == true
+    airport.stormy_weather? 
     expect {airport.confirm_takeoff(plane)}.to raise_error 'Stormy weather, cannot takeoff'
     end
    end
