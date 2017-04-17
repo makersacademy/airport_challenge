@@ -1,34 +1,41 @@
 Airport Challenge
 =================
+My approach:
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+1. Domain Model - after looking at the first user story, I identified initially
+two classes I needed to create (Plane and Airport)
+2. User story 1: the class Plane gets a land function. It is true by default,
+as there no indications it needs to take other values. The
+Airport class gets a confirm_landing(plane) method. Initially, it only adds
+the landed plane to an empty array of planes.
+3. User Story 2: the Plane class gets a takeoff method that is true by default.
+The Airport class gets a method confirm_takeoff, that pushes out of the array of
+planes the plane that takes off.
+Limitation: unless a plane was confirmed landing in an airport, it cannot leave.
+4. User story 3: I make a new class Weather, which takes random values from 1 to
+100. The class gets a method stormy?, that takes true if the random generated
+number is less than 20 (so 1/5 chances of storm). Then, within the Airport class,
+I create another predicate method - stormy_weather?, which basically initializes
+a new instance of Weather and tells you if it is stormy. We use it in the
+confirm_takeoff method. If it is true, the code fails with a message error.
+5. User story 4 - within the confirm_landing method in the Airport class, I use
+the same stormy_weather? method and if true, the code fails with an error message.
+6. User story 5 - within the Airport class, I make a method airport_full, which
+return true if the array of planes (number of confirmed landings) is higher than
+the capacity of the airport. If true, within the confirm_landing method, the
+code fails with an error message.
+7. User story 6 - initially, the capacity is DEFAULT_CAPACITY, a constant set
+within the Airport class. When we initialize the class, we set the capacity to
+the default value. For being able to change it, we remove the default capacity
+from the initialize method. Every time we instantiate a new airport, we add the
+capacity argument.
+8. I refactored using rubocop. I commented the Plane class methods and test, as
+they do not have any role in the way the code works.
+9. I tested all these features via irb and then rspec. I stubbed for the weather
+but did not use any doubles.  
 
-```
+The tasks and requests bellow:
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 
 Task
 -----
@@ -36,25 +43,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +80,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
