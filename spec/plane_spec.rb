@@ -29,6 +29,7 @@ describe Plane do
     end
 
     it "Expects a plane to inform it has not landed if requested before landing" do
+      allow(plane).to receive(:landed).and_return(false)
       expect(plane.confirm_landed).to eq "#{plane} is still in the air"
     end
   end
