@@ -28,7 +28,7 @@ class Plane
   attr_writer :landed
 
   def landing_schedule(airport)
-    airport.land(self)
+    airport.accept_aircraft(self)
     self.landed = true
   end
 

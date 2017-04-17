@@ -2,11 +2,11 @@ class Airport
 
   attr_reader :aircraft
 
-  def land(obj)
-    @aircraft = obj
+  def accept_aircraft(aircraft)
+    @aircraft = aircraft
   end
 
-  def take_off
+  def release_aircraft
     @aircraft = nil
   end
 
