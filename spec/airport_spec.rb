@@ -13,19 +13,18 @@ describe 'airport' do
       expect(heathrow.planes_landed).to include(plane1)
     end
 
-  #   it 'raises an error if a plane tries to land and the airport is full' do
-  #     Airport::DEFAULT_CAPACITY.times { Plane.new.land(Plane.new) }
-  #     expect { Plane.new.land(Plane.new) }.to raise_error 'Airport is full.'
-  #   end
-  # end
-  #
-  # describe '#landed?' do
-  #   plane = Plane.new
-  #   plane.land(plane)
-  #   it 'tests whether plane responds to :landed?' do
-  #     expect(plane).to respond_to :landed?
-  #   end
-  # end
+    # it 'raises an error if a plane tries to land and the airport is full' do
+    #   Airport::DEFAULT_CAPACITY.times { Airport.new.land(Plane.new) }
+    #   expect { Airport.new.land(Plane.new) }.to raise_error 'Airport is full.'
+    # end
+  end
+
+  describe '#landed?' do
+    Airport.new.land(Plane.new)
+    it 'tests whether plane responds to :landed?' do
+      expect(Airport.new).to respond_to :landed?
+    end
+  end
   #
   # describe 'take_off' do
   #   plane = Plane.new
@@ -47,6 +46,6 @@ describe 'airport' do
     #   allow(weather).to receive(:stormy?).and_return(true)
     #   expect { plane.take_off(plane) }.to raise_error 'Weather is stormy'
     # end
-  end
+  # end
 
 end
