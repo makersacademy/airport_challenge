@@ -2,13 +2,12 @@ require_relative 'airport'
 require_relative 'weather'
 
 class Plane
-w = Weather.new
   def land(airport)
-    true unless w.stormy?
+    true 
   end
 
   def takeoff(airport)
-    true unless w.stormy?
+    true
   end
 
 end

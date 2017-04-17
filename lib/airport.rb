@@ -13,11 +13,11 @@ def initialize(capacity = DEFAULT_CAPACITY)
 end
 
 def confirm_landing(plane)
-  @planes << plane unless w.stormy?
+  @planes << plane #unless w.stormy?
 end
 
 def confirm_takeoff(plane)
-  @planes.pop unless w.stormy?
+  @planes.pop #unless w.stormy?
 end
 
 
