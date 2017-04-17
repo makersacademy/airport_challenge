@@ -1,5 +1,6 @@
 
-[![Build Status](https://travis-ci.org/joemaidman/airport_challenge.svg?branch=master)](https://travis-ci.org/joemaidman/airport_challenge)[![Coverage Status](https://coveralls.io/repos/github/joemaidman/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/joemaidman/airport_challenge?branch=master)
+[![Build Status](https://travis-ci.org/joemaidman/airport_challenge.svg?branch=master)](https://travis-ci.org/joemaidman/airport_challenge)  [![Coverage Status](https://coveralls.io/repos/github/joemaidman/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/joemaidman/airport_challenge?branch=master)
+
 Airport Challenge
 =================
 
