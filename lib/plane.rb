@@ -19,6 +19,10 @@ class Plane
     landed ? "#{self} has landed" : "#{self} is still in the air"
   end
 
+  def confirm_taken_off
+    "#{self} has taken off." if landed == false
+  end
+
   private
 
   attr_writer :landed
