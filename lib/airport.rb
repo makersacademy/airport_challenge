@@ -5,8 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY = 25
 
-  attr_accessor :ground_fleet
-  attr_accessor :capacity
+  attr_accessor :ground_fleet, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @ground_fleet = []
@@ -20,19 +19,19 @@ class Airport
     fail "No landing due to weather conditions." if storms?
     fail "The plane has already landed" if plane.landed?
     plane.ground
-    @ground_fleet << plane
+    ground_fleet << plane
   end
 
   def take_off(plane)
     fail "No taking off due to weather" if storms?
     fail "The plane has already taken off" if plane.on_air?
-    fail "Plane not in this aiport" unless @ground_fleet.include?(plane)
+    fail "Plane not in this aiport" unless ground_fleet.include?(plane)
     plane.flying
-    @ground_fleet.delete(plane)
+    ground_fleet.delete(plane)
   end
 
   def in_airport?(plane)
-    if @ground_fleet.include?(plane)
+    if ground_fleet.include?(plane)
       true
     else
       false
@@ -40,11 +39,11 @@ class Airport
   end
 
   def storms?
-    @weather.stormy?
+    weather.stormy?
   end
 
   def full?
-    true if @ground_fleet.count >= @capacity
+    true if ground_fleet.count >= capacity
   end
 
 end
