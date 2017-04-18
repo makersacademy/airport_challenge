@@ -23,7 +23,7 @@ describe 'airport' do
       detroit = Airport.new
       plane2 = Plane.new
       detroit.land(plane2)
-      expect {detroit.land(plane2)}.to raise_error 'Plane already landed.'
+      expect { detroit.land(plane2) }.to raise_error 'Plane already landed.'
     end
   end
 

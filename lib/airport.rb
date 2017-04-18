@@ -4,15 +4,14 @@ class Airport
 
   attr_reader :planes_landed, :planes_in_air
 
-  def initialize(capacity = DEFAULT_CAPACITY, planes_landed = ["bob"], planes_in_air = [])
+  def initialize(capacity = DEFAULT_CAPACITY, planes_landed = [], planes_in_air = [])
     @capacity = capacity
     @planes_landed = planes_landed
     @planes_in_air = planes_in_air
   end
 
   def land(plane)
-    fail 'Airport is full.' if planes_landed.length > @capacity
-    fail if planes_landed.include? plane
+    fail 'Airport is full.' if planes_landed.length >= @capacity || planes_landed.include?(plane)
     @planes_landed << plane
   end
 
