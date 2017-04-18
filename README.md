@@ -12,10 +12,46 @@ Adam Snow comments
 
 Personal Code Review
 --------------------
-* I would have liked to have the weather randomise regularly, at the moment it is only random at initialize
 * I worry that there is a possible problem that plane holds airport, which holds plane, which holds airport ad infinitum.
 * I'm not sure if I have passed responsibility to airport for landing/takeoff unnecessarily complicating the class.
-* Additional functionality I would like to add would be to add a new optional destination argument to takeoff(destination) to combine takeoff and landing in one method.
+* After putting Weather in own class, cannot get rspec double to hold one condition!! IRB works
+
+PRY example
+-----------
+```
+Adams-MBP:airport_challenge adamsnow$ pry
+[1] pry(main)> load './lib/airport.rb'
+=> true
+[2] pry(main)> lhr = Airport.new('Heathrow',10)
+=> #<Airport:0x007fdce308ab70
+ @capacity=10,
+ @current_weather=#<Weather:0x007fdce308ab20 @condition="Stormy">,
+ @name="Heathrow",
+ @runway=[]>
+[3] pry(main)> stn = Airport.new('Stansted',8)
+=> #<Airport:0x007fdce3976630
+ @capacity=8,
+ @current_weather=#<Weather:0x007fdce39765e0 @condition="Sunny">,
+ @name="Stansted",
+ @runway=[]>
+[4] pry(main)> enola_gay = Plane.new
+=> #<Plane:0x007fdce30769e0>
+[5] pry(main)> enola_gay.land_at(stn)
+Landed at Stansted
+=> nil
+[6] pry(main)> enola_gay.takeoff_to(lhr)
+Taken off from Stansted
+Landed at Heathrow
+=> nil
+[7] pry(main)> lhr.runway
+=> [#<Plane:0x007fdce30769e0
+  @landed_at=
+   #<Airport:0x007fdce308ab70
+    @capacity=10,
+    @current_weather=#<Weather:0x007fdce30aa3a8 @condition="Sunny">,
+    @name="Heathrow",
+    @runway=[...]>>]
+```
 
 Airport Challenge
 =================
