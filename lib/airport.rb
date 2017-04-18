@@ -29,7 +29,7 @@ class Airport
 
   def takeoff_check(plane)
     @current_weather = generate_weather
-    fail "Cannot takeoff, weather at #{@landed_at.name} stormy" if @current_weather.condition == "Stormy"
+    fail "Cannot takeoff, weather at #{name} stormy" if @current_weather.condition == "Stormy"
   end
 
   def landing_check(plane)

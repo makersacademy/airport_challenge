@@ -2,9 +2,9 @@ require './lib/airport'
 
 describe Airport do
   let(:plane) { double :plane, landed_at: nil }
-
   context '#weather is #sunny' do
     let(:weather) { double :weather, condition: "Sunny" }
+    before { allow_any_instance_of(Weather).to receive(:condition) { "Sunny" }}
 
     it "has a default #name the Airport" do
       expect(subject.name).to eq("the Airport")
@@ -56,6 +56,7 @@ describe Airport do
   context 'when #airport is #stormy' do
 
     let(:current_weather) { double :weather, condition: "Stormy" }
+    before { allow_any_instance_of(Weather).to receive(:condition) { "Stormy" }}
 
     it "cannot #land if #weather is #stormy #airport" do
       expect { subject.landing_check(plane) }.to raise_error "Cannot land, weather at the Airport stormy"
@@ -63,7 +64,7 @@ describe Airport do
 
     it "cannot #takeoff if #weather is #stormy" do
       allow(plane).to receive(:landed_at).and_return(subject)
-      expect { subject.takeoff_check(plane) }.to raise_error "Cannot takeoff, weather at Test stormy"
+      expect { subject.takeoff_check(plane) }.to raise_error "Cannot takeoff, weather at the Airport stormy"
     end
 
   end
