@@ -1,18 +1,17 @@
-require 'airport'
-require 'plane'
-require 'weather'
-
-describe Airport do
-
-context 'when plane in another aiport' do
-    it 'Raises an error' do
-      luton = Airport.new
-      jet = Plane.new
-      allow(luton).to receive(:storms?){false}
-      luton.land(jet)
-      gatwick = Airport.new
-      expect(gatwick.take_off(jet)).to raise_error message
-    end
-  end
-
-end
+# require 'airport'
+# require 'plane'
+# require 'weather'
+#
+# describe Airport do
+#   let(:luton) {Airport.new}
+#   let(:gatwick) {Airport.new}
+#   let(:plane) {Plane.new}
+#   context 'when plane in another aiport' do
+#     it 'Raises an error' do
+#       allow(luton).to receive(:storms?){false}
+#       luton.land(plane)
+#       expect(gatwick.take_off(plane)).to raise_error "Plane not in this aiport"
+#     end
+#   end
+#
+# end
