@@ -6,12 +6,30 @@ Airport Challenge
         _\____\___
 =  = ==(____MA____)
           \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
+          /     o Airway of Least Resistance     |\_
           `~-.__       __..----..__                  )
                 `---~~\___________/------------`````
                 =  ===(_________)
 
-```
+
+This is the attempt by me, Adam Skuse, to complete the Maker's Academy Ronin Week 1 Friday Challenge (as detailed below).
+
+I do not consider myself to have completed the challenge for the following reasons:
+
+1. The Plane .take_off method does not remove the subject from the airport's parking array (@apron).
+
+2. A separate class or module should be dealing with the weather. (Although all the other ways of dealing with weather that occurred to me had drawbacks.)  The weather state is not determined using rand.
+
+3. It is unacceptable that the weather is determined by the instances of the Plane class. Also, there should not be an attribute writer giving access to this variable. It is there as I could not work out how to set up a dummy of the plane with a stub to test the response of .land when whether IS stormy
+
+4. Syntax in the spec files is verbose and inconsistent. Spec files rely too much on using the attribute writers of the classes they are testing to set up scenarios. I need to implement doubles and stubs, and work out how to use them with the class that is being tested, and not just for representing outside classes.
+
+5. The code does not meet SOLID principles and is not easy for another developer / myself in the future to modify. There are too many interfaces. SRP has not been adhered to.
+
+I intend to detail my experiences with this challenge in exhaustive depth a http://codingwithhedgehogs.tumblr.com/
+in coming days.
+
+In summary, while my submission obviously doesn't meet the challenge, I have found attempting it to be a worthwhile learning experience, if only in deepening my understanding of the areas I need to focus upon in my study.
 
 Instructions
 ---------
@@ -36,25 +54,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +91,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
