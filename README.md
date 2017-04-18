@@ -1,6 +1,31 @@
 Airport Challenge
 =================
 
+Ferugs Orbachs Design Choices
+-----------------------------
+
+Design aims :
+ 1. Encapsulation - the plane's methods should not change the internal state of the airport and vice versa
+ 2. SRP - each method should only have one responsibility
+ 3. Humour - this course should be fun
+
+ To achieve the first aim both the plane and the airport had to have entry and exit methods - the planes would change its flight and location status, the airport would change its storage status. To make sure that both would happen I created a master slave arrangement where the plane's entry method would call the airports entry method and the same for exit.
+
+ Unfortunately this started causing problems as I could run the airports entry method without calling it first via the plane; effectively creating flying planes in the airport. To mitigate this I added an extra step - permission - this meant a plane had to ask permission first, which would change its internal state before it could then initiate a landing. This solved the problem whilst maintaining encapsulation.
+
+ However on a further review of my code I realised that I have been breaking SRP, as my planes landing method first calls for permission and then changes its internal state allowing it to land - this method has two responsibilities - asking permission and landing the plane. This should have been split further into a request permission method and a land method.
+
+ I would also like the airports and planes to initialize with a name (perhaps auto assigned IDs?) so that when the planes and airports broadcast methods would broadcast the names rather than the objects
+
+ Humour was maintained throughout.
+
+
+
+
+
+
+
+
 ```
         ______
         _\____\___
@@ -36,25 +61,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +98,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
