@@ -1,5 +1,3 @@
-![Build Status](https://travis-ci.org/sophieklm/airport_challenge.svg?branch=master)
-
 Airport
 =================
 
