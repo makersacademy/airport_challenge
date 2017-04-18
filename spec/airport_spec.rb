@@ -28,9 +28,9 @@ describe Airport do
 		let(:plane) { Plane.new }
 		it 'overrides dafault capacity' do
 			described_class::DEFAULT_CAPACITY.times do
-			subject.land(plane)
+			subject.land(Plane.new)
 		end
-			expect{ subject.land(plane) }.to raise_error 'Airport full'
+			expect{ subject.land(plane) }.to raise_error 'Airport is full'
 		end
 	end
 
