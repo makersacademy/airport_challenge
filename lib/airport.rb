@@ -33,11 +33,7 @@ class Airport
   end
 
   def landed?(plane)
-    if landed_planes.include? plane
-      return true
-    else
-      return false
-    end
+    return @landed_planes.include?(plane)
   end
 
   def take_off(plane)
@@ -47,11 +43,6 @@ class Airport
 
   def taken_off?(plane)
      return !@landed_planes.include?(plane)
-    # if @landed_planes.include? plane
-    #   return false
-    # else
-    #   return true
-    #  end
   end
 
 end

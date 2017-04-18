@@ -20,7 +20,7 @@ describe Airport do
   it 'Confirms plane has landed' do
     allow(airport).to receive(:non_ideal_weather?).and_return(false)
     airport.land('plane')
-    expect(airport.landed? ('plane')).to eq true
+    expect(airport.landed?('plane')).to eq true
   end
 
   it 'Instructs plane to take off' do
