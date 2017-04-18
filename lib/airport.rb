@@ -5,7 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY = 25
 
-  attr_accessor :ground_fleet, :capacity
+  attr_accessor :ground_fleet, :capacity, :weather
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @ground_fleet = []
@@ -31,11 +31,7 @@ class Airport
   end
 
   def in_airport?(plane)
-    if ground_fleet.include?(plane)
-      true
-    else
-      false
-    end
+     ground_fleet.include?(plane) ?  true : false
   end
 
   def storms?
@@ -43,7 +39,7 @@ class Airport
   end
 
   def full?
-    true if ground_fleet.count >= capacity
+    ground_fleet.count >= capacity
   end
 
 end

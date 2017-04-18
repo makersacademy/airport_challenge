@@ -6,7 +6,7 @@ class Plane
   end
 
   def landed?
-    true if @status.nonzero?
+    @status.nonzero?
   end
 
   def ground
@@ -14,7 +14,7 @@ class Plane
   end
 
   def on_air?
-    true if @status.zero?
+    @status.zero?
   end
 
   def flying
