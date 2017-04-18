@@ -7,11 +7,12 @@ module Storm
   end
 
   def stormy?
-    chance_of_storm == 9 ? true : false
+    chance_of_storm == 9
   end
 end
 
 class Weather
+  
   include Storm
 
 end

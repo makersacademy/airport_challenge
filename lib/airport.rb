@@ -1,5 +1,6 @@
 require_relative 'weather'
 require_relative 'plane'
+
 # Understand how to manage planes
 
 class Airport
@@ -8,7 +9,8 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  attr_reader :name, :planes_in_airport, :capacity
+  attr_reader :name, :planes_in_airport
+  attr_accessor :capacity
 
   def initialize(name = "A#" + "#{self}"[-5..-2])
     @planes_in_airport = []
@@ -41,10 +43,6 @@ class Airport
     fail "#{plane.name} is not in this aiport" unless @planes_in_airport.include? plane.name
     fail "#{plane.name} is in the air" if plane.location == :up_in_the_air
     fail "Can't take off due to stormy weather" if stormy?
-  end
-
-  def change_capacity(n)
-    @capacity = n
   end
 
   def weather_forecast
