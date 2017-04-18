@@ -35,7 +35,7 @@ class Plane
   end
 
   def take_off_schedule(airport)
-    airport.release_aircraft
+    airport.release_aircraft(self)
     self.landed = false
   end
 
