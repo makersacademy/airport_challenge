@@ -45,6 +45,13 @@ describe 'airport' do
       expect(stansted.planes_in_air).to include(spirit)
     end
 
+    it 'raises an error if a flying plane tries to take off' do
+      plane3 = Plane.new
+      knock = Airport.new
+      knock.take_off(plane3)
+      expect { knock.take_off(plane3) }.to raise_error 'Plane already in flight.'
+    end
+
     # it 'raises an error if the plane tries to take off in stormy weather' do
     #   gatwick = Airport.new
     #   report = Weather.new
