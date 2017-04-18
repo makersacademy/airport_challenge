@@ -36,7 +36,7 @@ private
   end
 
   def stormy?
-    @weather.condition == 'stormy'
+    @weather.condition == :stormy
   end
 
   def check_weather
