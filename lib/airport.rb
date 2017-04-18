@@ -21,6 +21,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Landing denied: ideal weather conditions not met" if non_ideal_weather? == true
     raise 'Landing denied: airport full' if @landed_planes.count >= @capacity
     @landed_planes << plane
 
