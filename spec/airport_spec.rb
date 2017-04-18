@@ -2,13 +2,20 @@ require 'airport'
 #require 'plane'
 
 describe Airport do
-  subject(:airport) { described_class.new}
+  subject(:airport) { described_class.new(15)}
 
-  it 'instructs plane to land' do
+  it 'Instructs plane to land' do
     expect(airport).to respond_to(:land).with(1).argument
   end
 
-  it 'instructs plane to take off' do
+  it 'Instructs plane to take off' do
     expect(airport).to respond_to(:take_off)
+  end
+
+  it "Landing denied: airport full" do
+    15.times do
+      airport.land(:plane)
+    end
+    expect { airport.land(:plane) }.to raise_error 'Landing denied: airport full'
   end
 end
