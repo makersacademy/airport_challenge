@@ -1,0 +1,134 @@
+User Story 1
+---------------------
+Nouns
+- Air traffic controller
+- Passenger
+- Destination
+- Airport
+- Plane
+
+Verbs
+- Get
+- Instruct
+- Land
+- Confirm
+
+
+
+object      Message
+------------------------
+Plane       Land
+Air Traffic  confirm, instruct
+
+
+Air Traffic => instruct => plane <=> land <=> confirm
+
+User Story 2
+-------------------------
+Nouns
+- Air traffic controller
+- Passenger
+- Destination
+- Airport
+- Plane
+
+Verbs
+- Get
+- Instruct
+- Take off
+- Confirm
+
+
+
+object      Message
+-------------------------
+plane       Take off
+air traffic instruct, confirm
+
+
+air traffic => instruct => plane <=> take off <=> confirm
+
+
+User Story 3
+-----------------------------
+
+Nouns
+- Air traffic controller
+- weather
+- (airplane)
+
+Verbs
+- ensure
+- prevent
+- takeoff
+
+
+object      Message
+-----------------------------
+air traffic prevent
+plane       takeoff
+
+
+air traffic => weather(stormy) => prevent <=> takeoff <=> plane
+              \weather(clear) => takeoff <=> plane
+
+
+User Story 4
+-----------------------------
+
+Nouns
+- Air traffic controller
+- weather
+- airplane
+
+verbs
+- ensure
+- prevent
+- landing
+
+object      Message
+--------------------------------
+air traffic prevent
+plane       landing
+
+air traffic => weather(stormy) => prevent <=> landing <=> plane
+              \weather(clear) => landing <=> plane
+
+User Story 5
+-------------------------------
+
+Nouns
+- Air traffic controller
+- Airplane
+- Airport
+
+verbs
+- prevent
+
+
+object      Message
+---------------------------
+air traffic prevent
+airplane    land
+airport     full?
+
+
+air traffic => prevent landing <=> airplane => airport full?
+
+User Story 6
+---------------------------
+
+Nouns
+- system designer
+- default capacity
+- airport
+
+verbs
+- set 
+
+object    Message
+-------------------------
+system designer set
+airport
+
+system designer => set <=> default capacity => airport
