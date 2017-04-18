@@ -20,9 +20,14 @@ class Airport
     Weather.new.weather_condition?
   end
 
+  def full?
+    @landed_planes.count >= capacity
+  end
+
   def land(plane)
+    weather = Weather.new
     fail "Landing denied: ideal weather conditions not met" if non_ideal_weather? == true
-    raise 'Landing denied: airport full' if @landed_planes.count >= @capacity
+    fail 'Landing denied: airport full' if full?
     @landed_planes << plane
 
   end
