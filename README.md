@@ -91,7 +91,7 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 **My Part of the README**
 
-The first problem I ran into was  a gemfile error. My ruby version did not match up  with the gemfile version. I recently switched rbenv(I’m told it’s more sophisticated than rvm) so I could remember how to install a different version of ruby. By using `rbenv install -l” and picking the required ruby version, which in this case was ruby 2.4.0 – I was able to complete the first step of getting past this error.  
+The first problem I ran into was  a gemfile error. My ruby version did not match up  with the gemfile version. I recently switched rbenv(I’m told it’s more sophisticated than rvm) so I could remember how to install a different version of ruby. By using `rbenv install -l` and picking the required ruby version, which in this case was ruby 2.4.0 – I was able to complete the first step of getting past this error.  
 
 However, I had completely forgotten that I needed to switch my ruby version after installing, thus I was absolutely dumbfounded when I tried to run `bundle` again and received the exact same error as before. After listing my ruby versions, I went to the aid of google and search on how to change my system ruby version.  
 
