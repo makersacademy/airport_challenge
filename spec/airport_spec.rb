@@ -13,11 +13,18 @@ describe Airport do
     end
   end
 
+  describe Airport.new(20) do
+    context "when capacity is set to 20" do
+      it { is_expected.to have_attributes(:capacity => 20) }
+    end
+  end
+
+
   describe ".takeoff" do
     it "should react to .takeoff" do
       expect(subject).to respond_to(:takeoff)
     end
-    it "should fail when @planes is empty" do
+    it "when @planes is empty" do
       @weather = Weather.new(0)
       @planes = Airport.new.instance_variable_get(:@planes)
       expect(subject.takeoff).to raise RuntimeError, "Takeoff not possible, as no planes present" if @planes.empty? && @weather == "Sunny"
