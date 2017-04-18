@@ -1,5 +1,9 @@
+require_relative 'weather'
+require_relative 'plane'
+
 class Airport
 
+  attr_reader :weather
   attr_reader :landed_planes
 
 
@@ -8,6 +12,10 @@ class Airport
     @capacity = capacity
 
 
+  end
+
+  def non_ideal_weather?
+    Weather.new.weather_condition?
   end
 
   def land(plane)
@@ -25,6 +33,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Take off denied: ideal weather conditions not met" if non_ideal_weather? == true
     @landed_planes.delete(plane)
   end
 
