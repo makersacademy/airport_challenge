@@ -4,9 +4,9 @@ require './lib/weather.rb'
 class Airport
 
   DEFAULT_CAPACITY = 25
-  attr_accessor :planes, :capacity
+  attr_reader :planes, :capacity
 
-  def initialize(capacity)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
