@@ -52,12 +52,12 @@ describe 'airport' do
       expect { knock.take_off(plane3) }.to raise_error 'Plane already in flight.'
     end
 
-    # it 'raises an error if the plane tries to take off in stormy weather' do
-    #   gatwick = Airport.new
-    #   report = Weather.new
-    #   allow(report).to receive(:number) { 0 }
-    #   expect { gatwick.take_off(Plane.new) }.to raise_error 'Weather is stormy'
-    # end
+    it 'raises an error if the plane tries to take off in stormy weather' do
+      gatwick = Airport.new
+      report = Weather.new
+      allow(report).to receive(:stormy) { 0 }
+      expect { gatwick.take_off(Plane.new) }.to raise_error 'Weather is stormy'
+    end
   end
 
 end
