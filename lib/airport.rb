@@ -1,24 +1,40 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :plane
+  attr_reader :planes
 
   def initialize
-    @plane = plane
+    @planes = []
   end
 
-  def release_plane
-    Plane.new
+  def land(*)
+    @planes << Plane.new # "#{plane}: Plane has landed"
   end
 
-  def land(plane)
-    @plane = plane
+  def plane_take_off(*)
+    @planes.pop
+    "plane has taken off"
   end
-  def landed?
-    if plane == nil?
-      'plane has not landed'
+
+  def empty?
+    raise ArgumentError, "Airport is empty" if @planes == []
+    "There are #{@planes.count} plane/planes"
+  end
+
+  def take_off(*)
+    raise ArgumentError, "Take-off denied due to storm" if rand_weather == 1
+    "Sunny weather - take off allowed"
+  end
+
+  def rand_weather
+    if rand(1..3) == 1; 1
     else
-      'Plane has landed'
+      "Sunny weather - take off allowed"
     end
+  end
+
+  def to_land(*)
+    raise ArgumentError, "No landing permitted during storm" if rand_weather == 1
+    "#{@planes}: Plane has landed"
   end
 end
