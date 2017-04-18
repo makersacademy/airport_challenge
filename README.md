@@ -10,6 +10,13 @@ Adam Snow comments
 * Most methods are within Plane class
 * Planes give feedback on landing/takeoff
 
+Personal Code Review
+--------------------
+* I would have liked to have the weather randomise regularly, at the moment it is only random at initialize
+* I worry that there is a possible problem that plane holds airport, which holds plane, which holds airport ad infinitum.
+* I'm not sure if I have passed responsibility to airport for landing/takeoff unnecessarily complicating the class.
+* Additional functionality I would like to add would be to add a new optional destination argument to takeoff(destination) to combine takeoff and landing in one method.
+
 Airport Challenge
 =================
 
