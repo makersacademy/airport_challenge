@@ -28,8 +28,8 @@ Check if a plane is landed or change its status:
 
 ```shell
 > plane.landed?
-> plane.landed
-> plane.flying
+> plane.land
+> plane.fly
 ```
 
 Check if the weather is stormy or create a new day to change the weather:
