@@ -5,7 +5,7 @@ The first individual, weekend challenge set by Makers Academy during their inten
 This challenge is based on industry tech-tests and is evaluated with the same metrics.
 
 ## Approach
-I used the user stories to identity objects and desired messages before implementing a domain model to map these relationships and create a road map for meeting the requirements.
+I used the user stories to identity objects and desired messages before implementing a domain model to graphically map these relationships and create a road map for meeting the requirements.
 
 ### How much did I complete?
 
@@ -18,6 +18,8 @@ I have managed to implement:
 
   - Airports that release specific aircraft when requested, unless of course that aircraft doesn't exist or the airport has no aircraft.
 
-    
-
   - Randomly generated weather
+
+### Coverage and Style
+  - 100% Coverage
+  - Rubocop completed almost every commit (no style offenses)
