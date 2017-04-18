@@ -7,9 +7,10 @@ describe Airport do
   before do
     allow(subject).to receive(:stormy?).and_return(false)
     allow(plane).to receive(:landed?)
-    allow(plane).to receive(:landed)
-    allow(plane).to receive(:flying)
+    allow(plane).to receive(:land)
+    allow(plane).to receive(:fly)
   end
+  
   describe '#land' do
     it {is_expected.to respond_to(:land).with(1).argument}
     it 'allows a plane to land' do

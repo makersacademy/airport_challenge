@@ -22,14 +22,14 @@ class Airport
     fail "This plane has already landed" if plane.landed?
     fail "It is too stormy to land" if stormy?
     fail "The airport is full" if full?
-    plane.landed
+    plane.land
     @planes << plane
   end
 
   def take_off
     fail "It is too stormy to fly" if stormy?
     fail "There are no planes" if @planes.empty?
-    @planes[-1].flying
+    @planes[-1].fly
     @planes.pop
   end
 
