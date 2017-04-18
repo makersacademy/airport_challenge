@@ -11,7 +11,8 @@ class Airport
   end
 
   def land(plane)
-    fail 'Airport is full.' if planes_landed.length >= @capacity || planes_landed.include?(plane)
+    fail 'Airport is full.' if planes_landed.length >= @capacity
+    fail 'Plane already landed.' if planes_landed.include?(plane)
     @planes_landed << plane
   end
 
