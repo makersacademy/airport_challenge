@@ -1,0 +1,38 @@
+User story 1
+
+Airtraffic controller:
+
+airport <- land(plane)
+airport <- landed?(plane)
+
+User story 2
+
+Airtraffic controller:
+
+airport <- take_off(plane)
+airport <- departed?(plane)
+
+User Story 3
+
+Airtraffic Controller:
+
+airport <- weather
+airport <- take_off (raise error if)
+
+User story 4
+
+Air traffic controller
+
+airport <- weather
+airport <- land(plane -> raise error if)
+
+User story 5
+
+Air traffic controller
+airport <- capacity
+airport <-land -> raise error if full
+
+User story 6
+
+Air traffic controller
+airport <- capacity -> raise error if full showing specified capacity

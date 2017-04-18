@@ -13,6 +13,44 @@ Airport Challenge
 
 ```
 
+Approach
+---------
+
+This repository contains a solution to the Fly! Weekend challenge excerice for Week 1 at Makers Academy.
+
+A TDD approach was adopted to convert the User Stories into a programme. At first 3 main objects were taken from the Airport, Plane and Weather. However, with refactoring I decided to convert Weather from a class into a module after the Code Review with peers. I interpretted the User Story as just being from the Air traffic controller and therefore, there was no instruction from a pilot to the plane itself. I deliberated this for a while and decided to build my program in the Airport class with a class Plane that would be empty.
+
+An instance of an airport manages traffic departing and landing at an airport. The airport will not allow planes to land or take off if the weather is stormy. The airport  stores planes that has landed, and deletes them when they take off. I use this information to make sure that the case cases are covered, ie it raises an error if a plane has been told to land if it has landed and likewise for take off.
+
+In the tests I have utilised a stubb to deal with the random weather function. If this was not implemented then the tests would pass or fail randomly.
+
+Feature test example
+Two planes are created and told to land. Then the first planes takes off and is removed from the inventory of the airport. When you attempt to tell that plane to take off again, it fails.
+
+2.2.3 :001 > require './lib/airport.rb'
+ => true
+2.2.3 :002 > airport = Airport.new
+ => #<Airport:0x007f95d305bb10 @planes=[], @capacity=20>
+2.2.3 :003 > plane = Plane.new
+ => #<Plane:0x007f95d3050fa8>
+2.2.3 :004 > airport.land(plane)
+ => [#<Plane:0x007f95d3050fa8>]
+2.2.3 :005 > plane1 = Plane.new
+ => #<Plane:0x007f95d189c6f0>
+2.2.3 :006 > airport.land(plane1)
+ => [#<Plane:0x007f95d3050fa8>, #<Plane:0x007f95d189c6f0>]
+2.2.3 :007 > airport.take_off(plane)
+ => #<Plane:0x007f95d3050fa8>
+2.2.3 :008 > airport.planes
+ => [#<Plane:0x007f95d189c6f0>]
+ 2.2.3 :009 > airport.take_off(plane)
+RuntimeError: Plane is not in airport
+  from /Users/robin_heathcote/Projects/Makers Academy/Week 1/Fly! Weekend Challenge/airport_challenge/lib/airport.rb:28:in `take_off'
+  from (irb):9
+  from /Users/robin_heathcote/.rvm/rubies/ruby-2.2.3/bin/irb:15:in `<main>'
+2.2.3 :010 >
+
+
 Instructions
 ---------
 
@@ -36,25 +74,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +111,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
