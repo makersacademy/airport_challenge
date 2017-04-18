@@ -23,3 +23,5 @@ I have managed to implement:
 ### Coverage and Style
   - 100% Coverage
   - Rubocop completed almost every commit (no style offenses)
+
+![RSpec tests](screenshot.png)
