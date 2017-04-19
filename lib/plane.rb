@@ -8,7 +8,7 @@ class Plane
 
   def land(weather, airport)
     raise "Cannot land in stormy weather" if stormy(weather)
-    raise "I have already landed" if status == :landed
+    raise "I have already landed" if landed?
     airport.receive(self)
     @status = :landed
   end
@@ -26,6 +26,10 @@ class Plane
 
   def flying?
     confirm_status == :in_air
+  end
+
+  def landed?
+    confirm_status == :landed
   end
 
   def stormy(weather)

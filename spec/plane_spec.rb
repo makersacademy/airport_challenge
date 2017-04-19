@@ -5,28 +5,27 @@ describe Plane do
   subject(:plane) { described_class.new }
   let(:weather) { double :weather }
   let(:airport) { double :airport }
-  let(:airport_1) { double :airport }
-  let(:airport_2) { double :airport }
 
   describe "#land" do
 
-    it "cannot land again if it has landed" do
-      allow(weather).to receive_messages(:status => :sunny)
+    before do
       allow(airport).to receive_messages(:planes => [], :full? => false, :receive => [])
-      plane.land(weather, airport)
-      message = "I have already landed"
-      expect { plane.land(weather, airport) }.to raise_error message
+      allow(weather).to receive_messages(:status => :sunny)
     end
 
-    it "can land in sunny weather" do
-      allow(weather).to receive_messages(:status => :sunny)
-      allow(airport).to receive_messages(:receive => plane)
+    it "possible in sunny weather" do
       expect { plane.land(weather, airport) }.not_to raise_error
     end
 
-    it 'cannot land when weather is stormy' do
+    it 'impossible in stormy weather' do
       allow(weather).to receive_messages(:status => :stormy)
       message = "Cannot land in stormy weather"
+      expect { plane.land(weather, airport) }.to raise_error message
+    end
+
+    it "impossible if plane has landed" do
+      plane.land(weather, airport)
+      message = "I have already landed"
       expect { plane.land(weather, airport) }.to raise_error message
     end
 
@@ -34,21 +33,22 @@ describe Plane do
 
   describe "#take_off" do
 
-    it 'can take off in sunny weather' do
+    before do
+      allow(airport).to receive_messages(:planes => [], :full? => false, :receive => [], :release => plane)
       allow(weather).to receive_messages(:status => :sunny)
-      allow(airport).to receive_messages(:release => [plane], :planes => [plane])
+    end
+
+    it 'possible in sunny weather' do
       expect { plane.take_off(weather, airport) }.not_to raise_error
     end
 
-    it 'cannot take off when weather is stormy' do
+    it 'impossible in stormy weather' do
       allow(weather).to receive_messages(:status => :stormy)
       message = "Cannot land in stormy weather"
       expect { plane.land(weather, airport) }.to raise_error message
     end
 
-    it "cannot take off if already in-flight" do
-      allow(weather).to receive_messages(:status => :sunny)
-      allow(airport).to receive_messages(:planes => [plane], :full? => false, :receive => [], :release => plane)
+    it "impossible if plane already in-flight" do
       plane.land(weather, airport)
       plane.take_off(weather, airport)
       message = "I am already in the air"
@@ -59,16 +59,17 @@ describe Plane do
 
   describe "#confirm_status" do
 
-    it 'can land at an airport and confirm that it has landed' do
+    before do
       allow(weather).to receive_messages(:status => :sunny)
-      allow(airport).to receive_messages(:full? => false, :receive => [])
+      allow(airport).to receive_messages(:full? => false, :receive => [], :release => plane)
+    end
+
+    it 'correctly reports if a plane has landed' do
       plane.land(weather, airport)
       expect(plane.confirm_status).to eq :landed
     end
 
-    it 'take off from an airport and confirm that it is in air' do
-      allow(weather).to receive_messages(:status => :sunny)
-      allow(airport).to receive_messages(:release => plane, :planes => [plane])
+    it 'correctly reports if a plane has taken off' do
       plane.take_off(weather, airport)
       expect(plane.confirm_status).to eq :in_air
     end

@@ -2,7 +2,7 @@ class Airport
 
   CAPACITY = 20
 
-  attr_reader :capacity, :planes
+  attr_reader :capacity
 
   def initialize(capacity = CAPACITY)
     raise "Capactiy must be an integer" unless capacity.is_a?(Integer)
