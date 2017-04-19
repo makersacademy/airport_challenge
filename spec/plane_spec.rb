@@ -31,10 +31,10 @@ describe Plane do
   end
 
   describe '#takeoff' do
-    it 'sets landed to false' do
+    it 'sets "landed?" status to false' do
       plane.land
       plane.takeoff
-      expect(plane.landed?).to eq false
+      expect(plane).not_to be_landed
     end
 
     it 'raises error when taking off twice' do
@@ -45,12 +45,12 @@ describe Plane do
   end
 
   describe '#land' do
-    it 'sets landed to true' do
+    it 'sets "landed?" status to true' do
       plane.land
-      expect(plane.landed?).to eq true
+      expect(plane).to be_landed
     end
 
-    it 'raises error when landed twice' do
+    it 'raises error when attempting to land twice successively' do
       plane.land
       expect { plane.land }.to raise_error 'Already landed'
     end

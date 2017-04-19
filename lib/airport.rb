@@ -20,9 +20,7 @@ class Airport
   end
 
   def takeoff(plane)
-    raise 'No planes to takeoff' if empty?
-    raise 'Plane is not in the airport' unless has_plane?(plane)
-    raise 'Cannot takeoff in stormy weather' if stormy?
+    takeoff_checks(plane)
     plane.takeoff
     @planes.delete(plane)
   end
@@ -33,7 +31,7 @@ class Airport
     @capacity = capacity
   end
 
-  def has_plane?(plane)
+  def holds_plane?(plane)
     @planes.include?(plane)
   end
 
@@ -65,9 +63,15 @@ class Airport
 
   def landing_checks(plane)
     raise 'Invalid plane' if invalid_plane?(plane)
-    raise 'Plane is already in the airport' if has_plane?(plane)
+    raise 'Plane is already in the airport' if holds_plane?(plane)
     raise 'Plane already landed elsewhere!' if plane.landed?
     raise 'Cannot land in stormy weather' if stormy?
     raise 'Airport full' if full?
+  end
+
+  def takeoff_checks(plane)
+    raise 'No planes to takeoff' if empty?
+    raise 'Plane is not in the airport' unless holds_plane?(plane)
+    raise 'Cannot takeoff in stormy weather' if stormy?
   end
 end

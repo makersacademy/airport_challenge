@@ -26,7 +26,7 @@ describe Airport do
       expect(airport.capacity).to eq 75
     end
 
-    context 'errors' do
+    context 'raises errors' do
       it 'if reassigned to zero' do
         expect { airport.adjust_capacity(0) }.to raise_error 'Invalid capacity'
       end
@@ -37,7 +37,7 @@ describe Airport do
       end
 
       it 'if set lower than current plane count' do
-        allow(airport).to receive(:has_plane?).and_return(false)
+        allow(airport).to receive(:holds_plane?).and_return(false)
         allow(plane).to receive(:land).and_return(plane)
         21.times { airport.land(plane) }
         message = 'Planes already exceeed that capacity!'
@@ -68,7 +68,7 @@ describe Airport do
       expect(airport.planes).to include plane
     end
 
-    context 'errors' do
+    context 'raises errors' do
       it 'when stormy' do
         allow(airport.weather).to receive(:stormy?).and_return(true)
         message = 'Cannot land in stormy weather'
@@ -76,7 +76,7 @@ describe Airport do
       end
 
       it 'when airport is full' do
-        allow(airport).to receive(:has_plane?).and_return(false)
+        allow(airport).to receive(:holds_plane?).and_return(false)
         Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error 'Airport full'
       end
