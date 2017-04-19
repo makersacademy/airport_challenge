@@ -23,7 +23,7 @@ describe Plane do
       expect { plane.land(weather, airport) }.to raise_error message
     end
 
-    it "impossible if plane has landed" do
+    it "impossible if plane has already landed" do
       plane.land(weather, airport)
       message = "I have already landed"
       expect { plane.land(weather, airport) }.to raise_error message

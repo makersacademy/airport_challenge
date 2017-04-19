@@ -10,7 +10,7 @@ describe Airport do
 
   describe "capacity" do
 
-    it 'has a default value as initialization' do
+    it 'has a default value at initialization' do
       expect(airport.capacity).to eq 20
     end
 
@@ -28,7 +28,7 @@ describe Airport do
       expect { described_class.new(1.5) }.to raise_error message
     end
 
-    it 'must have an non-negative value' do
+    it 'must be an non-negative value' do
       message = "Capactiy must be greater than zero"
       expect { described_class.new(-1) }.to raise_error message
     end
