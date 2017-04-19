@@ -10,7 +10,7 @@ describe Plane do
     it "checks if plane has landed" do
       plane = Plane.new
       airport = Airport.new
-      allow(airport).to receive(:storms?){false}
+      allow(airport).to receive(:storms?) { false }
       airport.land(plane)
       expect(plane).to be_landed
     end
@@ -20,7 +20,7 @@ describe Plane do
 
   describe '#on_air?' do
     it "checks if plane has taken off" do
-      allow(airport).to receive(:storms?){false}
+      allow(airport).to receive(:storms?) { false }
       plane = Plane.new
       expect(plane).to be_on_air
     end

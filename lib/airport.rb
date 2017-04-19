@@ -31,7 +31,7 @@ class Airport
   end
 
   def in_airport?(plane)
-     ground_fleet.include?(plane) ?  true : false
+    ground_fleet.include?(plane) ? true : false
   end
 
   def storms?

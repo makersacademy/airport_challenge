@@ -7,13 +7,13 @@ describe Weather do
     expect(subject.stormy?).to eq(true).or(eq(false))
   end
 
-it 'checks if sunny' do
-  allow(subject).to receive(:rand){1}
-  expect(subject.stormy?).to eq false
-end
+  it 'checks if sunny' do
+    allow(subject).to receive(:rand) { 1 }
+    expect(subject.stormy?).to eq false
+  end
 
   it 'checks if storm' do
-    allow(subject).to receive(:rand){5}
+    allow(subject).to receive(:rand) { 5 }
     expect(subject.stormy?).to eq true
   end
 

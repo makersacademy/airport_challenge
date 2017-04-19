@@ -8,13 +8,13 @@ describe Airport do
 
   it { is_expected.to respond_to :land }
 
-  let(:luton) {Airport.new}
-  let(:gatwick) {Airport.new}
+  let(:luton) { Airport.new }
+  let(:gatwick) { Airport.new }
   context 'when plane in another aiport' do
     it 'Raises an error' do
-      allow(luton).to receive(:storms?){false}
+      allow(luton).to receive(:storms?) { false }
       luton.land(plane)
-      expect{ gatwick.take_off(plane) }.to raise_error "Plane not in this aiport"
+      expect { gatwick.take_off(plane) }.to raise_error "Plane not in this aiport"
     end
   end
 
@@ -113,16 +113,15 @@ describe Airport do
 
   end
 
- it { is_expected.to respond_to :full? }
+  it { is_expected.to respond_to :full? }
 
   describe '#full?' do
     it 'returns full' do
-
       allow(subject).to receive(:storms?) { false }
       allow(plane).to receive(:landed?) { false }
       Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect(subject.full?).to be true
-      end
     end
-
   end
+
+end
