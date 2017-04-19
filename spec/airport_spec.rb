@@ -8,8 +8,6 @@ describe Airport do
 
   it { is_expected.to respond_to :land }
 
-  let(:luton) { Airport.new }
-  let(:gatwick) { Airport.new }
 
   describe '#land' do
 
@@ -72,6 +70,9 @@ describe Airport do
     end
 
     context 'when plane in another aiport' do
+      let(:luton) { Airport.new }
+      let(:gatwick) { Airport.new }
+
       it 'Raises an error' do
         allow(luton).to receive(:storms?) { false }
         luton.land(plane)
