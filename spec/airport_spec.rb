@@ -99,11 +99,11 @@ describe Airport do
       expect(subject.in_airport?(plane)).to eq true
     end
 
-    it 'checks if flying plane is in airport' do
+    it 'confirms airborne plane is not in airport' do
       expect(subject.in_airport?(plane)).to eq false
     end
 
-    it 'checks plane that took of is in airport' do
+    it 'checks plane that took off is not in airport' do
       allow(plane).to receive(:on_air?) { false }
       allow(subject).to receive(:storms?) { false }
       subject.land(plane)
