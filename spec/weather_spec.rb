@@ -8,7 +8,7 @@ describe Weather do
     end
   end
 
-  it 'is expected to return flase when weather is not stormy'do
+  it 'is expected to return false when weather is not stormy'do
   weather = Weather.new
   allow(weather).to receive(:rand).and_return(0.1)
   expect(weather.stormy?).to be_falsy
