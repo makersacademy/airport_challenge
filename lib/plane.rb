@@ -7,15 +7,15 @@ class Plane
     @landed
   end
 
-  def takeoff
-    raise 'Already flying' unless landed?
-    @landed = false
-    "Emergency takeoff."
-  end
+  private
 
   def land
     raise 'Already landed' if landed?
     @landed = true
-    "Emergency landing outside airport."
+  end
+
+  def takeoff
+    raise 'Already flying' unless landed?
+    @landed = false
   end
 end

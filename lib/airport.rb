@@ -15,13 +15,13 @@ class Airport
 
   def land(plane)
     landing_checks(plane)
-    plane.land
+    plane.send(:land)
     @planes << plane
   end
 
   def takeoff(plane)
     takeoff_checks(plane)
-    plane.takeoff
+    plane.send(:takeoff)
     @planes.delete(plane)
   end
 

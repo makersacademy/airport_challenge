@@ -10,49 +10,52 @@ describe Plane do
   let(:airport) { double("Airport") }
 
   describe '#landed?' do
+    before do
+      plane.send(:land)
+    end
 
     it 'confirms that the plane has landed' do
-      plane.land
       expect(plane.landed?).to eq true
     end
 
     it 'confirms plane is not grounded after takeoff' do
-      plane.land
-      plane.takeoff
+      plane.send(:takeoff)
       expect(plane.landed?).to eq false
     end
 
     it 'confirms plane is landed after second landing' do
-      plane.land
-      plane.takeoff
-      plane.land
+      plane.send(:takeoff)
+      plane.send(:land)
       expect(plane.landed?).to eq true
     end
   end
 
   describe '#takeoff' do
+    before do
+      plane.send(:land)
+      plane.send(:takeoff)
+    end
+
     it 'sets "landed?" status to false' do
-      plane.land
-      plane.takeoff
       expect(plane).not_to be_landed
     end
 
     it 'raises error when taking off twice' do
-      plane.land
-      plane.takeoff
-      expect { plane.takeoff }.to raise_error 'Already flying'
+      expect { plane.send(:takeoff) }.to raise_error 'Already flying'
     end
   end
 
   describe '#land' do
+    before do
+      plane.send(:land)
+    end
+
     it 'sets "landed?" status to true' do
-      plane.land
       expect(plane).to be_landed
     end
 
     it 'raises error when attempting to land twice successively' do
-      plane.land
-      expect { plane.land }.to raise_error 'Already landed'
+      expect { plane.send(:land) }.to raise_error 'Already landed'
     end
   end
 end

@@ -39,7 +39,7 @@ feature 'Feature test' do
 
   def and_tests_edge_cases
     @heathrow.takeoff(@boeing)
-    expect { @boeing.takeoff }.to raise_error 'Already flying'
+    expect { @boeing.send(:takeoff) }.to raise_error 'Already flying'
     message = 'Plane already landed elsewhere!'
     expect { @gatwick.land(@concorde) }.to raise_error message
     message = 'Plane is already in the airport'
