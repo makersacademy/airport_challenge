@@ -87,4 +87,19 @@ describe Airport do
     end
   end
 
+  describe '#flying' do
+    it 'should return true when plane is flying' do
+      allow_any_instance_of(Weather).to receive(:stormy?) { nil }
+      plane = subject.runways[-1]
+      subject.take_off(plane)
+      expect(subject.flying?(plane)).to eq true
+    end
+
+    it 'should return false when plane is landed' do
+      allow_any_instance_of(Weather).to receive(:stormy?) { nil }
+      plane = subject.runways[-1]
+      expect(subject.flying?(plane)).to eq false
+    end
+  end
+
 end

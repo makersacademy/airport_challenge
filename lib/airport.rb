@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :plane, :runways, :weather, :capacity
+  attr_reader :runways, :weather, :capacity
 
   def initialize(capacity = 10)
     @capacity = capacity
@@ -10,24 +10,32 @@ class Airport
   end
 
   def take_off(plane)
-    @runways.delete(plane) unless @weather.stormy? || empty
+    raise "Airport is empty." if empty
+    @weather.stormy?
+    @runways.delete(plane)
   end
 
   def land(plane)
-    @runways << plane unless landed?(plane) || full || @weather.stormy?
+    raise "Plane is landed." if landed?(plane)
+    raise "Airport is full." if full
+    @weather.stormy?
+    @runways << plane
   end
 
   def landed?(plane)
-    return true if @runways.include? plane
-    false
+    @runways.include? plane
+  end
+
+  def flying?(plane)
+    !@runways.include? plane
   end
 
   def full
-    return raise "Airport is full." if @runways.count == @capacity
+    @runways.count == @capacity
   end
 
   def empty
-    return raise "Airport is empty." if @runways.empty?
+    @runways.empty?
   end
 
 end
