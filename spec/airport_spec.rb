@@ -37,7 +37,7 @@ describe Airport do
       end
 
       it 'if set lower than current plane count' do
-        allow(airport).to receive(:in_airport?).and_return(false)
+        allow(airport).to receive(:has_plane?).and_return(false)
         allow(plane).to receive(:land).and_return(plane)
         21.times { airport.land(plane) }
         message = 'Planes already exceeed that capacity!'
@@ -76,7 +76,7 @@ describe Airport do
       end
 
       it 'when airport is full' do
-        allow(airport).to receive(:in_airport?).and_return(false)
+        allow(airport).to receive(:has_plane?).and_return(false)
         Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error 'Airport full'
       end
@@ -106,7 +106,7 @@ describe Airport do
       end
 
       it 'if passed the wrong class' do
-        expect { airport.land(Airport)}.to raise_error 'Invalid plane'
+        expect { airport.land(Airport) }.to raise_error 'Invalid plane'
       end
     end
   end

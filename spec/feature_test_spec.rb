@@ -26,6 +26,6 @@ describe 'Feature test' do
     message = 'Plane is already in the airport'
     expect { heathrow.land(concorde) }.to raise_error message
     heathrow.land(jet)
-    expect(heathrow.in_airport?(jet)).to eq true
+    expect(heathrow.has_plane?(jet)).to eq true
   end
 end
