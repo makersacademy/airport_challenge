@@ -1,5 +1,5 @@
 
-Jaiye Senbanjo - Mini Code-Review
+Jaiye Senbanjo - Mini Code-Review - Airport Challenge
 
 Rspec
 I should introduce contexts to by tests.
@@ -15,3 +15,8 @@ I “know” now that airport should call the land method on plane but `airport.
 I then end up sending `airport.release(self)` from plane to get the airport to remove the plane object from its array which you explained this morning is unwise.
 
 I realise now that my airport objects cannot have their capacities altered. I forgot to do this but I understand how to.
+
+I should make improved implementation of encapsulation by making more methods private
+
+I need to better research Feature-Spec testing.
+The feature test I wrote causes errors and I am doing it wrong.
