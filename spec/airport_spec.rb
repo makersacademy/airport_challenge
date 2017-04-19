@@ -3,13 +3,15 @@ require 'airport'
 describe Airport do
   before do
     allow(plane).to receive(:landed?)
+    allow(plane).to receive(:instance_of?) { true }
+    allow(airport.weather).to receive(:stormy?).and_return(false)
   end
 
-  let(:plane) { double("Plane") }
-  let(:weather) { double("Weather") }
+  let(:plane) { double(:plane) }
+  let(:weather) { double(:weather) }
   subject(:airport) { described_class.new }
 
-  describe 'capacity' do
+  context 'capacity' do
 
     it 'has a set default value' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
@@ -24,7 +26,7 @@ describe Airport do
       expect(airport.capacity).to eq 75
     end
 
-    describe 'raises error' do
+    context 'errors' do
       it 'if reassigned to zero' do
         expect { airport.adjust_capacity(0) }.to raise_error 'Invalid capacity'
       end
@@ -35,7 +37,6 @@ describe Airport do
       end
 
       it 'if set lower than current plane count' do
-        allow(airport.weather).to receive(:stormy?).and_return(false)
         allow(airport).to receive(:in_airport?).and_return(false)
         allow(plane).to receive(:land).and_return(plane)
         21.times { airport.land(plane) }
@@ -55,8 +56,7 @@ describe Airport do
 
   describe '#land' do
     before do
-      allow(plane).to receive(:land).and_return(plane)
-      allow(airport.weather).to receive(:stormy?).and_return(false)
+      allow(plane).to receive(:land)
     end
 
     it 'instructs plane to land successfully' do
@@ -68,7 +68,7 @@ describe Airport do
       expect(airport.planes).to include plane
     end
 
-    describe 'raises error' do
+    context 'errors' do
       it 'when stormy' do
         allow(airport.weather).to receive(:stormy?).and_return(true)
         message = 'Cannot land in stormy weather'
@@ -77,7 +77,7 @@ describe Airport do
 
       it 'when airport is full' do
         allow(airport).to receive(:in_airport?).and_return(false)
-        50.times { airport.land(plane) }
+        Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error 'Airport full'
       end
 
@@ -104,6 +104,10 @@ describe Airport do
       it 'if passed an integer' do
         expect { airport.land(1) }.to raise_error 'Invalid plane'
       end
+
+      it 'if passed the wrong class' do
+        expect { airport.land(Airport)}.to raise_error 'Invalid plane'
+      end
     end
   end
 
@@ -111,7 +115,6 @@ describe Airport do
     before do
       allow(plane).to receive(:land).and_return(plane)
       allow(plane).to receive(:takeoff).and_return(plane)
-      allow(airport.weather).to receive(:stormy?).and_return(false)
     end
 
     it 'removes plane from docked planes' do

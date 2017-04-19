@@ -11,14 +11,8 @@ describe Weather do
   end
 
   describe '#stormy?' do
-    it 'returns as true when stormy' do
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect(weather).to be_stormy
-    end
-
-    it 'returns as false when clear' do
-      allow(weather).to receive(:stormy?).and_return(false)
-      expect(weather.stormy?).to be false
+    it 'returns a boolean value' do
+      expect(weather.stormy?).to eq(true).or(eq(false))
     end
   end
 end

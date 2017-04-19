@@ -60,7 +60,7 @@ class Airport
   end
 
   def invalid_plane?(plane)
-    [String, Integer, Airport, Weather].include?(plane.class)
+    !(plane.instance_of?(Plane))
   end
 
   def landing_checks(plane)
