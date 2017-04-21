@@ -6,7 +6,7 @@ describe Weather do
   subject(:weather) { Weather.new}
 
   it { is_expected.to respond_to(:random_conditions) }
-  it { is_expected.to respond_to(:random_conditions) }
+  it { is_expected.to respond_to(:stormy?) }
 
   context "#random_conditions" do
     it "return sunny from Conditions" do
