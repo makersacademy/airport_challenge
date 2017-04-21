@@ -5,22 +5,22 @@ require './lib/weather'
 describe Airport do
 
   subject(:airport) {Airport.new}
-  it { should respond_to(:land).with(1).argument }
-  it { should respond_to(:takeoff).with(1).argument}
+  it { should respond_to(:land) }
+  it { should respond_to(:takeoff) }
 
    context "#land" do
      it 'Lands the plane at the airport' do
        plane = Plane.new
        allow(subject).to receive(:safety_weather?) { false }
        allow(subject).to receive(:full?) { false }
-       expect(subject.land(plane)).to eq "Plane landed at the airport"
+       expect(subject.land).to eq "Plane landed at the airport"
      end
 
     it 'raises an error if airport is full' do
       allow(subject).to receive(:plane) { :airport_max_capacity }
       allow(subject).to receive(:weather_unsafe?) { false }
       allow(subject).to receive(:full?) { true }
-      expect { subject.land(Plane.new) }.to raise_error("The airport is at maximum capacity")
+      expect { subject.land }.to raise_error("The airport is at maximum capacity")
     end
 
     it 'raises error if #land cancel due to stormy weather' do
