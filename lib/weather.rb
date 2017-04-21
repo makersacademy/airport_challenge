@@ -1,7 +1,14 @@
+# require_relative 'airport'
 
 class Weather
 
-  def stormy_weather?
-    rand(1..10) == 5 ? true : false  
-  end
+  CONDITIONS = [:sunny, :sunny, :sunny, :stormy]
+
+    def random_conditions
+      CONDITIONS.sample
+    end
+
+    def stormy?
+      random_conditions == :stormy ? true : false
+    end
 end

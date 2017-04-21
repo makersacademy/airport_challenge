@@ -1,5 +1,5 @@
 
-#I want to create my two object , plane and airport
+#I want to create my objects , plane and airport
 
 airport = Airport.new
 plane = Plane.new
@@ -7,32 +7,24 @@ plane = Plane.new
 # I Want to land the plane and confirm that is
 #landed
 
-airport.land(Plane.new)
-#I  want to departure the plane  
+airport.land(plane)
 
-airport.takeoff
+#If the weather is stormy landing will be canceled
+airport.land p => The flight is canceled due to stormy weather
 
-#Confirmation of both, landing and take off plane
+# I want to check if the airport is at his maximum capacity
 
-airport.landing_confirmation
-airport.takeoff_confirmation
+10.times { airport.land(plane)}
 
-# I want to prevent landing and departure when
-#weather is stormy
+#I  want to departure the plane and conform
+# that he left the airport
 
-weather = Weather.new
-weather.stormy_weather?
-airport.land Plane.new
-airport.takeoff
+airport.takeoff(plane)
 
-#I want to prevent landing when terminal is full and
-#to check if the airport is empty?
+#If the weather is stormy the flight leaving airport will be canceled
 
-airport.full?
-airport.empty?
+airport.takeoff => The flight is canceled due to stormy weather
 
 #I initiated a default capacity for the airport
 
-DEFAULT_CAPACITY = 50
-
-50.times { airport.land(Plane.new)}
+DEFAULT_CAPACITY = 10

@@ -1,42 +1,36 @@
-require_relative 'plane'
-require_relative 'weather'
+require_relative '../lib/plane.rb'
+require_relative '../lib/weather.rb'
 
 class Airport
   DEFAULT_CAPACITY = 10
-  attr_reader :planes, :weather, :capacity
+  attr_reader :planes, :capacity
 
-   def initialize(capacity = DEFAULT_CAPACITY)
-     @capacity = capacity
-     @planes = []
-     @weather = weather
-   end
+  def initialize(capacity = DEFAULT_CAPACITY, planes = [])
+      @capacity = capacity
+      @planes = planes
+  end
 
-   def land(plane)
-     raise("The airport is at maximum capacity") if full?
-     raise RuntimeError, "The flight is canceled due to stormy weather" if stormy_weather?
-     @planes << plane
-   end
+  def land(plane = Plane.new)
+    raise RuntimeError, plane.airport_max_capacity  if full?
+    fail plane.stormy_weather if weather_unsafe?
+    planes << plane
+    plane.land_plane_confirmation
+  end
 
-   def landing_confirmation
-      return  "Plane landed in the airport terminal" if @planes.length < 50
-   end
+  def takeoff(plane = Plane.new)
+     fail plane.stormy_weather if weather_unsafe?
+     planes.pop
+     plane.takeoff_plane_cofirmation
+  end
 
-   def takeoff_confirmation
-     return "Plane departed from the airport terminal" if !full?
-   end
+  private
 
-   def takeoff
-     fail "The flight is canceled due to stormy weather" if stormy_weather?
-      @planes.pop
-   end
+  def full?
+    @planes.count >= @capacity
+  end
 
-  #  private
+  def weather_unsafe?(weather = Weather.new)
+    weather.stormy?
+  end
 
-    def full?
-      @planes.length >= @capacity
-    end
-
-    def stormy_weather?
-    rand(1..10) == 5 ? true : false
-    end
 end
