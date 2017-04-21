@@ -2,7 +2,7 @@
 
 class Weather
 
-  CONDITIONS = [:sunny, :sunny, :sunny, :stormy]
+  CONDITIONS = [:sunny, :sunny, :sunny, :stormy, :sunny]
 
     def random_conditions
       CONDITIONS.sample

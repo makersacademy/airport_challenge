@@ -10,7 +10,6 @@ describe Airport do
 
    context "#land" do
      it 'Lands the plane at the airport' do
-       plane = Plane.new
        allow(subject).to receive(:safety_weather?) { false }
        allow(subject).to receive(:full?) { false }
        expect(subject.land).to eq "Plane landed at the airport"
