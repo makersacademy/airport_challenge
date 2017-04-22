@@ -3,7 +3,7 @@ require 'airport'
 require 'weather'
 require 'plane'
 
-feature 'planes take off and land' do
+feature 'Feature test - Planes take off and land' do
 
 scenario 'given varying weather' do
   create_entities
