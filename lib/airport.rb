@@ -35,7 +35,7 @@ class Airport
   def landing_check(plane)
     @current_weather = generate_weather
     fail "Cannot land, weather at #{name} stormy" if @current_weather.condition == "Stormy"
-    fail "Already landed at #{name}" unless plane.landed_at.nil?
+    fail "Already landed at #{name}" if @runway.include?(plane)
     fail "Cannot land, airport full" if full?
   end
 

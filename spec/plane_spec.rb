@@ -3,7 +3,7 @@ require './lib/plane'
 describe Plane do
 
   context 'when airport is sunny' do
-    let(:airport) { double :airport, name: "Test", full?: false, runway: [], land_plane: '', takeoff_plane: '' }
+    let(:airport) { double :airport, name: "Test", land_plane: '', takeoff_plane: '' }
     let(:weather) { double :weather, condition: "Sunny", check_weather: "Sunny" }
 
     describe '#land' do

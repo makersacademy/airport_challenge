@@ -24,12 +24,11 @@ describe Airport do
     end
 
     it "recognised #runway with 10 as #full" do
-      subject.runway = ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
+      subject.runway = ["a"] * 10
       expect(subject).to be_full
     end
 
     it "landing #plane goes into #runway" do
-      #
       subject.land_plane(plane)
       expect(subject.runway).to eq([plane])
     end
@@ -42,12 +41,12 @@ describe Airport do
     end
 
     it "#plane cannot #land if already in #landed_at an #airport" do
-      allow(plane).to receive(:landed_at).and_return(subject)
+      subject.runway = [plane]
       expect { subject.landing_check(plane) }.to raise_error "Already landed at the Airport"
     end
 
     it "plane cannot #land_at a #full #airport" do
-      subject.runway = ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
+      subject.runway = ["a"] * 10
       expect { subject.landing_check(plane) }.to raise_error "Cannot land, airport full"
     end
 
