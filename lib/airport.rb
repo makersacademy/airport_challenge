@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-  attr_accessor  :current_weather, :name, :runway, :capacity, :landed_at
+  attr_accessor :current_weather, :name, :runway, :capacity, :landed_at
 
   def initialize(name = 'the Airport', cap = 10)
     @name = name
@@ -19,7 +19,7 @@ class Airport
   end
 
   def takeoff_plane(plane)
-    takeoff_check(plane)
+    takeoff_check
     @runway.delete(plane)
   end
 
@@ -27,7 +27,7 @@ class Airport
     runway.count >= capacity ? true : false
   end
 
-  def takeoff_check(plane)
+  def takeoff_check
     @current_weather = generate_weather
     fail "Cannot takeoff, weather at #{name} stormy" if @current_weather.condition == "Stormy"
   end
@@ -36,7 +36,7 @@ class Airport
     @current_weather = generate_weather
     fail "Cannot land, weather at #{name} stormy" if @current_weather.condition == "Stormy"
     fail "Already landed at #{name}" unless plane.landed_at.nil?
-    fail "Cannot land, airport full" if self.full?
+    fail "Cannot land, airport full" if full?
   end
 
   private

@@ -1,6 +1,5 @@
 require_relative 'airport'
 
-
 class Weather
   attr_reader :condition
 
