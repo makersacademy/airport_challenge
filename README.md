@@ -48,8 +48,10 @@ from /Users/Fasolin/Projects/airport_challenge/lib/weather.rb:4:in `stormy?'
  #<Airplane:0x007fa8b1acaba0>]
 [10] pry(main)> airport.landed?(plane)
 => true
-[11] pry(main)> 10.times { airport.take_off(airport.runways[-1]) }
+[11] pry(main)> airport.flying?(plane)
+=> false
+[12] pry(main)> 10.times { airport.take_off(airport.runways[-1]) }
 RuntimeError: Airport is empty.
-[12] pry(main)> 10.times { airport.land(Airplane.new) }
+[13] pry(main)> 10.times { airport.land(Airplane.new) }
 RuntimeError: Airport is full.
 ```
