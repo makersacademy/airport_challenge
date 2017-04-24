@@ -1,58 +1,47 @@
+require_relative 'plane'
+require_relative 'weather'
+
 DEFAULT_CAPACITY = 20
 
 class Airport
 
-    attr_reader :hangar, :capacity
+  attr_reader :hangar, :capacity
 
-    def initialize(capacity = DEFAULT_CAPACITY)
-      @capacity = capacity
-      @hangar = []
-    end
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
+    @hangar = []
+    @weather = Weather.new
+  end
 
-    def takeoff
-      if empty? == true
-        fail("No planes are available to fly(?!)")
-      elsif stormy? == true
-        "It's too stormy to fly..."
-      else
-        @hangar.pop
-        "We have lift-off!"
-      end
-    end
+  def takeoff
+    fail("No planes are available to fly(?!)") if empty? == true
+    fail("It's too stormy to fly...") if @weather.condition == "Stormy"
+      @hangar.pop
+      "We have lift-off!"
+  end
 
-    def land(plane)
-      if full? == true
-        fail("This airport's hangar is full..hope you don't mind driving from the next airport over!")
-      elsif stormy? == true
-        "It's too stormy to land..."
-      else
-          @hangar << plane
-          "The plane has landed!"
-      end
-    end
+  def land(plane)
+      fail("This airport's hangar is full.") if full? == true
+      fail("It's too stormy to land...") if @weather.condition == "Stormy"
+      @hangar << plane
+      "The plane has landed!"
+  end
 
-    def stormy?
-      weather = rand(100)
-      if weather <= 5
-        true
-      else
-        false
-      end
-    end
+private
 
-    def full?
-      if @hangar.length >= @capacity
-        true
-      else
-        false
-      end
-    end
-
-    def empty?
-      if @hangar.length == 0
-        true
-      else
-        false
-      end
+  def full?
+    if @hangar.length >= @capacity
+      true
+    else
+      false
     end
   end
+
+  def empty?
+    if @hangar.length == 0
+      true
+    else
+      false
+    end
+  end
+end

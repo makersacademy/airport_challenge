@@ -12,10 +12,10 @@ describe Airport do
 
   it "returns error when the hangar is full" do
     ::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-    expect{ subject.land(Plane.new) }.to raise_error("This airport's hangar is full..hope you don't mind driving from the next airport over!")
+    expect{ subject.land(Plane.new) }.to raise_error("This airport's hangar is full.")
   end
 
-  it "sets capacity to default to 20" do
+  it "when @capacity is equal to 20" do
     a = Airport.new
     expect(a.capacity).to eq 20
   end
