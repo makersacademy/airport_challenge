@@ -21,7 +21,6 @@ class Plane
   end
 
   private
-
   attr_accessor :flying
 
 end
