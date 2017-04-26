@@ -24,11 +24,8 @@ describe "Weather Module" do
 
       it "Above 90 random output returns true" do
         allow(weather).to receive(:number_between_1_and_x).and_return(95)
-        expect(weather.stormy?).to eq(true)
+        expect(weather).to be_stormy
       end
-
     end
-
   end
-
 end

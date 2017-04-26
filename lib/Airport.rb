@@ -12,7 +12,7 @@ class Airport
     @capacity = capacity
   end
 
-  def airport_full?
+  def full?
     landed_planes.length >= capacity
   end
 
@@ -24,7 +24,7 @@ class Airport
 
   def clear_landing
     fail "Too stormy to land" if stormy?
-    fail "Airport full" if airport_full?
+    fail "Airport full" if full?
   end
 
   def store_plane(plane)
@@ -45,8 +45,7 @@ class Airport
     self.landed_planes = landed_planes.select!{|landed_plane| landed_plane if landed_plane != plane}
   end
 
-private
-attr_reader :capacity
-attr_writer :landed_planes
-
+  private
+  attr_reader :capacity
+  attr_writer :landed_planes
 end
