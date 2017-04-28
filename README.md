@@ -1,6 +1,4 @@
-Airport Challenge
-=================
-
+# Airport Challenge
 ```
         ______
         _\____\___
@@ -13,78 +11,59 @@ Airport Challenge
 
 ```
 
-Instructions
----------
+This project maps the workings of a simple airport. Airports can dock, build, and release planes; planes can take off and land; and there are limitations on when airports allow landings and take offs, such as during stormy weather, or if the airport is full. 
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+## Dependencies
 
-Steps
--------
+You'll need Ruby to explore this project—instructions for getting it are available on ruby-lang's [installation page](https://www.ruby-lang.org/en/documentation/installation/). If you are on macOS or Linux, I recommend using [RVM](https://rvm.io).
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+You will also need `bundler`—if you haven't installed it, run `gem install bundler`. Then navigate to the project root and run `bundle install`—this will install any missing project dependencies.
 
-Task
------
+## Usage
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+This project is run in a REPL such as IRB (installed with Ruby), or Pry (`gem install pry`). Run `irb` or `pry` from the project root, followed by `require './lib/init.rb'`. You can then create planes and airports, and experiment with landings and takeoffs, as below:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+[2] pry(main)> airport = Airport.new
+=> #<Airport:0x007f9ac8ba2c40
+ @capacity=5,
+ @climate=#<Climate:0x007f9ac8ba2c18 @possible_conditions=[:sunny, :sunny, :sunny, :stormy]>,
+ @planes=[]>
+[3] pry(main)> plane = Plane.new
+=> #<Plane:0x007f9ac8bdb1f8>
+[4] pry(main)> airport.dock_plane(plane)
+=> "Plane has landed."
+[5] pry(main)> airport.release_plane(plane)
+RuntimeError: Error: Take-off forbidden when weather is stormy.
+from /Users/adc/makers_projects/airport_challenge/lib/airport.rb:36:in `release_plane'
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+## Running tests
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+To run tests, simply navigate to the project root and use `rspec`.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+## Challenges
 
-Please create separate files for every class, module and test suite.
+### Testing
 
-In code review we'll be hoping to see:
+Because I was still getting to grips with the testing syntax, TDD was a struggle during this project. I was often unclear on how to define the behaviour I wanted, and much of the weekend was spent learning more about RSpec.
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+### Domain Modelling
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+It was a challenge figuring out which object I should call my `land` method on. At first, I tried to call it on instances of `Plane`, but could not write the tests for this approach. I was using doubles, and I had to check that a `plane` had been saved to an airport's `@planes` array after landing. 
 
-**BONUS**
+I could find no way to do this using doubles, as I needed to check that `plane.land_at(airport)` both changed `plane.land` to `true`, and saved `plane` to `airport.planes`. I decided RSpec was trying to tell me something! My inability to write the test with doubles suggested my `airport`s and `plane`s would be overly dependent on one another unless I made a change, so I decided that airports should `dock_planes` instead of having planes `land_at` airports. 
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+With hindsight, I could have perhaps tested that 
+1. `airport` received a `save_plane` message with one argument when `plane.land_at(airport)` was called, and
+2. `airport` saved `save_planes`'s argument (the plane) when it received that message.
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+However, I still don't know how I'd have checked that a `plane` passed itself as an argument when calling `save_plane` on `airport`.
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+### Features
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+I experimented with RSpec's built-in feature testing capabilities this week. However, I don't think I used them very well, and I look forward to learning more about feature testing in weeks to come.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+## Other notes
+
+Created as my first weekend challenge during the [Makers Academy](http://www.makersacademy.com) Bootcamp.
