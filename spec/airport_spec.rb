@@ -10,7 +10,7 @@ describe Airport do
     allow(plane).to receive(:land)
     allow(plane).to receive(:fly)
   end
-  
+
   describe '#land' do
     it {is_expected.to respond_to(:land).with(1).argument}
     it 'allows a plane to land' do
@@ -63,10 +63,6 @@ describe Airport do
       it 'prevents a plane from landing when stormy' do
         allow(subject).to receive(:stormy?).and_return(true)
         expect{subject.land(plane)}.to raise_error("It is too stormy to land")
-      end
-      it 'generates new weather on a new day' do
-        subject.new_day
-        expect(subject).not_to be_stormy
       end
   end
 end

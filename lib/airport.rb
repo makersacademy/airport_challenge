@@ -33,10 +33,6 @@ class Airport
     @planes.pop
   end
 
-  def new_day
-    @stormy = generate_weather
-  end
-
   private
 
   def full?
