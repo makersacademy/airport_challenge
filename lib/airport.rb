@@ -15,8 +15,7 @@ class Airport
 
   def park(plane)
     raise "The plane has been already parked" if @parked_planes.include? plane
-
-    raise "The plane is en route" if @en_route_planes.include? plane
+    raise 'The plane is en route' if @en_route_planes.include?(plane)
 
     @en_route_planes.delete(plane)
     @parked_planes << plane
