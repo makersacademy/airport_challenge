@@ -15,8 +15,8 @@ class Airport
     fail "Airport is at capacity." if @planes.size == @capacity
     fail "Plane has aleady landed." unless plane.flying
     fail "Too stormy for landing." if @weather
-    @planes << plane
     plane.land
+    @planes << plane
     "Plane has landed."
   end
 
