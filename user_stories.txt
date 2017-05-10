@@ -1,0 +1,105 @@
+User story 1 ------------------------------------------------------------------
+
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
+
+Nouns:
+passengers
+destination
+plane
+airport
+
+Verbs:
+land
+confirm
+
+Objects:            Messages:
+Passengers          land
+Destination         confirm
+plane
+airport
+
+Diagram:
+
+Plane         <-- land_plane --> an airport
+Plane         <-- confirm_landed --> an airport
+
+User Story 2 ------------------------------------------------------------------
+
+As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+Nouns:
+plane
+airport
+
+Verbs:
+take off
+confirm
+
+Diagram:
+
+Plane   <-- take_off --> from an airport
+Plane   <-- confirm --> is no longer in the airport
+
+User Story 3 ------------------------------------------------------------------
+
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+
+Nouns:
+stormy
+
+Verbs:
+prevent take_off
+
+Diagram:
+
+Plane <-- not to take off ---> stormy
+
+User Story 4 ------------------------------------------------------------------
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+
+Nouns:
+stormy weather
+
+Verbs:
+prevent landing
+
+Diagram:
+
+Plane <-- prevent landing --> stormy weather
+
+User Story 5 ------------------------------------------------------------------
+
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+
+Nouns:
+full airport
+
+Verbs:
+prevent landing
+
+Plane <-- prevent landing --> full airport
+
+User Story 6 ------------------------------------------------------------------
+
+As the system designer
+So that the software can be used for many different airports
+I would like a default airport capacity that can be overridden as appropriate
+
+Nouns:
+default airport capacity
+
+Verb:
+override
+
+Airport <-- override --> default airport capacity
