@@ -1,5 +1,9 @@
 class Airplane
 
+  def initialize
+    @current_status = "grounded"
+  end
+
   def show_current_status
     @current_status
   end
