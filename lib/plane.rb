@@ -5,7 +5,7 @@ class Plane
   end
 
   def update_location(airportID)
-    
+    @location = airportID
   end
 
   def report_landed

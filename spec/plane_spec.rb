@@ -19,6 +19,12 @@ describe Plane do
   it 'should return true if newly instantiated and #flying is called on it' do
     expect(subject.flying?).to eq true
   end
+  it 'should update location to the right airport when landed' do
+    plane = subject
+    airport = Airport.new
+    plane.update_location(airport.object_id)
+    expect(plane.location).to eq airport.object_id
+  end
   it 'should report that it is landed as soon as it landed on an airport, including its ID and the ID of the airport' do
     airport = Airport.new
     plane = subject
