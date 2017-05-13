@@ -1,7 +1,15 @@
 class Plane
+  attr_reader :status
 
-  def landed?
-    false #The airport starts empty
+  def initialize
+    @landing_status = "airborn"
   end
 
+  def landed?
+    @landing_status
+  end
+
+  def land
+    @landing_status = "landed"
+  end
 end
