@@ -13,6 +13,9 @@ describe Weather do
   it "shows that instances of weather have a change weather chance method" do
     expect(subject).to respond_to :change_weather_chance
   end
+  it "shows that the change_weather_chance method reaturns a value pf 50"do
+    expect(subject.change_weather_chance).to eq 50
+  end
   it "shows that the change_weather_condition method will change the current_weather_conditon instance variable to stormy" do
     subject.change_weather_condition
     expect(subject.show_current_weather_condition).to eq "stormy"
