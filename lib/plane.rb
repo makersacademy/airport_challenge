@@ -16,5 +16,4 @@ class Plane
     @in_airport = true
   end
 
-
 end

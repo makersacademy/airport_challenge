@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
 
   attr_accessor :capacity
