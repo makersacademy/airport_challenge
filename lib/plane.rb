@@ -10,4 +10,8 @@ class Plane
   def lands_at(airport)
     @location = airport.identifier
   end
+
+  def takes_off
+    @location = :air
+  end
 end
