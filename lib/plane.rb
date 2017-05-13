@@ -6,12 +6,12 @@ class Plane
     @landed = false
   end
 
-  def update_landed
+  def status_landed
     @landed = true
     @taken_off = false
   end
 
-  def update_takenoff
+  def status_takenoff
     @taken_off = true
     @landed = false
   end

@@ -10,15 +10,15 @@ class Airport
   end
 
   def land(plane)
-    fail "No Space Available!!" if full?
-    plane.update_landed
+    fail "Cannot land as airport is full!!" if full?
+    plane.status_landed
     @landed_planes << plane
     self
   end
 
   def take_off(plane)
-    fail "No Planes Available!!" if empty?
-    plane.update_takenoff
+    fail "There are no planes to take off!!" if empty?
+    plane.status_takenoff
     @landed_planes.delete(plane)
   end
 
