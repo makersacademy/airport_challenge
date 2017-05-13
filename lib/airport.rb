@@ -12,7 +12,6 @@ class Airport
   def land(plane)
     full?
     (@planes << plane; return plane) unless stormy?
-
   end
 
   def plane_take_off
@@ -31,6 +30,6 @@ class Airport
   end
 
   def empty?
-    raise 'There currently are no planes available.'if @planes.empty?
+    raise 'There currently are no planes available.' if @planes.empty?
   end
 end

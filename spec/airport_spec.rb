@@ -18,7 +18,7 @@ describe Airport do
     end
     it 'raises an error if the airport is full' do
       airport.instance_variable_set(:@weather_grade, 6)
-      airport::capacity.times {airport.land(plane) }
+      airport::capacity.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error 'The airport is currently full.'
     end
   end
