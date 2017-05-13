@@ -15,15 +15,11 @@ describe Airport do
   describe "#land" do
   it "raises an error when attempting to land a plane in an airport of full capacity" do
     subject.capacity.times { subject.land Plane.new}
-    expect { subject.land Plane.new }.to raise_error "Airport is full"
+      expect { subject.land Plane.new }.to raise_error "Airport is full"
+    end
   end
-end
 
   it "should not land the plane when an airport is full" do
     expect(subject).to respond_to(:full?)
   end
-
-  # it "should raise an error when wanting to land a plane when airport is at full capacity" do
-  #  expect { subject.land }.to raise_error 'cannot land plane'
-  #  end
 end
