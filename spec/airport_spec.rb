@@ -1,6 +1,9 @@
 require 'airport.rb'
 
-describe Airport do
+  describe Airport do
 
+    it "Airport has a default capacity" do
+      expect(subject.capacity).to eq ::DEFAULT_CAPACITY
+    end
 
 end

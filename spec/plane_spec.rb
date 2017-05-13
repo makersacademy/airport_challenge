@@ -37,4 +37,5 @@ describe Plane do
     airport.full = true
     expect{subject.land(airport)}.to raise_error "Plane can not land because the airport is full"
   end
+
 end

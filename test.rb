@@ -3,6 +3,4 @@ require './lib/plane.rb'
 
 airport = Airport.new
 plane = Plane.new
-airport.weather_is_stormy = false
-airport.full = true
-puts plane.land(airport)
+puts airport.capacity 
