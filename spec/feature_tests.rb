@@ -17,5 +17,9 @@ end
 # It instructs a plane to land
 feature_test([plane], airport.land_plane(plane))
 
-# It shows whether a plane has landed or not
+# It shows whether a plane has landed or not (planes are to start in the sky)
 feature_test(false, plane.landed?)
+
+# It shows a plane landed after being instructed to
+airport.land_plane(plane)
+feature_test(true, plane.landed?)
