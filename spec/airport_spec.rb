@@ -4,6 +4,9 @@ describe Airport do
   it "Shows that Airport instances respond to the safe_to_land? method" do
     expect(subject).to respond_to :safe_to_land?
   end
+  it "Shows that safe_to_land? returns true" do
+    expect(subject.safe_to_land?).to eq true
+  end
   it "responds to the show capacity method" do
     expect(subject).to respond_to :show_capacity
   end
