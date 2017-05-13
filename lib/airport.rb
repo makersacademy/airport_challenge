@@ -13,5 +13,6 @@ class Airport
 
   def plane_takeoff
     @landed_planes.pop
+    'Plane has taken off'
   end
 end
