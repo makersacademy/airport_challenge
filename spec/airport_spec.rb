@@ -50,14 +50,21 @@ describe Airport do
     end
 
     it 'should only allow landed planes to takeoff' do
-      plane = Plane.new
-      expect{subject.takeoff_plane(plane)}.to raise_error{"Plane is already airborne"}
+      plane1 = Plane.new
+      plane2 = Plane.new
+      subject.land_plane(plane1)
+      expect{subject.takeoff_plane(plane2)}.to raise_error{"Plane is already airborne"}
     end
 
     it 'should confirm that plane has taken off' do
       plane = Plane.new
       subject.land_plane(plane)
       expect(subject.takeoff_plane(plane)).to eq "#{plane} has taken off"
+    end
+
+    it 'should raise error message if airport is empty' do
+      plane = Plane.new
+      expect{subject.takeoff_plane(plane)}.to raise_error{"Airport is empty!"}
     end
 
     #it 'allows planes to takeoff from only airports they are landed in' do

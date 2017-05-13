@@ -18,7 +18,8 @@ class Airport
   end
 
   def takeoff_plane(plane)
-    fail("Plane is already landed") if plane.airborne?
+    fail("Airport is empty!") if airport_empty? 
+    fail("Plane is already airborne") if plane.airborne?
     complete_takeoff_procedure(plane)
   end
 
@@ -40,6 +41,10 @@ class Airport
 
   def airport_full?
     @hangar.count >= @capacity
+  end
+
+  def airport_empty?
+    @hangar.empty?
   end
 
 end
