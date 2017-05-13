@@ -34,3 +34,6 @@ feature_test([], airport.clear_plane(plane))
 # 6 It shows whether a plane has taken off after being cleared
 airport.clear_plane(plane)
 feature_test("airborn", plane.landing_status)
+
+# 7 It shows the default capacity of the airport
+feature_test(20, airport.capacity)

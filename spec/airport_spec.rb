@@ -7,6 +7,7 @@ describe Airport do
   it { is_expected.to respond_to(:land_plane).with(1).argument }
   it { is_expected.to respond_to :landed_planes }
   it { is_expected.to respond_to(:clear_plane).with(1).argument }
+  it { is_expected.to respond_to :capacity }
 
   it "confirms landed planes" do
     allow(plane).to receive(:land).and_return "landed"
