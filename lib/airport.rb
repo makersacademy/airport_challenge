@@ -4,5 +4,6 @@ class Airport
   end
 
   def safe_to_land?
+    true
   end
 end
