@@ -14,6 +14,7 @@ class Airport
 
   def instruct_to_take_off(plane)
     @landed_planes.delete(plane)
+    plane.update_location_after_take_off
   end
 
 end
