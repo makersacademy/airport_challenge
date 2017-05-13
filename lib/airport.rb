@@ -9,6 +9,7 @@ class Airport
   end
 
   def land_plane(plane)
+    fail "Maintain holding pattern" if holding_pattern?
     plane.land
     @landed_planes << plane
     @landed_planes
@@ -23,5 +24,11 @@ class Airport
   def override_capacity(new_capacity)
     @capacity = new_capacity
   end
+
+  private
+    def holding_pattern?
+      weather = 'fair'
+      @landed_planes.count >= @capacity || weather == 'stormy'
+    end
 
 end

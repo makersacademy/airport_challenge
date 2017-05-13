@@ -43,5 +43,6 @@ airport.override_capacity(21)
 feature_test(21, airport.capacity)
 
 # 9 It prevents planes from landing if the airport is over capacity (currently set at 21)
-21.times { airport.land_plane(Plane.new) }
-feature_test("Maintain holding -> Airport at capacity", airport.land_plane(plane))
+# This test should error with the message below.
+p "Pass" if 21.times { airport.land_plane(Plane.new) }
+feature_test("Maintain holding pattern", airport.land_plane(plane))
