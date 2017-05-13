@@ -5,10 +5,14 @@ class Plane
   end
 
   def update_location(airportID)
-    
+
   end
 
   def report_landed
+  end
+
+  def flying?
+    
   end
 
 end
