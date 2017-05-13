@@ -13,4 +13,10 @@ describe Airport do
   it 'should be initialized as an empty airport, i.e. landed_planes is empty' do
     expect(subject.landed_planes.empty?).to eq true
   end
+  it 'should store the landed plane if a plane is instructed to land' do
+    plane = Plane.new
+    airport = subject
+    airport.instruct_to_land(plane)
+    expect(airport.landed_planes[-1]).to eq plane
+  end
 end

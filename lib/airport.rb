@@ -6,7 +6,7 @@ class Airport
   end
 
   def instruct_to_land(plane)
-
+    @landed_planes << plane
   end
 
 end
