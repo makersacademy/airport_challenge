@@ -1,4 +1,4 @@
-require_relative 'plane'
+require 'plane'
 
 class Airport
 
@@ -10,13 +10,8 @@ class Airport
     @planes = []
   end
 
-  def try_allow_landing(plane)
-    raise "No space available" if full?
+  def land(plane)
     @planes << plane
-  end
-
-  def try_allow_take_off(plane)
-
   end
 
   def full?

@@ -12,7 +12,8 @@ class Plane
     @in_airport = false
   end
 
-  def land
+  def land(airport)
+    airport.land(self)
     @in_airport = true
   end
 

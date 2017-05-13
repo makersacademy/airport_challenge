@@ -17,17 +17,4 @@ describe Airport do
     expect(airport.capacity = 30).to eq 30
   end
 
-  it 'should allow a plane to land at an airport' do
-    expect(airport).to respond_to(:try_allow_landing).with(1).argument
-  end
-
-  it 'should allow a plane to take off at an airport' do
-    expect(airport).to respond_to(:try_allow_take_off).with(1).argument
-  end
-
-  it 'should raise an exception when trying to land a plane at a full airport' do
-    Airport::DEFAULT_CAPACITY.times { airport.try_allow_landing(Plane.new) }
-    expect{airport.try_allow_landing(Plane.new)}.to raise_error 'No space available'
-  end
-
 end
