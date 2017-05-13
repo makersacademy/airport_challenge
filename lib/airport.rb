@@ -1,5 +1,5 @@
   class Airport
     def show_capacity
-      20
+      @current_capacity
     end
   end
