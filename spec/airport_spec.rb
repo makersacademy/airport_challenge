@@ -31,10 +31,8 @@ describe Airport do
     end
 
     it 'should not allow landing when airport is full' do
-      plane1 = Plane.new
-      plane2 = Plane.new
-      subject.land_plane(plane1)
-      expect {subject.land_plane(plane2)}.to raise_error{"Airport is full!"}
+      subject.capacity.times { subject.land_plane Plane.new }
+      expect {subject.land_plane(plane)}.to raise_error{"Airport is full!"}
     end
 
     #it 'should not allow plane to land when stormy' do
@@ -70,7 +68,17 @@ describe Airport do
     #  expect{airport2.takeoff_plane(plane)}.to raise_error{"PLANE"}
     #end
 
+  end
 
+  describe '#capacity' do
+    it 'allows a new airport to be created with a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'allows default capacity to be overriden' do
+      subject.capacity = 40
+      expect(subject.capacity).to eq 40
+    end
   end
 
 end

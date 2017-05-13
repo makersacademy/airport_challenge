@@ -1,15 +1,19 @@
 class Airport
 
   attr_reader :weather
+  attr_accessor :capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @weather = Weather.new
-    @capacity = 1
+    @capacity = capacity
+    @hangar = []
   end
 
   def land_plane(plane)
     fail("Plane is already landed") unless plane.airborne?
-    fail("Airport is full!") if @capacity == 0
+    fail("Airport is full!") if airport_full?
     complete_landing_procedure(plane)
   end
 
@@ -20,18 +24,22 @@ class Airport
 
   def complete_landing_procedure(plane)
     plane.landed
-    @capacity -= 1
+    @hangar << plane
     return "#{plane} has completed landing"
   end
 
   def complete_takeoff_procedure(plane)
     plane.takeoff
-    @capacity += 1
+    @hangar.delete(plane)
     return "#{plane} has taken off"
   end
 
   def stormy?
     weather.is_stormy
+  end
+
+  def airport_full?
+    @hangar.count >= @capacity
   end
 
 end
