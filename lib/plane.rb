@@ -10,5 +10,6 @@ class Plane
   end
 
   def take_off
+    @landing_status = "airborn"
   end
 end

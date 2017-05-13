@@ -14,6 +14,7 @@ describe Airport do
   end
 
   it "clears a plane to take off" do
+    subject.landed_planes << plane
     allow(plane).to receive(:take_off).and_return "airborn"
     expect(subject.clear_plane(plane)).to eq []
   end

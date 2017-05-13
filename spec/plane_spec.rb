@@ -4,6 +4,7 @@ describe Plane do
 
   it { is_expected.to respond_to :landing_status }
   it { is_expected.to respond_to :land }
+  it { is_expected.to respond_to :take_off }
 
   it "shows a plane as airborn before being landed" do
     expect(subject.landing_status).to eq "airborn"
@@ -15,7 +16,7 @@ describe Plane do
   end
 
   it "takes off" do
-    subect.take_off
+    subject.take_off
     expect(subject.landing_status).to eq "airborn"
   end
 
