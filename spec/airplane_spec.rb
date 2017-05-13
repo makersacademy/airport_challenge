@@ -9,7 +9,10 @@ describe Airplane do
   it "Shows that an instance of Airplane reponds to the take_off method" do
     expect(subject).to respond_to :take_off
   end
-  it"shows that the take_off methods changes the current_status instance variable to airborne" do
+  it "Shows that the take_off methods changes the current_status instance variable to airborne" do
     expect(subject.take_off).to eq "airborne"
+  end
+  it "Shows that an instance of the Airplane class responds to the land method" do
+    expect(subject).to respond_to :land
   end
 end
