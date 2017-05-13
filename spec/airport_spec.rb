@@ -12,11 +12,13 @@ describe Airport do
 
   it "confirms landed planes" do
     allow(plane).to receive(:land).and_return "landed"
+    allow(subject).to receive(:stormy?).and_return false
     expect(subject.land_plane(plane)).to eq [plane]
   end
 
   it "clears a plane to take off" do
     subject.landed_planes << plane
+    allow(subject).to receive(:stormy?).and_return false
     allow(plane).to receive(:take_off).and_return "airborn"
     expect(subject.clear_plane(plane)).to eq []
   end
@@ -27,8 +29,15 @@ describe Airport do
 
   it "returns an error if a plane tries to land when the airport is at capacity" do
     allow(plane).to receive(:land).and_return "landed"
+    allow(subject).to receive(:stormy?).and_return false
     20.times { subject.land_plane(plane) }
-    expect { subject.land_plane(plane) }.to raise_error "Maintain holding pattern"
+    expect { subject.land_plane(plane) }.to raise_error "Maintain holding pattern -> Airport at Capacity"
+  end
+
+  it "returns an error if a plane tries to land when the weather is stormy" do
+    allow(plane).to receive(:land).and_return "landed"
+    subject.instance_variable_set("@weather", 0)
+    expect { subject.land_plane(plane) }.to raise_error "Maintain holding pattern -> Stormy Weather"
   end
 
 end

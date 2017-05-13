@@ -15,6 +15,7 @@ def feature_test(expected_result, test_statement)
 end
 
 # 1 It instructs a plane to land
+p "Test 1 skipped"
 # feature_test([plane], airport.land_plane(plane))
 
 # 2 It shows whether a plane has landed or not (planes are to start in the sky)
@@ -44,5 +45,9 @@ feature_test(21, airport.capacity)
 
 # 9 It prevents planes from landing if the airport is over capacity (currently set at 21)
 # This test should error with the message below.
-p "Pass" if 21.times { airport.land_plane(Plane.new) }
-feature_test("Maintain holding pattern", airport.land_plane(plane))
+p "Test 9 skipped" if 21.times { airport.land_plane(Plane.new) }
+# feature_test("Maintain holding pattern -> Airport at Capacity", airport.land_plane(plane))
+
+# 10. Allows plane to take off once airport is again below capacity
+16.times { airport.clear_plane(plane) } # -> now five planes landed
+feature_test(airport.landed_planes, airport.land_plane(plane)) # -> now six planes landed
