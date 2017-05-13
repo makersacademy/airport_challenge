@@ -1,6 +1,5 @@
 class Airport
-
-  attr_accessor :planes, :capacity
+  attr_reader :planes, :capacity
   DEFAULTCAPACITY = 2
   def initialize(capacity = DEFAULTCAPACITY)
     # An array to hold the planes that take off and land at the airport
@@ -12,16 +11,19 @@ class Airport
   def lands_plane(plane)
 
     raise 'There is no more space at the airport' if planes.length == capacity
-    planes << plane
-    "#{plane} has landed"
+    if safe? == false
+      raise 'It is too stormy for landing'
+    else
+      planes << plane
+      "#{plane} has landed"
+    end
   end
   # Enables planes to depart from  an airport
 
   def takes_off
-
     raise 'There are no planes at the airport' if planes.length.zero?
-    if safe? == false
-      raise 'It is too story for take off'
+    if  safe? == false
+      raise 'It is too stormy for take off'
     else
     plane_take_off = planes.pop
     "#{plane_take_off} has taken off"
