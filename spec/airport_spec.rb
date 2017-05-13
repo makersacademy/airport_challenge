@@ -14,7 +14,7 @@ describe Airport do
     end
     it 'raises an error if stormy' do
       airport.instance_variable_set(:@weather_grade, 3)
-      expect{ airport.land(plane) }.to raise_error 'Sorry, the storm is too great!'
+      expect { airport.land(plane) }.to raise_error 'Sorry, the storm is too great!'
     end
   end
 
@@ -31,7 +31,7 @@ describe Airport do
       airport.instance_variable_set(:@weather_grade, 6)
       airport.land(plane)
       airport.instance_variable_set(:@weather_grade, 3)
-      expect{ airport.plane_take_off }.to raise_error 'Sorry, the storm is too great!'
+      expect { airport.plane_take_off }.to raise_error 'Sorry, the storm is too great!'
     end
   end
 end

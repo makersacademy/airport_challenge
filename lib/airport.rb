@@ -5,17 +5,21 @@ class Airport
 
   def initialize
     @planes = []
-    @weather_grade = rand(10)   #bad weather: < 4
+    @weather_grade = rand(10) # bad weather: < 4
   end
 
   def land(plane)
-    (@planes << plane; return plane) if @weather_grade > 4
-    raise 'Sorry, the storm is too great!'
+    (@planes << plane; return plane) unless stormy?
+
   end
 
   def plane_take_off
-    return @planes.pop if @weather_grade > 4
-    raise 'Sorry, the storm is too great!'
+    return @planes.pop unless stormy?
   end
 
+  private
+
+  def stormy?
+    raise 'Sorry, the storm is too great!' if @weather_grade < 4
+  end
 end
