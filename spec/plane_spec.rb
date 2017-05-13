@@ -29,6 +29,6 @@ describe Plane do
     airport = Airport.new
     plane = subject
     plane.update_location(airport.object_id)
-    expect(plane.report_landed).to eq "This is plane #{plane.object_id} speaking. We report that we landed at airport #{plane.location}"
+    expect(plane.report_landed).to eq "'This is plane #{plane.object_id} speaking. We report that we landed at airport #{plane.location}'"
   end
 end

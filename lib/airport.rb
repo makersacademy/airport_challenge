@@ -12,4 +12,7 @@ class Airport
     self
   end
 
+  def instruct_to_take_off(plane)
+  end
+  
 end

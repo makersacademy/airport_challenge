@@ -19,4 +19,7 @@ describe Airport do
     airport.instruct_to_land(plane)
     expect(airport.landed_planes[-1]).to eq plane
   end
+  it 'should respond to instruct_to_take_off' do
+    expect(subject).to respond_to(:instruct_to_take_off).with(1).argument
+  end
 end
