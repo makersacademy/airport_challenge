@@ -1,28 +1,28 @@
 class Plane
+  attr_reader :landed, :taken_off
 
   def initialize
     @taken_off = false
     @landed = false
   end
 
-  def suitable_for_flying?
-    true
+  def update_landed
+    @landed = true
+    @taken_off = false
   end
 
-  def report_landed
-    @landed = true
+  def update_takenoff
+    @taken_off = true
+    @landed = false
   end
 
   def landed?
     @landed
   end
 
-  def report_takenoff
-    @taken_off = true
-  end
-
   def taken_off?
     @taken_off
   end
+
 
 end
