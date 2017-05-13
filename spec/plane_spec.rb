@@ -23,4 +23,10 @@ describe Plane do
     expect{subject.depart_from(airport)}.to raise_error "We can't take off in a storm"
   end
 
+  it 'will not land if there is no space' do
+    airport = Airport.new(:capacity => 1)
+    subject.land_at(airport)
+    expect{subject.land_at(airport)}.to raise_error "There's no space to land"
+  end
+
 end

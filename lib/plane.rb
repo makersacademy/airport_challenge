@@ -4,6 +4,7 @@ class Plane
 
   def land_at(airport)
     airport ||= Airport.new
+    fail "There's no space to land" if airport.planes.count == airport.capacity
     fail "I picked the wrong week to stop sniffing glue..." if airport.weather == "storm"
     puts "Coming in to land at #{airport.airport_name}"
     airport.planes << self
