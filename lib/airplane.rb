@@ -5,4 +5,6 @@ class Airplane
   def take_off
     @current_status = "airborne"
   end
+  def land
+  end
 end
