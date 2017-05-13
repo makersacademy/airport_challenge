@@ -31,4 +31,10 @@ describe Plane do
     airport.weather_is_stormy = true
     expect{subject.land(airport)}.to raise_error "Plane can not land due to stormy weather"
   end
+
+  it "Plane can not land when the airport is full" do
+    airport = Airport.new
+    airport.full = true
+    expect{subject.land(airport)}.to raise_error "Plane can not land because the airport is full"
+  end
 end
