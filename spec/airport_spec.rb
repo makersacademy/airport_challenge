@@ -23,6 +23,11 @@ RSpec.describe Airport do
       airport.land(plane)
       expect(airport.take_off).to eq plane
     end
+
+    it "raises an error if there are no planes available for take off" do
+      expect { airport.take_off }.to raise_error "No planes currently available"
+    end
+
   end
 
 end

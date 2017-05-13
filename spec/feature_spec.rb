@@ -22,4 +22,5 @@ p airport.take_off #=> <Plane:0x007fcd9a84f742>
 print 'confirm that the plane is no longer in the airport: '
 p airport.planes #=> []
 
-print 'whatever'
+print 'raise error if no planes available to take off: '
+# airport.take_off #=> Error 'No planes currently available'
