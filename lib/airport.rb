@@ -6,5 +6,5 @@ class Airport
   def initialize
     @capacity = DEFAULT_CAPACITY
   end
-  r
+  
 end

@@ -7,4 +7,8 @@ describe Airport do
     expect(airport.capacity).to eq 10
   end
 
+  it 'should allow user to specify a capacity when creating a new airport' do
+    expect(airport(20).capacity).to eq 20
+  end
+
 end
