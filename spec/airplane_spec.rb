@@ -15,4 +15,7 @@ describe Airplane do
   it "Shows that an instance of the Airplane class responds to the land method" do
     expect(subject).to respond_to :land
   end
+  it "Shows that the land method changes the current_status instance variable to grounded" do
+    expect(subject.land).to eq "grounded"
+  end
 end
