@@ -13,6 +13,7 @@ class Plane
   end
 
   def land(airport)
+    raise "Unable to land - airport full" if airport.full?
     airport.land(self)
     @in_airport = true
   end
