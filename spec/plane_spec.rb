@@ -16,4 +16,10 @@ describe Plane do
     expect(plane).to respond_to(:land)
   end
 
+  it 'should confirm that it has landed' do
+    plane.take_off
+    plane.land
+    expect(plane).to be_in_airport
+  end
+
 end
