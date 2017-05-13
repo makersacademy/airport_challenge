@@ -7,7 +7,7 @@ class Airport
 
   def instruct_to_land(plane)
     @landed_planes << plane
-    plane.update_location(self.object_id)
+    plane.update_location_after_landing(self.object_id)
     puts plane.report_landed
     self
   end

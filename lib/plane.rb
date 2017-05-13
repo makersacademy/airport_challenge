@@ -4,7 +4,7 @@ class Plane
     @location = "up in the air"
   end
 
-  def update_location(airport_id)
+  def update_location_after_landing(airport_id)
     @location = airport_id
   end
 
