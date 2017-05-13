@@ -14,6 +14,12 @@ describe Airport do
   end
 
   describe 'plane_take_off' do
-    it
+    it 'removes one plane from the planes array' do
+      2.times { airport.land(plane) }
+      expect(airport.plane_take_off).to eq plane
+
+      airport.plane_take_off
+      expect(airport.plane_take_off).to eq nil
+    end
   end
 end
