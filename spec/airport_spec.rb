@@ -37,31 +37,22 @@ describe Airport do
     expect { airport.takeoff(plane) }.to raise_error("Not this time buddy, you can't takeoff a taken off plane!")
   end
 
-  it "checks if a plane is in the airport" do
-    plane = Plane.new(:landed)
-    expect(airport.status(plane)).to eq "The plane is in the airport"
-    plane = Plane.new(:taken_off)
-    expect(airport.status(plane)).to eq "The plane is no longer in the airport"
-    plane = Plane.new(:flying)
-    expect(airport.status(plane)).to eq "The plane is no longer in the airport"
+  it "knows flying planes are not present" do
+    plane = Plane.new
+    expect(airport.present?(plane)).to eq false
+  end
+
+  it "knows landed planes are present" do
+    plane = Plane.new
+    airport.land(plane)
+    expect(airport.present?(plane)).to eq true
+  end
+
+  it "forgets planes that have taken off" do
+    plane = Plane.new
+    airport.land(plane)
+    airport.takeoff(plane)
+    expect(airport.present?(plane)).to eq false
   end
 
 end
-
-# subject(:airport) { Airport.new }
-# let(:plane) { double :plane }
-# it { is_expected.to respond_to :land }
-# it { is_expected.to respond_to :takeoff }
-#
-# it "lands a plane" do
-#
-#   allow(plane).to receive(:landed?).and_return(true)
-#   airport.land(plane)
-#   expect(plane.landed?).to eq true
-# end
-#
-# it "takes off a plane" do
-#   allow(plane).to receive(:taken_off?).and_return(true)
-#   airport.takeoff(plane)
-#   expect(plane.taken_off?).to eq true
-# end

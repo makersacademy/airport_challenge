@@ -2,6 +2,12 @@ require './lib/plane'
 
 class Airport
 
+  attr_reader :landed_planes
+
+  def initialize
+    @landed_planes = []
+  end
+
   def land(plane)
     if plane.landed?
       raise "Not this time buddy, you only land once!"
@@ -9,6 +15,7 @@ class Airport
       raise "Not this time buddy, you can't land a taken off plane!"
     else
       plane.flight_status = :landed
+      @landed_planes << plane
     end
   end
 
@@ -19,16 +26,12 @@ class Airport
       raise "Not this time buddy, you can't takeoff a taken off plane!"
     else
       plane.flight_status = :taken_off
+      @landed_planes.delete(plane)
     end
   end
 
-  def status(plane)
-    if plane.landed?
-      "The plane is in the airport"
-    elsif plane.taken_off? || plane.flying?
-      "The plane is no longer in the airport"
-    end
-
+  def present?(plane)
+    @landed_planes.include?(plane)
   end
 
 end
