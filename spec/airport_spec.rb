@@ -67,13 +67,15 @@ describe Airport do
       expect{subject.takeoff_plane(plane)}.to raise_error{"Airport is empty!"}
     end
 
-    #it 'allows planes to takeoff from only airports they are landed in' do
-    #  airport1 = Airport.new
-    #  airport2 = Airport.new
-    #  plane = Plane.new
-    #  airport1.land_plane(plane)
-    #  expect{airport2.takeoff_plane(plane)}.to raise_error{"PLANE"}
-    #end
+    it 'allows planes to takeoff from only airports they are landed in' do
+      airport1 = Airport.new
+      airport2 = Airport.new
+      plane = Plane.new
+      plane2 = Plane.new
+      airport1.land_plane(plane)
+      airport2.land_plane(plane2)
+      expect{airport1.takeoff_plane(plane2)}.to raise_error{"#{plane} is not in hangar"}
+    end
 
   end
 
@@ -87,5 +89,6 @@ describe Airport do
       expect(subject.capacity).to eq 40
     end
   end
+
 
 end

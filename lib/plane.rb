@@ -11,11 +11,12 @@ class Plane
   end
 
   def takeoff
-    @airborne = true 
+    @airborne = true
   end
 
   def airborne?
     @airborne
   end
+
 
 end

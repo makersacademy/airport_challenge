@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :weather
+  attr_reader :weather, :hangar
   attr_accessor :capacity
 
   DEFAULT_CAPACITY = 20
@@ -18,20 +18,21 @@ class Airport
   end
 
   def takeoff_plane(plane)
-    fail("Airport is empty!") if airport_empty? 
+    fail("Airport is empty!") if airport_empty?
     fail("Plane is already airborne") if plane.airborne?
+    fail("#{plane} is not in hangar") unless plane_in_hangar(plane)
     complete_takeoff_procedure(plane)
   end
 
   def complete_landing_procedure(plane)
     plane.landed
-    @hangar << plane
+    hangar << plane
     return "#{plane} has completed landing"
   end
 
   def complete_takeoff_procedure(plane)
     plane.takeoff
-    @hangar.delete(plane)
+    hangar.delete(plane)
     return "#{plane} has taken off"
   end
 
@@ -39,12 +40,20 @@ class Airport
     weather.is_stormy
   end
 
+
+  private
+
+  def plane_in_hangar(plane)
+    hangar.include?(plane)
+  end
+
   def airport_full?
-    @hangar.count >= @capacity
+    hangar.count >= @capacity
   end
 
   def airport_empty?
-    @hangar.empty?
+    hangar.empty?
   end
+
 
 end
