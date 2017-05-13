@@ -2,9 +2,17 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  it { is_expected.to respond_to(:land_plane).with(1).argument  }
-  it { is_expected.to respond_to(:takeoff_plane).with(1).argument  }
-  it { is_expected.to respond_to(:weather) }
+  let(:plane) { double :plane }
+  before(:each) {
+    allow(subject.weather).to receive(:is_stormy) { false }
+  }
+
+  describe '#responsiveness' do
+    it { is_expected.to respond_to(:land_plane).with(1).argument  }
+    it { is_expected.to respond_to(:takeoff_plane).with(1).argument  }
+    it { is_expected.to respond_to(:weather) }
+    it { is_expected.to respond_to(:capacity) }
+  end
 
   describe '#stormy?' do
     it 'can check if weather is stormy' do
@@ -14,13 +22,13 @@ describe Airport do
 
   describe '#land_plane' do
     it 'should allow plane to land at airport' do
-      plane = Plane.new
+      allow(plane).to receive(:airborne?) {true}
+      allow(plane).to receive(:landed) {false}
       expect(subject.land_plane(plane)).to eq "#{plane} has completed landing"
     end
 
     it 'should only allow airborne planes to land' do
-      plane = Plane.new
-      subject.land_plane(plane)
+      allow(plane).to receive(:airborne?) {false}
       expect{subject.land_plane(plane)}.to raise_error{"Plane is already landed"}
     end
 
@@ -31,28 +39,28 @@ describe Airport do
     end
 
     it 'should not allow landing when airport is full' do
-      subject.capacity.times { subject.land_plane Plane.new }
+      allow(plane).to receive(:airborne?) {true}
+      allow(plane).to receive(:landed) {false}
+      subject.capacity.times { subject.land_plane plane }
       expect {subject.land_plane(plane)}.to raise_error{"Airport is full!"}
     end
 
-    #it 'should not allow plane to land when stormy' do
-    #  plane = Plane.new
-    #  subject.weather.is_stormy
-    #end
+    it 'should not allow plane to land when stormy' do
+      allow(subject.weather).to receive(:is_stormy) { false }
+      expect {subject.land_plane(plane)}.to raise_error{"Weather is too stormy for landing"}
+    end
   end
 
   describe '#takeoff_plane' do
     it 'should allow plane to takeoff from airport' do
-      plane = Plane.new
-      subject.land_plane(plane)
+      allow(plane).to receive(:airborne?) {false}
+      allow(plane).to receive(:takeoff) {true}
       subject.takeoff_plane(plane)
       expect(plane).to be_airborne
     end
 
     it 'should only allow landed planes to takeoff' do
-      plane1 = Plane.new
-      plane2 = Plane.new
-      subject.land_plane(plane1)
+      allow(plane).to receive(:airborne?) {true}
       expect{subject.takeoff_plane(plane2)}.to raise_error{"Plane is already airborne"}
     end
 
@@ -75,6 +83,11 @@ describe Airport do
       airport1.land_plane(plane)
       airport2.land_plane(plane2)
       expect{airport1.takeoff_plane(plane2)}.to raise_error{"#{plane} is not in hangar"}
+    end
+
+    it 'should not allow planes to takeoff when stormy' do
+      allow(subject.weather).to receive(:is_stormy) { false }
+      expect {subject.takeoff_plane(plane)}.to raise_error{"Weather is too stormy for takeoff"}
     end
 
   end

@@ -24,13 +24,13 @@ class Airport
   def complete_landing_procedure(plane)
     plane.landed
     hangar << plane
-    return_flight_status(plane)
+    return_flight_status(plane,"landing")
   end
 
   def complete_takeoff_procedure(plane)
     plane.takeoff
     hangar.delete(plane)
-    return_flight_status(plane)
+    return_flight_status(plane,"taking off")
   end
 
   def stormy?
@@ -43,18 +43,18 @@ class Airport
   def landing_check(plane)
     fail("Plane is already landed") unless plane.airborne?
     fail("Airport is full!") if airport_full?
-    #fail("Weather is too stormy for landing") if stormy?
+    fail("Weather is too stormy for landing") if stormy?
   end
 
   def takeoff_check(plane)
-    #fail("Weather is too stormy for takeoff") if stormy?
     fail("Airport is empty!") if airport_empty?
     fail("Plane is already airborne") if plane.airborne?
     fail("#{plane} is not in hangar") unless plane_in_hangar(plane)
+    fail("Weather is too stormy for takeoff") if stormy?
   end
 
-  def return_flight_status(plane)
-    plane.airborne? ? "#{plane} has taken off" : "#{plane} has completed landing"
+  def return_flight_status(plane,flight_action)
+    flight_action == "taking off" ? "#{plane} has taken off" : "#{plane} has completed landing"
   end
 
   def plane_in_hangar(plane)
