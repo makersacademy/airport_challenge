@@ -1,8 +1,8 @@
 require './lib/airport'
 require './lib/plane'
+require './lib/weather'
 
 p airport = Airport.new
 p plane = Plane.new
-p airport.land_plane(plane)
-p airport.takeoff_plane(plane)
-p plane.airborne?
+p airport.weather
+p airport.weather.is_stormy
