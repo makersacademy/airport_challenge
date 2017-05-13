@@ -29,4 +29,9 @@ describe Plane do
     expect{subject.land_at(airport)}.to raise_error "There's no space to land"
   end
 
+  it 'cannot take off from an airport where it is not present...' do
+    airport = Airport.new
+    expect{subject.depart_from(airport)}.to raise_error "This plane isn't at this airport"
+  end
+
 end

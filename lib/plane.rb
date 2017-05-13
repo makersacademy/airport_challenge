@@ -13,6 +13,7 @@ class Plane
 
   def depart_from(airport)
     airport ||= Airport.new
+    fail "This plane isn't at this airport" unless airport.planes.include?(self)
     fail "We can't take off in a storm" if airport.weather == "storm"
     puts "Taking off from #{airport.airport_name}"
     airport.planes.delete(self)
