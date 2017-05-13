@@ -20,4 +20,12 @@ describe Weather do
     subject.change_weather_condition
     expect(subject.show_current_weather_condition).to eq "stormy"
   end
+  it "shows that the change_weather_condition method will return stormy if weather_chance > 85 and sunny otherwise" do
+    20.times do
+      subject.stub(:change_weather_chance) {rand(85...100)}
+      expect(subject.change_weather_condition).to eq "stormy"
+      subject.stub(:change_weather_chance) {rand(1..85)}
+      expect(subject.change_weather_condition).to eq "sunny"
+    end
+  end
 end
