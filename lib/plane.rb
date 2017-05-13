@@ -4,4 +4,8 @@ class Plane
 
   end
 
+  def in_airport?
+    false
+  end
+
 end
