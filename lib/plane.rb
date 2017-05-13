@@ -4,6 +4,7 @@ class Plane
 
   def land(airport)
     raise "Plane can not land due to stormy weather" if airport.weather_is_stormy
+    raise "Plane can not land because the airport is full" if airport.full
     airport.plane = self
   end
 
