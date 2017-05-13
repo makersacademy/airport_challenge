@@ -30,6 +30,13 @@ describe Airport do
       expect(plane.airborne?).to eq false
     end
 
+    it 'should not allow landing when airport is full' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      subject.land_plane(plane1)
+      expect {subject.land_plane(plane2)}.to raise_error{"Airport is full!"}
+    end
+
     #it 'should not allow plane to land when stormy' do
     #  plane = Plane.new
     #  subject.weather.is_stormy
