@@ -6,4 +6,7 @@ describe Airplane do
   it "Returns airborne when show_current_status is called" do
     expect(subject.show_current_status).to eq @current_status
   end
+  it "Shows that an instance of Airplane reponds to the take_off method" do
+    expect(subject).to respond_to :take_off
+  end
 end
