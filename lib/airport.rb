@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :landed_planes
+  attr_reader :landed_planes, :weather
 
   def initialize
     @landed_planes = []

@@ -29,4 +29,7 @@ describe Airport do
     airport.instruct_to_take_off(plane)
     expect(airport.landed_planes.include?(plane)).to eq false
   end
+  it 'should respond to #weather' do
+    expect(subject).to respond_to(:weather)
+  end
 end
