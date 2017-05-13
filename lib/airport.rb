@@ -12,4 +12,7 @@ class Airport
     @landed_planes << plane
   end
 
+  def clear_plane(plane)
+  end
+
 end

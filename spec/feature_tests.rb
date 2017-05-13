@@ -19,14 +19,18 @@ end
 
 #2 It shows whether a plane has landed or not (planes are to start in the sky)
 # expect to fail if first test is run
-feature_test("airborn", plane.landed?)
+feature_test("airborn", plane.landing_status)
 
 #3 It shows a plane landed after being instructed to
 airport.land_plane(plane)
-feature_test("landed", plane.landed?)
+feature_test("landed", plane.landing_status)
 
 #4 It shows landed planes
-p airport.landed_planes
+feature_test([plane], airport.landed_planes)
 
-#1 It instructs a plane to take off
-feature_test([plane], airport.take_off(plane))
+#5 It instructs a plane to take off
+feature_test([], airport.clear_plane(plane))
+
+#6 It shows whether a plane has taken off after being cleared
+airport.clear_plane(plane)
+feature_test("airborn", plane.landing_status)
