@@ -26,7 +26,9 @@ describe Airport do
   end
 
   it "returns an error if a plane tries to land when the airport is at capacity" do
-
+    allow(plane).to receive(:land).and_return "landed"
+    20.times { subject.land_plane(plane) }
+    expect { subject.land_plane(plane) }.to raise_error "Maintain holding -> Airport at capacity"
   end
 
 end

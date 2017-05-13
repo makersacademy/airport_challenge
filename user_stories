@@ -3,13 +3,12 @@
 Objects                 | Messages                    | Done
 ----------------------- | --------------------------- | ---
 Air Traffic Controller  |                             |
-System Designer         | set a default capacity      |
 Airport                 | confirm_landed_planes       | x
 Airport                 | land_plane                  | x
 Airport                 | clear_plane (for take_off)  | x
 Airport                 | prevent_take_off (stormy)   |
 Airport                 | prevent_landing (stormy)    |
-Airport                 | prevent_landing (capacity)  | 
-Airport                 | set_default_capacity        |
+Airport                 | prevent_landing (capacity)  |
+Airport                 | set_default_capacity        | x
 Plane                   | land                        | x
 Plane                   | take_off                    | x
