@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :planes
+  attr_accessor :planes
 
   def initialize
     #An array to hold the planes that take off and land at the airport

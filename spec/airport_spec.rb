@@ -17,6 +17,11 @@ let (:plane) { double( :plane ) }
   end
   describe '#planes' do
     it { is_expected.to respond_to(:planes) }
+    it 'adds the plane to the plans array' do
+      plane = double( 'plane')
+      subject.lands_plane(plane)
+      expect(subject.planes).to eq [plane]
+    end
   end
   describe '#takes_off' do
     it { is_expected.to respond_to(:takes_off)}
@@ -26,7 +31,6 @@ let (:plane) { double( :plane ) }
       expect(subject.takes_off).to eq "#{plane} has taken off"
     end
     it 'removes the plane to the plans array' do
-      plane = double( 'plane', :lands_plane => plane)
       subject.takes_off
       expect(subject.planes).to eq []
     end
