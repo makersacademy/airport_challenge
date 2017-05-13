@@ -1,5 +1,5 @@
 class Airport
-  def land
-
+  def land(plane)
+    plane
   end
 end
