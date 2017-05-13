@@ -16,4 +16,9 @@ describe Airport do
   it 'responds to #plane_takeoff' do
     is_expected.to respond_to(:plane_takeoff)
   end
+  it 'when #plane_takeoff happens, plane leaves airport' do
+    airport.land(plane)
+    airport.plane_takeoff
+    expect(airport.landed_planes).to be_empty
+  end
 end
