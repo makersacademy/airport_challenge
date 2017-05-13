@@ -9,4 +9,12 @@ class Airport
     @capacity = capacity
   end
 
+  def try_allow_landing(plane)
+
+  end
+
+  def try_allow_take_off(plane)
+
+  end
+
 end
