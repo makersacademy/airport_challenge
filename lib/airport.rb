@@ -1,5 +1,12 @@
 class Airport
   attr_reader :landed_planes
-  def instruct_to_land(plane)
+
+  def initialize
+    @landed_planes = []
   end
+
+  def instruct_to_land(plane)
+
+  end
+
 end
