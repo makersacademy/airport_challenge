@@ -7,14 +7,20 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
+    @planes = []
   end
 
   def try_allow_landing(plane)
-
+    raise "No space available" if full?
+    @planes << plane
   end
 
   def try_allow_take_off(plane)
 
+  end
+
+  def full?
+    @planes.length == @capacity
   end
 
 end
