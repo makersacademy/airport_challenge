@@ -1,5 +1,5 @@
-  class Airport
-    def show_capacity
-      @current_capacity
-    end
+class Airport
+  def show_capacity
+    @current_capacity
   end
+end

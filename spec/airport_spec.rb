@@ -7,6 +7,4 @@ describe Airport do
   it "returns a value when the show capacity method is called" do
     expect(subject.show_capacity).to eq @current_capacty
   end
-
-  end
 end
