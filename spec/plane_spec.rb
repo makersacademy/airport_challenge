@@ -7,4 +7,9 @@ describe Plane do
     expect(plane).to respond_to(:take_off)
   end
 
+  it 'should confirm that it is no longer in the airport' do
+    plane.take_off
+    expect(plane).not_to be_in_airport
+  end
+
 end
