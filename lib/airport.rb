@@ -1,5 +1,5 @@
 class Airport
-  def takeoff
+  def land
 
   end
 end
