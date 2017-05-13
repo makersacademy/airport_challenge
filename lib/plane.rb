@@ -17,7 +17,7 @@ class Plane
   end
 
   def report_take_off
-    
+    "'This is plane #{self.object_id}. We are #{self.location}. To know us is to fly with us.'"
   end
 
   def flying?
