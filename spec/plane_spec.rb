@@ -12,4 +12,8 @@ describe Plane do
     expect(plane).not_to be_in_airport
   end
 
+  it 'should allow user to instruct a plane to land' do
+    expect(plane).to respond_to(:land)
+  end
+
 end
