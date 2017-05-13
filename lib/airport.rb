@@ -1,10 +1,7 @@
 
 class Airport
 
-  attr_reader :plane
+  attr_accessor :plane
 
-  def plane=(plane)
-    @plane = plane
-  end
 
 end

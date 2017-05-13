@@ -10,4 +10,5 @@ describe Plane do
     expect(airport.plane).to eq (subject)
   end
 
+  it {is_expected.to respond_to(:take_off)}
 end
