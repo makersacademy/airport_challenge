@@ -1,7 +1,8 @@
 require "plane.rb"
 
 describe Plane do
-  "it should be able to confirm that it has landed" do
-    it { is_expected.to respond_to :confirm_land }
+it "should instruct a plane to land at the airport" do
+  plane = Plane.new
+  expect(subject).to respond_to(:landing)
   end
 end

@@ -1,6 +1,6 @@
 
 
 class Plane
-  def confirm_land
+  def landing
   end
 end
