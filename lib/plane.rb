@@ -8,6 +8,6 @@ class Plane
   end
 
   def lands_at(airport)
-    @location = airport
+    @location = airport.identifier
   end
 end
