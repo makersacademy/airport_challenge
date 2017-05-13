@@ -20,4 +20,8 @@ class Airport
     @landed_planes
   end
 
+  def override_capacity(new_capacity)
+    @capacity = new_capacity
+  end
+
 end

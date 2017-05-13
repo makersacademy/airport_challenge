@@ -37,3 +37,7 @@ feature_test("airborn", plane.landing_status)
 
 # 7 It shows the default capacity of the airport
 feature_test(20, airport.capacity)
+
+# 8 It allows the default capacity to be overridden
+airport.override_capacity(21)
+feature_test(21, airport.capacity)
