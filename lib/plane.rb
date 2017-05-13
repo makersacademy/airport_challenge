@@ -5,14 +5,14 @@ class Plane
   end
 
   def update_location(airportID)
-
+    
   end
 
   def report_landed
   end
 
   def flying?
-    
+    @location == "up in the air"
   end
 
 end

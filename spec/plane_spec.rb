@@ -16,6 +16,9 @@ describe Plane do
   it 'should respond to #flying?' do
     expect(subject).to respond_to(:flying?)
   end
+  it 'should return true if newly instantiated and #flying is called on it' do
+    expect(subject.flying?).to eq true
+  end
   it 'should report that it is landed as soon as it landed on an airport, including its ID and the ID of the airport' do
     airport = Airport.new
     plane = subject
