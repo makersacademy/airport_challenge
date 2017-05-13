@@ -1,0 +1,14 @@
+# User stories
+
+Objects                 | Messages
+----------------------- | -----------------------
+Air Traffic Controller  |
+System Designer         |
+Airport                 | confirm_landed_planes
+Airport                 | land_plane
+Airport                 | take_off
+Airport                 | prevent_take_off (stormy weather)
+Airport                 | prevent_landing
+Airport                 | set_default_capacity
+Plane                   | landed?
+Plane                   | taken_off?
