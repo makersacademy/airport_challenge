@@ -1,11 +1,15 @@
 class Plane
 
-  def take_off
+  def initialize
+    @in_airport = true
+  end
 
+  def take_off
+    @in_airport = false
   end
 
   def in_airport?
-    false
+    @in_airport
   end
 
 end
