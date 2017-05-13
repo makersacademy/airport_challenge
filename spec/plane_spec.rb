@@ -7,6 +7,9 @@ describe Plane do
   it 'should respond to #location' do
     expect(subject).to respond_to(:location)
   end
+  it 'should be "up in the air" when initialized' do
+    expect(subject.location).to eq "up in the air"
+  end
   it 'should report that it is landed as soon as it landed on an airport, including its ID and the ID of the airport' do
     airport = Airport.new
     plane = subject
