@@ -1,5 +1,3 @@
-require_relative './airport.rb'
-
 class Plane
   attr_reader :location
 
@@ -7,11 +5,15 @@ class Plane
     @location = :default_location
   end
 
-  def lands_at(airport)
+  def arrive_at(airport)
+    raise "Plane needs to take off from the ground before it arrive somewhere" if @location != :air
+    raise "Plane already in the airport passed" if @location == airport.identifier
     @location = airport.identifier
   end
 
-  def takes_off
+  def departure
+    raise "Plane already in the air" if @location == :air
     @location = :air
+    self
   end
 end
