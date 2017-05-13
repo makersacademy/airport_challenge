@@ -11,4 +11,7 @@ class Airport
     "Plane has landed"
   end
 
+  def plane_takeoff
+
+  end
 end
