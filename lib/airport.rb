@@ -43,9 +43,11 @@ class Airport
   def landing_check(plane)
     fail("Plane is already landed") unless plane.airborne?
     fail("Airport is full!") if airport_full?
+    #fail("Weather is too stormy for landing") if stormy?
   end
 
   def takeoff_check(plane)
+    #fail("Weather is too stormy for takeoff") if stormy?
     fail("Airport is empty!") if airport_empty?
     fail("Plane is already airborne") if plane.airborne?
     fail("#{plane} is not in hangar") unless plane_in_hangar(plane)
