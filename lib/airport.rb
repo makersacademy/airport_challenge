@@ -12,20 +12,12 @@ class Airport
 
   DEFAULT_CAPACITY = 70
 
-  def initialize(airport_capacity = DEFAULT_CAPACITY, iata_code = :LHR)
+  def initialize(airport_capacity = DEFAULT_CAPACITY, iata_code: :LHR)
     @airport_capacity = airport_capacity
     @iata_code = iata_code
     @planes_currently_landed = []
     @last_departed = nil
     @last_arrived = nil
-  end
-
-  def wind_speed
-    Kernel.rand(100)
-  end
-
-  def weather_conditions_safe?
-    wind_speed < 90 ? true : false
   end
 
   def clear_for_landing(plane)
@@ -47,6 +39,14 @@ class Airport
   end
 
   private
+
+  def wind_speed
+    Kernel.rand(100)
+  end
+
+  def weather_conditions_safe?
+    wind_speed < 90 ? true : false
+  end
 
   def check_last_arrived
     @last_arrived

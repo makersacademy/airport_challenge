@@ -6,7 +6,7 @@ class Plane
 
   DEFAULT_CAPACITY = 95
 
-  def initialize(capacity = DEFAULT_CAPACITY, flight_no = 'DF-1301')
+  def initialize(capacity = DEFAULT_CAPACITY, flight_no: 'DF-1301')
     @capacity = capacity
     @flight_no = flight_no
     @status = 'currently in the air'
