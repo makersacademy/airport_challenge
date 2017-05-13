@@ -1,14 +1,17 @@
 require 'weather'
 
-describe Weather do
-  subject(:weather_today) { Weather.new }
-  xit { is_expected.to respond_to :weather_generator }
+describe WeatherStation do
+  let(:fake_number) { double(:number) }
+  subject(:station) { WeatherStation.new(fake_number) }
 
-  xit "is sunny weather" do
-    expect(weather_today.weather_generator).to eq :sunny
+  it "reports sunny weather" do
+    allow(fake_number).to receive(:rand).and_return(2)
+    expect(station.todays_weather()).to eq :sunny
   end
 
-  xit "is stormy weather" do
-    expect(weather_today.weather_generator).to eq :stormy
+  it "reports stormy weather" do
+    allow(fake_number).to receive(:rand).and_return(4)
+    expect(station.todays_weather()).to eq :stormy
   end
+
 end
