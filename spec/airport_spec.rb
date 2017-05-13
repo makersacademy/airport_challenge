@@ -15,8 +15,35 @@ let (:plane) { double( :plane ) }
       expect(subject.planes).to eq [plane]
     end
     it 'only allows planes to land if there is space' do
-      2.times { subject.lands_plane plane }
+    Airport::DEFAULTCAPACITY.times { subject.lands_plane plane }
       expect{subject.lands_plane(plane)}.to raise_error(RuntimeError, ('There is no more space at the airport'))
+    end
+  end
+
+  describe '#takes_off' do
+    it { is_expected.to respond_to(:takes_off)}
+    it 'returns the value of the plane which has taken off' do
+      subject.lands_plane(plane)
+      expect(subject.takes_off).to eq "#{plane} has taken off"
+    end
+    it 'removes the plane from the plans array' do
+      subject.lands_plane(plane)
+      subject.takes_off
+      expect(subject.planes).to eq []
+    end
+    it 'only allows planes to take off if there is a plane in the airport' do
+      expect{subject.takes_off}.to raise_error(RuntimeError, ('There are no planes at the airport'))
+    end
+  end
+
+  describe '#capacity' do
+    it { is_expected.to respond_to(:capacity) }
+    it 'variable will equal the  default capacity if no capacity is given' do
+      expect(subject.capacity). to eq Airport::DEFAULTCAPACITY
+    end
+    it 'will equal the capacity specified when creating the airport instance' do
+      airport = Airport.new 50
+      expect(airport.capacity). to eq 50
     end
   end
 
@@ -28,18 +55,4 @@ let (:plane) { double( :plane ) }
       expect(subject.planes).to eq [plane]
     end
   end
-
-  describe '#takes_off' do
-    it { is_expected.to respond_to(:takes_off)}
-    it 'returns the value of the plane which has taken off' do
-      plane = double( 'plane')
-      subject.lands_plane(plane)
-      expect(subject.takes_off).to eq "#{plane} has taken off"
-    end
-    it 'removes the plane to the plans array' do
-      subject.takes_off
-      expect(subject.planes).to eq []
-    end
-  end
-  
 end

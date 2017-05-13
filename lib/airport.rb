@@ -1,10 +1,10 @@
 class Airport
   attr_accessor :planes, :capacity
-
-  def initialize
+  DEFAULTCAPACITY = 2
+  def initialize(capacity = DEFAULTCAPACITY)
     #An array to hold the planes that take off and land at the airport
     @planes=[]
-    @capacity = 2
+    @capacity = capacity
   end
   #Method for a plane landing at an airport
   def lands_plane(plane)
@@ -14,6 +14,7 @@ class Airport
   end
   #Method for a plane landing at an airport
   def takes_off
+    raise 'There are no planes at the airport' if planes.length == 0
     plane_take_off = planes.pop
     "#{plane_take_off} has taken off"
   end
