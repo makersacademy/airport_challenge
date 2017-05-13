@@ -28,4 +28,19 @@ describe Plane do
     expect(plane.landed?).to eq false
   end
 
+  it "is flying when its flight status is flying" do
+    plane.flight_status = :flying
+    expect(plane.flying?).to eq true
+  end
+
+  it "is not flying when it's landed" do
+    plane.flight_status = :landed
+    expect(plane.flying?).to eq false
+  end
+
+  it "is not flying when it's taken off" do
+    plane.flight_status = :taken_off
+    expect(plane.flying?).to eq false
+  end
+
 end
