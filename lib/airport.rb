@@ -14,7 +14,8 @@ class Airport
   end
 
   def plane_take_off
-    @planes.pop
+    return @planes.pop if @weather_grade > 4
+    raise 'Sorry, the storm is too great!'
   end
 
 end
