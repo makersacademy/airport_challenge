@@ -41,4 +41,14 @@ describe Plane do
     plane.update_location_after_take_off
     expect(plane.location).to eq "up in the air"
   end
+  it 'should respond to #report_take_off' do
+    expect(subject).to respond_to(:report_take_off)
+  end
+  # it 'should report that it is up in the air after take-off, including its ID' do
+  #   airport = Airport.new
+  #   plane = subject
+  #   plane.update_location_after_landing(airport.object_id)
+  #   plane.update_location_after_take_off
+  #   expect(plane.report_take_off).to eq "'This is plane #{plane.object_id} speaking. We are #{plane.location}. To know us is to fly with us.'"
+  # end
 end

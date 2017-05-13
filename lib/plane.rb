@@ -16,6 +16,10 @@ class Plane
     @location = "up in the air"
   end
 
+  def report_take_off
+    
+  end
+
   def flying?
     @location == "up in the air"
   end
