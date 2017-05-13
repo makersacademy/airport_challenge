@@ -1,3 +1,6 @@
+require 'plane'
+require 'weather'
+
 class Airport
 
   attr_reader :landed_planes
@@ -6,7 +9,7 @@ class Airport
     @landed_planes = []
   end
 
-  def land(plane)
+  def land(plane = Plane.new)
     @landed_planes << plane
     'Plane has landed'
   end
