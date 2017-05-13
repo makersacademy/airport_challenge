@@ -13,6 +13,7 @@ class Airport
   end
 
   def instruct_to_take_off(plane)
+    @landed_planes.delete(plane)
   end
-  
+
 end

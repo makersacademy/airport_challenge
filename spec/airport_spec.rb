@@ -22,4 +22,11 @@ describe Airport do
   it 'should respond to instruct_to_take_off' do
     expect(subject).to respond_to(:instruct_to_take_off).with(1).argument
   end
+  it 'should release the plane from @landed_planes as soon #instruct_to_take_off is called with that plane as argument' do
+    plane = Plane.new
+    airport = subject
+    airport.instruct_to_land(plane)
+    airport.instruct_to_take_off(plane)
+    expect(airport.landed_planes.include?(plane)).to eq false
+  end
 end
