@@ -7,7 +7,7 @@ class Weather
   end
 
   def safe?
-  
+    @current_state == :good
   end
 
 end

@@ -10,4 +10,8 @@ describe Weather do
   it 'should respond to #safe?' do
     expect(subject).to respond_to(:safe?)
   end
+  it 'should return true if weather is good and #safe is called on it' do
+    #This test needs to be updated with correct reacting stub as soon as random weather generator is implemented
+    expect(subject.safe?).to eq true
+  end
 end
