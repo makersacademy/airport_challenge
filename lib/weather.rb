@@ -8,6 +8,7 @@ class Weather
   end
 
   def change_weather_chance
+    50
   end
 
   def change_weather_condition
