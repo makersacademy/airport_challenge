@@ -10,4 +10,8 @@ class Plane
     @flight_status == :landed
   end
 
+  def taken_off?
+    @flight_status == :taken_off
+  end
+
 end
