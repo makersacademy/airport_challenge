@@ -3,6 +3,7 @@ require 'plane'
 
 describe Airport do
 let (:plane) { double( :plane ) }
+
   describe '#lands_planes' do
     it { is_expected.to respond_to(:lands_plane).with(1).argument }
     it 'returns the value of the plane which has landed' do
@@ -10,11 +11,15 @@ let (:plane) { double( :plane ) }
       expect(subject.lands_plane(plane)).to eq "#{plane} has landed"
     end
     it 'adds the plane to the plans array' do
-      plane = double( 'plane')
       subject.lands_plane(plane)
       expect(subject.planes).to eq [plane]
     end
+    it 'only allows planes to land if there is space' do
+      2.times { subject.lands_plane plane }
+      expect{subject.lands_plane(plane)}.to raise_error(RuntimeError, ('There is no more space at the airport'))
+    end
   end
+
   describe '#planes' do
     it { is_expected.to respond_to(:planes) }
     it 'adds the plane to the plans array' do
@@ -23,6 +28,7 @@ let (:plane) { double( :plane ) }
       expect(subject.planes).to eq [plane]
     end
   end
+
   describe '#takes_off' do
     it { is_expected.to respond_to(:takes_off)}
     it 'returns the value of the plane which has taken off' do
@@ -35,4 +41,5 @@ let (:plane) { double( :plane ) }
       expect(subject.planes).to eq []
     end
   end
+  
 end
