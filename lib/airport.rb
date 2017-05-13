@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :capacity
+  attr_accessor :capacity
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
