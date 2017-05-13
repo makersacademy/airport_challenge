@@ -1,5 +1,5 @@
 class Airplane
   def show_current_status
-    "airborne"
+    @current_status
   end
 end
