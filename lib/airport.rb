@@ -12,14 +12,14 @@ class Airport
   end
 
   def land_plane(plane)
-    fail @hold_reason if at_capacity? || stormy?
+    fail "Maintain holding pattern #{@hold_reason}" if at_capacity? || stormy?
     plane.land
     @landed_planes << plane
     @landed_planes
   end
 
   def clear_plane(plane)
-    fail @hold_reason if stormy?
+    fail "Cannot clear plane #{@hold_reason}" unless green_light?(plane)
     plane.take_off
     @landed_planes.delete(plane)
     @landed_planes
@@ -29,18 +29,35 @@ class Airport
     @capacity = new_capacity
   end
 
+  def all_planes_landed?
+    landed_planes.each do |plane|
+      return false if plane.landing_status != "landed"
+    end
+    return true
+  end
+
   private
   def at_capacity?
     return false unless @landed_planes.count >= @capacity
-    @hold_reason = "Maintain holding pattern -> Airport at Capacity"
+    @hold_reason = "-> Airport at Capacity"
     return true
   end
 
   def stormy?
     storm_index = Random.rand(100)
     return false unless storm_index > @weather
-    @hold_reason = "Maintain holding pattern -> Stormy Weather"
+    @hold_reason = "-> Stormy Weather"
     return true
+  end
+
+  def in_airport?(plane)
+    return false unless @landed_planes.include?(plane)
+    @hold_reason = "-> Plane not in airport"
+    return true
+  end
+
+  def green_light?(plane)
+    return !stormy? && in_airport?(plane) && all_planes_landed?
   end
 
 end
