@@ -6,4 +6,8 @@ class Airport
     return "The plane has landed!"
   end
 
+  def launches_plane(plane)
+
+  end
+  
 end
