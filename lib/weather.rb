@@ -6,4 +6,8 @@ class Weather
     @current_state = :good
   end
 
+  def safe?
+  
+  end
+
 end
