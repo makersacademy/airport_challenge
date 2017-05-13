@@ -18,7 +18,11 @@ describe Airport do
   end
 
   it 'should allow a plane to land at an airport' do
-    expect(airport).to respond_to(:try_accept).with(1).argument
+    expect(airport).to respond_to(:try_allow_landing).with(1).argument
+  end
+
+  it 'should allow a plane to take off at an airport' do
+    expect(airport).to respond_to(:try_allow_take_off).with(1).argument
   end
 
 end
