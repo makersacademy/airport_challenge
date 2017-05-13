@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   it 'initializaes with a default capacity' do
-    expect(subject.capacity).to eq 1
+    expect(subject.capacity).to eq 10
   end
 
   it 'can initialize with a custom capacity' do
@@ -20,8 +20,21 @@ describe Airport do
     expect(airport.weather).to eq "wind"
   end
 
-  it "can see a storm blow over" do
+  it "can can have weather switch between 'storm' and 'calm' " do
     expect(Airport.new.storm_switch.weather).to eq "storm"
     expect(Airport.new.storm_switch.storm_switch.weather).to eq "calm"
+  end
+
+  it "records when a plane lands" do
+    plane = Plane.new
+    plane.land_at(subject)
+    expect(subject.planes[0]).to eq plane
+  end
+
+  it "records when a plane departs" do
+    plane = Plane.new
+    plane.land_at(subject)
+    plane.depart_from(subject)
+    expect(subject.planes).not_to include(plane)
   end
 end
