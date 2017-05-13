@@ -17,4 +17,11 @@ RSpec.describe Airport do
       expect(airport.plane).to eq plane
     end
   end
+
+  describe "#take_off" do
+    it "a plane can take off from the airport" do
+      airport.land(plane)
+      expect(airport.take_off).to eq plane
+    end
+  end
 end
