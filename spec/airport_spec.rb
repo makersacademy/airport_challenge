@@ -2,7 +2,7 @@ require "airport.rb"
 
 describe Airport do
 
-  it "should have a default capacity set" do
+  it "should have a default capacity" do
     airport = Airport.new
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
@@ -12,7 +12,18 @@ describe Airport do
     expect(airport.airport_capacity(250)).to eq 250
   end
 
-  # it "should raie an error when wanting to land a plane when airport is at full capacity" do
+  describe "#land" do
+  it "raises an error when attempting to land a plane in an airport of full capacity" do
+    subject.capacity.times { subject.land Plane.new}
+    expect { subject.land Plane.new }.to raise_error "Airport is full"
+  end
+end
+
+  it "should not land the plane when an airport is full" do
+    expect(subject).to respond_to(:full?)
+  end
+
+  # it "should raise an error when wanting to land a plane when airport is at full capacity" do
   #  expect { subject.land }.to raise_error 'cannot land plane'
   #  end
 end
