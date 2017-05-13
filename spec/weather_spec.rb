@@ -10,4 +10,9 @@ describe Weather do
   it "Shows that an instance of the Weather class responds to a change_weather_condition method" do
     expect(subject).to respond_to :change_weather_condition
   end
+  it "shows that the change_weather_condition method will change the current_weather_conditon instance variable to sunny" do
+    subject.change_weather_condition
+    expect(subject.show_current_weather_condition).to eq "sunny"
+  end
+
 end
