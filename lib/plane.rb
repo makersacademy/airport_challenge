@@ -3,6 +3,7 @@ require_relative 'airport.rb'
 class Plane
 
   def land(airport)
+    raise "Plane can not land due to stormy weather" if airport.weather_is_stormy
     airport.plane = self
   end
 
