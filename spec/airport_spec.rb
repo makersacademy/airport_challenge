@@ -11,5 +11,10 @@ RSpec.describe Airport do
     end
   end
 
-  
+  describe "#plane" do
+    it "return the plane currently landed at the airport" do
+      airport.land(plane)
+      expect(airport.plane).to eq plane
+    end
+  end
 end
