@@ -28,7 +28,7 @@ describe Plane do
   it 'should report that it is landed as soon as it landed on an airport, including its ID and the ID of the airport' do
     airport = Airport.new
     plane = subject
-    airport.instruct_to_land(plane)
-    expect(plane.report_landed).to eq "This is plane #{plane.object_id} speaking. We report that we landed at airport #{airport.object_id}"
+    plane.update_location(airport.object_id)
+    expect(plane.report_landed).to eq "This is plane #{plane.object_id} speaking. We report that we landed at airport #{plane.location}"
   end
 end
