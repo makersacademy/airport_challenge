@@ -18,8 +18,10 @@ describe Plane do
   end
 
   it 'should confirm that it has landed' do
+    allow(airport).to receive(:full?).and_return false
+    allow(airport).to receive(:land).with(plane)
     plane.take_off
-    plane.land(Airport.new)
+    plane.land(airport)
     expect(plane).to be_in_airport
   end
 
