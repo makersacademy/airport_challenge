@@ -21,6 +21,12 @@ class Airport
     complete_takeoff_procedure(plane)
   end
 
+  def stormy?
+    weather.is_stormy
+  end
+
+  private
+
   def complete_landing_procedure(plane)
     plane.landed
     hangar << plane
@@ -32,13 +38,6 @@ class Airport
     hangar.delete(plane)
     return_flight_status(plane,"taking off")
   end
-
-  def stormy?
-    weather.is_stormy
-  end
-
-
-  private
 
   def landing_check(plane)
     fail("That is not a plane, sorry!") unless is_plane(plane)

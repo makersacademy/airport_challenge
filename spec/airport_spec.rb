@@ -3,6 +3,7 @@ require 'plane'
 
 describe Airport do
   let(:plane) { double :plane }
+  subject(:airport) { described_class.new }
   before(:each) { allow(subject.weather).to receive(:is_stormy) { false }}
   before(:each) { allow(plane).to receive(:instance_of?) { true }}
 
@@ -15,14 +16,14 @@ describe Airport do
 
   describe '#stormy?' do
     it 'can check if weather is stormy' do
-      expect(subject.stormy?).to satisfy { |stormy| stormy == true || stormy == false}
+      expect(airport.stormy?).to satisfy { |stormy| stormy == true || stormy == false}
     end
   end
 
   describe '#land_plane' do
 
     it 'raises error if something other than plane tries to land' do
-      expect{subject.land_plane('boat')}.to raise_error{"That is not a plane, sorry!"}
+      expect{airport.land_plane('boat')}.to raise_error{"That is not a plane, sorry!"}
     end
 
     it 'should allow plane to land at airport' do
@@ -33,31 +34,32 @@ describe Airport do
 
     it 'should only allow airborne planes to land' do
       allow(plane).to receive(:airborne?) {false}
-      expect{subject.land_plane(plane)}.to raise_error{"Plane is already landed"}
+      expect{airport.land_plane(plane)}.to raise_error{"Plane is already landed"}
     end
 
     it 'should confirm that plane has landed' do
       allow(plane).to receive(:airborne?) {true}
       allow(plane).to receive(:landed) {false}
-      expect(subject.land_plane(plane)).to eq "#{plane} has completed landing"
+      expect(airport.land_plane(plane)).to eq "#{plane} has completed landing"
     end
 
     it 'should not allow landing when airport is full' do
       allow(plane).to receive(:airborne?) {true}
       allow(plane).to receive(:landed) {false}
-      subject.capacity.times { subject.land_plane plane }
-      expect {subject.land_plane(plane)}.to raise_error{"Airport is full!"}
+      airport.capacity.times { subject.land_plane plane }
+      expect {airport.land_plane(plane)}.to raise_error{"Airport is full!"}
     end
 
     it 'should not allow planes to land when stormy' do
-      allow(subject.weather).to receive(:is_stormy) { false }
-      expect {subject.land_plane(plane)}.to raise_error{"Weather is too stormy for landing"}
+      allow(airport.weather).to receive(:is_stormy) { false }
+      expect {airport.land_plane(plane)}.to raise_error{"Weather is too stormy for landing"}
     end
   end
 
   describe '#takeoff_plane' do
+
     it 'should allow plane to takeoff from airport' do
-      subject.hangar << plane
+      airport.hangar << plane
       allow(plane).to receive(:takeoff) {true}
       allow(plane).to receive(:airborne?) {true}
       expect(plane).to be_airborne
@@ -65,14 +67,14 @@ describe Airport do
 
     it 'should only allow landed planes to takeoff' do
       allow(plane).to receive(:airborne?) {true}
-      expect{subject.takeoff_plane(plane2)}.to raise_error{"Plane is already airborne"}
+      expect{airport.takeoff_plane(plane2)}.to raise_error{"Plane is already airborne"}
     end
 
     it 'should confirm that plane has taken off' do
-      subject.hangar << plane
+      airport.hangar << plane
       allow(plane).to receive(:airborne?) {false}
       allow(plane).to receive(:takeoff) {true}
-      expect(subject.takeoff_plane(plane)).to eq "#{plane} has taken off"
+      expect(airport.takeoff_plane(plane)).to eq "#{plane} has taken off"
     end
 
 
@@ -85,20 +87,20 @@ describe Airport do
     end
 
     it 'should not allow planes to takeoff when stormy' do
-      allow(subject.weather).to receive(:is_stormy) { false }
-      expect {subject.takeoff_plane(plane)}.to raise_error{"Weather is too stormy for takeoff"}
+      allow(airport.weather).to receive(:is_stormy) { false }
+      expect {airport.takeoff_plane(plane)}.to raise_error{"Weather is too stormy for takeoff"}
     end
 
   end
 
   describe '#capacity' do
     it 'allows a new airport to be created with a default capacity' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
     it 'allows default capacity to be overriden' do
-      subject.capacity = 40
-      expect(subject.capacity).to eq 40
+      airport.capacity = 40
+      expect(airport.capacity).to eq 40
     end
   end
 
