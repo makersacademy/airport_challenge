@@ -33,4 +33,10 @@ describe 'Feature Tests' do
       expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
     end
   end
+  describe 'Change Capacity' do
+    it'System Designer can change airport capacity' do
+      airport.capacity = 30
+      expect(airport.capacity).not_to eq DEFAULT_CAPACITY
+    end
+  end
 end
