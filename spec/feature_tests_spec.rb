@@ -1,10 +1,8 @@
 require './lib/airport'
 require './lib/plane'
-require './lib/weather'
 
 airport = Airport.new
 plane = Plane.new
-weather = Weather.new
 
 describe 'Feature Tests' do
   describe 'Landing' do
@@ -14,13 +12,13 @@ describe 'Feature Tests' do
   end
   describe 'Taking Off' do
     it'ATC instructs a plane to take off and gets a confirmation' do
-      expect(airport.plane_takeoff).to eq "Plane has taken off"
+      expect(airport.instruct_plane_takeoff(plane)).to eq "Plane has taken off"
     end
   end
   describe 'Prevent Taking off' do
     it'ATC prevents take offs when weather is stormy' do
       allow(airport).to receive(:bad_conditions?).and_return(true)
-      expect { airport.plane_takeoff }.to raise_error(RuntimeError, "Cannot take off when it's stormy")
+      expect { airport.instruct_plane_takeoff(plane) }.to raise_error(RuntimeError, "Cannot take off when it's stormy")
     end
   end
   describe 'Prevent Landing' do
@@ -29,7 +27,7 @@ describe 'Feature Tests' do
       expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
     end
     it'ATC prevents landing when the airport is full' do
-      airport.land(plane)
+      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
     end
   end
