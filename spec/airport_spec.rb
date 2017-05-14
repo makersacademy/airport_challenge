@@ -76,6 +76,16 @@ describe Airport do
     it 'should return true or false' do
       expect([true, false].include?(subject.full?)).to eq true
     end
+    it 'should return true if at capacity, false when below capacity' do
+      airport = subject
+      allow(airport.landed_planes).to receive(:length){0}
+      expect(airport.full?).to eq false
+      allow(airport.landed_planes).to receive(:length){25}
+      expect(airport.full?).to eq false
+      allow(airport.landed_planes).to receive(:length){50}
+      expect(airport.full?).to eq true
+    end
+
   end
-  
+
 end

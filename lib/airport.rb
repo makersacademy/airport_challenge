@@ -1,10 +1,11 @@
 class Airport
   attr_reader :landed_planes, :weather, :capacity
-
+  DEFAULT_CAPACITY = 50
+  
   def initialize
     @landed_planes = []
     @weather = Weather.new
-    @capacity = 50
+    @capacity = DEFAULT_CAPACITY
   end
 
   def instruct_to_land(plane)
@@ -24,7 +25,7 @@ class Airport
   end
 
   def full?
-    if capacity == landed_planes
+    if capacity <= landed_planes.length
       return true
     else
       return false
