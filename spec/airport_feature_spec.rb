@@ -40,7 +40,7 @@ feature 'Air Traffic Control' do
   end
 
   def and_the_plane_location_is_set_to_arrival_airport
-    expect(@plane.location).to eq @airport
+    expect(@plane.location).to eq @airport.iata_code
   end
 
   def i_instruct_a_plane_to_takeoff(plane, to_destination)

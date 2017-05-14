@@ -9,17 +9,20 @@ describe Plane do
   
   describe '#land' do
     it 'can land on airport' do
-      expect(subject.land(:airport))
+      airport = Airport.new("LHR")
+      expect(subject.land(airport))
     end
 
     it 'confirms when lands' do
-      subject.land(:airport)
+      airport = Airport.new("LHR")
+      subject.land(airport)
       expect(subject.on_ground).to be true
     end
 
     it 'sets location to the airport it has landed' do
-      subject.land(:airport)
-      expect(subject.location).to eq :airport 
+      airport = Airport.new("LHR")
+      subject.land(airport)
+      expect(subject.location).to eq airport.iata_code
     end
   end
 

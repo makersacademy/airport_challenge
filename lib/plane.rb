@@ -9,7 +9,7 @@ class Plane
 
   def land(airport)
     @on_ground = true
-    @location = airport
+    @location = airport.iata_code
     self
   end
 
