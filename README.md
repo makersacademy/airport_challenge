@@ -1,4 +1,4 @@
-#Airport Challenge
+# Airport Challenge
 =================
 
 This project emulates an air traffic control system - it allows the user to create Airport and Plane objects, and instruct planes to land and take off from airports.  The user can also specify a planes capacity when creating a new airport (otherwise a default of 10 is set) and can override that capacity later if they wish.  A random number generator emulates the weather, and take-offs and landings are prevented if the weather is "stormy".
@@ -7,39 +7,49 @@ This project emulates an air traffic control system - it allows the user to crea
 
 This challenge was completed in a TDD (test-driven development) manner, meaning I wrote a test for what I wanted the program to do, then wrote the code to satisfy that test, and repeated the process.
 
-##Approach
+## Approach
 
 Six user stories were presented to define the requirements of the finishing project, so my first step was to decide which order to tackle them in, and complete them one by one.  I chose the following order:
 
-`As the system designer
+```
+As the system designer
 So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate`
+I would like a default airport capacity that can be overridden as appropriate
+```
 
 This seemed like the best place to start, because the capacity would be defined when the airport object was instantiated.  By setting this up first, I was able to see what limitations my code would have.  I used a constant to store the default capacity of 10 in, to prevent "magic numbers" existing in my code.  This constant was used in my tests as well.
 
-`As an air traffic controller
+```
+As an air traffic controller
 So I can get passengers on the way to their destination
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport`
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
 
-`As an air traffic controller
+```
+As an air traffic controller
 So I can get passengers to a destination
-I want to instruct a plane to land at an airport and confirm that it has landed`
+I want to instruct a plane to land at an airport and confirm that it has landed
+```
 
-These two stories are very similar but I could see they needed to be done before the remaining stories, which would rely on these functions working properly.  I set up #take_off and #land methods from the Plane class, as well as setting up an instance variable `@in_airport` so that the plane could confirm its status.
+These two stories are very similar, so it made sense to do them one after the other, but I could see they needed to be done before the remaining stories, which would rely on these functions working properly.  I set up #take_off and #land methods from the Plane class, as well as setting up an instance variable `@in_airport` so that the plane could confirm its status.
 
-`As an air traffic controller
+```
+As an air traffic controller
 To ensure safety
-I want to prevent landing when the airport is full`
+I want to prevent landing when the airport is full
+```
 
 When I began to address this story, I realised that my Airport and Plane classes would need to be able to send and receive information to each other somehow (I would need the plane's information to store in a list of planes at the airport, but needed to not make the airport's plane list accessible outside of the Airport class).  I set up #land and #take_off methods for the Airport class, and updated the Plane methods to call these.  Once I understood that raising an exception from the Airport method would prevent the Plane method from completing (so it would not change its @in_airport status), I was happy enough with this arrangement.
 
-`As an air traffic controller
+```
+As an air traffic controller
 To ensure safety
-I want to prevent [takeoff/landing] when weather is stormy`
+I want to prevent [takeoff/landing] when weather is stormy
+```
 
 To satisfy this user story I set up another instance variable in my Airport class.  Since the Airport object should be responsible for *checking* the weather, but not for *determining* the weather, I set up a Weather class which contained a method with a random number generator `rand(10) < 3` giving a 30% chance that the weather would be "stormy".  My Airport#land and #take_off methods then simply had to refer to this method at first and raise an exception to prevent any action if the weather was stormy.
 
-=================
+#
 
 After satisfying all the user stories, I set about tidying up my code and defending against edge cases.  I removed some early tests which were redundant, such as a few for the Plane class which simply expected it to respond to certain methods, and one which tested that the "airport should indicate that it is full" (no longer needed as I was already testing that an exception was raised if trying to land a plane at a full airport).
 
