@@ -6,6 +6,7 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument  }
   it { is_expected.to respond_to(:take_off).with(1).argument}
   it { is_expected.to respond_to(:planes)}
+  it { is_expected.to respond_to(:capacity)}
 
   it 'returns landed planes' do
  	 subject.land(plane)
@@ -31,6 +32,14 @@ describe Airport do
   	expect {subject.land(plane)}.to raise_error 'Airport full!'
   end
   
-  
+  it 'raises an error if the airport is full when default capacity is specified' do
+  	subject.capacity.times {subject.land(plane)}
+  	expect {subject.land(plane)}.to raise_error 'Airport full!'
+  end
+
+  it 'has a default capacity' do
+  	expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
 
 end
