@@ -8,7 +8,8 @@ describe Airport do
     expect(subject).to respond_to :at_capacity?
   end
   it "Shows that at_capacity? will return true if the number of grounded planes is the same as current_capacity" do
-    subject.instance_variable_set("@current_capacity", 20)
+    # subject.instance_variable_set("@current_capacity", 20)
+    subject.current_capacity = 20
     subject.stub(:check_number_of_grounded_planes) { 20 }
     expect(subject.at_capacity?).to eq true
     subject.stub(:check_number_of_grounded_planes) { 99 }
@@ -32,26 +33,17 @@ describe Airport do
     subject.stub(:at_capacity?) { true }
     expect(subject.permission_to_land?).to eq false
   end
-  it "responds to the show capacity method" do
-    expect(subject).to respond_to :show_capacity
+  it "responds to current_capacity attr_accessor and that by default it is 20" do
+    expect(subject.current_capacity).to eq 20
   end
-  it "shows that by default the show capacity method will return 20" do
-    expect(subject.show_capacity).to eq 20
-  end
-  it "Responds to a change capacity method" do
-    expect(subject).to respond_to :change_capacity
-  end
-  it "Shows that show capacity method will return a different value when change capacity is caled with arguments" do
-    subject.change_capacity(10)
-    expect(subject.show_capacity).to eq 10
-    subject.change_capacity(1)
-    expect(subject.show_capacity).to eq 1
-    subject.change_capacity(9_999_999)
-    expect(subject.show_capacity).to eq 9_999_999
-    subject.change_capacity(164)
-    expect(subject.show_capacity).to eq 164
-    subject.change_capacity(0)
-    expect(subject.show_capacity).to eq 0
+  it "Shows that current_capacity can be changed with the attr_accessor" do
+    expect(subject.current_capacity).to eq 20
+    subject.current_capacity = 19
+    expect(subject.current_capacity).to eq 19
+    subject.current_capacity = 0
+    expect(subject.current_capacity).to eq 0
+    subject.current_capacity = 999
+    expect(subject.current_capacity).to eq 999
   end
   it "shows that instances of Aiport will respond to allow_airplane_to_land method" do
     expect(subject).to respond_to :allow_airplane_to_land

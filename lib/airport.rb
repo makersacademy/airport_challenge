@@ -3,6 +3,8 @@ require './lib/airplane'
 
 class Airport
 
+  attr_accessor :current_capacity
+
   def initialize(capacity = 20)
     @current_capacity = capacity
     @airplanes = []
@@ -11,14 +13,6 @@ class Airport
 
   def show_status_of_airplanes
     "Grounded: #{check_number_of_grounded_planes}, Airborne: #{check_number_of_airborne_planes}"
-  end
-
-  def change_capacity(capacity)
-    @current_capacity = capacity
-  end
-
-  def show_capacity
-    @current_capacity
   end
 
   def allow_airplane_to_land
