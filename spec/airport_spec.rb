@@ -5,16 +5,16 @@ describe Airport do
     expect(subject).to respond_to :permission_to_land?
   end
   it "Shows that permission_to_land will return true if the weather is sunny and airport is not at capacity or false if it is stormy or airport is at capacity" do
-    subject.stub(:check_current_weather) { "sunny" }
+    subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "sunny"))
     subject.stub(:at_capacity?) { false }
     expect(subject.permission_to_land?).to eq true
-    subject.stub(:check_current_weather) { "sunny" }
+    subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "sunny"))
     subject.stub(:at_capacity?) { true }
     expect(subject.permission_to_land?).to eq false
-    subject.stub(:check_current_weather) { "stormy" }
+    subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "stormy"))
     subject.stub(:at_capacity?) { false }
     expect(subject.permission_to_land?).to eq false
-    subject.stub(:check_current_weather) { "stormy" }
+    subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "stormy"))
     subject.stub(:at_capacity?) { true }
     expect(subject.permission_to_land?).to eq false
   end
@@ -65,10 +65,11 @@ describe Airport do
   it "Shows that instances of Airport respond to permission_to_take_off? method" do
     expect(subject).to respond_to :permission_to_take_off?
   end
+  let(:weather) {double(:weather)}
   it "Shows that permission_to_take_off? returns a value of true if check_current_wether == sunny" do
-    subject.stub(:check_current_weather) { "sunny" }
+    subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "sunny"))
     expect(subject.permission_to_take_off?).to eq true
-    subject.stub(:check_current_weather) { "stormy" }
+    subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "stormy"))
     expect(subject.permission_to_take_off?).to eq false
   end
   # it "allow_airplane_to_take_off raises an error if permission_to_land? is false" do

@@ -1,11 +1,12 @@
-require 'weather'
-require 'airplane'
+require './lib/weather'
+require './lib/airplane'
 
 class Airport
 
   def initialize(capacity = 20)
     @current_capacity = capacity
     @airplanes = []
+    @weather = Weather.new
   end
 
   def show_status_of_airplanes
@@ -38,7 +39,7 @@ class Airport
   end
 
   def permission_to_land?
-    if check_current_weather == "sunny" && at_capacity? == false
+    if @weather.check_current_weather_condition == "sunny" && at_capacity? == false
       true
     else
       false
@@ -46,14 +47,14 @@ class Airport
   end
 
   def permission_to_take_off?
-    true
+    if @weather.check_current_weather_condition == "sunny"
+      true
+    else
+      false
+    end
   end
 
   private
-
-  def check_current_weather
-    Weather.new.show_current_weather_condition
-  end
 
   def contact_approaching_airplane
     @approaching_airplane = Airplane.new
