@@ -6,6 +6,7 @@ class Airport
 
   def initialize
     @weather = "sunny"
+    @capacity = []
   end
 
   def lands_plane(*)
