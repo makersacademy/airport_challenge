@@ -31,7 +31,7 @@ class Airport
   def clear_for_takeoff(plane)
     raise(NoPlanesError, "no planes are currently landed at #{self}!") if empty?
     raise(BadWeatherError, 'weather conditions unsafe for takeoff!') unless weather_conditions_safe?
-    raise("#{plane} is not currently landed at #{self}!") unless @planes_currently_landed.include?(plane)
+    raise("#{plane} is not landed at #{self}!") unless @planes_currently_landed.include?(plane)
     plane.take_off(self)
     @last_departed = plane
     "Flight #{check_last_departed} departed safely."
