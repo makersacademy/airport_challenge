@@ -6,4 +6,9 @@ describe Airport do
     expect(subject).to respond_to :land_plane
   end
 
+  it "has variable to recieve and store planes" do
+    expect(subject.planes).to eq []
+  end
+
+
 end
