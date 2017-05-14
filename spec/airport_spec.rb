@@ -35,7 +35,7 @@ describe Airport do
       plane = Plane.new("G-ZBKP")
       allow(airport).to receive(:stormy?).and_return false
       airport.land_plane(plane)
-      expect(airport.planes_on_ground).to eq [plane.tail_number]
+      expect(airport.planes_on_ground).to eq [plane]
     end
 
     it 'raises an error if the weather is stormy' do
@@ -53,7 +53,7 @@ describe Airport do
       destination = Airport.new("LIS")
       allow(airport).to receive(:stormy?).and_return false
       airport.takeoff_plane(plane, destination)
-      expect(airport.planes_on_ground).not_to eq [plane.tail_number]
+      expect(airport.planes_on_ground).not_to eq [plane]
     end
 
     it 'raises an error if the weather is stormy' do

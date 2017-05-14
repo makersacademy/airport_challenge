@@ -140,7 +140,7 @@ feature 'Air Traffic Controller' do
   # Checks if the plane location is the arrival airport
 
   def the_list_of_planes_on_ground_now_contains_the_plane_that_landed
-    expect(@airport.planes_on_ground).to eq ["G-ZBKP"]
+    expect(@airport.planes_on_ground).to eq [@plane]
   end
 
   # TAKEOFF INSTRUCTIONS ########################
