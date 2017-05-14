@@ -12,7 +12,8 @@ describe Plane do
     plane = Plane.new
     expect(plane).to respond_to(:take_off)
   end
-  it "shows that take-off method confirms take-off" do
+  it "shows that take_off method confirms take-off" do
     expect(subject.take_off).to eq "airborne"
   end
+  
 end
