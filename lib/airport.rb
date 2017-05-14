@@ -41,6 +41,7 @@ class Airport
   private
 
   def landing_check(plane)
+    fail("That is not a plane, sorry!") unless is_plane(plane)
     fail("Weather is too stormy for landing") if stormy?
     fail("Plane is already landed") unless plane.airborne?
     fail("Airport is full!") if airport_full?
@@ -64,5 +65,8 @@ class Airport
     hangar.count >= @capacity
   end
 
+  def is_plane(object)
+    object.instance_of? Plane
+  end
 
 end

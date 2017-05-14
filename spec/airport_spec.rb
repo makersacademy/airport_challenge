@@ -4,6 +4,7 @@ require 'plane'
 describe Airport do
   let(:plane) { double :plane }
   before(:each) { allow(subject.weather).to receive(:is_stormy) { false }}
+  before(:each) { allow(plane).to receive(:instance_of?) { true }}
 
   describe '#responsiveness' do
     it { is_expected.to respond_to(:land_plane).with(1).argument  }
@@ -19,6 +20,11 @@ describe Airport do
   end
 
   describe '#land_plane' do
+
+    it 'raises error if something other than plane tries to land' do
+      expect{subject.land_plane('boat')}.to raise_error{"That is not a plane, sorry!"}
+    end
+
     it 'should allow plane to land at airport' do
       allow(plane).to receive(:landed) {false}
       allow(plane).to receive(:airborne?) {false}
@@ -43,7 +49,7 @@ describe Airport do
       expect {subject.land_plane(plane)}.to raise_error{"Airport is full!"}
     end
 
-    it 'should not allow plane to land when stormy' do
+    it 'should not allow planes to land when stormy' do
       allow(subject.weather).to receive(:is_stormy) { false }
       expect {subject.land_plane(plane)}.to raise_error{"Weather is too stormy for landing"}
     end
