@@ -1,6 +1,6 @@
-# require_relative './lib/airport.rb'
-# require_relative './lib/weather'
-# require_relative './lib/plane'
+# require './lib/airport'
+# require './lib/plane'
+# require './lib/weather'
 
 # airport = Airport.new
 # plane = Plane.new
