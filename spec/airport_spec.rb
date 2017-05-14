@@ -11,6 +11,7 @@ describe Airport do
   it { is_expected.to respond_to(:capacity)}
 
   it 'returns landed planes' do
+   subject.sunny = true
  	 subject.land(plane)
  	 expect(subject.planes).to include(plane)
   end
@@ -27,15 +28,18 @@ describe Airport do
   end
 	 
   it 'checks to see if a plane has landed' do
+  	subject.sunny = true
   	expect(subject.land(plane)).to eq [plane]
   end
 
   it 'raises an error if the airport is full' do
+  	subject.sunny = true
   	Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
   	expect {subject.land(plane)}.to raise_error 'Airport full!'
   end
   
   it 'raises an error if the airport is full when default capacity is specified' do
+  	subject.sunny = true
   	subject.capacity.times {subject.land(plane)}
   	expect {subject.land(plane)}.to raise_error 'Airport full!'
   end
@@ -47,6 +51,7 @@ describe Airport do
  	describe 'initialization' do
  		it 'has a variable capacity' do
  			airport = Airport.new(50)
+ 			airport.sunny = true
  			50.times {airport.land(plane)}
  			expect {airport.land(plane)}.to raise_error 'Airport full!'
  		end
@@ -58,6 +63,11 @@ describe Airport do
  		subject.land(plane)
  		subject.sunny = false
  		expect{subject.take_off(plane)}.to raise_error 'Weather stormy! Cannot take off!'
+ 	end
+
+ 	it 'prevents plane from landing if stormy' do
+ 		subject.sunny = false
+ 		expect{subject.land(plane)}.to raise_error 'Weather Stormy cannot land'
  	end
 
 end
