@@ -12,6 +12,7 @@ class Airport
   end
 
   def land_plane(plane)
+    fail @hold_reason if in_airport?(plane)
     fail "Maintain holding pattern #{@hold_reason}" if at_capacity? || stormy?
     plane.land
     @landed_planes << plane
@@ -29,13 +30,6 @@ class Airport
     @capacity = new_capacity
   end
 
-  def all_planes_landed?
-    landed_planes.each do |plane|
-      return false if plane.landing_status != "landed"
-    end
-    return true
-  end
-
   private
   def at_capacity?
     return false unless @landed_planes.count >= @capacity
@@ -51,8 +45,19 @@ class Airport
   end
 
   def in_airport?(plane)
-    return false unless @landed_planes.include?(plane)
-    @hold_reason = "-> Plane not in airport"
+    if @landed_planes.include?(plane)
+      @hold_reason = "Plane already in airport"
+      return true
+    else
+      @hold_reason = "-> Plane not in airport"
+      return false
+    end
+  end
+
+  def all_planes_landed?
+    landed_planes.each do |plane|
+      return false if plane.landing_status != "landed"
+    end
     return true
   end
 
