@@ -4,6 +4,7 @@ require './lib/airplane'
 class Airport
 
   attr_accessor :current_capacity
+  attr_reader :airplanes
 
   def initialize(capacity = 20)
     @current_capacity = capacity
