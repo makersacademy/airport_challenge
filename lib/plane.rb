@@ -1,6 +1,4 @@
 
 class Plane
 
-
-
 end
