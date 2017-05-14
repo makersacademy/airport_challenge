@@ -1,6 +1,6 @@
 class Airport
 
-  attr_reader :airport_name, :capacity, :weather, :planes
+  attr_reader :airport_name, :capacity, :planes, :weather
 
   DEFAULT_CAPACITY = 10
 
@@ -11,10 +11,13 @@ class Airport
     @planes = []
   end
 
+  def weather_change
+    forecast = rand(2)
+    forecast == 0 ? storm_switch : self
+  end
+
   def storm_switch
-    # forecast = rand(4)
-    # forecast == 0 ? @weather
-    @weather == "storm" ? @weather = "calm" : @weather = "storm"
+    @weather == "calm" ? @weather = "storm" : @weather = "calm"
     self
   end
 
