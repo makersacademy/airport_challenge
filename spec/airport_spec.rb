@@ -6,7 +6,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:launches_plane).with(1).argument }
 
-  it { is_expected.to respond_to(:show_weather) }
+  it { is_expected.to respond_to(:generate_weather) }
 
   it { is_expected.to respond_to(:weather) }
 
@@ -33,13 +33,13 @@ describe Airport do
   describe '#show_weather' do
 
     it 'has a 90% chance to give sunny conditions' do
-      airport = double(:airport, show_weather: "The weather is sunny!")
-      expect(airport.show_weather).to eq "The weather is sunny!"
+      airport = double(:airport, generate_weather: 'sunny')
+      expect(airport.generate_weather).to eq 'sunny'
     end
 
     it 'has a 10% chance to give stormy conditions' do
-      airport = double(:airport, show_weather: "There's a storm!")
-      expect(airport.show_weather).to eq "There's a storm!"
+      airport = double(:airport, generate_weather: 'stormy')
+      expect(airport.generate_weather).to eq 'stormy'
     end
   end
 

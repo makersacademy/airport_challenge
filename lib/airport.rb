@@ -1,6 +1,7 @@
 require_relative 'plane'
 
 class Airport
+  attr_accessor :weather
 
   def lands_plane(*)
     return "The plane has landed!"
@@ -10,12 +11,14 @@ class Airport
     return "The plane has taken off!"
   end
 
-  def show_weather
+  def generate_weather
     weather = rand(100)
     if weather > 90
-      return "There's a storm!"
+      #return "There's a storm!"
+      @weather = "stormy"
     else
-      return "The weather is sunny!"
+      #return "The weather is sunny!"
+      @weather = "sunny"
     end
   end
 
