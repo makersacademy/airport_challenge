@@ -11,12 +11,12 @@ class Airport
   end
 
   def land(plane = Plane.new)
+    fail "Cannot land when it's stormy" if bad_conditions?
     @landed_planes << plane
     'Plane has landed'
   end
 
   def plane_takeoff
-    p "VISIBILITY AHASHDFJASD #{@weather.stormy?}"
     fail "Cannot take off when it's stormy" if bad_conditions?
     @landed_planes.pop
     'Plane has taken off'

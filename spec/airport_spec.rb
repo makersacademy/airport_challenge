@@ -18,6 +18,10 @@ describe Airport do
     it 'confirms plane has landed with message "Plane has landed"' do
       expect(airport.land(plane)).to eq 'Plane has landed'
     end
+    it "raises error when the weather is stormy" do
+      allow(airport).to receive(:bad_conditions?).and_return(true)
+      expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
+    end
   end
   describe '#plane_takeoff' do
     it 'responds to #plane_takeoff' do
