@@ -37,6 +37,12 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error("Can't land plane!")
   end
 
+  it "has a default capacity that can be overriden" do
+    airport = Airport.new(fake_station, 3)
+    3.times { airport.land(Plane.new) }
+    expect { airport.land(plane) }.to raise_error("Can't land plane!")
+  end
+
   it "takes off a landed plane" do
     airport.land(plane)
     airport.takeoff(plane)
