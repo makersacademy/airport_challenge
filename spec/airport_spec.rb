@@ -11,4 +11,8 @@ describe Airport do
   it 'instructs a plane to #take_off' do
     expect(subject).to respond_to(:take_off).with(1).argument
   end
+  it 'confirms that the plane has left the airport' do
+    plane = subject.land_plane
+    expect(plane.airbourne?).to eq true
+  end
 end
