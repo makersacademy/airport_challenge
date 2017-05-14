@@ -95,7 +95,7 @@ describe Airport do
   end
   it "allow_airplane_to_take_off raises an error if permission_to_take_off? is false" do
     subject.stub(:permission_to_take_off?) { false }
-    expect { subject.allow_airplane_to_land }.to raise_error 'Permission to land denied'
+    expect { subject.allow_airplane_to_take_off }.to raise_error 'Permission to take off denied'
   end
   # it "allow_airplane_to_take_off raises an error if permission_to_land? is false" do
   #   subject.stub(:permission_to_land?) { false }

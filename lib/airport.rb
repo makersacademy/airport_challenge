@@ -28,6 +28,7 @@ class Airport
   end
 
   def allow_airplane_to_take_off
+    fail "Permission to take off denied" if permission_to_take_off? == false
     contact_departing_airplane
   end
 
