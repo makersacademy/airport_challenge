@@ -7,4 +7,11 @@ describe Plane do
       expect(subject).to respond_to :landed?
     end
   end
+
+  describe "#take_off" do
+    it "will return true when the plane has taken off" do
+      expect(subject).to respond_to :take_off?
+    end
+  end
+  
 end
