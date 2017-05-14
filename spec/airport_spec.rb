@@ -63,12 +63,14 @@ describe Airport do
     it 'has a default value of sunny' do
       expect(subject.weather).to eq 'sunny'
     end
+
   end
 
   describe '#full?' do
     it 'responds with false when there are no planes in the airport' do
       expect(subject.full?).to eq false
     end
+    
   end
 
 end
