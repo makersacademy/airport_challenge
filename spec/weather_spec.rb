@@ -17,4 +17,7 @@ describe Weather do
   it 'should respond to #random_weather' do
     expect(subject).to respond_to(:random_weather)
   end
+  it 'should either return :stormy or :good when #random_weather is called on it' do
+    expect([:good, :stormy].include?(subject.random_weather)).to eq true
+  end
 end
