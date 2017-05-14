@@ -1,22 +1,22 @@
 require 'airport'
 
 describe Airport do
-  it "Shows that Airport instances respond to the safe_to_land? method" do
-    expect(subject).to respond_to :safe_to_land?
+  it "Shows that Airport instances respond to the permission_to_land? method" do
+    expect(subject).to respond_to :permission_to_land?
   end
-  it "Shows that safe_to_land will return true if the weather is sunny and airport is not at capacity or false if it is stormy or airport is at capacity" do
+  it "Shows that permission_to_land will return true if the weather is sunny and airport is not at capacity or false if it is stormy or airport is at capacity" do
     subject.stub(:check_current_weather) { "sunny" }
     subject.stub(:at_capacity?) { false }
-    expect(subject.safe_to_land?).to eq true
+    expect(subject.permission_to_land?).to eq true
     subject.stub(:check_current_weather) { "sunny" }
     subject.stub(:at_capacity?) { true }
-    expect(subject.safe_to_land?).to eq false
+    expect(subject.permission_to_land?).to eq false
     subject.stub(:check_current_weather) { "stormy" }
     subject.stub(:at_capacity?) { false }
-    expect(subject.safe_to_land?).to eq false
+    expect(subject.permission_to_land?).to eq false
     subject.stub(:check_current_weather) { "stormy" }
     subject.stub(:at_capacity?) { true }
-    expect(subject.safe_to_land?).to eq false
+    expect(subject.permission_to_land?).to eq false
   end
   it "responds to the show capacity method" do
     expect(subject).to respond_to :show_capacity
@@ -42,14 +42,17 @@ describe Airport do
   it "Shows that instances of Airport respond to the show_number_of_grounded_planes method" do
     expect(subject).to respond_to :show_number_of_grounded_planes
   end
-  it "shows that instances of Aiport will respond to grant_permission_to_land method" do
-    expect(subject).to respond_to :grant_permission_to_land
+  it "shows that instances of Aiport will respond to land_airplane method" do
+    expect(subject).to respond_to :land_airplane
   end
   it "Shows that by default show_number_of_grounded_planes will return 0" do
     expect(subject.show_number_of_grounded_planes).to eq 0
   end
-  it "Shows that using the grant_permission_to_land method will increases the show_number_of_grounded_planes return value by 1" do
-    subject.grant_permission_to_land
+  it "Shows that using the land_airplane method will increases the show_number_of_grounded_planes return value by 1" do
+    subject.land_airplane
     expect(subject.show_number_of_grounded_planes).to eq 1
+  end
+  it "Shows that instances of airport respond to show_status_of_airplanes method" do
+    expect(subject).to respond_to :show_status_of_airplanes
   end
 end

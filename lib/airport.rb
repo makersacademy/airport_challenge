@@ -16,8 +16,12 @@ class Airport
     @current_capacity
   end
 
-  def grant_permission_to_land
-    @grounded_airplanes << "plane"
+  def land_airplane
+    contact_approaching_plane
+    if permission_to_land? == true
+      @approaching_airplane.land
+      @grounded_airplanes << @approaching_airplane
+    end
   end
 
   def at_capacity?
@@ -28,7 +32,7 @@ class Airport
     @grounded_airplanes.length
   end
 
-  def safe_to_land?
+  def permission_to_land?
     if check_current_weather == "sunny" && at_capacity? == false
       true
     else
