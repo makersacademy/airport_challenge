@@ -22,7 +22,7 @@ class Airport
   end
 
   def takeoff(plane)
-    if plane.flying? || plane.taken_off? || @station.todays_weather != :sunny
+    if plane.flying? || plane.taken_off? || @station.todays_weather == :stormy
       raise "Can't take off plane!"
     else
       plane.flight_status = :taken_off

@@ -2,14 +2,13 @@ require 'airport'
 require 'weather'
 
 describe Airport do
-  let(:fake_number) do
-    doubled = double(:number)
-    allow(doubled).to receive(:rand).and_return(2)
+  let(:fake_station) do
+    doubled = double(:station)
+    allow(doubled).to receive(:todays_weather).and_return(:sunny)
     doubled
   end
 
-  let(:station) { WeatherStation.new(fake_number) }
-  subject(:airport) { Airport.new(station) }
+  subject(:airport) { Airport.new(fake_station) }
   let(:plane) { Plane.new }
 
   it "lands a flying plane" do
@@ -44,7 +43,7 @@ describe Airport do
   end
 
   it "doesn't take off a plane if the weather is stormy" do
-    allow(fake_number).to receive(:rand).and_return(4)
+    allow(fake_station).to receive(:todays_weather).and_return(:stormy)
 
     airport.land(plane)
     expect { airport.takeoff(plane) }.to raise_error("Can't take off plane!")
