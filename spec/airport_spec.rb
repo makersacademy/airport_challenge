@@ -18,7 +18,9 @@ describe Airport do
     end
 
     it 'will show an error when trying to land a plane in stormy weather' do
-
+      airport = Airport.new
+      airport.instance_variable_set(:@weather, "stormy")
+      expect(airport.lands_plane).to raise_error 'Plane could not land due to stormy weather.'
     end
 
   end
