@@ -69,4 +69,7 @@ describe Airport do
       expect(subject.capacity.class).to eq Integer
     end
   end
+  it 'should respond to #full?' do
+    expect(subject).to respond_to(:full?)
+  end
 end

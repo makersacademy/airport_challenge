@@ -23,4 +23,7 @@ class Airport
     self
   end
 
+  def full?
+  end
+
 end
