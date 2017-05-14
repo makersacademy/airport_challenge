@@ -18,6 +18,7 @@ describe Airport do
     allow(plane).to receive(:update_location_after_landing_to)
     allow(plane).to receive(:report_landed)
     airport = subject
+    allow(airport.weather).to receive(:safe?){true}
     airport.instruct_to_land(plane)
     expect(airport.landed_planes[-1]).to eq plane
   end
