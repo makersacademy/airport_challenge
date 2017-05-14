@@ -16,6 +16,10 @@ describe Airport do
  	 subject.land(plane)
  	 expect(subject.planes).to include(plane)
   end
+
+  it 'checks to see if there are no planes initially at the airport' do
+  	expect(subject.planes).to eq []
+  end
   
 	it 'instructs a landed plane to take off and confirm it is gone' do
 		subject.sunny = true
