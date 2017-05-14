@@ -4,27 +4,27 @@ describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { double('plane') }
   let(:weather) { double('weather') }
-  describe '#land' do
-    it 'responds to #land' do
-      is_expected.to respond_to(:land)
+  describe '#instruct_land' do
+    it 'responds to #instruct_land' do
+      is_expected.to respond_to(:instruct_land)
     end
-    it 'responds to #land with the arguement "plane"' do
-      is_expected.to respond_to(:land).with(1).argument
+    it 'responds to #instruct_land with the arguement "plane"' do
+      is_expected.to respond_to(:instruct_land).with(1).argument
     end
     it 'lands an airplane and stores it in airport' do
-      airport.land(plane)
+      airport.instruct_land(plane)
       expect(airport.landed_planes).to eq [plane]
     end
     it 'confirms plane has landed with message "Plane has landed"' do
-      expect(airport.land(plane)).to eq 'Plane has landed'
+      expect(airport.instruct_land(plane)).to eq 'Plane has landed'
     end
     it "raises error when the weather is stormy" do
       allow(airport).to receive(:bad_conditions?).and_return(true)
-      expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
+      expect { airport.instruct_land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
     end
     it 'raises error when the airport is full' do
-      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
+      Airport::DEFAULT_CAPACITY.times { airport.instruct_land(plane) }
+      expect { airport.instruct_land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
     end
   end
   describe '#instruct_plane_takeoff' do
@@ -32,12 +32,12 @@ describe Airport do
       is_expected.to respond_to(:instruct_plane_takeoff)
     end
     it 'when #instruct_plane_takeoff happens, plane leaves airport' do
-      airport.land(plane)
+      airport.instruct_land(plane)
       airport.instruct_plane_takeoff(plane)
       expect(airport.landed_planes).to be_empty
     end
     it 'confirms plane has taken off with message "Plane has taken off"' do
-      airport.land(plane)
+      airport.instruct_land(plane)
       expect(airport.instruct_plane_takeoff(plane)).to eq 'Plane has taken off'
     end
     it "raises error when the weather is stormy" do

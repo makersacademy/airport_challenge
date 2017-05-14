@@ -14,7 +14,7 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane = Plane.new)
+  def instruct_land(plane = Plane.new)
     fail "Cannot land when it's stormy" if bad_conditions?
     fail "Cannot land when airport is full" if airport_full?
     @landed_planes << plane

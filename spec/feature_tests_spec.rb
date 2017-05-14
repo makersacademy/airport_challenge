@@ -7,7 +7,7 @@ plane = Plane.new
 describe 'Feature Tests' do
   describe 'Landing' do
     it'ATC instructs a plane to land and gets a confirmation' do
-      expect(airport.land(plane)).to eq "Plane has landed"
+      expect(airport.instruct_land(plane)).to eq "Plane has landed"
     end
   end
   describe 'Taking Off' do
@@ -24,11 +24,11 @@ describe 'Feature Tests' do
   describe 'Prevent Landing' do
     it'ATC prevents landing when weather is stormy' do
       allow(airport).to receive(:bad_conditions?).and_return(true)
-      expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
+      expect { airport.instruct_land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
     end
     it'ATC prevents landing when the airport is full' do
-      Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
-      expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
+      Airport::DEFAULT_CAPACITY.times { airport.instruct_land(plane) }
+      expect { airport.instruct_land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
     end
   end
   describe 'Change Capacity' do
