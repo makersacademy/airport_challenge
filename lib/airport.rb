@@ -14,21 +14,23 @@ class Airport
   end
 
   def land(plane)
-    if plane.landed? || plane.taken_off? || stormy? || at_capacity?
-      raise "Can't land plane!"
-    else
-      plane.flight_status = :landed
-      @landed_planes << plane
-    end
+    raise "Can't land plane!" if should_not_land?(plane)
+    plane.flight_status = :landed
+    @landed_planes << plane
   end
 
   def takeoff(plane)
-    if plane.flying? || plane.taken_off? || stormy?
-      raise "Can't take off plane!"
-    else
-      plane.flight_status = :taken_off
-      @landed_planes.delete(plane)
-    end
+    raise "Can't take off plane!" if should_not_take_off?(plane)
+    plane.flight_status = :taken_off
+    @landed_planes.delete(plane)
+  end
+
+  def should_not_land?(plane)
+    plane.landed? || plane.taken_off? || stormy? || at_capacity?
+  end
+
+  def should_not_take_off?(plane)
+    plane.flying? || plane.taken_off? || stormy?
   end
 
   def stormy?
