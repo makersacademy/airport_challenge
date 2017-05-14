@@ -5,6 +5,7 @@ describe 'User Stories' do
   it "Allows ATC to instruct plane to land at airport" do
     airport = Airport.new(2)
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
     expect { airport.land(plane) }.not_to raise_error
   end
 
@@ -20,31 +21,36 @@ describe 'User Stories' do
 
   #As an air traffic controller
   #To ensure safety
-  #I want to prevent takeoff when weather is stormy
-
-  it "So planes dont crash, airports have landing capacity" do
+  #I want to prevent takeoff and landing when weather is stormy
+  context "When airport is stormy"
+  it "Does not allow planes to land" do
     airport = Airport.new(2)
     plane = Plane.new
-    2.times do
-      airport.land(plane)
-    end
-    expect { airport.land(plane) }.to raise_error "Cannot land - Airport full!"
+    allow(airport).to receive(:stormy?).and_return true
+    expect { airport.land(plane) }.to raise_error "Cannot land - Stormy"
   end
-
-
 end
 
 
 
-#
-#As an air traffic controller
-#To ensure safety
-#I want to prevent landing when weather is stormy
 
-#As an air traffic controller
-#To ensure safety
-#I want to prevent landing when the airport is full
 
-#As the system designer
-#So that the software can be used for many different airports
-#I would like a default airport capacity that can be overridden as appropriate
+  #As an air traffic controller
+  #To ensure safety
+  #I want to prevent landing when the airport is full
+
+  context "When airport is full" do
+    it "Does not allow planes to land" do
+      airport = Airport.new(2)
+      plane = Plane.new
+      allow(airport).to receive(:stormy?).and_return false
+      2.times do
+        airport.land(plane)
+      end
+      expect { airport.land(plane) }.to raise_error "Cannot land - Airport full!"
+    end
+end
+
+  #As the system designer
+  #So that the software can be used for many different airports
+  #I would like a default airport capacity that can be overridden as appropriate
