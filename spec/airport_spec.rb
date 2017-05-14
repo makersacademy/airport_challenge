@@ -7,6 +7,17 @@ describe Airport do
   it "Shows that instances of Airport repond to the at_capacity? method" do
     expect(subject).to respond_to :at_capacity?
   end
+  it "Shows that at_capacity? will return true if the number of grounded planes is the same as current_capacity" do
+    subject.instance_variable_set( "@current_capacity", 20 )
+    subject.stub(:check_number_of_grounded_planes) { 20 }
+    expect(subject.at_capacity?).to eq true
+    subject.stub(:check_number_of_grounded_planes) { 99 }
+    expect(subject.at_capacity?).to eq true
+    subject.stub(:check_number_of_grounded_planes) { 19 }
+    expect(subject.at_capacity?).to eq false
+    subject.stub(:check_number_of_grounded_planes) { 0 }
+    expect(subject.at_capacity?).to eq false
+  end
   it "Shows that permission_to_land will return true if the weather is sunny and airport is not at capacity or false if it is stormy or airport is at capacity" do
     subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "sunny"))
     subject.stub(:at_capacity?) { false }
