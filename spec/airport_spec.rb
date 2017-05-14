@@ -2,7 +2,9 @@ require 'airport'
 describe Airport do
 
   #Create Double of airplane
-  let(:plane) {double :plane, landed?: false}
+  let(:plane) 	{double :plane, :landed => false, landed?: false}
+  let(:weather)	{double :weather, :sunny => true, sunny?: true}
+
   it { is_expected.to respond_to(:land).with(1).argument  }
   it { is_expected.to respond_to(:take_off).with(1).argument}
   it { is_expected.to respond_to(:planes)}
@@ -14,6 +16,7 @@ describe Airport do
   end
   
 	it 'instructs a landed plane to take off and confirm it is gone' do
+		subject.sunny = true
 		subject.land(plane)
 		subject.take_off(plane)
 		expect(subject.planes).to_not include(plane)
@@ -49,12 +52,12 @@ describe Airport do
  		end
  	end
 
- 	# it 'prevents plane from taking off if not sunny' do
- 	# 	subject.sunny = true
- 	# 	allow(plane).to receive(:landed).and_return(false)
- 	# 	subject.land(plane)
- 	# 	subject.sunny = false
- 	# 	expect{subject.take_off(plane)}.to raise_error 'Weather stormy! Cannot take off!'
- 	# end
+ 	it 'prevents plane from taking off if not sunny' do
+ 		subject.sunny = true
+ 		allow(plane).to receive(:landed).and_return(false)
+ 		subject.land(plane)
+ 		subject.sunny = false
+ 		expect{subject.take_off(plane)}.to raise_error 'Weather stormy! Cannot take off!'
+ 	end
 
 end

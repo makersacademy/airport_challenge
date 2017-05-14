@@ -1,7 +1,9 @@
 class Weather
 
+  attr_reader :sunny
+
 	def sunny?
-	 true
+	 sunny
 	end
 
 end
