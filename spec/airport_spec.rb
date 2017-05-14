@@ -48,4 +48,8 @@ describe Airport do
   it "Shows that by default show_number_of_grounded_planes will return 0" do
     expect(subject.show_number_of_grounded_planes).to eq 0
   end
+  it "Shows that using the land_plane method will increases the show_number_of_grounded_planes return value by 1" do
+    subject.land_plane
+    expect(subject.show_number_of_grounded_planes).to eq 1
+  end
 end
