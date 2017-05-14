@@ -32,11 +32,14 @@ describe Airport do
     expect(subject.show_capacity).to eq 10
     subject.change_capacity(1)
     expect(subject.show_capacity).to eq 1
-    subject.change_capacity(9999999)
-    expect(subject.show_capacity).to eq 9999999
+    subject.change_capacity(9_999_999)
+    expect(subject.show_capacity).to eq 9_999_999
     subject.change_capacity(164)
     expect(subject.show_capacity).to eq 164
     subject.change_capacity(0)
     expect(subject.show_capacity).to eq 0
+  end
+  it "Shows that instances of Airport respond to the show_grounded_planes method" do
+    expect(subject).to respond_to :show_grounded_planes
   end
 end

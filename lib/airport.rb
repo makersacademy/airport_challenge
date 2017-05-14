@@ -31,5 +31,4 @@ class Airport
   def at_capacity?
   end
 
-
 end
