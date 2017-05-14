@@ -37,6 +37,12 @@ describe Airport do
       expect(subject.land_plane(plane)).to eq [plane]
     end
 
+    it "Will raise an error when weather is 'stormy'" do
+      plane = double(:plane)
+      subject.weather = 'stormy'
+      expect {subject.land_plane(plane)}.to raise_error("Weather stormy: Unsafe for landing")
+    end
+
   end
 
   describe '#confirm_landing' do
@@ -62,6 +68,12 @@ describe Airport do
       subject.land_plane(plane)
       subject.land_plane(plane2)
       expect(subject.take_off(plane)).to eq [plane2]
+    end
+
+    it "Will raise an error when weather is 'stormy'" do
+      plane = double(:plane)
+      subject.weather = 'stormy'
+      expect {subject.take_off(plane)}.to raise_error("Weather stormy: Unsafe for take off")
     end
 
   end
