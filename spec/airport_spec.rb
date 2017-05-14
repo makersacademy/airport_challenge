@@ -22,6 +22,10 @@ describe Airport do
       allow(airport).to receive(:bad_conditions?).and_return(true)
       expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
     end
+    it 'raises error when the airport is full' do
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
+    end
   end
   describe '#plane_takeoff' do
     it 'responds to #plane_takeoff' do

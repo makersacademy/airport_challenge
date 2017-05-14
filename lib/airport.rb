@@ -12,6 +12,7 @@ class Airport
 
   def land(plane = Plane.new)
     fail "Cannot land when it's stormy" if bad_conditions?
+    fail "Cannot land when airport is full" if airport_full?
     @landed_planes << plane
     'Plane has landed'
   end
@@ -25,5 +26,10 @@ class Airport
   def bad_conditions?
     @weather.stormy?
   end
-  
+
+  private
+  def airport_full?
+    @landed_planes.length >= 1
+  end
+
 end
