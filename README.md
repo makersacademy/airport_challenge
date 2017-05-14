@@ -51,7 +51,7 @@ Installation Steps
 3. When the installation completes, run `bundle`
 
 
-Planes
+Planes :airplane:
 -----
 
 ```ruby
@@ -76,7 +76,7 @@ LHR = Airport.new("LHR", 212)
 Creating an airport is this easy.. no endless discussions about noise, location or runway extensions. In this example we are creating a new Airport instance. Taking London Heathrow as an example we've used Heathrow's ICAO code (LHR) and a capacity of 212. The [ICAO](https://en.wikipedia.org/wiki/International_Civil_Aviation_Organization_airport_code) code is a required argument and should be passed as a string. The capacity is optional, but in this case i've used [Heathrow's capacity](http://www.heathrow.com/company/company-news-and-information/company-information/facts-and-figures) of 212 to instantiate the object.
 
 
-## Get planes on ground
+## Get planes on ground :parking:
 
 ```ruby
 LHR.planes_on_ground
@@ -92,8 +92,8 @@ LHR.land_plane(G-ZBKP)
 Instructing a plane to land requires one argument (plane)
 
 This instruction will fail if:
-- The weather is stormy
-- The airport is full
+- The weather is stormy :zap: :cloud:
+- The airport is full :no_entry_sign:
 
 
 ## Takeoff a Plane
