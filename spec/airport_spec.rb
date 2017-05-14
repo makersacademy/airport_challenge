@@ -24,4 +24,7 @@ describe Airport do
   it "shows that by default the show capacity method will return 20" do
     expect(subject.show_capacity).to eq 20
   end
+  it "Responds to a change capacity method" do
+    expect(subject).to respond_to :change_capacity
+  end
 end

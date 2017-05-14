@@ -1,9 +1,13 @@
-require 'weather'
+require './lib/weather'
 
 class Airport
 
-  def initialize
-    @current_capacity = 20
+  def initialize(capacity = 20)
+    @current_capacity = capacity
+  end
+
+  def change_capacity(capacity)
+    @current_capacity = capacity
   end
 
   def show_capacity
@@ -26,5 +30,6 @@ class Airport
 
   def at_capacity?
   end
+
 
 end
