@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
   subject(:plane) { described_class.new }
-  let(:airport) {double :airport}
+  let(:airport) { double :airport }
 
   it 'should confirm that it is no longer in the airport' do
     allow(airport).to receive(:try_allow_take_off).with(plane)
