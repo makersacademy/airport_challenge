@@ -62,7 +62,3 @@ how app is used from users perspective in irb:
  => #<Plane:0x007f8cf102d188>
 2.4.0 :008 > airport.land_in_airport(plane3)
 RuntimeError: Airport is full
-	from /Users/jadealvares/Documents/MakersProjects/MyWeek1/airport_challenge/lib/airport.rb:19:in `land_in_airport'
-	from (irb):8
-	from /Users/jadealvares/.rvm/rubies/ruby-2.4.0/bin/irb:11:in `<main>'
-2.4.0 :009 >
