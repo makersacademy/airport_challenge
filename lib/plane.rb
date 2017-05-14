@@ -4,7 +4,7 @@ class Plane
     @location = "up in the air"
   end
 
-  def update_location_after_landing(airport_id)
+  def update_location_after_landing_to(airport_id)
     @location = airport_id
   end
 
@@ -12,7 +12,7 @@ class Plane
     "'This is plane #{self.object_id} speaking. We report that we landed at airport #{@location}'"
   end
 
-  def update_location_after_take_off
+  def update_location_after_take_off_from(airport)
     @location = "up in the air"
   end
 
