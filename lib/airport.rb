@@ -12,6 +12,8 @@ class Airport
   def lands_plane(plane)
     if @weather == "stormy"
       return "Plane could not land due to stormy weather."
+    elsif @planes.count >= @capacity
+      return "Plane could not land because the airport is full."
     else
       @planes << plane
       "The plane has landed!"
@@ -35,7 +37,7 @@ class Airport
   end
 
   def full?
-    if @planes.count == 20
+    if @planes.count == @capacity 
       return true
     else
       return false

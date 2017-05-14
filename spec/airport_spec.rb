@@ -84,4 +84,11 @@ describe Airport do
     end
   end
 
+  describe '#empty?' do
+    it 'will not allow a plane to launch if there are no planes in the airport' do
+      plane = Plane.new
+      expect(subject.launches_plane(plane)).to eq "There are no planes at the airport!"
+    end
+  end
+
 end
