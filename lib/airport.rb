@@ -19,6 +19,15 @@ class Airport
   end
   end
 
+  def take_off(plane)
+    p ok_to_take_off = plane.weather
+    if ok_to_take_off == "Welcome, you're clear to land"
+      @planes.delete(plane)
+      p @planes
+    end
+  end
+
+
   def full?
     @planes.count >= @capacity
   end

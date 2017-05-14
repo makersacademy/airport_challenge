@@ -21,7 +21,7 @@ describe Airport do
 
   plane = Plane.new
   it "Allows plane to take off" do
-    except(subject.take_off(plane)).to eq plane
+    expect(subject.take_off(plane)).to eq plane
   end
 
 
