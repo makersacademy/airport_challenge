@@ -20,6 +20,7 @@ describe Plane do
 
   it 'should raise an exception if trying to land when already in an airport' do
     allow(airport).to receive(:try_allow_land).with(plane)
+    plane.land(airport)
     expect { plane.land(airport) }.to raise_error "Plane is already in an airport"
   end
 

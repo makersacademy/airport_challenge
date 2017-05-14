@@ -14,6 +14,7 @@ class Plane
   end
 
   def land(airport)
+    raise "Plane is already in an airport" if in_airport?
     airport.try_allow_land(self)
     @in_airport = true
   end
