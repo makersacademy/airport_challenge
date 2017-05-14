@@ -20,19 +20,18 @@ class Airport
   end
 
   def allow_airplane_to_land
-    contact_approaching_plane
+    contact_approaching_airplane
     fail "Permission to land denied" if permission_to_land? == false
     @approaching_airplane.land
-    @airplanes << { airplane: @approaching_airplane,
-      current_status: @approaching_airplane.check_current_status }
+    @airplanes << @approaching_airplane
   end
 
   def at_capacity?
     false
   end
 
-  def show_number_of_grounded_planes
-    @airplanes.count { |airplane| airplane[:current_status] == "grounded" }
+  def check_number_of_grounded_planes
+    @airplanes.count { |airplane| airplane.check_current_status == "grounded" }
   end
 
   def permission_to_land?
@@ -49,8 +48,18 @@ class Airport
     Weather.new.show_current_weather_condition
   end
 
-  def contact_approaching_plane
+  def contact_approaching_airplane
     @approaching_airplane = Airplane.new
+  end
+
+  def contact_departing_airplane
+    @departing_airplane = pop_first_grounded_airplane
+  end
+
+  def pop_first_grounded_airplane
+    first_grounded_airplane = @airplanes.find { |airplane| airplane.check_current_status == "grounded"}
+    @airplanes.delete_if { |airplane| airplane == @airplanes.find { |airplane| airplane.check_current_status == "grounded"} }
+    first_grounded_airplane
   end
 
 end
