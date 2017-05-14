@@ -11,4 +11,5 @@ require 'airport.rb'
       expect(subject.capacity).to eq 12
     end
 
+
 end
