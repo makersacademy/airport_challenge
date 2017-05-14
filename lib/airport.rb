@@ -1,3 +1,6 @@
+class FlightLandingError < StandardError; end
+class FlightTakeoffError < StandardError; end
+
 class Airport
 
   attr_reader :weather, :hangar
@@ -27,36 +30,34 @@ class Airport
     weather.is_stormy
   end
 
-
   private
 
   def complete_landing_procedure(plane)
     plane.landed
     hangar << plane
-    return_flight_status(plane, "landing")
+    return_flight_status(plane, "land")
   end
 
   def complete_takeoff_procedure(plane)
     plane.takeoff
     hangar.delete(plane)
-    return_flight_status(plane, "taking off")
+    return_flight_status(plane, "take off")
   end
 
   def landing_denied(plane)
-    fail("Weather is too stormy for landing") if stormy?
-    fail("That is not a plane, sorry!") unless is_plane(plane)
-    fail("Plane is already landed") unless plane.airborne?
-    fail("Airport is full!") if airport_full?
+    raise(FlightLandingError, "No landing when stormy") if stormy?
+    raise(FlightLandingError, "Plane has already been landed") unless plane.airborne?
+    raise(FlightLandingError, "Airport is full") if airport_full?
   end
 
   def takeoff_denied(plane)
-    fail("Weather is too stormy for takeoff") if stormy?
-    fail("Plane is already airborne") if plane.airborne?
-    fail("Plane is not in hangar") unless plane_in_hangar(plane)
+    raise(FlightTakeoffError, "No takeoff when stormy") if stormy?
+    raise(FlightTakeoffError, "Plane is already airborne") if plane.airborne?
+    raise(FlightTakeoffError, "Plane is not in hangar") unless plane_in_hangar(plane)
   end
 
-  def return_flight_status(plane,action)
-    action == "taking off" ? "#{print_flight_no(plane)} has taken off" : "#{print_flight_no(plane)} has completed landing"
+  def return_flight_status(plane, action)
+    action == "land" ? "Landed: #{print_flight_no(plane)}" : "Taken off: #{print_flight_no(plane)}"
   end
 
   def plane_in_hangar(plane)
@@ -71,16 +72,12 @@ class Airport
     hangar.empty?
   end
 
-  def is_plane(object)
-    object.instance_of? Plane
-  end
-
   def print_flight_no(plane)
-    "Makers ##{plane.flight_number.to_s}"
+    "Makers ##{plane.flight_number}"
   end
 
   def print_all_flight_nos
-    @hangar.map {|plane| print_flight_no(plane) }
+    @hangar.map { |plane| print_flight_no(plane) }
   end
 
 end
