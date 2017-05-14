@@ -55,4 +55,16 @@ describe Airport do
         expect { subject.take_off(plane2) }.to raise_error "This plane is not at the airport!"
       end
     end
+
+    describe 'Capacity' do
+      it 'lets the user set capacity' do
+        airport = Airport.new(20)
+        20.times do
+          allow(airport).to receive (:stormy?) {false}
+          airport.land_plane(double(:plane))
+        end
+        allow(airport).to receive (:stormy?) {false}
+        expect {airport.land_plane(double(:plane))}.to raise_error "Airport full!"
+      end
+    end
 end
