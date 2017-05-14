@@ -10,6 +10,7 @@ class Airport
     @capacity = capacity
     @planes_on_ground = []
     @iata_code = iata_code
+    @weather = Weather.new
   end
 
   def land_plane(plane)
@@ -26,23 +27,7 @@ class Airport
   end
 
   def stormy?
-    rand(1..7) == 7 
-    # Type of Weather
-    # case
-    # when 1
-    #   @weather = "sunny"
-    # when 2
-    #   @weather = "partly cloudy"
-    # when 3
-    #   @weather = "cloudy"
-    # when 4
-    #   @weather = "rainy"
-    # when 5
-    #   @weather = "foggy"
-    # when 6
-    #   @weather = "windy"
-    # when 7
-    #   @weather = "stormy"
+    @weather.stormy?
   end
 
   def full?
