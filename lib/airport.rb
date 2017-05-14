@@ -35,9 +35,6 @@ class Airport
     @planes.count >= capacity
   end
 
-  def empty?
-    @planes.empty?
-  end
 
   def check_plane(plane)
     planes.each_with_index do |check, index|
