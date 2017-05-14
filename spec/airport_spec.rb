@@ -34,10 +34,10 @@ describe Airport do
     end
     it "raises error when the weather is stormy" do
       allow(airport).to receive(:bad_conditions?).and_return(true)
-      expect { airport.plane_takeoff }.to raise_error(RuntimeError, 'Cannot take off when its stormy')
+      expect { airport.plane_takeoff }.to raise_error(RuntimeError, "Cannot take off when it's stormy")
     end
   end
-  describe '#check_condition' do
+  describe '#bad_conditions' do
     it 'responds to airport.bad_conditions?' do
       expect(airport).to respond_to(:bad_conditions?)
     end

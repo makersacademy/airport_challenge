@@ -17,7 +17,7 @@ class Airport
 
   def plane_takeoff
     p "VISIBILITY AHASHDFJASD #{@weather.stormy?}"
-    fail 'Cannot take off when its stormy' if bad_conditions?
+    fail "Cannot take off when it's stormy" if bad_conditions?
     @landed_planes.pop
     'Plane has taken off'
   end
