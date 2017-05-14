@@ -2,8 +2,9 @@
 # require './lib/plane'
 # require './lib/weather'
 
-# airport = Airport.new
-# plane = Plane.new
-# airport.sunny = true
-# airport.land(plane)
-# p airport.planes
+# weather = Weather.new()
+# p airport = Airport.new(20, weather)
+# p plane = Plane.new
+# # p airport.sunny = true
+# p airport.land(plane)
+# p airport.take_off(plane)
