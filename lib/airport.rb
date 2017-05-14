@@ -12,6 +12,8 @@ class Airport
   end
 
   def storm_switch
+    # forecast = rand(4)
+    # forecast == 0 ? @weather
     @weather == "storm" ? @weather = "calm" : @weather = "storm"
     self
   end

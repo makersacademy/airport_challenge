@@ -38,4 +38,28 @@ describe Plane do
     expect { subject.depart_from(airport) }.to raise_error "This plane isn't at this airport"
   end
 
+  it 'initializes as flying' do
+    expect(Plane.new.flying).to eq "flying"
+  end
+
+  it 'can switch between flying and landed' do
+    expect(Plane.new.flying_switch.flying).to eq "landed"
+  end
+
+  it 'sets itself to "landed" upon landing' do
+    expect(Plane.new.land_at(Airport.new).flying).to eq "landed"
+  end
+
+  it 'sets itself to "flying" upon taking off' do
+    airport = Airport.new
+    plane = Plane.new.land_at(airport)
+    expect(plane.depart_from(airport).flying).to eq "flying"
+  end
+
+  it 'cannot land if it has already landed' do
+    airport = Airport.new
+    plane = Plane.new.land_at(airport)
+    expect { plane.land_at(airport) }.to raise_error "This plane is already landed"
+  end
+
 end
