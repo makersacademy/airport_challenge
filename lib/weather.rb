@@ -1,7 +1,7 @@
 class Weather
 
   def is_stormy
-    rand(6) == 1
+    rand(10) == 1
   end
-  
+
 end
