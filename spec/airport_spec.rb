@@ -34,6 +34,19 @@ describe Airport do
     expect(airport.instance_variable_get(:@planes)).to eq [plane]
   end
 
+  it 'should prevent a plane from taking off if the weather is stormy' do
+    allow(airport.instance_variable_get(:@weather)).to receive(:stormy?).and_return true
+    airport.instance_variable_set(:@planes, [plane])
+    expect{airport.take_off(plane)}.to raise_error "Unable to take off - weather is stormy"
+  end
+
+  it 'should allow a plane to take off if the weather is clear' do
+    allow(airport.instance_variable_get(:@weather)).to receive(:stormy?).and_return false
+    airport.instance_variable_set(:@planes, [plane])
+    airport.take_off(plane)
+    expect(airport.instance_variable_get(:@planes)).not_to include(plane)
+  end
+
   it 'should raise an exception when plane tries to take off from an airport it is not at' do
     airport.instance_variable_set(:@planes, [])
     expect{ airport.take_off(plane) }.to raise_error "Plane is not at that airport"
