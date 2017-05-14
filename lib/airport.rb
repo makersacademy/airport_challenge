@@ -25,6 +25,10 @@ class Airport
     weather.is_stormy
   end
 
+  def check_hangar
+    airport_empty? ? "Hangar is empty" : @hangar
+  end
+
   private
 
   def complete_landing_procedure(plane)
@@ -62,6 +66,10 @@ class Airport
 
   def airport_full?
     hangar.count >= @capacity
+  end
+
+  def airport_empty?
+    hangar.empty?
   end
 
   def is_plane(object)
