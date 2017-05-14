@@ -7,18 +7,13 @@ class Airport
 
   DEFAULT_CAPACITY = 9
 
-  def initialize(capacity = DEFAULT_CAPACITY, random_weather = true)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @random_weather = random_weather
     @capacity = capacity
   end
 
   def weather_is_stormy?
-    if @random_weather
-      return rand(1..7) > 5
-    else
-      return false
-    end
+    return rand(1..7) > 5
   end
 
   def land(plane)

@@ -140,4 +140,5 @@ it "can not land in another airport when already landed" do
   expect{airport2.land(plane)}.to raise_error "plane already landed in another airport"
 end
 
+
 end
