@@ -29,10 +29,12 @@ describe Airport do
 
   it "does not land a plane if the weather is stormy" do
     allow(fake_station).to receive(:todays_weather).and_return(:stormy)
-
     expect { airport.land(plane) }.to raise_error("Can't land plane!")
-    expect(plane.landed?).to eq false
-    expect(airport.present?(plane)).to eq false
+  end
+
+  it "does not land a plane when the airport is full" do
+    Airport::MAX_CAPACITY.times { airport.land(Plane.new) }
+    expect { airport.land(plane) }.to raise_error("Can't land plane!")
   end
 
   it "takes off a landed plane" do
@@ -55,8 +57,6 @@ describe Airport do
     airport.land(plane)
     allow(fake_station).to receive(:todays_weather).and_return(:stormy)
     expect { airport.takeoff(plane) }.to raise_error("Can't take off plane!")
-    expect(plane.taken_off?).to eq false
-    expect(airport.present?(plane)).to eq true
   end
 
   it "knows flying planes are not present" do
