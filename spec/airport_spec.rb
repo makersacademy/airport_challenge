@@ -65,6 +65,10 @@ describe Airport do
   it "Shows that instances of Airport respond to permission_to_take_off? method" do
     expect(subject).to respond_to :permission_to_take_off?
   end
+  it "Shows that permission_to_take_off? returns a value of true if check_current_wether == sunny" do
+    subject.stub(:check_current_weather) { "stormy" }
+    expect(subject.permission_to_take_off?).to eq true
+  end
   # it "allow_airplane_to_take_off raises an error if permission_to_land? is false" do
   #   subject.stub(:permission_to_land?) { false }
   #   expect { subject.allow_airplane_to_land }.to raise_error 'Permission to land denied'
