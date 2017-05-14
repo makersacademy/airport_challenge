@@ -70,7 +70,10 @@ describe Airport do
     it 'responds with false when there are no planes in the airport' do
       expect(subject.full?).to eq false
     end
-    
+
+    it 'counts the number of planes in @planes' do
+      expect(subject.planes.count).to eq Integer
+    end
   end
 
 end
