@@ -6,18 +6,6 @@ require 'airport.rb'
 
     it {is_expected.to respond_to(:take_off).with(1).argument}
 
-    # it "Airport confirms the plane is taking off" do
-    #   # airport = double(:airport, weather_is_stormy?: false, add_plane: subject, remove_plane: [])
-    #   # subject.land(airport)
-    #   # subject.take_off(airport)
-    #   # expect(airport.planes).to eq []
-    #   plane = Plane.new
-    #   plane.land(subject)
-    #   plane.take_off(subject)
-    #   expect(subject.planes).to eq []
-    # end
-#..........................
-
 it "confirms that a plane lands" do
   allow(subject).to receive(:weather_is_stormy?){false}
   subject.land(plane)
@@ -45,7 +33,7 @@ end
 
 it "prevents landing when the airport is full" do
   allow(subject).to receive(:weather_is_stormy?){false}
-  expect{11.times{subject.land(plane)}}.to raise_error "Plane can not land because the airport is full"
+  expect{11.times{subject.land(double(:plane))}}.to raise_error "Plane can not land because the airport is full"
 end
 
 it "Airport has a default capacity" do
@@ -86,6 +74,10 @@ it "has 2 planes landed, both take off, there is no plane in the airport" do
   expect(subject.planes).to eq []
 end
 
+it "should not allow a landed plane lands again" do
+  subject.land(plane)
+  expect{subject.land(plane)}.to raise_error "The plane is already landed"
+end
 
 
 
