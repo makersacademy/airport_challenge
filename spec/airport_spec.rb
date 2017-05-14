@@ -68,9 +68,6 @@ describe Airport do
     it 'can return true or false, depending on weather' do
       expect(airport.stormy?).to be(true).or be(false)
     end
-
-    
-
   end
 
 end
