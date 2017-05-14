@@ -17,6 +17,5 @@ it "should instruct a plane to take off from an airport" do  # <--user story 2
 it "should confirm that it is no longer in the airport" do  # <--user story 2
   subject.take_off
   expect(subject.status_of_plane).to eq "not in airport"
-
   end
 end
