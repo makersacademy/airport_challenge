@@ -4,6 +4,7 @@ class Airport
 
   def initialize(capacity = 20)
     @current_capacity = capacity
+    @grounded_planes = []
   end
 
   def change_capacity(capacity)
@@ -21,8 +22,8 @@ class Airport
     false
   end
 
-  def show_grounded_planes
-    20
+  def show_number_of_grounded_planes
+    @grounded_planes.length
   end
 
   def safe_to_land?

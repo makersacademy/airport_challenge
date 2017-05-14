@@ -39,13 +39,13 @@ describe Airport do
     subject.change_capacity(0)
     expect(subject.show_capacity).to eq 0
   end
-  it "Shows that instances of Airport respond to the show_grounded_planes method" do
-    expect(subject).to respond_to :show_grounded_planes
+  it "Shows that instances of Airport respond to the show_number_of_grounded_planes method" do
+    expect(subject).to respond_to :show_number_of_grounded_planes
   end
   it "shows that instances of Aiport will respond to land_plane method" do
     expect(subject).to respond_to :land_plane
   end
-  it "Shows that by default show_grounded_planes will return 0" do
-    expect(subject.show_grounded_planes).to eq 0
+  it "Shows that by default show_number_of_grounded_planes will return 0" do
+    expect(subject.show_number_of_grounded_planes).to eq 0
   end
 end
