@@ -1,3 +1,6 @@
+# Custom error for Plane Class
+class PlaneError < StandardError; end
+
 class Plane
   attr_reader :location
 
@@ -6,13 +9,12 @@ class Plane
   end
 
   def arrive_at(airport)
-    raise "Plane needs to take off from the ground before it arrive somewhere" if @location != :air
-    raise "Plane already in the airport passed" if @location == airport.identifier
+    raise PlaneError, "Plane needs to departure before it arrives somewhere" if @location != :air
     @location = airport.identifier
   end
 
   def departure
-    raise "Plane already in the air" if @location == :air
+    raise PlaneError, "Plane already in the air" if @location == :air
     @location = :air
     self
   end
