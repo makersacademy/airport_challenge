@@ -76,6 +76,14 @@ describe Airport do
   it "Shows that instances of Airport respond to allow_airplane_to_take_off method" do
     expect(subject).to respond_to :allow_airplane_to_take_off
   end
+  it "Shows that allow_airplane_to_take_off method reduces check_number_of_grounded_planes by one" do
+    subject.stub( :permission_to_land? ) { true }
+    subject.stub( :permission_to_take_off ) { true }
+    20.times { subject.allow_airplane_to_land }
+    expect(subject.check_number_of_grounded_planes).to eq 20
+    subject.allow_airplane_to_take_off
+    expect(subject.check_number_of_grounded_planes).to eq 19
+  end
   it "Shows that instances of Airport respond to permission_to_take_off? method" do
     expect(subject).to respond_to :permission_to_take_off?
   end
@@ -85,6 +93,7 @@ describe Airport do
     subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "stormy"))
     expect(subject.permission_to_take_off?).to eq false
   end
+  it ""
   # it "allow_airplane_to_take_off raises an error if permission_to_land? is false" do
   #   subject.stub(:permission_to_land?) { false }
   #   expect { subject.allow_airplane_to_land }.to raise_error 'Permission to land denied'
