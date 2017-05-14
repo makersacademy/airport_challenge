@@ -61,4 +61,7 @@ describe Airport do
     allow(plane).to receive(:report_take_off)
     expect{airport.instruct_to_take_off(plane)}.to raise_error(RuntimeError, "The weather is stormy. Take off not allowed.")
   end
+  it 'should respond to #capacity' do
+    expect(subject).to respond_to(:capacity)
+  end
 end
