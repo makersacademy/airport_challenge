@@ -9,10 +9,12 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
+    @planes = []
   end
 
   def land_plane(plane)
-    @plane = plane
+    fail 'Airport at capacity: cannot land plane.' if full?
+    @plane =  plane
   end
 
   def take_off
@@ -23,5 +25,11 @@ class Airport
     conditions = Weather.new.random_weather
     p conditions
     fail 'Unsafe to fly' if conditions != 'Sunny'
+  end
+
+  private
+
+  def full?
+    @planes.count >= capacity
   end
 end
