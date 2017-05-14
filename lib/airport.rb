@@ -32,4 +32,5 @@ class Airport
   def empty?
     raise 'There currently are no planes available.' if @planes.empty?
   end
+
 end

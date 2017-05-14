@@ -1,7 +1,15 @@
 class Plane
 
+  def initialize
+    @status = "stationed"
+  end
+
   def stationed?
-    true
+    @status == "stationed"
+  end
+
+  def take_off
+    @status = "in the air"
   end
 
 end

@@ -8,9 +8,17 @@ describe Airport do
   it { is_expected.to respond_to(:plane_take_off) }
 
   describe '#land(plane)' do
-    it 'stores all landed planes in the airport, if weather > 4' do
+    it 'stores all landed planes in the airport, if weather is good' do
       airport.instance_variable_set(:@weather_grade, 6)
       expect(airport.land(plane)).to eq plane
+
+      9.times { airport.land(plane) }
+      expect(airport.planes).to eq Array.new(10, plane)
+
+      airport_new = Airport.new(1000)
+      airport_new.instance_variable_set(:@weather_grade, 6)
+      1000.times { airport_new.land(plane) }
+      expect(airport_new.planes).to eq Array.new(1000, plane)
     end
     it 'raises an error if stormy' do
       airport.instance_variable_set(:@weather_grade, 3)
@@ -28,8 +36,10 @@ describe Airport do
       airport.instance_variable_set(:@weather_grade, 6)
       airport.land(plane)
       expect(airport.plane_take_off).to eq plane
-    end
 
+      5.times { airport.land(plane) }
+      expect(airport.plane_take_off).to eq plane
+    end
     it 'raises an error if stormy' do
       airport.instance_variable_set(:@weather_grade, 6)
       airport.land(plane)
