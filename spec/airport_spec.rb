@@ -72,4 +72,10 @@ describe Airport do
   it 'should respond to #full?' do
     expect(subject).to respond_to(:full?)
   end
+  describe '#full?' do
+    it 'should return true or false' do
+      expect([true, false].include?(subject.full?)).to eq true
+    end
+  end
+  
 end

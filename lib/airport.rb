@@ -24,6 +24,11 @@ class Airport
   end
 
   def full?
+    if capacity == landed_planes
+      return true
+    else
+      return false
+    end
   end
 
 end
