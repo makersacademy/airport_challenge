@@ -49,4 +49,12 @@ describe Airport do
  		end
  	end
 
+ 	# it 'prevents plane from taking off if not sunny' do
+ 	# 	subject.sunny = true
+ 	# 	allow(plane).to receive(:landed).and_return(false)
+ 	# 	subject.land(plane)
+ 	# 	subject.sunny = false
+ 	# 	expect{subject.take_off(plane)}.to raise_error 'Weather stormy! Cannot take off!'
+ 	# end
+
 end
