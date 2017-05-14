@@ -1,4 +1,6 @@
 require_relative 'plane'
+require_relative 'weather'
+
 class Airport
   attr_reader :plane
 
@@ -11,5 +13,6 @@ class Airport
   end
 
   def weather_check
+    fail 'Unsafe to fly' if random_weather != 'Sunny'
   end
 end
