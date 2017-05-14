@@ -21,8 +21,14 @@ class Airport
   end
 
   def launches_plane(*)
-    return "Plane could not take off due to stormy weather." if @weather == "stormy"
-    return "The plane has taken off!" if @weather == "sunny"
+    if @weather == "stormy"
+      return "Plane could not take off due to stormy weather."
+    elsif @planes.count.zero?
+      return "There are no planes at the airport!"
+    else
+      @planes.pop
+      "The plane has taken off!"
+    end
   end
 
   def generate_weather
@@ -37,11 +43,15 @@ class Airport
   end
 
   def full?
-    if @planes.count == @capacity 
+    if @planes.count == @capacity
       return true
     else
       return false
     end
+  end
+
+  def empty?
+    @planes.count.zero?
   end
 
 end

@@ -28,7 +28,7 @@ describe Airport do
     end
 
     it 'will not allow a plane to land if the airport is full' do
-      (subject::capacity).times { subject.lands_plane(Plane.new) }
+      subject::capacity.times { subject.lands_plane(Plane.new) }
       expect(subject.lands_plane(Plane.new)).to eq "Plane could not land because the airport is full."
     end
 
@@ -37,6 +37,7 @@ describe Airport do
   describe '#launches_plane' do
     it 'gives the user a message when a plane takes off' do
       plane = Plane.new
+      subject.lands_plane(plane)
       expect(subject.launches_plane(plane)).to eq "The plane has taken off!"
     end
 
