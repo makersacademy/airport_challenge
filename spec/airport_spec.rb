@@ -42,10 +42,10 @@ describe Airport do
   it "Shows that instances of Airport respond to the show_grounded_planes method" do
     expect(subject).to respond_to :show_grounded_planes
   end
-  it "show_grounded_planes returns a value when called" do
-    expect(subject.show_grounded_planes).to eq 20
-  end
   it "shows that instances of Aiport will respond to land_plane method" do
     expect(subject).to respond_to :land_plane
+  end
+  it "Shows that by default show_grounded_planes will return 0" do
+    expect(subject.show_grounded_planes).to eq 0
   end
 end
