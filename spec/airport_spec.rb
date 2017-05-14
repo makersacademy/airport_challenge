@@ -16,15 +16,18 @@ describe Airport do
     end
     it 'raises an error when you try and land the same plane multiple times at the same airport' do
          plane = double(:plane)
+         allow(subject).to receive (:stormy?) {false}
          subject.land_plane(plane)
          expect { subject.land_plane(plane) }.to raise_error "This plane has already landed!"
     end
-    # it 'raises an error when you try and land a landed airplane at a different airport' do
-    #     plane = double(:plane)
-    #     subject.land_plane(plane)
-    #     airport = Airport.new
-    #     expect { airport.land_plane(plane) }.to raise_error "This plane is at a different airport currently!"
-    # end
+    it 'stops the plane from landing when it is stormy' do
+      plane = double(:plane)
+      allow(subject).to receive (:stormy?) {false}
+      subject.land_plane(plane)
+      subject.take_off(plane)
+      allow(subject).to receive (:stormy?) {true}
+      expect { subject.land_plane(plane)}.to raise_error "Too stormy!"
+    end
   end
 
     it { is_expected.to respond_to(:take_off).with(1).argument}
