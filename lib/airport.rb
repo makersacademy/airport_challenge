@@ -20,7 +20,7 @@ class Airport
   end
 
   def clear_plane(plane)
-    fail "Cannot clear plane #{@hold_reason}" unless green_light?(plane)
+    raise "Cannot clear plane #{@hold_reason}" unless green_light?(plane)
     plane.take_off
     @landed_planes.delete(plane)
     @landed_planes
