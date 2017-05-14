@@ -6,14 +6,14 @@ class Plane
     @landed = false
   end
 
-  def status_landed
+  def update_landed
+    reset_takenoff_flag
     @landed = true
-    @taken_off = false
   end
 
-  def status_takenoff
+  def update_takenoff
+    reset_landed_flag
     @taken_off = true
-    @landed = false
   end
 
   def landed?
@@ -22,6 +22,14 @@ class Plane
 
   def taken_off?
     @taken_off
+  end
+
+  def reset_landed_flag
+    @landed = false
+  end
+
+  def reset_takenoff_flag
+    @taken_off = false
   end
 
 end
