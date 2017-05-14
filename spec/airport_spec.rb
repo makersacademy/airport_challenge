@@ -88,7 +88,7 @@ describe Airport do
   end
   it 'should raise error if plane is instructed to land at full airport' do
     airport = subject
-    allow(airport).to receive(:landed_planes){(1..50).to_a}
+    allow(airport).to receive(:landed_planes){(1..subject.capacity).to_a}
     plane = double
     allow(plane).to receive(:update_location_after_landing_to)
     allow(plane).to receive(:report_landed)
