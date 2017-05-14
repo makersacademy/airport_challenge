@@ -17,14 +17,14 @@ class Airport
     @planes = []
   end
 
-  private
-  def land(plane)
+  def try_allow_land(plane)
+    raise "That is not a plane - please use Plane#land(airport)" unless plane.is_a?(Plane)
     raise "Unable to land - airport full" if full?
     raise "Unable to land plane - weather is stormy" if @weather.stormy?
     @planes << plane
   end
 
-  def take_off(plane)
+  def try_allow_take_off(plane)
     raise "Plane is not at that airport" unless @planes.include?(plane)
     raise "Unable to take off - weather is stormy" if @weather.stormy?
     @planes.delete(plane)
