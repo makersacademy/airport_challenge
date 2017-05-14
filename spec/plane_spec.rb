@@ -10,7 +10,9 @@ describe Plane do
   end
 
   it 'departs' do
-    expect(subject.depart_from(Airport.new)).to eq subject
+    airport = Airport.new
+    subject.land_at(airport)
+    expect(subject.depart_from(airport)).to eq subject
   end
 
   it 'will not land if there is a storm' do
@@ -19,7 +21,9 @@ describe Plane do
   end
 
   it 'will not take off if there is a storm' do
-    airport = Airport.new.storm_switch
+    airport = Airport.new
+    subject.land_at(airport)
+    airport.storm_switch
     expect{subject.depart_from(airport)}.to raise_error "We can't take off in a storm"
   end
 
