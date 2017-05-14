@@ -40,10 +40,6 @@ class Airport
     end
   end
 
-  def check_number_of_grounded_planes
-    @airplanes.count { |airplane| airplane.check_current_status == "grounded" }
-  end
-
   def permission_to_land?
     if @weather.check_current_weather_condition == "sunny" && at_capacity? == false
       true
@@ -75,5 +71,12 @@ class Airport
     @airplanes.delete_if { |airplane| airplane == @airplanes.find { |airplane| airplane.check_current_status == "grounded"} }
     first_grounded_airplane
   end
+  
+  def check_number_of_grounded_planes
+    @airplanes.count { |airplane| airplane.check_current_status == "grounded" }
+  end
 
+  def check_number_of_airborne_planes
+    @airplanes.count { |airplane| airplane.check_current_status == "airborne" }
+  end
 end

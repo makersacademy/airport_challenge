@@ -53,14 +53,8 @@ describe Airport do
     subject.change_capacity(0)
     expect(subject.show_capacity).to eq 0
   end
-  it "Shows that instances of Airport respond to the check_number_of_grounded_planes method" do
-    expect(subject).to respond_to :check_number_of_grounded_planes
-  end
   it "shows that instances of Aiport will respond to allow_airplane_to_land method" do
     expect(subject).to respond_to :allow_airplane_to_land
-  end
-  it "Shows that by default check_number_of_grounded_planes will return 0" do
-    expect(subject.check_number_of_grounded_planes).to eq 0
   end
   it "allow_airplane_to_land raises an error if permission_to_land? is false" do
     subject.stub(:permission_to_land?) { false }
@@ -76,13 +70,13 @@ describe Airport do
   it "Shows that instances of Airport respond to allow_airplane_to_take_off method" do
     expect(subject).to respond_to :allow_airplane_to_take_off
   end
-  it "Shows that allow_airplane_to_take_off method reduces check_number_of_grounded_planes by one" do
+  it "Shows that allow_airplane_to_take_off method reduces the number of grounded planes and increases airborne planes by one" do
     subject.stub( :permission_to_land? ) { true }
     subject.stub( :permission_to_take_off ) { true }
     20.times { subject.allow_airplane_to_land }
-    expect(subject.check_number_of_grounded_planes).to eq 20
+    expect(subject.show_status_of_airplanes).to eq "Grounded: 20, Airborne: 0"
     subject.allow_airplane_to_take_off
-    expect(subject.check_number_of_grounded_planes).to eq 19
+    expect(subject.show_status_of_airplanes).to eq "Grounded: 19, Airborne: 1"
   end
   it "Shows that instances of Airport respond to permission_to_take_off? method" do
     expect(subject).to respond_to :permission_to_take_off?
