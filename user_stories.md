@@ -6,7 +6,9 @@
 | -------------   |:-------------:|
 | Air traffic controller          |               |
 | Passenger            |      |  
-| Plane | lands? |  
+| Plane | can_be_landed? |  
 | Airport | confirms_landing? |
-|  |      |
-|  |  |
+| Plane | can_be_launched?     |
+| Airport | confirms_launching? |
+| Weather | acceptable?     |
+|  | stormy? |
