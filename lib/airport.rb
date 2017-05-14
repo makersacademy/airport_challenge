@@ -21,7 +21,6 @@ class Airport
     fail 'Plane is not at this airport'
   end
  
-
   def land plane
     fail 'Airport full!' if full?
     fail 'Weather Stormy cannot land' unless sunny
@@ -50,11 +49,3 @@ class Airport
   end
 
 end
-
-
-# airport = Airport.new
-# plane = Plane.new
-# airport.sunny = true
-# airport.land(plane)
-# airport.land(plane)
-
