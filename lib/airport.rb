@@ -26,7 +26,7 @@ class Airport
   end
 
   def check_hangar
-    airport_empty? ? "Hangar is empty" : @hangar
+    airport_empty? ? "Hangar is empty" : print_all_planes
   end
 
   private
@@ -57,7 +57,7 @@ class Airport
   end
 
   def return_flight_status(plane,flight_action)
-    flight_action == "taking off" ? "#{plane} has taken off" : "#{plane} has completed landing"
+    flight_action == "taking off" ? "#{print_plane(plane)} has taken off" : "#{print_plane(plane)} has completed landing"
   end
 
   def plane_in_hangar(plane)
@@ -74,6 +74,14 @@ class Airport
 
   def is_plane(object)
     object.instance_of? Plane
+  end
+
+  def print_plane(plane)
+    "Makers ##{plane.flight_number.to_s}"
+  end
+
+  def print_all_planes
+    @hangar.map {|airplane| "Makers ##{airplane.flight_number.to_s}" }
   end
 
 end

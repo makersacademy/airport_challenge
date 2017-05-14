@@ -34,7 +34,8 @@ describe Airport do
 
     it 'should allow plane to land in airport' do
       allow(plane).to receive(:landed) { 'landed' }
-      expect(airport.land_plane(plane)).to eq "#{plane} has completed landing"
+      allow(plane).to receive(:flight_number) { 1 }
+      expect(airport.land_plane(plane)).to eq "Makers #1 has completed landing"
     end
 
     it 'should only allow airborne planes to land' do
@@ -44,6 +45,7 @@ describe Airport do
 
     it 'should not allow landing when airport is full' do
       allow(plane).to receive(:landed) { 'landed' }
+      allow(plane).to receive(:flight_number)
       airport.capacity.times { subject.land_plane plane }
       expect { airport.land_plane(plane) }.to raise_error{ "Airport is full!" }
     end
@@ -56,7 +58,8 @@ describe Airport do
     it 'should allow plane to take off' do
       airport.hangar << plane
       allow(plane).to receive(:takeoff) { 'airborne' }
-      expect(airport.takeoff_plane(plane)).to eq "#{plane} has taken off"
+      allow(plane).to receive(:flight_number) { 1 }
+      expect(airport.takeoff_plane(plane)).to eq "Makers #1 has taken off"
     end
 
     it 'should only allow landed planes to takeoff' do
@@ -86,7 +89,8 @@ describe Airport do
 
   it 'allows for airplanes in hangar to be returned' do
     airport.hangar << plane
-    expect(airport.check_hangar).to eq [plane]
+    allow(plane).to receive(:flight_number) { 1 }
+    expect(airport.check_hangar).to eq ["Makers #1"]
   end
 
   it 'returns empty notification if hangar is empty' do

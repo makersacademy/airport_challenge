@@ -1,9 +1,8 @@
 require 'plane'
 
 describe Plane do
-  it { is_expected.to respond_to(:landed) }
   it { is_expected.to respond_to(:status) }
-  it { is_expected.to respond_to(:takeoff) }
+  it { is_expected.to respond_to(:flight_number) }
 
   describe '#landed' do
     it 'should change flight airborne status upon landing' do
