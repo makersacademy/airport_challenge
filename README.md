@@ -3,7 +3,7 @@ Airport Challenge
 
 **This software will control the flow of planes at an airport.**
 
-**The program will be developed in a test driven manner, writing feature and unit tests for every object that will be created.**
+*The program will be developed in a test driven manner, writing feature and unit tests for every object that will be created.*
 
 Functions of the program
 ========================
