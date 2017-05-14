@@ -22,7 +22,7 @@ Enables an air traffic controller to manage a plane to take off and land in airp
 * tested using TDD and rspec
 * Ruby language (version 2.4)
 * Did not follow the user stories in order, but have commented in each unit test which user story it refers to.
-* Completed all user stories, however struggled using doubles and stubs.
+* Completed all user stories, however struggled using doubles and stubs and did not have time to use them in this challenge.
 * Referred to Boris_bikes repo for help
 
 how app is used from users perspective in irb:
