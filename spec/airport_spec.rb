@@ -64,4 +64,9 @@ describe Airport do
   it 'should respond to #capacity' do
     expect(subject).to respond_to(:capacity)
   end
+  describe '#capacity' do
+    it 'should return an integer' do
+      expect(subject.capacity.class).to eq Integer
+    end
+  end
 end

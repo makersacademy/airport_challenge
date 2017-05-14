@@ -4,6 +4,7 @@ class Airport
   def initialize
     @landed_planes = []
     @weather = Weather.new
+    @capacity = 50
   end
 
   def instruct_to_land(plane)
