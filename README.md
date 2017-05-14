@@ -53,9 +53,10 @@ In command line, type :
 irb
 2.4.0 :001 > require './lib/airport.rb'
  => true
- 
+
 ```
 Create a new airport using Airport.new
+
 Create a new plane using Plane.new
 
 **BONUS**
