@@ -11,7 +11,12 @@ class Airport
   end
 
   def show_weather
-    return "The weather is sunny!"
+    weather = rand(100)
+    if weather > 90
+      return "There's a storm!"
+    else
+      return "The weather is sunny!"
+    end
   end
 
 end
