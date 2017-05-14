@@ -4,6 +4,6 @@ class Weather
   end
 
   def clear?
-    true
+    random <= 9 ? true : false
   end
 end

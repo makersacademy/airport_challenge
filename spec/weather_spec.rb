@@ -10,8 +10,9 @@ RSpec.describe Weather do
   end
 
   describe "#clear?" do
-    it "check if the weather is stormy based" do
-      expect(weather.clear?).to eq true
+    it "check if the weather is stormy #random returns 10" do
+      allow(weather).to receive(:random) { 10 }
+      expect(weather.clear?).to eq false
     end
   end
 
