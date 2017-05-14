@@ -17,12 +17,6 @@ describe Airport do
     expect(airport.capacity = 30).to eq 30
   end
 
-  it 'should indicate that airport is full' do
-    allow(airport.instance_variable_get(:@weather)).to receive(:stormy?).and_return false
-    Airport::DEFAULT_CAPACITY.times { airport.try_allow_land(Plane.new) }
-    expect(airport.full?).to eq true
-  end
-
   it 'should prevent a plane from landing if the weather is stormy' do
     allow(airport.instance_variable_get(:@weather)).to receive(:stormy?).and_return true
     expect{airport.try_allow_land(plane)}.to raise_error "Unable to land plane - weather is stormy"
