@@ -45,6 +45,9 @@ class Airport
     end
   end
 
+  def permission_to_take_off?
+  end
+
   private
 
   def check_current_weather
