@@ -20,7 +20,7 @@ describe 'Feature Tests' do
   describe 'Prevent Taking off' do
     it'ATC prevents take offs when weather is stormy' do
       airport.check_condition(weather)
-      expect{airport.plane_takeoff}.to raise("Cannot take off when it's stormy")
+      expect { airport.plane_takeoff }.to raise("Cannot take off when it's stormy")
     end
   end
 end
