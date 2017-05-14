@@ -4,6 +4,9 @@ describe Airport do
   it "Shows that Airport instances respond to the permission_to_land? method" do
     expect(subject).to respond_to :permission_to_land?
   end
+  it "Shows that instances of Airport repond to the at_capacity? method" do
+    expect(subject).to respond_to :at_capacity?
+  end
   it "Shows that permission_to_land will return true if the weather is sunny and airport is not at capacity or false if it is stormy or airport is at capacity" do
     subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "sunny"))
     subject.stub(:at_capacity?) { false }
@@ -65,7 +68,6 @@ describe Airport do
   it "Shows that instances of Airport respond to permission_to_take_off? method" do
     expect(subject).to respond_to :permission_to_take_off?
   end
-  let(:weather) {double(:weather)}
   it "Shows that permission_to_take_off? returns a value of true if check_current_wether == sunny" do
     subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "sunny"))
     expect(subject.permission_to_take_off?).to eq true

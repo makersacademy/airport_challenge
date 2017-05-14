@@ -31,7 +31,11 @@ class Airport
   end
 
   def at_capacity?
-    false
+    if check_number_of_grounded_planes == @current_capacity
+      true
+    else
+      false
+    end
   end
 
   def check_number_of_grounded_planes
