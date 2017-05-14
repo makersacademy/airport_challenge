@@ -11,10 +11,8 @@ class Airport
   end
 
   def land(plane)
-    if plane.landed?
-      raise "Not this time buddy, you only land once!"
-    elsif plane.taken_off?
-      raise "Not this time buddy, you can't land a taken off plane!"
+    if plane.landed? || plane.taken_off? || @station.todays_weather == :stormy
+      raise "Can't land plane!"
     else
       plane.flight_status = :landed
       @landed_planes << plane

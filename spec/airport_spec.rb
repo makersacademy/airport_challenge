@@ -18,12 +18,21 @@ describe Airport do
 
   it "does not land a landed plane" do
     airport.land(plane)
-    expect { airport.land(plane) }.to raise_error("Not this time buddy, you only land once!")
+    expect { airport.land(plane) }.to raise_error("Can't land plane!")
   end
 
   it "does not land a taken off plane" do
-    plane = Plane.new(:taken_off)
-    expect { airport.land(plane) }.to raise_error("Not this time buddy, you can't land a taken off plane!")
+    airport.land(plane)
+    airport.takeoff(plane)
+    expect { airport.land(plane) }.to raise_error("Can't land plane!")
+  end
+
+  it "does not land a plane if the weather is stormy" do
+    allow(fake_station).to receive(:todays_weather).and_return(:stormy)
+
+    expect { airport.land(plane) }.to raise_error("Can't land plane!")
+    expect(plane.landed?).to eq false
+    expect(airport.present?(plane)).to eq false
   end
 
   it "takes off a landed plane" do
@@ -42,10 +51,9 @@ describe Airport do
     expect { airport.takeoff(plane) }.to raise_error("Can't take off plane!")
   end
 
-  it "doesn't take off a plane if the weather is stormy" do
-    allow(fake_station).to receive(:todays_weather).and_return(:stormy)
-
+  it "does not take off a plane if the weather is stormy" do
     airport.land(plane)
+    allow(fake_station).to receive(:todays_weather).and_return(:stormy)
     expect { airport.takeoff(plane) }.to raise_error("Can't take off plane!")
     expect(plane.taken_off?).to eq false
     expect(airport.present?(plane)).to eq true
