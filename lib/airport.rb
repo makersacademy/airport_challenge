@@ -1,11 +1,10 @@
 class Airport
 
-  attr_reader :capacity
   DEFAULTCAPACITY = 2
 
   def initialize(capacity = DEFAULTCAPACITY)
     @planes = [] # An array to hold the planes that take off and land at the airport
-    @capacity = capacity # Reprsents the capacity of the airport
+    @capacity = capacity # Represents the capacity of the airport
     @weather = Weather.new
   end
 
@@ -28,7 +27,7 @@ class Airport
   end
 
   private
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
   # Checks the weather to see if it is safe at the airport
 

@@ -19,7 +19,7 @@ describe Airport do
       it 'prevents planes from landing' do
         Airport::DEFAULTCAPACITY.times { airport.lands_plane plane }
         message = 'There is no more space at the airport'
-        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, message)
+        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, message )
       end
     end
     context 'storm' do
@@ -65,13 +65,4 @@ describe Airport do
     end
   end
 
-  describe '#capacity' do
-    it 'variable will equal the  default capacity if no capacity is given' do
-      expect(airport.capacity).to eq Airport::DEFAULTCAPACITY
-    end
-    it 'will equal the capacity specified when creating the airport instance' do
-      airport = Airport.new 50
-      expect(airport.capacity).to eq 50
-    end
-  end
 end
