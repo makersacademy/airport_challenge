@@ -23,7 +23,7 @@ feature 'Air Traffic Control' do
   end
   
   def and_a_plane
-    @plane = Plane.new
+    @plane = Plane.new("G-ZBKP")
   end
 
   def and_the_destination_airport_exists

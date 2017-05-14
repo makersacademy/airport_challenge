@@ -1,8 +1,9 @@
 class Plane
 
-  attr_reader :on_ground, :location
+  attr_reader :on_ground, :location, :tail_number
 
-  def initialize
+  def initialize(tail_number)
+    @tail_number = tail_number
     @on_ground = true
     @location = ""
   end                              
