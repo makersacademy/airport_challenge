@@ -10,7 +10,8 @@ class Airport
   end
 
   def landing_plane(plane)
-    plane = true
+    fail "No space currently available" if full?
+    @planes << plane
   end
 
   def weather

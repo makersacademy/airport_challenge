@@ -21,7 +21,7 @@ describe Airport do
     let(:plane) {double :plane}
     it "Raises an error if at capacity" do
       Airport::Default_capacity.times {subject.landing_plane double(:plane) }
-      expect {subject.landing_plane double(:plane) }.to raise_error "No space available"
+      expect {subject.landing_plane double(:plane) }.to raise_error "No space currently available"
     end
   end
 
