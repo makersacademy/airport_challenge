@@ -13,16 +13,16 @@ describe Airport do
     expect(subject.landing_plane(plane)).to eq [plane]
   end
 
-  it "doesn't allow planes to land or takeoff in bad weather" do
-    expect(subject.weather).to eq "Apologies due to bad weather you'll not be able to land!"
+  let(:plane) { double :plane }
+  it "Raises an error if at capacity" do
+    Airport::Default_capacity.times {subject.landing_plane double(:plane) }
+    expect {subject.landing_plane double(:plane) }.to raise_error "No space currently available"
   end
 
-  describe 'landing_plane' do
-    let(:plane) {double :plane}
-    it "Raises an error if at capacity" do
-      Airport::Default_capacity.times {subject.landing_plane double(:plane) }
-      expect {subject.landing_plane double(:plane) }.to raise_error "No space currently available"
-    end
+  plane = Plane.new
+  it "Allows plane to take off" do
+    except(subject.take_off(plane)).to eq plane
   end
+
 
 end

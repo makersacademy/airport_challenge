@@ -10,20 +10,17 @@ class Airport
   end
 
   def landing_plane(plane)
+    p ok_to_land = plane.weather
+    if ok_to_land == "Welcome, you're clear to land"
     fail "No space currently available" if full?
     @planes << plane
+  else
+
+  end
   end
 
   def full?
     @planes.count >= @capacity
-  end
-
-  def weather
-    bad_weather = "Apologies due to bad weather you'll not be able to land!"
-    good_weather = "Welcome, you're clear to land"
-    random_number = rand(11)
-    weather_result = random_number == 1 || random_number == 4 ? bad_weather : good_weather
-    weather_result
   end
 
 end
