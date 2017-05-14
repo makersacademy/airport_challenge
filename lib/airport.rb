@@ -28,6 +28,7 @@ class Airport
   end
 
   def allow_airplane_to_take_off
+    contact_departing_airplane
   end
 
   def at_capacity?

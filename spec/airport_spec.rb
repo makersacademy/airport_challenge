@@ -93,7 +93,6 @@ describe Airport do
     subject.instance_variable_set("@weather", double(:weather, check_current_weather_condition: "stormy"))
     expect(subject.permission_to_take_off?).to eq false
   end
-  it ""
   # it "allow_airplane_to_take_off raises an error if permission_to_land? is false" do
   #   subject.stub(:permission_to_land?) { false }
   #   expect { subject.allow_airplane_to_land }.to raise_error 'Permission to land denied'
