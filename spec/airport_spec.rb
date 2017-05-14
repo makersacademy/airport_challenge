@@ -62,4 +62,11 @@ describe Airport do
   it "Shows that instances of Airport respond to allow_airplane_to_take_off method" do
     expect(subject).to respond_to :allow_airplane_to_take_off
   end
+  it "Shows that instances of Airport respond to permission_to_take_off? method" do
+    expect(subject).to respond_to :permission_to_take_off?
+  end
+  # it "allow_airplane_to_take_off raises an error if permission_to_land? is false" do
+  #   subject.stub(:permission_to_land?) { false }
+  #   expect { subject.allow_airplane_to_land }.to raise_error 'Permission to land denied'
+  # end
 end
