@@ -62,6 +62,8 @@ irb
 
 2.4.0 :004 > airport.land(plane)
 
+2.4.0 :004 > airport.take_off(plane)
+
 ```
 The user can specify a capacity for the airport by typing:
 
