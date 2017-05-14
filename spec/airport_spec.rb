@@ -25,10 +25,6 @@ describe Airport do
 		subject.take_off(plane)
 		expect(subject.planes).to_not include(plane)
 	end
-
-  it 'raises an error when there are no planes in the airport' do
-  	expect {subject.take_off(plane)}.to raise_error 'No planes at the airport'
-  end
 	 
   it 'checks to see if a plane has landed' do
   	subject.sunny = true
@@ -77,11 +73,11 @@ describe Airport do
  		expect{subject.land(plane)}.to raise_error 'Weather Stormy cannot land'
  	end
 
- 	# it 'raises an error if plane already in sky and tries to takeoff' do
- 	# 	subject.sunny = true
- 	# 	allow(plane).to receive(:landed).and_return(false)
- 	# 	expect{subject.take_off(plane)}.to raise_error 'Plane not at airport!'
- 	# end
+ 	it 'raises an error if plane already in sky and tries to takeoff' do
+ 		subject.sunny = true
+ 		allow(plane).to receive(:landed).and_return(false)
+ 		expect{subject.take_off(plane)}.to raise_error 'Plane not at airport!'
+ 	end
 
  	it 'raises an error if plane tries to land if already in the airport' do
  		subject.sunny = true
@@ -90,4 +86,13 @@ describe Airport do
  		allow(plane).to receive(:landed).and_return(true)
  		expect{subject.land(plane)}.to raise_error 'Plane already landed!'
  	end
+
+ 	let(:plane2) {double :plane, :landed= => true, landed?: true}
+ 	it 'raises an error when plane not at airport and tries to take off' do
+  	subject.sunny = true
+  	allow(plane).to receive(:landed).and_return(false)
+ 		subject.land(plane)
+  	allow(plane2).to receive(:landed).and_return(false)
+  	expect {subject.take_off(plane2)}.to raise_error 'Plane not at airport!'
+  end
 end

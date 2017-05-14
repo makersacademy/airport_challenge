@@ -15,9 +15,10 @@ class Airport
   end
 
   def take_off plane
-    fail 'No planes at the airport' if empty?
     fail 'Weather stormy! Cannot take off!' unless sunny
-    @planes.pop
+    fail 'Plane not at airport!' unless plane.landed
+    return plane if check_plane(plane) == plane
+    fail 'Plane is not at this airport'
   end
  
 
@@ -37,6 +38,15 @@ class Airport
 
   def empty?
     @planes.empty?
+  end
+
+  def check_plane(plane)
+    planes.each_with_index do |check, index|
+      next unless check == plane
+      planes.delete_at(index)
+      plane.landed = false
+      return plane
+    end
   end
 
 end
