@@ -21,12 +21,12 @@ describe Plane do
   end
   it 'should update location to the right airport when landed' do
     plane = subject
-    airport = Airport.new
+    airport = double(:airport)
     plane.update_location_after_landing_to(airport)
     expect(plane.location).to eq airport.object_id
   end
   it 'should report that it is landed as soon as it landed on an airport, including its ID and the ID of the airport' do
-    airport = Airport.new
+    airport = double(:airport)
     plane = subject
     plane.update_location_after_landing_to(airport)
     expect(plane.report_landed).to eq "'This is plane #{plane.object_id} speaking. We report that we landed at airport #{plane.location}'"
@@ -35,7 +35,7 @@ describe Plane do
     expect(subject).to respond_to(:update_location_after_take_off_from).with(1).argument
   end
   it 'should update location to "up in the air" after take-off' do
-    airport = Airport.new
+    airport = double(:airport)
     plane = subject
     plane.update_location_after_landing_to(airport)
     plane.update_location_after_take_off_from(airport)
@@ -45,7 +45,7 @@ describe Plane do
     expect(subject).to respond_to(:report_take_off)
   end
   it 'should report that it is up in the air after take-off, including its ID' do
-    airport = Airport.new
+    airport = double(:airport)
     plane = subject
     plane.update_location_after_landing_to(airport)
     plane.update_location_after_take_off_from(airport)
