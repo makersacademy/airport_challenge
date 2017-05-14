@@ -14,11 +14,14 @@ class Airport
 
   def land_plane(plane)
     raise 'Operation aborted: Weather is stormy' if stormy?
+    raise 'Operation aborted: Airport is full' if full?
+    raise 'The plane is already at #{@iata_code}' if plane.location == @iata_code
     @planes_on_ground.push(plane.land(self).tail_number)
   end
 
   def takeoff_plane(plane, destination)
     raise 'Operation aborted: Weather is stormy' if stormy?
+    raise 'The plane is not at #{@iata_code}' if plane.location != @iata_code
     @planes_on_ground.delete(plane.takeoff(self).tail_number)
   end
 
@@ -41,6 +44,10 @@ class Airport
       @weather = "stormy"
     end
     @weather == "stormy" ? true : false
+  end
+
+  def full?
+    planes_on_ground.length >= capacity
   end
 
 end

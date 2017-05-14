@@ -11,6 +11,7 @@ describe Airport do
   it { is_expected.to respond_to(:takeoff_plane).with(2).argument }
   it { is_expected.to respond_to(:iata_code)}
   it { is_expected.to respond_to(:stormy?)}
+  it { is_expected.to respond_to(:full?)}
   
   
   context 'defaults' do
@@ -47,6 +48,8 @@ describe Airport do
   describe '#takeoff_plane' do
     it 'it instructs plane to take off and register departure by removing it from the list of planes on ground' do
       plane = Plane.new("G-ZBKP")
+      allow(airport).to receive(:stormy?).and_return false
+      airport.land_plane(plane)
       destination = Airport.new("LIS")
       allow(airport).to receive(:stormy?).and_return false
       airport.takeoff_plane(plane, destination)
