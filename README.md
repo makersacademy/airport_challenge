@@ -1,90 +1,52 @@
-Airport Challenge
+#Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+This project emulates an air traffic control system - it allows the user to create Airport and Plane objects, and instruct planes to land and take off from airports.  The user can also specify a planes capacity when creating a new airport (otherwise a default of 10 is set) and can override that capacity later if they wish.  A random number generator emulates the weather, and take-offs and landings are prevented if the weather is "stormy".
 
-```
+#
 
-Instructions
----------
+This challenge was completed in a TDD (test-driven development) manner, meaning I wrote a test for what I wanted the program to do, then wrote the code to satisfy that test, and repeated the process.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+##Approach
 
-Steps
--------
+Six user stories were presented to define the requirements of the finishing project, so my first step was to decide which order to tackle them in, and complete them one by one.  I chose the following order:
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
-
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
-
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
+`As the system designer
 So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
+I would like a default airport capacity that can be overridden as appropriate`
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+This seemed like the best place to start, because the capacity would be defined when the airport object was instantiated.  By setting this up first, I was able to see what limitations my code would have.  I used a constant to store the default capacity of 10 in, to prevent "magic numbers" existing in my code.  This constant was used in my tests as well.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+`As an air traffic controller
+So I can get passengers on the way to their destination
+I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport`
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+`As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed`
 
-Please create separate files for every class, module and test suite.
+These two stories are very similar but I could see they needed to be done before the remaining stories, which would rely on these functions working properly.  I set up #take_off and #land methods from the Plane class, as well as setting up an instance variable `@in_airport` so that the plane could confirm its status.
 
-In code review we'll be hoping to see:
+`As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full`
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+When I began to address this story, I realised that my Airport and Plane classes would need to be able to send and receive information to each other somehow (I would need the plane's information to store in a list of planes at the airport, but needed to not make the airport's plane list accessible outside of the Airport class).  I set up #land and #take_off methods for the Airport class, and updated the Plane methods to call these.  Once I understood that raising an exception from the Airport method would prevent the Plane method from completing (so it would not change its @in_airport status), I was happy enough with this arrangement.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+`As an air traffic controller
+To ensure safety
+I want to prevent [takeoff/landing] when weather is stormy`
 
-**BONUS**
+To satisfy this user story I set up another instance variable in my Airport class.  Since the Airport object should be responsible for *checking* the weather, but not for *determining* the weather, I set up a Weather class which contained a method with a random number generator `rand(10) < 3` giving a 30% chance that the weather would be "stormy".  My Airport#land and #take_off methods then simply had to refer to this method at first and raise an exception to prevent any action if the weather was stormy.
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+=================
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+After satisfying all the user stories, I set about tidying up my code and defending against edge cases.  I removed some early tests which were redundant, such as a few for the Plane class which simply expected it to respond to certain methods, and one which tested that the "airport should indicate that it is full" (no longer needed as I was already testing that an exception was raised if trying to land a plane at a full airport).
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+I realised that my raise methods for when trying to land at a full airport, or trying to take off from the wrong airport, were in different classes.  I moved these all to the airport class so that all my guard cases(?) were in the same place.  I also wanted the Airport#full? method to be able to be private.
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+After more feature testing in irb, I noticed it was possible to call the Airport#land and Airport#take_off methods directly to the airport, which would result in a plane being with a status of @in_airport = false being added to the list of @planes in the airport.  I knew that private methods would not make this possible, so I did some research to find out if I could set up a method which can be called by a specific class, but not outside of the classes I wanted to have access.  I found out about the .send(method) command, and began working this into my code so that the Plane class could call specific Airport class methods, but then realised I would have to use this in all of my airport_spec tests as well, which told me it was probably not a good practice (as testing private methods is generally not done, but then over half of my Airport class would be untested).
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+Since the Airport#take_off method was fairly secure since it already raised an error if the plane argument was not at the airport, I played around with having the Airport#land method raise an exception if it was passed an object other than an instance of Plane, but again this made my spec tests fail (because my plane doubles were not real Plane objects), and I could not figure out a way to test this method without un-isolating the tests.  I considered adding a #check_plane method to remove a non-plane object from the list, but this would have interfered with my unit tests as well, since they relied on checking the list at the end to ensure the plane landing was successful.
+
+I would have liked to find a way to completely prevent those airport methods from being called outside of the Plane class, but in the end I settled with renaming the Airport methods to #try_allow_take_off and #try_allow_land, to slightly lower the chance that the user might call those methods directly on the airport.  I was happier to leave this as it was, as opposed to using lots of private methods, and #send methods to get around them.
