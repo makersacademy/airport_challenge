@@ -22,6 +22,11 @@ class Airport
     @planes << plane
   end
 
+  def take_off(plane)
+    raise "Plane is not at that airport" unless @planes.include?(plane)
+    @planes.delete(plane)
+  end
+
   def full?
     @planes.length == @capacity
   end

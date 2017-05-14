@@ -34,4 +34,9 @@ describe Airport do
     expect(airport.instance_variable_get(:@planes)).to eq [plane]
   end
 
+  it 'should raise an exception when plane tries to take off from an airport it is not at' do
+    airport.instance_variable_set(:@planes, [])
+    expect{ airport.take_off(plane) }.to raise_error "Plane is not at that airport"
+  end
+
 end

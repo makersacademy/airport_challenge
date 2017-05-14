@@ -5,6 +5,7 @@ describe Plane do
   let(:airport) {double :airport}
 
   it 'should confirm that it is no longer in the airport' do
+    allow(airport).to receive(:take_off).with(plane)
     plane.take_off(airport)
     expect(plane).not_to be_in_airport
   end
@@ -23,8 +24,4 @@ describe Plane do
     expect{ plane.land(airport) }.to raise_error "Unable to land - airport full"
   end
 
-  it 'should raise an exception when trying to take off from an airport it is not at' do
-      allow(airport).to receive(:planes).and_return []
-      expect{ plane.take_off(airport) }.to raise_error "Plane is not at that airport"
-  end
 end
