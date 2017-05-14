@@ -57,5 +57,13 @@ describe Airport do
     it 'responds to airport.capacity' do
       expect(airport).to respond_to(:capacity)
     end
+    it 'DEFAULT_CAPACITY is set at instantiation' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+    it 'capacity changes to desired volume when set' do
+      airport.capacity = 15
+      expect(airport.capacity).to eq 15
+    end
   end
+
 end

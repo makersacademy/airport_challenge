@@ -36,7 +36,7 @@ describe 'Feature Tests' do
   describe 'Change Capacity' do
     it'System Designer can change airport capacity' do
       airport.capacity = 30
-      expect(airport.capacity).not_to eq DEFAULT_CAPACITY
+      expect(airport.capacity).not_to eq Airport::DEFAULT_CAPACITY
     end
   end
 end
