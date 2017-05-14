@@ -9,6 +9,11 @@ class Airport
     @planes = []
   end
 
+  def set_capacity(number)
+    @capacity = number
+  end
+
+
   def lands_plane(plane)
     if @weather == "stormy"
       return "Plane could not land due to stormy weather."

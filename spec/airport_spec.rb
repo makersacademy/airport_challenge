@@ -16,8 +16,7 @@ describe Airport do
 
   describe 'set_capacity' do
     it 'can accept an integer as an argument to set the airport capacity' do
-      airport = Airport.new
-      airport.set_capacity(50)
+      subject.set_capacity(50)
       expect(subject::capacity).to eq 50
     end
 
