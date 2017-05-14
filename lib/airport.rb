@@ -26,6 +26,9 @@ class Airport
     @airplanes << @approaching_airplane
   end
 
+  def allow_airplane_to_take_off
+  end
+
   def at_capacity?
     false
   end
