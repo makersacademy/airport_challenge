@@ -14,7 +14,7 @@ class Airport
   end
 
   def takeoff_plane(plane, destination)
-    @planes_on_ground.delete(plane.takeoff(self))
+    @planes_on_ground.delete(plane.takeoff(self).tail_number)
   end
   
 end

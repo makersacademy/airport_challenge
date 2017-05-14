@@ -15,4 +15,13 @@ describe Airport do
     end
   end
 
+  describe '#takeoff_plane' do
+    it 'it instructs plane to take off and register departure by removing it from the list of planes on ground' do
+      plane = Plane.new("G-ZBKP")
+      destination = Airport.new("LIS")
+      airport.takeoff_plane(plane, destination)
+      expect(airport.planes_on_ground).not_to eq [plane.tail_number]
+    end
+  end
+
 end
