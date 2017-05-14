@@ -1,10 +1,11 @@
-require './lib/weather'
+require 'weather'
+require 'airplane'
 
 class Airport
 
   def initialize(capacity = 20)
     @current_capacity = capacity
-    @grounded_planes = []
+    @grounded_airplanes = []
   end
 
   def change_capacity(capacity)
@@ -15,8 +16,8 @@ class Airport
     @current_capacity
   end
 
-  def land_plane
-    @grounded_planes << "plane"
+  def grant_permission_to_land
+    @grounded_airplanes << "plane"
   end
 
   def at_capacity?
@@ -24,7 +25,7 @@ class Airport
   end
 
   def show_number_of_grounded_planes
-    @grounded_planes.length
+    @grounded_airplanes.length
   end
 
   def safe_to_land?
@@ -39,6 +40,10 @@ class Airport
 
   def check_current_weather
     Weather.new.show_current_weather_condition
+  end
+
+  def contact_approaching_plane
+    @approaching_airplane = Airplane.new
   end
 
 end

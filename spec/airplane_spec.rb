@@ -24,4 +24,7 @@ describe Airplane do
     subject.land
     expect(subject.show_current_status).to eq "grounded"
   end
+  it "shows that the airplane wil respond to the request_permission_to_land method" do
+    expect(subject).to respond_to :request_permission_to_land
+  end
 end
