@@ -10,7 +10,7 @@ class Airport
   end
 
   def land_plane(plane)
-    @planes_on_ground.push(plane.land(self))
+    @planes_on_ground.push(plane.land(self).tail_number)
   end
 
   def takeoff_plane(plane, destination)

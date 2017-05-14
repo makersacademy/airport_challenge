@@ -18,6 +18,13 @@ feature 'Air Traffic Control' do
     and_the_plane_location_is_on_air
   end
 
+  scenario 'After a plane landed the airport, it is added to the list of planes on ground at that airport' do
+    given_there_is_an_airport
+    and_a_plane
+    i_instruct_the_plane_to_land_at(@airport)
+    the_list_of_planes_on_ground_now_contains_the_plane_that_landed
+  end
+
   def given_there_is_an_airport
     @airport = Airport.new("LHR")
   end
@@ -41,6 +48,10 @@ feature 'Air Traffic Control' do
 
   def and_the_plane_location_is_set_to_arrival_airport
     expect(@plane.location).to eq @airport.iata_code
+  end
+
+  def the_list_of_planes_on_ground_now_contains_the_plane_that_landed
+    expect(@airport.planes_on_ground).to eq ["G-ZBKP"]
   end
 
   def i_instruct_a_plane_to_takeoff(plane, to_destination)
