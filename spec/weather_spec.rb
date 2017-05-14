@@ -14,4 +14,7 @@ describe Weather do
     #This test needs to be updated with correct reacting stub as soon as random weather generator is implemented
     expect(subject.safe?).to eq true
   end
+  it 'should respond to #random_weather' do
+    expect(subject).to respond_to(:random_weather)
+  end
 end
