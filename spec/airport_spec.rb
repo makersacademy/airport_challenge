@@ -6,16 +6,16 @@ describe Airport do
   end
   it "Shows that safe_to_land will return true if the weather is sunny and airport is not at capacity or false if it is stormy or airport is at capacity" do
     subject.stub(:generate_current_weather) { "sunny" }
-    subject.stub(:at_capacity?) {false}
+    subject.stub(:at_capacity?) { false }
     expect(subject.safe_to_land?).to eq true
     subject.stub(:generate_current_weather) { "sunny" }
-    subject.stub(:at_capacity?) {true}
+    subject.stub(:at_capacity?) { true }
     expect(subject.safe_to_land?).to eq false
     subject.stub(:generate_current_weather) { "stormy" }
-    subject.stub(:at_capacity?) {false}
+    subject.stub(:at_capacity?) { false }
     expect(subject.safe_to_land?).to eq false
     subject.stub(:generate_current_weather) { "stormy" }
-    subject.stub(:at_capacity?) {true}
+    subject.stub(:at_capacity?) { true }
     expect(subject.safe_to_land?).to eq false
   end
   it "responds to the show capacity method" do

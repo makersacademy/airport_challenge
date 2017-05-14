@@ -6,9 +6,9 @@ class Airport
   end
 
   def safe_to_land?
-    if generate_current_weather == "sunny"
+    if generate_current_weather == "sunny" && at_capacity? == false
       true
-    else
+    elsif generate_current_weather == "stormy" || at_capacity? == true
       false
     end
   end
@@ -17,6 +17,9 @@ class Airport
 
   def generate_current_weather
     Weather.new.show_current_weather_condition
+  end
+
+  def at_capacity?
   end
 
 end
