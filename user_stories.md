@@ -4,7 +4,7 @@
 
 | Objects         | Messages       
 | -------------   |:-------------:|
-| Air traffic controller          |               |
+| Air traffic controller          |   set_capacity?            |
 | Passenger            |      |  
 | Plane | can_be_landed? |
 |  | can_be_launched?     |  
