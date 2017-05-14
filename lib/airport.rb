@@ -10,7 +10,7 @@ class Airport
   end
 
   def show_status_of_airplanes
-    "Grounded: #{ check_number_of_grounded_planes }, Airborne: #{ check_number_of_airborne_planes }"
+    "Grounded: #{check_number_of_grounded_planes}, Airborne: #{check_number_of_airborne_planes}"
   end
 
   def change_capacity(capacity)
@@ -70,8 +70,14 @@ class Airport
   end
 
   def pop_first_grounded_airplane
-    first_grounded_airplane = @airplanes.find { |airplane| airplane.check_current_status == "grounded"}
-    @airplanes.delete_if { |airplane| airplane == @airplanes.find { |airplane| airplane.check_current_status == "grounded"} }
+    first_grounded_airplane = @airplanes.find do
+      |airplane| airplane.check_current_status == "grounded"
+    end
+    @airplanes.delete_if do
+      |target_airplane| target_airplane == @airplanes.find do
+        |airplane| airplane.check_current_status == "grounded"
+      end
+    end
     first_grounded_airplane
   end
 

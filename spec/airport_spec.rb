@@ -8,7 +8,7 @@ describe Airport do
     expect(subject).to respond_to :at_capacity?
   end
   it "Shows that at_capacity? will return true if the number of grounded planes is the same as current_capacity" do
-    subject.instance_variable_set( "@current_capacity", 20 )
+    subject.instance_variable_set("@current_capacity", 20)
     subject.stub(:check_number_of_grounded_planes) { 20 }
     expect(subject.at_capacity?).to eq true
     subject.stub(:check_number_of_grounded_planes) { 99 }
@@ -71,8 +71,8 @@ describe Airport do
     expect(subject).to respond_to :allow_airplane_to_take_off
   end
   it "Shows that allow_airplane_to_take_off method reduces the number of grounded planes and increases airborne planes by one" do
-    subject.stub( :permission_to_land? ) { true }
-    subject.stub( :permission_to_take_off? ) { true }
+    subject.stub(:permission_to_land?) { true }
+    subject.stub(:permission_to_take_off?) { true }
     20.times { subject.allow_airplane_to_land }
     expect(subject.show_status_of_airplanes).to eq "Grounded: 20, Airborne: 0"
     subject.allow_airplane_to_take_off
@@ -91,8 +91,4 @@ describe Airport do
     subject.stub(:permission_to_take_off?) { false }
     expect { subject.allow_airplane_to_take_off }.to raise_error 'Permission to take off denied'
   end
-  # it "allow_airplane_to_take_off raises an error if permission_to_land? is false" do
-  #   subject.stub(:permission_to_land?) { false }
-  #   expect { subject.allow_airplane_to_land }.to raise_error 'Permission to land denied'
-  # end
 end
