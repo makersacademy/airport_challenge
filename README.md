@@ -46,7 +46,7 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-###Instructions
+### Instructions
 
 In command line, type :
 ```
@@ -69,7 +69,7 @@ Create a new plane using Plane.new
 
 Land a plane using airport.land(plane)
 
-###Train of Thought
+### Train of Thought
 
 Create Unit and Feature Tests using TDD
 
