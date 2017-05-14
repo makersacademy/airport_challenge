@@ -66,8 +66,10 @@ describe Airport do
     expect(subject).to respond_to :permission_to_take_off?
   end
   it "Shows that permission_to_take_off? returns a value of true if check_current_wether == sunny" do
-    subject.stub(:check_current_weather) { "stormy" }
+    subject.stub(:check_current_weather) { "sunny" }
     expect(subject.permission_to_take_off?).to eq true
+    subject.stub(:check_current_weather) { "stormy" }
+    expect(subject.permission_to_take_off?).to eq false
   end
   # it "allow_airplane_to_take_off raises an error if permission_to_land? is false" do
   #   subject.stub(:permission_to_land?) { false }
