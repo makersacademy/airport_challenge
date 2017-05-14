@@ -2,6 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :weather
+  attr_accessor :capacity
 
   def initialize
     @weather = "sunny"

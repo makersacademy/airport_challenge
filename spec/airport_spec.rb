@@ -65,4 +65,10 @@ describe Airport do
     end
   end
 
+  describe '#full?' do
+    it 'responds with false when there are no planes in the airport' do
+      expect(subject.full?).to eq false
+    end
+  end
+
 end
