@@ -94,4 +94,8 @@ describe Airport do
     allow(plane).to receive(:report_landed)
     expect{airport.instruct_to_land(plane)}.to raise_error(RuntimeError, "This airport is full. Wait until another plane has taken off.")
   end
+  it 'should be set up with the capacity that is given as argument when initialized, otherwise it should have DEFAULT_CAPACITY' do
+    expect(Airport.new(20).capacity).to eq 20
+    expect(Airport.new.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 end
