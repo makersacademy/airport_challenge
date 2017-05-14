@@ -5,7 +5,7 @@ class Airport
 
   def initialize(capacity = 20)
     @current_capacity = capacity
-    @grounded_airplanes = []
+    @airplanes = []
   end
 
   def show_status_of_airplanes
@@ -19,12 +19,12 @@ class Airport
     @current_capacity
   end
 
-  def land_airplane
+  def allow_airplane_to_land
     contact_approaching_plane
-    if permission_to_land? == true
-      @approaching_airplane.land
-      @grounded_airplanes << @approaching_airplane
-    end
+    fail "Permission to land denied" if permission_to_land? == false
+    @approaching_airplane.land
+    @airplanes << { airplane: @approaching_airplane,
+      current_status: @approaching_airplane.check_current_status }
   end
 
   def at_capacity?
@@ -32,7 +32,7 @@ class Airport
   end
 
   def show_number_of_grounded_planes
-    @grounded_airplanes.length
+    @airplanes.count { |airplane| airplane[:current_status] == "grounded" }
   end
 
   def permission_to_land?

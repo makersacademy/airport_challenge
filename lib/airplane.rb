@@ -4,7 +4,7 @@ class Airplane
     @current_status = current_status
   end
 
-  def show_current_status
+  def check_current_status
     @current_status
   end
 
