@@ -2,7 +2,7 @@ require './lib/plane'
 require './lib/weather'
 
 class Airport
-  
+
   MAX_CAPACITY = 10
 
   attr_reader :landed_planes
@@ -24,7 +24,7 @@ class Airport
 
   def takeoff(plane)
     if plane.flying? || plane.taken_off? || stormy?
-       raise "Can't take off plane!"
+      raise "Can't take off plane!"
     else
       plane.flight_status = :taken_off
       @landed_planes.delete(plane)
