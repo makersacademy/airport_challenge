@@ -46,6 +46,10 @@ describe Airport do
       subject.generate_weather
       expect(subject.weather).not_to be_nil
     end
+
+    it 'has a default value of sunny' do
+      expect(subject.weather).to eq 'sunny'
+    end
   end
 
 end
