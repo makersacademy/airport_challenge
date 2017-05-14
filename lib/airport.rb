@@ -1,6 +1,11 @@
 require 'weather'
 
 class Airport
+
+  def initialize
+    @current_capacity = 20
+  end
+
   def show_capacity
     @current_capacity
   end
