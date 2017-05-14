@@ -8,14 +8,18 @@ class Airport
   end
   # Allows planes to land at an airport
 
-  def lands_plane(plane)
+  def lands_plane(arriving_plane)
 
-    raise 'There is no more space at the airport' if planes.length == capacity
-    if safe? == false
+    if arriving_plane.flying == false
+      raise 'This plane has already landed'
+    elsif planes.length == capacity
+      raise 'There is no more space at the airport'
+    elsif safe? == false
       raise 'It is too stormy for landing'
     else
-      planes << plane
-      "#{plane} has landed"
+      planes << arriving_plane
+      arriving_plane.arrives()
+      "#{arriving_plane} has landed"
     end
   end
   # Enables planes to depart from  an airport
@@ -25,8 +29,9 @@ class Airport
     if  safe? == false
       raise 'It is too stormy for take off'
     else
-    plane_take_off = planes.pop
-    "#{plane_take_off} has taken off"
+    departing_plane = planes.pop
+    departing_plane.departs()
+    "#{departing_plane} has taken off"
   end
   end
 

@@ -37,9 +37,7 @@ Description
 3. There is a fixed capacity for planes
 4. This capacity can be increased
 
-
-Description
--------
+* Based on these user stories
 ```
 As an air traffic controller
 So I can get passengers to a destination

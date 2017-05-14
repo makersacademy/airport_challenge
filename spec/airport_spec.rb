@@ -8,22 +8,35 @@ describe Airport do
   describe '#lands_planes' do
     it { is_expected.to respond_to(:lands_plane).with(1).argument }
     it 'returns the value of the plane which has landed' do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:arrives)
       allow(subject).to receive(:safe?).and_return(true)
       expect(subject.lands_plane(plane)).to eq "#{plane} has landed"
     end
-    it 'adds the plane to the plans array' do
+    it 'adds the plane to the planes array' do
+      allow(plane).to receive(:flying).and_return(true)
       allow(subject).to receive(:safe?).and_return(true)
+      allow(plane).to receive(:arrives)
       subject.lands_plane(plane)
       expect(subject.planes).to eq [plane]
     end
-    it 'only allows planes to land if there is space' do
+    it 'prevents planes from landing if there is no space' do
+      allow(plane).to receive(:flying).and_return(true)
       allow(subject).to receive(:safe?).and_return(true)
+      allow(plane).to receive(:arrives)
       Airport::DEFAULTCAPACITY.times { subject.lands_plane plane }
       expect { subject.lands_plane(plane) }.to raise_error(RuntimeError, 'There is no more space at the airport')
     end
-    it 'only allows planes to land if it is not stormy' do
+    it 'prevents planes from landing if it is storm' do
+      allow(plane).to receive(:flying).and_return(true)
       allow(subject).to receive(:safe?).and_return(false)
       expect{ subject.lands_plane(plane) }.to raise_error(RuntimeError, 'It is too stormy for landing')
+    end
+    it 'only allows planes to land if they are flying' do
+      allow(plane).to receive(:arrives)
+      allow(plane).to receive(:flying).and_return(false)
+      allow(subject).to receive(:safe?).and_return(true)
+      expect{ subject.lands_plane(plane) }.to raise_error(RuntimeError, 'This plane has already landed')
     end
   end
 
@@ -31,11 +44,17 @@ describe Airport do
     it { is_expected.to respond_to(:takes_off) }
     it 'returns the value of the plane which has taken off' do
       allow(subject).to receive(:safe?).and_return(true)
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:arrives)
+      allow(plane).to receive(:departs)
       subject.lands_plane(plane)
       expect(subject.takes_off).to eq "#{plane} has taken off"
     end
     it 'removes the plane from the plans array' do
       allow(subject).to receive(:safe?).and_return(true)
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:arrives)
+      allow(plane).to receive(:departs)
       subject.lands_plane(plane)
       subject.takes_off
       expect(subject.planes).to eq []
@@ -45,6 +64,8 @@ describe Airport do
     end
     it 'does not allow planes to take off it is is stormy' do
       allow(subject).to receive(:safe?).and_return(true)
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:arrives)
       subject.lands_plane(plane)
       allow(subject).to receive(:safe?).and_return(false)
       expect{ subject.takes_off }.to raise_error(RuntimeError, 'It is too stormy for take off')
@@ -82,11 +103,5 @@ describe Airport do
 
   describe '#planes' do
     it { is_expected.to respond_to(:planes) }
-    it 'adds the plane to the plans array' do
-      plane = double('plane')
-      allow(subject).to receive(:safe?).and_return(true)
-      subject.lands_plane(plane)
-      expect(subject.planes).to eq [plane]
-    end
   end
 end
