@@ -16,6 +16,7 @@ class Airport
   end
 
   def land_plane
+    @grounded_planes << "plane"
   end
 
   def at_capacity?
