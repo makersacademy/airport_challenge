@@ -8,7 +8,8 @@ class Airport
   end
 
   def lands_plane(*)
-    return "The plane has landed!"
+    return "Plane could not land due to stormy weather." if @weather == "stormy"
+    return "The plane has landed!" if @weather == "sunny"
   end
 
   def launches_plane(*)
