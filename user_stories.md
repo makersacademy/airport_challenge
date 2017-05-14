@@ -10,5 +10,7 @@
 |  | can_be_launched?     |  
 | Airport | confirms_landing? |
 |  | confirms_launching? |
-| Weather | acceptable?     |
+|  | prevent_landing?    |
+|  | prevent_launching?    |
+| Weather | sunny?     |
 |  | stormy? |

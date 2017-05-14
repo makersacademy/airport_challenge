@@ -31,6 +31,14 @@ describe Airport do
       plane = Plane.new
       expect(subject.launches_plane(plane)).to eq "The plane has taken off!"
     end
+
+    it 'will show a new message when trying to launch a plane in stormy weather' do
+      airport = Airport.new
+      plane = Plane.new
+      airport.instance_variable_set(:@weather, "stormy")
+      expect(airport.launches_plane(plane)).to eq "Plane could not take off due to stormy weather."
+    end
+
   end
 
   describe '#generate_weather' do
