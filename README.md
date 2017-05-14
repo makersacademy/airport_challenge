@@ -69,12 +69,29 @@ Create a new plane using Plane.new
 
 Land a plane using airport.land(plane)
 
-**BONUS**
+###Train of Thought
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+Create Unit and Feature Tests using TDD
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+Use the Red, Green, Refactor method to pass individual Unit and Feature Tests
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+First tackle landing and taking off of planes
 
+Check to see if planes have left the airport if they have taken off
+
+Check to see if planes that are in the air are not present in the airport array of planes
+
+Add default capacity to the airport
+
+Allow the user to pass a custom capacity as an argument
+
+Check to see if the tests still pass if the capacity is increased
+
+Set the weather to be good enough to land by default to avoid random cases of stormy weather
+
+Add the weather randomizer as a last step and test the code in Unit and Feature Tests
+
+Use doubles to simulate plane and weather behaviour
+
+Refactor the code to remove extra lines where possible and mock the behavior of the methods
 

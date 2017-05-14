@@ -4,6 +4,7 @@ require_relative 'weather'
 class Airport
   
   DEFAULT_CAPACITY = 20
+
   attr_reader :planes
   attr_accessor :capacity, :sunny
 
@@ -46,3 +47,10 @@ class Airport
   end
 
 end
+
+p airport = Airport.new
+p plane = Plane.new
+# p airport.sunny = true
+p airport.land(plane)
+p airport.take_off(plane)
+
