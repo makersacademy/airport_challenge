@@ -7,6 +7,7 @@ class Airport
   end
 
   def instruct_to_land(plane)
+    fail "The weather is stormy. Landing not allowed." if !weather.safe?
     @landed_planes << plane
     plane.update_location_after_landing_to(self)
     puts plane.report_landed

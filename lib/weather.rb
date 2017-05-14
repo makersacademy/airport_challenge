@@ -3,7 +3,7 @@ class Weather
   attr_reader :current_state
   #TO BE BUILT LATER: Random State creator
   def initialize
-    @current_state = :good
+    @current_state = :stormy
   end
 
   def safe?
