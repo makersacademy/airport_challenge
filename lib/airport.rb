@@ -3,6 +3,7 @@ class Airport
 
   def initialize
     @landed_planes = []
+    @weather = Weather.new
   end
 
   def instruct_to_land(plane)

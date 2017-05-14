@@ -32,4 +32,7 @@ describe Airport do
   it 'should respond to #weather' do
     expect(subject).to respond_to(:weather)
   end
+  it 'should be initialized with a Weather object in @weather' do
+    expect(subject.weather.class).to eq Weather
+  end
 end
