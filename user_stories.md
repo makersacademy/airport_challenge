@@ -12,5 +12,6 @@
 |  | confirms_launching? |
 |  | prevent_landing?    |
 |  | prevent_launching?    |
+|  | full?    |
 | Weather | sunny?     |
 |  | stormy? |

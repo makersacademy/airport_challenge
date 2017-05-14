@@ -10,8 +10,9 @@ describe Airport do
 
   it { is_expected.to respond_to(:weather) }
 
-  describe '#lands_plane' do
+  it { is_expected.to respond_to(:full?) }
 
+  describe '#lands_plane' do
     it 'gives the user a message when a plane lands' do
       plane = Plane.new
       expect(subject.lands_plane(plane)).to eq "The plane has landed!"
@@ -42,7 +43,6 @@ describe Airport do
   end
 
   describe '#generate_weather' do
-
     it 'has a 90% chance to give sunny conditions' do
       airport = double(:airport, generate_weather: 'sunny')
       expect(airport.generate_weather).to eq 'sunny'
