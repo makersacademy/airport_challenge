@@ -9,4 +9,10 @@ RSpec.describe Weather do
     end
   end
 
+  describe "#clear?" do
+    it "check if the weather is stormy based" do
+      expect(weather.clear?).to eq true
+    end
+  end
+
 end

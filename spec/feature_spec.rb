@@ -34,3 +34,6 @@ p weather = Weather.new #=> <Weather:0x007f84d70ef048>
 
 print 'generates a random number 1-10: '
 p weather.random #=> 2
+
+print 'wheater returns false if wheater is stormy (10): '
+p weather.clear? #=> false
