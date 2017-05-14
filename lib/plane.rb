@@ -8,7 +8,7 @@ class Plane
     @in_airport
   end
 
-  def take_off
+  def take_off(airport)
     @in_airport = false
   end
 
