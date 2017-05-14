@@ -6,7 +6,6 @@ RSpec.describe Airport do
 
   describe "#land" do
     it "makes a plane land at an airport" do
-      expect(airport).to respond_to(:land).with(1).argument
       expect(airport.land(plane)).to eq [plane]
     end
   end
@@ -20,6 +19,7 @@ RSpec.describe Airport do
 
   describe "#take_off" do
     it "the plane can take off from the airport" do
+      plane = Plane.new
       airport.land(plane)
       expect(airport.take_off).to eq plane
     end

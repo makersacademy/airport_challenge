@@ -13,7 +13,9 @@ class Airport
 
   def take_off
     raise 'No planes currently available' if planes.empty?
-    @planes.pop
+    plane = @planes.pop
+    plane.in_flight
+    plane
   end
 
 end

@@ -1,5 +1,6 @@
 require 'plane'
 require 'airport'
+require 'weather'
 
 print 'makes a new plane: '
 p plane = Plane.new #=> <Plane:0x007fcd9a84f728>
@@ -22,5 +23,11 @@ p airport.take_off #=> <Plane:0x007fcd9a84f742>
 print 'confirm that the plane is no longer in the airport: '
 p airport.planes #=> []
 
-print 'raise error if no planes available to take off: '
+#print 'raise error if no planes available to take off: '
 # airport.take_off #=> Error 'No planes currently available'
+
+print 'the plane is #in_flight after taking off: '
+plane.in_flight
+p plane
+print 'the plane is no longer #landed? after taking off: '
+p plane.landed? #=> false
