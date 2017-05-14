@@ -19,7 +19,7 @@ describe Airport do
       it 'prevents planes from landing' do
         Airport::DEFAULTCAPACITY.times { airport.lands_plane plane }
         message = 'There is no more space at the airport'
-        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, message )
+        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, message)
       end
     end
     context 'storm' do
