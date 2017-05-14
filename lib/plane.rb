@@ -4,18 +4,19 @@ class PlaneError < StandardError; end
 class Plane
   attr_reader :location
 
+  AIR_LOCATION = :air
+
   def initialize
     @location = :default_location
   end
 
-  def arrive_at(airport)
-    raise PlaneError, "Plane needs to departure before it arrives somewhere" if @location != :air
-    @location = airport.identifier
+  def land_at(airport_identifier)
+    raise PlaneError, "Plane needs to take_off before it arrives somewhere" if @location != AIR_LOCATION
+    @location = airport_identifier
   end
 
-  def departure
-    raise PlaneError, "Plane already in the air" if @location == :air
-    @location = :air
-    self
+  def take_off
+    raise PlaneError, "Plane already in the air" if @location == AIR_LOCATION
+    @location = AIR_LOCATION
   end
 end

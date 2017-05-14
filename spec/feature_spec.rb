@@ -53,6 +53,6 @@
 # plane_for_arriving = Plane.new
 # puts plane_for_arriving.location
 # plane_for_arriving.departure
-# plane_for_arriving.arrive_at(airport_for_arriving)
+# plane_for_arriving.land_at(airport_for_arriving)
 # puts "arrives_at method has been called."
 # puts plane_for_arriving.location
