@@ -1,5 +1,4 @@
 require_relative 'plane'
-# require_relative 'weather'
 
 class Airport
 
@@ -27,7 +26,7 @@ class Airport
   end
 
   def empty?
-    @plane.count == 0
+    @plane.count.zero?
   end
 
   def stormy?
