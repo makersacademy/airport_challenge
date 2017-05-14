@@ -13,7 +13,9 @@ class Airport
   end
 
   def confirm_landing(plane)
-    @planes.include(plane)
+    @planes.include?(plane)
   end
+
+
 
 end
