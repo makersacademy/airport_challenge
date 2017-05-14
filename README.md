@@ -88,3 +88,37 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+This challenge was approached in a similar way to the Boris-Bikes challenge. I used TDD and ran a feature test, before creating a unit test using RSpec, before fixing this test in my code. Test coverage is currently at 98.68% and no offences after running Rubocop.
+
+Below is a snippet of the code running in IRB:
+
+```
+2.4.0 :001 > require './lib/airport.rb'
+ => true
+2.4.0 :002 > Boeing747 = Plane.new
+ => #<Plane:0x007fb77c8d6770>
+2.4.0 :003 > Heathrow = Airport.new 5
+ => #<Airport:0x007fb77c8ce278 @plane=[], @capacity=5>
+2.4.0 :004 > Heathrow.stormy?
+ => false
+2.4.0 :005 > Heathrow.land_plane(Boeing747)
+ => [#<Plane:0x007fb77c8d6770>]
+2.4.0 :006 > Heathrow
+ => #<Airport:0x007fb77c8ce278 @plane=[#<Plane:0x007fb77c8d6770>], @capacity=5>
+2.4.0 :007 > Jumbo = Plane.new
+ => #<Plane:0x007fb77d80d298>
+2.4.0 :008 > Heathrow.land_plane(Jumbo)
+ => [#<Plane:0x007fb77c8d6770>, #<Plane:0x007fb77d80d298>]
+2.4.0 :009 > Heathrow
+ => #<Airport:0x007fb77c8ce278 @plane=[#<Plane:0x007fb77c8d6770>, #<Plane:0x007fb77d80d298>], @capacity=5>
+2.4.0 :010 > Heathrow.take_off(Jumbo)
+RuntimeError: Too stormy!
+	from /Applications/Projects/MakersWeek1/Weekend Challenge/airport_challenge/lib/airport.rb:25:in `take_off'
+	from (irb):10
+	from /Users/sampritchard/.rvm/rubies/ruby-2.4.0/bin/irb:11:in `<main>'
+2.4.0 :011 > Heathrow.take_off(Jumbo)
+ => #<Plane:0x007fb77d80d298>
+2.4.0 :012 > Heathrow.capacity
+ => 5
+ ```
