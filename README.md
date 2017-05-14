@@ -1,6 +1,43 @@
 Airport Challenge
 =================
 
+Solution
+---------
+My solution is a simple model with two classes - Airport and Plane
+
+It should allow planes to land at, and depart from an airport. The status of the plane is checked on take off and landing to make sure we are not trying to land a plane which has already landed, or take off when we are already flying. Airports have a capacity, and weather, which are also checked at take off and landing.
+
+Multiple airports can be initialized which each have their own names, capacities and weather. Each airport will keep track of the planes which are landed there.
+
+The variables and methods which make up each class are as follows:
+
+* Airport
+  * Instance variables
+    * airport_name -> holds name of the airport for printing
+    * capacity -> holds the maximum number of planes which can land at an airport. Defaults to the DEFAULT_CAPACITY constant
+    * weather -> holds the current weather conditions. Defaults to "calm"
+    * planes -> an array of all planes landed at the airport
+  * Constants
+    * DEFAULT_CAPACITY -> holds the number 10 as the default number of planes any airport can have landed
+  * Methods
+    * attr_reader -> for each of the instance variables
+    * initialize
+    * storm_switch -> if the 'weather' instance variable is 'storm' it will be set to 'calm', otherwise it will be set to 'storm'
+    * weather_change -> 1 time in 3 it will invoke the storm_switch methods
+* Plane
+  * Instance variables
+    * flying -> records if the plane is currently 'flying' or 'landed'
+  * methods
+    * attr_reader -> for 'flying' instance variables
+    * initialize
+    * land_at(airport) -> lands the plane at the given airport
+    * land_guard_conditions(airport) -> performs landing checks
+    * depart_from(airport) -> has the plane take off from the given airport
+    * depart_guard_conditions(airport) -> performs departure checks
+    * flying_switch -> changes the 'flying' instance variable between 'flying' and 'landed'
+    * flight_path(airport1, airport2) -> plane takes off from airport 1 and lands at airport2. If it can't land at airport2 it returns to airport1
+
+
 ```
         ______
         _\____\___
@@ -36,25 +73,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +110,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 

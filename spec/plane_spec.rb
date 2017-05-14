@@ -78,4 +78,12 @@ describe Plane do
     expect { plane.land_at(airport) }.to raise_error "This plane is already landed"
   end
 
+  it "can fly from one airport to another" do
+    airport1 = double(:airport, capacity:20, planes: [], weather: "calm", airport_name: airport1)
+    airport2 = double(:airport, capacity:20, planes: [], weather: "calm", airport_name: airport2)
+    subject.land_at(airport1)
+    subject.flight_path(airport1, airport2)
+    expect(airport2.planes[0]).to eq subject
+  end
+
 end

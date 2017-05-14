@@ -38,4 +38,14 @@ class Plane
     self
   end
 
+  def flight_path(airport1, airport2)
+      depart_from(airport1)
+    begin
+      land_at(airport2)
+    rescue
+      puts "returning to #{airport1}"
+      land_at(airport1)
+    end
+  end
+
 end
