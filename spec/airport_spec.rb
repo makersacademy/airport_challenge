@@ -7,6 +7,7 @@ describe Airport do
   it { is_expected.to respond_to(:take_off).with(1).argument}
   it { is_expected.to respond_to(:plane)}
 
+
   it 'returns landed planes' do
  	 subject.land(plane)
  	 expect(subject.plane).to eq plane
@@ -29,5 +30,11 @@ describe Airport do
   it 'raises an error when there are no planes in the airport' do
   	expect {subject.take_off(plane)}.to raise_error 'No planes at the airport'
   end
-	end  
+	 
+  it 'checks to see if a plane has landed' do
+  	subject.land(plane)
+  	allow(plane).to receive(:landed?).and_return(true) 
+  	expect(subject.plane).to be_landed
+  end
+
 end
