@@ -2,9 +2,12 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :planes_on_ground, :iata_code
+  DEFAULT_CAPACITY = 40
 
-  def initialize(iata_code)
+  attr_reader :capacity, :planes_on_ground, :iata_code
+
+  def initialize(iata_code, capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @planes_on_ground = []
     @iata_code = iata_code
   end
