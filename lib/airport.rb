@@ -1,7 +1,7 @@
 class Airport
   attr_reader :landed_planes, :weather, :capacity
   DEFAULT_CAPACITY = 50
-  
+
   def initialize
     @landed_planes = []
     @weather = Weather.new
@@ -10,6 +10,7 @@ class Airport
 
   def instruct_to_land(plane)
     fail "The weather is stormy. Landing not allowed." unless weather.safe?
+    fail "This airport is full. Wait until another plane has taken off." if full?
     @landed_planes << plane
     plane.update_location_after_landing_to(self)
     puts plane.report_landed
