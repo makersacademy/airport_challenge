@@ -1,11 +1,13 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
 
   attr_reader :landed_planes
 
-  def initialize
+  def initialize (station = WeatherStation.new)
     @landed_planes = []
+    @station = station
   end
 
   def land(plane)
@@ -20,10 +22,8 @@ class Airport
   end
 
   def takeoff(plane)
-    if plane.flying?
-      raise "Not this time buddy, you can't takeoff a flying plane!"
-    elsif plane.taken_off?
-      raise "Not this time buddy, you can't takeoff a taken off plane!"
+    if plane.flying? || plane.taken_off? || @station.todays_weather != :sunny
+      raise "Can't take off plane!"
     else
       plane.flight_status = :taken_off
       @landed_planes.delete(plane)

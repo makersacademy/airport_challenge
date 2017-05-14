@@ -12,5 +12,4 @@ class WeatherStation
     end
   end
 
-
 end
