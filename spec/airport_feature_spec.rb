@@ -19,7 +19,7 @@ feature 'Air Traffic Control' do
   end
 
   def given_there_is_an_airport
-    @airport = Airport.new
+    @airport = Airport.new("LHR")
   end
   
   def and_a_plane
@@ -27,7 +27,7 @@ feature 'Air Traffic Control' do
   end
 
   def and_the_destination_airport_exists
-    @destination = Airport.new
+    @destination = Airport.new("LIS")
   end
 
   def i_instruct_the_plane_to_land_at(airport)
