@@ -6,10 +6,12 @@ describe Airport do
     describe '#land_plane' do
 
     it { is_expected.to respond_to(:plane)}
+    it { is_expected.to respond_to(:full?)}
 
     it 'returns the landed planes' do
         planes = []
         plane = double(:plane)
+        allow(subject).to receive (:stormy?) {false}
         subject.land_plane(plane)
         planes << plane
         expect(subject.plane).to eq planes
@@ -28,6 +30,11 @@ describe Airport do
       allow(subject).to receive (:stormy?) {true}
       expect { subject.land_plane(plane)}.to raise_error "Too stormy!"
     end
+    it 'raises an error when attempting to land at a full station' do
+      allow(subject).to receive (:stormy?) {false}
+      subject.capacity.times {subject.land_plane(double(:plane))}
+      expect { subject.land_plane(double(:plane)) }.to raise_error 'Airport full!'
+    end
   end
 
     it { is_expected.to respond_to(:take_off).with(1).argument}
@@ -43,6 +50,7 @@ describe Airport do
       it 'raises an error when attempting to take off a plane which is not at the airport' do
         plane = double(:plane)
         plane2 = double(:plane)
+        allow(subject).to receive (:stormy?) {false}
         subject.land_plane(plane)
         expect { subject.take_off(plane2) }.to raise_error "This plane is not at the airport!"
       end

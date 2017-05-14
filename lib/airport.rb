@@ -3,15 +3,17 @@ require_relative 'plane'
 
 class Airport
 
-  attr_reader :plane
+  attr_reader :plane, :capacity
 
   def initialize
     @plane = []
+    @capacity = 1
   end
 
   def land_plane(plane)
     fail "This plane has already landed!" if @plane.include? plane
     fail "Too stormy!" if stormy?
+    fail "Airport full!" if full?
     @plane << plane
   end
 
@@ -28,6 +30,10 @@ class Airport
 
   def stormy?
     [true, false, false, false].sample
+  end
+
+  def full?
+    @plane.length >= capacity
   end
 
 end
