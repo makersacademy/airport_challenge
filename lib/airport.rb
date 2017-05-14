@@ -14,6 +14,12 @@ class Airport
     @capacity = capacity
   end
 
+  def weather_is_stormy?
+    num = rand(1..7)
+    @weather_is_stormy = true if num > 5
+    @weather_is_stormy = false
+  end
+
   def add_plane(plane)
     raise "Plane can not land due to stormy weather" if @weather_is_stormy
     raise "Plane can not land because the airport is full" if self.is_full?

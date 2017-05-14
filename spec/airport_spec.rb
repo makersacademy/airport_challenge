@@ -21,4 +21,10 @@ require 'airport.rb'
       plane.land(subject)
     end
 
+    it "Use a random number generator to set the weather" do
+        num = rand(1..7)
+        subject.weather_is_stormy? == true if num > 5
+        subject.weather_is_stormy? == false if num <= 5
+    end
+
 end
