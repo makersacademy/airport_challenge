@@ -30,6 +30,13 @@ describe Airport do
     it { is_expected.to respond_to(:take_off).with(1).argument}
 
     describe '#take_off' do
+      it 'stops the plane from taking off when it is stormy' do
+        plane = double(:plane)
+        allow(subject).to receive (:stormy?) {false}
+        subject.land_plane(plane)
+        allow(subject).to receive (:stormy?) {true}
+        expect { subject.take_off(plane)}.to raise_error "Too stormy!"
+      end
       it 'raises an error when attempting to take off a plane which is not at the airport' do
         plane = double(:plane)
         plane2 = double(:plane)

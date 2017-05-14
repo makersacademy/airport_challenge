@@ -1,9 +1,9 @@
 require_relative 'plane'
-require_relative 'weather'
+# require_relative 'weather'
 
 class Airport
 
-  attr_reader :plane
+  attr_reader :plane, :weather
 
   def initialize
     @plane = []
@@ -15,6 +15,7 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Too stormy!" if stormy?
     fail "This plane is not at the airport!" if empty?
     fail 'This plane is not at the airport!' unless @plane.include? plane
     @plane.pop
@@ -24,5 +25,7 @@ class Airport
     @plane.count == 0
   end
 
-
+  def stormy?
+    [true, false, false, false].sample
+  end
 end

@@ -1,6 +1,6 @@
 
-class Weather
-  def stormy?
-    true
-  end
-end
+# class Weather
+#   def stormy?
+#     true
+#   end
+# end
