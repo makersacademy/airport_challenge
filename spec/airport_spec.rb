@@ -117,4 +117,19 @@ describe Airport do
     allow(plane).to receive(:flying?){true}
     expect{subject.instruct_to_take_off(plane)}.to raise_error(RuntimeError, "This plane has already taken off.")
   end
+  it 'should raise an error if a plane is instructed to take off although it has landed at a different airport' do
+    airport = subject
+    airport2 = Airport.new
+    allow(airport.weather).to receive(:safe?){true}
+    allow(airport2.weather).to receive(:safe?){true}
+    plane = double(:plane, location: 'up in the air')
+    allow(plane).to receive(:update_location_after_landing_to)
+    allow(plane).to receive(:report_landed)
+    allow(plane).to receive(:update_location_after_take_off_from)
+    allow(plane).to receive(:report_take_off)
+    allow(plane).to receive(:flying?){true}
+    airport2.instruct_to_land(plane)
+    allow(plane).to receive(:flying?){false}
+    expect{airport.instruct_to_take_off(plane)}.to raise_error(RuntimeError, "The plane is at a different airport.")
+  end
 end

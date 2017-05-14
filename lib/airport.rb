@@ -20,6 +20,7 @@ class Airport
 
   def instruct_to_take_off(plane)
     fail "This plane has already taken off." if plane.flying?
+    fail "The plane is at a different airport." unless landed_planes.include?(plane)
     fail "The weather is stormy. Take off not allowed." unless weather.safe?
     @landed_planes.delete(plane)
     plane.update_location_after_take_off_from(self)
