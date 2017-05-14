@@ -53,4 +53,9 @@ describe Airport do
       expect(airport.bad_conditions?).to be(true).or be(false)
     end
   end
+  describe '#capacity' do
+    it 'responds to airport.capacity' do
+      expect(airport).to respond_to(:capacity)
+    end
+  end
 end
