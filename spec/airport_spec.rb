@@ -68,13 +68,14 @@ describe Airport do
 
   describe '#full?' do
     it 'responds with true when there are 20 planes in the airport' do
+      20.times { subject.lands_plane(Plane.new) }
       expect(subject.full?).to eq true
     end
 
     it 'counts the number of planes in @planes' do
       airport = Airport.new
-      airport.instance_variable_set(:@capacity, [])
-      expect(airport::capacity.count).to eq 0
+      airport.instance_variable_set(:@planes, [])
+      expect(airport::planes.count).to eq 0
     end
   end
 

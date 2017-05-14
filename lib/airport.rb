@@ -3,15 +3,21 @@ require_relative 'plane'
 class Airport
   attr_accessor :weather
   attr_accessor :capacity
+  attr_accessor :planes
 
   def initialize
     @weather = "sunny"
-    @capacity = []
+    @capacity = 20
+    @planes = []
   end
 
-  def lands_plane(*)
-    return "Plane could not land due to stormy weather." if @weather == "stormy"
-    return "The plane has landed!" if @weather == "sunny"
+  def lands_plane(plane)
+    if @weather == "stormy"
+      return "Plane could not land due to stormy weather."
+    else
+      @planes << plane
+      "The plane has landed!"
+    end
   end
 
   def launches_plane(*)
@@ -31,7 +37,11 @@ class Airport
   end
 
   def full?
-    false
+    if @planes.count == 20
+      return true
+    else
+      return false
+    end
   end
 
 end
