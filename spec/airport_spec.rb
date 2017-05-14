@@ -5,6 +5,17 @@ RSpec.describe Airport do
   let(:plane) { double :plane }
   let(:weather) { double :weather }
 
+  describe "#capacity" do
+    it "has a default hangar size of 10" do
+      expect(airport.capacity).to eq Airport::DEFAULT_HANGAR_SIZE
+    end
+
+    it "allows for different hangar sizes" do
+      airport = Airport.new(20)
+      expect(airport.capacity).to eq 20
+    end
+  end
+
   describe "#planes" do
     it "return the planes currently landed at the airport" do
       allow(airport).to receive(:check_weather) { true }
