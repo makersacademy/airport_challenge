@@ -9,16 +9,20 @@ describe Airport do
   describe '#lands_plane' do
     it 'gives the user a message when a plane lands' do
       plane = Plane.new
-      airport = Airport.new
-      expect(airport.lands_plane(plane)).to eq "The plane has landed!"
+      expect(subject.lands_plane(plane)).to eq "The plane has landed!"
     end
   end
 
   describe '#launches_plane' do
     it 'gives the user a message when a plane takes off' do
       plane = Plane.new
-      airport = Airport.new
-      expect(airport.launches_plane(plane)).to eq "The plane has taken off!"
+      expect(subject.launches_plane(plane)).to eq "The plane has taken off!"
+    end
+  end
+
+  describe '#gets_random_weather' do
+    it 'returns a weather condition' do
+      expect(subject.show_weather).to eq "The weather is sunny!"
     end
   end
 end
