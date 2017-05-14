@@ -46,6 +46,7 @@ class Airport
   end
 
   def permission_to_take_off?
+    true
   end
 
   private
