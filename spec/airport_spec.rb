@@ -18,19 +18,22 @@ describe Airport do
     context 'no space' do
       it 'prevents planes from landing' do
         Airport::DEFAULTCAPACITY.times { airport.lands_plane plane }
-        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, 'There is no more space at the airport')
+        message = 'There is no more space at the airport'
+        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, message)
       end
     end
     context 'storm' do
       it 'prevents planes from landing' do
         allow(airport).to receive(:safe?).and_return(false)
-        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, 'It is too stormy for landing')
+        message = 'It is too stormy for landing'
+        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, message)
       end
     end
     context 'not flying' do
       it 'prevents planes from landing' do
         allow(plane).to receive(:flying).and_return(false)
-        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, 'This plane has already landed')
+        message = 'This plane has already landed'
+        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, message)
       end
     end
   end
@@ -48,14 +51,16 @@ describe Airport do
     end
     context 'no plane at airport' do
       it 'prevents takeoff' do
-        expect { airport.takes_off }.to raise_error(RuntimeError, 'There are no planes at the airport')
+        message = 'There are no planes at the airport'
+        expect { airport.takes_off }.to raise_error(RuntimeError, message)
       end
     end
     context 'stormy' do
       it 'prevents takeoff' do
         airport.lands_plane(plane)
         allow(airport).to receive(:safe?).and_return(false)
-        expect { airport.takes_off }.to raise_error(RuntimeError, 'It is too stormy for take off')
+        message = 'It is too stormy for take off'
+        expect { airport.takes_off }.to raise_error(RuntimeError, message)
       end
     end
   end
