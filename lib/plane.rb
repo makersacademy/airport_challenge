@@ -1,21 +1,21 @@
 class Plane
 
-  attr_reader :airborne
+  attr_reader :status
 
   def initialize
-    @airborne = true
+    @status = 'airborne'
   end
 
   def landed
-    @airborne = false
+    @status = 'landed'
   end
 
   def takeoff
-    @airborne = true
+    @status = 'airborne'
   end
 
   def airborne?
-    @airborne
+    @status == 'airborne'
   end
 
 
