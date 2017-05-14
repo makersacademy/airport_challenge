@@ -3,14 +3,14 @@ require_relative 'airport.rb'
 class Plane
 
   def land(airport)
-    raise "Plane can not land due to stormy weather" if airport.weather_is_stormy
-    raise "Plane can not land because the airport is full" if airport.full
-    airport.plane = self
+    airport.add_plane(self)
+    
+    # airport.plane = self
   end
 
   def take_off(airport)
-    raise "Plane can not take off due to stormy weather" if airport.weather_is_stormy
-    airport.plane = nil
+    airport.remove_plane(self)
+    # airport.plane = nil
   end
 
 

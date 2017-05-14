@@ -3,4 +3,5 @@ require './lib/plane.rb'
 
 airport = Airport.new
 plane = Plane.new
-puts airport.capacity 
+airport.capacity = 14
+puts airport.capacity
