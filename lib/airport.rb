@@ -9,4 +9,7 @@ class Airport
   def take_off
     Plane.new
   end
+
+  def weather_check
+  end
 end
