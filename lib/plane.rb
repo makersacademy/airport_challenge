@@ -1,7 +1,7 @@
 
 class Plane
   def status_of_plane
-     @plane_status
+    @plane_status
    end
 
   def land
