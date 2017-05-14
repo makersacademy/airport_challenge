@@ -74,7 +74,14 @@ describe Airport do
     end
 
     it "ensures planes can only take off from airports they are in" do
-
+      new_airport = Airport.new
+      subject.landed_planes << plane
+      allow(new_airport).to receive(:stormy?).and_return false
+      allow(subject).to receive(:stormy?).and_return false
+      allow(plane).to receive(:landing_status).and_return "landed"
+      allow(plane).to receive(:take_off).and_return "airborn"
+      expect(subject.clear_plane(plane)).to eq []
+      expect { new_airport.clear_plane(plane) }.to raise_error "Cannot clear plane -> Plane not in airport"
     end
   end
 end
