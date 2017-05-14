@@ -35,9 +35,14 @@ describe Airport do
   it 'should be initialized with a Weather object in @weather' do
     expect(subject.weather.class).to eq Weather
   end
-  it 'should raise an error if a plane is instructed at stormy weather' do
+  it 'should raise an error if a plane is instructed to land in stormy weather' do
     airport = Airport.new # should be a double with bad weather later on
     plane = Plane.new # should be a double later on
     expect{airport.instruct_to_land(plane)}.to raise_error(RuntimeError, "The weather is stormy. Landing not allowed.")
+  end
+  it 'should raise an error if a plane is instructed to take off in stormy weather' do
+    airport = Airport.new # should be a double with bad weather later on
+    plane = Plane.new # should be a double later on
+    expect{airport.instruct_to_take_off(plane)}.to raise_error(RuntimeError, "The weather is stormy. Take off not allowed.")
   end
 end
