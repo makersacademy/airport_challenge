@@ -6,23 +6,23 @@ RSpec.describe Plane do
 
   describe "#landed" do
     it "check if the plane is landed" do
-      expect(plane.landed?).to eq true
+      expect(plane.landed).to eq true
     end
   end
 
-  describe "#in_flight" do
+  describe "#take_off" do
     it "change the status of a plane from landed to in flight" do
-      plane.in_flight
-      expect(plane.landed?).to eq false
+      allow(airport).to receive(:authorize_take_off) { true }
+      plane.take_off(airport)
+      expect(plane.landed).to eq false
     end
 
-    it "after #take_off the plane is #in_flight and not landed" do
-      allow(airport).to receive(:land)
-      allow(airport).to receive(:take_off)
-      airport.land(plane)
-      airport.take_off
-      plane.in_flight
-      expect(plane.landed?).to eq false
+    it "after #take_off the plane is flying and not landed" do
+      allow(airport).to receive(:authorize_landing) { true }
+      allow(airport).to receive(:authorize_take_off) { true }
+      plane.land(airport)
+      plane.take_off(airport)
+      expect(plane.landed).to eq false
     end
   end
 

@@ -6,26 +6,25 @@ RSpec.describe Airport do
 
   describe "#land" do
     it "makes a plane land at an airport" do
-      expect(airport.land(plane)).to eq [plane]
+      expect(airport.authorize_landing(plane)).to eq [plane]
     end
   end
 
   describe "#planes" do
     it "return the planes currently landed at the airport" do
-      airport.land(plane)
+      airport.authorize_landing(plane)
       expect(airport.planes).to eq [plane]
     end
   end
 
-  describe "#take_off" do
+  describe "#authorize_take_off" do
     it "the plane can take off from the airport" do
-      plane = Plane.new
-      airport.land(plane)
-      expect(airport.take_off).to eq plane
+      airport.authorize_landing(plane)
+      expect(airport.authorize_take_off(plane)).to eq plane
     end
 
     it "raises an error if there are no planes available for take off" do
-      expect { airport.take_off }.to raise_error "No planes currently available"
+      expect { airport.authorize_take_off(plane) }.to raise_error "No planes currently available"
     end
 
   end

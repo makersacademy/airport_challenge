@@ -7,15 +7,13 @@ class Airport
     @planes = []
   end
 
-  def land(plane)
+  def authorize_landing(plane)
     @planes << plane
   end
 
-  def take_off
+  def authorize_take_off(plane)
     raise 'No planes currently available' if planes.empty?
-    plane = @planes.pop
-    plane.in_flight
-    plane
+    @planes.delete(plane)
   end
 
 end

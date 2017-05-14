@@ -1,14 +1,15 @@
 class Plane
-  
+  attr_reader :landed
+
   def initialize
     @landed = true
   end
 
-  def landed?
-    @landed
+  def land(airport)
+    @landed = true if airport.authorize_landing(self)
   end
 
-  def in_flight
-    @landed = false
+  def take_off(airport)
+    @landed = false if airport.authorize_take_off(self)
   end
 end
