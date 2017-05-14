@@ -12,4 +12,13 @@ require 'airport.rb'
     end
 
 
+    it "If there is space after planes takeing off from a full airport, another plane can land in the airport " do
+      num = Airport::DEFAULT_CAPACITY
+      planes = (0..num-1).map{Plane.new}
+      planes.each{|plane| plane.land(subject)}
+      planes[-1].take_off(subject)
+      plane = Plane.new
+      plane.land(subject)
+    end
+
 end
