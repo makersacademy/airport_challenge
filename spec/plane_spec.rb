@@ -11,9 +11,9 @@ describe Plane do
     subject.departs
     expect(subject.flying).to eq true
   end
-
   it 'shows false if the plane has landed' do
     subject.arrives
     expect(subject.flying).to eq false
   end
+
 end

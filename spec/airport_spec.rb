@@ -1,107 +1,95 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
+  let(:airport) { described_class.new }
   let(:plane) { double(:plane) }
-  let(:airport) { subject.new }
 
   describe '#lands_planes' do
+    before do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:arrives)
+      allow(airport).to receive(:safe?).and_return(true)
+    end
     it { is_expected.to respond_to(:lands_plane).with(1).argument }
     it 'returns the value of the plane which has landed' do
-      allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:arrives)
-      allow(subject).to receive(:safe?).and_return(true)
-      expect(subject.lands_plane(plane)).to eq "#{plane} has landed"
+      expect(airport.lands_plane(plane)).to eq "#{plane} has landed"
     end
-    it 'adds the plane to the planes array' do
-      allow(plane).to receive(:flying).and_return(true)
-      allow(subject).to receive(:safe?).and_return(true)
-      allow(plane).to receive(:arrives)
-      subject.lands_plane(plane)
-      expect(subject.planes).to eq [plane]
+    context 'no space' do
+      it 'prevents planes from landing' do
+        Airport::DEFAULTCAPACITY.times { airport.lands_plane plane }
+        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, 'There is no more space at the airport')
+      end
     end
-    it 'prevents planes from landing if there is no space' do
-      allow(plane).to receive(:flying).and_return(true)
-      allow(subject).to receive(:safe?).and_return(true)
-      allow(plane).to receive(:arrives)
-      Airport::DEFAULTCAPACITY.times { subject.lands_plane plane }
-      expect { subject.lands_plane(plane) }.to raise_error(RuntimeError, 'There is no more space at the airport')
+    context 'storm' do
+      it 'prevents planes from landing' do
+        allow(airport).to receive(:safe?).and_return(false)
+        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, 'It is too stormy for landing')
+      end
     end
-    it 'prevents planes from landing if it is storm' do
-      allow(plane).to receive(:flying).and_return(true)
-      allow(subject).to receive(:safe?).and_return(false)
-      expect{ subject.lands_plane(plane) }.to raise_error(RuntimeError, 'It is too stormy for landing')
-    end
-    it 'only allows planes to land if they are flying' do
-      allow(plane).to receive(:arrives)
-      allow(plane).to receive(:flying).and_return(false)
-      allow(subject).to receive(:safe?).and_return(true)
-      expect{ subject.lands_plane(plane) }.to raise_error(RuntimeError, 'This plane has already landed')
+    context 'not flying' do
+      it 'prevents planes from landing' do
+        allow(plane).to receive(:flying).and_return(false)
+        expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, 'This plane has already landed')
+      end
     end
   end
 
   describe '#takes_off' do
+    before do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:arrives)
+      allow(airport).to receive(:safe?).and_return(true)
+      allow(plane).to receive(:departs)
+    end
     it { is_expected.to respond_to(:takes_off) }
     it 'returns the value of the plane which has taken off' do
-      allow(subject).to receive(:safe?).and_return(true)
-      allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:arrives)
-      allow(plane).to receive(:departs)
-      subject.lands_plane(plane)
-      expect(subject.takes_off).to eq "#{plane} has taken off"
+      airport.lands_plane(plane)
+      expect(airport.takes_off).to eq "#{plane} has taken off"
     end
-    it 'removes the plane from the plans array' do
-      allow(subject).to receive(:safe?).and_return(true)
-      allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:arrives)
-      allow(plane).to receive(:departs)
-      subject.lands_plane(plane)
-      subject.takes_off
-      expect(subject.planes).to eq []
+    context 'no plane at airport' do
+      it 'prevents takeoff' do
+        expect { airport.takes_off }.to raise_error(RuntimeError, 'There are no planes at the airport')
+      end
     end
-    it 'only allows planes to take off if there is a plane in the airport' do
-      expect { subject.takes_off }.to raise_error(RuntimeError, 'There are no planes at the airport')
-    end
-    it 'does not allow planes to take off it is is stormy' do
-      allow(subject).to receive(:safe?).and_return(true)
-      allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:arrives)
-      subject.lands_plane(plane)
-      allow(subject).to receive(:safe?).and_return(false)
-      expect{ subject.takes_off }.to raise_error(RuntimeError, 'It is too stormy for take off')
+    context 'stormy' do
+      it 'prevents takeoff' do
+        airport.lands_plane(plane)
+        allow(airport).to receive(:safe?).and_return(false)
+        expect { airport.takes_off }.to raise_error(RuntimeError, 'It is too stormy for take off')
+      end
     end
   end
 
   describe "#safe?" do
     it { is_expected.to respond_to(:safe?) }
-    it 'returns false if the weather is bad' do
-      allow(subject).to receive(:weather).and_return(1)
-      expect(subject.safe?).to be(false)
+    context 'stormy' do
+      it 'returns false ' do
+        allow(airport).to receive(:weather).and_return(1)
+        expect(airport.safe?).to be(false)
+      end
     end
-    it 'returns true if the weather is good' do
-      allow(subject).to receive(:weather).and_return(7)
-      expect(subject.safe?).to be(true)
+    context 'not stormy' do
+      it 'returns true' do
+        allow(airport).to receive(:weather).and_return(7)
+        expect(airport.safe?).to be(true)
+      end
     end
   end
 
   describe '#weather' do
     it 'returns a value which is an integer'do
-     expect(subject.weather).to be_a_kind_of(Integer)
+     expect(airport.weather).to be_a_kind_of(Integer)
     end
   end
 
   describe '#capacity' do
     it { is_expected.to respond_to(:capacity) }
     it 'variable will equal the  default capacity if no capacity is given' do
-      expect(subject.capacity).to eq Airport::DEFAULTCAPACITY
+      expect(airport.capacity).to eq Airport::DEFAULTCAPACITY
     end
     it 'will equal the capacity specified when creating the airport instance' do
       airport = Airport.new 50
       expect(airport.capacity).to eq 50
     end
-  end
-
-  describe '#planes' do
-    it { is_expected.to respond_to(:planes) }
   end
 end
