@@ -2,14 +2,27 @@ require './lib/airport'
 require './lib/plane'
 require './lib/weather'
 
+#Instruct planes to land at airport, confirm landing
+airport = Airport.new
+plane = Plane.new
+airport.land_plane(plane)
+
+#Instruct planes to take off from airport, confirm takeoff
+airport = Airport.new
+plane = Plane.new
+airport.land_plane(plane)
+airport.takeoff_plane(plane)
+
+#Check if stormy
 p airport = Airport.new
-p airport1 = Airport.new
-p plane1 = Plane.new
-p plane2 = Plane.new
-p plane3 = Plane.new
-p airport.land_plane(plane1)
-p airport.takeoff_plane(plane1)
-p airport.land_plane(plane2)
-p airport.land_plane(plane3)
-p airport.check_hangar
-p airport1.check_hangar
+p airport.stormy? 
+
+#Return planes in hangar
+airport = Airport.new
+plane = Plane.new
+airport.land_plane(plane)
+airport.check_hangar
+
+#Return empty notification if no planes in hangar
+airport = Airport.new
+airport.check_hangar
