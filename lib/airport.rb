@@ -17,6 +17,7 @@ class Airport
     @planes = []
   end
 
+  private
   def land(plane)
     raise "Unable to land - airport full" if full?
     raise "Unable to land plane - weather is stormy" if @weather.stormy?

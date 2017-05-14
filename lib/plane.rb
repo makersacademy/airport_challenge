@@ -9,12 +9,12 @@ class Plane
   end
 
   def take_off(airport)
-    airport.take_off(self)
+    airport.send(:take_off, self)
     @in_airport = false
   end
 
   def land(airport)
-    airport.land(self)
+    airport.send(:land, self)
     @in_airport = true
   end
 
