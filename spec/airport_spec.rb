@@ -16,14 +16,6 @@ RSpec.describe Airport do
     end
   end
 
-  describe "#planes" do
-    it "return the planes currently landed at the airport" do
-      allow(airport).to receive(:check_weather) { true }
-      airport.authorize_landing(plane)
-      expect(airport.planes).to eq [plane]
-    end
-  end
-
   describe "#authorize_landing" do
     it "makes a plane land at an airport" do
       allow(airport).to receive(:check_weather) { true }
@@ -58,13 +50,6 @@ RSpec.describe Airport do
       allow(airport).to receive(:empty?) { false }
       allow(airport).to receive(:check_weather) { false }
       expect { airport.authorize_take_off(plane) }.to raise_error "Airport temporarly closed due to bad weather"
-    end
-  end
-
-  describe "#check_weather" do
-    it "check if the weather report is equal to clear" do
-      allow(airport.weather).to receive(:clear?) { true }
-      expect(airport.check_weather).to eq true
     end
   end
 

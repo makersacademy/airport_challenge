@@ -3,7 +3,7 @@ require_relative 'weather'
 
 class Airport
   DEFAULT_HANGAR_SIZE = 10
-  attr_reader :planes, :weather, :capacity
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_HANGAR_SIZE)
     @planes = []
@@ -23,11 +23,13 @@ class Airport
     @planes.delete(plane)
   end
 
+  private
+
+  attr_reader :planes, :weather
+
   def check_weather
     @weather.clear?
   end
-
-  private
 
   def empty?
     @planes.empty?

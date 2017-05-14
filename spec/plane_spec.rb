@@ -11,18 +11,20 @@ RSpec.describe Plane do
   end
 
   describe "#take_off" do
-    it "after #take_off the plane is flying and not landed" do
+    it "a plane already flying can't take off again" do
+      allow(airport).to receive(:authorize_landing) { true }
+      plane.land(airport)
       allow(airport).to receive(:authorize_take_off) { true }
       plane.take_off(airport)
-      expect(plane.landed).to eq false
+      expect { plane.take_off(airport) }.to raise_error "The plane is already in flight"
     end
   end
 
   describe "#land" do
-    it "after #land the plane is landed and not flying" do
+    it "a plane already landed can't land again" do
       allow(airport).to receive(:authorize_landing) { true }
       plane.land(airport)
-      expect(plane.landed).to eq true
+      expect { plane.land(airport) }.to raise_error "The plane is already on the ground"
     end
   end
 
