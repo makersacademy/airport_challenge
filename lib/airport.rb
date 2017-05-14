@@ -25,8 +25,5 @@ class Airport
   def bad_conditions?
     @weather.stormy?
   end
-  # def check_condition(weather = Weather.new)
-  #   @weather = weather
-  #   @weather.stormy?
-  # end
+  
 end

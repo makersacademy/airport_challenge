@@ -28,5 +28,8 @@ describe 'Feature Tests' do
       allow(airport).to receive(:bad_conditions?).and_return(true)
       expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
     end
+    it'ATC prevents landing when the airport is full' do
+      expect { airport.land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
+    end
   end
 end
