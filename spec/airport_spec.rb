@@ -47,6 +47,12 @@ describe Airport do
     expect(airport.instance_variable_get(:@planes)).not_to include(plane)
   end
 
+  it 'should raise an exception when trying to land a plane at a full airport' do
+    allow(airport.instance_variable_get(:@weather)).to receive(:stormy?).and_return false
+    Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+    expect{ airport.land(plane) }.to raise_error "Unable to land - airport full"
+  end
+
   it 'should raise an exception when plane tries to take off from an airport it is not at' do
     airport.instance_variable_set(:@planes, [])
     expect{ airport.take_off(plane) }.to raise_error "Plane is not at that airport"

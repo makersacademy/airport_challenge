@@ -18,10 +18,4 @@ describe Plane do
     expect(plane).to be_in_airport
   end
 
-  it 'should raise an exception when trying to land a plane at a full airport' do
-    allow(airport).to receive(:full?).and_return true
-    allow(airport).to receive(:land).with(plane)
-    expect{ plane.land(airport) }.to raise_error "Unable to land - airport full"
-  end
-
 end
