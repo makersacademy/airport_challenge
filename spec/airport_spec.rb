@@ -1,8 +1,9 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double('plane') }
   let(:airport) { Airport.new }
+  let(:plane) { double('plane') }
+  let(:weather) { double('weather') }
   describe '#land' do
     it 'responds to #land' do
       is_expected.to respond_to(:land)
@@ -30,6 +31,18 @@ describe Airport do
     it 'confirms plane has taken off with message "Plane has taken off"' do
       airport.land(plane)
       expect(airport.plane_takeoff).to eq 'Plane has taken off'
+    end
+    it "raises error when the weather is stormy" do
+      allow(airport).to receive(:bad_conditions?).and_return(true)
+      expect { airport.plane_takeoff }.to raise_error(RuntimeError, 'Cannot take off when its stormy')
+    end
+  end
+  describe '#check_condition' do
+    it 'responds to airport.bad_conditions?' do
+      expect(airport).to respond_to(:bad_conditions?)
+    end
+    it 'returns boolean of weather is stormy?' do
+      expect(airport.bad_conditions?).to be(true).or be(false)
     end
   end
 end
