@@ -27,6 +27,11 @@ describe Airport do
       expect(airport.lands_plane(plane)).to eq "Plane could not land due to stormy weather."
     end
 
+    it 'will not allow a plane to land if the airport is full' do
+      (subject::capacity).times { subject.lands_plane(Plane.new) }
+      expect(subject.lands_plane(Plane.new)).to eq "Plane could not land because the airport is full."
+    end
+
   end
 
   describe '#launches_plane' do
