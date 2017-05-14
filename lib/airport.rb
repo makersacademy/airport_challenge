@@ -17,7 +17,8 @@ end
 
 # p plane = Plane.new
 # p airport = Airport.new
-# # p airport.land(plane)
+# p airport.land(plane)
+# p plane.landed?
 # # p airport.plane
 # p airport.take_off(plane)
 # p airport.plane
