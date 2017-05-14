@@ -14,6 +14,14 @@ describe Airport do
 
   it { is_expected.to respond_to(:capacity) }
 
+  describe 'initialize' do
+    it 'can accept an integer as an argument to set the airport capacity' do
+      airport = Airport.new(50)
+      expect(subject::capacity).to eq 50
+    end
+    
+  end
+
   describe '#lands_plane' do
     it 'gives the user a message when a plane lands' do
       plane = Plane.new
