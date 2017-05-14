@@ -28,4 +28,7 @@ describe Airport do
   it 'should not #land_plane if the weather is stormy' do
     expect { subject.weather_check }.to raise_error 'Unsafe to fly'
   end
+  it 'should return the default capacity of the airport' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 end
