@@ -26,8 +26,24 @@ describe Airport do
       expect(subject).to respond_to :stormy?
     end
 
-    it 'Has weather variariable' do
+    it 'Has weather variable' do
       expect(subject).to respond_to :weather
+    end
+
+    it 'Has capacity variable' do
+      expect(subject).to respond_to :capacity
+    end
+
+    it '@capacity is automatically DEFAULT_CAPACITY' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'Can change @capacity with capacity=' do
+      expect(subject.capacity = 10).to eq 10
+    end
+
+    it 'Responds to #full?' do
+      expect(subject).to respond_to :full?
     end
 
   describe '#land_plane' do
@@ -89,8 +105,18 @@ describe Airport do
 
   describe '#stormy' do
 
-    it "responds false if @weather is not 'stormy'" do
+    it "returns false if @weather is not 'stormy'" do
       expect(subject.stormy?).to eq false
+    end
+
+  end
+
+  describe '#full' do
+
+    it 'returns true if @planes equals @capacity' do
+      subject.planes = 2
+      subject.capacity = 2
+      expect(subject.full?).to eq true
     end
 
   end

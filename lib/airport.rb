@@ -2,11 +2,14 @@ require_relative 'plane'
 
 class Airport
 
-  attr_accessor :planes, :weather
+  attr_accessor :planes, :weather, :capacity
+
+  DEFAULT_CAPACITY = 30
 
   def initialize
     @planes = []
     @weather = 'good'
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land_plane(plane)
@@ -30,6 +33,10 @@ class Airport
 
   def stormy?
     @weather == 'stormy' ? true : false
+  end
+
+  def full?
+    true if @capacity >= @planes
   end
 
 end
