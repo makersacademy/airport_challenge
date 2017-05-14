@@ -82,7 +82,7 @@ Creating an airport is this easy.. no endless discussions about noise, location 
 LHR.planes_on_ground
 ```
 
-This instruction will return an array containing the tail numbers of all the planes currently on ground at the airport
+This instruction will return an array containing the all the planes currently on ground at the airport
 
 ## Landing a Plane
 
