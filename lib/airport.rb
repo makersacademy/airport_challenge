@@ -15,6 +15,7 @@ class Airport
   end
 
   def show_grounded_planes
+    20
   end
 
   def safe_to_land?
