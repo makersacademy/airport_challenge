@@ -14,6 +14,9 @@ class Airport
     @current_capacity
   end
 
+  def show_grounded_planes
+  end
+
   def safe_to_land?
     if generate_current_weather == "sunny" && at_capacity? == false
       true
