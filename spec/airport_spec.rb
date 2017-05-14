@@ -72,7 +72,7 @@ describe Airport do
   end
   it "Shows that allow_airplane_to_take_off method reduces the number of grounded planes and increases airborne planes by one" do
     subject.stub( :permission_to_land? ) { true }
-    subject.stub( :permission_to_take_off ) { true }
+    subject.stub( :permission_to_take_off? ) { true }
     20.times { subject.allow_airplane_to_land }
     expect(subject.show_status_of_airplanes).to eq "Grounded: 20, Airborne: 0"
     subject.allow_airplane_to_take_off

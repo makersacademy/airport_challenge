@@ -10,6 +10,7 @@ class Airport
   end
 
   def show_status_of_airplanes
+    "Grounded: #{ check_number_of_grounded_planes }, Airborne: #{ check_number_of_airborne_planes }"
   end
 
   def change_capacity(capacity)
@@ -30,6 +31,8 @@ class Airport
   def allow_airplane_to_take_off
     fail "Permission to take off denied" if permission_to_take_off? == false
     contact_departing_airplane
+    @departing_airplane.take_off
+    @airplanes << @departing_airplane
   end
 
   def at_capacity?
@@ -71,7 +74,7 @@ class Airport
     @airplanes.delete_if { |airplane| airplane == @airplanes.find { |airplane| airplane.check_current_status == "grounded"} }
     first_grounded_airplane
   end
-  
+
   def check_number_of_grounded_planes
     @airplanes.count { |airplane| airplane.check_current_status == "grounded" }
   end
