@@ -60,29 +60,6 @@ Rewrite take_off function to return error for plane not being in hangar even if 
 
 Write test case to ensure a plane can land after check_weather returns clear weather.
 
-Currently fails:
-
-'''it 'expects a plane to land if the weather clears' do
-  allow(airport).to receive(:weather).and_return(:stormy)
-  allow(airport).to receive(:check_weather).and_return(:weather => :clear)
-  expect(airport.land(airbus)).not_to raise_error('Cannot land plane: condition is stormy. Check weather for update')
-end
-'''
-
-Error:
-
-'''Failures:
-
-  1) Airport expects a plane to land if the weather clears
-     Failure/Error: airport.land(airbus).stormy? == false
-     RuntimeError:
-       Cannot land plane: condition is stormy. Check weather for update
-     # ./docs/airport.rb:16:in `land'
-     # ./spec/airport_spec.rb:60:in `block (2 levels) in <top (required)>'
-     '''
-
-
-
 
 User Stories
 -----
