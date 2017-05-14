@@ -12,6 +12,11 @@ class Airport
   end
 
   def take_off(plane)
+    fail "This plane is not at the airport!" if empty?
     @plane.pop
+  end
+
+  def empty?
+    @plane.count == 0
   end
 end
