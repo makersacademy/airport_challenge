@@ -17,6 +17,7 @@ class Plane
   def takeoff(destination)
     @on_ground = false
     @location = "air"
+    @destination = destination
     self
   end
 

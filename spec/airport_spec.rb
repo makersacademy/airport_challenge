@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new("LHR")}
+  subject(:airport) { described_class.new("LHR") }
 
   # Airport Default Capacity
   DEFAULT_AIRPORT_CAPACITY = 40
@@ -9,9 +9,9 @@ describe Airport do
   it { is_expected.to respond_to(:planes_on_ground) }
   it { is_expected.to respond_to(:land_plane).with(1).argument }
   it { is_expected.to respond_to(:takeoff_plane).with(2).argument }
-  it { is_expected.to respond_to(:iata_code)}
-  it { is_expected.to respond_to(:stormy?)}
-  it { is_expected.to respond_to(:full?)}
+  it { is_expected.to respond_to(:iata_code) }
+  it { is_expected.to respond_to(:stormy?) }
+  it { is_expected.to respond_to(:full?) }
   
   
   context 'defaults' do
@@ -24,7 +24,7 @@ describe Airport do
   context 'overrides' do
     # Override Airport Capacity
     OVERRIDE_CAPACITY = 150
-    subject(:default_airport) { described_class.new("LHR",OVERRIDE_CAPACITY) }
+    subject(:default_airport) { described_class.new("LHR", OVERRIDE_CAPACITY) }
     it 'allow creating an airport with a capacity override' do
       expect(default_airport.capacity).to eq OVERRIDE_CAPACITY
     end
