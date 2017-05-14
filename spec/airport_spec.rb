@@ -79,6 +79,10 @@ it "should not allow a landed plane lands again" do
   expect{subject.land(plane)}.to raise_error "The plane is already landed"
 end
 
-
+it "Should not allow a plane take off twice" do
+  subject.land(plane)
+  subject.take_off(plane)
+  expect{subject.take_off(plane)}.to raise_error "The plane is already taken off"
+end
 
 end
