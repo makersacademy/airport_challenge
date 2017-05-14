@@ -1,4 +1,4 @@
-require_relative('./plane.rb')
+require_relative './plane.rb'
 
 # Custom errors for use with Airport class:
 class BadWeatherError < StandardError; end
@@ -8,34 +8,33 @@ class NoPlanesError < StandardError; end
 # Airport class:
 class Airport
   attr_accessor(:planes_currently_landed)
-  attr_reader(:iata_code, :airport_capacity)
+  attr_reader(:airport_capacity)
 
   DEFAULT_CAPACITY = 70
 
-  def initialize(airport_capacity = DEFAULT_CAPACITY, iata_code: :LHR)
+  def initialize(airport_capacity = DEFAULT_CAPACITY)
     @airport_capacity = airport_capacity
-    @iata_code = iata_code
     @planes_currently_landed = []
     @last_departed = nil
     @last_arrived = nil
   end
 
   def clear_for_landing(plane)
-    raise(NoRoomError, "no room available at #{@iata_code}!") if full?
+    raise(NoRoomError, "no room available at #{self}!") if full?
     raise(BadWeatherError, 'weather conditions unsafe for landing!') unless weather_conditions_safe?
-    raise("#{plane} is already landed at #{@iata_code}!") if @planes_currently_landed.include?(plane)
+    raise("#{plane} is already landed at #{self}!") if @planes_currently_landed.include?(plane)
     plane.land(self)
     @last_arrived = plane
-    "Flight #{check_last_arrived.flight_no} arrived safely."
+    "Flight #{check_last_arrived} arrived safely."
   end
 
   def clear_for_takeoff(plane)
-    raise(NoPlanesError, "no planes are currently landed at #{@iata_code}!") if empty?
+    raise(NoPlanesError, "no planes are currently landed at #{self}!") if empty?
     raise(BadWeatherError, 'weather conditions unsafe for takeoff!') unless weather_conditions_safe?
-    raise("#{plane} is not currently landed at #{@iata_code}!") unless @planes_currently_landed.include?(plane)
+    raise("#{plane} is not currently landed at #{self}!") unless @planes_currently_landed.include?(plane)
     plane.take_off(self)
     @last_departed = plane
-    "Flight #{check_last_departed.flight_no} departed safely."
+    "Flight #{check_last_departed} departed safely."
   end
 
   private

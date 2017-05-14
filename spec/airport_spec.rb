@@ -1,4 +1,4 @@
-require_relative('../lib/airport')
+require_relative '../lib/airport'
 
 describe Airport do
 
@@ -15,15 +15,15 @@ describe Airport do
 
   it 'confirms to the user that planes have landed successfully' do
     allow(Kernel).to receive(:rand).and_return(safe_wind_speed)
-    plane = double(:plane, flight_no: :test_flight, land: nil)
-    expect(subject.clear_for_landing(plane)).to eq "Flight #{plane.flight_no} arrived safely."
+    plane = double(:plane, land: nil, take_off: nil)
+    expect(subject.clear_for_landing(plane)).to eq "Flight #{plane} arrived safely."
   end
 
   it 'confirms to the user that planes have taken off successfully' do
     allow(Kernel).to receive(:rand).and_return(safe_wind_speed)
-    plane = double(:plane, flight_no: :test_flight, land: nil, take_off: nil)
+    plane = double(:plane, land: nil, take_off: nil)
     subject.planes_currently_landed << plane
-    expect(subject.clear_for_takeoff(plane)).to eq "Flight #{plane.flight_no} departed safely."
+    expect(subject.clear_for_takeoff(plane)).to eq "Flight #{plane} departed safely."
   end
 
   it 'has a default capacity' do
@@ -38,35 +38,35 @@ describe Airport do
 
   it 'does not allow planes to land when the airport is full' do
     allow(Kernel).to receive(:rand).and_return(safe_wind_speed)
-    plane = double(:plane, flight_no: :test_flight, land: nil, take_off: nil)
+    plane = double(:plane, land: nil, take_off: nil)
     Airport::DEFAULT_CAPACITY.times { subject.planes_currently_landed << plane }
     expect { subject.clear_for_landing(plane) }.to raise_error(NoRoomError)
   end
 
   it 'prevents planes from taking off when the weather conditions are unsafe to do so' do
-    plane = double(:plane, flight_no: :test_flight, land: nil, take_off: nil)
+    plane = double(:plane, land: nil, take_off: nil)
     allow(Kernel).to receive(:rand).and_return(dangerous_wind_speed)
     subject.planes_currently_landed << plane
     expect { subject.clear_for_takeoff(plane) }.to raise_error(BadWeatherError)
   end
 
   it 'prevents planes from landing when the weather conditions are unsafe to do so' do
-    plane = double(:plane, flight_no: :test_flight, land: nil, take_off: nil)
+    plane = double(:plane, land: nil, take_off: nil)
     allow(Kernel).to receive(:rand).and_return(dangerous_wind_speed)
     expect { subject.clear_for_landing(plane) }.to raise_error(BadWeatherError)
   end
 
   it 'allows planes to take off when the weather conditions are safe to do so' do
     airport = Airport.new
-    plane = double(:plane, flight_no: :test_flight, land: nil, take_off: nil)
+    plane = double(:plane, land: nil, take_off: nil)
     allow(Kernel).to receive(:rand).and_return(safe_wind_speed)
     airport.planes_currently_landed << plane
-    expect(airport.clear_for_takeoff(plane)).to eq "Flight #{plane.flight_no} departed safely."
+    expect(airport.clear_for_takeoff(plane)).to eq "Flight #{plane} departed safely."
   end
 
   it 'allows planes to land when the weather conditions are safe to do so' do
-    plane = double(:plane, flight_no: :test_flight, land: nil)
+    plane = double(:plane, land: nil)
     allow(Kernel).to receive(:rand).and_return(safe_wind_speed)
-    expect(subject.clear_for_landing(plane)).to eq "Flight #{plane.flight_no} arrived safely."
+    expect(subject.clear_for_landing(plane)).to eq "Flight #{plane} arrived safely."
   end
 end
