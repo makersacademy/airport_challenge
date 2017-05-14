@@ -16,6 +16,9 @@ class Airport
     @planes.include?(plane)
   end
 
-
+  def take_off(plane)
+    @planes.delete(plane)
+    @planes
+  end
 
 end
