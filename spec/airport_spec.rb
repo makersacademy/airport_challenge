@@ -10,7 +10,7 @@ describe Airport do
 
   plane = Plane.new
   it "Allows a plane to land" do
-    expect(subject.landing_plane(plane)).to eq true
+    expect(subject.landing_plane(plane)).to eq [plane]
   end
 
   it "doesn't allow planes to land or takeoff in bad weather" do

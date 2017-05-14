@@ -6,12 +6,16 @@ class Airport
 
   def initialize(capacity=Default_capacity)
     @capacity = capacity
-    @planes
+    @planes = []
   end
 
   def landing_plane(plane)
     fail "No space currently available" if full?
     @planes << plane
+  end
+
+  def full?
+    @planes.count >= @capacity
   end
 
   def weather
