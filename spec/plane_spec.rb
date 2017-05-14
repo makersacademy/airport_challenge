@@ -7,7 +7,7 @@ describe Plane do
   
   describe '#land' do
     it 'can land on airport' do
-      expect(subject.land(Airport.new))
+      expect(subject.land(:airport))
     end
 
     it 'confirms when lands' do
@@ -18,7 +18,7 @@ describe Plane do
 
   describe '#takeoff' do
     it 'can takeoff from airport to a destination' do
-      expect(subject.takeoff(Airport.new))
+      expect(subject.takeoff(:destination))
     end
 
     it 'confirms departure' do

@@ -8,10 +8,12 @@ class Plane
 
   def land(airport)
     @on_ground = true
+    self
   end
 
   def takeoff(destination)
     @on_ground = false
+    self
   end
 
 end
