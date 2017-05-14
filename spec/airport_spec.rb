@@ -19,21 +19,27 @@ it "confirmed that a plane takes off" do
   expect(subject.planes).to eq []
 end
 
+describe '#take_off' do
 it "prevents the plane from taking off when the weather is stormy" do
   allow(subject).to receive(:weather_is_stormy?){false}
   subject.land(plane)
   allow(subject).to receive(:weather_is_stormy?){true}
   expect{subject.take_off(plane)}.to raise_error "Plane can not take off due to stormy weather"
+  end
 end
 
+describe '#land' do
 it "prevents the plane from landing when the weather is stormy" do
   allow(subject).to receive(:weather_is_stormy?){true}
   expect{subject.land(plane)}.to raise_error "Plane can not land due to stormy weather"
+  end
 end
 
+describe '#land' do
 it "prevents landing when the airport is full" do
   allow(subject).to receive(:weather_is_stormy?){false}
   expect{11.times{subject.land(double(:plane))}}.to raise_error "Plane can not land because the airport is full"
+  end
 end
 
 it "Airport has a default capacity" do
@@ -74,15 +80,19 @@ it "has 2 planes landed, both take off, there is no plane in the airport" do
   expect(subject.planes).to eq []
 end
 
+describe '#land' do
 it "should not allow a landed plane lands again" do
   subject.land(plane)
   expect{subject.land(plane)}.to raise_error "The plane is already landed"
+  end
 end
 
+describe '#take_off' do
 it "Should not allow a plane take off twice" do
   subject.land(plane)
   subject.take_off(plane)
   expect{subject.take_off(plane)}.to raise_error "The plane is already taken off"
+  end
 end
 
 end
