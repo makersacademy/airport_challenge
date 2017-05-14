@@ -8,15 +8,14 @@ class Airport
   attr_reader :planes
   attr_accessor :capacity, :sunny
 
-  def initialize capacity = DEFAULT_CAPACITY
+  def initialize (capacity = DEFAULT_CAPACITY, condition = Weather.new)
     @planes = []
     @capacity = capacity
-    condition = Weather.new
-    @weather = condition.sunny
+    @sunny = condition.sunny
   end
 
   def take_off plane
-    fail 'Weather stormy! Cannot take off!' unless sunny
+    fail 'Weather stormy! Cannot take off!' unless @sunny
     fail 'Plane not at airport!' unless plane.landed
     return plane if check_plane(plane) == plane
     fail 'Plane is not at this airport'
@@ -24,7 +23,7 @@ class Airport
  
   def land plane
     fail 'Airport full!' if full?
-    fail 'Weather Stormy cannot land' unless sunny
+    fail 'Weather Stormy cannot land' unless @sunny
     fail 'Plane already landed!' if plane.landed
     plane.landed = true
     planes << plane
@@ -47,10 +46,10 @@ class Airport
   end
 
 end
-
-p airport = Airport.new
-p plane = Plane.new
-# p airport.sunny = true
-p airport.land(plane)
-p airport.take_off(plane)
+# weather = Weather.new()
+# p airport = Airport.new(20, weather)
+# p plane = Plane.new
+# # p airport.sunny = true
+# p airport.land(plane)
+# p airport.take_off(plane)
 

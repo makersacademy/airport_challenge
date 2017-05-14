@@ -5,6 +5,7 @@ describe Airport do
   let(:plane) 	{double :plane, :landed= => false, landed?: false}
   let(:weather)	{double :weather, :sunny= => true, sunny?: true}
 
+
   it { is_expected.to respond_to(:land).with(1).argument  }
   it { is_expected.to respond_to(:take_off).with(1).argument}
   it { is_expected.to respond_to(:planes)}
