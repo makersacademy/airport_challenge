@@ -20,6 +20,10 @@ describe Airport do
     expect(subject.plane).to eq plane
   end
 
+  it 'confirms plane taken_off' do
+    plane = subject.land_plane
+    expect(plane).to be_taken_off
+  end
 
 
   it {is_expected.to respond_to(:plane)}
