@@ -10,4 +10,7 @@ class Airport
 
   end
 
+  def plane
+  end
+
 end
