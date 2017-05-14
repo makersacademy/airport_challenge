@@ -2,8 +2,8 @@ require 'airport'
 describe Airport do
 
   #Create Double of airplane
-  let(:plane) 	{double :plane, :landed => false, landed?: false}
-  let(:weather)	{double :weather, :sunny => true, sunny?: true}
+  let(:plane) 	{double :plane, :landed= => false, landed?: false}
+  let(:weather)	{double :weather, :sunny= => true, sunny?: true}
 
   it { is_expected.to respond_to(:land).with(1).argument  }
   it { is_expected.to respond_to(:take_off).with(1).argument}
@@ -12,13 +12,16 @@ describe Airport do
 
   it 'returns landed planes' do
    subject.sunny = true
+ 	 allow(plane).to receive(:landed).and_return(false)
  	 subject.land(plane)
  	 expect(subject.planes).to include(plane)
   end
   
 	it 'instructs a landed plane to take off and confirm it is gone' do
 		subject.sunny = true
+		allow(plane).to receive(:landed).and_return(false)
 		subject.land(plane)
+		allow(plane).to receive(:landed).and_return(true)
 		subject.take_off(plane)
 		expect(subject.planes).to_not include(plane)
 	end
@@ -29,17 +32,20 @@ describe Airport do
 	 
   it 'checks to see if a plane has landed' do
   	subject.sunny = true
+  	allow(plane).to receive(:landed).and_return(false)
   	expect(subject.land(plane)).to eq [plane]
   end
 
   it 'raises an error if the airport is full' do
   	subject.sunny = true
+  	allow(plane).to receive(:landed).and_return(false)
   	Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
   	expect {subject.land(plane)}.to raise_error 'Airport full!'
   end
   
   it 'raises an error if the airport is full when default capacity is specified' do
   	subject.sunny = true
+  	allow(plane).to receive(:landed).and_return(false)
   	subject.capacity.times {subject.land(plane)}
   	expect {subject.land(plane)}.to raise_error 'Airport full!'
   end
@@ -52,6 +58,7 @@ describe Airport do
  		it 'has a variable capacity' do
  			airport = Airport.new(50)
  			airport.sunny = true
+ 			allow(plane).to receive(:landed).and_return(false)
  			50.times {airport.land(plane)}
  			expect {airport.land(plane)}.to raise_error 'Airport full!'
  		end
@@ -70,4 +77,17 @@ describe Airport do
  		expect{subject.land(plane)}.to raise_error 'Weather Stormy cannot land'
  	end
 
+ 	# it 'raises an error if plane already in sky and tries to takeoff' do
+ 	# 	subject.sunny = true
+ 	# 	allow(plane).to receive(:landed).and_return(false)
+ 	# 	expect{subject.take_off(plane)}.to raise_error 'Plane not at airport!'
+ 	# end
+
+ 	it 'raises an error if plane tries to land if already in the airport' do
+ 		subject.sunny = true
+ 		allow(plane).to receive(:landed).and_return(false)
+ 		subject.land(plane)
+ 		allow(plane).to receive(:landed).and_return(true)
+ 		expect{subject.land(plane)}.to raise_error 'Plane already landed!'
+ 	end
 end
