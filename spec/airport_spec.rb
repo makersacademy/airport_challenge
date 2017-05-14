@@ -3,9 +3,7 @@ require 'plane'
 
 describe Airport do
   let(:plane) { double :plane }
-  before(:each) {
-    allow(subject.weather).to receive(:is_stormy) { false }
-  }
+  before(:each) { allow(subject.weather).to receive(:is_stormy) { false }}
 
   describe '#responsiveness' do
     it { is_expected.to respond_to(:land_plane).with(1).argument  }
@@ -22,9 +20,9 @@ describe Airport do
 
   describe '#land_plane' do
     it 'should allow plane to land at airport' do
-      allow(plane).to receive(:airborne?) {true}
       allow(plane).to receive(:landed) {false}
-      expect(subject.land_plane(plane)).to eq "#{plane} has completed landing"
+      allow(plane).to receive(:airborne?) {false}
+      expect(plane.airborne?).to eq false
     end
 
     it 'should only allow airborne planes to land' do
@@ -33,9 +31,9 @@ describe Airport do
     end
 
     it 'should confirm that plane has landed' do
-      plane = Plane.new
-      subject.land_plane(plane)
-      expect(plane.airborne?).to eq false
+      allow(plane).to receive(:airborne?) {true}
+      allow(plane).to receive(:landed) {false}
+      expect(subject.land_plane(plane)).to eq "#{plane} has completed landing"
     end
 
     it 'should not allow landing when airport is full' do
@@ -53,9 +51,9 @@ describe Airport do
 
   describe '#takeoff_plane' do
     it 'should allow plane to takeoff from airport' do
-      allow(plane).to receive(:airborne?) {false}
+      subject.hangar << plane
       allow(plane).to receive(:takeoff) {true}
-      subject.takeoff_plane(plane)
+      allow(plane).to receive(:airborne?) {true}
       expect(plane).to be_airborne
     end
 
@@ -65,23 +63,18 @@ describe Airport do
     end
 
     it 'should confirm that plane has taken off' do
-      plane = Plane.new
-      subject.land_plane(plane)
+      subject.hangar << plane
+      allow(plane).to receive(:airborne?) {false}
+      allow(plane).to receive(:takeoff) {true}
       expect(subject.takeoff_plane(plane)).to eq "#{plane} has taken off"
     end
 
-    it 'should raise error message if airport is empty' do
-      plane = Plane.new
-      expect{subject.takeoff_plane(plane)}.to raise_error{"Airport is empty!"}
-    end
 
     it 'allows planes to takeoff from only airports they are landed in' do
       airport1 = Airport.new
       airport2 = Airport.new
-      plane = Plane.new
-      plane2 = Plane.new
-      airport1.land_plane(plane)
-      airport2.land_plane(plane2)
+      airport1.hangar << plane
+      allow(plane).to receive(:airborne?) {false}
       expect{airport1.takeoff_plane(plane2)}.to raise_error{"#{plane} is not in hangar"}
     end
 
