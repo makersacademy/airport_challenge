@@ -20,9 +20,10 @@ describe Airport do
     end
   end
 
-  describe '#gets_random_weather' do
-    it 'returns a weather condition' do
+  describe '#show_weather' do
+    it 'has a 90% chance to give sunny conditions, and a 10% chance of a storm' do
       expect(subject.show_weather).to eq "The weather is sunny!"
+      expect(subject.show_weather).to eq "There's a storm!"
     end
   end
 end

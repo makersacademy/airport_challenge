@@ -10,4 +10,8 @@ class Airport
     return "The plane has taken off!"
   end
 
+  def show_weather
+    return "The weather is sunny!"
+  end
+
 end
