@@ -7,15 +7,24 @@ describe Airport do
 
     it { is_expected.to respond_to(:plane)}
 
-    describe '#plane' do
-      it 'returns the landed planes' do
+    it 'returns the landed planes' do
         planes = []
         plane = double(:plane)
         subject.land_plane(plane)
         planes << plane
         expect(subject.plane).to eq planes
-      end
     end
+    it 'raises an error when you try and land the same plane multiple times at the same airport' do
+         plane = double(:plane)
+         subject.land_plane(plane)
+         expect { subject.land_plane(plane) }.to raise_error "This plane has already landed!"
+    end
+    # it 'raises an error when you try and land a landed airplane at a different airport' do
+    #     plane = double(:plane)
+    #     subject.land_plane(plane)
+    #     airport = Airport.new
+    #     expect { airport.land_plane(plane) }.to raise_error "This plane is at a different airport currently!"
+    # end
   end
 
     it { is_expected.to respond_to(:take_off).with(1).argument}
