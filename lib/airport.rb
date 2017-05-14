@@ -7,6 +7,7 @@ class Airport
   end
 
   def take_off(plane)
+    # let plane take off that landed
     plane
   end
 
