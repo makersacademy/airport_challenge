@@ -1,6 +1,6 @@
 class Weather
 
-  attr_reader(:change_weather_chance, :change_weather_condition)
+  attr_reader(:show_weather_condition)
 
   def initialize
     @current_weather_conditon = "sunny"
