@@ -48,7 +48,7 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ### Instructions
 
-In command line, type :
+In command line, type the following to run the program:
 ```
 irb
 2.4.0 :001 > require './lib/airport.rb'
@@ -63,11 +63,12 @@ irb
 2.4.0 :004 > airport.land(plane)
 
 ```
-Create a new airport using Airport.new
+The user can specify a capacity for the airport by typing:
 
-Create a new plane using Plane.new
+```
+2.4.0 :002 > airport = Airport.new(50)
 
-Land a plane using airport.land(plane)
+```
 
 ### Train of Thought
 
