@@ -13,5 +13,5 @@ describe Plane do
       expect(subject).to respond_to :take_off?
     end
   end
-  
+
 end
