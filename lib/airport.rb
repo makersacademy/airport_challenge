@@ -8,6 +8,9 @@ class Airport
     @grounded_airplanes = []
   end
 
+  def show_status_of_airplanes
+  end
+
   def change_capacity(capacity)
     @current_capacity = capacity
   end
