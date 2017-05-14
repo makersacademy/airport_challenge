@@ -30,7 +30,7 @@ describe Airport do
     end
   end
 
-  describe '#show_weather' do
+  describe '#generate_weather' do
 
     it 'has a 90% chance to give sunny conditions' do
       airport = double(:airport, generate_weather: 'sunny')
@@ -40,6 +40,11 @@ describe Airport do
     it 'has a 10% chance to give stormy conditions' do
       airport = double(:airport, generate_weather: 'stormy')
       expect(airport.generate_weather).to eq 'stormy'
+    end
+
+    it 'stores the weather conditon in @weather' do
+      subject.generate_weather
+      expect(subject.weather).not_to be_nil
     end
   end
 

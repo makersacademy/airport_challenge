@@ -12,12 +12,12 @@ class Airport
   end
 
   def generate_weather
-    weather = rand(100)
-    if weather > 90
-      # return "There's a storm!"
+    weather_number = rand(100)
+    if weather_number > 90
+      # "There's a storm!"
       @weather = "stormy"
     else
-      # return "The weather is sunny!"
+      # "The weather is sunny!"
       @weather = "sunny"
     end
   end
