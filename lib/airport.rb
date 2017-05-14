@@ -28,4 +28,8 @@ class Airport
     end
   end
 
+  def full?
+
+  end
+
 end

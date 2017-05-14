@@ -12,6 +12,8 @@ describe Airport do
 
   it { is_expected.to respond_to(:full?) }
 
+  it { is_expected.to respond_to(:capacity) }
+
   describe '#lands_plane' do
     it 'gives the user a message when a plane lands' do
       plane = Plane.new
