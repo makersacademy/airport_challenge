@@ -17,25 +17,25 @@ describe Plane do
 
   it 'will not land if there is a storm' do
     airport = Airport.new.storm_switch
-    expect{subject.land_at(airport)}.to raise_error "I picked the wrong week to stop sniffing glue..."
+    expect { subject.land_at(airport) }.to raise_error "Looks like I picked the wrong week to quit sniffing glue..."
   end
 
   it 'will not take off if there is a storm' do
     airport = Airport.new
     subject.land_at(airport)
     airport.storm_switch
-    expect{subject.depart_from(airport)}.to raise_error "We can't take off in a storm"
+    expect { subject.depart_from(airport) }.to raise_error "We can't take off in a storm"
   end
 
   it 'will not land if there is no space' do
     airport = Airport.new(:capacity => 1)
     subject.land_at(airport)
-    expect{subject.land_at(airport)}.to raise_error "There's no space to land"
+    expect { subject.land_at(airport) }.to raise_error "There's no space to land"
   end
 
   it 'cannot take off from an airport where it is not present...' do
     airport = Airport.new
-    expect{subject.depart_from(airport)}.to raise_error "This plane isn't at this airport"
+    expect { subject.depart_from(airport) }.to raise_error "This plane isn't at this airport"
   end
 
 end

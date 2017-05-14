@@ -12,11 +12,7 @@ class Airport
   end
 
   def storm_switch
-    if @weather == "storm"
-      @weather = "calm"
-    else
-      @weather = "storm"
-    end
+    @weather == "storm" ? @weather = "calm" : @weather = "storm"
     self
   end
 
