@@ -26,6 +26,6 @@ describe Airport do
     expect(subject).to respond_to :weather_check
   end
   it 'should not #land_plane if the weather is stormy' do
-    expect(subject).to raise_error 'Unsafe to fly'
+    expect{subject.weather_check}.to raise_error 'Unsafe to fly'
   end
 end

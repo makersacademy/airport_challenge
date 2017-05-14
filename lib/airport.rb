@@ -13,6 +13,8 @@ class Airport
   end
 
   def weather_check
-    fail 'Unsafe to fly' if random_weather != 'Sunny'
+    conditions = Weather.new
+    conditions = conditions.random_weather
+    fail 'Unsafe to fly' if conditions != 'Sunny'
   end
 end

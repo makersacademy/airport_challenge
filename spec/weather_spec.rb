@@ -4,6 +4,6 @@ describe Weather do
     expect(subject).to respond_to :random_weather
   end
   it 'should produce weather conditions' do
-    expect(subject).to equal true
+    expect(subject.random_weather).to eq 'Stormy'
   end
 end
