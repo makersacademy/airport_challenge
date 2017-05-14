@@ -5,7 +5,6 @@ class Airport
   DEFAULT_HANGAR_SIZE = 10
   attr_reader :planes, :weather, :capacity
 
-
   def initialize(capacity = DEFAULT_HANGAR_SIZE)
     @planes = []
     @capacity = capacity
@@ -13,6 +12,7 @@ class Airport
   end
 
   def authorize_landing(plane)
+    raise "Airport full! Landing not allowed!" if full?
     raise "Airport temporarly closed due to bad weather" unless check_weather
     @planes << plane
   end
@@ -31,6 +31,10 @@ class Airport
 
   def empty?
     @planes.empty?
+  end
+
+  def full?
+    @planes.size >= @capacity
   end
 
 end

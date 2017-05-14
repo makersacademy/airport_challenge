@@ -30,9 +30,15 @@ RSpec.describe Airport do
       expect(airport.authorize_landing(plane)).to eq [plane]
     end
 
-    it "doesn't let planes take off when weather is stormy" do
+    it "doesn't let planes land when weather is stormy" do
       allow(airport).to receive(:check_weather) { false }
       expect { airport.authorize_landing(plane) }.to raise_error "Airport temporarly closed due to bad weather"
+    end
+
+    it "raise error if planes try to land while airport full" do
+      allow(airport).to receive(:check_weather) { true }
+      airport.capacity.times { airport.authorize_landing(plane) }
+      expect { airport.authorize_landing(plane) }.to raise_error "Airport full! Landing not allowed!"
     end
 
   end
