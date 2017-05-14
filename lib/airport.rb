@@ -6,6 +6,7 @@ class Airport
   def initialize(capacity = DEFAULTCAPACITY)
     @planes = [] # An array to hold the planes that take off and land at the airport
     @capacity = capacity # Reprsents the capacity of the airport
+    @weather = Weather.new
   end
 
   # Plane lands at airport
@@ -26,21 +27,15 @@ class Airport
     "#{departing_plane} has taken off"
   end
 
+  private
+  attr_reader :planes
+
   # Checks the weather to see if it is safe at the airport
 
   def safe?
-    weather > 1
+    @weather.weather_level > 1
   end
 
-  # Randomly generates the weather level
-
-  def weather
-    rand(7)
-  end
-
-  private
-  attr_reader :planes
-  
   # Checks to see if the airport has any planes
 
   def empty?

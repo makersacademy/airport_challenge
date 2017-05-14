@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   let(:airport) { described_class.new }
   let(:plane) { double(:plane) }
+  let(:weather) { double(:weather) }
 
   describe '#lands_planes' do
     before do
@@ -41,7 +42,6 @@ describe Airport do
       allow(airport).to receive(:safe?).and_return(true)
       allow(plane).to receive(:departs)
     end
-    it { is_expected.to respond_to(:takes_off) }
     it 'returns the value of the plane which has taken off' do
       airport.lands_plane(plane)
       expect(airport.takes_off).to eq "#{plane} has taken off"
@@ -60,30 +60,7 @@ describe Airport do
     end
   end
 
-  describe "#safe?" do
-    it { is_expected.to respond_to(:safe?) }
-    context 'stormy' do
-      it 'returns false ' do
-        allow(airport).to receive(:weather).and_return(1)
-        expect(airport.safe?).to be(false)
-      end
-    end
-    context 'not stormy' do
-      it 'returns true' do
-        allow(airport).to receive(:weather).and_return(7)
-        expect(airport.safe?).to be(true)
-      end
-    end
-  end
-
-  describe '#weather' do
-    it 'returns a value which is an integer'do
-     expect(airport.weather).to be_a_kind_of(Integer)
-    end
-  end
-
   describe '#capacity' do
-    it { is_expected.to respond_to(:capacity) }
     it 'variable will equal the  default capacity if no capacity is given' do
       expect(airport.capacity).to eq Airport::DEFAULTCAPACITY
     end

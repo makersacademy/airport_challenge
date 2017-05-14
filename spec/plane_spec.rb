@@ -1,19 +1,20 @@
 require 'plane'
 
 describe Plane do
+  let(:plane) { described_class.new }
   let(:airport) { double(:airport) }
 
   describe '#flying'
   it 'shows true when a plane is created' do
-    expect(subject.flying).to eq true
+    expect(plane.flying).to eq true
   end
   it 'shows true when a plane is in the air' do
-    subject.departs
-    expect(subject.flying).to eq true
+    plane.departs
+    expect(plane.flying).to eq true
   end
   it 'shows false if the plane has landed' do
-    subject.arrives
-    expect(subject.flying).to eq false
+    plane.arrives
+    expect(plane.flying).to eq false
   end
 
 end
