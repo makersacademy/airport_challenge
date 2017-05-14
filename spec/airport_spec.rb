@@ -17,6 +17,7 @@ describe Airport do
     plane = double
     allow(plane).to receive(:update_location_after_landing_to)
     allow(plane).to receive(:report_landed)
+    allow(plane).to receive(:flying?){true}
     airport = subject
     allow(airport.weather).to receive(:safe?){true}
     airport.instruct_to_land(plane)
@@ -31,9 +32,11 @@ describe Airport do
     allow(plane).to receive(:report_landed)
     allow(plane).to receive(:update_location_after_take_off_from)
     allow(plane).to receive(:report_take_off)
+    allow(plane).to receive(:flying?){true}
     airport = subject
     allow(airport.weather).to receive(:safe?){true}
     airport.instruct_to_land(plane)
+    allow(plane).to receive(:flying?){false}
     airport.instruct_to_take_off(plane)
     expect(airport.landed_planes.include?(plane)).to eq false
   end
@@ -49,6 +52,7 @@ describe Airport do
     plane = double
     allow(plane).to receive(:update_location_after_landing_to)
     allow(plane).to receive(:report_landed)
+    allow(plane).to receive(:flying?){true}
     expect{airport.instruct_to_land(plane)}.to raise_error(RuntimeError, "The weather is stormy. Landing not allowed.")
   end
   it 'should raise an error if a plane is instructed to take off in stormy weather' do
@@ -92,10 +96,16 @@ describe Airport do
     plane = double
     allow(plane).to receive(:update_location_after_landing_to)
     allow(plane).to receive(:report_landed)
+    allow(plane).to receive(:flying?){true}
     expect{airport.instruct_to_land(plane)}.to raise_error(RuntimeError, "This airport is full. Wait until another plane has taken off.")
   end
   it 'should be set up with the capacity that is given as argument when initialized, otherwise it should have DEFAULT_CAPACITY' do
     expect(Airport.new(20).capacity).to eq 20
     expect(Airport.new.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+  it 'should raise an error if a is landed and again instructed to land' do
+    plane = double(:plane, location: 78303200272)
+    allow(plane).to receive(:flying?)
+    expect{subject.instruct_to_land(plane)}.to raise_error(RuntimeError, "This plane has already landed.")
   end
 end

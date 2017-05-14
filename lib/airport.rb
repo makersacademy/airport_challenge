@@ -9,6 +9,7 @@ class Airport
   end
 
   def instruct_to_land(plane)
+    fail "This plane has already landed." unless plane.flying?
     fail "The weather is stormy. Landing not allowed." unless weather.safe?
     fail "This airport is full. Wait until another plane has taken off." if full?
     @landed_planes << plane
