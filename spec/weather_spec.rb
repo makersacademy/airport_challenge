@@ -16,4 +16,10 @@ RSpec.describe Weather do
       end
     end
   end
+
+  # describe "#random" do
+  #   it "returns a number between 1 and 10" do
+  #     expect(subject.random).to be_within(5).of(5)
+  #   end
+  # end
 end

@@ -18,12 +18,14 @@ print 'check if the plane is landed: '
 p plane.landed #=> true
 
 print 'make the plane #take_off from an airport: '
-p plane.take_off(airport) #=> false
+puts "test skipped - uncomment to execute test"
+# p plane.take_off(airport) #=> false
 
 print 'confirm that the plane is no longer in the airport: '
 p airport.planes #=> []
 
-#print 'raise error if no planes available to take off: '
+print 'raise error if no planes available to take off: '
+puts "test skipped - uncomment to execute test"
 # airport.take_off #=> Error 'No planes currently available'
 
 print 'the plane is no longer #landed after taking off: '
@@ -35,5 +37,10 @@ p weather = Weather.new #=> <Weather:0x007f84d70ef048>
 print 'wheater returns false if wheater is stormy (10): '
 p weather.clear? #=> false
 
+print 'airport do not let planes take off when weather is stormy: '
+puts "test skipped - uncomment to execute test"
+# p airport.authorize_take_off(plane) #=> RuntimeError 'Airport is temporarly closed due to bad weather'
+
 print 'airport do not let planes land when weather is stormy: '
-p plane.land(airport) #=> RuntimeError 'Airport is temporarly closed due to storm'
+puts "test skipped - uncomment to execute test"
+# p airport.authorize_landing(plane) #=> RuntimeError 'Airport is temporarly closed due to bad weather'
