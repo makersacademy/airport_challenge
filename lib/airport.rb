@@ -18,7 +18,6 @@ class Airport
   end
 
   def try_allow_land(plane)
-    raise "That is not a plane - please use Plane#land(airport)" unless plane.is_a?(Plane)
     raise "Unable to land - airport full" if full?
     raise "Unable to land plane - weather is stormy" if @weather.stormy?
     @planes << plane
