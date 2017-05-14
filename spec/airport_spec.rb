@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-    it "Responds to 'land_plane' method" do
+    it "Responds to #land_plane method" do
       expect(subject).to respond_to :land_plane
     end
 
@@ -10,12 +10,24 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
-    it "Responds to 'confirm_landing' method" do
+    it "Responds to #confirm_landing method" do
       expect(subject).to respond_to :confirm_landing
     end
 
-    it "Responds to 'take_off' method" do
+    it "Responds to #take_off method" do
       expect(subject).to respond_to :take_off
+    end
+
+    it "Responds to #confirm_take_off" do
+      expect(subject).to respond_to :confirm_take_off
+    end
+
+    it "Responds to #stormy?" do
+      expect(subject).to respond_to :stormy?
+    end
+
+    it 'Has weather variariable' do
+      expect(subject).to respond_to :weather
     end
 
   describe '#land_plane' do
@@ -39,11 +51,37 @@ describe Airport do
 
   describe '#take_off' do
 
-    it "Removes 'plane' from @planes when it takes_off" do
+    it "Removes 'plane' from @planes" do
       plane = double(:plane)
       subject.land_plane(plane)
       expect(subject.take_off(plane)).to eq []
     end
+
+    it "Removes only one 'plane' from @planes" do
+      plane, plane2 = double(:plane), double(:plane)
+      subject.land_plane(plane)
+      subject.land_plane(plane2)
+      expect(subject.take_off(plane)).to eq [plane2]
+    end
+
   end
+
+  describe '#confirm_take_off' do
+
+    it "Confirms that 'plane' is no longer in @planes" do
+      plane = double(:plane)
+      expect(subject.confirm_take_off(plane)).to eq true
+    end
+
+  end
+
+  describe '#stormy' do
+
+    it "responds false if @weather is not 'stormy'" do
+      expect(subject.stormy?).to eq false
+    end
+
+  end
+
 
 end
