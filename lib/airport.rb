@@ -6,10 +6,10 @@ class Airport
   attr_reader :weather, :hangar
   attr_accessor :capacity
 
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 200
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @weather = Weather.new #atm weather remains the same for airport
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+    @weather = weather
     @capacity = capacity
     @hangar = []
   end
@@ -77,7 +77,7 @@ class Airport
   end
 
   def print_all_flight_nos
-    @hangar.map { |plane| print_flight_no(plane) }
+    hangar.map { |plane| print_flight_no(plane) }.join ','
   end
 
 end

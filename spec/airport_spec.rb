@@ -5,6 +5,7 @@ describe Airport do
   let(:plane) { double :plane }
   subject(:airport) { described_class.new }
   before(:each) { allow(airport.weather).to receive(:is_stormy) { false } }
+  #let(:weather_double) { double :weather }
 
   context '#stormy?' do
     before(:each) { allow(airport.weather).to receive(:is_stormy) { true } }
@@ -86,7 +87,7 @@ describe Airport do
     it 'allows for airplanes in hangar to be returned' do
       airport.hangar << plane
       allow(plane).to receive(:flight_number) { 1 }
-      expect(airport.check_hangar).to eq ["Makers #1"]
+      expect(airport.check_hangar).to eq "Makers #1"
     end
 
     it 'returns empty notification if hangar is empty' do
