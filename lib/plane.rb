@@ -1,3 +1,4 @@
+
 require_relative 'airport.rb'
 
 class Plane
@@ -8,6 +9,6 @@ class Plane
     @landed = false
   end
 
-  
+
 
 end

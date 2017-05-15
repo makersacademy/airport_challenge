@@ -1,4 +1,3 @@
-
 class Airport
 
   attr_accessor :capacity
@@ -7,14 +6,21 @@ class Airport
 
   DEFAULT_CAPACITY = 9
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, random_weather = true)
     @planes = []
+    @random_weather = random_weather
     @capacity = capacity
   end
 
   def weather_is_stormy?
-    return rand(1..7) > 5
-  end
+    random_number = Kernel.rand(1..7)
+    if @random_weather
+      return random_number > 5
+    else
+      return false
+    end
+    end
+
 
   def land(plane)
     raise "Plane can not land due to stormy weather" if self.weather_is_stormy?

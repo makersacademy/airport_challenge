@@ -140,5 +140,14 @@ it "can not land in another airport when already landed" do
   expect{airport2.land(plane)}.to raise_error "plane already landed in another airport"
 end
 
+it "If random number is above five, weather_is_stormy? returns true" do
+  allow(Kernel).to receive(:rand).and_return(6)
+  expect(subject.weather_is_stormy?).to eq true
+end
+
+it "If random number is above five, weather_is_stormy? returns true" do
+  allow(Kernel).to receive(:rand).and_return(2)
+  expect(subject.weather_is_stormy?).to eq false  
+end
 
 end
