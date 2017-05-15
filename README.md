@@ -38,4 +38,15 @@ The software is composed of 3 main object communicating between each other:
   - randomize weather conditions allowing in rare cases to return storm  
 
 Next Steps
+---------  
+- Implement plane #location method which returns current airport or :in_flight
+- Build a feature test to show interaction between multiple planes and airports
+
+What you need to use this software
 ---------
+Ruby 2.4
+
+Test Framework & Extra
+---------
+RSpec 3.5.4  
+Rubocop

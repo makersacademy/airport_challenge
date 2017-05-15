@@ -17,8 +17,12 @@ RSpec.describe Airport do
   end
 
   describe "#authorize_landing" do
-    it "makes a plane land at an airport" do
+    before do
+      allow(plane).to receive(:landed) { false }
       allow(airport).to receive(:check_weather) { true }
+    end
+
+    it "makes a plane land at an airport" do
       expect(airport.authorize_landing(plane)).to eq [plane]
     end
 
@@ -28,16 +32,24 @@ RSpec.describe Airport do
     end
 
     it "raise error if planes try to land while airport full" do
-      allow(airport).to receive(:check_weather) { true }
       airport.capacity.times { airport.authorize_landing(plane) }
       expect { airport.authorize_landing(plane) }.to raise_error "Airport full! Landing not allowed!"
     end
 
+    it "raise error if plane is already landed in a different airport" do
+      allow(plane).to receive(:landed) { true }
+      expect { airport.authorize_landing(plane) }.to raise_error "The plane is already in another airport"
+    end
   end
 
   describe "#authorize_take_off" do
-    it "the plane can take off from the airport" do
+    before do
+      allow(plane).to receive(:landed) { true }
       allow(airport).to receive(:check_weather) { true }
+    end
+
+    it "the plane can take off from the airport" do
+      allow(plane).to receive(:landed) { false }
       airport.authorize_landing(plane)
       expect(airport.authorize_take_off(plane)).to eq plane
     end
@@ -51,6 +63,10 @@ RSpec.describe Airport do
       allow(airport).to receive(:check_weather) { false }
       expect { airport.authorize_take_off(plane) }.to raise_error "Airport temporarly closed due to bad weather"
     end
-  end
 
+    it "raise error if plane is not in this airport" do
+      allow(airport).to receive(:empty?) { false }
+      expect { airport.authorize_take_off(plane) }.to raise_error "The plane is not in this airport"
+    end
+  end
 end
