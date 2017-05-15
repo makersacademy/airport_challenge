@@ -1,15 +1,19 @@
 require 'weather'
 
 describe Weather do
-  it "Shows that weather responds to the show_current_weather_condition method" do
-    expect(subject).to respond_to :check_current_weather_condition
-  end
-  it "shows that the show_weather_condition method will return stormy 15% of the time and sunny otherwise" do
-    1000.times do
-      subject.stub(:change_weather_chance) { rand(85..100) }
-      expect(subject.check_current_weather_condition).to eq "stormy"
-      subject.stub(:change_weather_chance) { rand(1...85) }
-      expect(subject.check_current_weather_condition).to eq "sunny"
+  describe "#sunny?" do
+    before(:each) { @weather = described_class.new }
+    it "Show the sunny? method will return false 15% of the time" do
+      1000.times do
+        Kernel.stub(:rand) { rand(85..100) }
+        expect(@weather.sunny?).to eq false
+      end
+    end
+    it "Show the sunny? method will return true 85% of the time" do
+      1000.times do
+        Kernel.stub(:rand) { rand(1...85) }
+        expect(@weather.sunny?).to eq true
+      end
     end
   end
 end

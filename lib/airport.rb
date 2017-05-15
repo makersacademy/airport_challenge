@@ -6,81 +6,49 @@ class Airport
   attr_accessor :current_capacity
   attr_reader :airplanes
 
-  def initialize(capacity = 20)
+  def initialize(capacity = 20, weather = Weather.new)
     @current_capacity = capacity
     @airplanes = []
-    @weather = Weather.new
+    @weather = weather
   end
 
   def show_status_of_airplanes
     "Grounded: #{check_number_of_grounded_planes}, Airborne: #{check_number_of_airborne_planes}"
   end
 
-  def allow_airplane_to_land
-    fail "Permission to land denied" if permission_to_land? == false
-    contact_approaching_airplane
-    @approaching_airplane.land
-    @airplanes << @approaching_airplane
+  def instruct_airplane_to_land
+    fail "Permission to land denied" unless @weather.sunny? && !at_capacity?
+    @airplanes << Airplane.new.land
   end
 
-  def allow_airplane_to_take_off
-    fail "Permission to take off denied" if permission_to_take_off? == false
-    contact_departing_airplane
-    @departing_airplane.take_off
-    @airplanes << @departing_airplane
+  def instruct_airplane_to_take_off
+    fail "Permission to take off denied" unless @weather.sunny?
+    @airplanes << first_grounded_airplane.take_off
   end
 
   def at_capacity?
-    if check_number_of_grounded_planes >= @current_capacity
-      true
-    else
-      false
-    end
-  end
-
-  def permission_to_land?
-    if @weather.check_current_weather_condition == "sunny" && at_capacity? == false
-      true
-    else
-      false
-    end
-  end
-
-  def permission_to_take_off?
-    if @weather.check_current_weather_condition == "sunny"
-      true
-    else
-      false
-    end
+    check_number_of_grounded_planes >= @current_capacity
   end
 
   private
 
-  def contact_approaching_airplane
-    @approaching_airplane = Airplane.new
-  end
-
-  def contact_departing_airplane
-    @departing_airplane = pop_first_grounded_airplane
-  end
-
-  def pop_first_grounded_airplane
+  def first_grounded_airplane
     first_grounded_airplane = @airplanes.find do
-      |airplane| airplane.current_status == "grounded"
+      |airplane| airplane.current_status == :grounded
     end
     @airplanes.delete_if do
       |target_airplane| target_airplane == @airplanes.find do
-        |airplane| airplane.current_status == "grounded"
+        |airplane| airplane.current_status == :grounded
       end
     end
     first_grounded_airplane
   end
 
   def check_number_of_grounded_planes
-    @airplanes.count { |airplane| airplane.current_status == "grounded" }
+    @airplanes.count { |airplane| airplane.current_status == :grounded }
   end
 
   def check_number_of_airborne_planes
-    @airplanes.count { |airplane| airplane.current_status == "airborne" }
+    @airplanes.count { |airplane| airplane.current_status == :airborne }
   end
 end
