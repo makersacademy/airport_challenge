@@ -1,7 +1,7 @@
 class Plane
 
   def initialize
-    @status = :in_the_air
+    @status = :airborne
   end
 
   def stationed?
@@ -9,7 +9,7 @@ class Plane
   end
 
   def taking_off
-    @status = :in_the_air
+    @status = :airborne
   end
 
   def stationing

@@ -5,7 +5,7 @@ describe Plane do
 
   describe '#taking_off' do
     it 'changes the status of the plane after telling it to take off' do
-      expect(plane.taking_off).to eq :in_the_air
+      expect(plane.taking_off).to eq :airborne
     end
   end
 

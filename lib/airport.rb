@@ -12,12 +12,13 @@ class Airport
 
   def land(plane)
     full?
+    authorization(plane, :incoming)
     store_plane(plane) unless weather_alert
   end
 
   def take_off(plane)
     empty?
-    stationed?(plane)
+    authorization(plane, :outgoing)
     (plane.taking_off; @planes.delete(plane)) unless weather_alert
   end
 
@@ -35,8 +36,12 @@ class Airport
     raise 'There currently are no planes available.' if @planes.empty?
   end
 
-  def stationed?(plane)
-    raise 'This plane is not available!' unless plane.stationed?
+  def authorization(plane, direction)
+    if direction == :outgoing
+      raise 'This plane is not available!' unless plane.stationed?
+    elsif direction == :incoming
+      raise 'The plane has already landed' if plane.stationed?
+    end
   end
 
   def store_plane(plane)
@@ -45,5 +50,3 @@ class Airport
     return plane
   end
 end
-
-# specific plane takes off, check for authorization
