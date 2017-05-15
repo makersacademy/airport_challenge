@@ -2,9 +2,8 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_accessor :capacity, :weather
+  attr_reader :capacity, :weather
   DEFAULT_CAPACITY = 20
-  srand 1234
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @capacity = capacity
@@ -17,31 +16,29 @@ class Airport
     fail "Cannot land due to stormy weather!!" if @weather.stormy?
     unless plane.landed?
       plane.update_landed
-      @landed_planes << plane
+      @landed_planes.push(plane)
     else
       "Plane #{plane} already landed!"
     end
   end
 
   def take_off(plane)
+    fail "Plane #{plane} already taken off!" if plane.taken_off?
     fail "There are no planes to take off!!" if empty?
     fail "Cannot take off due to stormy weather!!" if @weather.stormy?
-    unless plane.taken_off?
-      plane.update_takenoff
-      @landed_planes.delete(plane)
-    else
-      "Plane #{plane} already taken off!"
-    end
+    plane.update_takenoff
+    @landed_planes.delete(plane)
   end
 
 private
-  attr_reader :landed_planes
+  attr_accessor :landed_planes
 
   def full?
-    @landed_planes.count >= DEFAULT_CAPACITY
+    @landed_planes.count >= @capacity
   end
 
   def empty?
+    p @landed_planes
     @landed_planes.empty?
   end
 

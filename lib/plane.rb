@@ -1,19 +1,8 @@
 class Plane
-  attr_reader :landed, :taken_off
 
   def initialize
     @taken_off = false
     @landed = false
-  end
-
-  def update_landed
-    reset_takenoff_flag
-    @landed = true
-  end
-
-  def update_takenoff
-    reset_landed_flag
-    @taken_off = true
   end
 
   def landed?
@@ -24,12 +13,17 @@ class Plane
     @taken_off
   end
 
-  def reset_landed_flag
-    @landed = false
+  def update_landed
+    @taken_off = false
+    @landed = true
   end
 
-  def reset_takenoff_flag
-    @taken_off = false
+  def update_takenoff
+    @landed = false
+    @taken_off = true
   end
+
+private
+  attr_reader :landed, :taken_off
 
 end
