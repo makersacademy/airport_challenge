@@ -1,28 +1,36 @@
 # Custom errors for use with Plane class:
 class PlaneStatusError < StandardError; end
+class NoClearanceError < StandardError; end
 
 class Plane
+  attr_writer :cleared
 
   def initialize
-    @status = 'currently in the air'
+    @status = :airborne
+    @cleared = false
   end
 
   def land(at_airport)
     raise(PlaneStatusError, "#{self} is already landed!") unless flying?
+    raise(NoClearanceError) unless @cleared
     at_airport.planes_currently_landed << self
-    @status = "currently landed at #{at_airport}."
+    @status = :landed
+    @cleared = false
+
   end
 
   def take_off(from_airport)
     raise(PlaneStatusError, "#{self} is already in the air!") if flying?
+    raise(NoClearanceError) unless @cleared
     from_airport.planes_currently_landed.delete(self)
-    @status = 'currently in the air'
+    @status = :airborne
+    @cleared = false
   end
 
   private
 
   def flying?
-    @status == 'currently in the air'
+    @status == :airborne
   end
 
 end
