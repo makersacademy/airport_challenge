@@ -55,7 +55,7 @@ Planes :airplane:
 -----
 
 ```ruby
-G-ZBKP = Plane.new("G-ZBKP")
+GZBKP = Plane.new("G-ZBKP")
 
 ```
 
@@ -76,11 +76,13 @@ LHR = Airport.new("LHR", 212)
 Creating an airport is this easy.. no endless discussions about noise, location or runway extensions. In this example we are creating a new Airport instance. Taking London Heathrow as an example we've used Heathrow's ICAO code (LHR) and a capacity of 212. The [ICAO](https://en.wikipedia.org/wiki/International_Civil_Aviation_Organization_airport_code) code is a required argument and should be passed as a string. The capacity is optional, but in this case i've used [Heathrow's capacity](http://www.heathrow.com/company/company-news-and-information/company-information/facts-and-figures) of 212 to instantiate the object.
 
 
+
 ## Get planes on ground :parking:
 
 ```ruby
 LHR.planes_on_ground
 ```
+
 
 This instruction will return an array containing the all the planes currently on ground at the airport
 
@@ -108,3 +110,34 @@ Instructing a plane to takeoff requires two arguments(plane, destination)
 This instruction will fail if:
 - The weather is stormy :zap: :cloud:
 - An invalid destination is provided :globe_with_meridians:
+
+
+Weather
+-----
+The weather is handled by the Weather class. At the moment the weather is random and it is checked everytime you run a landing or takeoff instruction. The weather is stormy :zap: :cloud: if the result of the randomizer is 7. Currently the randomizer picks a number between 1 and 7.
+
+
+Running Example
+-----
+What to expect from the application when we create two airports (London Heathrow and Lisbon), one plane ([GZBKP](https://www.flightradar24.com/data/aircraft/g-zbkp)) that we 1st instruct to land in Heathrow (remember this is super high tech and planes start their service flying) and then takeoff and land in Lisbon.
+
+```irb
+2.4.0 :001 > LHR = Airport.new("LHR")
+ => #<Airport:0x007f9af18bd920 @capacity=40, @planes_on_ground=[], @iata_code="LHR", @weather=#<Weather:0x007f9af18bd830>>
+2.4.0 :006 > LIS = Airport.new("LIS")
+ => #<Airport:0x007f9af28f1440 @capacity=40, @planes_on_ground=[], @iata_code="LIS", @weather=#<Weather:0x007f9af28f1418>>
+2.4.0 :002 > GZBKP = Plane.new("G-ZBKP")
+ => #<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=false, @location="air">
+2.4.0 :003 > LHR.land_plane(GZBKP)
+ => [#<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=true, @location="LHR">]
+2.4.0 :004 > LHR.planes_on_ground
+ => [#<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=true, @location="LHR">]
+2.4.0 :005 > GZBKP.location
+ => "LHR"
+2.4.0 :006 > LHR.takeoff_plane(GZBKP, LIS)
+ => #<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=false, @location="air", @destination=#<Airport:0x007f9af28f1440 @capacity=40, @planes_on_ground=[], @iata_code="LIS", @weather=#<Weather:0x007f9af28f1418>>>
+2.4.0 :07 > LIS.land_plane(GZBKP)
+ => [#<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=true, @location="LIS", @destination=#<Airport:0x007f9af28f1440 @capacity=40, @planes_on_ground=[...], @iata_code="LIS", @weather=#<Weather:0x007f9af28f1418>>>]
+2.4.0 :008 > LIS.planes_on_ground
+ => [#<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=true, @location="LIS">]
+ ```
