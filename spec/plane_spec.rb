@@ -11,9 +11,9 @@ describe Plane do
 
   describe '#stationed?' do
     it 'checks the status of the plane' do
-      expect(plane.stationed?).to eq true
-      plane.taking_off
       expect(plane.stationed?).to eq false
+      plane.stationing
+      expect(plane.stationed?).to eq true
     end
   end
 end

@@ -6,20 +6,19 @@ describe Airport do
   let(:weather) { double :weather }
 
   describe '#land(plane)' do
-    it 'stores all landed planes in the airport, if weather is good' do
+    before do
       allow(airport).to receive(:weather_alert) { false }
+      allow(plane).to receive(:stationing) { :stationed }
+    end
+    it 'stores all landed planes in the airport, if weather is good' do
       expect(airport.land(plane)).to eq plane
 
-      9.times { airport.land(plane) }
-      expect(airport.planes).to eq Array.new(10, plane)
-
-      airport_new = Airport.new(1000)
-      allow(airport_new).to receive(:weather_alert) { false }
-      1000.times { airport_new.land(plane) }
-      expect(airport_new.planes).to eq Array.new(1000, plane)
+      airport = Airport.new(1000)
+      allow(airport).to receive(:weather_alert) { false }
+      1000.times { airport.land(plane) }
+      expect(airport.planes).to eq Array.new(1000, plane)
     end
     it 'raises an error if the airport is full' do
-      allow(airport).to receive(:weather_alert) { false }
       airport::capacity.times { airport.land(plane) }
       expect { airport.land(plane) }.to raise_error 'The airport is currently full.'
     end
@@ -27,7 +26,9 @@ describe Airport do
 
   describe '#take_off(plane)' do
     before do
-      allow(plane).to receive(:taking_off).and_return(:in_the_air)
+      allow(plane).to receive(:taking_off) {:in_the_air }
+      allow(plane).to receive(:stationing) { :stationed }
+      allow(airport).to receive(:stationed?) { true }
     end
     it 'removes specific plane from the array' do
       allow(airport).to receive(:weather_alert) { false }

@@ -12,11 +12,12 @@ class Airport
 
   def land(plane)
     full?
-    (@planes << plane; return plane) unless weather_alert
+    store_plane(plane) unless weather_alert
   end
 
   def take_off(plane)
     empty?
+    stationed?(plane)
     (plane.taking_off; @planes.delete(plane)) unless weather_alert
   end
 
@@ -33,7 +34,16 @@ class Airport
   def empty?
     raise 'There currently are no planes available.' if @planes.empty?
   end
+
+  def stationed?(plane)
+    raise 'This plane is not available!' unless plane.stationed?
+  end
+
+  def store_plane(plane)
+    @planes << plane
+    plane.stationing
+    return plane
+  end
 end
 
 # specific plane takes off, check for authorization
-# weather in own class
