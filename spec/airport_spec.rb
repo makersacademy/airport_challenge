@@ -31,7 +31,7 @@ describe Airport do
     it 'will show a new message when trying to land a plane in stormy weather' do
       airport = Airport.new
       plane = Plane.new
-      airport.instance_variable_set(:@weather, "stormy")
+      airport.instance_variable_set(:@weather, :stormy)
       expect(airport.lands_plane(plane)).to eq "Plane could not land due to stormy weather."
     end
 
@@ -52,7 +52,7 @@ describe Airport do
     it 'will show a new message when trying to launch a plane in stormy weather' do
       airport = Airport.new
       plane = Plane.new
-      airport.instance_variable_set(:@weather, "stormy")
+      airport.instance_variable_set(:@weather, :stormy)
       expect(airport.launches_plane(plane)).to eq "Plane could not take off due to stormy weather."
     end
 
@@ -60,13 +60,13 @@ describe Airport do
 
   describe '#generate_weather' do
     it 'has a 90% chance to give sunny conditions' do
-      airport = double(:airport, generate_weather: 'sunny')
-      expect(airport.generate_weather).to eq 'sunny'
+      airport = double(:airport, generate_weather: :sunny)
+      expect(airport.generate_weather).to eq :sunny
     end
 
     it 'has a 10% chance to give stormy conditions' do
-      airport = double(:airport, generate_weather: 'stormy')
-      expect(airport.generate_weather).to eq 'stormy'
+      airport = double(:airport, generate_weather: :stormy)
+      expect(airport.generate_weather).to eq :stormy
     end
 
     it 'stores the weather conditon in @weather' do
@@ -75,7 +75,7 @@ describe Airport do
     end
 
     it 'has a default value of sunny' do
-      expect(subject.weather).to eq 'sunny'
+      expect(subject.weather).to eq :sunny
     end
 
   end
