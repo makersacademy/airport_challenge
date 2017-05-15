@@ -28,6 +28,7 @@ class Airport
   def instruct_plane_takeoff(plane)
     fail "Cannot take off when it's stormy" if bad_conditions?
     fail "Cannot takeoff when plane is flying" if plane.flying
+    fail "Cannot take off when there are no planes available" if @landed_planes.empty?
     plane.takeoff
     @landed_planes.delete(plane)
     'Plane has taken off'

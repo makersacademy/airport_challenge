@@ -33,7 +33,7 @@ describe 'Feature Tests' do
         plane.takeoff
         airport.instruct_land(plane)
       end
-      puts @landed_planes
+      # puts @landed_planes
       plane.takeoff
       expect { airport.instruct_land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
     end

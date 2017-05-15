@@ -62,6 +62,11 @@ describe Airport do
       allow(airport).to receive(:bad_conditions?).and_return(true)
       expect { airport.instruct_plane_takeoff(plane) }.to raise_error(RuntimeError, "Cannot take off when it's stormy")
     end
+    it "raises an error when there are no planes available for takeoff" do
+      allow(plane).to receive(:takeoff)
+      allow(plane).to receive(:flying).and_return(false)
+      expect { airport.instruct_plane_takeoff(plane) }.to raise_error(RuntimeError, "Cannot take off when there are no planes available")
+    end
   end
   describe '#bad_conditions' do
     it 'responds to airport.bad_conditions?' do
