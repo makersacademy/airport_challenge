@@ -14,9 +14,9 @@ describe Airport do
 
   it { is_expected.to respond_to(:capacity) }
 
-  describe 'set_capacity' do
+  describe 'override_capacity' do
     it 'can accept an integer as an argument to set the airport capacity' do
-      subject.set_capacity(50)
+      subject.override_capacity(50)
       expect(subject::capacity).to eq 50
     end
 

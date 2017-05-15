@@ -28,5 +28,5 @@ airport_full.instance_variable_set(:@capacity, 0)
 puts airport_full.lands_plane(plane)
 
 puts "Airport capacity can be manually overidden:"
-airport.set_capacity(50)
+airport.override_capacity(50)
 puts airport.capacity

@@ -9,10 +9,9 @@ class Airport
     @planes = []
   end
 
-  def set_capacity(number)
+  def override_capacity(number)
     @capacity = number
   end
-
 
   def lands_plane(plane)
     if @weather == "stormy"
@@ -48,11 +47,7 @@ class Airport
   end
 
   def full?
-    if @planes.count == @capacity
-      return true
-    else
-      return false
-    end
+    @planes.count == @capacity
   end
 
   def empty?
