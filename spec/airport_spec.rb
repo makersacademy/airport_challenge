@@ -2,6 +2,9 @@ require 'airport'
 
 describe Airport do
 
+  before do
+      plane = double(:plane)
+    end
 
     it 'has variable to recieve and store planes' do
       expect(subject.planes).to eq []
@@ -53,7 +56,6 @@ describe Airport do
     it "Will raise an error when airport is full (at @capacity)" do
       Airport::DEFAULT_CAPACITY.times {subject.land_plane(double(:plane))}
       plane = double(:plane)
-      subject.weather = :sunny
       expect {subject.land_plane(plane)}.to raise_error("Airport at capacity: Unsafe to land")
     end
 
