@@ -94,6 +94,7 @@ Instructing a plane to land requires one argument (plane)
 This instruction will fail if:
 - The weather is stormy :zap: :cloud:
 - The airport is full :no_entry_sign:
+- The plane is on the ground already
 
 
 ## Takeoff a Plane
@@ -105,5 +106,5 @@ LHR.takeoff_plane(G-ZBKP, LIS)
 Instructing a plane to takeoff requires two arguments(plane, destination)
 
 This instruction will fail if:
-- The weather is stormy
-- An invalid destination is provided
+- The weather is stormy :zap: :cloud:
+- An invalid destination is provided :globe_with_meridians:
