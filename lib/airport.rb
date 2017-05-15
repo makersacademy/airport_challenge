@@ -1,5 +1,5 @@
-require 'plane'
-require 'weather'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -29,6 +29,7 @@ class Airport
     fail "Cannot take off when it's stormy" if bad_conditions?
     fail "Cannot takeoff when plane is flying" if plane.flying
     fail "Cannot take off when there are no planes available" if @landed_planes.empty?
+    fail 'Cannot instruct plane to takeoff in another airport' unless @landed_planes.include?(plane)
     plane.takeoff
     @landed_planes.delete(plane)
     'Plane has taken off'
