@@ -6,7 +6,7 @@ class Plane
 
   def land
     @status = "landed"
-  end
+  end 
 
   def take_off
     @status = "airborne"

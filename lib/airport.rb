@@ -2,9 +2,18 @@ require_relative 'plane'
 
 class Airport
 
-  def take_off
+  def land(plane)
+    raise "Unsafe conditions, landing not permitted" if stormy
+    plane
+  end
 
-  def weather_check
-    [true, false, false, false, false].sample
+  def take_off(plane)
+    raise "Unsafe conditions, take-off not permitted" if stormy
+    nil
+  end
+
+  def stormy
+    true
+  end
 
 end
