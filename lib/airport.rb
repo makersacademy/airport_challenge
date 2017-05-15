@@ -66,21 +66,21 @@ class Airport
 
   def pop_first_grounded_airplane
     first_grounded_airplane = @airplanes.find do
-      |airplane| airplane.check_current_status == "grounded"
+      |airplane| airplane.current_status == "grounded"
     end
     @airplanes.delete_if do
       |target_airplane| target_airplane == @airplanes.find do
-        |airplane| airplane.check_current_status == "grounded"
+        |airplane| airplane.current_status == "grounded"
       end
     end
     first_grounded_airplane
   end
 
   def check_number_of_grounded_planes
-    @airplanes.count { |airplane| airplane.check_current_status == "grounded" }
+    @airplanes.count { |airplane| airplane.current_status == "grounded" }
   end
 
   def check_number_of_airborne_planes
-    @airplanes.count { |airplane| airplane.check_current_status == "airborne" }
+    @airplanes.count { |airplane| airplane.current_status == "airborne" }
   end
 end

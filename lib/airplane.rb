@@ -1,5 +1,7 @@
 class Airplane
 
+  attr_reader :current_status
+
   def initialize(current_status = "airborne")
     @current_status = current_status
   end
