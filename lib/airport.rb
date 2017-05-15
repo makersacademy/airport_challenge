@@ -22,7 +22,7 @@ class Airport
     fail "This plane is not at the airport!" if empty?
     fail 'This plane is not at the airport!' unless @plane.include? plane
     fail "Too stormy!" if stormy?
-    @plane.pop
+    @plane.delete(plane)
   end
 
   def empty?
