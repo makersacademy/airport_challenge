@@ -24,7 +24,12 @@ describe Airport do
       it "confirms that the plane has landed" do
         plane = subject.plane_landed(plane)
         expect(subject.planes).to eq plane
-  end
+      end
+
+      it "Lands plane given as argument" do
+        plane = double(:plane)
+        expect(subject.plane_landed(plane)).to eq [plane]
+      end
 end
 
   describe '#plane_take_off' do
@@ -48,14 +53,14 @@ end
 describe '#weather?' do
   it "will use a random number generator to set the weather" do
     if @random_weather == true
-  it "raises an error that there is stormy weather, so that the plane is unable to take off" do
-    expect(subject.plane_take_off).to raise_error("No taking off due to severe weather conditions")
-    if @random_weather == true
-  it "raises an error that there is stormy weather, so that the plane is unable to take off" do
-    expect(subject.plane_take_off).to raise_error("No taking off due to severe weather conditions")
-    end
-    end
-  end
+      it "raises an error that there is stormy weather, so that the plane is unable to take off" do
+        expect(subject.plane_take_off).to raise_error("No taking off due to severe weather conditions")
+        if @random_weather == true
+          it "raises an error that there is stormy weather, so that the plane is unable to take off" do
+            expect(subject.plane_take_off).to raise_error("No taking off due to severe weather conditions")
+          end
+        end
+      end
     end
     if @random_weather == false
       it "confirms the plane has taken off" do
@@ -63,7 +68,7 @@ describe '#weather?' do
           expect(plane.take_off?).to eq true
         end
       if @random_weather == false
-        it "confirms the plane has taken off" do
+        it "confirms the plane has landed" do
           plane = subject.plane_landed(plane)
             expect(plane.landed?).to eq true
         end

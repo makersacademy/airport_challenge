@@ -18,7 +18,8 @@ class Airport
   def plane_take_off(plane)
     fail "No taking off, severe weather conditions" if @random_weather == true
     # fail "No planes currently in the airport" if empty?
-    @planes.pop
+    @planes.delete(plane)
+    @planes
   end
 end
 
