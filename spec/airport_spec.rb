@@ -16,7 +16,6 @@ describe Airport do
     end
 
     it 'Fails to land when airport is full' do
-
       error = "Cannot land as airport is full!!"
       subject.capacity.times do
         allow(plane).to receive(:landed?).and_return(true)
@@ -56,9 +55,7 @@ describe Airport do
       srand 8900
       allow(weather).to receive(:stormy?).and_return(false)
       allow(plane).to receive(:landed?).and_return(true)
-    #  allow(plane).to receive(:taken_off?).and_return(false)
       subject.land(plane)
-    #  allow(plane).to receive(:landed?).and_return(true)
       allow(plane).to receive(:taken_off?).and_return(true)
       expect(subject.take_off(plane)).to eq plane
     end
