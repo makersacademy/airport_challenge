@@ -4,10 +4,8 @@ describe Airport do
   let(:plane) { double :plane }
   subject(:airport) { Airport.new }
 
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:plane_take_off) }
-
   describe '#land(plane)' do
+
     it 'stores all landed planes in the airport, if weather is good' do
       airport.instance_variable_set(:@weather_grade, 6)
       expect(airport.land(plane)).to eq plane
@@ -31,24 +29,24 @@ describe Airport do
     end
   end
 
-  describe '#plane_take_off' do
-    it 'removes one plane from the planes array' do
+  describe '#take_off(plane)' do
+    it 'removes specific plane from the array' do
       airport.instance_variable_set(:@weather_grade, 6)
       airport.land(plane)
-      expect(airport.plane_take_off).to eq plane
+      expect(airport.take_off(plane)).to eq plane
 
       5.times { airport.land(plane) }
-      expect(airport.plane_take_off).to eq plane
+      expect(airport.take_off(plane)).to eq plane
     end
     it 'raises an error if stormy' do
       airport.instance_variable_set(:@weather_grade, 6)
       airport.land(plane)
       airport.instance_variable_set(:@weather_grade, 3)
-      expect { airport.plane_take_off }.to raise_error 'Sorry, the storm is too great!'
+      expect { airport.take_off(plane) }.to raise_error 'Sorry, the storm is too great!'
     end
     it 'raises an error if the airport is empty' do
       airport.instance_variable_set(:@weather_grade, 6)
-      expect { airport.plane_take_off }.to raise_error 'There currently are no planes available.'
+      expect { airport.take_off(plane) }.to raise_error 'There currently are no planes available.'
     end
   end
 end

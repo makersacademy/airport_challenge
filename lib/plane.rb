@@ -1,15 +1,17 @@
 class Plane
 
   def initialize
-    @status = "stationed"
+    @status = :stationed
   end
 
   def stationed?
-    @status == "stationed"
+    @status == :stationed
   end
 
   def take_off
-    @status = "in the air"
+    @status = :in_the_air
   end
 
 end
+
+# take off to specific airport

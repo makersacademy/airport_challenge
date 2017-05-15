@@ -14,9 +14,9 @@ class Airport
     (@planes << plane; return plane) unless stormy?
   end
 
-  def plane_take_off
+  def take_off(plane)
     empty?
-    return @planes.pop unless stormy?
+    @planes.delete(plane) unless stormy?
   end
 
   private
@@ -34,3 +34,7 @@ class Airport
   end
 
 end
+
+
+# specific plane takes off, check for authorization
+# update README!

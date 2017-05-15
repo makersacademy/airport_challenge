@@ -14,11 +14,12 @@ airport.land(plane_3)
 puts "planes landed: #{airport.planes}"
 
 # show planes in airport 1 after one take-off
-airport.plane_take_off
+airport.take_off(plane_1)
 puts "planes after 1 take-off: #{airport.planes}"
 
 # show planes in airport 1 after 2 take-offs
-2.times { airport.plane_take_off }
+airport.take_off(plane_2)
+airport.take_off(plane_3)
 puts "planes after 2 take-off: #{airport.planes}"
 
 # Error: empty airport
