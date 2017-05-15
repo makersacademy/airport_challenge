@@ -3,20 +3,20 @@ class Plane
   attr_reader :status, :flight_number
 
   def initialize
-    @status = 'airborne'
+    @status = :airborne
     @flight_number = number_gen
   end
 
   def landed
-    @status = 'landed'
+    @status = :landed
   end
 
   def takeoff
-    @status = 'airborne'
+    @status = :airborne
   end
 
   def airborne?
-    @status == 'airborne'
+    @status == :airborne
   end
 
   private

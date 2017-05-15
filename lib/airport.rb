@@ -9,7 +9,7 @@ class Airport
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @weather = Weather.new
+    @weather = Weather.new #atm weather remains the same for airport
     @capacity = capacity
     @hangar = []
   end
@@ -41,7 +41,7 @@ class Airport
   def complete_takeoff_procedure(plane)
     plane.takeoff
     hangar.delete(plane)
-    return_flight_status(plane, "take off")
+    return_flight_status(plane, "takeoff")
   end
 
   def landing_denied(plane)
