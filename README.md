@@ -119,7 +119,7 @@ The weather is handled by the Weather class. At the moment the weather is random
 
 Running Example
 -----
-What to expect from the application when we create two airports (London Heathrow and Lisbon), one plane ([GZBKP](https://www.flightradar24.com/data/aircraft/g-zbkp)) that we 1st instruct to land in Heathrow (remember this is super high tech and planes start their service flying) and then takeoff and land in Lisbon.
+What to expect from the application when we create two airports (London Heathrow and Lisbon), one plane ([GZBKP](https://www.flightradar24.com/data/aircraft/g-zbkp)) and we instruct to land in Heathrow (remember this is super high tech and planes start their service flying) and then takeoff and land in Lisbon.
 
 ```irb
 2.4.0 :001 > LHR = Airport.new("LHR")
