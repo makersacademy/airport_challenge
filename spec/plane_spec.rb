@@ -15,5 +15,4 @@ describe Plane do
   it "shows that take_off method confirms take-off" do
     expect(subject.take_off).to eq "airborne"
   end
-  
 end

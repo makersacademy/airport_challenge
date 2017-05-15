@@ -8,7 +8,7 @@ describe Airport do
   it "confirms landing" do
     plane = Plane.new
     allow(subject).to receive(:stormy) { false }
-    expect(subject.land(plane)).to eq plane
+    expect(subject.land(plane)).to eq [plane]
   end
   it "responds to the take_off method" do
     plane = Plane.new
@@ -34,6 +34,13 @@ end
   plane = Plane.new
   allow(subject).to receive(:stormy) { true }
   expect { subject.land(plane) }.to raise_error("Unsafe conditions, landing not permitted")
+end
+ it "should raise an error when airport is full" do
+  plane = Plane.new
+  allow(subject).to receive(:stormy) { false }
+  subject.land(plane)
+  allow(subject).to receive(:full) { true }
+  expect { subject.land(plane) }.to raise_error("Airport is full, landing unauthorised")
 end
 end
 end
