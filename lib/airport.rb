@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -8,7 +9,7 @@ class Airport
 
   def initialize
     @planes = []
-    @weather = 'good'
+    @weather = Weather.new.conditions
     @capacity = DEFAULT_CAPACITY
   end
 
@@ -33,7 +34,7 @@ class Airport
   end
 
   def stormy?
-    @weather == 'stormy' ? true : false
+    @weather == :stormy ? true : false
   end
 
   def full?

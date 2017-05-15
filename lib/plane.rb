@@ -1,10 +1,10 @@
 
 class Plane
 
-attr_accessor
+attr_reader :flying
 
-def initialize
-
+def initialize(flying = true)
+  @flying = flying
 end
 
 end

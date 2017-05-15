@@ -2,29 +2,15 @@ require 'airport'
 
 describe Airport do
 
-    it "Responds to #land_plane method" do
-      expect(subject).to respond_to :land_plane
-    end
 
     it 'has variable to recieve and store planes' do
       expect(subject.planes).to eq []
     end
 
-    it "Responds to #confirm_landing method" do
-      expect(subject).to respond_to :confirm_landing
-    end
+    it { is_expected.to respond_to(:confirm_landing).with(1).argument }
 
-    it "Responds to #take_off method" do
-      expect(subject).to respond_to :take_off
-    end
+    it { is_expected.to respond_to(:confirm_take_off).with(1).argument }
 
-    it "Responds to #confirm_take_off" do
-      expect(subject).to respond_to :confirm_take_off
-    end
-
-    it "Responds to #stormy?" do
-      expect(subject).to respond_to :stormy?
-    end
 
     it 'Has weather variable' do
       expect(subject).to respond_to :weather
@@ -54,18 +40,20 @@ describe Airport do
 
     it "Adds 'plane' to '@planes' when passed to 'land_plane'" do
       plane = double(:plane)
+      subject.weather = :sunny
       expect(subject.land_plane(plane)).to eq [plane]
     end
 
     it "Will raise an error when weather is 'stormy'" do
       plane = double(:plane)
-      subject.weather = 'stormy'
+      subject.weather = :stormy
       expect {subject.land_plane(plane)}.to raise_error("Weather stormy: Unsafe for landing")
     end
 
     it "Will raise an error when airport is full (at @capacity)" do
       Airport::DEFAULT_CAPACITY.times {subject.land_plane(double(:plane))}
       plane = double(:plane)
+      subject.weather = :sunny
       expect {subject.land_plane(plane)}.to raise_error("Airport at capacity: Unsafe to land")
     end
 
@@ -75,6 +63,7 @@ describe Airport do
 
     it "Checks for 'plane' in @planes" do
       plane = double(:plane)
+      subject.weather = :sunny
       subject.land_plane(plane)
       expect(subject.confirm_landing(plane)).to eq true
     end
@@ -86,19 +75,21 @@ describe Airport do
     it "Removes 'plane' from @planes" do
       plane = double(:plane)
       subject.land_plane(plane)
+      subject.weather = :sunny
       expect(subject.take_off(plane)).to eq []
     end
 
-    it "Removes only one 'plane' from @planes" do
+    it "Removes only 'plane' specified from @planes" do
       plane, plane2 = double(:plane), double(:plane)
       subject.land_plane(plane)
       subject.land_plane(plane2)
+      subject.weather = :sunny
       expect(subject.take_off(plane)).to eq [plane2]
     end
 
     it "Will raise an error when weather is 'stormy'" do
       plane = double(:plane)
-      subject.weather = 'stormy'
+      subject.weather = :stormy
       expect {subject.take_off(plane)}.to raise_error("Weather stormy: Unsafe for take off")
     end
 
