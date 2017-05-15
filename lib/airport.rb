@@ -17,8 +17,8 @@ class Airport
   end
 
   def allow_airplane_to_land
-    contact_approaching_airplane
     fail "Permission to land denied" if permission_to_land? == false
+    contact_approaching_airplane
     @approaching_airplane.land
     @airplanes << @approaching_airplane
   end
