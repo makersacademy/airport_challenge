@@ -10,6 +10,13 @@ describe Weather do
   end
 
   describe '#stormy?' do
-    
+    it 'sets #stormy? as false when randomizer above 3' do
+      allow(weather).to receive(:randomizer) { 6 }
+      expect(weather.stormy?).to eq false
+    end
+    it 'sets #stormy? as false when randomizer below 3' do
+      allow(weather).to receive(:randomizer) { 2 }
+      expect(weather.stormy?).to eq true
+    end
   end
 end
