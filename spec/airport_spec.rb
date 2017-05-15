@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new }
-  let(:plane) { double('plane') }
+  let(:plane) { double('plane', :land => nil, :takeoff => nil) }
   let(:weather) { double('weather') }
   describe '#instruct_land' do
     it 'responds to #instruct_land' do
@@ -13,15 +13,11 @@ describe Airport do
     end
     it 'lands an airplane and stores it in airport' do
       allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:land).and_return(true)
-      puts plane
-      puts plane.flying
       airport.instruct_land(plane)
       expect(airport.landed_planes).to eq [plane]
     end
     it 'confirms plane has landed with message "Plane has landed"' do
       allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:land).and_return(true)
       expect(airport.instruct_land(plane)).to eq 'Plane has landed'
     end
     it "raises error when the weather is stormy" do
@@ -31,7 +27,6 @@ describe Airport do
     end
     it 'raises error when the airport is full' do
       allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:land).and_return(true)
       Airport::DEFAULT_CAPACITY.times { airport.instruct_land(plane) }
       expect { airport.instruct_land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
     end
@@ -42,9 +37,6 @@ describe Airport do
     end
     it 'when #instruct_plane_takeoff happens, plane leaves airport' do
       allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:land).and_return(true)
-      allow(plane).to receive(:takeoff).and_return(true)
-
       airport.instruct_land(plane)
       allow(plane).to receive(:flying).and_return(false)
       airport.instruct_plane_takeoff(plane)
@@ -52,8 +44,6 @@ describe Airport do
     end
     it 'confirms plane has taken off with message "Plane has taken off"' do
       allow(plane).to receive(:flying).and_return(true)
-      allow(plane).to receive(:land).and_return(true)
-      allow(plane).to receive(:takeoff).and_return(true)
       airport.instruct_land(plane)
       allow(plane).to receive(:flying).and_return(false)
       expect(airport.instruct_plane_takeoff(plane)).to eq 'Plane has taken off'
@@ -63,7 +53,6 @@ describe Airport do
       expect { airport.instruct_plane_takeoff(plane) }.to raise_error(RuntimeError, "Cannot take off when it's stormy")
     end
     it "raises an error when there are no planes available for takeoff" do
-      allow(plane).to receive(:takeoff)
       allow(plane).to receive(:flying).and_return(false)
       expect { airport.instruct_plane_takeoff(plane) }.to raise_error(RuntimeError, "Cannot take off when there are no planes available")
     end
