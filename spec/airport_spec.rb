@@ -11,7 +11,7 @@ RSpec.describe Airport do
     end
 
     it "allows for different hangar sizes" do
-      airport = Airport.new(20)
+      airport = described_class.new(20)
       expect(airport.capacity).to eq 20
     end
   end

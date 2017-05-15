@@ -45,8 +45,10 @@ Next Steps
 What you need to use this software
 ---------
 Ruby 2.4
+and then run bundle install within the project folder
 
 Test Framework & Extra
 ---------
 RSpec 3.5.4  
 Rubocop
+Capybara

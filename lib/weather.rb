@@ -6,6 +6,6 @@ class Weather
   private
 
   def random
-    Random.rand(10) + 1
+    Random.rand(1..10)
   end
 end
