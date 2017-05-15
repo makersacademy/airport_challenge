@@ -42,6 +42,10 @@ describe Airport do
       expect(subject.capacity = 10).to eq 10
     end
 
+    it 'Responds to set_capacity' do
+      expect(subject).to respond_to :set_capacity
+    end
+
     it 'Responds to #full?' do
       expect(subject).to respond_to :full?
     end
@@ -57,6 +61,12 @@ describe Airport do
       plane = double(:plane)
       subject.weather = 'stormy'
       expect {subject.land_plane(plane)}.to raise_error("Weather stormy: Unsafe for landing")
+    end
+
+    it "Will raise an error when airport is full (at @capacity)" do
+      Airport::DEFAULT_CAPACITY.times {subject.land_plane(double(:plane))}
+      plane = double(:plane)
+      expect {subject.land_plane(plane)}.to raise_error("Airport at capacity: Unsafe to land")
     end
 
   end
@@ -114,7 +124,8 @@ describe Airport do
   describe '#full' do
 
     it 'returns true if @planes equals @capacity' do
-      subject.planes = 2
+      plane1, plane2 = double(:plane), double(:plane)
+      subject.planes = [plane1, plane2]
       subject.capacity = 2
       expect(subject.full?).to eq true
     end
