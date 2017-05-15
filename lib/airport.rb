@@ -4,7 +4,7 @@ class Airport
   attr_accessor :weather, :capacity, :planes
 
   def initialize
-    @weather = "sunny"
+    @weather = :sunny
     @capacity = 20
     @planes = []
   end
@@ -14,7 +14,7 @@ class Airport
   end
 
   def lands_plane(plane)
-    if @weather == "stormy"
+    if @weather == :stormy
       return "Plane could not land due to stormy weather."
     elsif @planes.count >= @capacity
       return "Plane could not land because the airport is full."
@@ -25,7 +25,7 @@ class Airport
   end
 
   def launches_plane(*)
-    if @weather == "stormy"
+    if @weather == :stormy
       return "Plane could not take off due to stormy weather."
     elsif @planes.count.zero?
       return "There are no planes at the airport!"
@@ -39,10 +39,10 @@ class Airport
     weather_number = rand(100)
     if weather_number > 90
       # There's a storm!
-      @weather = "stormy"
+      @weather = :stormy
     else
       # The weather is sunny!
-      @weather = "sunny"
+      @weather = :sunny
     end
   end
 
