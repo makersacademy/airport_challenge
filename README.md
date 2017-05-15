@@ -1,6 +1,3 @@
-Did not have enough time to complete the challenge, should have cancelled other commitments. I got up to the weather check stage. The test I have written for the 3rd user story is not running properly.
-
-
 Airport Challenge
 =================
 
