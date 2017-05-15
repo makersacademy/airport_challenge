@@ -4,7 +4,6 @@ describe Airport do
 
   describe "#airport_capacity" do
       it "should have a default capacity" do # <--user story 6 (needed to set default capacity to state airport is full and do user story 5)
-        airport = Airport.new
         expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
       end
 
@@ -16,15 +15,14 @@ describe Airport do
 
   describe "#land_in_airport" do
       it "raises an error when attempting to land a plane in an airport of full capacity" do # <--user story 5
-        subject.capacity.times { subject.land_in_airport Plane.new }
-        expect { subject.land_in_airport Plane.new }.to raise_error "Airport is full"
+        # allow(subject).to receive(:stormy?).and_return(false)
+        airport = described_class.new(0, double(:weather, bad_weather?: false))
+        puts subject.capacity
+        expect { airport.land_in_airport Plane.new }.to raise_error "Airport is full"
+      end
+      it "raises an error when attempting to land a plane in an airport if it is stormy" do
+        airport = described_class.new(1, double(:weather, bad_weather?: true))
+        expect {airport.land_in_airport Plane.new }.to raise_error "Due to stormy weather, plane cannot currently land in airport"
       end
     end
-
-  describe "#full?" do
-      it "should not land the plane when an airport is full" do  # <--user story 5
-      expect(subject).to respond_to(:full?)
-
-    end
   end
-end
