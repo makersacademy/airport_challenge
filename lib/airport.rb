@@ -18,6 +18,7 @@ class Airport
     raise 'Operation aborted: Weather is stormy' if stormy?
     raise 'Operation aborted: Airport is full' if full?
     raise 'The plane is already at #{@iata_code}' if plane.location == @iata_code
+    raise 'Operation aborted: Plane is on ground' if plane.on_ground == true
     @planes_on_ground << plane.land(self)
   end
 
