@@ -1,6 +1,4 @@
-# Custom errors for use with Plane class:
-class PlaneStatusError < StandardError; end
-class NoClearanceError < StandardError; end
+require_relative './custom_errors'
 
 class Plane
   attr_writer :cleared

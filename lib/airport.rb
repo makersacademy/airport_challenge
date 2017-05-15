@@ -1,16 +1,11 @@
-require_relative './plane.rb'
+require_relative './plane'
+require_relative './custom_errors'
 
-# Custom errors for use with Airport class:
-class BadWeatherError < StandardError; end
-class NoRoomError < StandardError; end
-class NoPlanesError < StandardError; end
-
-# Airport class:
 class Airport
   attr_accessor(:planes_currently_landed)
   attr_reader(:airport_capacity)
 
-  DEFAULT_CAPACITY = 70
+  DEFAULT_CAPACITY = 300
 
   def initialize(airport_capacity = DEFAULT_CAPACITY)
     @airport_capacity = airport_capacity
@@ -55,28 +50,12 @@ class Airport
     raise(NoRoomError, "there is no available space at #{self}") if full?
     raise(BadWeatherError, 'weather conditions unsafe for landing!') unless weather_conditions_safe?
     raise("#{plane} is already landed at #{self}!") if @planes_currently_landed.include?(plane)
-    true
   end
 
   def run_takeoff_guard_clauses(plane)
     raise(NoPlanesError, "no planes are currently landed at #{self}!") if empty?
     raise(BadWeatherError, 'weather conditions unsafe for takeoff!') unless weather_conditions_safe?
     raise("#{plane} is not landed at #{self}!") unless @planes_currently_landed.include?(plane)
-    true
   end
 
 end
-
-# For ad-hoc feature testing:
-
-heathrow = Airport.new
-gatwick = Airport.new
-stansted = Airport.new
-luton = Airport.new
-
-b737 = Plane.new
-a380 = Plane.new
-b747 = Plane.new
-
-70.times { heathrow.planes_currently_landed << Plane.new }
-heathrow.clear_for_landing(b737)
