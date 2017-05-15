@@ -18,7 +18,6 @@ class Airport
     fail 'Weather stormy! Cannot take off!' unless @sunny
     fail 'Plane not at airport!' unless plane.landed
     return plane if check_plane(plane) == plane
-    fail 'Plane is not at this airport'
   end
  
   def land plane
@@ -46,5 +45,12 @@ class Airport
   end
 
 end
+
+# p weather = Weather.new()
+# p airport = Airport.new(50, weather)
+# p plane = Plane.new
+# # p airport.sunny = true
+# p airport.land(plane)
+# p airport.take_off(plane)
 
 
