@@ -15,7 +15,7 @@ Airport Challenge
 
 Intro
 ---------
-A request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. 
+A request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
 Objects
 -------
@@ -27,6 +27,9 @@ Airport
 
 Plane
 - Stores the info whether it's stationed or flying
+
+Weather
+- Randomizes the weather; with a weather grade below 3 (out of 10), there is too much storm for the airport to land / take off planes
 
 User Stories
 -----
