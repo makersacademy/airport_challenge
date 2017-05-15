@@ -2,25 +2,20 @@ require 'plane'
 
 describe Plane do
 
-  describe '#responsiveness' do
-    it { is_expected.to respond_to :landing_status }
-    it { is_expected.to respond_to :land }
-    it { is_expected.to respond_to :take_off }
-  end
-
   describe '#landing_status' do
     it "shows a plane as airborn before being landed" do
-      expect(subject.landing_status).to eq "airborn"
+      expect(subject.landing_status).to eq :airborn
     end
 
     it "lands a plane" do
       subject.land
-      expect(subject.landing_status).to eq "landed"
+      expect(subject.landing_status).to eq :landed
     end
 
     it "takes off" do
+      subject.land
       subject.take_off
-      expect(subject.landing_status).to eq "airborn"
+      expect(subject.landing_status).to eq :airborn
     end
   end
 
