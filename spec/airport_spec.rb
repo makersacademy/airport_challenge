@@ -5,7 +5,6 @@ describe Airport do
   let(:plane) { double :plane }
   subject(:airport) { described_class.new }
   before(:each) { allow(airport.weather).to receive(:is_stormy) { false } }
-  before(:each) { allow(plane).to receive(:instance_of?) { true } }
 
   context '#stormy?' do
     before(:each) { allow(airport.weather).to receive(:is_stormy) { true } }
