@@ -9,12 +9,10 @@ describe Airport do
   end
 
   describe '#plane_landed' do
-  #   it "raises an error that planes are unable to land due to capacity being full" do
-  #       subject.capacity.times { subject.plane_landed (Plane.new)}
-  #       expect { subject.plane_landed Plane.new }.to raise_error "Airport is at full capacity"
-  #       # to raise_error("No landing, airport is at full capacity")
-  #   end
-  # end
+  #  it "raises an error that planes are unable to land due to capacity being full" do
+  #        subject.capacity.times {subject.plane_landed(Plane.new)}
+  #        expect{subject.plane_landed(Plane.new)}.to raise_error("Airport At Full Capacity")
+  #      end
     it "raises an error when there is stormy weather, so that planes are unable to land" do
       if @random_weather == true
         expect {subject.plane_landed(plane)}.to raise_error("No landing, due to severe weather conditions")
@@ -25,7 +23,7 @@ describe Airport do
       end
       it "confirms that the plane has landed" do
         plane = subject.plane_landed(plane)
-    expect(plane.landed?).to eq true    #### true
+        expect(subject.planes).to eq plane
   end
 end
 
@@ -40,7 +38,7 @@ end
     end
     it "confirms the plane has taken off" do
       plane = subject.plane_take_off(plane)
-        expect(plane.take_off?).to eq true
+        expect(subject.planes).to eq []
       end
     end
 

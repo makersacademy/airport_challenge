@@ -11,12 +11,14 @@ class Airport
   end
   def plane_landed(plane)
     fail "No landings, severe weather conditions" if @random_weather == true
-    Plane.new
+    fail "Airport At Full Capacity" if full?
+    @planes << plane
   end
 
   def plane_take_off(plane)
     fail "No taking off, severe weather conditions" if @random_weather == true
-    Plane.new
+    # fail "No planes currently in the airport" if empty?
+    @planes.pop
   end
 end
 
@@ -29,10 +31,10 @@ def weather?
   end
 end
 
-# def full?
-#   @planes.count >= @capacity
-# end
-#
+def full?
+  @planes.count >= @capacity
+end
+
 # def empty?
 #   @planes.empty?
 # end
