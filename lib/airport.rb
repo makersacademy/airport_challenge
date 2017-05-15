@@ -14,16 +14,16 @@ class Airport
   end
 
   def land(plane)
-    raise "Can't land plane! It's #{plane.flight_status}!" if should_not_land?(plane)
-    raise "Can't land plane! Stormy weather!" if stormy?
-    raise "Can't land plane! Airport is at capacity!" if at_capacity?
+    raise "#{error_message_land} It's #{plane.flight_status}!" if should_not_land?(plane)
+    raise "#{error_message_land} Stormy weather!" if stormy?
+    raise "#{error_message_land} Airport is at capacity!" if at_capacity?
     plane.flight_status = :landed
     @landed_planes << plane
   end
 
   def takeoff(plane)
-    raise "Can't take off plane! It's #{plane.flight_status}!" if should_not_take_off?(plane)
-    raise "Can't take off plane! Stormy weather!" if stormy?
+    raise "#{error_message_takeoff} It's #{plane.flight_status}!" if should_not_take_off?(plane)
+    raise "#{error_message_takeoff} Stormy weather!" if stormy?
     plane.flight_status = :taken_off
     @landed_planes.delete(plane)
   end
@@ -33,6 +33,15 @@ class Airport
   end
 
   private
+
+  def error_message_land
+    "Can't land plane!"
+  end
+
+  def error_message_takeoff
+    "Can't take off plane!"
+  end
+
   def should_not_land?(plane)
     plane.landed? || plane.taken_off?
   end

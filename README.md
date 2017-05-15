@@ -5,7 +5,7 @@
 I took the following approach when solving the Airport Challenge:
 
 - I started by drawing Domain Models for the User Stories
-- Tests & doubles: When I began with just 2 classes I first wrote the code without doubles to have clarity on code. As the complexity increased when I added the Weather Station I then found value in doubles & refactored my tests.
+- **Tests & doubles**: When I began with just 2 classes I first wrote the code without doubles to have clarity on code. As the complexity increased when I added the Weather Station I then found value in doubles & refactored my tests.
 - **Plane**: I then began with the Plane spec & class, I knew that I would need to decide the starting flight status of the plane. I decided planes would be initialized as flying.
 - **Plane**: I added further taken_off?, landed? & flying? methods so I could check the flight status as a boolean condition against the Airport class which changes a plane's status depending on if they've landed or taken off.
 - **Airport**: land & takeoff methods begin with if statements to only land or takeoff a plane under the correct conditions given in the user stories. They raise errors if planes can't land or takeoff. Separated out into two methods the conditions to not land or takeoff a plane.
