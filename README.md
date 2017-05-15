@@ -43,3 +43,11 @@ Emulates a basic air traffic control system.
 2.4.0 :016 > airport.launches_plane(plane)
  => "Plane could not take off due to stormy weather."
 ```
+
+### My Approach
+
+My approach was to work very slowly and test as many facets of the program as I could, so that each test/pass/refactor consisted of relatively small changes.
+
+I haven't implemented doubles for testing the weather system to the extent that I would have liked to, but I'm hoping to refactor this when I have a better understanding of test doubles, mocks and stubbing.
+
+One mistake I made was to initially put almost all methods into the Airport class, so at the point of my first pull request the Plane class was empty. This is something that I'm refactoring at the moment because Plane objects really need some fleshing out! I would also like to implement a plane status feature so a user can easily see where a specific plane is.
