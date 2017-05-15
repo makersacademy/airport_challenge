@@ -1,4 +1,5 @@
 require 'airport'
+
 describe Airport do
 
   #Create Double of airplane
