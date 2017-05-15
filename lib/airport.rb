@@ -20,14 +20,14 @@ class Airport
   end
 
   def clear_for_landing(plane)
-    check_guard_clauses(plane)
+    run_landing_guard_clauses(plane)
     plane.cleared = true
     plane.land(self)
     @last_arrived = plane
   end
 
   def clear_for_takeoff(plane)
-    check_guard_clauses(plane)
+    run_takeoff_guard_clauses(plane)
     plane.cleared = true
     plane.take_off(self)
     @last_departed = plane
@@ -51,11 +51,17 @@ class Airport
     @planes_currently_landed.empty?
   end
 
-  def check_guard_clauses(plane)
+  def run_landing_guard_clauses(plane)
+    raise(NoRoomError, "there is no available space at #{self}") if full?
+    raise(BadWeatherError, 'weather conditions unsafe for landing!') unless weather_conditions_safe?
+    raise("#{plane} is already landed at #{self}!") if @planes_currently_landed.include?(plane)
+    true
+  end
+
+  def run_takeoff_guard_clauses(plane)
     raise(NoPlanesError, "no planes are currently landed at #{self}!") if empty?
     raise(BadWeatherError, 'weather conditions unsafe for takeoff!') unless weather_conditions_safe?
     raise("#{plane} is not landed at #{self}!") unless @planes_currently_landed.include?(plane)
-    raise("#{plane} is already landed at #{self}!") if @planes_currently_landed.include?(plane)
     true
   end
 
@@ -71,3 +77,6 @@ luton = Airport.new
 b737 = Plane.new
 a380 = Plane.new
 b747 = Plane.new
+
+70.times { heathrow.planes_currently_landed << Plane.new }
+heathrow.clear_for_landing(b737)
