@@ -30,6 +30,9 @@ describe Airport do
   end
 
   describe '#take_off(plane)' do
+    before do
+      allow(plane).to receive(:taking_off).and_return(:in_the_air)
+    end
     it 'removes specific plane from the array' do
       airport.instance_variable_set(:@weather_grade, 6)
       airport.land(plane)

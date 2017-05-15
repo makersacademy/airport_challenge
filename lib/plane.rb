@@ -8,7 +8,7 @@ class Plane
     @status == :stationed
   end
 
-  def take_off
+  def taking_off
     @status = :in_the_air
   end
 

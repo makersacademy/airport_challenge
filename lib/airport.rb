@@ -6,7 +6,7 @@ class Airport
   def initialize(capacity = 20)
     @planes = []
     @capacity = capacity
-    @weather_grade = rand(10) # bad weather: < 4
+    @weather_grade = rand(10) + 1
   end
 
   def land(plane)
@@ -16,7 +16,7 @@ class Airport
 
   def take_off(plane)
     empty?
-    @planes.delete(plane) unless stormy?
+    (plane.taking_off; @planes.delete(plane)) unless stormy?
   end
 
   private
@@ -37,4 +37,5 @@ end
 
 
 # specific plane takes off, check for authorization
-# update README!
+# update README
+# weather in own class
