@@ -5,7 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY = 40
 
-  attr_reader :capacity, :planes_on_ground, :iata_code
+  attr_reader :capacity, :planes_on_ground, :iata_code, :weather
 
   def initialize(iata_code, capacity = DEFAULT_CAPACITY)
     @capacity = capacity
