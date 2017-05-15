@@ -35,7 +35,8 @@ class Airport
   end
 
   def weather_conditions_safe?
-    wind_speed < 90
+    dangerous_wind_speed_threshold = 90
+    wind_speed < dangerous_wind_speed_threshold
   end
 
   def full?
