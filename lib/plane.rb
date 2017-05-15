@@ -2,6 +2,7 @@ require_relative './custom_errors'
 
 class Plane
   attr_writer :cleared
+  attr_reader :status
 
   def initialize
     @status = :airborne
