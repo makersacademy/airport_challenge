@@ -1,5 +1,10 @@
 class Plane
-  def status
-    "In the air!"
+
+  def initialize
+    @grounded = false
+  end
+  
+  def grounded
+    false
   end
 end
