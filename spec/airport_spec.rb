@@ -24,5 +24,23 @@ describe Airport do
         airport = described_class.new(1, double(:weather, bad_weather?: true))
         expect {airport.land_in_airport Plane.new }.to raise_error "Due to stormy weather, plane cannot currently land in airport"
       end
+      it "should be able to check how many planes in airport" do
+        airport = described_class.new(1, double(:weather, bad_weather?: false))
+        airport.land_in_airport(:plane)
+        expect(airport.planes).to eq [:plane]
+      end
+    end
+
+    describe "#leave_airport" do
+      it "raises an error when a plane is attempting to lean an airport with bad weather" do
+        airport = described_class.new(1, double(:weather, bad_weather?: true))
+        expect {airport.leave_airport }.to raise_error "Due to stormy weather, plane cannot take off"
+      end
+      it "plane should be able to leave the airport with good weather" do
+        airport = described_class.new(1, double(:weather, bad_weather?: false))
+        airport.land_in_airport(:plane)
+        airport.leave_airport
+        expect(airport.planes).to eq []
+      end
     end
   end
