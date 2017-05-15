@@ -39,13 +39,13 @@ The software is composed of 3 main object communicating between each other:
 
 Next Steps
 ---------  
-- Implement plane #location method which returns current airport or :in_flight
-- Build a feature test to show interaction between multiple planes and airports
+- Finish the feature test to show interaction between multiple planes and airports
 
 What you need to use this software
 ---------
-Ruby 2.4
-and then run bundle install within the project folder
+Clone this repository  
+Ruby 2.4  
+and then run bundle install within the project folder to install the required depencies
 
 Test Framework & Extra
 ---------
