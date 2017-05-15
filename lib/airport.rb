@@ -16,6 +16,7 @@ class Airport
   def land_plane(plane)
     raise "Weather stormy: Unsafe for landing" if stormy?
     raise "Airport at capacity: Unsafe to land" if full?
+    # raise "Plane not airborne" unless plane.airborne
     @planes << plane
   end
 
@@ -33,16 +34,18 @@ class Airport
     !@planes.include?(plane)
   end
 
-  def stormy?
-    @weather == :stormy ? true : false
+  def set_capacity(capacity)
+    @capacity = capacity
   end
 
   def full?
     true if @planes.count >= @capacity
   end
 
-  def set_capacity(capacity)
-    @capacity = capacity
+private
+
+  def stormy?
+    @weather == :stormy ? true : false
   end
 
 end

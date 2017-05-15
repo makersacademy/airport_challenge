@@ -1,10 +1,18 @@
 
 class Plane
 
-attr_reader :flying
+attr_reader :airborne
 
-def initialize(flying = true)
-  @flying = flying
+def initialize(airborne = true)
+  @airborne = airborne
+end
+
+def ground_plane
+  @airborne = false
+end
+
+def airborne?
+  @airborne
 end
 
 end

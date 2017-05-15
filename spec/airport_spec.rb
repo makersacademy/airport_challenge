@@ -10,11 +10,6 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
-    it { is_expected.to respond_to(:confirm_landing).with(1).argument }
-
-    it { is_expected.to respond_to(:confirm_take_off).with(1).argument }
-
-
     it 'Has weather variable' do
       expect(subject).to respond_to :weather
     end
@@ -48,16 +43,19 @@ describe Airport do
     end
 
     it "Will raise an error when weather is 'stormy'" do
-      plane = double(:plane)
       subject.weather = :stormy
-      expect {subject.land_plane(plane)}.to raise_error("Weather stormy: Unsafe for landing")
+      expect {subject.land_plane(double(:plane))}.to raise_error("Weather stormy: Unsafe for landing")
     end
 
     it "Will raise an error when airport is full (at @capacity)" do
       Airport::DEFAULT_CAPACITY.times {subject.land_plane(double(:plane))}
-      plane = double(:plane)
-      expect {subject.land_plane(plane)}.to raise_error("Airport at capacity: Unsafe to land")
+      expect {subject.land_plane(double(:plane))}.to raise_error("Airport at capacity: Unsafe to land")
     end
+
+    # it "Will raise error if plane is already grounded" do
+    #   plane = double(:plane, airborne: true)
+    #   expect {subject.land_plane(plane)}.to raise_error("Plane not airborne")
+    # end
 
   end
 
@@ -104,12 +102,11 @@ describe Airport do
       expect(subject.confirm_take_off(plane)).to eq true
     end
 
-  end
-
-  describe '#stormy' do
-
-    it "returns false if @weather is not 'stormy'" do
-      expect(subject.stormy?).to eq false
+    it "Returns 'true' when the 'plane' has left airport but @planes is not empty" do
+      plane1, plane2 = double(:plane), double(:plane)
+      subject.land_plane(plane1)
+      subject.land_plane(plane2)
+      expect(subject.take_off(plane1)).to eq [plane2]
     end
 
   end
