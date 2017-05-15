@@ -1,28 +1,29 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  attr_reader :planes, :weather_grade, :capacity
+  attr_reader :planes, :capacity
 
   def initialize(capacity = 20)
     @planes = []
     @capacity = capacity
-    @weather_grade = rand(10) + 1
+    @weather = Weather.new
   end
 
   def land(plane)
     full?
-    (@planes << plane; return plane) unless stormy?
+    (@planes << plane; return plane) unless weather_alert
   end
 
   def take_off(plane)
     empty?
-    (plane.taking_off; @planes.delete(plane)) unless stormy?
+    (plane.taking_off; @planes.delete(plane)) unless weather_alert
   end
 
   private
 
-  def stormy?
-    raise 'Sorry, the storm is too great!' if @weather_grade < 4
+  def weather_alert
+    raise 'Sorry, the storm is too great!' if @weather.stormy?
   end
 
   def full?
@@ -32,10 +33,7 @@ class Airport
   def empty?
     raise 'There currently are no planes available.' if @planes.empty?
   end
-
 end
 
-
 # specific plane takes off, check for authorization
-# update README
 # weather in own class
