@@ -12,22 +12,24 @@ attr_accessor :capacity
   end
 
   def land(plane)
-    raise "Unsafe conditions, landing not permitted" if stormy
-    raise "Airport is full, landing unauthorised" if full
+    raise "Landing unathorised: unsafe weather conditions" if stormy?
+    raise "Landing unauthorised: airport full" if full?
     @planes << plane
   end
 
   def take_off(plane)
-    raise "Unsafe conditions, take-off not permitted" if stormy
+    raise "Take-off unathorised: unsafe weather conditions" if stormy?
     @planes.delete(plane)
   end
 
-  def stormy
+  private
+
+  def stormy?
     [true, false, false, false, false].sample
   end
 
-  def full
-    @planes.count >= @capacity
+  def full?
+    @planes.length >= @capacity
   end
 
 end
