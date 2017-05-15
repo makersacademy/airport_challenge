@@ -12,7 +12,7 @@ class Airport
   end
 
   def weather_change
-    forecast = rand(2)
+    forecast = rand(3)
     forecast == 0 ? storm_switch : self
   end
 

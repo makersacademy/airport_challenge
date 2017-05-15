@@ -4,8 +4,8 @@ class Plane
 
   attr_reader :flying
 
-  def initialize(flying: "flying")
-    @flying = flying
+  def initialize
+    @flying = "flying"
   end
 
   def land_at(airport)

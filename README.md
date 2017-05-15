@@ -1,11 +1,13 @@
 Airport Challenge
 =================
 
+To test - navigate to project folder, run rspec OR run irb and require './lib/plane'
+
 Solution
 ---------
 My solution is a simple model with two classes - Airport and Plane
 
-It should allow planes to land at, and depart from an airport. The status of the plane is checked on take off and landing to make sure we are not trying to land a plane which has already landed, or take off when we are already flying. Airports have a capacity, and weather, which are also checked at take off and landing.
+It should allow planes to land at, and depart from an airport. The status of the plane is checked on take off and landing to make sure we are not trying to land a plane which has already landed, or take off when we are already flying. Airports have a capacity and weather, which are also checked at take off and landing.
 
 Multiple airports can be initialized which each have their own names, capacities and weather. Each airport will keep track of the planes which are landed there.
 
@@ -112,7 +114,7 @@ In code review we'll be hoping to see:
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
 * The code is elegant: every class has a clear responsibility, methods are short etc.
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+Reviewers will potentially be using this [code review rubric](docs/reROlandview.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
 **BONUS**
 
