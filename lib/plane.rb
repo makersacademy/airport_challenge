@@ -4,7 +4,7 @@ class Plane
     @flying = flying
   end
 
-  def flying?
+  def flying
     @flying
   end
 

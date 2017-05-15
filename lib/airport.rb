@@ -14,15 +14,21 @@ class Airport
     @capacity = capacity
   end
 
-  def instruct_land(plane = Plane.new)
+  def instruct_land(plane)
     fail "Cannot land when it's stormy" if bad_conditions?
     fail "Cannot land when airport is full" if airport_full?
+    # p "GET VISIBILITY #{plane.flying}"
+
+    fail "Cannot land when plane is landed" unless plane.flying
+    plane.land
     @landed_planes << plane
     'Plane has landed'
   end
 
   def instruct_plane_takeoff(plane)
     fail "Cannot take off when it's stormy" if bad_conditions?
+    fail "Cannot takeoff when plane is flying" if plane.flying
+    plane.takeoff
     @landed_planes.delete(plane)
     'Plane has taken off'
   end

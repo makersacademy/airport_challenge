@@ -12,17 +12,26 @@ describe Airport do
       is_expected.to respond_to(:instruct_land).with(1).argument
     end
     it 'lands an airplane and stores it in airport' do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:land).and_return(true)
+      puts plane
+      puts plane.flying
       airport.instruct_land(plane)
       expect(airport.landed_planes).to eq [plane]
     end
     it 'confirms plane has landed with message "Plane has landed"' do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:land).and_return(true)
       expect(airport.instruct_land(plane)).to eq 'Plane has landed'
     end
     it "raises error when the weather is stormy" do
       allow(airport).to receive(:bad_conditions?).and_return(true)
+      allow(plane).to receive(:flying).and_return(true)
       expect { airport.instruct_land(plane) }.to raise_error(RuntimeError, "Cannot land when it's stormy")
     end
     it 'raises error when the airport is full' do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:land).and_return(true)
       Airport::DEFAULT_CAPACITY.times { airport.instruct_land(plane) }
       expect { airport.instruct_land(plane) }.to raise_error(RuntimeError, "Cannot land when airport is full")
     end
@@ -32,12 +41,21 @@ describe Airport do
       is_expected.to respond_to(:instruct_plane_takeoff)
     end
     it 'when #instruct_plane_takeoff happens, plane leaves airport' do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:land).and_return(true)
+      allow(plane).to receive(:takeoff).and_return(true)
+
       airport.instruct_land(plane)
+      allow(plane).to receive(:flying).and_return(false)
       airport.instruct_plane_takeoff(plane)
       expect(airport.landed_planes).to be_empty
     end
     it 'confirms plane has taken off with message "Plane has taken off"' do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(plane).to receive(:land).and_return(true)
+      allow(plane).to receive(:takeoff).and_return(true)
       airport.instruct_land(plane)
+      allow(plane).to receive(:flying).and_return(false)
       expect(airport.instruct_plane_takeoff(plane)).to eq 'Plane has taken off'
     end
     it "raises error when the weather is stormy" do
