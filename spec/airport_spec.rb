@@ -24,36 +24,32 @@ describe Airport do
 
   describe '#lands_plane' do
     it 'gives the user a message when a plane lands' do
-      plane = Plane.new
-      expect(subject.lands_plane(plane)).to eq "The plane has landed!"
+      expect(subject.lands_plane(Plane.new "plane")).to eq "The plane has landed!"
     end
 
     it 'will show a new message when trying to land a plane in stormy weather' do
       airport = Airport.new
-      plane = Plane.new
       airport.instance_variable_set(:@weather, :stormy)
-      expect(airport.lands_plane(plane)).to eq "Plane could not land due to stormy weather."
+      expect(airport.lands_plane(Plane.new "plane")).to eq "Plane could not land due to stormy weather."
     end
 
     it 'will not allow a plane to land if the airport is full' do
-      subject::capacity.times { subject.lands_plane(Plane.new) }
-      expect(subject.lands_plane(Plane.new)).to eq "Plane could not land because the airport is full."
+      subject::capacity.times { subject.lands_plane(Plane.new "plane") }
+      expect(subject.lands_plane(Plane.new "Plane")).to eq "Plane could not land because the airport is full."
     end
 
   end
 
   describe '#launches_plane' do
     it 'gives the user a message when a plane takes off' do
-      plane = Plane.new
-      subject.lands_plane(plane)
-      expect(subject.launches_plane(plane)).to eq "The plane has taken off!"
+      subject.lands_plane(Plane.new "plane")
+      expect(subject.launches_plane(Plane.new "plane")).to eq "The plane has taken off!"
     end
 
     it 'will show a new message when trying to launch a plane in stormy weather' do
       airport = Airport.new
-      plane = Plane.new
       airport.instance_variable_set(:@weather, :stormy)
-      expect(airport.launches_plane(plane)).to eq "Plane could not take off due to stormy weather."
+      expect(airport.launches_plane(Plane.new "plane")).to eq "Plane could not take off due to stormy weather."
     end
 
   end
@@ -82,7 +78,7 @@ describe Airport do
 
   describe '#full?' do
     it 'responds with true when there are 20 planes in the airport' do
-      20.times { subject.lands_plane(Plane.new) }
+      20.times { subject.lands_plane(Plane.new "plane") }
       expect(subject.full?).to eq true
     end
 
@@ -95,8 +91,7 @@ describe Airport do
 
   describe '#empty?' do
     it 'will not allow a plane to launch if there are no planes in the airport' do
-      plane = Plane.new
-      expect(subject.launches_plane(plane)).to eq "There are no planes at the airport!"
+      expect(subject.launches_plane(Plane.new "plane")).to eq "There are no planes at the airport!"
     end
   end
 
