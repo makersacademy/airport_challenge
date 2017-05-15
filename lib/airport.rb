@@ -20,9 +20,8 @@ class Airport
     # p "GET VISIBILITY #{plane.flying}"
 
     fail "Cannot land when plane is landed" unless plane.flying
-    plane.land
     @landed_planes << plane
-    'Plane has landed'
+    plane.land
   end
 
   def instruct_plane_takeoff(plane)
@@ -30,9 +29,8 @@ class Airport
     fail "Cannot takeoff when plane is flying" if plane.flying
     fail "Cannot take off when there are no planes available" if @landed_planes.empty?
     fail 'Cannot instruct plane to takeoff in another airport' unless @landed_planes.include?(plane)
-    plane.takeoff
     @landed_planes.delete(plane)
-    'Plane has taken off'
+    plane.takeoff
   end
 
   def bad_conditions?

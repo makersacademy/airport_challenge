@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new }
-  let(:plane) { double('plane', :land => nil, :takeoff => nil) }
-  let(:plane2) { double('plane2', :land => nil, :takeoff => nil) }
+  let(:plane) { double('plane', :land => 'Plane has landed', :takeoff => 'Plane has taken off') }
+  let(:plane2) { double('plane2', :land => 'Plane has landed', :takeoff => 'Plane has taken off') }
   let(:weather) { double('weather') }
   describe '#instruct_land' do
     it 'responds to #instruct_land' do
