@@ -1,7 +1,7 @@
 require 'weather'
 
 describe Weather do
-  let(:weather) { described_class.new }
+  subject(:weather) { described_class.new }
   let(:airport) { double(:airport) }
   describe '#weather_level' do
     it 'returns a value which is an integer' do

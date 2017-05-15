@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:airport) { described_class.new }
+  subject(:airport) { described_class.new }
   let(:plane) { double(:plane) }
   let(:weather) { double(:weather) }
 
@@ -9,9 +9,8 @@ describe Airport do
     before do
       allow(plane).to receive(:flying).and_return(true)
       allow(plane).to receive(:arrives)
-      allow(airport).to receive(:safe?).and_return(true)
+      allow(airport).to receive(:sunny?).and_return(true)
     end
-    it { is_expected.to respond_to(:lands_plane).with(1).argument }
     it 'returns the value of the plane which has landed' do
       expect(airport.lands_plane(plane)).to eq "#{plane} has landed"
     end
@@ -24,7 +23,7 @@ describe Airport do
     end
     context 'storm' do
       it 'prevents planes from landing' do
-        allow(airport).to receive(:safe?).and_return(false)
+        allow(airport).to receive(:sunny?).and_return(false)
         message = 'It is too stormy for landing'
         expect { airport.lands_plane(plane) }.to raise_error(RuntimeError, message)
       end
@@ -42,7 +41,7 @@ describe Airport do
     before do
       allow(plane).to receive(:flying).and_return(true)
       allow(plane).to receive(:arrives)
-      allow(airport).to receive(:safe?).and_return(true)
+      allow(airport).to receive(:sunny?).and_return(true)
       allow(plane).to receive(:departs)
     end
     it 'returns the value of the plane which has taken off' do
@@ -58,11 +57,10 @@ describe Airport do
     context 'stormy' do
       it 'prevents takeoff' do
         airport.lands_plane(plane)
-        allow(airport).to receive(:safe?).and_return(false)
+        allow(airport).to receive(:sunny?).and_return(false)
         message = 'It is too stormy for take off'
         expect { airport.takes_off }.to raise_error(RuntimeError, message)
       end
     end
   end
-
 end
