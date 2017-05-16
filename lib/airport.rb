@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 DEFAULT_CAPACITY = 20
 
@@ -6,8 +7,9 @@ class Airport
 
 attr_accessor :capacity
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather)
     @capacity = capacity
+    @weather = weather
     @planes = []
   end
 
@@ -25,7 +27,7 @@ attr_accessor :capacity
   private
 
   def stormy?
-    [true, false, false, false, false].sample
+    @weather.stormy?
   end
 
   def full?
