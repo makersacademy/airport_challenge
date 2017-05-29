@@ -1,7 +1,7 @@
 # Airport Challenge
 #### (Forked from [makersacademy/airport_challenge](https://github.com/makersacademy/airport_challenge))
 
-## A system modeling the functionality of an airport.
+## A system modelling the functionality of an airport.
 - Airports allow any number of planes as a capacity
 - Specific planes can take-off and land
 - Planes can be confirmed landed
