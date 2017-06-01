@@ -1,90 +1,46 @@
 Airport Challenge
 =================
+[![Build Status](https://travis-ci.org/jamesstonehill/airport_challenge.svg?branch=master)](https://travis-ci.org/jamesstonehill/airport_challenge)
+[![Coverage Status](https://coveralls.io/repos/github/makersacademy/airport_challenge/badge.svg)](https://coveralls.io/github/makersacademy/airport_challenge)
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+This project is James Stonehill's solution to the Makers Academy Airport Challenge.
 
-```
+## **Overview**
+The bulk of the logic is centred around the plane object. It seemed to me that it was logically easier for a user to understand if the plane, as an autonomous and atomistic unit, was the main object that you dealt with. One option would have been to allow the airport to manage the taking off of planes, but I decided that plane.take_off(weather) was better than airport.release_plane(plane, weather).
 
-Instructions
----------
+### **Planes**
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+#### Initialising a Plane:
+When a plane is created it's location is set to `nil` and it is not contained in any of the airport objects. The plane's location is also set to nil when the plane is in the air, as the location variable is only supposed to contain airport objects.
 
-Steps
--------
+In order to start a plane at a specific airport, you should use the `plane.install_at(airport)` method. This method allows you to put a plane object into an airport without taking the weather into account as long as the airport has available space. This method should only be used once, as after a plane has been installed at an airport, it will tend to fly everywhere.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+#### Landing A Plane:
+In order to land a plane you need to apply the method land_at to a Plane object and provide the method two arguments
+1. An instance of the Airport object.
+2. An instance of the Weather object.
 
-Task
------
+so your code might look like this:
+`boing_747.land_at(LHR, current_weather)`
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+If the current weather is not stormy, then you will successfully take off.
 
-```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+#### Taking Off A Plane:
+In order for a plane to take off, all you need to do is provide a plane object (that is currently in an airport) a weather argument. Like so:
+`boing_747.take_off(current_weather)`
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+If the current weather is not stormy, then you will successfully take off.
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+### **Weather**
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+Initialising a new weather system:
+Every time you create a new weather system, `current_weather = Weather.new` the system has a 1 in 10 chance of being stormy. Once a weather system is created, it can not be changed, so to simulate the passing of time, you will need to continually create new weather systems. The weather class is intended to be a snapshot in time. So a good use of it would be to name each weather instance by a date. For example `oct_31_2016 = Weather.new` and for each day you would then create a new instance of Weather.
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
+### **Airports**
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Airports are a pretty basic Class. They mostly funcition as a storage box for plane objects. They keep track of how much free space they have.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+To create a new airport all you need to do is initialize it. e.x.: `jfk = Airport.new`.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+If you wish to set the capacity of the aiport (how many planes it can hold) you can do so by adding an argument to the initialize method. E.x.: `lhr = Airport.new(85)` would mean that 'lhr' airport has room for 85 planes.
