@@ -40,8 +40,8 @@ $ rvm use 2.2.0
 Test coverage
 -----
 ```
-* Test coverage: 100%
-* Rubocop: no offences
+Test coverage: 100%
+Rubocop: no offences
 ```
 
 Task
@@ -91,4 +91,7 @@ I took the following approach when solving the Airport Challenge:
 - **Airport**: Aimed to separate out into methods as much as possible to ensure encapsulation.
 - **Weather Station**: This was the most challenging part. Realising that rand method is an instance of Random class helped me to work out how to use this in the class & effectively in the doubles/ stubs. I then created a fake_station that would always be sunny & set my tests to expect sunny.
 - **Airport**: Has a 'boutique' MAX_CAPACITY of 10, but can be overriden by controller to be a different number.
+
+Future improvements 
+-----
 - **Query**: Aimed to satisfy as many edge case tests as possible. However, wasn't 100% sure I had satisfied the edgecase "that planes can only take off from airports they are in".
