@@ -89,9 +89,9 @@ I took the following approach when solving the Airport Challenge:
 - **Airport**: land & takeoff methods begin with if statements to only land or takeoff a plane under the correct conditions given in the user stories. They raise errors if planes can't land or takeoff. Separated out into two methods the conditions to not land or takeoff a plane.
 - **Airport**: They also store the plane in landed_planes if successfully landed & delete them once they've taken off. We can check how many planes are present? in the airport.
 - **Airport**: Aimed to separate out into methods as much as possible to ensure encapsulation.
-- **Weather Station**: This was the most challenging part. Realising that rand method is an instance of Random class helped me to work out how to use this in the class & effectively in the doubles/ stubs. I then created a fake_station that would always be sunny & set my tests to expect sunny.
+- **Weather Station**: This was the most challenging part. Realising that rand method is an instance of Random class helped me to work out how to use this in the class & effectively in the doubles/ stubs. I then created a fake_station that would always be sunny & set my tests to expect sunny. Read my blog post [here](https://medium.com/@charlottebrf/makers-academy-day-5-8dc1c792cda5) about using mocks & doubles for the tests.
 - **Airport**: Has a 'boutique' MAX_CAPACITY of 10, but can be overriden by controller to be a different number.
 
-Future improvements 
+Future improvements
 -----
-- **Query**: Aimed to satisfy as many edge case tests as possible. However, wasn't 100% sure I had satisfied the edgecase "that planes can only take off from airports they are in".
+- **Edge Cases**: Aimed to satisfy as many edge case tests as possible. However, wasn't 100% sure I had satisfied the edge case "that planes can only take off from airports they are in". Program could be improved by ensuring edge cases are satisfied.
