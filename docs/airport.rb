@@ -11,19 +11,20 @@ attr_accessor :planes
   end
 
   def land(plane)
-    planes << plane
+    fail "Airport full" if @planes.count >= 1
+    @planes << plane
   end
 
   def confirm_land(plane)
-    planes.include?(plane)
+    @planes.include?(plane)
   end
 
   def take_off(plane)
-    planes.delete(plane)
+    @planes.delete(plane)
   end
 
   def confirm_take_off(plane)
-    !planes.include?(plane)
+    !@planes.include?(plane)
   end
 
 end
