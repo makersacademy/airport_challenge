@@ -6,8 +6,6 @@ describe Airport do
 
     it 'lands a plane at the airport' do
       allow_any_instance_of(Weather).to receive(:forecast).and_return('sunny')
-      current_forecast = Weather.new
-      expect(current_forecast.forecast).to eq('sunny')
       plane = Plane.new
       expect(subject.land(plane)).to eq subject.planes.last
     end
@@ -16,7 +14,13 @@ describe Airport do
       allow_any_instance_of(Weather).to receive(:forecast).and_return('stormy')
       current_forecast = Weather.new
       expect(current_forecast.forecast).to eq('stormy')
-      expect { subject.land(Plane.new) }.to raise_error("Due to stormy weather, no planes will be landing today")
+      expect { subject.land(Plane.new) }.to raise_error("Due to storms, no planes will land today")
+    end
+
+    it 'raises an error if the airport is full' do
+      allow_any_instance_of(Weather).to receive(:forecast).and_return('sunny')
+      20.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error("The airport is full")
     end
   end
 
@@ -25,8 +29,6 @@ describe Airport do
 
     it 'gets a plane to take off' do
       allow_any_instance_of(Weather).to receive(:forecast).and_return('sunny')
-      current_forecast = Weather.new
-      expect(current_forecast.forecast).to eq('sunny')
       subject.land(Plane.new)
       subject.take_off
       expect(subject.planes.length).to eq 0
@@ -36,8 +38,12 @@ describe Airport do
       allow_any_instance_of(Weather).to receive(:forecast).and_return('stormy')
       current_forecast = Weather.new
       expect(current_forecast.forecast).to eq('stormy')
-      expect { subject.take_off }.to raise_error("Due to stormy weather, no planes will be taking off today")
+      expect { subject.take_off }.to raise_error("Due to storms, no planes will take off today")
+    end
+
+    it 'raises an error if the airport is empty' do
+      allow_any_instance_of(Weather).to receive(:forecast).and_return('sunny')
+      expect { subject.take_off }.to raise_error("There are no planes available")
     end
   end
-
 end

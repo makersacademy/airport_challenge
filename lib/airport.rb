@@ -4,20 +4,23 @@ class Airport
   attr_accessor :planes
   DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
     current_weather = Weather.new
-    fail "Due to stormy weather, no planes will be landing today" if current_weather.forecast == 'stormy'
+    fail "Due to storms, no planes will land today" if current_weather.forecast == 'stormy'
+    fail "The airport is full" if @planes.count >= @capacity
     @planes << plane
     @planes.last
   end
 
   def take_off
     current_weather = Weather.new
-    fail "Due to stormy weather, no planes will be taking off today" if current_weather.forecast == 'stormy'
+    fail "Due to storms, no planes will take off today" if current_weather.forecast == 'stormy'
+    fail "There are no planes available" if @planes.empty?
     @planes.pop
   end
 end
