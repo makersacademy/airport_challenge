@@ -58,21 +58,13 @@ weather conditions need to vary).
 
 ## Functional Representation ##
 
-| Object       | Behaviour        |     
+| Object       | Behaviour        |
 | :-------------: |:-------------:|
 | Plane     | in_flight? |
 | Plane     | fly    |
 | Plane | land      |
-
-
-| Object       | Behaviour        |     
-| :-------------: |:-------------:|
 | Weather | generate_weather |
 | Weather | stormy? |
-
-
-| Object       | Behaviour        |     
-| :-------------: |:-------------:|
 | Airport | dock |
 | Airport | dedock |
 | Airport  | full? |
