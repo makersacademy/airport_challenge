@@ -63,3 +63,12 @@ weather conditions need to vary).
 | Plane     | in_flight? |
 | Plane     | fly    |
 | Plane | land      |
+| Weather | generate_weather |
+| Weather | stormy? |
+| Airport | dock |
+| Airport | dedock |
+| Airport  | full? |
+| Airport | check_capacity |
+| Airport | check_weather |
+| Airport | check_in_flight |
+| Airport | check_hanger
