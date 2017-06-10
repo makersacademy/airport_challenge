@@ -32,19 +32,17 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 
-*****************************************************************************************
-
 ## Identifying Classes and Behaviour ##
 
-Candidate classes
+•Candidate classes•
 
-Nouns:
+•Nouns:•
 
 Plane. Controller. Airport. Weather.
 
-Candidate behaviours
+•Candidate behaviours•
 
-Verbs:
+•Verbs:•
 
 Fly. Land. Stormy? Full? Check_weather. Check_capacity. Check_in_flight. In_flight?
 
@@ -52,5 +50,3 @@ Certain behaviours here suggest others will be required. They might be:
 
 Dock (because where does a landed plane go?). Dedock. Weather_generator (because
 weather conditions need to vary).
-
-  ***************************************************************************************
