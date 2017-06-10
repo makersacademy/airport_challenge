@@ -1,6 +1,5 @@
 require "plane.rb"
 
-
 describe Plane do
 
 let (:plane) {Plane.new}
