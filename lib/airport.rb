@@ -33,6 +33,8 @@ class Airport
 
   def get_plane_from_gate(plane)
     search = Proc.new { |ele| ele == plane }
+    raise "Plane not found" if gates.select(&search).empty?
+    
     flight = gates.select(&search)
     gates.delete_if(&search)
     flight

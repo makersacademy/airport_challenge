@@ -25,6 +25,10 @@ describe Airport do
       subject.instruct({action: "take off", plane: subject.gates.last})
       expect(subject.gates).to_not include(plane)
     end
+
+    it "raises an error if the selected plane isn't at the airport" do
+      expect{ subject.instruct({action: "take off", plane: plane })}.to raise_error("Plane not found")
+    end
   end
 
   describe "#report" do
