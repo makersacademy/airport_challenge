@@ -5,6 +5,10 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
+  it "responds to take_off method" do
+    expect(subject).to respond_to(:take_off).with(1).argument
+  end
+
   it "confirms that a plane has landed" do
     plane = Plane.new
     subject.land(plane)
@@ -12,7 +16,7 @@ describe Airport do
   end
 
   describe "#land" do
-    it "lands the plane" do
+    it "instructs a plane to land" do
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
     end
