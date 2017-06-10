@@ -17,7 +17,7 @@ describe Airport do
   describe '#confirm_status' do
     it "confirms the status of the plane" do
       plane = Plane.new
-      expect(subject.confirm_status(plane)).to eq("available")
+      expect(subject.confirm_status(plane)).to eq(nil)
     end
 
     it "confirms that the plane has landed/arrived" do

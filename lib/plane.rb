@@ -1,8 +1,11 @@
+require "./lib/airport.rb"
+
 class Plane
 
   attr_accessor :status
+  attr_reader :planes
 
-  def initialize(status = "available")
+  def initialize
     @status = status
   end
 
@@ -12,6 +15,10 @@ class Plane
 
   def status_departed
     self.status = "departed"
+  end
+
+  def available?(airport)
+    airport.planes.include?(self) ? true : false
   end
 
 end

@@ -10,4 +10,12 @@ describe Plane do
       expect(subject.status_arrived).to eq("arrived")
     end
   end
+
+  describe '#available?' do
+    it "checks if the plane is available at the airport" do
+      airport = Airport.new
+      airport.land(subject)
+      expect(subject.available?(airport)).to be true
+    end
+  end
 end
