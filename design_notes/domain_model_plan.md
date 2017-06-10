@@ -54,3 +54,12 @@ Certain behaviours here suggest others will be required:
 
 Dock (because where does a landed plane go?). De-dock. Weather_generator (because
 weather conditions need to vary).
+
+
+## Functional Representation ##
+
+| Object       | Behaviour        |
+| :-------------: |:-------------:|
+| Plane     | in_flight? |
+| Plane     | fly    |
+| Plane | land      |
