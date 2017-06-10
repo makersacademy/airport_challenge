@@ -3,15 +3,18 @@ require './docs/weather.rb'
 
 class Airport
 
-attr_accessor :planes
+attr_accessor :planes, :capacity
 
-  def initialize
+DEFAULT_CAPACITY = 45
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @weather = Weather.new
+    @capacity = capacity
   end
 
   def land(plane)
-    fail "Airport full" if @planes.count >= 1
+    fail "Airport full!" if full?
     @planes << plane
   end
 
@@ -25,6 +28,10 @@ attr_accessor :planes
 
   def confirm_take_off(plane)
     !@planes.include?(plane)
+  end
+
+  def full?
+    planes.count >= DEFAULT_CAPACITY
   end
 
 end
