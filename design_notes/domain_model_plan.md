@@ -34,15 +34,15 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ## Identifying Classes and Behaviour ##
 
-•Candidate classes•
+__Candidate classes__
 
-•Nouns:•
+__Nouns:__
 
 Plane. Controller. Airport. Weather.
 
-•Candidate behaviours•
+__Candidate behaviours__
 
-•Verbs:•
+__Verbs:__
 
 Fly. Land. Stormy? Full? Check_weather. Check_capacity. Check_in_flight. In_flight?
 
