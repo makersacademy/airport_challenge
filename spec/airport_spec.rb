@@ -2,6 +2,12 @@ require './docs/airport.rb'
 
 describe Airport do
 
+	describe "#initialize" do
+		it "has a default setting of empty (no planes)" do
+			expect(subject.planes).to eq []
+		end
+	end
+
 	describe "#land" do
 		it "will record that a plane is at airport if land method is called" do
 			plane = Plane.new
@@ -13,6 +19,12 @@ describe Airport do
 	       expect{subject.land(Plane.new)}.to raise_error("Airport full!")
 	      end
 	    end
+			context "when weather is stormy" do
+				it "should raise an error" do
+		       @weather == "stormy"
+		       expect{subject.take_off(Plane.new)}.to raise_error("Too stormy to take off!")
+		      end
+		    end
 	end
 
 	describe "#confirm_land" do
@@ -40,11 +52,4 @@ describe Airport do
 			expect(subject.planes).not_to include(plane)
 		end
 	end
-
-	describe "#initialize" do
-		it "has a default setting of empty (no planes)" do
-			expect(subject.planes).to eq []
-		end
-	end
-
 end
