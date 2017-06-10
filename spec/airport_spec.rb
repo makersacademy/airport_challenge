@@ -1,6 +1,13 @@
 require 'airport'
 
 describe Airport do
+  it 'allows the capacity of the airport to change' do
+    allow_any_instance_of(Weather).to receive(:forecast).and_return('sunny')
+    subject = Airport.new(40)
+    20.times { subject.land(Plane.new) }
+    expect { subject.land(Plane.new) }.not_to raise_error
+  end
+
   describe '#land' do
     it { is_expected.to respond_to(:land).with(1).argument }
 

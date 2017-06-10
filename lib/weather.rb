@@ -4,8 +4,4 @@ class Weather
   def initialize
     @forecast = [:sunny, :stormy].sample.to_s
   end
-
-  # def forecast
-  #   @forecast
-  # end
 end
