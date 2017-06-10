@@ -1,4 +1,6 @@
 
+# Understands how to move through air.
+
 class Plane
 
   def initialize
