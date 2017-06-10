@@ -10,8 +10,8 @@ class Plane
     self.status = "arrived"
   end
 
-  # def status_departed
-  #   self.status = "departed"
-  # end
+  def status_departed
+    self.status = "departed"
+  end
 
 end

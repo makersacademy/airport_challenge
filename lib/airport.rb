@@ -9,8 +9,13 @@ class Airport
   end
 
   def land(plane)
-    plane.status_arrived
     @planes << plane
+    plane.status_arrived
+  end
+
+  def take_off(plane)
+    @planes.shift
+    plane.status_departed
   end
 
   def confirm_status(plane)
