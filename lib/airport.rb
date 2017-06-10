@@ -22,21 +22,23 @@ class Airport
 
   private
   def land(plane)
-    report("land", plane)
+    raise "Plane not flying" if plane.grounded?
     gates << plane
+    plane.grounded = true
+    report("land", plane)
   end
 
   def take_off(plane)
+    raise "Plane already flying" if !plane.grounded?
+    leave_gate(plane)
+    plane.grounded = false
     report("take off", plane)
-    get_plane_from_gate(plane)
   end
 
-  def get_plane_from_gate(plane)
+  def leave_gate(plane)
     search = Proc.new { |ele| ele == plane }
+
     raise "Plane not found" if gates.select(&search).empty?
-    
-    flight = gates.select(&search)
     gates.delete_if(&search)
-    flight
   end
 end

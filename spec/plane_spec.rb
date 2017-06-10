@@ -2,9 +2,10 @@ require 'plane'
 
 describe Plane do
   it { is_expected.to be_a(Plane) }
-  it { is_expected.to respond_to(:grounded?)}
 
   describe "#grounded?" do
+    it { is_expected.to respond_to(:grounded?)}
+
     it "returns true when the plane is at an airport" do
       subject.grounded = true
       expect(subject).to be_grounded

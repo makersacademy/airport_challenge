@@ -8,5 +8,4 @@ class Plane
   def grounded?
     @grounded
   end
-
 end

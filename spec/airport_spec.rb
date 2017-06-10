@@ -16,17 +16,24 @@ describe Airport do
     end
 
     it "instructs a plane to land" do
+      allow(plane).to receive(:grounded?).and_return(false)
+      allow(plane).to receive(:grounded=)
+
       subject.instruct({action: "land", plane: plane})
-      expect(subject.gates.last ).to eq plane
+      expect(subject.gates.last).to eq plane
     end
 
     it "instructs a plane to take off" do
       subject.gates.push(plane)
+      allow(plane).to receive(:grounded=)
+      allow(plane).to receive(:grounded?).and_return(true)
+      
       subject.instruct({action: "take off", plane: subject.gates.last})
       expect(subject.gates).to_not include(plane)
     end
 
     it "raises an error if the selected plane isn't at the airport" do
+      allow(plane).to receive(:grounded?).and_return(true)
       expect{ subject.instruct({action: "take off", plane: plane })}.to raise_error("Plane not found")
     end
   end
