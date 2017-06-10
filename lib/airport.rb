@@ -1,6 +1,7 @@
 class Airport
 
 def land
-end 
+
+end
 
 end

@@ -2,8 +2,10 @@ require "airport.rb"
 
 describe Airport do
 
-it "responds to land method" do
-expect(subject).to respond_to :land
+let (:airport) {Airport.new}
+
+  it "responds to land method" do
+    expect(airport).to respond_to :land
 
   end
 end
