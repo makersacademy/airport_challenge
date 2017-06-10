@@ -9,7 +9,6 @@ class Airport
     action, plane = args.fetch(:action), args.fetch(:plane)
 
     action == "land" ? land(plane) : take_off(plane)
-    report(action, plane)
   end
 
   def report(action, plane)
@@ -21,10 +20,16 @@ class Airport
 
   private
   def land(plane)
+    report("land", plane)
     gates << plane
   end
 
   def take_off(plane)
+    report("take off", plane)
+    get_plane_from_gate(plane)
+  end
+
+  def get_plane_from_gate(plane)
     search = Proc.new { |ele| ele == plane }
     flight = gates.select(&search)
     gates.delete_if(&search)
