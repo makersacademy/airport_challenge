@@ -14,13 +14,13 @@ describe Airport do
   describe "#land" do
     it "lands the plane" do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to eq [plane]
     end
   end
 
-  it "returns the landed planes" do
+  it "returns the landed plane" do
     plane = Plane.new
     subject.land(plane)
-    expect(subject.plane).to eq plane
+    expect(subject.terminal).to eq [plane]
   end
 end
