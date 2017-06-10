@@ -8,11 +8,13 @@ describe Airport do
 	  	expect(subject.land(plane)).to eq([plane])
 		end
 		context "when airport is full" do
-		it "raises an error" do
-			subject.land(Plane.new)
-      expect { subject.land(Plane.new) }.to raise_error 'Airport full'
-      end
-		end
+			it "should raise an error" do
+	        subject.planes.clear
+	        plane = Plane.new
+	        Airport::DEFAULT_CAPACITY.times { subject.land(plane)}
+	        expect{subject.land(plane)}.to raise_error("Airport is full!")
+	      end
+	    end
 	end
 
 	describe "#confirm_land" do
