@@ -11,4 +11,16 @@ describe Airport do
     expect(plane).to be_landed
   end
 
+  describe "#land" do
+    it "lands the plane" do
+      plane = Plane.new
+      expect(subject.land(plane)).to eq plane
+    end
+  end
+
+  it "returns the landed planes" do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.plane).to eq plane
+  end
 end

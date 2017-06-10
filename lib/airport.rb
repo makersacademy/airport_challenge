@@ -1,7 +1,12 @@
-# require "./lib/plane.rb"
 
 class Airport
-  def land(plane)
+  attr_reader :plane
 
+  def initialize
+    @plane = plane
+  end
+
+  def land(plane)
+    @plane = plane
   end
 end
