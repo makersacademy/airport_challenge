@@ -1,8 +1,6 @@
 Objects | Message
 --------|--------
 Controller |
-Airport | dock_plane
-Airport | release_plane
-Plane | land
-Plane | takeoff
-Plane | status
+Airport | land(plane)
+Airport | takeoff(plane)
+Plane | report_status
