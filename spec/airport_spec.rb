@@ -103,4 +103,28 @@ describe Airport do
       expect(subject.full?).to eq true
     end
   end
+
+  describe '#move_to_hangar' do
+    it "moves the plane to the hangar" do
+      allow(plane).to receive(:status_arrived).and_return("arrived")
+      subject.move_to_hangar(plane)
+      expect(subject.planes).to include(plane)
+    end
+  end
+
+  describe '#leave_hangar' do
+    it "takes the plane out of the hangar" do
+      allow(plane).to receive(:status_arrived).and_return("arrived")
+      subject.move_to_hangar(plane)
+      allow(plane).to receive(:status_departed).and_return("departed")
+      subject.leave_hangar(plane)
+      expect(subject.planes).not_to include(plane)
+    end
+  end
+
+  describe '#check_current_weather' do
+    it "checks the current weather" do
+      expect(["partly cloudy", "cloudy", "partly sunny", "sunny", "windy", "stormy"]).to include(subject.check_current_weather)
+    end
+  end
 end
