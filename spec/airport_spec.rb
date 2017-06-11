@@ -15,10 +15,24 @@ describe Airport do
     expect(plane).to be_landed
   end
 
+  it "confirms that a plane has taken off" do
+    plane = Plane.new
+    subject.take_off(plane)
+    expect(plane).not_to be_landed
+  end
+
   describe "#land" do
     it "instructs a plane to land" do
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
+    end
+  end
+
+  describe "#take_off" do
+    it "instructs a plane to take off" do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq plane
     end
   end
 
