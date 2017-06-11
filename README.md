@@ -13,9 +13,9 @@ Airport Challenge
 
 ```
 
-#My attempt at the Makers Academy first weekend challenge.
+My attempt at the Makers Academy first weekend challenge.
 
-##Libraries
+## Libraries ##
 
 * ./lib
     * plane.rb
@@ -27,9 +27,9 @@ Airport Challenge
     * airport_spec.rb
     * weather_spec.rb
 
-##Status
+## Status ##
 
-###Completed user stories:
+### Completed user stories: ###
 ```
   As an air traffic controller
   So I can get passengers to a destination
@@ -40,7 +40,7 @@ Airport Challenge
   So I can get passengers on the way to their destination
   I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
-###Attempted user stories:
+### Attempted user stories: ###
 ```
   As an air traffic controller
   To ensure safety
@@ -53,7 +53,7 @@ Airport Challenge
 ```
 I successfully created and tested a random weather generator, but ran out of time trying to get it to interact with airport. My main struggle was trying to stub out the randomness in my weather tests successfully.  
 
-###Not attempted:
+### Not attempted: ###
 ```
   As an air traffic controller
   To ensure safety
@@ -64,7 +64,7 @@ I successfully created and tested a random weather generator, but ran out of tim
   So that the software can be used for many different airports
   I would like a default airport capacity that can be overridden as appropriate
 ```
-##How to Use
+## How to Use ##
 
 ```sh
 irb
