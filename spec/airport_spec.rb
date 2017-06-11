@@ -4,6 +4,18 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
     it { is_expected.to respond_to(:takeoff).with(1).argument }
 
+    describe "#capacity" do
+      it "allows the capacity to be set" do
+        airport = Airport.new(40)
+        expect(airport.capacity).to eq(40)
+      end
+
+      it "should return the default capacity when it is not specified" do
+        airport = Airport.new
+        expect(airport.capacity).to eq(20)
+      end
+    end
+
     describe "#land" do
 
       it "should instruct a plane to land" do
@@ -31,7 +43,7 @@ describe Airport do
     end
 
     describe "#takeoff" do
-#
+
       it "should return a specific plane currently in the airport" do
         plane = Plane.new
         subject.land(plane)
