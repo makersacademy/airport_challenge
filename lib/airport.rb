@@ -2,9 +2,16 @@ require_relative "../lib/plane.rb"
 
 class Airport
 
-  def land(plane)
-    plane.land 
+attr_reader :planes
+
+  def initialize
+    @planes = []
   end
 
+  def land(plane)
+    raise "Plane already landed" if planes.include?(plane)
+    plane.land
+    planes << plane
+  end
 
 end
