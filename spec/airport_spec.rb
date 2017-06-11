@@ -20,5 +20,12 @@ let (:airport) {Airport.new}
       airport.land(plane)
       expect{(airport.land(plane))}.to raise_error("Plane already landed")
       end
+
+      it "returns landed planes" do
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.planes).to include(plane)
+    end
+
   end
 end
