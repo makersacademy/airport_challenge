@@ -2,7 +2,6 @@
 
 # SPP: understands how to land and take off aircraft
 
-
 class Airport
 
   require_relative "weather"
@@ -10,8 +9,8 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(options = {}, weather = Weather.new)
-    @capacity = options[:capacity] || DEFAULT_CAPACITY
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+    @capacity = capacity
     @weather = weather
     @hanger = []
   end
