@@ -14,4 +14,8 @@ class Plane
     @status = "took off"
   end
 
+  def confirm_status
+
+  end
+
 end
