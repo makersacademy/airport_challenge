@@ -10,15 +10,13 @@ describe Airport do
 
     it 'raises an error if it is stormy' do
       allow_any_instance_of(Weather).to receive(:forecast).and_return('stormy')
-      current_forecast = Weather.new
-      expect(current_forecast.forecast).to eq('stormy')
       expect { subject.land(double(:plane)) }.to raise_error("Due to storms, no planes will land today")
     end
 
     it 'raises an error if the airport is full' do
       allow_any_instance_of(Weather).to receive(:forecast).and_return('sunny')
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
-      expect { subject.land(Plane.new) }.to raise_error("The airport is full")
+      expect { subject.land(double(:plane)) }.to raise_error("The airport is full")
     end
 
     it 'lands a plane at the airport' do
@@ -45,14 +43,12 @@ describe Airport do
 
     it 'raises an error if it is stormy' do
       allow_any_instance_of(Weather).to receive(:forecast).and_return('stormy')
-      current_forecast = Weather.new
-      expect(current_forecast.forecast).to eq('stormy')
-      expect { subject.take_off(Plane.new) }.to raise_error("Due to storms, no planes will take off today")
+      expect { subject.take_off(double(:plane)) }.to raise_error("Due to storms, no planes will take off today")
     end
 
     it 'raises an error if the airport is empty' do
       allow_any_instance_of(Weather).to receive(:forecast).and_return('sunny')
-      plane = Plane.new
+      plane = double(:plane)
       expect { subject.take_off(plane) }.to raise_error("There are no planes available")
     end
 
