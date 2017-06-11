@@ -9,11 +9,12 @@ describe "#landed?" do
 
     it "responds to landed method" do
     expect(plane).to respond_to :landed?
-  end
-
-    it "returns nil if plane has not been landed" do
-    expect(plane.landed?).to eq nil
     end
+
+    it "returns false if plane has not been landed" do
+    expect(plane.landed?).to eq false
+    end
+  end
 
 describe "#land" do
 
@@ -22,10 +23,10 @@ describe "#land" do
     end
 
     it "returns true if plane has been landed" do
-      airport = Airport.new
-      airport.land(plane)
-      expect(plane.landed?).to eq true
-      end
+    airport = Airport.new
+    airport.land(plane)
+    expect(plane.landed?).to eq true
     end
   end
+
 end

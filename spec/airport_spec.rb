@@ -25,7 +25,23 @@ let (:airport) {Airport.new}
       plane = Plane.new
       airport.land(plane)
       expect(airport.planes).to include(plane)
+      end
+  end
+
+  describe "#take_off" do
+
+      it "can instruct a landed plane to take_off" do
+      plane = Plane.new
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes).not_to include(plane)
+      end
+
+      it "returns error if plane is not in airport" do
+      plane = Plane.new
+      expect{(airport.take_off(plane))}.to raise_error("Plane not in airport")
+      end
+
     end
 
-  end
 end

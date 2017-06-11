@@ -14,4 +14,10 @@ attr_reader :planes
     planes << plane
   end
 
+  def take_off(plane)
+    raise "Plane not in airport" if !planes.include?(plane)
+    @planes.delete(plane)
+    plane.fly
+  end
+
 end
