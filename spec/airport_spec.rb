@@ -19,12 +19,7 @@ describe Airport do
 	       expect{subject.land(Plane.new)}.to raise_error("Airport full!")
 	      end
 	    end
-			context "when weather is stormy" do
-				it "should raise an error" do
-		       @weather == "stormy"
-		       expect{subject.take_off(Plane.new)}.to raise_error("Too stormy to take off!")
-		      end
-		    end
+
 	end
 
 	describe "#confirm_land" do
@@ -36,20 +31,40 @@ describe Airport do
 	end
 
 	describe "#take_off" do
-		it "will record that a plane has taken off when the take off method is called" do
-			plane = Plane.new
-			subject.land(plane)
-			subject.take_off(plane)
-			expect(subject.planes).not_to include(plane)
-  	end
-	end
+		context "when weather is calm" do
+		it "will record that a plane has taken off" do
+				plane = Plane.new
+				subject.land(plane)
+				allow(subject).to receive(:unsafe_to_fly?).and_return(false)
+				subject.take_off(plane)
+				expect(subject.planes).not_to include(plane)
+			end
+		end
+			context "when weather is stormy" do
+				it "should raise an error to prevent take off" do
+		       plane = Plane.new
+					 subject.land(plane)
+					 allow(subject).to receive(:unsafe_to_fly?).and_return(true)
+		       expect{ subject.take_off(plane) }.to raise_error("Stormy!")
+		      end
+		    end
+		end
 
 	describe "#confirm_take_off" do
 		it "will confirm that the list of planes at the airport does not include those that have taken off" do
 			plane = Plane.new
 			subject.land(plane)
+			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 			subject.take_off(plane)
 			expect(subject.planes).not_to include(plane)
 		end
 	end
+
+	describe "#unsafe_to_fly?" do
+		it "will return true or false based on the state of weather" do
+			subject.weather = "calm"
+			expect(subject.unsafe_to_fly?).to eq(false)
+		end
+	end
+
 end

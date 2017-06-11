@@ -2,8 +2,8 @@ describe Weather do
 		subject(:weather) { described_class.new }
 
 	describe "#stormy?" do
-		it 'returns true or false randomly' do
- 			expect(weather.stormy?).to be(true).or be(false)
+		it 'returns calm or stormy weather randomly' do
+ 			expect(weather.stormy?).to eq("calm").or eq("stormy")
    	end
  	end
 
