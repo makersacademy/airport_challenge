@@ -19,6 +19,11 @@ describe Airport do
       expect{ subject.land(plane) }.to raise_error("Plane has already landed")
     end
 
+    it "cannot land a plane when the airport is full" do
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      expect { subject.land(Plane.new) }.to raise_error("Cannot land, this airport is full")
+    end
+
   end
 
   describe '#confirm_status' do
@@ -42,7 +47,7 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it "instructs a plane to take_off" do
+    it "instructs a plane to take off" do
       expect(subject).to respond_to(:take_off).with(1).argument
     end
 
@@ -57,4 +62,12 @@ describe Airport do
       plane = Plane.new
       expect { subject.take_off(plane) }.to raise_error("this plane is not available for take off or has already left")
     end
+
+  describe '#full?' do
+
+    it "can check if the aiport is full" do
+      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      expect(subject.full?).to eq true
+    end
+  end
 end
