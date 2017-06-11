@@ -1,13 +1,15 @@
 
 class Airport
-  attr_reader :terminal
+  attr_reader :terminal, :capacity
 
-  def initialize
+  def initialize(capacity = 10)
+    @capacity = capacity
     @terminal = []
   end
 
   def land(plane)
     raise "No landing when stormy" unless good_weather?
+    raise "No landing when airport is full" if full?
     @terminal << plane
   end
 
@@ -20,4 +22,11 @@ class Airport
   def good_weather?
     rand(100) >= 20 ? true : false
   end
+
+private
+
+  def full?
+    @terminal.count >= @capacity
+  end
+
 end

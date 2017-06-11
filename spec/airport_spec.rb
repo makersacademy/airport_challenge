@@ -31,6 +31,13 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error("No landing when stormy")
     end
 
+    it "prevents landing if the airport is full" do
+      plane = Plane.new
+      allow(subject).to receive(:good_weather?) { true }
+      10.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error("No landing when airport is full")
+    end
+
     it "instructs a plane to land" do
       plane = Plane.new
       allow(subject).to receive(:good_weather?) { true }
