@@ -1,4 +1,5 @@
 require_relative "../lib/weather.rb"
+require_relative "../lib/plane.rb"
 
 class Airport
   attr_accessor :planes
