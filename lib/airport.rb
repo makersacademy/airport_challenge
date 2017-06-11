@@ -13,11 +13,12 @@ class Airport
     raise "No landing when stormy" unless good_weather?
     raise "No landing when airport is full" if full?
     @terminal << plane
+    @terminal.last
   end
 
   def take_off(plane)
     raise "No takeoff when stormy" unless good_weather?
-    plane.took_off
+    plane.take_off
     @terminal.pop
   end
 
@@ -30,5 +31,4 @@ private
   def full?
     @terminal.count >= @capacity
   end
-
 end

@@ -14,14 +14,14 @@ describe Airport do
     plane = Plane.new
     allow(subject).to receive(:good_weather?) { true }
     subject.land(plane)
-    expect(plane).to be_landed
+    expect(plane.landed).to eq true
   end
 
   it "confirms that a plane has taken off" do
     plane = Plane.new
     allow(subject).to receive(:good_weather?) { true }
     subject.take_off(plane)
-    expect(plane).not_to be_landed
+    expect(plane.landed).to eq false
   end
 
   describe "capacity" do
@@ -53,7 +53,7 @@ describe Airport do
     it "instructs a plane to land" do
       plane = Plane.new
       allow(subject).to receive(:good_weather?) { true }
-      expect(subject.land(plane)).to eq [plane]
+      expect(subject.land(plane)).to eq plane
     end
   end
 

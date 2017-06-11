@@ -1,21 +1,15 @@
 class Plane
+  attr_reader :landed
 
-  attr_accessor :status
-
-  def initialize(status = "landed")
-    @status = status
+  def initialize(landed = true)
+    @landed = landed
   end
 
-  def landed?
-    @status == "landed"
+  def land
+    @landed = true
   end
 
-  def took_off
-    @status = "took off"
+  def take_off
+    @landed = false
   end
-
-  def confirm_status
-
-  end
-
 end
