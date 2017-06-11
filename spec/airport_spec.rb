@@ -8,6 +8,11 @@ describe Airport do
       expect(subject).to respond_to :gates
       expect(subject.gates).to be_a Array
     end
+
+    it "Creates local weather" do
+      expect(subject).to respond_to :weather
+      expect(subject.weather).to be_a Weather
+    end
   end
 
   describe "#instruct" do
@@ -15,26 +20,53 @@ describe Airport do
       expect(subject).to respond_to(:instruct).with(1).argument
     end
 
-    it "instructs a plane to land" do
-      allow(plane).to receive(:grounded?).and_return(false)
-      allow(plane).to receive(:grounded=)
+    context "Good Weather" do
+      it "instructs a plane to land" do
+        allow(plane).to receive(:grounded?).and_return(false)
+        allow(plane).to receive(:grounded=)
+        allow(subject).to receive(:check_weather) { true }
 
-      subject.instruct({action: "land", plane: plane})
-      expect(subject.gates.last).to eq plane
+        subject.instruct({action: "land", plane: plane})
+        expect(subject.gates.last).to eq plane
+      end
+
+      it "instructs a plane to take off" do
+        subject.gates.push(plane)
+        allow(plane).to receive(:grounded=)
+        allow(plane).to receive(:grounded?).and_return(true)
+        allow(subject).to receive(:check_weather) { true }
+
+        subject.instruct({action: "take off", plane: subject.gates.last})
+        expect(subject.gates).to_not include(plane)
+      end
+
+      it "raises an error if the selected plane isn't at the airport" do
+        allow(plane).to receive(:grounded?).and_return(true)
+        allow(subject).to receive(:check_weather) { true }
+
+        expect{ subject.instruct({action: "take off", plane: plane}) }.to raise_error(AirportError, "Plane not found")
+      end
+
+      it "raises an error if the plane isn't flying when instructed to land" do
+        allow(plane).to receive(:grounded?) { true }
+        allow(subject).to receive(:check_weather) { true }
+
+        expect{ subject.instruct({action: "land", plane: plane}) }.to raise_error(PlaneError, "Plane not flying")
+      end
+
+      it "raises an error if the plane is flying when instructed to take off" do
+        allow(plane).to receive(:grounded?) { false }
+        allow(subject).to receive(:check_weather) { true }
+
+        expect{ subject.instruct({action: "take off", plane: plane}) }.to raise_error(PlaneError, "Plane already flying")
+      end
     end
 
-    it "instructs a plane to take off" do
-      subject.gates.push(plane)
-      allow(plane).to receive(:grounded=)
-      allow(plane).to receive(:grounded?).and_return(true)
-
-      subject.instruct({action: "take off", plane: subject.gates.last})
-      expect(subject.gates).to_not include(plane)
-    end
-
-    it "raises an error if the selected plane isn't at the airport" do
-      allow(plane).to receive(:grounded?).and_return(true)
-      expect{ subject.instruct({action: "take off", plane: plane}) }.to raise_error("Plane not found")
+    context "Bad Weather" do
+      it "raises an error when the weather is bad" do
+        allow(subject).to receive(:check_weather) { false }
+        expect{ subject.instruct({action: "take off", plane: plane}) }.to raise_error(WeatherError, "Inclement weather")
+      end
     end
   end
 

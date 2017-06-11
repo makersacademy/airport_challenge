@@ -1,14 +1,17 @@
 require_relative 'plane'
 require_relative 'weather'
+require_relative 'error'
 
 class Airport
-  attr_reader :gates
+  attr_reader :gates, :weather
 
   def initialize
     @gates = []
+    @weather = Weather.new
   end
 
   def instruct(args)
+    raise WeatherError, "Inclement weather" if !check_weather
     action, plane = args.fetch(:action), args.fetch(:plane)
 
     action == "land" ? land(plane) : take_off(plane)
@@ -22,15 +25,19 @@ class Airport
   end
 
   private
+  def check_weather
+    weather.good?
+  end
+
   def land(plane)
-    raise "Plane not flying" if plane.grounded?
+    raise PlaneError, "Plane not flying" if plane.grounded?
     gates << plane
     plane.grounded = true
     report("land", plane)
   end
 
   def take_off(plane)
-    raise "Plane already flying" if !plane.grounded?
+    raise PlaneError, "Plane already flying" if !plane.grounded?
     leave_gate(plane)
     plane.grounded = false
     report("take off", plane)
@@ -39,7 +46,7 @@ class Airport
   def leave_gate(plane)
     search = Proc.new { |ele| ele == plane }
 
-    raise "Plane not found" if gates.select(&search).empty?
+    raise AirportError, "Plane not found" if gates.select(&search).empty?
     gates.delete_if(&search)
   end
 end
