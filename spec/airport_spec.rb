@@ -5,6 +5,7 @@ require "weather.rb"
 describe Airport do
 
   let(:landed_plane) { double :Plane, :status => "arrived" }
+  let(:departed_plane) { double :Plane, :status => "departed" }
 
   describe '#land' do
     it "has a land method with one argument" do
@@ -12,17 +13,15 @@ describe Airport do
     end
 
     it "lands a plane at the airport" do
-      plane = Plane.new
       allow(subject).to receive(:check_current_weather).and_return("sunny")
-      subject.land(plane)
-      expect(subject.planes).to include(plane)
+      allow(departed_plane).to receive(:status_arrived).and_return("arrived")
+      subject.land(departed_plane)
+      expect(subject.planes).to include(departed_plane)
     end
 
     it "cannot land a plane that has already landed" do
-      plane = Plane.new
       allow(subject).to receive(:check_current_weather).and_return("sunny")
-      subject.land(plane)
-      expect { subject.land(plane) }.to raise_error("Plane has already landed")
+      expect { subject.land(landed_plane) }.to raise_error("Plane has already landed")
     end
 
     it "cannot land a plane that isn't in the air" do
@@ -33,9 +32,10 @@ describe Airport do
 
     it "cannot land a plane when the airport is full" do
       allow(subject).to receive(:check_current_weather).and_return("sunny")
-      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      allow(departed_plane).to receive(:status_arrived).and_return("arrived")
+      Airport::DEFAULT_CAPACITY.times { subject.land(departed_plane) }
       allow(subject).to receive(:check_current_weather).and_return("sunny")
-      expect { subject.land(Plane.new) }.to raise_error("Cannot land, this airport is full")
+      expect { subject.land(departed_plane) }.to raise_error("Cannot land, this airport is full")
     end
 
     it "raises an error when weather is stormy" do
@@ -53,10 +53,10 @@ describe Airport do
     end
 
     it "confirms that the plane has landed/arrived" do
-      plane = Plane.new
       allow(subject).to receive(:check_current_weather).and_return("sunny")
-      subject.land(plane)
-      expect(subject.confirm_status(plane)).to eq("arrived")
+      allow(departed_plane).to receive(:status_arrived).and_return("arrived")
+      subject.land(departed_plane)
+      expect(subject.confirm_status(departed_plane)).to eq("arrived")
     end
 
     it "confirms that the plane has departed" do
