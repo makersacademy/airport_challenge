@@ -75,4 +75,11 @@ describe Airport do
 
     end
 
+    describe "#stormy?" do
+      it "should be true if weather is stormy" do
+        allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
+        expect(subject.stormy?).to eq(true)
+      end
+    end
+
 end
