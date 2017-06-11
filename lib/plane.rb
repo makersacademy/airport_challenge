@@ -5,7 +5,8 @@ class Plane
 
   def instruct_to_land(airport)
     @airport_to_land = airport
-    airport.land(self) if airport.condition_for_landing(self)
+    raise "Conditions for landing are not met" unless airport.condition_for_landing(self)
+    airport.land(self) 
     @on_the_ground = true
   end
 

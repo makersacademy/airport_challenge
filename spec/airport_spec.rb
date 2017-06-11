@@ -1,10 +1,13 @@
 require "airport.rb"
 
 describe Airport do
-  let(:airport) { Airport.new }
-  let(:other_airport) { Airport.new }
+  let(:sunny_weather_provider) { double(:weather, :generator => "sunny") }
+  let(:airport) { Airport.new(sunny_weather_provider) }
+  let(:other_airport) { Airport.new(sunny_weather_provider) }
 
-  it { is_expected.to respond_to(:land).with(1).argument }
+  it "responds to land message" do
+    expect(airport).to respond_to(:land).with(1).argument
+  end
 
   describe "#condition_for_landing" do
     it "raises an error if a plane on the ground receives the message to land" do
@@ -14,6 +17,12 @@ describe Airport do
     it "raises and error if a plane tries to land at a different airport than instructed" do
       plane_instructed_to_land_other_airport = double(:plane, :airport_to_land => other_airport, :on_the_ground => false)
       expect { airport.land(plane_instructed_to_land_other_airport) }.to raise_error("Plane is not instructed to land at this airport")
+    end
+    it "raises an error if the weather is stormy" do
+      stormy_weather_provider = double(:weather, :generator => "stormy")
+      airport = Airport.new(stormy_weather_provider)
+      plane = double(:plane, :airport_to_land => airport, :airport_take_off => airport, :on_the_ground => false)
+      expect { airport.condition_for_landing(plane) }.to raise_error("Weather too stormy to land")
     end
   end
 
@@ -43,6 +52,12 @@ describe Airport do
     it "raises an error when a plane is instructed to take off from a different airport than the one its in" do
       plane = double(:plane, :on_the_ground => true, :airport_to_land => airport, :airport_take_off => other_airport)
       expect { airport.condition_for_takeoff(plane) }.to raise_error("Plane in a different airport than the one its instructed to take off")
+    end
+    it "raises an error when the weather is stormy" do
+      stormy_weather_provider = double(:weather, :generator => "stormy")
+      airport = Airport.new(stormy_weather_provider)
+      plane = double(:plane, :on_the_ground => true, :airport_to_land => airport, :airport_take_off => airport)
+      expect { airport.condition_for_takeoff(plane) }.to raise_error("Weather too stormy to take off")
     end
   end
 

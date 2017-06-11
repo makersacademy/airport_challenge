@@ -1,9 +1,11 @@
 require "./lib/plane.rb"
+require "./lib/weather_generator.rb"
 
 class Airport
   attr_reader :planes, :condition_for_landing, :take_off
 
-  def initialize
+  def initialize(weather_provider)
+    @weather_provider = weather_provider
     @planes = []
   end
 
@@ -11,6 +13,7 @@ class Airport
     raise "Plane on the ground, can't land" if plane.on_the_ground
     raise "Plane is not instructed to land at this airport" unless
     plane.airport_to_land == self
+    raise "Weather too stormy to land" if forecast == "stormy"
     true
   end
 
@@ -24,9 +27,14 @@ class Airport
     @planes.include?(plane)
   end
 
+  def forecast
+    @weather_provider.generator
+  end
+
   def condition_for_takeoff(plane)
     raise "Plane in the air, can't take off" unless plane.on_the_ground
     raise "Plane in a different airport than the one its instructed to take off" unless plane.airport_take_off == plane.airport_to_land
+    raise "Weather too stormy to take off" if forecast == "stormy"
     true
   end
 

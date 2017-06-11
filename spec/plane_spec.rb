@@ -16,6 +16,10 @@ describe Plane do
       expect(airport.land(plane)).to eq plane
       expect(plane.on_the_ground).to eq true
     end
+    it "raises an error if condition for landing are not met" do
+      airport = double(:airport, :condition_for_landing => false, :land => plane)
+      expect { plane.instruct_to_land(airport) }.to raise_error("Conditions for landing are not met")
+    end
   end
 
   describe "#instruct_take_off" do
