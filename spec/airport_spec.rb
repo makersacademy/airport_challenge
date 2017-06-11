@@ -75,9 +75,17 @@ describe Airport do
 	end
 
 	describe "#unsafe_to_fly?" do
-		it "will return true or false based on the state of weather" do
-			subject.weather = "calm"
-			expect(subject.unsafe_to_fly?).to eq(false)
+		context "when weather is stormy" do
+			it "will return true" do
+				allow(Weather).to receive_message_chain(:new, :weather_type).and_return("stormy")
+				expect(subject.unsafe_to_fly?).to eq(true)
+			end
+		end
+		context "when weather is calm" do
+			it "will return false" do
+				allow(Weather).to receive_message_chain(:new, :weather_type).and_return("calm")
+				expect(subject.unsafe_to_fly?).to eq(false)
+			end
 		end
 	end
 end

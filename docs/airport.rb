@@ -3,13 +3,12 @@ require './docs/weather.rb'
 
 class Airport
 
-attr_accessor :planes, :capacity, :weather
+attr_accessor :planes, :capacity
 
 DEFAULT_CAPACITY = 45
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @weather = Weather.new.stormy?
     @capacity = capacity
   end
 
@@ -37,7 +36,7 @@ DEFAULT_CAPACITY = 45
   end
 
   def unsafe_to_fly?
-    weather == "stormy"
+    Weather.new.weather_type == "stormy"
   end
 
 end
