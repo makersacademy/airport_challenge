@@ -1,21 +1,20 @@
 class Plane
   attr_accessor :airborne
 
-  def initialize(airborne = false)
-    @airborne = airborne
+  def initialize
+    @airborne = true
   end
 
   def airborne?
-    airborne
+    @airborne
   end
 
   def on_land
-    airborne
+    @airborne = false
   end
 
   def in_air
-    self.airborne = true
-    self
+    @airborne = true
   end
 
   def status

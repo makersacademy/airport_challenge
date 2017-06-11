@@ -3,7 +3,7 @@ require 'plane'
 describe Plane do
   describe '#airborne?' do
     it 'checks if the plane is airborne' do
-      expect(subject).not_to be_airborne
+      expect(subject).to be_airborne
     end
   end
 
