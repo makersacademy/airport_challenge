@@ -1,65 +1,46 @@
 
 require_relative "../lib/weather.rb"
 
-describe Weather do
 
-  # missing test might be about initialize
+describe Weather do
 
   subject(:weather) { described_class.new }
 
-  let(:sunny_weather) { Weather.new }
-  let(:fair_weather) { Weather.new }
-  let(:cloudy_weather) { Weather.new }
-  let(:stormy_weather) { Weather.new }
-
-
-  describe "#create_weather" do
-
-    it "samples weather conditions" do
-        expect(Weather::WEATHER).to receive(:sample)
-        Weather.new
-    end
+  describe "#stormy" do
 
     before do
-      allow(Weather::WEATHER).to receive(:sample).and_return(:sunny, :fair, :cloudy, :stormy)
+      allow(weather).to receive(:conditions)
     end
 
-    it "sets the weather randomly" do
-      expect(sunny_weather.conditions).to be :sunny
-      expect(fair_weather.conditions).to be :fair
-      expect(cloudy_weather.conditions).to be :cloudy
-      expect(stormy_weather.conditions).to be :stormy
+    it "instructs the weather to check its condition" do
+      expect(weather).to receive(:conditions)
+      weather.stormy?
     end
 
-  end
-
-  describe "#stormy?" do
-
-    context "when weather is stormy" do
-
-        before do
-          allow(Weather::WEATHER).to receive(:sample).and_return(:stormy)
-        end
-
-        it "confirms this" do
-          stormy_weather.stormy?
-        end
-
-    end
-
-    context "when weather isn't stormy" do
+    context "when stormy" do
 
       before do
-        allow(Weather::WEATHER).to receive(:sample).and_return(:sunny)
+        allow(weather).to receive(:conditions).and_return(:stormy)
+      end
+
+      it "returns true" do
+        expect(weather.stormy?).to be true
+      end
+
+    end
+
+    context "when anything other than stormy" do
+
+      before do
+        allow(weather).to receive(:conditions).and_return(:sunny, :fair, :cloudy)
       end
 
       it "returns false" do
-        expect(sunny_weather.stormy?).to be false
+        Weather::OUTLOOK.size.times { expect(weather.stormy?).to be false }
       end
 
     end
 
   end
-
 
 end

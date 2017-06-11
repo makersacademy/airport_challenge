@@ -1,22 +1,36 @@
 
+
+# Understands how to sometimes be stormy.
+
 class Weather
 
-  WEATHER = [:sunny, :fair, :cloudy, :stormy]
-
-  attr_reader :conditions
+  OUTLOOK = [:sunny, :fair, :cloudy, :stormy]
 
   def initialize
-    @conditions = create_weather
+    pass_time
   end
+
+  private
+
+  def determine_conditions
+    self.conditions = OUTLOOK.sample
+  end
+
+  def pass_time
+     Thread.new do
+       loop do
+         determine_conditions
+          sleep 10
+       end
+     end
+  end
+
+  attr_accessor :conditions
+
+  public
 
   def stormy?
      conditions == :stormy
   end
 
-  private
-
-  def create_weather
-    WEATHER.sample
   end
-
-end
