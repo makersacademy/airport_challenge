@@ -24,6 +24,18 @@ describe Airport do
     expect(plane).not_to be_landed
   end
 
+  describe "capacity" do
+    it "defaults to 10" do
+      airport = Airport.new
+      expect(airport.capacity).to eq 10
+    end
+
+    it "can be overridden" do
+      airport = Airport.new(20)
+      expect(airport.capacity).to eq 20
+    end
+  end
+
   describe "#land" do
     it "prevents landing if the weather is stormy" do
       plane = Plane.new
@@ -34,7 +46,7 @@ describe Airport do
     it "prevents landing if the airport is full" do
       plane = Plane.new
       allow(subject).to receive(:good_weather?) { true }
-      10.times { subject.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       expect { subject.land(plane) }.to raise_error("No landing when airport is full")
     end
 
