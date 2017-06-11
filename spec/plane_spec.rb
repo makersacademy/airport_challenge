@@ -58,10 +58,19 @@ describe Plane do
       plane.fly
     end
 
+
     it "puts the plane in flight" do
       expect(plane.flying?).to be true
     end
-  end
+
+
+   it "instructs the plane to change its in-flight status to \'true\'" do
+     allow(plane).to receive(:in_flight=).and_return(true)
+     expect(plane).to receive(:in_flight=).and_return(true)
+     plane.fly
+   end
+
+ end
 
   describe "#land" do
 
@@ -72,6 +81,14 @@ describe Plane do
     it "puts the plane on the ground" do
       expect(plane.flying?).to be false
     end
+
+    it "instructs the plane to change its in-flight status to \'false\'" do
+      allow(plane).to receive(:in_flight=).and_return(false)
+      expect(plane).to receive(:in_flight=).and_return(false)
+      plane.land
+    end
+
+
   end
 
 
