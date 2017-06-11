@@ -9,12 +9,16 @@ describe Airport do
 	end
 
 	describe "#land" do
-		it "will record that a plane is at airport if land method is called" do
+		context "when weather is calm" do
+		it "will record that a plane is at airport if land method is called in calm weather" do
 			plane = Plane.new
+			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 	  	expect(subject.land(plane)).to eq([plane])
 		end
+	end
 		context "when airport is full" do
 			it "should raise an error" do
+				 allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 	       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
 	       expect{subject.land(Plane.new)}.to raise_error("Airport full!")
 	      end
@@ -23,7 +27,7 @@ describe Airport do
 			it "should raise an error to prevent landing" do
 				 plane = Plane.new
 			   allow(subject).to receive(:unsafe_to_fly?).and_return(true)
-			   expect{ subject.land(plane) }.to raise_error("Stormy!")
+			   expect{ subject.land(plane) }.to raise_error("Too stormy to land!")
 			  end
 			end
 	end
@@ -41,6 +45,7 @@ describe Airport do
 		context "when weather is calm" do
 		it "will record that a plane has taken off" do
 				plane = Plane.new
+				allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 				subject.land(plane)
 				allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 				subject.take_off(plane)
@@ -50,9 +55,10 @@ describe Airport do
 			context "when weather is stormy" do
 				it "should raise an error to prevent take off" do
 		       plane = Plane.new
+					 allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 					 subject.land(plane)
 					 allow(subject).to receive(:unsafe_to_fly?).and_return(true)
-		       expect{ subject.take_off(plane) }.to raise_error("Stormy!")
+		       expect{ subject.take_off(plane) }.to raise_error("Too stormy to take off!")
 		      end
 		    end
 		end
@@ -60,6 +66,7 @@ describe Airport do
 	describe "#confirm_take_off" do
 		it "will confirm that the list of planes at the airport does not include those that have taken off" do
 			plane = Plane.new
+			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 			subject.land(plane)
 			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 			subject.take_off(plane)
