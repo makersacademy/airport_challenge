@@ -18,10 +18,20 @@ describe Airport do
         expect(subject.planes).to include(plane)
       end
 
+      context "when airport is full" do
+
+        it "should raise an error" do
+          plane = Plane.new
+          Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
+          expect{subject.land(plane)}.to raise_error("Airport is full")
+        end
+
+      end
+
     end
 
     describe "#takeoff" do
-
+#
       it "should return a specific plane currently in the airport" do
         plane = Plane.new
         subject.land(plane)
