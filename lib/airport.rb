@@ -14,7 +14,7 @@ class Airport
   def land(plane)
     raise "Cannot land in stormy weather" if check_current_weather == "stormy"
     raise "Plane has already landed" if plane.status == "arrived"
-    raise "Plane is not in the air" if plane.status == nil
+    raise "Plane is not in the air" if plane.status.nil?
     raise "Cannot land, this airport is full" if full?
     move_to_hangar(plane)
   end
