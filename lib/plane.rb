@@ -17,7 +17,7 @@ class Plane
     self.status = "departed"
   end
 
-  def available?(airport)
+  def landed?(airport)
     airport.planes.include?(self) ? true : false
   end
 

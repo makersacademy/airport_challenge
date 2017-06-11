@@ -13,19 +13,29 @@ describe Airport do
 
     it "lands a plane at the airport" do
       plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.land(plane)
       expect(subject.planes).to include(plane)
     end
 
     it "cannot land a plane that has already landed" do
       plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error("Plane has already landed")
     end
 
     it "cannot land a plane when the airport is full" do
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       expect { subject.land(Plane.new) }.to raise_error("Cannot land, this airport is full")
+    end
+
+    it "raises an error when weather is stormy" do
+      plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("stormy")
+      expect { subject.land(plane) }.to raise_error("Cannot land in stormy weather")
     end
 
   end
@@ -38,12 +48,14 @@ describe Airport do
 
     it "confirms that the plane has landed/arrived" do
       plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.land(plane)
       expect(subject.confirm_status(plane)).to eq("arrived")
     end
 
     it "confirms that the plane has departed" do
       plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.land(plane)
       allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.take_off(plane)
@@ -58,6 +70,7 @@ describe Airport do
 
     it "confirms the plane is no longer in the airport" do
       plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.land(plane)
       allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.take_off(plane)
@@ -66,11 +79,13 @@ describe Airport do
 
     it "raises error when a plane is not in the airport" do
       plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       expect { subject.take_off(plane) }.to raise_error("this plane is not available for take off or has already left")
     end
 
     it "raises an error when weather is stormy" do
       plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.land(plane)
       allow(subject).to receive(:check_current_weather).and_return("stormy")
       expect { subject.take_off(plane) }.to raise_error("Cannot take off in stormy weather")
@@ -78,8 +93,8 @@ describe Airport do
   end
 
   describe '#full?' do
-
     it "can check if the aiport is full" do
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
       Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect(subject.full?).to eq true
     end

@@ -19,11 +19,11 @@ describe Plane do
     end
   end
 
-  describe '#available?' do
-    it "checks if the plane is available at the airport" do
+  describe '#landed?' do
+    it "checks if the plane has landed at the airport" do
       airport = Airport.new
       airport.land(subject)
-      expect(subject.available?(airport)).to be true
+      expect(subject.landed?(airport)).to be true
     end
   end
 end

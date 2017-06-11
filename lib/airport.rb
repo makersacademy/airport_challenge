@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Cannot land in stormy weather" if check_current_weather == "stormy"
     raise "Plane has already landed" if plane.status == "arrived"
     raise "Cannot land, this airport is full" if full?
     plane.status_arrived
@@ -20,7 +21,7 @@ class Airport
 
   def take_off(plane)
     raise "Cannot take off in stormy weather" if check_current_weather == "stormy"
-    raise "this plane is not available for take off or has already left" unless plane.available?(self)
+    raise "this plane is not available for take off or has already left" unless plane.landed?(self)
     plane.status_departed
     @planes.shift
   end
