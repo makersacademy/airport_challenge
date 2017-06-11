@@ -1,4 +1,5 @@
 require "airport.rb"
+require "plane.rb"
 
 describe Airport do
   it "responds to land method" do
@@ -22,6 +23,9 @@ describe Airport do
   end
 
   describe "#land" do
+
+
+
     it "instructs a plane to land" do
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
@@ -29,6 +33,12 @@ describe Airport do
   end
 
   describe "#take_off" do
+    it "prevents takeoff if the weather is stormy" do
+      plane = Plane.new
+      allow(subject).to receive(:good_weather) { rand(100) < 20}
+      expect{(subject.take_off(plane))}.to raise_error("No takeoff when stormy")
+    end
+
     it "instructs a plane to take off" do
       plane = Plane.new
       subject.land(plane)
