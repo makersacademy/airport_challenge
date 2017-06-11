@@ -9,7 +9,7 @@ describe Plane do
     it "should change the status of the plane to grounded" do
       plane = Plane.new
       plane.ground
-      expect(plane.status).to eq("grounded")
+      expect(plane.status).to eq("landed")
     end
   end
 

@@ -9,6 +9,8 @@ class Airport
   end
 
   def land(plane)
-    self.planes << plane
+    plane.ground
+    self.planes. << plane
   end
+
 end
