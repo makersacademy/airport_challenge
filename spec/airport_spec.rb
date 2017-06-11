@@ -4,7 +4,7 @@ require "weather.rb"
 
 describe Airport do
 
-  let(:weather) { double :weather }
+  let(:landed_plane) { double :Plane, :status => "arrived" }
 
   describe '#land' do
     it "has a land method with one argument" do
@@ -23,6 +23,12 @@ describe Airport do
       allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error("Plane has already landed")
+    end
+
+    it "cannot land a plane that isn't in the air" do
+      plane = Plane.new
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
+      expect { subject.land(plane) }.to raise_error("Plane is not in the air")
     end
 
     it "cannot land a plane when the airport is full" do
