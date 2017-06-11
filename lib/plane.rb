@@ -5,4 +5,14 @@ class Plane
 	def initialize	
 		@status = "Landed"
 	end
-end 
+	
+	def land
+		self.status = "Landed"
+		self
+	end 
+
+	def take_off
+		self.status = "Flying"
+		self
+	end 
+end
