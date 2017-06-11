@@ -16,20 +16,20 @@ DEFAULT_CAPACITY = 45
   def land(plane)
     fail "Airport full!" if full?
     fail "Too stormy to land!" if unsafe_to_fly?
-    @planes << plane
+    planes << plane
   end
 
   def confirm_land(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 
   def take_off(plane)
     fail "Too stormy to take off!" if unsafe_to_fly?
-    @planes.delete(plane)
+    planes.delete(plane)
   end
 
   def confirm_take_off(plane)
-    !@planes.include?(plane)
+    !planes.include?(plane)
   end
 
   def full?
@@ -37,7 +37,7 @@ DEFAULT_CAPACITY = 45
   end
 
   def unsafe_to_fly?
-    @weather == "stormy"
+    weather == "stormy"
   end
 
 end

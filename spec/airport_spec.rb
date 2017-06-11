@@ -10,12 +10,12 @@ describe Airport do
 
 	describe "#land" do
 		context "when weather is calm" do
-		it "will record that a plane is at airport if land method is called in calm weather" do
-			plane = Plane.new
-			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
-	  	expect(subject.land(plane)).to eq([plane])
+			it "will record that a plane is at airport if land method is called in calm weather" do
+				plane = Plane.new
+				allow(subject).to receive(:unsafe_to_fly?).and_return(false)
+	  		expect(subject.land(plane)).to eq([plane])
+			end
 		end
-	end
 		context "when airport is full" do
 			it "should raise an error" do
 				 allow(subject).to receive(:unsafe_to_fly?).and_return(false)
@@ -24,10 +24,10 @@ describe Airport do
 	      end
 	    end
 			context "when weather is stormy" do
-			it "should raise an error to prevent landing" do
-				 plane = Plane.new
-			   allow(subject).to receive(:unsafe_to_fly?).and_return(true)
-			   expect{ subject.land(plane) }.to raise_error("Too stormy to land!")
+				it "should raise an error to prevent landing" do
+					plane = Plane.new
+			   	allow(subject).to receive(:unsafe_to_fly?).and_return(true)
+			   	expect{ subject.land(plane) }.to raise_error("Too stormy to land!")
 			  end
 			end
 	end
@@ -80,5 +80,4 @@ describe Airport do
 			expect(subject.unsafe_to_fly?).to eq(false)
 		end
 	end
-
 end
