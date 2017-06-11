@@ -7,14 +7,14 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(args={capacity: DEFAULT_CAPACITY})
+  def initialize(args = { capacity: DEFAULT_CAPACITY })
     @gates    = []
     @weather  = Weather.new
     @capacity = args.fetch(:capacity)
   end
 
   def instruct(args)
-    raise WeatherError, "Inclement weather" if !check_weather
+    raise WeatherError, "Inclement weather" unless check_weather
     action, plane = args.fetch(:action), args.fetch(:plane)
 
     action == "land" ? land(plane) : take_off(plane)
@@ -22,9 +22,9 @@ class Airport
 
   def report(action, plane)
     puts case action
-    when "land" then "#{plane} has landed successfully."
-    when "take off" then "#{plane} has taken off successfully."
-    end
+         when "land" then "#{plane} has landed successfully."
+         when "take off" then "#{plane} has taken off successfully."
+         end
   end
 
   private
@@ -45,7 +45,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise PlaneError, "Plane already flying" if !plane.grounded?
+    raise PlaneError, "Plane already flying" unless plane.grounded?
     leave_gate(plane)
     plane.grounded = false
     report("take off", plane)

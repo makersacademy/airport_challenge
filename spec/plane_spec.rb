@@ -4,7 +4,7 @@ describe Plane do
   it { is_expected.to be_a(Plane) }
 
   describe "#grounded?" do
-    it { is_expected.to respond_to(:grounded?)}
+    it { is_expected.to respond_to(:grounded?) }
 
     it "returns true when the plane is at an airport" do
       subject.grounded = true

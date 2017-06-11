@@ -4,7 +4,7 @@ describe Weather do
   it { is_expected.to be_a(Weather) }
 
   describe "#good?" do
-    it { is_expected.to respond_to(:good?)}
+    it { is_expected.to respond_to(:good?) }
 
     context "good weather" do
       let(:weather) { Weather.new(99) }
@@ -21,6 +21,6 @@ describe Weather do
         expect(weather.good?).to eq false
       end
     end
-    
+
   end
 end

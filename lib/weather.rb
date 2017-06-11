@@ -1,6 +1,6 @@
 class Weather
 
-  def initialize(condition=rand(1..100))
+  def initialize(condition = rand(1..100))
     @condition = condition
   end
 
