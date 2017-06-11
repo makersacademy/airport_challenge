@@ -13,4 +13,11 @@ class Airport
     self.planes. << plane
   end
 
+  def takeoff(plane)
+    plane.fly
+    index = planes.find_index { |airplane| airplane = plane }
+    planes[index]
+    planes.delete_at(index)
+  end
+
 end

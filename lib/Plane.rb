@@ -7,7 +7,11 @@ class Plane
   end
 
   def ground
-    self.status=("landed")
+    self.status= "landed"
+  end
+
+  def fly
+    self.status= "airborne"
   end
 
 end
