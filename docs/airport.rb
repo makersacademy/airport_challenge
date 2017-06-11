@@ -23,6 +23,7 @@ DEFAULT_CAPACITY = 45
   end
 
   def take_off(plane)
+    fail "Stormy!" if unsafe_to_fly?
     @planes.delete(plane)
   end
 

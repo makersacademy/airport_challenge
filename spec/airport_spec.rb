@@ -19,12 +19,19 @@ describe Airport do
 	       expect{subject.land(Plane.new)}.to raise_error("Airport full!")
 	      end
 	    end
-
+			context "when weather is stormy" do
+			it "should raise an error to prevent landing" do
+				 plane = Plane.new
+			   allow(subject).to receive(:unsafe_to_fly?).and_return(true)
+			   expect{ subject.land(plane) }.to raise_error("Stormy!")
+			  end
+			end
 	end
 
 	describe "#confirm_land" do
 		it "will confirm if a plane has landed" do
 			plane = Plane.new
+			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 			subject.land(plane)
 			expect(subject.confirm_land(plane)).to eq(true)
 		end
