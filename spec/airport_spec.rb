@@ -5,6 +5,12 @@ describe Airport do
 
     describe "#land" do
 
+      it "should instruct a plane to land" do
+        plane = Plane.new
+        subject.land(plane)
+        expect(plane.status).to eq("landed")
+      end
+
       it "should store a plane in the airport" do
         plane = Plane.new
         subject.land(plane)
