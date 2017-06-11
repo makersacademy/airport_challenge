@@ -17,8 +17,9 @@ class Airport
   end
 
   def takeoff(plane)
-    plane.fly
     index = planes.find_index { |airplane| airplane = plane }
+    fail "This plane is not here" if index == nil
+    plane.fly
     planes[index]
     planes.delete_at(index)
   end

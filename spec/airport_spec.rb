@@ -52,6 +52,15 @@ describe Airport do
         expect(plane.status).to eq("airborne")
       end
 
+      context "when plane is not stored in airport" do
+
+        it "should raise an error" do
+          plane = Plane.new
+          expect{subject.takeoff(plane)}.to raise_error("This plane is not here")
+        end
+
+      end
+
     end
 
 end
