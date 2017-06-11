@@ -1,4 +1,5 @@
 require "./lib/plane.rb"
+require "./lib/weather.rb"
 
 class Airport
 
@@ -13,14 +14,15 @@ class Airport
   def land(plane)
     raise "Plane has already landed" if plane.status == "arrived"
     raise "Cannot land, this airport is full" if full?
-    @planes << plane
     plane.status_arrived
+    @planes << plane
   end
 
   def take_off(plane)
+    raise "Cannot take off in stormy weather" if check_current_weather == "stormy"
     raise "this plane is not available for take off or has already left" unless plane.available?(self)
-    @planes.shift
     plane.status_departed
+    @planes.shift
   end
 
   def confirm_status(plane)
@@ -29,6 +31,10 @@ class Airport
 
   def full?
     @planes.count == DEFAULT_CAPACITY ? true : false
+  end
+
+  def check_current_weather
+    Weather.new.current_weather
   end
 
 end

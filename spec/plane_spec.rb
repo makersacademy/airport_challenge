@@ -3,11 +3,19 @@ require "airport.rb"
 
 describe Plane do
 
+  let(:airport) { double :airport }
+
   describe '#status_arrived' do
     it "changes the status of the plane to arrived" do
-      airport = Airport.new
-      airport.land(subject)
-      expect(subject.status_arrived).to eq("arrived")
+      subject.status_arrived
+      expect(subject.status).to eq("arrived")
+    end
+  end
+
+  describe '#status_departed' do
+    it "changes the status of the plane to departed" do
+      subject.status_departed
+      expect(subject.status).to eq("departed")
     end
   end
 
