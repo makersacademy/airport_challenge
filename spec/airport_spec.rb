@@ -28,6 +28,7 @@ describe Airport do
 
     it "confirms that the plane has departed" do
       plane = Plane.new
+      subject.land(plane)
       subject.take_off(plane)
       expect(subject.confirm_status(plane)).to eq("departed")
     end
@@ -40,8 +41,13 @@ describe Airport do
 
     it "confirms the plane is no longer in the airport" do
       plane = Plane.new
+      subject.land(plane)
       subject.take_off(plane)
       expect(subject.planes).not_to include(plane)
     end
   end
+    it "raises error when a plane is not in the airport" do
+      plane = Plane.new
+      expect { subject.take_off(plane) }.to raise_error("this plane is not available for take off")
+    end
 end

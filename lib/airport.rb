@@ -14,8 +14,12 @@ class Airport
   end
 
   def take_off(plane)
-    @planes.shift
-    plane.status_departed
+    if plane.available?(self)
+      @planes.shift
+      plane.status_departed
+    else
+      raise "this plane is not available for take off"
+    end
   end
 
   def confirm_status(plane)
