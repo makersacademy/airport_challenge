@@ -6,6 +6,7 @@ describe Airport do
 
   let(:landed_plane) { double :Plane, :status => "arrived" }
   let(:departed_plane) { double :Plane, :status => "departed" }
+  let(:plane) { double :Plane, :status => nil }
 
   describe '#land' do
     it "has a land method with one argument" do
@@ -25,7 +26,6 @@ describe Airport do
     end
 
     it "cannot land a plane that isn't in the air" do
-      plane = Plane.new
       allow(subject).to receive(:check_current_weather).and_return("sunny")
       expect { subject.land(plane) }.to raise_error("Plane is not in the air")
     end
@@ -39,30 +39,30 @@ describe Airport do
     end
 
     it "raises an error when weather is stormy" do
-      plane = Plane.new
       allow(subject).to receive(:check_current_weather).and_return("stormy")
-      expect { subject.land(plane) }.to raise_error("Cannot land in stormy weather")
+      expect { subject.land(departed_plane) }.to raise_error("Cannot land in stormy weather")
     end
 
   end
 
   describe '#confirm_status' do
     it "confirms the status of the plane" do
-      plane = Plane.new
       expect(subject.confirm_status(plane)).to eq(nil)
     end
 
     it "confirms that the plane has landed/arrived" do
+      plane = Plane.new
+      subject.move_to_hangar(plane)
       allow(subject).to receive(:check_current_weather).and_return("sunny")
-      allow(departed_plane).to receive(:status_arrived).and_return("arrived")
-      subject.land(departed_plane)
-      expect(subject.confirm_status(departed_plane)).to eq("arrived")
+      subject.take_off(plane)
+      allow(subject).to receive(:check_current_weather).and_return("sunny")
+      subject.land(plane)
+      expect(subject.confirm_status(plane)).to eq("arrived")
     end
 
     it "confirms that the plane has departed" do
       plane = Plane.new
-      allow(subject).to receive(:check_current_weather).and_return("sunny")
-      subject.land(plane)
+      subject.move_to_hangar(plane)
       allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.take_off(plane)
       expect(subject.confirm_status(plane)).to eq("departed")
@@ -76,8 +76,7 @@ describe Airport do
 
     it "confirms the plane is no longer in the airport" do
       plane = Plane.new
-      allow(subject).to receive(:check_current_weather).and_return("sunny")
-      subject.land(plane)
+      subject.move_to_hangar(plane)
       allow(subject).to receive(:check_current_weather).and_return("sunny")
       subject.take_off(plane)
       expect(subject.planes).not_to include(plane)
@@ -90,18 +89,17 @@ describe Airport do
     end
 
     it "raises an error when weather is stormy" do
-      plane = Plane.new
-      allow(subject).to receive(:check_current_weather).and_return("sunny")
-      subject.land(plane)
       allow(subject).to receive(:check_current_weather).and_return("stormy")
-      expect { subject.take_off(plane) }.to raise_error("Cannot take off in stormy weather")
+      allow(landed_plane).to receive(:status_departed).and_return("departed")
+      expect { subject.take_off(landed_plane) }.to raise_error("Cannot take off in stormy weather")
     end
   end
 
   describe '#full?' do
     it "can check if the aiport is full" do
       allow(subject).to receive(:check_current_weather).and_return("sunny")
-      Airport::DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      allow(departed_plane).to receive(:status_arrived).and_return("arrived")
+      Airport::DEFAULT_CAPACITY.times { subject.land(departed_plane) }
       expect(subject.full?).to eq true
     end
   end

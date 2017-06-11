@@ -9,4 +9,9 @@ describe Weather do
   it "initializes with a weather condition" do
     expect(Weather.weather_conditions).to include(subject.condition)
   end
+
+  it "checks current weather" do
+    weather = Weather.new
+    expect(weather.current_weather).to eq(weather.condition)
+  end
 end

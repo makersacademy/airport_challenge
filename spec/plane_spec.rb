@@ -1,5 +1,6 @@
 require "plane.rb"
 require "airport.rb"
+require "weather.rb"
 
 describe Plane do
 
@@ -22,7 +23,7 @@ describe Plane do
   describe '#landed?' do
     it "checks if the plane has landed at the airport" do
       airport = Airport.new
-      airport.land(subject)
+      airport.move_to_hangar(subject)
       expect(subject.landed?(airport)).to be true
     end
   end
