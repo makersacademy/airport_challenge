@@ -12,6 +12,8 @@ class Airport
   def land(plane)
     raise "No landing when stormy" unless good_weather?
     raise "No landing when airport is full" if full?
+    raise "Plane already landed" if plane.landed
+    plane.land
     @terminal << plane
     @terminal.last
   end
