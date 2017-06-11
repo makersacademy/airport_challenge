@@ -1,15 +1,13 @@
 
 # Understands how to move through air.
 
-
 # Right now: I can place a plane in flight wheneve I want.
 # if not flying fail.
-
 
 class Plane
 
   def initialize
-  @in_flight = false
+    @in_flight = true
   end
 
   def flying?
@@ -26,6 +24,6 @@ class Plane
 
   private
 
-    attr_accessor :in_flight
+  attr_accessor :in_flight
 
 end

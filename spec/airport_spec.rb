@@ -4,37 +4,70 @@
 
 require_relative "../lib/airport"
 
-
 describe Airport do
 
-  let(:plane) { double("Plane") }
-  let(:weather) { double("Weather")}
+  let(:aircraft) { double("aircraft") }
+  let(:weather) { double("Weather") }
 
   subject(:airport) { described_class.new({}, weather) }
 
   describe "#land" do
 
-    before do
-        allow(weather).to receive(:stormy?).and_return(true)
+    context "its instructions" do
+
+      before do
+        allow(airport).to receive(:prepare_for_landing)
+      end
+
+      it "instructs the airport to prepare for a landing" do
+        expect(airport).to receive(:prepare_for_landing)
+        airport.land(aircraft)
+      end
+
+      context "when checks pass"
+
+      before do
+        allow(aircraft).to receive(:land)
+        allow(airport).to receive(:dock)
+      end
+
+      it "instructs the aircraft to land" do
+        expect(aircraft).to receive(:land)
+        airport.land(aircraft)
+      end
+
+      it "it instructs the airport to dock the landed plane" do
+        expect(airport).to receive(:dock)
+        airport.land(aircraft)
+      end
+
     end
+
+  end
+
+  context "its behaviour" do
 
     context "when stormy" do
 
+      before do
+        allow(weather).to receive(:stormy?).and_return(true)
+      end
+
       it "raises an error with descriptive message" do
-        expect{airport.land(plane)}.to raise_error("It's too stormy")
+        expect { airport.land(aircraft) }.to raise_error("It's too stormy")
       end
 
     end
 
-    context "when plane not in air" do
+    context "when aircraft not in air" do
 
       before do
-          allow(weather).to receive(:stormy?).and_return(false)
-          allow(plane).to receive(:flying?).and_return(false)
+        allow(weather).to receive(:stormy?).and_return(false)
+        allow(aircraft).to receive(:flying?).and_return(false)
       end
 
       it "raises an error with descriptive message" do
-        expect{airport.land(plane)}.to raise_error("The plane is not flying")
+        expect { airport.land(aircraft) }.to raise_error("The aircraft is not flying")
       end
 
     end
@@ -42,86 +75,112 @@ describe Airport do
     context "when airport full" do
 
       before do
-          allow(weather).to receive(:stormy?).and_return(false)
-          allow(plane).to receive(:flying?).and_return(true)
-          allow(airport).to receive(:is_full?).and_return(true)
+        allow(weather).to receive(:stormy?).and_return(false)
+        allow(aircraft).to receive(:flying?).and_return(true)
+        allow(airport).to receive(:full?).and_return(true)
       end
 
       it "raises an error with descriptive message" do
-        expect{airport.land(plane)}.to raise_error("There's no space to land here.")
+        expect { airport.land(aircraft) }.to raise_error("There's no space to land here.")
       end
 
     end
 
-    context "when checks are all passed" do
+    context "when checks pass" do
 
       before do
+        allow(weather).to receive(:stormy?).and_return(false)
+        allow(aircraft).to receive(:flying?).and_return(true)
+        allow(aircraft).to receive(:land)
+        allow(airport).to receive(:full?).and_return(false)
+      end
+
+      it "docks the aircraft" do
+        airport.land(aircraft)
+        expect(airport.hanger).to include(aircraft)
+      end
+
+    end
+
+  end
+
+  describe "takeoff" do
+
+    context "its instructions" do
+
+      before do
+        allow(airport).to receive(:prepare_for_takeoff)
+        allow(airport).to receive(:dedock)
+        allow(aircraft).to receive(:fly)
+      end
+
+      it "instructs the airport to prepare for takeoff" do
+        expect(airport).to receive(:prepare_for_takeoff)
+        airport.takeoff(aircraft)
+      end
+
+      context "when checks pass" do
+
+        it "instructs the airport to dedock the aircraft" do
+          expect(airport).to receive(:dedock)
+          airport.takeoff(aircraft)
+        end
+
+        it "instructs the aircraft to takeoff" do
+          expect(airport).to receive(:dedock)
+          airport.takeoff(aircraft)
+        end
+      end
+    end
+
+    context "its behaviour" do
+
+      context "when stormy" do
+
+        before do
+          allow(weather).to receive(:stormy?).and_return(true)
+        end
+
+        it "raises an error with descriptive message" do
+          expect { airport.takeoff(aircraft) }.to raise_error("It's too stormy")
+        end
+
+      end
+
+      context "when aircraft not on ground" do
+
+        before do
           allow(weather).to receive(:stormy?).and_return(false)
-          allow(plane).to receive(:flying?).and_return(true)
-          allow(plane).to receive(:land)
-          allow(airport).to receive(:is_full?).and_return(false)
+        end
+
+        it "raises an error with descriptive message" do
+          expect { airport.takeoff(aircraft) }.to raise_error("The aircraft is not here")
+        end
+
       end
 
-      it "docks the plane" do
-        airport.land(plane)
-        expect(airport.hanger).to include(plane)
+      context "when checks pass" do
+
+        before do
+          allow(weather).to receive(:stormy?).and_return(false)
+          allow(aircraft).to receive(:flying?).and_return(true)
+          allow(aircraft).to receive(:land)
+          allow(aircraft).to receive(:fly)
+          allow(airport).to receive(:full?).and_return(false)
+          airport.land(aircraft)
+        end
+
+        it "dedocks the aircraft" do
+          expect { airport.takeoff(aircraft) }.to change { airport.hanger }.from([aircraft]).to([])
+        end
+
+        it "lets the aircraft put itself in flight" do
+          expect(aircraft).to receive(:fly)
+          airport.takeoff(aircraft)
+        end
+
       end
+    end # end of context behaviour.
+  end # end of takeoff
 
-# You need to write a test for physical act of landing the plane.
-
-    end
-
-  end
-
-
-    describe "takeoff" do
-
-
-          before do
-              allow(weather).to receive(:stormy?).and_return(true)
-          end
-
-          context "when stormy" do
-
-            it "raises an error with descriptive message" do
-              expect{airport.takeoff(plane)}.to raise_error("It's too stormy")
-            end
-
-          end
-
-          context "when plane not on ground" do
-
-            before do
-                allow(weather).to receive(:stormy?).and_return(false)
-            end
-
-            it "raises an error with descriptive message" do
-              expect{airport.takeoff(plane)}.to raise_error("The plane is not here")
-            end
-
-          end
-
-          context "when checks passed" do
-
-              before do
-                  allow(weather).to receive(:stormy?).and_return(false)
-                  allow(plane).to receive(:flying?).and_return(true)
-                  allow(plane).to receive(:land)
-                  allow(plane).to receive(:fly)
-                  allow(airport).to receive(:is_full?).and_return(false)
-                  airport.land(plane)
-               end
-
-
-            it "dedocks the plane" do
-               expect{airport.takeoff(plane)}.to change{airport.hanger}.from([plane]).to([])
-            end
-
-            # You need to write a test to change physical flight
-
-          end
-
-    end
-
-
-  end
+end

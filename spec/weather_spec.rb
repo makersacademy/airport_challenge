@@ -1,7 +1,6 @@
 
 require_relative "../lib/weather.rb"
 
-
 describe Weather do
 
   subject(:weather) { described_class.new }

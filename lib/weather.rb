@@ -17,12 +17,12 @@ class Weather
   end
 
   def pass_time
-     Thread.new do
-       loop do
-         determine_conditions
-          sleep 10
-       end
-     end
+    Thread.new do
+      loop do
+        determine_conditions
+        sleep 10
+      end
+    end
   end
 
   attr_accessor :conditions
@@ -30,7 +30,7 @@ class Weather
   public
 
   def stormy?
-     conditions == :stormy
+    conditions == :stormy
   end
 
-  end
+end
