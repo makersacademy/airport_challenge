@@ -1,12 +1,21 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double("plane")}
+  let(:plane) { double("plane") }
+  let(:plane_2) { double("plane_2") }
 
   describe "Initialization" do
-    it "Creates a new airport with empty gates" do
+    it "Creates a new airport with the default number of empty gates" do
       expect(subject).to respond_to :gates
       expect(subject.gates).to be_a Array
+
+      expect(subject).to respond_to :capacity
+      expect(subject.capacity).to eq 20
+    end
+
+    it "creates a new airport with a custom number of gates" do
+      test_airport = Airport.new({capacity: 100})
+      expect(test_airport.capacity).to eq 100
     end
 
     it "Creates local weather" do
@@ -52,6 +61,20 @@ describe Airport do
         allow(subject).to receive(:check_weather) { true }
 
         expect{ subject.instruct({action: "land", plane: plane}) }.to raise_error(PlaneError, "Plane not flying")
+      end
+
+      it "raises an error if the airport is full" do
+        test_airport = Airport.new({capacity: 1})
+        allow(test_airport).to receive(:check_weather) { true }
+
+        allow(plane).to receive(:grounded?) { false }
+        allow(plane).to receive(:grounded=)
+
+        allow(plane_2).to receive(:grounded?) { false }
+        allow(plane_2).to receive(:grounded=)
+        test_airport.instruct({action: "land", plane: plane})
+
+        expect{ test_airport.instruct({action: "land", plane: plane_2}) }.to raise_error(AirportError, "Airport is full")
       end
 
       it "raises an error if the plane is flying when instructed to take off" do

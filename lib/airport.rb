@@ -3,11 +3,14 @@ require_relative 'weather'
 require_relative 'error'
 
 class Airport
-  attr_reader :gates, :weather
+  attr_reader :gates, :weather, :capacity
 
-  def initialize
-    @gates = []
-    @weather = Weather.new
+  DEFAULT_CAPACITY = 20
+
+  def initialize(args={capacity: DEFAULT_CAPACITY})
+    @gates    = []
+    @weather  = Weather.new
+    @capacity = args.fetch(:capacity)
   end
 
   def instruct(args)
@@ -29,8 +32,13 @@ class Airport
     weather.good?
   end
 
+  def full?
+    gates.count >= capacity
+  end
+
   def land(plane)
     raise PlaneError, "Plane not flying" if plane.grounded?
+    raise AirportError, "Airport is full" if full?
     gates << plane
     plane.grounded = true
     report("land", plane)
