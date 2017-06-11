@@ -1,7 +1,7 @@
 class Weather 
 	
 	def initialize
-	  @weather = ["Sunny", "Stormy"].sample
+	  @weather = ["Sunny", "Sunny", "Sunny", "Stormy"].sample #I'm sorry.
 	end 
 
 	#private

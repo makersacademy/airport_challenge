@@ -1,11 +1,11 @@
-require 'weather'
+require './lib/weather'
 
 class Airport 
 
 	DEFAULT_CAPACITY = 50
 
-	def initialize(capacity = DEFAULT_CAPACITY)
-		@planes = []
+	def initialize(capacity = DEFAULT_CAPACITY, planes = [])
+		@planes = planes
 		@weather = Weather.new
 		@capacity = capacity
 	end 
@@ -25,12 +25,13 @@ class Airport
   def release(plane)
   	raise "Plane already flying!" if plane.status == "Flying"
   	raise "Stormy conditions!" if stormy?
+  	raise "Plane not in the airport!" unless @planes.include?(plane)
   	@planes.delete(plane)
   	plane.take_off
   end 
 
 	def full?
-		planes.count >= 50
+		planes.count >= DEFAULT_CAPACITY
 	end 
 attr_accessor :planes, :capacity, :weather
 

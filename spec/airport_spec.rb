@@ -80,6 +80,18 @@ describe Airport do
 			allow(plane).to receive(:status).and_return "Flying"
 			expect { airport.release plane }.to raise_error("Plane already flying!")
 		end 
+		it "does not release a plane that's not in the airport" do
+			airport1, airport2 = Airport.new, Airport.new
+			plane1 = instance_double(Plane)
+			plane2 = instance_double(Plane)
+			allow(plane1).to receive(:status)
+			allow(plane2).to receive(:status)
+			allow(plane1).to receive(:land)
+			allow(plane2).to receive(:land)
+			airport1.receive(plane1)
+			airport2.receive(plane2)
+			expect { airport1.release plane }.to raise_error("Plane not in the airport!")
+		end 
 	end  
 	describe "#stormy?" do 
 		it "signals that the weather is stormy" do
