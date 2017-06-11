@@ -16,7 +16,7 @@ describe Airport do
     it "cannot land a plane that has already landed" do
       plane = Plane.new
       subject.land(plane)
-      expect{ subject.land(plane) }.to raise_error("Plane has already landed")
+      expect { subject.land(plane) }.to raise_error("Plane has already landed")
     end
 
     it "cannot land a plane when the airport is full" do

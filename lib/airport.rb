@@ -12,18 +12,15 @@ class Airport
 
   def land(plane)
     raise "Plane has already landed" if plane.status == "arrived"
-    raise "Cannot land, this airport is full" if self.full?
+    raise "Cannot land, this airport is full" if full?
     @planes << plane
     plane.status_arrived
   end
 
   def take_off(plane)
-    if plane.available?(self)
-      @planes.shift
-      plane.status_departed
-    else
-      raise "this plane is not available for take off or has already left"
-    end
+    raise "this plane is not available for take off or has already left" unless plane.available?(self)
+    @planes.shift
+    plane.status_departed
   end
 
   def confirm_status(plane)
