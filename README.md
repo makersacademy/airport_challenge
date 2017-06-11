@@ -5,7 +5,7 @@ Airport Challenge
 
 [id]: http://i.imgur.com/dsCKfFK.jpg  "Plane taking off"
 
-Ruby program that replicates basic functionality of a software used to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny and the airport is not at capacity. Occasionally it may be stormy, in which case no planes can land or take off. It was developed based on the following user stories.
+Ruby program that replicates basic functionality of a software used to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny and the airport is not at capacity. Occasionally it may be stormy, in which case no planes can land or take off. It was developed based on the user stories below.
 
 The program splits responsibility for achieving the needed functionality between 3 classes:
  - Plane (receives messages to land or takeoff )
@@ -15,6 +15,7 @@ The program splits responsibility for achieving the needed functionality between
 
 
 ************************************************************
+###### User story #1
 As an air traffic controller  
 So I can get passengers to a destination  
 I want to instruct a plane to land at an airport and confirm that it has landed
@@ -33,6 +34,7 @@ expect(plane.airport_to_land).to eq airport
 
 
 ************************************************************
+###### User story #2
 As an air traffic controller  
 So I can get passengers on the way to their destination  
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
@@ -41,6 +43,7 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 
 ************************************************************
+###### User story #3
 As an air traffic controller  
 To ensure safety  
 I want to prevent takeoff when weather is stormy  
@@ -54,14 +57,17 @@ airport = Airport.new(weather_provider, capacity)
 
 ```
 ************************************************************
+###### User story #4
 As an air traffic controller  
 To ensure safety  
 I want to prevent landing when weather is stormy  
 ************************************************************
+###### User story #5
 As an air traffic controller  
 To ensure safety  
 I want to prevent landing when the airport is full  
 ************************************************************
+###### User story #6
 As the system designer  
 So that the software can be used for many different airports  
 I would like a default airport capacity that can be overridden as appropriate  
