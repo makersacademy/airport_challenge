@@ -14,13 +14,11 @@ $ git clone git@github.com:jkingharman/airport_challenge.git
 $ cd airport_challenge
 $ bundle
 $ ruby ./lib/airport.rb
-
 ```
 ## Test ##
 
 ```
 $ rspec
-
 ```
 
 ## My Approach ##
