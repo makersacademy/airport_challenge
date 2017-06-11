@@ -33,9 +33,9 @@ __Airport__
 
 This class creates instances of airports. Airports's public interface consists of the methods 'land' and 'take_off', which take instances of Plane as arguments. These methods check some things. Namely:
 
-•	the in_flight state of the plane
-•	the weather's conditions.
-•	the capacity of the airport's hanger.
+*	__the in_flight state of the plane__
+*	__the weather's conditions__
+*	__the capacity of the airport's hanger__
 
 When all of these checks pass, the methods then either call 'land' or 'fly' on the plane
 passed in. The effect of this is to alter the planes in_flight status.
