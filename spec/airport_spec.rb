@@ -9,6 +9,12 @@ describe Airport do
     expect(airport).to respond_to(:land).with(1).argument
   end
 
+  it "allows system designers to set the capacity" do
+    num = 10
+    airport = Airport.new(sunny_weather_provider, num)
+    expect(airport.capacity).to eq num
+  end
+
   describe "#condition_for_landing" do
     it "raises an error if a plane on the ground receives the message to land" do
       plane = double(:plane, :airport_to_land => airport, :airport_take_off => airport, :on_the_ground => true)
@@ -23,6 +29,11 @@ describe Airport do
       airport = Airport.new(stormy_weather_provider)
       plane = double(:plane, :airport_to_land => airport, :airport_take_off => airport, :on_the_ground => false)
       expect { airport.condition_for_landing(plane) }.to raise_error("Weather too stormy to land")
+    end
+    it "raises an error when the airport is at full capcity" do
+      plane = double(:plane, :airport_to_land => airport, :on_the_ground => false)
+      airport.capacity.times { airport.land(plane) }
+      expect { airport.condition_for_landing(plane) }.to raise_error("Airport is full, there is no space to land")
     end
   end
 

@@ -2,11 +2,16 @@ require "./lib/plane.rb"
 require "./lib/weather_generator.rb"
 
 class Airport
-  attr_reader :planes, :condition_for_landing, :take_off
+  attr_reader :planes, :condition_for_landing, :take_off, :capacity
 
-  def initialize(weather_provider)
+  def initialize(weather_provider, capacity = 5)
     @weather_provider = weather_provider
+    @capacity = capacity
     @planes = []
+  end
+
+  def full?
+    @planes.count >= @capacity
   end
 
   def condition_for_landing(plane)
@@ -14,6 +19,7 @@ class Airport
     raise "Plane is not instructed to land at this airport" unless
     plane.airport_to_land == self
     raise "Weather too stormy to land" if forecast == "stormy"
+    raise "Airport is full, there is no space to land" if full?
     true
   end
 
