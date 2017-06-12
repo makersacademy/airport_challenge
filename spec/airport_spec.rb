@@ -57,6 +57,7 @@ describe Airport do
 
     it "doesn't allow landing for a landed plane" do
       plane = Plane.new
+      allow(subject).to receive(:good_weather?) { true }
       plane.land
       expect { subject.land(plane) }.to raise_error("Plane already landed")
     end
@@ -75,6 +76,13 @@ describe Airport do
       subject.land(plane)
       expect(subject.take_off(plane)).to eq plane
     end
+
+    # it "doesn't allow for planes already flying to take off again" do
+    #   plane = Plane.new
+    #   allow(subject).to receive(:good_weather?) { true }
+    #   plane.take_off
+    #   expect { subject.take_off(plane) }.to raise_error("Plane already flying")
+    # end
   end
 
   it "returns the landed plane" do
