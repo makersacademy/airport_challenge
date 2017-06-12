@@ -34,7 +34,7 @@ class Airport
 private
 
   def full?
-    self.planes.length == DEFAULT_CAPACITY
+    self.planes.length == capacity
   end
 
 end
