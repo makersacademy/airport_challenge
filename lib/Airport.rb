@@ -1,4 +1,5 @@
 require_relative 'Plane.rb'
+require_relative 'Weather.rb'
 
 class Airport
 
@@ -21,11 +22,9 @@ class Airport
 
   def takeoff(plane)
     #fail "Unable to takeoff due to storms!" if stormy?
-    index = planes.find_index { |airplane| airplane = plane }
-    fail "This plane is not here" if index == nil
+    fail "This plane is not here" unless planes.include?(plane)
     plane.fly
-    planes[index]
-    planes.delete_at(index)
+    planes.delete(plane)
   end
 
   def stormy?

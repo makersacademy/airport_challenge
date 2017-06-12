@@ -4,6 +4,8 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
     it { is_expected.to respond_to(:takeoff).with(1).argument }
 
+    let (:weather) { double :weather }
+
     describe "#capacity" do
       it "allows the capacity to be set" do
         airport = Airport.new(40)
@@ -77,7 +79,7 @@ describe Airport do
 
     describe "#stormy?" do
       it "should be true if weather is stormy" do
-        allow_any_instance_of(Weather).to receive(:forecast).and_return("stormy")
+        allow(subject.weather).to receive(:current_weather).and_return("stormy")
         expect(subject.stormy?).to eq(true)
       end
     end
