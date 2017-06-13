@@ -8,7 +8,7 @@ The programme can perform the following basic functions:
 - prevent take of or landing in stormy conditions
 - prevent planes landing if the airport is full
 
-2.4.0 :001 > require './docs/airport.rb'
+```2.4.0 :001 > require './docs/airport.rb'
  => true
 2.4.0 :002 > gatwick = Airport.new
  => #<Airport:0x007f9b8904f458 @planes=[], @weather="calm", @capacity=45>
@@ -24,4 +24,4 @@ The programme can perform the following basic functions:
  => true
 2.4.0 :008 > gatwick.unsafe_to_fly?
  => false
-2.4.0 :009 > exit
+2.4.0 :009 > exit```

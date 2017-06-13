@@ -32,7 +32,7 @@ DEFAULT_CAPACITY = 45
   end
 
   def full?
-    planes.count >= DEFAULT_CAPACITY
+    planes.count >= capacity
   end
 
   def unsafe_to_fly?
