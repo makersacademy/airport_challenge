@@ -1,5 +1,7 @@
 require './docs/plane.rb'
 
 describe Plane do
-#need a test here?
+
+it { is_expected.to respond_to(:flying?) }
+
 end

@@ -1,6 +1,7 @@
 require './docs/airport.rb'
 
 describe Airport do
+	let(:plane) {described_class.new}
 
 	describe "#initialize" do
 		it "has a default setting of empty (no planes)" do
@@ -11,7 +12,6 @@ describe Airport do
 	describe "#land" do
 		context "when weather is calm" do
 			it "will record that a plane is at airport if land method is called in calm weather" do
-				plane = Plane.new
 				allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 	  		expect(subject.land(plane)).to eq([plane])
 			end
@@ -25,14 +25,12 @@ describe Airport do
 	    end
 			context "when weather is stormy" do
 				it "should raise an error to prevent landing" do
-					plane = Plane.new
 			   	allow(subject).to receive(:unsafe_to_fly?).and_return(true)
 			   	expect{ subject.land(plane) }.to raise_error("Too stormy to land!")
 			  end
 			end
 			context "when plane is already at airport" do
 				it "should raise an error to prevent second landing" do
-					plane = Plane.new
 			   	allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 					subject.land(plane)
 			   	expect{ subject.land(plane) }.to raise_error("Plane already at the airport!")
@@ -41,10 +39,11 @@ describe Airport do
 	end
 
 	describe "#confirm_land" do
-		it "will confirm if a plane has landed" do
-			plane = Plane.new
+		before do
 			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 			subject.land(plane)
+		end
+		it "will confirm if a plane has landed" do
 			expect(subject.confirm_land(plane)).to eq(true)
 		end
 	end
@@ -52,7 +51,6 @@ describe Airport do
 	describe "#take_off" do
 		context "when weather is calm" do
 		it "will record that a plane has taken off" do
-				plane = Plane.new
 				allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 				subject.land(plane)
 				allow(subject).to receive(:unsafe_to_fly?).and_return(false)
@@ -62,7 +60,6 @@ describe Airport do
 		end
 			context "when weather is stormy" do
 				it "should raise an error to prevent take off" do
-		       plane = Plane.new
 					 allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 					 subject.land(plane)
 					 allow(subject).to receive(:unsafe_to_fly?).and_return(true)
@@ -70,14 +67,12 @@ describe Airport do
 		      end
 		    end
 				it "raises an error if the plane isn't at airport" do
-					plane = Plane.new
 		 			expect{subject.take_off(plane)}.to raise_error("Plane not found!")
 	 			end
 			end
 
 	describe "#confirm_take_off" do
 		it "will confirm that the list of planes at the airport does not include those that have taken off" do
-			plane = Plane.new
 			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
 			subject.land(plane)
 			allow(subject).to receive(:unsafe_to_fly?).and_return(false)
