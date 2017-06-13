@@ -24,8 +24,8 @@ DEFAULT_CAPACITY = 45
   end
 
   def take_off(plane)
-    fail "Too stormy to take off!" if unsafe_to_fly?
     fail "Plane not found!" if !planes.include?(plane)
+    fail "Too stormy to take off!" if unsafe_to_fly?
     planes.delete(plane)
   end
 

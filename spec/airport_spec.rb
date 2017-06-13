@@ -66,10 +66,12 @@ describe Airport do
 		       expect{ subject.take_off(plane) }.to raise_error("Too stormy to take off!")
 		      end
 		    end
-				it "raises an error if the plane isn't at airport" do
+				context "When plane is not at airport" do
+				it "raises an error to prevent take off" do
 		 			expect{subject.take_off(plane)}.to raise_error("Plane not found!")
 	 			end
 			end
+		end
 
 	describe "#confirm_take_off" do
 		it "will confirm that the list of planes at the airport does not include those that have taken off" do
