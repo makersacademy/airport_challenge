@@ -15,6 +15,7 @@ DEFAULT_CAPACITY = 45
   def land(plane)
     fail "Airport full!" if full?
     fail "Too stormy to land!" if unsafe_to_fly?
+    fail "Plane already at the airport!" if planes.include?(plane)
     planes << plane
   end
 
@@ -24,6 +25,7 @@ DEFAULT_CAPACITY = 45
 
   def take_off(plane)
     fail "Too stormy to take off!" if unsafe_to_fly?
+    fail "Plane not found!" if !planes.include?(plane)
     planes.delete(plane)
   end
 

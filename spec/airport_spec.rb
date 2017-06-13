@@ -30,6 +30,14 @@ describe Airport do
 			   	expect{ subject.land(plane) }.to raise_error("Too stormy to land!")
 			  end
 			end
+			context "when plane is already at airport" do
+				it "should raise an error to prevent second landing" do
+					plane = Plane.new
+			   	allow(subject).to receive(:unsafe_to_fly?).and_return(false)
+					subject.land(plane)
+			   	expect{ subject.land(plane) }.to raise_error("Plane already at the airport!")
+			  end
+			end
 	end
 
 	describe "#confirm_land" do
@@ -61,7 +69,11 @@ describe Airport do
 		       expect{ subject.take_off(plane) }.to raise_error("Too stormy to take off!")
 		      end
 		    end
-		end
+				it "raises an error if the plane isn't at airport" do
+					plane = Plane.new
+		 			expect{subject.take_off(plane)}.to raise_error("Plane not found!")
+	 			end
+			end
 
 	describe "#confirm_take_off" do
 		it "will confirm that the list of planes at the airport does not include those that have taken off" do
