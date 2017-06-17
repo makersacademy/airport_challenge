@@ -1,3 +1,4 @@
+[![BCH compliance](https://bettercodehub.com/edge/badge/motri/airport_challenge?branch=master)](https://bettercodehub.com/)
 ![BUILD STATUS](https://travis-ci.org/motri/airport_challenge.svg?branch=master)
  ### Airport Challenge
 This is a simple program to manage planes and airports.
