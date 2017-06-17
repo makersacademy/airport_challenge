@@ -8,7 +8,6 @@ describe Airport do
 
   it { is_expected.to respond_to :land }
 
-
   describe '#land' do
 
     context 'when sunny' do
