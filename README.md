@@ -36,25 +36,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +73,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
@@ -88,3 +88,34 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+Developer's comments
+------------
+Domain model
+Objects (Nouns) Messages (Verbs)
+Airport         land
+                take_off
+                full?
+                empty?
+                weather_check
+                capacity
+Plane           landed_status
+Weather         stormy?      
+
+Project has 3 classes (Airport, Plane and Weather) and their related spec tests. When the weather is not stormy, planes can land and take off to/from the airport. If the weather is stormy, landing and take off can't happen. If the airport is full, landing can't happen. 
+
+
+2.2.3 :001 > require './lib/Airport.rb'
+ => true
+2.2.3 :002 > airport = Airport.new
+ => #<Airport:0x007f8a9a032790 @landed_planes=[], @capacity=10, @weather=#<Weather:0x007f8a9a0326f0>>
+2.2.3 :003 > plane = Plane.new
+ => #<Plane:0x007f8a99882c20 @landed=false>
+2.2.3 :004 > airport.land(plane)
+ => true
+2.2.3 :005 > airport
+ => #<Airport:0x007f8a9a032790 @landed_planes=[#<Plane:0x007f8a99882c20 @landed=true>], @capacity=10, @weather=#<Weather:0x007f8a9a0326f0 @stormy=false>>
+2.2.3 :006 > airport.take_off(plane)
+ => "#<Plane:0x007f8a99882c20> took of successfully"
+2.2.3 :007 >
