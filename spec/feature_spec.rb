@@ -2,5 +2,6 @@ require './lib/airport'
 
 airport = Airport.new
 plane = Plane.new
-airport.land_plane(plane)
+airport.request_landing(plane)
+plane.landing
 p airport

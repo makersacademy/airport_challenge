@@ -4,14 +4,13 @@ class Airport
 
   attr_accessor :plane
 
-  # Write up an initialize test
   def initialize
-    @airport = []
+    @planes = []
   end
 
-  def land_plane(plane)
-    # p "Plane: #{plane.object_id } has landed"
-    @airport << plane
+  def request_landing(plane)
+    fail 'Plane has already landed' if plane.status?
+    @planes << plane
   end
-
 end
+# Write up an initialize test

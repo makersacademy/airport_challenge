@@ -3,13 +3,18 @@ require 'airport'
 describe Airport do
   let(:plane) { double(:plane) }
 
-  it { is_expected.to respond_to(:land_plane).with(1).argument }
+  it { is_expected.to respond_to(:request_landing).with(1).argument }
 
-  describe 'plane functions' do
-    it 'lands plane at airport' do
-      airport_planes = subject.land_plane(plane)
-      expect(subject.land_plane(plane)).to eq airport_planes
+  describe 'Airport landing request' do
+    it 'requests a plane to land at the airport' do
+      plane = double(:plane, status?: false)
+      planes = subject.request_landing(plane)
+      expect(subject.request_landing(plane)).to eq planes
+    end
+
+    it 'rejects a plane that has already landed' do
+      plane = double(:plane, status?: true)
+      expect { subject.request_landing(plane) }.to raise_error 'Plane has already landed'
     end
   end
-
 end
