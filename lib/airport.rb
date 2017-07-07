@@ -1,3 +1,6 @@
+require_relative 'plane'
+require_relative 'weather'
+
 class Airport
   CAPACITY = 10
 
@@ -9,6 +12,8 @@ class Airport
   end
 
   def take_off
+    raise "#{self.class.name} empty" if empty?
+    planes.pop
   end
 
   def land(plane)
@@ -26,4 +31,5 @@ class Airport
 
   private
   attr_reader :planes
+
 end
