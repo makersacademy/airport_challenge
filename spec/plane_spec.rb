@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport) { double :airport, :name => 'Gatwick', :stormy? => false }
+  let(:airport) { double :airport, :name => 'Gatwick', :stormy? => false, :full? => false }
 
   it { is_expected.to respond_to :land }
   it { is_expected.to respond_to :take_off }
@@ -16,6 +16,11 @@ describe Plane do
     it 'does not land if weather is stormy' do
       stormy_airport = double(:stormy? => true)
       expect { subject.land(stormy_airport) }.to raise_error 'Weather is stormy - arrival delayed'
+    end
+
+    it 'does not land at an airport that is full' do
+      full_airport = double(:stormy? => false, :full? => true)
+      expect { subject.land(full_airport) }.to raise_error 'Flight - airport is at capacity. Maintain holding!'
     end
   end
 

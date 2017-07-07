@@ -2,6 +2,7 @@ class Plane
 
   def land(airport)
     fail 'Weather is stormy - arrival delayed' if airport.stormy?
+    fail 'Flight - airport is at capacity. Maintain holding!' if airport.full?
     "Tower - we have touchdown at #{airport.name}"
   end
 
