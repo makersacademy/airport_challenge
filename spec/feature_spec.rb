@@ -5,7 +5,6 @@ plane = Plane.new
 airport.request_landing(plane)
 plane.landing
 p airport
-plane.take_off
 airport.request_takeoff
+plane.take_off
 p airport
-p plane

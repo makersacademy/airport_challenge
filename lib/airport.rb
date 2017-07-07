@@ -9,7 +9,6 @@ class Airport
   end
 
   def request_landing(plane)
-    fail 'Plane has already landed' if plane.status?
     planes << plane
   end
 
