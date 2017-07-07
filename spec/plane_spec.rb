@@ -12,6 +12,11 @@ describe Plane do
     it 'confirms it has landed' do
       expect(subject.land(airport)).to eq "Tower - we have touchdown at #{airport.name}"
     end
+
+    it 'does not land if weather is stormy' do
+      stormy_airport = double(:stormy? => true)
+      expect { subject.land(stormy_airport) }.to raise_error 'Weather is stormy - arrival delayed'
+    end
   end
 
   describe '#take_off' do
