@@ -17,7 +17,7 @@ Weather | stormy?
 
 Plane
 ---------
-Initiates landing or take-off if directed by TC.
+Initiates landing or take-off if directed by traffic control (TC).
 
 Procedures includes requests to the airport for clearance and, if the clearance is given, informing the airport about the fact of the arrival or departure.
 
