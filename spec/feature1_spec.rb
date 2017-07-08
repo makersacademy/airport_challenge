@@ -9,13 +9,15 @@ require_relative '../lib/airport.rb'
 plane = Plane.new
 airport = Airport.new("London Heathrow")
 
+
+puts plane.status
+plane.land(airport)
+puts plane.status
+
 begin
-  puts plane.status
-  plane.land(airport)
-  puts plane.status
   plane.land(airport)
 rescue => exception
-  puts "#{exception.inspect}"
+  puts exception.inspect
 end
 
 =end
