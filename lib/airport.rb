@@ -1,11 +1,11 @@
 require_relative 'plane'
 
 class Airport
-  def land
+  def landed?
 
   end
 
-  def takeoff
+  def takeoff?
 
   end
 end

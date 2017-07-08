@@ -10,11 +10,11 @@ I want to instruct a plane to land at an airport and confirm that it has landed
 Objects  | Messages
 ------------- | -------------
 Air traffic controller  |
-Airport | land
-Plane | landed?
+Airport | landed?
+Plane | land
 
-Airport <----Plane--->land
-Plane <---- landed? ----> true/false
+Airport <----landed?----> true/false
+Plane ----> land
 
 As an air traffic controller
 So I can get passengers on the way to their destination
@@ -23,10 +23,11 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 Objects  | Messages
 ------------- | -------------
 Air traffic controller  |
-Plane  | take-off?
+Plane  | takeoff?
 Plane | not_at_airport?
 
-Plane <---- take-off? ----> true/false
+Airport <----Plane--->take-off
+Plane <---- takeoff? ----> true/false
 
 As an air traffic controller
 To ensure safety
