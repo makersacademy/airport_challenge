@@ -21,11 +21,11 @@ class Airport
     true
   end
 
-  def plane_arrived(plane)
+  def checkin(plane)
     add(plane)
   end
 
-  def plane_left(plane)
+  def checkout(plane)
     remove(plane)
   end
 

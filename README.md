@@ -1,7 +1,7 @@
 ## Airport Challenge
 
 
-This challenge can be addressed in many different ways. I decided to design it from the plane. So the plane is a main actor. 
+This challenge can be addressed in many different ways. I decided to design it from the plane. So the plane is a main actor.
 
 The plane lands itself to the specified airport or takes-off from it, if granted clearance. While the airport's job is to allow landings/take-offs based on the weather and available capacity.
 
@@ -12,7 +12,7 @@ Objects | Messages
 -- | --
 Traffic Control  |
 Plane  | land_at(airport), lakeoff_from(airport), landed?(airport)
-Airport | capacity, landing_clear?, takeoff_clear?, plane_arrived(plane), plane_left(plane)
+Airport | capacity, landing_clear?, takeoff_clear?, checkin(plane), checkout(plane)
 Weather | stormy?
 
 Plane

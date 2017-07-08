@@ -7,8 +7,8 @@ describe Airport do
   it { is_expected.to respond_to :capacity }
   it { is_expected.to respond_to :landing_clear? }
   it { is_expected.to respond_to :takeoff_clear? }
-  it { is_expected.to respond_to :plane_arrived }
-  it { is_expected.to respond_to :plane_left }
+  it { is_expected.to respond_to :checkin }
+  it { is_expected.to respond_to :checkout }
 
   it 'allows landing' do
     expect(subject.landing_clear?).to be true
@@ -19,7 +19,7 @@ describe Airport do
   end
 
   it 'should prevent landing when the airport is full' do
-    subject.capacity.times { subject.plane_arrived(plane) }
+    subject.capacity.times { subject.checkin(plane) }
     expect { subject.landing_clear? }.to raise_error 'Negative. Airport is full.'
   end
 
@@ -33,7 +33,7 @@ describe Airport do
 
     it 'expected to receive a number of planes according to capacity' do
       airport = described_class.new(@test_capacity)
-      @test_capacity.times { airport.plane_arrived(plane) }
+      @test_capacity.times { airport.checkin(plane) }
       expect { airport.landing_clear? }.to raise_error 'Negative. Airport is full.'
     end
   end

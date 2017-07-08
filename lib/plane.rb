@@ -21,11 +21,11 @@ class Plane
 
   def depart_from(airport)
     @landed_at = nil
-    airport.plane_left(self)
+    airport.checkout(self)
   end
 
   def arrive_to(airport)
     @landed_at = airport
-    airport.plane_arrived(self)
+    airport.checkin(self)
   end
 end

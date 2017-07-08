@@ -3,8 +3,8 @@ describe Plane do
   let(:airport) { double("airport",
                   :landing_clear? => true,
                   :takeoff_clear? => true,
-                  :plane_arrived => nil,
-                  :plane_left => nil)
+                  :checkin => nil,
+                  :checkout => nil)
   }
 
   it { is_expected.to respond_to :land_at }
