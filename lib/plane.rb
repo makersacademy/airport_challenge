@@ -7,12 +7,12 @@ class Plane
     arrive_to(airport)
   end
 
-  def landed?(airport)
+  def landed_at?(airport)
     @landed_at == airport
   end
 
   def takeoff_from(airport)
-    fail "Can\'t depart from #{airport}, I\'m not there." unless landed?(airport)
+    fail "Can\'t depart from #{airport}, I\'m not there." unless landed_at?(airport)
     fail "Can\'t take off, no clearance from #{airport}." unless airport.takeoff_clear?
     depart_from(airport)
   end
