@@ -15,17 +15,24 @@ class Airport
 
   def land plane
     raise 'airport is full' if full?
+    plane.land
     @planes << plane
   end
 
   def take_off plane
+    raise "Take off prevented due to stormy weather" if stormy?
+    plane.take_off
     @planes.delete(plane)
+  end
+
+  def plane_count
+    planes.count
   end
 
   private
 
   def full?
-    planes.count == capacity
+    plane_count == capacity
   end
 
 end

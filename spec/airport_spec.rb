@@ -1,16 +1,20 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   let(:airport) { Airport.new   }
-  let(:plane)   { double(:plane)}
+  let(:plane)   {Plane.new}#{ double(:plane)}
 
-    it 'should store a plane' do
+    it 'should instruct a plane to land and confirm it has landed' do
+      allow(airport).to receive(:stormy?).and_return(false)
       expect(airport.planes.count).to eq 0
       airport.land(plane)
       expect(airport.planes.count).to eq 1
+
     end
 
     it 'should instruct a plane to take off ' do
+      allow(airport).to receive(:stormy?).and_return(false)
       expect(airport.planes.count).to eq 0
       airport.land(plane)
       expect(airport.planes.count).to eq 1
