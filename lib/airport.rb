@@ -10,23 +10,16 @@ class Airport
     @planes = []
   end
 
-  def landing_clear?
+  def land(plane)
+    raise "Error. This plane is not in flight, we can\'t land it." unless plane.in_flight?
     raise 'Negative. Cancel landing because of the weather.' if stormy?
-    raise 'Negative. Airport is full.' if full?
-    true
+    add plane
   end
 
-  def takeoff_clear?
+  def takeoff(plane)
+    raise "Error. This plane is in flight therefore can\'t take-off." unless plane.landed_at?(self)
     raise 'Negative. Cancel take-off because of the weather.' if stormy?
-    true
-  end
-
-  def checkin(plane)
-    add(plane)
-  end
-
-  def checkout(plane)
-    remove(plane)
+    remove plane
   end
 
   private
@@ -36,16 +29,11 @@ class Airport
   end
 
   def add(plane)
-    raise 'Error. This plane is already checked in.' if checkedin?(plane)
+    raise 'Negative. Airport is full.' if full?
     @planes << plane
   end
 
   def remove(plane)
-    raise 'Error. This plane has not been checked in.' unless checkedin?(plane)
     @planes.delete(plane)
-  end
-
-  def checkedin?(plane)
-    planes.include? plane
   end
 end

@@ -1,40 +1,47 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane }
+  let(:plane) { double('plane', :in_flight? => true) }
   before { allow(subject).to receive(:stormy?).and_return false }
 
   it { is_expected.to respond_to :capacity }
-  it { is_expected.to respond_to :landing_clear? }
-  it { is_expected.to respond_to :takeoff_clear? }
-  it { is_expected.to respond_to :checkin }
-  it { is_expected.to respond_to :checkout }
+  it { is_expected.to respond_to :land }
+  it { is_expected.to respond_to :takeoff }
 
-  it 'should give clear for landing' do
-    expect(subject.landing_clear?).to be true
+  it 'should enable planes to land' do
+    expect { subject.land(plane) }.not_to raise_error
   end
 
-  it 'should give clear for take-off' do
-    expect(subject.takeoff_clear?).to be true
+  it 'should enable planes to take-off' do
+    subject.land(plane)
+    allow(plane).to receive(:in_flight?).and_return false
+    allow(plane).to receive(:landed_at?).and_return true
+    expect { subject.takeoff(plane) }.not_to raise_error
   end
 
-  it 'should not allow to check-in planes that are already checked in' do
-    subject.checkin(plane)
-    expect { subject.checkin(plane) }.to raise_error 'Error. This plane is already checked in.'
+  it 'should not allow landing unless the plane is in flight' do
+    subject.land(plane)
+    allow(plane).to receive(:in_flight?).and_return false
+    expect { subject.land(plane) }.to raise_error "Error. This plane is not in flight, we can\'t land it."
   end
 
-  it 'should not allow to checkout planes that are not checked in' do
-    subject.checkin(plane)
-    subject.checkout(plane)
-    expect { subject.checkout(plane) }.to raise_error 'Error. This plane has not been checked in.'
+  it 'should not allow take-off unless the plain is landed in the airport' do
+    subject.land(plane)
+    allow(plane).to receive(:in_flight?).and_return false
+    allow(plane).to receive(:landed_at?).and_return true
+    subject.takeoff(plane)
+    allow(plane).to receive(:in_flight?).and_return true
+    allow(plane).to receive(:landed_at?).and_return false
+    expect { subject.takeoff(plane) }.to raise_error "Error. This plane is in flight therefore can\'t take-off."
   end
 
   it 'should prevent landing when the airport is full' do
     subject.capacity.times {
       plane = double :plane
-      subject.checkin(plane)
+      allow(plane).to receive(:in_flight?).and_return true
+      subject.land(plane)
     }
-    expect { subject.landing_clear? }.to raise_error 'Negative. Airport is full.'
+    expect { subject.land(plane) }.to raise_error 'Negative. Airport is full.'
   end
 
   context 'custom capacity' do
@@ -50,9 +57,10 @@ describe Airport do
       allow(airport).to receive(:stormy?).and_return false
       @test_capacity.times {
         plane = double :plane
-        airport.checkin(plane)
+        allow(plane).to receive(:in_flight?).and_return true
+        airport.land(plane)
       }
-      expect { airport.landing_clear? }.to raise_error 'Negative. Airport is full.'
+      expect { airport.land(plane) }.to raise_error 'Negative. Airport is full.'
     end
   end
 
@@ -60,11 +68,13 @@ describe Airport do
     before { allow(subject).to receive(:stormy?).and_return true }
 
     it 'prevents take-off' do
-      expect { subject.takeoff_clear? }.to raise_error 'Negative. Cancel take-off because of the weather.'
+      allow(plane).to receive(:in_flight?).and_return false
+      allow(plane).to receive(:landed_at?).and_return true
+      expect { subject.takeoff plane }.to raise_error 'Negative. Cancel take-off because of the weather.'
     end
 
     it 'prevents landing' do
-      expect { subject.landing_clear? }.to raise_error 'Negative. Cancel landing because of the weather.'
+      expect { subject.land plane }.to raise_error 'Negative. Cancel landing because of the weather.'
     end
   end
 end

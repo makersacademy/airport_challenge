@@ -1,10 +1,13 @@
 class Plane
   attr_reader :landed_at
 
+  def in_flight?
+    @landed_at ? false : true
+  end
+
   def land_at(airport)
-    fail "Can\'t do that. Already landed at #{@landed_at}." if @landed_at
-    fail "Can\'t take off, no clearance from #{airport}." unless airport.landing_clear?
-    checkin_to(airport)
+    airport.land self
+    checkin_to airport
   end
 
   def landed_at?(airport)
@@ -12,20 +15,17 @@ class Plane
   end
 
   def takeoff_from(airport)
-    fail "Can\'t depart from #{airport}, I\'m not there." unless landed_at?(airport)
-    fail "Can\'t take off, no clearance from #{airport}." unless airport.takeoff_clear?
-    checkout_from(airport)
+    airport.takeoff self
+    checkout
   end
 
   private
 
-  def checkout_from(airport)
+  def checkout
     @landed_at = nil
-    airport.checkout(self)
   end
 
   def checkin_to(airport)
     @landed_at = airport
-    airport.checkin(self)
   end
 end
