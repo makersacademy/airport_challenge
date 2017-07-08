@@ -69,11 +69,16 @@ describe Airport do
     describe '#take_off' do
 
             it 'enables a plane to take_off' do
-            boeing = double(:airplane)
-            allow(boeing).to receive(:the_airplane_has_landed_or_taken_off)
-            subject.land(boeing)
-            expect(subject.take_off).to eq boeing
-            expect(subject.hanger).to eq []
+                boeing = double(:airplane)
+                allow(boeing).to receive(:the_airplane_has_landed_or_taken_off)
+                subject.land(boeing)
+                expect(subject.take_off).to eq boeing
+                expect(subject.hanger).to eq []
+            end
+            
+            it 'raise an error if there are no planes' do
+                airport = Airport.new
+                expect{ airport.take_off }.to raise_error 'Airport empty!'
             end
     end
     

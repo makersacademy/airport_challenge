@@ -37,16 +37,20 @@ class Airport
  
   def land(incoming_airplane)
       if @hanger.count >= 20
-      fail 'Airport full!'
+        fail 'Airport full!'
       else
-      incoming_airplane.the_airplane_has_landed_or_taken_off
-      @hanger << incoming_airplane
+        incoming_airplane.the_airplane_has_landed_or_taken_off
+        @hanger << incoming_airplane
       end
   end
   
   def take_off
-      @hanger[0].the_airplane_has_landed_or_taken_off
-      @hanger.shift
+      if @hanger.empty?
+        fail 'Airport empty!'
+      else
+        @hanger[0].the_airplane_has_landed_or_taken_off
+        @hanger.shift
+      end
   end
   
 end
