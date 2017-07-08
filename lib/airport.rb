@@ -1,7 +1,7 @@
 class Airport
 
   def land plane
-    plane.land
+    plane.land(self)
   end
 
 end

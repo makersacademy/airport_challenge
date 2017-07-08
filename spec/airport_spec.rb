@@ -5,9 +5,9 @@ describe Airport do
   let(:plane) { double :plane }
 
   describe '#land' do
-    it 'instructs a plane to land' do
-      expect(plane).to receive(:land)
-      subject.land plane
+    it 'instructs a plane to land at the airport itself' do
+      expect(plane).to receive(:land).with(airport)
+      airport.land plane
     end
 
     it 'contains the landed plane' do
