@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
+  let(:weather) { double :weather }
 
   describe '#land' do
     it 'instructs a plane to land at the airport itself' do
@@ -34,5 +35,7 @@ describe Airport do
       expect(airport.planes).not_to include(plane)
     end
   end
+
+
 
 end
