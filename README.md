@@ -1,35 +1,6 @@
 Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
@@ -63,12 +34,6 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ## Design of program:
 
-From the user stories I have identified that I need the following:
--Air Traffic Controller
--Airport
--Plane
--Weather
-
 Domain Model:
 
 | Object        | Messages      |
@@ -81,15 +46,6 @@ Domain Model:
 -Air Traffic Controller
 
 
-
-Airport
-
-Plane
-
-Weather
-
-
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
 Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
