@@ -73,7 +73,7 @@ Domain Model:
 
 | Object        | Messages      |
 | ------------- |:-------------:| 
-| Air Traffic Controller      | instruct a plane to land at an airport, confirm_plane_landed | 
+| Air Traffic Controller      | land_plane, confirm_plane_landed, plane_takeoff, confirm_plane_takeoff, prevent_landing, prevent_take_off | 
 | Airport     | store_plane, release_plane, full?, capacity  | 
 | Plane     | land, in_airport?, take_off, in_air? | 
 | Weather     | new_weather, sunny?, stormy? | 
