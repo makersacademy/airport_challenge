@@ -8,7 +8,6 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
-    puts "capacity = #{capacity}"
   end
 
   def landing_clear?
