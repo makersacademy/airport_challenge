@@ -6,7 +6,6 @@ p plane2 = Plane.new
 p plane3 = Plane.new
 puts
 airport1 = Airport.new
-airport2 = Airport.new
 puts
 p airport1.land(plane1)
 p airport1.board(plane1)

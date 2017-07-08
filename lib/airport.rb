@@ -41,6 +41,6 @@ class Airport
 
   def alight(plane)
     fail "#{plane} is not currently landed at this airport!" if (@planes.include?(plane) == false)
-    (plane.people.count).times { @people << plane.alight }
+    plane.people.count.times { @people << plane.alight }
   end
 end
