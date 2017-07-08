@@ -72,7 +72,8 @@ From the user stories I have identified that I need the following:
 Which to use as a class, and which to use as a module?
 
 +--|--+
-| Air Traffic Controller | |
+| Air Traffic Controller | Methods |
++--|--+
 | | |
 
 
