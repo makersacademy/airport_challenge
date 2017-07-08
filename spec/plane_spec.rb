@@ -10,7 +10,7 @@ describe Plane do
   it "responds to .landed?" do
     expect(subject).to respond_to(:landed?)
   end
-  it "responds to .board" do
+  it "responds to .board()" do
     expect(subject).to respond_to(:board)
   end
   it "responds to .alight" do
