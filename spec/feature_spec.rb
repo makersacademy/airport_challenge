@@ -5,5 +5,4 @@ gatwick = Airport.new(50)
 boeing = Plane.new
 gatwick.land(boeing)
 gatwick.takeoff(boeing)
-boeing.flying
-gatwick.capacity
+gatwick.plane

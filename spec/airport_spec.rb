@@ -13,6 +13,14 @@ describe Airport do
     end
   end
 
+  describe "#land" do
+    it "lands planes and stores them" do
+      boeing = Plane.new
+      subject.land(boeing)
+      expect(subject.plane).to eq boeing
+    end
+  end
+
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:takeoff).with(1).argument }
 end
