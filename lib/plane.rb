@@ -2,6 +2,7 @@ class Plane
   attr_reader :landed_at
 
   def land_at(airport)
+    raise "Error. This plane is already landed at #{@landed_at}." if @landed_at
     arrive_to(airport) if airport.landing_clear?
   end
 
@@ -23,6 +24,7 @@ class Plane
   end
 
   def arrive_to(airport)
+
     @landed_at = airport
     airport.plane_arrived(self)
   end

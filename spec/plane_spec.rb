@@ -22,5 +22,4 @@ describe Plane do
     subject.takeoff_from(airport)
     expect(subject.landed?(airport)).to be false
   end
-
 end
