@@ -7,5 +7,10 @@ describe Airport do
 
   end
 
+  it 'controller confirms plane has landed' do
+    plane = Plane.new
+    expect(subject.land_plane(plane))
+  end
+
 
 end
