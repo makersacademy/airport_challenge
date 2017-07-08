@@ -24,10 +24,9 @@ describe Airport do
       expect(airport.capacity).to eq 25
     end
 
-    it 'should report true if the airport is full' do
-      expect(airport.full?).to eq false
+    it 'should prevent land plane if the airport is full' do
       airport.capacity.times { airport.land(plane) }
-      expect(airport.full?).to eq true
+      expect{airport.land(plane)}.to raise_error 'airport is full'
     end
 
 end

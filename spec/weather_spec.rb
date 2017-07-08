@@ -4,8 +4,8 @@ describe Weather do
 
   include Weather
 
-  it 'method weather randomly returns sunny or stormy' do
-    expect(weather).to eq(:stormy).or(eq(:sunny))
+  it 'method weather randomly returns stormy? as true or false' do
+    expect(stormy?).to eq(true).or(eq(false))
   end
 
 end

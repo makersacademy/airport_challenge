@@ -4,11 +4,11 @@ class Plane
     @in_airport = true
   end
 
-  def land
+  def landed
     @in_airport = true
   end
 
-  def take_off
+  def taken_off
     @in_airport = false
   end
 

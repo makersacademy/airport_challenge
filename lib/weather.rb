@@ -1,7 +1,7 @@
 module Weather
 
-  def weather
-    rand(2) == 1 ? :sunny : :stormy
+  def stormy?
+    rand(2) == 1
   end
 
 end
