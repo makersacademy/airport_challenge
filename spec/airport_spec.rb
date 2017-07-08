@@ -30,4 +30,10 @@ describe Airport do
   it "can take an argument at creation to set capacity" do
     expect(bigairport.capacity).to eq 10
   end
+  # it "allows passengers to a docked plane" do
+  #   airport.land(plane)
+  #   airport.board(plane)
+  #   expect(plane.space).to eq 0
+  # end
+
 end

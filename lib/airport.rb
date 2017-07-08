@@ -8,7 +8,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @people = []
-    50.times { @people << Passenger.new }
+    20.times { @people << Passenger.new }
     @planes = []
     @capacity = capacity
   end
@@ -29,5 +29,15 @@ class Airport
     fail 'Plane is not available' if (@planes.include?(plane) == false)
     plane.takeoff
     @planes.delete(plane)
+  end
+
+  def board(plane)
+    fail "#{plane} is not currently landed at this airport!" if (@planes.include?(plane) == false)
+    (plane.space > @people.count ? @people.count : plane.space).times { plane.board(@people.pop) }
+  end
+
+  def alight
+    fail "#{plane} is not currently landed at this airport!" if (@planes.include?(plane) == false)
+
   end
 end

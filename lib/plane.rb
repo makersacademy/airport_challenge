@@ -1,6 +1,7 @@
 class Plane
 
   attr_reader :capacity
+  attr_reader :people
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @people = []
@@ -26,12 +27,12 @@ class Plane
     @landed = false
   end
 
-  def board
-
+  def board(passenger)
+    @people << passenger
+    space
   end
 
-  def alight
-
+  def space
+    @space = @capacity - @people.count
   end
-
 end
