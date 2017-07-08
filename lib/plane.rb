@@ -10,6 +10,7 @@ class Plane
   end
 
   def takeoff(airport)
+    fail "Cannot takeoff a plane that is already flying" if location == :in_air
     @location = :in_air
   end
 

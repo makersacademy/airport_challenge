@@ -23,8 +23,13 @@ describe Plane do
   describe '#takeoff' do
 
     it 'can takeoff from an airport' do
+      plane = Plane.new(double(:airport, :name => 'London Heathrow'))
       plane.takeoff(airport)
       expect(plane.status).to eq "Plane is flying"
+    end
+
+    it 'cannot takeoff unless at an airport' do
+      expect { plane.takeoff(airport) }.to raise_error "Cannot takeoff a plane that is already flying"
     end
 
   end
