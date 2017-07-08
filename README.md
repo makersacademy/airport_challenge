@@ -11,8 +11,8 @@ Domain
 Objects | Messages
 -- | --
 Traffic Control  |
-Plane  | land_at(airport), lakeoff_from(airport), landed_at?(airport)
-Airport | capacity, landing_clear?, takeoff_clear?, checkin(plane), checkout(plane)
+Plane  | land_at(airport), lakeoff_from(airport), landed_at?(airport), in_flight?
+Airport | capacity, land(plane), takeoff(plane)
 Weather | stormy?
 
 Plane
