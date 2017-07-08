@@ -9,7 +9,7 @@ describe Weather do
     # Assuming at most 100 tries are sufficient to generate
     # atleast one stormy weather with 5% odds
     weather = Weather.new
-    100.times do |i|
+    100.times do
       break if weather.stormy?
       weather = Weather.new
     end
