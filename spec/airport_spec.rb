@@ -24,9 +24,10 @@ describe Airport do
   end
 
   context 'custom capacity' do
-    subject { described_class.new(64) }
+    before { @test_capacity = rand(100) }
     it 'expected to reveal its custom capacity' do
-      expect(subject.capacity).to eq 64
+      airport = described_class.new(@test_capacity)
+      expect(airport.capacity).to eq @test_capacity
     end
   end
 

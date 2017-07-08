@@ -21,4 +21,15 @@ describe Plane do
     subject.takeoff_from(@airport)
     expect { subject.takeoff_from(@airport) }.to raise_error
   end
+
+  it 'actually lands' do
+    subject.land_at(@airport)
+    expect(subject.landed?(@airport)).to be true
+  end
+
+  it 'actually takes-off' do
+    subject.land_at(@airport)
+    subject.takeoff_from(@airport)
+    expect(subject.landed?(@airport)).to be false
+  end
 end

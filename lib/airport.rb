@@ -35,10 +35,6 @@ class Airport
     @planes.count >= @capacity
   end
 
-  def planes
-    @planes
-  end
-
   def add(plane)
     @planes << plane
   end
