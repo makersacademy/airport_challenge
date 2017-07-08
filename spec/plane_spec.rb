@@ -5,7 +5,6 @@ describe Plane do
                   :takeoff => nil)
   }
 
-  it { is_expected.to respond_to :in_flight? }
   it { is_expected.to respond_to :land_at }
   it { is_expected.to respond_to :landed_at? }
   it { is_expected.to respond_to :takeoff_from }
@@ -21,14 +20,4 @@ describe Plane do
     subject.takeoff_from(airport)
     expect(subject.landed_at?(airport)).to be false
   end
-
-  it 'should report when it is in flight' do
-    expect(subject.in_flight?).to be true
-  end
-
-  it 'should report when it is not in flight' do
-    subject.land_at(airport)
-    expect(subject.in_flight?).to be false
-  end
-
 end

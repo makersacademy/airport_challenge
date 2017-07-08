@@ -11,14 +11,12 @@ class Airport
   end
 
   def land(plane)
-    raise "Error. This plane is not in flight, we can\'t land it." unless plane.in_flight?
-    raise 'Negative. Cancel landing because of the weather.' if stormy?
+    raise 'Negative. Cancel landing due to weather conditions.' if stormy?
     add plane
   end
 
   def takeoff(plane)
-    raise "Error. This plane is in flight therefore can\'t take-off." unless plane.landed_at?(self)
-    raise 'Negative. Cancel take-off because of the weather.' if stormy?
+    raise 'Negative. Cancel take-off due to weather conditions.' if stormy?
     remove plane
   end
 
@@ -34,6 +32,7 @@ class Airport
   end
 
   def remove(plane)
+    raise 'Error. Plane not found.' unless @planes.include? plane
     @planes.delete(plane)
   end
 end
