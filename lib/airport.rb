@@ -1,9 +1,8 @@
 require_relative 'plane'
-# require './lib/weather.rb'
+# require 'weather'
 
 class Airport
-
-attr_reader :planes
+  attr_reader :planes
 
   def initialize
     @planes = []
