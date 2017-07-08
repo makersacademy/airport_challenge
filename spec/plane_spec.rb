@@ -18,13 +18,11 @@ describe Plane do
 
   describe '#take_off' do
     it 'launches the plane' do
-      #plane.land_at(airport)
       plane.take_off
       expect(plane.landed?).to eq false
     end
 
     it 'does not take off if already airborne' do
-      #plane.land_at(airport)
       plane.take_off
       expect { plane.take_off }.to raise_error("Plane already airborne!")
     end

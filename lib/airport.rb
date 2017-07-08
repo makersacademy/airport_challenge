@@ -11,6 +11,7 @@ class Airport
   end
 
   def take_off plane
+    fail("Plane is not at this airport!") unless @planes.include?(plane)
     plane.take_off
     @planes -= [plane]
   end
