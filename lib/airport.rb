@@ -7,9 +7,11 @@ class Airport
 
   def land_plane(plane)
     @planes << plane
+    puts "#{plane} has landed"
   end
 
-  def has_landed?(plane)
-    @planes.include?(plane)
+  def take_off(plane)
+    @planes.delete(plane)
+    puts "#{plane} has taken off"
   end
 end
