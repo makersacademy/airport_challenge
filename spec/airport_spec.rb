@@ -2,8 +2,8 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double :plane, :name => 'BA125', :landed => false }
-  before :each { allow(plane).to receive(:report_landed) }
+  let(:plane) { double :plane, :name => 'BA125', :grounded => false }
+  before :each { allow(plane).to receive(:report_grounded) }
   before :each { allow(plane).to receive(:report_airborne) }
 
   it { is_expected.to respond_to :land }
@@ -22,8 +22,8 @@ describe Airport do
     end
 
     it 'has a default capacity that can be overridden' do
-      airport = Airport.new(5)
-      expect(airport.capacity).to eq 5
+      airport = Airport.new(50)
+      expect(airport.capacity).to eq 50
     end
   end
 
@@ -32,7 +32,7 @@ describe Airport do
     before :each { allow(subject).to receive_messages(:stormy? => false, :full? => false) }
 
     it 'confirms land' do
-      expect(subject.land(plane)).to eq "Tower - this is #{plane.name}. We have touchdown at #@name"
+      expect(subject.land(plane)).to eq "Tower - this is #{plane.name}. We have touchdown"
     end
 
     it 'does not land if stormy' do
@@ -42,7 +42,7 @@ describe Airport do
 
     it 'does not land if full' do
       allow(subject).to receive(:full?) { true }
-      expect { subject.land(plane) }.to raise_error "Flight -  #@name is at capacity. Maintain holding!"
+      expect { subject.land(plane) }.to raise_error 'Flight -  we are at capacity. Maintain holding'
     end
 
     it 'can be filled by a landing plane' do
@@ -51,9 +51,14 @@ describe Airport do
       expect(subject.runway.count).to eq 1
     end
 
-    it 'does not land if plane is landed' do
-      landed_plane = double('landed_plane', :landed => true)
-      expect { subject.land(landed_plane) }.to raise_error 'Aircraft is already on the ground'
+    it 'does not land if plane is grounded' do
+      grounded_plane = double('grounded_plane', :name => 'BA125', :grounded => true)
+      expect { subject.land(grounded_plane) }.to raise_error 'Aircraft is already on the ground'
+    end
+
+    it 'does not land a non-plane' do
+      non_plane = double('non_plane', :name => "A whale with a rocketpack")
+      expect { subject.land(non_plane) }.to raise_error 'This is not a valid aircraft'
     end
   end
 
@@ -63,7 +68,7 @@ describe Airport do
 
     it 'confirms take off' do
       subject.land(plane)
-      expect(subject.take_off(plane)).to eq "Tower - #{plane.name} is now airborne, leaving #@name"
+      expect(subject.take_off(plane)).to eq "Tower - #{plane.name} is now airborne"
     end
 
     it 'does not take off if stormy' do

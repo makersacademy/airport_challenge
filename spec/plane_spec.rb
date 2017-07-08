@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  it { is_expected.to respond_to :report_landed }
+  it { is_expected.to respond_to :report_grounded }
 
   describe '#initialize' do
 
@@ -15,19 +15,19 @@ describe Plane do
     end
   end
 
-  describe '#report_landed' do
+  describe '#report_grounded' do
 
-    it 'sets landed to true' do
-      subject.report_landed
-      expect(subject.landed).to eq true
+    it 'sets grounded to true' do
+      subject.report_grounded
+      expect(subject.grounded).to eq true
     end
   end
 
   describe '#report_airborne' do
 
-    it 'sets landed to false' do
+    it 'sets grounded to false' do
       subject.report_airborne
-      expect(subject.landed).to eq false
+      expect(subject.grounded).to eq false
     end
   end
 
