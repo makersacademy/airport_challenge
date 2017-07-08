@@ -8,10 +8,8 @@ class Airport
     @plane = plane
   end
 
-=begin
-  def dispatch_plane
-
+  def dispatch_plane(plane)
+    @plane = plane
   end
-=end
 
 end

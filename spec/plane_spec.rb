@@ -8,4 +8,10 @@ describe "Plane" do
     expect(subject.landed?).to eq true
   end
 
+  it "confirms taking-off from airport" do
+    subject = Plane.new
+    subject.take_off?
+    expect(subject.take_off?).to eq true
+  end
+
 end
