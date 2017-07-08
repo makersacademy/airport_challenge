@@ -4,7 +4,7 @@ describe Airport do
 
   let(:airport)     { Airport.new }
   let(:bigairport)  { Airport.new(10) }
-  let(:plane)       { double(:plane, land: nil, takeoff: nil, landed?: true) }
+  let(:plane)       { double(:plane, land: nil, takeoff: nil, landed?: true, space: 50, people: [], board: nil) }
 
   it "responds to .full?" do
     expect(subject).to respond_to(:full?)
@@ -30,10 +30,10 @@ describe Airport do
   it "can take an argument at creation to set capacity" do
     expect(bigairport.capacity).to eq 10
   end
-  # it "allows passengers to a docked plane" do
-  #   airport.land(plane)
-  #   airport.board(plane)
-  #   expect(plane.space).to eq 0
-  # end
+  it "allows passengers to a docked plane" do
+    airport.land(plane)
+    airport.board(plane)
+    expect(airport.people.count).to eq 0
+  end
 
 end

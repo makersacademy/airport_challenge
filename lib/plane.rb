@@ -32,6 +32,11 @@ class Plane
     space
   end
 
+  def alight
+    fail "No passenger's left to alight!" if @people.empty?
+    @people.pop
+  end
+
   def space
     @space = @capacity - @people.count
   end

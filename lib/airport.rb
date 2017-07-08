@@ -5,14 +5,17 @@ class Airport
 
   attr_reader :capacity
   attr_reader :planes
+  attr_reader :people
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @people = []
-    20.times { @people << Passenger.new }
+    DEFAULT_PASSENGERS.times { @people << Passenger.new }
+    puts "#{DEFAULT_PASSENGERS} passengers waiting at the airport"
     @planes = []
     @capacity = capacity
   end
 
+  DEFAULT_PASSENGERS = 20
   DEFAULT_CAPACITY = 5
 
   def full?
@@ -36,8 +39,8 @@ class Airport
     (plane.space > @people.count ? @people.count : plane.space).times { plane.board(@people.pop) }
   end
 
-  def alight
+  def alight(plane)
     fail "#{plane} is not currently landed at this airport!" if (@planes.include?(plane) == false)
-
+    (plane.people.count).times { @people << plane.alight }
   end
 end
