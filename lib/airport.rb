@@ -3,7 +3,7 @@ require_relative 'weather'
 class Airport
   include Weather
   DEFAULT_CAPACITY = 50
-  attr_reader :capacity
+  attr_reader :capacity, :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -36,10 +36,16 @@ class Airport
   end
 
   def add(plane)
+    raise 'Error. This plane is already checked in.' if checkedin?(plane)
     @planes << plane
   end
 
   def remove(plane)
+    raise 'Error. This plane has not been checked in.' unless checkedin?(plane)
     @planes.delete(plane)
+  end
+
+  def checkedin?(plane)
+    planes.include? plane
   end
 end
