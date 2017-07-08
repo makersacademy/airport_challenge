@@ -1,8 +1,9 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane)       { double :plane}
+  let(:plane)       { Plane.new }
 
   it { is_expected.to respond_to(:planes) }
   it { is_expected.to respond_to(:land_plane) }
@@ -15,22 +16,26 @@ describe Airport do
   end
 
   describe '#land_plane' do
-    before(:example) do
-      subject.land_plane(plane)
+    it 'raises an error, if plane has already landed' do
+      plane.landed
+      expect { subject.land_plane(plane) }.to raise_error 'This plane has already landed'
     end
 
-    it 'confirms a plane has landed' do
+    it 'lands a plane' do
+      subject.land_plane(plane)
       expect(subject.planes.include?(plane)).to eq true
     end
   end
 
   describe '#take_off' do
-    before(:example) do
-      subject.planes << plane
-      subject.take_off(plane)
+
+    it 'raises an error, if plane is already flying' do
+      plane.flying
+      expect { subject.take_off(plane) }.to raise_error 'This plane is already flying'
     end
 
-    it 'confirms that a plane taken off' do
+    it 'takes off a plane' do
+      subject.take_off(plane)
       expect(subject.planes.include?(plane)).to eq false
     end
   end
