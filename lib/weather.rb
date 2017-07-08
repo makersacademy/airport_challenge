@@ -1,5 +1,5 @@
-class Weather
+module Weather
   def stormy?
-    (rand(100) % 13).zero?
+    rand(100) < 10
   end
 end
