@@ -21,6 +21,7 @@ describe Airport do
   describe '#take_off' do
     before do
       allow(plane).to receive(:land_at).with(airport)
+      allow(plane).to receive(:landed?) { true }
       airport.land plane
     end
 
@@ -35,7 +36,5 @@ describe Airport do
       expect(airport.planes).not_to include(plane)
     end
   end
-
-
 
 end

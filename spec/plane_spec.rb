@@ -4,7 +4,7 @@ describe Plane do
   subject(:plane) { described_class.new }
   let(:airport) { Airport.new }
 
-  describe '#land_at' do
+  describe '#land' do
     it 'lands the plane' do
       plane.land_at(airport)
       expect(plane.landed?).to eq true
@@ -13,8 +13,15 @@ describe Plane do
 
   describe '#take_off' do
     it 'launches the plane' do
+      plane.land_at(airport)
       plane.take_off
       expect(plane.landed?).to eq false
+    end
+
+    it 'does not take off if already airborne' do
+      plane.land_at(airport)
+      plane.take_off
+      expect { plane.take_off }.to raise_error("Plane already airborne!")
     end
   end
 
