@@ -4,7 +4,7 @@ describe Airport do
 
   let(:airport)     { Airport.new }
   let(:bigairport)  { Airport.new(10) }
-  let(:plane)       { double(:plane, land: nil, takeoff: nil, landed?: true, space: 50, people: [], board: nil, alight: passenger) }
+  let(:plane)       { double(:plane, land: nil, takeoff: nil, landed?: false, space: 50, people: [], board: nil, alight: passenger) }
   let(:passenger)   { double(:passenger) }
 
   it "responds to .full?" do
@@ -16,10 +16,6 @@ describe Airport do
   it "stores landed planes in @planes array" do
     airport.land(plane)
     expect(airport.planes).to include plane
-  end
-  it "turns plane.landed to true after it lands" do
-    airport.land(plane)
-    expect(plane.landed?).to eq true
   end
   it "responds to .takeoff(plane)" do
     expect(subject).to respond_to(:takeoff).with(1).argument

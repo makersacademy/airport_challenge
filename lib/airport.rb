@@ -23,7 +23,8 @@ class Airport
   end
 
   def land(plane)
-    fail 'No space for plane to land!' if full?
+    fail "No space for plane to land!" if full?
+    fail "Plane can't land, it isn't airborn!" if plane.landed?
     plane.land
     @planes << plane
   end

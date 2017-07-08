@@ -5,7 +5,7 @@ class Plane
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @people = []
-    @landed = true
+    @landed = false
     @capacity = capacity
   end
 
