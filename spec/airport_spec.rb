@@ -1,7 +1,7 @@
 require 'airport'
+
 describe Airport do
   let(:plane) { double :plane }
-  # subject { described_class.new(weather) }
   before { allow(subject).to receive(:stormy?).and_return false }
 
   it { is_expected.to respond_to :capacity }
@@ -21,6 +21,13 @@ describe Airport do
   it 'should prevent landing when the airport is full' do
     subject.capacity.times { subject.plane_arrived(plane) }
     expect { subject.landing_clear? }.to raise_error 'Negative. Airport is full.'
+  end
+
+  context 'custom capacity' do
+    subject { described_class.new(64) }
+    it 'expected to reveal its custom capacity' do
+      expect(subject.capacity).to eq 64
+    end
   end
 
   context 'stormy weather' do
