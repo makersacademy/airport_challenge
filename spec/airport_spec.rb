@@ -2,7 +2,17 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
+  let(:plane) { double :plane }
 
-  it { should respond_to(:land).with(1).argument }
+  describe '#land' do
+    it 'instructs a plane to land' do
+      expect(plane).to receive(:land)
+      subject.land plane
+    end
+
+    it 'contains the landed plane' do
+
+    end
+  end
 
 end
