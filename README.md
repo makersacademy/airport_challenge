@@ -73,8 +73,10 @@ Domain Model:
 
 | Object        | Messages      |
 | ------------- |:-------------:| 
-| col 3 is      | right-aligned | 
-| col 2 is      | centered      | 
+| Air Traffic Controller      | instruct a plane to land at an airport, confirm_plane_landed | 
+| Airport     | store_plane, release_plane, full?, capacity  | 
+| Plane     | land, in_airport?, take_off, in_air? | 
+| Weather     | new_weather, sunny?, stormy? | 
 
 -Air Traffic Controller
 
