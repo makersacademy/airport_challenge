@@ -38,10 +38,9 @@ Domain Model:
 
 | Object        | Messages      |
 | ------------- |:-------------:| 
-| Air Traffic Controller      | land_plane, confirm_plane_landed, plane_takeoff, confirm_plane_takeoff, prevent_landing, prevent_take_off, check_weather, check_airport_full | 
-| Airport     | store, release, full?, capacity  | 
-| Plane     | land, take_off, in_airport? | 
-| Weather     | new_weather, sunny?, stormy? | 
+| Airport     | land(plane), take_off(plane), full?, capacity  | 
+| Plane       | land, fly, status | 
+| Weather     | stormy? | 
 
 -Air Traffic Controller
 
