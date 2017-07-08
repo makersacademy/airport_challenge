@@ -6,7 +6,7 @@ describe Plane do
   it { is_expected.to respond_to(:landing) }
   it { is_expected.to respond_to(:take_off) }
 
-  describe 'Plane functions' do
+  describe 'Plane status' do
     it 'set plane status to landed = true' do
       subject.landing
       expect(subject.status?).to eq true
