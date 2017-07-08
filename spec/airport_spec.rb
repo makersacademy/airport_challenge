@@ -2,7 +2,9 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double :plane, :name => 'BA125' }
+  let(:plane) { double :plane, :name => 'BA125', :landed => false }
+  before :each { allow(plane).to receive(:report_landed) }
+  before :each { allow(plane).to receive(:report_airborne) }
 
   it { is_expected.to respond_to :land }
   it { is_expected.to respond_to :take_off }
@@ -27,38 +29,56 @@ describe Airport do
 
   describe '#land' do
 
+    before :each { allow(subject).to receive_messages(:stormy? => false, :full? => false) }
+
     it 'confirms land' do
-      allow(subject).to receive_messages(:stormy? => false, :full? => false)
       expect(subject.land(plane)).to eq "Tower - this is #{plane.name}. We have touchdown at #@name"
     end
 
     it 'does not land if stormy' do
-      allow(subject).to receive_messages(:stormy? => true)
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.land(plane) }.to raise_error 'Weather is stormy - arrival delayed'
     end
 
     it 'does not land if full' do
-      allow(subject).to receive_messages(:stormy? => false, :full? => true)
+      allow(subject).to receive(:full?) { true }
       expect { subject.land(plane) }.to raise_error "Flight -  #@name is at capacity. Maintain holding!"
     end
 
     it 'can be filled by a landing plane' do
-      allow(subject).to receive_messages(:stormy? => false, :full? => false)
+
       subject.land(plane)
       expect(subject.runway.count).to eq 1
+    end
+
+    it 'does not land if plane is landed' do
+      landed_plane = double('landed_plane', :landed => true)
+      expect { subject.land(landed_plane) }.to raise_error 'Aircraft is already on the ground'
     end
   end
 
   describe '#take_off' do
 
     it 'confirms take off' do
-      allow(subject).to receive_messages(:stormy? => false)
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
       expect(subject.take_off(plane)).to eq "Tower - #{plane.name} is now airborne, leaving #@name"
     end
 
     it 'does not take off if stormy' do
-      allow(subject).to receive_messages(:stormy? => true)
+      allow(subject).to receive(:stormy?) { false }
+      subject.land(plane)
+      allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(plane) }.to raise_error 'Weather is stormy - departure delayed'
+    end
+
+    it 'does not take off if plane is not on runway' do
+      expect { subject.take_off(plane) }.to raise_error "Aircraft is not present at this location"
+    end
+
+    it 'removes plane from runway' do
+
+
     end
   end
 
