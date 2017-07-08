@@ -2,8 +2,8 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  let(:airport) { Airport.new   }
-  let(:plane)   { Plane.new     }
+  let(:airport) { Airport.new(0)  }
+  let(:plane)   { Plane.new   }
 
     it 'should instruct a plane to land, store in airport, and confirm plane status is: In Airport' do
       allow(airport).to receive(:stormy?).and_return(false)

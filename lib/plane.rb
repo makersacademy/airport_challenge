@@ -1,14 +1,20 @@
 class Plane
 
-  def initialize
+  attr_reader :airport, :destination
+
+  def initialize (airport_name = "")
+    @flying = false
+    @airport = airport
+  end
+
+  def land (airport_name = "")
+    @airport = airport_name
     @flying = false
   end
 
-  def land
-    @flying = false
-  end
-
-  def take_off
+  def take_off (destination = "")
+    @airport = ""
+    @destination = destination
     @flying = true
   end
 
