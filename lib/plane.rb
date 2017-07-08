@@ -1,14 +1,9 @@
 class Plane
 
-  def land(airport)
-    fail 'Weather is stormy - arrival delayed' if airport.stormy?
-    fail 'Flight - airport is at capacity. Maintain holding!' if airport.full?
-    "Tower - we have touchdown at #{airport.name}"
-  end
+  attr_reader :name
 
-  def take_off(airport)
-    fail 'Weather is stormy - departure delayed' if airport.stormy?
-    "Tower - we are now airborne, leaving #{airport.name}"
+  def initialize
+    @name = "#{(0..1).map { ('A'..'Z').to_a[rand(26)] }.join}#{rand(100..400)}"
   end
 
 end
