@@ -17,10 +17,25 @@ describe Airport do
     it "lands planes and stores them" do
       boeing = Plane.new
       subject.land(boeing)
-      expect(subject.plane).to eq boeing
+      expect(subject.planes.pop).to eq boeing
+    end
+
+    it "can store multiple planes" do
+      boeing1 = Plane.new
+      boeing2 = Plane.new
+      subject.land(boeing1)
+      subject.land(boeing2)
+      expect(subject.planes).to eq [boeing1, boeing2]
     end
   end
 
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:takeoff).with(1).argument }
+  describe "#takeoff" do
+    it "removes planes from the airport" do
+      boeing = Plane.new
+      subject.land(boeing)
+      subject.takeoff(boeing)
+      expect(subject.planes).to eq []
+    end
+  end
+
 end
