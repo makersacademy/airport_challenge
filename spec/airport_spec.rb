@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { double :plane, :name => 'BA125', :grounded => false }
+  let(:plane) { double :plane, :name => 'BA125', :grounded => false, :is_a? => Plane }
   before :each { allow(plane).to receive(:report_grounded) }
   before :each { allow(plane).to receive(:report_airborne) }
 
@@ -52,12 +52,12 @@ describe Airport do
     end
 
     it 'does not land if plane is grounded' do
-      grounded_plane = double('grounded_plane', :name => 'BA125', :grounded => true)
+      grounded_plane = double('grounded_plane', :name => 'BA125', :grounded => true, :is_a? => Plane)
       expect { subject.land(grounded_plane) }.to raise_error 'Aircraft is already on the ground'
     end
 
     it 'does not land a non-plane' do
-      non_plane = double('non_plane', :name => "A whale with a rocketpack")
+      non_plane = double("A whale with a rocketpack")
       expect { subject.land(non_plane) }.to raise_error 'This is not a valid aircraft'
     end
   end

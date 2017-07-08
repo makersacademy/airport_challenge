@@ -10,7 +10,7 @@ class Airport
   end
 
   def land(plane)
-    fail 'This is not a valid aircraft' unless plane.name.length == 5
+    fail 'This is not a valid aircraft' unless plane.is_a?(Plane)
     fail 'Aircraft is already on the ground' if plane.grounded
     fail 'Weather is stormy - arrival delayed' if stormy?
     fail 'Flight -  we are at capacity. Maintain holding' if full?
