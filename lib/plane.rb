@@ -19,11 +19,11 @@ class Plane
     fail "Can\'t depart from #{airport}, I\'m not there." unless landed?(airport)
     fail "Can\'t take off, no clearance from #{airport}." unless airport.takeoff_clear?
     @landed_at = nil
-    airport.plane_left
+    airport.plane_left(self)
   end
 
   def arrive_to(airport)
     @landed_at = airport
-    airport.plane_arrived
+    airport.plane_arrived(self)
   end
 end

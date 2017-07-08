@@ -13,12 +13,20 @@ class Airport
   def landing_clear?
     raise 'Negative. Cancel landing because of the weather.' if stormy?
     raise 'Negative. Airport is full.' if full?
-    true 
+    true
   end
 
   def takeoff_clear?
     raise 'Negative. Cancel take-off because of the weather.' if stormy?
     true
+  end
+
+  def plane_arrived(plane)
+    @planes << plane
+  end
+
+  def plane_left(plane)
+    @planes.delete plane
   end
 
   private
