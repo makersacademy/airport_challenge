@@ -4,7 +4,7 @@ describe Airport do
 
   let(:airport)     { Airport.new }
   let(:bigairport)  { Airport.new(10) }
-  let(:plane)       { double(:plane, landed: nil, takeoff: nil, landed?: true) }
+  let(:plane)       { double(:plane, land: nil, takeoff: nil, landed?: true) }
 
   it "responds to .full?" do
     expect(subject).to respond_to(:full?)

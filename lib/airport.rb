@@ -30,5 +30,4 @@ class Airport
     plane.takeoff
     @planes.delete(plane)
   end
-
 end
