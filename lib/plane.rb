@@ -5,6 +5,7 @@ class Plane
   end
 
   def land(airport)
+    fail "Cannot land a plane that is not flying" unless location == :in_air
     @location = airport
   end
 

@@ -8,9 +8,15 @@ describe Plane do
   it { is_expected.to respond_to(:status) }
 
   describe '#land' do
+
     it 'can land at an airport' do
       plane.land(airport)
       expect(plane.status).to eq "Plane is at airport #{airport.name}"
+    end
+
+    it 'cannot land unless flying' do
+      plane = Plane.new(double(:airport, :name => 'London Heathrow'))
+      expect { plane.land(airport) }.to raise_error "Cannot land a plane that is not flying"
     end
   end
 
