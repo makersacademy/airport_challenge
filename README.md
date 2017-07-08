@@ -69,17 +69,22 @@ From the user stories I have identified that I need the following:
 -Plane
 -Weather
 
-Which to use as a class, and which to use as a module?
+Domain Model:
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
+| Object        | Messages      |
+| ------------- |:-------------:| 
+| col 3 is      | right-aligned | 
+| col 2 is      | centered      | 
 
-Air Traffic Controller
-|    Responsibilities     |   Interacts with          |  
-| ------------- |:-------------:|  
-|      | plane, airport, weather |  
+-Air Traffic Controller
+
+
+
+Airport
+
+Plane
+
+Weather
 
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
