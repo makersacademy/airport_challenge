@@ -3,7 +3,7 @@
 
 This challenge can be implemented in many ways. I decided to design it from the plane. So the plane is a main actor. 
 
-The plane lands itself to the specified airport or take-off from it if granted clearance. While the airport's job is to allow landings/take-offs based on the weather and available capacity.
+The plane lands itself to the specified airport or takes-off from it, if granted clearance. While the airport's job is to allow landings/take-offs based on the weather and available capacity.
 
 Domain
 ---------
