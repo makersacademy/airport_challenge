@@ -37,14 +37,20 @@ Extra software and Gems used
 
 * Simplecov
 * Rspec Test Check tech (actual name)
-*
-*
 
 How the software currently works/looks:
 ------------------------------------
 
-(***irb or code example in bakcwards apostrophes goes here***)
-
+```
+$ irb
+2.2.3 :001 > airport = Airport.new
+ => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
+2.2.3 :002 > plane = Plane.new
+ => #<Plane:0x007fafdb0041b8>
+2.2.3 :003 > airport.land(plane)
+ => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
+2.2.3 :004 >
+```
 
 **Notes On Submission**
 
