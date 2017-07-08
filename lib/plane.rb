@@ -1,4 +1,4 @@
-require './lib/airport.rb'
+require_relative 'airport'
 # require './lib/weather.rb'
 
 class Plane
