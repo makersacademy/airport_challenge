@@ -9,7 +9,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @people = []
     50.times { @people << Passenger.new }
-    @planes = [Plane.new]
+    @planes = []
     @capacity = capacity
   end
 
@@ -21,14 +21,14 @@ class Airport
 
   def land(plane)
     fail 'No space for plane to land!' if full?
+    plane.land
     @planes << plane
-    #set plane.landed? to true
   end
 
   def takeoff(plane)
-    fail 'Plane is not available' if @planes.!include? plane
+    fail 'Plane is not available' if (@planes.include?(plane) == false)
+    plane.takeoff
     @planes.delete(plane)
-    #set plane.landed? to false
   end
 
 end
