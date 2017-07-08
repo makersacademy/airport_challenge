@@ -12,8 +12,7 @@ describe Airport do
   describe '#initialize' do
 
     it 'initializes' do
-      airport = Airport.new
-      expect(airport).not_to be_nil
+      expect(subject).not_to be_nil
     end
 
     it 'has a default capacity' do
@@ -21,37 +20,43 @@ describe Airport do
     end
 
     it 'has a default capacity that can be overridden' do
-      airport = Airport.new(rand(10))
-      expect(airport.capacity).to eq airport.capacity
+      airport = Airport.new(5)
+      expect(airport.capacity).to eq 5
     end
   end
 
   describe '#land' do
 
-    it 'confirms it has landed' do
+    it 'confirms land' do
       allow(subject).to receive_messages(:stormy? => false, :full? => false)
       expect(subject.land(plane)).to eq "Tower - this is #{plane.name}. We have touchdown at #@name"
     end
 
-    it 'does not land if weather is stormy' do
+    it 'does not land if stormy' do
       allow(subject).to receive_messages(:stormy? => true)
       expect { subject.land(plane) }.to raise_error 'Weather is stormy - arrival delayed'
     end
 
-    it 'does not land at an airport that is full' do
+    it 'does not land if full' do
       allow(subject).to receive_messages(:stormy? => false, :full? => true)
       expect { subject.land(plane) }.to raise_error "Flight -  #@name is at capacity. Maintain holding!"
+    end
+
+    it 'can be filled by a landing plane' do
+      allow(subject).to receive_messages(:stormy? => false, :full? => false)
+      subject.land(plane)
+      expect(subject.runway.count).to eq 1
     end
   end
 
   describe '#take_off' do
 
-    it 'confirms it has taken off from an airport' do
+    it 'confirms take off' do
       allow(subject).to receive_messages(:stormy? => false)
       expect(subject.take_off(plane)).to eq "Tower - #{plane.name} is now airborne, leaving #@name"
     end
 
-    it 'does not take off if weather is stormy' do
+    it 'does not take off if stormy' do
       allow(subject).to receive_messages(:stormy? => true)
       expect { subject.take_off(plane) }.to raise_error 'Weather is stormy - departure delayed'
     end
@@ -62,23 +67,6 @@ describe Airport do
     it 'is sometimes stormy' do
       weather = Airport.new.stormy?
       expect(weather).to be(true).or be(false)
-    end
-  end
-
-  describe '#initialize' do
-
-    it 'initializes' do
-      airport = Airport.new
-      expect(airport).not_to be_nil
-    end
-
-    it 'has a default capacity' do
-      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
-    end
-
-    it 'has a default capacity that can be overridden' do
-      airport = Airport.new(rand(10))
-      expect(airport.capacity).to eq airport.capacity
     end
   end
 
