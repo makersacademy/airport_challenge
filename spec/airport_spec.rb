@@ -8,6 +8,7 @@ describe Airport do
     it {is_expected.to respond_to(:permission_to_take_off)}
     it {is_expected.to respond_to(:permission_to_land)}
     
+    
     describe '#traffic_control' do
         it 'takes a random weather report and returns true or false' do
         weather = Weather.new
@@ -68,7 +69,8 @@ describe Airport do
     describe '#take_off' do
 
             it 'enables a plane to take_off' do
-            boeing = Plane.new
+            boeing = double(:airplane)
+            allow(boeing).to receive(:the_airplane_has_landed_or_taken_off)
             subject.land(boeing)
             expect(subject.take_off).to eq boeing
             expect(subject.hanger).to eq []
@@ -77,9 +79,16 @@ describe Airport do
     
     describe '#land' do
         it 'enables a plane to land' do
-            boeing = Plane.new
+            boeing = double(:airplane)
+            allow(boeing).to receive(:the_airplane_has_landed_or_taken_off)
             expect(subject.land(boeing)).to eq [boeing]
-        end
+         end   
+        it 'Raises an error if the airport is full.' do
+            20.times {subject.land Plane.new}
+            expect{ subject.land(Plane.new) }.to raise_error 'Airport full!'
+            end
+            
+        
     end
     
 end
