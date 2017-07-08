@@ -9,6 +9,10 @@ class Plane
     @location = airport
   end
 
+  def takeoff(airport)
+    @location = :in_air
+  end
+
   def status
     location == :in_air ? "Plane is flying" : "Plane is at airport #{location.name}"
   end

@@ -20,6 +20,15 @@ describe Plane do
     end
   end
 
+  describe '#takeoff' do
+
+    it 'can takeoff from an airport' do
+      plane.takeoff(airport)
+      expect(plane.status).to eq "Plane is flying"
+    end
+
+  end
+
   describe '#new' do
 
     it 'responds to 1 argument' do
