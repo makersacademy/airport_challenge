@@ -1,4 +1,4 @@
-require 'bike'
+require 'plane'
 
 describe Plane do
 
