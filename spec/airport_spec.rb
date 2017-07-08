@@ -15,24 +15,29 @@ describe Airport do
   end
 
   describe "#land" do
-    it "responds to .badweather?" do
-      expect(subject).to respond_to(:badweather?)
-    end
     it "responds to .land(plane)" do
       expect(subject).to respond_to(:land).with(1).argument
     end
     it "stores landed planes in @planes array" do
+      allow(airport).to receive(:badweather?).and_return false
       airport.land(plane)
       expect(airport.planes).to include plane
     end
   end
 
   describe "#badweather?" do
+    it "responds to .badweather? with true/false" do
+      allow(airport).to receive(:badweather?).and_return false
+      expect(subject.badweather?).to eq false
+      allow(airport).to receive(:badweather?).and_return true
+      expect(subject.badweather?).to eq true
+    end
     it "stops planes landing in bad weather" do
       allow(airport).to receive(:badweather?).and_return true
       expect { airport.land(plane) }.to raise_error("Bad weather stops planes landing!")
     end
     it "stops planes taking off in bad weather" do
+      allow(airport).to receive(:badweather?).and_return false
       airport.land(plane)
       allow(airport).to receive(:badweather?).and_return true
       expect { airport.takeoff(plane) }.to raise_error("Bad weather stops planes taking off!")
@@ -41,9 +46,11 @@ describe Airport do
 
   describe "#takeoff" do
     it "responds to .takeoff(plane)" do
+      allow(airport).to receive(:badweather?).and_return false
       expect(subject).to respond_to(:takeoff).with(1).argument
     end
     it "returns correct plane after takeoff" do
+      allow(airport).to receive(:badweather?).and_return false
       airport.land(plane)
       expect(airport.takeoff(plane)).to eq plane
     end

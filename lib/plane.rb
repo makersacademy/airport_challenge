@@ -37,6 +37,8 @@ class Plane
     @people.pop
   end
 
+  private
+
   def space
     @space = @capacity - @people.count
   end

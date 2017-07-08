@@ -1,11 +1,9 @@
 require_relative 'passenger'
-require_relative 'plane'
 
 class Airport
 
   attr_reader :capacity
   attr_reader :planes
-  attr_reader :people
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @people = []
@@ -16,19 +14,13 @@ class Airport
     @badweather = false
   end
 
-  DEFAULT_PASSENGERS = 20
-  DEFAULT_CAPACITY = 5
-
   def full?
     @planes.length == @capacity ? true : false
   end
 
   def badweather?
+    checkweather
     @badweather
-  end
-
-  def checkweather
-    @badweather = (rand(6) > 4 ? true : false)
   end
 
   def land(plane)
@@ -55,4 +47,16 @@ class Airport
     fail "#{plane} is not currently landed at this airport!" if (@planes.include?(plane) == false)
     plane.people.count.times { @people << plane.alight }
   end
+
+  private
+
+    def checkweather
+      @badweather = (rand(6) > 4 ? true : false)
+    end
+
+    DEFAULT_PASSENGERS = 20
+    DEFAULT_CAPACITY = 5
+
+    attr_reader :people
+
 end
