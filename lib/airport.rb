@@ -1,7 +1,17 @@
+require_relative "plane"
+
 class Airport
 
-  def receive_plane
+  attr_reader :plane
+
+  def receive_plane(plane)
+    @plane = plane
+  end
+
+=begin
+  def dispatch_plane
 
   end
+=end
 
 end

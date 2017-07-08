@@ -4,4 +4,8 @@ class Atc
     true
   end
 
+  def instruct_take_off
+    true
+  end
+
 end
