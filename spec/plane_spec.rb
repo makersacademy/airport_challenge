@@ -12,15 +12,12 @@ describe Plane do
     expect(plane).to respond_to(:take_off)
   end
 
-  it 'respond to in_airport?' do
-    expect(plane).to respond_to(:status?)
-  end
-
-  it 'method in_airport? should return false after take_off and true after land has been called' do
+  it 'method status should return "Flying" after take_off and "In Airport" after land has been called' do
+    expect(plane).to respond_to(:status)
     plane.take_off
-    expect(plane.status?).to eq "Flying"
+    expect(plane.status).to eq "Flying"
     plane.land
-    expect(plane.status?).to eq "In Airport"
+    expect(plane.status).to eq "In Airport"
   end
 
 end

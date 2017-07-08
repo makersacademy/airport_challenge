@@ -12,7 +12,7 @@ class Plane
     @flying = true
   end
 
-  def status?
+  def status
     @flying ? "Flying" : "In Airport"
   end
 
