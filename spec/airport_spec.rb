@@ -45,10 +45,10 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error 'Flight -  we are at capacity. Maintain holding'
     end
 
-    it 'can be filled by a landing plane' do
+    it 'fills a place on the runway' do
 
       subject.land(plane)
-      expect(subject.runway.count).to eq 1
+      expect(subject.runway[0]).to eq plane
     end
 
     it 'does not land if plane is grounded' do

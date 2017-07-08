@@ -28,7 +28,7 @@ class Airport
   end
 
   def stormy?
-    rand(10) <= 1
+    rand(10) >= 1
   end
 
   def full?
