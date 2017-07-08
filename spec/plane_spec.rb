@@ -5,7 +5,7 @@ describe Plane do
                   :takeoff_clear? => true,
                   :plane_arrived => nil,
                   :plane_left => nil)
-                }
+  }
 
   it { is_expected.to respond_to :land_at }
   it { is_expected.to respond_to :landed? }

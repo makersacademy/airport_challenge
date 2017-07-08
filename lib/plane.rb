@@ -17,6 +17,7 @@ class Plane
 
   def depart_from(airport)
     fail "Can\'t depart from #{airport}, I\'m not there." unless landed?(airport)
+    fail "Can\'t take off, no clearance from #{airport}." unless airport.takeoff_clear?
     @landed_at = nil
     airport.plane_left
   end
