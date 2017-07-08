@@ -1,17 +1,17 @@
 require 'airport'
 
 describe Airport do
-  let(:airport) { described_class.new }
-
+  let(:airport) { described_class.new("London Heathrow") }
+  
   describe '#new' do
-    it 'responds to 1 argument' do
-      expect(Airport).to respond_to(:new).with(1).argument
+
+    it 'must have a name' do
+      expect { Airport.new }.to raise_error ArgumentError
     end
 
-    it 'can have a name when created' do
-      name = "London Heathrow"
-      airport = Airport.new(name)
-      expect(airport.name).to eq name
+    it 'can be named when created' do
+      airport = Airport.new("London Gatwick")
+      expect(airport.name).to eq "London Gatwick"
     end
   end
 
