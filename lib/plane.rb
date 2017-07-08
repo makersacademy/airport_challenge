@@ -11,11 +11,16 @@ class Plane
 
   def takeoff(airport)
     fail "Cannot takeoff a plane that is already flying" if location == :in_air
+    fail "Plane is at #{location.name} and cannot takeoff from #{airport.name}" unless location.name == airport.name
     @location = :in_air
   end
 
   def status
     location == :in_air ? "Plane is flying" : "Plane is at airport #{location.name}"
+  end
+
+  def location_name
+    location == :in_air ? "flying" : "#{location.name}"
   end
 
   private
