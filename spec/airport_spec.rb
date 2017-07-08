@@ -25,9 +25,16 @@ describe Airport do
 
   context 'custom capacity' do
     before { @test_capacity = rand(100) }
+
     it 'expected to reveal its custom capacity' do
       airport = described_class.new(@test_capacity)
       expect(airport.capacity).to eq @test_capacity
+    end
+
+    it 'expected to receive a number of planes according to capacity' do
+      airport = described_class.new(@test_capacity)
+      @test_capacity.times { airport.plane_arrived(plane) }
+      expect { airport.landing_clear? }.to raise_error 'Negative. Airport is full.'
     end
   end
 
