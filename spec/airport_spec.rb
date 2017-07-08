@@ -59,14 +59,14 @@ describe Airport do
 
   describe '#take_off' do
 
+    before :each { allow(subject).to receive_messages(:stormy? => false) }
+
     it 'confirms take off' do
-      allow(subject).to receive(:stormy?) { false }
       subject.land(plane)
       expect(subject.take_off(plane)).to eq "Tower - #{plane.name} is now airborne, leaving #@name"
     end
 
     it 'does not take off if stormy' do
-      allow(subject).to receive(:stormy?) { false }
       subject.land(plane)
       allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(plane) }.to raise_error 'Weather is stormy - departure delayed'
@@ -77,8 +77,9 @@ describe Airport do
     end
 
     it 'removes plane from runway' do
-
-
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.runway).to be_empty
     end
   end
 

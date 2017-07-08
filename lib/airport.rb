@@ -23,6 +23,7 @@ class Airport
     fail "Aircraft is not present at this location" unless runway.include?(plane)
     fail 'Weather is stormy - departure delayed' if stormy?
     plane.report_airborne
+    runway.delete(plane)
     "Tower - #{plane.name} is now airborne, leaving #@name"
   end
 
