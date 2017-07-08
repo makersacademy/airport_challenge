@@ -22,16 +22,28 @@ class Airport
   end
 
   def plane_arrived(plane)
-    @planes << plane
+    add(plane)
   end
 
   def plane_left(plane)
-    @planes.delete plane
+    remove(plane)
   end
 
   private
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def planes
+    @planes
+  end
+
+  def add(plane)
+    @planes << plane
+  end
+
+  def remove(plane)
+    @planes.delete(plane)
   end
 end
