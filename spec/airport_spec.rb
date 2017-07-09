@@ -28,7 +28,8 @@ describe Airport do
 
   it 'allows plane to take off if sunny' do
     allow(airport).to receive(:stormy?).and_return(false)
-    expect(airport.take_off(landed_plane)).to eq false
+    allow(airport).to receive(:take_off?).and_return(true)
+    expect(landed_plane.landed).to eq true
   end
 
   it 'prevents airplane to land if capacity is full' do

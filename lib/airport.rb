@@ -18,17 +18,21 @@ class Airport
     fail 'Landing not allowed , airport full' if full?
     landed = true
     @planes  << plane
+
   end
 
 
   def take_off(plane)
     fail 'Take off not allowed due to stormy weather' if stormy?
     landed = false
+    @planes.delete(plane)
+
   end
 
   def landed
     @plane.landed
   end
+
 
   def stormy?
     return [true,false].sample
@@ -37,5 +41,5 @@ class Airport
   def full?
     @planes.count == capacity
   end
-  
+
 end
