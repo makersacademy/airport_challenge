@@ -10,8 +10,9 @@ class Plane
   end
 
   def takeoff(airport)
-    fail "Cannot takeoff a plane that is already flying" if location == :in_air
-    fail "Plane is at #{location.name} and cannot takeoff from #{airport.name}" unless location.name == airport.name
+    fail_if_flying
+    fail_if_different_airport(airport)
+    fail_if_stormy
     @location = :in_air
   end
 
@@ -25,5 +26,17 @@ class Plane
 
   private
   attr_reader :location
+
+  def fail_if_flying
+    fail "Cannot takeoff a plane that is already flying" if location == :in_air
+  end
+
+  def fail_if_different_airport(airport)
+    fail "Cannot takeoff from a different airport" unless location.name == airport.name
+  end
+
+  def fail_if_stormy
+    fail "Cannot takeoff in stormy weather" if location.weather.stormy?
+  end
 
 end

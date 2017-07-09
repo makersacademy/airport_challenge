@@ -3,6 +3,7 @@ require 'plane'
 describe Plane do
   let(:plane) { described_class.new }
   let(:airport) { double(:airport, :name => 'London Heathrow') }
+  let(:weather) { double(:weather) }
 
   it { is_expected.to respond_to(:land).with(1).arguments }
   it { is_expected.to respond_to(:status) }
@@ -24,7 +25,8 @@ describe Plane do
   describe '#takeoff' do
 
     it 'can takeoff from an airport it is in' do
-      plane = Plane.new(double(:airport, :name => 'London Heathrow'))
+      allow(weather).to receive(:stormy?).and_return(false)
+      plane = Plane.new(double(:airport, :name => 'London Heathrow', :weather => weather))
       plane.takeoff(airport)
       expect(plane.status).to eq "Plane is flying"
     end
@@ -35,7 +37,13 @@ describe Plane do
 
     it 'cannot takeoff from an airport it is not in' do
       plane = Plane.new(double(:airport, :name => 'London Gatwick'))
-      expect { plane.takeoff(airport) }.to raise_error "Plane is at #{plane.location_name} and cannot takeoff from #{airport.name}"
+      expect { plane.takeoff(airport) }.to raise_error "Cannot takeoff from a different airport"
+    end
+
+    it 'cannot takeoff when the weather is stormy' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      plane = Plane.new(double(:airport, :name => 'London Heathrow', :weather => weather))
+      expect { plane.takeoff(airport) }.to raise_error "Cannot takeoff in stormy weather"
     end
 
   end
