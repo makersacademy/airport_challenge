@@ -9,6 +9,7 @@ The user stories and full instructions can be seen in [INSTRUCTIONS.md](INSTRUCT
 
 * Programming language: Ruby
 * Test framework: Rspec
+* Unit and feature tests
 * Developed using TDD
 
 ## Design of program:
