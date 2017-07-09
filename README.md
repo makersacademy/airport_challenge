@@ -29,8 +29,8 @@ The Air Traffic Controller (ATC) is expected to use `irb`. Instructions for use:
 
 Getting started:
 ```ruby
-require './lib/airport.rb'
-require './lib/plane.rb'
+require_relative 'lib/airport.rb'
+require_relative 'lib/plane.rb'
 ```
 
 #### The Airport class
