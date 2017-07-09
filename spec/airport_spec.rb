@@ -33,8 +33,9 @@ describe Airport do
     end
 
     it "should not land a plane when the airport is full" do
-      allow(boeing).to receive_messages(:ancestors => [], :flying => true, :flying= => false)
-      Airport::DEFAULT_CAPACITY.times { gatwick.land(boeing) }
+    #  allow(double(:plane)).to receive_messages(:ancestors => [], :flying => true)
+    #  allow(double(:plane)).to receive(:flying=).with(1).and_return(false)
+      Airport::DEFAULT_CAPACITY.times { gatwick.land(Plane.new) }
       expect { gatwick.land(boeing) }.to raise_error "Airport is full"
     end
 

@@ -12,13 +12,13 @@ class Airport
 
   def land(plane)
     fail "Airport is full" if planes.length == capacity
-    fail "Plane has already landed" if plane.flying == false
+    fail "Plane has already landed" if planes.include?(plane)
     plane.flying = false
     planes << plane
   end
 
   def takeoff(plane)
-    fail "Only planes in an airport can take off from it" if !in_airport?(plane)
+    fail "Only planes in an airport can take off from it" unless in_airport?(plane)
     planes.delete(plane)
   end
 
