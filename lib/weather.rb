@@ -12,8 +12,8 @@ class Weather
   attr_reader :weather
 
   def random_weather
-    # 5% chance of stormy weather
-    [[:stormy], [:sunny] * 19].flatten.sample
+    # 10% chance of stormy weather
+    [[:stormy], [:sunny] * 9].flatten.sample
   end
 
 end

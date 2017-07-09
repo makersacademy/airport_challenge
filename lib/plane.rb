@@ -20,10 +20,6 @@ class Plane
     location == :in_air ? "Plane is flying" : "Plane is at airport #{location.name}"
   end
 
-  def location_name
-    location == :in_air ? "flying" : "#{location.name}"
-  end
-
   private
   attr_reader :location
 
