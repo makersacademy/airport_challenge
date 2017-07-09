@@ -3,12 +3,6 @@ require 'plane'
 
 
 describe Airport do
-
-  # let(:fake_weather) do
-  #   doubled = double(:weather)
-  #   allow(doubled).to receive(:stormy?).and_return(false)
-  #   doubled
-  # end
   subject(:airport) { described_class.new}
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
@@ -26,7 +20,6 @@ describe Airport do
 
   it "confirms that a plane has landed" do
     allow(weather).to receive(:stormy?) { false }
-    # airport.take_off(plane)
     airport.land(plane)
     expect(airport.planes).to eq [plane]
   end
