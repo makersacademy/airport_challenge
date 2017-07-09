@@ -19,8 +19,8 @@ describe Airport do
   end
 
   describe '#take_off' do
-    let(:other_plane) { double :plane
-      
+    let(:other_plane) { double :plane }
+
     before do
       allow(plane).to receive(:land_at).with(airport)
       allow(plane).to receive(:landed?) { true }
