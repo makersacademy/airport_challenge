@@ -9,7 +9,7 @@ describe Airport do
 
     it 'lands something' do
       plane = Plane.new
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to eq [plane]
     end
 
     it 'confirms that a plane has landed' do
@@ -24,7 +24,7 @@ describe Airport do
     #  expect { subject.land(plane) }.to raise_error "Storms prevent landing"
     #end
     it 'prevents landing when full' do
-      subject.land(Plane.new)
+      100.times { subject.land(Plane.new) }
       expect { subject.land(Plane.new) }.to raise_error "Airport full"
     end
 

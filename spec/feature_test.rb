@@ -2,10 +2,15 @@ require './lib/airport.rb'
 require './lib/plane.rb'
 
 airport = Airport.new
-plane = Plane.new
+plane1 = Plane.new
+plane2 = Plane.new
+plane3 = Plane.new
 #default capacity
-20.times { airport.land(Plane.new) }
-airport.land(Plane.new)
+#100.times { airport.land(Plane.new) }
+p airport.land(plane1)
+p airport.land(plane2)
+p airport.take_off(plane1)
+p airport.land(plane3)
 
 
 
