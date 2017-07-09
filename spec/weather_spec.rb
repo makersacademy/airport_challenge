@@ -5,6 +5,6 @@ describe Weather do
   it { is_expected.to respond_to(:storms?) }
 
   it 'return a value for weather forecast' do
-    expect(weather.storms?).to be_a_kind_of(Integer)
+    expect(weather.storms?).to be(true).or be(false)
   end
 end
