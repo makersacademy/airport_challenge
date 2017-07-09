@@ -17,6 +17,7 @@ describe Plane do
             expect(boeing.is_it_landed).to be_truthy
         end
     end
+    
         
     describe '#landed' do
         it 'should report that it has landed' do
@@ -31,4 +32,6 @@ describe Plane do
             expect(boeing.landed?).to eq "Berlin Air flight 302 reporting from above the clouds"
         end
     end
+    
+   
 end

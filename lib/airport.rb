@@ -3,18 +3,15 @@ require_relative 'weather.rb'
 
 class Airport
   
-  attr_reader :hanger
-  
-  def initialize
+  attr_reader :hanger, :capacity
+  DEFAULT_CAPACITY = 20
+  def initialize(capacity = DEFAULT_CAPACITY)
       @hanger = []
+      @capacity = capacity
   end
   
-  def permission_from_traffic_control(weather_report)
-     if weather_report == "Sunny"
-       @permission = true
-    else
-       @permission = false
-     end
+  def weather_report(weather)
+      weather == "Sunny" ? @permission = true : @permission = false
   end
   
 
@@ -34,23 +31,28 @@ class Airport
      end
    end
     
- 
+  def full?
+    @hanger.count >= @capacity
+  end
+  
+  def the_plane_has_already_landed?(incoming_airplane)
+    @hanger.include?(incoming_airplane)
+  end
+  
   def land(incoming_airplane)
-      if @hanger.count >= 20
-        fail 'Airport full!'
-      else
-        incoming_airplane.the_airplane_has_landed_or_taken_off
-        @hanger << incoming_airplane
-      end
+    fail 'Airport full!' if full?
+    fail "This Plane has already landed!" if the_plane_has_already_landed?(incoming_airplane)
+   
+    incoming_airplane.the_airplane_has_landed_or_taken_off
+    @hanger << incoming_airplane
+      
   end
   
   def take_off
-      if @hanger.empty?
-        fail 'Airport empty!'
-      else
-        @hanger[0].the_airplane_has_landed_or_taken_off
-        @hanger.shift
-      end
+    fail 'Airport empty!' if @hanger.empty?
+    @hanger[0].the_airplane_has_landed_or_taken_off
+    @hanger.shift
+   
   end
   
 end
