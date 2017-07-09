@@ -5,8 +5,7 @@ class Airport
 
   include Weather
 
-  attr_reader :planes, :weather
-  attr_accessor :capacity, :airport_name
+  attr_reader :planes, :weather, :capacity
   DEFAULT_CAPACITY = 20
   ERROR = { :stormy => "All flights cancelled due to stormy weather",
             :full => 'Airport is full',
@@ -32,6 +31,10 @@ class Airport
 
   def plane_count
     planes.count
+  end
+
+  def set_capacity(capacity)
+    @capacity = capacity
   end
 
   private
