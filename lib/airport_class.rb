@@ -1,6 +1,6 @@
 class Airport
   DEFAULT_CAPACITY = 20
-  attr_reader :planes, :capacity
+  attr_accessor :planes, :capacity
 
   def initialize(capacity= DEFAULT_CAPACITY)
     @planes = []
@@ -8,9 +8,10 @@ class Airport
   end
 
   def land_plane
-    if weather? == 'calm' && full? == false
+    weather_status = weather?
+    if weather_status == 'calm' && full? == false
       planes << Plane.new
-    elsif weather? == 'stormy'
+    elsif weather_status == 'stormy'
       'Landing delayed due to bad weather'
     else
       'Landing delayed due to airport capacity reached'
@@ -18,7 +19,19 @@ class Airport
   end
 
   def release_plane
-    weather? == 'calm' ? planes.shift : 'Takeoff delayed due to bad weather'
+    weather_status = weather?
+    if weather_status == 'calm' && airport_has_plane? == true
+      planes.shift
+    elsif weather_status == 'stormy'
+      'Takeoff delayed due to bad weather'
+    else
+      'No planes available'
+    end
+  end
+
+  def release_two_or_more_planes(n)
+    n.times do release_plane
+    end
   end
 
   def airport_has_plane?

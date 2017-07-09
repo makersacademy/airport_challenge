@@ -45,4 +45,16 @@ describe Airport do
     expect(test_airport.capacity).to eq 15
   end
 
+  it 'prevents takeoff if there are no planes' do
+    allow(airport).to receive(:weather?) { 'calm' }
+    expect(airport.release_plane).to eq "No planes available"
+  end
+
+  it 'allows multiple planes to be released' do
+    3.times do airport.planes << Plane.new end
+    allow(airport).to receive(:weather?) { 'calm' }
+    airport.release_two_or_more_planes(3)
+    expect(airport.planes).to eq []
+  end
+
 end
