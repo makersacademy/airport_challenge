@@ -43,4 +43,12 @@ describe Airport do
     expect(airport.in_airport?(plane1)).to be_falsy
   end
 
+  it 'checks whether an airport is full' do
+    20.times do
+      airport.planes << Plane.new
+    end
+    expect(airport.full?).to eq true
+
+  end
+
 end

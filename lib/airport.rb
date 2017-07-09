@@ -1,10 +1,11 @@
 class Airport
 
-  attr_accessor :planes, :weather
+  attr_accessor :planes, :weather, :capacity
 
   def initialize(weather = "sunny")
     @planes = []
     @weather = weather
+    @capacity = 10
   end
 
   def land(plane)
@@ -13,6 +14,10 @@ class Airport
 
   def in_airport?(plane)
     planes.include? plane
+  end
+
+  def full?
+    planes.length <= 19 ? false : true
   end
 
   def takeoff(plane)
