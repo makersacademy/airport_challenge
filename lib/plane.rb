@@ -6,13 +6,14 @@ class Plane
 
   def land(airport)
     fail_if_on_ground
+    fail_if_stormy("land", airport)
     @location = airport
   end
 
   def takeoff(airport)
     fail_if_flying
     fail_if_different_airport(airport)
-    fail_if_stormy
+    fail_if_stormy("takeoff", location)
     @location = :in_air
   end
 
@@ -35,8 +36,8 @@ class Plane
     fail "Cannot takeoff from a different airport" unless location.name == airport.name
   end
 
-  def fail_if_stormy
-    fail "Cannot takeoff in stormy weather" if location.weather.stormy?
+  def fail_if_stormy(takeoff_or_land, location)
+    fail "Cannot #{takeoff_or_land} in stormy weather" if location.weather.stormy?
   end
 
 end
