@@ -23,7 +23,8 @@ class Airport
   end
 
   def takeoff(plane)
-    weather == "stormy" ? "cannot takeoff due to weather" : planes.delete(plane)
+    fail "cannot takeoff due to weather" if weather == "stormy"
+    planes.delete(plane)
   end
 
 end

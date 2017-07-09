@@ -32,7 +32,7 @@ describe Airport do
   it "cannot takeoff if it is stormy" do
     airport.planes = [plane1]
     airport.weather = "stormy"
-    expect(airport.takeoff(plane1)).to eq "cannot takeoff due to weather"
+    expect { airport.takeoff(plane1) }.to raise_error "cannot takeoff due to weather"
     expect(airport.in_airport?(plane1)).to be_truthy
   end
 
