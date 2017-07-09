@@ -56,12 +56,13 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Method Syntax
 ---------
-- airport1 = Airport.new (is created with 20 passengers waiting to board)
-- plane1 = Plane.new (is created in midair and must be landed before boarding)
-- plane1.landed? (returns true/false depending on whether the plane is landed)
-- airport1.land(plane1)
-- airport1.board(plane1)
-- airport1.alight(plane1)
-- airport1.takeoff(plane1)
-
+```
+airport1 = Airport.new (is created with 20 passengers waiting to board)
+plane1 = Plane.new (is created in midair and must be landed before boarding)
+plane1.landed? (returns true/false depending on whether the plane is landed)
+airport1.land(plane1)
+airport1.board(plane1)
+airport1.alight(plane1)
+airport1.takeoff(plane1)
+```
 (Occasionally bad weather will halt takeoffs and landings)
