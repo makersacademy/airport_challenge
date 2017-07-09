@@ -21,7 +21,7 @@ Initiates landing or take-off at the specified airport if directed by TC. Proced
 
 Airport
 ---------
-Receves land/takeoff messages from planes. In both cases the plane is passed to the airport's method as an argument. In return the airport may perform landing/take-off procedure or raise an error depending on weather, available capacity and the circumstances of the plane.
+Receives land/takeoff messages from planes. In both cases the plane is passed to the airport's method as an argument. In return the airport may perform landing/take-off procedure or raise an error depending on weather, available capacity and the circumstances of the plane.
 
 Weather
 ---------
