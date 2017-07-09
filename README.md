@@ -26,3 +26,4 @@ Approach
 * Tests have been refactored to use doubles and method stubs
 * User stories implemented, then edge cases added
 * Arbitrarily decided on a default capacity of 10
+* The weather has a 1 in 20 chance of being stormy (also arbitrary)

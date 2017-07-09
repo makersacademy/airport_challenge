@@ -3,6 +3,7 @@ class Plane
   attr_reader :landed
 
   def land(airport, weather = Weather.new)
+    raise 'Plane is already grounded' if @landed == true
     raise 'Cannot land, adverse weather conditions' if weather.stormy == true
     raise 'Cannot land, airport is full' if airport.planes.length == Airport::DEFAULT_CAPACITY
     @landed = true

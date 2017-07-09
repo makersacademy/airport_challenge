@@ -18,6 +18,14 @@ describe Plane do
 
   describe '#land' do
 
+    it 'fails if the plane is already grounded' do
+      allow(airport).to receive(:port_plane)
+      allow(airport).to receive(:planes) { [] }
+      allow(weather).to receive(:stormy) { false }
+      subject.land(airport, weather)
+      expect { subject.land(airport, weather) }.to raise_error(RuntimeError)
+    end
+
     it 'does not allow landing in stormy conditions' do
       allow(weather).to receive(:stormy) { true }
       expect { plane.land(airport, weather) }.to raise_error(RuntimeError)
