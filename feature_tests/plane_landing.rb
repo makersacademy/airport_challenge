@@ -1,6 +1,5 @@
 require '../lib/airport.rb'
 require '../lib/plane.rb'
-require '../lib/weather.rb'
 
 # USER STORY
 # As an air traffic controller
@@ -10,7 +9,7 @@ require '../lib/weather.rb'
 airport = Airport.new
 plane = Plane.new
 
-airport.authorise_land(plane) # authorises plane can land.
+airport.authorise_land(plane) # authorises plane can land (may return error if the weather is stormy).
 plane.landed? # confirms plane has landed
 p plane # outputs status of plane
 

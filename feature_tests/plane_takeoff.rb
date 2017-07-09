@@ -1,6 +1,5 @@
 require '../lib/airport.rb'
 require '../lib/plane.rb'
-require '../lib/weather.rb'
 
 # USER STORY
 # As an air traffic controller
@@ -11,7 +10,7 @@ require '../lib/weather.rb'
 airport = Airport.new
 plane = Plane.new
 
-airport.take_off(plane) # confirms plane can take off
+airport.take_off(plane) # confirms plane can take off (may return error if the weather is stormy).
 plane.departed? # confirms plane has taken off
 p plane # outputs plane status
 
