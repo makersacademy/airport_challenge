@@ -1,5 +1,6 @@
 require 'plane_class.rb'
 require 'airport_class.rb'
+require 'weather_class.rb'
 
 describe Airport do
    subject(:airport){Airport.new}
@@ -16,4 +17,9 @@ it 'plane takes off from airport and confirms this' do
   expect(airport.airport_has_plane?).to be_falsey
 end
 
+it 'prevents takeoff during stormy weather' do
+  airport.land_plane
+  allow(airport).to receive(:weather?) { 'stormy' }
+  expect(airport.release_plane).to eq "Takeoff delayed due to bad weather"
+end
 end

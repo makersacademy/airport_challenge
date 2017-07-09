@@ -11,11 +11,15 @@ def land_plane
 end
 
 def release_plane
-  planes.shift
+  weather? == 'calm' ? planes.shift : "Takeoff delayed due to bad weather"
 end
 
 def airport_has_plane?
   planes == [] ? false : true
+end
+
+def weather?
+  Weather.new.weather
 end
 
 end
