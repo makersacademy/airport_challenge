@@ -10,7 +10,7 @@ event of a storm.
 
 ## How I tackled this challenge
 
-After setting up the [Feature Tests](https://github.com/annalaise/airport_challenge/tree/master/feature_tests) for each user story, I created [unit tests(https://github.com/annalaise/airport_challenge/tree/master/spec) for each of the classes.
+After setting up the [Feature Tests](https://github.com/annalaise/airport_challenge/tree/master/feature_tests) for each user story, I created [unit tests](https://github.com/annalaise/airport_challenge/tree/master/spec) for each of the classes.
 
 The Airport has the most responsibility in directing air traffic in and out of the airport. It interacts with the Weather to determine flight conditions, and authorises planes to land and take off.
 
