@@ -10,13 +10,13 @@ class Airport
   end
 
   def request_landing(plane, weather)
-    #fail 'It is too stormy to land' if Weather.storms? / 2 == 0
-    #weather.storms?
+    fail 'ERROR: it is too stormy to land' if weather.storms?
     plane.landing
     planes << plane
   end
 
   def request_takeoff(plane, weather)
+    fail 'ERROR: it is too stormy to take off' if weather.storms?
     plane.take_off
     planes.shift
   end
