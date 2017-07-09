@@ -1,22 +1,28 @@
 require_relative 'plane' #i had to look this up via google
 
 class Airport
-  attr_reader :plane
+  attr_reader 'planes'
 
-  def land_plane(plane) #rspec found wrong number of arguments: sorted
-    @plane = plane
+  def initialize
+    @planes = []
+    @capacity = 100
+
+  end
+
+  def land_plane(plane)
+    @planes = plane
 
   end
 
   def landed(plane)
-    raise "plane has departed, no more planes." if @plane
-    @plane = plane
+    raise "no more planes." if @planes.length == @capacity
+    @planes << plane
 
   end
 
   def takeoff(plane)
-    raise "no more planes." unless @plane
-    @plane
+    raise "no more planes." if @planes.empty?
+    @planes.pop
 
   end
 
