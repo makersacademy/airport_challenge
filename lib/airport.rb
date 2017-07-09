@@ -12,8 +12,16 @@ class Airport
     @planes << plane
   end
 
-  def depart(plane)
-    @planes.pop
+  def depart
+    if stormy?
+      fail("You cannot take-off, it is too stormy")
+    else
+       @planes.pop
+    end
+  end
+
+  def stormy?
+    rand(10) == 5 ? true : false
   end
 
 end
