@@ -58,6 +58,6 @@ airport_large = Airport.new(100)
 
 The ATC can instruct a plane to land and take off. Clearing checks are made before this happens. The weather is checked, and flights are prevented if it is stormy. Other checks are made, including whether there is capacity at the airport to land a plane. Data checks are made to see whether the plane is already at the airport, and whether the plane is already flying. After landing the airport confirms the plane has landed, and after take off the airport confirms it has left the airport.
 ```ruby
-airport.land_plane(plane)
+airport.land(plane)
 airport.take_off(plane)
 ```
