@@ -1,6 +1,5 @@
 ## Introduction
 
-
 The Airport Challenge is a self-completed Ruby project, which concludes week
 1 of Maker's Academy.
 
@@ -11,7 +10,7 @@ event of a storm.
 
 ## How I tackled this challenge
 
-After setting up the <a href='https://github.com/annalaise/airport_challenge/tree/master/feature_tests>Feature Tests for each user story, I created <a href"https://github.com/annalaise/airport_challenge/tree/master/spec">unit tests</a> for each of the classes.
+After setting up the [Feature Tests](https://github.com/annalaise/airport_challenge/tree/master/feature_tests) for each user story, I created [unit tests(https://github.com/annalaise/airport_challenge/tree/master/spec) for each of the classes.
 
 The Airport has the most responsibility in directing air traffic in and out of the airport. It interacts with the Weather to determine flight conditions, and authorises planes to land and take off.
 
@@ -25,7 +24,7 @@ All user stories have been accounted for unit or feature tests, and in the subse
 
 However, despite many attempts to get it to work, I am not able to override the random storms in the tests, and therefore any features that depend on weather are failing (at random). Trying to fix this has taken up a considerable amount of time - I'm looking forward to working through this tomorrow during code reviews.
 
-Aside from this, edge cases have been defended against, and end users of this program are able to define the airport capacity themselves (see capacity_tests file in <a href='https://github.com/annalaise/airport_challenge/tree/master/feature_tests>Feature Tests</a> for more details)
+Aside from this, edge cases have been defended against, and end users of this program are able to define the airport capacity themselves (see _capacity_tests_ file in [Feature Tests](https://github.com/annalaise/airport_challenge/tree/master/feature_tests)  for more details)
 
 
 ## Authors
