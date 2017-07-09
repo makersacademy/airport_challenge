@@ -35,7 +35,7 @@ require_relative 'lib/plane.rb'
 The ATC can create an airport with a specific capacity, and override this as necessary. If no capacity is specified a default capacity is given.
 ```ruby
 airport = Airport.new
-airtport.capacity = 25
+airtport.new_capacity(25)
 airport_large = Airport.new(100)
 ```
 
