@@ -17,8 +17,7 @@ Weather module | stormy?
 
 Plane
 ---------
-Initiates landing or take-off at the specified airport if directed by TC.
-Procedures require the plane to call the airport's land or takeoff method on self.
+Initiates landing or take-off at the specified airport if directed by TC. Procedures require the plane to call the airport's land or takeoff method on self. Also the plane can confirm if it's landed at a specific airport if requested.
 
 Airport
 ---------
