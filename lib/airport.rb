@@ -30,4 +30,4 @@ end
 # boeing.land(heathrow)
 # boeing.land(heathrow) # => should raise error
 # boeing.take_off(heathrow)
-# boeing.take_off(heathrow) # => should raise error
+# boeing.take_off(heathrow) # => should raise error relating to plane being in air
