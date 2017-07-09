@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-  let(:plane) { Plane.new }
+  let(:plane) { double('plane') }
 
   describe '#port_plane' do
     it 'ports the plane in the airport' do

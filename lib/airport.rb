@@ -17,10 +17,7 @@ end
 # #FEATURETEST
 # heathrow = Airport.new
 # require './lib/plane.rb'
+#
 # boeing = Plane.new
 # boeing.land(heathrow)
-# boeing.landed # => true
-# heathrow.plane # => boeing
-# boeing.take_off(heathrow)
-# boeing.landed # => false
-# heathrow.plane # => nil
+# boeing.take_off(heathrow) # => when stormy return error "Cannot take off - unsuitable weather conditions"

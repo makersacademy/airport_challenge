@@ -2,14 +2,15 @@ class Plane
 
   attr_reader :landed
 
-  def land(airport)
-    airport.port_plane(self)
+  def land(airport, weather=Weather.new)
     @landed = true
+    airport.port_plane(self)
   end
 
-  def take_off(airport)
-    airport.release_plane
+  def take_off(airport, weather=Weather.new)
+    raise 'Cannot take off, unsuitable weather conditions' if weather.stormy == true
     @landed = false
+    airport.release_plane
   end
 
 end
