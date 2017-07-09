@@ -1,25 +1,19 @@
 class Plane
 
-  attr_reader :airport, :destination
-
-  def initialize (airport_name = "")
-    @flying = false
+  def initialize(airport = nil)
     @airport = airport
   end
 
-  def land (airport_name = "")
-    @airport = airport_name
-    @flying = false
+  def fly
+    @airport = nil
   end
 
-  def take_off (destination = "")
-    @airport = ""
-    @destination = destination
-    @flying = true
+  def land_at(airport)
+    @airport = airport
   end
 
-  def status
-    @flying ? "Flying" : "In Airport"
+  def in_airport?(airport)
+    @airport == airport
   end
 
 end
