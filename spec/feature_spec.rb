@@ -1,8 +1,10 @@
 require "airport"
 require "plane"
 
-gatwick = Airport.new(50)
+gatwick = Airport.new
+heathrow = Airport.new
 boeing = Plane.new
 gatwick.land(boeing)
+boeing.flying
 gatwick.takeoff(boeing)
-gatwick.planes
+boeing.flying
