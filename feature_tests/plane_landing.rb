@@ -1,12 +1,18 @@
-require './lib/airport.rb'
+require '../lib/airport.rb'
+require '../lib/plane.rb'
+require '../lib/weather.rb'
 
-# USER STORY & FEATURE TEST
+# USER STORY
 # As an air traffic controller
 # So I can get passengers to a destination
 # I want to instruct a plane to land at an airport and confirm that it has landed
 
 airport = Airport.new
-plane1 = Plane.new
+plane = Plane.new
 
-airport.land(plane1) # lands plane
-plane1.landed? # confirms plane has landed
+airport.land(plane) # lands plane
+plane.landed? # confirms plane has landed
+p plane # outputs status of plane
+
+# Output should look like this:
+# <Plane:0x007fea1a138358 @landed=true, @taken_off=false>
