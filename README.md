@@ -20,9 +20,9 @@ Domain Model:
 Objects  | Messages
 ------------- | -------------
 Air Traffic Controller  |
-Plane  | flying?, start_flying, end_flying
-Weather | stormy?
-Airport | land_plane(plane), take_off(plane), capacity
+class: Plane  | flying?, start_flying, end_flying
+module: Weather | stormy?
+class: Airport | land_plane(plane), take_off(plane), capacity
 
 ## Interface
 The Air Traffic Controller (ATC) is expected to use `irb`. Instructions for use:
@@ -33,47 +33,30 @@ require './lib/airport.rb'
 require './lib/plane.rb'
 ```
 
-Creating a new plane:
+#### The Plane class. 
+A plane can use start_flying to fly and end_flying to land, and its status can be checked using flying?
 ```ruby
 plane = Plane.new
-```
-
-
-The ATC can confirm that a plane is in-flight:
-```ruby
+plane.start_flying
 plane.flying?
-=> true
-```
-
-
-...or else confirm that it has landed:
-```ruby
+plane.end_flying
 plane.flying?
 => false
 ```
 
+#### The Weather module
+Each airport calls on the Weather module using the method 'stormy?'. There is a 1-in-4 chance of the weather being stormy.
 
-An airport can have a specific maximum capacity if required, otherwise it's just instantiated with a default capacity.
+#### The airport class
+The ATC can create an airport with a specific capacity, and override this as necessary. If no capacity is specified a default capacity is given.
 ```ruby
-airport_default = Airport.new
+airport = Airport.new
+airtport.capacity = 25
 airport_large = Airport.new(100)
 ```
 
-Each airport calls on the Weather module. There is a 1-in-4 chance of the weather being stormy:
-```ruby
-weather.stormy?
-=> false or true
-```
-
-The ATC can instruct a plane to land. Checks are made to see if the plane is cleared for landing, including checking if the weather is good, and whether there is capacity to store the plane. There are also data checks to see if the plane is already in the airport and whether it is already flying. After landing the airport confirms the plane has landed.
+The ATC can instruct a plane to land and take off. Clearing checks are made before this happens. The weather is checked, and flights are prevented if it is stormy. Other checks are made, including whether there is capacity at the airport to land a plane. Data checks are made to see whether the plane is already at the airport, and whether the plane is already flying. After landing the airport confirms the plane has landed, and after take off the airport confirms it has left the airport.
 ```ruby
 airport.land_plane(plane)
-```
-
-
-The ATC can instruct a plane to fly. Checks are made to see if the plane is cleared for landing, including checking if the weather is good, and whether there is capacity to store the plane. There are also data checks to see if the plane is in the airport and whether it has already landed. After take off the airport confirms the plane is flying.
-```ruby
 airport.take_off(plane)
 ```
-
-Reference: Thanks to [vannio](https://github.com/vannio) for clear [README and code](https://github.com/vannio/challenge-airport-traffic), which I referred to when creating this.
