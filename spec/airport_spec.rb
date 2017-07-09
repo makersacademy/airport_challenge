@@ -60,5 +60,4 @@ describe Airport do
     airport = described_class.new(30)
     expect(airport.capacity).to eq 30
   end
-
 end
