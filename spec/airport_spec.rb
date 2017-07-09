@@ -1,31 +1,28 @@
+require 'plane'
 require 'airport'
+
+
 
 describe Airport do
 
-  it 'responds to landing instructions' do
-    expect(subject).to respond_to :instruct_to_land
+  let(:airport) {Airport.new}
+  let(:plane)   {Plane.new}
+
+
+
+  it 'responds to #land method' do
+    expect(subject).to respond_to :land
+  end
+  it 'responds to #take_off method' do
+    expect(subject).to respond_to :take_off
+  end
+  it 'Prevent airplane to take off when weather is stormy' do
+    allow(airport).to receive(:stormy?).and_return(true)
+    expect{airport.take_off(plane)}.to raise_error 'Take off not allowed due to stormy weather'
+  end
+  it 'Prevent airplane to landing when weather is stormy' do
+    allow(airport).to receive(:stormy?).and_return(true)
+    expect{airport.land(plane)}.to raise_error 'Landing not allowed due to stormy weather'
   end
 
-  it 'release a new plane for take off' do
-    plane = Plane.new
-    expect(plane).to be_took_off
-  end
-
-  # it 'lands a plane' do
-  #   plane = Plane.new
-  #   weather_is_stormy = false
-  #   expect(subject.instruct_to_land(plane)). to eq plane
-  # end
-
-  it 'prevents take off if weather is stormy' do
-    plane = Plane.new
-    weather_is_stormy = true
-    expect{subject.instruct_to_take_off(plane)}.to raise_error 'Weather is stormy'
-  end
-
-  it 'prevents landing if weather is stormy' do
-    plane = Plane.new
-    weather_is_stormy = true
-    expect{subject.instruct_to_land(plane)}.to raise_error 'Weather is stormy'
-  end
 end
