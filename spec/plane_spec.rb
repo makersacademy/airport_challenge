@@ -1,8 +1,8 @@
 require 'plane'
 
 describe Plane do
-  context 'instructs plane to' do
-    it { is_expected.to respond_to :land }
+  context 'confirms plane status' do
+    it { is_expected.to respond_to :landed? }
   end
-  it { is_expected.to respond_to :take_off }
+  it { is_expected.to respond_to :departed? }
 end

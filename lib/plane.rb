@@ -1,10 +1,10 @@
 
 class Plane
-  def land
+  def landed?
     true
   end
 
-  def take_off
+  def departed?
     true
   end
 end
