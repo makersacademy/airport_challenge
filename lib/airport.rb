@@ -22,7 +22,6 @@ class Airport
   def request_takeoff(plane, weather)
     fail 'ERROR: it is too stormy to take off' if forecast(weather)
     fail 'ERROR: plane has already taken off' unless status?(plane)
-    #fail 'ERROR: The airport is empty' if empty?
     plane.take_off
     planes.shift
   end
