@@ -1,3 +1,8 @@
+require '../lib/airport.rb'
+require '../lib/plane.rb'
+require '../lib/weather.rb'
+
+# USER STORY
 # As an air traffic controller
 # So I can get passengers on the way to their destination
 # I want to instruct a plane to take off from an airport
@@ -6,5 +11,9 @@
 airport = Airport.new
 plane = Plane.new
 
-airport.plane.take_off # confirms plane can take off
-airport.plane.taken_off? # confirms plane has taken off
+airport.take_off(plane) # confirms plane can take off
+plane.departed? # confirms plane has taken off
+p plane # outputs plane status
+
+# Output should look like this:
+# #<Plane:0x007ff58686c648 @landed=false, @taken_off=true>

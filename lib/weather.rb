@@ -1,15 +1,16 @@
 require_relative 'airport'
 
 class Weather
+  attr_reader :stormy
 
-  def stormy?
+  def stormy
     forecast == true
   end
 
   private
 
   def forecast
-    storm = [true, false].sample
+    storm = [true, false, false, false].sample
   end
 
 end

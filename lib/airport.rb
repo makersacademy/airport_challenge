@@ -6,11 +6,11 @@ class Airport
 
     def initialize(capacity=DEFAULT_CAPACITY)
       @planes = []
-      @capacity = DEFAULT_CAPACITY
+      @capacity = capacity
       @weather = Weather.new
     end
 
-    def confirm_land(plane)
+    def authorise_land(plane)
       fail "Landing denied: Airport full" if full?
       fail "Landing denied: Adverse weather" if stormy?
       land(plane)
@@ -18,16 +18,20 @@ class Airport
 
     def land(plane)
       plane.landed?
-      @planes << plane
+      planes << plane
     end
 
     def take_off(plane)
       fail "Take-off denied: Adverse weather" if stormy?
-      @planes.delete(plane)
-      plane.departed?
+      planes.delete(plane)
+      confirm_departed(plane)
     end
 
-    # private
+    def confirm_departed(plane)
+      plane.taken_off?
+    end
+
+  private
 
     def planes
       @planes
@@ -38,7 +42,7 @@ class Airport
     end
 
     def stormy?
-      @weather.stormy?
+      @weather.stormy
     end
 
 end
