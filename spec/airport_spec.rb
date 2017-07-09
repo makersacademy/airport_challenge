@@ -29,4 +29,18 @@ describe Airport do
     expect(airport.in_airport?(plane2)).to be_truthy
   end
 
+  it "cannot takeoff if it is stormy" do
+    airport.planes = [plane1]
+    airport.weather = "stormy"
+    expect(airport.takeoff(plane1)).to eq "cannot takeoff due to weather"
+    expect(airport.in_airport?(plane1)).to be_truthy
+  end
+
+  it "can takeoff if it is sunny" do
+    airport.planes = [plane1]
+    airport.weather = "sunny"
+    airport.takeoff(plane1)
+    expect(airport.in_airport?(plane1)).to be_falsy
+  end
+
 end
