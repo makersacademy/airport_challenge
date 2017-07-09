@@ -9,7 +9,7 @@ describe Airport do
 
   it 'controller allowed to land plane' do
     plane = Plane.new
-    expect(subject.land_plane(plane))
+    expect(subject.land_plane(plane)).to eq plane
   end
 
   it 'responds to plane landed' do
@@ -17,15 +17,15 @@ describe Airport do
 
   end
 
-  it 'responds to take off plane' do
-    expect(subject).to respond_to :takeOff_plane
-  end
+  #it 'responds to take off plane' do
+    #expect(subject).to respond_to :takeOff_plane
+  #end
 
-  it 'controller allows landed plane to take off' do
-    plane = Plane.new
-    expect(subject.takeOff_plane(plane))
+  #it 'controller allows landed plane to take off' do
+    #plane = Plane.new
+    #expect(subject.takeOff_plane(plane))
 
-  end
+  #end
 
 
 end
