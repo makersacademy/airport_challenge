@@ -40,7 +40,7 @@ airtport.new_capacity(25)
 airport_large = Airport.new(100)
 ```
 
-The ATC can instruct a plane to land and take off. Clearing checks are made before this happens. The weather is checked, and flights are prevented if it is stormy. Other checks are made, including whether there is capacity at the airport to land a plane and whether the plane is in the airport before land and take_off.
+The ATC can instruct a plane to land and take off. Clearing checks are made before this happens. The weather is checked, and flights are prevented if it is stormy. Other checks are made, including whether there is capacity at the airport to land a plane and whether the plane is in the airport before `land` and `take_off` are carried out.
 ```ruby
 airport.land(plane)
 airport.take_off(plane)
