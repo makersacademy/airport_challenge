@@ -3,14 +3,17 @@ require_relative 'weather'
 
 class Airport
 
-  attr_accessor :planes
+  attr_accessor :capacity
+  DEFAULT_CAPACITY = 60
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def request_landing(plane, weather)
     fail 'ERROR: it is too stormy to land' if weather.storms?
+    fail 'ERROR: the airport is full' if full?
     plane.landing
     planes << plane
   end
@@ -20,5 +23,11 @@ class Airport
     plane.take_off
     planes.shift
   end
+
+  private
+  attr_reader :planes
+
+  def full?
+    planes.count >= capacity
+  end
 end
-# Write up an initialize test

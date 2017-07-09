@@ -1,6 +1,6 @@
 require './lib/airport'
 
-airport = Airport.new
+airport = Airport.new 20
 plane = Plane.new
 weather = Weather.new
 
