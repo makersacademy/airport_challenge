@@ -7,7 +7,8 @@ describe Airport do
 
   let(:airport) {Airport.new}
   let(:plane)   {Plane.new}
-
+  let(:flying_plane) {double :plane, :landed=>false}
+  let(:landed_plane) {double :plane, :landed=>true}
 
 
   it 'responds to #land method' do
@@ -24,5 +25,15 @@ describe Airport do
     allow(airport).to receive(:stormy?).and_return(true)
     expect{airport.land(plane)}.to raise_error 'Landing not allowed due to stormy weather'
   end
+
+  it 'allows plane to take off if sunny' do
+    allow(airport).to receive(:stormy?).and_return(false)
+    expect(airport.take_off(landed_plane)).to eq false
+  end
+
+  it 'prevents airplane to land if capacity is full' do
+    expect{airport.land(plane)}.to raise_error 'Landing not allowed , airport full'
+  end
+
 
 end
