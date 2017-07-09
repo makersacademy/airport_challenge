@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  let(:plane) { Plane.new }
+  subject(:plane) { described_class.new }
 
   it 'flying? method eq true when start_flying called' do
     plane.start_flying

@@ -33,7 +33,7 @@ class Airport
     planes.count
   end
 
-  def set_capacity(capacity)
+  def new_capacity(capacity)
     @capacity = capacity
   end
 

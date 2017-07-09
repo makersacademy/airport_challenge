@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:airport) { described_class.new }
+  subject(:airport) { described_class.new }
   let(:plane) { double(:plane, :start_flying => true, :end_flying => false) }
 
   context 'weather is good' do
@@ -55,7 +55,7 @@ describe Airport do
 
   it 'should have a default capacity that can be overridden' do
     expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
-    airport.set_capacity(25)
+    airport.new_capacity(25)
     expect(airport.capacity).to eq 25
     airport = described_class.new(30)
     expect(airport.capacity).to eq 30
