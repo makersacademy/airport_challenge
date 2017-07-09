@@ -1,9 +1,9 @@
 ## Airport Challenge
 
 
-This challenge can be addressed in many different ways. I decided to design it from the plane. So the plane is a main actor.
+This challenge can be addressed in many different ways. I decided to start designing it from the plane. 
 
-The plane lands itself to the specified airport or takes-off from it, if granted clearance. While the airport's job is to allow landings/take-offs based on the weather and available capacity.
+So the plane has a knowledge of the airport API for take-off and landing and can initiate one or another if directed by traffic control (TC). While the airport's job is to provide landings/take-offs, raise errors based on the weather and available capacity and to count planes and watch the available capacity.
 
 Domain
 ---------
@@ -11,19 +11,18 @@ Domain
 Objects | Messages
 -- | --
 Traffic Control  |
-Plane  | land_at(airport), lakeoff_from(airport), landed_at?(airport), in_flight?
+Plane  | land_at(airport), lakeoff_from(airport), landed_at?(airport)
 Airport | capacity, land(plane), takeoff(plane)
 Weather | stormy?
 
 Plane
 ---------
-Initiates landing or take-off if directed by traffic control (TC).
-
-Procedures includes requests to the airport for clearance and, if the clearance is given, informing the airport about the fact of the arrival or departure.
+Initiates landing or take-off if directed by TC.
+Procedures require the plane to call the airport land or takeoff method on self.
 
 Airport
 ---------
-Receves landing/take-off clearance requests. In return it may grant the clearance or raise an error depending on weather and available spaces.
+Receves land/takeoff messages from planes. In return it may perform landing/take-off or raise an error depending on weather, available capacity and the circumstances of the plane .
 
 Weather
 ---------
