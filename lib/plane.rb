@@ -5,7 +5,7 @@ class Plane
   end
 
   def land(airport)
-    fail "Cannot land a plane that is not flying" unless location == :in_air
+    fail_if_on_ground
     @location = airport
   end
 
@@ -22,6 +22,10 @@ class Plane
 
   private
   attr_reader :location
+
+  def fail_if_on_ground
+    fail "Cannot land a plane that is not flying" unless location == :in_air
+  end
 
   def fail_if_flying
     fail "Cannot takeoff a plane that is already flying" if location == :in_air
