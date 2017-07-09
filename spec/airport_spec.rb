@@ -14,7 +14,7 @@ describe Airport do
       expect(airport.plane_count).to eq 1
     end
 
-    it 'should raise error land(plane) when plane is already in airport' do
+    it 'land(plane) should raise error when plane is already in airport' do
       airport.land(plane)
       expect { airport.land(plane) }.to raise_error described_class::ERROR[:already_in_airport]
     end
@@ -26,9 +26,8 @@ describe Airport do
       expect(airport.plane_count).to eq 0
     end
 
-    it 'should raise error land(plane) when plane is already in airport' do
-      airport.land(plane)
-      expect { airport.land(plane) }.to raise_error described_class::ERROR[:already_in_airport]
+    it 'land(plane) should raise error when plane is not in airport' do
+      expect { airport.take_off(plane) }.to raise_error described_class::ERROR[:not_in_airport]
     end
 
     it 'should prevent land(plane) if airport full' do
