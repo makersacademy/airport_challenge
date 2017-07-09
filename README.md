@@ -48,7 +48,7 @@ plane.flying?
 #### The Weather module
 Each airport calls on the Weather module using the method 'stormy?'. There is a 1-in-4 chance of the weather being stormy.
 
-#### The airport class
+#### The Airport class
 The ATC can create an airport with a specific capacity, and override this as necessary. If no capacity is specified a default capacity is given.
 ```ruby
 airport = Airport.new
