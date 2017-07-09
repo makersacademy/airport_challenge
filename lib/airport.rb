@@ -6,25 +6,21 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = DEFAULT_CAPACITY
   end
 
-
   def land(plane)
     fail 'Landing not allowed due to stormy weather' if stormy?
     fail 'Landing not allowed, airport full' if full?
-    landed = true
-    @planes  << plane
-
+    plane.landed = true
+    @planes << plane
   end
-
 
   def take_off(plane)
     fail 'Take off not allowed due to stormy weather' if stormy?
-    landed = false
+    plane.landed = false
     @planes.delete(plane)
   end
 
@@ -33,7 +29,7 @@ class Airport
   end
 
   def stormy?
-    return [true,false].sample
+    return [true, false].sample
   end
 
   def full?

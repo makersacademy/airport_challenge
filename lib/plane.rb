@@ -7,12 +7,12 @@ class Plane
     @landed = true
   end
 
-  def landed
-    true
-  end
-
-  def take_off
-    false
-  end
+  # def landed
+  #   true
+  # end
+  #
+  # def take_off
+  #   false
+  # end
 
 end
