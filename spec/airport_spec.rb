@@ -8,8 +8,6 @@ describe Airport do
 
   it { is_expected.to respond_to :land }
   it { is_expected.to respond_to :take_off }
-  it { is_expected.to respond_to :stormy? }
-  it { is_expected.to respond_to :full? }
 
   describe '#initialize' do
 
@@ -85,14 +83,6 @@ describe Airport do
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.runway).to be_empty
-    end
-  end
-
-  describe '#stormy?' do
-
-    it 'is sometimes stormy' do
-      weather = Airport.new.stormy?
-      expect(weather).to be(true).or be(false)
     end
   end
 
