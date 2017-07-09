@@ -2,7 +2,7 @@ require_relative 'plane'
 
 class Airport
 
-  attr_accessor  :planes, :capacity
+  attr_accessor :planes, :capacity
 
   DEFAULT_CAPACITY = 20
 
@@ -18,7 +18,6 @@ class Airport
     fail 'Landing not allowed , airport full' if full?
     landed = true
     @planes  << plane
-
   end
 
 
@@ -26,20 +25,18 @@ class Airport
     fail 'Take off not allowed due to stormy weather' if stormy?
     landed = false
     @planes.delete(plane)
-
   end
 
   def landed
     @plane.landed
   end
 
-
   def stormy?
     return [true,false].sample
   end
 
   def full?
-    @planes.count == capacity
+    planes.count == capacity
   end
 
 end
