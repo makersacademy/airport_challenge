@@ -22,4 +22,10 @@ describe Airport do
     expect(airport.landed?(plane2)). to be_falsy
   end
 
+  it 'checks if a plane is no longer in the airport' do
+    airport.planes = [plane1]
+    airport.takeoff(plane1)
+    expect(airport.planes).to eq []
+  end
+
 end
