@@ -10,8 +10,8 @@ class Airport
     planes << plane
   end
 
-  # def landed?(plane)
-  #   planes.include? plane ? "The plane has landed" : "The plane has not landed"
-  # end
+  def landed?(plane)
+    planes.include? plane 
+  end
 
 end

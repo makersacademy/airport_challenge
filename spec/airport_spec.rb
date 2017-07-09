@@ -16,8 +16,10 @@ describe Airport do
     expect(airport.planes).to eq [plane1, plane2]
   end
 
-  # it 'checks if a plane has landed' do
-  #   air
-  # end
+  it 'checks if a plane has landed' do
+    airport.land(plane1)
+    expect(airport.landed?(plane1)). to be_truthy
+    expect(airport.landed?(plane2)). to be_falsy
+  end
 
 end
