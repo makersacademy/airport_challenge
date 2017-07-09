@@ -10,8 +10,6 @@ class Airport
   DEFAULT_CAPACITY = 20
   ERROR = { :stormy => "All flights cancelled due to stormy weather",
             :full => 'Airport is full',
-            :plane_flying => 'Plane is already flying',
-            :plane_landed => 'Plane has already landed',
             :already_in_airport => 'Plane is already in airport',
             :not_in_airport => 'Plane not in airport',
             :landing => 'Problem with landing',
@@ -43,16 +41,14 @@ class Airport
   private
 
   def clear_for_landing(plane)
-    raise ERROR[:already_in_airport] if planes.include?(plane)
-    raise ERROR[:plane_landed] unless plane.flying?
-    raise ERROR[:full] if full?
     check_weather
+    raise ERROR[:already_in_airport] if planes.include?(plane)
+    raise ERROR[:full] if full?
   end
 
   def clear_for_take_off(plane)
-    raise ERROR[:not_in_airport] unless planes.include?(plane)
-    raise ERROR[:plane_flying] if plane.flying?
     check_weather
+    raise ERROR[:not_in_airport] unless planes.include?(plane)
   end
 
   def check_weather
