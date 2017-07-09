@@ -32,7 +32,7 @@ class Airport
   end
 
   def remove(plane)
-    raise 'Error. Plane not found.' unless @planes.include? plane
+    raise 'Error. Unregistered plane can\'t take-off.' unless @planes.include? plane
     @planes.delete(plane)
   end
 end

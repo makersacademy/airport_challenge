@@ -18,12 +18,18 @@ describe Airport do
   end
 
   it 'should not allow take-off for planes that were not landed here' do
-    expect { subject.takeoff(plane) }.to raise_error 'Error. Plane not found.'
+    expect { subject.takeoff(plane) }.to raise_error 'Error. Unregistered plane can\'t take-off.'
   end
 
   it 'should prevent landing when the airport is full' do
     subject.capacity.times { subject.land(plane) }
     expect { subject.land(plane) }.to raise_error 'Negative. Airport is full.'
+  end
+
+  it 'should count arriving/departing planes properly' do
+    subject.capacity.times { subject.land(plane) }
+    subject.takeoff(plane)
+    expect { subject.land(plane) }.not_to raise_error
   end
 
   context 'custom capacity' do
