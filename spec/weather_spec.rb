@@ -3,8 +3,6 @@ require 'weather'
 describe Weather do
   subject(:weather) { Weather.new }
 
-  it { is_expected.to respond_to(:weather_report) }
-
   describe '#weather_report' do
     it 'shows when the weather is stormy' do
       allow(subject.number_generator).to receive(:rand) { 1 }

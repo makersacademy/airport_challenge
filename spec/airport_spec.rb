@@ -16,40 +16,57 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
-    it 'the capacity can vary appropriately' do
+    it 'can be set with a different capacity' do
       expect(Airport.new(fake_weather, 30).capacity).to eq 30
+    end
+
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
   describe '#land_plane' do
-    it { is_expected.to respond_to(:land_plane) }
-
     it 'prevents landing when the weather is stormy' do
       allow(fake_weather).to receive(:weather_report).and_return(:stormy)
       expect { airport.land_plane(plane) }.to raise_error 'Error plane cannot land in stormy weather'
     end
 
+    it 'instructs the plane to land' do
+      expect(airport).to receive(:land_plane)
+      airport.land_plane(plane)
+    end
+
     it 'lands a plane' do
-      subject.land_plane(plane)
-      expect(subject.planes.include?(plane)).to eq true
+      airport.land_plane(plane)
+      expect(airport.planes).to include plane
     end
 
     it 'raises an error if the airport is full' do
       subject.capacity.times { subject.land_plane(plane) }
       expect { subject.land_plane(plane) }.to raise_error 'The airport is full!'
     end
+
+    it 'raises an error is plane is already landed' do
+      allow(plane).to receive(:status) { :landed }
+      expect { subject.land_plane(plane) }.to raise_error 'Error this plane has already landed'
+    end
   end
 
   describe '#take_off' do
-    it { is_expected.to respond_to(:take_off) }
 
     it 'takes off a plane' do
       airport.land_plane(plane)
       airport.take_off(plane)
       expect(airport.planes.include?(plane)).to eq false
     end
-  end
 
+    it 'raises error if the plane is already flying' do
+      allow(plane).to receive(:status) { :flying }
+      expect { airport.take_off(plane) }.to raise_error 'Error this plane is already flying'
+    end
+
+  end
+  
   it 'prevents take off when the weather is stormy' do
     airport.land_plane(plane)
     allow(fake_weather).to receive(:weather_report).and_return(:stormy)
@@ -57,6 +74,7 @@ describe Airport do
   end
 
   it 'raises an error if the airport is empty' do
+    allow(airport).to receive(:planes) { [] }
     expect { subject.take_off(plane) }.to raise_error 'The airport is empty!'
   end
 end
