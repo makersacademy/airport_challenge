@@ -3,21 +3,17 @@ require './lib/airport.rb'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { Plane.new }
-  let(:weather) { double :weather }
 
   context 'arrivals in good weather' do
-    before(:example) do
-      allow(weather).to receive(:stormy?) { false }
-    end
+    before { allow(airport).to receive(:stormy?).and_return false }
 
     it 'confirms aircraft can land' do
       expect{ airport.authorise_land(plane) }.to_not raise_error
     end
 
     it 'denies landing if airport is full' do
-      @airport1 = Airport.new
-      10.times { @airport1.authorise_land(Plane.new)}
-      expect { @airport1.authorise_land(Plane.new) }.to raise_error("Landing denied: Airport full")
+      10.times { airport.authorise_land(Plane.new)}
+      expect { airport.authorise_land(Plane.new) }.to raise_error("Landing denied: Airport full")
     end
 
     it '#confirm_departed' do
@@ -26,9 +22,7 @@ describe Airport do
   end
 
   context 'arrivals in stormy weather' do
-    before(:example) do
-      allow(weather).to receive(:stormy?) { true }
-    end
+    before { allow(airport).to receive(:stormy?).and_return true }
 
     it 'denies landing' do
       expect { airport.authorise_land(plane) }.to raise_error("Landing denied: Adverse weather")
@@ -36,16 +30,15 @@ describe Airport do
   end
 
   context 'departures in good weather' do
-    before(:example) do
-      allow(weather).to receive(:stormy?) { false }
-      airport.land(plane)
-    end
+    before { allow(airport).to receive(:stormy?).and_return false }
 
     it 'confirms take-off' do
+      airport.land(plane)
       expect { airport.take_off(plane) }.to_not raise_error
     end
 
     it 'denies take-off if plane already departed' do
+      airport.land(plane)
       airport.take_off(plane)
       expect {airport.take_off(plane)}.to raise_error "Plane already departed"
     end
@@ -57,9 +50,7 @@ describe Airport do
   end
 
   context 'departures in stormy weather' do
-    before(:example) do
-      allow(weather).to receive(:stormy?) { true }
-    end
+    before { allow(airport).to receive(:stormy?).and_return true }
 
     it 'denies take off' do
       airport.land(plane)
