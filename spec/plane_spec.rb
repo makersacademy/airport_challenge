@@ -1,6 +1,7 @@
 require 'plane'
 
 describe Plane do
+  subject(:plane) { described_class.new }
   subject(:landed_plane) { described_class.new }
   subject(:flying_plane) { described_class.new }
 
