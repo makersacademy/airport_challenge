@@ -1,5 +1,5 @@
 ## Introduction
-  This is a sample program to simulate an Air Traffic Controller.
+  This is a ruby program to simulate an Air Traffic Controller.
 ## Tech Stack
   - Ruby
   - Git versioning
