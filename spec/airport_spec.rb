@@ -17,7 +17,6 @@ describe Airport do
 
   describe "#land" do
     it "lands planes and stores them" do
-      allow(boeing).to receive_messages(:flying => true, :flying= => false)
       gatwick.land(boeing)
       expect(gatwick.planes.pop).to eq boeing
     end
@@ -25,22 +24,17 @@ describe Airport do
     it "can store multiple planes" do
       boeing1 = double(:plane)
       boeing2 = double(:plane)
-      allow(boeing1).to receive_messages(:flying => true, :flying= => false, :ancestors => [])
-      allow(boeing2).to receive_messages(:flying => true, :flying= => false, :ancestors => [])
       gatwick.land(boeing1)
       gatwick.land(boeing2)
       expect(gatwick.planes).to eq [boeing1, boeing2]
     end
 
     it "should not land a plane when the airport is full" do
-    #  allow(double(:plane)).to receive_messages(:ancestors => [], :flying => true)
-    #  allow(double(:plane)).to receive(:flying=).with(1).and_return(false)
-      Airport::DEFAULT_CAPACITY.times { gatwick.land(Plane.new) }
+      Airport::DEFAULT_CAPACITY.times { gatwick.land(double(:plane)) }
       expect { gatwick.land(boeing) }.to raise_error "Airport is full"
     end
 
     it "should not allow a plane to land if it has already landed" do
-      allow(boeing).to receive_messages(:flying => true, :flying= => false)
       gatwick.land(boeing)
       expect { gatwick.land(boeing) }.to raise_error "Plane has already landed"
     end
@@ -48,14 +42,12 @@ describe Airport do
 
   describe "#takeoff" do
     it "removes planes from the airport" do
-      allow(boeing).to receive_messages(:flying => true, :flying= => false)
       gatwick.land(boeing)
       gatwick.takeoff(boeing)
       expect(gatwick.planes).to eq []
     end
 
     it "should not allow planes to take off from airports they aren't in" do
-      allow(boeing).to receive_messages(:flying => true, :flying= => false)
       heathrow = described_class.new
       gatwick.land(boeing)
       expect { heathrow.takeoff(boeing) }.to raise_error "Only planes in an airport can take off from it"
@@ -64,13 +56,11 @@ describe Airport do
 
   describe "#in_airport?" do
     it "allows the user to check that a landed plane is in the airport" do
-      allow(boeing).to receive_messages(:flying => true, :flying= => false)
       gatwick.land(boeing)
       expect(gatwick.in_airport?(boeing)).to be true
     end
 
     it "allows the user to check that a plane which has taken off is no longer in the airport" do
-      allow(boeing).to receive_messages(:flying => true, :flying= => false)
       gatwick.land(boeing)
       gatwick.takeoff(boeing)
       expect(gatwick.in_airport?(boeing)).to be false
