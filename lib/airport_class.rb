@@ -29,7 +29,12 @@ class Airport
     end
   end
 
-  def release_two_or_more_planes(n)
+  def land_multiple_planes(n)
+    n.times do land_plane
+    end
+  end
+
+  def release_multiple_planes(n)
     n.times do release_plane
     end
   end

@@ -53,8 +53,14 @@ describe Airport do
   it 'allows multiple planes to be released' do
     3.times do airport.planes << Plane.new end
     allow(airport).to receive(:weather?) { 'calm' }
-    airport.release_two_or_more_planes(3)
+    airport.release_multiple_planes(3)
     expect(airport.planes).to eq []
+  end
+
+  it 'allows multiple planes to land' do
+    allow(airport).to receive(:weather?) { 'calm' }
+    airport.land_multiple_planes(3)
+    expect(airport.planes.length).to eq 3
   end
 
 end
