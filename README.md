@@ -22,11 +22,11 @@ Domain Model:
 | land                | Plane               |
 | take_off            | Plane               |
 | plane_in_airport?   | Plane               |
-| check_weather       | Weather             |
-| check_airport_full  |                     |
-| capacity            |                     |
-| planes              |                     |
+| check_airport_full  | Plane               |
+| capacity            | Plane               |
+| planes              | Plane               |
 | airport_name        |                     |
+| check_weather       | Weather             |
 
 #### class: Plane
 | Responsibilities    | Collaborators       |
