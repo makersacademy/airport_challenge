@@ -24,10 +24,11 @@ describe Airport do
     #  expect { subject.land(plane) }.to raise_error "Storms prevent landing"
     # end
     it 'prevents landing when full' do
-      100.times { subject.land(Plane.new) }
+      Airport::DEFAULT_CAPACITY.times do
+        subject.land(Plane.new)
+      end
       expect { subject.land(Plane.new) }.to raise_error "Airport full"
     end
-
   end
 
   describe '#take_off' do

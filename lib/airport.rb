@@ -1,6 +1,7 @@
 require_relative 'weather'
 
 class Airport
+  DEFAULT_CAPACITY = 100
   attr_reader :plane, :weather
   # def plane
   #   @plane
@@ -29,7 +30,7 @@ class Airport
   private
 
   def full?
-    @planes.count >= 100
+    @planes.count >= DEFAULT_CAPACITY
   end
 
   def empty?
