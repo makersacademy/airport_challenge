@@ -23,7 +23,10 @@ end
 
 # #FEATURETEST
 # heathrow = Airport.new
+# gatwick = Airport.new
 # require './lib/plane.rb'
 # require './lib/weather.rb'
 #
-# 10.times { Plane.new.land(heathrow) }
+# boeing = Plane.new
+# boeing.land(heathrow)
+# boeing.take_off(gatwick) # => should be an error

@@ -10,6 +10,7 @@ class Plane
   end
 
   def take_off(airport, weather = Weather.new)
+    raise "Plane is not based at this airport, cannot take off" unless airport.planes.include? self
     raise 'Cannot take off, adverse weather conditions' if weather.stormy == true
     @landed = false
     airport.release_plane(self)
