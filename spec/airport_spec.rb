@@ -21,8 +21,9 @@ describe Airport do
     end
 
     it 'rejects a landing plane if the weather is stormy' do
+      error = 'ERROR: it is too stormy to land'
       allow(weather).to receive(:storms?).and_return true
-      expect { airport.request_landing(plane_false, weather) }.to raise_error 'ERROR: it is too stormy to land'
+      expect { airport.request_landing(plane_false, weather) }.to raise_error error
     end
 
     it 'allows a plane to land after the storm has passed' do
@@ -51,8 +52,9 @@ describe Airport do
     end
 
     it 'rejects a taking off plane if the weather is stormy' do
+      error = 'ERROR: it is too stormy to take off'
       allow(weather).to receive(:storms?).and_return true
-      expect { airport.request_takeoff(plane_false, weather) }.to raise_error 'ERROR: it is too stormy to take off'
+      expect { airport.request_takeoff(plane_false, weather) }.to raise_error error
     end
 
     it 'allows a plane to take off after the storm has passed' do

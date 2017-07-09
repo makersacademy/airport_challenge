@@ -14,6 +14,7 @@ class Airport
   def request_landing(plane, weather)
     fail 'ERROR: it is too stormy to land' if weather.storms?
     fail 'ERROR: the airport is full' if full?
+    #fail 'ERROR: plane has already landed' if plane.status?
     plane.landing
     planes << plane
   end

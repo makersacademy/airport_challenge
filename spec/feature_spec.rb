@@ -6,6 +6,7 @@ weather = Weather.new
 
 weather.storms?
 p weather
+p plane.status?
 
 airport.request_landing(plane, weather)
 p airport
