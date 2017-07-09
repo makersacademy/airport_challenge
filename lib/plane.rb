@@ -11,6 +11,7 @@ class Plane
 
   def landed?
     @landed = true
+    @taken_off = false
   end
 
   def taken_off?

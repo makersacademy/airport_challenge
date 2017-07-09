@@ -4,10 +4,10 @@ require_relative 'weather'
 class Airport
   DEFAULT_CAPACITY = 10
 
-    def initialize(capacity=DEFAULT_CAPACITY)
+    def initialize(capacity=DEFAULT_CAPACITY, weather: Weather.new)
       @planes = []
-      @capacity = capacity
-      @weather = Weather.new
+      @capacity = capacity.to_i
+      @weather = weather
     end
 
     def authorise_land(plane)
@@ -18,12 +18,16 @@ class Airport
 
     def land(plane)
       plane.landed?
-      planes << plane
+      planes << plane unless planes.include? plane
     end
 
     def take_off(plane)
       fail "Take-off denied: Adverse weather" if stormy?
-      planes.delete(plane)
+      if planes.include? plane
+        planes.delete(plane)
+      else
+        fail "Plane already departed"
+      end
       confirm_departed(plane)
     end
 
@@ -32,6 +36,7 @@ class Airport
     end
 
   private
+    attr_reader :weather
 
     def planes
       @planes
@@ -42,7 +47,7 @@ class Airport
     end
 
     def stormy?
-      @weather.stormy
+      weather.stormy
     end
 
 end
