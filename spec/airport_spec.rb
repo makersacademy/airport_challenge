@@ -23,10 +23,15 @@ describe Airport do
     #  subject.land(plane)
     #  expect { subject.land(plane) }.to raise_error "Storms prevent landing"
     #end
+    it 'prevents landing when full' do
+      subject.land(Plane.new)
+      expect { subject.land(Plane.new) }.to raise_error "Airport full"
+    end
+
   end
 
   describe '#take_off' do
-    let(:weather) { double(:weather, stormy?: false) }
+    let(:weather) { double(:weather, stormy?: false)}
     it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it 'confirms that a plane has taken off' do
