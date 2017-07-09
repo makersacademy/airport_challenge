@@ -47,10 +47,10 @@ airport.take_off(plane)
 ```
 
 #### The Weather class
-Each airport includes an instance of the Weather class, which has the method 'stormy?'. There is a 1-in-4 chance of the weather being stormy.
+Each airport includes an instance of the Weather class, which has the method `stormy?`. There is a 1-in-4 chance of the weather being stormy.
 
 #### The Plane class
-A plane's status can be checked using flying?. This equals true if has left the airport and false if it has landed.
+A plane's status can be checked using flying?. This equals `true` if has left the airport and `false` if it has landed.
 ```ruby
 plane = Plane.new
 airport.land(plane)
