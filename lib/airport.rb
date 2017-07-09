@@ -10,7 +10,7 @@ class Airport
     planes << plane
   end
 
-  def landed?(plane)
+  def in_airport?(plane)
     planes.include? plane
   end
 

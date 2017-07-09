@@ -18,14 +18,15 @@ describe Airport do
 
   it 'checks if a plane has landed' do
     airport.land(plane1)
-    expect(airport.landed?(plane1)). to be_truthy
-    expect(airport.landed?(plane2)). to be_falsy
+    expect(airport.in_airport?(plane1)).to be_truthy
+    expect(airport.in_airport?(plane2)).to be_falsy
   end
 
-  it 'checks if a plane is no longer in the airport' do
-    airport.planes = [plane1]
+  it 'shows plane is no longer in airport after takeoff' do
+    airport.planes = [plane1, plane2]
     airport.takeoff(plane1)
-    expect(airport.planes).to eq []
+    expect(airport.in_airport?(plane1)).to be_falsy
+    expect(airport.in_airport?(plane2)).to be_truthy
   end
 
 end
