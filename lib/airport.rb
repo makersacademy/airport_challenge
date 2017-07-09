@@ -9,13 +9,15 @@ class Airport
   end
 
   def landed(plane)
+    raise "plane has departed, no more planes." if @plane
     @plane = plane
 
   end
 
-  #def takeOff_plane(plane)
-    #true
+  def takeoff(plane)
+    raise "no more planes." unless @plane
+    @plane
 
-  #end
+  end
 
 end

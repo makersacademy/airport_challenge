@@ -12,20 +12,27 @@ describe Airport do
     expect(subject.land_plane(plane)).to eq plane
   end
 
-  it 'responds to plane landed' do
+  it 'there is a plane that has landed at airport' do
     expect(subject).to respond_to :landed
 
   end
 
-  #it 'responds to take off plane' do
-    #expect(subject).to respond_to :takeOff_plane
-  #end
+  it 'responds to takeoff plane' do
+    expect(subject).to respond_to :takeoff
+  end
 
-  #it 'controller allows landed plane to take off' do
-    #plane = Plane.new
-    #expect(subject.takeOff_plane(plane))
+  it 'controller allows landed plane to take off' do
+    subject.landed(Plane.new)
+    expect { subject.landed(Plane.new) }.to raise_error "plane has departed, no more planes."
 
-  #end
+  end
+
+  it 'responds to no more plane at airport' do
+    plane = Plane.new
+    expect { subject.takeoff(plane) }.to raise_error "no more planes."
+
+  end
+
 
 
 end
