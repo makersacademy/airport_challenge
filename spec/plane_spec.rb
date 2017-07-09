@@ -20,4 +20,13 @@ describe Plane do
     subject.takeoff_from(airport)
     expect(subject.landed_at?(airport)).to be false
   end
+
+  it 'is expected not to initiate new landings if already landed' do
+    subject.land_at(airport)
+    expect { subject.land_at(airport) }.to raise_error "Error. Can\'t land what\'s already landed."
+  end
+
+  it 'is expected not to initiate take-off from the airport prior to being landed there' do
+    expect { subject.takeoff_from(airport) }.to raise_error "Error. Can\'t take-off from #{airport} as we are not there."
+  end
 end

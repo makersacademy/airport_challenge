@@ -2,7 +2,7 @@ class Plane
   attr_reader :landed_at
 
   def land_at(airport)
-    raise "Error. This plane is not in flight, we can\'t land it." unless in_flight?
+    raise "Error. Can\'t land what\'s already landed." unless in_flight?
     airport.land self
     checkin_to airport
   end
@@ -12,7 +12,7 @@ class Plane
   end
 
   def takeoff_from(airport)
-    raise "Error. We are in midair Can\'t take-off until landed again." unless landed_at?(airport)
+    raise "Error. Can\'t take-off from #{airport} as we are not there." unless landed_at?(airport)
     airport.takeoff self
     checkout
   end
