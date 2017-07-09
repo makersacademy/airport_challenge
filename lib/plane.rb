@@ -1,10 +1,15 @@
 class Plane
 
-  attr_accessor :landed
+  attr_reader :landed
 
   def land(airport)
+    airport.port_plane(self)
     @landed = true
-    airport
+  end
+
+  def take_off(airport)
+    airport.release_plane
+    @landed = false
   end
 
 end
