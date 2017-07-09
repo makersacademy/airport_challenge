@@ -2,10 +2,12 @@ require 'weather'
 
 describe Weather do
 
-  include Weather
+  subject { Object.new.extend(Weather) }
 
-  it 'method weather randomly returns stormy? as true or false' do
-    expect(stormy?).to eq(true).or(eq(false))
+  describe "#stormy?" do
+    it 'should give a value of true or false' do
+      expect(subject.stormy?).to eq(true).or(eq(false))
+    end
   end
 
 end
