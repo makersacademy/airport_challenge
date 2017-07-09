@@ -1,12 +1,7 @@
 class Weather
-
-attr_accessor :weather
+  attr_accessor :weather
 
   def initialize
-    if rand(2) == 0
-      @weather = 'stormy'
-    else
-      @weather = 'calm'
-    end
+    rand(2) == 0 ? @weather = 'stormy' : @weather = 'calm'
   end
 end
