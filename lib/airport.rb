@@ -18,7 +18,7 @@ class Airport
     fail 'Landing not allowed, airport full' if full?
     landed = true
     @planes  << plane
-    self
+
   end
 
 
@@ -37,7 +37,7 @@ class Airport
   end
 
   def full?
-    planes.count == capacity
+    @planes.count == @capacity
   end
 
 end
