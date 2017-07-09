@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new(described_class::DEFAULT_CAPACITY) }
+  subject(:airport) { described_class.new }
   let(:plane)       { double(:plane, :start_flying => true, :end_flying => false) }
 
   context 'weather is good' do
@@ -11,7 +11,7 @@ describe Airport do
 
     it 'should instruct a plane to land and add to planes in airport' do
       airport.land(plane)
-      expect(airport.plane_count).to eq 1
+      expect(airport.planes).to include plane
     end
 
     it 'land(plane) should raise error when plane is already in airport' do
@@ -21,9 +21,9 @@ describe Airport do
 
     it 'should instruct a plane to take off and remove from planes in airport' do
       airport.land(plane)
-      expect(airport.plane_count).to eq 1
+      expect(airport.planes).to include plane
       airport.take_off(plane)
-      expect(airport.plane_count).to eq 0
+      expect(airport.planes).not_to include plane
     end
 
     it 'land(plane) should raise error when plane is not in airport' do
