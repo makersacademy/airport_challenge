@@ -7,7 +7,13 @@ def initialize
 end
 
 def land_plane
-  weather? == 'calm' ?  planes << Plane.new : "Landing delayed due to bad weather"
+  if weather? == 'calm' && full? == false
+    planes << Plane.new
+  elsif weather? == 'stormy'
+     "Landing delayed due to bad weather"
+  else
+     "Landing delayed due to airport capacity reached"
+  end
 end
 
 def release_plane
@@ -20,6 +26,10 @@ end
 
 def weather?
   Weather.new.weather
+end
+
+def full?
+  planes.length == 20
 end
 
 end

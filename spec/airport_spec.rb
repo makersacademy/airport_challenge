@@ -29,4 +29,11 @@ it 'prevents landing during stormy weather' do
   allow(airport).to receive(:weather?) { 'stormy' }
   expect(airport.land_plane).to eq "Landing delayed due to bad weather"
 end
+
+it 'prevents landing when airport is full' do
+  allow(airport).to receive(:weather?) { 'calm' }
+  20.times do airport.planes << Plane.new end
+  expect(airport.land_plane).to eq "Landing delayed due to airport capacity reached"
+end
+
 end
