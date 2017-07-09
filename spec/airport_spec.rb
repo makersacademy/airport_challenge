@@ -12,7 +12,7 @@ describe Airport do
   end
 
   describe '#release_plane' do
-    it 'releases the plane in the airport' do
+    it 'releases the plane from the airport' do
       subject.release_plane
       expect(subject.plane).to eq nil
     end
