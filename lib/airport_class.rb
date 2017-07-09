@@ -10,6 +10,10 @@ def land_plane
   planes << Plane.new
 end
 
+def release_plane
+  planes.shift
+end
+
 def airport_has_plane?
   planes == [] ? false : true
 end

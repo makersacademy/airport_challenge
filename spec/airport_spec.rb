@@ -10,4 +10,10 @@ it 'plane lands at airport and confirms landing' do
   expect(airport.airport_has_plane?).to be_truthy
 end
 
+it 'plane takes off from airport and confirms this' do
+  airport.land_plane
+  airport.release_plane
+  expect(airport.airport_has_plane?).to be_falsey
+end
+
 end
