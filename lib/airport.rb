@@ -15,8 +15,9 @@ class Airport
 
   def land(plane)
     fail 'Landing not allowed due to stormy weather' if stormy?
-    fail 'Landing not allowed , airport full'
+    fail 'Landing not allowed , airport full' if full?
     landed = true
+    @planes  << plane
   end
 
 
@@ -34,6 +35,7 @@ class Airport
   end
 
   def full?
-    @planes.count == @capacity
+    @planes.count == capacity
   end
+  
 end

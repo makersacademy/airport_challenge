@@ -32,6 +32,7 @@ describe Airport do
   end
 
   it 'prevents airplane to land if capacity is full' do
+    allow(airport).to receive(:full?).and_return(true)
     expect{airport.land(plane)}.to raise_error 'Landing not allowed , airport full'
   end
 
