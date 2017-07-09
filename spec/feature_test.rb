@@ -2,11 +2,11 @@ require './lib/airport.rb'
 require './lib/plane.rb'
 
 # ensure planes can't land if they are already landed
-airport = Airport.new
-p plane = Plane.new
-p airport.land(plane)
-p airport.land(plane)
-# => fail plane is already on the ground 
+# airport = Airport.new
+# p plane = Plane.new
+# p airport.land(plane)
+# p airport.land(plane)
+# => fail plane is already on the ground
 
 # ensure planes can't take off if they are not in the airport
 # airport = Airport.new
@@ -74,16 +74,21 @@ p airport.land(plane)
 
 # check stormy weather
 
-# weather = Weather.new
+# p airport = Airport.new
 # p weather.stormy?
 # => true
+# p weather
 # p airport.land(plane)
 # => fail
 # p airport.plane
 
+p airport = Airport.new
+p plane = Plane.new
+p airport.land(plane)
+p airport.weather.stormy?
 # p weather.stormy?
-# p weather
+# p airport.weather
 # => true
-# p airport.take_off(plane)
+p airport.take_off(plane)
 # => fail
-# p airport.plane
+p airport.plane

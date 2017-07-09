@@ -1,9 +1,8 @@
 class Weather
 
   def stormy?
-    # rand(10)
-    # 0 ? true : false
-    false
+    number = rand(10)
+    number.zero? ? true : false
   end
 
 end

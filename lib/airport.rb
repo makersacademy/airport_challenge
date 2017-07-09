@@ -3,20 +3,17 @@ require_relative 'weather'
 class Airport
   DEFAULT_CAPACITY = 100
   attr_reader :plane, :weather, :capacity
-  # def plane
-  #   @plane
-  # end
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @weather = Weather.new
+  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
+    @weather = weather
     @planes = []
     @capacity = capacity
   end
 
   def land(plane)
-    # fail 'Storms prevent landing' if weather.stormy?
-    fail "#{plane} has already landed" if @planes.include?(plane)
     fail 'Airport full' if full?
+    fail "#{plane} has already landed" if @planes.include?(plane)
+    fail 'Storms prevent landing' if weather.stormy?
     plane.flying = false
     plane.landed = true
     @plane = plane
