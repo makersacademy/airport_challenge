@@ -3,8 +3,6 @@ require_relative 'weather'
 
 class Airport
 
-  include Weather
-
   attr_reader :planes, :weather, :capacity
   DEFAULT_CAPACITY = 20
   ERROR = { :stormy => "All flights cancelled due to stormy weather",
@@ -15,6 +13,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @planes = []
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -51,7 +50,7 @@ class Airport
   end
 
   def check_weather
-    raise ERROR[:stormy] if stormy?
+    raise ERROR[:stormy] if weather.stormy?
   end
 
   def full?

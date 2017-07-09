@@ -1,12 +1,12 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { described_class.new }
-  let(:plane) { double(:plane, :start_flying => true, :end_flying => false) }
+  subject(:airport) { described_class.new(described_class::DEFAULT_CAPACITY) }
+  let(:plane)       { double(:plane, :start_flying => true, :end_flying => false) }
 
   context 'weather is good' do
     before do
-      allow(airport).to receive(:stormy?).and_return(false)
+      allow(airport.instance_variable_get(:@weather)).to receive(:stormy?).and_return false
     end
 
     it 'should instruct a plane to land and add to planes in airport' do
@@ -41,7 +41,7 @@ describe Airport do
 
   context 'stormy weather' do
     before do
-      allow(airport).to receive(:stormy?).and_return(true)
+      allow(airport.instance_variable_get(:@weather)).to receive(:stormy?).and_return true
     end
 
     it 'should raise error and prevent plane landing if stormy weather' do

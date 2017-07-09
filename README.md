@@ -18,9 +18,15 @@ The user stories and full instructions can be seen in [INSTRUCTIONS.md](INSTRUCT
 Objects  | Messages
 ------------- | -------------
 Air Traffic Controller  |
+<<<<<<< Updated upstream
 class: Airport | land(plane), take_off(plane), new_capacity
 module: Weather | stormy?
 class: Plane  | flying?
+=======
+Airport | land(plane), take_off(plane), new_capacity
+Weather | stormy?
+Plane  | flying?
+>>>>>>> Stashed changes
 
 ## Interface
 The Air Traffic Controller (ATC) is expected to use `irb`. Instructions for use:
