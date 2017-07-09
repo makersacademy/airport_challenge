@@ -2,14 +2,21 @@ require 'plane'
 
 class Airport
 
-  attr_reader :plane
+  DEFAULT_CAPACITY = 10
 
-  def port_plane(plane)
-    @plane = plane
+  attr_reader :planes, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @planes = []
+    @capacity = capacity
   end
 
-  def release_plane
-    @plane = nil
+  def port_plane(plane)
+    @planes << plane
+  end
+
+  def release_plane(plane)
+    @planes.delete(plane)
   end
 
 end
@@ -19,7 +26,4 @@ end
 # require './lib/plane.rb'
 # require './lib/weather.rb'
 #
-# boeing = Plane.new
-# boeing_2 = Plane.new
-# boeing.land(heathrow)
-# boeing_2.land(heathrow) # => expect error
+# 10.times { Plane.new.land(heathrow) }

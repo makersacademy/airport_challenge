@@ -9,8 +9,9 @@ describe Plane do
   describe '#landed' do
     it 'returns true when a plane has landed' do
       allow(airport).to receive(:port_plane)
-      allow(airport).to receive(:plane) { nil }
-      subject.land(airport)
+      allow(airport).to receive(:planes) { [] }
+      allow(weather).to receive(:stormy) { false }
+      subject.land(airport, weather)
       expect(subject.landed).to eq true
     end
   end
@@ -24,8 +25,10 @@ describe Plane do
 
     it 'does not allow plane to land in full airport' do
       allow(weather).to receive(:stormy) { false }
-      allow(airport).to receive(:plane) { plane }
+      allow(airport).to receive(:planes) { [] }
       allow(airport).to receive(:port_plane)
+      10.times { Plane.new.land(airport, weather) }
+      allow(airport).to receive(:planes) { [0,1,2,3,4,5,6,7,8,9] }
       expect { plane.land(airport, weather) }.to raise_error(RuntimeError)
     end
 
@@ -35,7 +38,7 @@ describe Plane do
 
     it 'confirms the plane has taken off' do
       allow(weather).to receive(:stormy) { false }
-      allow(airport).to receive(:release_plane)
+      allow(airport).to receive(:release_plane).with(plane)
       plane.take_off(airport, weather)
       expect(plane.landed).to eq false
     end
