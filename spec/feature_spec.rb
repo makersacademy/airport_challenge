@@ -1,7 +1,7 @@
 require "airport"
 require "plane"
 
+planes = Array.new(5) { Plane.new }
 gatwick = Airport.new
-boeing = Plane.new
-gatwick.land(boeing)
-gatwick.takeoff(boeing)
+gatwick.land(planes[0])
+gatwick.takeoff(planes[0])

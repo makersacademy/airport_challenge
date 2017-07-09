@@ -1,7 +1,8 @@
 class Plane
+  attr_reader :has_landed
 
-  def initialize
-
+  def landed(boolean)
+    @has_landed = boolean
   end
 
 end
