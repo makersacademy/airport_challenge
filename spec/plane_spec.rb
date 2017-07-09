@@ -12,14 +12,14 @@ describe Plane do
   describe '#flying' do
     it 'shows the plane is already flying' do
       plane.flying
-      expect(plane.status).to eq (:flying)
+      expect(plane.status).to eq :flying
     end
   end
 
   describe '#landed' do
     it 'shows the plane has already landed' do
       plane.landed
-      expect(plane.status).to eq (:landed)
+      expect(plane.status).to eq :landed
     end
   end
 end
