@@ -11,9 +11,7 @@ class Airport
   ERROR = { :stormy => "All flights cancelled due to stormy weather",
             :full => 'Airport is full',
             :already_in_airport => 'Plane is already in airport',
-            :not_in_airport => 'Plane not in airport',
-            :landing => 'Problem with landing',
-            :take_off => 'Problem with take off' }.freeze
+            :not_in_airport => 'Plane not in airport' }.freeze
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -23,14 +21,12 @@ class Airport
   def land(plane)
     clear_for_landing(plane)
     plane.end_flying
-    raise ERROR[:landing] if plane.flying?
     planes << plane
   end
 
   def take_off(plane)
     clear_for_take_off(plane)
     plane.start_flying
-    raise ERROR[:take_off] unless plane.flying?
     planes.delete(plane)
   end
 

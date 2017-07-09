@@ -1,9 +1,8 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   let(:airport) { described_class.new }
-  let(:plane) { double(:plane, :flying? => false, start_flying: (), end_flying: ()) }#Plane.new }
+  let(:plane) { double(:plane, :start_flying => true, :end_flying => false) }
 
   context 'weather is good' do
     before do
@@ -17,26 +16,25 @@ describe Airport do
 
     it 'should raise error land(plane) when plane is already in airport' do
       airport.land(plane)
-      expect{ airport.land(plane) }.to raise_error described_class::ERROR[:already_in_airport]
+      expect { airport.land(plane) }.to raise_error described_class::ERROR[:already_in_airport]
     end
 
     it 'should instruct a plane to take off and remove from planes in airport' do
       airport.land(plane)
       expect(airport.plane_count).to eq 1
-      allow(plane).to receive(:flying?).and_return(true)
       airport.take_off(plane)
       expect(airport.plane_count).to eq 0
     end
 
     it 'should raise error land(plane) when plane is already in airport' do
       airport.land(plane)
-      expect{ airport.land(plane) }.to raise_error described_class::ERROR[:already_in_airport]
+      expect { airport.land(plane) }.to raise_error described_class::ERROR[:already_in_airport]
     end
 
     it 'should prevent land(plane) if airport full' do
       described_class::DEFAULT_CAPACITY.times do
-          plane_unique = double(:plane, :flying? => false, start_flying: (), end_flying: ())
-          airport.land(plane_unique)
+        plane_unique = double(:plane, :start_flying => true, :end_flying => false)
+        airport.land(plane_unique)
       end
       expect { airport.land(plane) } .to raise_error described_class::ERROR[:full]
     end
