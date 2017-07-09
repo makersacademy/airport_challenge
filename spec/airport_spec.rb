@@ -7,7 +7,7 @@ describe Airport do
   plane2 = Plane.new
 
   it 'allows a plane to land' do
-    expect(airport.land(plane1)).to eq [plane1]
+    expect { airport.land double(:bike).to eq :bike }
   end
 
   it 'shows planes in airport' do
@@ -23,10 +23,9 @@ describe Airport do
   end
 
   it 'shows plane is no longer in airport after takeoff' do
-    airport.planes = [plane1, plane2]
+    airport.planes = [plane1]
     airport.takeoff(plane1)
     expect(airport.in_airport?(plane1)).to be_falsy
-    expect(airport.in_airport?(plane2)).to be_truthy
   end
 
   it "cannot takeoff if it is stormy" do
