@@ -3,12 +3,7 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :planes, :weather, :capacity
-  DEFAULT_CAPACITY = 20
-  ERROR = { :stormy => "All flights cancelled due to stormy weather",
-            :full => 'Airport is full',
-            :already_in_airport => 'Plane is already in airport',
-            :not_in_airport => 'Plane not in airport' }.freeze
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -37,6 +32,12 @@ class Airport
   end
 
   private
+  attr_reader :planes, :weather
+  DEFAULT_CAPACITY = 20
+  ERROR = { :stormy => "All flights cancelled due to stormy weather",
+            :full => 'Airport is full',
+            :already_in_airport => 'Plane is already in airport',
+            :not_in_airport => 'Plane not in airport' }.freeze
 
   def clear_for_landing(plane)
     raise ERROR[:stormy] if weather.stormy?

@@ -11,7 +11,7 @@ describe Airport do
 
     it 'should instruct a plane to land and add to planes in airport' do
       airport.land(plane)
-      expect(airport.planes).to include plane
+      expect(airport.plane_count).to eq 1
     end
 
     it 'land(plane) should raise error when plane is already in airport' do
@@ -21,9 +21,9 @@ describe Airport do
 
     it 'should instruct a plane to take off and remove from planes in airport' do
       airport.land(plane)
-      expect(airport.planes).to include plane
+      expect(airport.plane_count).to eq 1
       airport.take_off(plane)
-      expect(airport.planes).not_to include plane
+      expect(airport.plane_count).to eq 0
     end
 
     it 'land(plane) should raise error when plane is not in airport' do
