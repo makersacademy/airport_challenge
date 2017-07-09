@@ -33,12 +33,13 @@ require './lib/airport.rb'
 require './lib/plane.rb'
 ```
 
-#### The Plane class. 
+#### The Plane class
 A plane can use start_flying to fly and end_flying to land, and its status can be checked using flying?
 ```ruby
 plane = Plane.new
 plane.start_flying
 plane.flying?
+=> true
 plane.end_flying
 plane.flying?
 => false
