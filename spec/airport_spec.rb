@@ -19,7 +19,8 @@ describe Airport do
   end
 
   describe '#take_off' do
-    let(:other_plane) { double :plane }
+    let(:other_plane) { double :plane
+      
     before do
       allow(plane).to receive(:land_at).with(airport)
       allow(plane).to receive(:landed?) { true }
@@ -54,9 +55,19 @@ describe Airport do
     end
   end
 
-  context '#airport full' do
-    it 'does not allow planes to land' do
+  context 'airport is full' do
+    let(:other_plane) { instance_double("plane") }
 
+    before do
+      Airport::DEFAULT_CAPACITY.times do
+        allow(other_plane).to receive(:land_at).with(airport)
+        airport.land(other_plane)
+      end
+    end
+
+    it 'does not allow planes to land' do
+      allow(plane).to receive(:land_at).with(airport)
+      expect { airport.land(plane) }.to raise_error("No space to land at this airport!")
     end
   end
 

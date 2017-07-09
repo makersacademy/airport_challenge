@@ -10,6 +10,7 @@ class Airport
   end
 
   def land plane
+    fail("No space to land at this airport!") if full?
     plane.land_at(self)
     @planes << plane
   end
@@ -18,6 +19,12 @@ class Airport
     fail("Plane is not at this airport!") unless @planes.include?(plane)
     plane.take_off
     @planes -= [plane]
+  end
+
+  private
+
+  def full?
+    @planes.length >= @capacity
   end
 
 end
