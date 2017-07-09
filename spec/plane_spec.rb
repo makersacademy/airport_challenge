@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
   subject(:plane) { described_class.new }
-  let(:airport) { Airport.new }
+  let(:airport) { instance_double("Airport") }
 
   before { plane.land_at(airport) }
 

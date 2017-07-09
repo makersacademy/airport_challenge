@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane) { double :plane }
+  let(:plane) { instance_double("plane") }
   let(:weather) { double :weather }
 
   describe '#land' do
@@ -40,6 +40,23 @@ describe Airport do
     it 'cannot launch planes not landed at this airport' do
       allow(other_plane).to receive(:landed?) { true }
       expect { airport.take_off other_plane }.to raise_error("Plane is not at this airport!")
+    end
+  end
+
+  describe '#initialize' do
+    it 'initialises with a default capacity' do
+      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'can be initialized with a custom capacity' do
+      custom_capacity = 15
+      expect(Airport.new(custom_capacity).capacity).to eq custom_capacity
+    end
+  end
+
+  context '#airport full' do
+    it 'does not allow planes to land' do
+
     end
   end
 
