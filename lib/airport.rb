@@ -28,29 +28,25 @@ class Airport
     planes.delete(plane)
   end
 
-  def plane_count
-    planes.count
-  end
-
   def new_capacity(capacity)
     @capacity = capacity
+  end
+
+  def plane_count
+    planes.count
   end
 
   private
 
   def clear_for_landing(plane)
-    check_weather
+    raise ERROR[:stormy] if weather.stormy?
     raise ERROR[:already_in_airport] if planes.include?(plane)
     raise ERROR[:full] if full?
   end
 
   def clear_for_take_off(plane)
-    check_weather
-    raise ERROR[:not_in_airport] unless planes.include?(plane)
-  end
-
-  def check_weather
     raise ERROR[:stormy] if weather.stormy?
+    raise ERROR[:not_in_airport] unless planes.include?(plane)
   end
 
   def full?

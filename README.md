@@ -3,7 +3,7 @@ Airport Challenge
 
 **Makers Academy Week 1 Task**
 
-This is a program to allow an Air Traffic Controller to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. This also confirms whether the planes are in or out of the airport.
+This is a program to allow an Air Traffic Controller to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. This also confirms whether the planes are in or out of the airport. The default capacity of the airport can be overridden with a new value.
 
 The user stories and full instructions can be seen in [INSTRUCTIONS.md](INSTRUCTIONS.md).
 
@@ -45,8 +45,8 @@ airport.land(plane)
 airport.take_off(plane)
 ```
 
-#### The Weather module
-Each airport calls on the Weather module using the method 'stormy?'. There is a 1-in-4 chance of the weather being stormy.
+#### The Weather class
+Each airport includes an instance of the Weather class, which has the method 'stormy?'. There is a 1-in-4 chance of the weather being stormy.
 
 #### The Plane class
 A plane's status can be checked using flying?. This equals true if has left the airport and false if it has landed.
