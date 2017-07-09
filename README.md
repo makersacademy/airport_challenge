@@ -53,10 +53,11 @@ Planes instantiate with a random five digit name, format AA000.
 
 Airports can only land and take off planes one at a time.  
 Storm conditions cannot be customised.  
+storm? or full? cannot be checked as they are private
 Planes cannot be renamed.  
 There is no way to remove or add planes to runways other than landing and taking off.  
 
 **Notes**
 
-Clears Rubocop except for 7 "unexpected token tLCURLY" errors which breaks the Rspec test if adjusted.  
-100% test coverage.
+Clears Rubocop except for 8 "unexpected token tLCURLY" errors which breaks the Rspec test if adjusted.  
+98.98% test coverage.

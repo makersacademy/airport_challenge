@@ -2,7 +2,7 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  attr_reader :name, :capacity, :runway
+  attr_reader :capacity, :runway
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -27,8 +27,10 @@ class Airport
     "Tower - #{plane.name} is now airborne"
   end
 
+  private
+
   def stormy?
-    rand(10) >= 1
+    rand(10) < 1
   end
 
   def full?
