@@ -1,9 +1,11 @@
-require 'plane'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  attr_reader :planes
+  attr_reader :planes, :weather
 
-  def initialize
+  def initialize( weather = Weather.new )
+    @weather = weather
     @planes = []
   end
 
@@ -16,6 +18,7 @@ class Airport
 
   def take_off(plane)
     fail 'This plane is already flying' if plane.status == :flying
+    fail 'Error cannot fly in stormy weather' if weather.weather_report == :stormy
     @planes.delete(plane)
     plane.flying
     puts "#{plane} has taken off"
