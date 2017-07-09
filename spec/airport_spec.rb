@@ -39,14 +39,14 @@ describe Airport do
     expect(airport.capacity).to eq 30
   end
 
-  it 'should prevent land plane if the airport is full' do
+  it 'should prevent land(plane) if airport full' do
     airport = Airport.new("Gatwick", 10, 10)
     allow(airport).to receive(:stormy?).and_return(false)
     expect { airport.land(plane) } .to raise_error 'Airport is full'
   end
 
   it 'should raise error if initialized with more planes than capacity' do
-    expect { Airport.new("Gatwick", 10, 25) }.to raise_error "Number of planes exceeds capacity of airport"
+    expect { Airport.new("Gatwick", 10, 25) }.to raise_error "no_of_planes exceeds capacity"
   end
 
 end

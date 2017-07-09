@@ -18,14 +18,17 @@ class Airport
   end
 
   def land(plane)
-    clear_for_landing(plane)
+    raise 'Plane already in airport' if planes.include?(plane)
+    check_airport_full
+    check_weather
     plane.land_at(airport_name)
     raise 'Problem with landing' unless plane.in_airport?(airport_name)
     planes << plane
   end
 
   def take_off(plane)
-    clear_for_take_off(plane)
+    raise 'Plane not in airport' unless planes.include?(plane)
+    check_weather
     plane.fly
     raise 'Problem with take off' if plane.in_airport?(airport_name)
     planes.delete(plane)
@@ -39,32 +42,15 @@ class Airport
 
   def check_arguments(airport_name, capacity, no_of_planes)
     raise "Please enter a name for the airport" if airport_name.nil?
-    if no_of_planes > capacity
-      raise ArgumentError.new("Number of planes exceeds capacity of airport")
-    end
-  end
-
-  def clear_for_take_off(plane)
-    check_weather
-    raise "Plane not in airport" unless in_airport?(plane)
-  end
-
-  def clear_for_landing(plane)
-    check_weather
-    raise 'Plane already in airport' if in_airport?(plane)
-    raise 'Airport is full' if full?
+    raise ArgumentError.new("no_of_planes exceeds capacity") if no_of_planes > capacity
   end
 
   def check_weather
     raise "All flights cancelled due to stormy weather" if stormy?
   end
 
-  def in_airport?(plane)
-    planes.include?(plane) or plane.in_airport?(airport_name)
-  end
-
-  def full?
-    plane_count == capacity
+  def check_airport_full
+    raise 'Airport is full' if plane_count == capacity
   end
 
 end

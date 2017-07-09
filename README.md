@@ -1,17 +1,27 @@
 Airport Challenge
 =================
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+# Makers Academy week 1 weekend challenge
 
-```
+This is a program to control the flow of planes at an airport. It is written in Ruby
+
+This was developed using TDD
+
+## Getting started
+
+`git clone path-to-your-repo`
+`command_to_install_dependencies` (e.g. `bundle`)
+
+## Usage
+
+`command_to_start` (e.g. `rackup` or `rails s`)
+Navigate to `http://localhost:4567/`
+
+
+## Running tests
+
+- RSpec
+`test_command` => `rspec`
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
@@ -47,10 +57,13 @@ Domain Model:
 
 | Object        | Messages                                            |
 | ------------- |:----------------------------------------------------|
-| Airport       | land(plane), take_off(plane), full?, capacity       |
-| Plane         | land!, fly!, in_airport?                            |
+| Airport       | land(plane), take_off(plane), check_airport_full,
+                  capacity, check_weather, plane_in_airport?(plane)   |
+| Plane         | land_at(airport), fly, in_airport?(airport)         |
 | Weather       | stormy?                                             |
 
-classes: Airport, Plane
+class: Airport
 
-modules: Weather
+class: Plane
+
+module: Weather
