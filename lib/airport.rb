@@ -15,9 +15,10 @@ class Airport
 
   def land(plane)
     fail 'Landing not allowed due to stormy weather' if stormy?
-    fail 'Landing not allowed , airport full' if full?
+    fail 'Landing not allowed, airport full' if full?
     landed = true
     @planes  << plane
+    self
   end
 
 
