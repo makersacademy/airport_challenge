@@ -75,3 +75,5 @@ The ATC can instruct a plane to fly. Checks are made to see if the plane is clea
 ```ruby
 airport.take_off(plane)
 ```
+
+Thanks to [vannio](https://github.com/vannio) for clear [README and code](https://github.com/vannio/challenge-airport-traffic), which I referred to when creating this.
