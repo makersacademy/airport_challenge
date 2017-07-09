@@ -1,16 +1,16 @@
-require './lib/airport.rb'
 require './lib/plane.rb'
-require './lib/weather.rb'
 
 describe Plane do
 subject(:plane) { described_class.new }
 
   it 'confirms it has landed' do
-    expect(plane).to be_landed
+    plane.landed?
+    expect(plane). to have_attributes(:landed => true, :taken_off => false)
   end
 
   it 'confirms it has taken off' do
-    expect(plane).to be_taken_off
+    plane.taken_off?
+    expect(plane). to have_attributes(:landed => false, :taken_off => true)
   end
 
 end
