@@ -50,13 +50,13 @@ class Airport
 
   private
 
-    def checkweather
-      @badweather = (rand(6) > 4 ? true : false)
-    end
+  def checkweather
+    @badweather = (rand(6) > 4 ? true : false)
+  end
 
-    DEFAULT_PASSENGERS = 20
-    DEFAULT_CAPACITY = 5
+  DEFAULT_PASSENGERS = 20
+  DEFAULT_CAPACITY = 5
 
-    attr_reader :people
+  attr_reader :people
 
 end

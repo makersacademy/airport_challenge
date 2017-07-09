@@ -5,7 +5,7 @@ describe Airport do
 
   let(:airport)     { Airport.new }
   let(:bigairport)  { Airport.new(10) }
-  let(:plane)       { double(:plane, land: nil, takeoff: nil, board: nil, alight: passenger, landed?: false ) }
+  let(:plane)       { double(:plane, land: nil, takeoff: nil, board: nil, alight: passenger, landed?: false) }
   let(:passenger)   { double(:passenger) }
 
   describe "#full?" do
@@ -27,10 +27,7 @@ describe Airport do
 
   describe "#badweather?" do
     it "responds to .badweather? with true/false" do
-      allow(airport).to receive(:badweather?).and_return false
-      expect(subject.badweather?).to eq false
-      allow(airport).to receive(:badweather?).and_return true
-      expect(subject.badweather?).to eq true
+      expect(airport.badweather?).to eq(true).or(eq(false))
     end
     it "stops planes landing in bad weather" do
       allow(airport).to receive(:badweather?).and_return true
