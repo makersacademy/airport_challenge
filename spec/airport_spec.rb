@@ -2,6 +2,12 @@ require 'airport'
 
 describe Airport do
 
+  describe '#initialize' do
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+  end
+
   it { is_expected.to respond_to(:plane) }
 
   describe '#land' do
@@ -29,6 +35,19 @@ describe Airport do
       end
       expect { subject.land(Plane.new) }.to raise_error "Airport full"
     end
+
+    it 'tells a plane that it is no longer flying' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(plane.flying?).to eq false
+    end
+
+    it 'tells a plane that it has landed' do
+      plane = Plane.new
+      subject.land(plane)
+      expect(plane.landed?).to eq true
+    end
+
   end
 
   describe '#take_off' do
@@ -54,5 +73,20 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return(true)
       expect { subject.take_off(plane) }.to raise_error "Storms prevent take off"
     end
+
+    it 'tells a plane it is now flying' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(plane.flying?).to eq true
+    end
+
+    it 'tells a plane it is no longer landed' do
+      plane = Plane.new
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(plane.landed?).to eq false 
+    end
+
   end
 end
