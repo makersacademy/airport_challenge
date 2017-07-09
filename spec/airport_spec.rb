@@ -32,7 +32,7 @@ describe Airport do
   it "cannot takeoff if it is stormy" do
     airport.planes = [plane1]
     airport.weather = "stormy"
-    expect { airport.takeoff(plane1) }.to raise_error "cannot takeoff due to weather"
+    expect { airport.takeoff(plane1) }.to raise_error
     expect(airport.in_airport?(plane1)).to be_truthy
   end
 
@@ -44,11 +44,8 @@ describe Airport do
   end
 
   it 'checks whether an airport is full' do
-    airport.capacity.times do
-      airport.planes << Plane.new
-    end
+    airport.capacity.times { airport.land(Plane.new) }
     expect(airport.full?).to eq true
-
   end
 
 end
