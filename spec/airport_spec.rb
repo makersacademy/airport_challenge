@@ -48,6 +48,11 @@ describe Airport do
       expect(plane.landed?).to eq true
     end
 
+    it 'raises an error if a plane tries to land when it is already landed' do
+      plane = Plane.new
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error "#{plane} has already landed"
+    end
   end
 
   describe '#take_off' do
@@ -85,8 +90,14 @@ describe Airport do
       plane = Plane.new
       subject.land(plane)
       subject.take_off(plane)
-      expect(plane.landed?).to eq false 
+      expect(plane.landed?).to eq false
     end
 
+    it 'raises an error if a plane tries to take off when it is flying' do
+      plane1 = Plane.new
+      plane2 = Plane.new
+      subject.land(plane1)
+      expect { subject.take_off(plane2) }.to raise_error "Cannot take off. #{plane2} is flying"
+    end
   end
 end

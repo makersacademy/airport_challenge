@@ -1,19 +1,34 @@
 require './lib/airport.rb'
 require './lib/plane.rb'
 
-# check planes know they have taken off
+# ensure planes can't land if they are already landed
 airport = Airport.new
 p plane = Plane.new
 p airport.land(plane)
-p plane.flying?
+p airport.land(plane)
+# => fail plane is already on the ground 
+
+# ensure planes can't take off if they are not in the airport
+# airport = Airport.new
+# p plane1 = Plane.new
+# p plane2 = Plane.new
+# p airport.land(plane1)
+# p airport.take_off(plane2)
+# => fail plane is flying
+
+# check planes know they have taken off
+# airport = Airport.new
+# p plane = Plane.new
+# p airport.land(plane)
+# p plane.flying?
 # => false
-p plane.landed?
+# p plane.landed?
 # => true
-p airport.take_off(plane)
-p plane.flying?
+# p airport.take_off(plane)
+# p plane.flying?
 # => true
-p plane
-p plane.landed?
+# p plane
+# p plane.landed?
 # => false
 
 # check planes know they have landed

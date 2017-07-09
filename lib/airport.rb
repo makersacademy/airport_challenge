@@ -15,6 +15,7 @@ class Airport
 
   def land(plane)
     # fail 'Storms prevent landing' if weather.stormy?
+    fail "#{plane} has already landed" if @planes.include?(plane)
     fail 'Airport full' if full?
     plane.flying = false
     plane.landed = true
@@ -25,8 +26,9 @@ class Airport
   def take_off(plane)
     fail 'No planes currently at the airport' if empty?
     fail 'Storms prevent take off' if weather.stormy?
+    fail "Cannot take off. #{plane} is flying" if plane.flying == true
     plane.flying = true
-    plane.landed = false 
+    plane.landed = false
     @planes.delete(plane)
     @plane = nil
     "#{plane} has taken off"
