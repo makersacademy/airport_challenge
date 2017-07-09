@@ -22,7 +22,7 @@ Objects  | Messages
 Air Traffic Controller  |
 class: Plane  | flying?, start_flying, end_flying
 module: Weather | stormy?
-class: Airport | land_plane(plane), take_off(plane), capacity
+class: Airport | land(plane), take_off(plane), capacity
 
 ## Interface
 The Air Traffic Controller (ATC) is expected to use `irb`. Instructions for use:
