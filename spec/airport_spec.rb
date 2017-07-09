@@ -5,7 +5,7 @@ describe Airport do
 
   let(:airport)     { Airport.new }
   let(:bigairport)  { Airport.new(10) }
-  let(:plane)       { double(:plane, land: nil, takeoff: nil, landed?: false, space: 50, people: [], board: nil, alight: passenger) }
+  let(:plane)       { double(:plane, land: nil, takeoff: nil, board: nil, alight: passenger, landed?: false ) }
   let(:passenger)   { double(:passenger) }
 
   describe "#full?" do
