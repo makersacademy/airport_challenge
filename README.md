@@ -20,11 +20,9 @@ The Weather class determines, at random, whether it is be stormy or not.
 
 ## What I achieved in this challenge
 
-All user stories have been accounted for unit or feature tests, and in the subsequent script of the program itself. Test coverage is 97.17%.
+All user stories have been accounted for unit or feature tests, and in the subsequent script of the program itself. Test coverage is 97.03%.
 
-However, despite many attempts to get it to work, I am not able to override the random storms in the tests, and therefore any features that depend on weather are failing (at random). Trying to fix this has taken up a considerable amount of time - I'm looking forward to working through this tomorrow during code reviews.
-
-Aside from this, edge cases have been defended against, and end users of this program are able to define the airport capacity themselves (see _capacity_tests_ file in [Feature Tests](https://github.com/annalaise/airport_challenge/tree/master/feature_tests)  for more details)
+Edge cases have been defended against, and end users of this program are able to define the airport capacity themselves (see _capacity_tests_ file in [Feature Tests](https://github.com/annalaise/airport_challenge/tree/master/feature_tests)  for more details)
 
 
 ## Authors
