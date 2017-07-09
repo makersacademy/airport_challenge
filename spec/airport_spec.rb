@@ -44,7 +44,7 @@ describe Airport do
   end
 
   it 'checks whether an airport is full' do
-    20.times do
+    airport.capacity.times do
       airport.planes << Plane.new
     end
     expect(airport.full?).to eq true
