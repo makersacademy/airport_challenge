@@ -3,7 +3,7 @@
 
 This challenge can be addressed in many different ways. I decided to start designing my solution from the plane. 
 
-So the plane is a main actor. It has knowledge of the airport's API for take-off and landing and can initiate one or another if directed by traffic control (TC). While the airport's job is to provide landings/take-offs, raise errors based on the weather, available capacity and plane's circumstances.
+So the plane is a main actor. It has knowledge of the airport's API for take-off and landing and can initiate one or another if directed by traffic control (TC). While the airport's job is to provide landings/take-offs and raise errors based on the weather, available capacity and plane's circumstances.
 
 Domain
 ---------
