@@ -10,7 +10,7 @@ require '../lib/weather.rb'
 airport = Airport.new
 plane = Plane.new
 
-airport.land(plane) # lands plane
+airport.authorise_land(plane) # authorises plane can land.
 plane.landed? # confirms plane has landed
 p plane # outputs status of plane
 
