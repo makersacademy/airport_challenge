@@ -1,7 +1,15 @@
 module Weather
 
+  OUTLOOK = [:stormy, :sunny, :cloudy, :windy].freeze
+
   def stormy?
-    rand(10) > 7
+    weather == :stormy
+  end
+
+  private
+
+  def weather
+    OUTLOOK.sample
   end
 
 end
