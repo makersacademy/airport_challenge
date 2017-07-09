@@ -5,7 +5,6 @@ class Weather
   def storms?
     r = Random.new
     @forecast = r.rand(0...100)
-    #(@forecast % 2).zero?
-    false
+    (@forecast % 2).zero?
   end
 end

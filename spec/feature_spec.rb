@@ -6,12 +6,12 @@ weather = Weather.new
 
 weather.storms?
 p weather
-p plane.status?
+p plane.check?
 
 airport.request_landing(plane, weather)
 p airport
-p plane
+p plane.check?
 
 airport.request_takeoff(plane, weather)
 p airport
-p plane
+p plane.check?

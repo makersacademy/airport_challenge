@@ -12,15 +12,17 @@ class Airport
   end
 
   def request_landing(plane, weather)
-    fail 'ERROR: it is too stormy to land' if weather.storms?
+    fail 'ERROR: it is too stormy to land' if forecast(weather)
     fail 'ERROR: the airport is full' if full?
-    #fail 'ERROR: plane has already landed' if plane.status?
+    fail 'ERROR: plane has already landed' if status?(plane)
     plane.landing
     planes << plane
   end
 
   def request_takeoff(plane, weather)
-    fail 'ERROR: it is too stormy to take off' if weather.storms?
+    fail 'ERROR: it is too stormy to take off' if forecast(weather)
+    fail 'ERROR: plane has already taken off' unless status?(plane)
+    #fail 'ERROR: The airport is empty' if empty?
     plane.take_off
     planes.shift
   end
@@ -30,5 +32,13 @@ class Airport
 
   def full?
     planes.count >= capacity
+  end
+
+  def forecast(weather)
+    weather.storms?
+  end
+
+  def status?(plane)
+    plane.status?
   end
 end
