@@ -25,4 +25,4 @@ Receives land/takeoff messages from planes. In both cases the plane is passed to
 
 Weather
 ---------
-A module included into the airport. Can be asked if it's stormy and return positive on rare occasion. The latter has been proven by scientists who conducted a bunch of highly sophisticated tests.
+A module included into the airport. Can be asked if it's stormy and return positive on rare occasion. The latter has been proven by scientists after conducting a bunch of sophisticated tests.
