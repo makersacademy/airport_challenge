@@ -7,6 +7,7 @@ class Plane
   def land(airport)
     fail_if_on_ground
     fail_if_stormy("land", airport)
+    airport.add_plane(self)
     @location = airport
   end
 
@@ -14,6 +15,7 @@ class Plane
     fail_if_flying
     fail_if_different_airport(airport)
     fail_if_stormy("takeoff", location)
+    airport.delete_plane(location)
     @location = :in_air
   end
 
