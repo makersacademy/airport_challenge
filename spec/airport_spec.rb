@@ -3,20 +3,21 @@ require 'plane'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  plane = Plane.new
+  plane1 = Plane.new
+  plane2 = Plane.new
 
   it 'allows a plane to land' do
-    expect(airport.land(plane)).to eq [plane]
+    expect(airport.land(plane1)).to eq [plane1]
   end
 
-
   it 'shows planes in airport' do
-    airport.land(plane)
-    expect(airport.planes).to eq [plane]
+    airport.land(plane1)
+    airport.land(plane2)
+    expect(airport.planes).to eq [plane1, plane2]
   end
 
   # it 'checks if a plane has landed' do
-  #
+  #   air
   # end
 
 end
