@@ -11,6 +11,7 @@ class Airport
 
   def land_plane(plane)
     fail 'This plane has already landed' if plane.status == :landed
+    fail 'Error plane cannot land in stormy weather' if weather.weather_report == :stormy
     @planes << plane
     plane.landed
     puts "#{plane} has landed"
@@ -18,7 +19,7 @@ class Airport
 
   def take_off(plane)
     fail 'This plane is already flying' if plane.status == :flying
-    fail 'Error cannot fly in stormy weather' if weather.weather_report == :stormy
+    fail 'Error plane cannot fly in stormy weather' if weather.weather_report == :stormy
     @planes.delete(plane)
     plane.flying
     puts "#{plane} has taken off"
