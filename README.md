@@ -1,9 +1,9 @@
 ## Airport Challenge
 
 
-This challenge can be addressed in many different ways. I decided to start designing it from the plane. 
+This challenge can be addressed in many different ways. I decided to start designing my solution from the plane. 
 
-So the plane has a knowledge of the airport API for take-off and landing and can initiate one or another if directed by traffic control (TC). While the airport's job is to provide landings/take-offs, raise errors based on the weather and available capacity and to count planes and watch the available capacity.
+So the plane is a main actor. It has knowledge of the airport's API for take-off and landing and can initiate one or another if directed by traffic control (TC). While the airport's job is to provide landings/take-offs, raise errors based on the weather, available capacity and plane's circumstances.
 
 Domain
 ---------
@@ -13,17 +13,17 @@ Objects | Messages
 Traffic Control  |
 Plane  | land_at(airport), lakeoff_from(airport), landed_at?(airport)
 Airport | capacity, land(plane), takeoff(plane)
-Weather | stormy?
+Weather module | stormy?
 
 Plane
 ---------
-Initiates landing or take-off if directed by TC.
-Procedures require the plane to call the airport land or takeoff method on self.
+Initiates landing or take-off at the specified airport if directed by TC.
+Procedures require the plane to call the airport's land or takeoff method on self.
 
 Airport
 ---------
-Receves land/takeoff messages from planes. In return it may perform landing/take-off or raise an error depending on weather, available capacity and the circumstances of the plane .
+Receves land/takeoff messages from planes. In both cases the plane is passed to the airport's method as an argument. In return the airport may perform landing/take-off procedure or raise an error depending on weather, available capacity and the circumstances of the plane.
 
 Weather
 ---------
-A module included into the airport. Can be asked if it's stormy and return positive on rare occasion. The latter has been proven by scientists after conducting a bunch of highly sophisticated tests.
+A module included into the airport. Can be asked if it's stormy and return positive on rare occasion. The latter has been proven by scientists who conducted a bunch of highly sophisticated tests.
