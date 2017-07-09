@@ -1,5 +1,5 @@
-require_relative 'plane'
 require_relative 'weather'
+require_relative 'plane'
 
 class Airport
   CAPACITY = 10
@@ -15,12 +15,14 @@ class Airport
   def instruct_take_off(plane)
     raise "Take off denied due to bad weather" if stormy?
     planes.delete(plane)
+    return "Take-off successful"
   end
 
   def allow_landing(plane)
     raise "Landing denied due to bad weather" if stormy?
     raise "#{self.class.name} full" if full?
     planes << plane
+    return "Landing successful"
   end
 
   def full?
