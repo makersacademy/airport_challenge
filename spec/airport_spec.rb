@@ -5,7 +5,7 @@ describe Airport do
 
   let(:airport)     { Airport.new }
   let(:bigairport)  { Airport.new(10) }
-  let(:plane)       { double(:plane, land: nil, takeoff: nil, board: nil, alight: passenger, landed?: false) }
+  let(:plane)       { double(:plane, land: nil, takeoff: nil, board: nil, space: 40, people: (1..10).to_a, alight: passenger, landed?: false) }
   let(:passenger)   { double(:passenger) }
 
   describe "#full?" do
@@ -58,7 +58,13 @@ describe Airport do
       expect(subject).to respond_to(:board).with(1).argument
     end
     it "won't allow planes to board passengers when not at the current airport" do
-      expect { airport.board(plane) }.to raise_error(RuntimeError)
+      expect { airport.board(plane) }.to raise_error("#[Double :plane] is not currently landed at this airport!")
+    end
+    it "will allow planes to board passengers when it is at the current airport in good weather" do
+      allow(airport).to receive(:badweather?).and_return false
+      airport.land(plane)
+      airport.board(plane)
+      expect(airport.people.count).to eq 0
     end
   end
 
@@ -68,6 +74,12 @@ describe Airport do
     end
     it "won't allow planes to alight when not at the current airport" do
       expect { airport.alight(plane) }.to raise_error(RuntimeError)
+    end
+    it "will allow planes to alight when it is at the current airport in good weather" do
+      allow(airport).to receive(:badweather?).and_return false
+      airport.land(plane)
+      airport.alight(plane)
+      expect(airport.people.count).to eq 30
     end
   end
 
