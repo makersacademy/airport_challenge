@@ -5,6 +5,7 @@ describe Plane do
 
   it {should respond_to (:instruct_to_land)}
   it {should respond_to (:landed?)}
+  it {should respond_to (:take_off)}
 
   describe '#instruct_to_land' do
     it "tells the plane to land at the airport" do
@@ -18,4 +19,15 @@ end
     end
   end
 
+  describe '#take_off' do
+    it "tells the plane to take off" do
+      expect(plane.take_off).to eq "This is your clearance to take off from the airport"
+    end
+end
+
+describe '#departed?' do
+  it "checks that the plane has left the airport" do
+    expect(plane.departed?).to eq true
+  end
+end
 end
