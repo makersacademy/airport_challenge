@@ -2,7 +2,7 @@ class Airport
   DEFAULT_CAPACITY = 20
   attr_accessor :planes, :capacity
 
-  def initialize(capacity= DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
@@ -30,13 +30,11 @@ class Airport
   end
 
   def land_multiple_planes(n)
-    n.times do land_plane
-    end
+    n.times {land_plane}
   end
 
   def release_multiple_planes(n)
-    n.times do release_plane
-    end
+    n.times {release_plane}
   end
 
   def airport_has_plane?

@@ -3,8 +3,8 @@ require 'airport_class.rb'
 require 'weather_class.rb'
 
 describe Airport do
-   subject(:airport){Airport.new}
-   test_plane = Plane.new
+  subject(:airport) {described_class.new}
+  test_plane = Plane.new
 
   it 'plane lands at airport and confirms landing' do
     allow(airport).to receive(:weather?) { 'calm' }
@@ -47,11 +47,11 @@ describe Airport do
 
   it 'prevents takeoff if there are no planes' do
     allow(airport).to receive(:weather?) { 'calm' }
-    expect(airport.release_plane).to eq "No planes available"
+    expect(airport.release_plane).to eq 'No planes available'
   end
 
   it 'allows multiple planes to be released' do
-    3.times do airport.planes << Plane.new end
+    3.times {airport.planes << Plane.new}
     allow(airport).to receive(:weather?) { 'calm' }
     airport.release_multiple_planes(3)
     expect(airport.planes).to eq []
@@ -62,5 +62,4 @@ describe Airport do
     airport.land_multiple_planes(3)
     expect(airport.planes.length).to eq 3
   end
-
 end
