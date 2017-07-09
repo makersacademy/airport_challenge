@@ -7,7 +7,7 @@ def initialize
 end
 
 def land_plane
-  planes << Plane.new
+  weather? == 'calm' ?  planes << Plane.new : "Landing delayed due to bad weather"
 end
 
 def release_plane
