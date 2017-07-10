@@ -5,10 +5,10 @@ The Airport programe controls the flow of planes at an airport. Planes can land 
 ## Getting Started
 ```shell
 # Clone this repository
-$ git clone path..
+$ git clone path https://github.com/SaphMB/airport_challenge
 
 # Go into the repository
-$ cd airport-challenge
+$ cd airport_challenge
 
 # Install dependencies
 $ bundle
