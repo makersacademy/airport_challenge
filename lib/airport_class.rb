@@ -1,12 +1,13 @@
 class Airport
   DEFAULT_CAPACITY = 20
-  attr_accessor :planes, :capacity
+  attr_reader :planes, :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
   end
 
+  #Refactor to use fail statements
   def land_plane
     weather_status = weather?
     if weather_status == 'calm' && full? == false
@@ -18,6 +19,7 @@ class Airport
     end
   end
 
+  #Refactor to use fail statements
   def release_plane
     weather_status = weather?
     if weather_status == 'calm' && airport_has_plane? == true
@@ -36,6 +38,8 @@ class Airport
   def release_multiple_planes(n)
     n.times {release_plane}
   end
+
+  private
 
   def airport_has_plane?
     planes == [] ? false : true
