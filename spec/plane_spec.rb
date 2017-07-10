@@ -3,7 +3,7 @@ require 'plane'
 describe Plane do
   context 'confirms plane status' do
     it { is_expected.to respond_to :land }
-    it 'plane lands' do
+    it 'plane land' do
       subject.land
       expect(subject.land).to be_truthy
     end
