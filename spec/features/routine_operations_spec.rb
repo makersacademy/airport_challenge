@@ -23,7 +23,7 @@ feature 'Routine operations' do
   end
 
   def given_a_random_plane
-    @plane = @planes[rand(@planes.count - 1)]
+    @plane = @planes[rand(@planes.count)]
   end
 
   def when_received_an_order_then_should_execute_successfully
