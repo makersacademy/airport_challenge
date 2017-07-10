@@ -2,7 +2,7 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :planes, :weather, :capacity
+  attr_reader :planes, :capacity
 
   DEFAULT_CAPACITY = 10
 
@@ -25,6 +25,8 @@ class Airport
   end
 
   private
+
+  attr_reader :weather
 
   def stormy?
     @weather.weather_report == :stormy
