@@ -24,7 +24,7 @@ class Airport
     def take_off(plane)
       fail "Take-off denied: Adverse weather" if stormy?
       if planes.include? plane
-        planes.delete(plane)
+         planes.delete(plane)
       else
         fail "Plane already departed"
       end
