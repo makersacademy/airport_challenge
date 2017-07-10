@@ -5,7 +5,7 @@ feature 'Routine operations' do
   before { @plane = nil }
 
   scenario 'Lands and takes-off a number of planes' do
-    100.times do
+    rand(10..100).times do
       given_a_random_plane
       when_received_an_order_then_should_execute_successfully
     end
@@ -54,7 +54,7 @@ feature 'Routine operations' do
   end
 
   def print_test_stats
-    puts "Made #{@landings} landings and #{@takeoffs} take-offs. All good."
+    puts "Made #{@landings} landings and #{@takeoffs} take-offs."
     puts "Received #{@weather_rejects} weather rejects."
   end
 end
