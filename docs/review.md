@@ -104,7 +104,7 @@ end
 All this does is test the stubbing behaviour of the `airport` double - it's not testing any of the actual application code.  This is often caused by a test being in the wrong place.  Since the expectation is on the state of `airport`, this is a strong indication that this test should be in `airport_spec.rb`:
 
 ```ruby
-# airport_spec.rb
+air_traffic_controller_spec.rb
 subject(:airport) { described_class.new }
 let(:plane) { double :plane }
 
