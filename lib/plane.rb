@@ -7,3 +7,5 @@ class Plane
 	end
 
 end
+
+
