@@ -10,6 +10,7 @@ describe Plane do
     allow(airport).to receive(:port_plane)
     allow(weather).to receive(:stormy?) { false }
     allow(airport).to receive(:planes) { [] }
+    allow(airport).to receive(:capacity)
   end
 
   describe '#landed' do
@@ -35,6 +36,7 @@ describe Plane do
     end
 
     it 'does not allow plane to land in full airport' do
+      allow(airport).to receive(:capacity) { Airport::DEFAULT_CAPACITY }
       Airport::DEFAULT_CAPACITY.times { Plane.new.land(airport, weather) }
       # create array of default length below to mock behaviour / size of 'airport.planes'
       allow(airport).to receive(:planes) { Array.new(Airport::DEFAULT_CAPACITY) { 0 } }

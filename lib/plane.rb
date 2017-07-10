@@ -4,7 +4,7 @@ class Plane
 
   def land(airport, stormy = Weather.stormy?)
     raise 'Cannot land. Plane is already grounded' if @landed == true
-    raise 'Cannot land, airport is full' if airport.planes.length == Airport::DEFAULT_CAPACITY
+    raise 'Cannot land, airport is full' if airport.planes.length == airport.capacity
     raise 'Cannot land, adverse weather conditions' if stormy == true
     @landed = true
     airport.port_plane(self)
