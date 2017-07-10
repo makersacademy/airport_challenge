@@ -12,7 +12,7 @@ describe Plane do
 
   it "confirms that the plane is flying" do
     flying_plane.landed = false
-    expect(flying_plane.flying?).to be false
+    expect(flying_plane.flying?).to be true
   end
 
 end
