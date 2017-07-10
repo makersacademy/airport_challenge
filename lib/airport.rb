@@ -15,14 +15,26 @@ class Airport
   end
 
   def landed(plane)
-    raise "no more planes." if @planes.length == @capacity
+    raise "no more planes." if full?
     @planes << plane
 
   end
 
   def takeoff(plane)
-    raise "no more planes." if @planes.empty?
+    raise "no more planes." if empty?
     @planes.pop
+
+  end
+
+  private
+
+  def full?
+    @planes.count >= @capacity ? true : false
+
+  end
+
+  def empty?
+    @planes.empty? ? true : false
 
   end
 
