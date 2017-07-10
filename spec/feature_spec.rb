@@ -5,6 +5,8 @@ require './lib/plane'
 airport = Airport.new
 plane = Plane.new
 
-airport.land(plane)
-p airport.land
+p airport.capacity = 80
+p airport.capacity = 95
+p airport.capacity = 120
+p airport.capacity = 140
 =end

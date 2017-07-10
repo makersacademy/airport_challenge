@@ -9,10 +9,6 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to eq 'Plane has landed'
     end
-    it 'raises error when airport full' do
-      subject.capacity.times { subject.land Plane.new }
-      expect { subject.land Plane.new }.to raise_error 'Airport is at full capacity'
-    end
   end
   describe '#take_off' do
     it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -21,6 +17,16 @@ describe Airport do
     it 'plane takes off' do
       plane = Plane.new
       expect(subject.take_off(plane)).to eq 'Plane has taken off'
+    end
+  end
+  describe 'initialization' do
+    subject { Airport.new }
+    let(:plane) { Plane.new }
+    it 'defaults airport capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
+      expect { subject.land(plane) }.to raise_error 'Airport is at full capacity.'
     end
   end
 end
