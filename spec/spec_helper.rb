@@ -15,3 +15,11 @@ RSpec.configure do |config|
     puts "\e[33mTry it now! Just run: rubocop\e[0m"
   end
 end
+
+
+RSpec.configure do |config|
+  config.alias_example_group_to :feature, :capybara_feature => true, :type => :feature
+  config.alias_example_to :scenario
+  config.alias_example_to :xscenario, :skip => "Temporarily skipped with xscenario"
+  config.alias_example_to :fscenario, :focus => true
+end
