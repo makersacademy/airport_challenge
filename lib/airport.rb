@@ -13,14 +13,12 @@ class Airport
   end
 
   def land_plane(plane)
-    fail 'Error this plane has already landed' if plane.status == :landed
     fail 'The airport is full!' if full?
     fail 'Error plane cannot land in stormy weather' if stormy?
     @planes << plane
   end
 
   def take_off(plane)
-    fail 'Error this plane is already flying' if plane.status == :flying
     fail 'The airport is empty!' if empty?
     fail 'Error plane cannot fly in stormy weather' if stormy?
     @planes.delete(plane)
