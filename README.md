@@ -53,7 +53,7 @@ Planes instantiate with a random five digit name, format AA000.
 
 Airports can only land and take off planes one at a time.  
 Storm conditions cannot be customised.  
-storm? or full? cannot be checked as they are private
+storm? or full? cannot be checked as they are private  
 Planes cannot be renamed.  
 There is no way to remove or add planes to runways other than landing and taking off.  
 
