@@ -91,3 +91,31 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+```
+Oluwafunmilayos-MacBook-Pro:airport_challenge oluwafunmilayoadewodu$ irb
+2.4.0 :001 > require './lib/airport.rb'
+ => true
+2.4.0 :002 > require './lib/plane.rb'
+ => false
+2.4.0 :003 > require './lib/weather.rb'
+ => false
+2.4.0 :004 >
+2.4.0 :005 >   airport = Airport.new
+ => #<Airport:0x007fa1fd859b60 @weather=#<Weather:0x007fa1fd859b38 @number_generator=#<Random:0x007fa1fd859b10>>, @capacity=10, @planes=[]>
+2.4.0 :006 > plane1 = Plane.new
+ => #<Plane:0x007fa1fd851e88>
+2.4.0 :007 > plane2 = Plane.new
+ => #<Plane:0x007fa1fd84a340>
+2.4.0 :008 > airport.land_plane(plane1)
+ => [#<Plane:0x007fa1fd851e88>]
+2.4.0 :009 > airport.land_plane(plane2)
+ => [#<Plane:0x007fa1fd851e88>, #<Plane:0x007fa1fd84a340>]
+2.4.0 :010 > airport.take_off(plane2)
+RuntimeError: Error plane cannot fly in stormy weather
+	from /Users/oluwafunmilayoadewodu/projects/airport_challenge/lib/airport.rb:23:in `take_off'
+	from (irb):10
+	from /Users/oluwafunmilayoadewodu/.rvm/rubies/ruby-2.4.0/bin/irb:11:in `<main>'
+2.4.0 :011 > airport
+ => #<Airport:0x007fa1fd859b60 @weather=#<Weather:0x007fa1fd859b38 @number_generator=#<Random:0x007fa1fd859b10>>, @capacity=10, @planes=[#<Plane:0x007fa1fd851e88>, #<Plane:0x007fa1fd84a340>]>
+```
