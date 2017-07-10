@@ -35,7 +35,7 @@ describe Airport do
 
     it "does not allow plane to land if it is stormy weather" do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect{ airport.land(plane) }.to raise_error("The plane can't land due to stormy weather!")
+      expect { airport.land(plane) }.to raise_error("The plane can't land due to stormy weather!")
     end
 
   end
@@ -68,7 +68,7 @@ describe Airport do
 
     it "does not allow plane to take off if it is stormy weather" do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect{ airport.take_off(plane) }.to raise_error("The plane can't take off due to stormy weather!")
+      expect { airport.take_off(plane) }.to raise_error("The plane can't take off due to stormy weather!")
     end
 
   end
