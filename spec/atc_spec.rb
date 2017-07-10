@@ -1,6 +1,6 @@
 require "atc"
 
-describe "Atc" do
+describe Atc do
 
   it "instructs plane to land" do
     subject = Atc.new

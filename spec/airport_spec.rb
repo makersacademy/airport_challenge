@@ -1,6 +1,6 @@
 require "airport"
 
-describe "Airport" do
+describe Airport do
 
   it "receives a plane" do
     subject = Airport.new

@@ -4,12 +4,16 @@ class Airport
 
   attr_reader :plane
 
-  def receive_plane(plane)
+  def intilialize(plane)
     @plane = plane
   end
 
+  def receive_plane(plane)
+    plane
+  end
+
   def dispatch_plane(plane)
-    @plane = plane
+    plane
   end
 
 end
