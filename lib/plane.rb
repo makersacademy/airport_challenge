@@ -15,7 +15,7 @@ class Plane
     fail_if_flying
     fail_if_different_airport(airport)
     fail_if_stormy("takeoff", location)
-    airport.delete_plane(location)
+    airport.delete_plane(self)
     @location = :in_air
   end
 
