@@ -31,7 +31,7 @@ class Airport
   private
 
   def full?
-    planes.length == capacity ? true : false
+    planes.length == capacity
   end
 
   def empty?
