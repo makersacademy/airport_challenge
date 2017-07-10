@@ -19,14 +19,29 @@ describe Airport do
     expect(airport.planes).to eq []
   end
 
+  context "when stormy?" do
+  before {allow(airport).to receive(:stormy?).and_return(true)}
+
   it "returns true when the weather is stormy" do
-    allow(airport).to receive(:stormy?).and_return(true)
     expect(airport.stormy?).to eq true
   end
 
   it "raises an error when trying to depart and the weather is stormy" do
-      allow(airport).to receive(:stormy?).and_return(true)
     expect{airport.depart}.to raise_error("You cannot take-off, it is too stormy")
+  end
+
+  it "raises an error when trying to land and the weather is stormy" do
+    expect{airport.land(plane)}.to raise_error("You cannot land, it is too stormy")
+  end
+end
+
+  it "sets capacity at a default of 20 unless the user sets capacity themselves" do
+    expect(airport.capacity).to eq 20
+  end
+
+  it "raises an error when tryng to land at a full airport" do
+    Airport::DEFAULT_CAPACITY.times {airport.land(plane)}
+    expect{airport.land(plane)}.to raise_error("Sorry, the airport is full")
   end
 
 end
