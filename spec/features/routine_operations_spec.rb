@@ -32,7 +32,7 @@ feature 'Routine operations' do
 
   def give_order(plane, airport)
     begin
-      plane.landed_at?(airport) ? test_takeoff(plane, airport) : test_land(plane, airport)
+      plane.landed_at?(airport) ? test_takeoff(plane, airport) : test_landing(plane, airport)
     rescue StandardError => error
       handle(error)
     end
@@ -43,7 +43,7 @@ feature 'Routine operations' do
     @takeoffs += 1
   end
 
-  def test_land(plane, airport)
+  def test_landing(plane, airport)
     plane.land_at(airport)
     @landings += 1
   end
