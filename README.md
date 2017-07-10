@@ -36,25 +36,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+As an air traffic controller
+So I can get passengers to a destination
+I want to instruct a plane to land at an airport and confirm that it has landed
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +73,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
@@ -88,3 +88,33 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+Development Notes
+-----------------
+
+I first estimated the task at hand
+* Understanding requirements - 1 hour
+* Feature 1 & 2 - 4 hours
+* Feature 3 & 4 - 5 hours
+* Feature 5 & 6 - 6 hours
+* Total - 16 hours (effort, not duration)
+
+I was unable to keep a proper track of what the actual effort was as I could only work on and off on the challenge.
+
+When understanding requirements, I looked at what was expected of my code (README.md) and what was expected of me (inline links in README especially review.md, coding standards, do's and dont's etc) thoroughly.
+
+For each feature I
+- tried a feature test on irb and saw it fail
+- designed the new classes / attributes / methods required to achieve the minimum functionality
+- wrote the RSpec unit tests
+- ensured that only doubles and not instances of other classes were used in unit tests
+- saw the unit tests fail
+- implemented code to make the unit tests pass
+- repeated the above process for every edge case associated with the feature
+- wrote a feature test (in individual files for each feature) taking into account both normal case and edge case
+- made the feature tests work
+- re-ran the previous feature tests and checked that nothing had broken
+- ensured that test coverage was 100%
+- ensured rubocop didn't book any offenses
+- refactored if needed - SluRPed it, DRYed it, KISSed it, and most importantly Psychopath proofed it to the best I could
