@@ -2,14 +2,14 @@ feature 'Routine operations' do
   before { @airport = make_airport }
   before { @planes = make_planes(@airport.capacity) }
   before { @landings, @takeoffs, @weather_rejects = 0, 0, 0 }
+  before { @plane = nil }
 
   scenario 'Lands and takes-off a number of planes' do
     100.times do
-      plane = random_plane
-      expect { give_order(plane, @airport) }.not_to raise_error
+      given_a_random_plane
+      when_received_an_order_then_should_execute_successfully
     end
-    puts "Made #{@landings} landings and #{@takeoffs} take-offs. All good."
-    puts "Received #{@weather_rejects} weather rejects."
+    print_test_stats
   end
 
   private
@@ -22,8 +22,12 @@ feature 'Routine operations' do
     Array.new(n, Plane.new)
   end
 
-  def random_plane
-    @planes[rand(@planes.count - 1)]
+  def given_a_random_plane
+    @plane = @planes[rand(@planes.count - 1)]
+  end
+
+  def when_received_an_order_then_should_execute_successfully
+    expect { give_order(@plane, @airport) }.not_to raise_error
   end
 
   def give_order(plane, airport)
@@ -43,5 +47,10 @@ feature 'Routine operations' do
   def test_land(plane, airport)
     plane.land_at(airport)
     @landings += 1
+  end
+
+  def print_test_stats
+    puts "Made #{@landings} landings and #{@takeoffs} take-offs. All good."
+    puts "Received #{@weather_rejects} weather rejects."
   end
 end
