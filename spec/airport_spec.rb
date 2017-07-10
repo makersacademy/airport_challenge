@@ -9,7 +9,7 @@ describe Airport do
   end
 
   subject(:airport) { described_class.new(fake_weather) }
-  let(:plane) { Plane.new }
+  let(:plane) { double :plane }
 
   describe '#initialize' do
     it 'starts with an empty airport' do
