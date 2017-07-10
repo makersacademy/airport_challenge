@@ -23,6 +23,8 @@ Approach
 
 * I have tried not to overcomplicate the early user stories, leaving the edge cases until the program is more fleshed out;
 * For checking weather conditions, I created a new instance of Weather as a default argument. I initially tried to generate a new instance of Weather inside the take_off method, however this became impossible to test for;
+* Then updated the Weather class to use a class method for stormy, as opposed to creating new instances each time.
+
 * Tests have been refactored to use doubles and method stubs
 * User stories implemented, then edge cases added
 * Arbitrarily decided on a default capacity of 10

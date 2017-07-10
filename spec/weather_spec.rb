@@ -2,12 +2,12 @@ require 'weather'
 
 describe Weather do
 
-  let(:weather) { Weather.new }
+#  let(:weather) { Weather.new }
 
-  describe '#initialize' do
+  describe '#stormy' do
 
     it 'assigns true (5% chance) or false to stormy instance variable' do
-      expect([TrueClass, FalseClass]).to include(weather.stormy.class)
+      expect([TrueClass, FalseClass]).to include(Weather.stormy?.class)
     end
 
   end

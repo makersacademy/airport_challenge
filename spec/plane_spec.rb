@@ -8,15 +8,14 @@ describe Plane do
 
   before(:example) do
     allow(airport).to receive(:port_plane)
-    allow(weather).to receive(:stormy)
+    allow(weather).to receive(:stormy?) { false }
     allow(airport).to receive(:planes) { [] }
   end
 
   describe '#landed' do
 
     it 'returns true when a plane has landed' do
-      allow(weather).to receive(:stormy) { false }
-      subject.land(airport, weather)
+      subject.land(airport, weather.stormy?)
       expect(subject.landed).to eq true
     end
   end
@@ -24,14 +23,14 @@ describe Plane do
   describe '#land' do
 
     it 'fails if the plane is already grounded' do
-      subject.land(airport, weather)
-      expect { subject.land(airport, weather) }.
+      subject.land(airport, weather.stormy?)
+      expect { subject.land(airport, weather.stormy?) }.
         to raise_error(RuntimeError, 'Cannot land. Plane is already grounded')
     end
 
     it 'does not allow landing in stormy conditions' do
-      allow(weather).to receive(:stormy) { true }
-      expect { plane.land(airport, weather) }.
+      allow(weather).to receive(:stormy?) { true }
+      expect { plane.land(airport, weather.stormy?) }.
         to raise_error(RuntimeError, 'Cannot land, adverse weather conditions')
     end
 
@@ -39,7 +38,7 @@ describe Plane do
       Airport::DEFAULT_CAPACITY.times { Plane.new.land(airport, weather) }
       # create array of default length below to mock behaviour / size of 'airport.planes'
       allow(airport).to receive(:planes) { Array.new(Airport::DEFAULT_CAPACITY) { 0 } }
-      expect { plane.land(airport, weather) }.
+      expect { plane.land(airport, weather.stormy?) }.
         to raise_error(RuntimeError, 'Cannot land, airport is full')
     end
 
@@ -66,14 +65,14 @@ describe Plane do
     end
 
     it 'confirms the plane has taken off' do
-      allow(weather).to receive(:stormy) { false }
-      plane.take_off(airport, weather)
+      allow(weather).to receive(:stormy?) { false }
+      plane.take_off(airport, weather.stormy?)
       expect(plane.landed).to eq false
     end
 
     it 'does not take off if weather is stormy' do
-      allow(weather).to receive(:stormy) { true }
-      expect { plane.take_off(airport, weather) }.
+      allow(weather).to receive(:stormy?) { true }
+      expect { plane.take_off(airport, weather.stormy?) }.
         to raise_error(RuntimeError, 'Cannot take off, adverse weather conditions')
     end
 
