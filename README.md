@@ -30,7 +30,7 @@ I would like a default airport capacity that can be overridden as appropriate
 
 ## Getting Started
 
-require plane.rb and airport.rb irb or other Ruby interpreter.
+require plane.rb and airport.rb in irb or other Ruby interpreter.
 
 ## Comments
 
