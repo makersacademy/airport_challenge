@@ -16,7 +16,7 @@ describe Airport do
       expect { airport.authorise_land(Plane.new) }.to raise_error("Landing denied: Airport full")
     end
 
-    it '#confirm_departed' do
+    it 'confirm landed' do
       allow(plane).to receive(:landed?) { true }
     end
   end
