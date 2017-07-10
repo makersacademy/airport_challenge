@@ -1,9 +1,10 @@
-require 'Airport'
-require 'Plane'
+require 'airport'
+require 'plane'
 
 describe Airport do
   subject(:airport) { described_class.new }
   subject(:plane) { Plane.new }
+  let(:weather) { double(:weather) }
 
   describe "landing" do
     it "instructs a plane to land" do
@@ -30,6 +31,11 @@ describe Airport do
     it "raises an error if the same plane attempts to land" do
       airport.land(plane)
       expect { airport.land(plane) }.to raise_error("This plane has already landed!")
+    end
+
+    it "does not allow plane to land if it is stormy weather" do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect{ airport.land(plane) }.to raise_error("The plane can't land due to stormy weather!")
     end
 
   end
@@ -59,6 +65,12 @@ describe Airport do
     it "raises an error if there are no planes at the airport" do
       expect { airport.take_off(plane) }.to raise_error("There are no planes at the airport for take off!")
     end
+
+    it "does not allow plane to take off if it is stormy weather" do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect{ airport.take_off(plane) }.to raise_error("The plane can't take off due to stormy weather!")
+    end
+
   end
 
 end
