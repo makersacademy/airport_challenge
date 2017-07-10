@@ -10,14 +10,15 @@ describe Airport do
 
   subject(:airport) { described_class.new(fake_weather) }
   let(:plane) { double :plane }
+  let(:new_capacity) { 30 }
 
   describe '#initialize' do
     it 'starts with an empty airport' do
-      expect(subject.planes).to eq []
+      expect(subject.planes).to be_empty
     end
 
     it 'can be set with a different capacity' do
-      expect(Airport.new(fake_weather, 30).capacity).to eq 30
+      expect(Airport.new(fake_weather, new_capacity).capacity).to eq new_capacity
     end
 
     it 'has a default capacity' do
