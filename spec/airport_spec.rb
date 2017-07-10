@@ -2,6 +2,8 @@ require 'airport'
 
 
 describe Airport do
+
+
   it 'responds to land plane' do
     expect(subject).to respond_to :land_plane
 
@@ -35,11 +37,15 @@ describe Airport do
 
   it 'responds to a capacity' do
     plan = Plane.new
-    expect { 101.times {subject.landed(Plane.new)} }.to raise_error "no more planes."
+    expect expect { (subject.capacity + 1).times {subject.landed(Plane.new)} }.to raise_error "no more planes."
   end
 
-
-
+  it 'should enable airport with a custom capacity' do
+    airport = Airport.new(100)
+    capacity = airport.capacity
+    expect(capacity).to eq 100
+    expect { (capacity + 1).times {airport.landed(Plane.new)} }.to raise_error "no more planes."
+  end
 
 
 end

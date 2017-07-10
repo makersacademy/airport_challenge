@@ -1,12 +1,13 @@
 require_relative 'plane' #i had to look this up via google
+require_relative 'weather'
 
 class Airport
-  attr_reader 'planes'
+  attr_reader 'planes', 'capacity'
+  DEFAULT_CAPACITY = 100
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = 100
-
+    @capacity = capacity
   end
 
   def land_plane(plane)
@@ -29,7 +30,7 @@ class Airport
   private
 
   def full?
-    @planes.count >= @capacity ? true : false
+    @planes.count >= DEFAULT_CAPACITY ? true : false
 
   end
 

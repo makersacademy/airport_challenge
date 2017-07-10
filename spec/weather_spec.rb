@@ -2,16 +2,15 @@ require 'weather'
 
 describe Weather do
 
-  it 'responds to bad weather' do
-    expect(subject).to respond_to :bad
+  it 'responds to stormy weather' do
+    expect(subject).to respond_to :stormy?
   end
 
-  it 'responds to good weather' do
-    expect(subject.good?).to be true
-    subject.bad
-    expect(subject.good?).to be false
+  it "should return true or false" do
+      weather = Weather.new
+      weather = weather.stormy?
+      expect([true, false].include? weather).to eq true
   end
-
 
 
 
