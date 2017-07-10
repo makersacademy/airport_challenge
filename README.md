@@ -38,21 +38,24 @@ How the software currently works/looks:
 ------------------------------------
 
 ```
-$ irb
 2.4.0 :001 > require './lib/airport'
  => true
 2.4.0 :002 > require './lib/plane'
  => false
 2.4.0 :003 > airport = Airport.new
- => #<Airport:0x007fd351945d00 @capacity=70, @planes=[]>
+ => #<Airport:0x007fed61906360 @capacity=70, @planes=[]>
 2.4.0 :004 > plane = Plane.new
- => #<Plane:0x007fd35193e140>
-2.4.0 :005 > airport.land(plane)
+ => #<Plane:0x007fed628ea790>
+2.4.0 :005 > plane = airport.land(plane)
  => "Plane has landed"
-2.4.0 :006 > airport.take_off(plane)
+2.4.0 :006 > plane = airport.take_off(plane)
  => "Plane has taken off"
-2.4.0 :007 > airport = Airport.new(140)
- => #<Airport:0x007fd3519266d0 @capacity=140, @planes=[]>
+2.4.0 :007 > 70.times {airport.land Plane.new}
+ => 70
+2.4.0 :008 > airport
+ => #<Airport:0x007fed61906360 @capacity=70, @planes=[#<Plane:0x007fed628cbed0>, #<Plane:0x007fed628cbe80>, #<Plane:0x007fed628cbe30>, #<Plane:0x007fed628cbde0>, #<Plane:0x007fed628cbd90>, #<Plane:0x007fed628cbd40>, #<Plane:0x007fed628cbcf0>, #<Plane:0x007fed628cbca0>......(70 times)> 
+2.4.0 :009 > airport.land Plane.new
+RuntimeError: Airport is at full capacity.
 ```
 
 **Notes On Submission**
