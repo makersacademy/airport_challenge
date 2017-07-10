@@ -1,6 +1,6 @@
 class Plane
 
-  attr_accessor :name, :grounded
+  attr_reader :name, :grounded
 
   def initialize
     @name = "#{(0..1).map { ('A'..'Z').to_a[rand(26)] }.join}#{rand(100..400)}"
