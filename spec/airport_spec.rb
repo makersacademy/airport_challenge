@@ -5,15 +5,19 @@ describe Airport do
   let(:plane) { instance_double("plane") }
   let(:other_plane) { instance_double("plane") }
   let(:weather) { airport.weather }
+  let(:custom_capacity) { 15 }
 
   describe '#initialize' do
     it 'initialises with a default capacity' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
-    it 'can be initialized with a custom capacity' do
-      custom_capacity = 15
-      expect(Airport.new(custom_capacity).capacity).to eq custom_capacity
+    context 'custom capacity' do
+      subject(:airport) {described_class.new(custom_capacity) }
+
+      it 'can be initialized with a custom capacity' do
+        expect(airport.capacity).to eq custom_capacity
+      end
     end
   end
 
