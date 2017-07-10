@@ -8,7 +8,7 @@ describe Airport do
 
   describe '#land' do
     it 'allows a plane to land' do
-      expect { airport.land double(:bike).to eq :bike }
+      expect { airport.land double(:plane).to eq :plane }
     end
   end
 

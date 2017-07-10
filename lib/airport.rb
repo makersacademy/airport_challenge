@@ -24,7 +24,7 @@ class Airport
 
   def takeoff(plane)
     fail "cannot takeoff due to weather" if weather == "stormy"
-    fail "cannot takoff in plane is not in airport" if in_airport?(plane) == false
+    fail "cannot takeoff if plane is not in airport" if in_airport?(plane) == false
     planes.delete(plane)
   end
 
