@@ -33,9 +33,8 @@ feature 'Routine operations' do
   def give_order(plane, airport)
     begin
       plane.landed_at?(airport) ? test_takeoff(plane, airport) : test_land(plane, airport)
-    rescue StandardError => e
-      raise e.message unless e.message.include?("weather conditions")
-      @weather_rejects += 1
+    rescue StandardError => error
+      handle(error)
     end
   end
 
@@ -47,6 +46,11 @@ feature 'Routine operations' do
   def test_land(plane, airport)
     plane.land_at(airport)
     @landings += 1
+  end
+
+  def handle(error)
+    raise error.message unless error.message.include?("weather conditions")
+    @weather_rejects += 1
   end
 
   def print_test_stats
