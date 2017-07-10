@@ -10,7 +10,7 @@ describe Weather do
     end
 
     it 'shows when the weather is sunny' do
-      allow(subject.number_generator).to receive(:rand) { 2 }
+      allow(subject.number_generator).to receive(:rand) { 10 }
       expect(subject.weather_report).to eq :sunny
     end
   end

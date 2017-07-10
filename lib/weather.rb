@@ -6,7 +6,7 @@ class Weather
   end
 
   def weather_report
-    if @number_generator.rand(2) == 1
+    if @number_generator.rand(10) == 1
       :stormy
     else
       :sunny
