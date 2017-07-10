@@ -2,7 +2,7 @@
 require 'irb'
 
 puts 'Loading files..'
-require './lib/aiport_class.rb'
-require './airport_challenge/lib/plane_class.rb'
+require './lib/airport_class.rb'
+require './lib/plane_class.rb'
 
 IRB.start
