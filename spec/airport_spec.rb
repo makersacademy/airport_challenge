@@ -7,19 +7,15 @@ describe Airport do
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
 
-  # it { is_expected.to respond_to(:take_off) }
-  # it { is_expected.to respond_to(:land) }
-  # it {is_expected.to respond_to(:capacity) }
-
   it "confirms that a plane is taking off" do
-    allow(weather).to receive(:stormy?) { false }
+    allow(aiport).to receive(:stormy?) { false }
     airport.land(plane)
     airport.take_off(plane)
     expect(airport.planes).to eq []
   end
 
   it "confirms that a plane has landed" do
-    allow(weather).to receive(:stormy?) { false }
+    p allow(weather).to receive(:stormy?) { false }
     airport.land(plane)
     expect(airport.planes).to eq [plane]
   end
