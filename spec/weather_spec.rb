@@ -9,7 +9,7 @@ describe Weather do
   end
 
   it "should return false " do
-    allow(Kernel).to receive(:rand) { 20 }
+    allow(weather).to receive(:stormy?) { false }
     expect(weather.stormy?).to eq false
   end
 
