@@ -8,7 +8,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = DEFAULT_CAPACITY
+    @capacity = capacity
   end
 
   def land(plane)
@@ -33,7 +33,7 @@ class Airport
   end
 
   def full?
-    @planes.count == @capacity
+    @planes.count == capacity
   end
 
 end

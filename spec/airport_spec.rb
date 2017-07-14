@@ -2,11 +2,9 @@ require 'plane'
 require 'airport'
 
 describe Airport do
-  let(:airport) { Airport.new }
-  let(:plane)   { Plane.new }
-  let(:flying_plane) { double :plane, :landed => false }
-  let(:landed_plane) { double :plane, :landed => true }
-
+  let(:airport) { described_class.new }
+  let(:flying_plane) { double :plane, landed: false }
+  let(:landed_plane) { double :plane, landed: true }
 
   it 'responds to #land method' do
     expect(subject).to respond_to :land

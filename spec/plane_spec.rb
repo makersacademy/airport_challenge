@@ -1,7 +1,6 @@
 require 'plane'
 require 'airport'
 
-
 # describe Plane do
 #
 #   it 'responds to #landed' do
