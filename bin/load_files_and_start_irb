@@ -1,0 +1,7 @@
+#! /usr/bin/env ruby -w
+require 'irb'
+
+puts 'Loading files..'
+require './lib/Airport.rb'
+
+IRB.start
