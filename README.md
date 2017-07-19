@@ -13,22 +13,7 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Authored by: Nigel Said
 
 Task
 -----
@@ -61,30 +46,64 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+Review
+------
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+**The Good**
 
-Please create separate files for every class, module and test suite.
+* Code *should* be a complete solution to the user stories.
 
-In code review we'll be hoping to see:
+* Code *should* guard against edge cases (such as 'teleportation' of planes)
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* Tests pass and test coverage is high
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+* Rubocop gives all-clear (no offences)
 
-**BONUS**
+**The Bad**
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
+* While all code was featured tested on IRB while it was being built, not all rspec unit tests were written before the actual code was inputted into the LIB files - this is a failing in terms of TDD.  Rspec unit tests were created thereafter, first in a failing state, and then to pass.
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+* Code isn't as DRY as possible, e.g. The @@Plane #land and #take_off call another method twice (first to see if it passes and if it doesn't, a second time to generate the message indicating why it hasn't).
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+**The Ugly**
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+* Rspec tests (Require a lot of refactoring)
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+* On reflection, Safety module is probably unnecessary and the code within could be distributed to other classes in a simpler fashion. 
+
+
+Example of Code
+---------------
+
+```
+2.4.0 :034 > plane1 = Plane.new("Air Force One")
+ => #<Plane:0x007fa59d954170 @name="Air Force One", @status="airborne"> 
+2.4.0 :035 > airport1 = Airport.new("JFK Airport")
+ => #<Airport:0x007fa59d925c30 @name="JFK Airport", @planes=[], @capacity=5> 
+2.4.0 :036 > plane1.land(airport1)
+ => "Air Force One has landed in JFK Airport" 
+2.4.0 :037 > plane1.land(airport1)
+ => "Air Force One already on the ground" 
+2.4.0 :038 > plane1.take_off(airport1)
+ => "Air Force One has taken off from JFK Airport" 
+2.4.0 :039 > plane1.take_off(airport1)
+ => "Take Off not possible: Air Force One not present" 
+2.4.0 :040 > 
+```
+
+For a more comprehensive example of the above (not using IRB), go into the main folder on command-line and run the following:
+```
+$ruby ./spec/feature_test.rb
+```
+N.B. Running this more than once might generate different results due to the @@Weather...
+
+
+
+
+<p align="center">
+<b>FIN</b>
+</p>
+
+
+
