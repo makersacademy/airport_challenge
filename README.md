@@ -38,7 +38,7 @@ We have a request from a client to write the software to control the flow of pla
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
-I want to instruct a plane to land at an airport and confirm that it has landed 
+I want to instruct a plane to land at an airport
 
 As an air traffic controller 
 So I can get passengers on the way to their destination 
