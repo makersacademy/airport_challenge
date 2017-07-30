@@ -7,7 +7,13 @@ describe Airport do
 
   describe '#land_plane' do
     it 'instructs plane to land' do
+      allow(airport).to receive(:stormy?).and_return false # stub method :stormy? to set airport SUNNY (NOT STORMY)
       expect(airport).to respond_to(:land_plane).with(1).argument
+    end
+
+    it 'raises error when weather is stormy' do
+      allow(airport).to receive(:stormy?).and_return true # stub method :stormy? to set airport stormy
+      expect { airport.land_plane(plane) }.to raise_error 'Weather stormy. Plane can not land!'
     end
   end
 
