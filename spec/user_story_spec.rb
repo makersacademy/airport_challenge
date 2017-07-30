@@ -16,6 +16,17 @@ describe 'User Stories' do
   it 'instructs plane to take off' do
     airport = Airport.new
     plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false # stub method :stormy? to set airport SUNNY (NOT STORMY)
     expect { airport.take_off(plane) }.not_to raise_error
+  end
+
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent takeoff when weather is stormy
+  it 'prevents take-off when weather is stormy' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return true # stub method :stormy? to set airport stormy
+    expect { airport.take_off(plane) }.to raise_error 'Weather stormy. Plane can not take-off!'
   end
 end
