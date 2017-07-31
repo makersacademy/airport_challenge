@@ -1,7 +1,14 @@
 class Airport
 
+  attr_reader :planes
+
+  def initialize
+    @planes = []
+  end
+
   def land_plane(plane)
     raise 'Weather stormy. Plane can not land!' if stormy?
+    @planes << plane
   end
 
   def take_off(plane)

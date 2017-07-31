@@ -1,5 +1,11 @@
 describe 'User Stories' do
 
+  it 'is empty when it first opens' do
+    airport = Airport.new
+    plane = Plane.new
+    expect { airport.planes }.not_to raise_error
+  end
+
   # As an air traffic controller
   # So I can get passengers to a destination
   # I want to instruct a plane to land at an airport and confirm that it has landed
@@ -7,7 +13,15 @@ describe 'User Stories' do
     airport = Airport.new
     plane = Plane.new
     allow(airport).to receive(:stormy?).and_return false # stub method :stormy? to set airport SUNNY (NOT STORMY)
-    expect { airport.land_plane(plane) }.not_to raise_error
+    airport.land_plane(plane)
+  end
+
+  it 'has a landed plane in the airport' do
+    airport = Airport.new
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return false
+    airport.land_plane(plane)
+    expect(airport.planes).to eq [plane]
   end
 
   # As an air traffic controller
@@ -40,4 +54,14 @@ describe 'User Stories' do
     allow(airport).to receive(:stormy?).and_return true # stub method :stormy? to set airport stormy
     expect { airport.take_off(plane) }.to raise_error 'Weather stormy. Plane can not take-off!'
   end
+
+  # # As an air traffic controller
+  # # To ensure safety
+  # # I want to prevent landing when the airport is full
+  # it 'prevents landing when airport is full'
+  # airport = Airport.new(50)
+  # plane = Plane.new
+  # allow(airport).to receive(:stormy?).and_return false
+  # expect { airport(50).land_plane(plane) }.to raise_error 'Airport full. Plane cannot land!'
+
 end

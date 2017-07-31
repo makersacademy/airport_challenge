@@ -5,6 +5,12 @@ describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) { Plane.new } # use double??
 
+  describe '#initialize' do
+    it 'is empty when it first opens' do
+      expect(airport.planes).to eq []
+    end
+  end
+
   describe '#land_plane' do
     it 'instructs plane to land' do
       allow(airport).to receive(:stormy?).and_return false # stub method :stormy? to set airport SUNNY (NOT STORMY)
@@ -14,6 +20,12 @@ describe Airport do
     it 'raises error when weather is stormy' do
       allow(airport).to receive(:stormy?).and_return true # stub method :stormy? to set airport stormy
       expect { airport.land_plane(plane) }.to raise_error 'Weather stormy. Plane can not land!'
+    end
+
+    it 'has a landed plane' do
+      allow(airport).to receive(:stormy?).and_return false
+      airport.land_plane(plane)
+      expect(airport.planes).to eq [plane]
     end
   end
 
