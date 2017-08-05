@@ -3,8 +3,8 @@ require 'airport'
 describe Plane do
 
   it "lands at an airport" do
-    airport = double("airport", :full => false)
-    airport.stub(:get_weather => :sunny)
+    airport = double("airport", :planes => 50, :capacity => 100)
+    airport.stub(:get_weather => :sunny )
     plane = Plane.new
     plane.land(airport)
     expect(plane.status).to eq :on_the_ground
@@ -35,7 +35,7 @@ describe Plane do
   end
 
   it "does not land into a full airport" do
-    airport5 = double("airport5", :full => true)
+    airport5 = double("airport5", :planes => 100, :capacity => 100)
     airport5.stub(:get_weather => :sunny)
     plane5 = Plane.new
     plane5.land(airport5)
@@ -50,16 +50,16 @@ describe Plane do
   end
 
   it "raises an error when a landed plane tries to land at same airport" do
-    airport7 = double("airport7", :full => false)
+    airport7 = double("airport7", :planes => 50)
     airport7.stub(:get_weather => :sunny)
     plane7 = Plane.new(airport7)
     expect{plane7.land(airport7)}.to raise_error("already landed at this airport")
   end
 
   it "raises an error when a landed plane tries to land at another airport" do
-    airport8 = double("airport8", :full => false)
+    airport8 = double("airport8", :planes => 50)
     airport8.stub(:get_weather => :sunny)
-    airport9 = double("airport9", :full => false)
+    airport9 = double("airport9", :planes => 50)
     airport9.stub(:get_weather => :sunny)
     plane8 = Plane.new(airport8)
     expect{plane8.land(airport9)}.to raise_error("already landed at another airport")

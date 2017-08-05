@@ -12,7 +12,7 @@ class Plane
     raise "already landed at another airport" if @status == :on_the_ground && airport != @airport
     if airport.get_weather == :stormy
       "too stormy to land"
-    elsif airport.full == true
+    elsif airport.planes == airport.capacity
       "unable to land as airport is full"
     else
       @status = :on_the_ground

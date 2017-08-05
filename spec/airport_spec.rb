@@ -7,6 +7,9 @@ describe Airport do
   end
 
   # it "registers when a plane lands" do
-  #   airport = Airport.new
+  #   airport2 = Airport.new
+  #   plane2 = Plane.new
+  #   plane2.land(airport2)
+  #   expect(airport2.planes).to eq 51
   # end
 end
