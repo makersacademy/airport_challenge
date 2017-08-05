@@ -1,12 +1,12 @@
-require 'airport.rb'
+require './lib/airport.rb'
 
 airport = Airport.new
 plane = Plane.new
-weather = Weather.new
 
-"plane status"
+puts "plane status"
 p "#{airport}"
 p "#{plane}"
 
-"plane land"
+puts "plane landing"
 p "#{airport.land(plane)}"
+puts "#{airport}"
