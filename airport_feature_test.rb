@@ -21,3 +21,8 @@ puts "unable to land when stormy"
 airport = Airport.new("stormy")
 plane = Plane.new(airport, "in the air")
 puts plane.land
+
+puts "unable to land when airport is full"
+airport = Airport.new("sunny",true)
+plane = Plane.new(airport, "in the air")
+puts plane.land

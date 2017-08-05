@@ -10,6 +10,8 @@ class Plane
   def land
     if airport.weather == "stormy"
       "too stormy to land"
+    elsif airport.full == true
+      "unable to land as airport is full"
     else
       @status = "on the ground"
       "plane has landed"

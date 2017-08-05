@@ -29,4 +29,11 @@ describe Plane do
     plane4.land
     expect(plane4.status).to eq "in the air"
   end
+
+  it "does not land into a full airport" do
+    airport5 = Airport.new("sunny",true)
+    plane5 = Plane.new(airport5, "in the air")
+    plane5.land
+    expect(plane5.status).to eq "in the air"
+  end
 end
