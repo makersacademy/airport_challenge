@@ -25,7 +25,9 @@ describe Aeroplane do
   it "can land in sunny weather" do
 
     allow(airport).to receive_messages(
+      :on_land => nil,
       :full? => false,
+      :planes => []
     )
 
     expect(subject.try_land airport, $sunny).to eq(true)
@@ -60,6 +62,12 @@ describe Aeroplane do
 
   it "can take off in sunny weather" do
 
+    allow(airport).to receive_messages(
+      :on_take_off => nil,
+      :planes => [subject]
+    )
+
+    subject.airport = airport
     expect(subject.try_take_off $sunny).to eq(true)
 
   end
