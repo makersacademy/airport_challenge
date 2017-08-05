@@ -2,7 +2,7 @@ require './docs/plane.rb'
 require './docs/weather.rb'
 
 class Airport
-  attr_accessor :capacity
+  attr_accessor :capacity, :planes
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
