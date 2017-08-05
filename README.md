@@ -123,3 +123,7 @@ p airport
 * Wrote feature test to check error message was created
 
 * Added private method for full so this could be called within the land(plane) method -- checked all tests are now working
+
+* Created weather_spec file for tests as weather will be a new Class
+
+* Created weather class and definition, set it to be stormy 20% of the time -- check rspec tests pass
