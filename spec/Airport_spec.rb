@@ -5,7 +5,7 @@ describe Airport do
   subject(:Airport) {described_class.new}
   let(:Plane) { double :Plane }
 
-
+# Landing tests
   it {expect(subject).to respond_to(:land).with(1).argument}
 
 
@@ -18,5 +18,29 @@ describe Airport do
      plane = Plane.new
      expect{subject.land(plane, false)}.to raise_error ("Plane not in the air")
   end
+
+# Depart tests
+  it {expect(subject).to respond_to :depart}
+
+  it {expect(subject).to respond_to :show_planes}
+
+  it {expect(subject).to respond_to :stock_planes}
+
+
+  # Creates a plane, lands it and then departs.
+  # The test shows the length of the array goes back to 0 as the departed plane
+  # has now been deleted.
+  it "a plane that has departed should no longer be in airport" do
+    plane = Plane.new
+    subject.land(plane)
+    subject.depart(plane)
+    expect(subject.planes.length).to eq 0
+  end
+
+  it "should show all the planes in the airport" do
+    subject.stock_planes(15)
+    expect(subject.show_planes.length).to eq 15
+  end
+
 
 end
