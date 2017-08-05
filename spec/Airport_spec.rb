@@ -42,5 +42,17 @@ describe Airport do
     expect(subject.show_planes.length).to eq 15
   end
 
+  # Capacity tests
+
+  it "should have a default capacity (10)" do
+    expect(subject.capacity).to eq 10
+  end
+
+  it "planes can not land when airport is full" do
+    plane = Plane.new
+    subject.stock_planes
+    expect{subject.land(plane)}.to raise_error ("Airport full")
+  end
+
 
 end
