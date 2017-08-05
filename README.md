@@ -119,3 +119,7 @@ p airport
 * Added code to methods to add planes to array when they land and remove them when they take off
 
 * Wrote rspec test for expecting error message when it's full but this did not fail before code had been written therefore rewrote it to fail
+
+* Wrote feature test to check error message was created
+
+* Added private method for full so this could be called within the land(plane) method -- checked all tests are now working
