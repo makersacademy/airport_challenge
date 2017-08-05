@@ -1,6 +1,47 @@
 Airport Challenge
 =================
 
+Weekend 1 Challenge: Created a program that fulfills all 6 user stories below via TDD. Tests include edge cases & corner cases.
+
+My solution
+---------
+I created 3 classes: Plane, Airport & Weather. Each encapsulates a set of behaviours as per below. Classes were created with Single Responsibility in mind, however there is a certain amount of (unavoidable?!) co-dependency between the Plane & Airport classes.
+
+1. Plane
+Planes can:
+	- land
+	- take_off
+	- Report if they are at_airport?
+	
+2. Airport
+An airport can:
+	- allow an incoming_plane to land
+	- allow a departing_plane to take_off
+	- an error is raised if it is full, too stormy, or if the plane has already landed/taken_off
+
+3. Weather
+	- Weather randomly sets state to sunny (80% of the time) or stormy (20% of the time)
+
+
+
+```
+1. Clone this repo to your local machine
+2. Run 'gem install bundle' if you don't have bundle already
+3. Run pry
+4. Require './lib/Airport.rb'
+5. Create a new instance of plane: plane = Plane.new
+6. Create a new instance of airport: airport = Airport.new
+7. Land the plane: airport.incoming_plane(plane)
+8. Check if plane is at the airport: plane.at_airport?
+
+```
+
+
+Makers Academy Brief
+=================
+
+
+
 ```
         ______
         _\____\___
