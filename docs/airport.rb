@@ -2,15 +2,19 @@ require './docs/plane.rb'
 
 class Airport
 
-  attr_reader :planes
-
 def initialize
   @planes = []
 end
 
+attr_reader :planes
+
 def create_planes
-  planez = Plane.new
-  @planes << planez
+  plane = Plane.new 
+  @planes << plane
+end
+
+def planes_in_airport(plane)
+ @planes << plane
 end
 
 def take_off(plane)
@@ -21,6 +25,7 @@ end
 
 def landing(plane)
   p "#{plane} has landed"
+  planes_in_airport(plane)
 end
 
 end
