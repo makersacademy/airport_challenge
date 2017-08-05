@@ -12,7 +12,7 @@ class Airport
     @plane = plane
   end
   
-  def plane_left_airport?
+  def plane_left_airport?(plane)
     " #{@plane} has left the airport"
   end
    
