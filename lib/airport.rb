@@ -1,6 +1,6 @@
 class Airport
 
-  attr_accessor  :full, :capacity
+  attr_accessor  :full, :capacity, :weather
   #:weather,
   DEFAULT_CAPACITY = 100
 
@@ -9,9 +9,6 @@ class Airport
     #@weather = weather
     @full = full
     @capacity = capacity
-  end
-
-  def weather
     if rand(9) == 0
       @weather = "stormy"
     else
