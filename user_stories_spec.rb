@@ -16,12 +16,15 @@ describe "user_stories" do
   it "So passengers can get on their way" do
     airport = Airport.new
     plane = Plane.new
-    expect { airport.plane_left_airport?(plane.take_off) }.not_to raise_error
+    expect { airport.take_off(plane) }.not_to raise_error
   end
+
 #As an air traffic controller 
 #To ensure safety 
 #I want to prevent takeoff when weather is stormy 
-
+ # it "for safety prevent takeoff in stormy weather" do
+    #airport = Airport.new
+    #expect { airport.weather_rand
 
 #As an air traffic controller 
 #To ensure safety 
@@ -31,12 +34,15 @@ describe "user_stories" do
 #As an air traffic controller 
 #To ensure safety 
 #I want to prevent landing when the airport is full
-
+  it "does not allow planes to land when the airport is full" do
+    airport = Airport.new
+    plane = Plane.new
+    expect { airport.land_plane(plane) }.to raise_error #"Airport is full"
+  end
 
 #As the system designer
 #So that the software can be used for many different airports
 #I would like a default airport capacity that can be overridden as appropriate
-
 
 
 end
