@@ -4,7 +4,9 @@ Following this I listed all aspects to be tested to verify I have covered them a
 
 I then began the challenge itself by reading each of the User Stories and creating a Domain Model of each one composed of an object and a message acting on that object. These will form the basis for my unit tests and subsequently my code so that my program will be written in a test-driven manner.
 
-Following on from this, for each user story my approach was: run a feature test in pry to 
+Following on from this, for each user story my approach was: run a feature test in pry to test the interaction between my objects and messages.
+
+I used the outcome of this feature test to drive the content of my unit tests, and the subsequent outcomes/errors of these to write my code.
 
 [add each step as tackled]
 
