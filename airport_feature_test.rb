@@ -1,8 +1,14 @@
 require './lib/plane.rb'
+require './lib/airport.rb'
 puts "landing test"
-plane = Plane.new
-plane.land
+plane = Plane.new(nil, "in the air")
+puts plane.land
 puts "takeoff test"
-plane = Plane.new
+airport = Airport.new
+plane = Plane.new(airport)
 plane.take_off
-plane.status
+puts plane.status
+puts "takeoff when stormy test"
+airport = Airport.new("stormy")
+plane = Plane.new(airport)
+puts plane.take_off
