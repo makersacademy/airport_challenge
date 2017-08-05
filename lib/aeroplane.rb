@@ -1,5 +1,4 @@
 
-
 class Aeroplane
 
   attr_accessor :airport
@@ -11,38 +10,32 @@ class Aeroplane
 
   def try_land airport, weather = Weather.generate
 
+    # make sure the plane is not already landed
+    return already_landed unless @airport.nil?
+
     # make sure there is space to land, it it is, can't land
-    if airport.full? then
-      puts "Airport is currently full!"
-      return false
+    return airport_full if airport.full?
 
     # make sure it is sunny, if not, can't land
-    elsif weather != $sunny
-      puts "Aeroplane can't land in #{weather} weather."
-      return false
+    return bad_weather "land" unless weather == $sunny
 
     # ok to land
-    else
-      puts "Aeroplane landed at airport!"
-      land_plane airport
-    end
+    puts "Aeroplane landed at airport!"
+    land_plane airport
 
   end
 
   def try_take_off weather = Weather.generate
 
-    if airport.nil? then puts "Plane is not at an airport" end
+    # make sure the plane is at an airport
+    if @airport.nil? then puts "Plane is not at an airport" end
 
     # make sure it is sunny, if not, can't land
-    if weather != $sunny then
-      puts "Aeroplane can't take off in #{weather} weather."
-      return false
+    return bad_weather "take off" unless weather == $sunny
 
     # ok to land
-    else
-      puts "Aeroplane took off from airport!"
-      take_off
-    end
+    puts "Aeroplane took off from airport!"
+    take_off
 
   end
 
@@ -52,6 +45,21 @@ class Aeroplane
   end
 
   private
+
+  def already_landed
+    puts "The plane is already at an airport"
+    false
+  end
+
+  def airport_full
+    puts "Airport is currently full!"
+    false
+  end
+
+  def bad_weather action
+    puts "Aeroplane can't #{action} in stormy weather."
+    false
+  end
 
   # complete take off
   def take_off

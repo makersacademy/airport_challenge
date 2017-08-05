@@ -39,6 +39,21 @@ describe Aeroplane do
 
   end
 
+  it "can not land if already landed" do
+
+    # create a situation where landing should be possible
+    allow(airport).to receive_messages(
+      :on_land => nil,
+      :full? => false,
+      :planes => []
+    )
+    subject.try_land airport
+
+    # make sure plane did not land
+    expect(subject.try_land airport, $sunny).to eq(false)
+
+  end
+
   it "can not land when airport is full" do
 
     # create a situation where landing should not be possible

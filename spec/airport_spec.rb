@@ -91,7 +91,7 @@ describe Airport do
       action = rand(1..3)
 
       # if there are no landed planes, action is forced to 1
-      if action == 1 || airport.planes.length == 0 then
+      if action == 1 || airport.planes.length.zero? then
 
         # create a plane
         plane = Aeroplane.new
