@@ -8,7 +8,7 @@ This software is for controlling the flow of planes at an airport. The planes ca
 How to Install
 -----
 Fork this repository https://github.com/jenniferbacon01/airport_challenge on Github.
-Clone this repository by typing 'git clone https://github.com/[insert your github username]/airport_challenge' into your command line.
+Clone this repository by typing 'git clone [your forked repo url]' into your command line.
 
 How to Run
 -----
