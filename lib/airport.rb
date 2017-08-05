@@ -5,7 +5,7 @@ class Airport
   attr_accessor :planes
 
   def initialize cap = 5
-    
+
     # sets default capacity,
     @capacity = cap
 
@@ -33,11 +33,15 @@ class Airport
     return @planes.length >= @capacity
   end
 
+  def count
+    @planes.length
+  end
+
   private
 
   def show_count
     # displays a message containing the number of grounded planes
-    puts "airport now has #{@planes.length} planes"
+    puts "airport now has #{count} planes"
   end
 
 end
