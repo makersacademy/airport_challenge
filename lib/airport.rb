@@ -6,7 +6,11 @@ class Airport
   def initialize (full = false, capacity = DEFAULT_CAPACITY)
     @full = full
     @capacity = capacity
-    rand(9) == 0 ? @weather = "stormy" : @weather = "sunny"
+    # rand(9) == 0 ? @weather = "stormy" : @weather = "sunny"
+  end
+
+  def get_weather
+    rand(9) == 0 ? :stormy : :sunny
   end
 
 end

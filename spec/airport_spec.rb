@@ -5,4 +5,8 @@ describe Airport do
     airport = Airport.new
     expect(airport.capacity).to eq 100
   end
+
+  # it "registers when a plane lands" do
+  #   airport = Airport.new
+  # end
 end
