@@ -11,11 +11,11 @@ class Airport
   end
 
   def landing
-    full ? puts("Airport is full!") : @planes << Plane.new
+    full ? raise("Airport is full!") : @planes << Plane.new
   end
 
   def take_off
-    weather == "Stormy" ? puts("Cannot fly, it is stormy") : @planes.pop
+    weather == "Stormy" ? raise("Plane cannot take off due to stormy weather") : @planes.pop
   end
 
   def full
