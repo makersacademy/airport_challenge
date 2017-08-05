@@ -33,9 +33,9 @@ describe Airport do
     expect(airport.planes).to be_empty
   end
 
-  # it 'should raise error when the airport is full' do
-  #   airportfull = Airport.new
-  #   expect { airportfull.land(:plane) }.to raise_error('Airport is full!')
-  # end
+  it 'should raise error when the airport is full' do
+    airportfull = Airport.new(0)
+    expect { airportfull.land(:plane) }.to raise_error('Airport is full!')
+  end
 
 end
