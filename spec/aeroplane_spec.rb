@@ -47,7 +47,7 @@ describe Aeroplane do
       :full? => false,
       :planes => []
     )
-    subject.try_land airport
+    subject.try_land airport, $sunny
 
     # make sure plane did not land
     expect(subject.try_land airport, $sunny).to eq(false)
