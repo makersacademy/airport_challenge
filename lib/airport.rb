@@ -13,6 +13,10 @@ class Airport
     @planes += 1
   end
 
+  def remove_plane
+    @planes -= 1
+  end
+  
   def get_weather
     rand(9) == 0 ? :stormy : :sunny
   end

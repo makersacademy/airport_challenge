@@ -12,9 +12,9 @@ describe Plane do
 
   it "takes off from an airport" do
     airport2 = double("airport2")
-    airport2.stub(:get_weather => :sunny)
+    airport2.stub(:get_weather => :sunny, :remove_plane => :planes)
     plane2 = Plane.new(airport2)
-    plane2.take_off
+    plane2.take_off(airport2)
     expect(plane2.status).to eq :in_the_air
   end
 
@@ -22,7 +22,7 @@ describe Plane do
     airport3 = double("airport3")
     airport3.stub(:get_weather => :stormy)
     plane3 = Plane.new(airport3)
-    plane3.take_off
+    plane3.take_off(airport3)
     expect(plane3.status).to eq :on_the_ground
   end
 
@@ -46,7 +46,7 @@ describe Plane do
     airport6 = double("airport6")
     airport6.stub(:get_weather => :sunny)
     plane6 = Plane.new
-    expect{plane6.take_off}.to raise_error("already flying")
+    expect{plane6.take_off(airport6)}.to raise_error("already flying")
   end
 
   it "raises an error when a landed plane tries to land at same airport" do

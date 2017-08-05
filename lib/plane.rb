@@ -22,13 +22,15 @@ class Plane
     end
   end
 
-  def take_off
+  def take_off(airport)
     raise "already flying" if @status == :in_the_air
+    raise "not at this airport" if @airport != airport
     if airport.get_weather == :stormy
       "too stormy to fly"
     else
       @status = :in_the_air
       @airport = nil
+      airport.remove_plane
       "plane has taken off"
     end
   end
