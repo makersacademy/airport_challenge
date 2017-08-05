@@ -1,39 +1,19 @@
-Airport Challenge
-=================
+# Airport Challenge
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+Task - Build a basic web app which allows you to direct planes to land and take off from an airport taking into consideration local weather conditions as well as any potential flaws in the program which may arise. Airports are to have a default capacity which can be manipulated if necessary (in a busy area).
 
-```
+Currently all tests are passing with a whopping 100% coverage!
 
-Instructions
----------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+## Installation
+- Clone this repo to your local computer
+- Navigate to the repo `cd <repo name>`
+- Run `gem install bundle` from the command line
+- Run `bundle`
+- You may have to reinstall xcode if you are having problems updating to ruby 2.4.0. To do so use the command `xcode-select --install`
 
-Steps
--------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+## User Stories
 
 ```
 As an air traffic controller 
@@ -61,30 +41,37 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+My approach for solving this specific challenge was to create 3 separate classes for the Airport, Plane and Weather. The Airport, or the traffic controller, is responsible for landing, taking off, moving the planes in and out of the hangar, confirming the planes' statuses, checking the current weather conditions for take off and landing and preventing landing when at capacity. In the beginning, I wanted to initialize the weather when initializing the airport, but then the weather at the airport would always remain the same and this posed some problems. Instead, I initialized the weather upon landing and taking off of an airplane, so I could check for random occurences of stormy weather at that time. 
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+The Weather class simply initializes with a weather condition, provides a list of potential conditions (with a class variable) and reads the current weather condition. Similarly, the plane initializes with a status of nil which changes when it is made available (moved in and out of the hangar), and upon landing and taking off, the airport calls the plane to change its status to "arrived" and "departed" respectively, which the plane does itself. The plane also has a function called 'landed?' which checks if the plane has landed at a specific airport and this function is also called upon take off to confirm that the plane is in a state to take off. 
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+## Full implementation of the program
 
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+```
+2.4.0 :002 > require "./lib/airport.rb"
+ => true
+2.4.0 :003 > heathrow = Airport.new
+ => #<Airport:0x007fd4692489d0 @planes=[], @default_capacity=20>
+2.4.0 :004 > gatwick = Airport.new
+ => #<Airport:0x007fd4698bfed0 @planes=[], @default_capacity=20>
+2.4.0 :005 > british_airways1234 = Plane.new
+ => #<Plane:0x007fd4698b7a00 @status=nil>
+2.4.0 :006 > heathrow.move_to_hangar(british_airways1234)
+ => [#<Plane:0x007fd4698b7a00 @status="arrived">]
+2.4.0 :007 > heathrow.take_off(british_airways1234)
+The current weather is partly cloudy
+ => #<Plane:0x007fd4698b7a00 @status="departed">
+2.4.0 :008 > gatwick.land(british_airways1234)
+The current weather is stormy
+RuntimeError: Cannot land in stormy weather
+  from /Users/jiniMcoroneo/Projects/Course/week_1/round_2/airport_challenge/lib/airport.rb:15:in `land'
+  from (irb):8
+  from /Users/jiniMcoroneo/.rvm/rubies/ruby-2.4.0/bin/irb:11:in `<main>'
+2.4.0 :009 > gatwick.land(british_airways1234)
+The current weather is partly sunny
+ => [#<Plane:0x007fd4698b7a00 @status="arrived">]
+2.4.0 :010 > gatwick.planes
+ => [#<Plane:0x007fd4698b7a00 @status="arrived">]
+2.4.0 :011 > heathrow.planes
+ => []
+```
