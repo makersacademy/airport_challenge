@@ -2,9 +2,8 @@ class Airport
 
   attr_accessor(:planes)
 
-  def initialize(capacity = 2)
+  def initialize
     @planes ||= []
-    @capacity = capacity
   end
 
   def open?
@@ -19,8 +18,10 @@ class Airport
     @planes.delete(plane)
   end
 
-  def full?
-    @planes.count >= @capacity
-  end
+# private
+#
+#   def full?
+#     @planes.count >= @capacity
+#   end
 
 end
