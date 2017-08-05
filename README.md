@@ -88,3 +88,82 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+----------------------
+UPDATE BY PAUL KENRICK
+----------------------
+
+Summary
+-----
+
+This is software to control the flow of planes at an airport. The planes can land and take off provided that the weather is not stormy, and takes into account the capacity of the airport (which can be set by the user). 
+
+My program includes the following classes:
+
+- Airport
+- Plane
+- Weather
+
+I have created Rspec tests to test functionality of methods within these classes, using stubs to isolate specific methods.  
+
+Classes interact in the following way:
+
+Plane <-----> Airport <-----> Weather
+
+My code defends against the following edge cases:
+
+- A plane landing more than once
+- A plane taking off more than once
+- A plane being asked to take off from an airport other than the airport where it has landed
+- A capacity being set below zero
+
+A basic irb based example below shows how the user would interface with this program to create the required airport and plane objects, land a plane at the airport, set the capacity of the airport from 5 (default) to 10 planes, and then instruct that same plane take-off from that airport:
+
+-------------
+irb(main):001:0> require './lib/airport.rb'
+
+=> true
+
+irb(main):002:0> require './lib/plane.rb'
+
+=> true
+
+irb(main):003:0> require './lib/weather.rb'
+
+=> false
+
+irb(main):007:0> airport = Airport.new
+
+=> #<Airport:0x007fe508886b08 @capacity=5, @planes=[], @weather=#<Weather:0x007fe508886a18 @weather_array=["Fine", "Overcast", "Light Rain", "Breezey", "Stormy"]>>
+
+irb(main):008:0> plane = Plane.new
+
+=> #<Plane:0x007fe508876258 @on_ground=false, @location=nil>
+
+irb(main):009:0> plane.land(airport)
+
+=> "Plane landed at #<Airport:0x007fe508886b08>."
+
+irb(main):010:0> airport.set_capacity(10)
+
+=> 10
+
+irb(main):012:0> plane.take_off(airport)
+
+=> "Unable to take off. Message from airport: Weather too stormy"
+
+irb(main):013:0> plane.take_off(airport)
+
+=> "Plane took off from #<Airport:0x007fe508886b08>."
+
+irb(main):014:0> airport.planes
+
+=> []
+-------------
+
+
+
+
+
+
+
