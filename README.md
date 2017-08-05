@@ -27,10 +27,7 @@ $ irb
 
 ## Testing
 
-(Breakdown of end to end tests pending)
-
-Run ```rspec```<br>
-Run ```feature_test.rb```
+Run the automated tests on this system using ```rspec``` and ```./spec/feature_test.rb```
 
 ## Built With
 
