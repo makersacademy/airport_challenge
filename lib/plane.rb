@@ -17,6 +17,7 @@ class Plane
     else
       @status = :on_the_ground
       @airport = airport
+      airport.receive_plane
       "plane has landed"
     end
   end

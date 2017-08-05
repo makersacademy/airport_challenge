@@ -4,7 +4,7 @@ describe Plane do
 
   it "lands at an airport" do
     airport = double("airport", :planes => 50, :capacity => 100)
-    airport.stub(:get_weather => :sunny )
+    airport.stub(:get_weather => :sunny, :receive_plane => :planes )
     plane = Plane.new
     plane.land(airport)
     expect(plane.status).to eq :on_the_ground

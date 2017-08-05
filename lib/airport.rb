@@ -9,6 +9,10 @@ class Airport
     # rand(9) == 0 ? @weather = "stormy" : @weather = "sunny"
   end
 
+  def receive_plane
+    @planes += 1
+  end
+
   def get_weather
     rand(9) == 0 ? :stormy : :sunny
   end
