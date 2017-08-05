@@ -7,8 +7,8 @@
 | Weather  | stormy?
 | Airport  | land |
 | Airport  | takeoff |
-| Airport  | airport_capacity |
-| System Designer | airport_capacity
+| Airport  | full? |
+| System Designer | capacity
 
 
 
