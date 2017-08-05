@@ -1,19 +1,14 @@
 Airport Challenge
 =================
-```
-```
+
 Task
 -----
-
 This software is for controlling the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-```
-
-```
 How to Install
 -----
 Fork this repository https://github.com/jenniferbacon01/airport_challenge on Github.
-Clone this repository by typing 'git clone https://github.com/jenniferbacon01/airport_challenge' into your command line.
+Clone this repository by typing 'git clone https://github.com/[insert your github username]/airport_challenge' into your command line.
 
 How to Run
 -----
