@@ -26,3 +26,7 @@ puts "unable to land when airport is full"
 airport = Airport.new("sunny",true)
 plane = Plane.new(airport, "in the air")
 puts plane.land
+
+puts "default airport capacity applied"
+airport = Airport.new("sunny", false)
+puts airport.capacity
