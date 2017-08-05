@@ -1,5 +1,6 @@
 require "Airport"
 require "Plane"
+require "Weather"
 
 describe Airport do
   subject(:Airport) {described_class.new}
@@ -18,6 +19,15 @@ describe Airport do
      plane = Plane.new
      expect{subject.land(plane, false)}.to raise_error ("Plane not in the air")
   end
+
+  # it "A plane can not land when weather is stormy" do
+  #   allow(Plane).to receive_messages(
+  #     :stormy? => true)
+  #   plane = Plane.new
+  #   subject.weather.stormy?
+  #   expect{subject.land(plane)}.to raise_error ("Stormy weather - plane can not land")
+  # end
+
 
 # Depart tests
   it {expect(subject).to respond_to :depart}
@@ -42,10 +52,21 @@ describe Airport do
     expect(subject.show_planes.length).to eq 15
   end
 
+  # it "A plane can not depart when weather is stormy" do
+  #   subject.weather.stormy?
+  #   expect{subject.depart(plane)}.to raise_error ("Stormy weather - flights suspended")
+  # end
   # Capacity tests
 
   it "should have a default capacity (10)" do
     expect(subject.capacity).to eq 10
+  end
+
+
+  it "can have a custom capacity" do
+    # initializes a new object in Airport class with the cap parameter set to 100
+    airport = Airport.new(100)
+    expect(airport.capacity).to eq 100
   end
 
   it "planes can not land when airport is full" do
@@ -53,6 +74,7 @@ describe Airport do
     subject.stock_planes
     expect{subject.land(plane)}.to raise_error ("Airport full")
   end
+
 
 
 end
