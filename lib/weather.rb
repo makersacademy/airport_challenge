@@ -6,6 +6,7 @@ class Weather
   $sunny = "sunny"
   $stormy = "stormy"
 
+  # generate is a 'static' method
   def self.generate
 
     # generate a random number 1 - 10 inclusive
