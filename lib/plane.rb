@@ -8,8 +8,12 @@ class Plane
   end
 
   def land
-    @status = "on the ground"
-    "plane has landed"
+    if airport.weather == "stormy"
+      "too stormy to land"
+    else
+      @status = "on the ground"
+      "plane has landed"
+    end
   end
 
   def take_off
@@ -17,7 +21,6 @@ class Plane
       "too stormy to fly"
     else
       @status = "in the air"
-      @airport = nil
       "plane has taken off"
     end
   end
