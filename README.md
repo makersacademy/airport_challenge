@@ -13,23 +13,6 @@ Airport Challenge
 
 ```
 
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
@@ -61,30 +44,100 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+Installation Steps
+-----
+1. Fork this repo, and clone to your local machine
+2. Run the command `gem install bundle` (if you don't have bundle already)
+3. When the installation completes, run `bundle`
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+Planes :airplane:
+-----
 
-Please create separate files for every class, module and test suite.
+```ruby
+GZBKP = Plane.new("G-ZBKP")
 
-In code review we'll be hoping to see:
+```
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+This world is so amazing that when a new :airplane: is created it starts flying right away! Imagine a big airplane factory, built inside a giant solar powered structure that just expels airplanes. I'm feeling so Elon Musk :fire:
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
+Althought this might seem amazing, this is this a very organised world.. meaning that creating a Plane requires an argument to be passed, the tail number.
 
-**BONUS**
+If you are interested in understanding why a plane needs a registration, read [this](https://en.wikipedia.org/wiki/Aircraft_registration)
 
-* Write an RSpec **feature** test that lands and takes off a number of planes
 
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
+Airports
+-----
 
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
+```ruby
+LHR = Airport.new("LHR", 212)
+```
 
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
+Creating an airport is this easy.. no endless discussions about noise, location or runway extensions. In this example we are creating a new Airport instance. Taking London Heathrow as an example we've used Heathrow's ICAO code (LHR) and a capacity of 212. The [ICAO](https://en.wikipedia.org/wiki/International_Civil_Aviation_Organization_airport_code) code is a required argument and should be passed as a string. The capacity is optional, but in this case i've used [Heathrow's capacity](http://www.heathrow.com/company/company-news-and-information/company-information/facts-and-figures) of 212 to instantiate the object.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+## Get planes on ground :parking:
+
+```ruby
+LHR.planes_on_ground
+```
+
+
+This instruction will return an array containing the all the planes currently on ground at the airport
+
+## Landing a Plane
+
+```ruby
+LHR.land_plane(G-ZBKP)
+```
+Instructing a plane to land requires one argument (plane)
+
+This instruction will fail if:
+- The weather is stormy :zap: :cloud:
+- The airport is full :no_entry_sign:
+- The plane is on the ground already
+
+
+## Takeoff a Plane
+
+```ruby
+LHR.takeoff_plane(G-ZBKP, LIS)
+```
+
+Instructing a plane to takeoff requires two arguments(plane, destination)
+
+This instruction will fail if:
+- The weather is stormy :zap: :cloud:
+- An invalid destination is provided :globe_with_meridians:
+
+
+Weather
+-----
+The weather is handled by the Weather class. At the moment the weather is random and it is checked everytime you run a landing or takeoff instruction. The weather is stormy :zap: :cloud: if the result of the randomizer is 7. Currently the randomizer picks a number between 1 and 7.
+
+
+Running Example
+-----
+What to expect from the application when we create two airports (London Heathrow and Lisbon), one plane ([GZBKP](https://www.flightradar24.com/data/aircraft/g-zbkp)) and we instruct to land in Heathrow (remember this is super high tech and planes start their service flying) and then takeoff and land in Lisbon.
+
+```irb
+2.4.0 :001 > LHR = Airport.new("LHR")
+ => #<Airport:0x007f9af18bd920 @capacity=40, @planes_on_ground=[], @iata_code="LHR", @weather=#<Weather:0x007f9af18bd830>>
+2.4.0 :006 > LIS = Airport.new("LIS")
+ => #<Airport:0x007f9af28f1440 @capacity=40, @planes_on_ground=[], @iata_code="LIS", @weather=#<Weather:0x007f9af28f1418>>
+2.4.0 :002 > GZBKP = Plane.new("G-ZBKP")
+ => #<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=false, @location="air">
+2.4.0 :003 > LHR.land_plane(GZBKP)
+ => [#<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=true, @location="LHR">]
+2.4.0 :004 > LHR.planes_on_ground
+ => [#<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=true, @location="LHR">]
+2.4.0 :005 > GZBKP.location
+ => "LHR"
+2.4.0 :006 > LHR.takeoff_plane(GZBKP, LIS)
+ => #<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=false, @location="air", @destination=#<Airport:0x007f9af28f1440 @capacity=40, @planes_on_ground=[], @iata_code="LIS", @weather=#<Weather:0x007f9af28f1418>>>
+2.4.0 :07 > LIS.land_plane(GZBKP)
+ => [#<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=true, @location="LIS", @destination=#<Airport:0x007f9af28f1440 @capacity=40, @planes_on_ground=[...], @iata_code="LIS", @weather=#<Weather:0x007f9af28f1418>>>]
+2.4.0 :008 > LIS.planes_on_ground
+ => [#<Plane:0x007f9af1055be8 @tail_number="G-ZBKP", @on_ground=true, @location="LIS">]
+ ```
