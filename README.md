@@ -11,7 +11,7 @@ We have a request from a client to write the software to control the flow of pla
 3. When the installation is complete, run ```bundle```
 4. Open IRB and run code examples or tests listed below
 
-## Code Example
+## Use Example
 
 ```
 $ irb
