@@ -1,7 +1,7 @@
 class Plane
 
   def land
-  p "plane landed at airport"
+    p "plane landed at airport"
   end
 
 end
