@@ -8,8 +8,9 @@ end
 
 attr_reader :planes
 
+
 def create_planes
-  plane = Plane.new 
+  plane = Plane.new
   @planes << plane
 end
 
