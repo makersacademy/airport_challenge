@@ -3,8 +3,6 @@ require 'airport'
 describe Plane do
 
   it "lands at an airport" do
-
-    #airport = Airport.new
     airport = double("airport", :full => false, :weather => "sunny")
     plane = Plane.new
     plane.land(airport)
@@ -12,7 +10,6 @@ describe Plane do
   end
 
   it "takes off from an airport" do
-    #airport2 = Airport.new
     airport2 = double("airport2", :weather => "sunny")
     plane2 = Plane.new(airport2)
     plane2.take_off
@@ -20,7 +17,6 @@ describe Plane do
   end
 
   it "does not take off from a stormy airport" do
-    #airport3 = Airport.new("stormy")
     airport3 = double("airport3", :weather => "stormy")
     plane3 = Plane.new(airport3)
     plane3.take_off
@@ -28,7 +24,6 @@ describe Plane do
   end
 
   it "does not land into a stormy airport" do
-    #airport4 = Airport.new("stormy")
     airport4 = double("airport4", :weather => "stormy")
     plane4 = Plane.new
     plane4.land(airport4)
@@ -36,7 +31,6 @@ describe Plane do
   end
 
   it "does not land into a full airport" do
-    #airport5 = Airport.new("sunny",true)
     airport5 = double("airport5", :full => true, :weather => "sunny" )
     plane5 = Plane.new
     plane5.land(airport5)

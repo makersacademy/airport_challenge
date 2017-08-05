@@ -4,21 +4,13 @@ class Plane
 
   def initialize(airport = nil)
     @airport = airport
-    if @airport == nil
-      @status = "in the air"
-    else
-      @status = "on the ground"
-    end
+    @airport == nil ? @status = "in the air" : @status = "on the ground"
   end
 
   def land(airport)
-    if @status == "on the ground"
-      if airport == @airport
-        raise "already landed at this airport"
-      else
-        raise "already landed at another airport"
-      end
-    elsif airport.weather == "stormy"
+    raise "already landed at this airport" if @status == "on the ground" && airport == @airport
+    raise "already landed at another airport" if @status == "on the ground" && airport != @airport
+    if airport.weather == "stormy"
       "too stormy to land"
     elsif airport.full == true
       "unable to land as airport is full"
@@ -30,9 +22,8 @@ class Plane
   end
 
   def take_off
-    if @status == "in the air"
-      raise "already flying"
-    elsif airport.weather == "stormy"
+    raise "already flying" if @status == "in the air"
+    if airport.weather == "stormy"
       "too stormy to fly"
     else
       @status = "in the air"
