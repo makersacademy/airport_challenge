@@ -3,11 +3,11 @@ require "plane"
 require "weather"
 
 describe Airport do
-  subject(:Airport) {described_class.new}
+  subject(:Airport) { described_class.new }
   let(:plane) { double :plane }
 
 # Landing tests
-  it {expect(subject).to respond_to(:land).with(1).argument}
+  it { expect(subject).to respond_to(:land).with(1).argument }
 
   it "should allow planes to land" do
     allow(subject).to receive(:bad_weather?).and_return(false)
@@ -18,7 +18,7 @@ describe Airport do
 
   it "should only allow airborne plays to land" do
     plane = Plane.new
-    expect{subject.land(plane, false)}.to raise_error "Plane not in the air"
+    expect{ subject.land(plane, false) }.to raise_error "Plane not in the air"
   end
 
   it 'a plane can not land at an airport it has already landed at' do
@@ -26,27 +26,27 @@ describe Airport do
     allow(subject).to receive(:full?).and_return(false)
     plane = Plane.new
     subject.land(plane)
-    expect{subject.land(plane)}.to raise_error "This plane has already landed at this airport"
+    expect{ subject.land(plane) }.to raise_error "This plane has already landed at this airport"
   end
 
   it "does not allow plane to take off" do
     plane = Plane.new
     allow(subject).to receive(:bad_weather?).and_return(true)
-    expect{subject.land(plane)}.to raise_error "Stormy weather - plane can not land"
+    expect{ subject.land(plane) }.to raise_error "Stormy weather - plane can not land"
   end
 
 
 # Depart tests
 
-  it {expect(subject).to respond_to :depart}
+  it { expect(subject).to respond_to :depart }
 
-  it {expect(subject).to respond_to :show_planes}
+  it { expect(subject).to respond_to :show_planes }
 
-  it {expect(subject).to respond_to :stock_planes}
+  it { expect(subject).to respond_to :stock_planes }
 
   it 'a plane can only take off from an airport it is at' do
     plane = Plane.new
-    expect{subject.depart(plane)}.to raise_error "This plane is not at this airport"
+    expect{ subject.depart(plane) }.to raise_error "This plane is not at this airport"
   end
 
   # Creates a plane, lands it and then departs.
@@ -70,7 +70,7 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     allow(subject).to receive(:bad_weather?).and_return(true)
-    expect{subject.depart(plane)}.to raise_error "Stormy weather - flights suspended"
+    expect{ subject.depart(plane) }.to raise_error "Stormy weather - flights suspended"
   end
 
   # Capacity tests
@@ -89,7 +89,7 @@ describe Airport do
   it "planes can not land when airport is full" do
     plane = Plane.new
     subject.stock_planes
-    expect{subject.land(plane)}.to raise_error "Airport full"
+    expect{ subject.land(plane) }.to raise_error "Airport full"
   end
 
 
