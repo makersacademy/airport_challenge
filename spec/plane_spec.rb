@@ -1,6 +1,6 @@
-require 'weather'
+require 'plane'
 
-escribe DockingStation do
+describe DockingStation do
   #let(:bike) { double :bike }
 
   it_behaves_like BikeContainer
