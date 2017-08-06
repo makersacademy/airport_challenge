@@ -6,11 +6,10 @@ class Airport
   attr_accessor :planes
 
   def initialize
-    @planes
+    @planes = []
   end
 
   def create_planes
-    @planes = []
     plane = Plane.new
     @planes << plane
   end
