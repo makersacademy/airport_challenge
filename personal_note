@@ -1,0 +1,13 @@
+My thoughts and struggles with the first weekend challenge.
+
+For this, the first weekend challenge, we had to create an airport app to practice test driven development. 
+
+I started off by thinking about the different parameters that we should include into the app and how I could arrange them in the best way into separate classes or methods. I tried different ways.
+
+I understand the goal of TDD and I am able to write basic tests in basic syntax. I tried, but struggled to write a test that would give me the chance to write the code the way I imagined it to be. In particular, I struggled to include the random selection of the weather, because writing a test that would cover both possibilities without throwing an error turned out to be really difficult. 
+
+My goal for the next days is, to focus on starting of from the test side. Until now, I always had an idea of what the code should look like. If I’ll be able to switch that off, TDD would be easier.
+
+That brings me to a thought I had while working on the challenge. I think that TDD is good  to secure the functionality of a program but it sets boundaries for creativity and spontaneity. But since these two things are not really necessary for a task like this it is probably a good thing.
+
+My test and my code are far from finished. My test and my code are far from perfect. I am not satisfied with my work. I am not satisfied with the outcome of the last two days. I am not satisfied with the outcome of the last week. I will do better. 
