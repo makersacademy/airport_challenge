@@ -13,8 +13,9 @@ puts "#{airport.instance_variable_get(:@planes)}"
 
 puts "plane take-off"
 p "#{airport.take_off(plane)}"
-p "#{airport.instance_variable_get(:@planes)}"
 
 puts "confirm that plane is no longer in the airport"
-p "#{airport.take_off(plane)}"
 p "#{airport.instance_variable_get(:@planes)}"
+
+puts "prevent take off when weather is stormy"
+p "#{airport.take_off(plane, weather)}"
