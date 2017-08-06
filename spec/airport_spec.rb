@@ -3,8 +3,12 @@ require './docs/airport.rb'
 describe Airport do
   it { is_expected.to respond_to(:take_off).with(1).argument }
   it { is_expected.to respond_to(:landing).with(1).argument }
-  it "creates a plane" do
-    expect(subject).to respond_to(:create_planes)
+
+describe Airport do
+  it { is_expected.to respond_to :create_planes}
+  it 'creates a working plane' do
+  plane = subject.create_planes
+  expect(plane[0]).to be_working
   end
 end
 
@@ -12,16 +16,15 @@ describe Airport do
 
  subject(:airport) { described_class.new }
  let(:plane) {double :planes}
- 
+
 it "includes the plane in the planes array after landing" do
 # Error on line below: "can't define singleton"
 allow(:plane).to receive(:landing)
 airport.landing(plane)
 expect(airport.planes).to include plane
 end
-
 end
-
+end
 
 
 =begin

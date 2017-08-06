@@ -1,4 +1,5 @@
 require './docs/plane.rb'
+require_relative 'plane'
 
 class Airport
 
@@ -23,7 +24,7 @@ class Airport
 
   def landing(plane)
     p "#{plane} has landed"
-    @planes << plane 
+    @planes << plane
   end
 
 end
