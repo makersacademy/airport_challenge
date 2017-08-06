@@ -2,12 +2,11 @@ require './docs/plane.rb'
 
 class Airport
 
+  attr_accessor :planes
+
   def initialize
     @planes = []
   end
-
-  attr_reader :planes
-  attr_accessor :planes
 
   def create_planes
     plane = Plane.new
@@ -21,7 +20,7 @@ class Airport
 # but this does not reset the orignal Airport.new instance which was created
   end
 
-  def landing
+  def landing(plane)
     p "#{plane} has landed"
   end
 
