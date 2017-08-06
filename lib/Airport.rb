@@ -16,7 +16,7 @@ class Airport
     raise "Plane not in the air" unless airborne
     raise "This plane has already landed at this airport" if @planes.include?(plane)
     raise "Stormy weather - plane can not land" if bad_weather?
-    @planes << plane # if plane.class == Plane
+    @planes << plane
     puts "Flight #{plane} has landed"
     plane
   end
@@ -32,7 +32,7 @@ class Airport
     @planes
   end
 
-  def stock_planes(n = @capacity) # the default is max capacity
+  def stock_planes(n = @capacity)
     n.times { @planes << Plane.new }
     "#{n} new plane#{"s" if n > 1} have arrived at the airport"
   end
@@ -45,5 +45,5 @@ class Airport
   def full?
     @capacity == @planes.length
   end
-  
+
 end
