@@ -22,7 +22,8 @@ end
 def take_off(plane)
   p "#{plane} has taken off"
   p "#{plane} is no longer at the airort"
-  :planes.delete(plane)
+  @planes.delete(plane)
+#but this does not reset the orignal Airport.new instance which was created
 end
 
 def landing(plane)
