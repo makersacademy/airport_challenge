@@ -16,13 +16,13 @@ class Airport
     raise "Plane not in the air" unless airborne
     raise "This plane has already landed at this airport" if @planes.include?(plane)
     raise "Stormy weather - plane can not land" if bad_weather?
-    @planes << plane
+    @planes << plane # if plane.class == Plane
     "Flight #{plane} has landed"
     plane
   end
 
   def depart(plane)
-    raise "The plane is not currently landed at this airport" unless @planes.include?(plane)
+    raise "This plane is not at this airport" unless @planes.include?(plane)
     raise "Stormy weather - flights suspended" if bad_weather?
     @planes.delete(plane)
     "Flight #{plane} is departing"

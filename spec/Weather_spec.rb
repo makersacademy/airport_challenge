@@ -1,6 +1,6 @@
-require "Airport"
-require "Plane"
-require "Weather"
+require "airport"
+require "plane"
+require "weather"
 
 describe Weather do
 
