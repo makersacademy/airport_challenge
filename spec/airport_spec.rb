@@ -9,6 +9,23 @@ describe Airport do
 end
 
 describe Airport do
+
+ subject(:airport) { described_class.new }
+ let(:plane) {double :planes}
+ 
+it "includes the plane in the planes array after landing" do
+# Error on line below: "can't define singleton"
+allow(:plane).to receive(:landing)
+airport.landing(plane)
+expect(airport.planes).to include plane
+end
+
+end
+
+
+
+=begin
+describe Airport do
 # This is incorrect as it is testing behaviour not state
   it "the plane has left the airport instance once it has taken off" do
     airport = Airport.new
@@ -21,17 +38,4 @@ describe Airport do
     expect(h).to eq airport
   end
 end
-
-describe Airport do
-
- subject(:airport) { described_class.new }
- let(:plane) {double :planes}
-
-it "includes the plane in the planes array after landing" do
-# Error on line below: "can't define singleton"
-allow(:plane).to receive(:landing)
-airport.landing(plane)
-expect(airport.planes).to include plane
-end
-
-end
+=end

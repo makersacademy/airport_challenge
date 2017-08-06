@@ -1,9 +1,10 @@
 require './docs/airport.rb'
 
+#feature test for landing
 airport = Airport.new
 plane1 = Plane.new
-airport.take_off(plane1)
-# when you then enter 'airport' after that you are left with the
-# airport object and an empty array of planes.
+airport.planes # equals nil at the moment
+airport.create_planes
+airport.planes # has only the second plane, not plane1 in it
 airport.landing(plane1)
-# airport then gives @planes = [] so code can be changed to fix this.
+airport.planes # now includes plane1
