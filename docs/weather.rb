@@ -1,26 +1,17 @@
+#should be like .working?
+#clue in if bike is working or broken?
+#clue in rspec friday chalenge
+
+
 class Weather
-
-def initialize
-  @condition
+#have to use random numbers to make it call
+#either sunny or stormy
+def stormy?
+  true
 end
 
-attr_reader :condition
-attr_accessor :condition
-
- def weather_condition
-p "condition is #{@condition}"
-   1.times do
-     x = rand 10
-     p "right now x is #{x}"
-   if x <=8
-     p "Sunny"
-     @condition == :sunny
-     p "condition is #{@condition}"
-   else
-     p "Stormy"
-     @condition == :stormy
-     p "condition is #{@condition}"
-  end
- end
+def sunny?
+ true
 end
+
 end
