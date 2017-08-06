@@ -10,11 +10,6 @@ class Plane
     @landed = true
   end
 
-  def land_at_airport(airport)
-    raise 'Plane already landed' if landed?
-    airport.land_plane(self)
-  end
-
   def takeoff
     @landed = false
   end

@@ -1,5 +1,7 @@
 require_relative '../lib/airport'
 require_relative '../lib/weather'
+require 'capybara/rspec'
+require 'spec_helper'
 
 describe Airport do
   let(:plane) { double :plane, land: false, landed: false }
@@ -78,6 +80,63 @@ describe Airport do
     full_airport = Airport.new
     full_airport.capacity.times { full_airport.land_plane(plane) }
     expect { full_airport.land_plane(plane) }.to raise_error 'Airport at capacity'
+  end
+
+end
+
+feature 'Journey from Montreal to London' do
+  let(:plane) { double :plane, land: false, landed: false, takeoff: nil }
+  let(:weather) { double :weather, now: 'sunny' }
+
+  scenario 'in sunny conditions' do
+    plane_lands_in_montreal_sunny
+    plane_takes_off_from_montreal_sunny
+    plane_lands_in_london_sunny
+  end
+
+  scenario 'from sunny to stormy' do
+    plane_lands_in_montreal_sunny
+    plane_takes_off_from_montreal_sunny
+    plane_lands_in_london_stormy
+  end
+
+  scenario 'with stormy at start' do
+    plane_lands_in_montreal_sunny
+    plane_takes_off_from_montreal_stormy
+  end
+
+  def plane_lands_in_montreal_sunny
+    air = Airport.new
+    air.check_weather(weather)
+    expect(air.land_plane(plane)).to eq plane
+  end
+
+  def plane_takes_off_from_montreal_sunny
+    subject = Airport.new
+    subject.land_plane(plane)
+    subject.check_weather(weather)
+    expect(subject.takeoff).to eq plane
+  end
+
+  def plane_lands_in_london_sunny
+    air = Airport.new
+    air.check_weather(weather)
+    expect(air.land_plane(plane)).to eq plane
+  end
+
+  def plane_lands_in_london_stormy
+    allow(weather).to receive(:now).and_return('stormy')
+    air = Airport.new
+    air.check_weather(weather)
+    expect { air.land_plane(plane) }.to raise_error 'Not safe to land'
+  end
+
+  def plane_takes_off_from_montreal_stormy
+    allow(weather).to receive(:now).and_return('stormy')
+    subject = Airport.new
+    subject.land_plane(plane)
+    subject.check_weather(weather)
+    expect { subject.takeoff }.to raise_error 'Not safe to fly'
   end
 
 end
