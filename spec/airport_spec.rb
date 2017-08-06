@@ -6,17 +6,32 @@ describe Airport do
   it "creates a plane" do
     expect(subject).to respond_to(:create_planes)
   end
-# one issue here is that h does not reset the orignal airport instance
-# this is also not testing that h resets the @planes of the orignal airport instance.
-# this test needs improving:
+end
 
-# This needs refactoring also
+describe Airport do
+# This is incorrect as it is testing behaviour not state
   it "the plane has left the airport instance once it has taken off" do
     airport = Airport.new
     plane1 = Plane.new
+# Getting error still saying:
+# expected: #<Airport:0x007ff9da3e1350 @planes=[]>
+#          got: nil
+# Suspect this may be my Rspec code
     h = airport.take_off(plane1)
     expect(h).to eq airport
   end
-# didn't expect it to equal nil .. expect it to equal the airport object
+end
+
+describe Airport do
+
+ subject(:airport) { described_class.new }
+ let(:plane) {double :planes}
+
+it "includes the plane in the planes array after landing" do
+# Error on line below: "can't define singleton"
+allow(:plane).to receive(:landing)
+airport.landing(plane)
+expect(airport.planes).to include plane
+end
 
 end
