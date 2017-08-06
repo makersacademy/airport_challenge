@@ -26,10 +26,6 @@ class Airport
     elsif @weather >= 9
       raise "Weather is too stormy to take off"
     else @planes.pop
-    # @planes.each_with_index do |plane, index| 
-     #   if bike.working?
-      #    @.delete_at(index)
-       #   return bike
     " #{plane} has left the airport"
     end
   end
