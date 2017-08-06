@@ -5,7 +5,7 @@ describe Airport do
   p airport.plane_list[50..99]
   let(:grounded_plane) { double :grounded_plane }
   let(:flying_plane) { double :flying_plane }
-  
+
   it "has a default capacity of 100?" do
     expect(airport.capacity).to eq 100
   end
@@ -23,7 +23,7 @@ describe Airport do
   end
 
   it "calls a plane to land" do
-    allow(flying_plane).to receive(:status).and_return("flying")
+    allow(flying_plane).to receive(:location).and_return("flying")
     expect { airport.call_to_land(flying_plane) }.to output("Time to land\n").to_stdout
   end
 
@@ -33,7 +33,7 @@ describe Airport do
   end
 
   it "raises an error if call_to_land called on a plane on the ground" do
-    allow(flying_plane).to receive(:status).and_return("grounded")
+    allow(flying_plane).to receive(:location).and_return("grounded")
     expect { airport.call_to_land(flying_plane) }.to raise_exception "Plane is grounded"
   end
 
@@ -52,7 +52,7 @@ describe Plane do
   end
 
   it "has default value of status = grounded" do
-    expect(plane.status). to eq "grounded"
+    expect(plane.location). to eq "grounded"
   end
 
 end
