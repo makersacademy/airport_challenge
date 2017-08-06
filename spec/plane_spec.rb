@@ -2,9 +2,9 @@ require_relative '../lib/plane'
 
 describe Plane do
 
-  it 'responds to "land" method' do
-    expect(subject).to respond_to(:land)
-  end
+  it { is_expected.to respond_to(:land) }
+
+  it { is_expected.to respond_to(:takeoff) }
 
   it 'cannot takeoff if already in the air' do
     subject.takeoff

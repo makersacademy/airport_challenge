@@ -9,67 +9,67 @@ describe Airport do
 
   describe 'landing do' do
 
+    it { is_expected.to respond_to(:land) }
+
     it 'can land planes' do
       allow(plane).to receive(:landed)
       planes_length = subject.planes.length
-      expect(subject.land_plane(plane)).to eq plane
+      expect(subject.land(plane)).to eq plane
       expect(subject.planes.length).to eq planes_length + 1
     end
 
     it 'cannot land plane if capacity is full' do
       full_airport = Airport.new
-      full_airport.capacity.times { full_airport.land_plane(plane) }
-      expect { full_airport.land_plane(plane) }.to raise_error 'Airport at capacity'
+      full_airport.capacity.times { full_airport.land(plane) }
+      expect { full_airport.land(plane) }.to raise_error 'Airport at capacity'
     end
 
     it 'can land planes when sunny' do
-      allow(weather).to receive(:now).and_return('sunny')
-      air = Airport.new
-      air.check_weather(weather)
-      expect(air.land_plane(plane)).to eq plane
+      allow(weather).to receive(:now).and_return(:sunny)
+      my_airport = Airport.new
+      my_airport.check_weather(weather)
+      expect(my_airport.land(plane)).to eq plane
     end
 
     it 'cannot land planes when stormy' do
-      allow(weather).to receive(:now).and_return('stormy')
-      air = Airport.new
-      air.check_weather(weather)
-      expect { air.land_plane(plane) }.to raise_error 'Not safe to land'
+      allow(weather).to receive(:now).and_return(:stormy)
+      my_airport = Airport.new
+      my_airport.check_weather(weather)
+      expect { my_airport.land(plane) }.to raise_error 'Not safe to land'
     end
   end
 
   describe 'taking off' do
 
-    it 'can make planes takeoff' do
-      expect(subject).to respond_to(:takeoff)
-    end
+    it { is_expected.to respond_to(:takeoff) }
 
     it 'removes plane from airport after taking off' do
-      subject.land_plane(plane)
+      subject.land(plane)
       plane_count = subject.planes.length
       subject.takeoff
       expect(subject.planes.length).to eq plane_count - 1
     end
 
     it 'removes specific plane after taking off' do
-      subject.land_plane plane
+      subject.land plane
       subject.takeoff
       expect(subject.planes.include?(plane)).to eq false
     end
 
     it 'can takeoff planes when sunny' do
-      air = Airport.new
-      air.land_plane(plane)
-      allow(weather).to receive(:now).and_return('sunny')
-      air.check_weather(weather)
-      expect(air.takeoff).to eq plane
+      my_airport = Airport.new
+      my_airport.land(plane)
+      allow(weather).to receive(:now).and_return(:sunny)
+      my_airport.check_weather(weather)
+      expect(my_airport.takeoff).to eq plane
     end
 
     it 'cannot takeoff planes when stormy' do
-      air = Airport.new
-      air.land_plane(plane)
-      allow(weather).to receive(:now).and_return('stormy')
-      air.check_weather(weather)
-      expect { air.takeoff }.to raise_error 'Not safe to fly'
+      my_airport = Airport.new
+      my_airport.land(plane)
+      allow(weather).to receive(:now).and_return(:stormy)
+      my_airport.check_weather(weather)
+      expect { my_airport.takeoff }.to raise_error 'Not safe to fly'
     end
   end
 
@@ -89,7 +89,7 @@ end
 
 feature 'Journey from Montreal to London' do
   let(:plane) { double :plane, land: false, landed: false, takeoff: nil }
-  let(:weather) { double :weather, now: 'sunny' }
+  let(:weather) { double :weather, now: :sunny }
 
   scenario 'in sunny conditions' do
     plane_lands_in_montreal_sunny
@@ -109,35 +109,35 @@ feature 'Journey from Montreal to London' do
   end
 
   def plane_lands_in_montreal_sunny
-    air = Airport.new
-    air.check_weather(weather)
-    expect(air.land_plane(plane)).to eq plane
+    my_airport = Airport.new
+    my_airport.check_weather(weather)
+    expect(my_airport.land(plane)).to eq plane
   end
 
   def plane_takes_off_from_montreal_sunny
     subject = Airport.new
-    subject.land_plane(plane)
+    subject.land(plane)
     subject.check_weather(weather)
     expect(subject.takeoff).to eq plane
   end
 
   def plane_lands_in_london_sunny
-    air = Airport.new
-    air.check_weather(weather)
-    expect(air.land_plane(plane)).to eq plane
+    my_airport = Airport.new
+    my_airport.check_weather(weather)
+    expect(my_airport.land(plane)).to eq plane
   end
 
   def plane_lands_in_london_stormy
-    allow(weather).to receive(:now).and_return('stormy')
-    air = Airport.new
-    air.check_weather(weather)
-    expect { air.land_plane(plane) }.to raise_error 'Not safe to land'
+    allow(weather).to receive(:now).and_return(:stormy)
+    my_airport = Airport.new
+    my_airport.check_weather(weather)
+    expect { my_airport.land(plane) }.to raise_error 'Not safe to land'
   end
 
   def plane_takes_off_from_montreal_stormy
-    allow(weather).to receive(:now).and_return('stormy')
+    allow(weather).to receive(:now).and_return(:stormy)
     subject = Airport.new
-    subject.land_plane(plane)
+    subject.land(plane)
     subject.check_weather(weather)
     expect { subject.takeoff }.to raise_error 'Not safe to fly'
   end

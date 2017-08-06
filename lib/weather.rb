@@ -19,8 +19,8 @@ class Weather
 
   def randomise
     n = rand(10)
-    @current_state = 'sunny' if n > 2
-    @current_state = 'stormy' if n <= 2
+    @current_state = :sunny if n > 2
+    @current_state = :stormy if n <= 2
     @current_state
   end
 

@@ -9,7 +9,7 @@ class Airport
     @capacity = cap
   end
 
-  def land_plane(plane)
+  def land(plane)
     raise 'Plane already landed' if plane.landed
     raise 'Airport at capacity' if full?
     if safe_to_fly
@@ -46,6 +46,6 @@ class Airport
   end
 
   def safe_to_fly
-    @weather != 'stormy'
+    @weather != :stormy
   end
 end
