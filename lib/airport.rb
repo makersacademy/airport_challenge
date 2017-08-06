@@ -9,4 +9,5 @@ class Airport
     @inair = []
     @capacity = capacity
   end
+
 end
