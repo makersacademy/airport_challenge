@@ -1,6 +1,6 @@
 class Weather
 
-  def stormy?
+  def forecast
     rand(0..100) > 79
   end
 

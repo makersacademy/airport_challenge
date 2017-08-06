@@ -42,7 +42,12 @@ describe Airport do
 
   describe 'landing if weather is good' do
     before do
-      allow(weather).to receive(:stormy).and_return(false)
+      allow(take_off(:plane)).to receive(:stormy?).and_return(false)
     end
   end
+
+  it 'has default capacity of 50' do
+    expect(airport.capacity).to eq 50
+  end
+
 end

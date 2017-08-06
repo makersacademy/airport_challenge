@@ -125,3 +125,5 @@ p airport
 * Created weather_spec file for tests as weather will be a new Class
 
 * Created weather class and definition, set it to be stormy 20% of the time -- check rspec tests pass
+
+* Add tests for default capacity and then add constant DEFAULT_CAPACITY
