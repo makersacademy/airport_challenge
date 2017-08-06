@@ -1,28 +1,29 @@
 # Airport Challenge
 
-Weekend task assigned by [Makers Academy](http://www.makersacademy.com/).
+Weekend task assigned by Kay Lovelace, [Makers Academy](http://www.makersacademy.com/).
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
-## Getting Started
+# Usage
 
-1. Clone this repo to your local machine
-2. Run the command ```gem install bundle``` (if you don't have bundle already)
-3. When the installation is complete, run ```bundle```
-4. Open IRB and run code examples or tests listed below
+* Clone this repo to your local machine
+* Open IRB and run code examples or tests (see [Testing](#testing))
 
-## Use Example
+## IRB Example
 
 ```
 $ irb
-2.2.3 :001 > require './lib/airport.rb'
-2.2.3 :002 > airport = Airport.new
- => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[], @weather=#<Weather:0x007fafdb81ea60>>
-2.2.3 :003 > plane = Plane.new
- => #<Plane:0x007fafdb0041b8>
-2.2.3 :004 > airport.land(plane)
- => #<Airport:0x007fafdb81ea88 @capacity=1, @planes=[#<Plane:0x007fafdb0041b8>], @weather=#<Weather:0x007fafdb81ea60>>
-2.2.3 :005 >
+2.4.0 :001 > require './lib/airport.rb'
+ => true
+2.4.0 :002 > airport = Airport.new
+ => #<Airport:0x007fd4720552f0 @planes=[], @capacity=10, @weather=#<Weather:0x007fd472055278>>
+2.4.0 :003 > plane = Plane.new
+ => #<Plane:0x007fd47203f0b8>
+2.4.0 :004 > airport.land(plane)
+ => [#<Plane:0x007fd47203f0b8>]
+2.4.0 :005 > airport
+ => #<Airport:0x007fd4720552f0 @planes=[#<Plane:0x007fd47203f0b8>], @capacity=10, @weather=#<Weather:0x007fd472055278>>
+2.4.0 :007 >
 ```
 
 ## Testing

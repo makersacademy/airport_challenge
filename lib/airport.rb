@@ -3,7 +3,6 @@ class Airport
   attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
-    @plane = plane
     @planes = []
     @capacity = capacity
     @weather = weather
