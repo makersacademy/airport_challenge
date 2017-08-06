@@ -3,33 +3,32 @@ require_relative './weather'
 
 class Airport
 
-  attr_accessor :planes, :capacity, :weather
+  attr_accessor :planes, :capacity, :storm
 
   DEFAULT_CAPACITY = 2
 
   def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
     @capacity = capacity
-    @weather = weather
+    @storm = weather.stormy?
   end
 
   def land_plane(plane)
-
-    if @weather.stormy?
+    check_if_plane_is_already_in_airport(plane)
+    if storm
       raise "Weather is too stormy to land" 
     elsif full?
       raise "Airport is full"
-    elsif @planes << plane
+    else @planes << plane
     end
-
   end
   
   def take_off(plane)
-    if @weather.stormy?
+    if storm
       raise "Weather is too stormy to take off"
     elsif empty?
       raise "There are no planes at this airport"
-    elsif @planes.pop
+    else @planes.pop
       "#{plane} has left the airport"
     end
   end
@@ -41,6 +40,12 @@ class Airport
 
   def empty?
     @planes.count == 0
+  end
+
+  def check_if_plane_is_already_in_airport(plane)
+    if planes.include?(plane)
+      raise "This plane has already landed in this airport"
+    end
   end
 
 end
