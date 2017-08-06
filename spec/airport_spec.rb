@@ -9,8 +9,9 @@ describe Airport do
   end
   it "plane takes off and no more planes left" do
     plane = Plane.new
-    allow(Weather).to receive(:climate) { 0 }
+    weather = Weather.new
     subject.land(plane)
+    allow(weather).to receive(:stormy?).and_return false
     subject.take_off(plane)
     expect(subject.instance_variable_get(:@planes).empty?).to eq(true)
   end
@@ -19,11 +20,13 @@ describe Airport do
   end
   it "preventing take-off when stormy" do
     plane = Plane.new
-    weather = Weather.new
-    weather = double("book")
-    allow(subject).to receive(:climate) { 5 }
     subject.land(plane)
-    expect { subject.take_off(plane) }.to raise_error('Take-off prevented, inclement weather')
+    allow(subject).to receive(:stormy?).and_return true
+    expect { subject.take_off(plane) }.to raise_error('Bad weather, take-off denied')
   end
-
+  it "preventing landing when stormy" do
+    plane = Plane.new
+    allow(subject).to receive(:stormy?).and_return true
+    expect { subject.land(plane) }.to raise_error('Bad weather, landing denied')
+  end
 end
