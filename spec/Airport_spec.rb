@@ -20,13 +20,17 @@ describe Airport do
      expect{subject.land(plane, false)}.to raise_error ("Plane not in the air")
   end
 
+  it 'a plane can not land at an airport it has already landed at' do
+    plane = Plane.new
+    subject.land(plane)
+    expect{subject.land(plane)}.to raise_error ("This plane has already landed at this airport")
+  end
+
   # it "A plane can not land when weather is stormy" do
-  #   allow(Plane).to receive_messages(
-  #     :stormy? => true)
-  #   plane = Plane.new
-  #   subject.weather.stormy?
+  #
   #   expect{subject.land(plane)}.to raise_error ("Stormy weather - plane can not land")
   # end
+
 
 
 # Depart tests
@@ -36,6 +40,10 @@ describe Airport do
 
   it {expect(subject).to respond_to :stock_planes}
 
+  it 'a plane can only take off from an airport it is at' do
+    plane = Plane.new
+    expect{subject.depart(plane)}.to raise_error ("The plane is not currently landed at this airport")
+  end
 
   # Creates a plane, lands it and then departs.
   # The test shows the length of the array goes back to 0 as the departed plane
@@ -53,9 +61,12 @@ describe Airport do
   end
 
   # it "A plane can not depart when weather is stormy" do
+  #   airport = Airport.new
   #   subject.weather.stormy?
   #   expect{subject.depart(plane)}.to raise_error ("Stormy weather - flights suspended")
   # end
+
+
   # Capacity tests
 
   it "should have a default capacity (10)" do
@@ -75,6 +86,8 @@ describe Airport do
     expect{subject.land(plane)}.to raise_error ("Airport full")
   end
 
-
+# context "When the weather is stormy?" do
+#   before(:each)
+# end
 
 end

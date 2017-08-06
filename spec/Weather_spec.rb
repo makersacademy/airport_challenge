@@ -9,5 +9,5 @@ describe Weather do
   it "stormy should equal true or false" do
      expect(subject.stormy?).to eq(true).or eq(false)
   end
-  
+
 end

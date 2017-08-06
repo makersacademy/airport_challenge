@@ -17,3 +17,7 @@ class Plane
   # end
 
 end
+
+# p plane = Plane.new
+# p plane.landed
+# p plane.taken_off?
