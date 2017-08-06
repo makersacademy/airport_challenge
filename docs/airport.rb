@@ -21,7 +21,7 @@ class Airport
   end
 
   def landing(plane)
-    p "#{plane} has landed"
+    p "#{plane} has landed" 
   end
 
 end

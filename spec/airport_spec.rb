@@ -13,10 +13,10 @@ describe Airport do
 # This needs refactoring also
   it "the plane has left the airport instance once it has taken off" do
     airport = Airport.new
-    plane1 = airport.create_planes
+    plane1 = Plane.new
     h = airport.take_off(plane1)
-    airport.planes = h
-    expect(airport.planes).to eq nil
+    expect(h).to eq airport
   end
-  
+# didn't expect it to equal nil .. expect it to equal the airport object
+
 end
