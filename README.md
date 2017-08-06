@@ -36,25 +36,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +73,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
@@ -88,3 +88,42 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+------------------------------
+
+Steps
+-----
+
+* Read through all resources on (https://github.com/makersacademy/airport_challenge)
+* Thought through user stories to see what classes would be required
+* Started with basic rspec tests for both Plane and Airport classes to check they responded to the new methods
+* Created a feature test file to ensure when planes landed and took off they were removed from the array
+
+```
+require './lib/plane.rb'
+require './lib/airport.rb'
+
+plane = Plane.new
+airport = Airport.new
+
+airport.land
+p airport
+airport.take_off
+p airport
+
+```
+* Created rspec tests for the same tests, ran to see them fail
+* Initialized the Airport class in order to created empty array of planes
+* Added code to methods to add planes to array when they land and remove them when they take off
+
+* Wrote rspec test for expecting error message when it's full but this did not fail before code had been written therefore rewrote it to fail
+
+* Wrote feature test to check error message was created
+
+* Added private method for full so this could be called within the land(plane) method -- checked all tests are now working
+
+* Created weather_spec file for tests as weather will be a new Class
+
+* Created weather class and definition, set it to be stormy 20% of the time -- check rspec tests pass
+
+* Add tests for default capacity and then add constant DEFAULT_CAPACITY
