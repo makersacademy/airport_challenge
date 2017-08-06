@@ -2,9 +2,10 @@ require_relative '../lib/weather'
 
 describe Weather do
 
-  it "weather generated" do
-    weather = Weather.new
-    expect(weather).to respond_to(:generate)
+  subject { described_class.new }
+
+  it " Tests outcome of calling stormy? method is true or false" do
+    expect(subject.stormy?).to be(true).or be(false)
   end
   
 end
