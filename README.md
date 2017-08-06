@@ -77,7 +77,7 @@ I would like a default airport capacity that can be overridden as appropriate
 Although the code implements all of the user stories it is still in beta.
 
 Scheduled updates:
-* added functionality to planes
+* added functionality to planes e.g. automated names, landed
 * refactoring raises into two methods
 
 The final release will be arriving in the near future.

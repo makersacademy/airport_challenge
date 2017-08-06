@@ -25,7 +25,7 @@ class Airport
     raise "This plane is not at this airport" unless @planes.include?(plane)
     raise "Stormy weather - flights suspended" if bad_weather?
     @planes.delete(plane)
-    puts "Flight #{plane} is departing"
+    puts "Flight #{plane} has left the airport"
   end
 
   def show_planes
