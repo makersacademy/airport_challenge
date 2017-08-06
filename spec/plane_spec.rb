@@ -13,11 +13,26 @@ describe Plane do
 
   it 'cannot land if already landed' do
     subject.land_at_airport(Airport.new)
-    expect {subject.land_at_airport(Airport.new)}.to raise_error 'Plane already landed'
+    expect { subject.land_at_airport(Airport.new) }.to raise_error 'Plane already landed'
   end
 
   it 'cannot takeoff if already in the air' do
     subject.takeoff
     expect(subject.takeoff).to eq false
   end
+
+  it 'remembers when it has landed' do
+    subject.land_at_airport(Airport.new)
+    expect(subject.landed?).to eq true
+  end
+
+  it 'remembers when it takes off' do
+    subject.takeoff
+    expect(subject.landed?).to eq false
+  end
+
+  it 'should start in the air' do
+    expect(subject.landed).to eq false
+  end
+
 end

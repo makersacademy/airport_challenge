@@ -1,6 +1,5 @@
 class Plane
 
-  attr_reader :self
   attr_accessor :landed
 
   def initialize

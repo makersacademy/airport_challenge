@@ -1,3 +1,6 @@
+require_relative './plane'
+require_relative './weather'
+
 class Airport
 
   DEFAULT_CAPACITY = 50
@@ -5,25 +8,37 @@ class Airport
   attr_reader :plane, :planes, :capacity
 
   def initialize(cap = DEFAULT_CAPACITY)
-    @plane = plane
     @planes = []
     @capacity = cap
   end
 
   def land_plane(plane)
-    raise 'Plane already landed' if plane.landed == true
+    raise 'Plane already landed' if plane.landed
     raise 'Airport at capacity' if full?
-    plane.landed = true
-    @planes << plane
-    plane
+    if safe_to_fly
+      plane.land
+      @planes << plane
+      return plane
+    end
+    raise 'Not safe to land'
   end
 
   def takeoff
     raise 'No planes available' if empty?
-    @takeoff = @planes[0]
-    @planes.delete_at(0)
-    @takeoff.takeoff
+    takeoff = @planes[0]
+    if safe_to_fly
+      @planes.delete_at(0)
+      takeoff.takeoff
+      return takeoff
+    end
+    raise 'Not safe to fly'
   end
+
+  def check_weather(weather)
+    @weather = weather.now
+  end
+
+  private
 
   def full?
     @planes.length == @capacity
@@ -33,4 +48,7 @@ class Airport
     @planes.empty?
   end
 
+  def safe_to_fly
+    @weather != 'stormy'
+  end
 end
