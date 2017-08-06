@@ -17,7 +17,7 @@ p "airport.land(plane): #{airport.land(plane)}"
 p "airport.onground: #{airport.onground}"
 
 puts "5. A plane can take off and confirm it is not at the airport"
-p "airport.take_off: #{airport.take_off}"
+p "airport.take_off(plane): #{airport.take_off}"
 p "airport.onground: #{airport.onground}"
 p "airport.inair: #{airport.inair}"
 
