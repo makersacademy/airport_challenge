@@ -1,14 +1,19 @@
 class Airport
   attr_accessor :plane
-  attr_accessor :weather
+  attr_accessor :capacity
 
-  def initialize(weather = Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
+    @plane = plane
     @planes = []
+    @capacity = capacity
     @weather = weather
   end
 
+  DEFAULT_CAPACITY = 10
+
   def land(airport)
     raise 'Bad weather, landing denied' if stormy?
+    raise 'Airport full, landing denied' if full?
     @planes << airport
   end
 
@@ -24,6 +29,10 @@ class Airport
     @planes.size.zero?
   end
 
+  def full?
+    @planes.size >= capacity
+  end
+
   attr_reader :weather
 
   def stormy?
@@ -32,7 +41,7 @@ class Airport
 end
 
 class Weather
-    [:stormy, :fine, :fine, :fine].sample
+  [:stormy, :fine, :fine, :fine].sample
 end
 
 class Plane
