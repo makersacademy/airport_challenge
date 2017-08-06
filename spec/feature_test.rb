@@ -24,3 +24,10 @@ p "#{airport.take_off(plane)}"
 puts "prevent landing when weather is stormy"
 airport = Airport.new "stormy"
 p "#{airport.land(plane)}"
+
+puts "prevent landing when full"
+airport = Airport.new
+plane = Plane.new
+airport.capacity.times do
+  airport.land(plane)
+end
