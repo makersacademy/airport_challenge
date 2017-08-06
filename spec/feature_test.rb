@@ -31,3 +31,7 @@ plane = Plane.new
 airport.capacity.times do
   airport.land(plane)
 end
+
+puts "adjust default capacity"
+airport = Airport.new "my custom capacity"
+puts "#{airport.capacity}"

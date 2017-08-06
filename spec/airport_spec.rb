@@ -33,4 +33,8 @@ describe Airport do
     subject.capacity.times {subject.land(double(:plane))}
     expect { subject.land(double(:plane)) }.to raise_error 'Airport full, landing denied'
    end
+  it "adjust default capacity" do
+    airport = Airport.new "my custom capacity"
+    expect(airport.capacity).to eq "my custom capacity"
+  end
 end
