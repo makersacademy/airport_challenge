@@ -28,8 +28,6 @@ describe Airport do
     expect { airport.landing }.to raise_error "Airport is full!"
   end
 
-  # let(:weather) {double(:weather)}
-
   context "Plane taking off"
   it "Plane should be able to take off" do
     allow(airport).to receive_messages(:weather => "Clear")
@@ -47,11 +45,4 @@ describe Airport do
     airport.take_off
     expect(airport.planes.size).to eq(1)
   end
-
-  context "Edge cases"
-  it "A plane can only take off from an airport they are in"
-  it "A plane cannot be in an airport if they are flying"
-  it "A plane cannot take off if they are flying"
-  it "A plane cannot land again if they have landed already"
-
 end
