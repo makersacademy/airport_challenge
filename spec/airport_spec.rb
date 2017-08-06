@@ -5,6 +5,7 @@ describe Airport do
 
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
+  let(:weather) { double(:weather, :stormy? => false) }
 
   it { should respond_to(:open?) }
 
@@ -13,7 +14,8 @@ describe Airport do
   it { should respond_to(:take_off).with(1).argument }
 
   it 'should be open' do
-    expect(airport.open?).to be true
+    airportstatus = airport.open?
+    expect(airportstatus).to be true
   end
 
   it 'should store planes in an array' do
@@ -38,4 +40,9 @@ describe Airport do
     expect { airportfull.land(:plane) }.to raise_error('Airport is full!')
   end
 
+  describe 'landing if weather is good' do
+    before do
+      allow(weather).to receive(:stormy).and_return(false)
+    end
+  end
 end

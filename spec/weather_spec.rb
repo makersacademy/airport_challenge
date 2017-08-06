@@ -6,8 +6,6 @@ describe Weather do
 
   it { should respond_to(:stormy?) }
 
-  # stormy? should create a random number
-
   it 'should expect stormy? to be true or false' do
     weather = Weather.new
     weather = weather.stormy?
