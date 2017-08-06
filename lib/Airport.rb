@@ -15,15 +15,15 @@ class Airport
     raise "Airport full" if full?
     raise "Plane not in the air" unless airborne
     raise "This plane has already landed at this airport" if @planes.include?(plane)
-#    raise "Stormy weather - plane can not land" if weather.stormy?
+    raise "Stormy weather - plane can not land" if bad_weather?
     @planes << plane
     "Flight #{plane} has landed"
     plane
   end
 
   def depart(plane)
-#    raise "Stormy weather - flights suspended" if weather.stormy?
     raise "The plane is not currently landed at this airport" unless @planes.include?(plane)
+    raise "Stormy weather - flights suspended" if bad_weather?
     @planes.delete(plane)
     "Flight #{plane} is departing"
   end
@@ -38,9 +38,9 @@ class Airport
      "#{n} new plane#{"s" if n > 1} have arrived at the airport"
   end
 
-  # def bad_weather?
-  #
-  # end
+  def bad_weather?
+    @weather.stormy?
+  end
 
 
   private

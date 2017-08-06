@@ -11,7 +11,9 @@ describe Airport do
 
 
   it "should allow planes to land" do
-    plane = double(:plane)
+    allow(subject).to receive(:bad_weather?).and_return(false)
+    allow(subject).to receive(:full?).and_return(false)
+    plane = Plane.new
     expect(subject.land(plane)).to eq plane
   end
 
@@ -21,19 +23,22 @@ describe Airport do
   end
 
   it 'a plane can not land at an airport it has already landed at' do
+    allow(subject).to receive(:bad_weather?).and_return(false)
+    allow(subject).to receive(:full?).and_return(false)
     plane = Plane.new
     subject.land(plane)
     expect{subject.land(plane)}.to raise_error ("This plane has already landed at this airport")
   end
 
-  # it "A plane can not land when weather is stormy" do
-  #
-  #   expect{subject.land(plane)}.to raise_error ("Stormy weather - plane can not land")
-  # end
-
+  it "does not allow plane to take off" do
+    plane = Plane.new
+    allow(subject).to receive(:bad_weather?).and_return(true)
+    expect{subject.land(plane)}.to raise_error "Stormy weather - plane can not land"
+  end
 
 
 # Depart tests
+
   it {expect(subject).to respond_to :depart}
 
   it {expect(subject).to respond_to :show_planes}
@@ -49,6 +54,7 @@ describe Airport do
   # The test shows the length of the array goes back to 0 as the departed plane
   # has now been deleted.
   it "a plane that has departed should no longer be in airport" do
+    allow(subject).to receive(:bad_weather?).and_return(false)
     plane = Plane.new
     subject.land(plane)
     subject.depart(plane)
@@ -60,12 +66,13 @@ describe Airport do
     expect(subject.show_planes.length).to eq 15
   end
 
-  # it "A plane can not depart when weather is stormy" do
-  #   airport = Airport.new
-  #   subject.weather.stormy?
-  #   expect{subject.depart(plane)}.to raise_error ("Stormy weather - flights suspended")
-  # end
 
+  it "A plane can not depart when weather is stormy" do
+    plane = Plane.new
+    subject.land(plane)
+    allow(subject).to receive(:bad_weather?).and_return(true)
+    expect{subject.depart(plane)}.to raise_error "Stormy weather - flights suspended"
+  end
 
   # Capacity tests
 
@@ -85,6 +92,7 @@ describe Airport do
     subject.stock_planes
     expect{subject.land(plane)}.to raise_error ("Airport full")
   end
+
 
 # context "When the weather is stormy?" do
 #   before(:each)

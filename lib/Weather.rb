@@ -1,9 +1,18 @@
 class Weather
  attr_reader :stormy
  def stormy?
-  weather_possibilities = [:good, :good, :good, :stormy, :good, :good]
-  index = rand(weather_possibilities.length-1) # -1  as array indexes start with 0 not 1
-  weather_possibilities[index] == :stormy
+  weather_randomiser == :stormy
  end
+
+
+private
+
+ WEATHER_POSSIBILITIES = [:good, :good, :good, :stormy, :good, :good]
+
+ def weather_randomiser
+   index = rand(WEATHER_POSSIBILITIES.length-1)
+   WEATHER_POSSIBILITIES[index]
+ end
+
 
 end
