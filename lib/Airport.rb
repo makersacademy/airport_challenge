@@ -3,9 +3,9 @@
 class Airport
   attr_reader :planes, :capacity, :weather
 
-  $DEFAULT_CAPACITY = 10
+  DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = $DEFAULT_CAPACITY, weather = Weather.new)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
     @capacity = capacity
     @weather = weather
@@ -17,7 +17,7 @@ class Airport
     raise "This plane has already landed at this airport" if @planes.include?(plane)
     raise "Stormy weather - plane can not land" if bad_weather?
     @planes << plane # if plane.class == Plane
-    "Flight #{plane} has landed"
+    puts "Flight #{plane} has landed"
     plane
   end
 
@@ -25,28 +25,25 @@ class Airport
     raise "This plane is not at this airport" unless @planes.include?(plane)
     raise "Stormy weather - flights suspended" if bad_weather?
     @planes.delete(plane)
-    "Flight #{plane} is departing"
+    puts "Flight #{plane} is departing"
   end
 
   def show_planes
     @planes
   end
 
-
   def stock_planes(n = @capacity) # the default is max capacity
-     n.times { @planes << Plane.new }
-     "#{n} new plane#{"s" if n > 1} have arrived at the airport"
+    n.times { @planes << Plane.new }
+    "#{n} new plane#{"s" if n > 1} have arrived at the airport"
   end
 
   def bad_weather?
     @weather.stormy?
   end
 
-
   private
-
   def full?
     @capacity == @planes.length
   end
-
+  
 end
