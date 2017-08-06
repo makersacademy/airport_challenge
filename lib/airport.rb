@@ -21,12 +21,17 @@ class Airport
   end
   
   def take_off(plane)
-    @planes.pop
+    if empty?
+      raise "There are no planes at this airport"
+    elsif @weather >= 9
+      raise "Weather is too stormy to take off"
+    else @planes.pop
     # @planes.each_with_index do |plane, index| 
      #   if bike.working?
       #    @.delete_at(index)
        #   return bike
     " #{plane} has left the airport"
+    end
   end
 
   def weather
@@ -40,7 +45,8 @@ class Airport
     @planes.count == @capacity 
   end
 
-
-  
+  def empty?
+    @planes.count == 0
+  end
 
 end
