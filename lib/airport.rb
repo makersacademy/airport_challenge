@@ -1,36 +1,38 @@
 class Airport
   attr_accessor :plane
+  attr_accessor :weather
 
-  def initialize
+  def initialize(weather = Weather.new)
     @planes = []
-    @climate = Weather.new.instance_variable_get(:@climate)
+    @weather = weather
   end
 
-  def land(plane)
-    @planes << plane
+  def land(airport)
+    raise 'Bad weather, landing denied' if stormy?
+    @planes << airport
   end
 
   def take_off(plane)
-    if @planes.empty?
-      raise 'No planes present'
-    elsif @climate > 3
-      raise 'Take-off prevented, inclement weather'
-    else
-      @planes.pop && "#{plane} has taken off"
-    end
+    raise 'No planes present' if empty?
+    raise 'Bad weather, take-off denied' if stormy?
+    @planes.delete(plane) && "#{plane} has taken off"
   end
 
-  private
+  # private
+
   def empty?
     @planes.size.zero?
+  end
+
+  attr_reader :weather
+
+  def stormy?
+    @weather == "stormy"
   end
 end
 
 class Weather
-
-  def initialize
-    @climate = rand(0..5)
-  end
+    [:stormy, :fine, :fine, :fine].sample
 end
 
 class Plane
