@@ -92,29 +92,20 @@ feature 'Journey from Montreal to London' do
   let(:weather) { double :weather, now: :sunny }
 
   scenario 'in sunny conditions' do
-    plane_lands_in_montreal_sunny
-    plane_takes_off_from_montreal_sunny
+    plane_from_montreal_sunny
     plane_lands_in_london_sunny
   end
 
   scenario 'from sunny to stormy' do
-    plane_lands_in_montreal_sunny
-    plane_takes_off_from_montreal_sunny
+    plane_from_montreal_sunny
     plane_lands_in_london_stormy
   end
 
   scenario 'with stormy at start' do
-    plane_lands_in_montreal_sunny
-    plane_takes_off_from_montreal_stormy
+    plane_from_montreal_stormy
   end
 
-  def plane_lands_in_montreal_sunny
-    my_airport = Airport.new
-    my_airport.check_weather(weather)
-    expect(my_airport.land(plane)).to eq plane
-  end
-
-  def plane_takes_off_from_montreal_sunny
+  def plane_from_montreal_sunny
     subject = Airport.new
     subject.land(plane)
     subject.check_weather(weather)
@@ -134,7 +125,7 @@ feature 'Journey from Montreal to London' do
     expect { my_airport.land(plane) }.to raise_error 'Not safe to land'
   end
 
-  def plane_takes_off_from_montreal_stormy
+  def plane_from_montreal_stormy
     allow(weather).to receive(:now).and_return(:stormy)
     subject = Airport.new
     subject.land(plane)

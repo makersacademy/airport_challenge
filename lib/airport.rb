@@ -38,7 +38,7 @@ class Airport
   private
 
   def full?
-    @planes.length == @capacity
+    @planes.length >= @capacity
   end
 
   def empty?

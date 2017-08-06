@@ -16,8 +16,8 @@ describe Plane do
     expect(subject.landed?).to eq false
   end
 
-  it 'should start in the air' do
-    expect(subject.landed).to eq false
+  it 'should start on the ground' do
+    expect(subject.landed).to eq true
   end
 
   it 'can be set to both in the air and landed' do
