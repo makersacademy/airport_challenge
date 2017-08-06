@@ -1,14 +1,27 @@
 class Plane
 
   attr_reader :self
+  attr_accessor :landed
 
-  def land(airport)
+  def initialize
+    @landed = false
+  end
+
+  def land
+    @landed = true
+  end
+
+  def land_at_airport(airport)
+    raise 'Plane already landed' if landed?
     airport.land_plane(self)
   end
 
-  def me
-    return self
+  def takeoff
+    @landed = false
   end
 
+  def landed?
+    @landed
+  end
 
 end
