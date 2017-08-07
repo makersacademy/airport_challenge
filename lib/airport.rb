@@ -16,13 +16,10 @@ class Airport
   end
 
   def from_factory(*plane, airport_control)
-    if full?
-      full_capacity_msg
-    else
-      add(*plane, airport_control)
-    end
+    full? ? full_capacity_msg : add(*plane, airport_control)
   end
 
+# rubocop:disable MethodLength
   def land(plane, airspace, airport_control)
     if plane_at_airport(plane)
       double_land_error(plane)
@@ -38,6 +35,7 @@ class Airport
       success_land(plane, airspace, airport_control)
     end
   end
+# rubocop:enable MethodLength
 
   def takeoff(plane, airspace, airport_control)
     if !plane_at_airport(plane)
@@ -54,11 +52,13 @@ class Airport
 
 private
   def in_airspace_error(plane, airspace)
+    # rubocop:disable LineLength
     raise "Plane #{plane.name} is already flying in #{airspace.name.capitalize}'s airspace.  Takeoff will not proceed."
   end
 
   def not_in_airspace_error(plane, airspace)
     raise "Landing will not proceed as plane #{plane.name} is currently not in #{airspace.name.capitalize}'s airspace."
+    # rubocop:enable LineLength
   end
 
   def full_capacity_msg
@@ -103,20 +103,22 @@ private
   def success_land(plane, airspace, airport_control)
     add(plane, airport_control)
     airspace.planes.delete([plane, plane.name])
-    airport_control.planes.reject! { |x| x[:plane] == plane }
+    remove_aircontrol_record(plane, airport_control)
     airport_control.planes << { plane: plane, airport: @name, airspace: "nil" }
-    puts "Sunny weather on #{Time.now}."
-    puts "#{plane.name} has landed at #{@name}."
+    puts "Sunny weather on #{Time.now}.", "Plane #{plane.name} has landed at #{@name}."
   end
 
   def success_takeoff(plane, airspace, airport_control)
     airspace.planes << [plane, plane.name]
     @planes.delete([plane, plane.name])
-    airport_control.planes.reject! { |x| x[:plane] == plane }
+    remove_aircontrol_record(plane, airport_control)
     airport_control.planes << { plane: plane, airport: "nil", airspace: airspace.name }
-    puts "Sunny weather on #{Time.now}."
-    puts "Takeoff of plane #{plane.name} is successful."
+    puts "Sunny weather on #{Time.now}.", "Takeoff of plane #{plane.name} is successful."
     puts "It is current flying in #{airspace.name.capitalize}'s airspace."
+  end
+
+  def remove_aircontrol_record(plane, airport_control)
+    airport_control.planes.reject! { |x| x[:plane] == plane }
   end
 
   def storm_announcement(plane)
