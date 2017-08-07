@@ -5,3 +5,5 @@ describe Weather do
   end
 
 end
+
+# I can't see why this doesn't work for this module.
