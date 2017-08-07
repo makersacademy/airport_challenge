@@ -88,3 +88,12 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+My approach
+-------------
+
+I started creating all the files that I needed for the challenge, so the main ruby program (lib/airport.rb), and the spec files for my TDD into the spec folder (airport_spec and weather_spec). Then I tried to cover all the elements in the user stories using different methods.
+
+I found problems when I was dealing with the errors, I am probably testing and raising errors in a wrong class but I couldn't find what was the problem so I moved on and commented out the errors so we can still check them.
+
+All the tests are passing but unfortunately I couldn't have a coverage > 95% and the lines I couldn't test were the ones with raising errors and including elements in arrays. I will definitely come back to the challenge during the week to make it work.
