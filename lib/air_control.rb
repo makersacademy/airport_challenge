@@ -1,7 +1,7 @@
-class Air_Control
+class AirControl
   attr_accessor :planes
 
   def initialize
-    @planes=[]
+    @planes = []
   end
 end

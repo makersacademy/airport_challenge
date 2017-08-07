@@ -1,52 +1,41 @@
+require 'airport'
+require 'air'
 require 'plane'
+require 'weather'
+require 'air_control'
 
-describe DockingStation do
-  #let(:bike) { double :bike }
+describe Plane do
 
-  it_behaves_like BikeContainer
-
-  it 'raises error when no docked bike' do
-    station = DockingStation.new
-    expect{station.release_bike}.to raise_error("no bikes available")
+  it 'checks status when new planes are transferred from factory' do
+    central_control = AirControl.new
+    airport1 = Airport.new("Heathrow")
+    allow(airport1).to receive(:check_weather) { "sunny" }
+    plane1 = described_class.new("CX255")
+    airport1.from_factory(plane1, central_control)
+    expect(plane1.status(central_control)).to eq "Plane CX255 is currently at the Heathrow Airport."
   end
 
-  it 'raises error when more than the capacity is docked' do
-    #allow(double :bike).to receive(:working?).and_return(true)
-    #allow(bike).to receive(:broken).and_return(false)
-    bike = double("bike", :broken => false, :working? => true)
-    station = DockingStation.new
-    DockingStation::DEFAULT_CAPACITY.times {station.dock(bike)}
-    bike1=bike
-    expect{station.dock(bike1)}.to raise_error("the dock is full")
+  it 'checks status when the plane is in the air' do
+    central_control = AirControl.new
+    airport1 = Airport.new("Heathrow")
+    allow(airport1).to receive(:check_weather) { "sunny" }
+    plane1 = described_class.new("CX255")
+    can = Air.new("canada")
+    airport1.from_factory(plane1, central_control)
+    airport1.takeoff(plane1, can, central_control)
+    expect(plane1.status(central_control)).to eq "Plane CX255 is currently in Canada's airspace."
   end
 
-  it 'sets default capacity' do
-    station = DockingStation.new
-    expect(station.capacity).to eq(20)
-  end
-
-  it 'sees unbroken bikes' do
-    bike = double("bike", :broken => false, :working? => true)
-    station1 = DockingStation.new
-    bike1=bike
-    station1.dock(bike1, false)
-    expect(station1.bikes).to include bike1
-  end
-
-  it 'does not allow docking station to release broken bikes' do
-    bike = double("bike", :broken => false, :working? => false)
-    station1 = DockingStation.new
-    bike1=bike
-    station1.dock(bike1, true)
-    expect{station1.release_bike}.to raise_error("no bikes available")
-  end
-
-  it 'can report broken bikes' do
-    bike = double("bike", :broken => false, :working? => false)
-    station1 = DockingStation.new
-    bike1=bike
-    station1.dock(bike1, true)
-    expect(station1.brokenbikes).to include bike1
+  it 'checks status after the plane has landed' do
+    central_control = AirControl.new
+    airport1 = Airport.new("Heathrow")
+    allow(airport1).to receive(:check_weather) { "sunny" }
+    plane1 = described_class.new("CX255")
+    can = Air.new("canada")
+    airport1.from_factory(plane1, central_control)
+    airport1.takeoff(plane1, can, central_control)
+    airport1.land(plane1, can, central_control)
+    expect(plane1.status(central_control)).to eq "Plane CX255 is currently at the Heathrow Airport."
   end
 
 end

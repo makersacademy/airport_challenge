@@ -1,24 +1,25 @@
 require_relative './weather.rb'
 require_relative './plane.rb'
 require_relative './air.rb'
+require_relative './air_control.rb'
 
 class Airport
   attr_accessor :capacity, :planes
   attr_reader :name
 
-  DEFAULT_CAPACITY=50
+  DEFAULT_CAPACITY = 50
 
-  def initialize(name, capacity=DEFAULT_CAPACITY)
-    @planes=[]
-    @capacity=capacity
-    @name=name
+  def initialize(name, capacity = DEFAULT_CAPACITY)
+    @planes = []
+    @capacity = capacity
+    @name = name
   end
 
-  def from_factory(*plane)
+  def from_factory(*plane, airport_control)
     if full?
       full_capacity_msg
     else
-      add(*plane)
+      add(*plane, airport_control)
     end
   end
 
@@ -36,7 +37,6 @@ class Airport
     else
       success_land(plane, airspace, airport_control)
     end
-
   end
 
   def takeoff(plane, airspace, airport_control)
@@ -50,7 +50,6 @@ class Airport
     else
       success_takeoff(plane, airspace, airport_control)
     end
-
   end
 
 private
@@ -65,6 +64,7 @@ private
   def full_capacity_msg
     puts "#{@name.capitalize} is at its full capacity.  Please try again later."
   end
+
   def double_land_error(plane)
     raise "Plane #{plane.name} has already landed at #{@name}."
   end
@@ -73,12 +73,15 @@ private
     raise "Plane #{plane.name} is not in #{@name}. Takeoff will not proceed."
   end
 
-  def add(*plane)
-      plane.each{|x| @planes << [x, x.name]}
+  def add(*plane, airport_control)
+    plane.each do |x|
+      @planes << [x, x.name]
+      airport_control.planes << { plane: x, airport: @name, airspace: "nil" }
+    end
   end
 
   def check_weather
-    Weather.new.weather_now
+    Weather.new.check_weather
   end
 
   def storm
@@ -86,26 +89,22 @@ private
   end
 
   def plane_at_airport(plane)
-    @planes.include? [plane,plane.name]
+    @planes.include? [plane, plane.name]
   end
 
   def plane_at_airspace(plane, airspace)
-    airspace.planes.include? [plane,plane.name]
-  end
-
-  def empty?
-    @planes.count==0
+    airspace.planes.include? [plane, plane.name]
   end
 
   def full?
-    @planes.count==@capacity
+    @planes.count == @capacity
   end
 
   def success_land(plane, airspace, airport_control)
-    add(plane)
-    airspace.planes.delete([plane,plane.name])
-    airport_control.planes.reject!{|x| x[:plane]==plane}
-    airport_control.planes << {plane: plane, airport: @name, airspace: "nil"}
+    add(plane, airport_control)
+    airspace.planes.delete([plane, plane.name])
+    airport_control.planes.reject! { |x| x[:plane] == plane }
+    airport_control.planes << { plane: plane, airport: @name, airspace: "nil" }
     puts "Sunny weather on #{Time.now}."
     puts "#{plane.name} has landed at #{@name}."
   end
@@ -113,18 +112,18 @@ private
   def success_takeoff(plane, airspace, airport_control)
     airspace.planes << [plane, plane.name]
     @planes.delete([plane, plane.name])
-    airport_control.planes << {plane: plane, airport: "nil", airspace: airspace.name}
-
+    airport_control.planes.reject! { |x| x[:plane] == plane }
+    airport_control.planes << { plane: plane, airport: "nil", airspace: airspace.name }
     puts "Sunny weather on #{Time.now}."
-    puts "Takeoff of plane #{plane.name} is successful.  It is current flying in #{airspace.name.capitalize}'s airspace."
+    puts "Takeoff of plane #{plane.name} is successful."
+    puts "It is current flying in #{airspace.name.capitalize}'s airspace."
   end
-
 
   def storm_announcement(plane)
-    puts "of plane #{plane.name} will not proceed due to stormy weather conditions.  Please try again when weather has improved."
+    puts "of plane #{plane.name} will not proceed due to stormy weather conditions."
+    puts "Please try again when weather has improved."
   end
 end
-
 
 =begin
 require './lib/airport'
@@ -135,9 +134,12 @@ plane3=Plane.new("MN323")
 can=Air.new("canada")
 airport1.from_factory(plane1,plane2,plane3)
 chi=Air.new("china")
-central_control=Air_Control.new
+central_control=AirControl.new
 airport1.takeoff(plane1,can, central_control)
-
 plane1.status(central_control)
 airport1.land(plane1,can,central_control)
+
+# def empty?
+#   @planes.count.zero?
+# end
 =end

@@ -1,18 +1,20 @@
 class Weather
-# Naming convention of instances: DAT_TIME e.g. AUG5_1700
-attr_reader :weather_now
+  attr_reader :weather_now
 
-def initialize
-  @weather_now=self.check_weather
-end
+  def chance
+    rand(0..2)
+  end
 
   def check_weather
-    now=rand(0..2)
-    if now == 0
-      weather="stormy"
+    if chance.zero?
+      weather = "stormy"
     else
-      weather="sunny"
+      weather = "sunny"
     end
-  weather
+    weather
   end
 end
+
+# def initialize
+#   @weather_now=self.check_weather
+# end
