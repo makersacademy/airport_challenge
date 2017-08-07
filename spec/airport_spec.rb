@@ -8,7 +8,7 @@ describe Airport do
   before do
     allow(Weather).to receive(:new) { weather }
     allow(plane).to receive(:land)
-    allow(plane).to receive(:take_off) {airport.remove_from_roster plane}
+    allow(plane).to receive(:take_off) { airport.remove_from_roster plane }
   end
   subject(:airport) { described_class.new }
 
@@ -37,4 +37,14 @@ describe Airport do
     subject.take_off plane
     expect(subject.here? plane).to eq false
   end
+
+  it 'denies landing when airport is full' do
+    allow(weather).to receive(:stormy?) { false }
+    plane1 = double(:plane, :land => true)
+    plane2 = double(:plane, :land => true)
+    subject.land plane
+    subject.land plane1
+    expect { subject.land plane2 }.to raise_error('Unable to land, airport is full')
+  end
+
 end
