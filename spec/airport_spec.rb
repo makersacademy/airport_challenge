@@ -55,12 +55,55 @@ describe Airport do
     expect { airport.call_takeoff(grounded_plane, "bad") }.to raise_exception error_message1.to_s
   end
 
-#   it "if plane lands then it sends a signal "
+  airport1 = Airport.new(:LGW, 10)
+
+  it "once a plane has been called for landing, it is put into a potential docking list" do
+    allow(flying_plane).to receive(:location).and_return("flying")
+    allow(flying_plane).to receive(:clear_for_action)
+    airport1.call_to_land(flying_plane, "good")
+    expect(airport1.docklist.include?(flying_plane)).to eq true
+  end
+
+  it "once a plane has been called for takeoff, it is put into a potential docking list" do
+    allow(grounded_plane).to receive(:airport).and_return(:LGW)
+    allow(grounded_plane).to receive(:clear_for_action)
+    airport1.call_takeoff(grounded_plane, "good")
+    expect(airport1.releaselist.include?(grounded_plane)).to eq true
+  end
+
+  air_full = Airport.new(:FUL, 10, 10)
+
+  it "won't allow call_landing if planes docked plus planes called in exceeds capacity" do
+    error_message2 = "Not enough space for more planes"
+    expect { air_full.call_to_land(flying_plane, "good") }.to raise_exception error_message2.to_s
+  end
+
+  airport2 = Airport.new(:LGW, 10)
+
+  let(:plane_to_dock) { double :plane_to_dock }
+  let(:plane_to_release) { double :plane_to_release }
+  it "dock_planes checks all called planes, registers at the airport if landed&resets docklist" do
+    allow(plane_to_dock).to receive(:airport).and_return(:LGW)
+    airport2.docklist = [plane_to_dock]
+    airport2.dock_planes
+    expect(airport2.plane_list.include?(plane_to_dock) && airport2.dock_planes == []).to eq true
+  end
+
+  airport3 = Airport.new(:LGW, 10, 15)
+
+  it "release_plane checks all planes called for takeoff&removes them if gone & resets list" do
+    allow(plane_to_release).to receive(:airport).and_return(nil)
+    airport3.plane_list = (airport3.plane_list.map.with_index { |x, i| i == 10 ? plane_to_release : x })
+    airport3.releaselist = [plane_to_release]
+    airport3.release_planes
+    expect(!airport3.plane_list.include?(plane_to_release) && airport3.release_planes == []).to eq true
+  end
+
 end
 
 describe Plane do
   plane = Plane.new
-  airport1 = Airport.new(:LHR, 50)
+  airportz = Airport.new(:LHR, 50)
 
   it "has default value of airport = nil" do
     expect(plane.airport).to eq nil
@@ -78,14 +121,14 @@ describe Plane do
   plane1.location = "flying"
 
   it "if weather ok plane registers call to land" do
-    airport1.call_to_land(plane1, "good")
+    airportz.call_to_land(plane1, "good")
     expect(plane1.action_status).to eq :LHR
   end
 
   it "if weather ok plane registers call to take off" do
-    airport1.call_to_land(plane1, "good")
+    airportz.call_to_land(plane1, "good")
     plane1.land
-    airport1.call_takeoff(plane1, "good")
+    airportz.call_takeoff(plane1, "good")
     expect(plane1.action_status).to eq "takeoff"
   end
 
