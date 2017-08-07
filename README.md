@@ -98,4 +98,4 @@ I raised an error message if planes were called in for landing or for takeoff if
 
 Once the plane had landed (or taken off) - done by a method in the Plane class - the airport could update the list of planes. This was done better for planes arriving than planes taking off (for this one, the check would lose detail of planes which had been authorised to but had not taken off).
 
-Weather conditions were set with a random number generator such that there would be bad weather 20% of the time with an option to manually override this.
+Weather conditions were set with a random number generator such that there would be bad weather 20% of the time with an option to manually override this. The one test that I could not make pass was in order to test the weather method although this did not appear to fail in practice and did not hold the rest of the programme back.
