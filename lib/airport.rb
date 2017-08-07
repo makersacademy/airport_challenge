@@ -39,11 +39,10 @@ class Airport
   end
 
   def dock_planes
-    docklist.each do |p|
+    @docklist.each do |p|
       first_space = @plane_list.index(nil)
-      @plane_list[first_space] = p if p.airport == code
+      (@plane_list[first_space] = p; docklist.delete(p)) if p.airport == code
     end
-    docklist.clear
   end
 
   def release_planes
@@ -51,7 +50,7 @@ class Airport
       next if p.nil?
       releaselist.include?(p) && p.airport != code ? nil : p
     end
-    releaselist.clear
+    releaselist.clear # .select! { |e| @plane_list.include?(e) } would have been preferable if poss
   end
 
 end

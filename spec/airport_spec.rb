@@ -84,7 +84,7 @@ describe Airport do
 
   let(:plane_to_dock) { double :plane_to_dock }
   let(:plane_to_release) { double :plane_to_release }
-  it "dock_planes checks all called planes, registers at the airport if landed&resets docklist" do
+  it "dock_planes checks all called planes, registers at airport if landed & takes off docklist" do
     allow(plane_to_dock).to receive(:airport).and_return(:LGW)
     airport2.docklist = [plane_to_dock]
     airport2.dock_planes
@@ -93,7 +93,7 @@ describe Airport do
 
   airport3 = Airport.new(:LGW, 10, 15)
 
-  it "release_plane checks all planes called for takeoff&removes them if gone & resets list" do
+  it "release_plane checks all planes called for takeoff&removes them if gone & takes off list" do
     allow(plane_to_release).to receive(:airport).and_return(nil)
     airport3.plane_list = (airport3.plane_list.map.with_index { |x, i| i == 10 ? plane_to_release : x })
     airport3.releaselist = [plane_to_release]
