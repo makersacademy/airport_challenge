@@ -32,7 +32,7 @@ Run the automated tests on this system using ```rspec``` and ```./spec/feature_t
 
 ## Built With
 
-* [Rubocop](https://github.com/bbatsov/rubocop) - The Ruby static code analyzer used
+* [Rubocop](https://github.com/bbatsov/rubocop)
 
 ## Authors
 
