@@ -40,4 +40,4 @@ Run the automated tests on this system using ```rspec``` and ```./spec/feature_t
 
 ## Acknowledgments
 
-* Makers Academy, Kay Lovelace
+* [Makers Academy](http://www.makersacademy.com/), [Kay Lovelace](https://github.com/neoeno)
