@@ -1,0 +1,53 @@
+User Airport Stories
+
+
+1.
+
+Object 			Message
+
+Controller			
+Plane (passenger)	Land at airport
+				Confirm Departure 
+		
+Airport (destination)	Receive plane?/Store plane
+
+
+2. 
+
+Controller			
+Plane (passenger)	Takeoff from airport
+				Confirm Departure 
+		
+Airport (destination)	Release plane/Remove plane from roster
+
+
+3. 
+
+Controller
+Storm			is storm?
+(Airport			Refuse takeoff)
+Plane			Abort Takeoff
+
+
+4.
+
+Controller 
+Storm 			is storm?
+(Airport			Refuse landing)
+Plane 			Stop landing 
+
+
+5.
+
+Controller
+Airport			is full?
+Plane			Cannot land at airport
+
+
+6.
+
+Controller
+Airport			Default Maximum capacity?
+
+
+Storm is a condition
