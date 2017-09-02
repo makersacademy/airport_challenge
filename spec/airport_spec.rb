@@ -2,7 +2,7 @@
 require 'airport.rb'
 require 'spec_helper'
 require 'plane.rb'
-
+require 'runway'
 describe Airport do
 
   subject(:airport) { described_class.new }

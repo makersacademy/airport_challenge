@@ -1,23 +1,22 @@
 require_relative 'plane'
+require_relative 'runway'
 
 class Airport
 
-attr_reader :runway
+include Runway
 
-  def initialize
-    @runway = []
-  end
+
 
   def runway_traffic
-    @runway
+    @@runway
   end
 
   def land(plane)
-    @runway << plane
+    @@runway << plane unless @@runway.include?(plane)
   end
 
   def take_off(plane)
-    @runway.include?(plane) ? @runway.delete(plane) : return
+  @@runway.delete(plane)
   end
 
 end
