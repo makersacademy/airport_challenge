@@ -16,8 +16,8 @@ attr_reader :capacity
   end
 
   def take_off(plane)
-    fail 'Plane must land first before it can take off' unless (planes.include?(plane))
-    planes.pop
+    fail 'Plane is not at the airport' unless (planes.include?(plane))
+    planes.slice!(planes.index(plane))
   end
 
 private

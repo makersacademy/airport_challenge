@@ -17,14 +17,18 @@ describe Airport do
       expect {airport.land(plane)}.to raise_error 'Plane has already landed'
     end
 
-
   describe '#take_off'
     it 'allows a plane to take off' do
       airport.land(plane)
       expect(airport.take_off(plane)).to eq plane
     end
-    it 'raises an error if the plane does not exist' do
-      expect { airport.take_off(plane) }.to raise_error 'Plane must land first before it can take off'
+    it 'raises an error if there is no plane' do
+      expect { airport.take_off(plane) }.to raise_error 'Plane is not at the airport'
+    end
+    it 'raises an error if the same plane takes off twice' do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect { airport.take_off(plane) }.to raise_error 'Plane is not at the airport'
     end
 
   it 'has a default capacity for planes' do
