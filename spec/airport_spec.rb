@@ -27,16 +27,15 @@ describe Airport do
     it 'disallow a plane to #take_off if it is stormy' do
       allow(airport).to receive(:stormy?).and_return true
       storm_warning = "Storm! Do not take off!"
-      expect{subject.take_off(plane)}.to raise_error storm_warning
+      expect { subject.take_off(plane) }.to raise_error storm_warning
     end
 
     it 'disallow a plane to #take_off if it is stormy' do
       allow(airport).to receive(:stormy?).and_return false
       storm_warning = "Storm! Do not take off!"
-      expect{subject.take_off(plane)}.not_to raise_error storm_warning
+      expect { subject.take_off(plane) }.not_to raise_error storm_warning
     end
 
   end
-
 
 end

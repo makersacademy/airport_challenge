@@ -10,16 +10,31 @@ class Airport
   end
 
   def land(plane)
-    @@runway << plane unless @@runway.include?(plane)
+    add_plane_to_runway(plane) unless
+    plane_is_already_landed?(plane)
   end
 
   def take_off(plane)
-    fail "Storm! Do not take off!" if self.stormy? == true
-    @@runway.delete(plane)
+    fail "Storm! Do not take off!" if it_is_stormy?
+    remove_plane_from_runway(plane)
+  end
 
-    # if @@runway == []
-    #   "No planes to take off"
-    # end
+  private
+
+  def remove_plane_from_runway(plane)
+    @@runway.delete(plane)
+  end
+
+  def add_plane_to_runway(plane)
+    @@runway << plane
+  end
+
+  def plane_is_already_landed?(plane)
+    @@runway.include?(plane)
+  end
+
+  def it_is_stormy?
+    stormy? == true
   end
 
 end
