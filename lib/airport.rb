@@ -15,6 +15,7 @@ attr_reader :capacity
   end
 
   def take_off(plane)
+    planes.pop
   end
 
 private
