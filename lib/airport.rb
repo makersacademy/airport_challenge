@@ -6,12 +6,16 @@ class Airport
     @runway = []
   end
 
-  def runway
+  def runway_traffic
     @runway
   end
 
   def land(plane)
     @runway << plane
+  end
+
+  def take_off(plane)
+    @runway.delete(plane)
   end
 
 end
