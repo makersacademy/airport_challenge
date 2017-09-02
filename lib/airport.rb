@@ -3,7 +3,8 @@ class Airport
   attr_accessor :planes, :landed
 
   def initialize
-    @landed = false
+    #plane has no location when initialized
+    @landed = nil
     @planes  = []
   end
 
@@ -14,8 +15,13 @@ class Airport
   end
 
   def depart(plane)
+    #You depart the plane
+    #L
+    fail "The plane has already departed" if @landed == false
     @planes.pop
-    @landed= false
+    puts "Your plane has left the airport!"
+    @landed = false
+    #It has departed
   end
 end
 

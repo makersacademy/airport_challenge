@@ -16,7 +16,8 @@ describe Airport do
   end
 
   it 'lets planes take-off' do
-    expect(subject.depart(:plane)).to be false
+    subject.depart(:plane)
+    expect(subject.landed).to be false
   end
 
   it 'initializes a planes array when airport is instantiated' do
@@ -24,9 +25,9 @@ describe Airport do
     expect(subject.planes).to be_an_instance_of(Array)
   end
 
-  it 'initializes the location to be false upon instantiation' do
+  it 'initializes the plane to be landed to be nil upon instantiation' do
     airport = Airport.new
-    expect(subject.landed).to be false
+    expect(subject.landed).to be nil
   end
 
  describe '#land' do
@@ -36,20 +37,24 @@ describe Airport do
   end
 
   it 'will not land a plane that is already landed' do
+    #Plane has not been set
     subject.land(:plane)
+    #We land the plane
+    #Should expect it to raise an error
     expect {subject.land(:plane)}.to raise_error("You can't land this plane again!")
   end
+end
 
-
+  describe '#depart' do
    it 'removes a plane from the planes array when taken-off' do
     subject.depart(:plane)
     expect(subject.planes).to eq []
   end
 
+   it 'will not depart a plane that has departed' do
+    subject.depart(:plane)
+    expect {subject.depart(plane)}.to raise_error("The plane has already departed")
+  end
 end
-
-
-
-
 
 end

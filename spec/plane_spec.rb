@@ -3,7 +3,11 @@ require 'airport'
 
 describe Plane do
 
+  let (:plane) {Plane.new}
+
   it 'creates new planes' do
-    expect(subject).to eq(subject)
+    expect(:plane).to eq(:plane)
   end
+
+
 end
