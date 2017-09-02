@@ -11,7 +11,8 @@ describe Airport do
   end
 
   it 'accepts landed planes' do
-    expect(subject.land(:plane)).to be true
+    subject.land(:plane)
+    expect(subject.landed).to be true
   end
 
   it 'lets planes take-off' do
@@ -34,10 +35,17 @@ describe Airport do
     expect(subject.planes).to eq [:plane]
   end
 
+  it 'will not land a plane that is already landed' do
+    subject.land(:plane)
+    expect {subject.land(:plane)}.to raise_error("You can't land this plane again!")
+  end
+
+
    it 'removes a plane from the planes array when taken-off' do
     subject.depart(:plane)
     expect(subject.planes).to eq []
   end
+
 end
 
 

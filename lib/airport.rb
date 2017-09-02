@@ -4,10 +4,11 @@ class Airport
 
   def initialize
     @landed = false
-    @planes = []
+    @planes  = []
   end
 
   def land(plane)
+    fail "You can't land this plane again!" if @landed == true
     @planes << plane
     @landed = true
   end
