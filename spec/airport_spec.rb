@@ -9,8 +9,9 @@ describe Airport do
 
   context 'airport runway/terminals' do
 
-    it 'should land a plane in a runway' do
-      expect(subject.runway).to include "plane"
+    it 'a plane should be able to land on a runway' do
+
+      expect(subject.land).to include "plane"
     end
 
   end
