@@ -7,7 +7,7 @@ FORECAST_STORM = 20
   end
 
   def stormy?
-    true
+    forecast > 1
   end
 
 end

@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let(:plane) { double:plane }
-  # let(:weather) { double:weather }
+  let(:weather) { double:weather }
 
   describe '#land'
     it 'allows an airport to accept a landing plane' do
@@ -41,6 +41,11 @@ describe Airport do
     #   expect { airport.take_off(plane) }.to raise_error 'Cannot take off in stormy weather'
     # end
 
+  describe '#check(weather)'
+    it 'allows the airport staff to check the weather' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect (airport.check(weather)).to eq  true
+    end
 
 
   it 'has a default capacity for planes' do

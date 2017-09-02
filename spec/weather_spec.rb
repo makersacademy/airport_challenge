@@ -3,8 +3,11 @@ require 'weather'
 describe Weather do
   subject(:weather) {described_class.new}
 
-  it 'can be stormy' do
-    expect(weather).to be_stormy
+  describe '#stormy?' do
+    it 'can be stormy' do
+      weather.forecast > 1
+      expect(weather).to be_stormy
+    end
   end
 
   it 'has a default chance of stormy-ness' do
