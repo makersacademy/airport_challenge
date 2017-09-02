@@ -3,7 +3,12 @@ require_relative 'weather.rb'
 
 class Airport
 
-def landing(plane)
-  plane.landed?
-end
+  def initialize
+    @planes = []
+  end
+
+  def landing(plane)
+    @planes << plane
+  end
+
 end
