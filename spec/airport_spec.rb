@@ -3,9 +3,16 @@ require 'Airport'
 describe Airport do
 
   describe '#land' do
-    it 'lands planes at airport' do
+    it 'instructs a plane to land' do
       plane = Plane.new
     expect(subject.land(plane)).to eq(plane)
+    end
+  end
+
+  describe '#take_off' do
+    it 'instructs a plane to take off' do
+      plane = Plane.new
+      expect(subject.take_off(plane)).to eq(plane)
     end
   end
 end
