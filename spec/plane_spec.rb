@@ -21,9 +21,9 @@ describe Plane do
     expect(subject).to respond_to(:left_airport?)
   end
 
-  it 'responds to #weather_stormy' do
-    expect(subject).to respond_to(:weather_stormy)
-  end
+  # it 'responds to #weather_stormy' do
+  #   expect(subject).to respond_to(:weather_stormy)
+  # end
 
 
 end

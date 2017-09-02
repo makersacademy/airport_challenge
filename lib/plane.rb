@@ -1,7 +1,7 @@
 class Plane
 
 
-  def plane_land
+  def plane_land(plane)
 
   end
 
@@ -12,13 +12,9 @@ class Plane
 
 
   def left_airport?
-
+    true
   end
 
-
-  def weather_stormy
-
-  end
 
 
 end

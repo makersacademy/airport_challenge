@@ -5,12 +5,11 @@ describe Airport do
   # subject(:airport) { described_class.new}
 
   it 'responds to #plane_land' do
-
     expect(subject).to respond_to(:plane_land)
   end
 
 
-  it 'closes when #weather_stormy' do
+  it 'responds to #weather_stormy' do
     expect(subject).to respond_to(:weather_stormy)
   end
 
