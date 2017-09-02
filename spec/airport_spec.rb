@@ -9,6 +9,29 @@ describe Airport do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
+    it 'can set capacity' do
+      capacity = 5
+      airport = described_class.new(capacity)
+      expect(airport.capacity).to eq capacity
+    end
+
   end
+
+  describe '#land' do
+    let(:plane) { double :plane }
+
+    it "allows planes to land" do
+      expect(airport.land(plane)).to eq plane
+    end
+
+    it "contains the plane after landing" do
+      airport.land(plane)
+      expect(airport.planes).to include plane
+    end
+
+
+  end
+
+
 
 end
