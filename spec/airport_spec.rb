@@ -29,6 +29,13 @@ describe Airport do
       expect(airport.planes).to include plane
     end
 
+    it "fails if airport is full" do
+      airport.capacity.times do
+        airport.land(plane)
+      end
+      expect{airport.land(plane)}.to raise_error("airport full")
+    end
+
 
   end
 
