@@ -21,10 +21,14 @@ describe Airport do
     end
 
     it 'a plane should not #take_off if it is stormy' do
-
-      Runway.class_variable_set(:@@runway, [plane])
-      weather = "stormy"
+      allow(airport).to receive(:stormy?).and_return true
       expect(subject.take_off plane).to eq "Storm!"
+    end
+
+    it 'a plane to #take_off if it is NOT stormy' do
+      allow(airport).to receive(:stormy?).and_return false
+      subject.take_off plane
+      expect(subject.runway_traffic).to include plane
     end
 
   end

@@ -14,8 +14,17 @@ class Airport
   end
 
   def take_off(plane)
-    weather = "stormy"
-    weather == "stormy" ? "Storm!" : @@runway.delete(plane)
+    stormy? ? "Storm!" : @@runway.delete(plane)
+
+    # if @@runway == []
+    #   "No planes to take off"
+    # end
+  end
+
+  def stormy?
+    storm_conditions = [true,false]
+    stormy = storm_conditions.sample
+
   end
 
 end
