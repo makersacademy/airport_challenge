@@ -6,7 +6,11 @@ describe Airport do
   describe '#land'
     it 'allows an airport to accept a landing plane' do
       plane = Plane.new
-      expect(airport.land(plane)).to eq plane
+      expect(airport.land(plane)).to eq [plane]
+    end
+    it 'raises an error when the airport is full' do
+      airport.capacity.times {airport.land Plane.new}
+      expect {airport.land Plane.new}.to raise_error 'Airport is full'
     end
 
   describe '#take_off'
