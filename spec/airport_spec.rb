@@ -3,8 +3,8 @@ require 'airport'
 describe Airport do
 
 
-  it 'responds to #land_plane' do
-    expect(subject).to respond_to :land_plane
+  it 'responds to #plane_land' do
+    expect(subject).to respond_to :plane_land
   end
 
 
