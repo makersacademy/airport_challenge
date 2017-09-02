@@ -12,7 +12,9 @@ describe Plane do
 
   it 'responds to #plane_take_off' do
     plane = Plane.new
-    expect(subject).to respond_to(:plane_take_off)
+    # we want to return the plane we land
+    expect(subject.plane_land(plane)).to eq plane
+    # expect(subject).to respond_to(:plane_take_off)
   end
 
 

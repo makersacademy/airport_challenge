@@ -2,7 +2,7 @@ class Plane
 
 
   def plane_land(plane)
-
+    plane
   end
 
 
