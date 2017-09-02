@@ -2,8 +2,15 @@ class Plane
 
 
   def plane_land(plane)
-    plane
+    @plane = plane
   end
+
+  attr_reader :plane
+
+  # def plane_land
+  #   fail 'airport is full' unless #@space?!
+  #     @space?!
+  # end
 
 
   def plane_take_off
@@ -12,7 +19,7 @@ class Plane
 
 
   def left_airport?
-    true
+    #true
   end
 
 
