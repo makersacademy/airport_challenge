@@ -1,8 +1,14 @@
+require_relative 'airport'
 
 class Plane
 
-  def body_of_plane
-    "plane"
+  # include Runway
+
+  def report_status
+    # (plane)
+    "I'm in the air!"
+    # if @runway.exclude(plane)
+
   end
 
 end

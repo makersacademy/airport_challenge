@@ -2,6 +2,8 @@ require_relative 'plane'
 
 class Airport
 
+attr_reader :runway
+
   def initialize
     @runway = []
   end
@@ -15,7 +17,7 @@ class Airport
   end
 
   def take_off(plane)
-    @runway.delete(plane)
+    @runway.include?(plane) ? @runway.delete(plane) : return
   end
 
 end
