@@ -7,7 +7,7 @@ class Airport
   include Weather
 
   def initialize
-    self.new_runway
+    new_runway
   end
 
   def land(plane)
@@ -29,24 +29,22 @@ class Airport
     end
   end
 
-
-   def report_status(plane)
-
-     self.runway_traffic.include?(plane) ? "I'm on the ground!" : "I'm in the air!"
+  def report_status(plane)
+    runway_traffic.include?(plane) ? "I'm on the ground!" : "I'm in the air!"
   end
 
   private
 
   def remove_plane_from_runway(plane)
-    self.runway_traffic.delete(plane)
+    runway_traffic.delete(plane)
   end
 
   def add_plane_to_runway(plane)
-    self.runway_traffic << plane
+    runway_traffic << plane
   end
 
   def plane_is_already_landed?(plane)
-      self.runway_traffic.include?(plane)
+    runway_traffic.include?(plane)
   end
 
   def it_is_stormy?

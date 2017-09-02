@@ -33,7 +33,7 @@ describe Airport do
       expect { subject.take_off(plane) }.to raise_error storm_warning
     end
 
-    #Consider refactoring the above for more elegant way to allow runway to contain a plane before takeoff
+    # Consider refactoring the above for more elegant way to allow runway to contain a plane before takeoff
 
     it 'allow a plane to #take_off if it is NOT stormy' do
       allow(airport).to receive(:stormy?).and_return false
@@ -55,8 +55,6 @@ describe Airport do
 
   end
 
-
-
   context 'airport runway approach/depart' do
 
     it 'a plane should respond that it is on the ground when on the runway' do
@@ -72,6 +70,5 @@ describe Airport do
     end
 
   end
-
 
 end

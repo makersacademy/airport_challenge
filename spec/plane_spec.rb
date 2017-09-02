@@ -6,5 +6,4 @@ require 'runway'
 
 describe Plane do
 
-
 end
