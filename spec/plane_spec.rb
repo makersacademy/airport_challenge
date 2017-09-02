@@ -1,4 +1,5 @@
 require 'plane'
+require 'weather'
 
 describe Plane do
   # p described_class
@@ -18,6 +19,10 @@ describe Plane do
   it 'responds to #left_airport?' do
     # we need to have the plane that just took off, not a new one!?
     expect(subject).to respond_to(:left_airport?)
+  end
+
+  it 'responds to #weather_stormy' do
+    expect(subject).to respond_to(:weather_stormy)
   end
 
 

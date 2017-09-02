@@ -4,4 +4,8 @@ class Airport
 
   end
 
+  def weather_stormy
+
+  end
+
 end

@@ -12,7 +12,12 @@ class Plane
 
 
   def left_airport?
-    
+
+  end
+
+
+  def weather_stormy
+
   end
 
 

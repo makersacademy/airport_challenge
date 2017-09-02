@@ -10,4 +10,9 @@ describe Airport do
   end
 
 
+  it 'closes when #weather_stormy' do
+    expect(subject).to respond_to(:weather_stormy)
+  end
+
+
 end
