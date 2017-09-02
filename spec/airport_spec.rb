@@ -12,6 +12,12 @@ describe Airport do
       airport.capacity.times {airport.land Plane.new}
       expect {airport.land Plane.new}.to raise_error 'Airport is full'
     end
+    it 'raises an error when the plane has already landed' do
+      plane = Plane.new
+      airport.land(plane)
+      expect {airport.land(plane)}.to raise_error 'Plane has already landed'
+    end
+
 
   describe '#take_off'
     it 'allows a plane to take off' do
