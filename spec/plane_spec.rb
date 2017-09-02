@@ -5,12 +5,19 @@ describe Plane do
   # subject(:airport) { described_class.new}
 
   it 'responds to #plane_land' do
-
+    plane = Plane.new
     expect(subject).to respond_to(:plane_land)
   end
 
   it 'responds to #plane_take_off' do
+    plane = Plane.new
     expect(subject).to respond_to(:plane_take_off)
+  end
+
+
+  it 'responds to #left_airport?' do
+    # we need to have the plane that just took off, not a new one!?
+    expect(subject).to respond_to(:left_airport?)
   end
 
 

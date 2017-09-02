@@ -5,8 +5,14 @@ class Plane
 
   end
 
+
   def plane_take_off
 
+  end
+
+
+  def left_airport?
+    
   end
 
 
