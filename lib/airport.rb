@@ -6,8 +6,12 @@ class Airport
     @runway = []
   end
 
-  def land
-    @runway << "plane"
+  def runway
+    @runway
+  end
+
+  def land(plane)
+    @runway << plane
   end
 
 end
