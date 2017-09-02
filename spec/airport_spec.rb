@@ -15,5 +15,8 @@ describe Airport do
       expect(airport.take_off(plane)).to eq nil
     end
 
+  it 'has a default capacity for planes' do
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
 
 end
