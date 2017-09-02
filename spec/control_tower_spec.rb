@@ -1,5 +1,6 @@
 require 'control_tower'
 require 'plane'
+require 'weather_report'
 
 describe CONTROL_TOWER do
 
@@ -28,11 +29,13 @@ describe CONTROL_TOWER do
 
   it 'prevent landing when weather is stormy' do
     plane=PLANE.new
+    subject.weather_report
     expect(subject.land(plane)).to eq 'NO'
   end
 
   it 'prevent take off when weather is stormy' do
     plane=PLANE.new
+    subject.weather_report
     expect(subject.take_off(plane)).to eq 'NO'
   end
 
