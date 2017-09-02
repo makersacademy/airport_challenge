@@ -6,18 +6,21 @@ require 'runway'
 
 describe Plane do
 
-  subject(:plane) { described_class.new }
-  let(:airport) { double :airport }
-
   context 'airport runway approach/depart' do
+    let(:airport) { double :airport }
+    subject(:plane) { described_class.new }
 
-    it 'a plane should respond to requests for confirmation after #take_off' do
+    it 'a plane should respond that it is on the ground when on the runway' do
 
-      allow(airport).to receive(:take_off)
-      allow(airport).to receive(:land)
-      airport.land subject
-      airport.take_off subject
-      expect(subject.report_status plane).to eq "I'm in the air!"
+      Runway.class_variable_set(:@@runway, [subject])
+      # Places subject plane in runway
+      expect(subject.report_status).to eq "I'm on the ground!"
+    end
+
+    it 'a plane should respond that it is in the air when not on the runway' do
+      Runway.class_variable_set(:@@runway, [])
+      # Tests an empty runway
+      expect(subject.report_status).to eq "I'm in the air!"
     end
 
   end

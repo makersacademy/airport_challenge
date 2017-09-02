@@ -3,9 +3,7 @@ require_relative 'runway'
 
 class Airport
 
-include Runway
-
-
+  include Runway
 
   def runway_traffic
     @@runway
@@ -16,7 +14,7 @@ include Runway
   end
 
   def take_off(plane)
-  @@runway.delete(plane)
+    @@runway.delete(plane)
   end
 
 end

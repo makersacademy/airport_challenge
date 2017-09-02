@@ -5,8 +5,12 @@ class Plane
 
   include Runway
 
-  def report_status(plane)
-    "I'm in the air!" unless @@runway.include?(plane)
+  def report_status
+    if @@runway.include?(self)
+      "I'm on the ground!"
+    else
+      "I'm in the air!"
+    end
   end
 
 end
