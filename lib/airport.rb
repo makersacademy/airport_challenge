@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 DEFAULT_CAPACITY = 20
@@ -10,7 +11,7 @@ attr_reader :capacity
   end
 
   def land(plane)
-    fail 'Airport is full' if (planes.count >= capacity)
+    fail 'Airport is full' if full?
     fail 'Plane has already landed' if (planes.include?(plane))
     planes << plane
   end
@@ -21,6 +22,11 @@ attr_reader :capacity
   end
 
 private
+
 attr_reader :planes
+
+  def full?
+    planes.count >= capacity
+  end
 
 end
