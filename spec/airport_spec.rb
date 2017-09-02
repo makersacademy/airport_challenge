@@ -16,6 +16,11 @@ describe Airport do
       subject.landing(plane)
       expect(subject.take_off(plane)). to eq plane
     end
-  end
 
+    it 'Indicates that the plane has safely taken off' do
+      plane = Plane.new
+      subject.take_off(plane)
+      expect(plane.status).to eq "Safe take off"
+    end
+  end
 end

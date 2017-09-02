@@ -12,6 +12,7 @@ class Airport
   end
 
   def take_off(plane)
+    plane.confirm_take_off
     @planes.delete(plane)
   end
 end
