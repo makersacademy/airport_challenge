@@ -33,12 +33,9 @@ describe Airport do
       airport.capacity.times do
         airport.land(plane)
       end
-      expect{airport.land(plane)}.to raise_error("airport full")
+      expect { airport.land(plane) }.to raise_error("airport full")
     end
 
-
   end
-
-
 
 end
