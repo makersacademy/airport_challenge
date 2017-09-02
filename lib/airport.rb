@@ -15,6 +15,7 @@ attr_reader :capacity
   end
 
   def take_off(plane)
+    fail 'Plane must land first before it can take off' unless (planes.include?(plane))
     planes.pop
   end
 

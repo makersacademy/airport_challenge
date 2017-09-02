@@ -16,7 +16,12 @@ describe Airport do
   describe '#take_off'
     it 'allows a plane to take off' do
       plane = Plane.new
+      airport.land(plane)
       expect(airport.take_off(plane)).to eq plane
+    end
+    it 'raises an error if the plane does not exist' do
+      plane = Plane.new
+      expect { airport.take_off(plane) }.to raise_error 'Plane must land first before it can take off'
     end
 
   it 'has a default capacity for planes' do
