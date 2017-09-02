@@ -14,7 +14,8 @@ class Airport
   end
 
   def take_off(plane)
-    @@runway.delete(plane)
+    weather = "stormy"
+    weather == "stormy" ? "Storm!" : @@runway.delete(plane)
   end
 
 end

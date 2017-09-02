@@ -15,11 +15,19 @@ describe Airport do
 
     end
 
-    it 'a plane should be able to #take_off from airport' do
+    it 'a plane should be able to #take_off from airport and no longer be on the runway' do
       subject.take_off plane
       expect(subject.runway_traffic).not_to include plane
     end
 
+    it 'a plane should not #take_off if it is stormy' do
+
+      Runway.class_variable_set(:@@runway, [plane])
+      weather = "stormy"
+      expect(subject.take_off plane).to eq "Storm!"
+    end
+
   end
+
 
 end
