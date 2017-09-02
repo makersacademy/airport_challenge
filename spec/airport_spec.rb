@@ -16,7 +16,7 @@ describe Airport do
   describe '#take_off'
     it 'allows a plane to take off' do
       plane = Plane.new
-      expect(airport.take_off(plane)).to eq nil
+      expect(airport.take_off(plane)).to eq plane
     end
 
   it 'has a default capacity for planes' do
