@@ -1,16 +1,7 @@
 class Plane
-attr_reader :landed
 
-  def land
+  def land(airport)
     @landed = true
-  end
-
-  def takeoff
-    landed = false
-  end
-
-  def landed?
-    landed
   end
 
 end

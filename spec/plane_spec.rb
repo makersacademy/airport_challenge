@@ -3,10 +3,13 @@ require 'plane'
 describe Plane do
   subject(:plane) { described_class.new }
 
-  it { is_expected.to respond_to :landed? }
+  describe '#land' do
+    it 'can land at airport' do
+      expect(plane.land(Airport.new))
+    end
 
-  it 'can confirm takeoff' do
-    plane.takeoff
-    expect(plane).not_to be_landed
+    it 'confirms when lands' do
+      expect(plane.land(Airport.new)).to eq true
+    end
   end
 end
