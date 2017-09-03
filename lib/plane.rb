@@ -7,14 +7,17 @@ class Plane
   include Weather
 
   def report_status(airport)
-    airport.plane_is_already_landed?(self) ? plane_status[:grounded] : plane_status[:airborne]
+    @airport = airport
+    if @airport.plane_is_already_landed?(self)
+   plane_status[:grounded]
+
+    else plane_status[:airborne]
+    end
   end
 
-  private
-
   def plane_status
-    { :airborne => "I'm in the air!",
-    :grounded => "I'm on the ground!" }
+    { :airborne => "I'm no longer at #{@airport}!",
+    :grounded => "I'm at #{@airport}!" }
   end
 
 end
