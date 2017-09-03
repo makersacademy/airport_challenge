@@ -6,6 +6,7 @@ describe Plane do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:takeoff).with(1).argument }
   it { is_expected.to respond_to(:on_ground) }
+  it { is_expected.to respond_to(:location) }
 
   describe '#land' do
     it 'can land at airport' do
@@ -15,6 +16,11 @@ describe Plane do
     it 'confirms when lands' do
       plane.land(:airport)
       expect(plane.on_ground).to be true
+    end
+
+    it 'sets location to the airport it has landed' do
+      plane.land(:airport)
+      expect(plane.location).to eq :airport
     end
   end
 
@@ -26,6 +32,11 @@ describe Plane do
     it 'confirms departure' do
       plane.takeoff(:destination)
       expect(plane.on_ground).to be false
+    end
+
+    it 'sets location to flying after takeoff' do
+      plane.takeoff(:destination)
+      expect(plane.location).to eq "air"
     end
   end
 
