@@ -5,12 +5,14 @@ class Plane
   def initialize
     @on_ground = true
   end
-  
+
   def land(airport)
     @on_ground = true
+    self
   end
 
   def takeoff(destination)
     @on_ground = false
+    self
   end
 end
