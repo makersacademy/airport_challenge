@@ -8,4 +8,12 @@ describe Airport do
   it { is_expected.to respond_to(:takeoff_plane).with(2).arguments }
   it { is_expected.to respond_to(:iata_code) }
 
+  describe '#land_plane' do
+    it 'instructs plane to land and registers arrival' do
+      plane = Plane.new("G-ZKIH")
+      airport.land_plane(plane)
+      expect(airport.planes_on_ground).to eq [plane.tail_number]
+    end
+  end
+  
 end
