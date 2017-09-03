@@ -9,6 +9,11 @@ let(:plane) {Plane.new}
     it 'Indicates that a plane has landed' do
       expect(subject.landing(plane)).to eq([plane])
     end
+
+    it "Raises an error to say that the airport is full" do
+      Airport::DEFAULT_CAPACITY.times {airport.landing plane}
+      expect {airport.landing(plane)}.to raise_error "Can't land. Airport is full"
+    end
   end
 
   context 'departures in clear weather'
