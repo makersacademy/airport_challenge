@@ -4,7 +4,7 @@ class Plane
 
   def initialize(tail_number)
     @tail_number = tail_number
-    @on_ground = true
+    @on_ground = false
     @location = "air"
   end
 
