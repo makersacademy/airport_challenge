@@ -1,3 +1,5 @@
+
 class Plane
-  plane = Plane.new
+  attr_reader :planes
+
 end
