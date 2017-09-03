@@ -2,16 +2,17 @@ require_relative 'airport'
 
 module Runway
 
-  def new_runway
+  DEFAULT_CAPACITY = 5
+  def new_runway(capacity)
     @runway_traffic = []
-    @capacity = 5
+    @capacity = capacity
   end
 
   def runway_traffic
     @runway_traffic
   end
 
-  def set_capacity
+  def runway_capacity
     @capacity
   end
 

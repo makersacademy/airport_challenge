@@ -6,15 +6,15 @@ class Airport
   include Runway
   include Weather
 
-  def initialize
-    new_runway
-    set_capacity
+  def initialize(capacity=DEFAULT_CAPACITY)
+    new_runway(capacity)
+    runway_capacity
   end
 
   def land(plane)
     if plane_is_already_landed?(plane)
       nil
-    elsif runway_traffic.count >= 5
+    elsif runway_traffic.count >= runway_capacity
       "We're too full - go land somewhere else!"
     else
       fail "Storm! Do not land here!" if it_is_stormy?
