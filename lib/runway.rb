@@ -4,10 +4,15 @@ module Runway
 
   def new_runway
     @runway_traffic = []
+    @capacity = 5
   end
 
   def runway_traffic
     @runway_traffic
+  end
+
+  def set_capacity
+    @capacity
   end
 
 end

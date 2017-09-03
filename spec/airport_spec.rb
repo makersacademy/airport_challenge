@@ -10,7 +10,11 @@ describe Airport do
   let(:plane) { double :plane }
 
   context 'runway/terminal initialisation' do
-    it 'gives a fixed capacity to how many planes can sit on the runway' do
+    it 'gives a fixed capacity past which no planes can land' do
+      allow(airport).to receive(:stormy?).and_return true
+      5.times{subject.runway_traffic << plane}
+      a_plane_too_many = Plane.new
+      expect(subject.land a_plane_too_many).to eq "We're too full - go land somewhere else!"
 
     end
   end
