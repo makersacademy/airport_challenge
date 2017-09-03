@@ -1,12 +1,13 @@
 require 'plane'
 
 describe Plane do
-  subject(:plane) { described_class.new }
+  subject(:plane) { described_class.new("G-ZKIH") }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:takeoff).with(1).argument }
   it { is_expected.to respond_to(:on_ground) }
   it { is_expected.to respond_to(:location) }
+  it { is_expected.to respond_to(:tail_number)}
 
   describe '#land' do
     it 'can land at airport' do
