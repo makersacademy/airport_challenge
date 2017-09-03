@@ -91,7 +91,7 @@ This instruction will return an array containing all the planes currently on the
 ```ruby
 LGW.land_plane(G-ZKIH)
 ```
-Instructing a plane to land and requires one argument (plane)
+Instructing a plane to land requires one argument (plane)
 
 This instruction will fail if:
 - The weather is stormy :zap: :cloud:
@@ -105,9 +105,89 @@ This instruction will fail if:
 LGW.takeoff_plane(G-ZKIH, FLR)
 ```
 
-Instructing a plane to takeoff requires two arguments(plane, destination)
+Instructing a plane to takeoff requires two arguments (plane, destination)
 
 This instruction will fail if:
 - The weather is stormy :zap: :cloud:
 - An invalid destination is provided :globe_with_meridians:
 - The plane is not on the ground
+
+
+Weather
+-----
+The weather is handled by the Weather class. At the moment the weather is random and it is checked everytime you run a landing or takeoff instruction. The weather is stormy :zap: :cloud: if the result of the randomizer is 7. Currently the randomizer picks a number between 1 and 7.
+
+
+Running example
+-----
+What to expect from the application when we create two airports (London Gatwick and Florence), one plane (GZKIH) and when we instruct that plane to land in London Gatwick and then takeoff and land in Florence.
+
+```
+$ cd airport_challenge
+
+$ pry
+[1] pry(main)> require './lib/airport.rb'
+=> true
+[2] pry(main)> LGW = Airport.new("LGW", 100)
+=> #<Airport:0x007f8e39ab3938
+ @capacity=100,
+ @iata_code="LGW",
+ @planes_on_ground=[],
+ @weather=#<Weather:0x007f8e39ab3910>>
+[3] pry(main)> FLR = Airport.new("FLR")
+=> #<Airport:0x007f8e39a71b00
+ @capacity=60,
+ @iata_code="FLR",
+ @planes_on_ground=[],
+ @weather=#<Weather:0x007f8e39a71ad8>>
+[4] pry(main)> GZKIH = Plane.new("G-ZKIH")
+=> #<Plane:0x007f8e39a293a0
+ @location="air",
+ @on_ground=false,
+ @tail_number="G-ZKIH">
+[5] pry(main)> LGW.land_plane(GZKIH)
+=> [#<Plane:0x007f8e39a293a0
+  @location="LGW",
+  @on_ground=true,
+  @tail_number="G-ZKIH">]
+[6] pry(main)> LGW.planes_on_ground
+=> [#<Plane:0x007f8e39a293a0
+  @location="LGW",
+  @on_ground=true,
+  @tail_number="G-ZKIH">]
+[7] pry(main)> GZKIH.location
+=> "LGW"
+[8] pry(main)> LGW.takeoff_plane(GZKIH, FLR)
+=> #<Plane:0x007f8e39a293a0
+ @destination=
+  #<Airport:0x007f8e39a71b00
+   @capacity=60,
+   @iata_code="FLR",
+   @planes_on_ground=[],
+   @weather=#<Weather:0x007f8e39a71ad8>>,
+ @location="air",
+ @on_ground=false,
+ @tail_number="G-ZKIH">
+[9] pry(main)> FLR.land_plane(GZKIH)
+=> [#<Plane:0x007f8e39a293a0
+  @destination=
+   #<Airport:0x007f8e39a71b00
+    @capacity=60,
+    @iata_code="FLR",
+    @planes_on_ground=[...],
+    @weather=#<Weather:0x007f8e39a71ad8>>,
+  @location="FLR",
+  @on_ground=true,
+  @tail_number="G-ZKIH">]
+[10] pry(main)> FLR.planes_on_ground
+=> [#<Plane:0x007f8e39a293a0
+  @destination=
+   #<Airport:0x007f8e39a71b00
+    @capacity=60,
+    @iata_code="FLR",
+    @planes_on_ground=[...],
+    @weather=#<Weather:0x007f8e39a71ad8>>,
+  @location="FLR",
+  @on_ground=true,
+  @tail_number="G-ZKIH">]
+ ```
