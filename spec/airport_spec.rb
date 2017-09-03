@@ -1,4 +1,5 @@
-describe Airport do
+require 'airport'
 
+describe Airport do
 
 end
