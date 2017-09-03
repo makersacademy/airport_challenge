@@ -6,8 +6,8 @@ class Plane
   include Runway
   include Weather
 
-  def report_status(plane)
-    plane_is_already_landed?(plane) ? plane_status[:grounded] : plane_status[:airborne]
+  def report_status(airport)
+    airport.plane_is_already_landed?(self) ? plane_status[:grounded] : plane_status[:airborne]
   end
 
   private

@@ -26,8 +26,13 @@ class Airport
     end
   end
 
-  def set_name(new_name)
-    @new_name = "Heathrow"
+  def airport_name(*)
+    @airport_name = "Heathrow"
+  end
+
+
+  def plane_is_already_landed?(plane)
+    @runway_traffic.include?(plane)
   end
 
   private
@@ -45,7 +50,8 @@ class Airport
   end
 
   def runway_at_capacity?
-    runway_traffic.count >= runway_capacity
+    @runway_traffic.count >= runway_capacity
   end
+
 
 end

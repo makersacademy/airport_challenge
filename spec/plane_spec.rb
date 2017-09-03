@@ -11,15 +11,18 @@ describe Plane do
 
   context 'airport runway approach/depart' do
 
-    it 'a plane should respond that it is on the ground when on the runway' do
-      Runway.class_variable_set :@@runway_traffic, [plane]
+    it 'a plane should respond that it is on the ground when on the runway of a specific airport' do
+      airport1 = Airport.new
+      airport1.instance_variable_set :@runway_traffic, [plane]
       # Places subject plane in runway
-      expect(subject.report_status plane).to eq "I'm on the ground!"
+      expect(plane.report_status airport1).to eq "I'm on the ground!"
     end
 
     it 'a plane should respond that it is in the air when not on the runway' do
       # Tests an empty runway, no variable set required
-      expect(subject.report_status plane).to eq "I'm in the air!"
+      airport1 = Airport.new
+      # Places subject plane in runway
+      expect(plane.report_status airport1).to eq "I'm in the air!"
     end
 
   end

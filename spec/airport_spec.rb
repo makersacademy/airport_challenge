@@ -14,7 +14,7 @@ describe Airport do
   context 'runway/terminal initialisation' do
     it 'sets capacity and does not allow planes in past capacity' do
       allow(airport).to receive(:stormy?).and_return false
-      Runway.class_variable_set :@@runway_traffic, [plane, plane, plane, plane, plane]
+      subject.instance_variable_set :@runway_traffic, [plane, plane, plane, plane, plane]
       message = "We're too full - go land somewhere else!"
       expect { subject.land another_plane }.to raise_error message
     end
@@ -36,7 +36,7 @@ describe Airport do
 
     it 'checks that *correct* plane has taken off from airport' do
       allow(airport).to receive(:stormy?).and_return false
-      Runway.class_variable_set :@@runway_traffic, [plane, another_plane]
+      subject.instance_variable_set :@runway_traffic, [plane, another_plane]
       expect(subject.take_off another_plane).to eq another_plane
     end
 
@@ -50,8 +50,11 @@ describe Airport do
 
     it 'set airport name' do
       new_name = "Heathrow"
-      expect(subject.set_name new_name).to eq "Heathrow"
+      expect(subject.airport_name new_name).to eq "Heathrow"
     end
+
+    # it 'an airport should only have its own runway, not one shared at module level'
+    # expect(Airport.new )
 
   end
 
