@@ -22,7 +22,7 @@ class Airport
   def takeoff_plane(plane, destination)
     fail 'Operation aborted: Weather is stormy' if stormy?
     fail "The plane is not at #{@iata_code}"
-    @planes_on_ground.delete(plane.takeoff(self).tail_number)
+    @planes_on_ground.delete(plane.takeoff(destination).tail_number)
   end
 
   private

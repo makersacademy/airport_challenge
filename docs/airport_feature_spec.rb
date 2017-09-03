@@ -8,7 +8,7 @@ feature 'Air Traffic Control' do
     given_there_is_an_airport
     and_a_plane
     and_weather_is_stormy
-    i_instruct_the_plane_to_land_with_stormy_weather_at(@airport)
+    i_instruct_the_plane_to_land_with_stormy_weather_at_airport
     and_expect_an_error
   end
 
@@ -16,7 +16,7 @@ feature 'Air Traffic Control' do
     given_there_is_an_airport
     and_a_plane
     and_weather_is_not_stormy
-    i_instruct_the_plane_to_land_at(@airport)
+    i_instruct_the_plane_to_land_at_airport
     and_plane_confirms_that_it_has_landed
     and_the_plane_location_is_set_to_arrival_airport
   end
@@ -25,7 +25,7 @@ feature 'Air Traffic Control' do
     given_there_is_an_airport
     and_a_plane
     and_weather_is_not_stormy
-    i_instruct_the_plane_to_land_at(@airport)
+    i_instruct_the_plane_to_land_at_airport
     the_list_of_planes_on_ground_now_countains_the_plane_that_landed
   end
 
@@ -33,7 +33,7 @@ feature 'Air Traffic Control' do
     given_there_is_an_airport
     and_a_plane
     and_weather_is_not_stormy
-    i_instruct_the_plane_to_land_on_a_full(@airport)
+    i_instruct_the_plane_to_land_at_a_full_airport
     and_expect_an_error
   end
 
@@ -45,7 +45,7 @@ feature 'Air Traffic Control' do
     and_the_destinatin_airport_exists
     and_the_plane_is_in_the_airport
     and_weather_is_stormy
-    i_instruct_a_plane_to_takeoff_with_stormy_weather_at(@plane, @destination)
+    i_instruct_a_plane_to_takeoff_with_stormy_weather_to_a_destination
     and_expect_an_error
   end
 
@@ -55,7 +55,7 @@ feature 'Air Traffic Control' do
     and_the_destination_airport_exists
     and_the_plane_is_in_the_airport
     and_weather_is_not_stormy
-    i_instruct_a_plane_to_takeoff_to(@plane, @destination)
+    i_instruct_a_plane_to_takeoff_to_a_destination
     and_the_plane_confirms_departure
     and_the_plane_location_is_on_air
   end
@@ -109,13 +109,13 @@ feature 'Air Traffic Control' do
 
   # Not stormy
 
-  def i_instruct_the_plane_to_land_at(airport)
+  def i_instruct_the_plane_to_land_at_airport
     @airport.land_plane(@plane)
   end
 
   # Full airport
 
-  def i_instruct_the_plane_to_land_at_a_full(airport)
+  def i_instruct_the_plane_to_land_at_a_full_airport
     rejected_plane = Plane.new("G-CJPH")
     allow(@airport).to receive(:stormy?).and_return false
     @airport.land_plane(@plane)
@@ -124,7 +124,7 @@ feature 'Air Traffic Control' do
 
   # Stormy
 
-  def i_instruct_the_plane_to_land_with_stormy_weather_at(airport)
+  def i_instruct_the_plane_to_land_with_stormy_weather_at_airport
     expect { @airport.land_plane(@plane) }.to raise_error 'Operation aborted: Weather is stormy'
   end
 
@@ -150,13 +150,13 @@ feature 'Air Traffic Control' do
 
   # Not stormy
 
-  def i_instruct_a_plane_to_takeoff_to(plane, to_destination)
+  def i_instruct_a_plane_to_takeoff_to_destination
     @airport.takeoff_plane(@plane, @destination)
   end
 
   # Stormy
 
-  def i_instruct_plane_to_takeoff_with_stormy_weather_at(plane, airport)
+  def i_instruct_plane_to_takeoff_with_stormy_weather_to_destination
     expect { @airport.takeoff_plane(@plane, @destination) }.to raise_error 'Operation aborted: Weather is stormy'
   end
 
