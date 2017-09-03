@@ -1,27 +1,48 @@
 class Plane
 
-
-  def plane_land(plane)
-    @plane = plane
+  def land
+    Plane.new
   end
 
-  attr_reader :plane
+end
 
-  # def plane_land
-  #   fail 'airport is full' unless #@space?!
-  #     @space?!
+  # def initialize(capacity: 1, weather: Weather.new)
+  #   # @capacity = capacity
+  #   # @planes = []
+  #   # @weather = weather
   # end
 
 
-  def plane_take_off
+  # def land(plane)
+  #   @plane = plane
+  # end
 
-  end
+  # def land(airport) # plane??
+  #   # what to put here?
+  # end
+
+  # def land
+  #   # @plane = plane
+  #   # fail 'Cannot land: airport is full' if full?
+  #   # fail 'Cannot land in stormy weather' if weather.stormy?
+  #   # planes << plane
+  #   # self
+  #   Plane.new
+  # end
 
 
-  def left_airport?
-    #true
-  end
+  # attr_reader :plane
 
 
-
-end
+#   def take_off
+#
+#   end
+#
+#
+#   def left_airport?
+#     #true
+#   end
+#
+#
+#
+# end
