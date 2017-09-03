@@ -1,13 +1,17 @@
 class Weather
-attr_reader :forecast
-FORECAST_STORM = 20
+attr_reader :chance_of_storm
+CHANCE_OF_STORM = 10
 
-  def initialize(forecast = FORECAST_STORM)
-    @forecast = forecast
+  def initialize(chance_of_storm = CHANCE_OF_STORM)
+    @chance_of_storm = chance_of_storm
+    @stormy = (rand(100) <= CHANCE_OF_STORM)
   end
 
   def stormy?
-    forecast > 1
+    stormy
   end
+
+private
+attr_reader :stormy
 
 end
