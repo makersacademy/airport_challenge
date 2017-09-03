@@ -2,9 +2,7 @@ require_relative 'airport'
 
 module Runway
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    new_runway(capacity)
-  end
+
 
   def runway_traffic
     @@runway_traffic
@@ -18,9 +16,7 @@ module Runway
     @@runway_traffic.include?(plane)
   end
 
-  private
-
-  def new_runway(capacity)
+  def new_runway(capacity = DEFAULT_CAPACITY)
     @@runway_traffic = []
     @capacity = capacity
   end
@@ -31,10 +27,10 @@ end
 
 module Weather
 
-  @poss_weather_conditions = [true, false]
+  @@poss_weather_conditions = [true, false]
 
   def stormy?
-    @@stormy = @poss_weather_conditions.sample
+    @@stormy = @@poss_weather_conditions.sample
   end
 
 end

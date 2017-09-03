@@ -9,6 +9,7 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
   let(:another_plane) { double :plane }
+  let(:another_aiport) { double :airport }
 
   context 'runway/terminal initialisation' do
     it 'sets capacity and does not allow planes in past capacity' do
@@ -45,6 +46,11 @@ describe Airport do
       allow(airport).to receive(:stormy?).and_return false
       subject.take_off plane
       expect(subject.runway_traffic).not_to include plane
+    end
+
+    it 'set airport name' do
+      new_name = "Heathrow"
+      expect(subject.set_name new_name).to eq "Heathrow"
     end
 
   end

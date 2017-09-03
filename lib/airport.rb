@@ -6,6 +6,10 @@ class Airport
   include Runway
   include Weather
 
+  def initialize(capacity = DEFAULT_CAPACITY)
+    new_runway(capacity)
+  end
+
   def land(plane)
     fail "This plane is already landed" if plane_is_already_landed?(plane)
     fail "We're too full - go land somewhere else!" if runway_at_capacity?
@@ -20,6 +24,10 @@ class Airport
       fail "Storm! Do not take off!" if it_is_stormy?
       remove_plane_from_runway(plane)
     end
+  end
+
+  def set_name(new_name)
+    @new_name = "Heathrow"
   end
 
   private
