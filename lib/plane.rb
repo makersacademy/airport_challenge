@@ -5,7 +5,7 @@ class Plane
   def initialize(tail_number)
     @tail_number = tail_number
     @on_ground = true
-    @location = ""
+    @location = "air"
   end
 
   def land(airport)
