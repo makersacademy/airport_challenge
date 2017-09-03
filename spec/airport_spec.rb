@@ -1,5 +1,7 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to :land }
+  describe 'landing planes' do
+    expect(subject.land(plane).to eq plane
+  end
 end
