@@ -7,11 +7,11 @@ class Airport
 
   attr_reader :planes_on_ground, :iata_code, :capacity
 
-  def initialize(iata_code, capacity = DEFAULT_CAPACITY)
+  def initialize(iata_code, capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes_on_ground = []
     @iata_code = iata_code
     @capacity = capacity
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land_plane(plane)
