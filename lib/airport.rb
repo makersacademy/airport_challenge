@@ -7,14 +7,10 @@ class Airport
   include Weather
 
   def land(plane)
-    if plane_is_already_landed?(plane)
-      nil
-    elsif runway_at_capacity?
-      "We're too full - go land somewhere else!"
-    else
-      fail "Storm! Do not land here!" if it_is_stormy?
-      add_plane_to_runway(plane)
-    end
+    fail "This plane is already landed" if plane_is_already_landed?(plane)
+    fail "We're too full - go land somewhere else!" if runway_at_capacity?
+    fail "Storm! Do not land here!" if it_is_stormy?
+    add_plane_to_runway(plane)
   end
 
   def take_off(plane)
