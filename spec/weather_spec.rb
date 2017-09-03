@@ -1,20 +1,29 @@
 require 'weather'
 
 describe Weather do
+
+  let(:Weather) {Weather.new }
   it 'creates a weather object' do
-  expect(subject).to eq(subject)
+  expect(:weather).to eq(:weather)
   end
 
 describe '#number' do
   it 'will create a random number' do
-  expect(subject.number).to be_between(0, 100)
+  expect(:weather.number).to be_between(0, 100)
     end
   end
 
 describe '#storm' do
   it 'will either be stormy or sunny' do
+
   end
  end
 end
 
 #It is either going to return true or false
+
+=begin
+
+def stormy
+number > 70 ? true : false
+=end
