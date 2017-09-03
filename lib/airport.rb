@@ -21,7 +21,9 @@ class Airport
   end
 
   def take_off(plane)
+    fail "plane not at this airport" unless @planes.include?(plane)
     plane.take_off
+    @planes.delete(plane)
   end
 
   def full?

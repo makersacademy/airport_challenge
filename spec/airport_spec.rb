@@ -85,6 +85,7 @@ describe Airport do
     # how do I put the allow phrase in the let?
     # or the double in the before?
     before do
+      allow(plane).to receive(:land)
       allow(plane).to receive(:take_off)
     end
 
@@ -96,8 +97,21 @@ describe Airport do
 
       it "instructs the plane to take off" do
         airport = described_class.new(weather: normal_weather)
+        airport.land(plane)
         expect(plane).to receive(:take_off)
         airport.take_off(plane)
+      end
+
+      it "fails if plane not in airport" do
+        airport = described_class.new(weather: normal_weather)
+        expect{airport.take_off(plane)}.to raise_error "plane not at this airport"
+      end
+
+      it "confirm that plane leaves the airport" do
+        airport = described_class.new(weather: normal_weather)
+        airport.land(plane)
+        airport.take_off(plane)
+        expect(airport.planes).not_to include(plane)
       end
 
     end
