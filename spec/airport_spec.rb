@@ -8,7 +8,6 @@ RSpec.describe Airport do
 
   describe '#land' do
     before do
-      allow(airplane).to receive(:land)
       allow(airplane).to receive(:landed=)
     end
 
@@ -21,7 +20,12 @@ RSpec.describe Airport do
       expect(airport.airplanes).to include airplane
     end
 
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
     it 'raise an error when the airport is full' do
+      subject.capacity=(1)
       subject.land(airplane)
       expect { subject.land(airplane) }.to raise_error 'Airport is full'
     end
@@ -29,7 +33,6 @@ RSpec.describe Airport do
 
   describe '#takeoff' do
     before do
-      allow(airplane).to receive(:takeoff)
       allow(airplane).to receive(:landed=)
     end
 
@@ -38,9 +41,25 @@ RSpec.describe Airport do
       subject.takeoff(airplane)
     end
 
+    it 'comfirm the plane is no longer in the airport' do
+      subject.land(airplane)
+      subject.takeoff(airplane)
+      expect(airport.airplanes).not_to include airplane
+    end
+
     it 'raise an error when there are no planes in the airport' do
       expect { subject.takeoff(airplane) }.to raise_error 'No airplanes in the airport'
     end
   end
 
+  describe '#initialization' do
+    before do
+      allow(airplane).to receive(:landed=)
+    end
+
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times { subject.land(airplane) }
+      expect { subject.land(airplane) }.to raise_error 'Airport is full'
+    end
+  end
 end
