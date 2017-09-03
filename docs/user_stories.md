@@ -4,5 +4,5 @@
 
 Air Traffic Controller
 Passengers
-Airport                     full?
-Plane                       land, take_off,
+Airport                     land, take_off, full?
+Plane                       status
