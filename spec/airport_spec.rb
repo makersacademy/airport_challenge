@@ -18,22 +18,68 @@ describe Airport do
   end
 
   describe '#land' do
-    let(:plane) { double :plane }
-
-    it "allows planes to land" do
-      expect(airport.land(plane)).to eq plane
+    let(:plane) { double :Plane }
+    # how do I put the allow phrase in the let?
+    # or the double in the before?
+    before do
+      allow(plane).to receive(:land)
     end
 
-    it "contains the plane after landing" do
-      airport.land(plane)
-      expect(airport.planes).to include plane
-    end
+    context "normal weather" do
+      let(:normal_weather) { double 'Weather'}
+      before do
+        allow(normal_weather).to receive(:stormy?) { false }
+        airport = described_class.new(weather: normal_weather)
+      end
 
-    it "fails if airport is full" do
-      airport.capacity.times do
+
+      it "allows planes to land" do
+        airport = described_class.new(weather: normal_weather)
+        expect(airport.land(plane)).to eq plane
+      end
+
+      it "instructs the plane to land" do
+        airport = described_class.new(weather: normal_weather)
+        expect(plane).to receive(:land)
         airport.land(plane)
       end
-      expect { airport.land(plane) }.to raise_error("airport full")
+
+      it "contains the plane after landing" do
+        airport = described_class.new(weather: normal_weather)
+        airport.land(plane)
+        expect(airport.planes).to include plane
+      end
+
+      it "fails if airport is full" do
+        airport = described_class.new(weather: normal_weather)
+        airport.capacity.times do
+          airport.land(plane)
+        end
+        expect { airport.land(plane) }.to raise_error("airport full")
+      end
+
+    end
+
+    context "stormy weather" do
+      # UNDERSTAND THIS
+      let(:stormy_weather) { double :Weather }
+      let(:plane) { double :plane }
+      before do
+        # stormy_weather = double('Weather')
+        allow(stormy_weather).to receive(:stormy?) { true }
+
+        # plane = double('Plane')
+        allow(plane).to receive(:land)
+
+
+      end
+
+      it "cannot land when stormy" do
+        airport = described_class.new(weather: stormy_weather)
+        expect { airport.land(plane) }.to raise_error("cannot land when stormy")
+
+      end
+
     end
 
   end
