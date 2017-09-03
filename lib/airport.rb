@@ -1,16 +1,16 @@
 class Airport
   attr_reader :conditions
 
-  def initialize(weatherConditions)
-    @conditions = weatherConditions
+  def initialize(conditions)
+    @conditions = conditions
   end
 
-  # def conditions
-  #   @conditions
-  # end
-
   def land(plane)
+    if @conditions.stormy
+      fail "Cannot land due to stormy weather"
+    else
       plane
+    end
   end
 
   def take_off(plane)
