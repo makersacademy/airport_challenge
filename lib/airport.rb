@@ -17,14 +17,14 @@ class Airport
   def land_plane(plane)
     fail 'Operation aborted: Weather is stormy' if stormy?
     fail 'Operation aborted: Airport is full' if full?
-    fail "The plane is already at #{@iata_code}" if plane.location == @iata_code
+    fail "Operation aborted: The plane is already at #{@iata_code}" if plane.location == @iata_code
     fail 'Operation aborted: Plane is on ground' if plane.on_ground == true
     @planes_on_ground << plane.land(self)
   end
 
   def takeoff_plane(plane, destination)
     fail 'Operation aborted: Weather is stormy' if stormy?
-    fail "The plane is not at #{@iata_code}"
+    fail "Operation aborted: The plane is not at #{@iata_code}" if plane.location != @iata_code
     @planes_on_ground.delete(plane.takeoff(destination))
   end
 
