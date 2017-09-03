@@ -6,7 +6,7 @@ class Airport
   include Runway
   include Weather
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     new_runway(capacity)
     runway_capacity
   end
