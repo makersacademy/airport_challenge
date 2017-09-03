@@ -16,8 +16,15 @@ let(:plane) {Plane.new}
     end
   end
 
+  context 'departures in bad weather'
+     before { allow(airport).to receive(:weather_bad).and_return true }
+
+    it 'Raises an error if a plane tries to take off in stormy weather' do
+      expect {subject.take_off(plane)}.to raise_error "No take off: Stormy weather"
+    end
+
   context 'departures in clear weather'
-    before { allow(airport).to receive(:stormy).and_return false }
+    before { allow(airport).to receive(:weather_bad).and_return false }
 
   describe '#take_off' do
     it 'Indicates that a plane has taken off' do
@@ -31,11 +38,6 @@ let(:plane) {Plane.new}
     it 'Indicates that the plane has safely taken off' do
       subject.take_off(plane)
       expect(plane.status).to eq "Safe take off"
-    end
-
-  context 'departures in bad weather'
-    it 'Raises an error if a plane tries to take off in stormy weather' do
-      expect {subject.take_off(plane)}.to raise_error "No take off: Stormy weather"
     end
   end
 end

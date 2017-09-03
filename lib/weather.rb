@@ -1,8 +1,8 @@
 class Weather
-attr_accessor :stormy
+  attr_accessor :stormy
 
   def stormy
-    true
+    [false, false, false, true].sample
   end
 
 end
