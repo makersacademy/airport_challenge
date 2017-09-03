@@ -10,23 +10,23 @@ describe Airport do
 
 
     it 'instructs the plane to land' do
-      airport = Airport.new
+      # airport = Airport.new
       expect(plane).to receive(:land)
       subject.land plane
     end
 
     it 'has the plane after landing' do
       airport = Airport.new
-      allow(:plane).to receive(:land)
+      expect(plane).to receive(:land)
       airport.land(plane)
       expect(airport.planes).to include plane
     end
 
-    allow(Plane.new).to receive(:land).and_return true
+    # allow(Plane.new).to receive(:land).and_return true
 
 
     it 'prevents the plane taking off' do
-      airport = Airport.new
+      # airport = Airport.new
       allow(:weather).to receive(:stormy?).and_return true
       message = 'cannot take off in stormy weather'
       expect { subject.take_off}.to raise_error message
@@ -46,7 +46,7 @@ describe Airport do
       plane = Plane.new
       # airport.land(plane)
       error = 'Cannot land: airport is full'
-      expect (subject.land).to raise_error error
+      expect { plane.land }.to raise_error error
     end
 
 

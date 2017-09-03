@@ -1,7 +1,7 @@
 class Airport
 
-  def initialize(weather: Weather.new)
-  end
+  # def initialize(weather: Weather.new)
+  # end
 
   DEFAULT_CAPACITY = 6
 
@@ -12,7 +12,7 @@ class Airport
 
 
   def land
-
+    Plane.new
   end
 
 
@@ -27,11 +27,6 @@ class Airport
   end
 
 
-  def full?
-    @planes.count >= 6
-  end
-
-  private
 
     def planes
       @planes
@@ -39,6 +34,7 @@ class Airport
 
 
     attr_reader :weather
+    attr_reader :planes
 
 
 end
