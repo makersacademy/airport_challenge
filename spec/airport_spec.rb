@@ -27,7 +27,7 @@ describe Airport do
 
     it 'prevents the plane taking off' do
       # airport = Airport.new
-      allow(:weather).to receive(:stormy?).and_return true
+      allow(weather).to receive(:stormy?).and_return true
       message = 'cannot take off in stormy weather'
       expect { subject.take_off}.to raise_error message
     end
@@ -35,7 +35,7 @@ describe Airport do
 
     it 'prevents landing when weather is stormy' do
       airport = Airport.new
-      allow(:weather).to receive(:stormy?).and_return true
+      allow(weather).to receive(:stormy?).and_return true
       message = 'Cannot land in stormy weather'
       expect { airport.land(plane) }.to raise_error message
     end
