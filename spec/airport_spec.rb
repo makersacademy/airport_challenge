@@ -8,12 +8,12 @@ describe Airport do
 
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
+  let(:a_plane_too_many) { double :plane }
 
   context 'runway/terminal initialisation' do
-    it 'gives a fixed capacity past which no planes can land' do
-      allow(airport).to receive(:stormy?).and_return true
-      5.times { subject.runway_traffic << plane }
-      a_plane_too_many = Plane.new
+    it 'sets capacity and does not allow planes in past capacity' do
+      allow(airport).to receive(:stormy?).and_return false
+      Runway.class_variable_set :@@runway_traffic, [plane, plane, plane, plane, plane]
       expect(subject.land a_plane_too_many).to eq "We're too full - go land somewhere else!"
     end
   end
@@ -60,21 +60,6 @@ describe Airport do
     it 'allow a plane to #land if it is NOT stormy' do
       allow(airport).to receive(:stormy?).and_return false
       expect { subject.take_off(plane) }.not_to raise_error
-    end
-
-  end
-
-  context 'airport runway approach/depart' do
-
-    it 'a plane should respond that it is on the ground when on the runway' do
-      subject.runway_traffic << plane
-      # Places subject plane in runway
-      expect(subject.report_status plane).to eq "I'm on the ground!"
-    end
-
-    it 'a plane should respond that it is in the air when not on the runway' do
-      # Tests an empty runway
-      expect(subject.report_status plane).to eq "I'm in the air!"
     end
 
   end

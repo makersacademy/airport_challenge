@@ -6,15 +6,10 @@ class Airport
   include Runway
   include Weather
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    new_runway(capacity)
-    runway_capacity
-  end
-
   def land(plane)
     if plane_is_already_landed?(plane)
       nil
-    elsif runway_traffic.count >= runway_capacity
+    elsif runway_at_capacity?
       "We're too full - go land somewhere else!"
     else
       fail "Storm! Do not land here!" if it_is_stormy?
@@ -23,16 +18,12 @@ class Airport
   end
 
   def take_off(plane)
-    unless runway_traffic.include?(plane)
+    unless plane_is_already_landed?(plane)
       nil
     else
       fail "Storm! Do not take off!" if it_is_stormy?
       remove_plane_from_runway(plane)
     end
-  end
-
-  def report_status(plane)
-    runway_traffic.include?(plane) ? "I'm on the ground!" : "I'm in the air!"
   end
 
   private
@@ -45,12 +36,12 @@ class Airport
     runway_traffic << plane
   end
 
-  def plane_is_already_landed?(plane)
-    runway_traffic.include?(plane)
-  end
-
   def it_is_stormy?
     stormy? == true
+  end
+
+  def runway_at_capacity?
+    runway_traffic.count >= runway_capacity
   end
 
 end
