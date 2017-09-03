@@ -1,10 +1,13 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
 
   let(:airport) { Airport.new }
   let(:plane) { double :plane }
+  let(:weather) { double :weather}
+  #let(:weather) {double :weather}
 
   it 'creates new airports' do
     expect(:airport).to eq(:airport)
@@ -12,13 +15,16 @@ describe Airport do
 
   it 'accepts landed planes' do
     subject.land(:plane)
-    expect(subject.landed).to be true
+    expect(subject.landed).to be(true)
   end
-
+=begin
   it 'lets planes take-off' do
+    subject.land(:plane)
     subject.depart(:plane)
-    expect(subject.landed).to be false
+    expect(subject.landed).to be(false)
   end
+=end
+
 
  describe '#initialize' do
   it 'initializes a planes array when airport is instantiated' do
@@ -42,24 +48,26 @@ end
   end
 
   it 'will not land a plane that is already landed' do
-    #Plane has not been set
+
     subject.land(:plane)
-    #We land the plane
-    #Should expect it to raise an error
     expect {subject.land(:plane)}.to raise_error("You can't land this plane again!")
   end
 end
 
   describe '#depart' do
-   it 'removes a plane from the planes array when taken-off' do
-    subject.depart(:plane)
-    expect(subject.planes).to eq []
-  end
 
-   it 'will not depart a plane that has departed' do
-    subject.depart(:plane)
-    expect {subject.depart(plane)}.to raise_error("The plane has already departed")
-  end
- end
+  it 'will not allow a plane to take off when it is stormy' do
+   weather = Weather.new
+   allow(weather).to receive(:stormy?).and_return true
+   expect{subject.depart(plane)}.to raise_error("The plane can't set off because it is stormy")
+   end
+end
 
+  describe '#full' do
+    it 'will raise an error when the airport is too full' do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.full?).to eq(true)
+    end
+  end
 end

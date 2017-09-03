@@ -7,8 +7,10 @@ class Airport
 
     @landed = nil
     @planes  = []
-    @weather = weather
+    @weather = Weather.new
+
   end
+
 
   def land(plane)
     fail "You can't land this plane again!" if @landed == true
@@ -17,22 +19,15 @@ class Airport
   end
 
   def depart(plane)
-    #You depart the plane
-    #L
+
     fail "The plane has already departed" if @landed == false
+    fail "The plane can't set off because it is stormy" if @weather.stormy?
     @planes.pop
     puts "Your plane has left the airport!"
     @landed = false
-
-    #nil -->
-
-    #if @weather.stormy? == false
-    #  return "hello!"
-    #else
-    #  return "It WORKED!"
-    #end
     end
-  end
 
-#What if there are multiple planes?
-#Use an array --> multiple planes
+  def full?
+    true if @planes.count >= 1
+  end
+  end
