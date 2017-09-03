@@ -1,6 +1,6 @@
 class Weather
-attr_reader :chance_of_storm
-CHANCE_OF_STORM = 10
+  attr_reader :chance_of_storm
+  CHANCE_OF_STORM = 10
 
   def initialize(chance_of_storm = CHANCE_OF_STORM)
     @chance_of_storm = chance_of_storm
@@ -11,7 +11,7 @@ CHANCE_OF_STORM = 10
     stormy
   end
 
-private
-attr_reader :stormy
+  private
+  attr_reader :stormy
 
 end

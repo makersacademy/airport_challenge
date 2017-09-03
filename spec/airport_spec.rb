@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) {described_class.new}
+  subject(:airport) { described_class.new }
   let(:plane) { double:plane }
   let(:weather) { double:weather }
 
@@ -13,12 +13,12 @@ describe Airport do
       expect(airport.land(plane)).to eq [plane]
     end
     it 'raises an error when the airport is full' do
-      airport.capacity.times {  airport.land double(:plane) }
+      airport.capacity.times { airport.land double(:plane) }
       expect { airport.land plane }.to raise_error 'Airport is full'
     end
     it 'raises an error when the plane has already landed' do
       airport.land(plane)
-      expect {airport.land(plane)}.to raise_error 'Plane has already landed'
+      expect { airport.land(plane) }.to raise_error 'Plane has already landed'
     end
   end
 
