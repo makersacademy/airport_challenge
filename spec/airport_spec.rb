@@ -63,7 +63,7 @@ describe Airport do
       # UNDERSTAND THIS
       let(:stormy_weather) { double :Weather }
 
-      before do
+      before(:each) do
         # stormy_weather = double('Weather')
         allow(stormy_weather).to receive(:stormy?) { true }
 
