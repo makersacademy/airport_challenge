@@ -26,12 +26,11 @@ describe Airport do
     end
 
     context "normal weather" do
-      let(:normal_weather) { double 'Weather'}
+      let(:normal_weather) { double 'Weather' }
       before do
         allow(normal_weather).to receive(:stormy?) { false }
         # airport = described_class.new(weather: normal_weather)
       end
-
 
       it "allows planes to land" do
         airport = described_class.new(weather: normal_weather)
@@ -90,7 +89,7 @@ describe Airport do
     end
 
     context "normal weather" do
-      let(:normal_weather) { double 'Weather'}
+      let(:normal_weather) { double 'Weather' }
       before do
         allow(normal_weather).to receive(:stormy?) { false }
       end
@@ -104,7 +103,7 @@ describe Airport do
 
       it "fails if plane not in airport" do
         airport = described_class.new(weather: normal_weather)
-        expect{airport.take_off(plane)}.to raise_error "plane not at this airport"
+        expect { airport.take_off(plane) }.to raise_error "plane not at this airport"
       end
 
       it "confirm that plane leaves the airport" do
@@ -117,6 +116,16 @@ describe Airport do
     end
 
     context "stormy weather" do
+      let(:stormy_weather) { double 'Weather' }
+      before do
+        allow(stormy_weather).to receive(:stormy?) { true }
+      end
+
+      it "cannot take off when stormy" do
+        airport = described_class.new(weather: stormy_weather)
+        airport.instance_variable_set(:@planes, [plane])
+        expect { airport.take_off(plane) }.to raise_error "cannot take off when stormy"
+      end
 
     end
 
