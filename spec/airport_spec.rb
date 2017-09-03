@@ -29,7 +29,7 @@ describe Airport do
       let(:normal_weather) { double 'Weather'}
       before do
         allow(normal_weather).to receive(:stormy?) { false }
-        airport = described_class.new(weather: normal_weather)
+        # airport = described_class.new(weather: normal_weather)
       end
 
 
@@ -63,14 +63,10 @@ describe Airport do
     context "stormy weather" do
       # UNDERSTAND THIS
       let(:stormy_weather) { double :Weather }
-      let(:plane) { double :plane }
+
       before do
         # stormy_weather = double('Weather')
         allow(stormy_weather).to receive(:stormy?) { true }
-
-        # plane = double('Plane')
-        allow(plane).to receive(:land)
-
 
       end
 
@@ -79,6 +75,34 @@ describe Airport do
         expect { airport.land(plane) }.to raise_error("cannot land when stormy")
 
       end
+
+    end
+
+  end
+
+  describe "#take_off" do
+    let(:plane) { double :Plane }
+    # how do I put the allow phrase in the let?
+    # or the double in the before?
+    before do
+      allow(plane).to receive(:take_off)
+    end
+
+    context "normal weather" do
+      let(:normal_weather) { double 'Weather'}
+      before do
+        allow(normal_weather).to receive(:stormy?) { false }
+      end
+
+      it "instructs the plane to take off" do
+        airport = described_class.new(weather: normal_weather)
+        expect(plane).to receive(:take_off)
+        airport.take_off(plane)
+      end
+
+    end
+
+    context "stormy weather" do
 
     end
 

@@ -20,6 +20,10 @@ class Airport
     return plane
   end
 
+  def take_off(plane)
+    plane.take_off
+  end
+
   def full?
     @planes.length >= @capacity
   end
