@@ -14,7 +14,8 @@ describe Airport do
     it 'sets capacity and does not allow planes in past capacity' do
       allow(airport).to receive(:stormy?).and_return false
       Runway.class_variable_set :@@runway_traffic, [plane, plane, plane, plane, plane]
-      expect { subject.land another_plane }.to raise_error "We're too full - go land somewhere else!"
+      message = "We're too full - go land somewhere else!"
+      expect { subject.land another_plane }.to raise_error message
     end
   end
 

@@ -4,7 +4,6 @@ module Runway
 
   def initialize(capacity = DEFAULT_CAPACITY)
     new_runway(capacity)
-    runway_capacity
   end
 
   def runway_traffic
