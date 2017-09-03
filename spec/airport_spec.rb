@@ -8,13 +8,13 @@ describe Airport do
 
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
-  let(:a_plane_too_many) { double :plane }
+  let(:another_plane) { double :plane }
 
   context 'runway/terminal initialisation' do
     it 'sets capacity and does not allow planes in past capacity' do
       allow(airport).to receive(:stormy?).and_return false
       Runway.class_variable_set :@@runway_traffic, [plane, plane, plane, plane, plane]
-      expect(subject.land a_plane_too_many).to eq "We're too full - go land somewhere else!"
+      expect(subject.land another_plane).to eq "We're too full - go land somewhere else!"
     end
   end
 
@@ -24,13 +24,18 @@ describe Airport do
       allow(airport).to receive(:stormy?).and_return false
       subject.land plane
       expect(subject.runway_traffic).to include plane
-
     end
 
     it 'allow a plane to *simply* #take_off from airport and offer plane as return value' do
       allow(airport).to receive(:stormy?).and_return false
       subject.land plane
       expect(subject.take_off plane).to eq plane
+    end
+
+    it 'checks that *correct* plane has taken off from airport' do
+      allow(airport).to receive(:stormy?).and_return false
+      Runway.class_variable_set :@@runway_traffic, [plane, another_plane]
+      expect(subject.take_off another_plane).to eq another_plane
     end
 
     # note for README: this means return value of take_off is the plane itself... is that what we want, or is nil what we want? need to bear this in mind for future extensibility in case someone expects something else like nil or array
