@@ -2,12 +2,12 @@ class Airport
 
   attr_accessor :planes, :landed, :weather
 
-  def initialize
+  def initialize(weather = Weather.new)
     #plane has no location when initialized
 
     @landed = nil
     @planes  = []
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land(plane)
@@ -23,9 +23,16 @@ class Airport
     @planes.pop
     puts "Your plane has left the airport!"
     @landed = false
-    #It has departed
+
+    #nil -->
+
+    #if @weather.stormy? == false
+    #  return "hello!"
+    #else
+    #  return "It WORKED!"
+    #end
+    end
   end
-end
 
 #What if there are multiple planes?
 #Use an array --> multiple planes
