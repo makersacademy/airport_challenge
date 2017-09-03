@@ -13,7 +13,8 @@ feature 'Air Traffic Control' do
     and_a_plane
     and_the_destination_airport_exists
     i_want_to_instruct_a_plane_to_takeoff_to(@destination)
-   end
+    and_the_plane_confirms_departure
+  end
 
   def given_there_is_an_airport
     @airport = Airport.new
@@ -27,9 +28,6 @@ feature 'Air Traffic Control' do
     @destination = Airport.new
   end
 
-  def and_fly_to(destination)
-  end
-
   def and_i_want_to_instruct_the_plane_to_land_at(airport)
     @plane.land(@airport)
   end
@@ -38,5 +36,11 @@ feature 'Air Traffic Control' do
     expect(@plane.on_ground).to eq true
 
   def i_want_to_instruct_a_plane_to_takeoff_to(destination)
+    @plane.takeoff(@destination)
   end
+
+  def and_the_plane_confirms_departure
+    expect(@plane.on_ground).to eq false
+  end
+  
 end
