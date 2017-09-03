@@ -1,11 +1,13 @@
 class Airport
 
-  attr_accessor :planes, :landed
+  attr_accessor :planes, :landed, :weather
 
   def initialize
     #plane has no location when initialized
+
     @landed = nil
     @planes  = []
+    @weather = Weather.new
   end
 
   def land(plane)

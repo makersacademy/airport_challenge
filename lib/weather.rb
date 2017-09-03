@@ -2,6 +2,10 @@ class Weather
   def number
     rand(1..100)
   end
+
+  def stormy?
+    number > 70 ? true : false
+  end
 end
 
 #When the weather is stormy, prevent take-off

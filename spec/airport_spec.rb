@@ -20,15 +20,20 @@ describe Airport do
     expect(subject.landed).to be false
   end
 
+ describe '#initialize' do
   it 'initializes a planes array when airport is instantiated' do
-    airport = Airport.new
-    expect(subject.planes).to be_an_instance_of(Array)
+    expect(airport.planes).to be_an_instance_of(Array)
   end
 
   it 'initializes the plane to be landed to be nil upon instantiation' do
-    airport = Airport.new
-    expect(subject.landed).to be nil
+    expect(airport.landed).to be nil
   end
+
+  it 'instantiates a new weather object upon initialization' do
+    weather = airport.weather
+    expect(airport.weather).to eq weather
+  end
+end
 
  describe '#land' do
    it 'adds a plane to the planes array when landed' do
@@ -55,6 +60,6 @@ end
     subject.depart(:plane)
     expect {subject.depart(plane)}.to raise_error("The plane has already departed")
   end
-end
+ end
 
 end
