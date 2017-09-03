@@ -5,8 +5,4 @@ class WEATHER_REPORT
     ['stormy', 'clear'].sample
   end
 
-  # def storm
-  #   true
-  # end
-
 end

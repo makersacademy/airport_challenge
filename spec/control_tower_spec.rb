@@ -4,7 +4,7 @@ require 'weather_report'
 
 describe CONTROL_TOWER do
 
-it 'take off and confirm plane is no longer on the runway' do
+    it 'take off and confirm plane is no longer on the runway' do
     plane=PLANE.new
     subject.storm?
     subject.land(plane)
@@ -12,13 +12,13 @@ it 'take off and confirm plane is no longer on the runway' do
     expect(subject.planes).to eq []
   end
 
- it 'check the weather from control tower' do
+   it 'check the weather from control tower' do
    subject.storm?
    expect(subject.weather).to eq 'stormy'
 
  end
 
-  it 'land plane and check plane is on the runway' do
+    it 'land plane and check plane is on the runway' do
     plane=PLANE.new
 
     expect(subject.land(plane)).to eq [plane]
@@ -30,16 +30,18 @@ it 'take off and confirm plane is no longer on the runway' do
     expect(subject.land(plane)).to eq 'NO'
   end
 
-  it 'prevent take off when weather is stormy' do
+    it 'prevent take off when weather is stormy' do
     plane=PLANE.new
     subject.storm?
     expect(subject.take_off(plane)).to eq 'NO'
   end
 
     it 'prevent landing if airport is full' do
-    plane=PLANE.new
-    CONTROL_TOWER::DEFAULT_CAPACITY.times{subject.land(plane)}
-    expect(subject.land(plane)).to eq 'AT CAPACITY'
+    plane = PLANE.new
+    plane2 = PLANE.new
+    DEFAULT_CAPACITY = 1
+    subject.land(plane)
+    expect(subject.land(plane2)).to eq 'AT CAPACITY'
   end
 
      it 'set airport capacity' do
@@ -59,18 +61,18 @@ it 'take off and confirm plane is no longer on the runway' do
       plane=PLANE.new
 
       expect(subject.land(plane)).to eq [plane]
-      end
+    end
 
       it 'full' do
       plane=PLANE.new
       # weather.stormy?
       CONTROL_TOWER::DEFAULT_CAPACITY.times{subject.land(plane)}
       expect(subject.full?).to eq true
-      end
+    end
 
       it 'check if plane is already on runway' do
         plane=PLANE.new
-        
+
         subject.land(plane)
         expect(subject.land(plane)).to eq 'NO'
       end

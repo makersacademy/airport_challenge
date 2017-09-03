@@ -13,13 +13,6 @@ class CONTROL_TOWER
     @capacity = DEFAULT_CAPACITY
   end
 
-  # def weather_report
-  #   number = [1, 2].sample
-  #   @weather = 'stormy' if number == 1
-  #   @weather = 'clear' if number == 2
-  #   @weather
-  # end
-
   def storm?
     storm=WEATHER_REPORT.new
     @weather=storm.report
@@ -30,12 +23,14 @@ class CONTROL_TOWER
     return 'NO' if @weather == 'stormy'
     return 'AT CAPACITY' if full?
     return 'NO' if plane.flying == false
+    plane.landed(@airport)
     @planes << plane
   end
 
   def take_off(plane)
     return 'NO' if @weather == 'stormy'
     return 'NO' if plane.flying == true
+    plane.take_off(@airport)
     @planes.pop if @planes.count > 0
   end
 
