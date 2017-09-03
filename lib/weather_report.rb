@@ -1,18 +1,12 @@
 class WEATHER_REPORT
+  attr_reader :report
 
-  def stormy
-    @stormy=true
+  def report
+    ['stormy', 'clear'].sample
   end
 
-  def stormy?
-    @stormy
-  end
+  # def storm
+  #   true
+  # end
 
-  def clear
-    @clear=true
-  end
-
-  def clear?
-    @clear
-  end
 end
