@@ -5,4 +5,4 @@
 Air Traffic Controller
 Passengers
 Airport                     land, take_off, full?
-Plane                       status
+Plane                       safe_to_fly?
