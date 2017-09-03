@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -10,6 +11,7 @@ class Airport
     @planes_on_ground = []
     @iata_code = iata_code
     @capacity = capacity
+    @weather = Weather.new
   end
 
   def land_plane(plane)
@@ -26,9 +28,10 @@ class Airport
   end
 
   private
+  attr_reader :weather
 
   def stormy?
-    rand(1..7) == 7
+    @weather.stormy?
   end
 
   def full?
