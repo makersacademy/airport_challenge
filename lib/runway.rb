@@ -29,9 +29,10 @@ end
 
 module Weather
 
+  @poss_weather_conditions = [true, false]
+
   def stormy?
-    poss_weather_conditions = [true, false]
-    @@stormy = poss_weather_conditions.sample
+    @@stormy = @poss_weather_conditions.sample
   end
 
 end

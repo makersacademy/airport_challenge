@@ -27,6 +27,14 @@ describe Airport do
 
     end
 
+    it 'allow a plane to *simply* #take_off from airport and offer plane as return value' do
+      allow(airport).to receive(:stormy?).and_return false
+      subject.land plane
+      expect(subject.take_off plane).to eq plane
+    end
+
+    # note for README: this means return value of take_off is the plane itself... is that what we want, or is nil what we want? need to bear this in mind for future extensibility in case someone expects something else like nil or array
+
     it 'allow a plane to #take_off from airport and no longer be on the runway' do
       allow(airport).to receive(:stormy?).and_return false
       subject.take_off plane
