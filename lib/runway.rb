@@ -13,6 +13,7 @@ module Runway
   def new_runway(capacity = DEFAULT_CAPACITY)
     @runway_traffic = []
     @capacity = capacity
+
   end
 
   DEFAULT_CAPACITY = 5

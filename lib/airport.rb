@@ -6,8 +6,14 @@ class Airport
   include Runway
   include Weather
 
+  @@instance_collector = []
   def initialize(capacity = DEFAULT_CAPACITY)
     new_runway(capacity)
+    @@instance_collector << self
+  end
+
+  def self.all_offspring
+    @@instance_collector
   end
 
   def land(plane)
@@ -34,6 +40,7 @@ class Airport
   def plane_is_already_landed?(plane)
     @runway_traffic.include?(plane)
   end
+
 
   private
 

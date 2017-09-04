@@ -20,4 +20,10 @@ class Plane
     :grounded => "I'm at #{@airport}!" }
   end
 
+  def find_the_plane
+    arr = []
+    ObjectSpace.each_object(Airport){|x| arr << x.object_id }
+    arr.each{|x| x.context}
+  end
+
 end
