@@ -21,9 +21,17 @@ class Plane
   end
 
   def find_the_plane
-    arr = []
-    ObjectSpace.each_object(Airport){|x| arr << x.object_id }
-    arr.each{|x| x.context}
+    hash = {}
+    Airport.all_offspring.each{|x|  hash[x]=x.instance_variable_get(:@runway_traffic)}
+    #Adds each airport to hash with runway traffic as key
+     Airport.all_offspring.each{|x| puts hash[x]}
+     #Accesses that hash
+     the_airport_it_is_at = hash.key([self])
+      #accesses plane
+      "I am at #{the_airport_it_is_at}"
+    #  the_plane = the_airport_it_is_at.instance_variable_get(:@runway_traffic)
+      #accesses the airport it is at
+
   end
 
 end
