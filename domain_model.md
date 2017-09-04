@@ -17,7 +17,7 @@ As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 
-# Nouns in Use Stories
+## Nouns in Use Stories
 - Controller
 - Passenger
 - Plane
