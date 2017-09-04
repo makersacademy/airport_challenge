@@ -18,7 +18,7 @@ I sent in a pull request that should show the five passes I made on the challeng
 
 ## Running the tests
 
-I created a comprehensive set of RSPEC tests for al the basic functions requested as well as all edge cases. I also did the bonus RSPEC test for landing and taking off multiple planes.
+I created a comprehensive set of RSPEC tests for all the basic functions requested as well as all edge cases. I also did the bonus RSPEC test for landing and taking off multiple planes.
 
 ### REFLECTION
 
@@ -48,6 +48,5 @@ Though I was very happy with the finished product, if I had more time...
 
 
 
-## Authors
-
+## Author
 * **Thomas Ikimi** - *Initial work* -
