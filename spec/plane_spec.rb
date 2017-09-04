@@ -27,6 +27,11 @@ describe Plane do
       expect(plane.report_status airport1).to eq message
     end
 
+    it 'a plane should report where it is' do
+      expect(plane.find_the_plane). to eq "I am at #{airport}"
+    end
+
+
   end
 
 end

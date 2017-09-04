@@ -23,7 +23,7 @@ class Plane
   def find_the_plane
     runway_hasher
     #Adds each airport to hash with runway traffic as key
-     Airport.all_offspring.each{|x| puts @@runway_hash[x]}
+     Airport.all_offspring.each{|x| @@runway_hash[x]}
      #Accesses that hash
      the_airport_it_is_at = @@runway_hash.key([self])
       #accesses plane
