@@ -16,8 +16,8 @@ class Airport
   end
 
   def depart(plane)
-    fail "The plane has already departed" if @landed == false
     fail "The plane can't set off because it is stormy" if @weather.stormy?
+    fail "The plane has already departed" if @landed == false
     @planes.pop
     puts "Your plane has left the airport!"
     @landed = false
