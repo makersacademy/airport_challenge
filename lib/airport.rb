@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    fail 'Cannot land, the weather is stormy' if stormy?
     @planes << plane
   end
 
@@ -26,5 +27,6 @@ class Airport
   def stormy?
     true
   end
+
 
 end

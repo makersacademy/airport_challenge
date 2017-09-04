@@ -15,6 +15,12 @@ describe Airport do
       plane = Plane.new
       expect(airport.land(plane)).to eq [plane]
     end
+# As an air traffic controller
+# To ensure safety
+# I want to prevent landing when weather is stormy
+    it 'prevents landing when weather is stormy' do
+  expect (airport.land(plane)).to raise_error "Cannot land, the weather is stormy"
+    end
   end
 
   describe '#any_planes' do
@@ -45,7 +51,7 @@ describe Airport do
 # As an air traffic controller
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
-    it 'raises an error if stormy' do
+    it 'prevents takeoff when weather is stormy' do
       expect (airport.takeoff).to raise_error "Cannot takeoff, the weather is stormy"
     end
   end
