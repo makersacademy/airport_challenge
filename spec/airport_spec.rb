@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+
 describe Airport do
   subject(:airport) { described_class.new }
 
@@ -13,12 +14,20 @@ describe Airport do
       plane = Plane.new
       expect(airport.land(plane)).to eq [plane]
     end
+  end
 
-    describe '#any_planes'
-    it 'shows if there are planes at airport' do
+  describe '#any_planes' do
+    it 'shows when there are planes at the airport' do
       plane = Plane.new
       airport.land(plane)
       expect(airport.any_planes?).to eq [plane]
+    end
+
+    it 'has no planes at airport' do
+      plane = Plane.new
+      airport.land(plane)
+      airport.takeoff
+      expect(airport.any_planes?).to eq []
     end
   end
 
@@ -31,12 +40,8 @@ describe Airport do
       airport.land(plane)
       expect(airport.takeoff).to eq plane
     end
-
-    it 'has no planes at airport' do
-      plane = Plane.new
-      airport.land(plane)
-      airport.takeoff
-      expect(airport.any_planes?).to eq []
-    end
   end
 end
+# As an air traffic controller
+# To ensure safety
+# I want to prevent takeoff when weather is stormy
