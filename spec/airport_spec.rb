@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
   subject(:airport) { described_class.new }
@@ -40,8 +41,12 @@ describe Airport do
       airport.land(plane)
       expect(airport.takeoff).to eq plane
     end
-  end
-end
+
 # As an air traffic controller
 # To ensure safety
 # I want to prevent takeoff when weather is stormy
+    it 'raises an error if stormy' do
+      expect (airport.takeoff).to raise_error "Cannot takeoff, the weather is stormy"
+    end
+  end
+end
