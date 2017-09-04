@@ -21,17 +21,17 @@ class Plane
   end
 
   def find_the_plane
-    hash = {}
-    Airport.all_offspring.each{|x|  hash[x]=x.instance_variable_get(:@runway_traffic)}
+    runway_hasher
     #Adds each airport to hash with runway traffic as key
-     Airport.all_offspring.each{|x| puts hash[x]}
+     Airport.all_offspring.each{|x| puts @@runway_hash[x]}
      #Accesses that hash
-     the_airport_it_is_at = hash.key([self])
+     the_airport_it_is_at = @@runway_hash.key([self])
       #accesses plane
       "I am at #{the_airport_it_is_at}"
     #  the_plane = the_airport_it_is_at.instance_variable_get(:@runway_traffic)
       #accesses the airport it is at
-
   end
+
+
 
 end

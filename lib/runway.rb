@@ -15,8 +15,12 @@ module Runway
     @capacity = capacity
 
   end
-
   DEFAULT_CAPACITY = 5
+
+  def runway_hasher
+  @@runway_hash = {}
+  Airport.all_offspring.each{|x|  @@runway_hash[x]=x.instance_variable_get(:@runway_traffic)}
+  end
 
 end
 

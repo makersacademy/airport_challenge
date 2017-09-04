@@ -12,6 +12,8 @@ class Airport
     @@instance_collector << self
   end
 
+
+
   def self.all_offspring
     @@instance_collector
   end
