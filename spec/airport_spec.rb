@@ -19,7 +19,8 @@ describe Airport do
   end
 
   it 'lets planes take-off' do
-     allow(weather).to receive(:stormy?).and_return(false)
+    weather = airport.weather
+    allow(weather).to receive(:stormy?).and_return(false)
     subject.depart(plane)
     expect(subject.landed).to be(false)
   end
@@ -51,16 +52,16 @@ end
   end
 end
 
-
-
-describe '#depart' do
+ describe '#depart' do
   it 'will not allow a plane to take off when it is stormy' do
+   weather = airport.weather
    allow(weather).to receive(:stormy?).and_return(true)
-   subject.depart(plane)
    expect{subject.depart(plane)}.to raise_error "The plane can't set off because it is stormy"
    end
 
+
   it 'removes a plane from the planes array when taken-off' do
+    weather = airport.weather
     allow(weather).to receive(:stormy?).and_return(false)
     subject.land(:plane)
     subject.depart(:plane)
@@ -68,9 +69,9 @@ describe '#depart' do
    end
 
   it 'will not depart a plane that has departed' do
+    weather = airport.weather
     allow(weather).to receive(:stormy?).and_return(false)
-    subject.depart(:plane)
-    subject.depart(:plane)
+    subject.depart(plane)
     expect {subject.depart(plane)}.to raise_error("The plane has already departed")
   end
 end

@@ -5,7 +5,7 @@ class Airport
   def initialize(weather = Weather.new)
     @landed = nil
     @planes  = []
-    @weather = Weather.new
+    @weather = weather
   end
 
 
@@ -19,7 +19,7 @@ class Airport
     fail "The plane can't set off because it is stormy" if @weather.stormy?
     fail "The plane has already departed" if @landed == false
     @planes.pop
-    puts "Your plane has left the airport!"
+     puts "Your plane has left the airport!"
     @landed = false
   end
 
