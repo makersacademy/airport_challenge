@@ -31,7 +31,6 @@ describe Plane do
       expect(plane.find_the_plane). to eq "I am at #{airport}"
     end
 
-
   end
 
 end

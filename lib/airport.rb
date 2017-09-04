@@ -12,8 +12,6 @@ class Airport
     @@instance_collector << self
   end
 
-
-
   def self.all_offspring
     @@instance_collector
   end
@@ -38,11 +36,9 @@ class Airport
     @airport_name = "Heathrow"
   end
 
-
   def plane_is_already_landed?(plane)
     @runway_traffic.include?(plane)
   end
-
 
   private
 
@@ -61,6 +57,5 @@ class Airport
   def runway_at_capacity?
     @runway_traffic.count >= runway_capacity
   end
-
 
 end
