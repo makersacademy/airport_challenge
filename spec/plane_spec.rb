@@ -3,33 +3,33 @@ require 'control_tower'
 
 describe PLANE do
 
-    it 'logs airline name upon landing request to control tower' do
-    plane=PLANE.new#('virgin')
+    it 'LOGS AIRLINE NAME UPON PLANE CONSTRUCTION' do
+    plane=PLANE.new
     expect(plane.airline).to eq 'virgin'
   end
 
-    it 'log unique airline name upon landing request to control tower' do
+    it 'LOG UNIQUE AIRLINE NAME UPON PLANE CREATION' do
     plane=PLANE.new('BA')
     expect(plane.airline).to eq 'BA'
   end
 
-    it 'find out if plane is currently flying' do
+    it 'CHECK IF PLANE IS ALREADY AIRBORNE' do
     plane=PLANE.new
     expect(plane.flying).to eq true
   end
 
-    it 'check plane has landed' do
+    it 'CHECK IF PLANE HAS ALREADY LANDED' do
     destination=CONTROL_TOWER.new
     name=destination.airport
     plane=PLANE.new
     expect(plane.landed(name)).to eq false
- end
+  end
 
-    it 'check plane has taken off' do
+    it 'CHECK IF PLANE HAS TAKEN OFF' do
     destination=CONTROL_TOWER.new
     name=destination.airport
     plane=PLANE.new
     expect(plane.take_off(name)).to eq true
-end
+  end
 
 end
