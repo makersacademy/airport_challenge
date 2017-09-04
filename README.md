@@ -16,9 +16,9 @@ Airport Challenge
 Instructions
 ------------
 
-The Airport challenge was the first weekend challenge at Makers Academy.
+This was our first weekend challenge at Makers Academy.
 
-The challenge was to create software to control the flow of planes at an airport. The airport would allow plays to land and to take off and would have a certain plane capacity. We also had to create random weather conditions that would be mostly sunny and also stormy on the rare occasion.
+The challenge was to create software to control the flow of planes at an airport. The airport would allow planes to land and to take off and would have a certain plane capacity. We also had to create random weather conditions that would be mostly sunny and also stormy on the rare occasion.
 
 Objectives
 ----------
