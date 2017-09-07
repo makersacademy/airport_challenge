@@ -5,4 +5,3 @@ class Weather
   end
 
 end
-  
