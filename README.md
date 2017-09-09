@@ -43,5 +43,5 @@ Planes instantiate with a random five digit name, format AA000.
 
 ## Comments
 
-This program could be improved by extracting the weather functions to a separate class to keep the responsibilities more structured.  
+This program could be improved by separating the responsibilities of the weather functions to a new class.
 There is a condition which raises an error if the object passed to the airport's land method is not a Plane.  This limits future expansion and so should be removed.
