@@ -44,7 +44,6 @@ describe Airport do
     end
 
     it 'fills a place on the runway' do
-
       subject.land(plane)
       expect(subject.runway[0]).to eq plane
     end

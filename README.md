@@ -32,32 +32,16 @@ I would like a default airport capacity that can be overridden as appropriate
 
 require plane.rb and airport.rb in irb or other Ruby interpreter.
 
-## Comments
+## Detail
 
 Created with a Plane and Airport class
 
 Airports are passed land and take_off methods, with planes as arguments to add and remove them from the airport's runway.  
 Runway capacity defaults to 10 but can be changed by passing an integer to the airport when instantiated.  
-Airports cannot land planes at full runways.  
-Airports cannot take off planes unless they are on the runway.  
-Airports cannot land grounded planes.  
-Planes are grounded when they land and ungrounded when they take off.  
-Airports can only land Planes.  
-Airports cannot land or take off planes when there is a storm.  
 There is a 10% chance of a storm.  
-All actions are confirmed.  
-
 Planes instantiate with a random five digit name, format AA000.
 
-**Limitations**
+## Comments
 
-Airports can only land and take off planes one at a time.  
-Storm conditions cannot be customised.  
-storm? or full? cannot be checked as they are private  
-Planes cannot be renamed.  
-There is no way to remove or add planes to runways other than landing and taking off.  
-
-**Notes**
-
-Clears Rubocop except for 8 "unexpected token tLCURLY" errors which breaks the Rspec test if adjusted.  
-98.98% test coverage.
+This program could be improved by extracting the weather functions to a separate class to keep the responsibilities more structured.  
+There is a condition which raises an error if the object passed to the airport's land method is not a Plane.  This limits future expansion and so should be removed.
