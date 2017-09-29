@@ -1,7 +1,5 @@
 class Airport
 
-  def planes
-
-  end
+attr_accessor :planes
 
 end
