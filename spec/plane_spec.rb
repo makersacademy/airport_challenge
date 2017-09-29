@@ -10,5 +10,8 @@ describe Plane do
 
   end
     
+  it 'creates a new airport' do
+    expect(Airport.new).to be_a Airport
+  end
 
 end
