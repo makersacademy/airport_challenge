@@ -13,7 +13,7 @@ describe Plane do
   describe '#take_off_from' do
 
     it 'takes off from an airport' do
-      expect(Plane.new).to respond_to(:take_off_from)
+      expect(Plane.new).to respond_to(:take_off_from).with(1).arguments
     end
 
   end
