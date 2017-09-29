@@ -15,6 +15,12 @@ describe Plane do
     it 'takes off from an airport' do
       expect(Plane.new).to respond_to(:take_off_from).with(1).arguments
     end
+    it 'removes a plane from the airport' do
+      plane, airport = Plane.new, Airport.new
+      plane.land_at(airport)
+      plane.take_off_from(airport)
+      expect(airport.planes).not_to eq plane
+    end
 
   end
     
