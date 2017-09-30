@@ -26,4 +26,21 @@ describe Plane do
       expect(plane1.airport_exited).to eq airport1.__id__
     end
   end
+  describe "#confirm_take_off" do
+    it "expects a plane to confirm that he has exited specific airport" do
+      airport1 = Airport.new
+      plane1 = Plane.new
+      plane1.take_off(airport1)
+      expect(plane1.confirm_take_off(airport1)).to eq true
+    end
+  end
+  describe "#confirm_take_off" do
+    it "expects a plane to output false if we confirm_take_off the wrong airport" do
+      airport1 = Airport.new
+      airport2 = Airport.new
+      plane1 = Plane.new
+      plane1.take_off(airport1)
+      expect(plane1.confirm_take_off(airport2)).to eq false
+    end
+  end
 end

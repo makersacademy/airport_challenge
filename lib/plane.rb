@@ -26,4 +26,8 @@ class Plane
   def airport_exited
     @airport_exited[-1]
   end
+
+  def confirm_take_off(airport)
+    airport_exited == airport.__id__
+  end
 end
