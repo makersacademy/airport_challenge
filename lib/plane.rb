@@ -1,23 +1,26 @@
 class Plane
-  attr_accessor :destination, :airborne
+  attr_accessor :location, :airborne
 
   def initialize
     @airborne = false
+    @location = 'Heathrow'
   end
 
-  def fly_to airport
+  def land_at airport, weather
     raise 'Already at airport' if airport.check_for_plane(self)
     raise 'Not in the air' unless @airborne
-    @destination = airport
+    raise 'Too dangerous to land' if weather.stormy
+    @location = airport.name
     @airborne = false
-    airport.land self
+    airport.register_arrival self
   end
 
-  def take_off airport
+  def take_off airport, weather
     raise 'Not parked at airport' unless airport.check_for_plane(self)
     raise 'Already in the air' if @airborne
-    @destination = nil
+    raise 'Too dangerous to take off' if weather.stormy
+    @location = 'in_flight'
     @airborne = true
-    airport.leave self
+    airport.register_departure self
   end
 end

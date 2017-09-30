@@ -6,30 +6,37 @@ describe Airport do
   let(:fine_weather) { double(:weather, :stormy => false) }
   let(:stormy_weather) { double(:weather, :stormy => true) }
 
-  it 'allows planes to land at it if the weather is fine' do
-    subject.land(plane, fine_weather)
+  it 'can be assigned a name, but defaults to being called Heathrow' do
+    expect(subject.name).to eq 'Heathrow'
+    jfk = Airport.new "John F Kennedy"
+    expect(jfk.name).to eq "John F Kennedy"
+  end
+
+  it 'allows new planes to be delivered to it' do
+    subject.deliver_new_plane plane
     expect(subject.parked_planes[-1]).to eq plane
   end
 
-  it 'does not allow planes to land if the weather is stormy' do
-    expect { subject.land(plane, stormy_weather) }.to raise_error 'Too dangerous to land'
+  it 'does not allow same plane to be delivered to it more than once' do
+    subject.deliver_new_plane plane
+    expect { subject.deliver_new_plane plane }.to raise_error 'Plane already there'
+  end
+
+  it 'allows planes to land at it if the weather is fine' do
+    subject.register_arrival plane
+    expect(subject.parked_planes[-1]).to eq plane
   end
 
   it 'allows planes to take off from it in fine weather' do
-    subject.land(plane, fine_weather)
-    subject.leave(plane, fine_weather)
+    subject.register_arrival plane
+    subject.register_departure plane
     expect(subject.parked_planes).not_to include plane
   end
 
-  it 'does not allow planes to take off from it in stormy weather' do
-    subject.land(plane, fine_weather)
-    expect { subject.leave(plane, stormy_weather) }.to raise_error 'Too dangerous to take off'
-  end
-
   it 'allows air traffic controllers to check if a plane is parked at it' do
-    subject.land(plane, fine_weather)
+    subject.register_arrival plane
     expect(subject.check_for_plane plane).to eq true
-    subject.leave(plane, fine_weather)
+    subject.register_departure plane
     expect(subject.check_for_plane plane).to eq false
   end
 
@@ -38,14 +45,14 @@ describe Airport do
   end
 
   it 'allows the system administrator to alter the capacity of each airport' do
-    expect(Airport.new(40).capacity).to eq 40
-    expect(Airport.new(20).capacity).to eq 20
+    expect(Airport.new('Bristol', 40).capacity).to eq 40
+    expect(Airport.new('Manchester', 20).capacity).to eq 20
   end
 
   it 'doesn\'t allow planes to land if it is full' do
-    airport = Airport.new(25)
-    25.times { airport.land(plane, fine_weather) }
-    expect { airport.land(plane, fine_weather) }.to raise_error 'Airport full'
+    airport = Airport.new('Paris Charles de Gaulle', 25)
+    25.times { airport.register_arrival plane }
+    expect { airport.register_arrival plane }.to raise_error 'Airport full'
   end
 
 end
