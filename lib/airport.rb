@@ -11,5 +11,5 @@ class Airport
   def release_plane(plane)
     @plane = nil
   end
-  
+
 end
