@@ -20,7 +20,7 @@ describe Plane do
       airport.capacity.times { Plane.new.land_at(airport) }
       expect {plane.land_at(airport)}.to raise_error 'cannot land at full airport'
     end 
-    it 'cannot land if already landed' do
+    it 'raises error if already landed' do
       allow(airport.weather).to receive(:rand).with(0..9) {0}
       plane.land_at(airport)
       expect {plane.land_at(airport)}.to raise_error 'plane has already landed'
@@ -30,7 +30,7 @@ describe Plane do
 
   describe '#take_off_from' do
 
-    it 'confirm a plane has left the airport' do
+    it 'confirms a plane has left the airport' do
       allow(airport.weather).to receive(:rand).with(0..9) {0}
       plane.land_at(airport)
       plane.take_off_from(airport)

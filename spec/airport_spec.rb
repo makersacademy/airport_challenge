@@ -9,17 +9,17 @@ describe Airport do
 
   describe '#clear' do
 
-    context 'not clear to take off' do
+    context 'not cleared to take off' do
       it 'checks the weather' do
         #stub rand method so weather is stormy
         allow(airport.weather).to receive(:rand).with(0..9) {9}
         expect(airport.clear?).to be_falsy
       end
     end
-    context 'clear to take off' do
+    context 'cleared to take off' do
       it 'checks the weather' do
         #stub rand method so weather is stormy
-        allow(airport.weather).to receive(:rand).with(0..9) {3}
+        allow(airport.weather).to receive(:rand).with(0..9) {0}
         expect(airport.clear?).to be_truthy
       end
     end
@@ -29,7 +29,7 @@ describe Airport do
   describe '#planes' do
   
     it 'stores a landed plane in the hangar' do
-      allow(airport.weather).to receive(:rand).with(0..9) {3}
+      allow(airport.weather).to receive(:rand).with(0..9) {0}
       plane.land_at(airport)
       expect(airport.planes[0]).to eq plane
     end
@@ -46,13 +46,13 @@ describe Airport do
 
     context 'full' do
       it 'returns true if capacity is reached' do
-        allow(airport.weather).to receive(:rand).with(0..9) {3}
+        allow(airport.weather).to receive(:rand).with(0..9) {0}
         airport.capacity.times { Plane.new.land_at(airport) }
         expect(airport).to be_full
       end
     end
     context 'empty' do
-      it 'returns true if capacity is reached' do
+      it 'returns false if not full' do
         allow(airport.weather).to receive(:rand).with(0..9) {3}
         plane.land_at(airport)
         expect(airport).to_not be_full

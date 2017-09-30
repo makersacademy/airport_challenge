@@ -13,7 +13,7 @@ class Airport
   end
 
   def clear?
-    @weather.randomize
+    @weather.set
     !@weather.stormy
   end
 
