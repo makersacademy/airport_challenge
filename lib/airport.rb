@@ -5,11 +5,13 @@ class Airport
     @parked_planes = []
   end
 
-  def land plane
+  def land(plane, weather)
+    raise 'Too dangerous to land' if weather.stormy
     @parked_planes << plane
   end
 
-  def leave plane
+  def leave(plane, weather)
+    raise 'Too dangerous to take off' if weather.stormy
     @parked_planes.delete(plane)
   end
 
