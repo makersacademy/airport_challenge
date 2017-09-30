@@ -1,6 +1,8 @@
 require 'plane'
 describe Plane do
 
+  let(:weather) { double(:weather, stormy?: true) }
+
   describe "#landing" do
 
     it "should respond to the land method" do
@@ -18,6 +20,10 @@ describe Plane do
     it "should report that it is no longer at the airport when taken off" do
       subject.take_off
       expect(subject.at_airport).to eq false
+    end
+
+    it "shouldn't take off when the weather is stormy" do
+      expect { subject.take_off(weather.stormy?) }.to raise_error("Weather stormy -> can't take off!")
     end
 
   end
