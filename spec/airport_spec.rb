@@ -13,7 +13,11 @@ describe Airport do
   end
 
   describe 'planes taking off' do
-    it { is_expected.to respond_to(:takeoff).with(1).argument }
+    it 'lets a plane takeoff from the airport' do
+      plane = Plane.new
+      airport.takeoff(plane)
+      expect(plane.landed).to be false
+    end
   end
 
 end
