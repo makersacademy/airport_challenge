@@ -8,7 +8,7 @@ describe Airport do
   let(:plane)     { Aeroplane.new }
   let(:weather)   { Weather.new }
 
-  it 'has a capacity of 100' do
+  it 'has a default capacity of 100' do
     expect(subject.capacity).to eq 100
   end
 
@@ -21,11 +21,23 @@ describe Airport do
     #   weather.stormy?
     #   expect { subject.take_off(plane) }.to raise_error 'Plane cannot take off due to storm'
     # end
+
+    it 'will not release a plane when airport is empty' do
+
+    end
   end
 
-  it 'allows a plane to land in the airport' do
-    subject.land(plane)
-    expect(plane.landed).to be true
+  describe 'land' do
+    it 'allows a plane to land in the airport' do
+      subject.land(plane)
+      expect(plane.landed).to be true
+    end
+
+    it 'will not allow planes to land when airport is full' do
+      100.times { subject.land(Aeroplane.new) }
+      expect { subject.land(Aeroplane.new) }.to raise_error 'Airport full!'
+    end
   end
+
 
 end
