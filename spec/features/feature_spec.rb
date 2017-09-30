@@ -23,14 +23,13 @@ describe 'Flights between airports' do
       weather = Weather.new
     end
 
+    puts "Plane at heathrow?", heathrow.check_for_plane(first_plane)
     first_plane.take_off heathrow, weather
     puts "first plane in air", first_plane.airborne
+    puts "Plane still at heathrow?", heathrow.check_for_plane(first_plane)
 
     second_plane.take_off heathrow, weather
-    puts "second plane in air", second_plane.airborne
-
     third_plane.take_off heathrow, weather
-    puts "third plane in air", third_plane.airborne
 
     third_plane.land_at skye, weather
     p skye.parked_planes
@@ -38,8 +37,26 @@ describe 'Flights between airports' do
     first_plane.land_at jfk, weather
     second_plane.land_at jfk, weather
     p jfk.parked_planes
-
     p heathrow.parked_planes
+
+    first_plane.take_off jfk, weather
+    second_plane.take_off jfk, weather
+
+    first_plane.land_at skye, weather
+    second_plane.land_at skye, weather
+
+    p skye.parked_planes
+
+    fourth_plane.take_off heathrow, weather
+    expect { fourth_plane.land_at skye, weather }.to raise_error 'Airport full'
+    fourth_plane.land_at heathrow, weather
+
+    weather = Weather.new
+    while !weather.stormy
+      weather = Weather.new
+    end
+
+    expect { fourth_plane.take_off heathrow, weather }.to raise_error 'Too dangerous to take off'
 
   end
 end
