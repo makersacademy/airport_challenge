@@ -4,7 +4,7 @@ describe Weather do
 
   subject(:weather) {Weather.new}
 
-  describe '#stormy' do
+  describe '#randomize' do
 
     context 'Stormy Weather' do   
       it 'returns true for stormy weather' do
