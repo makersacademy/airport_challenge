@@ -15,7 +15,7 @@ class Airport
   end
 
   def departed?(plane)
-    !@planes.include?(plane)
+    puts "Plane departed from airport" if !@planes.include?(plane)
   end
-  
+
 end
