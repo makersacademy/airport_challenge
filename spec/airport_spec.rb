@@ -33,7 +33,7 @@ describe Airport do
   end
 
   it "won't allow landing after capacity reached" do
-    Airport::DEFAULT_CAPACITY.times {subject.land(plane)}
+    subject.capacity.times {subject.land(plane)}
     expect {subject.land(plane)}.to raise_error("Airport full")
   end
 
