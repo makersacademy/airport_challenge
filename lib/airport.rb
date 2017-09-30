@@ -10,6 +10,7 @@ class Airport
 
   def land(plane, weather)
     raise 'Too dangerous to land' if weather.stormy
+    raise 'Airport full' if @parked_planes.count >= @capacity
     @parked_planes << plane
   end
 

@@ -42,4 +42,10 @@ describe Airport do
     expect(Airport.new(20).capacity).to eq 20
   end
 
+  it 'doesn\'t allow planes to land if it is full' do
+    airport = Airport.new(25)
+    25.times { airport.land(plane, fine_weather) }
+    expect{airport.land(plane, fine_weather)}.to raise_error 'Airport full'
+  end
+
 end
