@@ -30,7 +30,7 @@ describe Plane do
   end
 
   it 'won\'t fly to an airport that it is already at' do
-    expect{subject.fly_to airport_with_plane}.to raise_error 'Already at airport'
+    expect { subject.fly_to airport_with_plane }.to raise_error 'Already at airport'
   end
 
   it 'can be told to take off from an airport' do
@@ -39,16 +39,16 @@ describe Plane do
   end
 
   it 'won\'t take off from an airport that it is not parked at' do
-    expect{subject.take_off airport_without_plane}.to raise_error 'Not parked at airport'
+    expect { subject.take_off airport_without_plane }.to raise_error 'Not parked at airport'
   end
 
   it 'can\'t be told to take off if it is already airborne' do
     subject.take_off airport_with_plane
-    expect{subject.take_off airport_with_plane}.to raise_error 'Already in the air'
+    expect { subject.take_off airport_with_plane }.to raise_error 'Already in the air'
   end
 
   it 'can\'t be told to land if it is not airborne' do
-    expect{subject.fly_to airport_without_plane}.to raise_error 'Not in the air'
+    expect { subject.fly_to airport_without_plane }.to raise_error 'Not in the air'
   end
 
 end

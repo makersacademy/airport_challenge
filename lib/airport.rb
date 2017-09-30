@@ -3,7 +3,7 @@ class Airport
 
   DEFAULT_CAPACITY = 30
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @parked_planes = []
     @capacity = capacity
   end

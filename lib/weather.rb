@@ -1,5 +1,5 @@
 class Weather
   def stormy
-    rand(11) == 0
+    rand(11).zero?
   end
 end

@@ -12,7 +12,7 @@ describe Airport do
   end
 
   it 'does not allow planes to land if the weather is stormy' do
-    expect{subject.land(plane, stormy_weather)}.to raise_error 'Too dangerous to land'
+    expect { subject.land(plane, stormy_weather) }.to raise_error 'Too dangerous to land'
   end
 
   it 'allows planes to take off from it in fine weather' do
@@ -23,7 +23,7 @@ describe Airport do
 
   it 'does not allow planes to take off from it in stormy weather' do
     subject.land(plane, fine_weather)
-    expect{subject.leave(plane, stormy_weather)}.to raise_error 'Too dangerous to take off'
+    expect { subject.leave(plane, stormy_weather) }.to raise_error 'Too dangerous to take off'
   end
 
   it 'allows air traffic controllers to check if a plane is parked at it' do
@@ -45,7 +45,7 @@ describe Airport do
   it 'doesn\'t allow planes to land if it is full' do
     airport = Airport.new(25)
     25.times { airport.land(plane, fine_weather) }
-    expect{airport.land(plane, fine_weather)}.to raise_error 'Airport full'
+    expect { airport.land(plane, fine_weather) }.to raise_error 'Airport full'
   end
 
 end
