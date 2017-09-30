@@ -12,4 +12,8 @@ class Airport
   def leave plane
     @parked_planes.delete(plane)
   end
+
+  def check_for_plane plane
+    @parked_planes.include? plane
+  end
 end

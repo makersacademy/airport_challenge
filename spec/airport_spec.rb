@@ -13,4 +13,11 @@ describe Airport do
     expect(subject.parked_planes).not_to include plane
   end
 
+  it 'allows air traffic controllers to check if a plane is parked at it' do
+    subject.land plane
+    expect(subject.check_for_plane plane).to eq true
+    subject.leave plane
+    expect(subject.check_for_plane plane).to eq false
+  end
+
 end
