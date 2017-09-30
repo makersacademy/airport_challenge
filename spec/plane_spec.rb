@@ -6,8 +6,8 @@ describe Plane do
     expect(Plane.new).to be_instance_of Plane
   end
 
-  it 'can be told to land at an airport' do
-    subject.land airport
+  it 'can be told to fly to an airport' do
+    subject.fly_to airport
     expect(subject.destination).to eq airport
   end
 
