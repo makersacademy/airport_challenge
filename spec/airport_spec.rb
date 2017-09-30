@@ -8,8 +8,8 @@ describe Airport do
   let(:plane)     { Aeroplane.new }
   let(:weather)   { Weather.new }
 
-  it 'has a default capacity of 100' do
-    expect(subject.capacity).to eq 100
+  it 'has a default capacity of 10' do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   describe 'take_off(plane)' do
@@ -33,7 +33,7 @@ describe Airport do
       expect(plane.landed).to be true
     end
     it 'will not allow planes to land when airport is full' do
-      100.times { subject.land(Aeroplane.new) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(Aeroplane.new) }
       expect { subject.land(Aeroplane.new) }.to raise_error 'Airport full!'
     end
   end
