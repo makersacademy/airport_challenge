@@ -10,8 +10,8 @@ class Plane
 
   end
 
-  def has_left?(airport)
-    true
+  def at?(airport)
+    false
   end
 
 end

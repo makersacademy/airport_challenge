@@ -19,7 +19,7 @@ describe Plane do
       plane, airport = Plane.new, Airport.new
       plane.land_at(airport)
       plane.take_off_from(airport)
-      expect(plane).to have_left(airport)
+      expect(plane).to_not be_at(airport)
     end
 
   end
