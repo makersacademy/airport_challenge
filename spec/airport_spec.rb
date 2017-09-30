@@ -44,10 +44,19 @@ describe Airport do
 
   describe '#full?' do
 
-    it 'returns true if capacity is reached' do
-      allow(airport.weather).to receive(:rand).with(0..9) {3}
-      airport.capacity.times { Plane.new.land_at(airport) }
-      expect(airport).to be_full
+    context 'full' do
+      it 'returns true if capacity is reached' do
+        allow(airport.weather).to receive(:rand).with(0..9) {3}
+        airport.capacity.times { Plane.new.land_at(airport) }
+        expect(airport).to be_full
+      end
+    end
+    context 'empty' do
+      it 'returns true if capacity is reached' do
+        allow(airport.weather).to receive(:rand).with(0..9) {3}
+        plane.land_at(airport)
+        expect(airport).to_not be_full
+      end
     end
 
   end
