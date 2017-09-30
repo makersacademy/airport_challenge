@@ -1,5 +1,4 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   subject(:airport) { Airport.new }
@@ -12,7 +11,7 @@ describe Airport do
     end
   end
 
-  describe 'planes taking off' do
+  describe '#taking off' do
     it 'lets a plane takeoff from the airport' do
       plane = Plane.new
       airport.takeoff(plane)
