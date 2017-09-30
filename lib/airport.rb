@@ -6,6 +6,15 @@ class Airport
   end
 
   def prevent_take_off
+    stormy?
+  end
+
+  def prevent_landing
+    stormy?
+  end
+
+  def stormy?
     report_weather == "stormy"
   end
+
 end
