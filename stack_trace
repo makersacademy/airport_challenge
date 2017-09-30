@@ -1,0 +1,3 @@
+(irb):1 uninitialized constant Airport
+
+airport_challenge/spec/airport_spec.rb:2: uninitialized constant Airport (NameError)
