@@ -1,5 +1,4 @@
 class Plane
-  def land(_airport)
-    true
+  def land(_airport)    
   end
 end
