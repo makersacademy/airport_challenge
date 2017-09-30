@@ -6,7 +6,7 @@ def takeoff
   Plane.new
 end
 
-def land
+def land(plane)
 end
 
 end

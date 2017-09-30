@@ -14,4 +14,8 @@ describe Airport do
     expect(subject).to respond_to :land
   end
 
+  it 'has the land method receive a plane' do
+    expect(subject).to respond_to(:land).with(1).argument
+  end
+
 end
