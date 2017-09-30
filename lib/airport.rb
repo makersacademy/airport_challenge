@@ -9,9 +9,9 @@ class Airport
     @planes << plane
   end
   def take_off(plane)
-    @planes.pop
+    departed? @planes.pop
   end
-  def departed?
-    true
+  def departed?(plane)
+    !@planes.include?(plane)
   end
 end
