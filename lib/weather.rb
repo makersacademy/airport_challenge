@@ -1,7 +1,11 @@
 class Weather
 
-  def stormy?
-    rand(0..9) == 9 ? true : false
+  def randomize
+    @stormy = rand(0..9) == 9
+  end
+
+  def stormy
+    @stormy
   end
 
 end

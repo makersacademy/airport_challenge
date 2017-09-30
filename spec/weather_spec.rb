@@ -4,28 +4,28 @@ describe Weather do
 
   subject(:weather) {Weather.new}
 
-  describe '#stormy?' do
+  describe '#stormy' do
 
     context 'Stormy Weather' do   
       it 'returns true for stormy weather' do
         # use a stub to fake a result from :rand
         allow(weather).to receive(:rand).with(0..9) {9}
-        expect(weather).to be_stormy
+        weather.randomize
+        expect(weather.stormy).to be_truthy
       end
     end
     context 'Sunny weather' do
       it 'returns false for sunny weather' do
         # use a stub to fake a result from :rand
-        allow(weather).to receive(:rand).with(0..9) {1}
-        expect(weather).to_not be_stormy
-        allow(weather).to receive(:rand).with(0..9) {3}
-        expect(weather).to_not be_stormy
-        allow(weather).to receive(:rand).with(0..9) {6}
-        expect(weather).to_not be_stormy
-        allow(weather).to receive(:rand).with(0..9) {8}
-        expect(weather).to_not be_stormy
         allow(weather).to receive(:rand).with(0..9) {0}
-        expect(weather).to_not be_stormy
+        weather.randomize
+        expect(weather.stormy).to be_falsy
+        allow(weather).to receive(:rand).with(0..9) {3}
+        weather.randomize
+        expect(weather.stormy).to be_falsy
+        allow(weather).to receive(:rand).with(0..9) {5}
+        weather.randomize
+        expect(weather.stormy).to be_falsy
       end
     end
 
