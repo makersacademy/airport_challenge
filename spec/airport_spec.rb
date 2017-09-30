@@ -33,6 +33,9 @@ describe Airport do
       plane.land_at(airport)
       expect(airport.planes[0]).to eq plane
     end
+    it 'has a default capacity of 10' do
+      expect(Airport::DEFAULT_CAPACITY).to eq 10
+    end
   
   end
 

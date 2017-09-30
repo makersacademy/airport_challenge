@@ -4,6 +4,8 @@ class Airport
 
   attr_accessor :weather, :planes
 
+  DEFAULT_CAPACITY = 10
+
   def initialize
     @weather = Weather.new
     @planes = []
