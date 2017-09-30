@@ -43,4 +43,4 @@ airport         |take off
 airport         |full
 
 Airport <-- land --> add plane
-Airport <-- takeoff --> release plane
+Airport <-- takeoff --> release planegf
