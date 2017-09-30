@@ -38,12 +38,13 @@ describe Plane do
 
   end
 
-  # it 'takes off from an airport' do
-  #   allow(airport.weather).to receive(:rand).with(0..9) {0}
-  #   plane.land_at(airport)
-  #   plane.take_off_from(airport)
-  #   expect {airport.planes[0]}.not_to eq plane
-  # end
+  it 'allows a plane to land again once taken off' do
+    allow(airport.weather).to receive(:rand).with(0..9) {0}
+    plane.land_at(airport)
+    plane.take_off_from(airport)
+    plane.land_at(airport)
+    expect(airport.planes[0]).to eq plane
+  end
 
   it 'cannot land if already landed' do
     allow(airport.weather).to receive(:rand).with(0..9) {0}

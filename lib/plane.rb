@@ -15,6 +15,7 @@ class Plane
   def take_off_from(airport)
     raise 'cannot take off in stormy weather' unless airport.clear?
     airport.planes.delete(self)
+    @landed = false
   end
 
   def at?(airport)
