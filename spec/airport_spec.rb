@@ -31,7 +31,7 @@ describe Airport do
     it 'stores a landed plane in the hangar' do
       allow(airport.weather).to receive(:rand).with(0..9) {3}
       plane.land_at(airport)
-      expect(airport.planes).to eq plane
+      expect(airport.planes[0]).to eq plane
     end
   
   end

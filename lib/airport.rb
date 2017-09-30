@@ -6,6 +6,7 @@ class Airport
 
   def initialize
     @weather = Weather.new
+    @planes = []
   end
 
   def clear?
