@@ -1,7 +1,11 @@
 require 'plane'
 
 class FakeAirport
+  attr_reader :parked_plane
 
+  def parked_plane
+
+  end
 end
 
 describe Plane do
@@ -14,7 +18,9 @@ describe Plane do
 
   describe "#takeoff" do
     it 'tells a plane to takeoff from an airport' do
+      airport = FakeAirport.new
       expect(plane.takeoff).to be true
+      expect(airport.parked_plane).to be_nil
     end
 
   end
