@@ -32,4 +32,8 @@ describe Airport do
     expect {subject.take_off(plane)}.to raise_error("Cannot take-off during a storm")
   end
 
+  it "won't allow landing after capacity reached" do
+    Airport::PLANE_CAPACITY.times {subject.land(plane)}
+    expect {subject.land(plane)}.to raise_error("Airport full")
+  end
 end
