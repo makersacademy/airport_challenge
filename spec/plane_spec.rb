@@ -18,4 +18,12 @@ describe Plane do
       expect(plane.in_the_air?).to eq true
     end
   end
+  describe "#airport_exited" do
+    it "expects a plane to save airport ID after it has taken off " do
+      airport1 = Airport.new
+      plane1 = Plane.new
+      plane1.take_off(airport1)
+      expect(plane1.airport_exited).to eq airport1.__id__
+    end
+  end
 end
