@@ -4,11 +4,20 @@ describe Airport do
   class Plane
   end
   let(:plane) { Plane.new }
-  it "should be able to instruct a plane to land" do
+  describe '#land_plane' do
+    it "should instruct a plane to land" do
     subject.land_plane(:plane)
-    expect(subject.planes).to eq :plane
+    expect(subject.planes[0]).to eq :plane
+    end
   end
-  it "should be able to instruct a plane to take off" do
-    expect(subject).to respond_to(:take_off).with(1).argument
+
+  describe '#take_off' do
+    it "should instruct a plane to take off" do
+      subject.land_plane(:plane)
+      expect(subject.take_off(:plane)).to eq :plane
+    end
+    it 'should raise and error if there are no planes' do
+      expect {subject.take_off(:plane)}.to raise_error "Sorry, no planes!" if subject.planes.empty?
+    end
   end
 end
