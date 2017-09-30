@@ -15,7 +15,8 @@ class Airport
 
   def take_off(plane)
     fail "Sorry, no planes!" if @planes.empty?
-    @planes.pop
+    @planes.delete(plane)
+    plane.landed = false
   end
 
 end
