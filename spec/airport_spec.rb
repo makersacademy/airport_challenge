@@ -5,10 +5,6 @@ describe Airport do
 
   subject(:airport) {Airport.new}
 
-  it 'clears plane for take off' do
-    expect(airport).to respond_to :clear?
-  end
-
   describe '#clear' do
     context 'not clear to take off' do
       it 'checks the weather' do
