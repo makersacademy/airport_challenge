@@ -1,11 +1,14 @@
 require 'plane'
+require 'airport'
 
 describe Plane do
+
+  subject(:plane) {Plane.new}
 
   describe '#land_at' do
 
     it 'responds to land_at method' do
-      expect(Plane.new).to respond_to(:land_at).with(1).arguments
+      expect(plane).to respond_to(:land_at).with(1).arguments
     end
 
   end
@@ -13,10 +16,10 @@ describe Plane do
   describe '#take_off_from' do
 
     it 'takes off from an airport' do
-      expect(Plane.new).to respond_to(:take_off_from).with(1).arguments
+      expect(plane).to respond_to(:take_off_from).with(1).arguments
     end
     it 'plane has left the airport' do
-      plane, airport = Plane.new, Airport.new
+      airport = Airport.new
       plane.land_at(airport)
       plane.take_off_from(airport)
       expect(plane).to_not be_at(airport)
