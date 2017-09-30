@@ -12,7 +12,8 @@ class Airport
   end
 
   def take_off
-    raise 'All planes have gone'
+    @plane
+  #  raise 'All planes have gone'
   end
 
 
