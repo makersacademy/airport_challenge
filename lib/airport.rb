@@ -4,8 +4,10 @@ class Airport
 
   def initialize
     @planes = []
-  end  
+  end
   def land(plane)
     @planes << plane
+  end
+  def take_off
   end
 end
