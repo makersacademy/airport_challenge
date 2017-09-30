@@ -12,7 +12,7 @@ describe Airport do
     end
 
     it 'has a limited capacity' do
-      subject.land(FakePlane.new)
+      20.times { subject.land(FakePlane.new) }
       expect { subject.land(FakePlane.new) }.to raise_error 'Airport is full!'
     end
   end
@@ -27,6 +27,5 @@ describe Airport do
     it 'warns if Airport is empty when attempting take off' do
       expect { subject.take_off }.to raise_error 'There are no planes!'
     end
-
   end
 end
