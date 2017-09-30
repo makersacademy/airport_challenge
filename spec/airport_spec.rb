@@ -18,8 +18,16 @@ describe Airport do
 
     it 'raises error if landing when airport is full' do
       plane = Plane.new
+      plane2 = Plane.new
       airport.land(plane)
-      expect { airport.land(plane) }.to raise_error 'Airport full!'
+      airport.land(plane2)
+      expect { airport.land(plane2) }.to raise_error 'Airport full!'
+    end
+
+    it 'raises error if plane is already landed' do
+      plane = Plane.new
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error 'Plane already landed!'
     end
   end
 
@@ -41,6 +49,13 @@ describe Airport do
     it 'raises error if taking off when empty' do
       plane = Plane.new
       expect { airport.takeoff(plane) }.to raise_error 'Airport empty!'
+    end
+
+    it 'raises error if plane is already airborne' do
+      plane = Plane.new
+      plane2 = Plane.new
+      airport.land(plane)
+      expect { airport.takeoff(plane2) }.to raise_error 'Plane already airborne!'
     end
   end
 end
