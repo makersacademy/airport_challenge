@@ -2,16 +2,17 @@ require 'weather'
 
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  PLANE_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
-    raise "Airport full" if @planes.length >= PLANE_CAPACITY
+    raise "Airport full" if @planes.length >= @capacity
     @planes << plane
   end
 
