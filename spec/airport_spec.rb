@@ -18,13 +18,22 @@ describe Airport do
       subject.take_off(plane)
       expect(plane.landed).to be false
     end
+    it 'will not release a plane when airport is empty' do
+      expect { subject.take_off(plane) }.to raise_error 'Airport empty!'
+    end
+    it 'removes plane from array once taken off' do
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes).not_to include plane
+    end
+
+
+
+
     # it 'raises a stormy weather error' do
     #   weather.stormy?
     #   expect { subject.take_off(plane) }.to raise_error 'Plane cannot take off due to storm'
     # end
-    it 'will not release a plane when airport is empty' do
-      expect { subject.take_off(plane) }.to raise_error 'Airport empty!'
-    end
   end
 
   describe 'land' do

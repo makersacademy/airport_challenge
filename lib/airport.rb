@@ -5,7 +5,7 @@ class Airport
 
   DEFAULT_CAPACITY=10
 
-  attr_reader :weather, :capacity
+  attr_reader :weather, :capacity, :planes
 
   def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @weather = weather
@@ -22,7 +22,7 @@ class Airport
   def take_off(plane)
     fail 'Airport empty!' if empty?
     # fail 'Plane cannot take off due to storm' if weather.stormy?
-    @planes.pop
+    @planes.delete(plane) #removed pop method because it is too specific
     plane.landed = false
   end
 
