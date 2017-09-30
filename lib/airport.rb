@@ -1,3 +1,10 @@
+require_relative '../lib/plane'
+
 class Airport
 
-end 
+  def plane_takeoff
+    plane = Plane.new
+    plane
+  end
+
+end

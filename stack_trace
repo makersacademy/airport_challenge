@@ -1,3 +1,9 @@
-(irb):1 uninitialized constant Airport
+(irb):1: uninitialized constant Airport
 
 airport_challenge/spec/airport_spec.rb:2: uninitialized constant Airport (NameError)
+
+(irb:3: NameError: uninitialized constant Plane
+
+./spec/airport_spec.rb:5: Failure/Error: expect(subject).to respond_to :plane_takeoff
+
+irb: 3: NameError: uninitialized constant Airport::Plane
