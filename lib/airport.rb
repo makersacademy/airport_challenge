@@ -10,7 +10,7 @@ class Airport
 
   def land(plane)
     fail 'Airport is full!' if full?
-    fail 'That plane is already landed!' if @planes.include? plane
+    fail 'That plane is already landed here!' if @planes.include? plane
     @planes << plane
     plane
   end

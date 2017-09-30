@@ -11,10 +11,10 @@ describe Airport do
       expect(subject.land(plane)).to eq plane
     end
 
-    it 'cannot land a plane that is already landed' do
+    it 'cannot land a plane that is already landed in current airport' do
       plane = FakePlane.new
       subject.land(plane)
-      expect { subject.land(plane) }.to raise_error 'That plane is already landed!'
+      expect { subject.land(plane) }.to raise_error 'That plane is already landed here!'
     end
 
     it 'has a default capacity' do
