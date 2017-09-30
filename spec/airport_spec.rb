@@ -3,8 +3,6 @@ require 'airport'
 describe Airport do
 
   let(:plane) { double(:plane) }
-  let(:fine_weather) { double(:weather, :stormy => false) }
-  let(:stormy_weather) { double(:weather, :stormy => true) }
 
   it 'can be assigned a name, but defaults to being called Heathrow' do
     expect(subject.name).to eq 'Heathrow'
@@ -22,12 +20,12 @@ describe Airport do
     expect { subject.deliver_new_plane plane }.to raise_error 'Plane already there'
   end
 
-  it 'allows planes to land at it if the weather is fine' do
+  it 'allows planes to land' do
     subject.register_arrival plane
     expect(subject.parked_planes[-1]).to eq plane
   end
 
-  it 'allows planes to take off from it in fine weather' do
+  it 'allows planes to take off' do
     subject.register_arrival plane
     subject.register_departure plane
     expect(subject.parked_planes).not_to include plane
@@ -49,10 +47,11 @@ describe Airport do
     expect(Airport.new('Manchester', 20).capacity).to eq 20
   end
 
-  it 'doesn\'t allow planes to land if it is full' do
+  it 'allows air traffic controllers to check if it is full' do
     airport = Airport.new('Paris Charles de Gaulle', 25)
+    expect(airport.full?).to eq false
     25.times { airport.register_arrival plane }
-    expect { airport.register_arrival plane }.to raise_error 'Airport full'
+    expect(airport.full?).to eq true
   end
 
 end

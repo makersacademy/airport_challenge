@@ -10,6 +10,7 @@ class Plane
     raise 'Already at airport' if airport.check_for_plane(self)
     raise 'Not in the air' unless @airborne
     raise 'Too dangerous to land' if weather.stormy
+    raise 'Airport full' if airport.full?
     @location = airport.name
     @airborne = false
     airport.register_arrival self

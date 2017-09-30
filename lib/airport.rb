@@ -15,7 +15,6 @@ class Airport
   end
 
   def register_arrival plane
-    raise 'Airport full' if @parked_planes.count >= @capacity
     @parked_planes << plane
   end
 
@@ -25,5 +24,9 @@ class Airport
 
   def check_for_plane plane
     @parked_planes.include? plane
+  end
+
+  def full?
+    @parked_planes.count >= @capacity
   end
 end

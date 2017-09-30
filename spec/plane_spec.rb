@@ -1,8 +1,9 @@
 require 'plane'
 
 describe Plane do
-  let(:airport_with_plane) { double(:airport, :register_departure => true, :check_for_plane => true, :name => 'Sydney') }
-  let(:airport_without_plane) { double(:airport, :register_arrival => true, :check_for_plane => false, :name => 'Berlin') }
+  let(:airport_with_plane) { double(:airport, :full? => false, :register_departure => true, :check_for_plane => true, :name => 'Sydney') }
+  let(:airport_without_plane) { double(:airport, :full? => false, :register_arrival => true, :check_for_plane => false, :name => 'Berlin') }
+  let(:full_airport_without_plane) { double(:airport, :full? => true, :check_for_plane => false) }
   let(:fine_weather) { double(:weather, :stormy => false) }
   let(:stormy_weather) { double(:weather, :stormy => true) }
 
@@ -64,6 +65,11 @@ describe Plane do
   it "won't land if the weather is stormy" do
     subject.take_off airport_with_plane, fine_weather
     expect { subject.land_at(airport_without_plane, stormy_weather) }.to raise_error 'Too dangerous to land'
+  end
+
+  it "won't land at a full airport" do
+    subject.take_off airport_with_plane, fine_weather
+    expect { subject.land_at(full_airport_without_plane, fine_weather) }.to raise_error 'Airport full'
   end
 
 end
