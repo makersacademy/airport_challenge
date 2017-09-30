@@ -1,7 +1,10 @@
 require 'airport'
 
 describe Airport do
+  subject(:airport) { Airport.new }
 
-  it { is_expected.to respond_to :land_plane }
+  describe 'landing planes' do
+    it { is_expected.to respond_to(:land).with(1).argument }
+  end
 
 end
