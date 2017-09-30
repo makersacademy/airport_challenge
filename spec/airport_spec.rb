@@ -1,7 +1,11 @@
 require 'airport'
 
 describe Airport do
-  it "shoule be able to land a plane" do
-  expect(subject).to respond_to(:land_plane).with(1).argument
+  class Plane
+  end
+  let(:plane) {Plane.new}
+  it "should be able to land a plane" do
+    subject.land_plane(:plane)
+    expect(subject.planes).to eq :plane
   end
 end
