@@ -2,6 +2,8 @@ require "airport"
 
 describe Airport do
 
+  subject = Airport.new(10)
+
   describe '#takeoff' do
 
     it 'allows an airport to let a plane takeoff' do
@@ -15,11 +17,6 @@ describe Airport do
 
       it 'has the land method receive a plane' do
       expect(subject).to respond_to(:land).with(1).argument
-    end
-
-    it 'raises an error when airport is full' do
-    10.times {subject.land(Plane.new)}
-    expect {subject.land(Plane.new)}.to raise_error "Airport full"
     end
 
     it 'raises an error when airport is full' do
