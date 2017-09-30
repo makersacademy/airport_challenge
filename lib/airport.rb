@@ -2,11 +2,12 @@ require "plane"
 
 class Airport
 
-def takeoff
+  def takeoff
   Plane.new
-end
+  end
 
-def land(plane)
-end
+  def land(plane)
+  plane
+  end
 
 end
