@@ -52,7 +52,7 @@ describe 'Flights between airports' do
     fourth_plane.land_at heathrow, weather
 
     weather = Weather.new
-    while !weather.stormy
+    until weather.stormy
       weather = Weather.new
     end
 
