@@ -9,6 +9,10 @@ describe Plane do
       expect(subject).to respond_to :land
     end
 
+    it "should not take off when the weather is stormy" do
+      expect { subject.land(weather.stormy?) }.to raise_error("Weather stormy -> can't land!")
+    end
+
   end
 
   describe "#taking off" do
