@@ -20,6 +20,11 @@ describe Plane do
       airport.capacity.times { Plane.new.land_at(airport) }
       expect {plane.land_at(airport)}.to raise_error 'cannot land at full airport'
     end 
+    it 'cannot land if already landed' do
+      allow(airport.weather).to receive(:rand).with(0..9) {0}
+      plane.land_at(airport)
+      expect {plane.land_at(airport)}.to raise_error 'plane has already landed'
+    end
 
   end
 
@@ -31,25 +36,18 @@ describe Plane do
       plane.take_off_from(airport)
       expect(airport.planes[0]).to_not eq plane
     end
+    it 'allows a plane to land again once taken off' do
+      allow(airport.weather).to receive(:rand).with(0..9) {0}
+      plane.land_at(airport)
+      plane.take_off_from(airport)
+      plane.land_at(airport)
+      expect(airport.planes[0]).to eq plane
+    end
     it 'raises error if weather is stormy' do
       allow(airport.weather).to receive(:rand).with(0..9) {9}
       expect {plane.take_off_from(airport)}.to raise_error 'cannot take off in stormy weather'
     end
 
-  end
-
-  it 'allows a plane to land again once taken off' do
-    allow(airport.weather).to receive(:rand).with(0..9) {0}
-    plane.land_at(airport)
-    plane.take_off_from(airport)
-    plane.land_at(airport)
-    expect(airport.planes[0]).to eq plane
-  end
-
-  it 'cannot land if already landed' do
-    allow(airport.weather).to receive(:rand).with(0..9) {0}
-    plane.land_at(airport)
-    expect {plane.land_at(airport)}.to raise_error 'plane has already landed'
   end
 
 end
