@@ -2,10 +2,11 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new }
+  let(:plane) { double(:plane) }
   it "#report_weather should return a random weather condition" do
     count = 0
     10.times { count += 1 if airport.report_weather != airport.report_weather }
-    expect(count).to be > 5
+    expect(count).to be > 3
   end
 
   context "In Stormy weather" do
@@ -76,7 +77,54 @@ describe Airport do
     expect(airport.prevent_landing).to eq false
   end
 
-  
+  it "should initialise an Airport instance with 500 available spots for planes" do
+    expect(airport.capacity).to eq 500
+  end
 
+  it "should initialise an Airport instance with 100 available spots for planes" do
+    airport_instance = Airport.new(100)
+    expect(airport_instance.capacity).to eq 100
+  end
+
+  it "should initialize an empty array" do
+    expect(airport.landed_airplanes).to be_instance_of Array
+  end
+
+  it "#request_to_land should return true if a plane lands at the airport" do
+    allow(airport).to receive(:full?).and_return(false)
+    allow(airport).to receive(:stormy?).and_return(false)
+    expect(airport.request_to_land(plane)).to eq true
+  end
+
+  it "#request_to_land should return false if a plane cannot land at the airport" do
+    allow(airport).to receive(:full?).and_return(true)
+    expect(airport.request_to_land(plane)).to eq false
+  end
+
+  it "#request_to_land should increase the landed_airplanes counter by one" do
+    count = airport.landed_airplanes.count
+    allow(airport).to receive(:prevent_landing).and_return(false)
+    airport.request_to_land(plane)
+    expect(airport.landed_airplanes.count - 1).to eq count
+  end
+
+  it "#request_to_take_off should return true if take off takes place" do
+    allow(airport).to receive(:prevent_take_off).and_return(false)
+    expect(airport.request_to_take_off(plane)).to eq true
+  end
+
+  it "#request_to_take_off should return false if take off cannot take place" do
+    allow(airport).to receive(:prevent_take_off).and_return(true)
+    expect(airport.request_to_take_off(plane)).to eq false
+  end
+
+  it "#request_to_take_off should decrease the landed_airplanes counter by one" do
+    allow(airport).to receive(:prevent_landing).and_return(false)
+    airport.request_to_land(plane) 
+    count = airport.landed_airplanes.count
+    allow(airport).to receive(:prevent_take_off).and_return(false)
+    airport.request_to_take_off(plane)
+    expect(airport.landed_airplanes.count + 1).to eq count
+  end
 end      
     

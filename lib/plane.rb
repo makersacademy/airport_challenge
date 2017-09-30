@@ -1,17 +1,19 @@
 class Plane
   def initialize
-    @at_the_airport = true
+    @airport = nil
   end
 
   def land_at(airport)
-    airport
+    raise("Airplane cannot land while already landed") if at_the_airport?
+    @airport = airport if airport.request_to_land(self)
   end
   
   def take_off
-    @at_the_airport = false
+    raise("Airplane cannot take off while flying") unless at_the_airport?
+    @airport = nil if @airport.request_to_take_off(self)
   end
 
   def at_the_airport?
-    @at_the_airport
+    !@airport.nil?
   end
 end
