@@ -9,7 +9,7 @@ describe Airport do
       expect(subject.land(plane)).to eq plane
     end
     it 'raises an error when airport is full' do
-      subject.land(Plane.new)
+      10.times {subject.land(Plane.new)}
       expect {subject.land Plane.new }.to raise_error "Airport is full!"
     end
   end
@@ -23,6 +23,7 @@ describe Airport do
     subject.land(plane)                            # we need to state that a plane has landed for it to take-off.
     expect(subject.take_off).to eq plane           # Subject(Airport.new) will be empty without a plane
   end
+
   it "raises and error attempting to take_off a plane that does not exist " do
     expect {subject.take_off}.to raise_error "no planes available for take-off!"
   end
