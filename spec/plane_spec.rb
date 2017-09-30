@@ -35,15 +35,11 @@ describe Plane do
 
   end
 
-  describe '#at?' do
-
-    it 'confirm if plane is at the airport' do
-      allow(airport.weather).to receive(:rand).with(0..9) {0}
-      plane.land_at(airport)
-      plane.take_off_from(airport)
-      expect(plane).to_not be_at(airport)
-    end
-
+  it 'confirm if plane is at the airport' do
+    allow(airport.weather).to receive(:rand).with(0..9) {0}
+    plane.land_at(airport)
+    plane.take_off_from(airport)
+    expect(airport.planes[0]).to_not eq plane
   end
 
 end
