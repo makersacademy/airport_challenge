@@ -1,4 +1,5 @@
 require 'weather'
+require 'plane'
 
 class Airport
 
@@ -13,6 +14,7 @@ class Airport
 
   def land(plane)
     raise "Airport full" if @planes.length >= @capacity
+    raise "Plane is grounded" if !plane.flying
     @planes << plane
   end
 
