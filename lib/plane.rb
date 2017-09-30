@@ -5,7 +5,7 @@ class Plane
   end
 
   def depart_from_airport
-
+    true
   end
 
 end
