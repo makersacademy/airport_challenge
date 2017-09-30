@@ -1,6 +1,10 @@
-require "plane"
+require_relative "plane"
 
 class Airport
+
+  def planes
+
+  end
 
   def takeoff
   Plane.new
