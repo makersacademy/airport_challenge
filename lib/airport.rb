@@ -18,9 +18,10 @@ class Airport
   end
 
   def take_off(plane)
-    fail 'Plane cannot take off due to storm' if weather.stormy?
+    fail 'Airport empty!' if @planes.empty?
+    # fail 'Plane cannot take off due to storm' if weather.stormy?
+    @planes.pop
     plane.landed = false
-    @plane = plane
   end
 
 end
