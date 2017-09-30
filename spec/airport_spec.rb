@@ -33,4 +33,13 @@ describe Airport do
     expect(subject.check_for_plane plane).to eq false
   end
 
+  it 'has a default capacity of 30 planes' do
+    expect(subject.capacity).to eq 30
+  end
+
+  it 'allows the system administrator to alter the capacity of each airport' do
+    expect(Airport.new(40).capacity).to eq 40
+    expect(Airport.new(20).capacity).to eq 20
+  end
+
 end
