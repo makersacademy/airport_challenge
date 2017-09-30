@@ -1,7 +1,11 @@
 class Weather
 
   def stormy?
-    true
+    if rand(0..10) == 1
+      return true
+    else
+      false
+    end
   end
 
 end

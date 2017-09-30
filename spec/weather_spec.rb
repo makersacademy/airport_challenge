@@ -5,5 +5,13 @@ describe Weather do
     it 'generates a boolean for deciding weather pattern' do
       expect(subject.stormy?).to be(true).or be(false)
     end
+    it 'produces a mostly non stormy response' do
+      weather_pattern = []
+      2000.times { weather_pattern << subject.stormy? }
+      true_count = 0
+      weather_pattern.each { |weather| true_count += 1 if weather == true }
+      true_count = true_count.to_f/2000
+      expect(true_count).to be <= 0.1
+    end
   end
 end
