@@ -11,4 +11,6 @@ end
    expect(subject.depart_from_airport).to eq true
  end
 
+it { is_expected.to respond_to :stormy_weather?}
+
 end

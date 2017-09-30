@@ -8,4 +8,8 @@ class Plane
     true
   end
 
+  def stormy_weather?
+
+  end
+
 end
