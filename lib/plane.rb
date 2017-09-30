@@ -11,11 +11,17 @@ class Plane
 
   def land(airport)
     raise 'argument is not an airport object' unless airport?(airport)
+    if airport.blocked_airport == true
+      raise 'Plane cannot take off because the airport is having technical difficulties'
+    end
     @in_the_air = false
     return
   end
 
   def take_off(airport)
+    if airport.blocked_airport == true
+      raise 'Plane cannot take off because the airport is having technical difficulties'
+    end
     @in_the_air = true if airport?(airport)
     @airport_exited << airport.__id__
     return
