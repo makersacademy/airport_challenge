@@ -8,6 +8,7 @@ describe Airport do
   end
 
   it 'allows planes to take off from it' do
+    subject.land plane
     subject.leave plane
     expect(subject.parked_planes).not_to include plane
   end
