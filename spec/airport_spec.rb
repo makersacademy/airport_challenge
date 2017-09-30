@@ -51,5 +51,32 @@ describe Airport do
     allow(airport).to receive(:stormy?).and_return(false)
     expect(airport.prevent_landing).to eq false
   end
+
+  it "#prevent_landing returns true if the weather is stormy and the airport is not full" do
+    allow(airport).to receive(:stormy?).and_return(true)
+    allow(airport).to receive(:full?).and_return(false)
+    expect(airport.prevent_landing).to eq true
+  end
+
+  it "#prevent_landing returns true if the weather is not stormy and the airport is full" do
+    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport).to receive(:full?).and_return(true)
+    expect(airport.prevent_landing).to eq true
+  end
+
+  it "#prevent_landing returns true if the weather is stormy and the airport is full" do
+    allow(airport).to receive(:stormy?).and_return(true)
+    allow(airport).to receive(:full?).and_return(true)
+    expect(airport.prevent_landing).to eq true
+  end
+
+  it "#prevent_landing returns false if the weather is not stormy and the airport is not full" do
+    allow(airport).to receive(:stormy?).and_return(false)
+    allow(airport).to receive(:full?).and_return(false)
+    expect(airport.prevent_landing).to eq false
+  end
+
+  
+
 end      
     
