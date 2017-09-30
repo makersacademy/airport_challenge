@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
 
   attr_reader :planes
@@ -10,7 +12,12 @@ class Airport
     @planes << plane
   end
 
+  def stormy?
+    Weather.new.stormy?
+  end
+
   def take_off(plane)
+    raise "Cannot take-off during a storm" if stormy?
     departed_plane = @planes.pop
     puts "Plane has departed" if departed? departed_plane
   end
