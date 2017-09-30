@@ -13,7 +13,7 @@ describe Plane do
       plane = Plane.new
       airport3 = Airport.new
       airport3.blocked_airport = true
-      expect { plane.land(airport3) }.to raise_error(RuntimeError, 'Plane cannot take off because the airport is having technical difficulties')
+      expect { plane.land(airport3) }.to raise_error(RuntimeError, 'Plane cannot land because the airport is having technical difficulties')
     end
 
   end
