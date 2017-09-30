@@ -1,25 +1,32 @@
 require 'airport.rb'
 
+class FakePlane
+end
+
 describe Airport do
 
   describe 'landing planes' do
     it 'lands a plane' do
-      plane = Plane.new
+      plane = FakePlane.new
       expect(subject.land(plane)).to eq plane
     end
 
     it 'has a limited capacity' do
-      subject.land(Plane.new)
-      expect { subject.land(Plane.new) }.to raise_error 'Airport is full!'
+      subject.land(FakePlane.new)
+      expect { subject.land(FakePlane.new) }.to raise_error 'Airport is full!'
     end
-
   end
 
   describe 'taking planes off' do
     it 'lets a plane take off' do
-      plane = Plane.new
+      plane = FakePlane.new
       subject.land(plane)
       expect(subject.take_off).to eq plane
     end
+
+    it 'warns if Airport is empty when attempting take off' do
+      expect { subject.take_off }.to raise_error 'There are no planes!'
+    end
+
   end
 end

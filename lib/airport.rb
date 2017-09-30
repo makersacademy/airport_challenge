@@ -8,6 +8,7 @@ class Airport
   end
 
   def take_off
+    fail 'There are no planes!' unless @plane
     @plane
   end
 
