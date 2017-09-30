@@ -7,6 +7,8 @@ describe Airport do
     expect(subject.planes[0]).to eq(plane)
   end
   it "releases planes after take-off" do
-    expect(subject).to respond_to(:take_off)
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.planes).to eq([])
   end
 end

@@ -8,6 +8,7 @@ class Airport
   def land(plane)
     @planes << plane
   end
-  def take_off
+  def take_off(plane)
+    @planes.pop
   end
 end
