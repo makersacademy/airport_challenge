@@ -1,6 +1,10 @@
 class Weather
 
   def stormy?
-    true
+    weather_now == 0
+  end
+
+  def weather_now
+    rand(20)
   end
 end
