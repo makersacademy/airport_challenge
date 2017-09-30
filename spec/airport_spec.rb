@@ -29,11 +29,23 @@ describe Airport do
   describe "#capacity" do
 
     let(:subject) { Airport.new(5) }
-    
+
     it "when airport object is being instantiated, should accept an argument of capacity" do
       expect(subject.capacity).to eq 5
     end
 
   end
+  
+  # describe "#weather" do
+  #
+  #   it "should respond_to to the method stormy?" do
+  #     expect(subject).to respond_to :stormy?
+  #   end
+  #
+  #   it "the stormy? method should return a boolean" do
+  #     expect(subject.stormy?.class).to eq(Boolean)
+  #   end
+  #
+  # end
 
 end
