@@ -7,8 +7,9 @@ class Airport
     @planes = []
   end
 
-  def land_plane(plane)
+  def land_plane(plane, landed = true)
     fail "Sorry plane has already landed!" if @planes.include? plane
+    plane.landed = landed
     @planes << plane
   end
 
