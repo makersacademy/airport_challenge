@@ -12,6 +12,7 @@ class Airport
   end
 
   def take_off
+    fail 'All planes have gone' unless @plane
     @plane
   #  raise 'All planes have gone'
   end
