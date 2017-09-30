@@ -2,7 +2,6 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { Airport.new }
-  let(:planes) { double :planes }
 
   context 'Landing' do
     describe '#landing' do

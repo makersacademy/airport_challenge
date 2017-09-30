@@ -5,16 +5,19 @@ class Airport
 
   def initialize
     @planes = []
+    @capacity = 1
   end
 
   def land(plane)
     @planes << plane
-    plane.landed = true
+    plane.land
+    plane
   end
 
   def takeoff(plane)
-    planes.drop(1)
-    plane.landed = false
+    planes.delete(plane)
+    plane.takeoff
+    plane
   end
 
 end
