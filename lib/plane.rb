@@ -12,11 +12,13 @@ class Plane
   def land(airport)
     raise 'argument is not an airport object' unless airport?(airport)
     @in_the_air = false
+    return
   end
 
   def take_off(airport)
     @in_the_air = true if airport?(airport)
     @airport_exited << airport.__id__
+    return
   end
 
   def in_the_air?
