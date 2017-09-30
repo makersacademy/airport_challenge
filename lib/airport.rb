@@ -2,9 +2,7 @@ require_relative "plane"
 
 class Airport
 
-  def plane
-    @plane
-  end
+  attr_reader :plane
 
   def takeoff
   Plane.new
