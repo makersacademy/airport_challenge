@@ -11,6 +11,10 @@ describe Plane do
     it 'responds to land_at method' do
       expect(plane).to respond_to(:land_at).with(1).arguments
     end
+    it 'raises error if weather is stormy' do
+      allow(airport.weather).to receive(:rand).with(0..9) {9}
+      expect {plane.land_at(airport)}.to raise_error 'cannot land in stormy weather'
+    end
 
   end
 
