@@ -20,8 +20,10 @@ class Plane
     @landed = false
   end
 
-  def at?(airport)
-    airport.planes.include?(self)
-  end
+  private
+
+    def at?(airport)
+      airport.planes.include?(self)
+    end
 
 end
