@@ -21,3 +21,26 @@ I want to prevent landing when the airport is full
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+
+Verbs
+land
+take off
+confirm not in airport
+prevent takeoff
+prevent landing
+overide default capacity
+
+Nouns
+passengers
+plane
+airport
+
+
+Objects         | Messages
+-------------   | -------------
+airport         |land
+airport         |take off
+airport         |full
+
+Airport <-- land --> add plane
+Airport <-- takeoff --> release plane
