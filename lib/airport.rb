@@ -17,7 +17,7 @@ class Airport
 
   def take_off
     fail 'There are no planes!' if empty?
-    @planes.pop
+    @planes.pop.taken_off
   end
 
   private

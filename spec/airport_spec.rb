@@ -1,6 +1,13 @@
 require 'airport.rb'
 
 class FakePlane
+
+  attr_accessor :status
+
+  def taken_off
+    @status = "Taken off"
+  end
+
 end
 
 describe Airport do
@@ -33,7 +40,7 @@ describe Airport do
     it 'lets a plane take off' do
       plane = FakePlane.new
       subject.land(plane)
-      expect(subject.take_off).to eq plane
+      expect(subject.take_off).to eq "Taken off"
     end
 
     it 'warns if Airport is empty when attempting take off' do
