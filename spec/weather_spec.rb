@@ -7,7 +7,7 @@ describe Weather do
 
   it 'is "stormy" approximately 10% of the time' do
     storminess_array = []
-    10_000.times { storminess_array << subject.stormy }
+    10_000.times { storminess_array << Weather.new.stormy }
     proportion_stormy_times = storminess_array.count(true).to_f / storminess_array.count(false).to_f
     expect(proportion_stormy_times).to be_between(0.08, 0.12)
   end
