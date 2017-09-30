@@ -2,7 +2,7 @@ class Plane
 
   def land_at(airport)
     raise 'cannot land in stormy weather' unless airport.clear?
-    raise 'cannot land at full airport' unless airport.planes.empty?
+    raise 'cannot land at full airport' unless airport.planes.count < airport.capacity
     airport.planes << self
   end
 

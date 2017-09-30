@@ -17,7 +17,7 @@ describe Plane do
     end
     it 'raise error if trying to land at a full airport' do
       allow(airport.weather).to receive(:rand).with(0..9) {0}
-      plane.land_at(airport)
+      airport.capacity.times { plane.land_at(airport) }
       expect {plane.land_at(airport)}.to raise_error 'cannot land at full airport'
     end 
 
