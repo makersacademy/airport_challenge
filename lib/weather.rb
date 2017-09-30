@@ -1,7 +1,7 @@
 class Weather
 
   def stormy?
-    true
+    rand(9) == 9 ? true : false
   end
 
 end
