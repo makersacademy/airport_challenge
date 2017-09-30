@@ -6,8 +6,12 @@ describe Airport do
   expect(subject).to respond_to :takeoff
   end
 
+  describe '#takeoff' do
   it 'allows an airport to let a plane takeoff' do
-  expect(subject.takeoff).to be_instance_of(Plane)
+  plane = Plane.new
+  subject.land(plane)
+  expect(subject.takeoff).to eq plane
+    end
   end
 
   it 'has the land method receive a plane' do
@@ -28,5 +32,7 @@ describe Airport do
     subject.land(plane)
     expect(subject.plane).to eq plane
   end
+
+
 
 end
