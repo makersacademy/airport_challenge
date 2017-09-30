@@ -8,7 +8,7 @@ Airport         |
 
 
 
-As an air traffic controller
+As an air traffic controllera
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
