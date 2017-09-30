@@ -2,8 +2,8 @@ Objects         | Messages
 -------------   | -------------
 Passengers      |
 Airport         | land
-Aiport          | take-off
-Airpoot         | status - air or ground
+Airport         | take-off
+Airport         | status - air or ground
 Airport         |
 
 
