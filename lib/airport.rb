@@ -11,4 +11,7 @@ class Airport
   def take_off(plane)
     @planes.pop
   end
+  def departed?
+    true
+  end
 end

@@ -11,4 +11,7 @@ describe Airport do
     subject.take_off(plane)
     expect(subject.planes).to eq([])
   end
+  it "confirms last plane departed from airport" do
+    expect(subject.departed?).to eq(true)
+  end
 end
