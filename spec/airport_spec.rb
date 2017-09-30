@@ -12,7 +12,7 @@ describe Airport do
     end
 
     it 'has a limited capacity' do
-      20.times { subject.land(FakePlane.new) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(FakePlane.new) }
       expect { subject.land(FakePlane.new) }.to raise_error 'Airport is full!'
     end
   end
