@@ -21,6 +21,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Plane not in airport" if !@planes.include? plane
     raise "Cannot take-off during a storm" if stormy?
     departed_plane = @planes.pop
     puts "Plane has departed" if departed? departed_plane

@@ -3,7 +3,6 @@ require 'airport'
 describe Airport do
   let :plane {double :plane}
 
-
   it "stores landed planes" do
     subject.land(plane)
     expect(subject.planes[0]).to eq(plane)
@@ -40,5 +39,9 @@ describe Airport do
   it "has an adjustable plane capacity" do
     subject = Airport.new(0)
     expect(subject.capacity).to eq(0)
+  end
+
+  it "only releases planes it contains" do
+    expect {subject.take_off(plane)}.to raise_error("Plane not in airport")
   end
 end
