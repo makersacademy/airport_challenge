@@ -1,17 +1,21 @@
 require 'airport'
-
-class FakeAeroplane
-
-end
+require 'aeroplane'
 
 describe Airport do
 
   let(:subject)   {Airport.new}
+  let(:plane)     {Aeroplane.new}
 
-  it 'allows a plane to land in the airport' do
-    plane = FakeAeroplane.new
-    expect(subject.land(plane)).to eq plane
+  describe 'take_off' do
+    it 'allows a plane to take off and confirms it is no longer in the airport' do
+      subject.take_off(plane)
+      expect(plane.landed).to be false
+    end
   end
 
-  it { is_expected.to respond_to(:take_off).with(1).argument }
+  it 'allows a plane to land in the airport' do
+     subject.land(plane)
+     expect(plane.landed).to be true
+  end
+
 end
