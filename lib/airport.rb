@@ -11,11 +11,12 @@ class Airport
   end
 
   def take_off(plane)
-    departed? @planes.pop
+    departed_plane = @planes.pop
+    puts "Plane has departed" if departed? departed_plane
   end
 
   def departed?(plane)
-    puts "Plane departed from airport" if !@planes.include?(plane)
+    !@planes.include?(plane)
   end
 
 end
