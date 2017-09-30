@@ -2,6 +2,7 @@ require 'plane'
 describe Plane do
 
   let(:weather) { double(:weather, stormy?: true) }
+  # let(:airport) { double(:airport, :accept_plane) }
 
   describe "#landing" do
 
