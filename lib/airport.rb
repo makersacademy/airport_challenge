@@ -7,4 +7,8 @@ class Airport
     plane
   end
 
+  def land_plane(plane)
+
+  end 
+
 end

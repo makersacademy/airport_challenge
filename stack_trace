@@ -7,3 +7,5 @@ airport_challenge/spec/airport_spec.rb:2: uninitialized constant Airport (NameEr
 ./spec/airport_spec.rb:5: Failure/Error: expect(subject).to respond_to :plane_takeoff
 
 irb: 3: NameError: uninitialized constant Airport::Plane
+
+rspec ./spec/airport_spec.rb:9: expected #<Airport:0x007faab0aec510> to respond to :land_plane with 1 argument

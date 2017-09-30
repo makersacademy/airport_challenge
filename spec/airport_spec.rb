@@ -6,6 +6,9 @@ describe Airport do
 
   it { is_expected.to respond_to :plane_takeoff }
 
+  it { is_expected.to respond_to(:land_plane).with(1).argument }
+
+
 
 
 end
