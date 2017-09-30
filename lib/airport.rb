@@ -17,4 +17,8 @@ class Airport
     !@weather.stormy
   end
 
+  def full?
+    @planes.count >= @capacity
+  end
+
 end

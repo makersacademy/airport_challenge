@@ -6,8 +6,8 @@ class Plane
 
   def land_at(airport)
     raise 'plane has already landed' if @landed
+    raise 'cannot land at full airport' if airport.full?
     raise 'cannot land in stormy weather' unless airport.clear?
-    raise 'cannot land at full airport' unless airport.planes.count < airport.capacity
     airport.planes << self
     @landed = true
   end
