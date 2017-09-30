@@ -9,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Airport full" if @plane
   @plane = plane
   end
 
