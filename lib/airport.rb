@@ -12,8 +12,4 @@ class Airport
 
   end
 
-  # def weather
-  #   Weather.new
-  # end
-
 end
