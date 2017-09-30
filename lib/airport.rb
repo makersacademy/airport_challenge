@@ -15,15 +15,17 @@ class Airport
 
   def land(plane)
     fail 'Airport full!' if full?
+    fail 'This plane has already landed!' if @planes.include? plane
+    plane.land
     @planes << plane
-    plane.landed = true
   end
 
   def take_off(plane)
     fail 'Airport empty!' if empty?
+    fail 'This plane is on flight!' unless @planes.include? plane
     # fail 'Plane cannot take off due to storm' if weather.stormy?
-    @planes.delete(plane) #removed pop method because it is too specific
-    plane.landed = false
+    plane.fly
+    @planes.delete(plane)
   end
 
   private
@@ -34,4 +36,5 @@ class Airport
   def empty?
     @planes.empty?
   end
+
 end

@@ -12,7 +12,7 @@ describe Airport do
     expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
-  describe 'take_off(plane)' do
+  describe 'take_off' do
     it 'allows a plane to take off' do
       subject.land(plane)
       subject.take_off(plane)
@@ -26,10 +26,10 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.planes).not_to include plane
     end
-
-
-
-
+    it 'raises error if the plane is already flying' do
+      subject.land(plane)
+      expect { subject.take_off(Aeroplane.new) }.to raise_error 'This plane is on flight!'
+    end
     # it 'raises a stormy weather error' do
     #   weather.stormy?
     #   expect { subject.take_off(plane) }.to raise_error 'Plane cannot take off due to storm'
@@ -45,7 +45,13 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.land(Aeroplane.new) }
       expect { subject.land(Aeroplane.new) }.to raise_error 'Airport full!'
     end
+    it 'keeps track of the plane once landed' do
+      subject.land(plane)
+      expect(subject.planes).to include plane
+    end
+    it 'raises an error if plane has already landed' do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error 'This plane has already landed!'
+    end
   end
-
-
 end
