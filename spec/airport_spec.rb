@@ -26,4 +26,14 @@ describe Airport do
 
   end
 
+  describe "#capacity" do
+
+    let(:subject) { Airport.new(5) }
+    
+    it "when airport object is being instantiated, should accept an argument of capacity" do
+      expect(subject.capacity).to eq 5
+    end
+
+  end
+
 end
