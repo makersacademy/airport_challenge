@@ -10,10 +10,6 @@ describe Airport do
   expect(subject.takeoff).to be_instance_of(Plane)
   end
 
-  it 'responds to land' do
-    expect(subject).to respond_to :land
-  end
-
   it 'has the land method receive a plane' do
     expect(subject).to respond_to(:land).with(1).argument
   end
