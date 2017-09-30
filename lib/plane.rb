@@ -4,4 +4,9 @@ class Plane
     @destination = airport
     airport.land self
   end
+
+  def take_off airport
+    @destination = nil
+    airport.leave self
+  end
 end
