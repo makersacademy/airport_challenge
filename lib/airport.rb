@@ -31,8 +31,7 @@ class Airport
   private 
 
     def cleared?
-      @weather.set
-      !@weather.stormy
+      !@weather.stormy?
     end
 
     def here?(plane)

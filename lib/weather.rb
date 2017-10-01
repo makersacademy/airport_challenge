@@ -1,9 +1,15 @@
 class Weather
 
-  attr_accessor :stormy
-
-  def set
-    @stormy = rand(0..9) == 9
+  def stormy?
+    randomize == :stormy
   end
+  
+  private
+  
+  OUTLOOKS = [:stormy, :sunny, :sunny, :sunny, :sunny]
+  
+    def randomize
+      OUTLOOKS.sample
+    end
 
 end
