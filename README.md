@@ -89,3 +89,10 @@ OBJECTS | MESSAGES |
   To ensure safety
   I want to prevent landing when weather is stormy
   ```
+  ## User Story 6 - Set default capacity for airport
+
+  ```
+  As the system designer
+  So that the software can be used for many different airports
+  I would like a default airport capacity that can be overridden as appropriate
+  ```

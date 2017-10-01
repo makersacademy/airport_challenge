@@ -5,6 +5,20 @@ describe Airport do
   subject(:plane) { Plane.new }
   subject(:weather) { Weather.new }
 
+  describe 'default capacity' do
+    it "should default to 20 planes to land in airport" do
+      airport.weather.all_clear
+      20.times { airport.land_at_airport(Plane.new) }
+      expect { airport.land_at_airport(Plane.new) }.to raise_error "Airport full!"
+    end
+    it "this number should be changeable" do
+      new_airport = Airport.new(5)
+      new_airport.weather.all_clear
+      5.times { new_airport.land_at_airport(Plane.new) }
+      expect { new_airport.land_at_airport(Plane.new) }.to raise_error "Airport full!"
+    end
+  end
+
   describe '#land_at_airport' do
     it "instructs planes to land at an airport" do
       airport.weather.all_clear
@@ -22,12 +36,6 @@ describe Airport do
       airport.weather.all_clear
       airport.land_at_airport(plane)
       expect { airport.land_at_airport(plane) }.to raise_error "Plane already landed!"
-    end
-
-    it "should allow up to 20 planes to land" do
-      airport.weather.all_clear
-      20.times { airport.land_at_airport(Plane.new) }
-      expect { airport.land_at_airport(Plane.new) }.to raise_error "Airport full!"
     end
 
     it "doesn't allow a plane to land if weather is stormy" do
