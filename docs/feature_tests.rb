@@ -101,3 +101,10 @@
 
 # this shows i need to add give Airport class an arugment of capacity
 # allowing you to set the capactiiy when you create an airport
+
+#so now these feature tests work:
+2.4.0 :226 > load p_path
+ => true
+2.4.0 :227 > airport = Airport.new(8)
+ => #<Airport:0x007fb5a90e2c50 @planes=[], @capacity=8>
+2.4.0 :228 >
