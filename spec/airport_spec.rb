@@ -56,6 +56,12 @@ end
 
   end
 
+    describe '#storms?' do
+      it 'responds to storms?' do
+      expect(subject).to respond_to :storms?
+      end
+    end
+
     it 'responds to planes' do
     expect(subject).to respond_to :planes
     end

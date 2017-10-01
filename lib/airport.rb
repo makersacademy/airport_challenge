@@ -20,9 +20,11 @@ class Airport
   end
 
   def confirm_if_plane_in_airport(plane)
-  value = @planes.include? plane
-  "#{plane} is in the airport" if value == true
+  "#{plane} is in the airport" if @planes.include? plane
   "#{plane} is not in the airport"
+  end
+
+  def storms?
   end
 
   private
