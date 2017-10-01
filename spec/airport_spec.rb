@@ -14,7 +14,8 @@ describe Airport do
     expect(airport.takeoff(plane)).to eq('Plane has taken off safely')
   end
 
-  # it "When a plane takes off it reduces the number of planes in the airport by one" do
+  it "Confirms taken off plane is no longer in airport" do
+    expect(plane).to be_taken_off
+  end
 
-  # end
 end
