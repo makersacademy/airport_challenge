@@ -1,18 +1,28 @@
 require 'plane'
 require 'airport'
+require 'weather'
 
-describe Airport do
-  let(:jfk) { Airport.new }
-  let(:airbus380) { Plane.new }
-  it 'lands planes' do
-    jfk.land_plane(airbus380)
-    expect(airbus380.landed?).to eq true
-    puts "A plane has landed at the airport" if airbus380.landed?
+
+describe 'Air Traffic Control' do
+  heathrow = Airport.new('Heathrow', 30)
+  boeing747 = Plane.new
+  weather = Weather.new
+
+  #User Story 1
+  it 'can land a plane' do
+    heathrow.land_plane(boeing747, weather)
+    puts "The plane has landed at #{heathrow.name} = #{boeing747.landed?}"
   end
-  it 'instructs planes to take off' do
-    jfk.land_plane(airbus380)
-    jfk.take_off(airbus380)
-    expect(airbus380.landed?).to eq false
-    puts "The plane has taken off" unless airbus380.landed?
+
+  #User Story 2
+  it 'can instruct a plane to take off' do
+    heathrow.take_off(boeing747, weather)
+    puts "The plane is still at #{heathrow.name} = #{boeing747.landed?}"
   end
+
+  #User Story 2
+  it 'can check a plane has left the airport' do
+    p boeing747.landed?
+  end
+
 end

@@ -8,7 +8,7 @@ describe Plane do
     end
   end
 
-  let(:airport) {FakeAirport.new}
+  let(:airport) { FakeAirport.new }
 
   describe '#initialize' do
     it 'should be flying' do
