@@ -2,16 +2,19 @@ require "airport"
 
 describe Airport do
 
-  subject = Airport.new(10)
-
   describe '#takeoff' do
 
     it 'allows an airport to let a plane takeoff' do
       plane = Plane.new
       subject.land(plane)
-    expect(subject.takeoff).to eq plane
+    expect(subject.takeoff(plane)).to eq plane
     end
+
+  it 'has the takeoff method receive a plane as argument' do
+  expect(subject).to respond_to(:takeoff).with(1).argument
   end
+
+end
 
   describe '#land' do
 
