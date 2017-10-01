@@ -9,4 +9,7 @@ class Plane
     @landed
   end
 
+  def parked_at
+  end
+
 end
