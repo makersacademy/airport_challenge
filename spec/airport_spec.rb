@@ -23,6 +23,10 @@ describe Airport do
       it 'should hold zero amount of planes' do
         expect(subject.planes).to be_empty
       end
+      it 'should have a capacity limit' do
+        p subject.inspect
+        expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+      end
     end
 
     describe '#land_plane' do
