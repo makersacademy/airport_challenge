@@ -8,6 +8,12 @@ describe Plane do
       expect(subject).to respond_to :land
     end
 
+    it 'should change landed to true' do
+      subject.landed = false
+      subject.land
+      expect(subject.landed).to eq true
+    end
+
     it 'should throw error if trying to land when already landed' do
       subject.landed = true
       expect { subject.land }.to raise_error('Plane already landed')
@@ -17,6 +23,12 @@ describe Plane do
   context '#take_off' do
     it 'should respond to take off' do
       expect(subject).to respond_to :take_off
+    end
+
+    it 'should change landed to false' do
+      subject.landed = true
+      subject.take_off
+      expect(subject.landed).to eq false
     end
 
     it 'should throw error if trying to take off when already taken off' do

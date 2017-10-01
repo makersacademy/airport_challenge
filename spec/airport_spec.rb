@@ -11,8 +11,13 @@ describe Airport do
   end
 
   context '#capacity' do
-    it 'should have a default capacity of 20' do
+    it 'should instantiate with a default capacity of 20' do
       expect(subject.capacity).to eq(20)
+    end
+
+    it 'should set default capacity' do
+      subject.capacity = 50
+      expect(subject.capacity).to eq(50)
     end
   end
 
