@@ -108,3 +108,11 @@
 2.4.0 :227 > airport = Airport.new(8)
  => #<Airport:0x007fb5a90e2c50 @planes=[], @capacity=8>
 2.4.0 :228 >
+
+
+
+#shows incorrectly that you can take off the same place twice from different airports.
+2.4.0 :248 > airport2 = Airport.new.land(plane)
+ => #<Plane:0x007fb5aa10d328>
+2.4.0 :249 > airport = Airport.new.land(plane)
+ => #<Plane:0x007fb5aa10d328>
