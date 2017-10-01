@@ -3,10 +3,10 @@ require 'airport'
 describe Airport do
   let :plane {double :plane, flying: true, ground: nil, fly: nil}
   subject(:airport) {Airport.new}
-  
+
   it "stores landed planes" do
     airport.land(plane)
-    expect(airport.planes[0]).to eq(plane)
+    expect(airport.planes).to include(plane)
   end
 
   context "plane landed then departed" do
@@ -15,14 +15,14 @@ describe Airport do
       airport.land(plane)
       allow(plane).to receive(:flying) {false}
       airport.take_off(plane)
-      expect(airport.planes).to eq([])
+      expect(airport.planes).not_to include(plane)
     end
 
     it "confirms last plane departed from airport" do
       allow(airport).to receive(:stormy?) {false}
       airport.land(plane)
       airport.take_off(plane)
-      expect(airport.at_airport?(plane)).to eq(true)
+      expect(airport.at_airport?(plane)).to eq(false)
     end
   end
 

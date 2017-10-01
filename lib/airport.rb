@@ -20,14 +20,14 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Plane not in airport" if at_airport?(plane)
+    raise "Plane not in airport" if !at_airport?(plane)
     raise "Cannot take-off during a storm" if stormy?
     plane.fly
-    puts "Plane has departed" if at_airport? @planes.delete(plane)
+    puts "Plane has departed" if !at_airport? @planes.delete(plane)
   end
 
   def at_airport?(plane)
-    !@planes.include?(plane)
+    @planes.include?(plane)
   end
 
   private
