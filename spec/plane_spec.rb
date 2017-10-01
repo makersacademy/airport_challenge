@@ -14,7 +14,7 @@ describe Plane do
     it "expects a plane to be able to land" do
       expect(plane).to respond_to(:land)
     end
-    it "expects land method to raise error if argument is not an airport object" do
+    it "expects land method to raise error if argument is a String object" do
       expect { plane.land(String.new) }.to raise_error 'argument is not an airport object'
     end
     it "expects to prevent landing if airport has a true blocked_airport attribute" do
@@ -61,7 +61,7 @@ describe Plane do
   describe "#confirm_take_off" do
     it "expects a plane to confirm that he has exited specific airport" do
       plane.take_off(airport)
-      expect(plane.confirm_take_off).to eq airport.name
-    end    
+      expect(plane.confirm_take_off).to eq "confirming take_off from #{airport.name}"
+    end
   end
 end
