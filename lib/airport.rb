@@ -12,12 +12,15 @@ class Airport
     @planes.length == @capacity
   end
 
-  def accept_plane(plane)
+  def land(plane)
     raise("Airport full -> can't accept planes!") if full?
+    plane.land
     @planes.push(plane)
   end
 
-  def plane_take_off
+  def take_off(plane)
+    plane.take_off
+    @planes.shift
   end
 
 end

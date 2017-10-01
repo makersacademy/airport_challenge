@@ -1,6 +1,8 @@
 require 'airport'
 describe Airport do
-  let(:plane) { double(:plane) }
+  let(:plane) { double(:plane, land: nil, take_off: nil) }
+  let(:weather) { double(:weather, stormy?: false) }
+
   describe "#dealing with full airport" do
 
     it "should respond to full? method" do
@@ -12,16 +14,27 @@ describe Airport do
   describe "#take off and landing of planes" do
 
     it "should respond to accept_plane method" do
-      expect(subject).to respond_to :accept_plane
+      expect(subject).to respond_to :land
     end
 
     it "should respond to plane_take_off method" do
-      expect(subject).to respond_to :plane_take_off
+      expect(subject).to respond_to :take_off
     end
 
     it "should not accept planes if the aiport is full" do
-      subject.capacity.times { subject.accept_plane(plane) }
-      expect{ subject.accept_plane(plane) }.to raise_error("Airport full -> can't accept planes!")
+      subject.capacity.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error("Airport full -> can't accept planes!")
+    end
+
+    it "should report a plane is in the airport if it has landed" do
+      subject.land(plane)
+      expect(subject.planes.include?(plane)).to eq true
+    end
+
+    it "should report that a plane is no longer in the airport if it has taken off" do
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes.empty?).to eq true
     end
 
   end
@@ -35,17 +48,5 @@ describe Airport do
     end
 
   end
-
-  # describe "#weather" do
-  #
-  #   it "should respond_to to the method stormy?" do
-  #     expect(subject).to respond_to :stormy?
-  #   end
-  #
-  #   it "the stormy? method should return a boolean" do
-  #     expect(subject.stormy?.class).to eq(Boolean)
-  #   end
-  #
-  # end
 
 end
