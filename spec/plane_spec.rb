@@ -18,5 +18,10 @@ describe Plane do
     it 'should respond to take off' do
       expect(subject).to respond_to :take_off
     end
+
+    it 'should throw error if trying to take off when already taken off' do
+      subject.landed = false
+      expect { subject.take_off }.to raise_error('Plane already taken off')
+    end
   end
 end

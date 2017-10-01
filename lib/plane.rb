@@ -12,6 +12,7 @@ class Plane
   end
 
   def take_off
+    fail 'Plane already taken off' unless is_landed? != false
     @landed = false
   end
 

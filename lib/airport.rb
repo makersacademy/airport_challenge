@@ -9,7 +9,7 @@ class Airport
   end
 
   def analyze_forecast(weather)
-    @current_forecast = weather.forecast.to_sym
+    @current_forecast = weather.forecast
   end
 
   def open?
@@ -18,11 +18,13 @@ class Airport
 
   def accept_plane(plane)
     fail 'Due to weather conditions landing is not authorized' unless open?
+    plane.land
     @planes << plane
   end
 
   def release_plane(plane)
     fail 'Due to weather conditions take off is not authorized' unless open?
+    plane.take_off
     @planes.delete(plane)
     true
 

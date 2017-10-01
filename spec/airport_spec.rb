@@ -23,6 +23,7 @@ describe Airport do
     end
 
     it 'allows a Plane to land' do
+      allow(plane).to receive(:land)
       expect(subject.accept_plane(plane)).to eq [plane]
     end
 
@@ -39,12 +40,14 @@ describe Airport do
     end
 
     it 'should release plane if airport open' do
-      subject.accept_plane(plane)
+      allow(plane).to receive(:take_off)
+      subject.release_plane(plane)
       subject.analyze_forecast(weather_good)
       expect(subject.release_plane(plane)).to eq true
     end
 
     it 'should raise error if weather conditions close airport' do
+      allow(plane).to receive(:land)
       subject.accept_plane(plane)
       subject.analyze_forecast(weather_bad)
       expect { subject.release_plane(plane) }.to raise_error('Due to weather conditions take off is not authorized')
