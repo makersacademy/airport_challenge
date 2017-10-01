@@ -43,11 +43,16 @@ end
       expect(subject).to respond_to(:confirm_if_plane_in_airport).with(1).argument
     end
 
-    it 'Confirms that a plane is in the airport' do
-      plane = Plane.new
-      subject.land(plane)
-    expect(subject.confirm_if_plane_in_airport(plane)).to eq "#{plane} is in the airport"
-  end
+  #   it 'Confirms that a plane is in the airport' do
+  #     plane = Plane.new
+  #     subject.land(plane)
+  #   expect(subject.confirm_if_plane_in_airport(plane)).to eq "#{plane} is in the airport"
+  # end
+
+  it 'Confirms that a plane is not in the airport' do
+    plane = Plane.new
+  expect(subject.confirm_if_plane_in_airport(plane)).to eq "#{plane} is not in the airport"
+end
 
   end
 
