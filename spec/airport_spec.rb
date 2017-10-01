@@ -20,12 +20,12 @@ describe Airport do
     end
 
     it 'raises error if landing when airport is full' do
-      plane = Plane.new
-      plane2 = Plane.new
-      airport.land(plane)
-      airport.land(plane2)
       allow(airport.weather).to receive(:stormy?).and_return false
-      expect { airport.land(plane2) }.to raise_error 'Airport full!'
+      Airport::DEFAULT_CAPACITY.times do
+        airport.land(Plane.new)
+      end
+      plane = Plane.new
+      expect { airport.land(plane) }.to raise_error 'Airport full!'
     end
 
     it 'raises error if plane is already landed' do

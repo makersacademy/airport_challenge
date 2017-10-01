@@ -2,12 +2,15 @@ require './lib/plane'
 require './lib/weather'
 
 class Airport
+
+  DEFAULT_CAPACITY = 20
+
   attr_accessor :planes, :weather
 
-  def initialize
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = 2
-    @weather = Weather.new
+    @capacity = capacity
+    @weather = weather
   end
 
   def land(plane)
@@ -27,6 +30,5 @@ class Airport
     plane.takeoff
     plane
   end
-
 
 end
