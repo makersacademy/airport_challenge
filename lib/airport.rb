@@ -8,10 +8,6 @@ class Airport
     @capacity = capacity
   end
 
-  def weather
-    @weather = %w(Stormy Sunny Sunny Sunny).sample
-  end
-
   def land(plane)
     @plane = plane
     fail 'Airport is full!' if full?
@@ -23,7 +19,7 @@ class Airport
 
   def take_off
     fail 'There are no planes!' if empty?
-    fail "Sorry, it is too stormy to take off" if @weather == "Stormy"
+    # fail "Sorry, it is too stormy to take off" if weather == "Stormy"
     @planes.pop.status = "Taken off"
   end
 
