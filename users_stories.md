@@ -1,3 +1,5 @@
+#### User story 1
+
 * As an air traffic controller
 * So I can get passengers to a destination
 * I want to instruct a plane to land at an airport
@@ -42,3 +44,35 @@ Airport <-- land --> Plane
   </tr>
   </center>
 </table>
+<br>
+
+#### User story 2
+
+* As an air traffic controller
+* So I can get passengers on the way to their destination
+* I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+
+**Nouns & Verbs**
+
+| OBJECTS | MESSAGES |
+|---------|----------|
+|controller | |
+|passengers | |
+|plane | |
+|airport| takeoff |
+
+Airport <-- takeoff --> Plane
+
+**Class Responsibility Collaborator**
+
+<table>
+  <tr>
+    <td colspan="2"><b><center>Airport</b></td>
+  </tr>
+  <tr>
+    <td>takeoff</td>
+    <td>Plane</td>
+  </tr>
+  </center>
+</table>
+<br>
