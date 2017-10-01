@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
 
   class FakePlane
-    attr_accessor :landed
+    attr_accessor :landed, :airport
 
     def initialize
       @landed = false
@@ -12,6 +12,7 @@ describe Airport do
     def landed?
       @landed
     end
+
   end
 
   let(:plane) { FakePlane.new }
@@ -22,7 +23,7 @@ describe Airport do
     allow(weather).to receive(:stormy?).and_return false
     weather
   end
-  let(:subject) {Airport.new('Heathrow')}
+  let(:subject) { Airport.new('Heathrow') }
 
   context 'not stormy weather' do
 
@@ -89,5 +90,14 @@ describe Airport do
         expect { subject.take_off(plane, bad_weather) }.to raise_error "Sorry, too stormy to take off!"
       end
     end
+
   end
+
+  # private methods
+  describe '#full?' do
+    it 'should return true if airport is full' do
+    expect(subject).to respond_to :full?
+    end
+  end
+
 end

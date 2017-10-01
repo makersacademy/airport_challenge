@@ -14,6 +14,7 @@ class Airport
     fail "Sorry, too stormy to land!" if weather.stormy?
     fail "Sorry airport is full!" if @planes.length == DEFAULT_CAPACITY
     plane.landed = landed
+    plane.airport = @name
     @planes << plane
   end
 
@@ -24,4 +25,7 @@ class Airport
     @planes.delete(plane)
   end
 
+  def full?
+  end
+  
 end
