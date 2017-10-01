@@ -71,7 +71,83 @@ describe Airport do
     end
   end
 
-  feature 'Plane divert' do
+  feature 'Landing feature' do
+    scenario 'Stormy weather scenario' do
+      given_there_is_a_plane
+      and_airport_weather_is_stormy
+      it_does_not_allow_plane_to_land
+    end
+
+    scenario 'Sunny weather scenario' do
+      given_there_is_a_plane
+      and_airport_weather_is_sunny
+      it_allows_plane_to_land
+    end
+
+    def given_there_is_a_plane
+      @plane = double :plane
+      allow(@plane).to receive(:land)
+    end
+
+    def and_airport_weather_is_stormy
+      @airport = subject
+      @airport.analyze_forecast(weather_bad)
+    end
+
+    def it_does_not_allow_plane_to_land
+      expect { @airport.accept_plane(@plane) }.to raise_error('Due to weather conditions landing is not authorized')
+    end
+
+    def and_airport_weather_is_sunny
+      @airport = subject
+      @airport.analyze_forecast(weather_good)
+    end
+
+    def it_allows_plane_to_land
+      expect(@airport.accept_plane(@plane)).to eq [@plane]
+    end
+  end
+
+  feature 'Take off feature' do
+    scenario 'Stormy weather scenario' do
+      given_there_is_a_plane_landed_at_an_airport
+      and_airport_weather_is_stormy
+      it_does_not_allow_plane_to_take_off
+    end
+
+    scenario 'Sunny weather scenario' do
+      given_there_is_a_plane_landed_at_an_airport
+      and_airport_weather_is_sunny
+      it_allows_plane_to_take_off
+    end
+
+    def given_there_is_a_plane_landed_at_an_airport
+      @plane = double :plane
+      allow(@plane).to receive(:land)
+      allow(@plane).to receive(:take_off)
+      @airport = subject
+      @airport.accept_plane(@plane)
+    end
+
+    def and_airport_weather_is_stormy
+      @airport.analyze_forecast(weather_bad)
+    end
+
+    def it_does_not_allow_plane_to_take_off
+      expect { @airport.release_plane(@plane) }.to raise_error('Due to weather conditions take off is not authorized')
+    end
+
+    def and_airport_weather_is_sunny
+      @airport.analyze_forecast(weather_good)
+    end
+
+    def it_allows_plane_to_take_off
+      expect(@airport.release_plane(@plane)).to eq true
+    end
+
+  end
+
+  feature 'Plane divert feature' do
     scenario 'airport_a bad weather. airport_b good weather to bad. airport_c good weather' do
       given_three_planes
       airport_a_has_bad_weather
@@ -87,6 +163,7 @@ describe Airport do
 
     def given_three_planes
       @planes = []
+
       @planes << double(:plane1)
       @planes << double(:plane2)
       @planes << double(:plane3)

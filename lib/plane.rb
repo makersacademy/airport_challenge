@@ -15,6 +15,8 @@ class Plane
     @landed = false
   end
 
+  private
+
   def landed?
     @landed
   end
