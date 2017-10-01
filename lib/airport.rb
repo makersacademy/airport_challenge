@@ -6,19 +6,16 @@ class Airport
   def initialize(capacity = 20, planes = [])
     @planes = planes
     @capacity = capacity
-    @current_forecast = :sunny
+    @forecast = :sunny
   end
 
   def analyze_forecast(weather)
-    @current_forecast = weather.forecast
-  end
-
-  def open?
-    @current_forecast == :sunny
+    @forecast = weather.forecast
   end
 
   def accept_plane(plane)
     fail 'Due to weather conditions landing is not authorized' unless open?
+    fail 'Airport is at capacity. Landing is not authorized' unless !full?
     plane.land
     @planes << plane
   end
@@ -31,4 +28,13 @@ class Airport
 
   end
 
+  private
+
+  def full?
+    @planes.count >= @capacity
+  end
+
+  def open?
+    @forecast == :sunny
+  end
 end

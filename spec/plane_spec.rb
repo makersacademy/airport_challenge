@@ -1,5 +1,6 @@
 require './lib/plane'
 
+
 describe Plane do
   let(:airport) { double :airport }
 
@@ -14,7 +15,7 @@ describe Plane do
       expect(subject.landed).to eq true
     end
 
-    it 'should throw error if trying to land when already landed' do
+    it 'should throw error if already landed' do
       subject.landed = true
       expect { subject.land }.to raise_error('Plane already landed')
     end
@@ -31,7 +32,7 @@ describe Plane do
       expect(subject.landed).to eq false
     end
 
-    it 'should throw error if trying to take off when already taken off' do
+    it 'should throw error if already taken off' do
       subject.landed = false
       expect { subject.take_off }.to raise_error('Plane already taken off')
     end

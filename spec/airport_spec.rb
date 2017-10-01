@@ -6,7 +6,7 @@ describe Airport do
   let(:weather_bad) { double :weather, :forecast => :stormy }
   let(:plane) { double :plane }
 
-  it 'should initialize with planes array to hold multiple planes' do
+  it 'should initialize with empty planes array' do
     expect(subject.planes).to eq([])
   end
 
@@ -15,7 +15,13 @@ describe Airport do
       expect(subject.capacity).to eq(20)
     end
 
-    it 'should set default capacity' do
+    it 'should raise error if capacity exceeded' do
+      allow(plane).to receive(:land)
+      20.times {subject.accept_plane(plane) }
+      expect {subject.accept_plane(plane) }.to raise_error 'Airport is at capacity. Landing is not authorized'
+    end
+
+    it 'should set capacity' do
       subject.capacity = 50
       expect(subject.capacity).to eq(50)
     end
