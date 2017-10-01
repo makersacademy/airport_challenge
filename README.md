@@ -76,3 +76,10 @@ OBJECTS | MESSAGES |
   To ensure safety
   I want to prevent takeoff when weather is stormy
   ```
+  ## User Story 4 - Prevent landing in storms
+
+  ```
+  As an air traffic controller
+  To ensure safety
+  I want to prevent landing when weather is stormy
+  ```

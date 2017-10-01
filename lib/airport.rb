@@ -13,6 +13,7 @@ class Airport
 
   def land_at_airport(plane)
     @plane = plane
+    fail "Stormy weather not clear for landing!" if weather.stormy?
     fail "Plane already landed!" if plane.landed?
     fail "Airport full!" if @planes.count >= 20
     @planes << @plane

@@ -25,6 +25,11 @@ describe Airport do
       20.times { airport.land_at_airport(Plane.new) }
       expect { airport.land_at_airport(Plane.new) }.to raise_error "Airport full!"
     end
+
+    it "doesn't allow a plane to land if weather is stormy" do
+      airport.weather.incoming_storm
+      expect { airport.land_at_airport(plane) }.to raise_error "Stormy weather not clear for landing!"
+    end
   end
 
   describe '#take_off' do
