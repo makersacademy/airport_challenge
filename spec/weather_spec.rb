@@ -7,10 +7,10 @@ describe Weather do
     end
     it 'produces a mostly non stormy response' do
       weather_pattern = []
-      10000.times { weather_pattern << subject.stormy? }
+      100_00.times { weather_pattern << subject.stormy? }
       true_count = 0
       weather_pattern.each { |weather| true_count += 1 if weather == true }
-      true_count = true_count.to_f / 10000
+      true_count = true_count.to_f / 100_00
       expect(true_count).to be <= 0.1
     end
   end
