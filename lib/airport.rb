@@ -8,10 +8,6 @@ class Airport
     @planes = []
   end
 
-  def full?
-    @planes.length == @capacity
-  end
-
   def land(plane)
     raise("Airport full -> can't accept planes!") if full?
     # using false as argument so that I can test reliably
@@ -20,9 +16,20 @@ class Airport
   end
 
   def take_off
-    # using false as argument so that I can test reliably
+    raise("No planes at the airport!") if empty?
     plane = @planes.shift
+    # using false as argument so that I can test reliably
     plane.take_off(false)
+  end
+
+private
+
+  def full?
+    @planes.length == @capacity
+  end
+
+  def empty?
+    @planes.empty?
   end
 
 end

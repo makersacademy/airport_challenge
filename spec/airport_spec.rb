@@ -3,27 +3,16 @@ describe Airport do
   let(:plane) { double(:plane, land: nil, take_off: nil) }
   let(:weather) { double(:weather, stormy?: false) }
 
-  describe "#dealing with full airport" do
-
-    it "should respond to full? method" do
-      expect(subject).to respond_to :full?
-    end
-
-  end
-
   describe "#take off and landing of planes" do
+    context "capacity issues" do
+      it "should not accept planes if the aiport is full" do
+        subject.capacity.times { subject.land(plane) }
+        expect { subject.land(plane) }.to raise_error("Airport full -> can't accept planes!")
+      end
 
-    it "should respond to accept_plane method" do
-      expect(subject).to respond_to :land
-    end
-
-    it "should respond to plane_take_off method" do
-      expect(subject).to respond_to :take_off
-    end
-
-    it "should not accept planes if the aiport is full" do
-      subject.capacity.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error("Airport full -> can't accept planes!")
+      it "should raise an error if there are no planes and the take_off method is called" do
+        expect { subject.take_off }.to raise_error "No planes at the airport!"
+      end
     end
 
     it "should report a plane is in the airport if it has landed" do
