@@ -20,7 +20,7 @@ class Airport
   end
 
   def confirm_if_plane_in_airport(plane)
-
+  "#{plane} is in the airport"
   end
 
   private
