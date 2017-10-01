@@ -10,7 +10,7 @@ class Airport
   end
 
   def land_plane(plane, weather, landed = true)
-    fail "Sorry plane has already landed!" if here?(plane)
+    fail "Sorry plane has already landed!" unless left?(plane)
     fail "Sorry, too stormy to land!" if weather.stormy?
     fail "Sorry airport is full!" if full?
     plane.landed = landed
@@ -30,7 +30,7 @@ class Airport
     @planes.length == DEFAULT_CAPACITY
   end
 
-  def here?(plane)
-    @planes.include?(plane)
+  def left?(plane)
+    !@planes.include?(plane)
   end
 end
