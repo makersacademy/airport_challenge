@@ -1,11 +1,15 @@
+require './lib/airport'
+
 class Plane
 
   def arrive_at_airport
     raise "Too stormy to depart" if @weather_rand <= 25
+    Airport.new.permission_to_land if @weather_rand >= 25
   end
 
   def depart_from_airport
     raise "Too stormy to depart" if @weather_rand <= 25
+    Airport.new.permission_to_take_off if @weather_rand >= 25
   end
 
   def stormy_weather?
@@ -13,4 +17,3 @@ class Plane
   end
 
 end
-  
