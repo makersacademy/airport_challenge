@@ -4,6 +4,7 @@ class Plane
   def initialize(home_airport)
     @in_the_air = nil
     @airport_exited = []
+    @airport_just_landed = ""
     @home_airport = Airport.new(home_airport)
   end
 
@@ -21,12 +22,15 @@ class Plane
       raise "no landing because of stormy weather"
     end
     @in_the_air = false
+    @airport_just_landed = airport.name
     return
   end
 
-  def flying_from_home_airport?(airport)
-    @in_the_air.nil? && (@home_airport.name == airport.name)
+  def never_landed_anywhere?
+    @airport_just_landed.empty?
   end
+
+
 
   def conditions_before_taking_off(airport)
     if airport.blocked_airport == true
@@ -35,7 +39,8 @@ class Plane
     if airport.prevent_take_off == true
       raise 'no take_off because of stormy weather'
     end
-    raise 'plane not flying from home airport' unless flying_from_home_airport?(airport)
+    raise 'plane not flying from correct airport' if (@airport_just_landed != airport.name && !@airport_just_landed.empty?)
+    raise 'plane not flying from home airport' unless @home_airport.name == airport.name
   end
 
   def take_off(airport)

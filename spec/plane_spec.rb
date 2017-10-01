@@ -44,6 +44,12 @@ describe Plane do
       airport2 = Airport.new("Galapagos airport")
       expect { plane.take_off(airport2) }.to raise_error 'plane not flying from home airport'
     end
+    it "expects to prevent taking_off if plane is not taking off from airport he had landed before" do
+      airport2 = Airport.new("Galapagos airport")
+      plane.land(airport2)
+      airport3 = Airport.new("Santiago airport")
+      expect { plane.take_off(airport3) }.to raise_error(RuntimeError, 'plane not flying from correct airport')
+    end
   end
 
   describe "#airport_exited" do
