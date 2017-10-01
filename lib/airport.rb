@@ -5,9 +5,6 @@ class Airport
   attr_reader :plane
   #this allows us to store our plane variables as @plane
 
-  # def plane
-  #   @plane
-  # end
   #
   # def initialize
   #   @planes = []
@@ -22,10 +19,8 @@ class Airport
   # end
 
   def land_at_airport(plane)
-    @plane = plane
+    plane
   end
-  #this is an additional functionality, allowing
-  #landed planes to be remembered
 
   def take_off(plane)
     @plane = plane

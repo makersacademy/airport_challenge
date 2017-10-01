@@ -15,10 +15,10 @@ describe Airport do
       plane = Plane.new
       expect(subject.take_off(plane)).to eq plane
     end
-    it 'keeps track of taken off planes' do
+    it 'keeps track of taken off planes to confirm they are gone' do
       plane = Plane.new
       subject.take_off(plane)
       expect(subject.plane).to eq plane
     end
-  end 
+  end
 end
