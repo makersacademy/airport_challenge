@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/hugosykes/airport_challenge.svg?branch=master)](https://travis-ci.org/hugosykes/airport_challenge)   
 Airport Challenge
 =================
 
@@ -106,5 +107,3 @@ Weather is a module because all that was necessary was a stormy? method which wo
 The weather is implemented in the plane class - that is, a plane knows whether it can land and take off (with respect to storms) and it is in the plane class that the errors will be raised if it is stormy.
 
 Used TDD to write tests before implementing code and attempted to write the simplest piece of code to satisfy the test.
-
-[![Build Status](https://travis-ci.org/hugosykes/airport_challenge.svg?branch=master)](https://travis-ci.org/hugosykes/airport_challenge)
