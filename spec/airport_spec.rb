@@ -1,9 +1,11 @@
 require 'airport'
+
 describe Airport do
   let(:plane) { double(:plane, land: nil, take_off: nil) }
   let(:weather) { double(:weather, stormy?: false) }
 
   describe "#take off and landing of planes" do
+
     context "capacity issues" do
       it "should not accept planes if the aiport is full" do
         subject.capacity.times { subject.land(plane) }
@@ -15,15 +17,17 @@ describe Airport do
       end
     end
 
-    it "should report a plane is in the airport if it has landed" do
-      subject.land(plane)
-      expect(subject.planes.include?(plane)).to eq true
-    end
+    context "reporting planes location" do
+      it "should report a plane is in the airport if it has landed" do
+        subject.land(plane)
+        expect(subject.planes.include?(plane)).to eq true
+      end
 
-    it "should report that a plane is no longer in the airport if it has taken off" do
-      subject.land(plane)
-      subject.take_off
-      expect(subject.planes.empty?).to eq true
+      it "should report that a plane is no longer in the airport if it has taken off" do
+        subject.land(plane)
+        subject.take_off
+        expect(subject.planes.empty?).to eq true
+      end
     end
 
   end
