@@ -10,7 +10,7 @@ class Plane
   end
 
   def land_at_airport(airport)
-    raise "plane has already landed" if flying? == false
+    raise "This plane has already landed" if flying? == false
     airport.receive_plane(self)
     @landed_airport = airport
   end

@@ -16,6 +16,10 @@ describe Plane do
         expect(plane).to respond_to(:take_off_from_airport).with(1).argument
       end
 
+      it 'cannot land if it is not flying and must be in an airport' do
+        expect { plane.land_at_airport(airport)}.to raise_error("This plane has already landed")
+      end
+
       it 'confirms that the plane is no longer in the airport' do
         airport.planes << plane
         expect { plane.take_off_from_airport(airport) }.to change { airport.plane_count }.by(-1)
