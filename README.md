@@ -23,7 +23,9 @@ Instructions are for Terminal on Mac OS
 
 Run `rspec`
 
-## Notes & Improvements needed
+99.10% test coverage. One line untested is the redundant `stormy?` method (see Notes).
+
+## Notes
 
 * #stormy? in the `Airport` class is redundant. `stormy?` should be called on a new `Weather` object. I could not see how I could create a method stub within `airport_spec.rb` to mock the weather object responding to `stormy?`.
 
