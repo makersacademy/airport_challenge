@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.4.0'
-
+gem 'capybara'
 gem 'rake'
 gem 'reek'
 gem 'rspec'

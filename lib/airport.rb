@@ -15,7 +15,7 @@ class Airport
 
   def accept_plane(plane)
     fail 'Due to weather conditions landing is not authorized' unless open?
-    fail 'Airport is at capacity. Landing is not authorized' unless !full?
+    fail 'Airport is at capacity. Landing is not authorized' if full?
     plane.land
     @planes << plane
   end
@@ -25,7 +25,6 @@ class Airport
     plane.take_off
     @planes.delete(plane)
     true
-
   end
 
   private

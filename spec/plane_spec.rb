@@ -1,9 +1,7 @@
 require './lib/plane'
 
-
 describe Plane do
-  let(:airport) { double :airport }
-
+  
   context '#land' do
     it 'should respond to land' do
       expect(subject).to respond_to :land
@@ -22,7 +20,7 @@ describe Plane do
   end
 
   context '#take_off' do
-    it 'should respond to take off' do
+    it 'should respond to take_off' do
       expect(subject).to respond_to :take_off
     end
 

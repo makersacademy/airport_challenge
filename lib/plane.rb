@@ -6,12 +6,12 @@ class Plane
   end
 
   def land
-    fail 'Plane already landed' unless landed? != true
+    fail 'Plane already landed' if landed?
     @landed = true
   end
 
   def take_off
-    fail 'Plane already taken off' unless landed? != false
+    fail 'Plane already taken off' unless landed?
     @landed = false
   end
 
