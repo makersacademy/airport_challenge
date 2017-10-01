@@ -25,6 +25,13 @@ require 'airport'
       airport.planes << plane
       expect { airport.instruct_plane_to_take_off(plane) }.to change { airport.plane_count }.by(-1)
     end
+
+    it 'prevents landing when the airport is full' do
+      5.times do
+        airport.instruct_plane_to_land(Plane.new)
+      end
+      expect { airport.instruct_plane_to_land(plane) }.to raise_error("plane cannot land because the airport is full")
+    end
   end
 
   context 'when weather is bad' do
