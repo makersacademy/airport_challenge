@@ -1,12 +1,16 @@
 require './lib/plane'
-require './lib/weather'
 
 class Airport
 
   attr_reader :plane
 
+  def initialize
+    @planes = []
+  end
+
   def land_at_airport(plane)
-    puts "Come in to land!"
+
+    @planes << @plane
     @plane = plane
   end
 

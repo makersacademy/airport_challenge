@@ -8,9 +8,6 @@ describe Airport do
       plane = Plane.new
       expect(airport.land_at_airport(plane)).to eq plane
     end
-  end
-
-  describe '#plane' do
     it "shows the landed plane" do
       plane = Plane.new
       airport.land_at_airport(plane)
