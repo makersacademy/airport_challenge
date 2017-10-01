@@ -33,7 +33,7 @@ describe Airport do
 
     it "should report that a plane is no longer in the airport if it has taken off" do
       subject.land(plane)
-      subject.take_off(plane)
+      subject.take_off
       expect(subject.planes.empty?).to eq true
     end
 
