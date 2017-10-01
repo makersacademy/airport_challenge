@@ -1,8 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let :plane {double :plane, flying: true, ground: nil, fly: nil}
-  subject(:airport) {Airport.new}
+  let :plane { double :plane, flying: true, ground: nil, fly: nil }
+  subject(:airport) { Airport.new }
 
   describe "#capacity" do
     it "has an adjustable plane capacity" do
@@ -11,7 +11,7 @@ describe Airport do
     end
 
     it "prevents capacity lower than 1" do
-      expect {Airport.new(0)}.to raise_error("Capacity must be greater than 1")
+      expect { Airport.new(0) }.to raise_error("Capacity must be greater than 1")
     end
   end
 
@@ -35,13 +35,13 @@ describe Airport do
     end
 
     it "won't allow landing after capacity reached" do
-      airport.capacity.times {airport.land(plane)}
-      expect {airport.land(plane)}.to raise_error("Airport full")
+      airport.capacity.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error("Airport full")
     end
 
     it "only lands a flying plane" do
       allow(plane).to receive(:flying).and_return(false)
-      expect {airport.land(plane)}.to raise_error("Plane is grounded")
+      expect { airport.land(plane) }.to raise_error("Plane is grounded")
     end
 
     it "changes status of plane to not flying when landing" do
@@ -67,7 +67,7 @@ describe Airport do
     end
 
     it "only releases planes it contains" do
-      expect {airport.take_off(plane)}.to raise_error("Plane not in airport")
+      expect { airport.take_off(plane) }.to raise_error("Plane not in airport")
     end
 
     it "changes status of plane to flying when taking-off" do
@@ -83,7 +83,7 @@ describe Airport do
 
       it "prevents take-off in stormy weather" do
         airport.land(plane)
-        expect {airport.take_off(plane)}.to raise_error("Cannot take-off during a storm")
+        expect { airport.take_off(plane) }.to raise_error("Cannot take-off during a storm")
       end
     end
   end

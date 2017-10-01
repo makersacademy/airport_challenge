@@ -1,5 +1,6 @@
-require_relative 'plane'
-require_relative 'weather'
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+require 'plane'
+require 'weather'
 
 class Airport
 
@@ -15,7 +16,7 @@ class Airport
 
   def land(plane)
     raise "Airport full" if full?
-    raise "Plane is grounded" if !plane.flying
+    raise "Plane is grounded" unless plane.flying
     plane.ground
     @planes << plane
   end
@@ -25,10 +26,10 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Plane not in airport" if !at_airport?(plane)
+    raise "Plane not in airport" unless at_airport?(plane)
     raise "Cannot take-off during a storm" if stormy?
     plane.fly
-    puts "Plane has departed" if !at_airport? @planes.delete(plane)
+    puts "Plane has departed" unless at_airport? @planes.delete(plane)
   end
 
   def at_airport?(plane)

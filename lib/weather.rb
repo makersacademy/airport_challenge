@@ -1,7 +1,7 @@
 class Weather
 
   def stormy?
-    rand(100) == 0
+    rand(100).zero?
   end
 
 end
