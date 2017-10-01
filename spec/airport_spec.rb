@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let :plane {double :plane, flying: true, ground: nil}
+  let :plane {double :plane, flying: true, ground: nil, fly: nil}
   it "stores landed planes" do
     subject.land(plane)
     expect(subject.planes[0]).to eq(plane)
@@ -21,7 +21,6 @@ describe Airport do
       subject.land(plane)
       subject.take_off(plane)
       expect(subject.departed?(plane)).to eq(true)
-
     end
   end
 
@@ -50,8 +49,15 @@ describe Airport do
     expect {subject.land(plane)}.to raise_error("Plane is grounded")
   end
 
-  it "changes status of plane to grounded when landing" do
+  it "changes status of plane to not flying when landing" do
     expect(plane).to receive(:ground)
     subject.land(plane)
+  end
+
+  it "changes status of plane to flying when taking-off" do
+    allow(subject).to receive(:stormy?) {false}
+    subject.land(plane)
+    expect(plane).to receive(:fly)
+    subject.take_off(plane)
   end
 end

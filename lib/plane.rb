@@ -9,4 +9,8 @@ class Plane
   def ground
     @flying = false
   end
+
+  def fly
+    @flying = true
+  end
 end

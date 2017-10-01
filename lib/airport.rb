@@ -1,5 +1,5 @@
-require 'weather'
-require 'plane'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -12,7 +12,7 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)
+  def land(plane = Plane.new)
     raise "Airport full" if @planes.length >= @capacity
     raise "Plane is grounded" if !plane.flying
     plane.ground
@@ -26,6 +26,7 @@ class Airport
   def take_off(plane)
     raise "Plane not in airport" if !@planes.include? plane
     raise "Cannot take-off during a storm" if stormy?
+    plane.fly
     departed_plane = @planes.pop
     puts "Plane has departed" if departed? departed_plane
   end
