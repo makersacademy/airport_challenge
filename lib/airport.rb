@@ -16,20 +16,20 @@ class Airport
   end
 
   def land_plane(plane)
-    @plane_count +=1 if plane.instance_of? Plane
-    fail 'Airport capacity is full. No plane could land.' if @plane_count <= 21
+    @plane_count +=1 
+    fail 'Airport capacity is full. No plane could land.' if @plane_count > @capacity
     @plane.push(plane)
   end
 
   def plane_takeoff
-    @plane = Plane.new
     @weather = weather_generator
     fail 'Weather is stormy. No plane takeoff.' if @weather > 7
-    @plane
+    @plane_count -= 1
+    @plane_tookoff = @plane.pop
   end
 
  def confirm_takeoff
-    "#{@plane.to_s} has now taken off"
+    "#{@plane_tookoff.to_s} has now taken off"
  end
 
 end

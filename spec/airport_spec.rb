@@ -2,11 +2,13 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  subject(:airport) {Airport.new(21, 20)}
+  
+context 'when airport capacity is full' do
+  subject(:airport) {Airport.new(20, 20)}
   plane = Plane.new
 
   it 'sets default capacity and plane count' do
-    expect(airport.capacity).to eq 21
+    expect(airport.capacity).to eq 20
     expect(airport.plane_count).to eq 20
   end
 
@@ -17,8 +19,8 @@ describe Airport do
   it { is_expected.to respond_to(:confirm_takeoff) }
 
   it 'confirms when plane has taken off' do
-    plane = airport.plane_takeoff
-    expect(airport.confirm_takeoff).to eq "#{plane.to_s} has now taken off"
+    plane_tookoff = airport.plane_takeoff
+    expect(airport.confirm_takeoff).to eq "#{plane_tookoff.to_s} has now taken off"
   end
 
   it "raises error as plane tries to land when capacity is full" do
@@ -32,6 +34,7 @@ describe Airport do
     expect{ airport.plane_takeoff }.to raise_error 'Weather is stormy. No plane takeoff.'
   end
 
+end
 
 
 
