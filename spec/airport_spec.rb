@@ -15,6 +15,7 @@ describe Airport do
   describe 'take_off' do
     it 'allows a plane to take off' do
       subject.land(plane)
+      allow(subject.weather).to receive(:stormy?).and_return false
       subject.take_off(plane)
       expect(plane.landed).to be false
     end
@@ -30,10 +31,10 @@ describe Airport do
       subject.land(plane)
       expect { subject.take_off(Aeroplane.new) }.to raise_error 'This plane is on flight!'
     end
-    # it 'raises a stormy weather error' do
-    #   weather.stormy?
-    #   expect { subject.take_off(plane) }.to raise_error 'Plane cannot take off due to storm'
-    # end
+    it 'raises a stormy weather error' do
+      allow(subject.weather).to receive(:stormy?).and_return true
+      expect { subject.take_off(plane) }.to raise_error 'Plane cannot take off due to storm'
+    end
   end
 
   describe 'land' do
