@@ -11,7 +11,7 @@ class Airport
 
   def takeoff(plane)
     fail "The airport is empty" if empty?
-  @planes.pop
+  @planes.delete(plane)
   end
 
   def land(plane)

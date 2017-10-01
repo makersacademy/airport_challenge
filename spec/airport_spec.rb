@@ -14,6 +14,15 @@ describe Airport do
   expect(subject).to respond_to(:takeoff).with(1).argument
   end
 
+  it 'removes the plane from the airport when it takesoff' do
+    plane = Plane.new
+    plane1 = Plane.new
+    subject.land(plane)
+    subject.land(plane1)
+    subject.takeoff(plane)
+    expect(subject.instance_variable_get(:@planes)).not_to include(plane)
+  end
+
 end
 
   describe '#land' do
