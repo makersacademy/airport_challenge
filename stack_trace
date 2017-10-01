@@ -19,3 +19,20 @@ expected #<Airport:0x007fa00824fb30> to respond to :confirm_takeoff with 1 argum
 
 rspec ./spec/airport_spec.rb:18:  expected: "#{plane.to_s} has now taken off"
 got: nil
+
+# ./spec/airport_spec.rb:20:        def confirm_takeoff(plane)
+         "#{plane.to_s} has now taken off"
+       end
+ArgumentError: wrong number of arguments (given 0, expected 1)
+Failure/Error: expect(airport.confirm_takeoff).to eq "#{plane.to_s} has now taken off"
+
+rspec ./spec/airport_spec.rb:18: expected: "#<Plane:0x007ffbe5ba12b8> has now taken off"
+got: " has now taken off"
+
+
+# ./lib/airport.rb:5:in `land_plane':
+expected Exception with "Airport capacity is full. No plane could land.", got #<ArgumentError: wrong number of arguments (given 0, expected 1)>
+
+./spec/airport_spec.rb:24:
+Failure/Error: expect { airport.land_plane(plane) }.to raise_error("Airport capacity is full. No plane could land.")
+  expected Exception with "Airport capacity is full. No plane could land." but nothing was raised
