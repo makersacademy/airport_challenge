@@ -13,7 +13,7 @@ describe Airport do
   describe '#take_off'
     it 'allows a plane to take off and confirms take off' do
       plane = Plane.new
-      expect(subject.take_off(plane)).to eq true
+      expect(subject.take_off(plane)).to eq plane
     end
 
 end
