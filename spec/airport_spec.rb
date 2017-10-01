@@ -2,8 +2,13 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  subject(:airport) {Airport.new}
+  subject(:airport) {Airport.new(21, 20)}
   plane = Plane.new
+
+  it 'sets default capacity and plane count' do
+    expect(airport.capacity).to eq 21
+    expect(airport.plane_count).to eq 20
+  end
 
   it { is_expected.to respond_to(:plane_takeoff) }
 
@@ -20,12 +25,14 @@ describe Airport do
     expect{ airport.land_plane(plane) }.to raise_error 'Airport capacity is full. No plane could land.'
   end
 
+  it { is_expected.to respond_to(:weather_generator) }
+
   it "raises error as plane tries to take off when weather is stormy" do
     allow(airport).to receive(:weather_generator).and_return(8)
     expect{ airport.plane_takeoff }.to raise_error 'Weather is stormy. No plane takeoff.'
   end
 
-  it { is_expected.to respond_to(:weather_generator) }
+
 
 
 
