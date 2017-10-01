@@ -1,6 +1,7 @@
 class Airport
 
   attr_reader :capacity, :planes
+
   DEFAULT_CAPACITY = 10
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -10,16 +11,12 @@ class Airport
 
   def land(plane)
     raise("Airport full -> can't accept planes!") if full?
-    # using false as argument so that I can test reliably
-    plane.land(false)
-    @planes.push(plane)
+    land_plane(plane)
   end
 
   def take_off
     raise("No planes at the airport!") if empty?
-    plane = @planes.shift
-    # using false as argument so that I can test reliably
-    plane.take_off(false)
+    take_off_plane
   end
 
 private
@@ -30,6 +27,16 @@ private
 
   def empty?
     @planes.empty?
+  end
+
+  def land_plane(plane)
+    plane.land
+    @planes.push(plane)
+  end
+
+  def take_off_plane
+    plane = @planes.shift
+    plane.take_off
   end
 
 end
