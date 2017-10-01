@@ -12,8 +12,7 @@ describe Plane do
 
     context "A landed plane" do
       it "should report that is in an airport" do
-        stormy = false
-        subject.land(stormy)
+        subject.land
         expect(subject.at_airport).to eq true
       end
     end
