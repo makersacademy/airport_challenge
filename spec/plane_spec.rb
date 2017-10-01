@@ -8,7 +8,7 @@ describe Plane do
   end
 
   it "stops flying when grounded" do
-    subject.ground
+    plane.ground
     expect(plane.flying).to eq(false)
   end
 
