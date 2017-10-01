@@ -51,6 +51,12 @@ As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+
 OBJECTS | MESSAGES |
 |-------------|-------------|
  Air Traffic Controller | |
