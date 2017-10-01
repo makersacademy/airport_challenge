@@ -19,7 +19,11 @@ describe Plane do
       expect { plane.land(airport) }.to raise_error(RuntimeError, "Plane cannot land because the airport is having technical difficulties")
     end
     it "expects to prevent landing if the plane has never taken off" do
-      expect { plane.land(airport) }.to raise_error 'plane has never taken_off, so cannot land'
+      expect { plane.land(airport) }.to raise_error 'plane cannot land at his home airport'
+    end
+    it "expects to prevent landing if the plane has never taken off" do
+      airport2 = Airport.new("Charles de Gaulle Airport")
+      expect { plane.land(airport2) }.to raise_error 'plane is still landed, so cannot land'
     end
   end
   describe "#take_off" do
@@ -40,6 +44,7 @@ describe Plane do
       expect { plane.take_off(airport2) }.to raise_error 'plane not flying from home airport'
     end
     it "expects to prevent taking_off if plane is not taking off from airport he had landed before" do
+      plane.take_off(airport)
       airport2 = Airport.new("Galapagos airport")
       plane.land(airport2)
       airport3 = Airport.new("Santiago airport")

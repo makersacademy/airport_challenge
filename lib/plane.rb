@@ -27,7 +27,10 @@ class Plane
     raise 'plane has already landed...so cannot land again' if @in_the_air == false
     raise 'argument is not an airport object' unless airport?(airport)
     check_airport_status_land(airport)
-    raise 'plane has never taken_off, so cannot land' if check_plane_still_home(airport)
+    raise 'plane cannot land at his home airport' if check_plane_still_home(airport)
+    if @in_the_air.nil? && @in_the_air != false 
+      raise 'plane is still landed, so cannot land'
+    end
     @in_the_air = false
     @airport_just_landed = airport.name
     return
