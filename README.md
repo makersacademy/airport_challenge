@@ -30,7 +30,8 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 How to use
 -----
-➜  airport_challenge git:(master) irb --simple-prompt
+```
+irb --simple-prompt
 >> Dir["./lib/*.rb"].each {|file| require file}
 => ["./lib/aeroplane.rb", "./lib/airport.rb", "./lib/weather.rb"]
 >> Gatwick = Airport.new
@@ -44,3 +45,4 @@ RuntimeError: Plane cannot land due to storm!
 	from /Users/lucyborthwick/.rvm/rubies/ruby-2.4.0/bin/irb:11:in `<main>'
 >> Gatwick.land(britishairways)
 => [#<Aeroplane:0x007fbcd00aa3b8 @landed=true>]
+```
