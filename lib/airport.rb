@@ -19,6 +19,10 @@ class Airport
   @planes << plane
   end
 
+  def confirm_if_plane_in_airport(plane)
+
+  end
+
   private
 
   def full?

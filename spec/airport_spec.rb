@@ -37,6 +37,14 @@ end
     end
   end
 
+  describe '#confirm_if_plane_in_airport' do
+
+      it 'confirms if a plane is in an airport with one argument' do
+      expect(subject).to respond_to(:confirm_if_plane_in_airport).with(1).argument
+    end
+
+  end
+
     it 'responds to planes' do
     expect(subject).to respond_to :planes
     end
