@@ -9,7 +9,7 @@ class Plane
   end
 
   def stormy_weather?
-    1
+    rand(100)
   end
 
 end
