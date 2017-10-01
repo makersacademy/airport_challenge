@@ -36,3 +36,7 @@ expected Exception with "Airport capacity is full. No plane could land.", got #<
 ./spec/airport_spec.rb:24:
 Failure/Error: expect { airport.land_plane(plane) }.to raise_error("Airport capacity is full. No plane could land.")
   expected Exception with "Airport capacity is full. No plane could land." but nothing was raised
+
+./spec/airport_spec.rb:24: expected Exception with "Weather is stormy. No plane takeoff." but nothing was raised
+
+rspec ./spec/airport_spec.rb:29:      Failure/Error: it { is_expected.to respond_to(:weather_generator) }
