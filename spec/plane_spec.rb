@@ -1,7 +1,7 @@
 require 'plane'
 
 describe Plane do
-  subject(:plane) { Plane.new }
+  subject(:plane) { described_class.new }
 
   describe '#landing' do
     it 'lands a plane' do

@@ -2,7 +2,7 @@ require 'airport'
 require 'weather'
 
 describe Airport do
-  subject(:airport) { Airport.new }
+  subject(:airport) { described_class.new }
 
   context 'Landing' do
     it 'lands a plane at the airport' do

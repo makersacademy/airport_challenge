@@ -13,22 +13,42 @@ Airport Challenge
 
 ```
 
+My Approach
+---------
+
+I tackled this problem by breaking it down into the simplest possible
+steps. I began by using irb to conduct feature tests, wrote unit tests
+using RSpec that would prove my code once it was written. I strived to
+implement a test driven approach throughout the entire process leading to
+my code test coverage being 100%.
+
+There were a few parts I struggled with: Effectively using
+attr_reader/writers, making sure my RSpec tests were DRY and refactoring
+once my code was working. But I have managed to implement all features
+outlined in the user stories.
+
+I have not been enable to figure out how to write an RSpec Feature test. To
+add this bonus feature I'd need to conduct some more research into how to
+do this.
+
 Instructions
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+```
+11:49 $ irb
+2.4.2 :001 > require './lib/airport'
+ => true
+2.4.2 :002 > airport = Airport.new
+ => #<Airport:0x00007fcba49ad220 @planes=[], @capacity=20, @weather=#<Weather:0x00007fcba49ad1f8>>
+2.4.2 :003 > plane = Plane.new
+ => #<Plane:0x00007fcba49a5660 @landed=false>
+2.4.2 :004 > airport.land(plane)
+ => #<Plane:0x00007fcba49a5660 @landed=true>
+2.4.2 :005 > airport.planes
+ => [#<Plane:0x00007fcba49a5660 @landed=true>]
+2.4.2 :006 >
 
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+```
 
 Task
 -----
@@ -36,25 +56,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,18 +93,10 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
 **BONUS**
 
 * Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
