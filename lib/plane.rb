@@ -64,7 +64,7 @@ class Plane
   end
 
   def confirm_take_off
-    return @airport_exited[-1] unless @airport_exited.empty?
+    return "confirming take_off from #{@airport_exited[-1]}" unless @airport_exited.empty?
     return "no take_off to confirm yet"
   end
 
