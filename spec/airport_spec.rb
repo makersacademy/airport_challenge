@@ -50,7 +50,7 @@ describe Airport do
       end
       it "should raise an error if plane has already landed" do
         subject.land_plane(plane, weather)
-        expect { subject.land_plane(plane, weather) }.to raise_error "Sorry plane has already landed!" if subject.planes.include? plane
+        expect { subject.land_plane(plane, weather) }.to raise_error "Sorry plane has already landed!"
       end
       it 'should prevent a plane landing if airport is full' do
         20.times { subject.land_plane(FakePlane.new, weather) }
@@ -89,14 +89,6 @@ describe Airport do
         subject.land_plane(plane, weather)
         expect { subject.take_off(plane, bad_weather) }.to raise_error "Sorry, too stormy to take off!"
       end
-    end
-
-  end
-
-  # private methods
-  describe '#full?' do
-    it 'should return true if airport is full' do
-    expect(subject).to respond_to :full?
     end
   end
 
