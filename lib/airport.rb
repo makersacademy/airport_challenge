@@ -12,27 +12,28 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane = Plane.new)
+  def land(plane)
     raise "Airport full" if @planes.length >= @capacity
     raise "Plane is grounded" if !plane.flying
     plane.ground
     @planes << plane
   end
 
-  def stormy?
-    Weather.new.stormy?
-  end
-
   def take_off(plane)
-    raise "Plane not in airport" if !@planes.include? plane
+    raise "Plane not in airport" if at_airport?(plane)
     raise "Cannot take-off during a storm" if stormy?
     plane.fly
-    departed_plane = @planes.pop
-    puts "Plane has departed" if departed? departed_plane
+    puts "Plane has departed" if at_airport? @planes.delete(plane)
   end
 
-  def departed?(plane)
+  def at_airport?(plane)
     !@planes.include?(plane)
+  end
+
+  private
+
+  def stormy?
+    Weather.new.stormy?
   end
 
 end
