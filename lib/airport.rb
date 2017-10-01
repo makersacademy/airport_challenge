@@ -36,4 +36,7 @@ class Airport
     @planes.empty?
   end
 
+  def capacity
+    @capacity
+  end
 end

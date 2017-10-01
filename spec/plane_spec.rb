@@ -48,7 +48,7 @@ describe Plane do
     it "plane takeoff from a sunny airport succeeds and plane has left" do
       capacity = 10
       airport = Airport.new(capacity)
-      airport.weather = 'sunny'
+      airport.weather = :sunny
       expect(plane.takeoff).to be true
       expect(airport.empty?).to be true
     end
