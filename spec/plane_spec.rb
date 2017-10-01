@@ -10,10 +10,9 @@ describe Plane do
    expect(subject.depart_from_airport).to eq true
   end
 
-  it 'expects plane to confirm whether there is stormy weather' do
-    expect(subject.stormy_weather?).to eq true
+  it 'expects stormy_weather? to return Integer' do
+    expect(subject.stormy_weather?).to be_a_kind_of(Integer)
   end
 
-  it { is_expected.to respond_to :stormy_weather?}
 
 end

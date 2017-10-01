@@ -9,7 +9,7 @@ class Plane
   end
 
   def stormy_weather?
-    true
+    1
   end
 
 end
