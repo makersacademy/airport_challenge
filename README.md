@@ -68,3 +68,11 @@ OBJECTS | MESSAGES |
  |-------------|-------------|
   Air Traffic Controller | |
   Plane | take_off |
+
+  ## User Story 3 - Prevent take off in storms
+
+  ```
+  As an air traffic controller
+  To ensure safety
+  I want to prevent takeoff when weather is stormy
+  ```

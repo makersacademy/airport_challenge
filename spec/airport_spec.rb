@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   subject(:airport) { Airport.new }
   subject(:plane) { Plane.new }
+  subject(:weather) { Weather.new }
 
   describe '#land_at_airport' do
     it "instructs planes to land at an airport" do
@@ -42,6 +43,12 @@ describe Airport do
       airport.land_at_airport(plane)
       airport.take_off(plane)
       expect { airport.take_off(plane) }.to raise_error "Plane already gone!"
+    end
+
+    it "doesn't allow a plane to take off if weather is stormy" do
+      airport.land_at_airport(plane)
+      airport.weather.incoming_storm
+      expect { airport.take_off(plane) }.to raise_error "Stormy weather abort take off!"
     end
   end
 

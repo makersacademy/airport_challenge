@@ -1,11 +1,14 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
 
   attr_reader :plane
+  attr_accessor :weather
 
   def initialize
     @planes = []
+    @weather = Weather.new
   end
 
   def land_at_airport(plane)
@@ -18,6 +21,7 @@ class Airport
 
   def take_off(plane)
     fail "Plane already gone!" unless plane.landed?
+    fail "Stormy weather abort take off!" if weather.stormy?
     @planes.delete(plane)
     plane.take_off
     @planes
