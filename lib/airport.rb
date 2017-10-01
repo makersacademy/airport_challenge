@@ -1,5 +1,5 @@
 class Airport
-  require 'weather'
+  require File.dirname(__FILE__)+'/weather'
 
   attr_reader :capacity, :landed_airplanes
 
