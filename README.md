@@ -99,9 +99,10 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 # Module
 - Weather
 
-# Motivation
-Created plane and airport classes because there would need to be instantiated objects of these classes. Weather is a module because all that was necessary was a stormy? method which would return true some of the time to indicate bad enough weather that a plane should not be able to take off or land.
+# MO
+Created plane and airport classes because there would need to be instantiated objects of these classes.
+Weather is a module because all that was necessary was a stormy? method which would return true some of the time to indicate bad enough weather that a plane should not be able to take off or land - otherwise returning false.
 
-The weather is implemented in the plane class - that is, a plane knows whether it can land and take off (with respec to weather) and it is in the plane class that the errors will be raised if it is stormy.
+The weather is implemented in the plane class - that is, a plane knows whether it can land and take off (with respect to storms) and it is in the plane class that the errors will be raised if it is stormy.
 
 Used TDD to write tests before implementing code and attempted to write the simplest piece of code to satisfy the test.
