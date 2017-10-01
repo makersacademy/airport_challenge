@@ -1,7 +1,7 @@
 class Plane
   attr_accessor :airport
 
-  def initialize(airport)
+  def initialize(airport = nil)
     @airport = airport
   end
 
@@ -13,7 +13,6 @@ class Plane
 
   def takeoff
     @airport.takeoff_plane
-    # fail if airport.weather == :stormy
     true
   end
 end
