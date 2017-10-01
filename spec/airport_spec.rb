@@ -5,6 +5,10 @@ class FakePlane
 
 end
 
+class FakeWeather
+
+end
+
 describe Airport do
   describe "landing plane tests" do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -16,6 +20,11 @@ describe Airport do
       plane = FakePlane.new
       subject.land(plane)
       expect { subject.land plane }.to raise_error "Cannot land the same plane"
+    end
+    it { is_expected.to respond_to('weather') }
+    it "raises error when you want to land the plane in stormy weather" do
+
+
     end
   end
 

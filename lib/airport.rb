@@ -22,6 +22,10 @@ class Airport
     @planes.pop
   end
 
+  def weather
+
+  end
+
   private
 
   attr_reader :planes
