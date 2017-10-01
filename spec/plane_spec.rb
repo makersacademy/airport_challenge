@@ -2,11 +2,13 @@ require 'plane'
 
 describe Plane do
 
-  let(:airport) do
-    airport = double :airport
-    allow(airport).to receive(:land_plane)
-    airport
+  class FakeAirport
+    def land_plane(plane, landed = true)
+      plane.landed = landed
+    end
   end
+
+  let(:airport) {FakeAirport.new}
 
   describe '#initialize' do
     it 'should be flying' do
@@ -17,13 +19,7 @@ describe Plane do
   describe '#landed?' do
     it 'will show if plane has landed at airport' do
       airport.land_plane(subject)
-      expect(subject.landed?).to eq subject.landed
-    end
-  end
-
-  describe '#parked_at' do
-    it 'will show what airport plane is parked at' do
-    expect(subject).to respond_to (:parked_at)
+      expect(subject.landed?).to eq true
     end
   end
 

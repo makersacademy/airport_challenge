@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :landed
+  attr_accessor :landed, :airport
 
   def initialize(landed = false)
     @landed = landed
@@ -7,9 +7,6 @@ class Plane
 
   def landed?
     @landed
-  end
-
-  def parked_at
   end
 
 end
