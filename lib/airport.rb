@@ -14,7 +14,6 @@ class Airport
     fail "Sorry, too stormy to land!" if weather.stormy?
     fail "Sorry airport is full!" if full?
     plane.landed = landed
-    plane.airport = @name
     @planes << plane
   end
 
