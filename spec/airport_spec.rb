@@ -10,7 +10,10 @@ class FakeWeather
 end
 
 describe Airport do
-  describe "landing plane tests" do
+  let(:weather) { double :weather }
+
+
+  describe '#landing plane tests' do
     it { is_expected.to respond_to(:land).with(1).argument }
     it "returns the landed plane" do
       plane = FakePlane.new
@@ -22,13 +25,14 @@ describe Airport do
       expect { subject.land plane }.to raise_error "Cannot land the same plane"
     end
     it { is_expected.to respond_to('weather') }
-    it "raises error when you want to land the plane in stormy weather" do
-
-
+    it "raises error when stormy weather and prevents landing" do
+      # plane = FakePlane.new
+      # expect { subject.land(plane, weather) }.to raise_error "Stormy Weather! Cannot land"
     end
   end
 
-  describe "capacity tests" do
+
+  describe '#capacity tests' do
     it "has a default capacity" do
       expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
@@ -38,13 +42,15 @@ describe Airport do
     end
   end
 
-  describe "taking-off plane tests" do
+
+
+  describe '#taking-off plane tests' do
     it { is_expected.to respond_to(:take_off) }
   end
   it "returns the take-off plane" do
     plane = FakePlane.new
-    subject.land(plane)                            # we need to state that a plane has landed for it to take-off.
-    expect(subject.take_off).to eq plane           # Subject(Airport.new) will be empty without a plane
+    subject.land(plane)
+    expect(subject.take_off).to eq plane
   end
   it "raises and error attempting to take_off a plane that does not exist " do
     expect {subject.take_off}.to raise_error "no planes available for take-off!"
