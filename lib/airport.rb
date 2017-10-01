@@ -1,7 +1,9 @@
+require './lib/plane'
+
 class Airport
 
-   def release_plane
-     Plane.new
+   def permission_to_land
+      true
    end
 
 end

@@ -3,8 +3,10 @@ require './lib/plane'
 
 describe Airport do
 
-it 'confirms when a plane has left the airport' do
-  expect(subject.release_plane.depart_from_airport).to eq true
+describe '#permission_to_land' do
+  it 'allows plane to land at airport' do
+    expect(subject.permission_to_land).to eq true
+  end
 end
 
 end

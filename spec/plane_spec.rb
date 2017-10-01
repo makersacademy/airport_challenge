@@ -2,13 +2,26 @@ require 'plane'
 
 describe Plane do
 
-  it 'expects the plane to arrive at airport' do
-    expect(subject.arrive_at_airport).to eq true
+
+  it { is_expected.to respond_to :arrive_at_airport }
+
+  it { is_expected.to respond_to :depart_from_airport }
+
+
+    describe '#arrive_at_airport' do
+      it 'raises an error - too stormy to depart' do
+        expect(subject).to receive(:stormy_weather).and_return(1)
+        expect(subject.arrive_at_airport).to raise_error "Too stormy to depart"
+    end
   end
 
-  it 'expects the plane to depart from airport' do
-   expect(subject.depart_from_airport).to eq true
+
+  describe '#depart_from_airport' do
+    it 'raises an error - too stormy to depart' do
+      expect(subject).to receive(:stormy_weather).and_return(1)
+      expect(subject.depart_from_airport).to raise_error "Too stormy to depart"
   end
+end
 
   it 'expects stormy_weather? to return Integer' do
     expect(subject.stormy_weather?).to be_a_kind_of(Integer)
