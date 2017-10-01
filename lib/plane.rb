@@ -19,10 +19,15 @@ class Plane
     raise "no landing because of stormy weather" if airport.prevent_landing == true
   end
 
+  def check_plane_still_home(airport)
+    airport.name == @home_airport.name && @airport_just_landed.empty?
+  end
+
   def land(airport)
     raise 'plane has already landed...so cannot land again' if @in_the_air == false
     raise 'argument is not an airport object' unless airport?(airport)
     check_airport_status_land(airport)
+    raise 'plane has never taken_off, so cannot land' if check_plane_still_home(airport)
     @in_the_air = false
     @airport_just_landed = airport.name
     return

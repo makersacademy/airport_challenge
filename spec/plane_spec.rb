@@ -14,18 +14,13 @@ describe Plane do
     it "expects a plane to be able to land" do
       expect(plane).to respond_to(:land)
     end
-    it "expects land method to raise error if argument is a String object" do
-      expect { plane.land(String.new) }.to raise_error 'argument is not an airport object'
-    end
     it "expects to prevent landing if airport has a true blocked_airport attribute" do
       airport.blocked_airport = true
       expect { plane.land(airport) }.to raise_error(RuntimeError, "Plane cannot land because the airport is having technical difficulties")
     end
-    it "expects to prevent landing if the plane has already landed" do
-      plane.land(airport)
-      expect { plane.land(airport) }.to raise_error 'plane has already landed...so cannot land again'
+    it "expects to prevent landing if the plane has never taken off" do
+      expect { plane.land(airport) }.to raise_error 'plane has never taken_off, so cannot land'
     end
-
   end
   describe "#take_off" do
     it "expects the plane to take off and set the in_the_air variable to true" do
