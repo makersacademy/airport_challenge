@@ -4,13 +4,6 @@ class FakePlane
 
   attr_accessor :status
 
-  def taken_off
-    @status = "Taken off"
-  end
-
-  def landed
-    @status = 'Landed'
-  end
 end
 
 describe Airport do
@@ -53,8 +46,12 @@ describe Airport do
 
   describe 'weather' do
     it { is_expected.to respond_to :weather }
-    # it 'prevents planes taking off in stormy weather' do
-    #
-    # end
+
+    it 'prevents planes taking off in stormy weather' do
+      subject.land(FakePlane.new)
+      subject.weather = "Stormy"
+      expect { subject.take_off }.to raise_error 'Sorry, it is too stormy to take off'
+    end
+
   end
 end
