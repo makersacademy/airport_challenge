@@ -9,27 +9,48 @@ describe Airport do
 
   it 'allows a plane to land at airport' do
     plane = Plane.new
-    subject.land plane
-    expect(subject.plane[0]).to eq(plane)
+    airport = Airport.new
+    airport.land plane
+    airport.stub(:storm?) {false}
+    expect(airport.plane[0]).to eq(plane)
+  end
+
+
+  it 'Stops plane landing if storm' do
+    plane = Plane.new
+    airport = Airport.new
+    airport.land plane
+    airport.stub(:storm?) {true}
+    expect(airport.land(plane)).to eq('The weather is too bad to fly')
   end
 
 
   it 'when take_off method is called it returns an instance of Plane class' do
-    subject.land(Plane.new)
     subject.stub(:storm?) {false}
+    subject.land(Plane.new)
+    # subject.stub(:storm?) {false}
     expect(subject.take_off). to be_an_instance_of(Plane)
   end
 
 
   it 'when take_off method is called but there is a storm' do
-    subject.land(Plane.new)
-    subject.stub(:storm?) {true}
-    expect(subject.take_off).to eq('The weather is too bad to fly')
+    # subject.stub(:storm?) {true}
+    airport = Airport.new
+    # airport.stub(:storm?) {true}
+    airport.land(Plane.new)
+    airport.stub(:storm?) {true}
+    expect(airport.take_off).to eq('The weather is too bad to fly')
   end
 
 
   it 'raises an error when you to run take_off method when no planes present' do
     expect {subject.take_off}.to raise_error 'All planes have gone'
+  end
+
+
+  it 'generates a random number between 0-9'do
+    expect(subject.num).to be >= 0
+    expect(subject.num).to be < 9
   end
 
 
