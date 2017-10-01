@@ -1,23 +1,24 @@
 class Airport
 
   DEFAULT_CAPACITY = 20
-  attr_accessor :capacity, :weather
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = %w(Stormy Sunny Sunny Sunny).sample
   end
 
   def weather
+    @weather = %w(Stormy Sunny Sunny Sunny).sample
   end
 
   def land(plane)
+    @plane = plane
     fail 'Airport is full!' if full?
-    fail 'That plane is already landed here!' if @planes.include? plane
-    plane.status = "Landed"
-    @planes << plane
-    plane
+    fail 'That plane is already landed here!' if already_landed?
+    @plane.status = "Landed"
+    @planes << @plane
+    @plane
   end
 
   def take_off
@@ -35,5 +36,9 @@ class Airport
 
   def empty?
     @planes.empty?
+  end
+
+  def already_landed?
+    @planes.include? @plane
   end
 end
