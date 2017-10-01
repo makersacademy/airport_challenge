@@ -15,6 +15,8 @@ class Airport
   end
 
   def land(plane)
+    check = weather_check
+    fail "The weather is stormy" if check == "storms"
     fail "Airport full" if full?
   @planes << plane
   end
@@ -24,7 +26,9 @@ class Airport
   "#{plane} is not in the airport"
   end
 
-  def storms?
+  def weather_check
+  weather = 1 + rand(100)
+  weather > 95 ? "storms" : "sunny"
   end
 
   private
