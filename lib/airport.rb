@@ -1,5 +1,5 @@
 class Airport
-  WEATHER_STATE = ["sunny", "mild", "cloudy", "misty", "rainy", "stormy"]
+  require 'weather'
 
   attr_reader :capacity, :landed_airplanes
 
@@ -24,12 +24,10 @@ class Airport
     false
   end
 
-  def stormy?
-    report_weather == "stormy"
-  end
+  private
 
-  def report_weather
-    WEATHER_STATE.sample
+  def full?
+    landed_airplanes.count == capacity 
   end
 
   def prevent_take_off
@@ -40,8 +38,8 @@ class Airport
     stormy? || full?
   end
 
-  private
-  def full?
-    landed_airplanes.count == capacity 
+  def stormy?
+    Weather.report == "stormy"
   end
+
 end

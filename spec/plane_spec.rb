@@ -4,7 +4,6 @@ describe Plane do
   let(:airport) { double(:airport) }
   let(:plane) { Plane.new }
   it "should be able to land at an airport if the weather conditions and the capacity allows it" do
-    
     allow(airport).to receive(:request_to_land).and_return(true)
     expect(plane.land_at(airport)).to eq airport
   end
