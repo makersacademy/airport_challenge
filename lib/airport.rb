@@ -1,8 +1,10 @@
 class Airport
-  attr_reader :planes, :capacity
+  attr_reader :name, :planes, :capacity
+
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(name, capacity = DEFAULT_CAPACITY)
+    @name = name
     @planes = []
     @capacity = capacity
   end
@@ -10,6 +12,7 @@ class Airport
   def land_plane(plane, weather, landed = true)
     fail "Sorry plane has already landed!" if @planes.include? plane
     fail "Sorry, too stormy to land!" if weather.stormy?
+    fail "Sorry airport is full!" if @planes.length == DEFAULT_CAPACITY
     plane.landed = landed
     @planes << plane
   end

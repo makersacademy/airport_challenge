@@ -22,10 +22,14 @@ describe Airport do
     allow(weather).to receive(:stormy?).and_return false
     weather
   end
+  let(:subject) {Airport.new('Heathrow')}
 
   context 'not stormy weather' do
 
     describe '#initialize' do
+      it 'should have a name' do
+        expect(subject.name).to eq 'Heathrow'
+      end
       it 'should hold zero amount of planes' do
         expect(subject.planes).to be_empty
       end
@@ -33,7 +37,8 @@ describe Airport do
         expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
       end
       it 'should have a override capability for capacity' do
-        expect(Airport.new(30).capacity).to eq 30
+        jfk = Airport.new('JFK', 30)
+        expect(jfk.capacity).to eq 30
       end
     end
 
@@ -45,6 +50,10 @@ describe Airport do
       it "should raise an error if plane has already landed" do
         subject.land_plane(plane, weather)
         expect { subject.land_plane(plane, weather) }.to raise_error "Sorry plane has already landed!" if subject.planes.include? plane
+      end
+      it 'should prevent a plane landing if airport is full' do
+        20.times { subject.land_plane(FakePlane.new, weather) }
+        expect { subject.land_plane(FakePlane.new, weather) }.to raise_error "Sorry airport is full!"
       end
     end
 
