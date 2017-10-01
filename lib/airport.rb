@@ -8,6 +8,7 @@ class Airport
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
+    raise "Capacity must be greater than 1" if capacity < 1
     @planes = []
     @capacity = capacity
   end

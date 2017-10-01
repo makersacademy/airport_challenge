@@ -4,9 +4,15 @@ describe Airport do
   let :plane {double :plane, flying: true, ground: nil, fly: nil}
   subject(:airport) {Airport.new}
 
-  it "has an adjustable plane capacity" do
-    airport = Airport.new(0)
-    expect(airport.capacity).to eq(0)
+  describe "#capacity" do
+    it "has an adjustable plane capacity" do
+      airport = Airport.new(1)
+      expect(airport.capacity).to eq(1)
+    end
+
+    it "prevents capacity lower than 1" do
+      expect {Airport.new(0)}.to raise_error("Capacity must be greater than 1")
+    end
   end
 
   describe "#land" do
@@ -34,7 +40,7 @@ describe Airport do
   describe "#take_off" do
 
     before do
-      allow(airport).to receive(:stormy?) {false}
+      allow(airport).to receive(:stormy?).and_return(false)
       airport.land(plane)
       airport.take_off(plane)
     end
@@ -59,7 +65,7 @@ describe Airport do
 
     context "when stormy" do
       before do
-        allow(airport).to receive(:stormy?) {true}
+        allow(airport).to receive(:stormy?).and_return(true)
       end
 
       it "prevents take-off in stormy weather" do
