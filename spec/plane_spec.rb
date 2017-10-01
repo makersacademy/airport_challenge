@@ -24,9 +24,13 @@ describe Plane do
     end
 
     context 'plane is flying' do
-      let(:plane) {Plane.new(nil)}
+      let(:plane) { Plane.new(nil) }
       it 'instructs a plane to land and increases the planes array by 1' do
         expect { plane.land_at_airport(airport) }.to change { airport.plane_count }.by(1)
+      end
+
+      it 'cannot take off and cannot be in an airport' do
+        expect { plane.take_off_from_airport(airport) }.to raise_error("flying plane cannot take off and cannot be in an airport")
       end
 
       it 'prevents landing when the airport is full' do
