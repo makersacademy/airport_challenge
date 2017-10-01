@@ -59,7 +59,7 @@ describe Airport do
       airport.land(plane) 
       allow(plane).to receive(:landed) { true }
     end
-
+    
     it 'instructs a plane to take off from the airport' do
       expect(airport.take_off(plane)).to eq plane
     end
