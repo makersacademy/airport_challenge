@@ -20,12 +20,6 @@ describe Weather do
         allow(weather).to receive(:rand).with(0..9) {0}
         weather.set
         expect(weather.stormy).to be_falsy
-        allow(weather).to receive(:rand).with(0..9) {3}
-        weather.set
-        expect(weather.stormy).to be_falsy
-        allow(weather).to receive(:rand).with(0..9) {5}
-        weather.set
-        expect(weather.stormy).to be_falsy
       end
     end
 

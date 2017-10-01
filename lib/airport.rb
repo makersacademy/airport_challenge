@@ -13,25 +13,34 @@ class Airport
   end
 
   def land(plane)
+    raise 'plane has already landed' if plane.landed
     raise 'cannot land at full airport' if full?
+    raise 'cannot land in stormy weather' unless cleared?
+    plane.land
     @planes << plane
   end
 
   def take_off(plane)
+    raise 'plane is already in the air' unless plane.landed
+    raise 'plane is not at this airport' unless here?(plane)
+    raise 'cannot take off in stormy weather' unless cleared?
+    plane.take_off
     @planes.delete(plane)
   end
 
-  def clear?
-    @weather.set
-    !@weather.stormy
-  end
+  private 
 
-  def full?
-    @planes.count >= @capacity
-  end
+    def cleared?
+      @weather.set
+      !@weather.stormy
+    end
 
-  def here?
-    planes.include?(@plane)
-  end
+    def here?(plane)
+      planes.include?(plane)
+    end
+
+    def full?
+      @planes.count >= @capacity
+    end
 
 end
