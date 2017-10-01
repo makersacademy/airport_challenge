@@ -36,6 +36,7 @@ describe Airport do
     it 'lets a plane take off' do
       plane = FakePlane.new
       subject.land(plane)
+      subject.weather = "Sunny"
       expect(subject.take_off).to eq "Taken off"
     end
 
@@ -48,9 +49,10 @@ describe Airport do
     it { is_expected.to respond_to :weather }
 
     it 'prevents planes taking off in stormy weather' do
-      subject.land(FakePlane.new)
-      subject.weather = "Stormy"
-      expect { subject.take_off }.to raise_error 'Sorry, it is too stormy to take off'
+      airport = Airport.new
+      airport.weather = "Stormy"
+      airport.land(FakePlane.new)
+      expect { airport.take_off }.to raise_error 'Sorry, it is too stormy to take off'
     end
 
   end

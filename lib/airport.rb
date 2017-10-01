@@ -6,7 +6,7 @@ class Airport
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
-    @weather = %w(Stormy Sunny Sunny Sunny)
+    @weather = %w(Stormy Sunny Sunny Sunny).sample
   end
 
   def weather
@@ -36,5 +36,4 @@ class Airport
   def empty?
     @planes.empty?
   end
-
 end
