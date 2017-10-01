@@ -24,8 +24,7 @@ describe Plane do
   describe '#land_at' do
 
     it 'lands at the airport' do
-      plane.land_at(airport)
-      expect(airport.planes[0]).to eq plane
+      expect(plane.land_at(airport)).to eq plane
     end
     it 'raises error if weather is stormy' do
       allow(airport).to receive(:clear?) {false}
@@ -50,8 +49,8 @@ describe Plane do
     end
 
     it 'confirms a plane has left the airport' do
-      plane.take_off_from(airport)
-      expect(airport.planes[0]).to_not eq plane
+      expect(plane.take_off_from(airport)).to_not be_at(airport)
+      #expect(plane).to_not eq plane
     end
     it 'allows a plane to land again once taken off' do
       plane.take_off_from(airport)
