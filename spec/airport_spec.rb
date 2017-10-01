@@ -19,7 +19,7 @@ describe Airport do
       expect(subject).to respond_to :plane_take_off
     end
 
-    it "if airport is full, not allow planes to land" do
+    it "if airport is full, should not allow planes to land" do
       # set full? to return true
       expect { subject.accept_plane }.to raise_error("Airport full -> can't accept planes!")
     end
@@ -35,7 +35,7 @@ describe Airport do
     end
 
   end
-  
+
   # describe "#weather" do
   #
   #   it "should respond_to to the method stormy?" do
