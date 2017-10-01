@@ -1,4 +1,5 @@
 require './lib/plane'
+require './lib/weather'
 
 class Airport
 
@@ -19,10 +20,14 @@ class Airport
   # end
 
   def land_at_airport(plane)
+    # weather = Weather.new
+    # fail "Too stormy!" if weather.stormy?
     plane
   end
 
   def take_off(plane)
+    weather = Weather.new
+    fail "Too stormy!" if weather.stormy?
     @plane = plane
   end
 
