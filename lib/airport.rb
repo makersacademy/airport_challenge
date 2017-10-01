@@ -8,10 +8,11 @@ class Airport
     @capacity = capacity
   end
 
-  def instruct_plane_to_land(plane)
+  def receive_plane(plane)
     raise "plane cannot land because the airport is full" if @planes.count >= @capacity
     raise "plane cannot land in stormy weather" if stormy?
     @planes << plane
+
   end
 
   def instruct_plane_to_take_off(plane)

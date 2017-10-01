@@ -2,6 +2,7 @@ require 'plane'
 require 'airport'
 
 describe 'FEATURE TEST: user stories' do
+  describe Airport do
   # As an air traffic controller
   # So I can get passengers to a destination
   # I want to instruct a plane to land at an airport
@@ -13,13 +14,12 @@ describe 'FEATURE TEST: user stories' do
     end
 
     it 'so planes land at airports, instruct a plane to land' do
-
-      expect { airport.instruct_plane_to_land(plane) }.not_to raise_error
+      expect { plane.land_at_airport(airport) }.not_to raise_error
     end
 
     it 'instructs a plane to land and holds it in the planes array' do
 
-      expect { airport.instruct_plane_to_land(plane) }.to change { airport.plane_count }.by(1)
+      expect { plane.land_at_airport(airport) }.to change { airport.plane_count }.by(1)
     end
 
     # As an air traffic controller
@@ -42,9 +42,9 @@ describe 'FEATURE TEST: user stories' do
     it 'prevents landing when the airport is full' do
       allow(airport).to receive(:stormy?).and_return(false)
       5.times do
-        airport.instruct_plane_to_land(Plane.new)
+        Plane.new.land_at_airport(airport)
       end
-      expect { airport.instruct_plane_to_land(plane)}.to raise_error("plane cannot land because the airport is full")
+      expect { plane.land_at_airport(airport)}.to raise_error("plane cannot land because the airport is full")
     end
 
     # As the system designer
@@ -74,9 +74,21 @@ describe 'FEATURE TEST: user stories' do
       # To ensure safety
       # I want to prevent landing when the weather is stormy
     it 'prevents landing when the weather is stormy' do
-      expect { airport.instruct_plane_to_land(plane) }.to raise_error("plane cannot land in stormy weather")
+      expect { plane.land_at_airport(airport) }.to raise_error("plane cannot land in stormy weather")
     end
   end
+end
 
-
+      #Extra User story
+      # As an air traffic controller
+      # So the System is consistent and correctly reports plane status and location
+      # I want to ensure a flying plane cannot take off and cannot be in an airport.
+  #     describe Plane do
+  #
+  # end
+  # let(:airport) {Airport.new}
+  # let(:plane) {Plane.new}
+  #   it 'a flying plane cannot take off and cannot be in an airport' do
+  #     expect { plane.flying }.to eq(true)
+  #   end
 end
