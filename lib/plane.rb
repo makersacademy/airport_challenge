@@ -51,7 +51,7 @@ class Plane
     raise 'plane is already up in the air..so cannot take off' if @in_the_air == true
     conditions_before_taking_off(airport)
     @in_the_air = true if airport?(airport)
-    @airport_exited << airport.__id__
+    @airport_exited << airport.name
     return
   end
 
@@ -63,7 +63,9 @@ class Plane
     @airport_exited[-1]
   end
 
-  def confirm_take_off(airport)
-    airport_exited == airport.__id__
+  def confirm_take_off
+    return @airport_exited[-1] unless @airport_exited.empty?
+    return "no take_off to confirm yet"
   end
+
 end

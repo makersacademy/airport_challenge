@@ -53,20 +53,15 @@ describe Plane do
   end
 
   describe "#airport_exited" do
-    it "expects a plane to save airport ID after it has taken off " do
+    it "expects a plane to save airport Name after it has taken off " do
       plane.take_off(airport)
-      expect(plane.airport_exited).to eq airport.__id__
+      expect(plane.airport_exited).to eq airport.name
     end
   end
   describe "#confirm_take_off" do
     it "expects a plane to confirm that he has exited specific airport" do
       plane.take_off(airport)
-      expect(plane.confirm_take_off(airport)).to eq true
-    end
-    it "expects a plane to output false if we confirm_take_off the wrong airport" do
-      airport2 = Airport.new("OhDear Airport")
-      plane.take_off(airport)
-      expect(plane.confirm_take_off(airport2)).to eq false
-    end
+      expect(plane.confirm_take_off).to eq airport.name
+    end    
   end
 end
