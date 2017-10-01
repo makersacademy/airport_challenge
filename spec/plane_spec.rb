@@ -2,7 +2,7 @@ require 'plane'
 
 describe Plane do
 
-  subject(:plane) {described_class.new}
+  subject(:plane) { described_class.new }
 
   describe '#land' do
 

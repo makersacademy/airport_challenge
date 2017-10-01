@@ -5,11 +5,11 @@ class Weather
   end
   
   private
-  
+
   OUTLOOKS = [:stormy, :sunny, :sunny, :sunny, :sunny]
   
-    def randomize
-      OUTLOOKS.sample
-    end
+  def randomize
+    OUTLOOKS.sample
+  end
 
 end

@@ -30,16 +30,16 @@ class Airport
 
   private 
 
-    def cleared?
-      !@weather.stormy?
-    end
+  def cleared?
+    !@weather.stormy?
+  end
 
-    def here?(plane)
-      planes.include?(plane)
-    end
+  def here?(plane)
+    planes.include?(plane)
+  end
 
-    def full?
-      @planes.count >= capacity
-    end
+  def full?
+    @planes.count >= capacity
+  end
 
 end
