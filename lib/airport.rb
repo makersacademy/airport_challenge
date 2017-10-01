@@ -8,6 +8,10 @@ class Airport
 
   def permission_to_take_off
     true
-  end  
+  end
+
+  def planes
+    planes = []
+  end
 
 end

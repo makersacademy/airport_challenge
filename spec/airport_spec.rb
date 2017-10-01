@@ -15,4 +15,10 @@ describe '#permission_to_take_off' do
   end
 end
 
+describe '#planes' do
+  it 'stores an array of planes in the airport' do
+    expect(subject.planes).to be_instance_of(Array)
+  end
+end
+
 end
