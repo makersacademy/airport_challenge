@@ -14,8 +14,8 @@ describe Airport do
 
   describe 'take_off' do
     it 'allows a plane to take off' do
-      airport.land(plane)
       allow(airport.weather).to receive(:stormy?).and_return false
+      airport.land(plane)
       airport.take_off(plane)
       expect(plane.landed).to be false
     end
