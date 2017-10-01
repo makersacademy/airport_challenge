@@ -17,20 +17,24 @@ require 'airport'
 describe Plane do
   airport = Airport.new
   subject(:plane) { described_class.new(airport) }
-  # airport.plane = subject
+
   describe "#land" do
     it 'lands a plane at a sunny airport' do
       expect(plane.land(Airport.new)).to be true
     end
 
     it 'plane landing at a stormy airport fails' do
-      
+      airport = plane.airport
+      airport.plane = plane
+      airport.weather = 'stormy'
+
     end
   end
 
   describe "#takeoff" do
     it "plane takeoff from a sunny airport succeeds and plane has left" do
       airport = plane.airport
+      airport.weather = 'sunny'
       expect(plane.takeoff).to be true
       expect(airport.plane).to be_nil
     end
