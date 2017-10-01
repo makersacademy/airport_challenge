@@ -3,13 +3,17 @@ require 'plane'
 describe Plane do
   subject(:plane) {Plane.new}
 
-  it "is flying or not" do
-    expect(plane.flying).to eq(true)
+  describe "#ground" do
+    it "stops flying when landed" do
+      plane.ground
+      expect(plane.flying).to eq(false)
+    end
   end
 
-  it "stops flying when grounded" do
-    plane.ground
-    expect(plane.flying).to eq(false)
+  describe "#fly" do
+    it "is flying after take-off" do
+      plane.fly
+      expect(plane.flying).to eq(true)
+    end
   end
-
 end
