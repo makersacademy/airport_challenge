@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do
 
-  subject(:weather) { Weather.new }
+  let(:weather) { Weather.new }
 
   it { is_expected.to respond_to(:stormy?) }
 
