@@ -11,7 +11,7 @@ class Airport
   end
 
   def take_off
-    fail "no planes available for take-off!" unless @plane
+    fail "no planes available for take-off!" if empty?
     @plane
   end
 
@@ -20,5 +20,10 @@ class Airport
   def full?
     @planes.count >= 10
   end
+
+  def empty?
+    @planes.empty?
+  end
+
 
 end
