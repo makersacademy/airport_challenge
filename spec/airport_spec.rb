@@ -1,6 +1,6 @@
 require 'airport'
 
-  describe Airport do
+describe Airport do
 
   let(:airport) { described_class.new }
   let(:plane) { Plane.new }

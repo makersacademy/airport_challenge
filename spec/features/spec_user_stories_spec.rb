@@ -36,6 +36,17 @@ describe 'FEATURE TEST: user stories' do
       expect { airport.instruct_plane_to_take_off(plane) }.to change { airport.plane_count }.by(-1)
     end
 
+    # As an air traffic controller
+    # To ensure safety
+    # I want to prevent landing when the airport is full
+    it 'prevents landing when the airport is full' do
+      allow(airport).to receive(:stormy?).and_return(false)
+      5.times do
+        airport.instruct_plane_to_land(Plane.new)
+      end
+      expect { airport.instruct_plane_to_land(plane)}.to raise_error("plane cannot land because the airport is full")
+    end
+
   end
 
   context 'when weather is bad' do
@@ -59,22 +70,11 @@ describe 'FEATURE TEST: user stories' do
     end
   end
 
-  # As an air traffic controller
-  # To ensure safety
-  # I want to prevent landing when the airport is full
-  it 'prevents landing when the airport is full' do
-    airport = Airport.new
-    plane = Plane.new
-    allow(airport).to receive(:stormy?).and_return(false)
-    5.times do
-      airport.instruct_plane_to_land(Plane.new)
-    end
-    expect { airport.instruct_plane_to_land(plane)}.to raise_error("plane cannot land because the airport is full")
-  end
 
   # As the system designer
   # So that the software can be used for many different airports
   # I would like a default airport capacity that can be overridden as appropriate
+
 
 
 end
