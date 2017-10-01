@@ -6,5 +6,4 @@ class Airport
     @prevent_take_off = false
     @name = name
   end
-
 end
