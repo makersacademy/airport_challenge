@@ -47,8 +47,6 @@ describe Plane do
       plane.take_off(airport)
       expect(plane.confirm_take_off(airport)).to eq true
     end
-  end
-  describe "#confirm_take_off" do
     it "expects a plane to output false if we confirm_take_off the wrong airport" do
       airport2 = Airport.new("OhDear Airport")
       plane.take_off(airport)
