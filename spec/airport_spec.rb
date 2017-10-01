@@ -32,7 +32,7 @@ end
     end
 
     it 'raises an error when airport is full' do
-    10.times {subject.land(Plane.new)}
+    (subject.instance_variable_get(:@capacity)).times {subject.land(Plane.new)}
     expect {subject.land(Plane.new)}.to raise_error "Airport full"
     end
   end
