@@ -3,6 +3,7 @@ require 'airport'
 describe Airport do
   let :plane {double :plane, flying: true, ground: nil, fly: nil}
   subject(:airport) {Airport.new}
+  
   it "stores landed planes" do
     airport.land(plane)
     expect(airport.planes[0]).to eq(plane)
