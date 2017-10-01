@@ -29,3 +29,6 @@ describe Airport do
   end
 
 end
+
+
+# edge cases - the same plane cannot take_off twice
