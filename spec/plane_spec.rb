@@ -2,7 +2,7 @@ require 'plane'
 require 'airport'
 describe Plane do
   let(:plane) { Plane.new }
-  let(:airport) { Airport.new }
+  let(:airport) { Airport.new("WhereAmI Airport") }
 
   describe "#land" do
     it "expects a plane to be able to land" do
@@ -50,7 +50,7 @@ describe Plane do
   end
   describe "#confirm_take_off" do
     it "expects a plane to output false if we confirm_take_off the wrong airport" do
-      airport2 = Airport.new
+      airport2 = Airport.new("OhDear Airport")
       plane.take_off(airport)
       expect(plane.confirm_take_off(airport2)).to eq false
     end

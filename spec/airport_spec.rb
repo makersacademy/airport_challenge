@@ -2,9 +2,14 @@ require 'plane'
 require 'airport'
 describe Airport do
   let(:plane) { Plane.new }
-  subject { Airport.new }
+  subject { Airport.new("Paradise Airport") }
   it "expects to tell whether landing and taking_off is blocked or not " do
     expect(subject.blocked_airport).to eq false
+  end
+  describe "#name" do
+    it "expects to have a name attribute (String) when an Airport object is instantiated" do
+      expect(subject.name).to be_a_kind_of(String)
+    end
   end
   describe "#prevent_landing" do
     it "expects to prevents any landing in the airport" do
