@@ -14,4 +14,11 @@ class Plane
     airport.receive_plane(self)
     @landed_airport = airport
   end
+
+  def take_off_from_airport(airport)
+    raise "plane is not at this airport" if landed_airport != airport
+    airport.request_take_off(self)
+    @landed_airport = nil
+  end
+
 end

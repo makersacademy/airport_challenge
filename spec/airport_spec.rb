@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
 
@@ -9,48 +10,12 @@ describe Airport do
     before do
       allow(airport).to receive(:stormy?).and_return(false)
     end
-    it 'instructs a plane to land' do
-      expect(plane).to respond_to(:land_at_airport).with(1).argument
-    end
 
-    it 'instructs a plane to land and increases the planes array by 1' do
-      expect { plane.land_at_airport(airport) }.to change { airport.plane_count }.by(1)
-    end
-
-    it 'instructs a plane to take off' do
-      expect(airport).to respond_to(:instruct_plane_to_take_off)
-    end
-
-    it 'confirms that the plane is no longer in the airport' do
-      airport.planes << plane
-      expect { airport.instruct_plane_to_take_off(plane) }.to change { airport.plane_count }.by(-1)
-    end
-
-    it 'prevents landing when the airport is full' do
-      5.times do
-        Plane.new.land_at_airport(airport)
-      end
-      expect { plane.land_at_airport(airport) }.to raise_error("plane cannot land because the airport is full")
-    end
 
     it 'has a default capacity which can be changed as appropriate' do
       airport.capacity = 10
       expect(airport.capacity).to eq(10)
     end
 
-  end
-
-  context 'when weather is bad' do
-    before do
-      allow(airport).to receive(:stormy?).and_return(true)
-    end
-
-    it 'prevents take off when weather is stormy' do
-      expect { airport.instruct_plane_to_take_off(plane) }.to raise_error("plane cannot take off in stormy weather")
-    end
-
-    it 'prevents landing when weather is stormy' do
-      expect { plane.land_at_airport(airport) }.to raise_error("plane cannot land in stormy weather")
-    end
   end
 end

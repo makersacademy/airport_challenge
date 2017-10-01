@@ -15,7 +15,7 @@ class Airport
 
   end
 
-  def instruct_plane_to_take_off(plane)
+  def request_take_off(plane)
     raise "plane cannot take off in stormy weather" if stormy?
     @planes.delete(plane)
   end
