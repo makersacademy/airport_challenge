@@ -12,6 +12,15 @@ class Airport
     @capacity = capacity
   end
 
+  def land(plane)
+    raise 'cannot land at full airport' if full?
+    @planes << plane
+  end
+
+  def take_off(plane)
+    @planes.delete(plane)
+  end
+
   def clear?
     @weather.set
     !@weather.stormy
@@ -19,6 +28,10 @@ class Airport
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def here?
+    planes.include?(@plane)
   end
 
 end

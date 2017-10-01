@@ -28,11 +28,6 @@ describe Airport do
 
   describe '#planes' do
   
-    it 'stores a landed plane in the hangar' do
-      allow(airport.weather).to receive(:rand).with(0..9) {0}
-      plane.land_at(airport)
-      expect(airport.planes[0]).to eq plane
-    end
     it 'has a default capacity of 10' do
       expect(Airport::DEFAULT_CAPACITY).to eq 10
     end
@@ -59,6 +54,59 @@ describe Airport do
       end
     end
 
+  end
+
+  describe '#land' do
+
+    it 'instructs a plane to land at the airport' do
+      expect(airport.land(plane)).to include(plane)
+    end
+    it 'stores a landed plane in the hangar' do
+      allow(airport.weather).to receive(:rand).with(0..9) {0}
+      airport.land(plane)
+      expect(airport.planes).to include(plane)
+    end
+    # it 'raises error if weather is stormy' do
+    #   allow(airport).to receive(:clear?) {false}
+    #   expect {plane.land_at(airport)}.to raise_error 'cannot land in stormy weather'
+    # end
+    it 'raises error if trying to land at a full airport' do
+      allow(airport).to receive(:full?) {true}
+      expect {airport.land(plane)}.to raise_error 'cannot land at full airport'
+    end 
+    # it 'raises error if already landed' do
+    #   plane.land_at(airport)
+    #   expect {plane.land_at(airport)}.to raise_error 'plane has already landed'
+    # end
+
+  end
+
+  describe '#take off' do
+    it 'instructs a plane to take off from the airport' do
+      expect(airport.take_off(plane)).to eq nil
+    end
+    it 'confirms a plane has left the airport' do
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes).to_not include(plane)
+    end
+    it 'allows a plane to land again once taken off' do
+      airport.land(plane)
+      airport.take_off(plane)
+      airport.land(plane)
+      expect(airport.planes).to include(plane)
+    end
+    # it 'raises error if weather is stormy' do
+    #   allow(airport).to receive(:clear?) {false}
+    #   expect {plane.take_off_from(airport)}.to raise_error 'cannot take off in stormy weather'
+    # end
+    # it 'raises error if already in the air and attempting to take off' do
+    #   plane.take_off_from(airport)
+    #   expect {plane.take_off_from(airport)}.to raise_error 'plane is already in the air'
+    # end
+    # it 'raises error if in a different airport' do
+    #   expect {plane.take_off_from(Airport.new)}.to raise_error 'plane is not at this airport'
+    # end
   end
 
 end
