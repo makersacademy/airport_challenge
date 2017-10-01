@@ -45,8 +45,8 @@ describe Plane do
     expect(subject.taken_off).to eq "Taken off"
   end
 
-  # it 'reports when it has landed' do
-  #   expect(subject.status?).to eq "Landed"
-  # end
+  it 'reports when it has landed' do
+    expect(subject.landed).to eq "Landed"
+  end
 
 end
