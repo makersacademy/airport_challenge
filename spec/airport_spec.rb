@@ -8,6 +8,9 @@ class FakePlane
     @status = "Taken off"
   end
 
+  def landed
+    @status = 'Landed'
+  end
 end
 
 describe Airport do

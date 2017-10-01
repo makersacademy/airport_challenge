@@ -13,13 +13,14 @@ class FakeAirport
   def land(plane)
     fail 'Airport is full!' if full?
     fail 'That plane is already landed here!' if @planes.include? plane
+    plane.status = "Landed"
     @planes << plane
     plane
   end
 
   def take_off
     fail 'There are no planes!' if empty?
-    @planes.pop.taken_off
+    @planes.pop.status = "Taken off"
   end
 
   private
@@ -42,11 +43,12 @@ describe Plane do
 
   it 'reports when it has taken off' do
     airport.take_off
-    expect(subject.taken_off).to eq "Taken off"
+    expect(plane.status).to eq "Taken off"
   end
 
   it 'reports when it has landed' do
-    expect(subject.landed).to eq "Landed"
+    airport.land(plane)
+    expect(plane.status).to eq "Landed"
   end
 
 end

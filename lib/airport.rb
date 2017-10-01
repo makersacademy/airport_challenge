@@ -11,13 +11,14 @@ class Airport
   def land(plane)
     fail 'Airport is full!' if full?
     fail 'That plane is already landed here!' if @planes.include? plane
+    plane.status = "Landed"
     @planes << plane
     plane
   end
 
   def take_off
     fail 'There are no planes!' if empty?
-    @planes.pop.taken_off
+    @planes.pop.status = "Taken off"
   end
 
   private
