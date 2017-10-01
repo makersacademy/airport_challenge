@@ -8,6 +8,9 @@ class Airport
     @capacity = capacity
   end
 
+  def weather
+  end
+
   def land(plane)
     fail 'Airport is full!' if full?
     fail 'That plane is already landed here!' if @planes.include? plane
