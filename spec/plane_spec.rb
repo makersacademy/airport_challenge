@@ -15,6 +15,10 @@ describe Plane do
       airport.blocked_airport = true
       expect { plane.land(airport) }.to raise_error(RuntimeError, "Plane cannot land because the airport is having technical difficulties")
     end
+    it "expects to prevent landing if the plane has already landed" do
+      plane.land(airport)
+      expect { plane.land(airport) }.to raise_error 'plane has already landed...so cannot land again'
+    end
 
   end
   describe "#take_off" do
@@ -26,7 +30,12 @@ describe Plane do
       airport.blocked_airport = true
       expect { plane.take_off(airport) }.to raise_error 'Plane cannot take off because the airport is having technical difficulties'
     end
+    it "expects to prevent taking_off if a plane has already taken off" do
+      plane.take_off(airport)
+      expect { plane.take_off(airport) }.to raise_error 'plane is already up in the air..so cannot take off'
+    end
   end
+
   describe "#airport_exited" do
     it "expects a plane to save airport ID after it has taken off " do
       plane.take_off(airport)

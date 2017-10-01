@@ -1,7 +1,7 @@
 require './lib/airport.rb'
 class Plane
   def initialize
-    @in_the_air = false
+    @in_the_air = nil
     @airport_exited = []
   end
 
@@ -10,6 +10,7 @@ class Plane
   end
 
   def land(airport)
+    raise 'plane has already landed...so cannot land again' if @in_the_air == false
     raise 'argument is not an airport object' unless airport?(airport)
     if airport.blocked_airport == true
       raise 'Plane cannot land because the airport is having technical difficulties'
@@ -22,6 +23,7 @@ class Plane
   end
 
   def take_off(airport)
+    raise 'plane is already up in the air..so cannot take off' if @in_the_air == true
     if airport.blocked_airport == true
       raise 'Plane cannot take off because the airport is having technical difficulties'
     end
