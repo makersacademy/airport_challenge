@@ -12,4 +12,10 @@ describe Airport do
       expect { plane.land(subject) }.to raise_error(RuntimeError, "no landing because of stormy weather")
     end
   end
+  describe "#prevent_take_off" do
+    it "expects to prevents any take_off in the airport" do
+      subject.prevent_take_off = true
+      expect { plane.take_off(subject) }.to raise_error(RuntimeError, "no take_off because of stormy weather")
+    end
+  end
 end

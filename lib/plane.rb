@@ -25,6 +25,9 @@ class Plane
     if airport.blocked_airport == true
       raise 'Plane cannot take off because the airport is having technical difficulties'
     end
+    if airport.prevent_take_off == true
+      raise 'no take_off because of stormy weather'
+    end
     @in_the_air = true if airport?(airport)
     @airport_exited << airport.__id__
     return
