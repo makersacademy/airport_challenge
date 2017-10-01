@@ -47,6 +47,14 @@ describe 'FEATURE TEST: user stories' do
       expect { airport.instruct_plane_to_land(plane)}.to raise_error("plane cannot land because the airport is full")
     end
 
+    # As the system designer
+    # So that the software can be used for many different airports
+    # I would like a default airport capacity that can be overridden as appropriate
+    it 'has a default capacity which can be overridden as appropriate' do
+      airport.capacity = 10
+      expect(airport.capacity).to eq(10)
+    end
+
   end
 
   context 'when weather is bad' do
@@ -69,12 +77,6 @@ describe 'FEATURE TEST: user stories' do
       expect { airport.instruct_plane_to_land(plane) }.to raise_error("plane cannot land in stormy weather")
     end
   end
-
-
-  # As the system designer
-  # So that the software can be used for many different airports
-  # I would like a default airport capacity that can be overridden as appropriate
-
 
 
 end

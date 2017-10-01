@@ -32,6 +32,12 @@ describe Airport do
       end
       expect { airport.instruct_plane_to_land(plane) }.to raise_error("plane cannot land because the airport is full")
     end
+
+    it 'has a default capacity which can be changed as appropriate' do
+      airport.capacity = 10
+      expect(airport.capacity).to eq(10)
+    end
+
   end
 
   context 'when weather is bad' do
