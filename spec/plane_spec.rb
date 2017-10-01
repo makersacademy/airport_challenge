@@ -7,6 +7,7 @@ describe Plane do
   describe "#landing" do
 
     it "should not take off when the weather is stormy" do
+      # changed the land method to accept an airport so changed this test
       expect { subject.land(airport, weather.stormy?) }.to raise_error("Weather stormy -> can't land!")
     end
 

@@ -1,6 +1,6 @@
 require 'airport'
 describe Airport do
-
+  let(:plane) { double(:plane) }
   describe "#dealing with full airport" do
 
     it "should respond to full? method" do
@@ -19,9 +19,9 @@ describe Airport do
       expect(subject).to respond_to :plane_take_off
     end
 
-    it "if airport is full, should not allow planes to land" do
-      # set full? to return true
-      expect { subject.accept_plane }.to raise_error("Airport full -> can't accept planes!")
+    it "should not accept planes if the aiport is full" do
+      subject.capacity.times { subject.accept_plane(plane) }
+      expect{ subject.accept_plane(plane) }.to raise_error("Airport full -> can't accept planes!")
     end
 
   end
