@@ -44,3 +44,4 @@ end
 # use attr_reader to create the capacity method and use initialize to set its initial value
 
 # edge cases - the same plane cannot take_off twice
+#            - the same plane cannot land twice

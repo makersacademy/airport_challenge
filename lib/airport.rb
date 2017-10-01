@@ -21,12 +21,14 @@ class Airport
 
   private
 
+  attr_reader :planes
+
   def full?
-    @planes.count >= @capacity
+    planes.count >= capacity
   end
 
   def empty?
-    @planes.empty?
+    planes.empty?
   end
 
 
