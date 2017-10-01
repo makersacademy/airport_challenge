@@ -2,7 +2,7 @@ require 'plane'
 require 'airport'
 describe Plane do
   let(:plane) { Plane.new }
-  let(:airport) { Airport.new}
+  let(:airport) { Airport.new }
 
   describe "#land" do
     it "expects a plane to be able to land" do
@@ -15,7 +15,6 @@ describe Plane do
       airport.blocked_airport = true
       expect { plane.land(airport) }.to raise_error(RuntimeError, "Plane cannot land because the airport is having technical difficulties")
     end
-
 
   end
   describe "#take_off" do

@@ -14,6 +14,9 @@ class Plane
     if airport.blocked_airport == true
       raise 'Plane cannot land because the airport is having technical difficulties'
     end
+    if airport.prevent_landing == true
+      raise "no landing because of stormy weather"
+    end
     @in_the_air = false
     return
   end
