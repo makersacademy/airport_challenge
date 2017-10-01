@@ -29,7 +29,8 @@ describe Airport do
     end
 
     it 'instructs a plane to land at the airport' do
-      expect(airport.land(plane)).to include(plane)
+      expect(airport).to receive(:land).with(plane)
+      airport.land(plane)
     end
     it 'stores a landed plane in the hangar' do
       airport.land(plane)
