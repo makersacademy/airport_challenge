@@ -18,7 +18,15 @@ describe Airport do
   it 'confirms that the plane is no longer in the airport' do
     plane = Plane.new
     subject.planes << plane
+    allow(airport).to receive(:stormy?).and_return(false)
     expect {airport.instruct_plane_to_take_off(plane)}.to change{subject.plane_count}.by(-1)
+  end
+
+  it 'prevents take off when weather is stormy' do
+    plane = Plane.new
+    allow(airport).to receive(:stormy?).and_return(true)
+    expect {airport.instruct_plane_to_take_off(plane)}.to raise_error("plane cannot take off in stormy weather")
+
   end
 
 
