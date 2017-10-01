@@ -13,22 +13,26 @@ Airport Challenge
 
 ```
 
-Instructions
+Partial solution
 ---------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+* You can create a plane object and an airport object
+* In order to create a plane object you need to have an airport object argument
+* the Airport used as argument in the plane object is used as a home airport (base). This is where the plane is based at the moment of creation.
 
-Steps
--------
+* the Airport object is created with a name argument (a String)
+* a Plane object can land : the argument is the destination airport
+* a Plane object can take_off : the argument is the departure airport
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
+Features
+---------
+
+* You can tell an airport that no landing is possible with the @prevent_landing attribute, which prevents any plane from landing at this airport
+* You can tell an airport that no take_off is possible which prevents any plane from taking_off from this airport
+* You can block both landing and take_off by applying @blocked_airport to this airport
+* You cannot land a plane if the plane is already landed and vice versa, you cannot take_off if you are already in the air.
+* You can confirm from which airport you have taken off by using the confirm_take_off method on a plane object
+
 
 Task
 -----
@@ -37,24 +41,24 @@ We have a request from a client to write the software to control the flow of pla
 
 ```
 As an air traffic controller 
-So I can get passengers to a destination 
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +77,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
