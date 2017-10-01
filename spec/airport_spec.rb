@@ -9,7 +9,7 @@ describe Airport do
     expect(airport.capacity).to eq(0)
   end
 
-  describe "#land tests" do
+  describe "#land" do
     it "stores landed planes" do
       airport.land(plane)
       expect(airport.planes).to include(plane)
@@ -31,25 +31,20 @@ describe Airport do
     end
   end
 
-  describe "#take_off tests" do
-    it "releases planes after take-off" do
+  describe "#take_off" do
+
+    before do
       allow(airport).to receive(:stormy?) {false}
       airport.land(plane)
       airport.take_off(plane)
+    end
+
+    it "releases planes after take-off" do
       expect(airport.planes).not_to include(plane)
     end
 
     it "confirms last plane departed from airport" do
-      allow(airport).to receive(:stormy?) {false}
-      airport.land(plane)
-      airport.take_off(plane)
       expect(airport.at_airport?(plane)).to eq(false)
-    end
-
-    it "prevents take-off in stormy weather" do
-      allow(airport).to receive(:stormy?) {true}
-      airport.land(plane)
-      expect {airport.take_off(plane)}.to raise_error("Cannot take-off during a storm")
     end
 
     it "only releases planes it contains" do
@@ -57,10 +52,20 @@ describe Airport do
     end
 
     it "changes status of plane to flying when taking-off" do
-      allow(airport).to receive(:stormy?) {false}
       airport.land(plane)
       expect(plane).to receive(:fly)
       airport.take_off(plane)
+    end
+
+    context "when stormy" do
+      before do
+        allow(airport).to receive(:stormy?) {true}
+      end
+
+      it "prevents take-off in stormy weather" do
+        airport.land(plane)
+        expect {airport.take_off(plane)}.to raise_error("Cannot take-off during a storm")
+      end
     end
   end
 end
