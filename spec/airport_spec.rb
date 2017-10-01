@@ -1,7 +1,8 @@
 require './docs/airport'
 
 describe Airport do
-  let(:airport) { Airport.new }
+  subject(:airport) { described_class.new }
+  let(:weather) { double :weather }
 
   context "Initialize"
   it "Capacity of airport should be 20 by default if no arguments passed in" do
@@ -31,13 +32,15 @@ describe Airport do
   context "Plane taking off"
   it "Plane should be able to take off" do
     allow(airport).to receive_messages(:weather => "Clear")
+    airport.weather
     expect(airport.landing).to be_instance_of(Array)
   end
 
   it "Plane should not be able to take off due to stormy weather" do
     airport.landing
-    allow(airport).to receive_messages(:weather => "Stormy")
-    expect { airport.take_off }.to raise_error "Plane cannot take off due to stormy weather"
+    allow(airport.landing).to receive(:weather).with("Stormy")
+    message = "Plane cannot take off due to stormy weather"
+    expect { airport.take_off }.to raise_error(message)
   end
 
   it "A plane should be taken off the @planes array once it takes off" do
@@ -65,12 +68,5 @@ describe Airport do
   it "A plane cannot take off if there are no planes in the airport" do
     plane
     expect { airport.take_off }.to raise_error "There are no planes in the airport!"
-  end
-
-  it "A plane cannot land again if it have landed already" do
-    test_plane = Plane.new
-    allow(airport).to receive_messages(:weather => "Clear")
-    2.times { airport.landing(test_plane) }
-    expect { airport.landing }.to raise_error "Plane has already landed!"
   end
 end

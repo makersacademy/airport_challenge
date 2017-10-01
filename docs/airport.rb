@@ -11,28 +11,32 @@ class Airport
   end
 
   def landing(plane = Plane.new)
-    already_landed
-    full ? raise("Airport is full!") : @planes << plane
+    raise("Airport is full!") if full?
+    @planes << plane
   end
 
   def take_off
-    empty
-    weather == "Stormy" ? raise("Plane cannot take off due to stormy weather") : @planes.pop
-  end
-
-  def full
-    @planes.size >= @capacity
-  end
-
-  def empty
-    @planes.empty? ? raise("There are no planes in the airport!") : return
-  end
-
-  def already_landed
-    @planes.uniq.length == @planes.length ? return : raise("Plane has already landed!")
+    raise("There are no planes in the airport!") if empty?
+    raise("Plane cannot take off due to stormy weather") if stormy?
+    @planes.pop
   end
 
   def weather
     Weather.new.status
   end
+
+  private
+
+  def full?
+    @planes.length >= @capacity
+  end
+
+  def empty?
+    @planes.length == 0
+  end
+
+  def stormy?
+    weather == "Stormy"
+  end
+
 end
