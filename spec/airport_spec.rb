@@ -43,4 +43,12 @@ describe Airport do
       expect { subject.take_off }.to raise_error 'There are no planes!'
     end
   end
+
+  describe 'transit limited dictated by weather' do
+    # it 'prevents planes taking off in stormy weather' do
+    #   airport = Airport.new
+    #   airport.land(FakePlane.new)
+    #   expect { airport.take_off }.to raise_error 'Sorry, it is too stormy to take off'
+    # end
+  end
 end
