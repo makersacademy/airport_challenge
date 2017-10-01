@@ -1,8 +1,14 @@
 require 'plane'
 require 'airport'
 describe Plane do
-  let(:plane) { Plane.new }
-  let(:airport) { Airport.new("WhereAmI Airport") }
+  let(:plane) { Plane.new("Test Airport") }
+  let(:airport) { Airport.new("Test Airport") }
+
+  describe "#initialize" do
+    it "expects a new Plane instance to have a new Airport object instantiated as his home airport" do
+      expect(plane.home_airport.class).to eq Airport
+    end
+  end
 
   describe "#land" do
     it "expects a plane to be able to land" do
@@ -33,6 +39,10 @@ describe Plane do
     it "expects to prevent taking_off if a plane has already taken off" do
       plane.take_off(airport)
       expect { plane.take_off(airport) }.to raise_error 'plane is already up in the air..so cannot take off'
+    end
+    it "expects to prevent taking_off if plane is not taking off from his home airport" do
+      airport2 = Airport.new("Galapagos airport")
+      expect { plane.take_off(airport2) }.to raise_error 'plane not flying from home airport'
     end
   end
 

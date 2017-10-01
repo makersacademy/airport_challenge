@@ -1,7 +1,7 @@
 require 'plane'
 require 'airport'
 describe Airport do
-  let(:plane) { Plane.new }
+  let(:plane) { Plane.new("Paradise Airport") }
   subject { Airport.new("Paradise Airport") }
   it "expects to tell whether landing and taking_off is blocked or not " do
     expect(subject.blocked_airport).to eq false
