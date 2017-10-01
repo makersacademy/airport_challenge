@@ -12,15 +12,17 @@ class Plane
     airport.class == Airport
   end
 
-  def land(airport)
-    raise 'plane has already landed...so cannot land again' if @in_the_air == false
-    raise 'argument is not an airport object' unless airport?(airport)
+  def check_airport_status_land(airport)
     if airport.blocked_airport == true
       raise 'Plane cannot land because the airport is having technical difficulties'
     end
-    if airport.prevent_landing == true
-      raise "no landing because of stormy weather"
-    end
+    raise "no landing because of stormy weather" if airport.prevent_landing == true
+  end
+
+  def land(airport)
+    raise 'plane has already landed...so cannot land again' if @in_the_air == false
+    raise 'argument is not an airport object' unless airport?(airport)
+    check_airport_status_land(airport)
     @in_the_air = false
     @airport_just_landed = airport.name
     return
@@ -30,16 +32,18 @@ class Plane
     @airport_just_landed.empty?
   end
 
-
-
-  def conditions_before_taking_off(airport)
+  def check_airport_status_take_off(airport)
     if airport.blocked_airport == true
       raise 'Plane cannot take off because the airport is having technical difficulties'
     end
-    if airport.prevent_take_off == true
-      raise 'no take_off because of stormy weather'
+    raise 'no take_off because of stormy weather' if airport.prevent_take_off == true
+  end
+
+  def conditions_before_taking_off(airport)
+    check_airport_status_take_off(airport)
+    if (@airport_just_landed != airport.name && !@airport_just_landed.empty?)
+      raise 'plane not flying from correct airport'
     end
-    raise 'plane not flying from correct airport' if (@airport_just_landed != airport.name && !@airport_just_landed.empty?)
     raise 'plane not flying from home airport' unless @home_airport.name == airport.name
   end
 
