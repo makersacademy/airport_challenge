@@ -1,16 +1,22 @@
 require './lib/plane'
 
 describe Plane do
+  let(:airport) { double :airport }
 
-  # it 'is of class Plane' do
-  #   expect(subject).to be_instance_of Plane
-  # end
+  context '#land' do
+    it 'should respond to land' do
+      expect(subject).to respond_to :land
+    end
 
-  it 'should be able to land' do
-    expect(subject).to respond_to :land
+    it 'should throw error if trying to land when already landed' do
+      subject.landed = true
+      expect { subject.land }.to raise_error('Plane already landed')
+    end
   end
 
-  it 'should be able to take off' do
-    expect(subject).to respond_to :take_off
+  context '#take_off' do
+    it 'should respond to take off' do
+      expect(subject).to respond_to :take_off
+    end
   end
 end
