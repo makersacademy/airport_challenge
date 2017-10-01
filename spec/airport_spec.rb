@@ -17,7 +17,7 @@ describe Airport do
   end
 
   it "raises error as plane tries to land when capacity is full" do
-    expect { airport.land_plane(plane) }.to raise_error 'Airport capacity is full. No plane could land.'
+    expect{ airport.land_plane(plane) }.to raise_error 'Airport capacity is full. No plane could land.'
   end
 
 

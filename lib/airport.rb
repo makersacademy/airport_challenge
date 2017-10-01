@@ -3,11 +3,10 @@ require_relative '../lib/plane'
 class Airport
 
   def land_plane(plane)
-   @plane_count = 20
-   if @plane_count == 20
-     fail 'Airport capacity is full. No plane could land.'
-   end 
-   @plane = plane
+    @plane_count = 20
+    @plane_count +=1 if plane.instance_of? Plane
+    fail 'Airport capacity is full. No plane could land.' if @plane_count >= 21
+    @plane = plane
   end
 
   def plane_takeoff
