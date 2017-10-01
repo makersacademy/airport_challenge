@@ -6,8 +6,7 @@ describe Plane do
 
   describe "#landing" do
 
-    it "should not take off when the weather is stormy" do
-      # changed the land method to accept an airport so changed this test
+    it "should not land when the weather is stormy" do
       expect { subject.land(weather.stormy?) }.to raise_error("Weather stormy -> can't land!")
     end
 
@@ -22,10 +21,6 @@ describe Plane do
   end
 
   describe "#taking off" do
-
-    it "should respond to the take off method" do
-      expect(subject).to respond_to :take_off
-    end
 
     it "should report that it is no longer at the airport when taken off" do
       subject.take_off
