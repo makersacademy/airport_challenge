@@ -15,6 +15,19 @@ describe Airport do
     end
   end
 
+  describe "#full?" do
+    it "returns true when full" do
+      airport = Airport.new(1)
+      airport.land(plane)
+      expect(airport.full?).to eq(true)
+    end
+    it "returns false when not full" do
+      airport = Airport.new(2)
+      airport.land(plane)
+      expect(airport.full?).to eq(false)
+    end
+  end
+
   describe "#land" do
     it "stores landed planes" do
       airport.land(plane)
