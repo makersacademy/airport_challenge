@@ -26,4 +26,23 @@ describe Airport do
     end
   end
 
+  describe '#take_off' do
+    it "instructs a plane to take off from the airport" do
+      airport.land_at_airport(plane)
+      airport.take_off(plane)
+      expect(plane.landed?).to be false
+    end
+
+    it 'removes plane after take off' do
+      airport.land_at_airport(plane)
+      expect(airport.take_off(plane)).to_not eq plane
+    end
+
+    it "should not let the same plane take off twice" do
+      airport.land_at_airport(plane)
+      airport.take_off(plane)
+      expect { airport.take_off(plane) }.to raise_error "Plane already gone!"
+    end
+  end
+
 end

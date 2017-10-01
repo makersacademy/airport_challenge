@@ -16,4 +16,11 @@ class Airport
     plane.land
   end
 
+  def take_off(plane)
+    fail "Plane already gone!" unless plane.landed?
+    @planes.delete(plane)
+    plane.take_off
+    @planes
+  end
+
 end
