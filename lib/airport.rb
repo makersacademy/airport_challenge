@@ -10,6 +10,7 @@ class Airport
 
   def land(plane)
     fail "Airport is full!" if full?
+    fail "Cannot land the same plane" if @planes.include? plane
     @planes << plane
     @plane = plane
   end
@@ -31,5 +32,8 @@ class Airport
     planes.empty?
   end
 
+  # def same_plane?
+  #   @plane = @plane
+  # end
 
 end

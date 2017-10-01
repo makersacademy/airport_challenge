@@ -13,6 +13,12 @@ describe Airport do
       plane = FakePlane.new
       expect(subject.land(plane)).to eq plane
     end
+
+    it "raises an error when you try to land the same plane twice" do
+      plane = FakePlane.new
+      subject.land(plane)
+      expect { subject.land plane }.to raise_error "Cannot land the same plane"
+    end
   end
 
   describe "capacity tests" do
