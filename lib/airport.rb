@@ -1,7 +1,11 @@
 class Airport
+  DEFAULT_CAPACITY = 10
 
-  def initialize
+  attr_reader :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -12,13 +16,13 @@ class Airport
 
   def take_off
     fail "no planes available for take-off!" if empty?
-    @plane
+    @planes.pop
   end
 
   private
 
   def full?
-    @planes.count >= 10
+    @planes.count >= @capacity
   end
 
   def empty?

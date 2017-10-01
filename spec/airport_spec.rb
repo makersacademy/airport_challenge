@@ -8,8 +8,14 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to eq plane
     end
+  end
+
+  describe "capacity tests" do
+    it "has a default capacity" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
     it 'raises an error when airport is full' do
-      10.times {subject.land(Plane.new)}
+      subject.capacity.times { subject.land(Plane.new) }
       expect {subject.land Plane.new }.to raise_error "Airport is full!"
     end
   end
@@ -30,5 +36,6 @@ describe Airport do
 
 end
 
+# use attr_reader to create the capacity method and use initialize to set its initial value
 
 # edge cases - the same plane cannot take_off twice

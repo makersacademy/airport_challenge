@@ -92,3 +92,12 @@
 #  => #<Airport:0x007fb5aa107cc0>
 # 2.4.0 :081 > airport2.take_off
 #  => nil
+
+
+#  missed a few steps here
+
+# airport = Airport.new(8)
+# ArgumentError: wrong number of arguments (given 1, expected 0)
+
+# this shows i need to add give Airport class an arugment of capacity
+# allowing you to set the capactiiy when you create an airport
