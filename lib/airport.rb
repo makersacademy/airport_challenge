@@ -8,7 +8,11 @@ class Airport
   end
 
   def land_plane(plane)
+   plane
+  end
 
-  end 
+  def confirm_takeoff(plane)
+    "#{plane.to_s} has now taken off"
+  end
 
 end

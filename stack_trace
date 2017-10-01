@@ -9,3 +9,13 @@ airport_challenge/spec/airport_spec.rb:2: uninitialized constant Airport (NameEr
 irb: 3: NameError: uninitialized constant Airport::Plane
 
 rspec ./spec/airport_spec.rb:9: expected #<Airport:0x007faab0aec510> to respond to :land_plane with 1 argument
+
+rspec ./spec/airport_spec.rb:11: Failure/Error: expect(airport.land_plane(plane)).to eq plane expeFailure/Error: expect(airport.land_plane(plane)).to eq plane
+expected: #<Plane:0x007f9e96c17168>
+got: nil
+
+rspec ./spec/airport_spec.rb:16:      Failure/Error: it { is_expected.to respond_to(:confirm_takeoff).with(1).argument }
+expected #<Airport:0x007fa00824fb30> to respond to :confirm_takeoff with 1 argument
+
+rspec ./spec/airport_spec.rb:18:  expected: "#{plane.to_s} has now taken off"
+got: nil
