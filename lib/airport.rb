@@ -30,8 +30,11 @@ class Airport
 
 
   def die_hard
-    'John McClane'
+    terrorists? ? 'John McClane blows up a plane and a building containing the terrorists' : 'John McClane picks up his wife'
   end
 
 
+ def terrorists?
+   num < 2 ? true : false
+  end
 end
