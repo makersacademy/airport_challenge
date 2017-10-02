@@ -32,15 +32,17 @@ Feature testing
 =================
 ```
 >> airport = Airport.new
-=> #<Airport:0x007fac809ada10 @capacity=20, @planes=[]>
+=> #<Airport:0x007fac81a5bb78 @capacity=20, @planes=[]>
 >> plane = Plane.new
-=> #<Plane:0x007fac81849b00>
+=> #<Plane:0x007fac819f97e8>
 >> airport.land(plane)
-=> #<Plane:0x007fac81849b00 @status="Landed">
->> airport.take_off
+=> [#<Plane:0x007fac819f97e8 @status="Landed">]
 >> airport
-=> #<Airport:0x007fac809ada10
+=> #<Airport:0x007fac81a5bb78
  @capacity=20,
- @planes=[#<Plane:0x007fac81849b00 @status="Landed">]>
+ @planes=[#<Plane:0x007fac819f97e8 @status="Landed">]>
 >> airport.take_off
 => "Taken off"
+>> airport
+=> #<Airport:0x007fac81a5bb78 @capacity=20, @planes=[]>
+```
