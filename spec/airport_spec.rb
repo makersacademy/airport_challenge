@@ -30,6 +30,15 @@ describe Airport do
       100.times { airport.land(FakePlane.new) }
       expect { airport.land(FakePlane.new) }.to raise_error 'Airport is full!'
     end
+
+    it 'prevents a plane landing in more than one airport' do
+      airport = Airport.new
+      plane = FakePlane.new
+      airport.land(plane)
+      airport2 = Airport.new
+      expect { subject.land(plane) }.to raise_error 'Plane already landed elsewhere!'
+    end
+
   end
 
   describe 'taking planes off' do
@@ -42,15 +51,15 @@ describe Airport do
     it 'warns if Airport is empty when attempting take off' do
       expect { subject.take_off }.to raise_error 'There are no planes!'
     end
-  end
 
-  # describe 'transit limitations dictated by weather' do
-  #   it 'prevents planes taking off in stormy weather' do
-  #     weather = double(@stormy = "Stormy")
-  #     # subject.weather
-  #     p weather.stormy
-  #     subject.land(FakePlane.new)
-  #     expect { subject.take_off }.to raise_error 'Sorry, it is too stormy to take off'
-  #   end
-  # end
+    # context 'stormy weather' do
+    #   let(:weather) { double :weather } # subject.weather
+    #
+    #   it 'prevents planes taking off in stormy weather' do
+    #     allow(:weather).to receive(:Stormy)
+    #     subject.land(FakePlane.new)
+    #     expect { subject.take_off }.to raise_error 'Sorry, it is too stormy to take off'
+    #   end
+    # end
+  end
 end
