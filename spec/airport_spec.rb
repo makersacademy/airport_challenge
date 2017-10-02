@@ -1,4 +1,5 @@
 require 'airport'
+require 'plane'
 
 
 class FakePlane
@@ -22,12 +23,7 @@ describe Airport do
     it "raises an error when you try to land the same plane twice" do
       plane = FakePlane.new
       subject.land(plane)
-      expect { subject.land plane }.to raise_error "Cannot land the same plane"
-    end
-    it { is_expected.to respond_to('weather') }
-    it "raises error when stormy weather and prevents landing" do
-      # plane = FakePlane.new
-      # expect { subject.land(plane, weather) }.to raise_error "Stormy Weather! Cannot land"
+      expect {subject.land plane}.to raise_error "Cannot land the same plane"
     end
   end
 
@@ -55,8 +51,9 @@ describe Airport do
   it "raises and error attempting to take_off a plane that does not exist " do
     expect {subject.take_off}.to raise_error "no planes available for take-off!"
   end
+  it { is_expected.to respond_to :weather }
+  it "raises error when stormy weather and prevents take_off" do
+
+  end
 
 end
-
-# use attr_reader to create the capacity method and use initialize to set its initial value
-# edge cases - the same plane cannot take_off twice

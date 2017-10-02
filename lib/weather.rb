@@ -1,8 +1,11 @@
 class Weather
-  def stormy?
-
-  end
+  # def stormy?
+  #   "stormy"
+  # end
 end
+
+
+# %w(sunny stormy stormy stormy)
 
 # outlooks = [:stormy, :fine, :fine, :fine]
 # index = Random.rand(4)

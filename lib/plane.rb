@@ -1,3 +1,7 @@
 class Plane
 
-end 
+  def status?
+
+  end 
+
+end
