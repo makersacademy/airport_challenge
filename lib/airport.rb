@@ -20,8 +20,8 @@ class Airport
   # end
 
   def land_at_airport(plane)
-    # weather = Weather.new
-    # fail "Too stormy!" if weather.stormy?
+    weather = Weather.new
+    fail "Too stormy!" if weather.stormy?
     plane
   end
 
