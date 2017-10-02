@@ -22,8 +22,8 @@ describe Airport do
   describe '#take_off' do
     it 'allows a plane to take off in normal conditions' do
       plane = Plane.new
-      weather = double(:weather)
-      allow(weather).to receive(:stormy).and_return false
+      # weather = double(:weather)
+      # allow(weather).to receive(:stormy).and_return false
       expect(subject.take_off(plane)).to eq plane
     end
     # it 'prevents take off if weather is stormy' do
@@ -35,8 +35,8 @@ describe Airport do
 
     it 'keeps track of taken off planes to confirm they are gone' do
       plane = Plane.new
-      weather = double(:weather)
-      allow(weather).to receive(:stormy).and_return false
+      # weather = double(:weather)
+      # allow(weather).to receive(:stormy).and_return false
       subject.take_off(plane)
       expect(subject.plane).to eq plane
     end
