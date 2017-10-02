@@ -16,7 +16,7 @@ class Airport
 
   def land(plane)
     raise "Airport full" if full?
-    raise "Plane is grounded" unless plane.flying
+    raise "Plane is grounded" unless plane.flying?
     plane.ground
     @planes << plane
   end

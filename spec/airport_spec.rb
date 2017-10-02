@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let :plane { double :plane, flying: true, ground: nil, fly: nil }
+  let :plane { double :plane, flying?: true, ground: nil, fly: nil }
   subject(:airport) { Airport.new }
 
   describe "#capacity" do
@@ -40,7 +40,7 @@ describe Airport do
     end
 
     it "only lands a flying plane" do
-      allow(plane).to receive(:flying).and_return(false)
+      allow(plane).to receive(:flying?).and_return(false)
       expect { airport.land(plane) }.to raise_error("Plane is grounded")
     end
 
