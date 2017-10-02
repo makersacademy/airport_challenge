@@ -3,41 +3,42 @@ class Airport
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(name, capacity = DEFAULT_CAPACITY)
+  def initialize(name, capacity = DEFAULT_CAPACITY) # pass weather = Weather.new
     @name = name
     @planes = []
     @capacity = capacity
   end
 
-  def land_plane(plane, weather, landed = true)
+  # put weather into initialize as now whenever stormy? is called it runs a new weather
+  def land_plane(plane, weather)
     @weather = weather
     fail "Sorry plane has already landed!" unless left?(plane)
     fail "Sorry, too stormy to land!" if stormy?
     fail "Sorry airport is full!" if full?
-    plane.landed = landed
-    @planes << plane
+    plane.land
+    planes << plane
   end
 
   def take_off(plane, weather)
     @weather = weather
-    fail "Sorry, no planes!" if @planes.empty?
+    fail "Sorry, no planes!" if planes.empty?
     fail "Sorry, too stormy to take off!" if stormy?
-    plane.landed = false
-    @planes.delete(plane)
+    plane.take_off
+    planes.delete(plane)
   end
 
   private
 
   def full?
-    @planes.length == DEFAULT_CAPACITY
+    planes.length == DEFAULT_CAPACITY
   end
 
   def left?(plane)
-    !@planes.include?(plane)
+    !planes.include?(plane)
   end
 
   def stormy?
-    @weather = weather.stormy?
+    weather.stormy?
   end
 
 end

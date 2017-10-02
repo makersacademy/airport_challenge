@@ -23,4 +23,18 @@ describe Plane do
     end
   end
 
+  describe '#land' do
+    it "will instruct a plane to land" do
+      subject.land
+      expect(subject.landed).to eq true
+    end
+  end
+
+  describe '#take_off' do
+    it 'will instruct a plane to take off' do
+      subject.take_off
+      expect(subject.landed).to eq false
+    end
+  end
+
 end
