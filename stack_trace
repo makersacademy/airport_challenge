@@ -1,0 +1,42 @@
+(irb):1: uninitialized constant Airport
+
+airport_challenge/spec/airport_spec.rb:2: uninitialized constant Airport (NameError)
+
+(irb:3: NameError: uninitialized constant Plane
+
+./spec/airport_spec.rb:5: Failure/Error: expect(subject).to respond_to :plane_takeoff
+
+irb: 3: NameError: uninitialized constant Airport::Plane
+
+rspec ./spec/airport_spec.rb:9: expected #<Airport:0x007faab0aec510> to respond to :land_plane with 1 argument
+
+rspec ./spec/airport_spec.rb:11: Failure/Error: expect(airport.land_plane(plane)).to eq plane expeFailure/Error: expect(airport.land_plane(plane)).to eq plane
+expected: #<Plane:0x007f9e96c17168>
+got: nil
+
+rspec ./spec/airport_spec.rb:16:      Failure/Error: it { is_expected.to respond_to(:confirm_takeoff).with(1).argument }
+expected #<Airport:0x007fa00824fb30> to respond to :confirm_takeoff with 1 argument
+
+rspec ./spec/airport_spec.rb:18:  expected: "#{plane.to_s} has now taken off"
+got: nil
+
+# ./spec/airport_spec.rb:20:        def confirm_takeoff(plane)
+         "#{plane.to_s} has now taken off"
+       end
+ArgumentError: wrong number of arguments (given 0, expected 1)
+Failure/Error: expect(airport.confirm_takeoff).to eq "#{plane.to_s} has now taken off"
+
+rspec ./spec/airport_spec.rb:18: expected: "#<Plane:0x007ffbe5ba12b8> has now taken off"
+got: " has now taken off"
+
+
+# ./lib/airport.rb:5:in `land_plane':
+expected Exception with "Airport capacity is full. No plane could land.", got #<ArgumentError: wrong number of arguments (given 0, expected 1)>
+
+./spec/airport_spec.rb:24:
+Failure/Error: expect { airport.land_plane(plane) }.to raise_error("Airport capacity is full. No plane could land.")
+  expected Exception with "Airport capacity is full. No plane could land." but nothing was raised
+
+./spec/airport_spec.rb:24: expected Exception with "Weather is stormy. No plane takeoff." but nothing was raised
+
+rspec ./spec/airport_spec.rb:29:      Failure/Error: it { is_expected.to respond_to(:weather_generator) }
