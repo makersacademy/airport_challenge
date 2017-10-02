@@ -12,13 +12,14 @@ describe Plane do
   describe '#arrive_at_airport' do
     it 'raises an error - too stormy to depart' do
       expect(subject).to receive(:stormy_weather?).and_return(1)
-      expect(subject.arrive_at_airport).to raise_error "Too stormy to arrive"
+      expect{subject.arrive_at_airport}.to raise_error "Too stormy to arrive"
     end
 
     it 'gets permission to arrive at airport' do
       airport = Airport.new
-      expect(subject).to receive(:stormy_weather?).and_return(26)
-      expect(subject.arrive_at_airport).to eq airport.permission_to_land
+      allow(subject).to receive(:stormy_weather?).and_return(26)
+      expect(subject.arrive_at_airport).to eq airport.permission_to_land(subject)
+      #expect(subject.arrive_at_airport).to
     end
 
   end
@@ -27,13 +28,13 @@ describe Plane do
   describe '#depart_from_airport' do
     it 'raises an error - too stormy to depart' do
       expect(subject).to receive(:stormy_weather?).and_return(1)
-      expect(subject.depart_from_airport).to raise_error "Too stormy to depart"
+      expect{subject.depart_from_airport}.to raise_error "Too stormy to depart"
     end
 
     it 'gets permission to leave airport' do
       airport = Airport.new
-      expect(subject).to receive(:stormy_weather?).and_return(26)
-      expect(subject.depart_from_airport).to eq airport.permission_to_take_off
+      allow(subject).to receive(:stormy_weather?).and_return(26)
+      expect(subject.depart_from_airport).to eq airport.permission_to_take_off(subject)
     end
 
   end

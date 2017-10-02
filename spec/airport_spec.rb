@@ -5,13 +5,13 @@ describe Airport do
 
   describe '#permission_to_land' do
     it 'gives a plane permission to land at airport' do
-      expect(subject.permission_to_land).to be_instance_of Plane
+      expect(subject.permission_to_land(Plane.new)).to be_instance_of Plane
     end
   end
 
   describe '#permission_to_take_off' do
     it 'gives a plane permission to leave the airport' do
-      expect(subject.permission_to_take_off).to be_instance_of Plane
+      expect(subject.permission_to_take_off(Plane.new)).to be_instance_of Plane
     end
   end
 
