@@ -61,9 +61,29 @@ describe Airport do
   end
 
 
-  context 'die_hard method is called in the case of a terrorist attack at Christmas time' do
-    it 'produces John McClane' do
-      expect(subject.die_hard).to eq('John McClane')
-    end
+  it 'generates a random boolean to indicate if there are terrorists' do
+    subject.stub(:num) {1}
+    expect(subject.terrorists?).to eq(true)
+    subject.stub(:num) {4}
+    expect(subject.terrorists?).to eq(false)
   end
+
+
+  it 'when terrorists are not present John picks up wife' do
+    subject.stub(:terrorists?) {false}
+    expect(subject.die_hard). to eq('John McClane picks up his wife')
+  end
+
+
+  it 'when terrorists are present John saves the day' do
+    subject.stub(:terrorists?) {true}
+    expect(subject.die_hard). to eq('John McClane blows up a plane and a building containing the terrorists')
+  end
+
+
+  # context 'die_hard method is called in the case of a terrorist attack at Christmas time' do
+    # it 'produces John McClane' do
+      # expect(subject.die_hard).to eq('John McClane')
+    # end
+
 end
