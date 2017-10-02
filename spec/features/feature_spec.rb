@@ -2,8 +2,8 @@ require './lib/plane'
 require './lib/airport'
 require './lib/weather'
 
-describe 'Flights between airports' do
-  it 'are possible' do
+feature 'Pushing tin' do
+  scenario 'possible to create multiple flights between multiple airports' do 
     heathrow = Airport.new 'Heathrow', 50
     jfk = Airport.new 'JFK', 40
     skye = Airport.new 'Ilse of Skye', 3
@@ -57,6 +57,6 @@ describe 'Flights between airports' do
     end
 
     expect { fourth_plane.take_off heathrow, weather }.to raise_error 'Too dangerous to take off'
-
   end
+
 end
