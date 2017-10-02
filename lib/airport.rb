@@ -24,7 +24,7 @@ class Airport
   def take_off
     fail "no planes available for take-off!" if empty?
     # fail "Cannot take_off the same plane" if
-    @planes.pop
+    @planes.pop.taken_off
   end
 
   def weather

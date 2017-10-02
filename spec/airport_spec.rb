@@ -46,14 +46,13 @@ describe Airport do
   end
 
 
-
   describe '#taking-off plane tests' do
     it { is_expected.to respond_to(:take_off) }
   end
   it "returns the take-off plane" do
     plane = FakePlane.new
     subject.land(plane)
-    expect(subject.take_off).to eq plane
+    expect(subject.take_off).to eq 'Taken-off, plane in air'
   end
   it "raises and error attempting to take_off a plane that does not exist " do
     expect {subject.take_off}.to raise_error "no planes available for take-off!"
