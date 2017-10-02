@@ -52,14 +52,18 @@ describe Airport do
   it "returns the take-off plane" do
     plane = FakePlane.new
     subject.land(plane)
-    expect(subject.take_off).to eq 'Taken-off, plane in air'
+    expect(subject.take_off(plane)).to eq 'Taken-off, plane in air'
   end
-  it "raises and error attempting to take_off a plane that does not exist " do
-    expect {subject.take_off}.to raise_error "no planes available for take-off!"
-  end
-  it { is_expected.to respond_to :weather }
-  it "raises error when stormy weather and prevents take_off" do
 
+  context "when stormy" do
+    before do
+      allow(subject).to receive(:stormy?).and_return(true)
+    end
+    it "prevents take-off in stormy weather" do
+      plane = FakePlane.new
+      subject.land(plane)
+      expect { subject.take_off(plane) }.to raise_error("Cannot take-off during a storm")
+    end
   end
 
 end

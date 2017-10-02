@@ -10,6 +10,4 @@ class Plane
     'Plane landed!'
   end
 
-
-
 end
