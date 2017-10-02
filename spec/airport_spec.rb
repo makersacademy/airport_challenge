@@ -35,7 +35,6 @@ describe Airport do
       airport = Airport.new
       plane = FakePlane.new
       airport.land(plane)
-      airport2 = Airport.new
       expect { subject.land(plane) }.to raise_error 'Plane already landed elsewhere!'
     end
 
