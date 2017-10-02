@@ -4,6 +4,14 @@ require 'plane'
 
 class FakePlane
 
+  def taken_off
+    'Taken-off, plane in air'
+  end
+
+  def landed
+    'Plane landed!'
+  end
+
 end
 
 class FakeWeather
@@ -13,12 +21,11 @@ end
 describe Airport do
   let(:weather) { double :weather }
 
-
   describe '#landing plane tests' do
     it { is_expected.to respond_to(:land).with(1).argument }
     it "returns the landed plane" do
       plane = FakePlane.new
-      expect(subject.land(plane)).to eq plane
+      expect(subject.land(plane)).to eq 'Plane landed!'
     end
     it "raises an error when you try to land the same plane twice" do
       plane = FakePlane.new

@@ -1,7 +1,7 @@
 
 
 require_relative 'weather'
-# require_relative 'plane'
+require_relative 'plane'
 
 class Airport
   DEFAULT_CAPACITY = 10
@@ -14,11 +14,11 @@ class Airport
   end
 
   def land(plane)
-    @plane = plane
     fail "Airport is full!" if full?
-    fail "Cannot land the same plane" if same_plane?
+    fail "Cannot land the same plane" if @planes.include?(plane)
+    # plane.landed
     @planes << plane
-    @plane = plane
+    plane.landed
   end
 
   def take_off
@@ -43,9 +43,9 @@ class Airport
     planes.empty?
   end
 
-  def same_plane?
-    @planes.include?(@plane)
-  end
+  # def same_plane?
+  #   @planes.include?(@plane)
+  # end
 
 end
 
