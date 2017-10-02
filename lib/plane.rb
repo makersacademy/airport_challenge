@@ -1,18 +1,23 @@
 class Plane
-  attr_accessor :airport
+  attr_reader :airport, :status
 
   def initialize(airport = nil)
-    @airport = airport
+    @status = :flying
+    land(airport) if airport
   end
 
   def land(airport)
+    return if @status == :landed
+
     airport.land_plane(self.class)
     @airport = airport
-    true
+    @status = :landed
   end
 
   def takeoff
+    return if @status == :flying
+
     @airport.takeoff_plane
-    true
+    @status = :flying
   end
 end

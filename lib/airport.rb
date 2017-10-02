@@ -1,13 +1,13 @@
-
+require 'weather'
 
 class Airport
-  attr_accessor   :plane
-  # attr_writer  :plane
+  attr_reader :capacity
   attr_accessor :weather
 
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(name, capacity = DEFAULT_CAPACITY)
+    @name = name
     @planes = []
     @capacity = capacity
   end
@@ -16,7 +16,6 @@ class Airport
     raise 'unable to land due to weather' if @weather == :stormy
     raise 'no space to land' if full?
     @planes << plane
-    true
   end
 
   def takeoff_plane
@@ -24,8 +23,9 @@ class Airport
     @planes.pop
   end
 
-  def weather(weather)
-    @weather = weather
+  def weather
+    # this will trigger random weather at each call
+    @weather = Weather.new
   end
 
   def full?
@@ -34,9 +34,5 @@ class Airport
 
   def empty?
     @planes.empty?
-  end
-
-  def capacity
-    @capacity
   end
 end
