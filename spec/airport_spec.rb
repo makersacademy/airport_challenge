@@ -50,15 +50,5 @@ describe Airport do
     it 'warns if Airport is empty when attempting take off' do
       expect { subject.take_off }.to raise_error 'There are no planes!'
     end
-
-    # context 'stormy weather' do
-    #   let(:weather) { double :weather } # subject.weather
-    #
-    #   it 'prevents planes taking off in stormy weather' do
-    #     allow(:weather).to receive(:Stormy)
-    #     subject.land(FakePlane.new)
-    #     expect { subject.take_off }.to raise_error 'Sorry, it is too stormy to take off'
-    #   end
-    # end
   end
 end
