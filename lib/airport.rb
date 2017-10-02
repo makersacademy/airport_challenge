@@ -16,8 +16,8 @@ class Airport
   end
 
   def land_plane(plane)
-    @plane_count +=1 
-    fail 'Airport capacity is full. No plane could land.' if @plane_count > @capacity
+    fail 'Airport capacity is full. No plane could land.' if @plane_count >= @capacity
+    @plane_count +=1
     @plane.push(plane)
   end
 
