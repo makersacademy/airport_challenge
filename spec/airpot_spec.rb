@@ -11,7 +11,8 @@ describe Airport do
     plane = Plane.new
     airport = Airport.new
     airport.land plane
-    airport.stub(:storm?) {false}
+    # allow(airport).to receive(:storm?).and_return false
+    subject.stub(:storm?) {false}
     expect(airport.plane[0]).to eq(plane)
   end
 
@@ -34,9 +35,7 @@ describe Airport do
 
 
   it 'when take_off method is called but there is a storm' do
-    # subject.stub(:storm?) {true}
     airport = Airport.new
-    # airport.stub(:storm?) {true}
     airport.land(Plane.new)
     airport.stub(:storm?) {true}
     expect(airport.take_off).to eq('The weather is too bad to fly')

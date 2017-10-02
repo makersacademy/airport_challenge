@@ -9,21 +9,13 @@ class Airport
 
 
   def land(plane)
-    if storm?
-      return  "The weather is too bad to fly"
-    else
-      @plane << plane
-    end
+    storm? ? "The weather is too bad to fly" :  @plane << plane
   end
 
 
   def take_off
     raise 'All planes have gone' if @plane.empty?
-      if storm?
-         "The weather is too bad to fly"
-      else
-        @plane.pop
-      end
+    storm? ? "The weather is too bad to fly" : @plane.pop
   end
 
 
@@ -33,11 +25,7 @@ class Airport
 
 
  def storm?
-    if num < 2
-      true
-    else
-      false
-    end
+   num < 2 ? true : false
   end
 
 
