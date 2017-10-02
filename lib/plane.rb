@@ -1,7 +1,14 @@
+
+
 class Plane
 
-  def status?
+  def taken_off
+    'Taken-off, plane in air'
+  end
 
-  end 
+  def landed
+    'Plane landed!'
+  end
+
 
 end
