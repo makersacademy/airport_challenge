@@ -58,7 +58,7 @@ Airport <-- land --> Plane
 |---------|----------|
 |controller | |
 |passengers | |
-|plane | taken_off? |
+|plane | taken_off? ˜|
 |airport| takeoff |
 
 Airport <-- takeoff --> Plane

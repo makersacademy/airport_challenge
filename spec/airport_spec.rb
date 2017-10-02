@@ -7,15 +7,11 @@ describe Airport do
   let(:plane) { Plane.new }
 
   it "Airport can land a plane" do
-    expect(airport.land(plane)).to eq('Plane has landed safely')
+    expect(airport.land(plane)).to eq("#{plane} has landed safely")
   end
 
   it "A plane can takeoff from the airport" do
-    expect(airport.takeoff(plane)).to eq('Plane has taken off safely')
-  end
-
-  it "Confirms taken off plane is no longer in airport" do
-    expect(plane).to be_taken_off
+    expect(airport.takeoff(plane)).to eq("#{plane} has taken off safely")
   end
 
 end
