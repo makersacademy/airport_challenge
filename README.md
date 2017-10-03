@@ -16,16 +16,7 @@ Airport Challenge
 Solution of Problem
 ---------
 
-* I created an Airport class and an Airport Class
-* I
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Features
--------
-
-Alongside the current User stories the code in this challenge adds further edge cases:
+Alongside the current User stories the code in this challenge I also resolved further edge cases:
 1. As air traffic controller, so the system is consistent and correctly reports plane status and location I want to ensure a flying plane cannot take off and cannot be in an airport.
 2. As an air traffic controller so the system is consistent and correctly reports plane status and location I want to ensure a plane that is not flying cannot land and must be in an airport.
 3. As an air traffic controller so the system is consistent and correctly reports plane status and location I want to ensure a plane that has taken off from an airport is no longer in that airport.
