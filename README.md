@@ -12,6 +12,15 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Features
+--------
+
+* [X] Planes take off
+* [X] Planes land
+* [X] Planes unable to take off/land when stormy
+* [X] Airport has capacity
+* [X] Airport has variable capacity
+
 
 Solution of Problem
 ---------
