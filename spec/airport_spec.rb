@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:airport) { Airport.new }
+  #let(:weather) { double(:weather, :report => "sunny")}
+  let(:airport) { Airport.new(20) }
   let(:plane) { double(:plane) }
 
   # context "In Stormy weather" do
@@ -72,8 +73,8 @@ describe Airport do
   #   expect(airport.prevent_landing).to eq false
   # end
 
-  it "should initialise an Airport instance with 500 available spots for planes" do
-    expect(airport.capacity).to eq 500
+  it "should initialise an Airport instance with 20 available spots for planes" do
+    expect(airport.capacity).to eq 20
   end
 
   it "should initialise an Airport instance with 100 available spots for planes" do
@@ -86,7 +87,7 @@ describe Airport do
   end
 
   it "#request_to_land should return true if a plane lands at the airport" do
-    allow(airport).to receive(:full?).and_return(false)
+                          
     allow(airport).to receive(:stormy?).and_return(false)
     expect(airport.request_to_land(plane)).to eq true
   end
@@ -113,6 +114,11 @@ describe Airport do
     expect(airport.request_to_take_off(plane)).to eq false
   end
 
+  it "#request_to_take_off should return false if the wather is stormy" do
+    allow(airport).to receive(:stormy?).and_return(true)
+    expect(airport.request_to_take_off(plane)).to eq false
+  end
+
   it "#request_to_take_off should decrease the landed_airplanes counter by one" do
     allow(airport).to receive(:prevent_landing).and_return(false)
     airport.request_to_land(plane) 
@@ -121,5 +127,7 @@ describe Airport do
     airport.request_to_take_off(plane)
     expect(airport.landed_airplanes.count + 1).to eq count
   end
+
+
 end      
     

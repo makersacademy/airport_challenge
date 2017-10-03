@@ -1,9 +1,10 @@
 class Airport
-  require File.dirname(__FILE__)+'/weather'
+  require File.dirname(__FILE__) + '/weather'
 
   attr_reader :capacity, :landed_airplanes
+  DEFAULT_CAPACITY = 500
 
-  def initialize(capacity = 500)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @landed_airplanes = []
   end
