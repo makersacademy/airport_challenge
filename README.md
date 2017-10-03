@@ -12,8 +12,15 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+My Approach
+---------
+* Although new to the concept of TDD I endevoured to tackle each user story with a simplest step approach
+* I wanted to ensure that all dependencies were injected to avoid dependency issues. However when doing the feature testing at the end I realised controlling the weather is really difficult! On refelction a private method may have helped.
+* I began with an airport class and created methods for landing and taking off a passed plane. On reflection I think I had the weekly challenge in my head and followed a similar pattern. Through a more thorough understanding of the user story I should have created these methods within the plane class.
+* I used rubocop regularly to ensure syntax was correct each commit.
+* Once tests were passing I refactored
 
-Instructions
+The Brief
 ---------
 
 * Challenge time: rest of the day and weekend, until Monday 9am
