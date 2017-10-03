@@ -19,7 +19,8 @@ class FakeWeather
 end
 
 describe Airport do
-  let(:weather) { double :weather }
+  let(:good_weather) { double :weather, stormy?: false }
+  subject {Airport.new(weather: good_weather)}
 
   describe '#landing plane tests' do
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -55,14 +56,15 @@ describe Airport do
     expect(subject.take_off(plane)).to eq 'Taken-off, plane in air'
   end
 
+
+
+
   context "when stormy" do
-    before do
-      allow(subject).to receive(:stormy?).and_return(true)
-    end
-    it "prevents take-off in stormy weather" do
-      plane = FakePlane.new
-      subject.land(plane)
-      expect { subject.take_off(plane) }.to raise_error("Cannot take-off during a storm")
+    let(:stormy_weather) {double :stormy_weather, stormy?: true}
+    let(:plane) {double :plane}
+    subject { Airport.new(weather: stormy_weather) }
+    it 'cannot land plane when weather is stormy' do
+      expect {subject.land(plane)}.to raise_error "cannot land it is stormy!"
     end
   end
 
