@@ -1,7 +1,11 @@
 class Weather
 
   def stormy?
-    rand(100).zero?
+    weather == :storm
   end
 
+private
+  def weather
+    [:storm, :sun, :rain, :fair].sample
+  end
 end
