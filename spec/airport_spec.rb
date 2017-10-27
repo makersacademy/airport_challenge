@@ -143,4 +143,13 @@ describe Airport do
       end
     end
   end
+
+  describe "#clear_take_off" do
+    context "checks weather" do
+      it "calls weather_check" do
+        expect(subject).to receive(:weather_check) 
+        subject.clear_take_off
+      end
+    end
+  end
 end

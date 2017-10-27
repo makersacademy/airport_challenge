@@ -40,4 +40,8 @@ class Airport
     capacity_check
     weather_check
   end
+
+  def clear_take_off
+    weather_check
+  end
 end
