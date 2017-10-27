@@ -117,4 +117,18 @@ describe Airport do
       end
     end
   end
+
+  describe "#weather_check" do
+    context "depending on weather" do
+      it "raises error (if stormy)" do
+        described_class.any_instance.stub(:weather).and_return(:stormy)
+        expect { subject.weather_check }.to raise_error AirportError
+      end
+
+      it "does nothing (if not stormy)" do
+        described_class.any_instance.stub(:weather).and_return(:clear)
+        expect { subject.weather_check }.to_not raise_error AirportError
+      end
+    end
+  end
 end

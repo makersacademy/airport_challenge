@@ -31,4 +31,8 @@ class Airport
   def stormy?
     weather == :stormy
   end
+
+  def weather_check
+    raise AirportError, "stormy weather" if stormy?
+  end
 end
