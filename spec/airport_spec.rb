@@ -152,4 +152,36 @@ describe Airport do
       end
     end
   end
+
+  describe "include?" do
+    context "knows if aircraft" do
+      it "is present" do
+        subject.hangar.push(:aircraft)
+        expect(subject).to include(:aircraft)
+      end
+
+      it "is not present" do
+        expect(subject.hangar).to_not include(:aircraft)
+      end
+    end
+  end
+
+  describe "#register_arrival" do
+    context "receives incoming aircraft" do
+      it "pushes aircraft to hangar" do
+        subject.register_arrival(:aircraft)
+        expect(subject.hangar).to include(:aircraft)
+      end
+    end
+  end
+
+  describe "#register_departure" do
+    context "removes outbound aircraft" do
+      it "removes aircraft from hangar" do
+        subject.hangar.push(:aircraft)
+        subject.register_departure(:aircraft)
+        expect(subject.hangar).to_not include(:aircraft)
+      end
+    end
+  end
 end

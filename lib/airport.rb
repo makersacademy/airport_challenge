@@ -44,4 +44,16 @@ class Airport
   def clear_take_off
     weather_check
   end
+
+  def include?(aeroplane)
+    @hangar.include? aeroplane
+  end
+
+  def register_arrival(aeroplane)
+    @hangar.push(aeroplane)
+  end
+
+  def register_departure(aeroplane)
+    @hangar.delete(aeroplane)
+  end
 end
