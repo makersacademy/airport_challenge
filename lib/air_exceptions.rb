@@ -3,5 +3,5 @@
 class AirportError < Exception 
 end
 
-class TrafficControlError < Exception 
+class AeroplaneError < Exception 
 end

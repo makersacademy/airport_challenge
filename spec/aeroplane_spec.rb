@@ -17,4 +17,17 @@ describe Aeroplane do
       end
     end
   end
+
+  describe "#flying?" do
+    context "knows when flying" do
+      it "when flying" do
+        expect(subject).to be_flying
+      end
+
+      it "when grounded" do
+        subject = described_class.new(:airport)
+        expect(subject).to_not be_flying
+      end
+    end
+  end
 end

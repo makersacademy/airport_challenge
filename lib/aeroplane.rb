@@ -6,4 +6,8 @@ class Aeroplane
   def initialize(airport = nil)
     @airport = airport
   end
+
+  def flying?
+    !@airport
+  end
 end
