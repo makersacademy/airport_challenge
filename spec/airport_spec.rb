@@ -1,7 +1,6 @@
 require 'airport'
 
 class DoublePlane
-
 end
 
 describe Airport do
