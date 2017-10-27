@@ -10,8 +10,7 @@ describe Airport do
   describe "#land" do
     it "should land plane at airport" do
       allow(subject).to receive(:stormy?) { false }
-      subject.land(plane)
-      expect(subject.planes.include?(plane)).to eq true
+      expect{ subject.land(plane) }.to change { subject.planes.include?(plane) }
     end
 
     it "Should return error if weather is bad" do
@@ -21,7 +20,7 @@ describe Airport do
 
     it "Should return error if airport is full" do
       allow(subject).to receive(:stormy?) { false }
-      expect{21.times { subject.land(plane) }  }.to raise_error("Airport full")
+      expect{ 21.times { subject.land(plane) }  }.to raise_error("Airport full")
     end
   end
 
