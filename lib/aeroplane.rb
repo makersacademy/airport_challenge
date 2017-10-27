@@ -21,17 +21,31 @@ class Aeroplane
 
   def land(airport)
     is_grounded_check
+    manage_landing(airport)
+  end
+
+  def manage_landing(airport)
     airport.clear_landing
-    @airport = airport
+    do_landing(airport)
     airport.register_arrival(self)
+  end
+
+  def do_landing(airport)
+    @airport = airport
   end
 
   def take_off
     is_flying_check
-    airport = @airport
-    @airport.clear_take_off
-    @airport = nil
+    manage_take_off(@airport)
+  end
+  
+  def manage_take_off(airport)
+    airport.clear_take_off
+    do_take_off
     airport.register_departure(self)
   end
 
+  def do_take_off
+    @airport = nil
+  end
 end

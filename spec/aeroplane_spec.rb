@@ -67,11 +67,27 @@ describe Aeroplane do
     end
   end
 
-  describe "#land" do
-    context "lands at an airport" do
-      it "sets @airport to passed value" do
+  describe "#land" do 
+    context "checks if already landed" do
+      it "checks if flying" do
+        expect(subject).to receive(:is_grounded_check)
         subject.land(airport)
-        expect(subject.airport).to eq airport
+      end
+    end
+
+    context "initiates landing" do
+      it "calls manage_landing" do
+        expect(subject).to receive(:manage_landing).with(airport)
+        subject.land(airport)
+      end
+    end
+  end
+
+  describe "#manage_landing" do
+    context "lands at an airport" do
+      it "calls do_landing with airport" do
+        expect(subject).to receive(:do_landing).with(airport)
+        subject.land(airport)
       end
     end
       
@@ -86,23 +102,42 @@ describe Aeroplane do
         subject.land(airport)
       end
     end
-    
-    context "checks if already landed" do
-      it "checks if flying" do
-        expect(subject).to receive(:is_grounded_check)
-        subject.land(airport)
+  end
+
+  describe "#do_landing" do
+    context "actually lands aeroplane" do
+      it "sets @airport to passed value" do
+        subject.do_landing(:airport)
+        expect(subject.airport).to eq :airport
       end
     end
   end
 
   describe "#take_off" do
+    subject { described_class.new(airport) }
 
+    context "checks if already landed" do
+      it "checks if grounded" do
+        expect(subject).to receive(:is_flying_check)
+        subject.take_off
+      end
+    end
+
+    context "initiates take off" do
+      it "calls manage_take_off" do
+        expect(subject).to receive(:manage_take_off).with(airport)
+        subject.take_off
+      end
+    end
+  end
+
+  describe "#manage_take_off" do
     subject { described_class.new(airport) }
 
     context "leaves airport" do
-      it "sets @airport to nil" do
+      it "calls do_take_off" do
+        expect(subject).to receive(:do_take_off)
         subject.take_off
-        expect(subject.airport).to be_nil
       end
     end
       
@@ -117,11 +152,14 @@ describe Aeroplane do
         subject.take_off
       end
     end
+  end
 
-    context "checks if already landed" do
-      it "checks if grounded" do
-        expect(subject).to receive(:is_flying_check)
-        subject.take_off
+  describe "#do_take_off" do
+    context "actually takes off" do
+      it "sets @airport to passed value" do
+        subject = described_class.new(:airport)
+        subject.do_take_off
+        expect(subject.airport).to eq nil
       end
     end
   end
