@@ -18,4 +18,20 @@ class Aeroplane
   def is_grounded_check
     raise AeroplaneError, "already landed" if !flying?
   end
+
+  def land(airport)
+    is_grounded_check
+    airport.clear_landing
+    @airport = airport
+    airport.register_arrival(self)
+  end
+
+  def take_off
+    is_flying_check
+    airport = @airport
+    @airport.clear_take_off
+    @airport = nil
+    airport.register_departure(self)
+  end
+
 end
