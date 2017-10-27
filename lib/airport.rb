@@ -3,13 +3,13 @@ require './lib/air_exceptions'
 
 class Airport
 
-  attr_reader :hangar, :capacity, :weather
+  attr_reader :hangar, :capacity, :weather_generator
   DEFAULT_CAPACITY = 50
 
   def initialize(capacity = nil, weather = Weather.new)
     @hangar = []
     @capacity = capacity || DEFAULT_CAPACITY
-    @weather = weather
+    @weather_generator = weather
   end
 
   def occupancy

@@ -20,15 +20,15 @@ describe Airport do
     end
 
     context "weather generator" do
-      it { is_expected.to respond_to :weather }
+      it { is_expected.to respond_to :weather_generator }
 
       it "creates by default" do
-        expect(subject.weather).to be_a Weather
+        expect(subject.weather_generator).to be_a Weather
       end
 
       it "creates with user value" do
         subject = described_class.new(nil, "hello")
-        expect(subject.weather).to eq "hello"
+        expect(subject.weather_generator).to eq "hello"
       end
     end
 
@@ -89,4 +89,5 @@ describe Airport do
       end
     end
   end
+
 end
