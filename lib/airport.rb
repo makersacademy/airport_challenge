@@ -2,50 +2,38 @@ require './lib/plane'
 
 class Airport
 
-  attr_reader :airport, :capacity
+  attr_reader :planes, :capacity
   CAPACITY = 20
 
   def initialize(capacity = CAPACITY)
-    @airport = []
+    @planes = []
     @capacity = capacity
   end
 
   def land(plane)
     raise "Airport full" if full?
-    plane.can_fly = weather_fine
-    fail "Bad weather"  unless weather_fine
-    if plane.can_fly
-      @airport << plane
-    end
+    fail "Bad weather for landing" if stormy?
+    @planes << plane
   end
 
-  def plane_take_off (weather_fine = true)
+  def take_off
     raise "airport is empty" if empty?
-    @airport.each do |plane|
-      raise "Bad weather" unless weather_fine
-      plane.can_fly = weather_fine
-      if plane.can_fly
-          @airport.delete(plane)
-        return plane
-      end
-    end
+    raise "Bad weather for take off" if stormy?
+    @planes.pop
   end
 
-
+  def stormy?
+    rand(100) > 80
+  end
 
 private
 
-   def full?
-     @airport.length == capacity
-   end
+  def full?
+    @planes.length == capacity
+  end
 
-   def empty?
-     @airport.empty?
-   end
-
-   def weather_fine
-        # rand(101) <= 50
-     false
-   end
+  def empty?
+    @planes.empty?
+  end
 
 end
