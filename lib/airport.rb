@@ -1,4 +1,5 @@
 require './lib/weather'
+require './lib/air_exceptions'
 
 class Airport
 
@@ -17,5 +18,9 @@ class Airport
 
   def full?
     occupancy >= @capacity
+  end
+
+  def capacity_check
+    raise AirportError, "at capacity" if full?
   end
 end

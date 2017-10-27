@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'weather'
+require 'air_exceptions'
 require 'airport'
 
 describe Airport do
@@ -69,6 +70,22 @@ describe Airport do
         subject = described_class.new(20, nil)
         20.times { subject.hangar.push(nil) }
         expect(subject).to be_full
+      end
+    end
+  end
+
+  describe "#capacity_check" do
+    context "depending on capacity" do
+      it "raises error (if full)" do
+        subject = described_class.new(20, nil)
+        20.times { subject.hangar.push(nil) }
+        expect { subject.capacity_check }.to raise_error AirportError
+      end
+
+      it "does nothing (if not full)" do
+        subject = described_class.new(20, nil)
+        19.times { subject.hangar.push(nil) }
+        expect { subject.capacity_check }.to_not raise_error AirportError
       end
     end
   end
