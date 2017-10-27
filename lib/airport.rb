@@ -17,11 +17,7 @@ class Airport
 
   def takeoff
     raise "Too stormy to takeoff!" if stormy?
-    if @planes.length > 0
-      plane = @planes[-1]
-      @planes.pop
-      "#{plane} has taken off."
-    end
+    fly if @planes.length > 0
   end
 
   private
@@ -29,6 +25,12 @@ class Airport
   def stormy?
     random = 1 + rand(5)
     random == 5 ? true : false
+  end
+
+  def fly
+    plane = @planes[-1]
+    @planes.pop
+    "#{plane} has taken off."
   end
 
   def full?
