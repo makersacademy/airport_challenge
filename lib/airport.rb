@@ -10,4 +10,12 @@ class Airport
     @capacity = capacity || DEFAULT_CAPACITY
     @weather = weather
   end
+
+  def occupancy
+    @hangar.count
+  end
+
+  def full?
+    occupancy >= @capacity
+  end
 end

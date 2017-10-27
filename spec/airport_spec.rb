@@ -44,4 +44,32 @@ describe Airport do
       end
     end
   end
+
+  describe "#occupancy" do
+    context "knows number of aircraft" do
+      it "with 10 aircraft" do
+        10.times { subject.hangar.push(nil) }
+        expect(subject.occupancy).to eq 10
+      end
+
+      it "with 20 aircraft" do
+        20.times { subject.hangar.push(nil) }
+        expect(subject.occupancy).to eq 20
+      end
+    end
+  end
+
+  describe "#full?" do
+    context "knows if at capacity" do
+      it "when not at capacity" do
+        expect(subject).to_not be_full
+      end
+
+      it "when at capacity" do
+        subject = described_class.new(20, nil)
+        20.times { subject.hangar.push(nil) }
+        expect(subject).to be_full
+      end
+    end
+  end
 end
