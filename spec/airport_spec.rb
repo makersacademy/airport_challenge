@@ -6,6 +6,8 @@ require 'airport'
 
 describe Airport do
 
+  let(:weather) { weather = double(:Weather) }
+
   describe "created with" do
     context "hangar" do
       it { is_expected.to respond_to :hangar }
@@ -90,4 +92,29 @@ describe Airport do
     end
   end
 
+  describe "#weather" do
+    context "generates weather" do
+      it "gets weather from generator" do
+        subject = described_class.new(nil, weather)
+        expect(weather).to receive(:get).and_return(:stormy)
+        subject.weather
+      end
+    end
+  end
+
+  describe "#stormy?" do
+    context "knows when weather is stormy" do
+      it "is true when weather is stormy" do
+        subject = described_class.new(nil, weather)
+        allow(weather).to receive(:get).and_return(:stormy)
+        expect(subject).to be_stormy
+      end
+
+      it "is false when weather is clear" do
+        subject = described_class.new(nil, weather)
+        allow(weather).to receive(:get).and_return(:clear)
+        expect(subject).to_not be_stormy
+      end
+    end
+  end
 end

@@ -23,4 +23,12 @@ class Airport
   def capacity_check
     raise AirportError, "at capacity" if full?
   end
+
+  def weather
+    @weather_generator.get
+  end
+
+  def stormy?
+    weather == :stormy
+  end
 end
