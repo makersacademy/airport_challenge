@@ -30,4 +30,30 @@ describe Aeroplane do
       end
     end
   end
+
+  describe "#is_flying_check" do
+    context "depending on location" do
+      it "raises error (if flying)" do
+        expect { subject.is_flying_check }.to raise_error AeroplaneError 
+      end
+
+      it "does nothing (if flying)" do
+        subject = described_class.new(:airport)
+        expect { subject.is_flying_check }.to_not raise_error AeroplaneError 
+      end
+    end
+  end
+
+  describe "#is_grounded_check" do
+    context "depending on location" do
+      it "raises error (if grounded)" do
+        subject = described_class.new(:airport)
+        expect { subject.is_grounded_check }.to raise_error AeroplaneError 
+      end
+
+      it "does nothing (if flying)" do
+        expect { subject.is_grounded_check }.to_not raise_error AeroplaneError 
+      end
+    end
+  end
 end
