@@ -35,4 +35,9 @@ class Airport
   def weather_check
     raise AirportError, "stormy weather" if stormy?
   end
+
+  def clear_landing
+    capacity_check
+    weather_check
+  end
 end

@@ -4,6 +4,8 @@ require 'weather'
 require 'air_exceptions'
 require 'airport'
 
+RSpec::Expectations.configuration.on_potential_false_positives = :nothing
+
 describe Airport do
 
   let(:weather) { weather = double(:Weather) }
@@ -128,6 +130,16 @@ describe Airport do
       it "does nothing (if not stormy)" do
         described_class.any_instance.stub(:weather).and_return(:clear)
         expect { subject.weather_check }.to_not raise_error AirportError
+      end
+    end
+  end
+
+  describe "#clear_landing" do
+    context "checks weather and capacity" do
+      it "calls capacity_check and weather_check" do
+        expect(subject).to receive(:capacity_check) 
+        expect(subject).to receive(:weather_check) 
+        subject.clear_landing
       end
     end
   end
