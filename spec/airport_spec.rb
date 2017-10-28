@@ -41,6 +41,10 @@ describe Airport do
     expect(subject).to respond_to(:stormy)
   end
 
+  it "responds to #change_weather" do
+    expect(subject).to respond_to(:change_weather)
+  end
+
 
   describe "Errors" do
     it "should raise error if plane not in airport" do
