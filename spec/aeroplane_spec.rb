@@ -91,6 +91,19 @@ describe Aeroplane do
   end
 
   describe "#manage_landing" do
+    context "checks if already landed" do
+      it "no error if flying" do
+        allow(subject).to receive(:flying?).and_return(true) 
+        expect { subject.manage_dock(airport) }
+          .to_not raise_error(AeroplaneError)
+      end
+
+      it "raises error if landed" do
+        allow(subject).to receive(:flying?).and_return(false) 
+        expect { subject.manage_dock(airport) }.to raise_error(AeroplaneError)
+      end
+    end
+
     context "lands at an airport" do
       it "calls do_landing with airport" do
         expect(subject).to receive(:do_landing).with(airport)

@@ -18,6 +18,7 @@ class Aeroplane
   end
 
   def manage_dock(airport)
+    raise AeroplaneError, "already landed" if !flying?
     ATC.clear(self).to(:dock, :at => airport)
     do_landing(airport)
     airport.register_arrival(self)
