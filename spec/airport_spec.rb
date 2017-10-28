@@ -18,4 +18,8 @@ describe Airport do
   it "should respond to #planes" do
     expect(subject).to respond_to(:planes)
   end
+
+  it "#planes should return an array" do
+    expect(subject.planes).to be_an_instance_of(Array)
+  end
 end
