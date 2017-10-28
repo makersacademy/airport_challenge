@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-
+  subject(:airport) {described_class.new}
   let (:plane) { double (:plane) }
   let (:stormy_false) { allow(subject).to receive(:stormy?) { false } }
   let (:stormy_true) { allow(subject).to receive(:stormy?) { true } }
@@ -27,7 +27,6 @@ describe Airport do
     it "Should return error if airport is full" do
       stormy_false
       expect{ 21.times { subject.land(double :plane) } }.to raise_error "Airport full"
-      p subject
     end
   end
 
@@ -63,13 +62,4 @@ describe Airport do
       expect(airport.capacity).to eq(30)
     end
   end
-
-  #  describe "BONUS TEST" do
-  #     it "Should take off and land a number of planes" do
-  #     stormy_false
-  #     15.times { subject.land(plane)}
-  #     expect{ 15.times { subject.land(plane)} }.to change { subject.planes.length }
-  #     expect{ 13.times { subject.take_off(plane) } }.to change { subject.planes.length }
-  #     end
-  #   end
 end
