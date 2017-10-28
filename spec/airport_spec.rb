@@ -44,11 +44,17 @@ describe Airport do
       expect(airport).to respond_to(:take_off).with(1).argument
     end
 
+    it "expects plane that takes-off to not be at airport" do
+      plane=double(:plane)
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.planes).not_to include(plane)
+    end
   end
 
   describe "planes" do
 
-    it "ensures airport shows 20 planes that landed" do
+    it "ensures airport shows that 20 planes have landed" do
       plane = double(:plane)
       20.times {airport.land(plane)}
       p "HERE", airport.planes.count
