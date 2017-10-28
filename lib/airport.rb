@@ -23,11 +23,12 @@ class Airport
   private
 
   def full?
-    @terminal.length == @capacity
+    @terminal.count >= @capacity
   end
 
   def weather
-    (rand(1..10) > 5) ? true : false
+    #rand(1..10)
+    (7 > 5) ? true : false
   end
 
 end
