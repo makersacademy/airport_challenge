@@ -6,6 +6,7 @@ class Airport
   end
 
   def land(plane)
+    fail "plane already in airport" if present?(plane)
     @planes << plane
   end
 
