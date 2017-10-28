@@ -11,12 +11,12 @@ class Airport
     @terminal = []
   end
 
-  def land(plane, weather)
+  def land(plane)
     raise "Airport is full" if full?
     weather == true ? "Got a storm front coming, cannot land here" : @terminal << plane
   end
 
-  def take_off(plane, weather)
+  def take_off(plane)
     weather ? "The skies are dark, best to stay on the ground" : @terminal.delete(plane)
   end
 
@@ -26,8 +26,8 @@ class Airport
     @capacity.nil? ? @terminal.length >= DEFAULT_CAPACITY : @terminal.length >= @capacity
   end
 
-  # def weather
-  #   (1..10).sample > 5 ? @stormy = true : @stormy = false
-  # end
+  def weather
+    (rand(1..10) > 5) ? true : false
+  end
 
 end

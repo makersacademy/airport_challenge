@@ -1,6 +1,6 @@
 require "airport"
 require "plane"
-require "weather"
+# require "weather"
 
 describe Airport do
 
@@ -9,21 +9,21 @@ describe Airport do
 
   it "if stormy, plane does NOT take off" do
     plane = Plane.new
-    weather = Weather.new
-    expect(airport.take_off(plane, weather.is_stormy)).to eq ("The skies are dark, best to stay on the ground")
+    # weather = Weather.new
+    expect(airport.take_off(plane)).to eq ("The skies are dark, best to stay on the ground")
   end
 
   it "If stormy, plane does NOT land" do
     plane = Plane.new
-    weather = Weather.new
-    expect(airport.land(plane, weather.is_stormy)).to eq ("Got a storm front coming, cannot land here")
+    # weather = Weather.new
+    expect(airport.land(plane)).to eq ("Got a storm front coming, cannot land here")
   end
 
   it "raises an error if terminal is full" do
     plane = Plane.new
-    weather = Weather.new
-    Airport::DEFAULT_CAPACITY.times{ airport.land(plane,weather) }
-    expect { airport.land(plane,weather) }.to raise_error ("Airport is full")
+    # weather = Weather.new
+    Airport::DEFAULT_CAPACITY.times{ airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error ("Airport is full")
   end
 
   # it "raises an error concerning dock station being full with default capacity" do
