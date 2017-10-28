@@ -12,12 +12,14 @@ class Airport
   def land(plane)
     if plane.land?
       @terminal << plane
+      true
     end
   end
 
   def take_off(plane)
     if plane.take_off?
       @terminal.delete(plane)
+      true
     end
   end
 
