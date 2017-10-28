@@ -20,29 +20,12 @@ class Airport
     occupancy >= @capacity
   end
 
-  def capacity_check
-    raise AirportError, "at capacity" if full?
-  end
-
   def weather
     @weather_generator.get
   end
 
   def stormy?
     weather == :stormy
-  end
-
-  def weather_check
-    raise AirportError, "stormy weather" if stormy?
-  end
-
-  def clear_landing
-    capacity_check
-    weather_check
-  end
-
-  def clear_take_off
-    weather_check
   end
 
   def include?(aeroplane)

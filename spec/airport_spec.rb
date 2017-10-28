@@ -78,22 +78,6 @@ describe Airport do
     end
   end
 
-  describe "#capacity_check" do
-    context "depending on capacity" do
-      it "raises error (if full)" do
-        subject = described_class.new(20, nil)
-        20.times { subject.hangar.push(nil) }
-        expect { subject.capacity_check }.to raise_error AirportError
-      end
-
-      it "does nothing (if not full)" do
-        subject = described_class.new(20, nil)
-        19.times { subject.hangar.push(nil) }
-        expect { subject.capacity_check }.to_not raise_error AirportError
-      end
-    end
-  end
-
   describe "#weather" do
     context "generates weather" do
       it "gets weather from generator" do
@@ -116,39 +100,6 @@ describe Airport do
         subject = described_class.new(nil, weather)
         allow(weather).to receive(:get).and_return(:clear)
         expect(subject).to_not be_stormy
-      end
-    end
-  end
-
-  describe "#weather_check" do
-    context "depending on weather" do
-      it "raises error (if stormy)" do
-        described_class.any_instance.stub(:weather).and_return(:stormy)
-        expect { subject.weather_check }.to raise_error AirportError
-      end
-
-      it "does nothing (if not stormy)" do
-        described_class.any_instance.stub(:weather).and_return(:clear)
-        expect { subject.weather_check }.to_not raise_error AirportError
-      end
-    end
-  end
-
-  describe "#clear_landing" do
-    context "checks weather and capacity" do
-      it "calls capacity_check and weather_check" do
-        expect(subject).to receive(:capacity_check) 
-        expect(subject).to receive(:weather_check) 
-        subject.clear_landing
-      end
-    end
-  end
-
-  describe "#clear_take_off" do
-    context "checks weather" do
-      it "calls weather_check" do
-        expect(subject).to receive(:weather_check) 
-        subject.clear_take_off
       end
     end
   end
