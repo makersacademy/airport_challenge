@@ -1,4 +1,9 @@
 class Airport
+attr_reader :planes
+
+  def initialize
+    @planes
+  end
 
   def land
 
@@ -7,5 +12,5 @@ class Airport
   def take_off
 
   end
-  
+
 end
