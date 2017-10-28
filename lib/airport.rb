@@ -6,7 +6,7 @@ attr_reader :planes
   end
 
   def land(plane)
-
+    @planes << plane
   end
 
   def take_off
