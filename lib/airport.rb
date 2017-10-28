@@ -1,4 +1,5 @@
 class Airport
+  attr_reader :planes
 
   def initialize(planes = [])
     @planes = planes
@@ -10,10 +11,6 @@ class Airport
 
   def take_off(plane)
 
-  end
-
-  def show_planes
-    @planes
   end
 
 end

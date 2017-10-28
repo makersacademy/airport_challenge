@@ -40,10 +40,14 @@ describe Airport do
 
   end
 
-  it "ensures airport stores planes when they land" do
-    plane = Plane.new
-    airport.land(plane)
-    expect(airport.show_planes).to include(plane)
+  describe "planes" do
+
+    it "ensures airport stores planes when they land" do
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.planes).to include(plane)
+    end
+
   end
 
 end
