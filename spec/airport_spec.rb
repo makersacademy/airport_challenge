@@ -61,7 +61,7 @@ describe Airport do
     end
 
     it "should raise error when stormy and #take_off is called " do
-      allow(weather).to receive(:stormy?).and_return(1)
+      allow(weather).to receive(:stormy?) { true }
       airport = Airport.new(weather.stormy?)
       airport.land(plane)
       expect { airport.take_off(plane) }.to raise_error("the weather is stormy")
