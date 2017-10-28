@@ -15,4 +15,9 @@ describe Airport do
     expect(airport.take_off(plane)).to eq true
   end
 
+  it "if stormy, plane does NOT take off" do
+    plane = Plane.new
+    expect(airport.take_off(plane.stormy?)).to eq false
+  end
+
 end
