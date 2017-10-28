@@ -26,6 +26,12 @@ describe Airport do
       expect(airport).to respond_to(:land).with(1).argument
     end
 
+    it "ensures that a landed plane gets stored at airport" do
+      plane = double(:plane)
+      airport.land(plane)
+      expect(airport.planes).to include(plane)
+    end
+
   end
 
   describe "take-off" do
@@ -42,10 +48,11 @@ describe Airport do
 
   describe "planes" do
 
-    it "ensures airport stores planes when they land" do
+    it "ensures airport shows 20 planes that landed" do
       plane = double(:plane)
-      airport.land(plane)
-      expect(airport.planes).to include(plane)
+      20.times {airport.land(plane)}
+      p "HERE", airport.planes.count
+      expect(airport.planes.count).to eq(20)
     end
 
   end
