@@ -8,12 +8,24 @@ describe Airport do
     expect(Airport.new).to be_an_instance_of(Airport)
   end
 
-  it "allows landing at an airport" do
-    expect(airport).to respond_to(:land)
+  describe "land" do
+
+    it "allows landing at an airport" do
+      expect(airport).to respond_to(:land)
+    end
+
+    it "allows landing to have an argument" do
+      expect(airport).to respond_to(:land).with(1).argument
+    end
+
   end
 
-  it "allows landing to have an argument" do
-    expect(airport).to respond_to(:land).with(1).argument
+  describe "take-off" do
+
+    it "allows for a plane to take-off from airport" do
+      expect(airport).to respond_to(:take_off)
+    end
+
   end
 
 end
