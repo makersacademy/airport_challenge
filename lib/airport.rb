@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
 
@@ -16,10 +17,14 @@ class Airport
     end
   end
 
-  def take_off(plane)
-    if plane.take_off?
-      @terminal.delete(plane)
+  def take_off(plane, weather)
+    if weather.clear?
+      if plane.take_off?
+        @terminal.delete(plane)
+      end
       true
+    else
+      "The skies are dark, best to stay on the ground"
     end
   end
 

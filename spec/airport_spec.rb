@@ -1,5 +1,6 @@
-require "airport.rb"
-require "plane.rb"
+require "airport"
+require "plane"
+require "weather"
 
 describe Airport do
 
@@ -12,12 +13,16 @@ describe Airport do
 
   it "plane should be able to take off" do
     plane = Plane.new
-    expect(airport.take_off(plane)).to eq true
+    weather = Weather.new
+    expect(airport.take_off(plane,weather)).to eq true
   end
 
   it "if stormy, plane does NOT take off" do
     plane = Plane.new
-    expect(airport.take_off(plane.stormy?)).to eq false
+    weather = Weather.new
+    #condition = weather.clear?
+    p "WEATHER: weather is stormy", weather.stormy?
+    expect(weather.clear?).to eq (plane.take_off?)
   end
 
 end
