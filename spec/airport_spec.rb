@@ -12,4 +12,9 @@ describe Airport do
     expect(airport.planes).to be_an_instance_of(Array)
   end
 
+  it "check if the plane in the airport after landing" do
+    airport.land(plane)
+    expect(airport.planes).to include(plane)
+  end
+
 end
