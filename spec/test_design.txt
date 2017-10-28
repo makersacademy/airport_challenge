@@ -1,0 +1,51 @@
+
+Basic movement methods:
+	
+1. plane.land(airport) true if plane at airport
+
+2. plane.take_off(airport) true if plane not at airport
+
+
+Control methods:
+
+3. plane.land(airport) doesn't run when weather is stormy
+
+4. plane.take_off(airport) doesn't run when weather is stormy
+
+5. plane.land(airport) doesn't run if airport is full
+
+
+Admin methods:
+
+6. airport has default capacity, that can be overridden
+
+
+
+Tests design
+
+1.
+a) plane receives instruction to land (plane_spec)
+b) airport accepts landing/checks plane in (airport_spec)
+c) airport sends message to confirm landing and check in (airport_spec)
+
+2.
+a) plane receives instruction to take off (plane_spec)
+b) airport accepts take off and checks plane out (airport_spec)
+c) airport sends message to confirm landing and check out (airport_spec)
+
+3.
+a) plane take off doesn't go through if weather is stormy
+b) plane take off raises appropriate issue
+
+4.
+a) plane landing doesn't go through if weather is stormy
+b) plane landing raises appropriate issue
+
+5.
+a) plane take off doesn't go through if airport is full
+b) plane landing raises appropriate issue
+
+
+6.
+a) airport is created with a default capacity stored in a constant
+b) capacity constant can be overridden
