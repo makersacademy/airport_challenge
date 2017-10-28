@@ -39,12 +39,14 @@ describe Plane do
   end
 
   describe '#land' do
-    it { expect{ subject.land }.to change { subject.status } if subject.flying? }
+    it 'changes planes status to landed' do
+      subject.take_off
+      expect{ subject.land }.to change { subject.status }
+    end
   end
 
-
   describe '#take_off' do
-    it { expect{ subject.take_off }.to change { subject.status} if subject.grounded? }
+    it { expect{ subject.take_off }.to change { subject.status } }
   end
 
 end

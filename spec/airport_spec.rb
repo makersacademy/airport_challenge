@@ -37,6 +37,10 @@ describe Airport do
     it { expect{ subject.land(flying_plane) }.to change { subject.planes.include?(flying_plane) } }
     it { expect{ subject.land(flying_plane) }.to change { flying_plane.status } }
     it { expect{ subject.land(plane) }.to raise_error 'Plane Already Grounded' }
+    it 'raises an error when airport is full' do
+      subject.capacity.times { subject.planes << plane }
+      expect{ subject.land(flying_plane) }.to raise_error 'Airport Full'
+    end
   end
 
   describe '#take_off' do

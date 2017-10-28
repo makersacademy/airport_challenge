@@ -11,14 +11,13 @@ class Airport
   end
 
   def land(plane)
-    fail 'Plane Already Grounded' if plane.grounded?
+    landing_fail_checks(plane)
     plane.land
     @planes << plane
   end
 
   def take_off(plane)
-    fail 'Plane Already Flying' if plane.flying?
-    fail 'Plane Not At This Airport' unless @planes.include?(plane)
+    take_off_fail_checks(plane)
     plane.take_off
     @planes.delete(plane)
   end
@@ -37,5 +36,16 @@ class Airport
 
   def stormy?
     @weather == 'stormy'
+  end
+
+  private
+  def take_off_fail_checks(plane)
+    fail 'Plane Already Flying' if plane.flying?
+    fail 'Plane Not At This Airport' unless @planes.include?(plane)
+  end
+
+  def landing_fail_checks(plane)
+    fail 'Plane Already Grounded' if plane.grounded?
+    fail 'Airport Full' if full?
   end
 end
