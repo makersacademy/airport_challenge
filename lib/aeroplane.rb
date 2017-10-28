@@ -5,27 +5,26 @@ class Aeroplane
 
   def initialize(airport = nil)
     @airport = airport
+    manage_dock(airport) if !airport.nil?
   end
 
   def flying?
     !@airport
   end
 
-  def is_flying_check
-    raise AeroplaneError, "is already flying" if flying?
-  end
-
-  def is_grounded_check
-    raise AeroplaneError, "already landed" if !flying?
-  end
-
   def land(airport)
-    is_grounded_check
+    raise AeroplaneError, "already landed" if !flying?
     manage_landing(airport)
   end
 
+  def manage_dock(airport)
+    ATC.clear(self).to(:dock, :at => airport)
+    do_landing(airport)
+    airport.register_arrival(self)
+  end
+
   def manage_landing(airport)
-    airport.clear_landing
+    ATC.clear(self).to(:land, :at => airport)
     do_landing(airport)
     airport.register_arrival(self)
   end
@@ -35,12 +34,12 @@ class Aeroplane
   end
 
   def take_off
-    is_flying_check
+    raise AeroplaneError, "is already flying" if flying?
     manage_take_off(@airport)
   end
   
   def manage_take_off(airport)
-    airport.clear_take_off
+    ATC.clear(self).to(:take_off)
     do_take_off
     airport.register_departure(self)
   end
