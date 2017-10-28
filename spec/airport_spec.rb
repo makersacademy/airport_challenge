@@ -14,7 +14,7 @@ describe Airport do
   end
 
   it "should respond to #take_off with 1 argument" do
-    expect(subject).to respond_to(:take_off)
+    expect(subject).to respond_to(:take_off).with(1).argument
   end
 
   it "should respond to #planes" do
