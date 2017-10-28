@@ -28,10 +28,7 @@ class Airport
     rand(101) > 80
   end
 
-
-
 private
-
   def full?
     @planes.length == capacity
   end
