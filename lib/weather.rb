@@ -1,6 +1,6 @@
 class Weather
 
-  def self.stormy?
+  def stormy?
     [1, 0, 0, 0, 0].sample
   end
 
