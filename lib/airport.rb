@@ -4,7 +4,7 @@ class Airport
 
   attr_reader :capacity, :terminal
 
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 5
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -13,7 +13,7 @@ class Airport
 
   def land(plane)
     raise "Airport is full" if full?
-    weather == true ? "Got a storm front coming, cannot land here" : @terminal << plane
+    weather ? "Got a storm front coming, cannot land here" : @terminal << plane
   end
 
   def take_off(plane)
@@ -23,7 +23,7 @@ class Airport
   private
 
   def full?
-    @capacity.nil? ? @terminal.length >= DEFAULT_CAPACITY : @terminal.length >= @capacity
+    @terminal.length == @capacity
   end
 
   def weather
