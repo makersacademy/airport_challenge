@@ -2,35 +2,15 @@
 
 require 'aeroplane'
 
-class MockATC
-  attr_reader :aeroplane, :airport, :operation
-
-  def initialize
-    @aeroplane = nil
-    @airport = nil
-    @operation = nil
-  end
-
-  def clear(aeroplane)
-    @aeroplane = aeroplane
-    self
-  end
-
-  def to(operation, options = {})
-    @operation = operation
-    @airport = options[:at] || :default
-  end
-end
-    
+RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
 describe Aeroplane do
 
-  before(:each) { stub_const("ATC", MockATC.new) }
-
   let(:airport) do
     airport = double(:airport)
-    allow(airport).to receive(:register_arrival)
-    allow(airport).to receive(:register_departure)
+    allow(airport).to receive(:process_landing)
+    allow(airport).to receive(:process_docking)
+    allow(airport).to receive(:process_take_off)
     airport
   end
 
@@ -49,8 +29,7 @@ describe Aeroplane do
       
       it "docked at airport when passed one" do
         expect_any_instance_of(described_class)
-          .to receive(:manage_dock).with(airport)
-        subject.land(airport)
+          .to receive(:arrive).with(airport, true)
         subject = described_class.new(airport)
       end
     end
@@ -69,67 +48,45 @@ describe Aeroplane do
     end
   end
 
-  describe "#land" do 
+  describe "#arrive" do 
     context "checks if already landed" do
       it "no error if flying" do
         allow(subject).to receive(:flying?).and_return(true) 
-        expect { subject.land(airport) }.to_not raise_error(AeroplaneError)
+        expect { subject.arrive(airport) }.to_not raise_error(AeroplaneError)
       end
 
       it "raises error if landed" do
         allow(subject).to receive(:flying?).and_return(false) 
-        expect { subject.land(airport) }.to raise_error(AeroplaneError)
+        expect { subject.arrive(airport) }.to raise_error(AeroplaneError)
       end
     end
 
-    context "initiates landing" do
-      it "calls manage_landing" do
-        expect(subject).to receive(:manage_landing).with(airport)
-        subject.land(airport)
+    context "when landing" do
+      it "calls airport process_landing" do
+        expect(airport).to receive(:process_landing).with(subject)
+        subject.arrive(airport)
       end
     end
-  end
 
-  describe "#manage_landing" do
-    context "checks if already landed" do
-      it "no error if flying" do
-        allow(subject).to receive(:flying?).and_return(true) 
-        expect { subject.manage_dock(airport) }
-          .to_not raise_error(AeroplaneError)
-      end
-
-      it "raises error if landed" do
-        allow(subject).to receive(:flying?).and_return(false) 
-        expect { subject.manage_dock(airport) }.to raise_error(AeroplaneError)
+    context "when docking" do
+      it "calls airport process_docking" do
+        expect(airport).to receive(:process_docking).with(subject)
+        subject.arrive(airport, true)
       end
     end
 
     context "lands at an airport" do
       it "calls do_landing with airport" do
-        expect(subject).to receive(:do_landing).with(airport)
-        subject.land(airport)
-      end
-    end
-      
-    context "interacts with airport" do
-      it "gets permission from airport" do
-        subject.manage_landing(airport)
-        expect(ATC.aeroplane).to be subject
-        expect(ATC.airport).to be airport
-        expect(ATC.operation).to be :land
-      end
-
-      it "registers with airport" do
-        expect(airport).to receive(:register_arrival).with(subject)
-        subject.land(airport)
+        expect(subject).to receive(:do_arrival).with(airport)
+        subject.arrive(airport)
       end
     end
   end
 
-  describe "#do_landing" do
+  describe "#do_arrival" do
     context "actually lands aeroplane" do
       it "sets @airport to passed value" do
-        subject.do_landing(airport)
+        subject.do_arrival(airport)
         expect(subject.airport).to eq airport
       end
     end
@@ -138,7 +95,7 @@ describe Aeroplane do
   describe "#take_off" do
     subject { described_class.new(airport) }
 
-    context "checks if already landed" do
+    context "checks if already flying" do
       it "raises error if flying" do
         expect(subject).to receive(:flying?).and_return(true) 
         expect { subject.take_off }.to raise_error(AeroplaneError)
@@ -150,34 +107,16 @@ describe Aeroplane do
       end
     end
 
-    context "initiates take off" do
-      it "calls manage_take_off" do
-        expect(subject).to receive(:manage_take_off).with(airport)
+    context "registers with airport" do
+      it "calls airport #process_take_off" do
+        expect(subject.airport).to receive(:process_take_off).with(subject)
         subject.take_off
       end
     end
-  end
 
-  describe "#manage_take_off" do
-    subject { described_class.new(airport) }
-
-    context "leaves airport" do
+    context "departs from an airport" do
       it "calls do_take_off" do
         expect(subject).to receive(:do_take_off)
-        subject.take_off
-      end
-    end
-      
-    context "interacts with airport" do
-      it "gets permission from airport" do
-        subject.manage_take_off(airport)
-        expect(ATC.aeroplane).to be subject
-        expect(ATC.airport).to be :default
-        expect(ATC.operation).to be :take_off
-      end
-
-      it "registers with airport" do
-        expect(airport).to receive(:register_departure).with(subject)
         subject.take_off
       end
     end
@@ -192,28 +131,5 @@ describe Aeroplane do
       end
     end
   end
-
-  describe "#manage_dock" do
-    subject { described_class.new(airport) }
-    context "arrives at airport" do
-      it "calls do_take_off" do
-        expect(subject).to receive(:do_landing).with(airport)
-        subject.manage_dock(airport)
-      end
-    end
-      
-    context "interacts with airport" do
-      it "gets permission from airport" do
-        subject.manage_dock(airport)
-        expect(ATC.aeroplane).to be subject
-        expect(ATC.airport).to be airport
-        expect(ATC.operation).to be :dock
-      end
-
-      it "registers with airport" do
-        expect(airport).to receive(:register_arrival).with(subject)
-        subject.manage_dock(airport)
-      end
-    end
-  end
 end
+

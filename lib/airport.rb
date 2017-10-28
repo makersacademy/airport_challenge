@@ -1,15 +1,18 @@
+#!/usr/bin/env ruby
+
+require './lib/atc'
 require './lib/weather'
 require './lib/air_exceptions'
 
 class Airport
-
-  attr_reader :hangar, :capacity, :weather_generator
+  attr_reader :hangar, :capacity, :weather_generator, :atc
   DEFAULT_CAPACITY = 50
 
   def initialize(capacity = nil, weather = Weather.new)
     @hangar = []
     @capacity = capacity || DEFAULT_CAPACITY
     @weather_generator = weather
+    @atc = ATC
   end
 
   def occupancy
@@ -38,5 +41,20 @@ class Airport
 
   def register_departure(aeroplane)
     @hangar.delete(aeroplane)
+  end
+
+  def process_landing(aeroplane)
+    @atc.clear(self).to(:land)
+    register_arrival(aeroplane)
+  end
+
+  def process_docking(aeroplane)
+    @atc.clear(self).to(:dock)
+    register_arrival(aeroplane)
+  end
+
+  def process_take_off(aeroplane)
+    @atc.clear(self).to(:take_off)
+    register_departure(aeroplane)
   end
 end

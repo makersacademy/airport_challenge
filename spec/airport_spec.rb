@@ -6,11 +6,38 @@ require 'airport'
 
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
+class MockATC
+  attr_reader :airport, :operation
+
+  def initialize
+    @airport = nil
+    @operation = nil
+  end
+
+  def clear(airport)
+    @airport = airport
+    self
+  end
+
+  def to(operation)
+    @operation = operation
+  end
+end
+
+class MockWeather
+  def get
+    :clear
+  end
+end
+
 describe Airport do
 
-  let(:weather) { weather = double(:Weather) }
+  let(:weather) { MockWeather.new }
+  let(:aeroplane) { double(:aeroplane) }
+  before(:each) { stub_const("ATC", MockATC.new) }
+  before(:each) { stub_const("Weather", MockWeather) }
 
-  describe "created with" do
+  describe "creates with" do
     context "hangar" do
       it { is_expected.to respond_to :hangar }
 
@@ -27,7 +54,7 @@ describe Airport do
       it { is_expected.to respond_to :weather_generator }
 
       it "creates by default" do
-        expect(subject.weather_generator).to be_a Weather
+        expect(subject.weather_generator).to be_a MockWeather
       end
 
       it "creates with user value" do
@@ -46,6 +73,14 @@ describe Airport do
       it "creates with user value" do
         subject = described_class.new(30, nil)
         expect(subject.capacity).to eq 30
+      end
+    end
+
+    context "reference to ATC class" do
+      it { is_expected.to respond_to :atc }
+
+      it "contains an reference to the ATC class" do
+        expect(subject.atc).to eq ATC
       end
     end
   end
@@ -132,6 +167,57 @@ describe Airport do
         subject.hangar.push(:aircraft)
         subject.register_departure(:aircraft)
         expect(subject.hangar).to_not include(:aircraft)
+      end
+    end
+  end
+
+  describe "#process_landing" do
+    context "makes checks" do
+      it "passes self to ATC" do
+        subject.process_landing(aeroplane)
+        expect(subject.atc.airport).to eq subject
+        expect(subject.atc.operation).to eq :land
+      end
+    end
+
+    context "moves aircraft to hangar" do
+      it "calls #register_arrival" do
+        expect(subject).to receive(:register_arrival).with(aeroplane)
+        subject.process_landing(aeroplane)
+      end
+    end
+  end
+
+  describe "#process_docking" do
+    context "makes checks" do
+      it "passes self to ATC" do
+        subject.process_docking(aeroplane)
+        expect(subject.atc.airport).to eq subject
+        expect(subject.atc.operation).to eq :dock
+      end
+    end
+
+    context "moves aircraft to hangar" do
+      it "calls #register_arrival" do
+        expect(subject).to receive(:register_arrival).with(aeroplane)
+        subject.process_docking(aeroplane)
+      end
+    end
+  end
+
+  describe "#process_take_off" do
+    context "makes checks" do
+      it "passes self to ATC" do
+        subject.process_take_off(aeroplane)
+        expect(subject.atc.airport).to eq subject
+        expect(subject.atc.operation).to eq :take_off
+      end
+    end
+
+    context "moves aircraft to hangar" do
+      it "calls #register_arrival" do
+        expect(subject).to receive(:register_departure).with(aeroplane)
+        subject.process_take_off(aeroplane)
       end
     end
   end
