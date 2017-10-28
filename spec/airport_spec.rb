@@ -7,7 +7,12 @@ describe Airport do
 
   it "plane should be allowed to land" do
     plane = Plane.new
-    expect(airport.controller(plane)).to eq true
+    expect(airport.land(plane)).to eq true
+  end
+
+  it "plane should be able to take off" do
+    plane = Plane.new
+    expect(airport.take_off(plane)).to eq true
   end
 
 end
