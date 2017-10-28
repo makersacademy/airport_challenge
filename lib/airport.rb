@@ -1,23 +1,25 @@
-class Airport
-  attr_reader :conditions
+require './lib/plane.rb'
 
-  def initialize(conditions)
-    @conditions = conditions
+class Airport
+  attr_reader :conditions, :plane
+
+  def conditions
+    @conditions = ['fine', 'stormy'].sample
   end
 
-  def land(plane)
-    if @conditions.stormy
-      fail "Cannot land due to stormy weather"
+  def land
+    if @conditions == 'stormy'
+      "Cannot land due to stormy weather"
     else
-      plane
+      "Plane landed safely"
     end
   end
 
-  def take_off(plane)
-    if @conditions.stormy
-      fail "Cannot take off due to stormy weather"
+  def take_off
+    if @conditions == 'stormy'
+      "Cannot take off due to stormy weather"
     else
-      plane
+      "Plane has taken off safely"
     end
   end
 end

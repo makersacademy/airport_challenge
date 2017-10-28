@@ -1,5 +1,5 @@
 class Plane
-  def status
-    "plane taken off safely"
+  def flight_status
+      "plane landed safely"
   end
 end

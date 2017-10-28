@@ -1,37 +1,31 @@
-require 'Airport'
-require 'Conditions'
+require './lib/airport.rb'
+require './lib/plane.rb'
 
 describe Airport do
-
   describe '#land' do
+    let ( :airport ) { Airport.new }
     it 'instructs a plane to land' do
-      plane = Plane.new
-      conditions = Conditions.new
-      subject = Airport.new(conditions)
-      allow(conditions).to receive(:stormy).and_return false
-      expect(subject.land(plane)).to eq(plane)
+      airport.conditions
+      allow(airport.conditions).to receive('stormy')
+      expect(airport.land).to eq("Plane landed safely")
     end
+
     it 'fails if weather is stormy' do
-      conditions = Conditions.new
-      plane = Plane.new
-      subject = Airport.new(conditions)
-      expect{subject.land(plane)}.to raise_error "Cannot land due to stormy weather"
+      allow(airport.conditions).to receive('stormy')
+      expect(airport.land).to eq("Cannot land due to stormy weather")
     end
   end
 
   describe'#take_off' do
-    it 'instructs a plane to take off' do
-      plane = Plane.new
-      conditions = Conditions.new
-      subject = Airport.new(conditions)
-      allow(conditions).to receive(:stormy).and_return false
-      expect(subject.take_off(plane)).to eq(plane)
+    let ( :airport ) { Airport.new }
+    it 'allows plane to take off' do
+      allow(airport.conditions).to receive('fine')
+      expect(airport.take_off).to eq("Plane landed safely")
     end
+
     it 'fails if weather is stormy' do
-      conditions = Conditions.new
-      plane = Plane.new
-      subject = Airport.new(conditions)
-      expect{subject.take_off(plane)}.to raise_error "Cannot take off due to stormy weather"
+      allow(airport.conditions).to receive('stormy')
+      expect(airport.take_off).to eq("Cannot take off due to stormy weather")
     end
   end
 end
