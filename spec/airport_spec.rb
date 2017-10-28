@@ -32,6 +32,11 @@ describe Airport do
       expect(airport.planes).to include(plane)
     end
 
+    it "raises error if we order a plane to land at an airport when it's already there" do
+      airport.land(plane)
+      expect { airport.land(plane) }.to raise_error("This plane is already at this airport.")
+    end
+
   end
 
   describe "take-off" do
@@ -58,9 +63,11 @@ describe Airport do
 
   describe "planes" do
 
-    it "ensures airport shows that 20 planes have landed" do
-      20.times { airport.land(plane) }
-      expect(airport.planes.count).to eq(20)
+    it "ensures airport planes method shows all the planes that have landed" do
+      airport.land(plane)
+      plane2 = double(:plane)
+      airport.land(plane2)
+      expect(airport.planes).to eq([plane, plane2])
     end
 
   end

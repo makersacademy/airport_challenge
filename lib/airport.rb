@@ -6,6 +6,7 @@ class Airport
   end
 
   def land(plane)
+    raise "This plane is already at this airport." if @planes.include?(plane)
     @planes.push(plane)
   end
 
