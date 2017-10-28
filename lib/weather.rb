@@ -1,5 +1,2 @@
 class Weather
-
-
-
 end
