@@ -5,13 +5,7 @@ require 'air_exceptions'
 
 describe Operation do
 
-  subject { described_class.new(plane) }
-
-  let(:plane) do
-    plane = double(:plane)
-    allow(plane).to receive(:airport).and_return(:airport)
-    plane
-  end
+  subject { described_class.new(airport) }
 
   let(:airport) do
     airport = double(:airport)
@@ -21,11 +15,11 @@ describe Operation do
   end
 
   describe "creates with" do
-    context "aeroplane" do
-      it { is_expected.to respond_to :aeroplane }
+    context "airport" do
+      it { is_expected.to respond_to :airport }
 
-      it "contains passed aeroplane object" do
-        expect(subject.aeroplane).to eq plane
+      it "contains passed airport object" do
+        expect(subject.airport).to eq airport
       end
     end
   end
@@ -52,62 +46,78 @@ describe Operation do
 
     context "knows what to do with actions" do
       it "checks docking" do
-        expect(subject).to receive(:dock).with(:somewhere)
-        subject.to(:dock, :at => :somewhere)
+        expect(subject).to receive(:dock)
+        subject.to(:dock)
       end
 
       it "checks landing" do
-        expect(subject).to receive(:land).with(:somewhere)
-        subject.to(:land, :at => :somewhere)
+        expect(subject).to receive(:land)
+        subject.to(:land)
       end
 
       it "checks taking off" do
-        expect(subject).to receive(:take_off).with(:airport)
+        expect(subject).to receive(:take_off)
         subject.to(:take_off)
       end
     end
   end
 
-  describe "#dock" do
+  describe "#capacity_check" do
     context "checks airport capacity" do
       it "raises error if full" do
         expect(airport).to receive(:full?).and_return(true)
-        expect { subject.dock(airport) }.to raise_error AirportError
+        expect { subject.capacity_check }.to raise_error AirportError
       end
-       
-      it "does nothing if empty" do
-        expect { subject.dock(airport) }.to_not raise_error
+
+      it "does nothing if not full" do
+        expect(airport).to receive(:full?).and_return(false)
+        expect(subject.capacity_check).to eq true
+      end
+    end
+  end
+
+  describe "#weather_check" do
+    context "checks airport weather" do
+      it "raises error if full" do
+        expect(airport).to receive(:stormy?).and_return(true)
+        expect { subject.weather_check }.to raise_error AirportError
+      end
+
+      it "returns true if not full" do
+        expect(airport).to receive(:stormy?).and_return(false)
+        expect(subject.weather_check).to eq true
+      end
+    end
+  end
+
+  describe "#dock" do
+    context "makes capacity check" do
+      it "calls capacity check" do
+        expect(subject).to receive(:capacity_check)
+        subject.dock
       end
     end
   end
 
   describe "#land" do
-    context "checks airport capacity and weather" do
-      it "raises error if full" do
-        expect(airport).to receive(:full?).and_return(true)
-        expect { subject.land(airport) }.to raise_error AirportError
+    context "makes capacity and weather check" do
+      it "calls capacity check" do
+        expect(subject).to receive(:capacity_check)
+        subject.land
       end
 
-      it "raises error if stormy" do
-        expect(airport).to receive(:stormy?).and_return(true)
-        expect { subject.land(airport) }.to raise_error AirportError
-      end
-       
-      it "does nothing if empty" do
-        expect { subject.land(airport) }.to_not raise_error
+      it "calls #weather_check" do
+        expect(subject).to receive(:weather_check)
+        subject.land
       end
     end
   end
 
   describe "#take_off" do
-    context "checks airport weather" do
-      it "raises error if stormy" do
-        expect(airport).to receive(:stormy?).and_return(true)
-        expect { subject.take_off(airport) }.to raise_error AirportError
-      end
-       
-      it "does nothing if empty" do
-        expect { subject.take_off(airport) }.to_not raise_error
+    context "makes weather check" do
+      it "calls #weather_check" do
+        expect(subject).to receive(:weather_check)
+        subject.land
       end
     end
   end
