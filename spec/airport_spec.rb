@@ -37,8 +37,8 @@ describe Airport do
     expect(subject.planes).to eq([])
   end
 
-  it "should respond to #weather" do
-    expect(subject).to respond_to(:weather)
+  it "should respond to #stormy" do
+    expect(subject).to respond_to(:stormy)
   end
 
 
@@ -53,8 +53,10 @@ describe Airport do
     end
 
     it "should raise error when #take_off is called when stormy" do
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect { subject.take_off(plane) }.to raise_error("the weather is stormy")
+      allow(weather).to receive(:stormy?).and_return(1)
+      airport = Airport.new(weather.stormy?)
+      airport.land(plane)
+      expect { airport.take_off(plane) }.to raise_error("the weather is stormy")
     end
   end
 end
