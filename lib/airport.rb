@@ -3,8 +3,9 @@ class Airport
   attr_reader :grounded_planes
 
   @@messages = {
-    :landed => "Plane landed.",
-#    :wrong_request => "That's a wierd request. I'll abstain.",
+    :landed => "Plane has landed.",
+    :departed => "Plane has departed.",
+    :wrong_request => "That's a weird request. I'll abstain.",
 #    :stormy_weather => "Look at the sky, dude.",
 #    :full_capacity => "We're full. Deal with it.",
   }
@@ -15,8 +16,8 @@ class Airport
 
   def request(request_type, plane)
     return land(plane) if request_type == "landing"
-#    return take_off(plane) if request_type == "take off"
-#    engage(:wrong_request)
+    return take_off(plane) if request_type == "take off"
+    engage(:wrong_request)
   end
 
 private
@@ -27,8 +28,11 @@ private
     return true
   end
 
-#  def take_off(plane)
-#  end
+  def take_off(plane)
+    @grounded_planes.delete(plane)
+    engage(:departed)
+    return true
+  end
 
   def engage(message)
     puts @@messages[message]
