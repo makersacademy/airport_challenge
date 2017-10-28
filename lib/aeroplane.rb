@@ -3,9 +3,10 @@
 require './lib/air_exceptions'
 
 class Aeroplane
-  attr_reader :airport
+  attr_reader :airport, :name
 
-  def initialize(airport = nil)
+  def initialize(airport = nil, name = "")
+    @name = name
     arrive(airport, true) if !airport.nil?
     @airport = airport
   end
@@ -36,5 +37,13 @@ class Aeroplane
     raise AeroplaneError, "is already flying" if flying?
     @airport.process_take_off(self)
     do_take_off
+  end
+
+  def to_s
+    if flying?
+      "Aircraft '#{@name}' (airborne)"
+    else
+      "Aircraft '#{@name}' (at #{airport.name})"
+    end
   end
 end

@@ -60,6 +60,6 @@ class Airport
   end
 
   def to_s
-    "#{@name} airport (#{occupancy}/#{@capacity} aircraft)"
+    "'#{@name}' airport (#{occupancy}/#{@capacity} aircraft)"
   end
 end

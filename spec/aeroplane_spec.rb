@@ -33,6 +33,19 @@ describe Aeroplane do
         subject = described_class.new(airport)
       end
     end
+
+    context "name" do
+      it { is_expected.to respond_to :name }
+
+      it "is empty by default" do
+        expect(subject.name).to eq ""
+      end
+
+      it "uses name when passed one" do
+        subject = described_class.new(airport, "hello")
+        expect(subject.name).to eq "hello"
+      end
+    end
   end
 
   describe "#flying?" do
