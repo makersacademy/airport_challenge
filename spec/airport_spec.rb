@@ -12,4 +12,8 @@ describe Airport do
     expect(airport).to respond_to(:land)
   end
 
+  it "allows landing to have an argument" do
+    expect(airport).to respond_to(:land).with(1).argument
+  end
+
 end
