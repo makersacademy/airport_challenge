@@ -26,6 +26,10 @@ describe Airport do
       expect(airport).to respond_to(:take_off)
     end
 
+    it "allows for take-off to have an argument" do
+        expect(airport).to respond_to(:take_off).with(1).argument
+    end
+
   end
 
 end
