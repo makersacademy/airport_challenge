@@ -5,7 +5,7 @@ attr_reader :planes
     @planes =[]
   end
 
-  def land
+  def land(plane)
 
   end
 
