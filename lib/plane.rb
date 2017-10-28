@@ -14,12 +14,10 @@ class Plane
   end
 
   def land
-    fail 'Plane Already Grounded' if grounded?
     @status = 'grounded'
   end
 
   def take_off
-    fail 'Plane Already Flying' if flying?
     @status = 'flying'
   end
 

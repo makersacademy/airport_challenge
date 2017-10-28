@@ -39,13 +39,11 @@ describe Plane do
   end
 
   describe '#land' do
-    it { expect{ subject.land }.to raise_error 'Plane Already Grounded' if subject.grounded? }
     it { expect{ subject.land }.to change { subject.status } if subject.flying? }
   end
 
 
   describe '#take_off' do
-    it { expect{ subject.take_off }.to raise_error 'Plane Already Flying' if subject.flying? }
     it { expect{ subject.take_off }.to change { subject.status} if subject.grounded? }
   end
 
