@@ -5,10 +5,11 @@ require './lib/weather'
 require './lib/air_exceptions'
 
 class Airport
-  attr_reader :hangar, :capacity, :weather_generator, :atc
+  attr_reader :name, :hangar, :capacity, :weather_generator, :atc
   DEFAULT_CAPACITY = 50
 
-  def initialize(capacity = nil, weather = Weather.new)
+  def initialize(name, capacity = nil, weather = Weather.new)
+    @name = name
     @hangar = []
     @capacity = capacity || DEFAULT_CAPACITY
     @weather_generator = weather
@@ -56,5 +57,9 @@ class Airport
   def process_take_off(aeroplane)
     @atc.clear(self).to(:take_off)
     register_departure(aeroplane)
+  end
+
+  def to_s
+    "#{@name} airport (#{occupancy}/#{@capacity} aircraft)"
   end
 end

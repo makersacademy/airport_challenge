@@ -37,7 +37,17 @@ describe Airport do
   before(:each) { stub_const("ATC", MockATC.new) }
   before(:each) { stub_const("Weather", MockWeather) }
 
+  subject { described_class.new("hello") }
+
   describe "creates with" do
+    context "name" do
+      it { is_expected.to respond_to :name }
+
+      it "has correct name" do
+        expect(subject.name).to eq "hello"
+      end
+    end
+
     context "hangar" do
       it { is_expected.to respond_to :hangar }
 
@@ -58,8 +68,8 @@ describe Airport do
       end
 
       it "creates with user value" do
-        subject = described_class.new(nil, "hello")
-        expect(subject.weather_generator).to eq "hello"
+        subject = described_class.new("hello", nil, "wg")
+        expect(subject.weather_generator).to eq "wg"
       end
     end
 
@@ -71,7 +81,7 @@ describe Airport do
       end
 
       it "creates with user value" do
-        subject = described_class.new(30, nil)
+        subject = described_class.new("", 30, nil)
         expect(subject.capacity).to eq 30
       end
     end
@@ -106,7 +116,7 @@ describe Airport do
       end
 
       it "when at capacity" do
-        subject = described_class.new(20, nil)
+        subject = described_class.new("", 20, nil)
         20.times { subject.hangar.push(nil) }
         expect(subject).to be_full
       end
@@ -116,7 +126,7 @@ describe Airport do
   describe "#weather" do
     context "generates weather" do
       it "gets weather from generator" do
-        subject = described_class.new(nil, weather)
+        subject = described_class.new("", nil, weather)
         expect(weather).to receive(:get).and_return(:stormy)
         subject.weather
       end
@@ -126,13 +136,13 @@ describe Airport do
   describe "#stormy?" do
     context "knows when weather is stormy" do
       it "is true when weather is stormy" do
-        subject = described_class.new(nil, weather)
+        subject = described_class.new("", nil, weather)
         allow(weather).to receive(:get).and_return(:stormy)
         expect(subject).to be_stormy
       end
 
       it "is false when weather is clear" do
-        subject = described_class.new(nil, weather)
+        subject = described_class.new("", nil, weather)
         allow(weather).to receive(:get).and_return(:clear)
         expect(subject).to_not be_stormy
       end
