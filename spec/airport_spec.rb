@@ -37,8 +37,14 @@ describe Airport do
   end
 
   describe "#Errors" do
+
     it "should raise error if plane not in airport" do
       expect { subject.take_off(plane) }.to raise_error("plane not in airport")
+    end
+
+    it "should raise error if plane already in airport" do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error("plane already in airport")
     end
   end
 end
