@@ -7,8 +7,8 @@ describe Airport do
     expect(subject).to be_an_instance_of(Airport)
   end
 
-  it "should respond to #land" do
-    expect(subject).to respond_to(:land)
+  it "should respond to #land with 1 argument" do
+    expect(subject).to respond_to(:land).with(1).argument
   end
 
   it "should respond to #take_off" do
@@ -22,4 +22,5 @@ describe Airport do
   it "#planes should return an array" do
     expect(subject.planes).to be_an_instance_of(Array)
   end
+
 end
