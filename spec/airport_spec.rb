@@ -20,9 +20,12 @@ describe Airport do
   it "if stormy, plane does NOT take off" do
     plane = Plane.new
     weather = Weather.new
-    #condition = weather.clear?
-    p "WEATHER: weather is stormy", weather.stormy?
-    expect(weather.clear?).to eq (plane.take_off?)
+    expect(weather.clear?).to eq (airport.take_off(plane,weather))
   end
 
+  it "if stormy, plane does NOT land" do
+    plane = Plane.new
+    weather = Weather.new
+    expect(weather.clear?).to eq (airport.land(plane))
+  end
 end
