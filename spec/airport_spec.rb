@@ -10,7 +10,7 @@ describe Airport do
   it "plane should be allowed to land" do
     plane = Plane.new
     weather = Weather.new
-    expect(airport.land(plane,weather)).to eq true
+    expect(airport.land(plane,weather)).to eq [plane]
   end
 
   it "plane should be able to take off" do
@@ -19,16 +19,16 @@ describe Airport do
     expect(airport.take_off(plane,weather)).to eq true
   end
 
-  it "if stormy, plane does NOT take off" do
+  it "Unless stormy, plane does take off" do
     plane = Plane.new
     weather = Weather.new
     expect(weather.clear?).to eq (airport.take_off(plane,weather))
   end
 
-  it "if stormy, plane does NOT land" do
+  it "If clear, plane does land" do
     plane = Plane.new
     weather = Weather.new
-    expect(weather.clear?).to eq (airport.land(plane,weather))
+    expect(weather.clear?).to eq (plane.land?)
   end
 
   it "raises an error if terminal is full" do
