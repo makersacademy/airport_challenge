@@ -18,7 +18,7 @@ class Airport
   end
 
   def change_weather
-    #@stormy = Weather.new.stormy?
+    @stormy = Weather.new.stormy?
   end
 
   private
