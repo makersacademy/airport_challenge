@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do
   subject { Weather.new }
-  let(:conditions_array) { [1, 0, 0, 0, 0] }
+  let(:conditions_array) { [true, false, false, false, false] }
 
   it "should return an instance of Weather" do
     expect(subject).to be_an_instance_of(Weather)
