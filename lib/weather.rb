@@ -1,6 +1,13 @@
 class Weather
+  def initialize
+    @stormy = false
+  end
 
-  def clear?
+  def is_stormy
+    @stormy = true
+  end
+
+  def stormy?
     true
   end
 

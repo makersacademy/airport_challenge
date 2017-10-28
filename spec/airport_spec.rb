@@ -5,30 +5,30 @@ require "weather"
 describe Airport do
 
   subject(:airport) { described_class.new }
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 30
 
-  it "plane should be allowed to land" do
+  it "if stormy, plane does NOT take off" do
     plane = Plane.new
     weather = Weather.new
-    expect(airport.land(plane,weather)).to eq [plane]
+    expect(airport.take_off(plane, weather.is_stormy)).to eq ("The skies are dark, best to stay on the ground")
   end
 
-  it "if clear, plane does take off" do
+  it "If stormy, plane does NOT land" do
     plane = Plane.new
     weather = Weather.new
-    expect(weather.clear?).to eq (plane.take_off?)
-  end
-
-  it "If clear, plane does land" do
-    plane = Plane.new
-    weather = Weather.new
-    expect(weather.clear?).to eq (plane.land?)
+    expect(airport.land(plane, weather.is_stormy)).to eq ("Got a storm front coming, cannot land here")
   end
 
   it "raises an error if terminal is full" do
     plane = Plane.new
     weather = Weather.new
-    Airport::DEFAULT_CAPACITY.times{airport.land(plane,weather)}
-    expect{ airport.land(plane,weather) }.to raise_error "Airport is full"
+    Airport::DEFAULT_CAPACITY.times{ airport.land(plane,weather) }
+    expect { airport.land(plane,weather) }.to raise_error ("Airport is full")
   end
+
+  # it "raises an error concerning dock station being full with default capacity" do
+  #   bike = Bike.new
+  #   DockingStation::DEFAULT_CAPACITY.times{docking_station.dock(bike)}
+  #   expect { docking_station.dock(bike) }.to raise_error("Dock is full")
+  # end
 end
