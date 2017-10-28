@@ -1,5 +1,5 @@
 class Airport
-  attr_reader :planes, :stormy
+  attr_accessor :planes, :stormy
 
   def initialize(stormy = false)
     @planes = []
@@ -15,6 +15,10 @@ class Airport
     fail "plane not in airport" unless present?(plane)
     fail "the weather is stormy" if @stormy
     remove_plane(plane)
+  end
+
+  def change_weather
+    #@stormy = Weather.new.stormy?
   end
 
   private
