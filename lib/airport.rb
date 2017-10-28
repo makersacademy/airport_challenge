@@ -8,7 +8,6 @@ class Airport
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @plane = plane
     @capacity = capacity
     @terminal = []
   end
@@ -16,12 +15,7 @@ class Airport
   def land(plane,weather)
     raise "Airport is full" if full?
       if weather.clear?
-        if plane.land?
-          @terminal << plane
-          true
-        end
-      else
-        "Got a storm front coming, cannot land here"
+        plane.land? ? @terminal << plane : "Got a storm front coming, cannot land here"
       end
   end
 
