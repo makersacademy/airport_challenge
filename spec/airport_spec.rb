@@ -3,6 +3,7 @@ require "airport"
 describe Airport do
 
   let(:airport) { Airport.new }
+  let(:plane) { double(:plane) }
 
   describe "initialize airport" do
 
@@ -27,7 +28,6 @@ describe Airport do
     end
 
     it "ensures that a landed plane gets stored at airport" do
-      plane = double(:plane)
       airport.land(plane)
       expect(airport.planes).to include(plane)
     end
@@ -45,19 +45,21 @@ describe Airport do
     end
 
     it "expects plane that takes-off to not be at airport" do
-      plane=double(:plane)
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes).not_to include(plane)
     end
+
+    it "raises error if we order a plane to take-off from airport when it's not there" do
+      expect { airport.take_off(plane) }.to raise_error("This plane is not at this airport.")
+    end
+
   end
 
   describe "planes" do
 
     it "ensures airport shows that 20 planes have landed" do
-      plane = double(:plane)
-      20.times {airport.land(plane)}
-      p "HERE", airport.planes.count
+      20.times { airport.land(plane) }
       expect(airport.planes.count).to eq(20)
     end
 
