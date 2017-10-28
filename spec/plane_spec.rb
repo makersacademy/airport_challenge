@@ -19,11 +19,11 @@ describe Plane do
   describe "flying" do
 
     it "expects a plane to respond to flying method" do
-      expect(plane).to respond_to(:flying?)
+      expect(plane).to respond_to(:flying)
     end
 
     it "expects flying method to return false to a newly created plane" do
-      expect(plane.flying?). to eq false
+      expect(plane.flying). to eq false
     end
 
   end
