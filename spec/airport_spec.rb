@@ -32,7 +32,9 @@ describe Airport do
   end
 
   it "raises an error if terminal is full" do
-    airport::DEFAULT_CAPACITY.times{airport.land(plane,weather)}
+    plane = Plane.new
+    weather = Weather.new
+    Airport::DEFAULT_CAPACITY.times{airport.land(plane,weather)}
     expect{ airport.land(plane,weather) }.to raise_error "Airport is full"
   end
 end
