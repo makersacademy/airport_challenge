@@ -14,7 +14,6 @@ class Airport
 
   def land(plane,weather)
     raise "Airport is full" if full?
-    p "weather is clear?", weather.clear?
       if weather.clear?
         plane.land? ? @terminal << plane : "Got a storm front coming, cannot land here"
       end
@@ -22,12 +21,7 @@ class Airport
 
   def take_off(plane, weather)
     if weather.clear?
-      if plane.take_off?
-        @terminal.delete(plane)
-      end
-        true
-    else
-      "The skies are dark, best to stay on the ground"
+      plane.take_off? ? @terminal.delete(plane) : "The skies are dark, best to stay on the ground"
     end
   end
 
