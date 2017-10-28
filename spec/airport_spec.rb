@@ -10,4 +10,8 @@ describe Airport do
   it "should respond to #land" do
     expect(subject).to respond_to(:land)
   end
+
+  it "should respond to #take_off" do
+    expect(subject).to respond_to(:take_off)
+  end
 end
