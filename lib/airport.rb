@@ -6,14 +6,19 @@ class Airport
 
   def initialize
     @plane = plane
+    @terminal = []
   end
 
   def land(plane)
-    plane.land?
+    if plane.land?
+      @terminal << plane
+    end
   end
 
   def take_off(plane)
-    plane.take_off?
+    if plane.take_off?
+      @terminal.delete(plane)
+    end
   end
 
 end
