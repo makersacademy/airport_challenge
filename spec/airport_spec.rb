@@ -43,7 +43,7 @@ describe Airport do
   describe "planes" do
 
     it "ensures airport stores planes when they land" do
-      plane = Plane.new
+      plane = double(:plane)
       airport.land(plane)
       expect(airport.planes).to include(plane)
     end
