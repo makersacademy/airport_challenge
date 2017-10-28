@@ -1,7 +1,9 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   subject { Airport.new }
+  let(:plane) { Plane.new }
 
   it "should create a new airport" do
     expect(subject).to be_an_instance_of(Airport)
@@ -11,7 +13,7 @@ describe Airport do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it "should respond to #take_off" do
+  it "should respond to #take_off with 1 argument" do
     expect(subject).to respond_to(:take_off)
   end
 
@@ -23,4 +25,8 @@ describe Airport do
     expect(subject.planes).to be_an_instance_of(Array)
   end
 
+  it "should store a landed plane at the airport" do
+    subject.land(plane)
+    expect(subject.planes.first).to eq(plane)
+  end
 end
