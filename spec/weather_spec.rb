@@ -8,19 +8,13 @@ describe Weather do
     expect(subject).to be_an_instance_of(Weather)
   end
 
-  describe "#conditions" do
-    it "should return the conditions array" do
-      expect(subject.conditions).to eq(conditions_array)
-    end
-  end
-
   describe "#stormy?" do
     it "should respond to #stormy?" do
-      expect(subject).to respond_to(:stormy?)
+      expect(Weather).to respond_to(:stormy?)
     end
 
     it "should return an element of conditions_array" do
-      expect(conditions_array).to include(subject.stormy?)
+      expect(conditions_array).to include(Weather.stormy?)
     end
   end
 end
