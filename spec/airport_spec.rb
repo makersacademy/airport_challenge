@@ -8,7 +8,8 @@ describe Airport do
 
   it "plane should be allowed to land" do
     plane = Plane.new
-    expect(airport.land(plane)).to eq true
+    weather = Weather.new
+    expect(airport.land(plane,weather)).to eq true
   end
 
   it "plane should be able to take off" do
@@ -26,6 +27,6 @@ describe Airport do
   it "if stormy, plane does NOT land" do
     plane = Plane.new
     weather = Weather.new
-    expect(weather.clear?).to eq (airport.land(plane))
+    expect(weather.clear?).to eq (airport.land(plane,weather))
   end
 end

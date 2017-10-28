@@ -10,10 +10,14 @@ class Airport
     @terminal = []
   end
 
-  def land(plane)
-    if plane.land?
-      @terminal << plane
-      true
+  def land(plane,weather)
+    if weather.clear?
+      if plane.land?
+        @terminal << plane
+        true
+      end
+    else
+      "Got a storm front coming, cannot land here"
     end
   end
 
@@ -22,7 +26,7 @@ class Airport
       if plane.take_off?
         @terminal.delete(plane)
       end
-      true
+        true
     else
       "The skies are dark, best to stay on the ground"
     end
