@@ -13,18 +13,22 @@ class Airport
   def land(plane)
     raise "Airport full" if full?
     fail "Bad weather for landing" if stormy?
+    fail "Plane already landed" if landed?(plane)
     @planes << plane
   end
 
-  def take_off
-    raise "airport is empty" if empty?
+  def take_off(plane)
+    raise "Airport is empty" if empty?
     raise "Bad weather for take off" if stormy?
-    @planes.pop
+    fail "Plane not present" unless landed?(plane)
+    @planes.delete(plane)
   end
 
   def stormy?
-    rand(100) > 80
+    rand(101) > 80
   end
+
+
 
 private
 
@@ -34,6 +38,10 @@ private
 
   def empty?
     @planes.empty?
+  end
+
+  def landed?(plane)
+    @planes.include?(plane)
   end
 
 end
