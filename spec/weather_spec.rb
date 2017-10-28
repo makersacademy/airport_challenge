@@ -10,11 +10,11 @@ describe Weather do
 
   describe "#stormy?" do
     it "should respond to #stormy?" do
-      expect(Weather).to respond_to(:stormy?)
+      expect(subject).to respond_to(:stormy?)
     end
 
     it "should return an element of conditions_array" do
-      expect(conditions_array).to include(Weather.stormy?)
+      expect(conditions_array).to include(subject.stormy?)
     end
   end
 end
