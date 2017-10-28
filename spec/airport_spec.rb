@@ -17,4 +17,10 @@ describe Airport do
     expect(airport.planes).to include(plane)
   end
 
+  it "remove plane from airport after take_off" do
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.planes).to be_empty
+  end
+
 end
