@@ -1,6 +1,11 @@
 class Plane
-  def land(airport)
+  def land(airport, weather)
+    @weather = weather
+    if @weather == "stormy"
+      "Plane will not land due to stormy weather"
+    else
     "Plane has landed at #{airport}. "
+    end
   end
 
   def take_off(airport, weather)
