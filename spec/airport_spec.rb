@@ -8,15 +8,20 @@ describe Airport do
 end
 
 describe 'land method' do
-  it "Check if the method lands a Plane" do
+  it "Check if land method lands a Plane" do
   expect(airport.hangar[0]).to be_instance_of(Plane)
  end
 end
-# describe "Testing to dock a bike" do
-#   station = DockingStation.new
-#   bike = station.release_bike
-#   station.dock(bike)
-#   it "Adds a bike to a docking station" do
-#     expect(station.available.length).to eq(1)
-#   end
-# end
+
+describe Airport do
+  it { expect(Airport.new).to respond_to(:take_off) }
+end
+
+describe 'take_off method' do
+  before do
+  airport.take_off(0)
+ end
+  it "Check if take_off method removes plane from @hangar" do
+  expect(airport.hangar).to eq []
+ end
+end
