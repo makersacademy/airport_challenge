@@ -119,27 +119,13 @@ describe Aeroplane do
     context "with named aeroplane" do
       it "starts with class and name" do
         subject = described_class.new(name: "hello")
-        expect(subject.to_s).to start_with "Aeroplane 'hello'"
+        expect(subject.to_s).to start_with "Aeroplane (hello)"
       end
     end
 
     context "with unnamed aeroplane" do
-      it "starts with class" do
-        expect(subject.to_s).to start_with "Aeroplane,"
-      end
-    end
-
-    context "with no airport" do
-      it "reports as airborne " do
-        expect(subject.to_s).to end_with "airborne"
-      end
-    end
-
-    context "with airport" do
-      it "reports airport.to_s" do
-        subject = described_class.new(at: airport)
-        allow(airport).to receive(:to_s).and_return("hello")
-        expect(subject.to_s).to end_with "hello"
+      it "starts with class and 'unnamed'" do
+        expect(subject.to_s).to start_with "Aeroplane (unnamed)"
       end
     end
   end

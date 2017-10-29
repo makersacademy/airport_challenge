@@ -113,16 +113,6 @@ describe Airport do
     end
   end
 
-  describe "#weather" do
-    context "generates weather" do
-      it "gets weather from generator" do
-        subject = described_class.new(weather: weather)
-        expect(weather).to receive(:get).and_return(:stormy)
-        subject.weather
-      end
-    end
-  end
-
   describe "#stormy?" do
     context "knows when weather is stormy" do
 
@@ -148,25 +138,6 @@ describe Airport do
       end
 
       it "is not present" do
-        expect(subject.hangar).to_not include(:aircraft)
-      end
-    end
-  end
-
-  describe "#register_arrival" do
-    context "receives incoming aircraft" do
-      it "pushes aircraft to hangar" do
-        subject.register_arrival(:aircraft)
-        expect(subject.hangar).to include(:aircraft)
-      end
-    end
-  end
-
-  describe "#register_departure" do
-    context "removes outbound aircraft" do
-      it "removes aircraft from hangar" do
-        subject.hangar.push(:aircraft)
-        subject.register_departure(:aircraft)
         expect(subject.hangar).to_not include(:aircraft)
       end
     end
@@ -227,20 +198,13 @@ describe Airport do
     context "with name" do
       it "starts with class and name" do
         subject = described_class.new(name: "hello")
-        expect(subject.to_s).to start_with "Airport 'hello'"
+        expect(subject.to_s).to start_with "Airport (hello)"
       end
     end
 
     context "with no name" do
       it "starts with class" do
-        expect(subject.to_s).to start_with "Airport ("
-      end
-    end
-
-    context "ends with capacity" do
-      it "counts occupancy and limit" do
-        subject = described_class.new(capacity: 10)
-        expect(subject.to_s).to end_with "(0/10 aircraft)"
+        expect(subject.to_s).to start_with "Airport (unnamed)"
       end
     end
   end
