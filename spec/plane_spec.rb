@@ -31,7 +31,8 @@ describe Plane do
   end
 
   it "Planes should not be allowed to land if the weather is stormy" do
-    airport = Airport.new
+    airport = double(Airport.new)
+    allow(airport).to receive(:stormy?) { true }
     expect { subject.land(airport) }.to raise_error("The weather is stormy! No planes can land at the moment.")
   end
 
