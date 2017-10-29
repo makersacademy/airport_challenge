@@ -5,6 +5,6 @@ describe Weather do
 
   describe '#stormy?' do
     weather = Weather.new
-    it { expect(weather.stormy?).to be_true.or be false }
+    it { expect(weather.stormy?).to be_true.or be_false }
   end
 end
