@@ -58,4 +58,13 @@ describe Plane do
 
   end
 
+  describe "move_to" do
+
+    it "expects error if move_to is called on a flying plane" do
+      allow(plane).to receive(:flying).and_return(true)
+      expect{ plane.move_to(airport) }.to raise_error("This plane is flying, it must be landed, not moved.")
+    end
+
+  end
+
 end

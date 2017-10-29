@@ -19,6 +19,12 @@ class Airport
     remove_plane(plane)
   end
 
+  def store(plane)
+    raise "This airport is full." if full?
+    raise "This plane is already at this airport." if @planes.include?(plane)
+    add_plane(plane)
+  end
+
     private
 
   def full?

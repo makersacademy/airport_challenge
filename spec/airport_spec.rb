@@ -101,4 +101,19 @@ describe Airport do
 
   end
 
+  describe "store" do
+
+    it "doesn't allow an airport to store a plane if it is full" do
+      allow(airport).to receive(:full?).and_return(true)
+      expect { airport.store(plane) }.to raise_error("This airport is full.")
+    end
+
+    it "doesn't allow airport to store a plane if it is already there" do
+      allow(airport).to receive(:full?).and_return(false)
+      airport.store(plane)
+      expect { airport.store(plane) }.to raise_error("This plane is already at this airport.")
+    end
+
+  end
+
 end
