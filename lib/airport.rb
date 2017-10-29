@@ -12,4 +12,8 @@ attr_reader :hangar
     @hangar << plane
   end
 
+  def take_off(landed_planes)
+    @hangar.delete_at(landed_planes)
+  end
+
 end
