@@ -2,7 +2,7 @@ require 'Airport'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane) { double(:land) }
+  let(:plane) { :plane }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it 'has the plane once landed' do
@@ -11,4 +11,9 @@ describe Airport do
   end
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
+  it "doesn't have the plane once taken off" do
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.hangar).not_to include plane
+  end
 end
