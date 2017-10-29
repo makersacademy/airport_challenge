@@ -41,6 +41,10 @@ describe Airport do
     it "should have a default max of 1 plane allowed in the airport" do
       expect(subject.capacity).to eq(1)
     end
+    it "should override default capacity" do
+      subject.capacity = 100
+      expect(subject.capacity).to eq(100)
+    end
   end
 
   describe "#full?" do
