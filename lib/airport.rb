@@ -9,6 +9,7 @@ class Airport
   def land(plane)
     raise "This plane is currently parked." unless plane.flying == true
     raise "The weather is too stormy to land, wait for further instructions.!" if check_stormy
+    raise "This airport is full." if full?
     add_plane(plane)
   end
 
@@ -19,6 +20,10 @@ class Airport
   end
 
     private
+
+  def full?
+
+  end
 
   def check_stormy
     Weather.new.stormy?
