@@ -44,7 +44,7 @@ Plane| Land at airport
 *Once everything was green and rubocop didn't find any offence I commit the task.
 *After a research on Internet, to commit I used a template + the vim editor to write better commits.
 
-####Difficulties
+#### Difficulties
 
 Initially I was a bit struggling trying to figure out how to organize the class and methods.
 "Is the plane that need a method to go into the airport, or the class airport need a method to take the plane?"
@@ -78,7 +78,7 @@ from /Users/marcovanali/Desktop/Projects/Weekend_Challenges/airport_challenge/li
 But unfortunately I didn't figure out to let pass the error tests, avoiding randomness using a stubs. Probably I am missing something about the stubs.
  I will try with more research and help.
 
- ##To be improved
+ ## To be improved
  ---
    - Let pass the tests that reduce randomness to test Error when weather is stormy.<br >
    -Let the 'take_off' method check if @hangars is empty before to try to delete  a plane, and raise an error.<br >
@@ -86,7 +86,7 @@ But unfortunately I didn't figure out to let pass the error tests, avoiding rand
     Same thing for land().<br >
    -Improve the code following the review file.<br >
 
-#####Support
+##### Support
 ---
 http://www.betterspecs.org/ <br >
 https://relishapp.com/ <br >
