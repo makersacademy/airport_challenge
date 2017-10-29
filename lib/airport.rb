@@ -1,4 +1,5 @@
 require_relative "plane"
+require_relative "weather"
 class Airport
   def initialize
     @available = []
@@ -6,11 +7,16 @@ class Airport
 
   def land(plane)
     @available << plane
-    true
   end
 
   def take_off(plane)
       @available.pop
-      true
+  end
+
+  def stormy?
   end
 end
+
+
+
+# raise "It's stormy! We can't fly" if stormy?
