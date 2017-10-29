@@ -2,42 +2,49 @@
 
 require 'atc'
 
-class MockOperation
-  attr_reader :airport
-  def initialize(airport)
-    @airport = airport
-  end
-end
-
-class MockAirport
-end
-
 describe ATC do
 
   subject { described_class }
-  let(:airport) { MockAirport.new }
-  before(:each) { stub_const("Operation", MockOperation) }
-  before(:each) { stub_const("Airport", MockAirport) }
 
-  describe "#clear" do
-    context "doesn't accept non-aeroplanes" do
-      it "raises error for non-aeroplanes" do
-        expect { subject.clear(nil) }.to raise_error ArgumentError
-      end
+  let(:airport) { airport = double(:airport) }  
+  before(:each) { allow(airport).to receive(:stormy?).and_return(false) }
+  before(:each) { allow(airport).to receive(:full?).and_return(false) }
 
-      it "raises no error for aeroplanes" do
-        expect { subject.clear(airport) }.to_not raise_error
-      end
+  describe "#clear_docking" do
+    it "raises error when at capacity" do
+      allow(airport).to receive(:full?).and_return(true)
+      expect { subject.clear_docking(airport) }.to raise_error AirportError
     end
 
-    context "creates operation for actioning" do
-      it "returns mocked Operation" do
-        expect(subject.clear(airport)).to be_a MockOperation
-      end
+    it "otherwise does nothing" do
+      expect(subject.clear_docking(airport)).to be true
+    end
+  end
 
-      it "returns operation containing passed argument" do
-        expect(subject.clear(airport).airport).to eq airport
-      end
+  describe "#clear_landing" do
+    it "raises error for airport at capacity" do
+      allow(airport).to receive(:full?).and_return(true)
+      expect { subject.clear_landing(airport) }.to raise_error AirportError
+    end
+
+    it "raises error for airport at capacity" do
+      allow(airport).to receive(:stormy?).and_return(true)
+      expect { subject.clear_landing(airport) }.to raise_error AirportError
+    end
+
+    it "otherwise does nothing" do
+      expect(subject.clear_landing(airport)).to be true
+    end
+  end
+
+  describe "#clear_take_off" do
+    it "raises error for airport at capacity" do
+      allow(airport).to receive(:stormy?).and_return(true)
+      expect { subject.clear_take_off(airport) }.to raise_error AirportError
+    end
+
+    it "otherwise does nothing" do
+      expect(subject.clear_take_off(airport)).to be true
     end
   end
 end
