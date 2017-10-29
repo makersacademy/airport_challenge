@@ -7,12 +7,14 @@ require 'air_exceptions'
 describe "feature tests" do
   
   # airport that's always clear - we don't want random errors
-  let(:port) { Airport.new(weather: Weather.new(0), capacity: 50) }
+  let(:port) do
+    Airport.new(weather: Weather.new(storm_chance: 0), capacity: 50)
+  end
 
   describe "behaves properly with stormy weather" do
     context "airport that's always stormy" do
       it "should always prevent any take-off or landing" do
-        port = Airport.new(weather: Weather.new(1))
+        port = Airport.new(weather: Weather.new(storm_chance: 1))
         # should be able to dock without problems
         5.times { Aeroplane.new(at: port) }
         # cannot land!
