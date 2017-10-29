@@ -9,7 +9,7 @@ describe Airport do
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
-  it { is_expected.to respond_to(:stormy?) }
+   it { is_expected.to respond_to(:stormy?) }
 
   it 'Receive report if the weather is stormy' do
     expect(subject.stormy?).to be(true).or be(false)
@@ -31,12 +31,22 @@ describe Airport do
   it "Can't take off if weather is stormy" do
     plane = double(:plane)
     allow(subject).to receive(:stormy?).and_return true
-    expect { subject.take_off(plane) }.to raise_error(RuntimeError,"It's stormy! We can't fly")
+    expect { subject.take_off(plane) }.to raise_error(RuntimeError, "It's stormy! We can't fly")
   end
 
   it "Can't land if weather is stormy" do
     plane = double(:plane)
     allow(subject).to receive(:stormy?).and_return true
-    expect { subject.land(plane) }.to raise_error(RuntimeError,"It's stormy! You can't land right now")
+    expect { subject.land(plane) }.to raise_error(RuntimeError, "It's stormy! You can't land right now")
   end
+
+  it "raises an error concerning airport being full with default capacity" do
+    plane = double(:plane)
+    allow(subject).to receive(:stormy?).and_return false
+    subject.capacity.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error("Airport is full")
+  end
+
+
+
 end
