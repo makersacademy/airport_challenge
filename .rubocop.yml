@@ -54,7 +54,7 @@ Style/IdenticalConditionalBranches:
 Style/InverseMethods:
   Enabled: true
 Style/LeadingCommentSpace:
-  Enabled: true
+  Enabled: false
 Style/MethodName:
   Enabled: true
 Style/NegatedIf:

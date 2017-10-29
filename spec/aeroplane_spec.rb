@@ -25,7 +25,7 @@ describe Aeroplane do
       
       it "docked at airport when passed one" do
         expect_any_instance_of(described_class)
-          .to receive(:arrive).with(airport, true)
+          .to receive(:dock).with(airport)
         described_class.new(at: airport)
       end
     end
@@ -58,54 +58,29 @@ describe Aeroplane do
   end
 
   describe "#land" do 
-    context "arrives from the air" do
-      it "calls arrive with dock => false" do
-        expect(subject).to receive(:arrive).with(airport, false)
-        subject.land(airport)
-      end
-    end
-  end
-
-  describe "#arrive" do 
     context "checks if already landed" do
       it "no error if flying" do
         allow(subject).to receive(:flying?).and_return(true) 
-        expect { subject.arrive(airport) }.to_not raise_error(AeroplaneError)
+        expect { subject.land(airport) }.to_not raise_error(AeroplaneError)
       end
 
       it "raises error if landed" do
         allow(subject).to receive(:flying?).and_return(false) 
-        expect { subject.arrive(airport) }.to raise_error(AeroplaneError)
+        expect { subject.land(airport) }.to raise_error(AeroplaneError)
       end
     end
 
-    context "when landing" do
+    context "register with airport" do
       it "calls airport process_landing" do
         expect(airport).to receive(:process_landing).with(subject)
-        subject.arrive(airport)
-      end
-    end
-
-    context "when docking" do
-      it "calls airport process_docking" do
-        expect(airport).to receive(:process_docking).with(subject)
-        subject.arrive(airport, true)
+        subject.land(airport)
       end
     end
 
     context "lands at an airport" do
       it "calls do_landing with airport" do
         expect(subject).to receive(:do_arrival).with(airport)
-        subject.arrive(airport)
-      end
-    end
-  end
-
-  describe "#do_arrival" do
-    context "actually lands aeroplane" do
-      it "sets @airport to passed value" do
-        subject.do_arrival(airport)
-        expect(subject.airport).to eq airport
+        subject.land(airport)
       end
     end
   end
@@ -140,16 +115,6 @@ describe Aeroplane do
     end
   end
 
-  describe "#do_take_off" do
-    context "actually takes off" do
-      it "sets @airport to passed value" do
-        subject = described_class.new(at: airport)
-        subject.do_take_off
-        expect(subject.airport).to eq nil
-      end
-    end
-  end
-  
   describe "#to_s" do
     context "with named aeroplane" do
       it "starts with class and name" do
