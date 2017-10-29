@@ -78,7 +78,11 @@ Solution
 ---------
 
 My approach was the following:
-1- I made a flow chart to check what I wanted and how many steps I needed
+
+1- I made a chart to check what I wanted and how many steps I needed
+
+<img src = "images/chart.jpg" />
+
 2- For each step that I made, I tested "the code" on IRB and watched it fail in a miserable way.
 3- I made a test in Rspec for each step, and watched it fail many.
 4- I made the test pass by putting an easy solution (Yeah, shameless I know).
