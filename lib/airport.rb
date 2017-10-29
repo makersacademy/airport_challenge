@@ -8,14 +8,13 @@ class Airport
     @capacity = capacity
   end
 
-  def errors
-    raise "Cannot land, airport at capacity" if full?
-
+  def raise_stormy_errors(sunny_day)
+    raise "Cannot land or takeoff while stormy" if sunny_day == false
   end
 
-
-  def land(plane)
-    errors
+  def land(plane, sunny_day = true)
+    raise_stormy_errors(sunny_day)
+    raise "Cannot land, airport at capacity" if full?
     @landed_planes << plane
     self
   end
@@ -24,8 +23,10 @@ class Airport
     @capacity <= @landed_planes.count
   end
 
- def takeoff
-   @landed_planes.pop
- end
+  def takeoff(sunny_day)
+    raise_stormy_errors(sunny_day)
+    raise "Cannot takeoff if there are no planes" if @landed_planes.empty?
+    @landed_planes.pop
+  end
 
 end

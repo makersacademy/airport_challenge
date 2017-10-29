@@ -1,3 +1,4 @@
+
 class Airplane
   attr_accessor :landed
 
