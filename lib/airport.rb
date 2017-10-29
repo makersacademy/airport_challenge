@@ -8,17 +8,35 @@ class Airport
   end
 
   def land(plane)
-    raise("plane already landed") if plane.landed == true
-    plane.landed = true
+    landing_error(plane)
+    change_status(plane)
     @planes << plane
   end
 
   def take_off(plane)
-    raise("plane already took off ") if plane.landed == false
-    raise("this plane is not landed in this airport") if !planes.include?(plane)
-    plane.landed = false
+    take_off_error(plane)
+    change_status(plane)
     @planes.delete(plane)
   end
+
+  private
+
+ def landing_error(plane)
+   raise("plane already landed") if plane.landed == true
+ end
+
+ def take_off_error(plane)
+   raise("plane already took off ") if plane.landed == false
+   raise("this plane is not landed in this airport") if !planes.include?(plane)
+ end
+
+ def change_status(plane)
+   if plane.landed == false
+     plane.landed = true
+   else
+     plane.landed = false
+   end
+ end
 
 
 end
