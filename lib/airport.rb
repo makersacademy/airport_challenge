@@ -5,7 +5,7 @@ class Airport
   DEFAULT_CAPACITY = 50
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @planes= []
+    @planes = []
     @capacity = capacity
   end
 
@@ -17,13 +17,13 @@ class Airport
     @planes << plane
   end
 
-  def take_off(plane)
-      raise "It's stormy! We can't fly" if stormy?
-      @planes.pop
+  def take_off
+    raise "It's stormy! We can't fly" if stormy?
+    @planes.pop
   end
 
   def stormy?
-     Weather::report
+    Weather::report
   end
 
   def full?
