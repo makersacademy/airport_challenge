@@ -1,3 +1,6 @@
+require './lib/plane.rb'
+
+
 class Airport
 
 attr_accessor :capacity
