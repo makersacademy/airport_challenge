@@ -25,13 +25,13 @@ describe Airport do
     plane = Plane.new
     weather = SunnyWeather.new
     it "Raise an error if the Airport is full" do
-      expect{ 52.times{ subject.land(plane,weather.sunny?) } }.to raise_error("Cannot land, airport at capacity")
+      expect { 52.times { subject.land(plane, weather.sunny?) } }.to raise_error("Cannot land, airport at capacity")
     end
     it "Lands the planes when above capacity" do
-      expect( 12.times{ subject.land(plane,weather.sunny?).landed_planes.count } ).to eq(12)
+      expect(12.times { subject.land(plane, weather.sunny?).landed_planes.count }).to eq(12)
     end
     it "Lands all the planes up to the capacity" do
-      expect( 50.times{ subject.land(plane,weather.sunny?).landed_planes.count } ).to eq(50)
+      expect(50.times { subject.land(plane, weather.sunny?).landed_planes.count }).to eq(50)
     end
   end
 
@@ -39,15 +39,15 @@ describe Airport do
     plane = Plane.new
     stormyweather = StormyWeather.new
     sunnyweather = SunnyWeather.new
-   it {expect(subject.landed_planes).to be_a(Array)}
-   it 'Land a plane that is flying' do
-     subject.land(plane, sunnyweather.sunny?)
-     expect(subject.landed_planes[-1]).to be_a(Plane)
-   end
+    it { expect(subject.landed_planes).to be_a(Array) }
+    it 'Land a plane that is flying' do
+      subject.land(plane, sunnyweather.sunny?)
+      expect(subject.landed_planes[-1]).to be_a(Plane)
+    end
 
-   it "Doesn't land planes in stormy weather" do
-     expect { subject.land(plane, stormyweather.sunny?) }.to raise_error("Cannot land or takeoff while stormy")
-   end
+    it "Doesn't land planes in stormy weather" do
+      expect { subject.land(plane, stormyweather.sunny?) }.to raise_error("Cannot land or takeoff while stormy")
+    end
 
   end
 
@@ -55,7 +55,7 @@ describe Airport do
     plane = Plane.new
     weather = SunnyWeather.new
     stormyweather = StormyWeather.new
-    it { expect(subject.land(plane , weather.sunny?).takeoff(weather.sunny?)).to be_a(Plane)}
+    it { expect(subject.land(plane, weather.sunny?).takeoff(weather.sunny?)).to be_a(Plane) }
     it "confirms that the plane is gone" do
       subject.land(plane, weather.sunny?).takeoff(weather.sunny?)
       expect(subject.landed_planes[-1]).to eq(nil)
