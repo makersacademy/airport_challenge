@@ -1,7 +1,7 @@
 class Weather
 
-  def weather
-    ["stormy", "sunny", "sunny", "sunny", "sunny"].sample
+  def stormy?
+    [true, false, false, false, false].sample
   end
 
 end
