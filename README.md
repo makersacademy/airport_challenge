@@ -12,35 +12,48 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-IRB features tests
+**IRB features tests**
 
 airport_challenge git:(master) ✗ irb
+
 2.4.0 :001 > require './lib/airport.rb'
 => true
+
 2.4.0 :002 > airport=Airport.new
 => #<Airport:0x007f84cf013bb8 @planes=[], @capacity=20, @weather=#<Weather:0x007f84cf013b90>>
+
 2.4.0 :003 > plane=Plane.new
 => #<Plane:0x007f84cf010670 @plane_status=:landed>
+
 2.4.0 :004 > airport.land(plane)
 => [#<Plane:0x007f84cf010670 @plane_status=:landed>]
+
 2.4.0 :005 > airport.take_off(plane)
 => #<Plane:0x007f84cf010670 @plane_status=:air>
+
 2.4.0 :006 > weather=Weather.new
 => #<Weather:0x007f84cf0168e0>
+
 2.4.0 :007 > weather.stormy?
 => false
+
 2.4.0 :008 > airport.take_off(plane)
 RuntimeError: no planes available
 
-IRB features tests
+**features tests**
+
 2.4.0 :001 > require './lib/airport.rb'
  => true
+
 2.4.0 :002 > airport=Airport.new
  => #<Airport:0x007fed5c003e70 @planes=[], @capacity=20, @weather=#<Weather:0x007fed5c003e48>>
+
 2.4.0 :003 > plane=Plane.new
  => #<Plane:0x007fed5c000928 @plane_status=:landed>
+
 2.4.0 :004 > airport.land(plane)
 RuntimeError: can't land weather is stormy
+
 2.4.0 :005 > airport.take_off(plane)
 RuntimeError: no planes available
 
