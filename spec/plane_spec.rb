@@ -1,5 +1,29 @@
 require 'plane'
 
+class PlaneNoStorm
+  attr_reader :status
+
+  def takeoff
+    raise 'the plane is grounded by the storm' if stormy?
+    @status = 'airbourne'
+  end
+
+  def stormy?
+    false
+  end
+end
+
+class PlaneStormy
+
+  def takeoff
+    raise 'the plane is grounded by the storm'
+  end
+
+  def stormy?
+    true
+  end
+end
+
 describe Plane do
 
   describe 'plane' do
@@ -26,10 +50,17 @@ describe Plane do
       expect(test_plane).to respond_to(:takeoff)
     end
 
-    it 'should set the plane\'s status as airborne' do
-      test_plane.takeoff
-      expect(test_plane.status).to eq('airbourne')
+    it 'should set the plane\'s status as airborne if not stormy' do
+      no_storm_plane = PlaneNoStorm.new
+      no_storm_plane.takeoff
+      expect(no_storm_plane.status).to eq('airbourne')
     end
+
+    it 'should raise error if stormy' do
+      expect { test_plane.takeoff }.to raise_error("the plane is grounded by the storm") if test_plane.stormy?
+    end
+
+
   end
 
   describe 'status' do
