@@ -1,5 +1,6 @@
 class Plane
   def land(airport)
+    fail "The weather is stormy! No planes can land at the moment." if airport.stormy?
     airport.landed_planes << self
   end
 

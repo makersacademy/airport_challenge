@@ -23,12 +23,16 @@ describe Plane do
     expect { subject.take_off(airport) }.to raise_error("There are no planes in the airport to take off")
   end
 
-
   it "Planes should not be allowed to take off if the weather is stormy" do
     airport = Airport.new
     5.times { subject.land(airport) }
     subject.take_off(airport)
     expect { subject.take_off(airport) }.to raise_error("The weather is stormy! No planes can take off at the moment.")
+  end
+
+  it "Planes should not be allowed to land if the weather is stormy" do
+    airport = Airport.new
+    expect { subject.land(airport) }.to raise_error("The weather is stormy! No planes can land at the moment.")
   end
 
 end
