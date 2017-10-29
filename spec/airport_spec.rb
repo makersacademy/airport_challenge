@@ -1,5 +1,6 @@
 require 'airport'
 require 'plane'
+require 'weather'
 describe Airport do
   subject(:airport) { described_class.new }
   subject(:plane) {Plane.new}
@@ -63,4 +64,12 @@ describe Airport do
 
   end
 
+  context 'stormy' do
+
+    it "raise error when you want to take off in stormy weather" do
+      airport.land(plane)
+      airport.weather = true
+      expect{airport.take_off(plane)}.to raise_error("you can t take_off it s stormy")
+    end
+  end
 end
