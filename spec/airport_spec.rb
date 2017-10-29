@@ -12,6 +12,3 @@ describe Airport do
   expect(subject.plane).to eq plane
  end
 end
-
-#
-# it { is_expected.to respond_to(:plane) }
