@@ -83,7 +83,6 @@ describe Airport do
 
     it "prevent landing when weather is stormy" do
       airport.stormy = true
-      allow(plane).to receive(:change_status)
       expect { airport.land(plane) }.to raise_error("you can t land it s stormy")
     end
 

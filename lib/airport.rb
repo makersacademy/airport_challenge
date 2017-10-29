@@ -31,7 +31,7 @@ class Airport
 
   def take_off_error(plane)
     raise("plane already took off ") if plane.landed == false
-    raise("this plane is not landed in this airport") if !planes.include?(plane)
+    raise("this plane is not landed in this airport") unless planes.include?(plane)
     raise("you can t take_off it s stormy") if stormy == true
   end
 
