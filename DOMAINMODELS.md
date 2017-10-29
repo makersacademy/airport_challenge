@@ -1,5 +1,8 @@
 ## Domain Models for user stories
 
+I did one for every test and added a test section as well, so I knew what
+I was testing for. Kinda a Domain model table but not really. 
+
 
 | Objects       | Messages      | Tests         |
 | ------------- |:-------------:|:-------------:|
