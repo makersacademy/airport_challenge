@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'weather'
-require 'air_exceptions'
 require 'airport'
 
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
