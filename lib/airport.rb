@@ -27,7 +27,4 @@ class Airport
   def full?
     terminal.length >= DEFAULT_CAPACITY
   end
-
-
-
 end
