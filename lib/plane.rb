@@ -4,20 +4,22 @@ require './lib/airport'
 class Plane
   attr_reader :status
 
-  def initialize(status = 'grounded')
+  def initialize(status = :grounded)
     @status = status
   end
 
   def land(airport, skies = stormy?)
     raise 'the plane cannot land due to the storm' if skies
     raise 'airport at max capacity' if max_capacity?(airport)
+    raise 'plane already grounded' if @status == :grounded
     capacity_add(airport)
-    @status = 'grounded'
+    @status = :grounded
   end
 
   def takeoff(skies = stormy?)
     raise 'the plane is grounded by the storm' if skies
-    @status = 'airbourne'
+    raise 'plane already airbourne' if @status == :airbourne
+    @status = :airbourne
   end
 
   def stormy?

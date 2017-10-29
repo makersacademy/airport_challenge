@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
-  let(:test_airport) { Airport.new }
+  subject(:test_airport) { described_class.new }
+  let(:test_capacity_airport) { Airport.new(50) }
 
   describe 'airport' do
     it 'should create a new airport' do
@@ -19,7 +20,6 @@ describe Airport do
     end
 
     it 'should create an airport with custom capacity' do
-      test_capacity_airport = Airport.new(50)
       expect(test_capacity_airport.capacity).to eq(50)
     end
   end
