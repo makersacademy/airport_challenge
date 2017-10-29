@@ -11,7 +11,7 @@ describe Plane do
     expect(airport.landed_planes[-1]).to eq subject
   end
 
-  it "Should take off from an aiport" do
+  it "Should take off from an airport" do
     airport = Airport.new
     5.times { subject.land(airport) }
     subject.take_off(airport)
@@ -34,6 +34,12 @@ describe Plane do
     airport = double(Airport.new)
     allow(airport).to receive(:stormy?) { true }
     expect { subject.land(airport) }.to raise_error("The weather is stormy! No planes can land at the moment.")
+  end
+
+  it "Planes should not be able to land at an airport if the airport is full" do
+    airport = Airport.new
+    100.times { airport.landed_planes << Plane.new }
+    expect { subject.land(airport) }.to raise_error("The plane can't land as the airport is full.")
   end
 
 end

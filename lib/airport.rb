@@ -1,8 +1,9 @@
 class Airport
-  attr_accessor :landed_planes
+  attr_accessor :landed_planes, :capacity
 
   def initialize
     @landed_planes = []
+    @capacity = 100
   end
 
   def stormy?
