@@ -1,14 +1,14 @@
-require_relative 'weather'
+# require_relative 'weather'
 
 class Airport
 
   attr_reader :capacity, :terminal
 
-  DEFAULT_CAPACITY = 5
+  DEFAULT_CAPACITY = 2
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @capacity = capacity
     @terminal = []
+    @capacity = capacity
   end
 
   def land(plane)
@@ -23,11 +23,12 @@ class Airport
   private
 
   def full?
-    @terminal.count >= @capacity
+    @terminal.length >= DEFAULT_CAPACITY
   end
 
   def weather
-    #rand(1..10)
+    # if greater than 5, weather is stormy - else, it's clear
+    # rand(1..10)
     (7 > 5) ? true : false
   end
 
