@@ -2,14 +2,14 @@ require 'airport.rb'
 
 describe Airport do
 
-  class FlyingPlane
+  class Plane
 
   end
 
   subject { Airport.new }
 
   context "Checks Capacity" do
-    plane = FlyingPlane.new
+    plane = Plane.new
     it "Raise an error if the Airport is full" do
       expect{ 52.times{ subject.land(plane)}}.to raise_error("Cannot land, airport at capacity")
     end
@@ -24,10 +24,15 @@ describe Airport do
   context "When trying to land a plane" do
    it {expect(subject.landed_planes).to be_a(Array)}
    it 'Land a plane that is flying' do
-     subject.land(FlyingPlane.new)
-     expect(subject.landed_planes[-1]).to be_a(FlyingPlane)
+     subject.land(Plane.new)
+     expect(subject.landed_planes[-1]).to be_a(Plane)
    end
 
+  end
+
+  context "When trying to takeoff" do
+    plane = Plane.new
+    it { expect(subject.land(plane).takeoff).to be_a(Plane)}
   end
 
 end

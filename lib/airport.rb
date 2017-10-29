@@ -8,9 +8,14 @@ class Airport
     @capacity = capacity
   end
 
+  def errors
+    raise "Cannot land, airport at capacity" if full?
+
+  end
+
 
   def land(plane)
-    raise "Cannot land, airport at capacity" if full?
+    errors
     @landed_planes << plane
     self
   end
@@ -18,5 +23,9 @@ class Airport
   def full?
     @capacity <= @landed_planes.count
   end
+
+ def takeoff
+   @landed_planes.pop
+ end
 
 end
