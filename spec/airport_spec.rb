@@ -1,7 +1,7 @@
 require 'airport'
 
-describe FakePlane do
-
+class FakePlane
+  
 end
 
 describe Airport do

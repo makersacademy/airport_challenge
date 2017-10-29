@@ -1,12 +1,8 @@
 require './lib/plane.rb'
 
-class FakePlane
-end
 class Airport
-
 attr_accessor :capacity
 attr_reader   :planes
-
 
   def initialize(capacity = 30)
     @planes = []
