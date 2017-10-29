@@ -1,8 +1,10 @@
 require 'airport'
 
+
 class FakePlane
 
 end
+
 
 describe Airport do
   let(:plane) {
@@ -12,9 +14,11 @@ describe Airport do
 
   let(:plane3) { double FakePlane.new }
 
+
+
   describe "#land" do
-    it "should land planes into airport" do
-      expect(subject.land(plane, "sunny")).to eq([plane])
+    it "should land planes into airport when sunny" do
+      expect(subject.land(plane)).to eq([plane])
     end
 
     # it "should not land when airport is full" do
@@ -30,12 +34,12 @@ describe Airport do
     end
 
     it "should not allow planes to land when weather is stormy" do
-      expect(subject.land(plane, "stormy")).to eq "Plane not able to land due to storm"
+      expect(subject.land(plane)).to eq "Plane not able to land due to storm"
     end
   end
 
   describe "#take_off" do
-    it "should make planes take off" do
+    it "should make planes take off when sunny" do
       expect(subject.take_off(plane)).to eq ("#{plane} has taken off")
     end
 
@@ -46,7 +50,7 @@ describe Airport do
     end
 
     it "should not be able to take off in stormy weather" do
-      expect(subject.take_off(plane, "stormy")).to eq ("Plane can not take off due to stormy weather")
+  !    expect(subject.take_off(plane)).to eq ("Plane can not take off due to stormy weather")
     end
 
   end

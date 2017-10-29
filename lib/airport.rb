@@ -1,4 +1,5 @@
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 class Airport
 attr_accessor :capacity
@@ -9,18 +10,24 @@ attr_reader   :planes
     @capacity = capacity
   end
 
-  def land(plane, weather = "sunny")
+  def land(plane)
+    weather = Weather.new
+    permission = weather.weather
+    puts "LOOK HERE"
+    p permission
      if full?
        "capacity has been reached"
-     elsif weather == "stormy"
+     elsif permission == "stormy"
        "Plane not able to land due to storm"
      else
        @planes << plane
      end
   end
 
-  def take_off(plane, weather = "sunny")
-    if weather == "stormy"
+  def take_off(plane)
+    weather = Weather.new
+    permission = weather.weather
+    if permission == "stormy"
       "Plane can not take off due to stormy weather"
     else
     @planes.delete(plane)
