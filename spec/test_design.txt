@@ -49,3 +49,8 @@ b) plane landing raises appropriate issue
 6.
 a) airport is created with a default capacity stored in a constant
 b) capacity constant can be overridden
+
+
+Notas: implementar testes para 4, 5, e 6
+Edge tests para unknown
+
