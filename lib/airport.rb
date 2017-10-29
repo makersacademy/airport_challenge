@@ -26,7 +26,9 @@ class Airport
   def takeoff(sunny_day)
     raise_stormy_errors(sunny_day)
     raise "Cannot takeoff if there are no planes" if @landed_planes.empty?
-    @landed_planes.pop
+    tookoff = @landed_planes.pop
+    puts "The plane is now flying"
+    tookoff
   end
 
 end
