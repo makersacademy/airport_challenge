@@ -14,13 +14,11 @@ describe Aeroplane do
     airport
   end
 
+  subject { described_class.new(nil) }
+
   describe "creates with" do
     context "airport" do
       it { is_expected.to respond_to :airport }
-
-      it "is nil by default" do
-        expect(subject.airport).to be_nil
-      end
 
       it "uses airport when passed one" do
         subject = described_class.new(airport)
@@ -38,11 +36,11 @@ describe Aeroplane do
       it { is_expected.to respond_to :name }
 
       it "is empty by default" do
-        expect(subject.name).to eq ""
+        expect(subject.name).to be_nil
       end
 
       it "uses name when passed one" do
-        subject = described_class.new(airport, "hello")
+        subject = described_class.new(nil, name: "hello")
         expect(subject.name).to eq "hello"
       end
     end

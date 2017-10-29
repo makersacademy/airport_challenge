@@ -5,8 +5,8 @@ require './lib/air_exceptions'
 class Aeroplane
   attr_reader :airport, :name
 
-  def initialize(airport = nil, name = "")
-    @name = name
+  def initialize(airport, options = {})
+    @name = options[:name]
     arrive(airport, true) if !airport.nil?
     @airport = airport
   end
@@ -40,10 +40,15 @@ class Aeroplane
   end
 
   def to_s
-    if flying?
-      "Aircraft '#{@name}' (airborne)"
+    if @name
+      string = "Unnamed aeroplane"
     else
-      "Aircraft '#{@name}' (at #{airport.name})"
+      string = "Aeroplane '#{@name}'"
+    end
+    if flying?
+      string + " (airborne)"
+    else
+      string + " (at #{airport.name})"
     end
   end
 end
