@@ -14,6 +14,7 @@ class Airport
   end
 
   def stormy?
+     Weather::report
   end
 end
 
