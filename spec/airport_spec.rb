@@ -42,20 +42,26 @@ end
       expect{ subject.take_off(plane) }.to raise_error "Airport is empty"
     end
 
+    it 'Should raise error if airport plane is not present' do
+      plane2 = double:plane
+      subject.land(plane2)
+      expect{ subject.take_off(plane) }.to raise_error "Plane not present"
+    end
+
     it 'Should allow plane to take off if weather is good' do
       subject.land(plane)
       expect{ subject.take_off(plane) }.to change { subject.planes.include?(plane) }
     end
   end
 
-  describe "overwrites capacity" do
+  describe "overwrite capacity" do
 
     it "Should initialize with a capacity of 20" do
       expect(subject.capacity).to eq(Airport::CAPACITY)
     end
 
     it "Should overwrite capacity" do
-      airport = Airport.new(30)
+      airport = described_class.new(30)
       expect(airport.capacity).to eq(30)
     end
   end

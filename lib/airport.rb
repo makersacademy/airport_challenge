@@ -15,6 +15,7 @@ class Airport
     fail "Bad weather for landing" if stormy?
     fail "Plane already landed" if landed?(plane)
     @planes << plane
+    puts "Plane has landed"
   end
 
   def take_off(plane)
@@ -22,6 +23,7 @@ class Airport
     raise "Bad weather for take off" if stormy?
     fail "Plane not present" unless landed?(plane)
     @planes.delete(plane)
+    puts "Plane has taken off"
   end
 
   def stormy?
