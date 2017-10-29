@@ -6,7 +6,7 @@ class Plane
   end
 
   def change_status
-    @landed == false ? @landed = true :  @landed = false
+    @landed == false ? @landed = true : @landed = false
   end
 
 end

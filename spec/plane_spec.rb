@@ -19,7 +19,7 @@ describe Plane do
   end
 
   it "check if the status of the plane changed after take_off" do
-    2.times{plane.change_status}
+    2.times { plane.change_status }
     expect(plane.landed).to eq(false)
   end
 
