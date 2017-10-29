@@ -5,10 +5,15 @@ require './lib/air_exceptions'
 class Aeroplane
   attr_reader :airport, :name
 
-  def initialize(airport, options = {})
+  def initialize(options = {})
     @name = options[:name]
-    arrive(airport, true) if !airport.nil?
-    @airport = airport
+    airport = options[:at]
+    if airport.nil?
+      @airport = nil
+    else
+      arrive(airport, true)
+      @airport = airport
+    end
   end
 
   def flying?

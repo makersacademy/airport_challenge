@@ -14,21 +14,19 @@ describe Aeroplane do
     airport
   end
 
-  subject { described_class.new(nil) }
-
   describe "creates with" do
     context "airport" do
       it { is_expected.to respond_to :airport }
 
       it "uses airport when passed one" do
-        subject = described_class.new(airport)
+        subject = described_class.new(at: airport)
         expect(subject.airport).to eq airport
       end
       
       it "docked at airport when passed one" do
         expect_any_instance_of(described_class)
           .to receive(:arrive).with(airport, true)
-        subject = described_class.new(airport)
+        subject = described_class.new(at: airport)
       end
     end
 
@@ -40,7 +38,7 @@ describe Aeroplane do
       end
 
       it "uses name when passed one" do
-        subject = described_class.new(nil, name: "hello")
+        subject = described_class.new(name: "hello")
         expect(subject.name).to eq "hello"
       end
     end
@@ -53,7 +51,7 @@ describe Aeroplane do
       end
 
       it "when grounded" do
-        subject = described_class.new(airport)
+        subject = described_class.new(at: airport)
         expect(subject).to_not be_flying
       end
     end
@@ -113,7 +111,7 @@ describe Aeroplane do
   end
 
   describe "#take_off" do
-    subject { described_class.new(airport) }
+    subject { described_class.new(at: airport) }
 
     context "checks if already flying" do
       it "raises error if flying" do
@@ -145,7 +143,7 @@ describe Aeroplane do
   describe "#do_take_off" do
     context "actually takes off" do
       it "sets @airport to passed value" do
-        subject = described_class.new(airport)
+        subject = described_class.new(at: airport)
         subject.do_take_off
         expect(subject.airport).to eq nil
       end
@@ -155,7 +153,7 @@ describe Aeroplane do
   describe "#to_s" do
     context "with named aeroplane" do
       it "starts with class and name" do
-        subject = described_class.new(nil, name: "hello")
+        subject = described_class.new(name: "hello")
         expect(subject.to_s).to start_with "Aeroplane 'hello'"
       end
     end
@@ -174,7 +172,7 @@ describe Aeroplane do
 
     context "with airport" do
       it "reports airport.to_s" do
-        subject = described_class.new(airport)
+        subject = described_class.new(at: airport)
         allow(airport).to receive(:to_s).and_return("hello")
         expect(subject.to_s).to end_with "hello"
       end
