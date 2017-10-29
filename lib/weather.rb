@@ -1,18 +1,21 @@
 #!/usr/bin/env ruby
 
+# The Weather class generates clear or stormy weather using
+# a random weather generator. 
 class Weather
   attr_reader :storm_chance
   DEFAULT_STORM_CHANCE = 0.05
 
-  def initialize(storm_chance = nil)
-    @storm_chance = storm_chance || DEFAULT_STORM_CHANCE
+  # Initialize with a optional or default chance of storm. The
+  # chance should be expressed as a number from 0-1, representing
+  # the percentage chance.
+  def initialize(options = {})
+    @storm_chance = options[:storm_chance] || DEFAULT_STORM_CHANCE
   end
 
+  # Generate a random number - if above @storm_chance, then the
+  # weather is clear.
   def get
-    if rand > @storm_chance
-      :clear
-    else
-      :stormy
-    end
+    rand > @storm_chance ? :clear : :stormy
   end
 end

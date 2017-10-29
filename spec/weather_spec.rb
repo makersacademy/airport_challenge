@@ -15,7 +15,7 @@ describe Weather do
       end
 
       it "creates with specified storm chance" do
-        subject = described_class.new(0)
+        subject = described_class.new(storm_chance: 0)
         expect(subject.storm_chance).to eq 0
       end
     end
