@@ -22,13 +22,13 @@ class Airport
     @planes.delete(plane)
   end
 
-  def new_day(*weather)
-    if weather.empty?
-      @weather = Weather.new.weather
-    else
-      @weather = weather[0]
-    end
-  end
+  # def new_day(*weather)
+  #   if weather.empty?
+  #     @weather = Weather.new.weather
+  #   else
+  #     @weather = weather[0]
+  #   end
+  # end
 
   private
 
@@ -40,7 +40,7 @@ class Airport
     @planes.length >= @capacity
   end
 
-  def stormy?
-    @weather == "stormy"
-  end
+  # def stormy?
+  #   @weather == "stormy"
+  # end
 end
