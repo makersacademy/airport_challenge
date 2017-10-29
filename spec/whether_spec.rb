@@ -30,17 +30,17 @@ end
 
 describe Whether do
   let(:new_whether) { Whether.new }
+  describe "whether" do
+    it 'should respond true if there is a storm' do
+      storm = WhetherStormy.new
+      expect(storm.there_a_storm?).to eq(true)
+    end
 
-  it 'should respond true if there is a storm' do
-    storm = WhetherStormy.new
-    expect(storm.there_a_storm?).to eq(true)
+    it 'should respond false if there is not a storm' do
+      whether = WhetherClear.new
+      expect(whether.there_a_storm?).to eq(false)
+    end
   end
-
-  it 'should respond false if there is not a storm' do
-    whether = WhetherClear.new
-    expect(whether.there_a_storm?).to eq(false)
-  end
-
   describe 'initialize' do
     it 'should create a random number with a new instance of whether' do
       expect(new_whether.random_number).to be_instance_of(Integer)

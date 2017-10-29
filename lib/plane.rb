@@ -1,4 +1,5 @@
 require './lib/whether'
+require './lib/airport'
 
 class Plane
   attr_reader :status
@@ -9,6 +10,8 @@ class Plane
 
   def land(airport, skies = stormy?)
     raise 'the plane cannot land due to the storm' if skies
+    raise 'airport at max capacity' if max_capacity?(airport)
+    capacity_add(airport)
     @status = 'grounded'
   end
 
@@ -21,6 +24,19 @@ class Plane
     @new_whether = Whether.new
     answer = @new_whether.there_a_storm?
     answer
+  end
+
+  def max_capacity?(airport)
+    if airport.number_of_planes >= airport.capacity
+      answer = true
+    else
+      answer = false
+    end
+    answer
+  end
+
+  def capacity_add(airport)
+    airport.add_plane
   end
 
 end
