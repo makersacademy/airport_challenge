@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require './lib/operation'
 require './lib/airport'
 
 # The ATC (air traffic control) class checks to see if there might 

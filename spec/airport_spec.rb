@@ -5,20 +5,13 @@ require 'airport'
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
 class MockATC
-  attr_reader :airport, :operation
-
-  def initialize
-    @airport = nil
-    @operation = nil
+  def clear_docking(airport)
   end
 
-  def clear(airport)
-    @airport = airport
-    self
+  def clear_landing(airport)
   end
 
-  def to(operation)
-    @operation = operation
+  def clear_take_off(airport)
   end
 end
 
@@ -146,9 +139,8 @@ describe Airport do
   describe "#process_landing" do
     context "makes checks" do
       it "passes self to ATC" do
+        expect(ATC).to receive(:clear_landing).with(subject)
         subject.process_landing(aeroplane)
-        expect(ATC.airport).to eq subject
-        expect(ATC.operation).to eq :land
       end
     end
 
@@ -163,9 +155,8 @@ describe Airport do
   describe "#process_docking" do
     context "makes checks" do
       it "passes self to ATC" do
+        expect(ATC).to receive(:clear_docking).with(subject)
         subject.process_docking(aeroplane)
-        expect(ATC.airport).to eq subject
-        expect(ATC.operation).to eq :dock
       end
     end
 
@@ -180,9 +171,8 @@ describe Airport do
   describe "#process_take_off" do
     context "makes checks" do
       it "passes self to ATC" do
+        expect(ATC).to receive(:clear_take_off).with(subject)
         subject.process_take_off(aeroplane)
-        expect(ATC.airport).to eq subject
-        expect(ATC.operation).to eq :take_off
       end
     end
 

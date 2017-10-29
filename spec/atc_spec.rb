@@ -6,7 +6,7 @@ describe ATC do
 
   subject { described_class }
 
-  let(:airport) { airport = double(:airport) }  
+  let(:airport) { double(:airport) }  
   before(:each) { allow(airport).to receive(:stormy?).and_return(false) }
   before(:each) { allow(airport).to receive(:full?).and_return(false) }
 

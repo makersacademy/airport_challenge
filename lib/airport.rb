@@ -47,19 +47,19 @@ class Airport
 
   # Check landing with ATC class. Add aeroplane to hangar.
   def process_landing(aeroplane)
-    ATC.clear(self).to(:land)
+    ATC.clear_landing(self)
     register_arrival(aeroplane)
   end
 
   # Check docking with ATC class. Add aeroplane to hangar.
   def process_docking(aeroplane)
-    ATC.clear(self).to(:dock)
+    ATC.clear_docking(self)
     register_arrival(aeroplane)
   end
 
   # Check take-off with ATC class. Remove aeroplane from hangar.
   def process_take_off(aeroplane)
-    ATC.clear(self).to(:take_off)
+    ATC.clear_take_off(self)
     register_departure(aeroplane)
   end
 
