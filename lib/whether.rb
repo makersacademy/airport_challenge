@@ -6,7 +6,7 @@ class Whether
   end
 
   def there_a_storm?(random = @random_number)
-    answer = true if random == 0
+    answer = true if random.zero?
     answer = false if random != 0
     answer
   end

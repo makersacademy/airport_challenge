@@ -13,6 +13,15 @@ describe Airport do
     it 'should be able to have a capacity' do
       expect(test_airport.capacity).to be_instance_of(Integer)
     end
+
+    it 'should create an airport with default capacity of 20' do
+      expect(test_airport.capacity).to eq(20)
+    end
+
+    it 'should create an airport with custom capacity' do
+      test_capacity_airport = Airport.new(50)
+      expect(test_capacity_airport.capacity).to eq(50)
+    end
   end
 
   describe 'number_of_planes' do

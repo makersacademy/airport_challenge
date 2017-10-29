@@ -23,12 +23,12 @@ describe Plane do
 
     it "should raise error if plane tries to land when stormy" do
       airport = Airport.new
-      expect { test_plane.land(airport,true) }.to raise_error('the plane cannot land due to the storm')
+      expect { test_plane.land(airport, true) }.to raise_error('the plane cannot land due to the storm')
     end
 
     it "should land & status eq 'grounded' when not stormy" do
       airport = Airport.new
-      test_plane.land(airport,false)
+      test_plane.land(airport, false)
       expect(test_plane.status).to eq('grounded')
     end
 
@@ -39,7 +39,7 @@ describe Plane do
 
     it 'should raise error when at max_capacity' do
       20.times { test_plane.land(airport, false) }
-      expect{ test_plane.land(airport, false) }.to raise_error('airport at max capacity')
+      expect { test_plane.land(airport, false) }.to raise_error('airport at max capacity')
     end
 
   end
@@ -51,11 +51,10 @@ describe Plane do
     end
 
     it 'should raise error if stormy' do
-      expect { test_plane.takeoff(true) }.to raise_error("the plane is grounded by the storm")# if test_plane.stormy?
+      expect { test_plane.takeoff(true) }.to raise_error("the plane is grounded by the storm")
     end
 
     it "should takeoff & status eq 'airbourne' when not stormy" do
-      airport = Airport.new
       test_plane.takeoff(false)
       expect(test_plane.status).to eq('airbourne')
     end
