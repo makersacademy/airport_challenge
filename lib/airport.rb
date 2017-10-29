@@ -16,7 +16,7 @@ class Airport
     remove_plane(plane)
   end
 
-private
+    private
 
   def remove_plane(plane)
     @planes.delete(plane)
