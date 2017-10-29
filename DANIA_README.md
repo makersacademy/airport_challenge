@@ -56,8 +56,7 @@ I put the "responsive method" tests in one section and the other test action
 in a different section.
 
 When it came to the weather section, I manage to feature test & unit test the
-function of the .sample method. However, I did not get far after that.
-
+function of the .sample method. However, I did not get far after that. 
 
 ### <a name="Support">Support</a>
 
