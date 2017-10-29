@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Weather conditions are preventing landing" if weather_check
     @hangar << plane
   end
 
