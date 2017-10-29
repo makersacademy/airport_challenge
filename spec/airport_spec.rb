@@ -11,8 +11,8 @@ describe Airport do
       expect(Airport.new).to be_an_instance_of(Airport)
     end
 
-    it "allows an airport to take an argument once it is initiated" do
-      expect(Airport).to respond_to(:new).with(1).argument
+    it "allows an airport to take two arguments once it is initiated" do
+      expect(Airport).to respond_to(:new).with(2).argument
     end
 
   end

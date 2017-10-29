@@ -1,9 +1,12 @@
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :capacity
 
-  def initialize(planes = [])
+  DEFAULT_CAPACITY = 20
+
+  def initialize(planes = [], capacity = DEFAULT_CAPACITY)
     @planes = planes
+    @capacity = capacity
   end
 
   def land(plane)
@@ -28,7 +31,7 @@ class Airport
     private
 
   def full?
-
+    capacity <= planes.count
   end
 
   def check_stormy

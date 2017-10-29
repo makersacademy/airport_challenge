@@ -17,7 +17,7 @@ class Plane
   end
 
   def move_to(airport)
-    raise "This plane is flying, it must be landed, not moved." if self.flying
+    raise "This plane is flying, it must be landed, not moved." if flying
     airport.store(self)
   end
 
