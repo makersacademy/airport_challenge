@@ -27,29 +27,28 @@ describe Airport do
       expect(airport).to respond_to(:land).with(1).argument
     end
 
-    it "ensures that a landed plane gets stored at airport" do
-      allow(airport).to receive(:check_stormy).and_return(false)
-      allow(plane).to receive(:flying).and_return(true)
-      airport.land(plane)
-      expect(airport.planes).to include(plane)
-    end
-
     it "raises error if we order a plane to land at an airport when it's not flying" do
       allow(plane).to receive(:flying).and_return(false)
       expect { airport.land(plane) }.to raise_error("This plane is currently parked.")
     end
 
+    before { allow(plane).to receive(:flying).and_return(true) }
+
     it "doesn't allow for landing if weather is stormy" do
-      allow(plane).to receive(:flying).and_return(true)
       allow(airport).to receive(:check_stormy).and_return(true)
       expect { airport.land(plane) }.to raise_error("The weather is too stormy to land, wait for further instructions.!")
     end
 
+    before { allow(airport).to receive(:check_stormy).and_return(false) }
+
     it "doesn't allow for landing if airport is full" do
-      allow(plane).to receive(:flying).and_return(true)
-      allow(airport).to receive(:check_stormy).and_return(false)
       allow(airport).to receive(:full?).and_return(true)
       expect { airport.land(plane) }.to raise_error("This airport is full.")
+    end
+
+    it "ensures that a landed plane gets stored at airport" do
+      airport.land(plane)
+      expect(airport.planes).to include(plane)
     end
 
   end
@@ -64,22 +63,22 @@ describe Airport do
       expect(airport).to respond_to(:take_off).with(1).argument
     end
 
+    it "raises error if we order a plane to take-off from airport when it's not there" do
+      expect { airport.take_off(plane) }.to raise_error("This plane is not at this airport.")
+    end
+
+    before { allow(airport).to receive(:check_stormy).and_return(false) }
+    before { allow(plane).to receive(:flying).and_return(true) }
+
     it "expects plane that takes-off to be no longer at airport" do
-      allow(plane).to receive(:flying).and_return(true)
-      allow(airport).to receive(:check_stormy).and_return(false)
       airport.land(plane)
       allow(airport).to receive(:check_stormy).and_return(false)
       airport.take_off(plane)
       expect(airport.planes).not_to include(plane)
     end
 
-    it "raises error if we order a plane to take-off from airport when it's not there" do
-      expect { airport.take_off(plane) }.to raise_error("This plane is not at this airport.")
-    end
-
     it "doesnt' allow for take-off if weather is stormy" do
       allow(plane).to receive(:flying).and_return(true)
-      allow(airport).to receive(:check_stormy).and_return(false)
       airport.land(plane)
       allow(airport).to receive(:check_stormy).and_return(true)
       expect { airport.take_off(plane) }.to raise_error("The weather is too stormy to take-off, wait for further instructions.!")

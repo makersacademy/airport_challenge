@@ -23,7 +23,7 @@ describe Weather do
       expect(weather.stormy?).to eq true
     end
 
-    it "expects stormy to return false when storm_chance<0.9" do
+    it "expects stormy to return false when storm_chance<=0.9" do
       weather.instance_variable_set(:@storm_chance, 0.5)
       expect(weather.stormy?).to eq false
     end
