@@ -101,10 +101,10 @@ The airplane class have to be initialized, to know wether it is in the ground or
 
 The weather class have a method "sunny?" that returns true 70% of the times for sunny days and false 30% of the times for stormy days. I did this method searching in StackOverflow the best way to return a random boolean.
 
-The airport class have 4 methods and needs to be initialized with the capacity info (this have been set as 50 for default). The land method save the plane info in an array when the airport is not full and the plane is not on the ground, then it returns self, this is because we want to check the airport with the array and not only the array of planes.
+The airport class have 6 methods and needs to be initialized with the capacity info (this have been set as 50 for default). The land method save the plane info in an array when the airport is not full and the plane is not on the ground, then it returns self, this is because we want to check the airport with the array and not only the array of planes.
 
 The full? method checks if the airport if full in order to land or raise an error.
 
 The takeoff method returns a plane for it to fly.
 
-The raise_stormy_errors was made to well... raise the error when trying to land or takeoff a plane, if you check the code you will see that the other errors for full and empty are inside the takeoff and land methods, I didn't use them in the same "raise_stormy_errors" method because It would send and error when trying to land a plane when empty or takeoff a plane while full.
+The raise_stormy_errors was made to well... raise the error when trying to land or takeoff a plane, if you check the code you will see that the other errors for full and empty are inside the takeoff and land methods, I didn't use them in the same "raise_stormy_errors" method because It would send and error when trying to land a plane when empty or takeoff a plane while full. Instead I created specific methods for both landing and takeoff errors.
