@@ -4,7 +4,7 @@ require 'plane'
 describe Plane do
   subject(:plane) { described_class.new }
 
-  it ":landed? have a default value false" do
+  it ":landed have a default value false" do
     expect(plane.landed).to eq(false)
   end
 
