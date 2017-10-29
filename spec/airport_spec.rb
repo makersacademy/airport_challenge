@@ -3,49 +3,46 @@ require 'airport'
 describe Airport do
   subject(:airport) {described_class.new}
   let (:plane) { double (:plane) }
-  let (:stormy_false) { allow(subject).to receive(:stormy?) { false } }
-  let (:stormy_true) { allow(subject).to receive(:stormy?) { true } }
+
+  before "Set weather to not stormy" do
+      allow(subject).to receive(:stormy?) { false }
+   end
 
   describe "#land" do
 
     it "Should land plane at airport" do
-      stormy_false
       expect{ subject.land(plane) }.to change{ subject.planes.include?(plane) }
     end
 
-    it "Should land plane at airport if not already landed" do
-      stormy_false
+    it "Should raise error if plane has already landed" do
       subject.land(plane)
       expect{ subject.land(plane) }.to raise_error "Plane already landed"
     end
 
-    it "Should return error if weather is bad" do
-      stormy_true
+    it "Should raise error if weather is bad" do
+      allow(subject).to receive(:stormy?) { true }
       expect{ subject.land(plane) }.to raise_error "Bad weather for landing"
     end
 
-    it "Should return error if airport is full" do
-      stormy_false
+    it "Should raise error if airport is full" do
       expect{ 21.times { subject.land(double :plane) } }.to raise_error "Airport full"
     end
-  end
+
+end
 
   describe "#plane_take_off" do
 
-    it "Should return error if weather is bad" do
-      stormy_false
+    it "Should raise error if weather is bad" do
       subject.land(plane)
-      stormy_true
+      allow(subject).to receive(:stormy?) { true }
       expect{ subject.take_off(plane) }.to raise_error "Bad weather for take off"
     end
 
-    it 'Should return error if airport is empty' do
-      stormy_false
+    it 'Should raise error if airport is empty' do
       expect{ subject.take_off(plane) }.to raise_error "Airport is empty"
     end
 
     it 'Should allow plane to take off if weather is good' do
-      stormy_false
       subject.land(plane)
       expect{ subject.take_off(plane) }.to change { subject.planes.include?(plane) }
     end
