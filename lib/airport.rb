@@ -4,7 +4,7 @@ class Airport
 
   def initialize
     @planes = []
-    @weather 
+    @weather = Weather.stormy?
   end
 
   def land(plane)
@@ -23,6 +23,7 @@ class Airport
 
  def landing_error(plane)
    raise("plane already landed") if plane.landed == true
+   raise("you can t land it s stormy") if weather == true
  end
 
  def take_off_error(plane)

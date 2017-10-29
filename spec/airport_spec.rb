@@ -20,16 +20,19 @@ describe Airport do
     it { expect(airport).to respond_to(:land).with(1).argument }
 
     it "raise error if plane landed in another airport already" do
+      airport.weather = false
       plane.landed = true
       expect{airport.land(plane)}.to raise_error("plane already landed")
     end
 
     it "check if the plane in the airport after landing" do
+      airport.weather = false
       airport.land(plane)
       expect(airport.planes).to include(plane)
     end
 
     it "check if the status of the plane changed after landing" do
+      airport.weather = false
       airport.land(plane)
       expect(plane.landed).to eq(true)
     end
@@ -41,6 +44,7 @@ describe Airport do
     it { expect(airport).to respond_to(:take_off).with(1).argument }
 
     it "remove plane from airport after take_off" do
+      airport.weather = false
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes).to be_empty
@@ -57,6 +61,7 @@ describe Airport do
     end
 
     it "check if the status of the plane changed after take_off" do
+      airport.weather = false
       airport.land(plane)
       airport.take_off(plane)
       expect(plane.landed).to eq(false)
@@ -67,9 +72,15 @@ describe Airport do
   context 'stormy' do
 
     it "raise error when you want to take off in stormy weather" do
+      airport.weather = false
       airport.land(plane)
       airport.weather = true
       expect{airport.take_off(plane)}.to raise_error("you can t take_off it s stormy")
+    end
+
+    it "prevent landing when weather is stormy" do
+      airport.weather = true
+      expect{airport.land(plane)}.to raise_error("you can t land it s stormy")
     end
   end
 end
