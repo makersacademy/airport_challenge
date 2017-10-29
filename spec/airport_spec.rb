@@ -10,10 +10,10 @@ describe Airport do
     expect(airport.hangar).to include plane
   end
 
-  it { is_expected.to respond_to(:take_off).with(1).argument }
+  it { is_expected.to respond_to(:take_off) }
   it "doesn't have the plane once taken off" do
     airport.land(plane)
-    airport.take_off(plane)
+    airport.take_off
     expect(airport.hangar).not_to include plane
   end
 end

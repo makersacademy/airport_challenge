@@ -10,7 +10,9 @@ class Airport
     @hangar << plane
   end
 
-  def take_off(plane)
-
+  def take_off
+    plane = @hangar[-1]
+    @hangar.pop
+    "#{plane} has taken off"
   end
 end
