@@ -1,6 +1,6 @@
 # Airport Challenge
 
-[Task](#task) | [Approach](#approach) | [Execution](#execution) | [Demo](#demo)
+[Task](#task) | [Approach](#approach) | [Execution](#execution) | [Demo](#demo) | [Technologies](#technologies)
 
 This is the weekend challenge for Makers Academy - Week 1.
 
@@ -57,7 +57,7 @@ I have endeavoured to follow *Dont Repeat Yourself*, **DRY** and *Single Respons
 
 ## <a name="demo">Demo</a>
 
-Navigate into the airport_challenge directory and run **irb**.
+Navigate into the airport_challenge directory and run **irb**. Then "require" the necessary files.
 
 ```
 ➜  airport_challenge git:(master) ✗ irb
@@ -95,4 +95,8 @@ Above we created an airport that has a capacity of 20 planes (the default) but w
 2.4.1 :011 > heathrow.land(air_force_one)
   => [#<Plane:0x000000023896e8>, #<Plane:0x0000000237d258>]
 ```
-Ah there we are, the weather is much better for flying so we could land our biplane as well as air_force_one.
+Ah there we are, the weather is much better for flying so we could land our biplane as well as air_force_one! The default capacity for each airport is 20 planes, however this can be overridden upon instantiation. `airport = Airport.new(50)` will allow the airport to hold up to 50 planes at one time.
+
+## <a name="technologies">Technologies</a>
+
+Development was entirely test driven using Ruby 2.4.1 and RSpec testing framework. Rubocop was used to ensure standardised code formatting.
