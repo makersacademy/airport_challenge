@@ -88,6 +88,10 @@ describe Airport do
 
   describe "planes" do
 
+    it "ensures @planes is an array" do
+      expect(airport.planes).to be_kind_of(Array)
+    end
+
     it "ensures airport planes method shows all the planes that have landed" do
       allow(airport).to receive(:check_stormy).and_return(false)
       allow(plane).to receive(:flying).and_return(true)
@@ -113,6 +117,25 @@ describe Airport do
       expect { airport.store(plane) }.to raise_error("This plane is already at this airport.")
     end
 
+  end
+
+  describe "capacity"
+
+  it "ensures capacity returns the capacity of the airport for default capacity" do
+    expect(airport.capacity).to eq(20)
+  end
+
+  before {allow(plane).to receive(:flying).and_return(true)}
+  before {allow(airport).to receive(:check_stormy).and_return(false)}
+
+  it "ensures 20 planes can land in an empty airport" do
+    20.times {airport.land(plane)}
+    expect(airport.planes.count).to eq(20)
+  end
+
+  it "ensures 21 planes trying to land at an airport will return error" do
+    20.times { airport.land(plane) }
+    expect { airport.land(plane) }.to raise_error("This airport is full.")
   end
 
 end
