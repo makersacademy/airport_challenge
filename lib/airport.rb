@@ -28,9 +28,13 @@ class Airport
     @capacity <= @landed_planes.count
   end
 
-  def takeoff(sunny_day)
+  def takeoff_errors(sunny_day)
     raise_stormy_errors(sunny_day)
     raise "Cannot takeoff if there are no planes" if @landed_planes.empty?
+  end
+
+  def takeoff(sunny_day)
+    takeoff_errors(sunny_day)
     tookoff = @landed_planes.pop
     puts "The plane is now flying"
     tookoff

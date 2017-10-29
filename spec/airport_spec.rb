@@ -7,7 +7,7 @@ describe Airport do
 
   class LandedPlane
     def flying?
-    false
+      false
     end
   end
 
