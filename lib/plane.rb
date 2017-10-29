@@ -5,6 +5,7 @@ class Plane
 
   def take_off(airport)
     fail "There are no planes in the airport to take off" if airport.landed_planes.empty?
+    fail "The weather is stormy! No planes can take off at the moment." if airport.stormy?
     airport.landed_planes.pop
   end
 end
