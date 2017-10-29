@@ -10,24 +10,24 @@ describe Airport do
     end
   end
 
-  describe "#dock" do
-    it "should dock a plane that lands at the airport and update the database" do
-      expect(subject).to respond_to(:dock).with(1).argument
-      subject.dock(plane)
-      expect(subject.planes).to include(plane)
-    end
-  end
+  # describe "#dock" do
+  #   it "should dock a plane that lands at the airport and update the database" do
+  #     expect(subject).to respond_to(:dock).with(1).argument
+  #     subject.dock(plane)
+  #     expect(subject.planes).to include(plane)
+  #   end
+  # end
 
-  describe "#confirm_take_off" do
-    it "receives a confirmation when a plane leaves the airport" do
-      expect(subject).to respond_to(:confirm_take_off).with(1).argument
-    end
-    it "updates the database" do
-      subject.dock(plane)
-      subject.confirm_take_off(plane)
-      expect(subject.planes).not_to include(plane)
-    end
-  end
+  # describe "#confirm_take_off" do
+  #   it "receives a confirmation when a plane leaves the airport" do
+  #     expect(subject).to respond_to(:confirm_take_off).with(1).argument
+  #   end
+  #   it "updates the database" do
+  #     subject.planes << plane
+  #     subject.confirm_take_off(plane)
+  #     expect(subject.planes).not_to include(plane)
+  #   end
+  # end
 
   describe "#weather_conditions" do
     it "should show the weather in the airport area" do
@@ -50,7 +50,7 @@ describe Airport do
   describe "#full?" do
     it { is_expected.to respond_to(:full?) }
     it "should return true if the capacity is reached" do
-      subject.dock(plane)
+      subject.planes << plane
       expect(subject.full?).to eq(true)
     end
   end

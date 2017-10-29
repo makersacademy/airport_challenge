@@ -1,4 +1,5 @@
 class Plane
+
   attr_accessor :status
 
   def initialize
@@ -7,27 +8,26 @@ class Plane
 
   def land(airport)
     raise "This plane is already in land" unless status == :in_flight
-    if airport.weather_conditions == :stormy
-      raise "Authorization denied due to stormy weather"
-    end
-    if airport.full?
-      raise "Authorization denied due to full airport"
-    end
+    raise "Authorization denied due to stormy weather" if airport.weather_conditions == :stormy
+    raise "Authorization denied due to full airport" if airport.full?
     @status = :landed
-    airport.dock(self)
+    airport.planes << self
   end
 
   def take_off(airport)
     raise "This plane is in flight" unless status == :landed
     raise "Plane located in different airport" unless in?(airport)
-    if airport.weather_conditions == :stormy
-      raise "Authorization denied due to stormy weather"
-    end
+    raise "Authorization denied due to stormy weather" if airport.weather_conditions == :stormy
     @status = :in_flight
-    airport.confirm_take_off(self)
+    confirm_take_off(airport)
+  end
+
+  def confirm_take_off(airport)
+    airport.planes.delete(self)
   end
 
   def in?(airport)
     return true if airport.planes.include?(self)
   end
+
 end

@@ -1,18 +1,11 @@
 class Airport
+
   attr_accessor :planes, :capacity
 
   def initialize
     @capacity = 1
     @planes = []
     @weather_conditions = :sunny
-  end
-
-  def dock(plane)
-    @planes << plane
-  end
-
-  def confirm_take_off(plane)
-    @planes.delete(plane)
   end
 
   def weather_conditions
@@ -26,4 +19,5 @@ class Airport
   def full?
     return true if planes.length == capacity
   end
+  
 end

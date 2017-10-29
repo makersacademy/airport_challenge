@@ -7,6 +7,10 @@ describe Plane do
   describe "#land" do
     it "should land at an airport" do
       expect(subject).to respond_to(:land).with(1).argument
+      allow(airport).to receive(:weather_conditions).and_return(:sunny)
+      allow(airport).to receive(:full?).and_return(false)
+      allow(airport).to receive(:planes).and_return([])
+      expect(subject.land(airport)).to eq([subject])
     end
     it "should not land if the weather is 'stormy'" do
       allow(airport).to receive(:weather_conditions).and_return(:stormy)
@@ -47,9 +51,10 @@ describe Plane do
   describe "#status" do
     it "should change its status to 'landed'" do
       expect(subject).to respond_to(:status)
-      allow(airport).to receive(:dock)
+      # allow(airport).to receive(:dock)
       allow(airport).to receive(:weather_conditions).and_return(:sunny)
       allow(airport).to receive(:full?).and_return(false)
+      allow(airport).to receive(:planes).and_return([])
       subject.land(airport)
       expect(subject.status).to eq(:landed)
     end
@@ -63,10 +68,18 @@ describe Plane do
     end
   end
 
+  describe "#confirm_take_off" do
+    it { is_expected.to respond_to(:confirm_take_off).with(1).argument }
+    it "leaves the airport database" do
+      allow(airport).to receive(:planes).and_return([subject])
+      expect(subject.confirm_take_off(airport)).to eq(subject)
+    end
+  end
+
   describe "#in?" do
     it "should check if its in the required airport" do
       expect(subject).to respond_to(:in?).with(1).argument
-      allow(airport).to receive(:planes).and_return(Array.new)
+      allow(airport).to receive(:planes).and_return([])
       expect(subject.in?(airport)).to eq nil
     end
   end
