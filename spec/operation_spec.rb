@@ -131,7 +131,7 @@ describe Operation do
     context "makes weather check" do
       it "calls #weather_check" do
         expect(subject).to receive(:weather_check)
-        subject.land
+        subject.take_off
       end
     end
   end

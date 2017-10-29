@@ -25,9 +25,6 @@ class MockATC
 end
 
 class MockWeather
-  def get
-    :clear
-  end
 end
 
 describe Airport do
