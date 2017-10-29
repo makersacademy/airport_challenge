@@ -16,11 +16,14 @@ class Airport
   end
 
   def weather_conditions
-    @weather_conditions = :stormy if rand(3) == 2
-    @weather_conditions
+    if rand(10) == 9
+      @weather_conditions = :stormy
+    else
+      @weather_conditions = :sunny
+    end
   end
 
   def full?
-    return true if self.planes.length == self.capacity
+    return true if planes.length == capacity
   end
 end
