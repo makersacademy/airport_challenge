@@ -1,14 +1,16 @@
 class Airport
-  attr_accessor :planes, :weather
+  attr_accessor :planes, :weather, :capacity
 
-  def initialize(weather = "sunny")
+  def initialize(capacity = 10, weather = "sunny")
     @planes = []
     @weather = weather
+    @capacity = capacity
   end
 
   def land(plane)
     fail "plane already in airport" if present?(plane)
     fail "the weather is stormy" if @weather == "stormy"
+    fail "the airport is full" if at_capacity?
     @planes << plane
   end
 
@@ -32,4 +34,7 @@ class Airport
     @planes.include?(plane)
   end
 
+  def at_capacity?
+    @planes.length == @capacity
+  end
 end
