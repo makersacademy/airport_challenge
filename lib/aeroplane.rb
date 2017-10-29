@@ -2,9 +2,10 @@
 
 require './lib/air_exceptions'
 
-# Represents any aircraft. Starts flying or parked at an airport.
-# Knows if flying or not. Can land at airports and take-off from
-# them, in both cases working with the airport in question.
+# The Aeroplane class Represents any aircraft. Starts flying or 
+# docked at an airport. Knows if flying or not. Can land at airports 
+# and take-off from them, in both cases working with the airport in 
+# question.
 class Aeroplane
   attr_reader :airport, :name
 
@@ -12,7 +13,7 @@ class Aeroplane
   # if an airport is passed - using symbol :at, for readability.
   def initialize(options = {})
     @name = options[:name]
-    process_airport(options[:at])
+    @airport = process_airport(options[:at])
   end
 
   # Is flying if airport is nil and vice versa. Returns boolean.
@@ -39,12 +40,7 @@ class Aeroplane
   # String containing class name, name attribute if given and
   # location, which is the airport or airborne.
   def to_s
-    location = flying? ? "airborne" : "at #{@airport}"
-    unless @name.nil?
-      "Aeroplane '#{@name}', #{location}"
-    else
-      "Aeroplane, #{location}"
-    end
+    "Aeroplane (#{@name || "unnamed"})"
   end
 
   private
@@ -61,14 +57,17 @@ class Aeroplane
 
   # Dock at airport if not nil and set airport attribute.
   def process_airport(airport)
-    dock(airport) unless airport.nil?
+    dock(airport)
     @airport = airport
   end
 
   # Register docking with +airport+ and set @airport to the 
   # destination airport.
   def dock(airport)
-    airport.process_docking(self)
-    do_arrival(airport)
+    begin
+      airport.process_docking(self)
+    rescue NoMethodError
+    end
+    airport
   end
 end
