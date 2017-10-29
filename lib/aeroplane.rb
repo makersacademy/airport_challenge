@@ -56,12 +56,6 @@ class Aeroplane
     @airport = nil
   end
 
-  # Dock at airport if not nil and set airport attribute.
-  def process_airport(airport)
-    dock(airport)
-    @airport = airport
-  end
-
   # Register docking with +airport+ and set @airport to the 
   # destination airport.
   def dock(airport)
