@@ -227,4 +227,26 @@ describe Airport do
       end
     end
   end
+
+  describe "#to_s" do
+    context "with name" do
+      it "starts with class and name" do
+        subject = described_class.new(name: "hello")
+        expect(subject.to_s).to start_with "Airport 'hello'"
+      end
+    end
+
+    context "with no name" do
+      it "starts with class" do
+        expect(subject.to_s).to start_with "Airport ("
+      end
+    end
+
+    context "ends with capacity" do
+      it "counts occupancy and limit" do
+        subject = described_class.new(capacity: 10)
+        expect(subject.to_s).to end_with "(0/10 aircraft)"
+      end
+    end
+  end
 end

@@ -60,9 +60,9 @@ class Airport
 
   def to_s
     if @name.nil?
-      "unnamed airport (#{occupancy}/#{@capacity} aircraft)"
+      "Airport (#{occupancy}/#{@capacity} aircraft)"
     else
-      "'#{@name}' airport (#{occupancy}/#{@capacity} aircraft)"
+      "Airport '#{@name}' (#{occupancy}/#{@capacity} aircraft)"
     end
   end
 end
