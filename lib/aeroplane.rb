@@ -29,7 +29,7 @@ class Aeroplane
   end
 
   def arrive(airport, dock = false)
-    raise AeroplaneError, "already landed" if !flying?
+    raise AeroplaneError, "already landed" unless flying?
     if dock
       airport.process_docking(self)
     else
@@ -49,17 +49,8 @@ class Aeroplane
   end
 
   def to_s
-    parts = []
-    if @name.nil?
-      parts.push "Aeroplane"
-    else
-      parts.push "Aeroplane '#{@name}'"
-    end
-    if flying?
-      parts.push "airborne"
-    else
-      parts.push "at #{@airport.to_s}"
-    end
-    parts.join(", ")
+    title = name.nil? ? "" : " '#{@name}'"
+    location = flying? ? "airborne" : "at #{@airport}"
+    "Aeroplane#{title}, #{location}"
   end
 end

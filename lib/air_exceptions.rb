@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-class AirportError < Exception 
+class AirportError < RuntimeError
 end
 
-class AeroplaneError < Exception 
+class AeroplaneError < RuntimeError
 end

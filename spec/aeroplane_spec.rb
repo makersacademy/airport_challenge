@@ -26,7 +26,7 @@ describe Aeroplane do
       it "docked at airport when passed one" do
         expect_any_instance_of(described_class)
           .to receive(:arrive).with(airport, true)
-        subject = described_class.new(at: airport)
+        described_class.new(at: airport)
       end
     end
 
@@ -179,4 +179,3 @@ describe Aeroplane do
     end
   end
 end
-

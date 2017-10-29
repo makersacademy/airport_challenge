@@ -15,24 +15,18 @@ class Operation
   end
 
   def to(task)
-    raise ArgumentError, "cannot do #{task}" if !able_to?(task)
-    self.send(task)
+    raise ArgumentError, "cannot do #{task}" unless able_to?(task)
+    send(task)
   end
 
   def weather_check
-    if @airport.stormy?
-      raise AirportError, "stormy weather" 
-    else
-      true
-    end
+    raise AirportError, "stormy weather" if @airport.stormy?
+    true
   end
 
   def capacity_check
-    if @airport.full?
-      raise AirportError, "airport full"
-    else
-      true
-    end
+    raise AirportError, "airport full" if @airport.full?
+    true
   end
 
   def dock
