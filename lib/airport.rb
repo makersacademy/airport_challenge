@@ -1,28 +1,28 @@
 class Airport
-  attr_accessor :planes, :stormy
+  attr_accessor :planes, :weather
 
-  def initialize(stormy = false)
+  def initialize(weather = "sunny")
     @planes = []
-    @stormy = stormy
+    @weather = weather
   end
 
   def land(plane)
     fail "plane already in airport" if present?(plane)
-    fail "the weather is stormy" if @stormy
+    fail "the weather is stormy" if @weather == "stormy"
     @planes << plane
   end
 
   def take_off(plane)
     fail "plane not in airport" unless present?(plane)
-    fail "the weather is stormy" if @stormy
+    fail "the weather is stormy" if @weather == "stormy"
     @planes.delete(plane)
   end
 
-  def change_weather(*stormy)
-    if stormy.empty?
-      @stormy = Weather.new.stormy?
+  def change_weather(*weather)
+    if weather.empty?
+      @weather = Weather.new.weather
     else
-      @stormy = stormy[0]
+      @weather = weather[0]
     end
   end
 
