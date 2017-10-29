@@ -36,7 +36,7 @@ describe Plane do
     expect { subject.land(airport) }.to raise_error("The weather is stormy! No planes can land at the moment.")
   end
 
-  it "Planes should not be able to land at an airport if the airport is full" do
+  it "Planes should not be able to land at an airport that is full" do
     airport = Airport.new
     100.times { airport.landed_planes << Plane.new }
     expect { subject.land(airport) }.to raise_error("The plane can't land as the airport is full.")
