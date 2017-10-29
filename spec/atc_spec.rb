@@ -9,13 +9,27 @@ class MockOperation
   end
 end
 
+class MockAirport
+end
+
 describe ATC do
 
   subject { described_class }
-  let(:airport) { double(:airport) }
+  let(:airport) { MockAirport.new }
   before(:each) { stub_const("Operation", MockOperation) }
+  before(:each) { stub_const("Airport", MockAirport) }
 
   describe "#clear" do
+    context "doesn't accept non-aeroplanes" do
+      it "raises error for non-aeroplanes" do
+        expect { subject.clear(nil) }.to raise_error ArgumentError
+      end
+
+      it "raises no error for aeroplanes" do
+        expect { subject.clear(airport) }.to_not raise_error
+      end
+    end
+
     context "creates operation for actioning" do
       it "returns mocked Operation" do
         expect(subject.clear(airport)).to be_a MockOperation
