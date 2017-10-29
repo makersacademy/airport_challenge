@@ -13,7 +13,8 @@ class Aeroplane
   # if an airport is passed - using symbol :at, for readability.
   def initialize(options = {})
     @name = options[:name]
-    @airport = process_airport(options[:at])
+    @airport = options[:at]
+    dock(@airport) unless @airport.nil?
   end
 
   # Is flying if airport is nil and vice versa. Returns boolean.
@@ -64,10 +65,6 @@ class Aeroplane
   # Register docking with +airport+ and set @airport to the 
   # destination airport.
   def dock(airport)
-    begin
-      airport.process_docking(self)
-    rescue NoMethodError
-    end
-    airport
+    airport.process_docking(self)
   end
 end
