@@ -25,10 +25,10 @@ attr_reader   :planes
   end
 
   def take_off(plane, weather = "sunny")
-    @weather = weather
-    if @weather == "stormy"
+    if weather == "stormy"
       "Plane can not take off due to stormy weather"
     else
+    @planes.delete(plane)
     "#{plane} has taken off"
     end
   end

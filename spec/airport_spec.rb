@@ -35,6 +35,13 @@ describe Airport do
       expect(subject.take_off(plane)).to eq ("#{plane} has taken off")
     end
 
+    it "should take the plane out of the airport" do
+      subject.land(plane)
+      array = subject.planes.length
+      subject.take_off(plane)
+      expect(subject.planes).to eq ([])
+    end
+
     it "should not be able to take off in stormy weather" do
       expect(subject.take_off(plane, "stormy")).to eq ("Plane can not take off due to stormy weather")
     end
