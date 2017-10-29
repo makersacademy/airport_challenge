@@ -1,17 +1,19 @@
 class Airport
 
-  attr_reader :planes
+  attr_reader :planes, :weather
 
   def initialize
     @planes = []
+    @weather = false
   end
 
   def land(plane)
-    @planes << plane
+    @planes << plane if !planes.include?(plane)
   end
 
   def take_off(plane)
-    @planes.pop
+    @planes.delete(plane)
   end
+
 
 end
