@@ -9,7 +9,6 @@ attr_reader   :planes
     @capacity = capacity
   end
 
-
   def land(plane, weather = "sunny")
      if full?
        "capacity has been reached"

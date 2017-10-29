@@ -1,7 +1,7 @@
 require 'airport'
 
 class FakePlane
-  
+
 end
 
 describe Airport do
@@ -64,5 +64,6 @@ describe Airport do
       expect(Airport.new(28).capacity).to eq(28)
     end
   end
+
 
 end
