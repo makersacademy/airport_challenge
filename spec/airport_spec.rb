@@ -73,7 +73,7 @@ describe Airport do
       expect(Airport::DEFAULT_CAPACITY).to eq(20)
     end
 
-    it "should have a capacity of 20" do
+    it "should have a capacity of 50" do
       airport = Airport.new(50)
       expect(airport.capacity).to eq(50)
     end
