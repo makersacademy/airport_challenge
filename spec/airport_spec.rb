@@ -28,4 +28,10 @@ describe Airport do
     allow(airport).to receive(:weather_check) { true }
     expect { airport.land(plane) }.to raise_error "Weather conditions are preventing landing"
   end
+
+  it "should raise error if trying to land when airport is full" do
+    allow(airport).to receive(:weather_check) { false }
+    allow(airport).to receive(:full?) { true }
+    expect { airport.land(plane) }.to raise_error "Airport already full"
+  end
 end
