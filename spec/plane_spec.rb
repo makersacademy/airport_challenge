@@ -12,12 +12,18 @@ describe Plane do
       expect(subject).to respond_to(:status)
       allow(airport).to receive(:dock)
       allow(airport).to receive(:weather_conditions).and_return(:sunny)
+      allow(airport).to receive(:full?).and_return(false)
       subject.land(airport)
       expect(subject.status).to eq(:landed)
     end
     it "should not land if the weather is 'stormy'" do
       allow(airport).to receive(:weather_conditions).and_return(:stormy)
       expect { subject.land(airport) }.to raise_error("Authorization denied due to stormy weather")
+    end
+    it "should not land if the airport is full" do
+      allow(airport).to receive(:weather_conditions).and_return(:sunny)
+      allow(airport).to receive(:full?).and_return(true)
+      expect { subject.land(airport) }.to raise_error("Authorization denied due to full airport")
     end
   end
 

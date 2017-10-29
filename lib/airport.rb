@@ -1,8 +1,10 @@
 class Airport
-  attr_accessor :planes
+  attr_accessor :planes, :capacity
 
   def initialize
+    @capacity = 1
     @planes = []
+    @weather_conditions = :sunny
   end
 
   def dock(plane)
@@ -14,8 +16,11 @@ class Airport
   end
 
   def weather_conditions
-    number = rand(3)
-    return :stormy if number == 2
-    :sunny
+    @weather_conditions = :stormy if rand(3) == 2
+    @weather_conditions
+  end
+
+  def full?
+    return true if self.planes.length == self.capacity
   end
 end

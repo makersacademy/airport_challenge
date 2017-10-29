@@ -6,9 +6,11 @@ class Plane
   end
 
   def land(airport)
-
     if airport.weather_conditions == :stormy
       raise "Authorization denied due to stormy weather"
+    end
+    if airport.full?
+      raise "Authorization denied due to full airport"
     end
     @status = :landed
     airport.dock(self)

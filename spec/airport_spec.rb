@@ -35,4 +35,19 @@ describe Airport do
       expect([:sunny, :stormy]).to include(subject.weather_conditions)
     end
   end
+
+  describe "#capacity" do
+    it { is_expected.to respond_to(:capacity) }
+    it "should have a default max of 1 plane allowed in the airport" do
+      expect(subject.capacity).to eq(1)
+    end
+  end
+
+  describe "#full?" do
+    it { is_expected.to respond_to(:full?) }
+    it "should return true if the capacity is reached" do
+      subject.dock(plane)
+      expect(subject.full?).to eq(true)
+    end
+  end
 end
