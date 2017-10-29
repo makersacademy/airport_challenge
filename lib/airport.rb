@@ -7,7 +7,7 @@ class Airport
   end
 
   def land(plane)
-    raise "This plane is currently parked." unless plane.flying==true
+    raise "This plane is currently parked." unless plane.flying == true
     add_plane(plane)
   end
 
