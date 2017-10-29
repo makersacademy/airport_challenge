@@ -4,13 +4,12 @@ require 'plane'
 describe Airport do
   subject { Airport.new }
   let(:plane) { Plane.new }
-  let(:weather) { double( :weather => "stormy") }
+  let(:weather) { double(:weather => "stormy") }
 
-    it { is_expected.to be_an_instance_of(Airport) }
+  it { is_expected.to be_an_instance_of(Airport) }
 
   describe "#land" do
-
-    it{ is_expected.to respond_to(:land).with(1).argument }
+    it { is_expected.to respond_to(:land).with(1).argument }
 
     it "should store a landed plane at the airport" do
       subject.land(plane)
@@ -34,9 +33,7 @@ describe Airport do
   end
 
   describe "#take_off" do
-    it "should respond to #take_off with 1 argument" do
-      expect(subject).to respond_to(:take_off).with(1).argument
-    end
+    it { is_expected.to respond_to(:take_off).with(1).argument }
 
     it "should raise error if plane not in airport" do
       expect { subject.take_off(plane) }.to raise_error("plane not in airport")
@@ -68,9 +65,7 @@ describe Airport do
   end
 
   describe "#weather" do
-    it "responds to #weather" do
-      expect(subject).to respond_to(:weather)
-    end
+    it { is_expected.to respond_to(:weather) }
   end
 
   describe "#capacity" do
