@@ -1,6 +1,7 @@
 class Airport
 
-attr_accessor :planes , :capacity
+attr_accessor :capacity
+attr_reader   :planes
 
 
   def initialize(capacity = 30)
@@ -10,14 +11,14 @@ attr_accessor :planes , :capacity
 
 
   def land(plane, weather = "sunny")
-    @weather = weather
-    if @weather == "stormy"
-      "Plane not able to land due to storm"
-    elsif @full == true
-      "Airport is full"
-    else
-      "#{plane} landed"
-    end
+     if full?
+       return "capacity has been reached"
+     elsif weather == "stormy"
+       "Plane not able to land due to storm"
+     else
+     @planes << plane
+     end
+
   end
 
   def take_off(plane, weather = "sunny")
@@ -29,8 +30,8 @@ attr_accessor :planes , :capacity
     end
   end
 
-  def full?(response)
-    @full = response
+  def full?
+    @planes.length == capacity
   end
 
 

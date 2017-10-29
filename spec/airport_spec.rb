@@ -8,13 +8,21 @@ describe Airport do
 
   describe "#land" do
     it "should land planes into airport" do
-      subject.full?(false)
-      expect(subject.land(plane, "sunny")).to eq "#{plane} landed"
+      expect(subject.land(plane, "sunny")).to eq([plane])
     end
 
-    it "should not land when airport is full" do
-      subject.full?(true)
-      expect(subject.land(plane)).to eq "Airport is full"
+    # it "should not land when airport is full" do
+    #   subject.full?(true)
+    #   expect(subject.land(plane)).to eq "Airport is full"
+    # end
+
+    it "should not be able to land when capacity has been reached" do
+      airport = Airport.new(2)
+      plane2 = Plane.new
+      plane3 = Plane.new
+      airport.land(plane)
+      airport.land(plane2)
+      expect(airport.land(plane3)).to eq "capacity has been reached"
     end
 
     it "should not allow planes to land when weather is stormy" do
