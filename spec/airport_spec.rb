@@ -28,6 +28,7 @@ describe Airport do
     end
 
     it "ensures that a landed plane gets stored at airport" do
+      allow(airport).to receive(:check_stormy).and_return(false)
       allow(plane).to receive(:flying).and_return(true)
       airport.land(plane)
       expect(airport.planes).to include(plane)
@@ -36,6 +37,12 @@ describe Airport do
     it "raises error if we order a plane to land at an airport when it's not flying" do
       allow(plane).to receive(:flying).and_return(false)
       expect { airport.land(plane) }.to raise_error("This plane is currently parked.")
+    end
+
+    it "doesn't allow for landing if weather is stormy" do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(airport).to receive(:check_stormy).and_return(true)
+      expect { airport.land(plane) }.to raise_error("The weather is too stormy to land, wait for further instructions.!")
     end
 
   end
@@ -52,7 +59,9 @@ describe Airport do
 
     it "expects plane that takes-off to be no longer at airport" do
       allow(plane).to receive(:flying).and_return(true)
+      allow(airport).to receive(:check_stormy).and_return(false)
       airport.land(plane)
+      allow(airport).to receive(:check_stormy).and_return(false)
       airport.take_off(plane)
       expect(airport.planes).not_to include(plane)
     end
@@ -61,11 +70,20 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error("This plane is not at this airport.")
     end
 
+    it "doesnt' allow for take-off if weather is stormy" do
+      allow(plane).to receive(:flying).and_return(true)
+      allow(airport).to receive(:check_stormy).and_return(false)
+      airport.land(plane)
+      allow(airport).to receive(:check_stormy).and_return(true)
+      expect { airport.take_off(plane) }.to raise_error("The weather is too stormy to take-off, wait for further instructions.!")
+    end
+
   end
 
   describe "planes" do
 
     it "ensures airport planes method shows all the planes that have landed" do
+      allow(airport).to receive(:check_stormy).and_return(false)
       allow(plane).to receive(:flying).and_return(true)
       plane2 = double(:plane)
       allow(plane2).to receive(:flying).and_return(true)
