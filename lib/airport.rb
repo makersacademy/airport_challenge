@@ -1,7 +1,8 @@
 class Airport
   attr_accessor :planes, :weather, :capacity
+  DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = 10, weather = "sunny")
+  def initialize(capacity = DEFAULT_CAPACITY, weather = "sunny")
     @planes = []
     @weather = weather
     @capacity = capacity
@@ -9,18 +10,18 @@ class Airport
 
   def land(plane)
     fail "plane already in airport" if present?(plane)
-    fail "the weather is stormy" if @weather == "stormy"
+    fail "the weather is stormy" if stormy?
     fail "the airport is full" if at_capacity?
     @planes << plane
   end
 
   def take_off(plane)
     fail "plane not in airport" unless present?(plane)
-    fail "the weather is stormy" if @weather == "stormy"
+    fail "the weather is stormy" if stormy?
     @planes.delete(plane)
   end
 
-  def change_weather(*weather)
+  def new_day(*weather)
     if weather.empty?
       @weather = Weather.new.weather
     else
@@ -35,6 +36,10 @@ class Airport
   end
 
   def at_capacity?
-    @planes.length == @capacity
+    @planes.length >= @capacity
+  end
+
+  def stormy?
+    @weather == "stormy"
   end
 end
