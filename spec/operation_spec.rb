@@ -14,6 +14,20 @@ describe Operation do
     airport
   end
 
+  describe "class attributes" do
+    context "contains list of permitted operations" do
+      subject { described_class::OPERATIONS }
+
+      it { is_expected.to include :dock }
+      it { is_expected.to include :land }
+      it { is_expected.to include :take_off }
+
+      it "only contains those operations" do
+        expect(subject.length).to eq 3
+      end
+    end
+  end
+
   describe "creates with" do
     context "airport" do
       it { is_expected.to respond_to :airport }
