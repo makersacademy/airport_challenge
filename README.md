@@ -40,7 +40,7 @@ airport_challenge git:(master) ✗ irb
 2.4.0 :008 > airport.take_off(plane)
 RuntimeError: no planes available
 
-**features tests**
+**further tests**
 
 2.4.0 :001 > require './lib/airport.rb'
  => true
@@ -58,6 +58,7 @@ RuntimeError: can't land weather is stormy
 RuntimeError: no planes available
 
 **Features implemented**
+
 * Plane status
 * Plane landing
 * Plane takeoff
