@@ -7,21 +7,19 @@ describe Plane do
     expect(plane.landed).to eq(false)
   end
 
-  it "allows reading and writing for :landed" do
-    plane.landed =true
-    expect(plane.landed).to eq(true)
-  end
+  # it "allows reading and writing for :landed" do
+  #   plane.landed =true
+  #   expect(plane.landed).to eq(true)
+  # end
 
   describe 'change_status'
   it "check if the status of the plane changed after landing" do
-    plane.landed = false
     plane.change_status
     expect(plane.landed).to eq(true)
   end
 
   it "check if the status of the plane changed after take_off" do
-    plane.landed = true
-    plane.change_status
+    2.times{plane.change_status}
     expect(plane.landed).to eq(false)
   end
 
