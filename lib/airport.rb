@@ -1,6 +1,7 @@
 require './lib/plane.rb'
 
-
+class FakePlane
+end
 class Airport
 
 attr_accessor :capacity
@@ -15,13 +16,12 @@ attr_reader   :planes
 
   def land(plane, weather = "sunny")
      if full?
-       return "capacity has been reached"
+       "capacity has been reached"
      elsif weather == "stormy"
        "Plane not able to land due to storm"
      else
-     @planes << plane
+       @planes << plane
      end
-
   end
 
   def take_off(plane, weather = "sunny")

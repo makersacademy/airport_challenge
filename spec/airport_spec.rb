@@ -1,10 +1,16 @@
 require 'airport'
-require "plane"
-require 'weather'
+
+describe FakePlane do
+
+end
 
 describe Airport do
-  let(:plane) {double Plane.new}
-  let (:today) {double Weather.new}
+  let(:plane) {
+    plane = double FakePlane.new }
+
+  let(:plane2) { double FakePlane.new }
+
+  let(:plane3) { double FakePlane.new }
 
   describe "#land" do
     it "should land planes into airport" do
@@ -18,8 +24,6 @@ describe Airport do
 
     it "should not be able to land when capacity has been reached" do
       airport = Airport.new(2)
-      plane2 = Plane.new
-      plane3 = Plane.new
       airport.land(plane)
       airport.land(plane2)
       expect(airport.land(plane3)).to eq "capacity has been reached"
@@ -37,7 +41,6 @@ describe Airport do
 
     it "should take the plane out of the airport" do
       subject.land(plane)
-      array = subject.planes.length
       subject.take_off(plane)
       expect(subject.planes).to eq ([])
     end
