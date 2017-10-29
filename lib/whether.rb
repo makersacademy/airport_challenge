@@ -1,5 +1,5 @@
 class Whether
   def there_a_storm?
-    false
+    true
   end
 end
