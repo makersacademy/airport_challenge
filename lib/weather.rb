@@ -4,7 +4,7 @@ class Weather
 
   STORM_DANGER=0.9
 
-  def initialize
+  def initialize()
     @storm_chance=rand
   end
 
