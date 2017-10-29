@@ -7,15 +7,13 @@ describe Airport do
 
   it "confirm plane has landed" do
     Airport.stub(:weather) do |w|
-      if w == true
-        expect(airport.land(plane)).to eq [plane]
-      end
+      expect(airport.land(plane)).to eq [plane] if w_is true
     end
   end
 
   it "confirm plane has taken off" do
     Airport.stub(:weather) do |w|
-      if w == true
+      if w_is true
         airport.land(plane)
         expect(airport.take_off(plane)).to eq [plane]
       end
@@ -24,23 +22,19 @@ describe Airport do
 
   it "if stormy, plane does NOT take off" do
     Airport.stub(:weather) do |w|
-      if w == true
-        expect(airport.take_off(plane)).to eq "The skies are dark, best to stay on the ground"
-      end
+      expect(airport.take_off(plane)).to eq "The skies are dark, best to stay on the ground" if w_is true
     end
   end
-  
+
   it "If stormy, plane does NOT land" do
     Airport.stub(:weather) do |w|
-      if w == true
-        expect(airport.land(plane)).to eq "Got a storm front coming, cannot land here"
-      end
+      expect(airport.land(plane)).to eq "Got a storm front coming, cannot land here" if w_is true
     end
   end
 
   it "raises an error if terminal is full" do
     Airport.stub(:weather) do |w|
-      if w == true
+      if w_is true
         Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error("Airport is full")
       end
