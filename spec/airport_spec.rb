@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-# let(:weather) { Mockweather.new }
+
   describe '#land' do
     it { is_expected.to respond_to :land }
     it { is_expected.to respond_to(:land).with(1).argument }
@@ -15,24 +15,12 @@ describe Airport do
   end
 
   describe '#take_off' do
+    let(:plane) { Plane.new }
     it { is_expected.to respond_to :take_off }
     it 'raises an error when there are no planes available' do
-      expect { subject.take_off }.to raise_error(RuntimeError)
+      expect { subject.take_off(plane) }.to raise_error(RuntimeError)
     end
   end
-  # describe "it's stormy u can't land" do
-  #   let(:weather) { Mockweather.new }
-  #   allow(weather).to receive(:stormy?).and_return true
-  #   message = "it's stormy u can't land"
-  #   expect { airport.land(plane) }.to raise_error(RuntimeError)
-  # end
-  #
-  # describe "the plane can land there's no storm" do
-  #   let(:weather) { Mockweather.new }
-  #   allow(weather).to receive(:stormy?).and_return false
-  #   message = "the storm has cleared u can land"
-  #   expect { airport.land(plane) }.not_to raise_error(RuntimeError)
-  # end
 
   describe "airport capacity" do
     it "has a default capacity" do
