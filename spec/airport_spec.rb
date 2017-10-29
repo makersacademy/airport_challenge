@@ -17,16 +17,18 @@ describe Airport do
     end
 
     it "should raise error if plane already in airport" do
+      allow(subject).to receive_message_chain(:weather, :weather) { "sunny" }
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error("plane already in airport")
     end
 
     it "should raise error if stormy & #land is called" do
-      airport = Airport.new(20, weather.weather)
-      expect { airport.land(plane) }.to raise_error("the weather is stormy")
+      allow(subject).to receive_message_chain(:weather, :weather) { "stormy" }
+      expect { subject.land(plane) }.to raise_error("the weather is stormy")
     end
 
     it "should raise error when full & #land called" do
+      allow(subject).to receive_message_chain(:weather, :weather) { "sunny" }
       20.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error("the airport is full")
     end
@@ -41,7 +43,8 @@ describe Airport do
 
     it "should raise error when stormy and #take_off is called " do
       subject.land(plane)
-      subject.new_day(weather.weather)
+      allow(subject).to receive_message_chain(:weather, :weather) { "stormy" }
+      #subject.new_day(weather.weather)
       expect { subject.take_off(plane) }.to raise_error("the weather is stormy")
     end
   end
