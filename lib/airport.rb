@@ -11,13 +11,13 @@ class Airport
 
   def land(plane)
     landing_error(plane)
-    change_status(plane)
+    plane.change_status
     @planes << plane
   end
 
   def take_off(plane)
     take_off_error(plane)
-    change_status(plane)
+    plane.change_status
     @planes.delete(plane)
   end
 
@@ -35,13 +35,7 @@ class Airport
    raise("you can t take_off it s stormy") if stormy == true
  end
 
- def change_status(plane)
-   if plane.landed == false
-     plane.landed = true
-   else
-     plane.landed = false
-   end
- end
+
 
   def full?
     @planes.size == @capacity
