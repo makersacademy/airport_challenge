@@ -1,4 +1,4 @@
-##### Airport Challenge
+## Airport Challenge
 
 ### Synopsis
 
