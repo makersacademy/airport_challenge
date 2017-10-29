@@ -6,11 +6,18 @@ class Plane
   end
 
   def land(airport)
+
+    if airport.weather_conditions == :stormy
+      raise "Authorization denied due to stormy weather"
+    end
     @status = :landed
     airport.dock(self)
   end
 
   def take_off(airport)
+    if airport.weather_conditions == :stormy
+      raise "Authorization denied due to stormy weather"
+    end
     @status = :in_flight
     airport.confirm_take_off(self)
   end

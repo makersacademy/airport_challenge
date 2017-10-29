@@ -28,4 +28,11 @@ describe Airport do
       expect(subject.planes).not_to include(plane)
     end
   end
+
+  describe "#weather_conditions" do
+    it "should show the weather in the airport area" do
+      expect(subject).to respond_to(:weather_conditions)
+      expect([:sunny, :stormy]).to include(subject.weather_conditions)
+    end
+  end
 end
