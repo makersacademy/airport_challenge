@@ -21,3 +21,17 @@ Object | Message
 ------------ | -------------
 Air Traffic controller |
 Plane| return error if weather is stormy avoiding the departure.
+
+4)
+
+Object | Message
+------------ | -------------
+Air Traffic controller |
+Plane| prevent landing when weather is stormy
+
+5)
+
+Object | Message
+------------ | -------------
+Air Traffic controller |
+Plane| prevent landing when airport is full
