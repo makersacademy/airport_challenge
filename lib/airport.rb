@@ -18,12 +18,19 @@ class Airport
   end
 
   def take_off
+    raise "No planes in the airport" if empty?
     raise "It's stormy! We can't fly" if stormy?
     @planes.pop
   end
 
   def stormy?
     Weather::report
+  end
+
+private
+
+  def empty?
+    @planes.length.zero?
   end
 
   def full?

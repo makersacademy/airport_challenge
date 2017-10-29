@@ -28,6 +28,7 @@ describe Airport do
   end
 
   it "Raises an error can't take off if weather is stormy" do
+    allow(subject).to receive(:empty?).and_return false
     allow(subject).to receive(:stormy?).and_return true
     expect { subject.take_off }.to raise_error(RuntimeError, "It's stormy! We can't fly")
   end
@@ -43,5 +44,9 @@ describe Airport do
     allow(subject).to receive(:stormy?).and_return false
     subject.capacity.times { subject.land(obj) }
     expect { subject.land(obj) }.to raise_error("Airport is full")
+  end
+
+  it "Raises an error concerning airport is empty" do
+    expect { subject.take_off }.to raise_error("No planes in the airport")
   end
 end
