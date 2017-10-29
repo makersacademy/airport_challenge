@@ -5,6 +5,7 @@ airport = Airport.new
 
 describe Airport do
   it { expect(Airport.new).to respond_to(:land) }
+    it { expect(Airport.new).to respond_to(:take_off) }
 end
 
 describe 'land method' do
@@ -13,15 +14,11 @@ describe 'land method' do
  end
 end
 
-describe Airport do
-  it { expect(Airport.new).to respond_to(:take_off) }
-end
-
 describe 'take_off method' do
   before do
   airport.take_off(0)
  end
   it "Check if take_off method removes plane from @hangar" do
   expect(airport.hangar).to eq []
+  end
  end
-end
