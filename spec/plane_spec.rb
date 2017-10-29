@@ -2,12 +2,6 @@ require 'plane'
 
 describe Plane do
 
-  # let(:airport) { double(:airport) }
-  #
-  # describe 'check airport double' do
-  #   it { p airport }
-  # end
-
   describe '@status' do
     it "returns 'grounded' or 'flying'" do
       expect(subject.status).to eq('grounded').or eq('flying')
@@ -22,11 +16,9 @@ describe Plane do
     end
 
     it 'returns true or false depending on status' do
-      if subject.status == 'grounded'
-        expect(subject.grounded?).to be(true)
-      else
-        expect(subject.flying?).to be(true)
-      end
+      expect(subject.grounded?).to be(true)
+      subject.take_off
+      expect(subject.grounded?).to be(false)
     end
   end
 

@@ -24,36 +24,52 @@ class MockPlane
   end
 end
 
-
 describe Airport do
 
   let(:plane) { MockPlane.new }
   let(:flying_plane) {
-    plane.take_off
-    plane
+    plane2 = MockPlane.new
+    plane2.take_off
+    plane2
+  }
+  let(:airport) {
+    a = Airport.new
+    a.planes << plane
+    a
   }
 
   describe '#land' do
-    it { expect{ subject.land(flying_plane) }.to change { subject.planes.include?(flying_plane) } }
-    it { expect{ subject.land(flying_plane) }.to change { flying_plane.status } }
-    it { expect{ subject.land(plane) }.to raise_error 'Plane Already Grounded' }
+    it { expect{ airport.land(flying_plane) }.to change { airport.planes.include?(flying_plane) } }
+    it { expect{ airport.land(flying_plane) }.to change { flying_plane.status } }
+    it { expect{ airport.land(plane) }.to raise_error 'Plane Already Grounded' }
     it 'raises an error when airport is full' do
-      subject.capacity.times { subject.planes << plane }
-      expect{ subject.land(flying_plane) }.to raise_error 'Airport Full'
+      airport.planes << plane until airport.full?
+      expect{ airport.land(flying_plane) }.to raise_error 'Airport Full'
+    end
+
+    context 'when airport is stormy' do
+      it 'raises an error' do
+        airport.weather = 'stormy'
+        expect{ airport.land(flying_plane) }.to raise_error 'Unable to Land Due to Stormy Weather'
+      end
     end
   end
 
   describe '#take_off' do
     it 'no longer has the plane at airport' do
-      subject.planes << plane
-      expect{ subject.take_off(plane) }.to change { subject.planes.include?(plane) }
+      expect{ airport.take_off(plane) }.to change { airport.planes.include?(plane) }
     end
     it 'the planes status is changed to flying' do
-      subject.planes << plane
-      expect{ subject.take_off(plane) }.to change { plane.status }
+      expect{ airport.take_off(plane) }.to change { plane.status }
     end
-    it { expect{ subject.take_off(flying_plane) }.to raise_error 'Plane Already Flying' }
+    it { expect{ airport.take_off(flying_plane) }.to raise_error 'Plane Already Flying' }
     it { expect{ subject.take_off(plane) }.to raise_error 'Plane Not At This Airport' }
+    context 'when airport is stormy' do
+      it 'raises an error' do
+        airport.weather = 'stormy'
+        expect{ airport.take_off(plane) }.to raise_error 'Unable to Take Off Due to Stormy Weather'
+      end
+    end
   end
 
   describe '@capacity' do
@@ -62,53 +78,43 @@ describe Airport do
   end
 
   describe '@weather' do
-    it { expect(subject.weather).to eq('sunny').or eq('stormy') }
+    it { expect(airport.weather).to eq('sunny').or eq('stormy') }
   end
 
   describe '#sunny?' do
-    it { expect(subject.sunny?).to be(true).or be(false) }
+    it { expect(airport.sunny?).to be(true).or be(false) }
 
     it 'returns opposite of stormy?' do
-      expect(subject.sunny?).not_to be(subject.stormy?)
-    end
-
-    it 'returns true or false based on @weather' do
-      if subject.sunny?
-        expect(subject.sunny?).to be(true)
-      else
-        expect(subject.sunny?).to be(false)
-      end
+      expect(airport.sunny?).not_to be(airport.stormy?)
     end
   end
 
   describe '#stormy?' do
-    it { expect(subject.stormy?).to be(true).or be(false) }
+    it { expect(airport.stormy?).to be(true).or be(false) }
     it 'returns opposite of sunny?' do
-      expect(subject.stormy?).not_to be(subject.sunny?)
+      expect(airport.stormy?).not_to be(airport.sunny?)
     end
   end
 
   describe '@planes' do
-    it { expect(subject.planes).to be_a(Array) }
+    it { expect(airport.planes).to be_a(Array) }
   end
 
   describe '#full?' do
-    it { expect(subject.full?).to be(true).or be(false) }
-    it { expect(subject.full?).not_to be(subject.empty?) }
+    it { expect(airport.full?).to be(true).or be(false) }
     context 'when airport is up to capacity' do
       it 'returns true' do
-        subject.capacity.times { subject.planes << plane }
-        expect(subject.full?).to be(subject.planes.count == subject.capacity)
+        airport.planes << plane until airport.full?
+        expect(airport.full?).to be(true)
       end
     end
   end
 
   describe '#empty?' do
-    it { expect(subject.empty?).to be(true).or be(false) }
-    it { expect(subject.empty?).not_to be(subject.full?) }
+    it { expect(airport.empty?).to be(true).or be(false) }
     context 'when airport is empty' do
       it 'returns true' do
-        expect(subject.empty?).to be(subject.planes.count <= 0)
+        expect(subject.empty?).to be(true)
       end
     end
   end
