@@ -32,9 +32,9 @@ describe Airport do
       expect(airport.planes).to include(plane)
     end
 
-    it "raises error if we order a plane to land at an airport when it's already there" do
+    it "raises error if we order a plane to land at an airport when it's not flying" do
       airport.land(plane)
-      expect { airport.land(plane) }.to raise_error("This plane is already at this airport.")
+      expect { airport.land(plane) }.to raise_error("This plane is currently parked at this airport.")
     end
 
   end

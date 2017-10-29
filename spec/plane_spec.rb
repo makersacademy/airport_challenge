@@ -28,4 +28,20 @@ describe Plane do
 
   end
 
+  describe "attempt landing at airport" do
+
+    it "expects a plane to respond to attempt_land method at an airport" do
+      expect(plane).to respond_to(:attempt_land).with(1).argument
+    end
+
+  end
+
+  describe "attempt taking-off from airport" do
+
+    it "expects a plane to respond to attempt_take_off method at an airport" do
+      expect(plane).to respond_to(:attempt_take_off).with(1).argument
+    end
+
+  end
+
 end

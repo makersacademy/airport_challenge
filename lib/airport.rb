@@ -1,4 +1,5 @@
 class Airport
+
   attr_reader :planes
 
   def initialize(planes = [])
@@ -6,7 +7,7 @@ class Airport
   end
 
   def land(plane)
-    raise "This plane is already at this airport." if @planes.include?(plane)
+    raise "This plane is currently parked at this airport." if @planes.include?(plane)
     add_plane(plane)
   end
 
