@@ -1,90 +1,81 @@
-Airport Challenge
-=================
+Approach
+---
+## INSTALLATION
+ Download the repositori, with your terminal go in the main folder, require the spec file and start playing:
+ ---
+ [1] pry(main)> require '/Users/marcovanali/Desktop/Projects/Weekend_Challenges/airport_challenge/lib/airport_class.rb' <br >
+ => true <br >
+ [2] pry(main)> airport = Airport.new <br >
+ => #<Airport:0x007fa50c038e60 @capacity=10, @hangars=[], @weather=#<Weather:0x007fa50c038d48>> <br >
+ [3] pry(main)> plane = Plane.new <br >
+ => Plane:0x007fa50baf4030 <br >
+ [4] pry(main)> airport.land(plane) <br >
+ => Plane:0x007fa50baf4030> <br >
+ [5] pry(main)> airport.take_off(0) <br >
+ => Plane:0x007fa50baf4030> <br >
+ [6] pry(main)> airport.land(plane) <br >
+ RuntimeError: The weather is stormy, the plane can't land. <br >
+ from /Users/marcovanali/Desktop/Projects/Weekend_Challenges/airport_challenge/lib/airport_class.rb:23:in 'land' <br >
+ [7] pry(main)> <br >
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
 
-```
 
-Instructions
----------
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+To solve the challenge I started having a look to all the files contained in the folder.
+Then I focused on the README.md file and read the instructions.
 
-Steps
--------
+I Started with the first User story and created a table for it.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
 
-Task
------
+Object | Message
+------------ | -------------
+Air Traffic controller |
+Plane| Land at airport
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
-```
-As an air traffic controller
-So I can get passengers to a destination
-I want to instruct a plane to land at an airport
+Once the table was ready I organized the classes tree in my mind, and thought how to organize the possible methods.
+Then I created the first two classes, Airport and Planes, in two different files.
+I started with a feature test, which of course gave me errors.
+I made the unit test, and edited my code creating the right methods for landing and planing.
+Once my methods were ready I ran rspec to let pass the Unit tests.
+If the coverage was less than 100% I built more useful tests.
+Then Rubocop to correct style.
+Once everything was green and rubocop happy I commit the first task.
+After a research on Internet, to commit I used a template + the vim editor to write better commits.
 
-As an air traffic controller
-So I can get passengers on the way to their destination
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+Initially I was a bit struggling trying to figure out how to organize the class and methods.
+"Is the plane that need a method to go into the airport, or the class airport need a method to take the plane?"
+I was also trying to make a sky_space which kept the departed airplane but was useless in this case.
 
-As an air traffic controller
-To ensure safety
-I want to prevent takeoff when weather is stormy
+For this challenge when struggling I used a lot Google and my own notes to look for the right syntax.
 
-As an air traffic controller
-To ensure safety
-I want to prevent landing when weather is stormy
+I have solved all the user tasks. Or better, that one about the weather I solved in my way initially, but once adapted refering to the review file, 2 test about keep failing.
+Initially, to solve the weather task, I created in the Airport Class just an instance variable named @weather, equal to an array. 4 of five element were 'sunny' one 'stormy'.
+In base of what .sample took from this array the weather was choosen. I tested my code on Pry without any problem, and in the spec file using the attr_accessor to avoid randomness and setting a specific value to the @weather array (@weather = ['stormy']). It worked.
+Reading in the review later, I saw that I had to use stubs so I riorganized my code with a Weather class.(Use the attr_accessor to reduce randomness is a bad way?)
+I did it, and actually in Pry my code works.
 
-As an air traffic controller
-To ensure safety
-I want to prevent landing when the airport is full
+[1] pry(main)> require '/Users/marcovanali/Desktop/Projects/Weekend_Challenges/airport_challenge/lib/airport_class.rb' <br >
+=> true <br >
+[2] pry(main)> airport = Airport.new <br >
+=> #<Airport:0x007fa50c038e60 @capacity=10, @hangars=[], @weather=#<Weather:0x007fa50c038d48>> <br >
+[3] pry(main)> plane = Plane.new <br >
+=> Plane:0x007fa50baf4030 <br >
+[4] pry(main)> airport.land(plane) <br >
+=> Plane:0x007fa50baf4030> <br >
+[5] pry(main)> airport.take_off(0) <br >
+=> Plane:0x007fa50baf4030> <br >
+[6] pry(main)> airport.land(plane) <br >
+RuntimeError: The weather is stormy, the plane can't land. <br >
+from /Users/marcovanali/Desktop/Projects/Weekend_Challenges/airport_challenge/lib/airport_class.rb:23:in 'land' <br >
+[7] pry(main)> <br >
 
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+ But unfortunately I didn't figure out to let pass the error tests, avoiding randomness using a stubs. Probably I am missing something about the stubs. I will try to asking for help.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc.
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+ ##To be improved
+   - Let pass the tests that reduce randomness to test Error when weather is stormy.<br >
+   -Let the 'take_off' method check if @hangars is empty before to try to delete  a plane, and raise an error.<br >
+   -Create a Unit Test to check if 'take_off' method let take off exactly the     instance of Plane you choose.<br >
+    Same thing for land().<br >
+  -Improve the code following the review file.<br >
