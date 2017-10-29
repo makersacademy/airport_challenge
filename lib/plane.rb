@@ -29,5 +29,4 @@ class Plane
   def in?(airport)
     return true if airport.planes.include?(self)
   end
-
 end
