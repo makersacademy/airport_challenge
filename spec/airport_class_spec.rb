@@ -23,10 +23,8 @@ describe Airport do
     end
   end
 
-  describe 'take_off method respond' do
-    it 'Check if Airport class respond to the method take_off' do
-      expect(airport).to respond_to(:take_off)
-    end
+  describe 'take_off method respons' do
+    it { expect(airport).to respond_to(:take_off) }
   end
 
   describe 'take_off method' do
@@ -37,7 +35,7 @@ describe Airport do
     end
   end
 
-  describe 'take_off and land() method Errors' do
+  describe 'take_off and land() method weather Errors' do
     it "Check if the take_off method raise up an Error, when weather.sample is 'stormy'." do
       allow(weather).to receive(:stormy?).and_return(true)
       expect { airport.take_off(0) }.to raise_error("The weater is stormy, the plane can't depart.")
@@ -48,7 +46,7 @@ describe Airport do
     end
   end
 
-  describe 'initialize' do
+  describe 'initialize method' do
     it "check if an instance of the class Airport can take 1 argument" do
       expect { Airport.new(15) }.not_to raise_error(ArgumentError)
     end
