@@ -12,24 +12,24 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it "should store a landed plane at the airport" do
-      allow(subject).to receive_message_chain(:weather, :weather) { "sunny" }
+      allow(subject).to receive_message_chain(:weather, :stormy?) { false }
       subject.land(plane)
       expect(subject.planes.first).to eq(plane)
     end
 
     it "should raise error if plane already in airport" do
-      allow(subject).to receive_message_chain(:weather, :weather) { "sunny" }
+      allow(subject).to receive_message_chain(:weather, :stormy?) { false }
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error("plane already in airport")
     end
 
     it "should raise error if stormy & #land is called" do
-      allow(subject).to receive_message_chain(:weather, :weather) { "stormy" }
+      allow(subject).to receive_message_chain(:weather, :stormy?) { true }
       expect { subject.land(plane) }.to raise_error("the weather is stormy")
     end
 
     it "should raise error when full & #land called" do
-      allow(subject).to receive_message_chain(:weather, :weather) { "sunny" }
+      allow(subject).to receive_message_chain(:weather, :stormy?) { false }
       20.times { subject.land(Plane.new) }
       expect { subject.land(plane) }.to raise_error("the airport is full")
     end
@@ -43,9 +43,9 @@ describe Airport do
     end
 
     it "should raise error when stormy and #take_off is called " do
-      allow(subject).to receive_message_chain(:weather, :weather) { "sunny" }
+      allow(subject).to receive_message_chain(:weather, :stormy?) { false }
       subject.land(plane)
-      allow(subject).to receive_message_chain(:weather, :weather) { "stormy" }
+      allow(subject).to receive_message_chain(:weather, :stormy?) { true }
       expect { subject.take_off(plane) }.to raise_error("the weather is stormy")
     end
   end
@@ -56,9 +56,9 @@ describe Airport do
     end
 
     it "#take_off should remove the plane from the airport" do
-      allow(subject).to receive_message_chain(:weather, :weather) { "sunny" }
+      allow(subject).to receive_message_chain(:weather, :stormy?) { false }
       subject.land(plane)
-      allow(subject).to receive_message_chain(:weather, :weather) { "sunny" }
+      allow(subject).to receive_message_chain(:weather, :stormy?) { false }
       subject.take_off(plane)
       expect(subject.planes).to eq([])
     end
