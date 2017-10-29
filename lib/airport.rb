@@ -5,15 +5,14 @@ require './lib/weather'
 require './lib/air_exceptions'
 
 class Airport
-  attr_reader :name, :hangar, :capacity, :weather_generator, :atc
+  attr_reader :name, :hangar, :capacity, :weather_generator
   DEFAULT_CAPACITY = 50
 
-  def initialize(name, capacity = nil, weather = Weather.new)
-    @name = name
+  def initialize(options = {})
     @hangar = []
-    @capacity = capacity || DEFAULT_CAPACITY
-    @weather_generator = weather
-    @atc = ATC
+    @name = options[:name]
+    @capacity = options[:capacity] || DEFAULT_CAPACITY
+    @weather_generator = options[:weather] || Weather.new 
   end
 
   def occupancy
@@ -45,21 +44,25 @@ class Airport
   end
 
   def process_landing(aeroplane)
-    @atc.clear(self).to(:land)
+    ATC.clear(self).to(:land)
     register_arrival(aeroplane)
   end
 
   def process_docking(aeroplane)
-    @atc.clear(self).to(:dock)
+    ATC.clear(self).to(:dock)
     register_arrival(aeroplane)
   end
 
   def process_take_off(aeroplane)
-    @atc.clear(self).to(:take_off)
+    ATC.clear(self).to(:take_off)
     register_departure(aeroplane)
   end
 
   def to_s
-    "'#{@name}' airport (#{occupancy}/#{@capacity} aircraft)"
+    if @name.nil?
+      "unnamed airport (#{occupancy}/#{@capacity} aircraft)"
+    else
+      "'#{@name}' airport (#{occupancy}/#{@capacity} aircraft)"
+    end
   end
 end
