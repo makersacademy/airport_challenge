@@ -59,6 +59,15 @@ describe Aeroplane do
     end
   end
 
+  describe "#land" do 
+    context "arrives from the air" do
+      it "calls arrive with dock => false" do
+        expect(subject).to receive(:arrive).with(airport, false)
+        subject.land(airport)
+      end
+    end
+  end
+
   describe "#arrive" do 
     context "checks if already landed" do
       it "no error if flying" do
@@ -139,6 +148,35 @@ describe Aeroplane do
         subject = described_class.new(airport)
         subject.do_take_off
         expect(subject.airport).to eq nil
+      end
+    end
+  end
+  
+  describe "#to_s" do
+    context "with named aeroplane" do
+      it "starts with class and name" do
+        subject = described_class.new(nil, name: "hello")
+        expect(subject.to_s).to start_with "Aeroplane 'hello'"
+      end
+    end
+
+    context "with unnamed aeroplane" do
+      it "starts with class" do
+        expect(subject.to_s).to start_with "Aeroplane,"
+      end
+    end
+
+    context "with no airport" do
+      it "reports as airborne " do
+        expect(subject.to_s).to end_with "airborne"
+      end
+    end
+
+    context "with airport" do
+      it "reports airport.to_s" do
+        subject = described_class.new(airport)
+        allow(airport).to receive(:to_s).and_return("hello")
+        expect(subject.to_s).to end_with "hello"
       end
     end
   end

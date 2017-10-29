@@ -33,6 +33,10 @@ class Aeroplane
     do_arrival(airport)
   end
 
+  def land(airport)
+    arrive(airport, false)
+  end
+
   def take_off
     raise AeroplaneError, "is already flying" if flying?
     @airport.process_take_off(self)
@@ -40,15 +44,17 @@ class Aeroplane
   end
 
   def to_s
-    if @name
-      string = "Unnamed aeroplane"
+    parts = []
+    if @name.nil?
+      parts.push "Aeroplane"
     else
-      string = "Aeroplane '#{@name}'"
+      parts.push "Aeroplane '#{@name}'"
     end
     if flying?
-      string + " (airborne)"
+      parts.push "airborne"
     else
-      string + " (at #{airport.name})"
+      parts.push "at #{@airport.to_s}"
     end
+    parts.join(", ")
   end
 end
