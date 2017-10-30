@@ -8,6 +8,6 @@ class Airport
   end
 
   def stormy?
-    rand > 0.9 ? true : false
+    rand >= 0.9 ? true : false
   end
 end

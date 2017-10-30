@@ -1,4 +1,10 @@
 class Plane
+  attr_accessor :flying
+
+  def initialize
+    @flying
+  end
+
   def land(airport)
     fail "The weather is stormy! No planes can land at the moment." if airport.stormy?
     fail "The plane can't land as the airport"\
