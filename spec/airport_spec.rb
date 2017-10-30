@@ -2,9 +2,19 @@ require 'airport'
 
 
 class FakePlane
-
 end
 
+class MockSunny
+  def weather
+    "sunny"
+  end
+end
+
+class MockStormy
+  def weather
+    "stormy"
+  end
+end
 
 describe Airport do
   let(:plane) {
@@ -13,6 +23,7 @@ describe Airport do
   let(:plane2) { double FakePlane.new }
 
   let(:plane3) { double FakePlane.new }
+  before(:each) { stub_const("Weather", MockSunny) }
 
 
 
@@ -34,6 +45,7 @@ describe Airport do
     end
 
     it "should not allow planes to land when weather is stormy" do
+      stub_const("Weather", MockStormy)
       expect(subject.land(plane)).to eq "Plane not able to land due to storm"
     end
   end
@@ -50,7 +62,8 @@ describe Airport do
     end
 
     it "should not be able to take off in stormy weather" do
-  !    expect(subject.take_off(plane)).to eq ("Plane can not take off due to stormy weather")
+      stub_const("Weather", MockStormy)
+      expect(subject.take_off(plane)).to eq ("Plane can not take off due to stormy weather")
     end
 
   end
