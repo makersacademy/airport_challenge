@@ -17,7 +17,7 @@ describe Plane do
     allow(airport).to receive(:stormy?) { false }
     50.times { airport.landed_planes << Plane.new }
     subject.take_off(airport)
-    expect(airport.landed_planes.length).to eq 4
+    expect(airport.landed_planes.length).to eq 49
   end
 
   it "Should return an error if a plane tries to take off but there are no planes at the airport" do
@@ -51,6 +51,7 @@ describe Plane do
   #   airport1 = Airport.new
   #   allow(airport).to receive(:stormy?) { false }
   #   allow(airport1).ro receive(:stormy?) { false }
+  #   subject.land(airport)
   # end
 
 end
