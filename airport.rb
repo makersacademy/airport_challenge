@@ -9,9 +9,3 @@ def allows_landing(plane)
 end
 
 end
-
-
-class Plane
-
-
-end
