@@ -1,6 +1,8 @@
 Airport Challenge
 =================
 
+This challenge was made by the MakerAcademy, here you will see what they asked us to do and how I solved it + how the code works.
+
 ```
         ______
         _\____\___
@@ -12,49 +14,31 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
 Task
 -----
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +57,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
@@ -87,4 +71,44 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+
+Solution
+---------
+
+My approach was the following:
+
+1- I made a chart to check what I wanted and how many steps I needed
+
+<img src = "images/chart.jpg" />
+
+2- For each step that I made, I tested "the code" on IRB and watched it fail in a miserable way.
+3- I made a test in Rspec for each step, and watched it fail many.
+4- I made the test pass by putting an easy solution (Yeah, shameless I know).
+5-I added some real code, sometimes I watched it pass, other times I struggled a lot.
+
+When did I struggled the most?
+Raising errors, I tried to raised them using expect(), instead of expect {}, and took me a lot of time before realising it.
+
+
+
+
+How it works
+-------------
+The code have 3 classes, and a .rb file for each classes
+- airplane.rb
+- weather.rb
+- airport.rb
+
+The airplane class have to be initialized, to know wether it is in the ground or not, it have been set by default to NOT be on the ground. Then, it have a method "Flying?" that returns true if the plane is flaying and false if not.
+
+The weather class have a method "sunny?" that returns true 70% of the times for sunny days and false 30% of the times for stormy days. I did this method searching in StackOverflow the best way to return a random boolean.
+
+The airport class have 6 methods and needs to be initialized with the capacity info (this have been set as 50 for default). The land method save the plane info in an array when the airport is not full and the plane is not on the ground, then it returns self, this is because we want to check the airport with the array and not only the array of planes.
+
+The full? method checks if the airport if full in order to land or raise an error.
+
+The takeoff method returns a plane for it to fly.
+
+The raise_stormy_errors was made to well... raise the error when trying to land or takeoff a plane, if you check the code you will see that the other errors for full and empty are inside the takeoff and land methods, I didn't use them in the same "raise_stormy_errors" method because It would send and error when trying to land a plane when empty or takeoff a plane while full. Instead I created specific methods for both landing and takeoff errors.
