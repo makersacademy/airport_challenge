@@ -20,14 +20,16 @@ class Airport
 
   def take_off(plane)
     raise "Stormy weather conditions are preventing take off" if weather_check
-    hangar.pop
+    hangar.delete(plane)
     "#{plane} has taken off"
   end
 
   private
 
+  attr_reader :weather
+
   def weather_check
-    @weather.stormy?
+    weather.stormy?
   end
 
   def full?
