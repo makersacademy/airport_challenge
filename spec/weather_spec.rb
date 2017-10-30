@@ -2,7 +2,7 @@ require "weather"
 
 describe Weather do
 
-  describe "initialize" do
+  describe "#initialize" do
 
     it "can be initiated" do
       expect(subject).to be_an_instance_of(Weather)
@@ -10,7 +10,7 @@ describe Weather do
 
   end
 
-  describe "stormy?" do
+  describe "#stormy?" do
 
     it "expects stormy to return true when storm_chance>0.9" do
       allow(subject).to receive(:rand).and_return(1)

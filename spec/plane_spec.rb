@@ -4,7 +4,7 @@ describe Plane do
 
   let(:airport) { double(:airport) }
 
-  describe "initialize plane" do
+  describe "#initialize" do
 
     it "allows a plane to exist" do
       expect(subject).to be_an_instance_of(Plane)
@@ -16,7 +16,7 @@ describe Plane do
 
   end
 
-  describe "flying" do
+  describe "#flying" do
 
     it "expects a plane to respond to flying method" do
       expect(subject).to respond_to(:flying)
@@ -28,7 +28,7 @@ describe Plane do
 
   end
 
-  describe "attempt landing at airport" do
+  describe "#attempt landing" do
 
     it "expects a plane to respond to attempt_land method at an airport" do
       expect(subject).to respond_to(:attempt_land).with(1).argument
@@ -43,7 +43,7 @@ describe Plane do
 
   end
 
-  describe "attempt taking-off from airport" do
+  describe "#attempt taking-off" do
 
     it "expects a plane to respond to attempt_take_off method at an airport" do
       expect(subject).to respond_to(:attempt_take_off).with(1).argument
@@ -57,7 +57,7 @@ describe Plane do
 
   end
 
-  describe "move_to" do
+  describe "#move_to" do
 
     it "expects error if move_to is called on a flying plane" do
       allow(subject).to receive(:flying).and_return(true)

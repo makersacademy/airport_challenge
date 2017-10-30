@@ -4,7 +4,7 @@ describe Airport do
 
   let(:plane) { double(:plane) }
 
-  describe "initialize airport" do
+  describe "#initialize" do
 
     it "allows an airport to exist" do
       expect(subject).to be_an_instance_of(Airport)
@@ -16,7 +16,7 @@ describe Airport do
 
   end
 
-  describe "land" do
+  describe "#land" do
 
     it "allows landing at an airport" do
       expect(subject).to respond_to(:land)
@@ -52,7 +52,7 @@ describe Airport do
 
   end
 
-  describe "take-off" do
+  describe "#take-off" do
 
     it "allows for a plane to take-off from airport" do
       expect(subject).to respond_to(:take_off)
@@ -85,7 +85,7 @@ describe Airport do
 
   end
 
-  describe "planes" do
+  describe "#planes" do
 
     it "ensures @planes is an array" do
       expect(subject.planes).to be_kind_of(Array)
@@ -103,7 +103,7 @@ describe Airport do
 
   end
 
-  describe "store" do
+  describe "#store" do
 
     it "doesn't allow an airport to store a plane if it is full" do
       allow(subject).to receive(:full?).and_return(true)
@@ -118,7 +118,7 @@ describe Airport do
 
   end
 
-  describe "capacity" do
+  describe "#capacity" do
 
     it "ensures capacity returns the capacity of the airport for default capacity" do
       expect(subject.capacity).to eq(20)
