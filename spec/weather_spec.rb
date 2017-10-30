@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do 
 
-  let(:subject) {described_class.new}
+  let(:subject) { described_class.new }
 
   describe "#stormy?" do
     it 'returns true when rand is greater than 0.8' do
