@@ -11,28 +11,17 @@ attr_reader   :planes
   end
 
   def land(plane)
-    weather = Weather.new
-    permission = weather.weather
-    puts "LOOK HERE"
-    p permission
-     if full?
-       "capacity has been reached"
-     elsif permission == "stormy"
-       "Plane not able to land due to storm"
-     else
-       @planes << plane
-     end
+    weather = Weather.new.weather
+    raise "capacity has been reached" if full?
+    raise "Plane not able to land due to storm"  if weather == "stormy"
+    @planes << plane
   end
 
   def take_off(plane)
-    weather = Weather.new
-    permission = weather.weather
-    if permission == "stormy"
-      "Plane can not take off due to stormy weather"
-    else
+    weather = Weather.new.weather
+    raise "Plane can not take off due to stormy weather"  if weather == "stormy"
     @planes.delete(plane)
     "#{plane} has taken off"
-    end
   end
 
   def full?

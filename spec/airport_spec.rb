@@ -41,12 +41,12 @@ describe Airport do
       airport = Airport.new(2)
       airport.land(plane)
       airport.land(plane2)
-      expect(airport.land(plane3)).to eq "capacity has been reached"
+      expect{airport.land(plane3)}.to raise_error("capacity has been reached")
     end
 
     it "should not allow planes to land when weather is stormy" do
       stub_const("Weather", MockStormy)
-      expect(subject.land(plane)).to eq "Plane not able to land due to storm"
+      expect{subject.land(plane)}.to raise_error "Plane not able to land due to storm"
     end
   end
 
@@ -63,7 +63,7 @@ describe Airport do
 
     it "should not be able to take off in stormy weather" do
       stub_const("Weather", MockStormy)
-      expect(subject.take_off(plane)).to eq ("Plane can not take off due to stormy weather")
+      expect{subject.take_off(plane)}.to raise_error ("Plane can not take off due to stormy weather")
     end
 
   end
