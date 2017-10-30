@@ -1,10 +1,8 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
   subject { Airport.new }
-  let(:plane) { Plane.new }
-  let(:weather) { double(:weather => "stormy") }
+  let(:plane) { double(:plane) }
 
   it { is_expected.to be_an_instance_of(Airport) }
 
