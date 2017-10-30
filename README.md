@@ -1,90 +1,106 @@
-Airport Challenge
-=================
+# Airport Challenge
+
+## Description
+
+This project creates a software that can be used for airports to manage the landing and taking-off of planes depending on airport capacity and weather. It also takes into account that new planes can be built and moved into airports by land.
+
+## Workflow
+
+The workflow establishes 3 classes: Airport, Plane and Weather. The first two provide the framework to allow planes from moving around in between airports whereas the last one has as it's only function to establish the weather.
+
+In order to use our project we will need to:
+
+1. Create an airport which will start empty and with the default capacity of 20 planes (this can be adjusted by passing an argument when creating the airport instance).
+
+``` 
+[4] pry(main)> heathrow=Airport.new
+=> #<Airport:0x007fdbf3ac27f0 @capacity=20, @planes=[]>
+```
+2. Create a plane, when it's created, by default the plane is not flying.
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+[4] pry(main)> lufthansa=Plane.new
+=> #<Plane:0x007fdc8f228c10 @flying=false>
+```
+3. We can now move the plane to the airport:
 
 ```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
+[8] pry(main)> lufthansa.move_to(heathrow)
+```
+4. We can now check if the plane is at the airport:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
-I want to instruct a plane to land at an airport
+[9] pry(main)> heathrow.planes
+=> [#<Plane:0x007fdc8f228c10 @flying=false>]
+```
+5. The plane can now attempt to take-off...
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
-I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
+[10] pry(main)> lufthansa.attempt_take_off(heathrow)
+RuntimeError: The weather is too stormy to take-off, wait for further instructions.!
+```
+6. Well, the weather is a random variable and although most of the times it's sunny, sometimes it is stormy and planes cannot take-off. Let's try again and see if the weather got better:
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+```
+[11] pry(main)> lufthansa.attempt_take_off(heathrow)
+=> true
+```
+7. The plane is now flying, let's check it's flying status:
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+```
+[12] pry(main)> lufthansa.flying
+=> true
+```
+8. We can confirm the plane is flying! Now let's try and have it land!
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
-
-As the system designer
-So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
+```
+[13] pry(main)> lufthansa.attempt_land(heathrow)
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
+9. Thankfully it wasn't stormy so the landing was successful. Let's see what is the flying status of the plane now:
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+```
+[14] pry(main)> lufthansa.flying
+=> false
+```
+10. This has now moved to false. We can now confirm that the plane was correctly stored at the airport
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
+```
+[15] pry(main)> heathrow.planes
+=> [#<Plane:0x007fdc8f228c10 @flying=false>]
+```
+11. To finalize, let's try and move 20 planes to this airport. Lufthansa is already there and the capacity is 20 so this could cause a problem...
 
-Please create separate files for every class, module and test suite.
+```
+[16] pry(main)> 20.times {Plane.new.move_to(heathrow)}
+RuntimeError: This airport is full.
+```
+12. Oh! Thankfully our code prevents for that. Let's check how many planes we have at Heathrow now:
 
-In code review we'll be hoping to see:
+```
+18] pry(main)> heathrow.planes
+=> [#<Plane:0x007fdc8f228c10 @flying=false>,
+ #<Plane:0x007fdc9008db98 @flying=false>,
+ #<Plane:0x007fdc9008db48 @flying=false>,
+ #<Plane:0x007fdc9008db20 @flying=false>,
+ #<Plane:0x007fdc9008daf8 @flying=false>,
+ #<Plane:0x007fdc9008dad0 @flying=false>,
+ #<Plane:0x007fdc9008da80 @flying=false>,
+ #<Plane:0x007fdc9008da58 @flying=false>,
+ #<Plane:0x007fdc9008da30 @flying=false>,
+ #<Plane:0x007fdc9008da08 @flying=false>,
+ #<Plane:0x007fdc9008d9b8 @flying=false>,
+ #<Plane:0x007fdc9008d990 @flying=false>,
+ #<Plane:0x007fdc9008d968 @flying=false>,
+ #<Plane:0x007fdc9008d940 @flying=false>,
+ #<Plane:0x007fdc9008d918 @flying=false>,
+ #<Plane:0x007fdc9008d8f0 @flying=false>,
+ #<Plane:0x007fdc9008d8c8 @flying=false>,
+ #<Plane:0x007fdc9008d8a0 @flying=false>,
+ #<Plane:0x007fdc9008d878 @flying=false>,
+ #<Plane:0x007fdc9008d850 @flying=false>]
+ ```
+ 13. And this is the basic workflow of the program. If you have further suggestions, I'd definitely appreciate it!
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
 
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
