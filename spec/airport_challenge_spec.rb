@@ -28,26 +28,23 @@ require 'weather'
 # So that the software can be used for many different airports
 # I would like a default airport capacity that can be overridden as appropriate
 
+plane = Plane.new
+airport = Airport.new
+
 describe AirTrafficController do
   it "instructs plane to land at an airport" do
-    plane = Plane.new
-    airport = Airport.new
     allow(subject).to receive(:is_stormy?) { false }
     subject.instruct_to_land(plane, airport)
     expect(plane.has_landed?).to be true
   end
   it 'instructs a plane to take off from an airport' do
-    plane = Plane.new
-    airport = Airport.new
     allow(subject).to receive(:is_stormy?) { false }
     subject.instruct_to_take_off(plane, airport)
     expect(plane.has_taken_off).to be true
   end
   it 'confirms that the plane is no longer in the airport' do
-    plane = Plane.new
-    airport = Airport.new
     allow(subject).to receive(:is_stormy?) { false }
-  expect(subject.instruct_to_take_off(plane, airport)).to eq true
+    expect(subject.instruct_to_take_off(plane, airport)).to eq true
   end
   it 'prevents plane from taking off if weather is stormy' do
     plane = Plane.new

@@ -1,25 +1,21 @@
 class AirTrafficController
 
-  def is_stormy?
-    weather = Weather.new
-    weather.is_stormy?
+  def is_stormy?(weather)
+    # weather = Weather.new
+    p weather.is_stormy?
+    p "dolphin face"
+
   end
 
   def instruct_to_land(plane, airport)
-    if is_stormy? == true
-      return
-    end
-    if airport.full?
-      return
-    end
+    return if is_stormy?
+    return if airport.full?
     plane.land
     airport.register_landing(plane)
   end
 
   def instruct_to_take_off(plane, airport)
-    if is_stormy? == true
-      return
-    end
+    return if is_stormy? == true
     plane.take_off
   end
 end
