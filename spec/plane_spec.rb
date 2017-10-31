@@ -1,5 +1,5 @@
 require 'plane'
-require 'airport'
+
 
 class MockSunny
   def weather
@@ -8,7 +8,7 @@ class MockSunny
 end
 
 describe Plane do
-
+let(:airport) {double :airport}
   describe "#inflight" do
     it "should give me the status of the airplane" do
       expect(subject.in_flight).to be false
@@ -20,7 +20,8 @@ describe Plane do
 
     it "should change status when plane lands" do
       stub_const("Weather", MockSunny)
-      airport = Airport.new
+      allow(airport).to receive(:take_off).and_return("#{subject} has taken off")
+      allow(airport).to receive(:land).and_return("The plane has landed")
       airport.take_off(subject)
       airport.land(subject)
       expect(subject.in_flight?).to eq false
