@@ -16,9 +16,7 @@ class MockStormy
 end
 
 describe Airport do
-  let(:plane) {
-    plane = double FakePlane.new
-  }
+  let(:plane) { double FakePlane.new }
 
   let(:plane2) { double FakePlane.new }
 

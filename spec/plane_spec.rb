@@ -1,6 +1,5 @@
 require 'plane'
 
-
 class MockSunny
   def weather
     "sunny"
@@ -8,7 +7,7 @@ class MockSunny
 end
 
 describe Plane do
-let(:airport) {double :airport}
+  let(:airport) { double :airport }
   describe "#inflight" do
     it "should give me the status of the airplane" do
       expect(subject.in_flight).to be false
@@ -26,7 +25,5 @@ let(:airport) {double :airport}
       airport.land(subject)
       expect(subject.in_flight?).to eq false
     end
-
   end
-
 end
