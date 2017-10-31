@@ -9,21 +9,23 @@ end
 
 describe Plane do
 
-  describe "#status" do
+  describe "#inflight" do
     it "should give me the status of the airplane" do
-      expect(subject.status).to eq ("in flight")
+      expect(subject.in_flight).to be false
     end
 
     it "should initialize with a status" do
-      expect(Plane.new.status).to eq ("in flight")
+      expect(Plane.new.in_flight?).to eq false
     end
 
     it "should change status when plane lands" do
       stub_const("Weather", MockSunny)
       airport = Airport.new
+      airport.take_off(subject)
       airport.land(subject)
-      expect(subject.status).to eq("landed")
+      expect(subject.in_flight?).to eq false
     end
+
   end
 
 end
