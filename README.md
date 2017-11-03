@@ -2,6 +2,8 @@
 
 **Weekend 1 Challenge at Makers Academy**
 
+This project was also done in [Javascript ES5](https://github.com/georn/airportChallenge) and [Javascript ES6](https://github.com/georn/airportChallengeES6)
+
 ```
         ______
         _\____\___
@@ -80,4 +82,5 @@ Here is a list of the technologies used:
 - Rspec to testing
 - Simplecov for testing coverage
 - Rubocop to maintain styling
+- Travis CI for continuous integration
 - Coveralls for testing coverage hosted online
