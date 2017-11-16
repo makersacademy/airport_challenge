@@ -1,16 +1,21 @@
 require 'airport'
-let(:flying_plane) { double :plane}
 
 describe Airport do
-  it 'can land a plane' do
-    expect(flying_plane).to receive(:land)
-    subject.land(flying_plane)
+  let(:flying_plane) { double :plane }
+
+  before(:each) do
+    allow(flying_plane).to receive(:land)
   end
 
-  xit 'confirms the plane has landed' do
-    plane = double :plane, land: "it doesn't matter what I put here"
-    subject.land(plane)
-    expect(subject.confirm(plane)).to eq true
-  end
+  context 'landing of a plane' do
+    it 'can land a plane' do
+      subject.land(flying_plane)
+    end
 
+    it 'confirms the plane has landed' do
+      subject.land(flying_plane)
+      message = "The plane #{flying_plane.object_id} has landed."
+      expect(subject.confirm(flying_plane)).to eq message
+    end
+  end
 end
