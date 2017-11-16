@@ -7,4 +7,6 @@ CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
 .idea/**/*
+.idea/workspace.xml
+
 
