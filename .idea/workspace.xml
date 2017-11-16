@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a41b3e61-6667-4e26-aa2c-5ff766a56ee4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/airport_feature_spec.rb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/weather.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/weather_spec.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/airport.rb" afterPath="$PROJECT_DIR$/lib/airport.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/plane.rb" afterPath="$PROJECT_DIR$/lib/plane.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/airport_spec.rb" afterPath="$PROJECT_DIR$/spec/airport_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/plane_spec.rb" afterPath="$PROJECT_DIR$/spec/plane_spec.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +16,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/airport_challenge@All_tests_in_spec__airport_challenge.coverage" NAME="All tests in spec: airport_challenge Coverage Results" MODIFIED="1510853954339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
-    <SUITE FILE_PATH="coverage/airport_challenge@All_specs_in_airport_challenge__airport_challenge.coverage" NAME="All specs in airport_challenge: airport_challenge Coverage Results" MODIFIED="1510856852147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
+    <SUITE FILE_PATH="coverage/airport_challenge@All_specs_in_airport_challenge__airport_challenge.coverage" NAME="All specs in airport_challenge: airport_challenge Coverage Results" MODIFIED="1510858551951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@All_tests_in_airport_challenge__airport_challenge.coverage" NAME="All tests in airport_challenge: airport_challenge Coverage Results" MODIFIED="1510854723213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
   </component>
   <component name="DatabaseView">
@@ -42,9 +36,11 @@
       <file leaf-file-name="airport_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/airport_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="90">
+              <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+              <folding>
+                <element signature="e#221#368#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,8 +68,8 @@
       <file leaf-file-name="airport.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/airport.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+            <state relative-caret-position="75">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+              <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -92,8 +88,8 @@
       <file leaf-file-name="airport_feature_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/airport_feature_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+            <state relative-caret-position="90">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -119,15 +115,15 @@
         <option value="$PROJECT_DIR$/lib/weather.rb" />
         <option value="$PROJECT_DIR$/spec/weather_spec.rb" />
         <option value="$PROJECT_DIR$/docs/README.md" />
-        <option value="$PROJECT_DIR$/spec/airport_spec.rb" />
         <option value="$PROJECT_DIR$/.rspec" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/spec/airport_feature_spec.rb" />
         <option value="$PROJECT_DIR$/spec/spec_helper.rb" />
         <option value="$PROJECT_DIR$/lib/plane.rb" />
         <option value="$PROJECT_DIR$/spec/plane_spec.rb" />
-        <option value="$PROJECT_DIR$/lib/airport.rb" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/lib/airport.rb" />
+        <option value="$PROJECT_DIR$/spec/airport_spec.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
@@ -452,29 +448,11 @@
       <workItem from="1500031598462" duration="823000" />
       <workItem from="1500501764078" duration="245000" />
       <workItem from="1510099465220" duration="53000" />
-      <workItem from="1510853217773" duration="3759000" />
+      <workItem from="1510853217773" duration="4860000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 16m 30s.xml">
-      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 19m 08s.xml">
-      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 19m 32s.xml">
-      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 20m 02s.xml">
-      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 20m 48s.xml">
-      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 23m 40s.xml">
-      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
     <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 24m 08s.xml">
       <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
@@ -487,9 +465,27 @@
     <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 27m 32s.xml">
       <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 48m 58s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 49m 44s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 50m 02s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 52m 02s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 53m 36s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.16 at 18h 55m 52s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39138000" />
+    <option name="totallyTimeSpent" value="40239000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -510,7 +506,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32823366" sideWeight="0.50572246" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32823366" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5910987" sideWeight="0.49427754" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5897079" sideWeight="0.49427754" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32823366" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" />
@@ -550,7 +546,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#221#368#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -574,7 +572,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#221#368#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -602,7 +602,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#221#368#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -630,7 +632,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#221#368#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -673,7 +677,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="533">
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#221#368#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -783,22 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/airport_feature_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/airport_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/plane_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -818,10 +808,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/airport.rb">
+    <entry file="file://$PROJECT_DIR$/spec/airport_feature_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/airport_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+          <folding>
+            <element signature="e#221#368#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/airport.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -829,7 +837,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
           <folding />
         </state>
       </provider>

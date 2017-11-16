@@ -1,31 +1,12 @@
-require_relative 'plane'
-require_relative 'weather'
-
+# manages landing and leaving planes. Takes information from Weather class to
+# decide whether a plane should land or take off.
 class Airport
-  CAPACITY = 1
-  attr_accessor :weather
 
-  def initialize weather = Weather
-    @capacity = CAPACITY
-    @weather = weather
-    @planes = []
-    @full = false
+  def land(plane)
+    plane.land
   end
 
-  def full?
-    @full
-  end
-
-  def land plane
-    if !weather.stormy? && !full?
-      plane.land
-    else
-      "Don't land. Unfavourable conditions" #raise error
-    end
-  end
-
-  def take_off plane
-
-  end
-
+  # def confirm(_plane)
+  #   true
+  # end
 end
