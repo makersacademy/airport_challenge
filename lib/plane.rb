@@ -1,20 +1,11 @@
+# holds the state of a plane
 class Plane
-
-  def initialize landed = true
-    @landed = landed
+  def initialize
+    @flying = true
   end
 
-  # Lands the plane and returns its status
-  def land
-    @landed = true
-  end
-
-  def take_off
-    @landed = false
-  end
-
-  def landed?
-    @landed
+  def flying?
+    @flying
   end
 
 end
