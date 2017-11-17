@@ -6,4 +6,4 @@ plane = Plane.new
 plane.flying?
 
 airport.land(plane)
-p plane.landed?
+plane.landed?
