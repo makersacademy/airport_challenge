@@ -5,11 +5,10 @@ require_relative 'plane'
 class Airport
 
   def land(plane)
-    landed_plane = plane.land
-    confirm(landed_plane)
+    plane.land
   end
 
-  def confirm(plane)
-    p "The plane #{plane.object_id} has landed." if plane.landed?
+  def take_off(plane)
+    plane.take_off
   end
 end

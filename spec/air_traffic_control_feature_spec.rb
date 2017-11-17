@@ -7,3 +7,6 @@ plane.flying?
 
 airport.land(plane)
 plane.landed?
+
+airport.take_off(plane)
+plane.flying?

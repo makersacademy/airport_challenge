@@ -18,7 +18,7 @@ Steps
 -------
 Used Rspec to TDD the features.
 
-First user story completed. The Airport lands a plane and confirms landing. The Plane has status of flying or landing.  
+First and second user stories are completed. The Airport gives instructions to land and take off to a plane and confirms status. The Plane has status of flying or landing.
 
 Task
 -----

@@ -1,6 +1,6 @@
 # holds the state of a plane
 class Plane
-  # attr_reader :landed
+  attr_reader :landed
 
   def initialize
     @landed = false
@@ -16,6 +16,11 @@ class Plane
 
   def land
     @landed = true
+    self
+  end
+
+  def take_off
+    @landed = false
     self
   end
 end
