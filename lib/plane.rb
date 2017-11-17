@@ -1,13 +1,17 @@
 # holds the state of a plane
 class Plane
-  attr_reader :flying, :landed
+  # attr_reader :landed
 
   def initialize
-    @flying = false
+    @landed = false
   end
 
   def flying?
-    @flying
+    !@landed
+  end
+
+  def landed?
+    @landed
   end
 
   def land

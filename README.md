@@ -16,7 +16,9 @@ Airport Challenge
 
 Steps
 -------
+Used Rspec to TDD the features.
 
+First user story completed. The Airport lands a plane and confirms landing. The Plane has status of flying or landing.  
 
 Task
 -----
@@ -24,6 +26,7 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
+
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport and confirm that it has landed
