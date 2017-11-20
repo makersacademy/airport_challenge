@@ -10,7 +10,8 @@ class Airport
     plane.land
   end
 
-  def take_off(plane)
+  def take_off(plane, weather)
+    raise 'Take-off denied due to stormy weather' if weather.stormy?
     plane.take_off
   end
 end

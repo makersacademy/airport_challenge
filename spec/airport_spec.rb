@@ -21,7 +21,7 @@ describe Airport do
       subject.land(flying_plane, sunny_weather)
       expect(flying_plane).to be_landed
     end
-    it 'does not allow a plane to take off if the weather is stormy' do
+    it 'does not allow a plane to land if the weather is stormy' do
       message = 'Landing denied due to stormy weather'
       expect { subject.land(flying_plane, stormy_weather) }
           .to raise_error message
@@ -31,7 +31,13 @@ describe Airport do
   context 'in take-off procedure' do
     it 'gives the plane instructions to take off' do
       subject.land(flying_plane, sunny_weather)
-      expect(subject.take_off(parked_plane)).not_to be_landed
+      expect(subject.take_off(parked_plane, sunny_weather)).not_to be_landed
+    end
+    it 'does not allow a plane to take off if the weather is stormy' do
+      message = 'Take-off denied due to stormy weather'
+      subject.land(flying_plane, sunny_weather)
+      expect { subject.take_off(parked_plane, stormy_weather) }
+          .to raise_error message
     end
   end
 end

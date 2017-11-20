@@ -9,5 +9,5 @@ plane.flying?
 airport.land(plane, weather)
 plane.landed?
 
-airport.take_off(plane)
+airport.take_off(plane, weather)
 plane.flying?
