@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a41b3e61-6667-4e26-aa2c-5ff766a56ee4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/airport.rb" afterPath="$PROJECT_DIR$/lib/airport.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/weather.rb" afterPath="$PROJECT_DIR$/lib/weather.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/airport_spec.rb" afterPath="$PROJECT_DIR$/spec/airport_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/weather_spec.rb" afterPath="$PROJECT_DIR$/spec/weather_spec.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,7 +25,7 @@
     <SUITE FILE_PATH="coverage/airport_challenge@All_tests_in_spec__airport_challenge.coverage" NAME="All tests in spec: airport_challenge Coverage Results" MODIFIED="1510853954339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@Plane_can__take_off__airport_challenge.coverage" NAME="Plane can #take off: airport_challenge Coverage Results" MODIFIED="1510957545832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@Plane_is__landed__airport_challenge.coverage" NAME="Plane is #landed: airport_challenge Coverage Results" MODIFIED="1510940423073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
-    <SUITE FILE_PATH="coverage/airport_challenge@All_specs_in_airport_challenge__airport_challenge.coverage" NAME="All specs in airport_challenge: airport_challenge Coverage Results" MODIFIED="1511204272389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
+    <SUITE FILE_PATH="coverage/airport_challenge@All_specs_in_airport_challenge__airport_challenge.coverage" NAME="All specs in airport_challenge: airport_challenge Coverage Results" MODIFIED="1511204658668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@All_tests_in_airport_challenge__airport_challenge.coverage" NAME="All tests in airport_challenge: airport_challenge Coverage Results" MODIFIED="1510854723213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@Run_spec__airport_spec___airport_challenge.coverage" NAME="Run spec 'airport_spec': airport_challenge Coverage Results" MODIFIED="1511204223947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
   </component>
@@ -45,21 +45,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="air_traffic_control_feature_spec.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="air_traffic_control_feature_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/air_traffic_control_feature_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="195">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="airport.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="airport.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/airport.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="weather.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/weather.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="weather_spec.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/weather_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -68,8 +88,8 @@
       <file leaf-file-name="airport_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/airport_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="31" column="47" lean-forward="false" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+            <state relative-caret-position="130">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -101,11 +121,11 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/lib/plane.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/lib/airport.rb" />
         <option value="$PROJECT_DIR$/spec/weather_spec.rb" />
-        <option value="$PROJECT_DIR$/lib/weather.rb" />
-        <option value="$PROJECT_DIR$/spec/airport_spec.rb" />
         <option value="$PROJECT_DIR$/spec/air_traffic_control_feature_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/airport_spec.rb" />
+        <option value="$PROJECT_DIR$/lib/weather.rb" />
+        <option value="$PROJECT_DIR$/lib/airport.rb" />
       </list>
     </option>
   </component>
@@ -533,44 +553,44 @@
       <workItem from="1500031598462" duration="823000" />
       <workItem from="1500501764078" duration="245000" />
       <workItem from="1510099465220" duration="53000" />
-      <workItem from="1510853217773" duration="30501000" />
+      <workItem from="1510853217773" duration="30891000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 18h 57m 39s.xml">
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 02m 15s.xml">
       <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 18h 57m 52s.xml">
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 02m 20s.xml">
       <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'airport_spec'__airport_challenge - 2017.11.20 at 18h 45m 27s.xml">
-      <configuration name="Run spec 'airport_spec': airport_challenge" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 02m 21s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'airport_spec'__airport_challenge - 2017.11.20 at 18h 52m 36s.xml">
-      <configuration name="Run spec 'airport_spec': airport_challenge" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 02m 23s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'airport_spec'__airport_challenge - 2017.11.20 at 18h 53m 41s.xml">
-      <configuration name="Run spec 'airport_spec': airport_challenge" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 02m 42s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'airport_spec'__airport_challenge - 2017.11.20 at 18h 54m 14s.xml">
-      <configuration name="Run spec 'airport_spec': airport_challenge" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 02m 51s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'airport_spec'__airport_challenge - 2017.11.20 at 18h 54m 41s.xml">
-      <configuration name="Run spec 'airport_spec': airport_challenge" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 03m 44s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'airport_spec'__airport_challenge - 2017.11.20 at 18h 56m 26s.xml">
-      <configuration name="Run spec 'airport_spec': airport_challenge" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 04m 13s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'airport_spec'__airport_challenge - 2017.11.20 at 18h 56m 53s.xml">
-      <configuration name="Run spec 'airport_spec': airport_challenge" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 04m 17s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec_'airport_spec'__airport_challenge - 2017.11.20 at 18h 57m 04s.xml">
-      <configuration name="Run spec 'airport_spec': airport_challenge" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.20 at 19h 04m 19s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65880000" />
+    <option name="totallyTimeSpent" value="66270000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -896,22 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/weather.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/weather_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/plane_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -920,26 +924,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/airport.rb">
+    <entry file="file://$PROJECT_DIR$/spec/air_traffic_control_feature_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/weather.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/weather_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/airport_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="31" column="47" lean-forward="false" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+        <state relative-caret-position="130">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/air_traffic_control_feature_spec.rb">
+    <entry file="file://$PROJECT_DIR$/lib/airport.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="105">
+          <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
           <folding />
         </state>
       </provider>

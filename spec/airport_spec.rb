@@ -19,7 +19,7 @@ describe Airport do
   context 'when landing of a plane' do
     it 'lands a plane' do
       subject.land(flying_plane, sunny_weather)
-      expect(parked_plane).to be_landed
+      expect(subject.planes).to include(parked_plane)
     end
     it 'does not allow a plane to land if the weather is stormy' do
       message = 'Landing denied due to stormy weather'

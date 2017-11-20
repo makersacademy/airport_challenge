@@ -7,7 +7,7 @@ class Weather
 
   private
 
-  FORECAST = [:stormy, :sunny, :stormy, :sunny, :sunny].freeze
+  FORECAST = [:stormy, :sunny, :sunny].freeze
 
   def random_forecast
     FORECAST.sample
