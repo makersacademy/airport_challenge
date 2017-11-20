@@ -1,4 +1,5 @@
 .DS_Store
+.idea
 coverage/**/*
 .rubocop-upgraded.yml
 disabled-upgraded.yml
@@ -6,7 +7,6 @@ enabled-upgraded.yml
 CoverallsRakefile
 analysis/**/*
 .gitignore-analysis
-.idea/**/*
 .idea/workspace.xml
 
 
