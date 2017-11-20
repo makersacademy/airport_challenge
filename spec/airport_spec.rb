@@ -16,10 +16,16 @@ describe Airport do
     allow(sunny_weather).to receive(:stormy?).and_return(false)
   end
 
+  it 'has initial capacity' do
+    expect(subject.capacity).to eq 100
+  end
   context 'when landing of a plane' do
     it 'lands a plane' do
       subject.land(flying_plane, sunny_weather)
       expect(subject.planes).to include(parked_plane)
+    end
+    xit 'lands a multitude of planes when capacity allows it' do
+
     end
     it 'does not allow a plane to land if the weather is stormy' do
       message = 'Landing denied due to stormy weather'
