@@ -18,15 +18,25 @@ describe Airport do
   end
 
   it 'has initial capacity' do
-    expect(subject.capacity).to eq described_class::CAPACITY
+    expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+  end
+  it 'accepts changes to its capacity in initialization' do
+    htw = Airport.new 650
+    NEW_CAPACITY = 650
+    expect(htw.capacity).to eq NEW_CAPACITY
   end
   context 'when landing of a plane' do
     it 'lands a plane' do
       subject.land(flying_plane, sunny_weather)
       expect(subject.planes).to include(parked_plane)
     end
-    xit 'lands a multitude of planes when capacity allows it' do
-
+    it 'lands a multitude of planes when capacity allows it' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.land(flying_plane, sunny_weather)
+      end
+      message = 'No available space.'
+      expect { subject.land(flying_plane, sunny_weather) }
+          .to raise_error message
     end
     it 'does not allow a plane to land if the weather is stormy' do
       message = 'Landing denied due to stormy weather'
