@@ -9,10 +9,12 @@ describe Airport do
 
   before(:each) do
     allow(flying_plane).to receive(:land).and_return(parked_plane)
+    allow(flying_plane).to receive(:landed?).and_return(false)
+
     allow(parked_plane).to receive(:landed?).and_return(true)
     allow(parked_plane).to receive(:flying?).and_return(true)
+
     allow(parked_plane).to receive(:take_off).and_return(flying_plane)
-    allow(flying_plane).to receive(:landed?).and_return(false)
     allow(stormy_weather).to receive(:stormy?).and_return(true)
     allow(sunny_weather).to receive(:stormy?).and_return(false)
   end

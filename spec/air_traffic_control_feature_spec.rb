@@ -1,7 +1,7 @@
 require 'airport'
 require 'plane'
 
-airport = Airport.new
+airport = Airport.new 380
 plane = Plane.new
 weather = Weather.new
 plane.flying?
