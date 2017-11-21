@@ -2,23 +2,34 @@ Airport Challenge
 =================
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+_______________                    
+ ________________
+            _\____\___
+    =  = ==(____MA____))
+              \_____\___________________,-~~~~~~~`-.._
+              /     o o o o o o o o o o o o o o o o  |\_
+              `~-.__       __..----..__                  ))
+                    `---~~\___________/------------`````
+                    =  ===(_________))
 
 ```
 
 
 Steps
 -------
-Used Rspec to TDD the features.
+While writing the solution to this challenge I used Rspec testing environment to TDD the features of the app. 
 
-First and second user stories are completed. The Airport gives instructions to land and take off to a plane and confirms status. The Plane has status of flying or landing.
+My first approach was to obtain an mvp:
+- Airport giving instructions to one plane to land and later to take off and,
+- the Plane having status of flying or landing. 
+
+Subsequently added the features for:
+- Airport keeping track of planes,
+- Airport preventing planes from landing or taking off in unfavourable conditions
+- Weather being randomly 'stormy' or 'sunny'. 
+ 
+The Weather behaviour is stubbed in Rspec to prevent tests fail randomly. I kept the randomness in the feature test for a complete picture of the behaviour of the app.
+  
 
 Task
 -----

@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a41b3e61-6667-4e26-aa2c-5ff766a56ee4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/airport.rb" afterPath="$PROJECT_DIR$/lib/airport.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/air_traffic_control_feature_spec.rb" afterPath="$PROJECT_DIR$/spec/air_traffic_control_feature_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/airport_spec.rb" afterPath="$PROJECT_DIR$/spec/airport_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,7 +26,7 @@
     <SUITE FILE_PATH="coverage/airport_challenge@Plane_can__take_off__airport_challenge.coverage" NAME="Plane can #take off: airport_challenge Coverage Results" MODIFIED="1510957545832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@Plane_is__landed__airport_challenge.coverage" NAME="Plane is #landed: airport_challenge Coverage Results" MODIFIED="1510940423073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@Airport_when_landing_of_a_plane_lands_a_plane__airport_challenge.coverage" NAME="Airport when landing of a plane lands a plane: airport_challenge Coverage Results" MODIFIED="1511204985208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
-    <SUITE FILE_PATH="coverage/airport_challenge@All_specs_in_airport_challenge__airport_challenge.coverage" NAME="All specs in airport_challenge: airport_challenge Coverage Results" MODIFIED="1511224607753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
+    <SUITE FILE_PATH="coverage/airport_challenge@All_specs_in_airport_challenge__airport_challenge.coverage" NAME="All specs in airport_challenge: airport_challenge Coverage Results" MODIFIED="1511262820434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@All_tests_in_airport_challenge__airport_challenge.coverage" NAME="All tests in airport_challenge: airport_challenge Coverage Results" MODIFIED="1510854723213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
     <SUITE FILE_PATH="coverage/airport_challenge@Run_spec__airport_spec___airport_challenge.coverage" NAME="Run spec 'airport_spec': airport_challenge Coverage Results" MODIFIED="1511223599707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="airport_challenge" />
   </component>
@@ -47,12 +46,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="air_traffic_control_feature_spec.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="air_traffic_control_feature_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/air_traffic_control_feature_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rakefile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Rakefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="60">
+                <caret line="4" column="35" lean-forward="false" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -130,7 +152,6 @@
         <option value="$PROJECT_DIR$/.rspec" />
         <option value="$PROJECT_DIR$/spec/airport_feature_spec.rb" />
         <option value="$PROJECT_DIR$/spec/plane_spec.rb" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/lib/plane.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/lib/weather.rb" />
@@ -138,6 +159,7 @@
         <option value="$PROJECT_DIR$/lib/airport.rb" />
         <option value="$PROJECT_DIR$/spec/weather_spec.rb" />
         <option value="$PROJECT_DIR$/spec/air_traffic_control_feature_spec.rb" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -565,17 +587,11 @@
       <workItem from="1500031598462" duration="823000" />
       <workItem from="1500501764078" duration="245000" />
       <workItem from="1510099465220" duration="53000" />
-      <workItem from="1510853217773" duration="36501000" />
+      <workItem from="1510853217773" duration="37527000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.21 at 00h 23m 13s.xml">
-      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.21 at 00h 23m 17s.xml">
-      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
     <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.21 at 00h 25m 58s.xml">
       <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
@@ -600,9 +616,15 @@
     <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.21 at 00h 36m 48s.xml">
       <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
     </history-entry>
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.21 at 11h 13m 37s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_specs_in_airport_challenge__airport_challenge - 2017.11.21 at 11h 13m 40s.xml">
+      <configuration name="All specs in airport_challenge: airport_challenge" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71880000" />
+    <option name="totallyTimeSpent" value="72906000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -830,14 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Rakefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -918,17 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-7">
-            <caret line="20" column="100" lean-forward="false" selection-start-line="20" selection-start-column="100" selection-end-line="20" selection-end-column="100" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1006,6 +1009,25 @@
         <state relative-caret-position="165">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="60">
+            <caret line="4" column="35" lean-forward="false" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
