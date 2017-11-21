@@ -7,7 +7,8 @@ weather = Weather.new
 plane.flying?
 
 airport.land(plane, weather)
-plane.landed?
-
+p plane.landed?
+p airport
 airport.take_off(plane, weather)
-plane.flying?
+p plane.flying?
+p airport

@@ -10,6 +10,7 @@ describe Airport do
   before(:each) do
     allow(flying_plane).to receive(:land).and_return(parked_plane)
     allow(parked_plane).to receive(:landed?).and_return(true)
+    allow(parked_plane).to receive(:flying?).and_return(true)
     allow(parked_plane).to receive(:take_off).and_return(flying_plane)
     allow(flying_plane).to receive(:landed?).and_return(false)
     allow(stormy_weather).to receive(:stormy?).and_return(true)
@@ -17,7 +18,7 @@ describe Airport do
   end
 
   it 'has initial capacity' do
-    expect(subject.capacity).to eq 100
+    expect(subject.capacity).to eq described_class::CAPACITY
   end
   context 'when landing of a plane' do
     it 'lands a plane' do
@@ -37,13 +38,18 @@ describe Airport do
   context 'in take-off procedure' do
     it 'gives the plane instructions to take off' do
       subject.land(flying_plane, sunny_weather)
-      expect(subject.take_off(parked_plane, sunny_weather)).not_to be_landed
+      expect(subject.take_off(parked_plane, sunny_weather)).to be_flying
     end
     it 'does not allow a plane to take off if the weather is stormy' do
       message = 'Take-off denied due to stormy weather'
       subject.land(flying_plane, sunny_weather)
       expect { subject.take_off(parked_plane, stormy_weather) }
           .to raise_error message
+    end
+    it 'knows when the plane has taken off' do
+      2.times { subject.land(flying_plane, sunny_weather) }
+      subject.take_off(parked_plane, sunny_weather)
+      expect(subject.planes).to include(parked_plane)
     end
   end
 end

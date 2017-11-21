@@ -20,5 +20,6 @@ class Airport
   def take_off(plane, weather)
     raise 'Take-off denied due to stormy weather' if weather.stormy?
     plane.take_off
+    @planes.pop
   end
 end
