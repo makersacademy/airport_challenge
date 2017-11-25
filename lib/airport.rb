@@ -16,6 +16,7 @@ class Airport
 	end
 
 	def release_for_takeoff plane
+		raise "Plane Not Here" if !@planes.include? plane
 		@released_for_takeoff = plane
 		plane.take_off
 		@released_for_takeoff = nil

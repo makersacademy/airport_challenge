@@ -30,6 +30,9 @@ describe Airport do
 			expect(plane).to receive(:take_off)
 			subject.release_for_takeoff plane
 		end
+		it "should raise an error if trying to release a plane for takeoff that is not in the airport" do
+			expect{subject.release_for_takeoff plane}.to raise_error "Plane Not Here"
+		end
 	end
 
 	describe "#expecting?" do
