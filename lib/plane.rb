@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :grounded
+  attr_accessor :grounded, :airport
   def initialize
     @grounded = true
   end
@@ -8,6 +8,7 @@ class Plane
     raise "Already grounded" if grounded
     airport.receive(self)
     self.grounded = true
+    self.airport = airport
   end
 
   def takeoff
