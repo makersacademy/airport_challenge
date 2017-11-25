@@ -15,6 +15,11 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Currently unsafe to land plane"
     end
 
+    it "should not land a plane is the airport is full" do
+      30.times { subject.land(plane) }
+      expect { subject.land(plane) }.to raise_error "Airport currently full"
+    end
+
   end
 
   describe "#takeoff" do

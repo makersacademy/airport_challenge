@@ -2,6 +2,7 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :planes, :stormy
+  CAPACITY = 30
 
   def initialize
     @planes = []
@@ -10,6 +11,7 @@ class Airport
 
   def land(plane)
     raise "Currently unsafe to land plane" if stormy?
+    raise "Airport currently full" if full?
     plane.landing
     planes << plane
   end
@@ -22,7 +24,11 @@ class Airport
 
   private
   def stormy?
-    stormy == true ? true : false
+    stormy == true
+  end
+
+  def full?
+    planes.size >= 30
   end
 
 end
