@@ -11,6 +11,7 @@ class Airport
   end
 
   def take_off
-    @airport.pop
+    plane = @airport.pop
+    "The plane #{plane} has left the airport"
   end
 end

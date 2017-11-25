@@ -13,7 +13,7 @@ describe Airport do
   describe "#take_off" do
     it "should let a plane take off from an airport" do
       subject.land(plane)
-      expect(subject.take_off).to eq plane
+      expect(subject.take_off).to eq "The plane #{plane} has left the airport"
     end
   end
 end
