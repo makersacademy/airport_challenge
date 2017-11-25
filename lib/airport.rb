@@ -9,15 +9,20 @@ class Airport
   end
 
   def land(plane)
-    raise "Currently unsafe to land plane" if stormy == true
+    raise "Currently unsafe to land plane" if stormy?
     plane.landing
     planes << plane
   end
 
   def takeoff(plane)
-    raise "Currently unsafe for plane to take off" if stormy == true
+    raise "Currently unsafe for plane to take off" if stormy?
     plane.taking_off
     planes.delete(plane)
+  end
+
+  private
+  def stormy?
+    stormy == true ? true : false
   end
 
 end
