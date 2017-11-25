@@ -11,11 +11,13 @@ class Airport
   def land(plane)
     raise "Airport full" if full?
     @planes << plane
+    plane.land
   end
 
-  def take_off
+  def take_off(plane)
     raise "There are no planes to take off" if empty?
-    @planes.pop
+    @planes.delete(plane)
+    plane.take_off
   end
 
   private
