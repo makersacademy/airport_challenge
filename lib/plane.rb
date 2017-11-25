@@ -18,6 +18,10 @@ class Plane
 
 	def take_off
 		raise "Already In Flight" if @location == "Flying"
-		@location = "Flying"
+		if (@location.released_for_takeoff? self) then
+			@location = "Flying"
+		else
+			@location.release_for_takeoff self
+		end
 	end
 end

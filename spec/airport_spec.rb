@@ -30,9 +30,17 @@ describe Airport do
 			expect(plane).to receive(:take_off)
 			subject.release_for_takeoff plane
 		end
-
 	end
 
+	describe "#expecting?" do
+		it "should return false when a plane is not expected for landing" do
+			expect(subject.expecting? plane).to eq false
+		end
+	end
 
-
+	describe "#released_for_takeoff?" do
+		it "should return false when a plane has not been released for takeoff" do 
+			expect(subject.released_for_takeoff? plane).to eq false
+		end
+	end
 end

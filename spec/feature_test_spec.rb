@@ -26,3 +26,9 @@ p "my_plane.land my_airport"
 p my_plane.land my_airport
 p "my_airport.planes"
 p my_airport.planes
+
+ #likewise, planes can also be told to take off and will co-ordinate this with the airport
+p "my_plane.take_off"
+p my_plane.take_off
+p "my_airport.planes"
+p my_airport.planes

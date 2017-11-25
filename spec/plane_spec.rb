@@ -1,6 +1,6 @@
 require "plane"
 describe Plane do 
-	let :airport {double(:airport, expecting?: true)}
+	let :airport {double(:airport, expecting?: true, released_for_takeoff?: true)}
 	describe "#location" do
 		it "should be flying if not in an airport" do
 			expect(subject.location).to eq "Flying"
@@ -21,6 +21,10 @@ describe Plane do
 			expect(airport).to receive(:expecting?).with(subject)
 			subject.land(airport)  
 		end
+		it "should be at the airport after landing" do
+			subject.land airport
+			expect(subject.location).to eq airport
+		end
 	end
 
 	describe "#take_off" do
@@ -31,6 +35,11 @@ describe Plane do
 			subject.land(airport)
 			subject.take_off
 			expect(subject.location).to eq "Flying"
+		end
+		it "should check that it has been released for takeoff before taking off" do
+			subject.land(airport)
+			expect(airport).to receive(:released_for_takeoff?).with subject
+			subject.take_off
 		end
 	end
 	
