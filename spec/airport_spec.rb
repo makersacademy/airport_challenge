@@ -2,6 +2,8 @@ require "airport"
 
 describe Airport do
 
+  let(:plane) { double :plane, landed: nil, land: nil, take_off: nil }
+
   describe "#initialize" do
     it "should ensure that the default capacity is set to 10" do
       expect(subject.capacity).to eq 10
@@ -13,35 +15,35 @@ describe Airport do
   end
 
   describe "#land" do
-    it {is_expected.to respond_to(:land).with(1).argument}
-
-    it "should show a plane has landed" do
-      expect(subject.land(plane = Plane.new)).to include(plane)
+    it "should raise an error if the plane is already landed" do
+      allow(plane).to receive(:landed).and_return(true)
+      expect { subject.land(plane) }. to raise_error("Plane is already landed")
     end
 
-    it "should raise an error if the plane is already in the airport" do
-      subject.land(plane = Plane.new)
-      expect {subject.land(plane)}.to raise_error("Plane already in aiport")
+    before do
+      subject.land(plane)
+    end
+    it "should allow the plane to land and stay landed in the airport" do
+      expect(subject.planes).to include(plane)
     end
 
     it "should raise an error if the aiport is full" do
-      Airport::DEFAULT_CAPACITY.times {subject.land(plane = Plane.new)}
-      expect {subject.land(Plane.new)}.to raise_error("Airport full")
+      airport = Airport.new(0)
+      expect { airport.land(plane) }.to raise_error("Airport full")
     end
   end
 
   describe "#take_off" do
-    it {is_expected.to respond_to(:take_off).with(1).argument}
-
-    it "should allow a plane to take off" do
-      plane =  Plane.new
-      subject.land(plane)
-      expect(subject.take_off(plane)).to eq (subject.planes)
+    it "should raise an error if the plane is not in the aiport" do
+      expect {subject.take_off(plane)}.to raise_error("Plane not in airport")
     end
 
-    it "should raise an error if the plane is not in the aiport" do
-      plane =  Plane.new
-      expect {subject.take_off(plane)}.to raise_error("Plane not in airport")
+    before do
+      subject.land(plane)
+      subject.take_off(plane)
+    end
+    it "should allow a plane to take off and leave the airport" do
+      expect(subject.planes.include?(plane)).to eq false
     end
   end
 
