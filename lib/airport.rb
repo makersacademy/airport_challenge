@@ -9,5 +9,9 @@ class Airport
     @planes << plane
   end
 
+  def take_off
+    raise "There are no planes to take off" if @planes.empty?
+    @planes.pop
+  end
 
 end
