@@ -26,10 +26,10 @@ Approach
 Install
 -------
 
-`bundle install`
-`irb` / `pry`
-`require './lib/airport'`
-`require './lib/plane'`
+`bundle install`  
+`irb` / `pry`  
+`require './lib/airport'`  
+`require './lib/plane'`  
 
 Usage
 -----
