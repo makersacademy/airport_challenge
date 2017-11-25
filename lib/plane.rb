@@ -1,6 +1,13 @@
 class Plane
+	def initialize
+		@location = "Flying"
+	end
 
 	def location
-		"Flying"
+		@location
+	end
+
+	def land airport
+		@location = airport
 	end
 end

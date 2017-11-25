@@ -1,7 +1,7 @@
 require 'airport'
 describe Airport do
 
-	let :plane {double(:plane)}
+	let :plane {double(:plane, land: nil)}
 
 	describe "#land" do
 		it "should be able to receive a plane" do
