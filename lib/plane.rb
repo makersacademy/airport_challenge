@@ -9,6 +9,15 @@ class Plane
 
 	def land airport
 		raise "Already Landed" if @location != "Flying"
-		@location = airport
+		if (airport.expecting? self) then
+			@location = airport
+		else 
+			airport.land self
+		end
+	end
+
+	def take_off
+		raise "Already In Flight" if @location == "Flying"
+		@location = "Flying"
 	end
 end

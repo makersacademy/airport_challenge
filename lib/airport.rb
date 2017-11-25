@@ -9,12 +9,18 @@ class Airport
 	end
 
 	def land plane
-		@planes << plane
+		@expecting = plane
 		plane.land self
+		@planes << plane
+		@expecting = nil
 	end
 
-	def release plane
+	def release_for_takeoff plane
+		plane.take_off
 		@planes.delete plane
 	end
 
+	def expecting? plane
+		@expecting == plane
+	end
 end
