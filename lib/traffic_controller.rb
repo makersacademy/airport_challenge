@@ -2,7 +2,11 @@ require 'weather'
 
 class TrafficController
   def land_to(plane, airport)
-    true
+    if weather.stormy?
+      false
+    else
+      true
+    end
   end
 
   def takeoff_from(plane, airport)
