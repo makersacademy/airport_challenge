@@ -2,9 +2,18 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  let(:plane) { double(:plane) }
+  let(:plane) { Plane.new }
 
-  it "should land a plane at an airport" do
-    expect(subject.land(plane)).to eq plane
+  describe "#land" do
+    it "should land a plane at an airport" do
+      expect(subject.land(plane)).to eq [plane]
+    end
+  end
+
+  describe "#take_off" do
+    it "should let a plane take off from an airport" do
+      subject.land(plane)
+      expect(subject.take_off).to eq plane
+    end
   end
 end
