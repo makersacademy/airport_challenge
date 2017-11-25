@@ -25,5 +25,11 @@ describe Airport do
       expect(subject.planes.include?(plane)).to be false
     end
 
+    it "should not let a plane take off if the weather is stormy" do
+      subject.land(plane)
+      subject.stormy = true
+      expect { subject.takeoff(plane) }.to raise_error "Currently unsafe for plane to take off"
+    end
+
   end
 end

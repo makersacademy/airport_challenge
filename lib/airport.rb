@@ -15,6 +15,7 @@ class Airport
   end
 
   def takeoff(plane)
+    raise "Currently unsafe for plane to take off" if stormy == true
     plane.taking_off
     planes.delete(plane)
   end
