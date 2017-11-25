@@ -8,6 +8,7 @@ class Plane
 	end
 
 	def land airport
+		raise "Already Landed" if @location != "Flying"
 		@location = airport
 	end
 end
