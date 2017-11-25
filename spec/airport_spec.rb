@@ -11,6 +11,9 @@ describe Airport do
       subject.depart(plane)
       expect(subject.find_plane(plane)).to be false
     end
+    it 'does not depart planes not found' do
+      expect { subject.depart(plane) }.to raise_error(RuntimeError, "Plane not found at this Airport")
+    end
   end
   it 'can receive a plane' do
     subject.receive(plane)
