@@ -2,11 +2,12 @@ require_relative 'plane'
 
 class Airport
   attr_accessor :planes, :stormy
-  CAPACITY = 30
+  DEFAULT_CAPACITY = 30
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @stormy = false
+    @capacity = capacity
   end
 
   def land(plane)
@@ -28,7 +29,7 @@ class Airport
   end
 
   def full?
-    planes.size >= 30
+    planes.size >= @capacity
   end
 
 end
