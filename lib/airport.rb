@@ -1,3 +1,5 @@
+
+
 class Airport
   attr_accessor :planes
 
@@ -12,5 +14,5 @@ class Airport
   def takeoff(plane)
     planes.delete(plane)
   end
-  
+
 end
