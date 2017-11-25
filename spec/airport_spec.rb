@@ -2,6 +2,19 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+
+  describe 'initialization' do
+    subject{ Airport.new}
+    let(:plane) {Plane.new}
+    it 'defaults capacity' do
+      Airport::DEFAULT_CAPACITY.times do
+        subject.land(plane)
+      end
+      expect{subject.land(plane)}.to raise_error "Airport full"
+    end
+  end
+
+
   describe "#land" do
     it 'A plane can land at the airport' do
       plane = Plane.new
@@ -24,5 +37,6 @@ describe Airport do
       expect{subject.take_off}.to raise_error "There are no planes to take off"
     end
   end
+
 
 end
