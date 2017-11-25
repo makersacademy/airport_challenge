@@ -10,7 +10,11 @@ describe Airport do
     it 'raises error when plane not departed' do
       subject.depart(plane)
       subject.planes << plane
-      
+      #expect
+    end
+    it 'can receive a plane' do
+      subject.receive(plane)
+      expect(subject.planes.length).to eq(1)
     end
   end
 end

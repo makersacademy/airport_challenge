@@ -9,6 +9,10 @@ class Airport
     remove_plane(plane)
   end
 
+  def receive(plane)
+    @planes << plane
+  end
+
   def remove_plane(plane)
     planes.delete(plane)
     raise "Plane has not departed" if find_plane(plane)
