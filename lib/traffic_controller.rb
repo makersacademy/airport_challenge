@@ -3,9 +3,9 @@ require 'weather'
 class TrafficController
   def land_to(plane, airport)
     if weather.stormy?
-      false
+      'It is too windy and stormy out there'
     else
-      true
+      airport.add_plane(plane)
     end
   end
 

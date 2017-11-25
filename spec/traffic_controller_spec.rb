@@ -12,7 +12,8 @@ describe TrafficController do
 
     allow(traffic_controller).to receive(:weather).and_return(weather)
 
-    expect(traffic_controller.land_to(plane, airport)).to eq(true)
+    expect(traffic_controller.land_to(plane, airport)).to eq("Plane is landed"
+)
   end
 
   it "prevent landing when weather is stormy" do
@@ -23,16 +24,16 @@ describe TrafficController do
 
     allow(traffic_controller).to receive(:weather).and_return(weather)
 
-    expect(traffic_controller.land_to(plane, airport)).to eq(false)
+    expect(traffic_controller.land_to(plane, airport)).to eq("It is too windy and stormy out there")
   end
 
   it "take off plane from an airport and confirm plane left airport" do
     traffic_controller = TrafficController.new
     plane = Plane.new
     airport = Airport.new
-    weather = instance_double(Weather, stormy?: false)
+    weather = double(:sunny_weather, stormy?: false)
 
-    allow(traffic_controller).to receive(:state).and_return(weather)
+    allow(traffic_controller).to receive(:weather).and_return(weather)
 
     expect(traffic_controller.takeoff_from(plane, airport)).to eq(true)
     expect(plane.left_airport?).to eq(true)
@@ -47,6 +48,18 @@ describe TrafficController do
     allow(traffic_controller).to receive(:weather).and_return(weather)
 
     expect(traffic_controller.takeoff_from(plane, airport)).to eq(false)
+  end
+
+  it "prevent landing when airport is full" do
+    traffic_controller = TrafficController.new
+    plane = Plane.new
+    airport = double(:full_airport, add_plane: 'Airport is full')
+    weather = double(:sunny_weather,  stormy?: false)
+
+    allow(traffic_controller).to receive(:full?).and_return(airport)
+    allow(traffic_controller).to receive(:weather).and_return(weather)
+
+    expect(traffic_controller.land_to(plane, airport)).to eq('Airport is full')
   end
 
 end
