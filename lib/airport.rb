@@ -11,4 +11,9 @@ class Airport
     @planes << plane
   end
 
+  def take_off(plane)
+    fail "Plane not in airport" if !@planes.include?(plane)
+    @planes = @planes - [plane]
+  end
+
 end
