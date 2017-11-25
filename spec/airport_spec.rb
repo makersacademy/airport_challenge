@@ -17,5 +17,14 @@ describe Airport do
     expect(airport.add_plane(plane)).to eq('Airport is full')
   end
 
-  
+  it "send a plane away" do
+    airport = Airport.new
+    expect(airport.remove_plane).to eq('Plane has left airport')
+  end
+
+  it "is empty" do
+    airport = Airport.new
+    expect(airport.empty?).to eq(true)
+  end
+
 end

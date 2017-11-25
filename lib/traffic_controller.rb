@@ -1,4 +1,5 @@
 require 'weather'
+require 'airport'
 
 class TrafficController
   def land_to(plane, airport)
@@ -9,11 +10,13 @@ class TrafficController
     end
   end
 
-  def takeoff_from(plane, airport)
+  def takeoff_from(airport)
     if weather.stormy?
-      false
+      'It is too windy and stormy out there'
+    elsif airport.empty?
+      "The airport is empty"
     else
-      true
+      airport.remove_plane
     end
   end
 

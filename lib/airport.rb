@@ -13,6 +13,15 @@ class Airport
     end
   end
 
+  def remove_plane
+    @planes.shift
+    'Plane has left airport'
+  end
+
+  def empty?
+    @planes.empty?
+  end
+
   private
 
   def full?
