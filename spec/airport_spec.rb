@@ -8,6 +8,11 @@ describe Airport do
     it "should show a plane has landed" do
       expect(subject.land(plane = Plane.new)).to include(plane)
     end
+
+    it "should raise an error if the plane is already in the airport" do
+      subject.land(plane = Plane.new)
+      expect {subject.land(plane)}.to raise_error("Plane already in aiport")
+    end
   end
 
   describe "#take_off" do
@@ -20,7 +25,8 @@ describe Airport do
     end
 
     it "should raise an error if the plane is not in the aiport" do
-      expect {subject.take_off(plane).to raise_error}
+      plane =  Plane.new
+      expect {subject.take_off(plane)}.to raise_error("Plane not in airport")
     end
   end
 
