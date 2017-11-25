@@ -6,7 +6,21 @@ This program controls the flow of planes at an airport. The planes can land and 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+### Prerequisites
+
+Install RSpec:
+
+```
+gem install rspec
+```
+
 ### Installing
+
+Clone the program to your local machine:
+
+```
+git clone https://github.com/ker-an/airport_challenge.git
+```
 
 ## Running Tests
 
