@@ -17,7 +17,7 @@ Approach
 --------
 
 - Modeled an airport instructing planes to land, dependant on the weather
-- 3 classes: Weather, Airport & Plane
+- three classes: Weather, Airport & Plane
 - `@landed` stores the current status of the plane
 - Utilised private methods to determine if an airport is full, cleared for landing/take off or if a plane is at the airport
 - errors will be raised if any inconsistent actions are attempted (i.e taking off before landing)
@@ -26,9 +26,10 @@ Approach
 Install
 -------
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
+`bundle install`
+`irb` / `pry`
+`require './lib/airport'`
+`require './lib/plane'`
 
 Usage
 -----
