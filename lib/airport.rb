@@ -1,11 +1,15 @@
+require_relative 'weather.rb'
+
 class Airport
-  attr_reader :planes
-  def initialize
+  attr_reader :planes, :weather
+  def initialize weather
     @planes = []
+    @weather = weather
   end
 
   def depart(plane)
     raise "Plane not found at this Airport" unless find_plane(plane)
+    raise "Unsuitable conditions for takeoff" if weather.stormy?
     plane.takeoff
     remove_plane(plane)
   end
