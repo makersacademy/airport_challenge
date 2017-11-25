@@ -5,9 +5,8 @@ describe Plane do
   describe "#land" do
     it 'has landed at the airport and should not be flying' do
       airport = Airport.new
-      plane = Plane.new
-      airport.land(plane)
-      expect(plane.flying).to eq false
+      airport.land(subject)
+      expect(subject.flying).to eq false
     end
   end
 
