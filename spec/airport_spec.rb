@@ -27,4 +27,8 @@ describe Airport do
     expect(airport.empty?).to eq(true)
   end
 
+  it "change max capacity" do
+    airport = Airport.new
+    expect(airport.change_max_capacity(5)).to eq(5)
+  end
 end

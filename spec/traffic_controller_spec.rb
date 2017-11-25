@@ -66,6 +66,9 @@ describe TrafficController do
   it "prevent to take off if airport is empty" do
     traffic_controller = TrafficController.new
     airport = Airport.new
+    weather = double(:sunny_weather,  stormy?: false)
+
+    allow(traffic_controller).to receive(:weather).and_return(weather)
 
     expect(traffic_controller.takeoff_from(airport)).to eq('The airport is empty')
   end

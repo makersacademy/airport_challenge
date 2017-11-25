@@ -2,6 +2,7 @@ class Airport
 
   def initialize
     @planes = []
+    @max_capacity = 3
   end
 
   def add_plane(plane)
@@ -22,10 +23,13 @@ class Airport
     @planes.empty?
   end
 
+  def change_max_capacity(max_capacity)
+    @max_capacity = max_capacity
+  end
+
   private
 
   def full?
-    max_capacity = 3
-    @planes.length == max_capacity
+    @planes.length == @max_capacity
   end
 end
