@@ -2,12 +2,13 @@ require 'airport'
 require 'plane'
 
 describe Airport do
+  let(:plane) { double :plane}
 
   describe 'initialization' do
     it 'defaults capacity' do
-      plane = double(:plane)
-      allow(plane).to receive(:land).and_return(false)
-      Airport::DEFAULT_CAPACITY.times do
+      subject.capacity.times do
+        plane = double(:plane)
+        allow(plane).to receive(:land).and_return(false)
         subject.land(plane)
       end
       expect{subject.land(plane)}.to raise_error "Airport full"
@@ -16,18 +17,23 @@ describe Airport do
 
 
   describe "#land" do
+
     it 'has the plane after it has landed' do
-      plane = double(:plane)
       allow(plane).to receive(:land).and_return(false)
       subject.land(plane)
       expect(subject.planes).to include plane
     end
 
+    it 'does not allow plane already landed to land again' do
+      allow(plane).to receive(:land).and_return(false)
+      subject.land(plane)
+      expect{subject.land(plane)}.to raise_error "Plane has already landed in the airport"
+    end
+
   end
 
   describe "#take_off" do
-    it 'A plane takes off at the airport' do
-      plane = double(:plane)
+    it 'A plane can takes off at the airport' do
       allow(plane).to receive(:land).and_return(false)
       allow(plane).to receive(:take_off).and_return(true)
       subject.land(plane)
@@ -35,8 +41,8 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
+
     it 'raise an error when there are no planes to take off' do
-      plane = double(:plane)
       allow(plane).to receive(:land).and_return(false)
       allow(plane).to receive(:take_off).and_return(true)
       subject.land(plane)

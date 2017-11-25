@@ -10,6 +10,7 @@ class Airport
 
   def land(plane)
     raise "Airport full" if full?
+    raise "Plane has already landed in the airport" if exist?(plane)
     @planes << plane
     plane.land
   end
@@ -28,4 +29,9 @@ class Airport
   def empty?
     @planes.empty?
   end
+
+  def exist?(plane)
+    @planes.include?(plane)
+  end
+
 end
