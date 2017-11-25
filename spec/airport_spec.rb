@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   let(:plane) { double(:plane, takeoff: nil) }
   describe '#depart' do
-    it 'can depart a plan' do
+    it 'can depart a plane' do
       expect(subject).to respond_to(:depart).with(1).argument
     end
     it 'confirms plane has departed' do

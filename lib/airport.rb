@@ -5,7 +5,7 @@ class Airport
   end
 
   def depart(plane)
-    raise "Plane not found at this Airport" if !find_plane(plane)
+    raise "Plane not found at this Airport" unless find_plane(plane)
     plane.takeoff
     remove_plane(plane)
   end
