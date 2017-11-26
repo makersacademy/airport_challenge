@@ -21,25 +21,21 @@ class Airport
       @planes << plane
       plane.flying = false
     end
-    change_weather
+    weather.change_weather
   end
 
   def take_off(plane, weather = @weather)
-    fail "Plane is currently flying" if plane.flying
+    fail "Airport doesn't contain that plane" if @planes.include?(plane) == false
     if weather.stormy
       puts "Plane has been temporarily grounded due to stormy weather."
     else
       @planes.delete(plane)
       plane.flying = true
     end
-    change_weather
+    weather.change_weather
   end
 
   private
-
-  def change_weather
-    rand(6).zero? ? @weather.stormy = true : @weather.stormy = false
-  end
 
   def full?
     @planes.size >= @capacity
