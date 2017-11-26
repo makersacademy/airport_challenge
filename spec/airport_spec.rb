@@ -2,10 +2,15 @@ require 'airport'
 
 describe Airport do
   let(:plane) { double(:my_plane, landing: true, taking_off: true) }
-  subject { Airport.new }
+  subject do
+    subject = Airport.new
+    subject.stormy = false
+    subject
+  end
 
   it "should have a variable capacity" do
     ap = Airport.new 50
+    ap.stormy = false
     50.times { ap.land(plane) }
     expect { ap.land(plane) }.to raise_error "Airport currently full"
   end

@@ -6,7 +6,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    rand(100) > 92 ? @stormy = true : @stormy = false
+    @stormy = set_weather
     @capacity = capacity
   end
 
@@ -23,6 +23,10 @@ class Airport
     planes.delete(plane)
   end
 
+  def set_weather
+    rand(100) > 92 ? true : false
+  end
+
   private
   def stormy?
     stormy == true
@@ -31,5 +35,4 @@ class Airport
   def full?
     planes.size >= @capacity
   end
-
 end
