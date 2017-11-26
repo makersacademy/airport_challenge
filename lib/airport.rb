@@ -25,7 +25,9 @@ class Airport
   def try_to_takeoff(plane)
     raise "Currently unsafe for plane to take off" if stormy?
     raise "Plane is already in the air" if plane.flying == true
-    raise "This plane is not currently in the airport and so cannot take off" if !plane_in_airport?(plane)
+    unless plane_in_airport?(plane)
+      raise "This plane is not currently in the airport and so cannot take off"
+    end
     takeoff(plane)
   end
 
