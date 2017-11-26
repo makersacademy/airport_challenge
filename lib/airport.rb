@@ -4,6 +4,7 @@ class Airport
   DEFAULT_CAPACITY = 10
   attr_reader :planes
   attr_accessor :weather
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -12,21 +13,24 @@ class Airport
   end
 
   def land(plane, weather = @weather)
+    fail "Plane is grounded" if plane.flying == false
     fail "Airport full" if full?
     if weather.stormy
       puts "Plane can't land yet due to stormy weather."
     else
       @planes << plane
+      plane.flying = false
     end
     change_weather
   end
 
   def take_off(plane, weather = @weather)
-    fail "Airport empty" if empty?
+    fail "Plane is currently flying" if plane.flying
     if weather.stormy
       puts "Plane has been temporarily grounded due to stormy weather."
     else
       @planes.delete(plane)
+      plane.flying = true
     end
     change_weather
   end
@@ -34,15 +38,11 @@ class Airport
   private
 
   def change_weather
-    rand(6) == 0 ? @weather.stormy = true : @weather.stormy = false
+    rand(6).zero? ? @weather.stormy = true : @weather.stormy = false
   end
 
   def full?
     @planes.size >= @capacity
-  end
-
-  def empty?
-    @planes.size == 0
   end
 
 end
