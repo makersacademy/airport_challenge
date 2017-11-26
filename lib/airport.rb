@@ -10,6 +10,7 @@ class Airport
   # We use an attr_accessor to accomodate for the ability
   # to expand in the future
   attr_accessor :airp_capacity
+  attr_accessor :planes
 
 # Requiments / Modules
   include Weather

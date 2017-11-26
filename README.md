@@ -22,3 +22,8 @@ Also to assist the adoption of the program in random airports, we need to have t
 
 ## Supplementary Information
 This can be found in the **00_notes** folder
+
+## Things to improve
+
+* OVERALL COVERAGE:  99.40% -- 167/168 lines in 6 files
+* lib/hand_of_god.rb 75%
