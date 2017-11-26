@@ -6,7 +6,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @stormy = false
+    rand(100) > 92 ? @stormy = true : @stormy = false
     @capacity = capacity
   end
 
