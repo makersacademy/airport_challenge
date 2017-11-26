@@ -6,10 +6,6 @@ class Weather
   end
 
   def stormy?
-    if state > 90
-      true
-    else
-      false
-    end
+    state > 90
   end
 end
