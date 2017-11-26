@@ -16,7 +16,7 @@ class Airport
   end
 
   def take_off(plane)
-    raise "There are no planes to take off" if empty?
+    raise "Plane can't take off if it has not landed at the airport" unless exist?(plane)
     @planes.delete(plane)
     plane.take_off
   end
@@ -26,9 +26,6 @@ class Airport
     @planes.length >= capacity
   end
 
-  def empty?
-    @planes.empty?
-  end
 
   def exist?(plane)
     @planes.include?(plane)

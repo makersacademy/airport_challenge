@@ -41,13 +41,10 @@ describe Airport do
       expect(subject.planes).to eq []
     end
 
-
-    it 'raise an error when there are no planes to take off' do
+    it 'can only allow planes already landed to take off' do
       allow(plane).to receive(:land).and_return(false)
       allow(plane).to receive(:take_off).and_return(true)
-      subject.land(plane)
-      subject.take_off(plane)
-      expect{subject.take_off(plane)}.to raise_error "There are no planes to take off"
+      expect{subject.take_off(plane)}.to raise_error "Plane can't take off if it has not landed at the airport"
     end
   end
 
