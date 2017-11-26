@@ -1,4 +1,5 @@
 require_relative "plane"
+require_relative "weather"
 
 class Airport
 
@@ -10,17 +11,13 @@ class Airport
 
   def land(plane)
     raise "There are no flying planes" if plane.flying? == false
-      plane.state = false
-      @airport << plane
-      # plane.state = false
+    plane.state = false
+    @airport << plane
   end
 
-  # def airport
-  #   @airport
-  # end
-
-  def take_off
+  def take_off(weather)
     raise "There are no planes available" if @airport.empty?
+    raise "Cannot take off when stormy" if weather.stormy? == true
     plane = @airport.pop
     plane.state = true
     "The plane #{plane} has left the airport"

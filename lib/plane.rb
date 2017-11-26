@@ -8,7 +8,7 @@ class Plane
     @flying
   end
 
-  def state= (state)
+  def state=(state)
     @flying = state
   end
 end

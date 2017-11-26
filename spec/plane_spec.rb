@@ -4,7 +4,6 @@ describe Plane do
 
   describe "#flying" do
     it "is flying" do
-      subject.state = true
       expect(subject).to be_flying
     end
 
