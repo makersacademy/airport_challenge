@@ -20,15 +20,20 @@ class Airport
     raise "Unsuitable conditions for landing" if weather.stormy?
     raise "Airport full, unable to receive plane" if planes.length >= max_capacity
     plane.land(self)
-    @planes << plane
+    add_plane(plane)
+  end
+
+  def find_plane(plane)
+    planes.include? plane
+  end
+
+  private
+  def add_plane(plane)
+    planes << plane
   end
 
   def remove_plane(plane)
     planes.delete(plane)
     raise "Plane has not departed" if find_plane(plane)
-  end
-
-  def find_plane(plane)
-    planes.include? plane
   end
 end
