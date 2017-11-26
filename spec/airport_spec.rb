@@ -15,7 +15,6 @@ describe Airport do
 		end
 		it "shouldn't be able to land planes in story weather" do
 			allow(weather).to receive(:conditions) {"Stormy"}
-			subject.weather = weather
 			expect {subject.land(plane)}.to raise_error "It's not safe to land at the moment!"
 		end
 	end
@@ -43,6 +42,11 @@ describe Airport do
 		end
 		it "should raise an error if trying to release a plane for takeoff that is not in the airport" do
 			expect{subject.release_for_takeoff plane}.to raise_error "Plane Not Here"
+		end
+		it "should not allow planes to take off when it is stormy" do
+			subject.land plane
+			allow(weather).to receive(:conditions) {"Stormy"}
+			expect{subject.release_for_takeoff plane}.to raise_error "It's not safe to take off at the moment!"
 		end
 	end
 
