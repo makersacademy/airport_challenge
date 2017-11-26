@@ -30,10 +30,10 @@ class Airport
   protected
 
   def full?
-    hangar.length >= @capacity ? true : false
+    hangar.length >= @capacity
   end
 
   def stormy?
-    @weather.current_weather == :stormy ? true : false
+    @weather.current_weather == :stormy
   end
 end

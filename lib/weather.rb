@@ -7,7 +7,7 @@ class Weather
   protected
 
   def stormy?
-    rand(1..4) == 4 ? true : false
+    rand(1..4) == 4
   end
 
 end
