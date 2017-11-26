@@ -7,11 +7,14 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to eq "Plane has landed"
     end
-    it "raises an error if plane cannot land due to full airport capacity" do
+    it "raises an error if plane cannot land because airport at default capacity" do
       plane = Plane.new
-      Airport::CAPACITY.times { subject.land(plane) }
+      Airport::DEFAULT_CAPACITY.times { subject.land(plane) }
       message = "Airport at full capacity, plane unable to land"
       expect { subject.land(plane) }.to raise_error message
+    end
+    it "checks if airport capacity is default capacity" do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
   end
 
