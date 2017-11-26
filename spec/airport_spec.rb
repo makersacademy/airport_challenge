@@ -7,6 +7,12 @@ describe Airport do
     it 'should allow a plane to land at an airport' do
       expect{subject.to respond.to(:land).with(1).argument}
     end
+
+    it 'should raise an error when the weather is too stormy to land' do
+      expect{(weather.stormy?).to be(true)}
+      plane = Airplanes.new
+      expect{(subject.land(plane)).to raise_error('weather too stormy to land')}
+    end
   end
 
 
@@ -22,7 +28,7 @@ describe Airport do
       expect{(weather.stormy?).to be(true)}
       plane = Airplanes.new
       subject.land(plane)
-      expect{(subject.take_off(plane)).to raise_error('Weather to stormy for take-off')}
+      expect{(subject.take_off(plane)).to raise_error('Weather too stormy for take-off')}
     end
 
   it 'should see which planes are in the airport' do
