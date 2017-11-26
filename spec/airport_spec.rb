@@ -2,6 +2,9 @@ require "airport"
 require "weather"
 
 describe Airport do
+  before(:each) do
+    allow(subject).to receive(:stormy?).and_return(false)
+  end
   describe "#land" do
     it "allows the plane to land" do
       plane = Plane.new
@@ -27,6 +30,12 @@ describe Airport do
       message = "Airport at full capacity, plane unable to land"
       expect { subject.land(plane) }.to raise_error message
     end
+    it "doesn't allow plane to land due to stormy weather" do
+      plane = Plane.new
+      allow(subject).to receive(:stormy?).and_return(true)
+      message = "Stormy weather, plane unable to land"
+      expect { subject.land(plane) }.to raise_error message
+    end
   end
 
   describe "#take_off" do
@@ -40,6 +49,13 @@ describe Airport do
     end
     it "confirms plane is no longer in airport" do
       expect(subject.hangar).to be_empty
+    end
+    it "doesn't allow plane to take off due to stormy weather" do
+      plane = Plane.new
+      subject.land(plane)
+      allow(subject).to receive(:stormy?).and_return(true)
+      message = "Stormy weather, plane unable to take off"
+      expect { subject.take_off }.to raise_error message
     end
   end
 
