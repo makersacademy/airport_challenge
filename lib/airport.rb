@@ -3,10 +3,11 @@ require_relative 'weather.rb'
 class Airport
   DEFAULT_CAPACITY = 20
   attr_reader :planes, :weather, :max_capacity
-  def initialize weather, max_capacity = DEFAULT_CAPACITY
+  # Initializing with hash removes argument order dependency
+  def initialize args
     @planes = []
-    @weather = weather
-    @max_capacity = max_capacity
+    @weather = args[:weather]
+    @max_capacity = (args[:max_capacity] || DEFAULT_CAPACITY)
   end
 
   def depart(plane)

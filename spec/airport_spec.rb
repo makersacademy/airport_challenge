@@ -3,13 +3,13 @@ require 'airport'
 describe Airport do
   let(:plane) { double(:plane, takeoff: nil, land: nil) }
   let(:weather) { double(:weather, stormy?: false) }
-  subject(:airport) { described_class.new weather }
+  subject(:airport) { described_class.new weather: weather }
 
   it 'has a default capacity' do
     expect(subject.max_capacity).to eq(Airport::DEFAULT_CAPACITY)
   end
   it 'has a variable capacity' do
-    expect(Airport.new(weather, 30).max_capacity).to eq(30)
+    expect(Airport.new(weather: weather, max_capacity: 30).max_capacity).to eq(30)
   end
   describe '#depart' do
     it 'can depart a plane' do
