@@ -26,6 +26,10 @@ git clone https://github.com/ker-an/airport_challenge.git
 
 ## Built With
 
+```
+Ruby 2.4.0
+```
+
 ## Author
 
 [Keran Braich](https://github.com/ker-an)
