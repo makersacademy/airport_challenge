@@ -10,17 +10,25 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)
+  def try_to_land(plane)
     raise "Currently unsafe to land plane" if stormy?
     raise "Airport currently full" if full?
     raise "This plane is already landed" if plane.flying == false
+    land(plane)
+  end
+
+  def land(plane)
     plane.landing
     planes << plane
   end
 
-  def takeoff(plane)
+  def try_to_takeoff(plane)
     raise "Currently unsafe for plane to take off" if stormy?
     raise "Plane is already in the air" if plane.flying == true
+    takeoff(plane)
+  end
+
+  def takeoff(plane)
     plane.taking_off
     planes.delete(plane)
   end

@@ -12,7 +12,7 @@ describe Airport do
     ap = Airport.new 50
     ap.stormy = false
     50.times { ap.land(plane) }
-    expect { ap.land(plane) }.to raise_error "Airport currently full"
+    expect { ap.try_to_land(plane) }.to raise_error "Airport currently full"
   end
 
   describe "#land" do
@@ -22,19 +22,23 @@ describe Airport do
       expect(subject.planes.include?(plane)).to be true
     end
 
+  end
+
+  describe "#try_to_land" do
+
     it "should not land a plane if the weather is stormy" do
       subject.stormy = true
-      expect { subject.land(plane) }.to raise_error "Currently unsafe to land plane"
+      expect { subject.try_to_land(plane) }.to raise_error "Currently unsafe to land plane"
     end
 
     it "should not land a plane is the airport is full" do
-      30.times { subject.land(plane) }
-      expect { subject.land(plane) }.to raise_error "Airport currently full"
+      30.times { subject.try_to_land(plane) }
+      expect { subject.try_to_land(plane) }.to raise_error "Airport currently full"
     end
 
     it "should not attempt to land a plane which is already landed" do
       allow(plane).to receive(:flying) { false }
-      expect { subject.land(plane) }.to raise_error "This plane is already landed"
+      expect { subject.try_to_land(plane) }.to raise_error "This plane is already landed"
     end
 
   end
@@ -48,15 +52,20 @@ describe Airport do
       expect(subject.planes.include?(plane)).to be false
     end
 
+  end
+
+  describe "#try_to_takeoff" do
+
     it "should not let a plane take off if the weather is stormy" do
       subject.land(plane)
       allow(plane).to receive(:flying) { false }
       subject.stormy = true
-      expect { subject.takeoff(plane) }.to raise_error "Currently unsafe for plane to take off"
+      expect { subject.try_to_takeoff(plane) }.to raise_error "Currently unsafe for plane to take off"
     end
 
     it "should not attempt to takeoff a plane which is already flying" do
-      expect { subject.takeoff(plane) }.to raise_error "Plane is already in the air"
+      expect { subject.try_to_takeoff(plane) }.to raise_error "Plane is already in the air"
     end
+
   end
 end
