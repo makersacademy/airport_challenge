@@ -1,6 +1,7 @@
 require "plane"
 class Airport
-	def initialize capacity = 50
+	DEFAULT_CAPACITY = 50
+	def initialize capacity = DEFAULT_CAPACITY
 		@planes = []
 		@capacity = capacity
 	end
@@ -14,7 +15,7 @@ class Airport
 	end
 
 	def land plane
-		raise "Airport Full, Cannot Land" if planes.count == capacity
+		raise "Airport Full, Cannot Land" if full?
 		@expecting = plane
 		plane.land self
 		@planes << plane
@@ -34,5 +35,11 @@ class Airport
 	end
 	def released_for_takeoff? plane
 		@released_for_takeoff == plane
+	end
+
+	private
+
+	def full?
+		planes.count == capacity
 	end
 end
