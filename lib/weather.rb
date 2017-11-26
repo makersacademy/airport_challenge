@@ -2,11 +2,11 @@
 
 class Weather
 
-conditions = ['sunny', 'stormy']
+conditions = ['sunny', 'overcast', 'raining', 'mild', 'stormy']
 
 
   def random_weather
-    conditions.sample
+    conditions = ['sunny', 'overcast', 'raining', 'mild', 'stormy'].sample
   end
 
   def stormy?
