@@ -9,15 +9,16 @@ class Plane
   end
 
   def land(airport)
-    raise "The airport is not expecting that plane" if !airport.plane_expected?(self)
     raise "Plane is already on the ground" if @status != "In the air"
-    @status = airport
+    # If airport called this method, sets status to airport
+    # If plane called this method, notifies airport and makes airport call the method
+    # This way, both the plane and airport can initiate a landing
+    airport.plane_expected?(self) ? @status = airport : airport.land(self)
   end
 
   def takeoff
     raise "Plane is already in the air" if @status == "In the air"
-    raise "The plane is not ready to take off" if !@status.on_runway?(self)
-    @status = "In the air"
+    @status.on_runway?(self) ? @status = "In the air" : @status.takeoff(self)
   end
 
 
