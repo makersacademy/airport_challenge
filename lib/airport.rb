@@ -10,6 +10,7 @@ class Airport
 
   def land(plane)
     expect_plane(plane)
+    plane.land(self)
     @planes << plane
   end
 
