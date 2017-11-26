@@ -27,22 +27,22 @@ describe Airport do
 
     it 'does not allow plane already landed to land again' do
       airport.land(plane)
-      expect{airport.land(plane)}.to raise_error "Plane has already landed in the airport"
+      expect { airport.land(plane) }.to raise_error "Plane has already landed in the airport"
     end
 
     it 'raise an error when the airport is full' do
-        allow(weather).to receive(:stormy?).and_return(false)
-        airport.capacity.times do
+      allow(weather).to receive(:stormy?).and_return(false)
+      airport.capacity.times do
         plane = double(:plane)
         allow(plane).to receive(:land).and_return(false)
         airport.land(plane)
       end
-      expect{airport.land(plane)}.to raise_error "Airport full"
+      expect { airport.land(plane) }.to raise_error "Airport full"
     end
 
     it 'will prevent landing when the weather is stormy' do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect{airport.land(plane)}.to raise_error "It is too stormy to land"
+      expect { airport.land(plane) }.to raise_error "It is too stormy to land"
     end
   end
 
@@ -67,14 +67,14 @@ describe Airport do
 
     it 'can only allow planes already landed to take off' do
       allow(weather).to receive(:stormy?).and_return(false)
-      expect{airport.take_off(plane)}.to raise_error "Plane can't take off if it has not landed at the airport"
+      expect { airport.take_off(plane) }.to raise_error "Plane can't take off if it has not landed at the airport"
     end
 
     it 'will prevent taking off when the weather is stormy' do
       allow(plane).to receive(:land)
       airport.land(plane)
       allow(weather).to receive(:stormy?).and_return(true)
-      expect{airport.take_off(plane)}.to raise_error "It is too stormy to take off"
+      expect { airport.take_off(plane) }.to raise_error "It is too stormy to take off"
     end
   end
 end

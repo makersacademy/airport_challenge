@@ -2,8 +2,8 @@ require 'airport'
 require 'plane'
 
 describe Plane do
-  let(:airport) {double :airport}
-  subject(:plane) {described_class.new}
+  let(:airport) { double :airport }
+  subject(:plane) { described_class.new }
 
   describe "#landed" do
     it 'has landed at the airport and should not be flying' do
@@ -22,7 +22,5 @@ describe Plane do
       expect(plane.flying).to eq true
     end
   end
-
-
 
 end
