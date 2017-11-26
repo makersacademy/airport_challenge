@@ -12,7 +12,7 @@ describe Airport do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
     end
     it 'should have a set capacity equal to the argument when called' do
-      airport = Airport.new(5)
+      airport = double(:airport, capacity: 5)
       expect(airport.capacity).to eq 5
     end
   end
@@ -49,13 +49,17 @@ describe Airport do
       airport = Airport.new
       expect(airport).to respond_to(:take_off).with(2).argument
     end
+
     it 'the plane should not be at airport after the plane takes off' do
       plane = Plane.new
-      airport = Airport.new
-      transit = Transit.new
-      airport.take_off(plane, transit)
-      expect(airport.planes_at_rest).to_not include plane
+      airport = Airport.new(5)
+      clear_transit = double(:trasnit, stormy?: false, planes_in_transit: [])
+      clear_transit = Transit.new
+      airport.land(plane, clear_transit)
+      airport.take_off(plane, clear_transit)
+      expect(airport.planes_at_rest).to_not include(plane)
     end
+
     it 'plane should not be able to take off if weather in transit is stromy' do
       plane = Plane.new
       airport = Airport.new

@@ -1,4 +1,5 @@
 require_relative 'airport'
+
 class Transit
 
   attr_accessor :planes_in_transit

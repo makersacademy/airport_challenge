@@ -10,7 +10,7 @@ class Airport
     @capacity = capacity
   end
 
-  attr_reader :planes_at_rest, :capacity
+  attr_accessor :planes_at_rest, :capacity
 
   def land(plane, transit)
     raise "Too stormy for landing" if transit.stormy?
@@ -20,9 +20,7 @@ class Airport
 
   def take_off(plane, transit)
     raise "Too stormy for take off" if transit.stormy?
-    # @planes_at_rest.each {|x| transit.planes_in_transit.push(plane)} #horrible code
+    @planes_at_rest.delete(plane)
     transit.planes_in_transit.push(plane)
-    @planes_at_rest = []
   end
-
 end

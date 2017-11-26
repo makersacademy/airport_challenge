@@ -1,14 +1,17 @@
 require 'transit'
+require 'airport'
 
 describe Transit do
   context 'should get a plane in transit if a plane has taken off' do
     it 'should return a plane' do
+
       plane = Plane.new
       airport = Airport.new
-      clear_transit = double(:transit, stormy?: false)
+      clear_transit = double(:trasnit, stormy?: false, planes_in_transit: [])
       airport.land(plane, clear_transit)
       airport.take_off(plane, clear_transit)
-      expect(transit.planes_in_transit).to eq [plane]
+      expect(clear_transit.planes_in_transit).to eq [plane]
+
     end
   end
   context 'weather' do
