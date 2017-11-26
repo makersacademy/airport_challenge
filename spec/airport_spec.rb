@@ -67,5 +67,10 @@ describe Airport do
       expect { subject.try_to_takeoff(plane) }.to raise_error "Plane is already in the air"
     end
 
+    it "should not let a plane which isn't in the airport take off from that airport" do
+      allow(plane).to receive(:flying) { false }
+      expect { subject.try_to_takeoff(plane) }.to raise_error "This plane is not currently in the airport and so cannot take off"
+    end
+
   end
 end
