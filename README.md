@@ -1,11 +1,15 @@
 Airport Challenge -- Makers Academy
-=================
 
----
+
 # Challenge Synopsis
 Write a Ruby program that resembles the Air-Traffic Control system of an airport.
 
 Planes can only land or take-off when weather is good, so apart from writing a program that controls the plane flow in and out of the airport we also need to randomise weather.
+
+
+
+
+
 
 
  ------------
