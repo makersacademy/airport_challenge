@@ -1,6 +1,13 @@
 class Weather
 
 def conditions
-	"Sunny"
+	set_conditions
 end
+
+private 
+
+def set_conditions
+	@conditions = rand(10) == 2 ? "Stormy" : "Sunny"
+end
+
 end
