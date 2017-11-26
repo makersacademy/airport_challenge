@@ -13,6 +13,8 @@ class Airport
   end
 
   def takeoff(plane)
+    raise "That plane does not exist" unless @planes.include?(plane)
+    puts "Plane #{plane} has departed"
     @planes.delete(plane)
   end
 end

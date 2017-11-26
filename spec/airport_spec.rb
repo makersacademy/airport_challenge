@@ -22,11 +22,27 @@ describe Airport do
 
     it "orders the correct plane to take off" do
       plane = double(:plane)
-      another_plane = double(:plane2)
+      another_plane = double(:another_plane)
       subject.land(plane)
       subject.land(another_plane)
       subject.takeoff(plane)
       expect(subject.planes).to include another_plane
     end
+
+    it "cannot order an absent plane to take off" do
+      plane = double(:plane)
+      expect { subject.takeoff(plane) }.to raise_error "That plane does not exist"
+    end
+
+
+
+
   end
+
+
+
+
+
+
+
 end
