@@ -1,6 +1,6 @@
 # airport_challenge
 
-This program controls the flow of planes at an airport. The planes can land and take off when the weather is sunny but cannot land and take off when it is stormy.
+This program controls the flow of planes at an airport. The planes can land and take off when the weather is clear but cannot land and take off when it is stormy.
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ git clone https://github.com/ker-an/airport_challenge.git local_directory
 cd local_directory
 ```
 
-## Running Tests
+## How To Use
 
 Create an airport with planes:
 
