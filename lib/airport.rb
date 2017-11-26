@@ -11,12 +11,9 @@ class Airport
   end
 
   def land_plane(plane)
+    raise('Cannot land weather is Stormy') if stormy?
     @planes_at_airport.push(plane)
-    @planes_at_airport.last
-  end
-
-  def stormy?
-    @weather == 'Stormy'
+    @planes_at_airport
   end
 
   def take_off(plane)
@@ -26,4 +23,8 @@ class Airport
     @planes_at_airport
   end
 
+  def stormy?
+    @weather == 'Stormy'
+  end
+  
 end
