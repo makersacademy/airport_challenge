@@ -5,6 +5,8 @@ A simple airport model:
   - Airports have access to weather information
   - Planes can takeoff/land at Airports
   - Adverse weather/airports being at max capacity can prevent landings/takeoffs
+  - Planes know whether or not they are flying
+  - Landed planes cannot land and flying planes cannot takeoff
 
 #### Implementation
 ```
