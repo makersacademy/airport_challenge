@@ -2,6 +2,7 @@ require 'airport'
 describe Airport do
 
 	let :plane {double(:plane, land: nil, take_off: nil)}
+	let :weather {double(:weather, conditions: "Stormy")}
 
 	describe "#land" do
 		it "should be able to receive a plane" do
@@ -10,6 +11,10 @@ describe Airport do
 		it "shouldn't be able to land any planes if the airport is full" do
 			subject.capacity.times {subject.land plane}
 			expect {subject.land(plane)}.to raise_error "Airport Full, Cannot Land"
+		end
+		it "shouldn't be able to land planes in story weather" do
+			subject.weather = weather
+			expect {subject.land(plane)}.to raise_error "It's not safe to land at the moment!"
 		end
 	end
 

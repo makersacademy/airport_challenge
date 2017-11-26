@@ -32,3 +32,8 @@ p "my_plane.take_off"
 p my_plane.take_off
 p "my_airport.planes"
 p my_airport.planes
+
+ # feature 5 -airports should be able to check whether it's safe to takeoff and land
+p "my_airport.safe_to_fly?" 
+p "(This method has been made private)"
+

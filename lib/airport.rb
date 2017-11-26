@@ -1,9 +1,11 @@
 require "plane"
+require "weather"
 class Airport
 	DEFAULT_CAPACITY = 50
-	def initialize capacity = DEFAULT_CAPACITY
+	def initialize (capacity: DEFAULT_CAPACITY, weather: Weather.new)
 		@planes = []
 		@capacity = capacity
+		@weather = weather
 	end
 
 	def planes
@@ -14,8 +16,13 @@ class Airport
 		@capacity
 	end
 
+	def weather= weather
+		@weather = weather
+	end
+
 	def land plane
 		raise "Airport Full, Cannot Land" if full?
+		raise "It's not safe to land at the moment!" if !safe_to_fly?
 		@expecting = plane
 		plane.land self
 		@planes << plane
@@ -38,6 +45,10 @@ class Airport
 	end
 
 	private
+
+	def safe_to_fly?
+		@weather.conditions != "Stormy"
+	end
 
 	def full?
 		planes.count == capacity
