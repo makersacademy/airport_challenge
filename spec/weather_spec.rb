@@ -3,8 +3,8 @@ require 'weather'
 describe Weather do
   subject(:weather) { described_class.new }
 
-  it "should store randomised weather information" do
-    expect(weather.stormy? == true || weather.stormy? == false).to be true
+  it "should store weather information" do
+    expect(weather).to respond_to(:stormy?)
   end
 
 end
