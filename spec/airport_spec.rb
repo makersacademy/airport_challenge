@@ -11,10 +11,6 @@ describe Airport do
     expect { airport.try_to_land(plane) }.to raise_error "Airport currently full"
   end
 
-  it "should get weather information" do
-    expect(airport).to respond_to(:weather, :stormy?)
-  end
-
   describe "#land" do
 
     it "should land a plane" do
