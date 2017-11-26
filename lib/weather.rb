@@ -4,10 +4,8 @@ class Weather
   def initialize
     @stormy = false
   end
-end
 
-private
-
-def change_weather
-  rand(6).zero? ? @stormy = true : @stormy = false
+  def change_weather
+    rand(6).zero? ? @stormy = true : @stormy = false
+  end
 end
