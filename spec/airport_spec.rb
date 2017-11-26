@@ -29,7 +29,7 @@ describe Airport do
       expect { subject.depart(plane) }.to raise_error(RuntimeError, "Unsuitable conditions for takeoff")
     end
     it 'does not receive planes when full' do
-      20.times{ subject.receive(plane) }
+      20.times { subject.receive(plane) }
       expect { subject.receive(plane) }.to raise_error(RuntimeError, "Airport full, unable to receive plane")
     end
   end
