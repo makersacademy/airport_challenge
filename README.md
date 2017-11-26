@@ -71,6 +71,8 @@ In my code review I have achieved:
 
 1 - I have started by drawing a Domain model of the user stories. Then I started each user story by writing a feature test on pry and translating it into a unit test on atom with rspec. I watched the test fail first and made it pass before starting the process over again for the next user story.
 
+<img src="image/domain_model.jpg">
+
 2 - The Plane class has to be initialized and its state has been set to flying when initalized. It can be changed at a latter time with the state method.
 
 3 - The Weather class contains a method called stormy? which returns a boolean for stormy weather 20% of the time and not stormy 70% of the time.
