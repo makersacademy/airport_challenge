@@ -2,6 +2,10 @@ require 'plane'
 
 describe Plane do
 
+  it "should be flying when first created" do
+    expect(subject.status).to eq "In the air"
+  end
+
   describe '#land' do
 
     it "shouldnt be able to land if it is on the ground" do
@@ -16,10 +20,10 @@ describe Plane do
       expect(subject.status).to eq airport
     end
 
-    it "shouldnt be able to land if not scheduled to" do
-      airport = double(:airport, plane_expected?: false)
+    it "checks a plane has been expected before landing it" do
+      airport = double(:airport, plane_expected?: true)
       expect(airport).to receive(:plane_expected?).with(subject)
-      expect { subject.land(airport) }.to raise_error "The airport is not expecting that plane"
+      subject.land(airport)
     end
 
   end
