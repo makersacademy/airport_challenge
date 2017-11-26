@@ -14,6 +14,7 @@ class Airport
     raise "This airport is full" if full?
     expect_plane(plane)
     plane.land(self)
+    @expected_plane = nil
     @planes << plane
   end
 
@@ -32,8 +33,6 @@ class Airport
     @expected_plane = plane
   end
 
-private
-
   def plane_expected?(plane)
     plane == @expected_plane
   end
@@ -41,6 +40,8 @@ private
   def on_runway?(plane)
     plane == @on_runway
   end
+
+private
 
   def full?
     @planes.length >= @capacity
