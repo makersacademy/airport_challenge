@@ -5,7 +5,7 @@ describe Transit do
   context 'should get a plane in transit if a plane has taken off' do
     it 'should return a plane' do
 
-      plane = Plane.new
+      plane = double(:plane)
       airport = Airport.new
       clear_transit = double(:trasnit, stormy?: false, planes_in_transit: [])
       airport.land(plane, clear_transit)

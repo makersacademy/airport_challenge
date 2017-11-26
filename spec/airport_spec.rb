@@ -24,12 +24,12 @@ describe Airport do
     end
     it 'should return an array with a plane in it once a plane has landed' do
       airport = Airport.new
-      plane = Plane.new
+      plane = double(:plane)
       clear_transit = double(:transit, stormy?: false)
       expect(airport.land(plane, clear_transit)).to eq [plane]
     end
     it 'should not be able to land if the weather is stormy' do
-      plane = Plane.new
+      plane = double(:plane)
       airport = Airport.new
       stormy_transit = double(:transit, stormy?: true)
       expect { airport.land(plane, stormy_transit) }.to raise_error('Too stormy for landing')
@@ -41,6 +41,16 @@ describe Airport do
       clear_transit = double(:transit, stormy?: false)
       airport.land(plane, clear_transit)
       expect { airport.land(plane1, clear_transit) }.to raise_error('The airport is currently full')
+
+      # Using doubles, didn't quite work
+
+      # plane = double(:plane)
+      # airport = double(:airport, planes_at_rest: [plane], capacity: 1)
+      # clear_transit = double(:transit, stormy?: false)
+      # plane1 = double(:plane)
+      # allow(airport).to receive(:land)
+      # expect { airport.land(plane1, clear_transit) }.to raise_error('The airport is currently full')
+
     end
   end
 
