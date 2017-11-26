@@ -1,5 +1,11 @@
-class Airport
+require "plane"
+require "hand_of_god"
 
+class Airport
+# Requiments / Modules
+  include Weather
+
+# Methods
   def initialize
     @planes = []
   end

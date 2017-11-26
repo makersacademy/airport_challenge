@@ -1,10 +1,11 @@
 require "airport"
 require "plane"
+require "hand_of_god"
 
 describe Airport do
   # Name the subject explicitly
       subject(:airport) {described_class.new}
-      
+
   # Tests for Airport responding to methods
 
      it "plane can land" do
