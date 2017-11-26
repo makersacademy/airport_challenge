@@ -6,7 +6,7 @@ class Plane
 
   def land(airport)
     raise "Already grounded" if grounded
-    airport.receive(self)
+    #airport.receive(self)
     self.grounded = true
     self.airport = airport
   end

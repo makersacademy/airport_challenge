@@ -1,6 +1,7 @@
 require_relative 'weather.rb'
 
 class Airport
+  DEFAULT_CAPACITY = 20
   attr_reader :planes, :weather
   def initialize weather
     @planes = []
@@ -16,6 +17,8 @@ class Airport
 
   def receive(plane)
     raise "Unsuitable conditions for landing" if weather.stormy?
+    raise "Airport full, unable to receive plane" if planes.length == DEFAULT_CAPACITY
+    plane.land(self)
     @planes << plane
   end
 

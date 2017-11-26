@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double(:plane, takeoff: nil) }
+  let(:plane) { double(:plane, takeoff: nil, land: nil) }
   let(:weather) { double(:weather, stormy?: false) }
   subject(:airport) { described_class.new weather }
 
@@ -19,9 +19,12 @@ describe Airport do
     end
     it 'does not depart planes in stormy weather' do
       subject.receive(plane)
-      p subject
       allow(weather).to receive(:stormy?).and_return(true)
       expect { subject.depart(plane) }.to raise_error(RuntimeError, "Unsuitable conditions for takeoff")
+    end
+    it 'does not receive planes when full' do
+      20.times{ subject.receive(plane) }
+      expect { subject.receive(plane) }.to raise_error(RuntimeError, "Airport full, unable to receive plane")
     end
   end
   describe '#receive' do
