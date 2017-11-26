@@ -1,14 +1,18 @@
 require "weather"
 
+
 describe Weather do
+  let(:weather) {Weather.new}
+
   describe "#stormy" do
-    it "is stormy" do
-      subject.forecast = true
-      expect(subject).to be_stormy
+    it "should return true if weather is stormy" do
+      allow(weather).to receive(:stormy?) {true}
+      expect(weather).to be_stormy
     end
 
-    it "is not stormy" do
-      expect(subject).not_to be_stormy
+    it "should return false if weather is not stormy" do
+      allow(weather).to receive(:stormy?) {false}
+      expect(weather).not_to be_stormy
     end
   end
 end

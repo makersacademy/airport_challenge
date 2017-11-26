@@ -10,6 +10,7 @@ describe Airport do
     it "should land a plane at an airport if plane is flying" do
       expect(subject.land(plane)).to eq [plane]
     end
+  end
 
     it "should raise error if there are no flying planes" do
       plane.state = false
@@ -20,22 +21,21 @@ describe Airport do
       subject.land(plane)
       expect(subject.airport).to eq [plane]
     end
-  end
+
+    it "should prevent landing when capacity is full" do
+      Airport::DEFAULT_CAPACITY.times{subject.land(Plane.new)}
+      p subject
+      expect{ subject.land(Plane.new) }.to raise_error("The airport capacity is full")
+    end
 
   describe "#take_off" do
     it "should let a plane take off from an airport" do
       subject.land(plane)
-      expect(subject.take_off(weather)).to eq "The plane #{plane} has left the airport"
+      expect(subject.take_off).to eq "The plane #{plane} has left the airport"
     end
 
-    it "raises an error what there are no planes" do
-      expect { subject.take_off(weather) }.to raise_error("There are no planes available")
-    end
-
-    it "prevent take off when weather is stormy" do
-      subject.land(plane)
-      weather.forecast = true
-      expect { subject.take_off(weather) }.to raise_error "Cannot take off when stormy"
+    it "raises an error when the airport is empty" do
+      expect { subject.take_off }.to raise_error("There are no planes available")
     end
   end
 end

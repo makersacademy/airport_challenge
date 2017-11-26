@@ -1,14 +1,12 @@
 class Weather
 
-  def initialize
-    @stormy = false
-  end
+  attr_reader :stormy
+
+  # def initialize
+  #   @stormy = [true, false, false].sample
+  # end
 
   def stormy?
-    @stormy
-  end
-
-  def forecast=(answer)
-    @stormy = answer
+    @stormy = [true, false, false].sample
   end
 end
