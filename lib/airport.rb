@@ -9,8 +9,13 @@ class Airport
     @weather = Weather.new
   end
 
-  def land(plane)
-    @planes << plane
+  def land(plane, weather = @weather)
+    if weather.stormy
+      puts "Plane can't land yet due to stormy weather."
+    else
+      @planes << plane
+    end
+    change_weather
   end
 
   def take_off(plane, weather = @weather)
