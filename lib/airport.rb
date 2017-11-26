@@ -1,13 +1,14 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  attr_accessor :planes, :stormy
+  attr_reader :planes, :weather
   DEFAULT_CAPACITY = 30
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather: Weather.new)
     @planes = []
-    @stormy = set_weather
     @capacity = capacity
+    @weather = weather
   end
 
   def try_to_land(plane)
@@ -25,9 +26,8 @@ class Airport
   def try_to_takeoff(plane)
     raise "Currently unsafe for plane to take off" if stormy?
     raise "Plane is already in the air" if plane.flying == true
-    unless plane_in_airport?(plane)
-      raise "This plane is not currently in the airport and so cannot take off"
-    end
+    message = "This plane is not currently in the airport and so cannot take off"
+    raise message unless plane_in_airport?(plane)
     takeoff(plane)
   end
 
@@ -36,15 +36,11 @@ class Airport
     planes.delete(plane)
   end
 
-  def set_weather
-    rand(100) > 92 ? true : false
-  end
-
   private
   def stormy?
-    stormy == true
+    weather.stormy?
   end
-
+  
   def full?
     planes.size >= @capacity
   end
