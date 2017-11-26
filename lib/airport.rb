@@ -15,6 +15,7 @@ class Airport
   end
 
   def receive(plane)
+    raise "Unsuitable conditions for landing" if weather.stormy?
     @planes << plane
   end
 

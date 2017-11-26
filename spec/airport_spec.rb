@@ -18,13 +18,20 @@ describe Airport do
       expect { subject.depart(plane) }.to raise_error(RuntimeError, "Plane not found at this Airport")
     end
     it 'does not depart planes in stormy weather' do
-      allow(weather).to receive(:stormy?) { true }
       subject.receive(plane)
+      p subject
+      allow(weather).to receive(:stormy?).and_return(true)
       expect { subject.depart(plane) }.to raise_error(RuntimeError, "Unsuitable conditions for takeoff")
     end
   end
-  it 'can receive a plane' do
-    subject.receive(plane)
-    expect(subject.planes.length).to eq(1)
+  describe '#receive' do
+    it 'does not allow plane to land in stormy weather' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect { subject.receive(plane) }.to raise_error(RuntimeError, "Unsuitable conditions for landing")
+    end
+    it 'can receive a plane' do
+      subject.receive(plane)
+      expect(subject.planes.length).to eq(1)
+    end
   end
 end
