@@ -14,6 +14,14 @@ Install RSpec:
 gem install rspec
 ```
 
+Setup the project to use RSpec:
+
+```
+rspec --init
+```
+
+For RSpec documentation, visit http://rspec.info/documentation.
+
 ### Installing
 
 Clone the program to your local machine:
