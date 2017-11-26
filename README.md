@@ -68,14 +68,32 @@ Plane cannot land if it's already in the hangar:
 
 ```
 2.4.0 :011 > airport.land(plane2)
-RuntimeError: Plane already landed
+  RuntimeError: Plane already landed
 ```
 
 Plane cannot take off if it's already in the air:
 
 ```
 2.4.0 :012 > airport.take_off(plane1)
-RuntimeError: Plane already taken off
+  RuntimeError: Plane already taken off
+```
+
+Planes are unable to land if the airport reaches it's default capacity of 10:
+
+```
+2.4.0 :025 > airport.land(plane11)
+  RuntimeError: Airport at full capacity, plane unable to land
+```
+
+The airport's default capacity of 10 can be overridden:
+
+```
+2.4.0 :002 > airport = Airport.new
+  => #<Airport:0x007fcbda0456e8 @hangar=[], @capacity=10, @weather=#<Weather:0x007fcbda045670>>
+2.4.0 :003 > airport.capacity = 5
+  => 5
+2.4.0 :004 > airport
+  => #<Airport:0x007fcbda0456e8 @hangar=[], @capacity=5, @weather=#<Weather:0x007fcbda045670>>
 ```
 
 ## Built With
