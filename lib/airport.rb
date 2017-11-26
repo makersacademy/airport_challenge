@@ -14,27 +14,32 @@ class Airport
     @planes << plane
   end
 
-  def allow_takeoff(plane)
+  def takeoff(plane)
     raise "That plane does not exist" unless @planes.include?(plane)
-    puts "Plane #{plane} has departed"
+    send_to_runway(plane)
+    plane.takeoff
     @planes.delete(plane)
   end
 
-  def plane_expected?(plane)
-    plane == @expected_plane
+  def send_to_runway(plane)
+    @on_runway = plane
   end
 
   def expect_plane(plane)
     @expected_plane = plane
   end
 
+private
+
+  def plane_expected?(plane)
+    plane == @expected_plane
+  end
+
   def on_runway?(plane)
     plane == @on_runway
   end
 
-  def send_to_runway(plane)
-    @on_runway = plane
-  end
+
 
 
 end
