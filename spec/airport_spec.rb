@@ -8,21 +8,28 @@ describe Airport do
 
   describe '#land' do
     it "can have a plane land at it" do
-      plane = double(:plane)
+      plane = double(:plane, land: nil)
       expect(subject.land(plane)).to include plane
     end
+
+    it "should be able to order planes to land" do
+      plane = double(:plane, land: nil, status: subject)
+      subject.land(plane)
+      expect(plane.status).to eq subject
+    end
+
   end
 
   describe '#allow_takeoff' do
     it "lets a plane take off from the airport" do
-      plane = double(:plane)
+      plane = double(:plane, takeoff: nil, land: nil)
       subject.land(plane)
       expect(subject.allow_takeoff(plane)).to eq plane
     end
 
     it "orders the correct plane to take off" do
-      plane = double(:plane)
-      another_plane = double(:another_plane)
+      plane = double(:plane, takeoff: nil, land: nil)
+      another_plane = double(:another_plane, takeoff: nil, land: nil)
       subject.land(plane)
       subject.land(another_plane)
       subject.allow_takeoff(plane)
@@ -40,7 +47,7 @@ describe Airport do
       expect(subject.plane_expected?(plane)).to be true
     end
 
-    
+
 
   end
 
