@@ -32,8 +32,9 @@ describe TrafficController do
     traffic_controller = TrafficController.new
     plane = Plane.new
     airport = Airport.new
-    weather = double(:sunny_weather, stormy?: false)
     airport.add_plane(plane)
+    plane.assigned_airport(airport)
+    weather = double(:sunny_weather, stormy?: false)
 
     allow(traffic_controller).to receive(:weather).and_return(weather)
 
@@ -44,6 +45,8 @@ describe TrafficController do
     traffic_controller = TrafficController.new
     plane = Plane.new
     airport = Airport.new
+    airport.add_plane(plane)
+    plane.assigned_airport(airport)
     weather = double(:stormy_weather,  stormy?: true)
 
     allow(traffic_controller).to receive(:weather).and_return(weather)
@@ -68,6 +71,7 @@ describe TrafficController do
     traffic_controller = TrafficController.new
     airport = Airport.new
     plane = Plane.new
+    plane.assigned_airport(airport)
     weather = double(:sunny_weather,  stormy?: false)
 
     allow(traffic_controller).to receive(:weather).and_return(weather)
@@ -75,4 +79,21 @@ describe TrafficController do
     expect(traffic_controller.takeoff_from(plane, airport)).to eq('The airport is empty')
   end
 
+  it "assign plane to airport" do
+    traffic_controller = TrafficController.new
+    plane = Plane.new
+    airport = Airport.new
+
+    plane.fly
+    expect(traffic_controller.assign_plane_to_airport(plane, airport)).to eq(airport)
+  end
+
+  it "take off from different airport" do
+    traffic_controller = TrafficController.new
+    plane = Plane.new
+    airport = Airport.new
+    airport.add_plane(plane)
+
+    expect(traffic_controller.takeoff_from(plane, airport)).to eq("The plane is not in this airport")
+  end
 end

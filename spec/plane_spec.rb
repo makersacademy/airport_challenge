@@ -22,9 +22,12 @@ describe Plane do
   end
 
   it "is landed" do
-    plane.land
-
     expect(plane.landed?).to eq(true)
   end
 
+  it "assigned airport" do
+    airport = Airport.new
+
+    expect(plane.assigned_airport(airport)).to eq(airport)
+  end
 end
