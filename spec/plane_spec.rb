@@ -1,3 +1,5 @@
+require "plane"
+
 describe Plane do
 
   describe "#flying" do

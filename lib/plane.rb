@@ -1,12 +1,14 @@
 class Plane
 
-  attr_writer :state
-
-  def flying?
-    @state
+  def initialize
+    @flying = true
   end
 
-  # def state= (state)
-  #   @state = state
-  # end
+  def flying?
+    @flying
+  end
+
+  def state= (state)
+    @flying = state
+  end
 end
