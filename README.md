@@ -50,24 +50,22 @@ I would like a default airport capacity that can be overridden as appropriate
 This program defends against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
 ## How to run this program in irb
-$ irb
-2.4.0 :001 > require './lib/airport.rb'
- => true
-2.4.0 :002 > airport = Airport.new
- => #<Airport:0x007f964f158028 @planes=[], @capacity=100>
-2.4.0 :003 > require './lib/plane.rb'
- => true
-2.4.0 :004 > plane = Plane.new
- => #<Plane:0x007f964f141738 @flying=true>
+$ irb \n
+2.4.0 :001 > require './lib/airport.rb'\n
+ => true\n
+2.4.0 :002 > airport = Airport.new \n
+ => #<Airport:0x007f964f158028 @planes=[], @capacity=100> \n
+2.4.0 :003 > require './lib/plane.rb'\n
+ => true\n
+2.4.0 :004 > plane = Plane.new\n
+ => #<Plane:0x007f964f141738 @flying=true>\n
 
 
 ## Steps Taken
 
-1. Using TDD to generate feature tests and unit tests, followed by writing code
-   (using red-green-refactor process)
-2. Writing additional tests to ensure programme defends against edge cases and
-   refactoring accordingly
-3. Isolating unit tests and stubbing behaviour shared across no. of tests
+1. Using TDD to write feature tests and unit tests
+2. Follow the red-green-refactor process
+2. Add tests to ensure programme defends against edge cases
+3. Isolating unit tests and stubbing behaviour shared across tests
 4. Stub randomness of stormy weather generator to prevent random test failure
-5. Refactoring code again
-6. Check the code against code review rubrics
+6. Refactor code by checking against the code review rubrics
