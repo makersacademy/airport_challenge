@@ -5,6 +5,12 @@ describe Airport do
   let(:weather) { double(:weather, stormy?: false) }
   subject(:airport) { described_class.new weather }
 
+  it 'has a default capacity' do
+    expect(subject.max_capacity).to eq(Airport::DEFAULT_CAPACITY)
+  end
+  it 'has a variable capacity' do
+    expect(Airport.new(weather, 30).max_capacity).to eq(30)
+  end
   describe '#depart' do
     it 'can depart a plane' do
       expect(subject).to respond_to(:depart).with(1).argument
