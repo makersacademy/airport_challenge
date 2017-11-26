@@ -11,4 +11,12 @@ class Airport
     @planes.push(a_plane)
   end
 
+  def take_off(a_plane)
+    @planes.delete(a_plane)
+  end
+
+  def landed_planes
+    @planes
+  end
+
 end
