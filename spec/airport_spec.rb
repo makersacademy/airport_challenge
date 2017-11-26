@@ -7,6 +7,10 @@ describe Airport do
 		it "should be able to receive a plane" do
 			expect(subject).to respond_to(:land).with(1).argument
 		end
+		it "shouldn't be able to land any planes if the airport is full" do
+			subject.capacity.times {subject.land plane}
+			expect {subject.land(plane)}.to raise_error "Airport Full, Cannot Land"
+		end
 	end
 
 	describe "#planes" do
