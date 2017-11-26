@@ -7,7 +7,7 @@ end
 private 
 
 def rand_conditions
-	@conditions = rand(10) == 2 ? "Stormy" : "Sunny"
+	@conditions = rand(10) == 1 ? "Stormy" : "Sunny"
 end
 
 end
