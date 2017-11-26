@@ -24,13 +24,59 @@ For RSpec documentation, visit http://rspec.info/documentation.
 
 ### Installing
 
-Clone the program to your local machine:
+Clone the program to your local directory:
 
 ```
-git clone https://github.com/ker-an/airport_challenge.git
+git clone https://github.com/ker-an/airport_challenge.git local_directory
+cd local_directory
 ```
 
 ## Running Tests
+
+Create an airport with planes:
+
+```
+$ irb
+2.4.0 :001 > require "./lib/airport"
+  => true
+2.4.0 :002 > airport = Airport.new
+  => #<Airport:0x007f9387045778 @hangar=[], @capacity=10, @weather=#<Weather:0x007f93870456d8>>
+2.4.0 :003 > plane1 = Plane.new
+  => #<Plane:0x007f938702eb68>
+2.4.0 :004 > plane2 = Plane.new
+  => #<Plane:0x007f93871bfb08>
+ ```
+
+ Planes can land and take off, except in stormy weather:
+
+ ```
+2.4.0 :005 > airport.land(plane1)
+  => "Plane has landed"
+2.4.0 :006 > airport.land(plane2)
+  => "Plane has landed"
+2.4.0 :007 > airport.take_off(plane1)
+  RuntimeError: Stormy weather, plane unable to take off
+2.4.0 :008 > airport.take_off(plane1)
+  => "Plane has taken off"
+2.4.0 :009 > airport.hangar.include?(plane1)
+  => false
+2.4.0 :010 > airport.hangar
+  => [#<Plane:0x007f93871bfb08>]
+ ```
+
+Plane cannot land if it's already in the hangar:
+
+```
+2.4.0 :011 > airport.land(plane2)
+RuntimeError: Plane already landed
+```
+
+Plane cannot take off if it's already in the air:
+
+```
+2.4.0 :012 > airport.take_off(plane1)
+RuntimeError: Plane already taken off
+```
 
 ## Built With
 
@@ -41,5 +87,3 @@ Ruby 2.4.0
 ## Author
 
 [Keran Braich](https://github.com/ker-an)
-
-## Acknowledgments
