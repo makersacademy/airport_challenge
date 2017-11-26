@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double(:my_plane, landing: true, taking_off: true) }
+  let(:plane) { double(:my_plane, landing: true, taking_off: true, flying: true) }
   subject do
     subject = Airport.new
     subject.stormy = false
@@ -32,21 +32,31 @@ describe Airport do
       expect { subject.land(plane) }.to raise_error "Airport currently full"
     end
 
+    it "should not attempt to land a plane which is already landed" do
+      allow(plane).to receive(:flying) { false }
+      expect { subject.land(plane) }.to raise_error "This plane is already landed"
+    end
+
   end
 
   describe "#takeoff" do
 
     it "should make a plane take off" do
       subject.land(plane)
+      allow(plane).to receive(:flying) { false }
       subject.takeoff(plane)
       expect(subject.planes.include?(plane)).to be false
     end
 
     it "should not let a plane take off if the weather is stormy" do
       subject.land(plane)
+      allow(plane).to receive(:flying) { false }
       subject.stormy = true
       expect { subject.takeoff(plane) }.to raise_error "Currently unsafe for plane to take off"
     end
 
+    it "should not attempt to takeoff a plane which is already flying" do
+      expect { subject.takeoff(plane) }.to raise_error "Plane is already in the air"
+    end
   end
 end
