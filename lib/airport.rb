@@ -4,11 +4,11 @@ require_relative "weather"
 class Airport
   DEFAULT_CAPACITY = 15
   attr_reader :planes
-  attr_accessor :capacity
-
-  def initialize(capacity = DEFAULT_CAPACITY)
+  attr_accessor :capacity, :weather
+    # hashes rather than = as have more than one argument!!!!!
+  def initialize(capacity: DEFAULT_CAPACITY, weather: Weather.new)
     @planes = []
-    @weather = Weather.new
+    @weather = weather
     @capacity = DEFAULT_CAPACITY
   end
 
@@ -25,6 +25,8 @@ class Airport
     @planes.delete(a_plane)
     "The plane has taken off"
   end
+
+private
 
   def stormy?
     @weather.the_weather == :stormy

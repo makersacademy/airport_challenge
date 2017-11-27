@@ -4,14 +4,13 @@ require "plane"
 
 describe Airport do
   # This allows all tests to have "sunny" weather.
-  before(:each) do
-    allow(subject).to receive(:stormy?).and_return(false)
-  end
+  let :a_plane {double(:a_plane, land: nil, take_off: nil)}
+  let :a_weather {double(:a_weather, the_weather: :Sunny)}
+  subject {Airport.new(weather: a_weather)}
 
   describe "#land" do
 
     it "wont let a plane land due to bad weather" do
-      a_plane = Plane.new
       allow(subject).to receive(:stormy?) { true } # same as .and_return (true)
       expect { subject.land(a_plane) }.to raise_error("Bad weather, too dangerous to land")
     end
@@ -22,7 +21,6 @@ describe Airport do
     end
 
     it "can instruct a plane to land" do
-      a_plane = Plane.new
       expect(subject.land(a_plane)).to eq "The plane has landed"
     end
 
@@ -41,7 +39,6 @@ describe Airport do
   describe "#take_off" do
 
     it "can allow a plane take off" do
-      a_plane = Plane.new
       subject.land(a_plane)
       expect(subject.take_off(a_plane)).to eq("The plane has taken off")
     end
@@ -51,7 +48,6 @@ describe Airport do
     end
 
     it "wont allow a plane to take off due to bad weather" do
-      a_plane = Plane.new
       subject.land(a_plane)
       allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(a_plane) }.to raise_error("Bad weather, all planes grounded")
