@@ -4,7 +4,7 @@ require "hand_of_god"
 class Airport
 
 # Constants
-    CAPACITY = 5
+  CAPACITY = 5
 
 # Attribute Readers/Writers
   # We use an attr_accessor to accomodate for the ability
@@ -42,7 +42,7 @@ class Airport
   end
 
   def empty?
-    @planes.count <=0
+    @planes.count <= 0
   end
 
 end
