@@ -3,7 +3,7 @@ require 'plane'
 require 'weather'
 
 describe Airport do
-  let(:plane) { Plane.new }
+  let(:plane) { double(:plane, :flying? => true, :state= => true) }
   let(:weather) { double(:weather) }
   subject(:airport) { described_class.new(weather) }
 
@@ -18,7 +18,7 @@ describe Airport do
   end
 
   it "should raise error if there are no flying planes" do
-    plane.state = false
+    allow(plane).to receive(:flying?) { false }
     expect { subject.land(plane) }.to raise_error "There are no flying planes"
   end
 
