@@ -9,6 +9,7 @@ class Airport
   end
 
   def land_plane(plane)
+    raise('plane already landed') if @planes_at_airport.include?(plane)
     raise('Cannot land weather is Stormy') if stormy?
     raise('no more landing space') if airport_full?
     plane.landed?
@@ -21,12 +22,14 @@ class Airport
     @planes_at_airport.delete(plane)
   end
 
+  private
+  
   def stormy?
     @stormy = weather
   end
   
   def weather
-    ['Sunny', 'Rain', 'Snow', 'Stormy'] == 'Stormy' ? true : false
+    ['Sunny', 'Rain', 'Snow', 'Stormy'].sample == 'Stormy' ? true : false
   end
 
   def airport_full?
