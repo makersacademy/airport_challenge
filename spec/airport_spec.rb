@@ -4,8 +4,8 @@ require 'weather'
 
 describe Airport do
   let(:plane) { Plane.new }
-  let(:weather) { Weather.new }
-  let(:subject) { Airport.new(weather) }
+  let(:weather) { double(:weather) }
+  subject(:airport) { described_class.new(weather) }
 
   before do
     allow(weather).to receive(:stormy?) { false }
