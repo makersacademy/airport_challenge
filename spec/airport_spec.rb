@@ -1,25 +1,27 @@
 require './lib/airport'
 describe Airport do
   let(:test_plane) { double(:test_plane) }
+  let(:weather) { double(:weather, :conditions => "CLEAR") }
+  subject(:airport) { described_class.new(Airport::DEFAULT_CAPACITY, weather) }
 
   it "Should have a land method with an object to land as an argument" do
     is_expected.to respond_to(:land).with(1).argument
   end
 
   it "Should not be able to land planes that have already landed" do
-    srand(1000)
     subject.land(test_plane)
     expect { subject.land(test_plane) }.to raise_error("Cannot land plane that has landed!")
   end
 
   it "Should be able to view planes that have landed at it's site" do
-    srand(1000)
     subject.land(test_plane)
     expect(subject.planes).to include test_plane
   end
 
   it "Should not land planes while the weather is stormy" do
-    srand(1001)
+    allow(weather).to receive(:conditions).and_return("STORMY")
+    p subject
+    p subject.weather
     expect { subject.land(test_plane) }.to raise_error("Cannot land plane while weather is stormy!")
   end
 
@@ -35,7 +37,6 @@ describe Airport do
   end
 
   it "Should no longer have any planes that have taken off at site" do
-    srand(1000)
     subject.land(test_plane)
     expect(subject.planes).to include test_plane
     subject.takeoff(test_plane)
@@ -43,10 +44,9 @@ describe Airport do
   end
 
   it "Should not takeoff planes while the weather is stormy" do
-    srand(1000)
     subject.land(test_plane)
-    srand(1001)
-    subject.weather_update
+    allow(weather).to receive(:conditions).and_return("STORMY")
+    weather.conditions
     expect { subject.takeoff(test_plane) }.to raise_error("Cannot takeoff plane while weather is stormy!")
   end
 
@@ -55,11 +55,10 @@ describe Airport do
   end
 
   it "Should have a default capacity" do
-    expect((Airport.new).capacity).to eq 100
+    expect((Airport.new).capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
   it "Should not be able to land more planes on site than maximum capacity" do
-    srand(1000)
     subject = Airport.new(0)
     expect { subject.land(test_plane) }.to raise_error("Cannot land more planes on site than maximum capacity!")
   end
