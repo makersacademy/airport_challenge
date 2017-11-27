@@ -26,8 +26,8 @@ describe Airport do
       expect(subject.land(a_plane)).to eq "The plane has landed"
     end
 
-    it "changes the capacity of the airport to 20" do
-      subject.capacity = 20
+    it "changes the capacity of the airport to 5" do
+      subject.capacity = 5
       expect(subject.capacity).to eq 5
     end
 
@@ -43,7 +43,7 @@ describe Airport do
     it "can allow a plane take off" do
       a_plane = Plane.new
       subject.land(a_plane)
-      expect(subject.take_off).to eq("The plane has taken off")
+      expect(subject.take_off(a_plane)).to eq("The plane has taken off")
     end
 
     it "can confirm a plane has taken off" do
@@ -52,6 +52,7 @@ describe Airport do
 
     it "wont allow a plane to take off due to bad weather" do
       a_plane = Plane.new
+      subject.land(a_plane)
       allow(subject).to receive(:stormy?) { true }
       expect { subject.take_off(a_plane) }.to raise_error("Bad weather, all planes grounded")
     end

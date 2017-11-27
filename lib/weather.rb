@@ -5,7 +5,7 @@ class Weather
   end
 
   def stormy?
-    rand(6) == 1 ? true : false # 1/6 chance of a storm
+    rand(6) == 1  # 1/6 chance of a storm
   end
 end
 
