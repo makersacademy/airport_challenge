@@ -20,8 +20,6 @@ describe Airport do
 
   it "Should not land planes while the weather is stormy" do
     allow(weather).to receive(:conditions).and_return("STORMY")
-    p subject
-    p subject.weather
     expect { subject.land(test_plane) }.to raise_error("Cannot land plane while weather is stormy!")
   end
 
@@ -30,7 +28,6 @@ describe Airport do
   end
 
   it "Should not be able to takeoff a plane that is not at the airport" do
-    srand(1000)
     subject.land(test_plane)
     subject.takeoff(test_plane)
     expect { subject.takeoff(test_plane) }.to raise_error("Cannot takeoff a plane that isn't on site!")
@@ -61,6 +58,13 @@ describe Airport do
   it "Should not be able to land more planes on site than maximum capacity" do
     subject = Airport.new(0)
     expect { subject.land(test_plane) }.to raise_error("Cannot land more planes on site than maximum capacity!")
+  end
+
+  it "Should receive multiple planes" do
+    3.times { subject.land(Plane.new) }
+    expect(subject.planes.length).to eq 3
+    3.times { subject.takeoff(subject.planes[0]) }
+    expect(subject.planes.length).to eq 0
   end
 
 end
