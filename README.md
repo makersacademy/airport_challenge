@@ -21,7 +21,7 @@ Also to assist the adoption of the program in random airports, we need to have t
 
 
 ## Supplementary Information
-  This can be found in the **[00_notes] (https://github.com/lunaticnick/airport_challenge/tree/master/00_notes)** folder
+  This can be found in the **[00_notes](https://github.com/lunaticnick/airport_challenge/tree/master/00_notes)** folder
 
 ## Things to improve
 
