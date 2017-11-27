@@ -92,21 +92,17 @@ describe Airport do
   context "Land a number of planes equal to default capacity (5) and then get them to take off" do
     it "Dock all the planes prior and get them ready to take off" do
       allow(airport).to receive(:stormy?).and_return(false)
-      planes_array = []
-      airport.airp_capacity.times { planes_array << Plane.new}
-      planes_array.each {|plane| airport.dock(plane)}
-      # p airport
-      expect(subject.count_of_planes).to eq 5
+      airport.airp_capacity.times { airport.dock(Plane.new)}
+      expect(subject.count_of_planes).to eq airport.airp_capacity
     end
 
     it "All planes are taking off" do
       allow(airport).to receive(:stormy?).and_return(false)
-      planes_array = []
-      airport.airp_capacity.times { planes_array << Plane.new}
-      planes_array.each {|plane| airport.dock(plane)}
-      # p airport
-      planes_array.each {|plane| airport.launch(plane)}
-      p airport
+      airport.airp_capacity.times { airport.dock(Plane.new)}
+      #  We need to use the until as each time the each runs, it alters the array is it running on
+      until airport.planes.empty?
+            airport.planes.each{|plane| airport.launch(plane)}
+      end
       expect(subject.count_of_planes).to eq 0
 
     end
