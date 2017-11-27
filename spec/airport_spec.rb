@@ -2,6 +2,8 @@ require 'airport'
 
 describe Airport do
 
+  before(:each) {allow(subject).to receive(:stormy?) {false}}
+
   it "has no planes when it first opens" do
     expect(subject.planes).to be_empty
   end
@@ -16,6 +18,12 @@ describe Airport do
       plane = double(:plane, land: nil, status: subject)
       subject.land(plane)
       expect(plane.status).to eq subject
+    end
+
+    it "stops planes landing in stormy conditions" do
+      plane = double(:plane, land: nil)
+      allow(subject).to receive(:stormy?) { true }
+      expect{ subject.land(plane) }.to raise_error "This plane cannot land until the weather clears up"
     end
 
   end
@@ -41,6 +49,12 @@ describe Airport do
       expect { subject.takeoff(plane) }.to raise_error "That plane is not at this airport"
     end
 
+    it "stops planes taking off in stormy conditions" do
+      plane = double(:plane, takeoff: nil, land: nil)
+      subject.land(plane)
+      allow(subject).to receive(:stormy?) { true }
+      expect{ subject.takeoff(plane) }.to raise_error "This plane cannot take off until the weather clears up"
+    end
 
   end
 
@@ -71,9 +85,9 @@ describe Airport do
 
     it "has a variable capacity" do
       plane = double(:plane, land: nil)
-      airport = Airport.new(100)
-      100.times { airport.land(plane) }
-    expect { airport.land(plane) }.to raise_error "This airport is full"
+      subject.capacity = 100
+      100.times { subject.land(plane) }
+    expect { subject.land(plane) }.to raise_error "This airport is full"
     end
 
 
