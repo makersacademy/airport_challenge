@@ -1,5 +1,5 @@
-require_relative 'Airport'
-require_relative 'Plane'
+require_relative 'airport'
+require_relative 'plane'
 
 class Weather
   def stormy?

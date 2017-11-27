@@ -1,5 +1,5 @@
-require_relative 'Airport'
-require_relative 'Weather'
+require_relative 'airport'
+require_relative 'weather'
 
 class Plane
 
@@ -21,9 +21,5 @@ class Plane
     raise "Plane is already in the air" if @status == "In the air"
     @status.on_runway?(self) ? @status = "In the air" : @status.takeoff(self)
   end
-
-
-
-
 
 end
