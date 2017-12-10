@@ -1,3 +1,5 @@
+[![forthebadge](http://forthebadge.com/images/badges/made-with-ruby.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/uses-git.svg)](http://forthebadge.com)
+
 # Airport Challenge -- Makers Academy Weekend Challenge Week 1
 
 ```
