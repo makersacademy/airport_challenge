@@ -74,7 +74,7 @@ describe Airport do
   end
 
   # Tests for preventing a plane docking if airport full
-  context "Traffic Control gives permission for landing pending on capacity" do
+  context "Traffic Control gives permission for landing/taking off depending on capacity" do
     it "stops a plane for landing/docking if airport is full" do
       allow(airport).to receive(:stormy?).and_return(false)
       5.times { subject.dock(Plane.new) }
