@@ -47,14 +47,16 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error("Plane not in airport")
     end
 
-    it "should allow a plane to take off and leave the airport" do
-      airport.land(plane)
+    before do
+      airport.planes << plane
       airport.take_off(plane)
+    end
+    it "should allow a plane to take off and leave the airport" do
       expect(airport.planes.include?(plane)).to eq false
     end
 
     it "should raise an error if the weather is stormy" do
-      airport.land(plane)
+      airport.planes << plane
       allow(airport).to receive(:stormy?).and_return(true)
       expect { airport.take_off(plane) }.to raise_error("Bad weather - unable to take off")
     end
