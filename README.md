@@ -1,5 +1,5 @@
 # Airport Challenge
-=================
+
 
 ```
         ______
@@ -14,7 +14,7 @@
 ```
 
 ### Description
------
+
 
 This software controls the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  
 
@@ -47,15 +47,17 @@ I would like a default airport capacity that can be overridden as appropriate
 ```
 
 ### Install and execution
------
+
 Install Bundler and the relevant gems with the below commands:
+
 `gem bundle install`
 
 `bundle`
 
 To run the programme, use the below command in irb:
+
 `require './lib/airport'`
 
 ### Author
------
+
 Eleanor Wintram
