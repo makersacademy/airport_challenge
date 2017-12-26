@@ -2,21 +2,23 @@ require "plane"
 
 describe Plane do
 
+  let(:plane) { described_class.new }
+
   describe "#land" do
     before do
-      subject.land
+      plane.land
     end
     it "should set the status to landed = true" do
-      expect(subject.landed).to eq true
+      expect(plane.landed).to eq true
     end
   end
 
   describe "#take_off" do
     before do
-      subject.take_off
+      plane.take_off
     end
     it "should set the status to landed = false" do
-      expect(subject.landed).to eq false
+      expect(plane.landed).to eq false
     end
   end
 

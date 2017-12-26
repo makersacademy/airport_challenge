@@ -2,11 +2,11 @@ class Plane
 
   attr_reader :landed
 
-  def land_self
+  def land
     @landed = true
   end
 
-  def take_off_self
+  def take_off
     @landed = false
   end
 

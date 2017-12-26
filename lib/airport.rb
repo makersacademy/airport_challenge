@@ -6,10 +6,10 @@ class Airport
   attr_reader :planes, :capacity, :weather
   DEFAULT_CAPACITY = 10
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY, weather = Weather.new)
     @planes = []
     @capacity = capacity
-    @weather = Weather.new
+    @weather = weather
   end
 
   def land(plane)
@@ -17,14 +17,14 @@ class Airport
     fail "Plane is already landed" if plane.landed
     fail "Bad weather - unable to land" if stormy?
     @planes << plane
-    plane.land_self
+    plane.land
   end
 
   def take_off(plane)
-    fail "Plane not in airport" if !@planes.include?(plane)
+    fail "Plane not in airport" unless @planes.include?(plane)
     fail "Bad weather - unable to take off" if stormy?
-    @planes -= [plane]
-    plane.take_off_self
+    @planes.delete(plane)
+    plane.take_off
   end
 
 private
@@ -34,7 +34,7 @@ private
   end
 
   def stormy?
-    @weather.stormy? == true
+    @weather.stormy?
   end
 
 end
