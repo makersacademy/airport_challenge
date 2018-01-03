@@ -15,12 +15,11 @@ class Airport
   end
 
   def take_off(a_plane)
-    raise 'The plane cannot take-off because of stormy weather' if @weather.stormy? 
+    raise 'The plane cannot take-off because of stormy weather' if @weather.stormy?
     @planes.delete(a_plane)
   end
 
   def landed_planes
     @planes
   end
-
 end
