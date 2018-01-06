@@ -1,3 +1,6 @@
-class Plane 
+class Plane
+
+  def land 
+  end
 
 end
