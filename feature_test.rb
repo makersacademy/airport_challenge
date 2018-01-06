@@ -1,7 +1,15 @@
 require './lib/weather'
 require './lib/airport'
 require './lib/controller'
+require './lib/plane'
 
+def plane_airborne
+  plane = Plane.new(false)
+  puts "plane airborne: #{plane.airborne?}"
+  plane.set_airborne
+  puts "plane airborne: #{plane.airborne?}"
+end
+plane_airborne
 def check_stormy?
   5.times do
     weather = Weather.new
@@ -50,5 +58,3 @@ def controller_takeoff_enabled(weather_today)
   p "weather is #{weather_today}"
   p "Landing enabled: #{controller.takeoff_enabled}"
 end
- controller_takeoff_enabled(:fine)
- controller_takeoff_enabled(:stormy)
