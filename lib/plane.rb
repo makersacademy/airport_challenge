@@ -1,6 +1,6 @@
 class Plane
 
-  def land 
+  def land(airprort) 
   end
 
 end
