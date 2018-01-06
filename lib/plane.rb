@@ -7,11 +7,13 @@ class Plane
 
   end
 
-  def land(weather)
-    if weather.stormy.zero?
-      'land'
-    else
+  def land(weather, airport)
+    if weather.stormy == 1
       'stormy weather prevents landing'
+    elsif weather.stormy.zero? && airport.capacity > 0
+      'airport full, cannot land'
+    elsif weather.stormy.zero? && airport.capacity.zero?
+      'land'
     end
   end
 

@@ -5,13 +5,25 @@ require 'plane'
 describe Plane do
   # let(:airport) { double :airport }
   let(:weather) { double :weather }
+  let(:airport) { double :airport }
 
   context '.land' do
     it 'does not land if the weather is stormy' do
       plane = Plane.new
       allow(weather).to receive(:stormy).and_return(1)
       expect(weather.stormy).to eq(1)
-      expect(plane.land(weather)).to eq 'stormy weather prevents landing'
+      allow(airport).to receive(:capacity).and_return(0)
+      expect(airport.capacity).to eq(0)
+      expect(plane.land(weather, airport)).to eq 'stormy weather prevents landing'
+    end
+
+    it 'does not land if the airport is full' do
+      plane = Plane.new
+      allow(weather).to receive(:stormy).and_return(0)
+      expect(weather.stormy).to eq(0)
+      allow(airport).to receive(:capacity).and_return(1)
+      expect(airport.capacity).to eq(1)
+      expect(plane.land(weather, airport)).to eq 'airport full, cannot land'
     end
 
     # it 'lands at the airport when instructed' do
