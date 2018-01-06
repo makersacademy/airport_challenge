@@ -1,6 +1,4 @@
-
 class Weather
-
   attr_reader :stormy
 
   def initialize
@@ -11,5 +9,4 @@ class Weather
   def conditions
     rand(2)
   end
-
 end
