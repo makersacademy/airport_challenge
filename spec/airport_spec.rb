@@ -3,10 +3,14 @@ require 'airport'
 describe Airport do
 
   describe "#initialize" do
-    # it "should set capacity if supplied as argument" do
-    # end
-    # it "should set capacity as default if no argument" do
-    # end
+    it "should set capacity if supplied as argument" do
+      airport = Airport.new(99)
+      expect(airport.capacity).to eq(99)
+    end
+      
+    it "should set capacity as default if no argument" do
+      expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
+    end
   end
 
   describe "#takeoff_plane" do
