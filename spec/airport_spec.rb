@@ -41,4 +41,27 @@ describe Airport do
     50.times { subject.land(Plane.new) }
     expect { subject.land(plane) }.to raise_error("the airport is currently full")
   end
+
+  describe "initialization" do
+    subject { Airport.new }
+    let(:plane) { Plane.new }
+    it "checks default aiport capacity" do
+      allow(subject).to receive_message_chain(:weather, :storm?) { false }
+      described_class::DEFAULT_CAPACITY.times do
+      subject.land(plane)
+      end
+      expect { subject.land(plane) }.to raise_error "the airport is currently full"
+    end
+  end
 end
+#     describe "initialization" do
+#       subject { Airport.new(35) }
+#       let(:plane) { Plane.new }
+#       it "checks user can set airport capacity" do
+#         described_class::capacity.times do
+#           subject.land(plane)
+#         end
+#         expect { subject.land(plane) }.to raise_error "he airport is currently full"
+#   end
+# end
+# end
