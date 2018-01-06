@@ -12,7 +12,7 @@ describe Airport do
     airport.capacity = 10
     expect(airport.capacity).to eq 10
   end
-  
+
   it { is_expected.to respond_to(:land).with(1).argument }
   describe '#land' do
     it 'stores plane when landed' do
@@ -24,7 +24,7 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error 'Unable to land - weather is stormy'
     end
     it 'raises error when full' do
-      Airport::DEFAULT_CAPACITY.times {airport.land(plane)}
+      airport.capacity.times {airport.land(plane)}
       expect { airport.land(plane) }. to raise_error 'Airport at full capacity'
     end
   end
