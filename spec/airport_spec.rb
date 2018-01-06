@@ -4,9 +4,7 @@ describe Airport do
    
   describe "#land" do
    
-   	it "should respond to land in an airport" do
-      expect(subject).to respond_to(:land).with(1).argument
-    end
+    it { is_expected.to respond_to(:land) }
 
   end
 
