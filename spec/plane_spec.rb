@@ -6,12 +6,18 @@ describe Plane do
   # let(:airport) { double :airport }
   let(:weather) { double :weather }
 
-
   context '.land' do
-    it 'lands at the airport when instructed' do
+    it 'does not land if the weather is stormy' do
       plane = Plane.new
-      expect(plane.land).to eq true
+      allow(weather).to receive(:stormy).and_return(1)
+      expect(weather.stormy).to eq(1)
+      expect(plane.land(weather)).to eq 'stormy weather prevents landing'
     end
+
+    # it 'lands at the airport when instructed' do
+    #   plane = Plane.new
+    #   expect(plane.land).to eq true
+    # end
   end
 
   context '.take_off' do
