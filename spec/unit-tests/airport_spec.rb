@@ -20,7 +20,11 @@ describe Airport do
     context 'when planes land' do
       it 'should show a single landed plane' do
         airport.land plane
-        expect( airport.planes ).to eq plane
+        expect( airport.planes[0] ).to eq plane
+      end
+      it 'should show all the planes' do
+        2.times { airport.land plane }
+        expect( airport.planes ).to eq [plane, plane]
       end
     end
   end
