@@ -10,4 +10,10 @@ describe Airport do
     plane = Plane.new
     expect(subject.take_off(plane)).to eq "#{plane} is no longer in the aiport"
   end
+
+  it "lands a plane and confirms that the plane is in the airport" do
+    plane = Plane.new
+    subject.land(plane)
+    expect(subject.planes.sample).to eq plane
+  end
 end
