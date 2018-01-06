@@ -9,7 +9,7 @@ class Plane
   end
 
   def landed
-    fail "Plane is already grounded" unless !flying?
+    fail "Plane is already grounded" unless flying?
     @flying = false
   end
 

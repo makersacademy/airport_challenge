@@ -1,4 +1,7 @@
 class Airport
+  require_relative 'weather'
+  require_relative 'plane'
+
   attr_reader :planes, :weather
   attr_accessor :capacity
 
@@ -17,8 +20,8 @@ class Airport
   end
 
   def take_off(plane)
-    fail 'Unable to take off - weather is stormy' if weather.stormy?
     fail "Plane is not at this airport" unless in_hangar(plane)
+    fail 'Unable to take off - weather is stormy' if weather.stormy?
     remove_from_hangar(plane)
   end
 

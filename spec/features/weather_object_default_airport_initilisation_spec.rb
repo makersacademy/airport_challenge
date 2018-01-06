@@ -1,5 +1,4 @@
 require 'airport'
-require 'weather'
 
 describe 'Airport start up' do
   it 'defaults to Weather object if no argument is given on initialisation' do

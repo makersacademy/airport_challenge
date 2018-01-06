@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'simplecov-console'
+require 'feature_helpers'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
@@ -14,4 +15,8 @@ RSpec.configure do |config|
     puts "\e[33mHave you considered running rubocop? It will help you improve your code!\e[0m"
     puts "\e[33mTry it now! Just run: rubocop\e[0m"
   end
+end
+
+RSpec.configure do |c|
+  c.include Helpers
 end

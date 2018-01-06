@@ -4,11 +4,11 @@ This code has been created to complete a challenge to create an airport system t
 
 As user story requires weather to be considered prior to land/take off, I have added weather as an default parameter within Airport initialisation up for ease of use. This has been tested within feature tests to ensure isolation of unit tests.
 
-Edge cases considered - decision taken to implement planes to initialize flying - to allow to test that only flying planes can land, and non flying planes can take off. 
+Edge cases considered - decision taken to implement planes to initialize flying - to allow to test that only flying planes can land, and non flying planes can take off.
 
 I have aimed to solve this challenge using the BDD cycle, with a test driven approach.
 
-I have included feature tests within the file - whilst I am aware these repeat code, I have added individual tests for clarity at this stage in my progression.
+I have included feature tests within the file - whilst I am aware these repeat some code, I have added individual tests for clarity at this stage in my progression.
 
 ## Getting started
 * git clone git@github.com:Leigan0/airport_challenge.git
@@ -18,9 +18,11 @@ I have included feature tests within the file - whilst I am aware these repeat c
 ## Usage
 * To create an airport = Airport.new
 * To create a plane = Plane.new
-* To land a plane = airport.land(plane)
-* to take off a plane = airport.take_off(plane)
-* note that weather conditions are checked at land and take off - if weather stormy,    plane will not land/take off
+* To land a plane  - airport.land(plane)
+* To take off a plane -  airport.take_off(plane)
+* To check airport capacity - airport.capacity
+* To set capacity airport.capacity = 20
+* Note that weather conditions are checked at land and take off - if weather stormy - plane will not land/take off
 
 ## Running tests
 RSpec
