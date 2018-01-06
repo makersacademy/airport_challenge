@@ -13,8 +13,8 @@ class Airport
   def land(plane)
     fail 'Unable to land - weather is stormy' if weather.stormy?
     fail 'Airport at full capacity' if full?
-    planes << plane
     plane.landed
+    planes << plane
   end
 
   def take_off(plane)

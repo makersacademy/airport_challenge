@@ -26,4 +26,12 @@ describe 'Plane can confirm its own flying status' do
     airport.take_off(plane)
     expect(plane.flying?).to eq true
   end
+  it 'will raise an error if non flying plane is landed again' do
+    weather = Weather.new
+    airport = Airport.new(weather)
+    plane = Plane.new
+    allow(weather).to receive(:rand).and_return(3)
+    airport.land(plane)
+    expect {airport.land(plane) }.to raise_error "Plane is already grounded"
+  end
 end
