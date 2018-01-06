@@ -43,5 +43,8 @@ describe Airport do
       airport.land plane
       expect(airport.take_off).to eq plane
     end
+    it 'raises an exception when there are no planes to take off' do
+      expect { airport.take_off }.to raise_error 'Airport is empty!'
+    end
   end
 end
