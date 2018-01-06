@@ -4,12 +4,13 @@ class Airport
 
   attr_accessor :conditions
 
-  def initialize(conditions='clear')
+  def initialize(conditions = 'clear')
     @planes = []
     @conditions = conditions
   end
 
   def land(plane)
+    raise 'Planes cant land as the weather is too stormy' if @conditions == 'stormy'
     @planes << plane
   end
 

@@ -15,7 +15,12 @@ describe Airport do
   it 'planes cant take off when stormy' do
     airport = Airport.new('stormy')
     plane = Plane.new
-    airport.land(plane)
     expect { airport.take_off }.to raise_error 'the weather is too stormy'
+  end
+
+  it 'planes cant land when stormy' do
+    airport = Airport.new('stormy')
+    plane = Plane.new
+    expect { airport.land(plane) }.to raise_error 'Planes cant land as the weather is too stormy'
   end
 end
