@@ -11,13 +11,10 @@ class Plane
   end
 
   def take_off(weather)
-    p weather
     if weather.stormy == 0
       'take off'
-      p weather
     else
       'stormy weather prevents take off'
-      p weather
     end
   end
 

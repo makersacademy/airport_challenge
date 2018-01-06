@@ -17,13 +17,15 @@ describe Plane do
   context '.take_off' do
     it 'takes off if the weather is not stormy' do
       plane = Plane.new
-      weather.stormy = 0
+      allow(weather).to receive(:stormy).and_return(0)
+      expect(weather.stormy).to eq(0)
       expect(plane.take_off(weather)).to eq 'take off'
     end
 
     it 'does not take off if the weather is stormy' do
       plane = Plane.new
-      weather.stormy = 1
+      allow(weather).to receive(:stormy).and_return(1)
+      expect(weather.stormy).to eq(1)
       expect(plane.take_off(weather)).to eq 'stormy weather prevents take off'
     end
   end
