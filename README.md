@@ -1,6 +1,33 @@
 # Airport Challenge
 
-# User Stories 
+This code has been created to complete a challenge to create an airport system to meet the user stories given.
+
+As user story requires weather to be considered prior to land/take off, I have added weather as an default parameter within Airport  initialisation up for ease of use. This has been tested within feature tests to ensure isolation of unit tests. 
+
+I have aimed to solve this challenge using the BDD cycle, with a test driven approach.
+
+I have included feature tests within the file - whilst I am aware these repeat code, I have added individual tests for clarity at this stage in my progression.
+
+## Getting started
+* git clone git@github.com:Leigan0/airport_challenge.git
+* bundle
+* cd airport_challenge
+
+## Usage
+* To create an airport = Airport.new
+* To create a plane = Plane.new
+* To land a plane = airport.land(plane)
+* to take off a plane = airport.take_off(plane)
+* note that weather conditions are checked at land and take off - if weather stormy,    plane will not land/take off
+
+## Running tests
+RSpec
+
+## Tecnologies used
+* Ruby
+* RSpec
+
+## User Stories
 
 As an air traffic controller
 So I can get passengers to a destination
