@@ -11,9 +11,9 @@ describe Weather do
   end
 
   describe "#stormy?" do
-    before { subject.instance_variable_set(:@current_weather, :stormy)}
     it "should return true if current weather == stormy" do
-      expect(subject).to be_stormy
+      weather.instance_variable_set(:@current_weather, :stormy)
+      expect(weather).to be_stormy
     end
   end
 
