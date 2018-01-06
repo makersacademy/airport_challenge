@@ -31,12 +31,12 @@ describe Airport do
     plane = Plane.new
     subject.land(plane)
     allow(subject).to receive_message_chain(:weather, :storm?) { true }
-    expect { subject.take_off(plane) }.to raise_error("plane cannot take off due to stormy weather")
+    expect { subject.take_off(plane) }.to raise_error "plane cannot take off due to stormy weather"
   end
 
   it "raise an error if plane tries to land when the weather is stormy" do
     plane = Plane.new
     allow(subject).to receive_message_chain(:weather, :storm?) { true }
-    expect { subject.land(plane) }.to raise_error ("plane cannot land due to stormy weather")
+    expect { subject.land(plane) }.to raise_error "plane cannot land due to stormy weather"
   end
 end
