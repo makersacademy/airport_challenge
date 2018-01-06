@@ -8,18 +8,19 @@ class Plane
   end
 
   def land(target_airport)
-    raise 'Plane is already landed' if is_landed?
-    target_airport.planes.push(self)
+    raise 'Plane is already landed' if landed?
+    target_airport.receive(self)
     @airport = target_airport
   end
 
   def take_off
-    raise 'Plane is already airborne' unless is_landed?
-    @airport.planes.delete(self)
+    raise 'Plane is already airborne' unless landed?
+    @airport.dispatch(self)
     @airport = nil
   end
 
-  def is_landed?
+  private
+  def landed?
     @airport.is_a?(Airport)
   end
 end

@@ -9,30 +9,23 @@ describe Plane do
   it 'can land at an airport' do
     airport = Airport.new
     subject.land(airport)
-    expect(airport.planes[0]).to eq(subject)
+    expect(subject.airport).to eq airport
   end
 
   it 'can take off from an airport' do
     airport = Airport.new
     subject.land(airport)
     subject.take_off
-    expect(airport.planes).to be_empty
-  end
-
-  it 'knows whether it is airborne or landed' do
-    expect(subject.is_landed?).to be false
-    airport = Airport.new
-    subject.land(airport)
-    expect(subject.is_landed?).to be true
+    expect(subject.airport).to be_nil
   end
 
   it 'fails when trying to land a landed plane' do
     airport = Airport.new
     subject.land(airport)
-    expect{subject.land(airport)}.to raise_error
+    expect { subject.land(airport) }.to raise_error 'Plane is already landed'
   end
 
   it 'fails when trying to take off an airborne plane' do
-    expect{subject.take_off}.to raise_error
+    expect { subject.take_off }.to raise_error 'Plane is already airborne'
   end
 end
