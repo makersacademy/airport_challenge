@@ -5,6 +5,14 @@ describe Airport do
   let(:weather) { double :weather, :stormy? => false }
   subject(:airport) { Airport.new(weather) }
 
+  it 'has a default capacity' do
+    expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+  it 'allows capacity to be overidden at request' do
+    airport.capacity = 10
+    expect(airport.capacity).to eq 10
+  end
+  
   it { is_expected.to respond_to(:land).with(1).argument }
   describe '#land' do
     it 'stores plane when landed' do
