@@ -14,6 +14,7 @@ class Plane
   end
 
   def taken_off
+    fail "Plane is already in the air" if flying?
     @flying = true
   end
 end

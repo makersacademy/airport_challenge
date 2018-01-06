@@ -20,8 +20,12 @@ describe Plane do
   end
   describe '#take_off' do
     it 'confirms plane is flying' do
+      plane.landed
       plane.taken_off
       expect(plane).to be_flying
     end
+    it 'will raise error if called on non flying plane' do
+      expect { plane.taken_off }.to raise_error "Plane is already in the air"
+      end
   end
 end
