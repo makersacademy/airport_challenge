@@ -9,9 +9,7 @@ describe 'Taking off' do
     airport.take_off
     expect(airport.planes).to be_empty
   end
-  it 'a plane should be able to take off' do
-    2.times { airport.land plane }
-    2.times { airport.take_off }
-    expect(airport.planes).to be_empty
+  it 'should raise an exception if there are no landed planes' do
+    expect { airport.take_off }.to raise_error 'Airport is empty!'
   end
 end
