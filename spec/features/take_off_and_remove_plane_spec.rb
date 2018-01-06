@@ -17,6 +17,6 @@ describe 'plane takes off and plane removed from airport' do
     plane = Plane.new
     allow(weather).to receive(:rand).and_return(3)
     plane.landed
-    expect {airport.take_off(plane) }.to raise_error "Plane is not at this airport"
+    expect { airport.take_off(plane) }.to raise_error "Plane is not at this airport"
   end
 end

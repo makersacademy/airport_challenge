@@ -13,21 +13,31 @@ class Airport
   def land(plane)
     fail 'Unable to land - weather is stormy' if weather.stormy?
     fail 'Airport at full capacity' if full?
-    plane.landed
-    planes << plane
+    add_to_hangar(plane)
   end
 
   def take_off(plane)
     fail 'Unable to take off - weather is stormy' if weather.stormy?
-    fail "Plane is not at this airport" if !planes.include?(plane)
-    plane.taken_off
-    planes.delete(plane)
+    fail "Plane is not at this airport" unless in_hangar(plane)
+    remove_from_hangar(plane)
   end
 
   private
-
   def full?
     planes.count >= capacity
   end
 
+  def in_hangar(plane)
+    planes.include?(plane)
+  end
+
+  def add_to_hangar(plane)
+    plane.landed
+    planes << plane
+  end
+
+  def remove_from_hangar(plane)
+    plane.taken_off
+    planes.delete(plane)
+  end
 end

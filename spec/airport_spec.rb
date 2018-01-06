@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane, taken_off: true , landed: false}
+  let(:plane) { double :plane, taken_off: true, landed: false }
   let(:weather) { double :weather, :stormy? => false }
   subject(:airport) { Airport.new(weather) }
 

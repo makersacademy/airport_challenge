@@ -26,6 +26,6 @@ describe Plane do
     end
     it 'will raise error if called on non flying plane' do
       expect { plane.taken_off }.to raise_error "Plane is already in the air"
-      end
+    end
   end
 end
