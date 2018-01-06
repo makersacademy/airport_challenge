@@ -7,11 +7,12 @@ This code has been created to complete a challenge to create an airport system t
 
 As user story requires weather to be considered prior to land/take off, I have added weather as an default parameter within Airport initialisation for ease of use. This has been tested within feature tests to ensure isolation of unit tests.
 
+
 Edge cases considered - decision taken to implement planes to initialize flying - to allow to test that only flying planes can land, and non flying planes can take off.
 
 I have aimed to solve this challenge using the BDD cycle, with a test driven approach.
 
-I have included feature tests within the file - whilst I am aware these repeat some code, I have added individual tests for clarity at this stage in my progression.
+I have included feature tests within the file - whilst I am aware these repeat some code, I have added individual tests for clarity at this stage in my progression. Also as unit tests isolated, similar feature tests implemented to confirm expected integration behaviour between classes.  
 
 ## Getting started
 * git clone git@github.com:Leigan0/airport_challenge.git

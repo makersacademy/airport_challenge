@@ -21,7 +21,7 @@ describe Airport do
     it 'checks weather status before allowing plane to land' do
       expect(weather).to receive(:stormy?)
       airport.land(plane)
-    end 
+    end
     it 'will not allow plane to land in stormy weather - error will be thrown' do
       allow(weather).to receive(:stormy?).and_return(true)
       expect { airport.land(plane) }.to raise_error 'Unable to land - weather is stormy'
@@ -37,6 +37,10 @@ describe Airport do
   end
 
   describe '#take_off' do
+    it 'provides a return output to confirm plane has left airport' do
+      airport.land(plane)
+      expect(airport.take_off(plane)).to eq "#{plane} has now left airport"
+    end
     context 'when plane has already landed at airport' do
       before do
         airport.land(plane)

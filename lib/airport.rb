@@ -42,5 +42,6 @@ class Airport
   def remove_from_hangar(plane)
     plane.taken_off
     planes.delete(plane)
+    "#{plane} has now left airport"
   end
 end
