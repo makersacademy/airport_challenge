@@ -12,8 +12,7 @@ describe Plane do
 
     it "airport's hanger should contain landed plane" do
       allow(airport).to receive(:land).with(subject).and_return(subject)
-      subject.land(airport)
-      expect(airport.hanger).to eq(subject)
+      expect(subject.land(airport)).to eq(subject)
     end
     
   end
