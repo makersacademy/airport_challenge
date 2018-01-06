@@ -2,7 +2,7 @@
 
 This code has been created to complete a challenge to create an airport system to meet the user stories given.
 
-As user story requires weather to be considered prior to land/take off, I have added weather as an default parameter within Airport initialisation up for ease of use. This has been tested within feature tests to ensure isolation of unit tests.
+As user story requires weather to be considered prior to land/take off, I have added weather as an default parameter within Airport initialisation for ease of use. This has been tested within feature tests to ensure isolation of unit tests.
 
 Edge cases considered - decision taken to implement planes to initialize flying - to allow to test that only flying planes can land, and non flying planes can take off.
 
