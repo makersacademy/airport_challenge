@@ -1,7 +1,14 @@
 class Plane
+  
+  def initialize(flying = true)
+    @flying = flying
+  end
    
   def land(airport)
-    airport.land(self) 
+    return raise("Already Grounded") unless @flying
+    puts "still going"
+    @flying = false
+    airport.land(self)
   end
 
 end
