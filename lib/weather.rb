@@ -1,11 +1,15 @@
 class Weather
 
+  attr_reader :current_weather
+
+  WEATHER_TYPES = [:fine,:fine,:fine,:fine,:stormy]
+
   def initialize
-    # set weather to random
+    @current_weather = WEATHER_TYPES.sample
   end
 
   def stormy?
-    # return true if self is set to stromy
+    @current_weather == :stormy
   end
 
 end
