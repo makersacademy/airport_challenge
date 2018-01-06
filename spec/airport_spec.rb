@@ -11,4 +11,11 @@ describe Airport do
     subject.land(plane)
     expect(subject.take_off).to eq plane
   end
+
+  it 'planes cant take off when stormy' do
+    airport = Airport.new('stormy')
+    plane = Plane.new
+    airport.land(plane)
+    expect { airport.take_off }.to raise_error 'the weather is too stormy'
+  end
 end

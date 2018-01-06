@@ -2,8 +2,11 @@ require_relative 'plane'
 
 class Airport
 
-  def initialize
+  attr_accessor :conditions
+
+  def initialize(conditions='clear')
     @planes = []
+    @conditions = conditions
   end
 
   def land(plane)
@@ -11,6 +14,7 @@ class Airport
   end
 
   def take_off
+    raise 'the weather is too stormy' if @conditions == 'stormy'
     @planes.pop
   end
 end
