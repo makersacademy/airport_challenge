@@ -6,10 +6,12 @@ describe 'Taking off' do
   plane = Plane.new
   it 'a plane should be able to take off' do
     airport.land plane
-    expect { airport.take_off }.to_not raise_error
+    airport.take_off
+    expect(airport.planes).to be_empty
   end
   it 'a plane should be able to take off' do
     2.times { airport.land plane }
-    expect { 2.times { airport.take_off } }.to_not raise_error
+    2.times { airport.take_off }
+    expect(airport.planes).to be_empty
   end
 end
