@@ -8,6 +8,12 @@ describe Airport do
     it 'has a land method' do
       is_expected.to respond_to(:land).with(1).argument
     end
+    it 'can land a plane' do
+      expect { airport.land plane }.to_not raise_error
+    end
+    it 'can land more than one plane' do
+      expect { 2.times { airport.land plane } }.to_not raise_error
+    end
   end
 
   describe '#planes' do
