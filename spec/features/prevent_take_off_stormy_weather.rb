@@ -9,7 +9,7 @@ describe 'Planes will not take off if weather report is stormy' do
     plane = Plane.new
     allow(weather).to receive(:stormy?).and_return(true)
     airport.land(plane)
-    expect{plane.take_off}.to raise_error 'Unable to take off - weather is stormy'
+    expect { plane.take_off }.to raise_error 'Unable to take off - weather is stormy'
   end
 end
 

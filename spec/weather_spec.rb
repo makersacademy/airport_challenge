@@ -1,8 +1,8 @@
 require 'weather'
 
 describe Weather do
-  subject(:weather){Weather.new}
-  it {is_expected.to respond_to(:stormy?)}
+  subject(:weather) { Weather.new }
+  it { is_expected.to respond_to(:stormy?) }
 
   describe '#stormy?' do
     it 'returns not stormy(false) when rand returns less than less than or equal to 3' do
