@@ -1,4 +1,3 @@
-
 class Airport
   DEFAULT_CAPACITY = true
   attr_reader :capacity, :hangar
@@ -7,10 +6,4 @@ class Airport
     @capacity = capacity
     @hangar = []
   end
-
-  # private
-  # def capacity
-  #
-  # end
-
 end

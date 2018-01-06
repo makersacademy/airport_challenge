@@ -1,5 +1,5 @@
-require './lib/weather.rb'
-require './lib/airport.rb'
+require "./lib/weather.rb"
+require "./lib/airport.rb"
 
 class Plane
   DEFAULT_LOCATION = "flying"
@@ -10,7 +10,9 @@ class Plane
   end
 
   def land(weather, airport)
-    if weather.stormy == 1
+    if self.location != "flying"
+      "plane not in the air and cannot land"
+    elsif weather.stormy == 1
       "stormy weather prevents landing"
     elsif weather.stormy.zero? && airport.capacity == false
       "airport full, cannot land"
