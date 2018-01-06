@@ -24,7 +24,7 @@ class Airport
   private
 
   def full?
-    planes.count >=  capacity
+    planes.count >= capacity
   end
 
 end
