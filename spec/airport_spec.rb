@@ -11,6 +11,9 @@ describe Airport do
       airport.land(plane)
       expect(airport.planes).to include plane
     end
+    it 'will not allow plane to land in stormy weather - error will be thrown' do
+      expect { airport.land(plane) }.to raise_error 'Unable to land - weather is stormy'
+    end 
   end
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -20,7 +23,7 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.planes).not_to include plane
     end
-    it 'will not allow plane to take off if weather stormy' do
+    it 'will not allow plane to take off if weather stormy - error will be thrown' do
       allow(weather).to receive(:stormy?).and_return(true)
       airport.land(plane)
       expect { airport.take_off(plane) }.to raise_error 'Unable to take off - weather is stormy'
