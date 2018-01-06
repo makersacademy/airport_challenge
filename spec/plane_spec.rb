@@ -6,7 +6,7 @@ describe Plane do
   
   describe "#land" do
    
-    it { is_expected.to respond_to(:land) }
+    it { is_expected.to respond_to(:land).with(1).argument }
 
     it "plane should give itself to hanger" do
       allow(airport).to receive(:land).with(subject).and_return(true)
