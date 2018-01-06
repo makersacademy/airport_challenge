@@ -49,5 +49,8 @@ describe Airport do
       expect(plane).to receive(:taken_off)
       airport.take_off(plane)
     end
+    it 'will not allow plane to take off if it is not already landed at airport' do
+      expect { airport.take_off(plane) }.to raise_error "Plane is not at this airport" 
+    end
   end
 end
