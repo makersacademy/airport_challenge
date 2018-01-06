@@ -16,9 +16,13 @@ describe Airport do
   end
 
   it 'instructs a plane to take off from an airport' do
-    plane = Plane.new
     airport.take_off(plane)
     expect(airport).to respond_to(:take_off).with(1).argument
   end
 
+  it 'removing plane from the storage' do
+    airport.land(plane)
+    airport.take_off(plane)
+    expect(airport.take_off(plane)).to eq nil
+  end
 end

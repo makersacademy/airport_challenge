@@ -10,10 +10,11 @@ class Airport
   end
 
   def take_off(plane)
+    @storage.delete(plane)
   end
 
   def show_planes
-    @storage 
+    @storage
   end
 
 end
