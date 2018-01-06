@@ -30,7 +30,7 @@ I have included feature tests within the file - whilst I am aware these repeat s
 ## Running tests
 RSpec
 
-## Tecnologies used
+## Technologies used
 * Ruby
 * RSpec
 
