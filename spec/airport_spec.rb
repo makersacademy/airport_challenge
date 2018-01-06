@@ -1,7 +1,8 @@
 require 'airport'
 
 describe Airport do
-
+let(:weather) {double:weather}
+# let(:plane) {double: plane}
   describe '#land' do
     it {is_expected.to respond_to(:land).with(1).argument}
 
@@ -12,11 +13,18 @@ describe Airport do
   end
 
   describe '#take_off' do
-    it {is_expected.to respond_to(:land).with(1).argument}
+    it {is_expected.to respond_to(:take_off).with(2).arguments}
 
-    it 'raises an error when plane takes off' do
+    it 'raises an error when weather is stormy' do
       plane = Plane.new
-      expect{subject.take_off(plane)}.to raise_error("The plane is no longer in the airport")
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect{subject.take_off(plane, weather)}. to raise_error("Stormy weather - no take off allowed")
+    end
+
+    it 'allows take off when weather is sunny' do
+      plane = Plane.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect{subject.take_off(plane, weather)}.to raise_error("The plane has successfully left the airport")
     end
   end
 end
