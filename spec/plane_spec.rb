@@ -46,6 +46,16 @@ describe Plane do
       expect(weather.stormy).to eq(1)
       expect(plane.take_off(weather)).to eq 'stormy weather prevents take off'
     end
+
+    it 'cannot take-off from an airport in which it has not landed' do
+      plane = Plane.new
+      allow(weather).to receive(:stormy).and_return(0)
+      expect(weather.stormy).to eq(0)
+      allow(airport).to receive(:capacity).and_return(false)
+      expect(airport.capacity).to eq(false)
+      expect(plane.take_off(weather)).to eq 'take off'
+
+    end
   end
 
   # context '.flying' do
