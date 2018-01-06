@@ -1,6 +1,6 @@
 
 class Airport
-  attr_reader :airport
+  attr_reader :airport, :plane
 
   def initialize(storage = [])
     @storage = storage
@@ -11,8 +11,8 @@ class Airport
 
   end
 
-  def take_off(plane)
-    @storage.delete_at(@storage.length-1)
+  def take_off(*)
+    @storage.delete_at(@storage.length - 1)
   end
 
   def show_planes

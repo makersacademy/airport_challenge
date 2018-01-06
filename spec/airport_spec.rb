@@ -1,5 +1,6 @@
 require './lib/airport.rb'
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 describe Airport do
   let(:airport) { Airport.new }
@@ -25,4 +26,5 @@ describe Airport do
     airport.take_off(plane)
     expect(airport.take_off(plane)).to eq nil
   end
+
 end
