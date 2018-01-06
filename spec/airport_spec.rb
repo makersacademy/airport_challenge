@@ -6,11 +6,6 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
   end
 
-  # it "instructs a plane to take off and confirms that it is no longer in the airport" do
-  #   plane = Plane.new
-  #   expect(subject.take_off(plane)).to eq "#{plane} is no longer in the aiport"
-  # end
-
   it "checks that a landed plane is in the airport" do
     allow(subject).to receive_message_chain(:weather, :storm?) { false }
     plane = Plane.new
@@ -38,5 +33,12 @@ describe Airport do
     plane = Plane.new
     allow(subject).to receive_message_chain(:weather, :storm?) { true }
     expect { subject.land(plane) }.to raise_error "plane cannot land due to stormy weather"
+  end
+
+  it "raise error when plane attempts landing at full airport " do
+    allow(subject).to receive_message_chain(:weather, :storm?) { false }
+    plane = Plane.new
+    50.times { subject.land(Plane.new) }
+    expect { subject.land(plane) }.to raise_error("the airport is currently full")
   end
 end
