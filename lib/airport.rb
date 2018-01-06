@@ -10,4 +10,9 @@ class Airport
     @hanger << plane
   end
 
+  def takeoff(plane)
+    @hanger -= [plane]
+    "#{plane} has left the hanger!"
+  end
+
 end
