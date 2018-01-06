@@ -12,7 +12,8 @@ class Airport
   end
 
   def take_off(plane)
-    "#{plane} is no longer in the aiport"
+    @planes.delete(plane)
+    puts "#{plane} is no longer in the aiport"
   end
 
 end
