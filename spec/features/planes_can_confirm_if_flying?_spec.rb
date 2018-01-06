@@ -41,6 +41,6 @@ describe 'Plane can confirm its own flying status' do
     allow(weather).to receive(:rand).and_return(3)
     airport.land(plane)
     airport.take_off(plane)
-    expect {airport.take_off(plane) }.to raise_error "Plane is already in the air"
+    expect {plane.taken_off }.to raise_error "Plane is already in the air"
   end
 end

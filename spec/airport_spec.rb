@@ -46,11 +46,12 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error 'Unable to take off - weather is stormy'
     end
     it 'changes plane status to flying when plane takes off' do
+      airport.land(plane)
       expect(plane).to receive(:taken_off)
       airport.take_off(plane)
     end
     it 'will not allow plane to take off if it is not already landed at airport' do
-      expect { airport.take_off(plane) }.to raise_error "Plane is not at this airport" 
+      expect { airport.take_off(plane) }.to raise_error "Plane is not at this airport"
     end
   end
 end
