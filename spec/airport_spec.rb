@@ -40,4 +40,11 @@ describe Airport do
     expect { airport.land(plane) }.to raise_error("Storm, wait until it's clear!!")
   end
 
+  it 'doesn\'t allow to land if airport is full' do
+    allow(airport).to receive(:full?).and_return(false)
+    airport.land(plane)
+    allow(airport).to receive(:full?).and_return(true)
+    expect { airport.land(plane) }.to raise_error("The airport is full!")
+  end
+
 end

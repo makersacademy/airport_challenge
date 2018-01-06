@@ -8,6 +8,7 @@ class Airport
 
   def land(plane)
     raise "Storm, wait until it's clear!!" if check_stormy
+    raise "The airport is full!" if full?
     @storage.push(plane)
   end
 
@@ -22,6 +23,9 @@ class Airport
 
   def check_stormy
     Weather.new.stormy?
+  end
+
+  def full?
   end
 
 end
