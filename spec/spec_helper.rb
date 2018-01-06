@@ -1,6 +1,7 @@
 require 'simplecov'
 require 'simplecov-console'
 require 'feature_helpers'
+require 'coveralls'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
@@ -21,5 +22,4 @@ RSpec.configure do |c|
   c.include Helpers
 end
 
-require 'coveralls'
 Coveralls.wear!

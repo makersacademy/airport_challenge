@@ -1,5 +1,8 @@
 # Airport Challenge
 
+[![Build Status](https://travis-ci.org/Leigan0/airport_challenge.svg?branch=master)](https://travis-ci.org/Leigan0/airport_challenge)
+[![Coverage Status](https://coveralls.io/repos/github/Leigan0/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/Leigan0/airport_challenge?branch=master)
+
 This code has been created to complete a challenge to create an airport system to meet the user stories given.
 
 As user story requires weather to be considered prior to land/take off, I have added weather as an default parameter within Airport initialisation for ease of use. This has been tested within feature tests to ensure isolation of unit tests.
