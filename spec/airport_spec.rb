@@ -15,6 +15,10 @@ describe Airport do
       allow(weather).to receive(:stormy?).and_return(true)
       expect { airport.land(plane) }.to raise_error 'Unable to land - weather is stormy'
     end
+    it 'raises error when full' do
+      airport.land(plane)
+      expect { airport.land(plane) }. to raise_error 'Airport at full capacity'
+    end
   end
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
