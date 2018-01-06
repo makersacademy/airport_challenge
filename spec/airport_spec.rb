@@ -27,4 +27,11 @@ describe Airport do
     expect(airport.take_off(plane)).to eq nil
   end
 
+  it 'taking off not allowed if it\'s stormy' do
+    allow(airport).to receive(:check_stormy).and_return(false)
+    airport.take_off(plane)
+    allow(airport).to receive(:check_stormy).and_return(true)
+    expect { airport.take_off(plane) }.to raise_error("Storm, wait until it's clear!")
+  end
+
 end
