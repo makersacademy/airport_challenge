@@ -16,7 +16,7 @@ describe Plane do
   end
   describe '#take_off' do
     it 'confirms plane is flying' do
-      plane.take_off
+      plane.taken_off
       expect(plane).to be_flying
     end
   end

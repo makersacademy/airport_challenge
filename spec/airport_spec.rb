@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  let(:plane) { double :plane }
+  let(:plane) { double :plane, taken_off: true , landed: false}
   let(:weather) { double :weather, :stormy? => false }
   subject(:airport) { Airport.new(weather) }
 
@@ -27,6 +27,10 @@ describe Airport do
       airport.capacity.times { airport.land(plane) }
       expect { airport.land(plane) }. to raise_error 'Airport at full capacity'
     end
+    it 'changes plane status to not flying when plane landed' do
+      expect(plane).to receive(:landed)
+      airport.land(plane)
+    end
   end
 
   it { is_expected.to respond_to(:take_off).with(1).argument }
@@ -40,6 +44,10 @@ describe Airport do
       airport.land(plane)
       allow(weather).to receive(:stormy?).and_return(true)
       expect { airport.take_off(plane) }.to raise_error 'Unable to take off - weather is stormy'
+    end
+    it 'changes plane status to flying when plane takes off' do
+      expect(plane).to receive(:taken_off)
+      airport.take_off(plane)
     end
   end
 end
