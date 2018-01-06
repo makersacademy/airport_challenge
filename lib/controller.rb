@@ -15,4 +15,8 @@ class Controller
     return false if airport.full?
     return true
   end
+
+  def takeoff_enabled
+    !weather.stormy?
+  end
 end

@@ -13,6 +13,7 @@ describe Controller do
       expect(controller.airport).to be_full
     end
   end
+
   context "tests around landing permission" do
     it "can determine that landing is permissible if weather ok and airport has capacity" do
       weather = double("weather", :weathers => [:fine], :stormy? => false)
@@ -31,6 +32,21 @@ describe Controller do
       airport = double("airport", :full => true, :full? => true)
       controller = Controller.new(airport, weather)
       expect(controller.landing_enabled).to eq false
+    end
+  end
+  context "tests around takeoff permission" do
+    it "can determine that takeoff is permissible if weather ok" do
+      weather = double("weather", :weathers => [:fine], :stormy? => false)
+      airport = double("airport", :full => false, :full? => false)
+      controller = Controller.new(airport, weather)
+      expect(controller.takeoff_enabled).to eq true
+    end
+
+    it "can determine that takeoff is not permissible if weather bad" do
+      weather = double("weather", :weathers => [:stormy], :stormy? => true)
+      airport = double("airport", :full => false, :full? => false)
+      controller = Controller.new(airport, weather)
+      expect(controller.takeoff_enabled).to eq false
     end
   end
 end
