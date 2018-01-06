@@ -2,7 +2,8 @@ require 'airport'
 
 describe Airport do
 
-  let (:plane) {double("plane")}
+  let(:plane) { double("plane") }
+  let(:weather) { double("weather") }
 
   it 'Can create a new airport' do
     expect(subject).to eq subject
@@ -18,7 +19,7 @@ describe Airport do
 
   it 'Doesn\'t allow the same plane to be put in the hanger' do
     subject.land(plane)
-    expect{subject.land(plane)}.to raise_error("#{plane} is already in the hanger")
+    expect { subject.land(plane) }.to raise_error("#{plane} is already in the hanger")
   end
 
   it 'Allows a plane to take off and confirms it has left the hanger' do
@@ -27,7 +28,12 @@ describe Airport do
   end
 
   it 'Doesn\'t allow a plane to take off if it\'s not in the hanger' do
-    expect{subject.takeoff(plane)}.to raise_error("#{plane} is not in the hanger")
+    expect { subject.takeoff(plane) }.to raise_error("#{plane} is not in the hanger")
+  end
+
+  it 'Doesn\'t allow a plane to take off if it is stormy' do
+    allow(subject).to receive(:weather) { true }
+    expect(subject.land(plane)).to raise_error("The plane can't land as there's a storm")
   end
 
 end
