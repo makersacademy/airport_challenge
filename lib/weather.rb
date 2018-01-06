@@ -1,7 +1,7 @@
 class Weather
 
   def storm?
-    true if rand(4) > 0
-    false
+    false if rand(4) > 0
+    true
   end
 end
