@@ -40,6 +40,13 @@ describe Airport do
       airport.take_off(plane)
       expect(airport.planes).not_to include plane
     end
+    it 'removes correct plane from aiport' do
+      plane2 = double(:plane, :landed => false)
+      airport.land(plane)
+      airport.land(plane2)
+      airport.take_off(plane)
+      expect(airport.planes).to eq [plane2]
+    end
     it 'will not allow plane to take off if weather stormy - error will be thrown' do
       airport.land(plane)
       allow(weather).to receive(:stormy?).and_return(true)
