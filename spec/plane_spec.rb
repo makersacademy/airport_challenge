@@ -12,8 +12,8 @@ describe Plane do
       plane = Plane.new
       allow(weather).to receive(:stormy).and_return(1)
       expect(weather.stormy).to eq(1)
-      allow(airport).to receive(:capacity).and_return(0)
-      expect(airport.capacity).to eq(0)
+      allow(airport).to receive(:capacity).and_return(true)
+      expect(airport.capacity).to eq(true)
       expect(plane.land(weather, airport)).to eq 'stormy weather prevents landing'
     end
 
@@ -21,8 +21,8 @@ describe Plane do
       plane = Plane.new
       allow(weather).to receive(:stormy).and_return(0)
       expect(weather.stormy).to eq(0)
-      allow(airport).to receive(:capacity).and_return(1)
-      expect(airport.capacity).to eq(1)
+      allow(airport).to receive(:capacity).and_return(false)
+      expect(airport.capacity).to eq(false)
       expect(plane.land(weather, airport)).to eq 'airport full, cannot land'
     end
 
