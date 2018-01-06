@@ -13,12 +13,15 @@ describe Airport do
     expect(airport.capacity).to eq 10
   end
 
-  it { is_expected.to respond_to(:land).with(1).argument }
   describe '#land' do
     it 'stores plane when landed' do
       airport.land(plane)
       expect(airport.planes).to include plane
     end
+    it 'checks weather status before allowing plane to land' do
+      expect(weather).to receive(:stormy?)
+      airport.land(plane)
+    end 
     it 'will not allow plane to land in stormy weather - error will be thrown' do
       allow(weather).to receive(:stormy?).and_return(true)
       expect { airport.land(plane) }.to raise_error 'Unable to land - weather is stormy'
@@ -33,32 +36,43 @@ describe Airport do
     end
   end
 
-  it { is_expected.to respond_to(:take_off).with(1).argument }
   describe '#take_off' do
-    it 'removes plane from airport' do
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(airport.planes).not_to include plane
+    context 'when plane has already landed at airport' do
+      before do
+        airport.land(plane)
+        airport.take_off(plane)
+      end
+      it 'removes plane from airport' do
+        expect(airport.planes).not_to include plane
+      end
+      it 'removes correct plane from aiport' do
+        plane2 = double(:plane, :landed => false)
+        airport.land(plane2)
+        expect(airport.planes).to eq [plane2]
+      end
     end
-    it 'removes correct plane from aiport' do
-      plane2 = double(:plane, :landed => false)
-      airport.land(plane)
-      airport.land(plane2)
-      airport.take_off(plane)
-      expect(airport.planes).to eq [plane2]
+    context 'when plane is not landed at airport' do
+      it 'will not allow plane to take off if it is not already landed at airport' do
+        expect { airport.take_off(plane) }.to raise_error "Plane is not at this airport"
+      end
+      it 'changes plane status to flying when plane takes off' do
+        airport.land(plane)
+        expect(plane).to receive(:taken_off)
+        airport.take_off(plane)
+      end
     end
-    it 'will not allow plane to take off if weather stormy - error will be thrown' do
-      airport.land(plane)
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect { airport.take_off(plane) }.to raise_error 'Unable to take off - weather is stormy'
-    end
-    it 'changes plane status to flying when plane takes off' do
-      airport.land(plane)
-      expect(plane).to receive(:taken_off)
-      airport.take_off(plane)
-    end
-    it 'will not allow plane to take off if it is not already landed at airport' do
-      expect { airport.take_off(plane) }.to raise_error "Plane is not at this airport"
+    context 'when weather is stormy' do
+      before do
+        airport.land(plane)
+      end
+      it 'checks weather status before allowing a plane to take_off' do
+        expect(weather).to receive(:stormy?)
+        airport.take_off(plane)
+      end
+      it 'will not allow plane to take off if weather stormy - error will be thrown' do
+        allow(weather).to receive(:stormy?).and_return(true)
+        expect { airport.take_off(plane) }.to raise_error 'Unable to take off - weather is stormy'
+      end
     end
   end
 end
