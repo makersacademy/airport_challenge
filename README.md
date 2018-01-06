@@ -19,6 +19,8 @@ I have included feature tests within the file - whilst I am aware these repeat s
 * cd airport_challenge
 
 ## Usage
+Instructions run within IRB
+* require './lib/airport.rb'
 * To create an airport = Airport.new
 * To create a plane = Plane.new
 * To land a plane  - airport.land(plane)
