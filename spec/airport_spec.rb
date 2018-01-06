@@ -11,7 +11,8 @@ describe Airport do
   #   expect(subject.take_off(plane)).to eq "#{plane} is no longer in the aiport"
   # end
 
-  it "land a plane and confirms that the plane is in the airport" do
+  it "checks that a landed plane is in the airport" do
+    allow(subject).to receive_message_chain(:weather, :storm?) { false }
     plane = Plane.new
     subject.land(plane)
     expect(subject.planes.sample).to eq plane
@@ -25,12 +26,17 @@ describe Airport do
     expect(subject.planes.empty?).to eq true
   end
 
-  it "raise an error if plane tries to take off when the weather is stormy " do
-      allow(subject).to receive_message_chain(:weather, :storm?) { false }
-      plane = Plane.new
-      subject.land(plane)
-      allow(subject).to receive_message_chain(:weather, :storm?) { true }
-      expect { subject.take_off(plane) }.to raise_error("plane canot take off due to stormy weather")
-    end
+  it "raise an error if plane tries to take off when the weather is stormy" do
+    allow(subject).to receive_message_chain(:weather, :storm?) { false }
+    plane = Plane.new
+    subject.land(plane)
+    allow(subject).to receive_message_chain(:weather, :storm?) { true }
+    expect { subject.take_off(plane) }.to raise_error("plane cannot take off due to stormy weather")
+  end
 
+  it "raise an error if plane tries to land when the weather is stormy" do
+    plane = Plane.new
+    allow(subject).to receive_message_chain(:weather, :storm?) { true }
+    expect { subject.land(plane) }.to raise_error ("plane cannot land due to stormy weather")
+  end
 end
