@@ -7,8 +7,8 @@ class Airport
   end
 
   def land(plane)
+    raise "Storm, wait until it's clear!!" if check_stormy
     @storage.push(plane)
-
   end
 
   def take_off(*)
