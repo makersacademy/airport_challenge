@@ -12,7 +12,7 @@ class Airport
     @capacity = capacity
   end
   def full?
-    true if @planes.count == DEFAULT_AIRPORT_CAPACITY
+    true if (@planes.count > DEFAULT_AIRPORT_CAPACITY)
   end
 
   def land(plane, weather)

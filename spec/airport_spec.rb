@@ -8,22 +8,14 @@ describe Airport do
   describe '#land' do
     it {is_expected.to respond_to(:land).with(2).arguments}
 
-    it 'raises an error for landing when weather is stormy and airport is full' do
+    it 'raises an error for landing when weather is stormy' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect{subject.land(plane, weather)}.to raise_error("Plane may *not* land")
+    end
+    it 'raises an error for landing when airport is full' do
       allow(weather).to receive(:stormy?).and_return(true)
       allow(airport).to receive(:full?).and_return(true)
-      expect{subject.land(plane, weather)}. to raise_error("Plane may *not* land")
-    end
-
-    it 'raises an error for landing when weather is stormy even if slots available' do
-      allow(weather).to receive(:stormy?).and_return(true)
-      allow(airport).to receive(:full?).and_return(false)
-      expect{subject.land(plane, weather)}. to raise_error("Plane may *not* land")
-    end
-
-    it 'raises an error for landing if airport is full, even if weather is sunny' do
-      allow(airport).to receive(:full?).and_return(true)
-      allow(weather).to receive(:stormy?).and_return(false)
-      expect{subject.land(plane, weather)}. to raise_error("Plane may *not* land")
+      expect{subject.land(plane, weather)}.to raise_error("Plane may *not* land")
     end
 
     it 'allows landing when weather is sunny and airport has available slots' do
