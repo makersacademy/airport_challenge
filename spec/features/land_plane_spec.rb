@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe 'Land plane and store in airport' do
-  it 'Airport traffic controller lands plane' do
+  it 'Lands plane and stores in airport' do
     weather = Weather.new
     airport = Airport.new(weather)
     plane = Plane.new
