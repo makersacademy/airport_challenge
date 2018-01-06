@@ -1,5 +1,6 @@
 
 class Airport
+  attr_reader :airport
 
   def initialize(storage = [])
     @storage = storage
@@ -7,10 +8,11 @@ class Airport
 
   def land(plane)
     @storage.push(plane)
+
   end
 
   def take_off(plane)
-    @storage.delete(plane)
+    @storage.delete_at(@storage.length-1)
   end
 
   def show_planes
