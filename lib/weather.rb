@@ -5,7 +5,7 @@ class Weather
   end
 
   def stormy?
-    get_weather == :stormy
+    weather == :stormy
   end
 
   private
