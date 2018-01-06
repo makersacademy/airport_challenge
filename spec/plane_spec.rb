@@ -33,27 +33,14 @@ describe Plane do
   end
 
   context '.take_off' do
-    it 'takes off if the weather is not stormy' do
+
+    it 'can only take-off from where it has landed and if the weather is good' do
       plane = Plane.new
       allow(weather).to receive(:stormy).and_return(0)
       expect(weather.stormy).to eq(0)
-      expect(plane.take_off(weather)).to eq 'take off'
-    end
-
-    it 'does not take off if the weather is stormy' do
-      plane = Plane.new
-      allow(weather).to receive(:stormy).and_return(1)
-      expect(weather.stormy).to eq(1)
-      expect(plane.take_off(weather)).to eq 'stormy weather prevents take off'
-    end
-
-    it 'cannot take-off from an airport in which it has not landed' do
-      plane = Plane.new
-      allow(weather).to receive(:stormy).and_return(0)
-      expect(weather.stormy).to eq(0)
-      allow(airport).to receive(:capacity).and_return(false)
-      expect(airport.capacity).to eq(false)
-      expect(plane.take_off(weather)).to eq 'take off'
+      allow(airport).to receive(:object_id).and_return(plane.location)
+      expect(plane.location).to eq(airport.object_id)
+      expect(plane.take_off(weather, airport)).to eq 'take off'
 
     end
   end
