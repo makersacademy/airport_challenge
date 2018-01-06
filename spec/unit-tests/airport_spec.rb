@@ -34,4 +34,14 @@ describe Airport do
       end
     end
   end
+
+  describe '#take_off' do
+    it 'has a planes method' do
+      is_expected.to respond_to(:take_off)
+    end
+    it 'allows a plane to take off' do
+      airport.land plane
+      expect(airport.take_off).to eq plane
+    end
+  end
 end
