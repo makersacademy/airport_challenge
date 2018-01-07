@@ -8,18 +8,28 @@ describe Airport do
 
     it "plane should give itself to hanger" do
       allow(plane).to receive(:land).and_return(true)
+      allow(plane).to receive(:flying).and_return(false)
       subject.land(plane)
       expect(subject.hanger).to include(plane)
     end
 
     it "only lands a plane that can land" do
       allow(plane).to receive(:land).and_return(true)
+       allow(plane).to receive(:flying).and_return(false)
       subject.land(plane)
       expect(subject.hanger).to include(plane)
     end
     
     it "it won't land a plane that isn't able to" do 
       allow(plane).to receive(:land).and_return(false)
+      allow(plane).to receive(:flying).and_return(false)
+      subject.land(plane)
+      expect(subject.hanger).to eq []
+    end
+
+      it "it won't store a plane that still thinks its flying" do 
+      allow(plane).to receive(:land).and_return(false)
+      allow(plane).to receive(:flying).and_return(true)
       subject.land(plane)
       expect(subject.hanger).to eq []
     end
@@ -30,6 +40,7 @@ describe Airport do
 
     it "a plane that takes off should be removed from hanger" do
       allow(plane).to receive(:land).and_return(true)
+      allow(plane).to receive(:flying).and_return(false)
       allow(plane).to receive(:take_off).and_return(true)	
       subject.land(plane)
       subject.take_off(plane)
