@@ -3,14 +3,18 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :planes, :weather
+  attr_reader :planes, :weather, :capacity
 
-  def initialize(weather = Weather.new)
+  DEFAULT_CAPACITY = 2
+
+  def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @planes = []
     @weather = weather
+    @capacity = capacity
   end
 
   def land(plane)
+    fail "Stormy weather" if weather.stormy?
     fail "Plane has already landed" unless plane.airborne?
     plane.instance_variable_set(:@airborne, false)
     @planes << plane
@@ -21,8 +25,12 @@ class Airport
     fail "Plane has already taken off" if plane.airborne?
     plane.instance_variable_set(:@airborne, true)
     @planes.delete(plane)
-    @planes
-    "Confirmed: plane has taken off"
+    "Confirmed: #{plane} has taken off"
   end
 
+  def full?
+    return true if @planes.length == DEFAULT_CAPACITY
+    false
+  end
+  
 end

@@ -9,5 +9,5 @@ class Plane
   def airborne?
     @airborne
   end
-
+  
 end
