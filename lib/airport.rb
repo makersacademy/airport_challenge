@@ -19,6 +19,7 @@ class Airport
     plane?(plane)
     weather?(weather)
     @hanger.delete(plane)
+    "#{plane} has taken off"
   end
    
 

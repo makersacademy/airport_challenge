@@ -40,9 +40,10 @@ describe Airport do
       expect { subject.take_off(plane, weather) }.to raise_error("No such plane in hanger")
     end
     
-    it "plane is only removed from hanger if it has taken off" do
+    it "should recieve confirmation a plane has taken off" do
       allow(weather).to receive(:forecast)
-      expect { subject.take_off(plane, weather) }.to raise_error("No such plane in hanger")
+      subject.land(plane, weather)
+      expect(subject.take_off(plane, weather)).to eq("#{plane} has taken off")
     end
     
     it "it won't let the plane take_off if weather is stormy" do 
