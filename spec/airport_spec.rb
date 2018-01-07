@@ -24,6 +24,17 @@ describe Airport do
       Airport::DEFAULT_CAPACITY.times { subject.land(double("plane")) }
       expect { subject.land(plane) }.to raise_error("Airport full")
     end
+
+    it "you can change the capacity to 30" do 
+      airport = Airport.new(30)
+      expect(airport.capacity).to eq 30 
+    end
+
+    it "you can change the capacity to 40 and it will hold 40 planes" do 
+      airport = Airport.new(40)
+      40.times { airport.land(double("plane")) }
+      expect(airport.hanger.length).to eq 40
+    end
     
   end
 
