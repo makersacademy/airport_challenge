@@ -44,6 +44,11 @@ describe Airport do
       expect{ airport.takeoff(plane) }.to raise_error "Plane did not take off"
     end
 
+    it "should raise error if plane isn't at this airport" do
+      airport.instance_variable_set(:@planes_in_hangar, [])
+      expect{ airport.takeoff(plane) }.to raise_error "Plane is not in this airport"
+    end
+
     it "should not allow plane to take off if stormy" do
       allow(weather).to receive(:stormy?).and_return(true)
       expect{ airport.takeoff(plane) }.to raise_error "Planes cannot take off due to bad weather"
