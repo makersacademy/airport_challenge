@@ -1,9 +1,12 @@
 class Airport
 
-  attr_reader :hangar
+  attr_reader :hangar, :hangar_capacity
+
+  DEFAULT_CAPACITY = 10
 
   def initialize
     @hangar = []
+    @hangar_capacity = DEFAULT_CAPACITY
     @weather_condition = nil
   end
 

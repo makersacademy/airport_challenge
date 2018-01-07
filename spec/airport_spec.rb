@@ -4,6 +4,10 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
 
+  it 'has a default hangar capacity of 10' do
+    expect(airport.hangar_capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
   describe '#land' do
     it 'airport has plane after landing' do
       airport.land(plane)
@@ -13,7 +17,7 @@ describe Airport do
     it 'prevents landing when weather is stormy' do
       airport.instance_variable_set(:@weather_condition, :stormy)
       message = 'Due to current weather conditions planes cannot land'
-      expect{ airport.land(plane) }.to raise_error message
+      expect { airport.land(plane) }.to raise_error message
     end
 
   end
@@ -29,7 +33,7 @@ describe Airport do
       airport.land(plane)
       airport.instance_variable_set(:@weather_condition, :stormy)
       message = 'Due to current weather conditions all planes are grounded'
-      expect{ airport.takeoff(plane) }.to raise_error message
+      expect { airport.takeoff(plane) }.to raise_error message
     end
 
   end
