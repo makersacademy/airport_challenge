@@ -21,6 +21,7 @@ class Airport
 
   def take_off(plane)
     raise 'Airport is empty!' if @planes.empty?
+    raise 'Plane not in airport' unless found? plane
     raise 'Could not complete takeoff due to weather' if weather.stormy?
     plane.takes_off
     @planes.delete(plane)
@@ -30,5 +31,9 @@ class Airport
 
   def full?
     @planes.size == @capacity
+  end
+
+  def found?(plane)
+    @planes.include? plane
   end
 end

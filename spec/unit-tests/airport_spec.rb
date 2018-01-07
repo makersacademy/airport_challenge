@@ -55,6 +55,14 @@ describe Airport do
       expect { airport.take_off plane }.to raise_error 'Airport is empty!'
     end
 
+    it 'raises an exception when the plane is not in airport' do
+      plane2 = double(:plane2)
+      allow(plane2).to receive(:lands)
+      allow(plane2).to receive(:takes_off)
+      airport.land plane2
+      expect { airport.take_off plane }.to raise_error 'Plane not in airport'
+    end
+
     it 'allows a plane to take off' do
       airport.land plane
       expect(airport.take_off plane).to eq plane
