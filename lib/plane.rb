@@ -8,7 +8,7 @@ class Plane
   end
 
   def land(target_airport)
-    raise 'Plane is already landed' if landed?
+    raise 'Plane is already grounded' if landed?
     target_airport.receive(self)
     set_location(target_airport)
   end

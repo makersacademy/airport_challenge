@@ -4,7 +4,7 @@ require 'airport'
 describe Plane do
   let(:airport) { double(:airport, :receive => nil, :dispatch => nil) }
 
-  it 'can create instances of Plane class' do
+  it 'can create an instance of Plane class' do
     expect(subject).to be_instance_of(Plane)
   end
 
@@ -15,7 +15,7 @@ describe Plane do
 
   it 'fails when trying to land a landed plane' do
     subject.land(airport)
-    expect { subject.land(airport) }.to raise_error 'Plane is already landed'
+    expect { subject.land(airport) }.to raise_error 'Plane is already grounded'
   end
 
   it 'can take off from an airport' do
