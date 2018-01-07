@@ -20,6 +20,12 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error message
     end
 
+    it 'prevents landing when hangar is full' do
+      airport.hangar_capacity.times { airport.land(plane) }
+      message = 'Planes cannot land due to a lack of hangar space'
+      expect { airport.land(plane) }.to raise_error message
+    end
+
   end
 
   describe '#takeoff' do
