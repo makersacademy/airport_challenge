@@ -12,6 +12,7 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+This program controls the flow of planes at an airport. The planes can land and take off when the weather is sunny but cannot land and take off when it is stormy. Also, a default capacity can be overridden when necessary.
 
 Instructions
 ---------
@@ -36,30 +37,44 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+
+**How I approached the task:**
+
+First I created airport_spec.rb file to run my feature tests and while I was testing the expectations written in the spec file, I made a new file (airport.rb) in a lib folder (I created lib folder to help me keep all my code together).
+
+In the airport.rb I created the class Airport and required the file in my airport_spec.rb so my code can be accessed. Also, I created a plane.rb file in lib and created a Plane class. Then, required the plane.rb file in the airport_spec.rb .
+
+Next, I've taken small steps to be able to land, take off a plane, raise errors when the airport is full, if it's stormy to not allow the plane to land or take off, override the default capacity of the airport.
+
+When checking if the weather is stormy, I've created a new class Weather and using a rand to generate different weather to simulate if plane will land/take off or not.
+
+Then, I've refactored the code to check if I can write cleaner code and the tests are still passing.
+
+
 
 Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
 
@@ -73,7 +88,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
