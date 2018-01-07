@@ -14,6 +14,17 @@ describe Airport do
     expect(airport).to respond_to(:take_off)
   end
 
+  describe '#initialize' do
+    it 'should set capacity by default' do
+      expect(airport.capacity).to eq (Airport::DEFAULT_CAPACITY)
+    end
+
+    it 'should take an argument to set capacity' do
+      airport = Airport.new(10)
+      expect(airport.capacity).to eq(10)
+    end
+  end
+
   describe '#land' do
     it 'a plane lands in the airport when clear' do
       allow(airport.weather).to receive(:stormy?).and_return false
