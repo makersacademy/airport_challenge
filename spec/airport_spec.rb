@@ -53,6 +53,11 @@ describe Airport do
       expect { airport.takeoff(plane) }.to raise_error message
     end
 
+    it 'prevents takeoff if plane is not in the hangar' do
+      message = 'That plane has not landed at this airport'
+      expect { airport.takeoff(plane) }.to raise_error message
+    end
+
   end
 
 end

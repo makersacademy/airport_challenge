@@ -22,7 +22,9 @@ class Airport
 
   def takeoff(plane)
     stormy_error = 'Due to current weather conditions all planes are grounded'
+    landed_error = 'That plane has not landed at this airport'
     raise stormy_error if stormy?
+    raise landed_error if check_already_landed(plane) != true
     @hangar.delete(plane)
   end
 
