@@ -12,7 +12,7 @@ describe Airport do
   end
 
   describe '#takeoff' do
-    it 'plane is gone after takeoff'do
+    it 'plane is gone after takeoff' do
       airport.land(plane)
       airport.takeoff(plane)
       expect(airport.hangar).not_to include plane
