@@ -3,7 +3,7 @@ require_relative "../lib/airport.rb"
 describe Airport do 
    
   let(:plane) { double("plane") }
-  let(:weather) {double("weather")}
+  let(:weather) { double("weather") }
   
   describe "#land" do
 
