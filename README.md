@@ -1,27 +1,18 @@
-Airport Challenge
-=================
+# Airport Challenge
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+The code in this repository has been written to complete an airport-challenge, where we want to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally, it may be stormy, in which case no planes can land or take off.
 
-```
+## Task
 
+The task is to test drive the creation of a set of classes/modules to satisfy all the below user stories.
 
+## Software
 
+Ruby
+RSpec
 
-User Stories
------
+## User stories
 
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
 As an air traffic controller
 So I can get passengers to a destination
 I want to instruct a plane to land at an airport
@@ -44,5 +35,3 @@ I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
-I would like a default airport capacity that can be overridden as appropriate
-```
