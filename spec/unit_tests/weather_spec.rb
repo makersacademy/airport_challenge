@@ -4,7 +4,7 @@ describe Weather do
 
     describe '#condition_selector' do
       it 'should return one of the weather conditions' do
-        expect(["stormy", "sunny", "windy"]).to include(subject.selector)
+        expect(["stormy", :sunny]).to include(subject.selector)
       end
     end
 
@@ -17,7 +17,7 @@ describe Weather do
 
     describe '#stormy?' do
       it 'should return false if weather condition is not stormy' do
-        allow(subject).to receive(:selector).and_return("sunny")
+        allow(subject).to receive(:selector).and_return(:sunny)
         expect(subject.stormy?).to eq(false)
       end
     end

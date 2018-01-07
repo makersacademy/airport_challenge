@@ -1,7 +1,7 @@
 class Weather
 
   def conditions
-    ["stormy", "sunny", "sunny"]
+    ["stormy", :sunny, :sunny, :sunny]
   end
 
   def selector
