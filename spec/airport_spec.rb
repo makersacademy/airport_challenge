@@ -30,6 +30,12 @@ describe Airport do
     expect(subject.takeoff(plane)).to eq "#{plane} has left the hanger!"
   end
 
+  it 'Can check the status of a plane' do
+    allow(subject).to receive(:stormy?) { false }
+    subject.land(plane)
+    expect(subject.status(plane)).to eq "#{plane} is in the hanger"
+  end
+
   it 'Doesn\'t allow a plane to take off if it\'s not in the hanger' do
     allow(subject).to receive(:stormy?) { false }
     expect { subject.takeoff(plane) }.to raise_error("#{plane} is not in the hanger")

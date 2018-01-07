@@ -25,6 +25,10 @@ class Airport
     "#{plane} has left the hanger!"
   end
 
+  def status(plane)
+    @hanger.include?(plane) ? "#{plane} is in the hanger" : "#{plane} is flying"
+  end
+
   private
   def stormy?
     Weather.new.stormy == 5
