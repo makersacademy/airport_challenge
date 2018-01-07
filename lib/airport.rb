@@ -13,8 +13,10 @@ class Airport
   def land(plane)
     stormy_error = 'Due to current weather conditions planes cannot land'
     capacity_error = 'Planes cannot land due to a lack of hangar space'
+    landed_error = 'Plane has already landed'
     raise stormy_error if stormy?
     raise capacity_error if full?
+    raise landed_error if check_already_landed(plane)
     @hangar << plane
   end
 
@@ -30,6 +32,10 @@ class Airport
 
   def full?
     @hangar.count >= @hangar_capacity
+  end
+
+  def check_already_landed(plane)
+    return true if @hangar.include?(plane)
   end
 
 end

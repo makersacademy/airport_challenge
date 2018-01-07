@@ -26,8 +26,14 @@ describe Airport do
     end
 
     it 'prevents landing when hangar is full' do
-      airport.hangar_capacity.times { airport.land(plane) }
+      airport.hangar_capacity.times { airport.land(double :plane) }
       message = 'Planes cannot land due to a lack of hangar space'
+      expect { airport.land(plane) }.to raise_error message
+    end
+
+    it 'prevents landing if plane already landed' do
+      airport.land(plane)
+      message = 'Plane has already landed'
       expect { airport.land(plane) }.to raise_error message
     end
 
