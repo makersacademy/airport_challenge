@@ -21,4 +21,15 @@ describe Plane do
     
   end
 
+  describe "#take_off" do
+
+    it "plane should be flying after take off" do
+      allow(airport).to receive(:land).with(subject)
+      subject.land(airport)	
+      subject.take_off
+      expect(subject.flying).to eq(true) 
+    end
+
+  end
+  
 end
