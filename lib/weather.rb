@@ -1,7 +1,8 @@
 class Weather
+  attr_reader :forecast
 
-  def forecast(state="good")
-      state
+  def initialize(state = "good")
+    @forecast = state 
   end
 
 end
