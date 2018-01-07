@@ -65,10 +65,6 @@ describe Airport do
       allow(plane).to receive(:status).and_return :flying
     end
 
-    it 'raises an exception when there are no planes to take off' do
-      expect { airport.take_off plane }.to raise_error 'Airport is empty!'
-    end
-
     it 'raises an exception when the plane is not in airport' do
       plane2 = double(:plane2)
       allow(plane2).to receive(:lands)
@@ -81,7 +77,7 @@ describe Airport do
 
     it 'allows a plane to take off' do
       airport.land plane
-            allow(plane).to receive(:status).and_return :parked
+      allow(plane).to receive(:status).and_return :parked
       expect(airport.take_off plane).to eq plane
     end
 

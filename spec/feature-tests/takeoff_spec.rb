@@ -12,7 +12,4 @@ describe 'Taking off' do
     airport.take_off plane
     expect(airport.planes).to be_empty
   end
-  it 'should raise an exception if there are no landed planes' do
-    expect { airport.take_off plane }.to raise_error 'Airport is empty!'
-  end
 end
