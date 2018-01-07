@@ -7,4 +7,9 @@ class Weather
   def initialize
     @current_weather = WEATHER_CONDITIONS.sample
   end
+
+  def return_weather
+    @current_weather
+  end
+
 end
