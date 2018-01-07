@@ -9,6 +9,13 @@ describe Airport do
       airport.land(plane)
       expect(airport.hangar).to include plane
     end
+
+    it 'prevents landing when weather is stormy' do
+      airport.instance_variable_set(:@weather_condition, :stormy)
+      message = 'Due to current weather conditions planes cannot land'
+      expect{ airport.land(plane) }.to raise_error message
+    end
+
   end
 
   describe '#takeoff' do

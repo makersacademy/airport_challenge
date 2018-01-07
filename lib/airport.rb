@@ -8,6 +8,8 @@ class Airport
   end
 
   def land(plane)
+    stormy_error = 'Due to current weather conditions planes cannot land'
+    raise stormy_error if @weather_condition == :stormy
     @hangar << plane
   end
 
