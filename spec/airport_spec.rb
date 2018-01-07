@@ -8,31 +8,44 @@ describe Airport do
   describe "#land" do
 
     it "plane should give itself to hanger" do
+      allow(weather).to receive(:forecast)
       allow(plane).to receive(:land).and_return(true)
       allow(plane).to receive(:flying).and_return(false)
-      subject.land(plane)
+      subject.land(plane, weather)
       expect(subject.hanger).to include(plane)
     end
 
     it "only lands a plane that can land" do
+      allow(weather).to receive(:forecast)
       allow(plane).to receive(:land).and_return(true)
       allow(plane).to receive(:flying).and_return(false)
-      subject.land(plane)
+      subject.land(plane, weather)
       expect(subject.hanger).to include(plane)
     end
     
     it "it won't land a plane that isn't able to" do 
+      allow(weather).to receive(:forecast)
       allow(plane).to receive(:land).and_return(false)
       allow(plane).to receive(:flying).and_return(false)
-      subject.land(plane)
+      subject.land(plane, weather)
       expect(subject.hanger).to eq []
     end
 
     it "it won't store a plane that still thinks its flying" do 
+      allow(weather).to receive(:forecast)
       allow(plane).to receive(:land).and_return(false)
       allow(plane).to receive(:flying).and_return(true)
-      subject.land(plane)
+      subject.land(plane, weather)
       expect(subject.hanger).to eq []
+    end
+
+    it "it won't let the plane land if weather is stormy" do 
+      allow(weather).to receive(:forecast)
+       allow(plane).to receive(:land).and_return(true)
+      allow(plane).to receive(:flying).and_return(false)
+      subject.land(plane,weather)
+      allow(weather).to receive(:forecast).and_return("stormy")
+      expect { subject.take_off(plane, weather) }.to raise_error("Weather too bad")
     end
     
   end
@@ -44,7 +57,7 @@ describe Airport do
       allow(plane).to receive(:land).and_return(true)
       allow(plane).to receive(:flying).and_return(false)
       allow(plane).to receive(:take_off).and_return(true)	
-      subject.land(plane)
+      subject.land(plane, weather)
       subject.take_off(plane, weather)
       expect(subject.hanger).to eq []
     end
@@ -61,10 +74,11 @@ describe Airport do
     end
     
     it "it won't let the plane take_off if weather is stormy" do 
-      allow(weather).to receive(:forecast).and_return("stormy")
+      allow(weather).to receive(:forecast)
       allow(plane).to receive(:land).and_return(true)
       allow(plane).to receive(:flying).and_return(false)
-      subject.land(plane)
+      subject.land(plane, weather)
+      allow(weather).to receive(:forecast).and_return("stormy")
       expect { subject.take_off(plane, weather) }.to raise_error("Weather too bad")
     end
 
