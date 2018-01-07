@@ -1,28 +1,41 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
-  it "should create a new instance" do
-    expect(subject).to be_a Airport
+  let(:weather) { double :weather }
+  #let(:plane) { double :plane}
+
+  describe '#land' do
+    it "should land at an airport" do
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.airport).to eq plane
+    end
   end
 
-  it "should land at an airport" do
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.airport).to eq plane
-  end
+  describe '#take-off' do
+    it "instructs a plane to take off" do
+      plane = Plane.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      airp = Airport.new(weather)
+      airp.land(plane)
+      airp.take_off(plane)
+      expect(airp.airport).to eq nil
+    end
 
-  it "instruct a plane to take off" do
-    plane = Plane.new
-    subject.land(plane)
-    subject.take_off(plane)
-    expect(subject.airport).to eq nil
-  end
+    it "should confirm plane has left the airport" do
+      plane = Plane.new
+      allow(weather).to receive(:stormy?).and_return(false)
+      airp = Airport.new(weather)
+      airp.land(plane)
+      expect(airp.take_off(plane)).to eq "#{plane} no longer in airport."
+    end
 
-  it "should confirm plane has left the airport" do
-    plane = Plane.new
-    subject.land(plane)
-    expect(subject.take_off(plane)).to eq "#{plane} no longer in airport."
+    it "should not take off if weather stormy" do
+      plane = Plane.new
+      allow(weather).to receive(:stormy?).and_return(true)
+      airport_test = Airport.new(weather)
+      airport_test.land(plane)
+      expect { airport_test.take_off(plane) }.to raise_error 'Unable to take off as stormy weather.'
+    end
   end
-
 end
