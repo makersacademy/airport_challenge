@@ -31,26 +31,25 @@ describe Airport do
 
     context 'when plane has landed' do
 
+    before do
+      allow(plane).to receive(:airborne?).and_return(true)
+      allow(plane).to receive(:landed).and_return(false)
+      allow(plane2).to receive(:airborne?).and_return(true)
+      allow(plane2).to receive(:landed).and_return(false)
+    end
+
       it 'stores plane when it lands' do
-        allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         expect(airport.planes).to include plane
       end
 
       it 'stores more than one plane that lands' do
-        allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
-        allow(plane2).to receive(:landed).and_return(false)
-        allow(plane2).to receive(:airborne?).and_return(true)
         airport.land(plane2)
         expect(airport.planes).to eq([plane, plane2])
       end
 
       it 'cannot land if already landed' do
-        allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         allow(plane).to receive(:airborne?).and_return(false)
         expect { airport.land(plane) }.to raise_error "Plane has already landed"
@@ -61,8 +60,6 @@ describe Airport do
     context 'when weather is stormy' do
 
       it 'does not land if weather is stormy' do
-        allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
         allow(weather).to receive(:stormy?).and_return(true)
         expect { airport.land(plane) }.to raise_error "Stormy weather"
       end
@@ -72,6 +69,14 @@ describe Airport do
   end
 
   describe '#take_off' do
+
+    before do
+      allow(plane).to receive(:airborne?).and_return(true)
+      allow(plane).to receive(:landed).and_return(false)
+      allow(weather).to receive(:stormy?).and_return(false)
+      allow(plane2).to receive(:airborne?).and_return(true)
+      allow(plane2).to receive(:landed).and_return(false)
+    end
 
     context 'when empty' do
       it 'will not take off if airport is empty' do
@@ -84,24 +89,17 @@ describe Airport do
     context 'when plane has landed' do
 
       it 'takes off plane' do
-        allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         allow(plane).to receive(:airborne?).and_return(false)
-        allow(weather).to receive(:stormy?).and_return(false)
         allow(plane).to receive(:takeoff).and_return(false)
         expect(airport.take_off(plane)).to eq "Confirmed: #{plane} has taken off"
       end
 
       it 'takes off correct plane' do
-        allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
+
         airport.land(plane)
-        allow(plane2).to receive(:airborne?).and_return(true)
-        allow(plane2).to receive(:landed).and_return(false)
         airport.land(plane2)
         allow(plane).to receive(:airborne?).and_return(false)
-        allow(weather).to receive(:stormy?).and_return(false)
         allow(plane).to receive(:takeoff).and_return(false)
         expect(airport.take_off(plane)).to eq "Confirmed: #{plane} has taken off"
       end
@@ -112,13 +110,6 @@ describe Airport do
 
       it 'cannot take off if airborne' do
         allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
-        airport.land(plane)
-        allow(plane).to receive(:airborne?).and_return(false)
-        allow(weather).to receive(:stormy?).and_return(false)
-        allow(plane).to receive(:takeoff).and_return(false)
-        airport.take_off(plane)
-        allow(plane).to receive(:airborne?).and_return(true)
         expect { airport.take_off(plane) }.to raise_error "Plane has already taken off"
       end
 
@@ -127,8 +118,6 @@ describe Airport do
     context 'when weather is stormy' do
 
       it 'does not take off if weather is stormy' do
-        allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         allow(plane).to receive(:airborne?).and_return(false)
         allow(weather).to receive(:stormy?).and_return(true)
