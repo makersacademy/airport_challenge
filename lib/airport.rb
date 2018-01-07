@@ -9,13 +9,13 @@ class Airport
     @hanger = []
   end
 
-  def land(plane, weather)
+  def land(plane, weather= "good")
     can_land?(plane)
     weather?(weather)
     @hanger << plane 
   end
 
-  def take_off(plane, weather)
+  def take_off(plane, weather= "good")
     plane?(plane)
     weather?(weather)
     @hanger.delete(plane)
@@ -29,7 +29,7 @@ class Airport
   end
 
   def weather?(weather)
-    raise("Weather too bad") if weather.forecast == "stormy" 
+    raise("Weather too bad") if weather == "stormy" 
   end
 
   def can_land?(plane)
