@@ -31,9 +31,13 @@ describe Airport do
       expect(airport.takeoff(plane)).to eq plane
     end
 
-    it "should confirm plane has taken off" do
+    it "airport shouldn't have plane after takeoff" do
       airport.takeoff(plane)
       expect(airport.planes_in_hangar).not_to include plane
+    end
+
+    it "should raise error if plane fails to take off" do
+      expect{ airport.takeoff(plane) }.to raise_error "Plane did not take off successfully"
     end
 
     it "should not allow plane to take off if stormy" do
@@ -52,6 +56,11 @@ describe Airport do
 
     it "should instruct plane to land" do
       expect(airport.land(plane)).to eq plane
+    end
+
+    it "airport should have plane after landing" do
+      airport.land(plane)
+      expect(airport.planes_in_hangar).to include plane
     end
 
     it "should not allow plane to land if stormy" do
