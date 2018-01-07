@@ -15,15 +15,15 @@ The user can also create planes and assign to variables e.g.
 ```
 airbus_a380 = Plane.new
 ```
-Planes can be landed at airports using the land method e.g. 
+Planes can be landed at airports using the ```land``` method e.g. 
 ```
 heathrow.land(airbus_a380) 
 ```
-and leave using the take_off method e.g. 
+and leave using the ```take_off``` method e.g. 
 ```
 heathrow.take_off(airbus_a380)
 ```
-No planes are allowed to land or take off in a storm. Weather is generated in the Weather class for each aiport, using the storm? method which gives a one in four chance of the method returing true for a storm. The weather at an airport can be checked using the message:
+No planes are allowed to land or take off in a storm. Weather is generated in the Weather class for each aiport, using the ```storm?``` method which gives a one in four chance of the method returing true for a storm. The weather at an airport can be checked using the message:
 ```
 heathrow.weather.storm?
 ```
