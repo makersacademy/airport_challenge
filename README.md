@@ -18,38 +18,39 @@ Airport Challenge
 
 * Landing a plane at an airport
 
-⋅⋅⋅The first step I took was to write tests for creating classes for the airport and plane in the user story.
+- The first step I took was to write tests for creating classes for the airport and plane in the user story.
 
-⋅⋅⋅I then wrote the tests to check that an airport instance could respond to the land method with one argument, then wrote the code.
-...To store the plane it would need to go into an empty array, so I initialized an empty array and made the land method push the plane argument to the array.
+- I then wrote the tests to check that an airport instance could respond to the land method with one argument, then wrote the code.
+
+- To store the plane it would need to go into an empty array, so I initialized an empty array and made the land method push the plane argument to the array.
 
 * Taking off from the airport
 
-⋅⋅⋅No new classes needed to be made, so I wrote the tests for having a plane land at the airport and subsequently leave.
+- No new classes needed to be made, so I wrote the tests for having a plane land at the airport and subsequently leave.
 
-⋅⋅⋅Writing the code for this was relatively straightforward, just removing the plane from the hangar and returning a confirmation.
+- Writing the code for this was relatively straightforward, just removing the plane from the hangar and returning a confirmation.
 
 * Edge cases
 
-⋅⋅⋅To stop a plane landing twice, I wrote the test and code that would raise an error if the plane already existed in the hangar and tried to land.
+- To stop a plane landing twice, I wrote the test and code that would raise an error if the plane already existed in the hangar and tried to land.
 
-⋅⋅⋅Similarly, a plane could still take off twice. The tests and code for this were very similar; just checking the hangar contained the plane and, if not, raising an error.
+- Similarly, a plane could still take off twice. The tests and code for this were very similar; just checking the hangar contained the plane and, if not, raising an error.
 
 * Stormy weather
 
-⋅⋅⋅To simulate the weather I created a new class that would initialize with a number between 0 and 5.
+- To simulate the weather I created a new class that would initialize with a number between 0 and 5.
 
-⋅⋅⋅I created a private method within the airport class that would return true if weather initialized with 5.
+- I created a private method within the airport class that would return true if weather initialized with 5.
 
-⋅⋅⋅Within the land and takeoff method I raised an error if the private method (stormy?) was true.
+- Within the land and takeoff method I raised an error if the private method (stormy?) was true.
 
-⋅⋅⋅I used stubs in the tests to mimic the return value of stormy?
+- I used stubs in the tests to mimic the return value of stormy?
 
 * Capacity
 
-⋅⋅⋅To set a default capacity of the hangar I made a constant called DEFAULT_CAPACITY. Upon initializing a new instance of the airport, it will default to the constant unless the user includes a custom amount.
+- To set a default capacity of the hangar I made a constant called DEFAULT_CAPACITY. Upon initializing a new instance of the airport, it will default to the constant unless the user includes a custom amount.
 
-⋅⋅⋅To safeguard against too many planes being in the hangar, I created a private method 'full?' which is used by the land and take-off methods. An error will be raised if capacity+1 planes are placed in the hangar.
+- To safeguard against too many planes being in the hangar, I created a private method 'full?' which is used by the land and take-off methods. An error will be raised if capacity+1 planes are placed in the hangar.
 
 Instructions
 ---------
