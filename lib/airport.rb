@@ -2,20 +2,24 @@ require_relative "plane"
 require_relative "weather"
 
 class Airport 
-  
-  attr_reader :hanger
+   
+  DEFAULT_CAPACITY = 20
 
-  def initialize 
+  attr_reader :hanger, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY) 
     @hanger = []
+    @capacity = capacity
   end
 
-  def land(plane, weather= "good")
+  def land(plane, weather = "good")
     can_land?(plane)
     weather?(weather)
+    full?
     @hanger << plane 
   end
 
-  def take_off(plane, weather= "good")
+  def take_off(plane, weather = "good")
     plane?(plane)
     weather?(weather)
     @hanger.delete(plane)
@@ -26,6 +30,10 @@ class Airport
   private
   def plane?(plane)
     raise("No such plane in hanger") unless @hanger.include?(plane)
+  end
+
+  def full? 
+    raise("Airport full") if @hanger.length >= @capacity
   end
 
   def weather?(weather)
