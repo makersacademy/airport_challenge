@@ -19,6 +19,12 @@ describe Airport do
         expect(airport.land(plane)).to eq [plane]
       end
 
+      it 'will not land if airport is full' do
+        allow(plane).to receive(:airborne?).and_return(true)
+        airport.capacity.times { airport.land(plane) }
+        expect { airport.land(plane) }.to raise_error "Airport is full"
+      end
+
     end
 
     context 'when plane has landed' do
@@ -59,6 +65,13 @@ describe Airport do
   end
 
   describe '#take_off' do
+
+    context 'when empty' do
+      it 'will not take off if airport is empty' do
+        allow(plane).to receive(:airborne?).and_return(false)
+        expect { airport.take_off(plane) }.to raise_error "Airport is empty"
+      end
+    end
 
     context 'when plane has landed' do
 
@@ -114,6 +127,11 @@ describe Airport do
 
     it 'has a default capacity' do
       expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+    end
+
+    it 'can have default capacity overriden' do
+      airport = Airport.new(weather, 7)
+      expect(airport.capacity).to eq 7
     end
 
     context 'when airport is full' do
