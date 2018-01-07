@@ -15,7 +15,7 @@ context 'Airport is full' do
     airport = Airport.new(custom_capacity)
     allow(airport.weather).to receive(:stormy?).and_return false
     plane = Plane.new
-    Airport.capacity.times { airport.land plane }
+    airport.capacity.times { airport.land plane }
     expect { airport.land plane }.to raise_error 'Cannot land because airport is full'
   end
 end

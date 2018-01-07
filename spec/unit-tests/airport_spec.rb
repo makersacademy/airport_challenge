@@ -8,6 +8,18 @@ describe Airport do
     allow(airport.weather).to receive(:stormy?).and_return false
   end
 
+  describe '#initialize' do
+    it 'should take an argment for variable capacity' do
+      expect(Airport).to respond_to(:new).with(1).argument
+    end
+
+    it 'should pass the argument and set capacity' do
+      argument = 5
+      airport = Airport.new(argument)
+      expect(airport.capacity).to eq argument
+    end
+  end
+
   describe '#land' do
     before do
       allow(plane).to receive(:lands)
