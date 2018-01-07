@@ -9,6 +9,10 @@ class Weather
     @outlook == :stormy
   end
 
+  def update
+    @outlook = set_weather
+  end
+
   private
 
   OUTLOOK_TYPES = [:stormy, :sunny, :sunny, :cloudy, :cloudy, :rainy]
