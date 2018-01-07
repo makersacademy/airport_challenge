@@ -9,7 +9,7 @@ class Airport
   end
 
   def land(plane)
-  	 @hanger << plane if plane.land
+  	 @hanger << plane if plane.land && plane.flying == false
   end
 
   def take_off(plane)
