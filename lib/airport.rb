@@ -6,6 +6,7 @@ class Airport
 
   def initialize
     @planes = []
+    @capacity = 10
   end
 
   def dispatch(plane)
@@ -17,6 +18,7 @@ class Airport
 
   def receive(plane)
     raise 'Plane already present in airport' if has?(plane)
+    raise 'Airport does not have capacity' if full?
     raise 'Plane cannot land in stormy weather' if adverse_conditions?
     plane.set_location(self)
     @planes << plane
@@ -29,5 +31,9 @@ class Airport
 
   def adverse_conditions?
     Weather.new.stormy?
+  end
+
+  def full?
+    @planes.length >= @capacity
   end
 end
