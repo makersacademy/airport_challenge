@@ -21,4 +21,11 @@ describe 'A plane should...' do
     airport.land plane
     expect { airport.land plane }.to raise_error 'This plane is not flying'
   end
+
+  it 'only be able to able takeoff if it is :parked' do
+    airport = Airport.new
+    allow(airport.weather).to receive(:stormy?).and_return false
+    plane = Plane.new
+    expect { airport.take_off plane }.to raise_error 'This plane is already flying'
+  end
 end
