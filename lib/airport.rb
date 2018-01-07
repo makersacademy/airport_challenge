@@ -13,7 +13,6 @@ class Airport
   end
 
   def land(plane)
-    plane if plane.flying?
     fail "Cannot land as airport is full" if full?
     fail "Cannot land due to stormy weather" if @weather.stormy?
     @planes << plane
@@ -25,8 +24,17 @@ class Airport
   end
 
   def take_off(plane)
-    @planes.delete(plane)
-    @planes
+    fail "Airport is empty." if @planes.empty?
+    fail "Cannot take off due to stormy weather" if @weather.stormy?
+    if @planes.include? plane
+      @planes.delete(plane)
+      @planes
+    else
+      fail "This plane is not at the airport"
+    end
   end
 
+  def has_plane(plane)
+    return @planes if @planes.include? plane
+  end
 end
