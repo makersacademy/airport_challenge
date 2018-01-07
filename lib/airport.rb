@@ -14,9 +14,8 @@ class Airport
   end
 
   def takeoff(plane)
-    #instruct plane to take off
-    # takeoff plane object supplied as arg
-    # unless weather.stormy?
+    fail "Planes cannot take off due to bad weather" if weather.stormy?
+    @planes_in_hangar.delete(plane)
     # confirm plane no longer in airport
   end
 
@@ -27,6 +26,8 @@ class Airport
   end
 
   private
+
+  attr_reader :weather
 
   def full?
     # return true if planes in hangar >= capacity

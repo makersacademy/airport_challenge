@@ -3,8 +3,7 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new }
-  let(:plane) { double :plane}
-
+  
   describe "#initialize" do
 
     it "should set capacity if supplied as argument" do
@@ -20,24 +19,26 @@ describe Airport do
 
   describe "#takeoff_plane" do
 
+    before do
+      weather = double(:weather, :stormy? => false)
+      airport.instance_variable_set(:@weather, weather)
+      plane = double(:plane)
+      airport.instance_variable_set(:@planes_in_hangar, [plane])
+    end
+
     it "should instruct plane to take off" do
       expect(airport.takeoff(plane)).to eq plane
     end
 
     it "should confirm plane has taken off" do
-      airport.instance_variable_set(:@planes_in_hangar, [plane])
       airport.takeoff(plane)
       expect(airport.planes_in_hangar).not_to include plane
     end
 
     it "should not allow plane to take off if stormy" do
       weather = double(:weather, :stormy? => true)
+      airport.instance_variable_set(:@weather, weather)
       expect{ airport.takeoff(plane) }.to raise_error "Planes cannot take off due to bad weather"
-    end
-
-    it "should allow plane to take off when not stormy" do
-      weather = double(:weather, :stormy? => false)
-      expect{ airport.takeoff(plane) }.not_to raise_error
     end
 
   end
