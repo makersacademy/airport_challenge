@@ -122,5 +122,4 @@ Weather
 ## Next steps
 - Refactor RSpec unit tests to eliminate repetition of stubbing and mocking.
 - Write RSpec feature tests.
-- Reduce exposure of instance variables on classes.
 - Implement a "mediation" class to handle interactions between Airport and Plane classes.
