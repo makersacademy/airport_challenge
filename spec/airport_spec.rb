@@ -3,42 +3,41 @@ require 'airport'
 describe Airport do
 
   let(:plane) { double("plane") }
-  let(:weather) { double("weather") }
 
-  it 'Can create a new airport' do
-    expect(subject).to eq subject
+  it 'Can create a new instance' do
+    expect(subject).to be_a Airport
   end
 
   it 'Responds to land method with plane as an argument' do
     expect(subject).to respond_to(:land).with(1).argument
   end
 
-  it 'Allows a plane to be stored in the hanger' do
+  it 'Allows a plane to be stored in the hangar' do
     allow(subject).to receive(:stormy?) { false }
     expect(subject.land(plane)).to eq [plane]
   end
 
-  it 'Doesn\'t allow the same plane to be put in the hanger' do
+  it 'Doesn\'t allow the same plane to be put in the hangar' do
     allow(subject).to receive(:stormy?) { false }
     subject.land(plane)
-    expect { subject.land(plane) }.to raise_error("#{plane} is already in the hanger")
+    expect { subject.land(plane) }.to raise_error("#{plane} is already in the hangar")
   end
 
-  it 'Allows a plane to take off and confirms it has left the hanger' do
+  it 'Allows a plane to take off and confirms it has left the hangar' do
     allow(subject).to receive(:stormy?) { false }
     subject.land(plane)
-    expect(subject.takeoff(plane)).to eq "#{plane} has left the hanger!"
+    expect(subject.takeoff(plane)).to eq "#{plane} has left the hangar!"
   end
 
   it 'Can check the status of a plane' do
     allow(subject).to receive(:stormy?) { false }
     subject.land(plane)
-    expect(subject.status(plane)).to eq "#{plane} is in the hanger"
+    expect(subject.status(plane)).to eq "#{plane} is in the hangar"
   end
 
-  it 'Doesn\'t allow a plane to take off if it\'s not in the hanger' do
+  it 'Doesn\'t allow a plane to take off if it\'s not in the hangar' do
     allow(subject).to receive(:stormy?) { false }
-    expect { subject.takeoff(plane) }.to raise_error("#{plane} is not in the hanger")
+    expect { subject.takeoff(plane) }.to raise_error("#{plane} is not in the hangar")
   end
 
   it 'Doesn\'t allow a plane to land if it is stormy' do
@@ -51,9 +50,9 @@ describe Airport do
     expect { subject.takeoff(plane) }.to raise_error("The plane can't take off as there's a storm")
   end
 
-  it 'Doesn\'t allow landing when the hanger is full' do
+  it 'Doesn\'t allow landing when the hangar is full' do
     allow(subject).to receive(:stormy?) { false }
-    expect { 21.times { subject.land(Plane.new) } }.to raise_error("The plane can't land as the hanger is full")
+    expect { 21.times { subject.land(Plane.new) } }.to raise_error("The plane can't land as the hangar is full")
   end
 
   it 'Sets a default capacity' do
