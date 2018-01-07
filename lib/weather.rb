@@ -1,19 +1,19 @@
 class Weather
-  attr_reader :weather
+  attr_reader :outlook
 
   def initialize
-    @weather = set_weather
+    @outlook = set_weather
   end
 
   def stormy?
-    @weather == :stormy
+    @outlook == :stormy
   end
 
   private
 
-  WEATHER_TYPES = [:stormy, :sunny, :sunny, :cloudy, :cloudy, :rainy]
+  OUTLOOK_TYPES = [:stormy, :sunny, :sunny, :cloudy, :cloudy, :rainy]
 
   def set_weather
-    WEATHER_TYPES.sample
+    OUTLOOK_TYPES.sample
   end
 end
