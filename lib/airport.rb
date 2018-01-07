@@ -2,13 +2,13 @@ class Airport
   require_relative 'weather'
   require_relative 'plane'
 
-  attr_reader :planes, :weather
+  attr_reader :hangar, :weather
   attr_accessor :capacity
 
   DEFAULT_CAPACITY = 100
 
   def initialize(weather = Weather.new)
-    @planes = []
+    @hangar = []
     @weather = weather
     @capacity = DEFAULT_CAPACITY
   end
@@ -27,21 +27,21 @@ class Airport
 
   private
   def full?
-    planes.count >= capacity
+    hangar.count >= capacity
   end
 
   def in_hangar(plane)
-    planes.include?(plane)
+    hangar.include?(plane)
   end
 
   def add_to_hangar(plane)
     plane.landed
-    planes << plane
+    hangar << plane
   end
 
   def remove_from_hangar(plane)
     plane.taken_off
-    planes.delete(plane)
+    hangar.delete(plane)
     "#{plane} has now left airport"
   end
 end

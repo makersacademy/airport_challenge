@@ -9,7 +9,7 @@ describe 'plane takes off and plane removed from airport' do
   it 'removes plane from airport' do
     land_plane_clear_weather(airport, weather, plane)
     airport.take_off(plane)
-    expect(airport.planes).to be_empty
+    expect(airport.hangar).to be_empty
   end
   it 'provides return output to confirm plane has left airport' do
     land_plane_clear_weather(airport, weather, plane)

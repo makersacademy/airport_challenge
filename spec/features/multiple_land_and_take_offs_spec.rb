@@ -8,7 +8,7 @@ describe 'multiple planes land at airport then take off' do
   let(:airport) { Airport.new(weather) }
   it 'can land and store multiple planes' do
     10.times { land_plane_clear_weather(airport, weather, Plane.new) }
-    expect(airport.planes.count).to eq 10
+    expect(airport.hangar.count).to eq 10
   end
   it 'multiple planes can land and take off' do
     land_plane_clear_weather(airport, weather, plane1)
@@ -18,6 +18,6 @@ describe 'multiple planes land at airport then take off' do
     airport.take_off(plane1)
     airport.take_off(plane4)
     airport.take_off(plane3)
-    expect(airport.planes).to eq [plane2]
+    expect(airport.hangar).to eq [plane2]
   end
 end

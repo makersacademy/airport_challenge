@@ -16,7 +16,7 @@ describe Airport do
   describe '#land' do
     it 'stores plane when landed' do
       airport.land(plane)
-      expect(airport.planes).to include plane
+      expect(airport.hangar).to include plane
     end
     it 'checks weather status before allowing plane to land' do
       expect(weather).to receive(:stormy?)
@@ -47,12 +47,12 @@ describe Airport do
         airport.take_off(plane)
       end
       it 'removes plane from airport' do
-        expect(airport.planes).not_to include plane
+        expect(airport.hangar).not_to include plane
       end
       it 'removes correct plane from aiport' do
         plane2 = double(:plane, :landed => false)
         airport.land(plane2)
-        expect(airport.planes).to eq [plane2]
+        expect(airport.hangar).to eq [plane2]
       end
     end
     context 'when plane is not landed at airport' do

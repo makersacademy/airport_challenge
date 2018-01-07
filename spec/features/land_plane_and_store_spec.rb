@@ -7,7 +7,7 @@ describe 'Land plane and store in airport' do
 
   it 'lands plane and stores in airport' do
     land_plane_clear_weather(airport, weather, plane)
-    expect(airport.planes).to eq [plane]
+    expect(airport.hangar).to eq [plane]
   end
   it 'confirms plane is not flying if plane lands in airport' do
     land_plane_clear_weather(airport, weather, plane)
@@ -22,7 +22,7 @@ describe 'Land plane and store in airport' do
       Airport::DEFAULT_CAPACITY.times { land_plane_clear_weather(airport, weather, Plane.new) }
       expect { land_plane_clear_weather(airport, weather, Plane.new) }.to raise_error 'Airport at full capacity'
     end
-    it 'will not allow further planes to land - capacity overidden to new capacity' do
+    it 'will not allow further hangar to land - capacity overidden to new capacity' do
       airport.capacity = 10
       airport.capacity.times { land_plane_clear_weather(airport, weather, Plane.new) }
     end
