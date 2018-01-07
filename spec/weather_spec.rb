@@ -5,7 +5,7 @@ describe Weather do
   subject(:weather) { Weather.new }
 
   it 'is stormy' do
-    @stormy = false
+    allow(weather).to receive(:stormy?).and_return(true)
     expect(weather).to be_stormy
   end
 
