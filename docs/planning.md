@@ -28,16 +28,16 @@ I would like a default airport capacity that can be overridden as appropriate
 
 These can be turned into the following table:
 
-Objects | Messages  
---- | ---
-Air Traffic Controller |
-Plane | status
- | lands
- | takes_off
-Airport | land(plane)
-| take_off
-| full?
-| capacity
-| planes
-Weather | stormy?
-System Designer |
+| Objects | Messages |
+| --- | --- |
+| Air Traffic Controller | |
+Plane | status |
+| | lands|
+| | takes_off |
+| Airport | land(plane)
+| | take_off(plane) |
+| | capacity |
+| | planes |
+| Weather | stormy? |
+| | update |
+| System Designer |
