@@ -13,7 +13,7 @@ The argument specifies the number of aeroplanes that can land at the aiport, if 
 
 The user can also create planes and assign to variables e.g 
 ```
-airbus_a380 = Plane.new. 
+airbus_a380 = Plane.new
 ```
 Planes can be landed at airports using the land method e.g. 
 ```
