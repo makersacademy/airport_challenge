@@ -54,3 +54,29 @@ I want to prevent landing when the airport is full
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
+```
+
+Usage
+-----
+
+You can interact with the program inside a REPL like irb;
+
+Once irb has been loaded you will need to - require './spec/feature_spec.rb' - this will load all the necessary classes for use.
+
+```
+2.4.1 :001 > require './spec/feature_spec.rb'
+ => true
+2.4.1 :002 > plane = Plane.new
+ => #<Plane:0x007fb3af0bad00>
+2.4.1 :003 > airport = Airport.new
+ => #<Airport:0x007fb3af0b2fd8 @airport=[], @weather=#<Weather:0x007fb3af0b2fb0>, @capacity=5>
+2.4.1 :004 > airport.land(plane)
+RuntimeError: Unable to land - stormy weather.
+	from /Users/user/Projects//lib/airport.rb:18:in `land'
+	from (irb):4
+	from /Users/user/.rvm/rubies/ruby-2.4.1/bin/irb:11:in `<main>'
+2.4.1 :005 > airport.land(plane)
+ => [#<Plane:0x007fb3af0bad00>]
+2.4.1 :006 > airport.take_off(plane)
+ => "#<Plane:0x007fb3af0bad00> no longer in airport."
+```
