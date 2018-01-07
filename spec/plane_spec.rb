@@ -37,6 +37,13 @@ describe Plane do
       expect { subject.take_off } .to raise_error("Already Flying")
     end
 
+    it "plane should ask airport to take off" do
+      allow(airport).to receive(:land).with(subject)
+      subject.land(airport)	
+      allow(airport).to receive(:take_off).with(subject).and_return(true)
+      expect(subject.take_off).to be true
+    end
+
   end
   
 end
