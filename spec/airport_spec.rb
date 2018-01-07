@@ -60,7 +60,8 @@ describe Airport do
     end
 
     it "should not allow plane to land if full" do
-      airport.instance_variable_set(:@planes_in_hangar, [plane])
+      full_hangar = Array.new(airport.capacity, plane) #create a hangar full of planes
+      airport.instance_variable_set(:@planes_in_hangar, full_hangar)
       expect{ airport.land(plane) }.to raise_error "Planes cannot land due to airport hangar full"
     end
 
