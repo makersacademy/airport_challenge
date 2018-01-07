@@ -21,6 +21,7 @@ class Airport
   end
 
   def take_off(plane)
+    raise 'This plane is already flying' if flying? plane
     raise 'Airport is empty!' if @planes.empty?
     raise 'Plane not in airport' unless found? plane
     raise 'Could not complete takeoff due to weather' if weather.stormy?
@@ -40,5 +41,9 @@ class Airport
 
   def parked?(plane)
     plane.status == :parked
+  end
+
+  def flying?(plane)
+    plane.status == :flying
   end
 end

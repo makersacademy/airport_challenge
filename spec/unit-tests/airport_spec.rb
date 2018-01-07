@@ -75,18 +75,28 @@ describe Airport do
       allow(plane2).to receive(:takes_off)
       allow(plane2).to receive(:status).and_return :flying
       airport.land plane2
+      allow(plane).to receive(:status).and_return :parked
       expect { airport.take_off plane }.to raise_error 'Plane not in airport'
     end
 
     it 'allows a plane to take off' do
       airport.land plane
+            allow(plane).to receive(:status).and_return :parked
       expect(airport.take_off plane).to eq plane
     end
 
     it 'cannot takeoff in stormy weather' do
       airport.land plane
+      allow(plane).to receive(:status).and_return :parked
       allow(airport.weather).to receive(:stormy?).and_return true
       expect { airport.take_off plane }.to raise_error 'Could not complete takeoff due to weather'
+    end
+
+    context 'plane status is :flying' do
+      it 'means plane cannot takeoff' do
+        allow(plane).to receive(:status).and_return :flying
+        expect { airport.take_off plane }.to raise_error 'This plane is already flying'
+      end
     end
   end
 end
