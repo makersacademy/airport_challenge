@@ -11,5 +11,4 @@ class Weather
     @weather == :stormy
   end
 
-
 end
