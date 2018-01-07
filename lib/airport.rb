@@ -20,11 +20,16 @@ class Airport
 
   def take_off
     raise 'Planes cant take off as the weather is too stormy' if @weather.stormy?
+    raise 'The airport is empty' if @planes.empty?
     @planes.pop
   end
 
   def full?
     @planes.count >= capacity
+  end
+
+  def empty?
+    @planes.empty?
   end
 
 end

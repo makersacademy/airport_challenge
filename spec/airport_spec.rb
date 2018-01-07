@@ -31,6 +31,11 @@ describe Airport do
       allow(airport.weather).to receive(:stormy?).and_return true
       expect { airport.take_off }.to raise_error 'Planes cant take off as the weather is too stormy'
     end
+
+    it 'Error will be raised if airport is empty' do
+      allow(airport.weather).to receive(:stormy?).and_return false
+      expect { airport.take_off }.to raise_error 'The airport is empty'
+    end
   end
 
   it 'a plane wont land if the airport is full' do
