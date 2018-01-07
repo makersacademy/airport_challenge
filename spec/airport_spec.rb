@@ -10,7 +10,7 @@ describe Airport do
     allow(subject).to receive_message_chain(:weather, :storm?) { false }
     plane = Plane.new
     subject.land(plane)
-    expect(subject.planes.sample).to eq plane
+    expect(subject.planes[0]).to eq plane
   end
 
   it "check that a plane has left the aiport after take off" do
@@ -55,6 +55,44 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error("plane has already landed")
   end
 
+  # rspec feature test
+  it "creates three planes which land and take off at unique airports" do
+    # create aiports
+    heathrow = Airport.new(10)
+    gatwick = Airport.new(25)
+    stansted = Airport.new(5)
+
+    # ensure weather is peachy
+    allow(heathrow).to receive_message_chain(:weather, :storm?) { false }
+    allow(gatwick).to receive_message_chain(:weather, :storm?) { false }
+    allow(stansted).to receive_message_chain(:weather, :storm?) { false }
+
+    # create planes
+    boeing_747 = Plane.new
+    airbus_a380 = Plane.new
+    bombardier_crj200 = Plane.new
+
+    # land planes
+    heathrow.land(boeing_747)
+    gatwick.land(airbus_a380)
+    stansted.land(bombardier_crj200)
+
+    # checks all planes have landed
+    expect(heathrow.planes[0]).to eq boeing_747
+    expect(gatwick.planes[0]).to eq airbus_a380
+    expect(stansted.planes[0]).to eq bombardier_crj200
+
+    # all planes take off
+    heathrow.take_off(boeing_747)
+    gatwick.take_off(airbus_a380)
+    stansted.take_off(bombardier_crj200)
+
+    # check all airports are empty
+    expect(heathrow.planes.empty?).to eq true
+    expect(gatwick.planes.empty?).to eq true
+    expect(stansted.planes.empty?).to eq true
+  end
+
   describe "initialization" do
     subject { Airport.new }
     it "checks default aiport capacity" do
@@ -68,7 +106,6 @@ describe Airport do
 
   describe "initialization" do
     subject { Airport.new(35) }
-    # let(:plane) { Plane.new }
     it "checks custom airport capacity of 35" do
       allow(subject).to receive_message_chain(:weather, :storm?) { false }
       subject.capacity.times do
@@ -78,4 +115,3 @@ describe Airport do
     end
   end
 end
-#
