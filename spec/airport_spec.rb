@@ -8,7 +8,8 @@ describe Airport do
   describe '#plane_landing' do
     it { is_expected.to respond_to :plane_landing }
     it 'adds plane to hangar' do
-      # :hangar.should_include(subject.plane_landing)
+      plane = subject.plane_landing
+      expect(subject.hangar).to match plane
     end
   end
 
