@@ -4,9 +4,9 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @hangar_capacity = DEFAULT_CAPACITY
+    @hangar_capacity = capacity
     @weather_condition = nil
   end
 

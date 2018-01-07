@@ -8,6 +8,11 @@ describe Airport do
     expect(airport.hangar_capacity).to eq Airport::DEFAULT_CAPACITY
   end
 
+  it 'sets hangar capacity as an argument' do
+    large_airport = Airport.new(15)
+    expect(large_airport.hangar_capacity).to eq 15
+  end
+
   describe '#land' do
     it 'airport has plane after landing' do
       airport.land(plane)
