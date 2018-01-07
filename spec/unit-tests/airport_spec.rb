@@ -9,10 +9,6 @@ describe Airport do
   end
 
   describe '#initialize' do
-    it 'should take an argment for variable capacity' do
-      expect(Airport).to respond_to(:new).with(1).argument
-    end
-
     it 'should pass the argument and set capacity' do
       argument = 5
       airport = Airport.new(argument)
