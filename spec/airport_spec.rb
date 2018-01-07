@@ -16,11 +16,13 @@ describe Airport do
 
       it 'lands plane' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         expect(airport.land(plane)).to eq [plane]
       end
 
       it 'will not land if airport is full' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.capacity.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error "Airport is full"
       end
@@ -31,13 +33,16 @@ describe Airport do
 
       it 'stores plane when it lands' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         expect(airport.planes).to include plane
       end
 
       it 'stores more than one plane that lands' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
+        allow(plane2).to receive(:landed).and_return(false)
         allow(plane2).to receive(:airborne?).and_return(true)
         airport.land(plane2)
         expect(airport.planes).to eq([plane, plane2])
@@ -45,6 +50,7 @@ describe Airport do
 
       it 'cannot land if already landed' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         allow(plane).to receive(:airborne?).and_return(false)
         expect { airport.land(plane) }.to raise_error "Plane has already landed"
@@ -56,6 +62,7 @@ describe Airport do
 
       it 'does not land if weather is stormy' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         allow(weather).to receive(:stormy?).and_return(true)
         expect { airport.land(plane) }.to raise_error "Stormy weather"
       end
@@ -69,6 +76,7 @@ describe Airport do
     context 'when empty' do
       it 'will not take off if airport is empty' do
         allow(plane).to receive(:airborne?).and_return(false)
+        allow(plane).to receive(:takeoff).and_return(false)
         expect { airport.take_off(plane) }.to raise_error "Airport is empty"
       end
     end
@@ -77,19 +85,24 @@ describe Airport do
 
       it 'takes off plane' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         allow(plane).to receive(:airborne?).and_return(false)
         allow(weather).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:takeoff).and_return(false)
         expect(airport.take_off(plane)).to eq "Confirmed: #{plane} has taken off"
       end
 
       it 'takes off correct plane' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         allow(plane2).to receive(:airborne?).and_return(true)
+        allow(plane2).to receive(:landed).and_return(false)
         airport.land(plane2)
         allow(plane).to receive(:airborne?).and_return(false)
         allow(weather).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:takeoff).and_return(false)
         expect(airport.take_off(plane)).to eq "Confirmed: #{plane} has taken off"
       end
 
@@ -99,9 +112,11 @@ describe Airport do
 
       it 'cannot take off if airborne' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         allow(plane).to receive(:airborne?).and_return(false)
         allow(weather).to receive(:stormy?).and_return(false)
+        allow(plane).to receive(:takeoff).and_return(false)
         airport.take_off(plane)
         allow(plane).to receive(:airborne?).and_return(true)
         expect { airport.take_off(plane) }.to raise_error "Plane has already taken off"
@@ -113,9 +128,11 @@ describe Airport do
 
       it 'does not take off if weather is stormy' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.land(plane)
         allow(plane).to receive(:airborne?).and_return(false)
         allow(weather).to receive(:stormy?).and_return(true)
+        allow(plane).to receive(:takeoff).and_return(false)
         expect { airport.take_off(plane) }.to raise_error "Stormy weather"
       end
 
@@ -138,6 +155,7 @@ describe Airport do
 
       it 'knows it is full' do
         allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:landed).and_return(false)
         airport.capacity.times { airport.land(plane) }
         expect(airport).to be_full
       end

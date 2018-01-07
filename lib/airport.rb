@@ -17,7 +17,7 @@ class Airport
     fail "Stormy weather" if weather.stormy?
     fail "Plane has already landed" unless plane.airborne?
     fail "Airport is full" if full?
-    plane.instance_variable_set(:@airborne, false)
+    plane.landed
     @planes << plane
   end
 
@@ -25,7 +25,7 @@ class Airport
     fail "Stormy weather" if weather.stormy?
     fail "Plane has already taken off" if plane.airborne?
     fail "Airport is empty" if planes.empty?
-    plane.instance_variable_set(:@airborne, true)
+    plane.takeoff
     @planes.delete(plane)
     "Confirmed: #{plane} has taken off"
   end

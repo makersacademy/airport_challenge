@@ -2,19 +2,14 @@ require 'airport'
 require 'weather'
 
 describe Plane do
-  subject(:airport) { Airport.new(weather) }
-  subject(:plane) { Plane.new }
-  subject(:weather) { Weather.new }
 
-  it 'is initialized as airborne' do
-    expect(plane).to be_airborne
-  end
+  subject(:plane) { Plane.new }
 
   context 'when plane has landed' do
 
     it 'is not airborne after landing' do
-      airport.land(plane)
-      expect(plane).not_to be_airborne
+      plane.land
+      expect(plane.airborne).not_to eq true
     end
 
   end
@@ -22,9 +17,9 @@ describe Plane do
   context 'when plane is airborne' do
 
     it 'says it is airborne after take_off' do
-      airport.land(plane)
-      airport.take_off(plane)
-      expect(plane).to be_airborne
+      plane.land
+      plane.takeoff
+      expect(plane.airborne).to eq true
     end
 
   end

@@ -6,8 +6,14 @@ class Plane
     @airborne = true
   end
 
-  def airborne?
-    @airborne
+  def land
+    fail unless @airborne
+    @airborne = false
   end
-  
+
+  def takeoff
+    fail if @airborne
+    @airborne = true
+  end
+
 end
