@@ -31,7 +31,9 @@ These can be turned into the following table:
 Objects | Messages  
 --- | ---
 Air Traffic Controller |
-Plane | landed?
+Plane | status
+ | lands
+ | takes_off
 Airport | land
 | take_off
 | full?
