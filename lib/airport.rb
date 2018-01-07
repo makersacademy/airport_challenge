@@ -11,8 +11,9 @@ class Airport
     @planes = []
     @capacity = capacity
   end
+
   def full?
-    true if (@planes.count > DEFAULT_AIRPORT_CAPACITY)
+    @planes.count == DEFAULT_AIRPORT_CAPACITY ? true : false
   end
 
   def land(plane, weather)
@@ -27,9 +28,17 @@ class Airport
     @plane = plane
     @weather = weather
     raise "Stormy weather - no take off allowed" if @weather.stormy?
-    @planes.pop
-    raise "The plane has successfully left the airport"
+    if at_airport?
+      @planes.pop
+      puts "The plane has successfully left the airport"
+      true
+    end
   end
 
-
+  def at_airport?(plane)
+    @plane = plane
+    @planes.each do |pl|
+      true if @plane == pl
+    end
+  end
 end

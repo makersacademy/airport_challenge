@@ -35,12 +35,42 @@ describe Airport do
 
     it 'raises an error for take_off when weather is stormy' do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect{subject.take_off(plane, weather)}. to raise_error("Stormy weather - no take off allowed")
+      allow(subject).to receive(:at_airport?).and_return(true)
+      expect{subject.take_off(plane, weather)}.to raise_error("Stormy weather - no take off allowed")
     end
 
     it 'allows take off when weather is sunny' do
+      allow(subject).to receive(:at_airport?).and_return(true)
       allow(weather).to receive(:stormy?).and_return(false)
-      expect{subject.take_off(plane, weather)}.to raise_error("The plane has successfully left the airport")
+      expect(subject.take_off(plane, weather)).to be_truthy
     end
+
+    it 'returns true if plane is already at the airport' do
+      allow(subject).to receive(:at_airport?).and_return(true)
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect(subject.take_off(plane, weather)).to be_truthy
+    end
+
+    it 'returns false if plane is not at the airport' do
+      allow(subject).to receive(:at_airport?).and_return(false)
+      allow(weather).to receive(:stormy?).and_return(false)
+      expect(subject.take_off(plane, weather)).to be_falsy
+    end
+
+    describe '#at_airport?' do
+      it {is_expected.to respond_to(:at_airport?)}
+
+      it 'returns true if plane is at the airport' do
+        allow(subject).to receive(:at_airport?).and_return(true)
+        expect(subject.at_airport?(plane)).to eq true
+      end
+
+      it 'returns false if plane is not at the airport' do
+        allow(subject).to receive(:at_airport?).and_return(false)
+        expect(subject.at_airport?(plane)).to eq false
+      end
+    end
+
+
   end
 end
