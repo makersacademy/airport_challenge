@@ -19,6 +19,6 @@ describe 'A plane should...' do
     allow(airport.weather).to receive(:stormy?).and_return false
     plane = Plane.new
     airport.land plane
-    expect(airport.land plane).to raise_error 'Plane already landed'
+    expect { airport.land plane }.to raise_error 'This plane is not flying'
   end
 end

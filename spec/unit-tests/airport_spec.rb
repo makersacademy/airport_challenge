@@ -23,6 +23,7 @@ describe Airport do
   describe '#land' do
     before do
       allow(plane).to receive(:lands)
+      allow(plane).to receive(:status).and_return :flying
     end
 
     it 'can land more than one plane' do
@@ -46,8 +47,13 @@ describe Airport do
     context 'when planes land' do
       it 'should show all the planes' do
         allow(plane).to receive(:lands)
-        2.times { airport.land plane }
-        expect(airport.planes).to eq [plane, plane]
+        allow(plane).to receive(:status).and_return :flying
+        plane2 = double(:plane2)
+        allow(plane2).to receive(:lands)
+        allow(plane2).to receive(:status).and_return :flying
+        airport.land plane
+        airport.land plane2
+        expect(airport.planes).to eq [plane, plane2]
       end
     end
   end
@@ -56,6 +62,7 @@ describe Airport do
     before do
       allow(plane).to receive(:lands)
       allow(plane).to receive(:takes_off)
+      allow(plane).to receive(:status).and_return :flying
     end
 
     it 'raises an exception when there are no planes to take off' do
@@ -66,6 +73,7 @@ describe Airport do
       plane2 = double(:plane2)
       allow(plane2).to receive(:lands)
       allow(plane2).to receive(:takes_off)
+      allow(plane2).to receive(:status).and_return :flying
       airport.land plane2
       expect { airport.take_off plane }.to raise_error 'Plane not in airport'
     end
