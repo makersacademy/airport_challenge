@@ -12,14 +12,27 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+About
+-------
+
+This is a small project designed to practice and consolidate test driven devlopment (TDD) and object oriented programming (OOP). You are the air traffic controller, and want to keep track of planes and airports under your remit. This code allows you to do this.
+
+I have tried to follow a behaviour driven devlopment (BDD) cycle, by considering the user stories given see [here](docs/planning.md). Once I had an idea of the objects and messages they might use, I wrote feature tests and then unit tests to steadily implement the behaviour required.
+
+As this is my first major attempt at OOP, BDD and TDD. I would definitely like to improve on the testing part, as I suspect a lot of tests might be superfluous and could be refactored. I also found that my feature tests and unit tests were similar at times (soemtimes the only difference being the unit tests were isolated).
 
 Setup
 -------
 
+To run the code:
 1. Clone the repo to your local machine
 2. Change into the directory
 3. run `bundle`
 4. start `irb`
+
+To run the tests:
+1. Change into the main directory
+2. run 'rspec'
 
 Instructions
 -------
@@ -41,7 +54,7 @@ You are the air traffic controller, see the below irb transcript as to how to us
  => #<Airport:0x007fc1849608c8 @planes=[], @weather=#<Weather:0x007fc184960878 @outlook=:cloudy>, @capacity=10>
 ```
 
-You can also interrogate the plane nd airport objects to find out about them:
+You can also interrogate the plane and airport objects to find out about them:
 ``` ruby
 2.4.0 :008 > airport.land plane
  => [#<Plane:0x007fc184958d58 @status=:parked>] 
@@ -68,3 +81,7 @@ Airports can be created with a different capacity to the default (10).
 2.4.0 :017 > Airport.new(100)
  => #<Airport:0x007fc1858745f8 @planes=[], @weather=#<Weather:0x007fc1858745a8 @outlook=:cloudy>, @capacity=100> 
  ```
+ The user can 'request' an update to see if the weather has changed
+ ```ruby
+2.4.0 :018 > airport.weather.update
+ => :rainy 
