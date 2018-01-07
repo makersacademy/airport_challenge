@@ -13,4 +13,12 @@ describe 'A plane should...' do
     airport2.land plane2
     expect { airport2.take_off plane1 }.to raise_error 'Plane not in airport'
   end
+
+  it 'only be able to able to land once' do
+    airport = Airport.new
+    allow(airport.weather).to receive(:stormy?).and_return false
+    plane = Plane.new
+    airport.land plane
+    expect(airport.land plane).to raise_error 'Plane already landed'
+  end
 end
