@@ -7,14 +7,14 @@ describe Airport do
   end
 
   it "checks that a landed plane is in the airport" do
-    allow(subject).to receive_message_chain(:weather, :storm?) { false }
+    allow(subject.weather).to receive(:storm?).and_return(false)
     plane = Plane.new
     subject.land(plane)
     expect(subject.planes[0]).to eq plane
   end
 
   it "check that a plane has left the aiport after take off" do
-    allow(subject).to receive_message_chain(:weather, :storm?) { false }
+    allow(subject.weather).to receive(:storm?).and_return(false)
     plane = Plane.new
     subject.land(plane)
     subject.take_off(plane)
@@ -22,34 +22,34 @@ describe Airport do
   end
 
   it "raise an error if plane tries to take off when there is a storm" do
-    allow(subject).to receive_message_chain(:weather, :storm?) { false }
+    allow(subject.weather).to receive(:storm?).and_return(false)
     plane = Plane.new
     subject.land(plane)
-    allow(subject).to receive_message_chain(:weather, :storm?) { true }
+    allow(subject.weather).to receive(:storm?).and_return(true)
     expect { subject.take_off(plane) }.to raise_error "plane cannot take off due to a storm"
   end
 
   it "raise an error if plane tries to land when there is a storm" do
     plane = Plane.new
-    allow(subject).to receive_message_chain(:weather, :storm?) { true }
+    allow(subject.weather).to receive(:storm?).and_return(true)
     expect { subject.land(plane) }.to raise_error "plane cannot land due to a storm"
   end
 
   it "raise error when plane attempts landing at full airport " do
-    allow(subject).to receive_message_chain(:weather, :storm?) { false }
+    allow(subject.weather).to receive(:storm?).and_return(false)
     plane = Plane.new
     50.times { subject.land(Plane.new) }
     expect { subject.land(plane) }.to raise_error("the airport is currently full")
   end
 
   it "raise error if plane is asked to take off but is not at the airport" do
-    allow(subject).to receive_message_chain(:weather, :storm?) { false }
+    allow(subject.weather).to receive(:storm?).and_return(false)
     plane = Plane.new
     expect { subject.take_off(plane) }.to raise_error("plane not currently at airport")
   end
 
   it "should raise error if plane tries to land but is already in airport" do
-    allow(subject).to receive_message_chain(:weather, :storm?) { false }
+    allow(subject.weather).to receive(:storm?).and_return(false)
     plane = Plane.new
     subject.land(plane)
     expect { subject.land(plane) }.to raise_error("plane has already landed")
@@ -63,9 +63,9 @@ describe Airport do
     stansted = Airport.new(5)
 
     # ensure weather is peachy
-    allow(heathrow).to receive_message_chain(:weather, :storm?) { false }
-    allow(gatwick).to receive_message_chain(:weather, :storm?) { false }
-    allow(stansted).to receive_message_chain(:weather, :storm?) { false }
+    allow(heathrow).to receive(:storm?).and_return(false)
+    allow(gatwick).to receive(:storm?).and_return(false)
+    allow(stansted).to receive(:storm?).and_return(false)
 
     # create planes
     boeing_747 = Plane.new
@@ -96,7 +96,7 @@ describe Airport do
   describe "initialization" do
     subject { Airport.new }
     it "checks default aiport capacity" do
-      allow(subject).to receive_message_chain(:weather, :storm?) { false }
+      allow(subject.weather).to receive(:storm?).and_return(false)
       described_class::DEFAULT_CAPACITY.times do
         subject.land(Plane.new)
       end
@@ -107,7 +107,7 @@ describe Airport do
   describe "initialization" do
     subject { Airport.new(35) }
     it "checks custom airport capacity of 35" do
-      allow(subject).to receive_message_chain(:weather, :storm?) { false }
+      allow(subject.weather).to receive(:storm?).and_return(false)
       subject.capacity.times do
         subject.land(Plane.new)
       end
