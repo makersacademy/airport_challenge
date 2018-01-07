@@ -1,10 +1,6 @@
-class Airport do
-
-
-   def land
-
-   end
-
-
-
+class Airport
+  attr_reader :plane
+  def land(plane)
+    @plane = plane
+  end
 end

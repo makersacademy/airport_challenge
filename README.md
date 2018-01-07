@@ -4,12 +4,12 @@ The code in this repository has been written to complete an airport-challenge, w
 
 ## Task
 
-The task is to test drive the creation of a set of classes/modules to satisfy all the below user stories.
+The task is to test drive the creation of a set of classes/modules to satisfy all the below user stories. I have created three classes: Airport, Plane and Weather.
 
 ## Software
 
-Ruby
-RSpec
+* Ruby
+* RSpec
 
 ## User stories
 

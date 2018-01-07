@@ -1,5 +1,3 @@
-class Plane do
-
-
+class Plane
 
 end
