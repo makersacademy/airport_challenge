@@ -13,6 +13,44 @@ Airport Challenge
 
 ```
 
+### Approach to Solution
+
+
+* Landing a plane at an airport
+
+⋅⋅⋅The first step I took was to write tests for creating classes for the airport and plane in the user story.
+
+⋅⋅⋅I then wrote the tests to check that an airport instance could respond to the land method with one argument, then wrote the code.
+...To store the plane it would need to go into an empty array, so I initialized an empty array and made the land method push the plane argument to the array.
+
+* Taking off from the airport
+
+⋅⋅⋅No new classes needed to be made, so I wrote the tests for having a plane land at the airport and subsequently leave.
+
+⋅⋅⋅Writing the code for this was relatively straightforward, just removing the plane from the hangar and returning a confirmation.
+
+* Edge cases
+
+⋅⋅⋅To stop a plane landing twice, I wrote the test and code that would raise an error if the plane already existed in the hangar and tried to land.
+
+⋅⋅⋅Similarly, a plane could still take off twice. The tests and code for this were very similar; just checking the hangar contained the plane and, if not, raising an error.
+
+* Stormy weather
+
+⋅⋅⋅To simulate the weather I created a new class that would initialize with a number between 0 and 5.
+
+⋅⋅⋅I created a private method within the airport class that would return true if weather initialized with 5.
+
+⋅⋅⋅Within the land and takeoff method I raised an error if the private method (stormy?) was true.
+
+⋅⋅⋅I used stubs in the tests to mimic the return value of stormy?
+
+* Capacity
+
+⋅⋅⋅To set a default capacity of the hangar I made a constant called DEFAULT_CAPACITY. Upon initializing a new instance of the airport, it will default to the constant unless the user includes a custom amount.
+
+⋅⋅⋅To safeguard against too many planes being in the hangar, I created a private method 'full?' which is used by the land and take-off methods. An error will be raised if capacity+1 planes are placed in the hangar.
+
 Instructions
 ---------
 
@@ -36,25 +74,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +111,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
