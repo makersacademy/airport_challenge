@@ -4,6 +4,7 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
   let(:weather) { double :weather }
+  let(:capacity) { double :capcity }
 
   it 'airport responds to land' do
      expect(airport).to respond_to(:land)
@@ -30,6 +31,11 @@ describe Airport do
       allow(airport.weather).to receive(:stormy?).and_return true
       expect{airport.take_off}.to raise_error 'Planes cant take off as the weather is too stormy'
     end
+  end
+
+  it 'a plane wont land if the airport is full' do
+    airport.capacity.times {airport.land(plane)}
+    expect{airport.land(plane)}.to raise_error 'This airport is full'
   end
 
 
