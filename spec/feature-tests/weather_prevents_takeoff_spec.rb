@@ -8,6 +8,6 @@ context 'Weather is stormy' do
     allow(airport.weather).to receive(:stormy?).and_return false
     airport.land plane
     allow(airport.weather).to receive(:stormy?).and_return true
-    expect { airport.take_off }.to raise_error 'Could not complete takeoff due to weather'
+    expect { airport.take_off plane }.to raise_error 'Could not complete takeoff due to weather'
   end
 end

@@ -15,7 +15,7 @@ describe 'Plane status' do
     expect(plane.status).to eq :parked
   end
   it 'checks the status of a plane that has departed' do
-    airport.take_off
+    airport.take_off plane
     expect(plane.status).to eq :flying
   end
 end

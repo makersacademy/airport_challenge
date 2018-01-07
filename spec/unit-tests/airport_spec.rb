@@ -52,18 +52,18 @@ describe Airport do
     end
 
     it 'raises an exception when there are no planes to take off' do
-      expect { airport.take_off }.to raise_error 'Airport is empty!'
+      expect { airport.take_off plane }.to raise_error 'Airport is empty!'
     end
 
     it 'allows a plane to take off' do
       airport.land plane
-      expect(airport.take_off).to eq plane
+      expect(airport.take_off plane).to eq plane
     end
 
     it 'cannot takeoff in stormy weather' do
       airport.land plane
       allow(airport.weather).to receive(:stormy?).and_return true
-      expect { airport.take_off }.to raise_error 'Could not complete takeoff due to weather'
+      expect { airport.take_off plane }.to raise_error 'Could not complete takeoff due to weather'
     end
   end
 end

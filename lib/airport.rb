@@ -19,11 +19,11 @@ class Airport
     @planes << plane
   end
 
-  def take_off
+  def take_off(plane)
     raise 'Airport is empty!' if @planes.empty?
     raise 'Could not complete takeoff due to weather' if weather.stormy?
-    @planes[-1].takes_off
-    @planes.pop
+    plane.takes_off
+    @planes.delete(plane)
   end
 
   private
