@@ -8,23 +8,23 @@ describe Plane do
     expect(subject).to be_instance_of(Plane)
   end
 
-  it 'can land at an airport' do
+  it 'lands successfully' do
     subject.land(airport)
     expect(subject.airport).to eq airport
   end
 
-  it 'fails when trying to land a landed plane' do
+  it 'fails to land when already grounded' do
     subject.land(airport)
     expect { subject.land(airport) }.to raise_error 'Plane is already grounded'
   end
 
-  it 'can take off from an airport' do
+  it 'takes off successfully' do
     subject.land(airport)
     subject.take_off
     expect(subject.airport).to be_nil
   end
 
-  it 'fails when trying to take off an airborne plane' do
+  it 'fails to take off when already airborne' do
     expect { subject.take_off }.to raise_error 'Plane is already airborne'
   end
 end

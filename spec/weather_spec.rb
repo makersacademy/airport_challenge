@@ -6,12 +6,12 @@ describe Weather do
   end
 
   context 'with randomness stubbed' do
-    it 'can report stormy conditions' do
+    it 'reports stormy conditions' do
       allow(subject).to receive(:rand) {0}
       expect(subject.stormy?).to be true
     end
 
-    it 'can report clear conditions' do
+    it 'reports clear conditions' do
       allow(subject).to receive(:rand) {1}
       expect(subject.stormy?).to be false
     end
