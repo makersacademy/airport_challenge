@@ -1,18 +1,28 @@
 class Airport
-
-  attr_reader :capacity, :full
+  # Understands how to control planes in the airport
+  attr_reader :capacity, :planes_on_the_ground
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @full = false
-  end
-  
-  def full?
-    @full
+    @planes_on_the_ground = []
   end
 
-  def full
-    @full = true
+  def land(plane)
+    plane.airborne = false
+    @planes_on_the_ground << plane
   end
+
+  def takeoff
+    @planes_on_the_ground.pop.airborne = false
+  end
+
+  def full?
+    @planes_on_the_ground.count >= capacity
+  end
+
+  def empty?
+    @planes_on_the_ground.count.zero?
+  end
+
 end

@@ -1,6 +1,7 @@
 require 'weather'
 
 describe Weather do
+
   context "Check stormy?" do
     it "should be fine" do
       weather = Weather.new([:fine])
