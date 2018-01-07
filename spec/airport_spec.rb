@@ -20,7 +20,7 @@ describe Airport do
       expect { subject.land(plane, "stormy") }.to raise_error("Weather too bad")
     end
 
-    it "it won't let an airport land beyond its default capacity" do 
+    it "it won't let an plane land beyond if airport is at default capacity" do 
       Airport::DEFAULT_CAPACITY.times { subject.land(double("plane")) }
       expect { subject.land(plane) }.to raise_error("Airport full")
     end
