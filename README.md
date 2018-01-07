@@ -12,7 +12,7 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-```
+
 Approach to Solution
 ---------
 
