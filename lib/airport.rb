@@ -13,15 +13,23 @@ class Airport
   def land(plane)
     stormy_error = 'Due to current weather conditions planes cannot land'
     capacity_error = 'Planes cannot land due to a lack of hangar space'
-    raise stormy_error if @weather_condition == :stormy
-    raise capacity_error if @hangar.count >= @hangar_capacity
+    raise stormy_error if stormy?
+    raise capacity_error if full?
     @hangar << plane
   end
 
   def takeoff(plane)
     stormy_error = 'Due to current weather conditions all planes are grounded'
-    raise stormy_error if @weather_condition == :stormy
+    raise stormy_error if stormy?
     @hangar.delete(plane)
+  end
+
+  def stormy?
+    @weather_condition == :stormy
+  end
+
+  def full?
+    @hangar.count >= @hangar_capacity
   end
 
 end

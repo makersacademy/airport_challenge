@@ -2,7 +2,8 @@ class Weather
 
   attr_reader :current_weather
 
-  WEATHER_CONDITIONS = [:sunny, :cloudy, :rainy, :windy, :stormy]
+  WEATHER_CONDITIONS = [:sunny, :sunny, :sunny, :sunny, :sunny,
+                        :sunny, :sunny, :sunny, :sunny, :stormy]
 
   def initialize
     @current_weather = WEATHER_CONDITIONS.sample
