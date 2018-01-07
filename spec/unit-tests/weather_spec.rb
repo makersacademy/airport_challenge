@@ -9,6 +9,12 @@ describe Weather do
     end
   end
 
+  describe '#update' do
+    it 'should make weather one of :stormy, :sunny, :cloudy, :rainy' do
+      expect([:stormy, :sunny, :cloudy, :rainy]).to include(weather.update)
+    end
+  end
+
   describe '@weather' do
     it 'should be one of :stormy, :sunny, :cloudy, :rainy' do
       expect([:stormy, :sunny, :cloudy, :rainy]).to include(weather.outlook)
