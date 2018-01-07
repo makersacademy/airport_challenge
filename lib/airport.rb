@@ -9,4 +9,13 @@ class Airport
     @hangar_capacity = capacity
     @weather = Weather.new.weather
   end
+
+  def plane_landing
+    @hangar << Plane.new
+  end
+
+  def plane_takeoff
+    @hangar.pop
+  end
+  
 end
