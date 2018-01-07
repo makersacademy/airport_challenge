@@ -1,16 +1,22 @@
 class Airport
 
-  attr_reader :planes
+  attr_reader :hangar
 
   def initialize
-    @planes = []
+    @hangar = []
   end
 
   def airstrip_land(plane)
-    @planes << plane
+    @hangar << plane
   end
 
   def airstrip_take_off(plane)
-    @planes.delete(plane)
+    fail "No planes will take off because of the stormy weather" if weather == "stormy"
+    @hangar.delete(plane) 
+  end
+
+  def weather
+    random_weather = rand(10)
+    random_weather == 9 ? "stormy" : "sunny"
   end
 end
