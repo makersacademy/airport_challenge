@@ -33,6 +33,13 @@ describe Airport do
       allow(airport.weather).to receive(:stormy?).and_return true
       expect { airport.land plane }.to raise_error 'Could not complete landing due to weather'
     end
+
+    context 'plane status is :parked' do
+      it 'means plane cannot land ' do
+        allow(plane).to receive(:status).and_return :parked
+        expect { airport.land plane }.to raise_error 'This plane is not flying'
+      end
+    end
   end
 
   describe '#planes' do

@@ -13,6 +13,7 @@ class Airport
   end
 
   def land(plane)
+    raise 'This plane is not flying' if parked? plane
     raise 'Could not complete landing due to weather' if weather.stormy?
     raise 'Cannot land because airport is full' if full?
     plane.lands
@@ -35,5 +36,9 @@ class Airport
 
   def found?(plane)
     @planes.include? plane
+  end
+
+  def parked?(plane)
+    plane.status == :parked
   end
 end
