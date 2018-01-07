@@ -16,7 +16,7 @@ describe Plane do
     it "a landed plane should raise error if not landed" do
       allow(airport).to receive(:land)
       subject.land(airport)
-      expect { subject.land(airport) } .to raise_error
+      expect { subject.land(airport) } .to raise_error("Already Grounded") 
     end
     
   end
