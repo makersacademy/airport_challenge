@@ -6,6 +6,7 @@ Airport Challenge - Makers Academy
 
 The task is to write the software to respond to user stories about the control of planes landing and taking off at an airport.
 
+NB: My at_airport? method needs work as it doesn't compare the plane object passed with the planes array.
 
 ## irb sample input
 
