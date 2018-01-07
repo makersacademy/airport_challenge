@@ -1,4 +1,4 @@
-require 'plane'
+require_relative 'plane'
 
 class Airport
 
