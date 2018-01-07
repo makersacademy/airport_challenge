@@ -13,13 +13,13 @@ class Airport
 
   def take_off
     fail 'No planes available' if empty?
-    fail 'Unable to take off due to adverse weather conditions' if weather.stormy?
+    fail 'Adverse weather conditions' if weather.stormy?
     @planes.pop
   end
 
   def land(plane)
     fail 'Airport full' if full?
-    fail 'Unable to land due to adverse weather conditions' if weather.stormy?
+    fail 'Adverse weather conditions' if weather.stormy?
     @planes << plane
   end
 
