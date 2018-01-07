@@ -22,6 +22,7 @@ class Airport
     plane.instance_variable_set(:@airborne, true)
     @planes.delete(plane)
     @planes
+    "Confirmed: plane has taken off"
   end
 
 end

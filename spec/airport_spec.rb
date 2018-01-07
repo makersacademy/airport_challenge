@@ -44,7 +44,7 @@ describe Airport do
       airport.land(plane)
       allow(plane).to receive(:airborne?).and_return(false)
       allow(weather).to receive(:stormy?).and_return(false)
-      expect(airport.take_off(plane)).to eq []
+      expect(airport.take_off(plane)).to eq "Confirmed: plane has taken off"
     end
 
     it 'cannot take off if airborne' do
@@ -62,7 +62,6 @@ describe Airport do
       airport.land(plane)
       allow(plane).to receive(:airborne?).and_return(false)
       allow(weather).to receive(:stormy?).and_return(true)
-      #weather = double("weather", :stormy? => true)
       expect { airport.take_off(plane) }.to raise_error "Stormy weather"
     end
   end
