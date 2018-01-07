@@ -3,6 +3,7 @@ require_relative "../lib/airport.rb"
 describe Airport do 
    
   let(:plane) { double("plane") }
+  let(:weather) {double("weather")}
   
   describe "#land" do
 
@@ -17,7 +18,8 @@ describe Airport do
     end
 
     it "it won't let the plane land if weather is stormy" do 
-      expect { subject.land(plane, "stormy") }.to raise_error("Weather too bad")
+      allow(weather).to receive(:forecast).and_return("stormy")
+      expect { subject.land(plane, weather.forecast) }.to raise_error("Weather too bad")
     end
 
     it "it won't let an plane land beyond if airport is at default capacity" do 
@@ -56,8 +58,9 @@ describe Airport do
     end
     
     it "it won't let the plane take_off if weather is stormy" do 
+      allow(weather).to receive(:forecast).and_return("stormy")
       subject.land(plane)
-      expect { subject.take_off(plane, "stormy") }.to raise_error("Weather too bad")
+      expect { subject.take_off(plane, weather.forecast) }.to raise_error("Weather too bad")
     end
 
   end
