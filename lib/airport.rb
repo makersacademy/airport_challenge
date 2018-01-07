@@ -16,29 +16,30 @@ class Airport
     @planes.count == DEFAULT_AIRPORT_CAPACITY ? true : false
   end
 
+  def at_airport?(plane)
+    @plane = plane
+    @planes.each do |pl|
+      true if @plane == pl
+    end
+    false
+  end
+
   def land(plane, weather)
     @plane = plane
     @weather = weather
     raise "Plane may *not* land" if (@weather.stormy? || full?)
-    @planes << plane
-    raise "Plane may land"
+    @planes << plane unless at_airport?(plane)
   end
 
   def take_off(plane, weather)
     @plane = plane
     @weather = weather
     raise "Stormy weather - no take off allowed" if @weather.stormy?
-    if at_airport?
+    if at_airport?(plane)
       @planes.pop
-      puts "The plane has successfully left the airport"
       true
+    else false
     end
   end
 
-  def at_airport?(plane)
-    @plane = plane
-    @planes.each do |pl|
-      true if @plane == pl
-    end
-  end
 end

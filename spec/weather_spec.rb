@@ -1,7 +1,7 @@
 require 'weather'
 
 describe Weather do
-  let(:weather) {double :weather}
+  let(:weather) { double :weather }
 
   it 'is stormy' do
     allow(weather).to receive(:stormy?).and_return(true)
