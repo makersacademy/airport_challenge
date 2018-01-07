@@ -9,12 +9,12 @@ class Airport
   end
 
   def land(plane)
-    @hanger << plane
+  	 @hanger << plane if plane.land
   end
 
   def take_off(plane)
     return raise("No such plane in hanger") unless plane?(plane)
-    @hanger.delete(plane)
+    @hanger.delete(plane) if plane.take_off
   end
    
 

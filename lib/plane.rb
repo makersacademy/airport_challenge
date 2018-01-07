@@ -6,9 +6,10 @@ class Plane
     @flying = true
   end
    
-  def land(airport)
+  def land
     return raise("Already Grounded") unless @flying
-    airport.land(self) ? @flying = false :  @flying = true
+    @flying = false
+    true
   end
 
   def take_off
