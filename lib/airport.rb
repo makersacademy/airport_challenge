@@ -12,8 +12,9 @@ class Airport
   	 @hanger << plane if plane.land && plane.flying == false
   end
 
-  def take_off(plane)
+  def take_off(plane, weather)
     return raise("No such plane in hanger") unless plane?(plane)
+    return raise("Weather too bad") if weather.forecast == "stormy"
     @hanger.delete(plane) if plane.take_off
   end
    
@@ -22,5 +23,6 @@ class Airport
   def plane?(plane)
     @hanger.include?(plane) ? true : false
   end
-   
+
+ 
 end
