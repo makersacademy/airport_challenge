@@ -5,6 +5,7 @@ require './lib/weather.rb'
 describe Airport do
   let(:airport) { Airport.new }
   let(:plane) { Plane.new }
+  let(:default_airport) { Airport.new }
 
   it 'instruct a plane to land at an airport' do
     airport.land(plane)
@@ -45,6 +46,14 @@ describe Airport do
     airport.land(plane)
     allow(airport).to receive(:full?).and_return(true)
     expect { airport.land(plane) }.to raise_error("The airport is full!")
+  end
+
+  it 'allows a default capacity to be overridden' do
+    default_airport = Airport.new
+    allow(default_airport).to receive(:check_stormy).and_return(false)
+    allow(airport).to receive(:full?).and_return(true)
+    Airport::DEFAULT_CAPACITY.times { default_airport.land(Plane.new) }
+    expect { default_airport.land(Plane.new) }.to raise "Airport capacity reached!"
   end
 
 end
