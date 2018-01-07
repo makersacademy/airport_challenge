@@ -1,7 +1,7 @@
 
 class Weather
 
-  STORM = 0.8
+  STORM = 0.95
 
   def initialize
     @storm_chance = rand
@@ -9,5 +9,5 @@ class Weather
 
   def stormy?
     @storm_chance > STORM
-  end 
+  end
 end

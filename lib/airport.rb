@@ -1,8 +1,8 @@
 
 class Airport
-  attr_reader :airport, :plane, :default_capacity, :default_airport
-
-
+  attr_reader :airport, :plane, :default_airport
+  attr_accessor :default_capacity
+  
   DEFAULT_CAPACITY = 20
 
   def initialize(storage = [], default_capacity = DEFAULT_CAPACITY)
@@ -35,6 +35,6 @@ class Airport
   end
 
   def capacity?
-   return if @storage.length >= @default_capacity
+    return if @storage.length >= @default_capacity
   end
 end

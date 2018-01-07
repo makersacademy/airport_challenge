@@ -55,5 +55,5 @@ describe Airport do
     Airport::DEFAULT_CAPACITY.times { default_airport.land(Plane.new) }
     expect { default_airport.land(Plane.new) }.to raise "Airport capacity reached!"
   end
-
+  
 end
