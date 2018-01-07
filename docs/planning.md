@@ -34,7 +34,7 @@ Air Traffic Controller |
 Plane | status
  | lands
  | takes_off
-Airport | land
+Airport | land(plane)
 | take_off
 | full?
 | capacity
