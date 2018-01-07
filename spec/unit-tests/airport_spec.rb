@@ -4,10 +4,22 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
 
+  before do
+    allow(airport.weather).to receive(:stormy?).and_return false
+  end
+
   describe '#land' do
-    it 'can land more than one plane' do
+    before do
       allow(plane).to receive(:lands)
+    end
+
+    it 'can land more than one plane' do
       expect { 2.times { airport.land plane } }.to_not raise_error
+    end
+
+    it 'cannot land in stormy weather' do
+      allow(airport.weather).to receive(:stormy?).and_return true
+      expect { airport.land plane }.to raise_error 'Could not complete landing due to weather'
     end
   end
 
