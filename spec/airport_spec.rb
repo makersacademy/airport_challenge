@@ -42,6 +42,11 @@ describe Airport do
     expect { subject.land(plane) }.to raise_error("the airport is currently full")
   end
 
+  it "raise error if plane is asked to take off but is not at the airport" do
+    plane = Plane.new
+    expect { subject.take_off(plane) }.to raise_error("plane not currently at airport")
+  end
+
   describe "initialization" do
     subject { Airport.new }
     let(:plane) { Plane.new }
@@ -57,7 +62,7 @@ describe Airport do
   describe "initialization" do
     subject { Airport.new(35) }
     let(:plane) { Plane.new }
-    it "checks default aiport capacity" do
+    it "checks custom airport capacity of 35" do
       allow(subject).to receive_message_chain(:weather, :storm?) { false }
       subject.capacity.times do
         subject.land(plane)

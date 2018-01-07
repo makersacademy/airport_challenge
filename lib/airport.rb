@@ -19,12 +19,17 @@ class Airport
 
   def take_off(plane)
     raise "plane cannot take off due to stormy weather" if weather.storm?
+    raise "plane not currently at airport" unless at_airport?(plane)
     @planes.delete(plane)
     puts "#{plane} has successfully taken off"
   end
 
   def airport_full?
     @planes.count >= @capacity
+  end
+
+  def at_airport?(plane)
+    @planes.include?(plane)
   end
 
 end
