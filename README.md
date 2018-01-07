@@ -49,3 +49,8 @@ As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+
+## Next steps
+- Refactor RSpec tests to eliminate repetition.
+- Implement mediation class to handle interactions between Airport and Plane classes.
+- Reduce exposure of instance variables on classes.

@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new(20) }
-  let(:plane) { double(:plane, :set_location => nil) }
+  let(:plane) { double(:plane) }
 
   it 'can create an instance of Airport class' do
     expect(subject).to be_instance_of(Airport)

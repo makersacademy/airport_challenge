@@ -25,11 +25,11 @@ class Airport
   end
 
   def full?
-    @planes.length >= @capacity
+    planes.count >= @capacity
   end
 
   def has?(plane)
-    @planes.include?(plane)
+    planes.include?(plane)
   end
 
   private
