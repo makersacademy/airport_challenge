@@ -24,12 +24,9 @@ class Airport
     @planes.pop
   end
 
+  private
+
   def full?
     @planes.count >= capacity
   end
-
-  def empty?
-    @planes.empty?
-  end
-
 end
