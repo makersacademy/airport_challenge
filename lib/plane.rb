@@ -13,6 +13,7 @@ class Plane
   end
 
   def take_off
-  	@flying = true
+    return raise("Already Flying") if @flying
+    @flying = true
   end
 end
