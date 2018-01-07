@@ -10,17 +10,13 @@ class Plane
   def land(target_airport)
     raise 'Plane is already grounded' if landed?
     target_airport.receive(self)
-    set_location(target_airport)
+    @airport = target_airport
   end
 
   def take_off
     raise 'Plane is already airborne' unless landed?
     @airport.dispatch(self)
-    set_location(nil)
-  end
-
-  def set_location(airport)
-    @airport = airport
+    @airport = nil
   end
 
   private

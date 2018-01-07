@@ -4,36 +4,36 @@ require_relative 'weather'
 class Airport
   attr_reader :planes
 
-  def initialize
+  DEFAULT_CAPACITY = 20
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @capacity = 10
+    @capacity = capacity
   end
 
   def dispatch(plane)
-    raise 'Plane not present in airport' unless has?(plane)
-    raise 'Plane cannot take off in stormy weather' if adverse_conditions?
-    plane.set_location(nil)
+    raise 'Cannot dispatch plane not present in airport' unless has?(plane)
+    raise 'Cannot dispatch in stormy weather' if adverse_conditions?
     @planes.delete(plane)
   end
 
   def receive(plane)
-    raise 'Plane already present in airport' if has?(plane)
-    raise 'Airport does not have capacity' if full?
-    raise 'Plane cannot land in stormy weather' if adverse_conditions?
-    plane.set_location(self)
+    raise 'Cannot receive plane already present in airport' if has?(plane)
+    raise 'Insufficient capacity to receive plane' if full?
+    raise 'Cannot receive in stormy weather' if adverse_conditions?
     @planes << plane
-  end
-
-  private
-  def has?(plane)
-    @planes.include?(plane)
-  end
-
-  def adverse_conditions?
-    Weather.new.stormy?
   end
 
   def full?
     @planes.length >= @capacity
+  end
+
+  def has?(plane)
+    @planes.include?(plane)
+  end
+
+  private
+  def adverse_conditions?
+    Weather.new.stormy?
   end
 end

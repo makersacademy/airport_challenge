@@ -15,7 +15,11 @@
 
 
 ## Introduction
-The purpose of this repository is to satisfy the user stories listed below.
+The purpose of this repository is to satisfy the user stories listed below. The code was developed using TDD to design and implement new features as required.
+
+## Instructions
+An example irb transcript is shown below to demonstrate how the app is used:
+TO DO
 
 ## User Stories
 The client has requested software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
