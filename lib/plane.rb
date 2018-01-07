@@ -1,8 +1,8 @@
 class Plane
-  # Understands if a plane is airborne - at the moment this is redundant and needs refactoring
+  # Understands if a plane is airborne 
   attr_accessor :airborne
 
-  def initialize(airborne = false)
+  def initialize(airborne = true)
     @airborne = airborne
   end
 

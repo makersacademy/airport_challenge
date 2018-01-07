@@ -3,6 +3,21 @@ require './lib/airport'
 require './lib/controller'
 require './lib/plane'
 
+Describe Controller do
+airport = Airport.new(3)
+weather = Weather.new([:fine])
+planes = [Plane.new,Plane.new,Plane.new]
+controller = Controller.new(airport,weather,planes)
+expect(controller.planes_inbound.count).to eq 3
+expect(airport.planes_on_the_ground).to be 0
+controller.issue_landing_instruction
+controller.issue_landing_instruction
+controller.issue_landing_instruction
+expect(controller.planes_inbound.count).to eq 0
+expect(airport.planes_on_the_ground).to be 3
+expect{controller.issue_landing_instruction}.to raise_error "Landing not possible at the moment"
+expect(controller.planes_outbound.count).to eq 0
+=begin
 def plane_airborne
   plane = Plane.new(false)
   puts "plane airborne: #{plane.airborne?}"
@@ -58,3 +73,4 @@ def controller_takeoff_enabled(weather_today)
   p "weather is #{weather_today}"
   p "Landing enabled: #{controller.takeoff_enabled}"
 end
+=end
