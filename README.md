@@ -12,6 +12,9 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+[![Build Status](https://travis-ci.org/domvernon/airport_challenge.svg?branch=master)](https://travis-ci.org/domvernon/airport_challenge)
+[![Coverage Status](https://coveralls.io/repos/github/domvernon/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/domvernon/airport_challenge?branch=master)
+
 About
 -------
 
