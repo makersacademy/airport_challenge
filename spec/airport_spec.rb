@@ -2,18 +2,18 @@ require 'airport'
 
 describe Airport do
 
-  it { is_expected.to respond_to(:land).with(1).argument }
+  subject(:airport) { Airport.new }
 
   describe '#land' do
     it 'lands plane' do
       plane = Plane.new
-      expect(subject.land(plane)).to eq [plane]
+      expect(airport.land(plane)).to eq [plane]
     end
 
     it 'stores plane when it lands' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.planes).to eq [plane]
+      expect(airport.planes).to eq [plane]
     end
 
     it 'stores more than one plane that lands' do
@@ -21,7 +21,7 @@ describe Airport do
       plane2 = Plane.new
       subject.land(plane)
       subject.land(plane2)
-      expect(subject.planes).to eq([plane, plane2])
+      expect(airport.planes).to eq([plane, plane2])
     end
 
   end
@@ -30,7 +30,7 @@ describe Airport do
     it 'takes off plane' do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.take_off(plane)).to eq []
+      expect(airport.take_off(plane)).to eq []
     end
   end
 
