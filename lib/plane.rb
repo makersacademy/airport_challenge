@@ -1,6 +1,6 @@
 class Plane
    
-  attr_reader :flying, :airport
+  attr_reader :flying
 
   def initialize
     @flying = true
@@ -8,9 +8,7 @@ class Plane
    
   def land(airport)
     return raise("Already Grounded") unless @flying
-    @flying = false
-    @airport = airport
-    airport.land(self)
+    airport.land(self) ? @flying = false :  @flying = true
   end
 
   def take_off

@@ -8,13 +8,14 @@ describe Plane do
    
     it { is_expected.to respond_to(:land).with(1).argument }
 
-    it "plane should give itself to hanger" do
+    it "plane should only land if airport knows how to land" do
       allow(airport).to receive(:land).with(subject).and_return(true)
-      expect(subject.land(airport)).to be true
+      subject.land(airport)
+      expect(subject.flying).to be false
     end
 
     it "a landed plane should raise error if you try to land it" do
-      allow(airport).to receive(:land)
+      allow(airport).to receive(:land).with(subject).and_return(true)
       subject.land(airport)
       expect { subject.land(airport) } .to raise_error("Already Grounded") 
     end
@@ -24,24 +25,17 @@ describe Plane do
   describe "#take_off" do
  
     it "plane should be flying after take off" do
-      allow(airport).to receive(:land).with(subject)
+      allow(airport).to receive(:land).with(subject).and_return(true)
       subject.land(airport)	
       subject.take_off
       expect(subject.flying).to eq(true) 
     end
 
     it "flying plane should raise error if you try to make it take off " do
-      allow(airport).to receive(:land).with(subject)
+      allow(airport).to receive(:land).with(subject).and_return(true)
       subject.land(airport)	
       subject.take_off
       expect { subject.take_off } .to raise_error("Already Flying")
-    end
-
-    it "plane should ask airport to take off" do
-      allow(airport).to receive(:land).with(subject)
-      subject.land(airport)	
-      allow(airport).to receive(:take_off).with(subject).and_return(true)
-      expect(subject.take_off).to be true
     end
 
   end
