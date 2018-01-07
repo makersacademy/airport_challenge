@@ -9,12 +9,14 @@ class Airport
   end
 
   def land(plane)
-    plane.has_landed
+    fail "Plane has already landed" unless plane.airborne?
+    plane.instance_variable_set(:@airborne, false)
     @planes << plane
   end
 
   def take_off(plane)
-    plane.has_taken_off
+    fail "Plane has already taken off" if plane.airborne?
+    plane.instance_variable_set(:@airborne, true)
     @planes.delete(plane)
     @planes
   end

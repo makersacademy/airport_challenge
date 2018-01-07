@@ -4,9 +4,7 @@ require 'airport'
 describe Plane do
   subject(:plane) { Plane.new }
 
-  it { is_expected.to respond_to :airborne? }
-
-  it 'is initialized as flying' do
+  it 'is initialized as airborne' do
     expect(plane).to be_airborne
   end
 
