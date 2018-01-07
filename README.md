@@ -90,17 +90,17 @@ Three classes were created to perform the operations required:
 - 10% chance of stormy conditions.
 
 ## Testing
-The unit tests below all passed with >99% coversage of the code. Edge cases were specifically targeted in addition to tests satisfying the user stories above.
+The unit tests below all passed with >99% coverage of the code. Edge cases were specifically targeted in addition to tests satisfying the user stories above.
 
 ```
 Airport
   can create an instance of Airport class
   in clear weather
-    dispatches a plane successfully
-    fails to dispatch a plane that is not present
     receives a plane successfully
     fails to receive a plane that is already present
     fails to receive a plane when it is full
+    dispatches a plane successfully
+    fails to dispatch a plane that is not present
   in stormy weather
     fails to dispatch a plane
     fails to receive a plane

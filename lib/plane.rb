@@ -1,8 +1,6 @@
 require_relative 'airport'
 
 class Plane
-  attr_reader :airport
-
   def land(target_airport)
     raise 'Plane is already grounded' if landed?
     target_airport.receive(self)
@@ -11,12 +9,15 @@ class Plane
 
   def take_off
     raise 'Plane is already airborne' unless landed?
-    airport.dispatch(self)
+    @airport.dispatch(self)
     @airport = nil
   end
 
-  private
   def landed?
-    !airport.nil?
+    !@airport.nil?
+  end
+
+  def grounded_at?(airport)
+    @airport == airport
   end
 end

@@ -2,8 +2,6 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :planes
-
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -25,11 +23,11 @@ class Airport
   end
 
   def full?
-    planes.count >= @capacity
+    @planes.count >= @capacity
   end
 
   def has?(plane)
-    planes.include?(plane)
+    @planes.include?(plane)
   end
 
   private
