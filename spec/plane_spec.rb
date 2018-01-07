@@ -6,6 +6,7 @@ describe Plane do
 
   it { is_expected.to respond_to :landed }
   it { is_expected.to respond_to :taken_off }
+  it { is_expected.to respond_to :status }
 
   it 'confirms plane has landed' do
     plane.landed
