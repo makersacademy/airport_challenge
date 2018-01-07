@@ -63,9 +63,9 @@ describe Airport do
     stansted = Airport.new(5)
 
     # ensure weather is peachy
-    allow(heathrow).to receive(:storm?).and_return(false)
-    allow(gatwick).to receive(:storm?).and_return(false)
-    allow(stansted).to receive(:storm?).and_return(false)
+    allow(heathrow).to receive_message_chain(:weather, :storm?) { false }
+    allow(gatwick).to receive_message_chain(:weather, :storm?) { false }
+    allow(stansted).to receive_message_chain(:weather, :storm?) { false }
 
     # create planes
     boeing_747 = Plane.new
