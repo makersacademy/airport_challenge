@@ -7,6 +7,7 @@ class Airport
 
   def initialize
     @planes = []
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -15,7 +16,7 @@ class Airport
   end
 
   def take_off
-    raise 'the weather is too stormy' if @weather.stormy?
+    raise 'Planes cant take off as the weather is too stormy' if @weather.stormy?
     @planes.pop
   end
 
