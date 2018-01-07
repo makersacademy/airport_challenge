@@ -1,7 +1,7 @@
 Airport Challenge
 =================
 
-This repository features my solution to a challenge to write the software to control the flow of planes at an airport.The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off. 
+This repository features my solution to the first weekend challenge at Makers Academy. The brief was to write software which controlled the flow of planes at an airport.  
 
 I have used three seperate classes; Aiport, Plane and Weather to encapsulate the objects. The Aiport class contains an array (planes) where a record of planes landed at each airport is stored. When the plane leaves the aiport, it is removed from the array.
 
@@ -23,7 +23,7 @@ and leave using the take_off method e.g
 ```
 heathrow.land(airbus_a380)
 ```
-No planes are allowed to land or take off in a storm. Weather is generated in the Weather class for each aiport, using the storm? method which gives a one in four chance of the method returing true. The weather at an airport can be checked using the message:
+No planes are allowed to land or take off in a storm. Weather is generated in the Weather class for each aiport, using the storm? method which gives a one in four chance of the method returing true for a storm. The weather at an airport can be checked using the message:
 ```
 heathrow.weather.storm?
 ```
