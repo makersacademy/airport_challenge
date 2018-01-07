@@ -16,13 +16,13 @@ describe Airport do
 
       it 'lands plane' do
         allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
+        allow(plane).to receive(:land).and_return(false)
         expect(airport.land(plane)).to eq [plane]
       end
 
       it 'will not land if airport is full' do
         allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
+        allow(plane).to receive(:land).and_return(false)
         airport.capacity.times { airport.land(plane) }
         expect { airport.land(plane) }.to raise_error "Airport is full"
       end
@@ -31,12 +31,12 @@ describe Airport do
 
     context 'when plane has landed' do
 
-    before do
-      allow(plane).to receive(:airborne?).and_return(true)
-      allow(plane).to receive(:landed).and_return(false)
-      allow(plane2).to receive(:airborne?).and_return(true)
-      allow(plane2).to receive(:landed).and_return(false)
-    end
+      before do
+        allow(plane).to receive(:airborne?).and_return(true)
+        allow(plane).to receive(:land).and_return(false)
+        allow(plane2).to receive(:airborne?).and_return(true)
+        allow(plane2).to receive(:land).and_return(false)
+      end
 
       it 'stores plane when it lands' do
         airport.land(plane)
@@ -72,10 +72,10 @@ describe Airport do
 
     before do
       allow(plane).to receive(:airborne?).and_return(true)
-      allow(plane).to receive(:landed).and_return(false)
+      allow(plane).to receive(:land).and_return(false)
       allow(weather).to receive(:stormy?).and_return(false)
       allow(plane2).to receive(:airborne?).and_return(true)
-      allow(plane2).to receive(:landed).and_return(false)
+      allow(plane2).to receive(:land).and_return(false)
     end
 
     context 'when empty' do
@@ -144,7 +144,7 @@ describe Airport do
 
       it 'knows it is full' do
         allow(plane).to receive(:airborne?).and_return(true)
-        allow(plane).to receive(:landed).and_return(false)
+        allow(plane).to receive(:land).and_return(false)
         airport.capacity.times { airport.land(plane) }
         expect(airport).to be_full
       end

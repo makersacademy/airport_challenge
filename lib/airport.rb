@@ -17,7 +17,7 @@ class Airport
     fail "Stormy weather" if weather.stormy?
     fail "Plane has already landed" unless plane.airborne?
     fail "Airport is full" if full?
-    plane.landed
+    plane.land
     @planes << plane
   end
 
@@ -27,6 +27,10 @@ class Airport
     fail "Airport is empty" if planes.empty?
     plane.takeoff
     @planes.delete(plane)
+    confirm_take_off(plane)
+  end
+
+  def confirm_take_off(plane)
     "Confirmed: #{plane} has taken off"
   end
 
