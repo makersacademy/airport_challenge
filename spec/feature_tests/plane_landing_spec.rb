@@ -1,10 +1,11 @@
 require 'airport'
 
-describe Airport do
+describe 'Plane landing tests' do
 
   it 'should let a single plane land' do
+    airport = Airport.new
     plane = Plane.new
-    expect(subject.land(plane)).to eq [plane]
+    expect(airport.land(plane)).to eq [plane]
   end
 
   it 'should let multiple planes land' do
