@@ -4,7 +4,7 @@ describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
   let(:weather) { double :weather }
-  let(:capacity) { double :capcity }
+  let(:capacity) { double :capacity }
 
   it 'airport responds to land' do
     expect(airport).to respond_to(:land)
