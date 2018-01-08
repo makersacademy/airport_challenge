@@ -13,4 +13,8 @@ class Weather
     @current_weather
   end
 
+  def update_weather
+    @current_weather = WEATHER_CONDITIONS.sample
+  end
+
 end

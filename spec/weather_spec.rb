@@ -14,4 +14,12 @@ describe Weather do
       expect(Weather::WEATHER_CONDITIONS).to include weather.return_weather
     end
   end
+
+  describe '#update_weather' do
+    it 'gets a new current weather' do
+      all_conditions = Weather::WEATHER_CONDITIONS
+      weather.update_weather
+      expect(all_conditions).to include weather.return_weather
+    end
+  end
 end
