@@ -44,9 +44,9 @@ controller.issue_takeoff_instruction
 Errors raised
 -------------
 
-On Landing - "No inbound planes" means the array of inbound planes is empty
-On Landing - "Landing not possible at the moment" - means either that it's stormy or the airport is full
-On Take Off - "Take off not possible at the moment" - means either that it's stormy or the airport is empty
+* On Landing - "No inbound planes" means the array of inbound planes is empty
+* On Landing - "Landing not possible at the moment" - means either that it's stormy or the airport is full
+* On Take Off - "Take off not possible at the moment" - means either that it's stormy or the airport is empty
 
 
 Instructions
