@@ -3,7 +3,10 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new }
   let(:plane) { double :plane }
-
+  before do
+    airport.instance_variable_set(:@weather_condition, :sunny)
+  end
+  
   it 'has a default hangar capacity of 10' do
     expect(airport.hangar_capacity).to eq Airport::DEFAULT_CAPACITY
   end
