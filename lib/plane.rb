@@ -7,10 +7,10 @@ class Plane
     raise 'Plane cannot take off: plane already flying' if flying
   end
 
-  def land(airport)
+  def land(plane)
     raise 'Plane cannot land: plane already landed' if landed
     @flying = false
-    @airport = airport
+    @plane = plane
   end
 
   def airport
