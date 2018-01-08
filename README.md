@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/MissDove/airport_challenge.svg?branch=master)](https://travis-ci.org/Leigan0/airport_challenge)
-[![Coverage Status](https://coveralls.io/repos/github/MissDove/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/Leigan0/airport_challenge?branch=master)
+[![Build Status](https://travis-ci.org/MissDove/airport_challenge.svg?branch=master)](https://travis-ci.org/MissDove/airport_challenge)
+[![Coverage Status](https://coveralls.io/repos/github/MissDove/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/MissDove/airport_challenge?branch=master)
 
 
 # Airport Challenge
