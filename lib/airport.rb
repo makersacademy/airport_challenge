@@ -3,14 +3,14 @@ require_relative 'weather'
 
 class Airport
 
-  attr_reader :capacity, :planes_in_hangar
+  attr_reader :capacity
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @planes_in_hangar = []
+  def initialize(capacity = DEFAULT_CAPACITY, planes = [], weather = Weather.new)
+    @planes_in_hangar = planes
     @capacity = capacity
-    @weather = Weather.new
+    @weather = weather
   end
 
   def takeoff(plane)
@@ -19,7 +19,6 @@ class Airport
     plane.takeoff
     fail "Plane did not take off" unless plane.flying?
     @planes_in_hangar.delete(plane)
-    fail "Plane did not leave airport" if @planes_in_hangar.include? plane
   end
 
   def land(plane)
@@ -32,7 +31,7 @@ class Airport
 
   private
 
-  attr_reader :weather
+  attr_reader :weather, :planes_in_hangar
 
   def full?
     @planes_in_hangar.count >= @capacity

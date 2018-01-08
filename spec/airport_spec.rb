@@ -3,8 +3,9 @@ require 'airport'
 describe Airport do
 
   subject(:airport) { described_class.new }
-  let (:plane) { double :plane }
-  let (:weather) { double :weather }
+
+  let (:plane) { double :plane, land: nil, takeoff: nil }
+  let (:weather) { double :weather, stormy?: false}
   
   describe "#initialize" do
 
@@ -24,8 +25,6 @@ describe Airport do
     before {
       airport.instance_variable_set(:@weather, weather) # replace random weather with controlled stub
       airport.instance_variable_set(:@planes_in_hangar, [plane]) # add plane to hangar for takeoff
-      allow(weather).to receive(:stormy?).and_return(false) # ensure weather not stormy
-      allow(plane).to receive(:takeoff) 
       allow(plane).to receive(:flying?).and_return(true)
     }
 
@@ -35,8 +34,7 @@ describe Airport do
     end
 
     it "airport shouldn't have plane after takeoff" do
-      airport.takeoff(plane)
-      expect(airport.planes_in_hangar).not_to include plane
+      expect(airport.takeoff(plane)).to be plane
     end
 
     it "should raise error plane if plane did not take off" do
@@ -60,8 +58,6 @@ describe Airport do
 
     before { 
       airport.instance_variable_set(:@weather, weather) 
-      allow(weather).to receive(:stormy?).and_return(false)
-      allow(plane).to receive(:land)
       allow(plane).to receive(:flying?).and_return(false)
     }
 
@@ -71,8 +67,8 @@ describe Airport do
     end
 
     it "airport should have plane after landing" do
-      airport.land(plane)
-      expect(airport.planes_in_hangar).to include plane
+      # use return value from method rather than examining internal object state
+      expect(airport.land(plane)).to include plane
     end
 
     it "should raise error plane if plane did not land" do
