@@ -27,12 +27,12 @@ My solution is made up of 4 classes:
 
 How to Run
 ----------
-...
+
 # instantiate the 4 classes
-airport = Airport.new(3) # only 3 planes allowed in the airport this time
-weather = Weather.new([:fine, :fine, :fine, :fine, :stormy])
-planes = [Plane.new, Plane.new, Plane.new, Plane.new]
-controller = Controller.new(airport, weather, planes) # instantiate controller with 4 inbound planes
+* airport = Airport.new(3) # only 3 planes allowed in the airport this time
+* weather = Weather.new([:fine, :fine, :fine, :fine, :stormy])
+* planes = [Plane.new, Plane.new, Plane.new, Plane.new]
+* controller = Controller.new(airport, weather, planes) # instantiate controller with 4 inbound planes
 
 # land
 controller.issue_landing_instruction
