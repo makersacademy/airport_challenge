@@ -14,7 +14,9 @@ class Airport
   end
 
   def takeoff
-    @planes_on_the_ground.pop.airborne = false
+    plane = @planes_on_the_ground.pop
+    plane.airborne = true
+    plane
   end
 
   def full?

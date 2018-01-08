@@ -35,6 +35,18 @@ describe Airport do
       subject.takeoff
       expect(subject.planes_on_the_ground.count).to eq 0
     end
+
+    it "should be able to make a plane to takeoff2" do
+      ###################################################
+      # Can't work out how to mock Plane for the be_a check at the end
+      plane = Plane.new
+      subject.land(plane)
+      expect(subject.planes_on_the_ground.count).to eq 1
+      plane2 = subject.takeoff
+      expect(subject.planes_on_the_ground.count).to eq 0
+      expect(plane2).to be_a Plane
+    end
+
   end
 
 end
