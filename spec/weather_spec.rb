@@ -1,8 +1,6 @@
 describe Weather do
 
-  subject(:airport) { Airport.new }
-  subject(:plane) { Plane.new }
-  subject(:weather) { Weather.new }
+  subject(:weather) { described_class.new }
 
   it 'is stormy' do
     allow(weather).to receive(:rand).and_return(1)

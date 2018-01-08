@@ -8,7 +8,7 @@ describe Airport do
   let(:plane3) { double :plane }
   let(:weather) { double :weather, :stormy? => false }
 
-  subject(:airport) { Airport.new(weather) }
+  subject(:airport) { described_class.new(weather) }
 
   describe '#land' do
 
@@ -96,7 +96,6 @@ describe Airport do
       end
 
       it 'takes off correct plane' do
-
         airport.land(plane)
         airport.land(plane2)
         allow(plane).to receive(:airborne?).and_return(false)
