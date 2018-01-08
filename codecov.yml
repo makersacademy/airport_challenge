@@ -1,2 +1,8 @@
+
 codecov:
   token: 9185a976-8cf6-47a5-977b-0d79e15ec8d7
+
+  before_install:
+  - pip install --user codecov
+after_success:
+- codecov --file coverage/lcov.info --disable search
