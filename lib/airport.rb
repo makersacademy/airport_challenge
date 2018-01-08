@@ -4,8 +4,9 @@ require_relative 'weather'
 class Airport
 
   DEFAULT_CAPACITY = 20
-  attr_reader :planes
+
   attr_reader :capacity
+  attr_reader :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
@@ -34,22 +35,10 @@ class Airport
     fail 'Weather is affecting this flight' if bad_weather
   end
 
-  def full?
-    planes.count >= capacity
-  end
-
-  def empty?
-    planes.empty?
-  end
-
   def confirm_landing(plane)
     plane.landed
     planes << plane
     'This plane has landed'
-  end
-
-  def exist?(plane)
-    planes.include?(plane)
   end
 
   def confirm_take_off(plane)
@@ -57,4 +46,19 @@ class Airport
     planes.delete(plane)
     'This plane has taken off'
   end
+
+  def exist?(plane)
+    planes.include?(plane)
+  end
+
+  private
+
+  def empty?
+    planes.empty?
+  end
+
+  def full?
+    planes.count >= capacity
+  end
+
 end
