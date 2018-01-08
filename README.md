@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/MissDove/airport_challenge.svg?branch=master)](https://travis-ci.org/MissDove/airport_challenge)
-[![Coverage Status](https://coveralls.io/repos/github/MissDove/airport_challenge/badge.svg?branch=master)](https://coveralls.io/github/MissDove/airport_challenge?branch=master)
-
-
 # Airport Challenge
 
 The code in this repository has been written to complete an airport-challenge, where we want to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally, it may be stormy, in which case no planes can land or take off.
