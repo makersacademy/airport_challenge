@@ -20,6 +20,11 @@ We have a request from a client to write the software to control the flow of pla
 
 For more details on the tast or to see the user stories click [here](https://github.com/Tagrand/airport_challenge/blob/master/instructions.md).
 
+## My Approach
+
+This week I tried to particularly focus on testing firstly building later. I found that as I did the project I focused on following a cycle of, building test, passing test, refactor, making test fail again, passing test again. These last two steps were key, since I made sure the tests, actually tested what I wanted, rather than passed blindly. 
+
+Though I refactored throughout, I  also gave myself an hour midway through the test to review my code, and refactor it. I found this greatly helped me, as I saw alot of bits where I had over complicated the spec, and could simplify. This is something I want to do more in my pairing sessions, to produce more elegant code.   
 
 ## Getting started
 
