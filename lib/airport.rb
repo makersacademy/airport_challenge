@@ -28,7 +28,7 @@ class Airport
 
   def at_airport?(plane)
     @planes.include?(plane)
-  end 
+  end
 
   def full?
     @planes.count >= capacity
