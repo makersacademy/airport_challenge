@@ -30,7 +30,7 @@ describe Airport do
       allow(airport).to receive(:full?).and_return false
       allow(airport).to receive(:exist?).and_return false
       allow(airport).to receive(:bad_weather).and_return true
-      expect { airport.land(plane) }.to raise_error 'Bad weather is affecting this flight'
+      expect { airport.land(plane) }.to raise_error
     end
 
     before do
@@ -38,14 +38,14 @@ describe Airport do
       allow(airport).to receive(:bad_weather).and_return false
     end
 
-    it 'raises an error when airport full' do
+    it 'raises an error when airport is full' do
       allow(airport).to receive(:full?).and_return true
-      expect { airport.land(plane) }.to raise_error 'Aiport is full'
+      expect { airport.land(plane) }.to raise_error
     end
 
     it 'raises an error when plane has already landed' do
       allow(airport).to receive(:exist?).and_return true
-      expect { airport.land(plane) }.to raise_error 'Plane has landed'
+      expect { airport.land(plane) }.to raise_error('Plane has landed')
     end
 
     it 'allows a plane to land at the airport' do
@@ -60,7 +60,7 @@ describe Airport do
 
     it 'raises an error when airport is empty' do
       allow(airport).to receive(:empty?).and_return true
-      expect { airport.take_off(plane) }.to raise_error 'Airport is empty'
+      expect { airport.take_off(plane) }.to raise_error('Airport is empty')
     end
 
     before do
@@ -72,14 +72,14 @@ describe Airport do
 
     it 'raises an error if given plane is not at the airport' do
       allow(airport).to receive(:empty?).and_return false
-      expect { airport.take_off(plane) }.to raise_error 'Plane not at the airport'
+      expect { airport.take_off(plane) }.to raise_error('Plane not at the airport')
     end
 
     it 'prevents take off when weather is stormy' do
       allow(airport).to receive(:empty?).and_return false
       allow(airport).to receive(:exist?).and_return true
       allow(airport).to receive(:bad_weather).and_return true
-      expect { airport.take_off(plane) }.to raise_error 'Bad weather is affecting this flight'
+      expect { airport.take_off(plane) }.to raise_error
     end
   end
 

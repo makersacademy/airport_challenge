@@ -13,8 +13,8 @@ class Airport
   end
 
   def land(plane)
-    fail 'Airport is full' if full?
-    fail 'Plane has landed' if exist?(plane)
+    raise 'Airport is full' if full?
+    raise 'Plane has landed' if exist?(plane)
     weather_check
     confirm_landing(plane)
   end
