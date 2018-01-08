@@ -51,4 +51,4 @@ The tests for this project are written with RSPEC, to run them simple run 'rspec
 
 ### About the tests
 
-The tests are currently unit tests without an integration test. This project does not have 100% test coverage due to one update weather function in airport.rb. The only way I could think of for testing this method would be effectively testing a mock, so it is not included here. This function could, however, be easily tested in an integration test.
+The tests are currently unit tests without an integration test. This project does not have 100% test coverage due to one update weather function in airport.rb. The only way I could think of for testing this method would be effectively testing a mock, so it is not included here. This function could, however, be easily tested in a feature test.

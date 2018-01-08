@@ -41,7 +41,7 @@ class Airport
     return true if @hangar.include?(plane)
   end
 
-  def update_weather
+  def weather_update
     @weather_station.update_weather
   end
 
