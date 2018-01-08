@@ -22,7 +22,6 @@ describe Airport do
     it 'fails to receive a plane when airport is full' do
       20.times { airport.receive(Plane.new) }
       expect { airport.receive(plane) }.to raise_error 'Insufficient capacity to receive plane'
-      expect(airport.full?).to be true
     end
   end
 

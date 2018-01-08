@@ -9,30 +9,34 @@ describe ControlTower do
     expect(control_tower).to be_instance_of(ControlTower)
   end
 
-  context 'when issuing take-off orders' do
-    it 'issues an order successfully' do
+  context 'in acceptable weather' do
+    before(:each) do
+      allow(control_tower).to receive(:adverse_conditions?).and_return(false)
+    end
+
+    it 'issues an order to take-off successfully' do
       expect(plane).to receive(:take_off).once
       expect(airport).to receive(:dispatch).once
-      allow(control_tower).to receive(:adverse_conditions?).and_return(false)
       control_tower.order_take_off(plane, airport)
     end
 
-    it 'fails to issue order in adverse weather' do
-      allow(control_tower).to receive(:adverse_conditions?).and_return(true)
-      expect { control_tower.order_take_off(plane, airport) }.to raise_error 'cannot take off in stormy conditions'
+    it 'issues an order to land successfully' do
+      expect(plane).to receive(:land).once
+      expect(airport).to receive(:receive).once
+      control_tower.order_landing(plane, airport)
     end
   end
 
-  context 'when issuing landing orders' do
-    it 'issues an order successfully' do
-      expect(plane).to receive(:land).once
-      expect(airport).to receive(:receive).once
-      allow(control_tower).to receive(:adverse_conditions?).and_return(false)
-      control_tower.order_landing(plane, airport)
+  context 'in poor weather' do
+    before(:each) do
+      allow(control_tower).to receive(:adverse_conditions?).and_return(true)
     end
 
-    it 'fails to issue an order in adverse weather' do
-      allow(control_tower).to receive(:adverse_conditions?).and_return(true)
+    it 'fails to issue take-off order' do
+      expect { control_tower.order_take_off(plane, airport) }.to raise_error 'cannot take off in stormy conditions'
+    end
+
+    it 'fails to issue landing order' do
       expect { control_tower.order_landing(plane, airport) }.to raise_error 'cannot land in stormy conditions'
     end
   end
