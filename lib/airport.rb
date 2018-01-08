@@ -9,7 +9,6 @@ class Airport
 
   def initialize(weather = Weather.new, capacity = DEFAULT_CAPACITY)
     @planes = Array.new
-    @airbound_planes = Array.new
     @weather = weather
     @capacity = capacity
   end
@@ -20,10 +19,10 @@ def land(plane)
   @planes << plane
 end
 
-def takeoff
+def takeoff(plane)
   raise "no planes in airport" if @planes.empty?
   raise "can't takeoff due to bad weather" if @weather.stormy?
-  @airbound_planes << @planes.shift
+  @planes.delete(plane)
   @planes
 end
 

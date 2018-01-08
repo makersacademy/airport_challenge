@@ -1,7 +1,7 @@
 class Weather
 
   def conditions
-    ["stormy", :sunny, :sunny, :sunny]
+    [:stormy, :sunny, :sunny, :sunny]
   end
 
   def selector
@@ -9,7 +9,7 @@ class Weather
   end
 
   def stormy?
-    return true if selector == "stormy"
+    return true if selector == :stormy
     false
   end
 
