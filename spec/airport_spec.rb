@@ -20,7 +20,7 @@ describe Airport do
     end
 
     it 'should take an argument to set capacity' do
-      airport = Airport.new(10)
+      airport.capacity = 10
       expect(airport.capacity).to eq(10)
     end
   end
