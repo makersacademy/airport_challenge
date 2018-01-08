@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { Airport.new }
+  subject(:airport) { described_class.new }
   let(:plane) { double :plane }
 
   it { is_expected.to respond_to(:planes) }
@@ -64,7 +64,7 @@ describe Airport do
     end
 
     before do
-      allow(airport).to receive(:bad_weather).and_return false
+      allow(airport).to receive(:bad_weather).and_return true
       allow(airport).to receive(:exist?).and_return false
       allow(plane).to receive(:landed)
       allow(plane).to receive(:took_off)
