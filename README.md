@@ -1,40 +1,39 @@
 Airport Challenge
 =================
 
+This repository features my solution to the first weekend challenge at Makers Academy. The brief was to write software which controlled the flow of planes at an airport.  
+
+I have used three seperate classes; Aiport, Plane and Weather to encapsulate the objects. The Aiport class contains an array (planes) where a record of planes landed at each airport is stored. When the plane leaves the aiport, it is removed from the array.
+
+The user can create new Aiports and assign to variables e.g. 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
+heathrow = Airport.new(60) 
 ```
+The argument specifies the number of aeroplanes that can land at the aiport, if no argument is given, the new airport will use the default capacity of 50.
 
-Instructions
----------
+The user can also create planes and assign to variables e.g.
+```
+airbus_a380 = Plane.new
+```
+Planes can be landed at airports using the ```land``` method e.g. 
+```
+heathrow.land(airbus_a380) 
+```
+and leave using the ```take_off``` method e.g. 
+```
+heathrow.take_off(airbus_a380)
+```
+No planes are allowed to land or take off in a storm. Weather is generated in the Weather class for each aiport, using the ```storm?``` method which gives a one in four chance of the method returing true for a storm. The weather at an airport can be checked using the message:
+```
+heathrow.weather.storm?
+```
+Which will return false if the weather is clear for landing/take off.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+The approach uses TDD in response to the various user stories and edge cases described below. The testing framework allso includes an RSpec feature test that lands three different planes at three different aiports and checks they have landed. It then instructs them to take off and checks they are no longer in the aiport.
 
-Steps
--------
+The formatting of the code has been tested with Rubocop for consistency.
 
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
+#### User Stories
 ```
 As an air traffic controller 
 So I can get passengers to a destination 
@@ -61,30 +60,8 @@ So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
 Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
 
-In code review we'll be hoping to see:
 
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
