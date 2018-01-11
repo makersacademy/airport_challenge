@@ -12,6 +12,26 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+How to run program
+---------
+
+```
+➜  irb
+2.4.1 :001 > require './lib/airport.rb'
+ => true
+2.4.1 :002 > gatwick = Airport.new
+ => #<Airport:0x007f9d3291e278 @planes=[], @weather=#<Weather:0x007f9d3291e250>, @capacity=10>
+2.4.1 :003 > concord = Plane.new
+ => #<Plane:0x007f9d328f7858>
+2.4.1 :004 > gatwick.land(concord)
+ => [#<Plane:0x007f9d328f7858>]
+2.4.1 :005 > gatwick.takeoff(concord)
+ => []
+2.4.1 :006 > gatwick.weather.stormy?
+ => false
+2.4.1 :007 > 
+```
+
 
 Instructions
 ---------
