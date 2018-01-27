@@ -10,9 +10,6 @@ describe Airport do
       allow(subject).to receive(:tell_weather) { "sunny" }
       expect(subject.land(plane)).to eq [plane]
     end
-  end
-
-  describe "#land" do
     it "prevent from landing when stormy" do
       allow(subject).to receive(:tell_weather) { "stormy" }
       expect(subject.land(plane)).to eq nil
@@ -33,9 +30,6 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.planes_a).to eq []
     end
-  end
-
-  describe "#take_off" do
     it "prevent from taking off the planes when stormy" do
       allow(subject).to receive(:tell_weather) { "sunny" }
       subject.land(plane)
@@ -45,6 +39,7 @@ describe Airport do
     end
   end
 
+
   describe "#confirm_take_off" do
     it "confirms that the plane took off" do
       subject.land(plane)
@@ -52,9 +47,6 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.confirm_take_off(plane)).to eq "#{plane} took off"
     end
-  end
-
-  describe "#confirm_take_off" do
     it "says plane didnt take off" do
       allow(subject).to receive(:tell_weather) { "sunny" }
       subject.land(plane)
@@ -75,14 +67,10 @@ describe Airport do
       allow(subject).to receive(:random) { 1 }
       expect(subject.tell_weather).to eq "stormy"
     end
-  end
-
-  describe "#tell_wheather" do
     it "says it's sunny" do
       allow(subject).to receive(:random) { 2 }
       expect(subject.tell_weather).to eq "sunny"
     end
   end
-
 
 end
