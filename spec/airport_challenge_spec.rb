@@ -16,9 +16,8 @@ describe Airport do # describe feature test for Airport class.
     plane = Plane.new
     expect(subject.land_plane(plane)).to eq [plane]
   end
-end
 
-#   it 'allows planes to take off'
-#     plane = Plane.new
-#     expect(subject.fly_plane(plane))
-# end
+  it 'allows planes to take off' do
+    expect(subject.fly_plane).to be_nil
+  end
+end
