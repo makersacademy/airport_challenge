@@ -9,5 +9,6 @@ class Airport
 
   def take_off_plane(plane)
     @hangar.delete(plane)
+    return "#{plane} has taken off"
   end
 end
