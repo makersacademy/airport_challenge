@@ -1,5 +1,3 @@
-require "airport"
-
 class Plane
 
   attr_reader :planes_a
