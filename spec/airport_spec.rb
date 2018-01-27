@@ -4,10 +4,20 @@ require 'plane'
 describe Airport do
 
   describe "#land" do
-    it "lands the planes" do
+    it "lands the planes when sunny" do
       plane = Plane.new
       airport = Airport.new
+      expect(airport).to receive(:random).and_return(2)
       expect(airport.land(plane)).to eq [plane]
+    end
+  end
+
+  describe "#land" do
+    it "prevent from landing when stormy" do
+      plane = Plane.new
+      airport = Airport.new
+      expect(airport).to receive(:random).and_return(1)
+      expect(airport.land(plane)).to eq nil
     end
   end
 
@@ -18,7 +28,7 @@ describe Airport do
       airport.land(plane)
       expect(airport).to receive(:random).and_return(2)
       airport.take_off(plane)
-      expect(airport.planes_collection).to eq []
+      expect(airport.planes_a).to eq []
     end
   end
 
@@ -29,20 +39,29 @@ describe Airport do
       airport.land(plane)
       expect(airport).to receive(:random).and_return(1)
       airport.take_off(plane)
-      expect(airport.planes_collection).to eq [plane]
+      expect(airport.planes_a).to eq [plane]
     end
   end
 
   describe "#confirm_take_off" do
     it "confirms that the plane took off" do
       plane = Plane.new
-      plane2 = Plane.new
       airport = Airport.new
       airport.land(plane)
-      airport.land(plane2)
+      expect(airport).to receive(:random).and_return(2)
       airport.take_off(plane)
       expect(airport.confirm_take_off(plane)).to eq "#{plane} took off"
-      expect(airport.confirm_take_off(plane2)).to eq "#{plane2} didn't take off"
+    end
+  end
+
+  describe "#confirm_take_off" do
+    it "says plane didnt take off" do
+      plane = Plane.new
+      airport = Airport.new
+      airport.land(plane)
+      expect(airport).to receive(:random).and_return(1)
+      airport.take_off(plane)
+      expect(airport.confirm_take_off(plane)).to eq "#{plane} didn't take off"
     end
   end
 
