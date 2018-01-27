@@ -1,4 +1,4 @@
-Airport Challenge! - by Kaari Strack
+Airport Challenge!
 =================
 
 ```
