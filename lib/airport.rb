@@ -1,6 +1,6 @@
 class Airport
 
-DEFAULT_CAPACITY=2
+  DEFAULT_CAPACITY=2
 
   attr_accessor :planes_a
   attr_accessor :capacity
@@ -22,11 +22,7 @@ DEFAULT_CAPACITY=2
   end
 
   def confirm_take_off(plane)
-    if planes_a.include?(plane) then
-      return "#{plane} didn't take off"
-    else
-      return "#{plane} took off"
-    end
+    planes_a.include?(plane) ? "#{plane} didn't take off" : "#{plane} took off"
   end
 
   def random
@@ -38,9 +34,7 @@ DEFAULT_CAPACITY=2
   end
 
   def full?
-    if planes_a.count >= capacity
-      true
-    end
+    planes_a.count >= capacity
   end
 
 end
