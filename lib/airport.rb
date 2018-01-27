@@ -18,7 +18,7 @@ DEFAULT_CAPACITY=2
   end
 
   def take_off(plane)
-    tell_weather() == "sunny" ? planes_a.delete(plane) : "the plane cannot take off"
+    tell_weather() == "sunny" && planes_a.include?(plane) ? planes_a.delete(plane) : "the plane cannot take off"
   end
 
   def confirm_take_off(plane)
