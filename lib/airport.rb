@@ -1,24 +1,30 @@
 class Airport
 
   attr_accessor :planes_a
+  attr_accessor :capacity
 
   def initialize(capacity=5)
     @planes_a = []
-    capacity = capacity
+    @capacity = capacity
+  end
+
+  def capacity(number)
+    @capacity = number
   end
 
   def land(plane)
-    if !@planes_a.include?(plane) && tell_weather() == "sunny" then
-      @planes_a << plane
+    fail 'No free spots avaialble' if full?
+    if !planes_a.include?(plane) && tell_weather() == "sunny" then
+      planes_a << plane
     end
   end
 
   def take_off(plane)
-    tell_weather() == "sunny" ? @planes_a.delete(plane) : "the plane cannot take off"
+    tell_weather() == "sunny" ? planes_a.delete(plane) : "the plane cannot take off"
   end
 
   def confirm_take_off(plane)
-    if @planes_a.include?(plane) then
+    if planes_a.include?(plane) then
       return "#{plane} didn't take off"
     else
       return "#{plane} took off"
@@ -31,6 +37,12 @@ class Airport
 
   def tell_weather
     random() == 1 ? "stormy" : "sunny"
+  end
+
+  def full?
+    if planes_a.count >= capacity
+      true
+    end
   end
 
 end

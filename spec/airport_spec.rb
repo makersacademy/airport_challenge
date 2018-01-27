@@ -7,17 +7,26 @@ describe Airport do
     it "lands the planes when sunny" do
       plane = Plane.new
       airport = Airport.new
-      expect(airport).to receive(:random).and_return(2)
+      expect(airport).to receive(:tell_weather).and_return("sunny")
       expect(airport.land(plane)).to eq [plane]
     end
   end
 
   describe "#land" do
+    airport = Airport.new
+    plane = Plane.new
     it "prevent from landing when stormy" do
-      plane = Plane.new
-      airport = Airport.new
-      expect(airport).to receive(:random).and_return(1)
+      expect(airport).to receive(:tell_weather).and_return("stormy")
       expect(airport.land(plane)).to eq nil
+    end
+  end
+
+  describe "raising error when full" do
+    airport = Airport.new
+    plane = Plane.new
+    it 'raises error when full' do
+      airport.capacity.times { airport.land Plane.new }
+      expect { airport.land Plane.new }.to raise_error 'No free spots avaialble'
     end
   end
 
@@ -26,7 +35,7 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       airport.land(plane)
-      expect(airport).to receive(:random).and_return(2)
+      expect(airport).to receive(:tell_weather).and_return("sunny")
       airport.take_off(plane)
       expect(airport.planes_a).to eq []
     end
@@ -37,7 +46,7 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       airport.land(plane)
-      expect(airport).to receive(:random).and_return(1)
+      expect(airport).to receive(:tell_weather).and_return("stormy")
       airport.take_off(plane)
       expect(airport.planes_a).to eq [plane]
     end
@@ -48,7 +57,7 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       airport.land(plane)
-      expect(airport).to receive(:random).and_return(2)
+      expect(airport).to receive(:tell_weather).and_return("sunny")
       airport.take_off(plane)
       expect(airport.confirm_take_off(plane)).to eq "#{plane} took off"
     end
@@ -59,7 +68,7 @@ describe Airport do
       plane = Plane.new
       airport = Airport.new
       airport.land(plane)
-      expect(airport).to receive(:random).and_return(1)
+      expect(airport).to receive(:tell_weather).and_return("stormy")
       airport.take_off(plane)
       expect(airport.confirm_take_off(plane)).to eq "#{plane} didn't take off"
     end
@@ -88,5 +97,6 @@ describe Airport do
       expect(airport.tell_weather).to eq "sunny"
     end
   end
+
 
 end
