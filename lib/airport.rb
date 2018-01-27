@@ -1,5 +1,8 @@
 class Airport
+  def initialize
+    @hangar = []
+  end
   def land_plane(plane)
-    plane
+    @hangar << plane
   end
 end
