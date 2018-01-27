@@ -1,8 +1,9 @@
 require 'airport'
+require 'plane'
 
 describe Airport do
   subject(:airport) { described_class.new }
-  let(:plane) { double :plane }
+  let(:plane) { Plane.new }
 
   it "is empty when created" do
     expect(subject.planes).to eq []
@@ -10,7 +11,7 @@ describe Airport do
 
   describe '#land' do
 
-    before(:each) {subject.land(plane)}
+    before(:each) { subject.land(plane) }
 
     it "stores the plane in the airport" do
       expect(subject.planes).to include plane
