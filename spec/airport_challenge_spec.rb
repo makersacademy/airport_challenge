@@ -4,14 +4,14 @@ require 'airport.rb'
 
 # I want to instruct a plane to land at an airport [Y]
 # I want to instruct a plane to take off from an airport [Y]
-# and confirm that it is no longer in the airport [?]
+# and confirm that it is no longer in the airport [Y]
 
 describe Airport do
   let(:plane) { :plane }
   subject(:airport) { described_class.new }
 
-  it { is_expected.to respond_to(:arrivals).with(1).argument }
-  it { is_expected.to respond_to(:departures).with(1).argument }
+  # it { is_expected.to respond_to(:arrivals).with(1).argument }
+  # it { is_expected.to respond_to(:departures).with(1).argument }
 
   context '#monitors arrivals and departures' do
     it 'allows planes to arrive' do
@@ -24,7 +24,7 @@ describe Airport do
     end
   end
 
-  context '#stores and removes planes in the airport hangar' do
+  describe '#stores and removes planes in the airport hangar' do
     it 'stores arrivals in airport hangar' do
       airport.arrivals(plane)
       expect(airport.airport_hangar).to include plane
@@ -35,4 +35,11 @@ describe Airport do
       expect(airport.airport_hangar).not_to include plane
     end
   end
+
+  # describe '#prevents arrivals and departures in bad weather' do
+  #   it 'raises an error when the weather is stormy' do
+  #     allow(:airport).to receive(:weather) { stormy }
+  #     expect(airport.departures(plane)).to raise_error('bad weather!')
+  #   end
+  # end
 end

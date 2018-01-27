@@ -7,6 +7,7 @@ class Airport
 
   def initialize
     @airport_hangar = []
+    # @weather = Weather.new
   end
 
   def arrivals(plane)
@@ -18,4 +19,8 @@ class Airport
     @airport_hangar.delete(plane)
     "#{plane} has taken off!"
   end
+
+  # def bad_weather(storms)
+  #   @weather << storms
+  # end
 end
