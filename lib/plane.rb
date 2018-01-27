@@ -15,6 +15,7 @@ class Plane
 
   def take_off
     @current_airport.planes.delete(self)
+    @current_airport = nil
     # remove self from airport.planes array
     take_off_message
   end

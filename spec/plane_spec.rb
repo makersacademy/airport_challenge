@@ -24,7 +24,6 @@ describe Plane do
 
     it 'confirms self is no longer at the airport' do
       plane.land(airport)
-      plane.take_off
       expect{plane.take_off}.to output('Plane has left airport').to_stdout
     end
   end
