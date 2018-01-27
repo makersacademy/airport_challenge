@@ -10,9 +10,7 @@ class Airport
   end
 
   def take_off
-    if planes.empty?
-      raise "No planes available"
-    end
+    raise "No planes available" if planes.empty?
     planes.pop
   end
 end
