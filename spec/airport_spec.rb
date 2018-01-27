@@ -24,7 +24,7 @@ describe Airport do
   describe "raising error when full" do
     airport = Airport.new
     it 'raises error when full' do
-      airport.capacity.times { airport.land Plane.new }
+      subject.capacity.times { airport.land Plane.new }
       expect { airport.land Plane.new }.to raise_error 'No free spots avaialble'
     end
   end
@@ -44,6 +44,7 @@ describe Airport do
     it "prevent from taking off the planes when stormy" do
       plane = Plane.new
       airport = Airport.new
+      allow(airport).to receive(:tell_weather) { "sunny" }
       airport.land(plane)
       allow(airport).to receive(:tell_weather) { "stormy" }
       airport.take_off(plane)
@@ -66,6 +67,7 @@ describe Airport do
     it "says plane didnt take off" do
       plane = Plane.new
       airport = Airport.new
+      allow(airport).to receive(:tell_weather) { "sunny" }
       airport.land(plane)
       allow(airport).to receive(:tell_weather) { "stormy" }
       expect(airport.confirm_take_off(plane)).to eq "#{plane} didn't take off"
