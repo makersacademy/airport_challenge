@@ -1,10 +1,12 @@
 class Airport
 
-  def initialize
+  def initialize(capacity)
     @planes = []
+    @capacity = capacity
   end
 
   def land(plane)
+    raise "Airport at capacity" if @planes.length >= @capacity
     raise "Too stormy to land" if stormy?
     @planes << plane
   end

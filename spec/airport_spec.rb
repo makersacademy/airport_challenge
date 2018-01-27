@@ -1,14 +1,29 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { Airport.new }
+  subject(:airport) { Airport.new(10) }
   let(:plane) { double("a plane") }
 
   describe "#land" do
     context "when not stormy" do
-      it "returns plane when landed" do
+      before :each do
         allow(airport).to receive(:stormy?).and_return false
-        expect(airport.land(plane)).to include plane
+      end
+
+      context "when not at capacity" do
+        it "returns plane when landed" do
+          expect(airport.land(plane)).to include plane
+        end
+      end
+
+      context "when at capacity" do
+        before :each do
+          10.times { airport.land(plane) }
+        end
+
+        it "raises 'Airport at capacity' error" do
+          expect { airport.land(plane) }.to raise_error "Airport at capacity"
+        end
       end
     end
 
@@ -25,7 +40,7 @@ describe Airport do
       before :each do
         allow(airport).to receive(:stormy?).and_return false
       end
-      
+
       context "when plane is landed in airport" do
         before :each do
           airport.land(plane)
