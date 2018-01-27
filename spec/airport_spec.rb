@@ -32,11 +32,27 @@ describe Airport do
     end
   end
 
-  describe "#rand" do
+  describe "#random" do
     it "returns a number from 0 to 6" do
       airport = Airport.new
-      expect(airport).to receive(:rand).and_return(1)
-      expect(airport.rand).to eq 1
+      expect(airport).to receive(:random).and_return(1)
+      expect(airport.random).to eq 1
+    end
+  end
+
+  describe "#tell_weather" do
+    it "says it's stormy" do
+      airport = Airport.new
+      expect(airport).to receive(:random).and_return(1)
+      expect(airport.tell_weather).to eq "stormy"
+    end
+  end
+
+  describe "#tell_wheather" do
+    it "says it's sunny" do
+      airport = Airport.new
+      expect(airport).to receive(:random).and_return(5)
+      expect(airport.tell_weather).to eq "sunny"
     end
   end
 

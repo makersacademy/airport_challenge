@@ -20,17 +20,17 @@ class Airport
     end
   end
 
-  def rand
+  def random
     1 + rand(6)
   end
 
-  # def tell_wheather(number)
-  #   number = wheater_wheel_of_fortune()
-  #   if number == 1 then
-  #     "stormy"
-  #   else
-  #     "sunny"
-  #   end
-  # end
+  def tell_weather
+    number = random()
+    if number == 1 then
+      "stormy"
+    else
+      "sunny"
+    end
+  end
 
 end
