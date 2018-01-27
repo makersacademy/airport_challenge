@@ -14,13 +14,16 @@ class Plane
   end
 
   def take_off
-    @current_airport.planes.delete(self)
-    @current_airport = nil
-    # remove self from airport.planes array
+    take_off_sequence
     take_off_message
   end
 
 private
+
+  def take_off_sequence
+    @current_airport.planes.delete(self)
+    @current_airport = nil
+  end
 
   def take_off_message
     print "Plane has left airport"
