@@ -15,6 +15,7 @@ class Airport
 
   def take_off(plane)
     raise "No planes available" if planes.empty?
+    raise "Plane has already taken off" unless planes.include?(plane)
     plane.status = "In air"
     planes.delete(plane)
   end

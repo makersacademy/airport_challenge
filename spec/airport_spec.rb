@@ -27,8 +27,9 @@ describe Airport do
 
     describe '#take_off' do
 
+      let(:another_plane) {Plane.new}
+
       it "releases a plane from the airport" do
-        another_plane = Plane.new
         subject.land(plane)
         subject.land(another_plane)
         expect(subject.take_off(plane)).to eq plane
@@ -44,12 +45,18 @@ describe Airport do
         expect { subject.take_off(plane) }.to raise_error "No planes available"
       end
 
+      it "raises an error if plane has already taken off" do
+        subject.land(plane)
+        subject.land(another_plane)
+        subject.take_off(plane)
+        expect{ subject.take_off(plane) }.to raise_error "Plane has already taken off"
+      end
+
     end
 
   end
 
   context 'When it is stormy' do
-
 
   end
 
