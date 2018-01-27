@@ -10,10 +10,14 @@ describe Airport do
 
   describe '#land' do
 
+    before(:each) {subject.land(plane)}
+
     it "stores the plane in the airport" do
-      subject.land(plane)
       expect(subject.planes).to include plane
-      subject.planes
+    end
+
+    it "raises an error if plane has already landed" do
+      expect { subject.land(plane) }.to raise_error "Plane has already landed"
     end
 
   end
