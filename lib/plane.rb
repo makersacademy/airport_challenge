@@ -1,6 +1,5 @@
-# Plane class.
+# frozen_string_literal: true
+
 class Plane
-  def landed?
-    
-  end
+  # there doesn't need to be anything in here!
 end

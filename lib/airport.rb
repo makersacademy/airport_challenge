@@ -1,16 +1,19 @@
-require_relative 'plane'
-# Airport class
+# frozen_string_literal: true
+
+# top-level class comment thing
 class Airport
-  attr_reader :landed_planes
+  attr_reader :airport_hangar
+
   def initialize
-    @landed_planes = []
+    @airport_hangar = []
   end
 
-  def land_plane(plane)
-    @landed_planes << plane
+  def landing(plane)
+    @airport_hangar << plane
   end
 
-  def fly_plane
-    @landed_planes.pop
+  def take_off(plane)
+    @airport_hangar.delete(plane)
+    "#{plane} has taken off!"
   end
 end
