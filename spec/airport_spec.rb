@@ -30,6 +30,10 @@ describe Airport do
       expect(aiport_plane_takes_off.hangar).not_to include(plane)
     end
 
+    it "confirms that the plane is no longer at the airport" do
+      expect{airport_plane_landed.take_off(plane)}.to output("Plane #{plane} has left the hangar\n").to_stdout
+    end
+
   end
 
 end

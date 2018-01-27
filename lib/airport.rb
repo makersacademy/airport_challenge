@@ -14,6 +14,7 @@ class Airport
 
   def take_off(plane)
     @hangar.delete(plane)
+    puts "Plane #{plane} has left the hangar"
   end
 
 end
