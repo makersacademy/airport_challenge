@@ -8,7 +8,7 @@ describe Plane do
 
     context "when plane landed" do
       it "raises 'Plane already landed' error" do
-        expect{ plane.land(airport) }.to raise_error "Plane already landed"
+        expect { plane.land(airport) }.to raise_error "Plane already landed"
       end
     end
 
@@ -35,7 +35,7 @@ describe Plane do
 
     context "when plane flying" do
       it "raises 'Plane already flying' error" do
-        expect{ plane.take_off(airport) }.to raise_error "Plane already flying"
+        expect { plane.take_off(airport) }.to raise_error "Plane already flying"
       end
     end
 

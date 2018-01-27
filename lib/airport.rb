@@ -5,11 +5,19 @@ class Airport
   end
 
   def land(plane)
+    raise "Too stormy to land" if stormy?
     @planes << plane
   end
 
   def take_off(plane)
-    @planes.reject{ |p| p = plane}
+    raise "Plane not in this airport" unless @planes.include?(plane)
+    @planes.reject { plane }
+  end
+
+  private
+
+  def stormy?
+    rand(2).zero?
   end
 
 end
