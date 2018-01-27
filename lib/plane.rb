@@ -7,6 +7,7 @@ class Plane
   end
 
   def land(airport)
+    raise "Plane already landed" if @landed
     airport.land(self)
     @landed = true
   end

@@ -11,9 +11,6 @@ describe Airport do
   end
 
   describe "#take_off" do
-    before :each do
-      airport.land(plane)
-    end
     it "removes plane from airport and returns planes array" do
       expect(airport.take_off(plane)).not_to include plane
     end
