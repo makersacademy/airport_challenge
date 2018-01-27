@@ -8,10 +8,6 @@ class Airport
     @capacity = capacity
   end
 
-  def capacity(number)
-    @capacity = number
-  end
-
   def land(plane)
     fail 'No free spots avaialble' if full?
     if !planes_a.include?(plane) && tell_weather() == "sunny" then
