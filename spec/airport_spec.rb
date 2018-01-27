@@ -1,9 +1,8 @@
 require "airport"
-require "plane"
 
 describe Airport do
 
-  let(:plane) {Plane.new}
+  let(:plane) {double('A plane')}
   let(:airport_plane_landed) {
     subject.land(plane)
     subject
