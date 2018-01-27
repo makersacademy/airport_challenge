@@ -1,7 +1,7 @@
 require 'airport'
 
 describe Airport do
-  subject(:airport) { Airport.new(10) }
+  subject(:airport) { Airport.new }
   let(:plane) { double("a plane") }
 
   describe "#land" do
@@ -17,12 +17,26 @@ describe Airport do
       end
 
       context "when at capacity" do
-        before :each do
-          10.times { airport.land(plane) }
+        context "when capacity is not specified" do
+          before :each do
+            Airport::DEFAULT_CAPACITY.times { airport.land(plane) }
+          end
+
+          it "raises 'Airport at capacity' error" do
+            expect { airport.land(plane) }.to raise_error "Airport at capacity"
+          end
         end
 
-        it "raises 'Airport at capacity' error" do
-          expect { airport.land(plane) }.to raise_error "Airport at capacity"
+        context "when capacity is specified" do
+          variable_capacity = 30
+          subject(:airport) { Airport.new(variable_capacity) }
+          before :each do
+            variable_capacity.times { airport.land(plane) }
+          end
+
+          it "raises 'Airport at capacity' error" do
+            expect { airport.land(plane) }.to raise_error "Airport at capacity"
+          end
         end
       end
     end
@@ -46,7 +60,7 @@ describe Airport do
           airport.land(plane)
         end
 
-        it "removes plane from airport and returns planes array" do
+        it "removes plane from airport" do
           expect(airport.take_off(plane)).not_to include plane
         end
       end
