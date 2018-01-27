@@ -2,8 +2,9 @@ class Airport
 
   attr_accessor :planes_a
 
-  def initialize
+  def initialize(capacity=5)
     @planes_a = []
+    capacity = capacity
   end
 
   def land(plane)
