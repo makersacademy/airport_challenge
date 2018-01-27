@@ -8,6 +8,10 @@ describe Airport do
     subject.land(plane)
     subject
   }
+  let(:aiport_plane_takes_off) {
+    airport_plane_landed.take_off
+    airport_plane_landed
+  }
 
   it { is_expected.to respond_to(:land).with(1).argument}
   it { is_expected.to respond_to(:take_off)}
@@ -20,6 +24,12 @@ describe Airport do
 
   end
 
-  context "#take_off(plane)"
+  context "#take_off(plane)" do
+
+    it "allows a plane to take off and removes it from the hangar" do
+      expect(aiport_plane_takes_off.hangar).not_to include(plane)
+    end
+
+  end
 
 end
