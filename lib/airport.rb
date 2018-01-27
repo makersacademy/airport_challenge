@@ -13,7 +13,11 @@ def take_off(plane)
 end
 
 def confirm_take_off(plane)
-  "#{plane} took off"
+  if @planes_collection.include?(plane) then
+    return "#{plane} didn't take off"
+  else
+    return "#{plane} took off"
+  end
 end
 
 end
