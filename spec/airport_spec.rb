@@ -19,4 +19,25 @@ describe Airport do
 
   end
 
+  describe '#take_off' do
+
+    let(:plane) { double :plane }
+
+    it "releases a plane from the airport" do
+      subject.land(plane)
+      expect(subject.take_off).to eq plane
+    end
+
+    it "should no longer store plane in the airport" do
+      subject.land(plane)
+      subject.take_off
+      expect(subject.planes).not_to include plane
+    end
+
+    it "should raise an error if airport is empty" do
+      expect{subject.take_off}.to raise_error "No planes available"
+    end
+
+  end
+
 end
