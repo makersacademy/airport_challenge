@@ -10,28 +10,28 @@ describe Airport do
   let(:plane) { :plane }
   subject(:airport) { described_class.new }
 
-  it { is_expected.to respond_to(:landing).with(1).argument }
-  it { is_expected.to respond_to(:take_off).with(1).argument }
+  it { is_expected.to respond_to(:arrivals).with(1).argument }
+  it { is_expected.to respond_to(:departures).with(1).argument }
 
-  context '#take-off and land plane' do
-    it 'allows planes to land' do
-      expect(airport.landing(plane)).to eq "#{plane} has landed!"
+  context '#monitors arrivals and departures' do
+    it 'allows planes to arrive' do
+      expect(airport.arrivals(plane)).to eq "#{plane} has landed!"
     end
 
-    it 'allows planes to take off' do
-      airport.landing(plane)
-      expect(airport.take_off(plane)).to eq "#{plane} has taken off!"
+    it 'allows planes to depart' do
+      airport.departures(plane)
+      expect(airport.departures(plane)).to eq "#{plane} has taken off!"
     end
   end
 
   context '#stores and removes planes in the airport hangar' do
     it 'stores arrivals in airport hangar' do
-      airport.landing(plane)
+      airport.arrivals(plane)
       expect(airport.airport_hangar).to include plane
     end
 
-    it 'removes arrivals from airport hangar' do
-      airport.take_off(plane)
+    it 'removes departures from airport hangar' do
+      airport.departures(plane)
       expect(airport.airport_hangar).not_to include plane
     end
   end

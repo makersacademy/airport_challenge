@@ -9,12 +9,12 @@ class Airport
     @airport_hangar = []
   end
 
-  def landing(plane)
+  def arrivals(plane)
     @airport_hangar << plane
     "#{plane} has landed!"
   end
 
-  def take_off(plane)
+  def departures(plane)
     @airport_hangar.delete(plane)
     "#{plane} has taken off!"
   end
