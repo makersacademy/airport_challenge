@@ -49,8 +49,10 @@ describe Airport do
     end
   end
 
-  describe "#capacity modification" do
-
-
+  describe "#modification of capacity" do
+    it 'should modify the default capacity as needed for other airports' do
+      massive_airport = Airport.new(302)
+      expect(massive_airport.capacity).to eq 302
+    end
   end
 end
