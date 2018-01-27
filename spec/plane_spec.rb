@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'plane'
+require 'plane.rb'
 
 describe Plane do
 end
