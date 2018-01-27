@@ -10,13 +10,11 @@ class Airport
 
   def land(plane)
     @planes << plane
-    p @planes
   end
 
   def take_off(plane)
     @planes.delete(plane)
     "The plane has taken off and left the airport"
-    p @planes
   end
 
 
