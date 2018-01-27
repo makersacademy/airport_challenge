@@ -24,8 +24,8 @@ describe Airport do
 
     context "#capacity - Testing capacity of airport works with landing planes" do
 
-      it "Airport a default capacity of 20 planes" do
-        expect(airport_empty.capacity).to eq(20)
+      it "Airport has a default capacity of 20 planes" do
+        expect(airport_empty.capacity).to eq(described_class::DEFAULT_CAPACITY)
       end
 
     end
