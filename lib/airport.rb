@@ -8,4 +8,8 @@ class Airport
     @planes << plane
   end
 
+  def take_off(plane)
+    @planes.reject{ |p| p = plane}
+  end
+
 end

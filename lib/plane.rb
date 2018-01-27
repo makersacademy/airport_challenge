@@ -7,8 +7,13 @@ class Plane
   end
 
   def land(airport)
+    airport.land(self)
     @landed = true
-    airport
+  end
+
+  def take_off(airport)
+    airport.take_off(self)
+    @landed = false
   end
 
 end

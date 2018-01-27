@@ -1,18 +1,22 @@
 require 'plane'
 
 describe Plane do
-  it{ is_expected.to respond_to(:land).with(1).argument }
+  subject(:plane) { Plane.new }
+  let(:airport) { double("airport", land: [plane], take_off: []) }
 
   describe "#land" do
-    subject(:plane) { Plane.new }
-    let(:airport) { double("airport") }
-    it "returns airport when landing in airport" do
-      expect(plane.land(airport)).to eq airport
+    it "lands the plane" do
+      expect(plane.land(airport)).to eq true
+    end
+  end
+
+  describe "#take_off" do
+    before :each do
+      plane.land(airport)
     end
 
-    it "lands the plane" do
-      plane.land(airport)
-      expect(plane.landed).to eq true
+    it "Takes off from the airport" do
+      expect(plane.take_off(airport)).to eq false
     end
   end
 

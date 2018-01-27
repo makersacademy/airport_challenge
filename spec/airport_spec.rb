@@ -1,12 +1,21 @@
 require 'airport'
 
 describe Airport do
-  it {is_expected.to respond_to(:land).with(1).argument}
+  subject(:airport) { Airport.new }
+  let(:plane) { double("a plane") }
 
   describe "#land" do
-    let(:plane) { double("a plane") }
-    it "returns plane when when landed" do
-      expect(subject.land(plane)).to include plane
+    it "returns plane when landed" do
+      expect(airport.land(plane)).to include plane
+    end
+  end
+
+  describe "#take_off" do
+    before :each do
+      airport.land(plane)
+    end
+    it "removes plane from airport and returns planes array" do
+      expect(airport.take_off(plane)).not_to include plane
     end
   end
 
