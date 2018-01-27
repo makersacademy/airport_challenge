@@ -3,7 +3,7 @@ class Airport
   attr_accessor :planes
 
   def initialize
-    @planes = planes
+    @planes = []
   end
 
 end
