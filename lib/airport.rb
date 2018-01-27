@@ -1,5 +1,7 @@
 class Airport
 
+  attr_accessor :planes_collection
+
   def initialize
     @planes_collection = []
   end
@@ -9,7 +11,12 @@ class Airport
   end
 
   def take_off(plane)
-    @planes_collection.delete(plane)
+    current_wheater = tell_weather()
+    if current_wheater == "sunny"
+      @planes_collection.delete(plane)
+    else
+      "It's stormy, the plane cannot take off"
+    end
   end
 
   def confirm_take_off(plane)
@@ -25,12 +32,7 @@ class Airport
   end
 
   def tell_weather
-    number = random()
-    if number == 1 then
-      "stormy"
-    else
-      "sunny"
-    end
+    random() == 1 ? "stormy" : "sunny"
   end
 
 end

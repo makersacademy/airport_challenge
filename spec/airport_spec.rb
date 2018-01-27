@@ -12,10 +12,24 @@ describe Airport do
   end
 
   describe "#take_off" do
-    it "take off the planes" do
+    it "take off the planes when sunny" do
       plane = Plane.new
       airport = Airport.new
-      expect(airport.take_off(plane)).to eq nil
+      airport.land(plane)
+      expect(airport).to receive(:random).and_return(2)
+      airport.take_off(plane)
+      expect(airport.planes_collection).to eq []
+    end
+  end
+
+  describe "#take_off" do
+    it "prevent from taking off the planes when stormy" do
+      plane = Plane.new
+      airport = Airport.new
+      airport.land(plane)
+      expect(airport).to receive(:random).and_return(1)
+      airport.take_off(plane)
+      expect(airport.planes_collection).to eq [plane]
     end
   end
 
