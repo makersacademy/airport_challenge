@@ -12,6 +12,7 @@ describe Airport do
     airport_plane_landed.take_off(plane)
     airport_plane_landed
   }
+  let(:airport_custom_capacity) {Airport.new(50)}
 
   it { is_expected.to respond_to(:land).with(1).argument}
   it { is_expected.to respond_to(:take_off).with(1).argument}
@@ -22,10 +23,16 @@ describe Airport do
       expect(airport_plane_landed.hangar[0]).to eq(plane)
     end
 
+    #TODO - guard condition prevents landing plane when airport is full
+
     context "#capacity - Testing capacity of airport works with landing planes" do
 
       it "Airport has a default capacity of 20 planes" do
         expect(airport_empty.capacity).to eq(described_class::DEFAULT_CAPACITY)
+      end
+
+      it "Airport capacity can change if set to a different number" do
+        expect(airport_custom_capacity.capacity).to eq(50)
       end
 
     end
