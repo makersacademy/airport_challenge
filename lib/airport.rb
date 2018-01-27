@@ -1,14 +1,16 @@
 class Airport
+  attr_reader :hangar, :weather
   def initialize
     @hangar = []
+    @weather = "stormy"
   end
 
-  def land_plane(plane)
+  def land(plane)
     @hangar << plane
   end
 
-  def take_off_plane(plane)
+  def take_off(plane)
     @hangar.delete(plane)
-    return "#{plane} has taken off"
+    "#{plane} has taken off"
   end
 end
