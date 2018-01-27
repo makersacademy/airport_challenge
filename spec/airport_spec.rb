@@ -1,11 +1,12 @@
 require 'airport'
-require 'plane'
+#require 'plane'
 
 describe Airport do
 
+  let(:plane) { double "a plane" }
+
   describe "#land" do
     it "lands the planes when sunny" do
-      plane = Plane.new
       airport = Airport.new
       allow(airport).to receive(:tell_weather) { "sunny" }
       expect(airport.land(plane)).to eq [plane]
@@ -14,7 +15,6 @@ describe Airport do
 
   describe "#land" do
     airport = Airport.new
-    plane = Plane.new
     it "prevent from landing when stormy" do
       allow(airport).to receive(:tell_weather) { "stormy" }
       expect(airport.land(plane)).to eq nil
@@ -24,14 +24,13 @@ describe Airport do
   describe "raising error when full" do
     airport = Airport.new
     it 'raises error when full' do
-      subject.capacity.times { airport.land Plane.new }
-      expect { airport.land Plane.new }.to raise_error 'No free spots avaialble'
+      subject.capacity.times { airport.land plane }
+      expect { airport.land plane }.to raise_error 'No free spots avaialble'
     end
   end
 
   describe "#take_off" do
     it "take off the planes when sunny" do
-      plane = Plane.new
       airport = Airport.new
       airport.land(plane)
       allow(airport).to receive(:tell_weather) { "sunny" }
@@ -42,7 +41,6 @@ describe Airport do
 
   describe "#take_off" do
     it "prevent from taking off the planes when stormy" do
-      plane = Plane.new
       airport = Airport.new
       allow(airport).to receive(:tell_weather) { "sunny" }
       airport.land(plane)
@@ -54,7 +52,6 @@ describe Airport do
 
   describe "#confirm_take_off" do
     it "confirms that the plane took off" do
-      plane = Plane.new
       airport = Airport.new
       airport.land(plane)
       allow(airport).to receive(:tell_weather) { "sunny" }
@@ -65,7 +62,6 @@ describe Airport do
 
   describe "#confirm_take_off" do
     it "says plane didnt take off" do
-      plane = Plane.new
       airport = Airport.new
       allow(airport).to receive(:tell_weather) { "sunny" }
       airport.land(plane)
