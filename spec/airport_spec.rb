@@ -9,7 +9,7 @@ describe Airport do
     subject
   }
   let(:aiport_plane_takes_off) {
-    airport_plane_landed.take_off
+    airport_plane_landed.take_off(plane)
     airport_plane_landed
   }
 
