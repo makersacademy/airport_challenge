@@ -32,4 +32,12 @@ describe Airport do
     end
   end
 
+  describe "#rand" do
+    it "returns a number from 0 to 6" do
+      airport = Airport.new
+      expect(airport).to receive(:rand).and_return(1)
+      expect(airport.rand).to eq 1
+    end
+  end
+
 end
