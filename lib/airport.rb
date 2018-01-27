@@ -1,8 +1,10 @@
+require_relative "weather"
+
 class Airport
   attr_reader :hangar, :weather
   def initialize
     @hangar = []
-    @weather = "stormy"
+    @weather = Weather.new
   end
 
   def land(plane)
@@ -10,7 +12,12 @@ class Airport
   end
 
   def take_off(plane)
+    raise "The weather is too bad!" if stormy?
     @hangar.delete(plane)
     "#{plane} has taken off"
+  end
+
+  def stormy?
+    @weather.stormy
   end
 end
