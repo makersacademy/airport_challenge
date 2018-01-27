@@ -17,6 +17,7 @@ class Airport
     "#{plane} has taken off"
   end
 
+  private
   def stormy?
     @weather.stormy
   end
