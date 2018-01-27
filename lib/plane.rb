@@ -13,6 +13,7 @@ class Plane
   end
 
   def take_off(airport)
+    raise "Plane already flying" if !@landed
     airport.take_off(self)
     @landed = false
   end
