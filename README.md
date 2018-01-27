@@ -1,7 +1,7 @@
 # Airport challenge
 ## Week1 / Tamas Magyar-Hunor
 
-The first weekends challenge is here, see information for below!
+The first weekends challenge is here, for more information see below!
 
 
 
