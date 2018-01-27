@@ -1,11 +1,15 @@
 require 'airport'
-#require 'plane'
 
 describe Airport do
 
   let(:plane) { double "a plane" }
 
   describe "#land" do
+    it 'raises error when full' do
+      allow(subject).to receive(:tell_weather) { "sunny" }
+      subject.capacity.times { subject.land plane }
+      expect { subject.land plane }.to raise_error 'No free spots avaialble'
+    end
     it "lands the planes when sunny" do
       allow(subject).to receive(:tell_weather) { "sunny" }
       expect(subject.land(plane)).to eq [plane]
@@ -13,13 +17,6 @@ describe Airport do
     it "prevent from landing when stormy" do
       allow(subject).to receive(:tell_weather) { "stormy" }
       expect(subject.land(plane)).to eq nil
-    end
-  end
-
-  describe "raising error when full" do
-    it 'raises error when full' do
-      subject.capacity.times { subject.land plane }
-      expect { subject.land plane }.to raise_error 'No free spots avaialble'
     end
   end
 
@@ -38,7 +35,6 @@ describe Airport do
       expect(subject.planes_a).to eq [plane]
     end
   end
-
 
   describe "#confirm_take_off" do
     it "confirms that the plane took off" do
