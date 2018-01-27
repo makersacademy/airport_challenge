@@ -18,8 +18,8 @@ describe Plane do
 
     it "shows plane is in air after taking off" do
       airport.land(subject)
-      airport.take_off
-      expect(plane.status).to eq "In air"
+      airport.take_off(subject)
+      expect(subject.status).to eq "In air"
     end
   end
 

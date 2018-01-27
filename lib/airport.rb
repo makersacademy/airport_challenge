@@ -9,13 +9,13 @@ class Airport
     if planes.include? plane
       raise "Plane has already landed"
     end
-    plane.status=("At airport")
+    plane.status = "At airport"
     planes << plane
   end
 
-  def take_off
+  def take_off(plane)
     raise "No planes available" if planes.empty?
-    planes.last.status=("In air")
-    planes.pop
+    plane.status = "In air"
+    planes.delete(plane)
   end
 end
