@@ -3,6 +3,7 @@ require "airport"
 describe Airport do
 
   let(:plane) {double('A plane')}
+  let(:airport_empty) {Airport.new}
   let(:airport_plane_landed) {
     subject.land(plane)
     subject
@@ -19,6 +20,14 @@ describe Airport do
 
     it "lands a plane and adds it to the hangar" do
       expect(airport_plane_landed.hangar[0]).to eq(plane)
+    end
+
+    context "#capacity - Testing capacity of airport works with landing planes" do
+
+      it "Airport a default capacity of 20 planes" do
+        expect(airport_empty.capacity).to eq(20)
+      end
+
     end
 
   end

@@ -2,10 +2,13 @@ require_relative "plane.rb"
 
 class Airport
 
-  attr_accessor :hangar
+  DEFAULT_CAPACITY = 20
+
+  attr_accessor :hangar, :capacity
 
   def initialize
     @hangar = []
+    @capacity = 20
   end
 
   def land(plane)
