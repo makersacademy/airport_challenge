@@ -11,7 +11,7 @@ describe Airport do
     it { is_expected.to respond_to(:land).with(1).argument }
 
     it 'should instruct a plane to land at the airport' do
-      expect(subject.planes).to include(@plane)
+      expect(subject.hangar).to include(@plane)
     end
   end
 
@@ -30,14 +30,26 @@ describe Airport do
 
     it 'should show that plane is no longer in the airport' do
       subject.take_off(@plane)
-      expect(subject.planes).not_to include(@plane)
+      expect(subject.hangar).not_to include(@plane)
     end
   end
 
-  describe "#stormy weather: no takeoff" do
+  describe "#stormy weather: no takeoff or landing" do
 
-    
 
+
+
+
+  end
+
+  describe "#hangar is full" do
+    it 'should raise an error when hangar capacity is exceeded' do
+      subject.capacity.times { subject.land Plane.new }
+      expect{ subject.land Plane.new }.to raise_error("Hangar is at its full capacity")
+    end
+  end
+
+  describe "#capacity modification" do
 
 
   end

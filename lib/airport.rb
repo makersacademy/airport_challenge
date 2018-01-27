@@ -2,18 +2,20 @@ require_relative 'plane'
 
 
 class Airport
-  attr_reader :planes
+  attr_reader :hangar, :capacity
 
-  def initialize
-    @planes = []
+  def initialize(capacity=6)
+    @hangar = []
+    @capacity = capacity
   end
 
   def land(plane)
-    planes << plane
+    raise "Hangar is at its full capacity" if hangar.count == capacity
+    hangar << plane
   end
 
   def take_off(plane)
-    planes.delete(plane)
+    hangar.delete(plane)
     "#{plane} has just taken off"
   end
 end
