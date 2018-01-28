@@ -1,26 +1,23 @@
-require 'plane.rb'
+require 'plane'
+require 'airport'
 
 describe Plane do
 
-  let(:plane) {Plane.new}
+  subject(:plane) {described_class.new}
+  let(:airport) {Airport.new(weather)}
+  let(:weather) {double :Weather, stormy?: false}
 
-  describe '#land' do
-    before do
-      plane.land
+  describe '#status' do
+
+    it 'shows \'grounded\' if plane has landed in airport' do
+      airport.land(subject)
+      expect(subject.status).to eq "Grounded"
     end
 
-    it 'has a status of \'grounded\' when plane has landed' do
-      expect(plane.status).to eq "grounded"
+    it 'shows \'Airborne\' if plane has taken off from airport' do
+      airport.takeoff(subject)
+      expect(subject.status).to eq "Airborne"
     end
-  end
-
-  describe '#takeoff' do
-    before do
-      plane.takeoff
-    end
-
-    it 'has a status of \'flying\' when plane has taken off' do
-      expect(plane.status).to eq "flying"
-    end
+    
   end
 end
