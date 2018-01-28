@@ -15,7 +15,7 @@ describe Airport do
     end
   end
 
-  context '#arrivals' do
+  context '#landing' do
     it 'allows planes to arrive' do
       expect(airport.landing(plane)).to eq "#{plane} has landed!"
     end
@@ -25,7 +25,7 @@ describe Airport do
       expect(airport.airport_hangar).to eq [plane]
     end
 
-    it 'raises an error for duplicated arrivals and departures' do
+    it 'raises an error if a plane tries to land (or take-off) twice consecutively!' do
       airport.landing(plane)
       expect { airport.landing(plane) }.to raise_error('this plane has already landed!')
       airport.taking_off(plane)
