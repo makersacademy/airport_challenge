@@ -2,8 +2,7 @@
 
 # comment
 class Weather
-  attr_accessor :stormy
-  def stormy
-    [true, false, false, false].sample
+  def weather_forecast
+    %w[stormy sunny rainy clear windy].sample
   end
 end
