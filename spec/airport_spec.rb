@@ -60,4 +60,8 @@ describe Airport do
 
   end
 
+  it "Planes cannot take off from an airport they aren't in" do
+    expect { subject.take_off(plane) }.to raise_error("Plane is not in this airport")
+  end
+
 end
