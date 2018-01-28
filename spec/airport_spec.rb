@@ -62,6 +62,8 @@ describe Airport do
         expect(airport_custom_capacity.capacity).to eq(custom_capacity)
       end
 
+      context "#full"
+
       it "Raises an error if airport is full and try to land plane" do
         expect{airport_full.land(plane)}.to raise_error("Cannot land, airport full")
       end

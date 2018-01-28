@@ -1,6 +1,10 @@
 require_relative "plane.rb"
+require_relative "weather_module.rb"
+require_relative "full_empty_module"
 
 class Airport
+
+  include Weather, Full_Or_Empty
 
   DEFAULT_CAPACITY = 20
 
@@ -12,7 +16,7 @@ class Airport
   end
 
   def land(plane)
-    raise "Cannot land, airport full" if full?
+    raise "Cannot land, airport full" if full?(hangar)
     raise "Plane already landed" if in_hangar?(plane)
     raise "Stormy, cannot land!" if stormy?
     @hangar << plane
@@ -25,16 +29,7 @@ class Airport
     puts "Plane #{plane} has left the hangar"
   end
 
-#TODO - make a module with these core functionalities that is mixed in
   private
-
-    def full?
-      hangar.count >= capacity
-    end
-
-    def stormy?
-      true if rand(10) > 8
-    end
 
     def in_hangar?(plane)
       hangar.include?(plane)
