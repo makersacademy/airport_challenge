@@ -47,9 +47,8 @@ Layout/EmptyLines:
   Enabled: true
 Layout/ExtraSpacing:
   Enabled: true
-### DISABLED TO ALLOW THE WEATHER TO CHANGE AND THEN RAISE ERROR if STORMY? ###
 Style/GuardClause:
-  Enabled: false
+  Enabled: true
 Style/IdenticalConditionalBranches:
   Enabled: true
 Style/InverseMethods:

@@ -35,20 +35,12 @@ class Airport
   def before_land(plane)
     raise "Already in hangar" if plane?(plane)
     raise "Hangar is at its full capacity" if full?
-
-    if weather.stormy?
-      weather.change
-      raise "Can't land due to stormy weather"
-    end
+    weather.change & raise("Can't land due to stormy weather") if weather.stormy?
   end
 
   def before_take_off(plane)
     raise "Plane not in hangar" unless plane?(plane)
-
-    if weather.stormy?
-      weather.change
-      raise "Can't take off due to stormy weather"
-    end
+    weather.change & raise("Can't take off due to stormy weather") if weather.stormy?
   end
 
   def plane?(plane)
