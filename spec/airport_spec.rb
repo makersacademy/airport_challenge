@@ -22,4 +22,30 @@ describe Airport do
     end
   end
 
+  describe "#full?" do
+    it "checks if the airport is full" do
+      allow(plane).to receive(:capacity) {2}
+      allow(plane).to receive(:land)
+      3.times {plane.land(subject)}
+      expect(subject.full?).to eq false
+    end
+  end
+
+  describe "#random" do
+    it "returns a number from 0 to 6" do
+      expect(subject).to receive(:random).and_return(1)
+      expect(subject.random).to eq 1
+    end
+  end
+
+  describe "#tell_weather" do
+    it "says it's stormy" do
+      allow(subject).to receive(:random) { 1 }
+      expect(subject.tell_weather).to eq "stormy"
+    end
+    it "says it's sunny" do
+      allow(subject).to receive(:random) { 2 }
+      expect(subject.tell_weather).to eq "sunny"
+    end
+  end
 end

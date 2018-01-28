@@ -1,6 +1,6 @@
 class Airport
 
-  DEFAULT_CAPACITY=2
+  DEFAULT_CAPACITY=5
 
   attr_accessor :planes_a
   attr_accessor :capacity
@@ -18,4 +18,11 @@ class Airport
     planes_a.count >= capacity
   end
 
+  def random
+    1 + rand(6)
+  end
+
+  def tell_weather
+    random() == 1 ? "stormy" : "sunny"
+  end
 end
