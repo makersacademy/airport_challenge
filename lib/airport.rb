@@ -8,7 +8,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
-    @capacity = DEFAULT_CAPACITY
+    @capacity = capacity
   end
 
   def land(plane)
