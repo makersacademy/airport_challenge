@@ -4,7 +4,8 @@ describe Airport do
 
   subject(:airport) {described_class.new(weather)}
   let(:airport_2) {described_class.new(weather, 30)}
-  let(:plane) {double :plane, :status= => nil}
+  let(:plane) {double :status= => nil}
+  let(:plane_2) {double :status= => nil}
   let(:weather) {double stormy?: false}
 
   describe 'storage' do
@@ -42,7 +43,7 @@ describe Airport do
       expect {subject.land(plane)}.to raise_error "No room at the Inn - Try another airport!"
     end
 
-    it 'raises error if plane has landed already' do
+    it 'raises error if landed plane tries to land' do
       expect {subject.land(plane)}.to raise_error "Too late mate - Plane is already down!"
     end
   end
@@ -50,7 +51,7 @@ describe Airport do
   describe '#takeoff' do
 
     before(:each) do |test|
-      subject.land(plane) unless test.metadata[:empty]
+      subject.storage << plane unless test.metadata[:empty]
     end
 
     it 'releases plane' do
@@ -67,8 +68,14 @@ describe Airport do
       expect {subject.takeoff(plane)}.to raise_error "Storm's a-brewing - Better hold tight!"
     end
 
-    it 'raises error if airport is empty', :empty do
+    it 'raises error if storage is empty', :empty do
       expect {subject.takeoff(plane)}.to raise_error "No planes available"
+    end
+
+    it 'raises error if flying plane tries to take-off' do
+      subject.land(plane_2)
+      subject.takeoff(plane)
+      expect {subject.takeoff(plane)}.to raise_error "You know we are flying right now, right?"
     end
   end
 end

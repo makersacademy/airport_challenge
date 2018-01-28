@@ -26,6 +26,7 @@ class Airport
   def takeoff(plane)
     fail "Storm's a-brewing - Better hold tight!" if weather.stormy?
     fail "No planes available" if empty?
+    fail "You know we are flying right now, right?" unless storage.include?(plane)
     plane.status = "Airborne"
     puts "#{plane} has now taken off"
     storage.delete(plane)
