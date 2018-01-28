@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Airport is full, you cannot land." if full?
     raise "Landing unavailable. The storm is too heavy." if stormy?
     @hangar << plane
   end
@@ -21,5 +22,9 @@ class Airport
   private
   def stormy?
     @weather.stormy
+  end
+
+  def full?
+    @hangar.count >= 1
   end
 end
