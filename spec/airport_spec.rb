@@ -1,7 +1,8 @@
 require "airport"
+require "plane"
 
 describe Airport do
-  let(:plane) {:plane}
+  let(:plane) {Plane.new}
   subject(:airport) {described_class.new}
   subject(:large_airport) {described_class.new 40}
 
@@ -16,10 +17,6 @@ describe Airport do
   end
 
   describe "#land_plane" do
-      it "should take a plane and add it to the hangar" do
-        allow(airport.weather).to receive(:stormy).and_return false
-        expect(subject.land(plane)).to eq [plane]
-      end
 
       it "has plane in hangar after landing" do
         allow(airport.weather).to receive(:stormy).and_return false
