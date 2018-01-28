@@ -12,6 +12,27 @@ Airport Challenge
                 =  ===(_________)
 
 ```
+Approach
+---------
+* Created a domain model outlining objects nad messages for each user story
+* Wrote a feature test in irb
+* Created a failing unit test
+* Made the unit test pass
+* Refactored until the feature is complete
+* Wrote a new feature test for the new feature and repeated steps 2-5
+
+
+Outstanding tasks
+---------
+- I am currently able to land a plane at one airport and land the same plane at another airport. This needs to be fixed.
+- Check random whether function is working correctly
+- Refactor spec files checking the validity of each test
+
+Running the program
+---------
+- Clone the repository
+- CD into the correct folder, run irb and enter:
+`'require ./lib/airport'`
 
 Instructions
 ---------
