@@ -2,8 +2,8 @@
 
 # comment
 class Weather
-  attr_reader :storms_ahead
-  def storms_ahead
+  attr_accessor :stormy
+  def stormy
     [true, false, false, false].sample
   end
 end

@@ -2,7 +2,7 @@
 
 require_relative 'plane.rb'
 require_relative 'weather.rb'
-# top-level class comment thing
+
 class Airport
   attr_reader :airport_hangar, :weather
 
@@ -13,16 +13,18 @@ class Airport
 
   def arrivals(plane)
     @airport_hangar << plane
-    "#{plane} has landed!"
+    puts "#{plane} has arrived!"
   end
 
   def departures(plane)
-    raise "the weather is too bad!" if stormy?
+    # raise 'the weather is too bad!' if stormy?
     @airport_hangar.delete(plane)
-    "#{plane} has taken off!"
+    puts "#{plane} has departed!"
   end
 
+  private
+
   def stormy?
-    weather.storms_ahead
+    weather.storm_forecast
   end
 end
