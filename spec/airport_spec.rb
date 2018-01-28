@@ -1,7 +1,11 @@
 require 'airport'
 require 'plane'
 
+
 describe Airport do
+
+  let(:plane) {Plane.new}
+
   describe '#initialize' do
     it "should allow a user to set the capacity" do
       airport = Airport.new(50)
@@ -13,14 +17,25 @@ describe Airport do
     end
   end
 
-  it 'can land planes' do
-    plane = Plane.new
+  it 'allows planes to land' do
     subject.land(plane)
     expect(subject.planes).to eq [plane]
   end
 
-  it can let planes take-off
-  # it 'will not allow planes it doesn\'t have to take off'
+  it 'allows planes to take-off' do
+    subject.land(plane)
+    subject.take_off(plane)
+    expect(subject.planes).to eq []
+  end
+
+  it 'knows if it is full' do
+    40.times {subject.land(plane)}
+    expect { subject.land(plane) }.to raise_error "Please enter holding pattern, we are at full capacity"
+  end
+
+  it 'will not allow planes it doesn\'t have to take off' do
+    expect { subject.take_off(plane) }.to raise_error "That plane is not at this airport"
+  end
   # it 'knows the weather'
   # it 'will not allow take-off or landing of planes during stormy weather'
   # it 'will not allow planes to land if it is full'
