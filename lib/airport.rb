@@ -10,6 +10,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Storm's a-brewing - Better divert course!" if @weather.stormy?
     storage << plane
     plane.land
     "#{plane} has now landed."

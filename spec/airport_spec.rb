@@ -14,6 +14,11 @@ describe Airport do
     it 'stores a plane that has landed' do
       expect(airport.storage).to include(plane)
     end
+
+    it 'raises error if weather is stormy' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect {airport.land(plane)}.to raise_error "Storm's a-brewing - Better divert course!"
+    end
   end
 
   describe '#takeoff' do

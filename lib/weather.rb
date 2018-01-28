@@ -1,9 +1,10 @@
 class Weather
   def stormy?
-    @stormy = randomise
+    random_weather == :stormy
   end
 
-  def randomise
-    rand(5) == 1
+  def random_weather
+    possible_weather = [:sunny, :sunny, :stormy, :sunny, :sunny]
+    possible_weather.sample
   end
 end
