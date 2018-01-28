@@ -17,6 +17,7 @@ class Airport
   def land(plane)
     fail "Storm's a-brewing - Better divert course!" if weather.stormy?
     fail "No room at the Inn - Try another airport!" if full?
+    fail "Too late mate - Plane is already down!" if storage.include?(plane)
     plane.status = "Grounded"
     puts "#{plane} has now landed."
     storage << plane

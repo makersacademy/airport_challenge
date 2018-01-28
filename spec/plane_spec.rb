@@ -5,7 +5,7 @@ describe Plane do
 
   subject(:plane) {described_class.new}
   let(:airport) {Airport.new(weather)}
-  let(:weather) {double :Weather, stormy?: false}
+  let(:weather) {double stormy?: false}
 
   describe '#status' do
 

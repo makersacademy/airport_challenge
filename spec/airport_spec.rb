@@ -4,12 +4,18 @@ describe Airport do
 
   subject(:airport) {described_class.new(weather)}
   let(:airport_2) {described_class.new(weather, 30)}
-  let(:plane) {double :plane, :status= => "Airborne"}
-  let(:weather) {double :weather, stormy?: false}
+  let(:plane) {double :plane, :status= => nil}
+  let(:weather) {double stormy?: false}
+
+  describe 'storage' do
+    it 'is empty when instantiated' do
+      expect(subject.storage).to eq []
+    end
+  end
 
   describe 'capacity' do
     it 'has a set default' do
-      expect(airport.capacity).to eq Airport::DEFAULT_CAPACITY
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
     end
 
     it 'can have a specified capacity' do
@@ -19,21 +25,25 @@ describe Airport do
 
   describe '#land' do
     before(:each) do
-      airport.land(plane)
+      subject.land(plane)
     end
 
-    it 'stores a plane that has landed' do
-      expect(airport.storage).to include(plane)
+    it 'stores plane that has landed' do
+      expect(subject.storage).to include(plane)
     end
 
     it 'raises error if weather is stormy' do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect {airport.land(plane)}.to raise_error "Storm's a-brewing - Better divert course!"
+      expect {subject.land(plane)}.to raise_error "Storm's a-brewing - Better divert course!"
     end
 
     it 'raises error if airport is full' do
-      full_airport = Airport.new(weather, 0)
-      expect {full_airport.land(plane)}.to raise_error "No room at the Inn - Try another airport!"
+      allow(subject).to receive(:full?).and_return(true)
+      expect {subject.land(plane)}.to raise_error "No room at the Inn - Try another airport!"
+    end
+
+    it 'raises error if plane has landed already' do
+      expect {subject.land(plane)}.to raise_error "Too late mate - Plane is already down!"
     end
   end
 
@@ -54,7 +64,7 @@ describe Airport do
 
     it 'raises error if weather is stormy' do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect {airport.takeoff(plane)}.to raise_error "Storm's a-brewing - Better hold tight!"
+      expect {subject.takeoff(plane)}.to raise_error "Storm's a-brewing - Better hold tight!"
     end
 
     it 'raises error if airport is empty', :empty do
