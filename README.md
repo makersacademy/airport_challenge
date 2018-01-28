@@ -1,7 +1,8 @@
 My approach was to effectively use TDD to create as much as my code as possible, starting with easier tasks such as landing the plane into an array of default capacity, taking off a plane from the array, giving new capacity argument etc, raising errors if array was full or empty. Only after completing these tasks did I move onto the "harder" tasks of trying to account for whether a plane had already taken off or landed and the weather.
 It's clear to me that I could have dedicated a higher portion of my time to these later tasks as I was unsuccessful in completing these parts of the task. I would potentially answer the user stories in the order given to allow for better time management.
 I completed user stories 1, 2, 5 and 6. I had problems calling methods defined in other classes and therefore could not solve user stories 3 and 4, although I have left some ideas for methods and tests "commented out" so I can refer to them.
-I also seemed to run into issues calling more than one guard condition in a single method. 
+I also seemed to run into issues calling more than one guard condition in a single method.
+
 
 
 <!-- Airport Challenge
