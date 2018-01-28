@@ -9,7 +9,7 @@ describe Plane do
   it { is_expected.to respond_to(:flying?) }
 
   it 'knows if it is flying' do
-    expect(subject.flying?).to eq true
+    expect(subject.flying?).to eq false
   end
   # it 'cannot take off while flying'
   # it 'cannot land while grounded'
