@@ -14,3 +14,5 @@ Some particular issues that arose
 
 * The difference between including and requiring modules.
 >Currently weather.rb is required at the top of the page and the line ```extend weather``` is included at the top of the Airport class, but I am not clear what best practice would be.
+
+* Rubocop says that I do not have coverage of Airport#stormy? But all of the information I could find about testing private methods seemed clumsy.

@@ -56,7 +56,7 @@ describe Airport do
       end
 
       context "when plane is landed in airport" do
-        let(:remaining_plane) { double("a plane")}
+        let(:remaining_plane) { double("a plane") }
         before :each do
           airport.land(plane)
           airport.land(remaining_plane)
