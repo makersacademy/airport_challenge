@@ -16,19 +16,18 @@ describe Plane do
       allow(airport).to receive(:tell_weather) { "sunny" }
       expect { subject.land(airport) }.to raise_error 'The plane is already at an airport'
     end
+    it 'Raises error when weather is stormy' do
+      allow(subject).to receive(:status) { "flying" }
+      allow(airport).to receive(:full?) { false }
+      allow(airport).to receive(:tell_weather) { "stormy" }
+      expect { subject.land(airport) }.to raise_error 'Weather is stormy - cannot land'
+    end
     it "lands the plane when sunny" do
       allow(airport).to receive(:full?) { false }
       allow(subject).to receive(:status) { "flying" }
       allow(airport).to receive(:tell_weather) { "sunny" }
       allow(airport).to receive(:planes_a) { [] }
       expect(subject.land(airport)).to eq [subject]
-    end
-    it "prevent from landing when stormy" do
-      allow(airport).to receive(:full?) { false }
-      allow(subject).to receive(:status) { "flying" }
-      allow(airport).to receive(:tell_weather) { "stormy" }
-      allow(airport).to receive(:planes_a) { [] }
-      expect(subject.land(airport)).to eq nil
     end
   end
 
@@ -47,6 +46,13 @@ describe Plane do
       allow(subject).to receive(:status) { "at_airport" }
       expect { subject.take_off(airport) }.to raise_error 'This plane is not at this airport'
     end
+    it 'Raises error when weather is stormy' do
+      allow(subject).to receive(:status) { "at_airport" }
+      allow(airport).to receive(:full?) { false }
+      allow(airport).to receive(:planes_a) { [subject] }
+      allow(airport).to receive(:tell_weather) { "stormy" }
+      expect { subject.take_off(airport) }.to raise_error 'Weather is stormy - cannot take off'
+    end
     it "Take off the plane when sunny" do
       allow(airport).to receive(:full?) { false }
       allow(subject).to receive(:status) { "at_airport" }
@@ -55,13 +61,7 @@ describe Plane do
       subject.take_off(airport)
       expect(subject.take_off(airport)).to eq subject
     end
-    it "Prevent from taking off the plane when stormy" do
-      allow(airport).to receive(:full?) { false }
-      allow(subject).to receive(:status) { "at_airport" }
-      allow(airport).to receive(:planes_a) { [subject] }
-      allow(airport).to receive(:tell_weather) { "stormy" }
-      expect(subject.take_off(airport)).to eq "The plane cannot take off"
-    end
+
   end
 
 end

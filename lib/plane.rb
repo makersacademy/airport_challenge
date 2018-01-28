@@ -4,28 +4,24 @@ class Plane
 
   attr_accessor :status
 
-  def initialize(status=DEFAULT_STATUS)
-    @status = status
+  def initialize
+    @status = DEFAULT_STATUS
   end
 
   def land(airport)
     fail 'No free spots avaialble at this airport' if airport.full?
+    fail 'Weather is stormy - cannot land' if airport.tell_weather == "stormy"
     fail 'The plane is already at an airport' if self.status == "at_airport"
-    if self.status != "at_airport" && !airport.planes_a.include?(self) && airport.tell_weather() == "sunny" then
-      self.status = "at_airport"
-      airport.planes_a << self
-    end
+    self.status = "at_airport"
+    airport.planes_a << self
   end
 
   def take_off(airport)
     fail 'The plane is already flying' if self.status == "flying"
     fail 'This plane is not at this airport' if !airport.planes_a.include?(self)
-    if self.status == "at_airport" && airport.tell_weather == "sunny" && airport.planes_a.include?(self) then
-       self.status = "flying"
-       airport.planes_a.delete(self)
-    else
-      "The plane cannot take off"
-    end
+    fail 'Weather is stormy - cannot take off' if airport.tell_weather == "stormy"
+    self.status = "flying"
+    airport.planes_a.delete(self)
   end
 
 end
