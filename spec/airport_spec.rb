@@ -2,20 +2,7 @@ require "airport"
 
 describe Airport do
 
-  let(:plane) { double("A plane") }
-
-  # context "#initialize" do
-  #
-  #   it "should have a default capacity" do
-  #     subject { Airport.new }
-  #     allow(subject).to receive(:stormy?).and_return false
-  #     Airport::DEFAULT_CAPACITY.times do
-  #       subject.land(plane)
-  #     end
-  #
-  #    expect{ subject.land(plane) }.to raise_error "Airport is full"
-  #   end
-  # end
+  let(:plane) { double("A plane", airbourne?: true, taken_off: true, landed: false) }
 
   context "#land" do
 
@@ -36,7 +23,7 @@ describe Airport do
         subject.land(plane)
       end
 
-      expect { subject.land(plane) }.to raise_error "Airport is full"
+      expect { subject.land(plane) }.to raise_error "Cannot land while airport is full"
     end
 
   end
@@ -49,19 +36,17 @@ describe Airport do
     end
 
     it "removes plane from the airport after take_off" do
+      expect(plane).to receive(:airbourne?).and_return false
       subject.take_off(plane)
       expect(subject.hangar).to eq([])
     end
 
     it "Cannot take_off in stormy weather" do
       allow(subject).to receive(:stormy?).and_return true
+      expect(plane).to receive(:airbourne?).and_return false
       expect { subject.take_off(plane) }.to raise_error("Cannot take off in stormy weather")
     end
 
-  end
-
-  it "Planes cannot take off from an airport they aren't in" do
-    expect { subject.take_off(plane) }.to raise_error("Plane is not in this airport")
   end
 
 end

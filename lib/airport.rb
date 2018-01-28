@@ -12,14 +12,18 @@ class Airport
   end
 
   def land(plane)
+    raise "Plane is not airbourne" if !airbourne?(plane)
     raise "Cannot land in stormy weather" if stormy?
-    raise "Airport is full" if full?
+    raise "Cannot land while airport is full" if full?
+    plane.landed
     @hangar << plane
   end
 
   def take_off(plane)
+    raise "Plane is already airbourne" if airbourne?(plane)
     raise "Plane is not in this airport" if at_airport?(plane)
     raise "Cannot take off in stormy weather" if stormy?
+    plane.taken_off
     @hangar.delete(plane)
   end
 
@@ -35,6 +39,14 @@ class Airport
 
   def at_airport?(plane)
     !@hangar.include?(plane)
+  end
+
+  def empty?
+    @hangar.empty?
+  end
+
+  def airbourne?(plane)
+    plane.airbourne?
   end
 
 end
