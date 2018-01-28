@@ -1,5 +1,6 @@
 require "Airport"
 
+
 describe Airport do
 
   subject(:airport) { described_class.new }
@@ -23,6 +24,10 @@ describe Airport do
       subject.land(plane)
       expect { subject.land(plane) }.to raise_error("Cannot land, airport full")
     end
+
+    # it "should confirm location after landing" do
+    #   expect(subject.land(plane)).to be_landed
+    # end
   end
 
   describe '#take_off' do
@@ -31,11 +36,11 @@ describe Airport do
       subject.take_off(plane)
       expect(subject.planes.include?(plane)).to eq false
     end
-
-    it "confirms take off" do
-      subject.land(plane)
-      expect(subject.take_off(plane)).to eq("We have take off")
-    end
+    #
+    # it "confirms plane location after take off" do
+    #   subject.land(plane)
+    #   expect(subject.take_off(plane)).to eq("We have take off")
+    # end
 
     it "raises error if no planes to take off" do
       expect { subject.take_off(plane) }.to raise_error("No planes available")
