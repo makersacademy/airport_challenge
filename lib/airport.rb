@@ -20,7 +20,7 @@ class Airport
   def take_off(plane)
     raise "Too stormy to take off" if stormy?
     raise "Plane not in this airport" unless planes.include?(plane)
-    planes.reject! { plane }
+    planes.reject! { |plane_under_test| plane_under_test == plane }
   end
 
   private
