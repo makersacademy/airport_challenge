@@ -15,6 +15,7 @@ class Airport
     raise "Landing unavailable. The storm is too heavy." if stormy?
     @hangar << plane
     plane.landed
+    self
   end
 
   def take_off(plane)
