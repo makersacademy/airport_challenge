@@ -13,11 +13,6 @@ describe Airport do
     described_class::DEFAULT_CAPACITY.times {subject.land(double('A plane'))}
     subject
   }
-  let(:aiport_plane_takes_off) {
-    allow(subject).to receive(:stormy?).and_return(false)
-    airport_plane_landed.take_off(plane)
-    airport_plane_landed
-  }
   let(:custom_capacity) {50}
   let(:airport_custom_capacity) {Airport.new(custom_capacity)}
 
@@ -79,7 +74,9 @@ describe Airport do
     context "#stormy? = false" do
 
       it "Allows a plane to take off and removes it from the hangar" do
-        expect(aiport_plane_takes_off.hangar).not_to include(plane)
+        not_stormy
+        airport_plane_landed.take_off(plane)
+        expect(airport_plane_landed.hangar).not_to include(plane)
       end
 
       it "Confirms that the plane is no longer at the airport" do
