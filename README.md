@@ -1,5 +1,29 @@
+Marcus' README Edits - My approach and mini code review
+=================
+
+My approach
+---------
+* First thing I did was read all the user stories and map out a domain model of the different elements in the model and drew a simple diagram of the situation to contextualise it in my head
+* I then made a list other elements to consider, such as the weather aspects and edge cases
+* I broke down the problem into a list of features for me to drive using BDD
+* Then I put these features in priority order, easiest first, for BDD
+* As I went stage by stage completing each feature using BDD and RGR, I noted down nice to have elements that I would do if I had time at the very end
+* After all core features were complete, I did some of the 'nice to have' elements e.g. splitting out methods into modules that I includes
+* An important learning and application was using a solid Debugging process throughout (Digest error message, tighten the loop on where the problem was, fix the bug)
+
+
+Mini personal code review: My appraisal of my attempt at the weekend challenge
+---------
+
+* I found writing the core code was quite an enjoyable process. I did not get stuck anywhere as I built up the core functionality through BDD, which took c.3 hours. I think this was due to the level of similarity with Boris bikes and due to applying my learnings from the week, particularly to very carefully read each and every error message (which meant I didn't write erroneous tests)
+* Next steps if I had the time would be to simplify the test code (particularly the examples) and spend more time ensuring the code was of good quality and refactored (e.g. fulling applying XP principles).
+* I was not sure if I should build direct tests of the boolean methods, which currently don't have tests as they are private methods
+* I would like to review the quality of the design/structure of my code and tests, and verify with an experienced developer what I should focus on to better apply XP principles
+
+
 Airport Challenge
 =================
+
 
 ```
         ______
@@ -36,25 +60,25 @@ Task
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
 
 As the system designer
 So that the software can be used for many different airports
@@ -73,7 +97,7 @@ In code review we'll be hoping to see:
 
 * All tests passing
 * High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
+* The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
 
