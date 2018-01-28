@@ -17,12 +17,17 @@ class Airport
   end
 
   def take_off(plane)
+    fail "Airport is empty" if empty?
     planes.pop
     return "Plane take off"
   end
 
   def full?
     @planes.count >= @capacity
+  end
+
+  def empty?
+    @planes.empty?
   end
 
 

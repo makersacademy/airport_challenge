@@ -36,6 +36,17 @@ describe "Full airport" do
     end
 end
 
+describe "Airport empty" do
+airport = Airport.new
+plane = Plane.new
+it 'raises an error when airport is empty' do
+  expect { airport.take_off(plane) }.to raise_error 'Airport is empty'
+  end
+end
+
+
+
+
   # describe "Cant land its stormy" do
   # airport = Airport.new
   # plane = Plane.new
