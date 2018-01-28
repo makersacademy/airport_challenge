@@ -1,6 +1,5 @@
 require "Airport"
 
-
 describe Airport do
 
   subject(:airport) { described_class.new }
@@ -8,7 +7,8 @@ describe Airport do
 
   describe '#land' do
     it "allows plane to land (add to array)" do
-      expect(subject.land(plane)).to include plane
+      subject.land(plane)
+      expect(subject.planes).to include plane
     end
 
     it "checks if the airport is empty" do
