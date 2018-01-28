@@ -10,16 +10,17 @@ class Airport
   end
 
   def land(plane)
+    raise "That plane has landed elsewhere" if plane.landed?
     raise "Airport is full, you cannot land." if full?
     raise "Landing unavailable. The storm is too heavy." if stormy?
-    raise "That plane has landed elsewhere" if plane.landed?
-    plane.landed
     @hangar << plane
+    plane.landed
   end
 
   def take_off(plane)
+    raise "That plane is not at this airport." if !taxi(plane)
     raise "The weather is too bad!" if stormy?
-    @hangar.delete(plane)
+    taxi(plane)
     plane.take_off
     "#{plane} has taken off"
   end
@@ -31,5 +32,9 @@ class Airport
 
   def full?
     @hangar.count >= @capacity
+  end
+
+  def taxi(plane)
+    @hangar.delete(plane)
   end
 end

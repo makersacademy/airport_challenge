@@ -53,6 +53,11 @@ describe Airport do
         airport.land(plane)
         expect(airport.take_off(plane)).to eq "#{plane} has taken off"
       end
+
+      it "should raise error if trying to take off plane that is not in hangar" do
+        allow(airport.weather).to receive(:stormy).and_return false
+        expect{airport.take_off(plane)}.to raise_error "That plane is not at this airport."
+      end
     end
 
     context "stormy" do
