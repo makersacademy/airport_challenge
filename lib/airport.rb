@@ -3,7 +3,7 @@ require_relative 'plane'
 class Airport
   DEFAULT_CAPACITY = 40
   attr_reader :planes
-  attr_reader :capacity
+  attr_accessor :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -12,15 +12,16 @@ class Airport
 
   def land(plane)
     raise "Please enter holding pattern, we are at full capacity" if full?
-    raise "That plane is not flying" if !plane.flying?
-    # raise "It is too stormy to land" if stormy?
+    raise "That plane is already at this airport" if at_airport?(plane)
+    raise "That plane has landed but not at this airport" unless plane.flying?
+    raise "It is too stormy to land" if stormy?
     plane.land
     @planes << plane
   end
 
   def take_off(plane)
-    raise "That plane is not at this airport" if !at_airport?(plane)
-    # raise "It is too stormy to take off" if stormy?
+    raise "That plane is not at this airport" unless at_airport?(plane)
+    raise "It is too stormy to take off" if stormy?
     plane.fly
     @planes.delete plane
   end
@@ -28,7 +29,7 @@ class Airport
   private
 
   def stormy?
-    rand(3) >= 1 ? false : true
+    rand(3) < 1
   end
 
   def full?
