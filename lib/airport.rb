@@ -1,3 +1,5 @@
+require_relative 'weather'
+
 class Airport
 
   DEFAULT_CAPACITY = 20
@@ -7,27 +9,16 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @weather = set_weather
+    @weather = Weather.new
     @capacity = capacity
   end
 
   def weather_report
-    set_weather
     print "Today's weather is #{@weather}"
   end
 
-  def is_full?
+  def full?
     true if planes.length >= @capacity
   end
-
-  private
-
-  def set_weather
-    chance < 2? :stormy : :fine
-  end
-
-  def chance
-    rand(9)
-  end
-
+  
 end

@@ -13,22 +13,16 @@ class Plane
   end
 
   def take_off
-    unless take_off_status == false
-      take_off_sequence
-      take_off_message
-    end
+    take_off_sequence unless take_off_status == false
+    take_off_message
   end
 
 private
 
   def landing_status(airport)
-    if airport.weather == :stormy
-      fail "It's stormy here. Cannot land at this airport"
-    elsif airport.is_full?
-      fail "This airport is full. Cannot land here"
-    else
-      true
-    end
+    fail "It's stormy here. Cannot land at this airport" if airport.weather == :stormy
+    fail "This airport is full. Cannot land here" if airport.full?
+    true
   end
 
   def landing_sequence(airport)
@@ -46,13 +40,9 @@ private
   end
 
   def take_off_status
-    if @current_airport == nil
-      fail "You are currently in flight"
-    elsif @current_airport.weather == :stormy
-      fail "It's stormy. Cannot take off from this airport"
-    else
-      true
-    end
+    fail "You are currently in flight" if @current_airport.nil?
+    fail "It's stormy. Cannot take off from this airport" if @current_airport.weather == :stormy
+    true
   end
 
 end
