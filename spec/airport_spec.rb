@@ -11,6 +11,15 @@ describe Airport do
     expect(subject.planes).to eq []
   end
 
+  it "has default capacity if none is specified" do
+    expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  end
+
+  it "has specified capacity" do
+    new_airport = Airport.new(weather, 10)
+    expect(new_airport.capacity).to eq 10
+  end
+
   context 'When it is sunny' do
 
     describe '#land' do
@@ -25,8 +34,9 @@ describe Airport do
         expect { subject.land(plane) }.to raise_error "Plane has already landed"
       end
 
-      it "raises an error if the airport is full" do
-        4.times {subject.land(Plane.new)}
+      it "raises an error
+      if the airport is full" do
+        (Airport::DEFAULT_CAPACITY - 1).times {subject.land(Plane.new)}
         expect {subject.land(Plane.new)}.to raise_error "Airport is full"
       end
 
