@@ -23,6 +23,6 @@ class Airport
   end
 
   def stormy?
-    weather.stormy
+    weather.storms_ahead
   end
 end
