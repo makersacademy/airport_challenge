@@ -16,7 +16,7 @@ describe Airport do
   context '#arrivals' do
     it 'allows planes to arrive' do
       airport.arrivals(plane)
-      expect { airport.arrivals(plane) }.to output("#{plane} has arrived!\n").to_stdout
+      expect(airport.arrivals(plane)).to eq "#{plane} has arrived!"
     end
 
     it 'allows arrivals to be confirmed' do
@@ -33,7 +33,7 @@ describe Airport do
   context '#departures' do
     it 'allows planes to depart' do
       airport.departures(plane)
-      expect { airport.departures(plane) }.to output("#{plane} has departed!\n").to_stdout
+      expect(airport.departures(plane)).to eq "#{plane} has departed!"
     end
 
     it 'allows departures to be confirmed' do
