@@ -9,6 +9,20 @@ describe Airport do
     it "allows plane to land (add to array)" do
       expect(subject.land(plane)).to include plane
     end
+
+    it "checks if the airport is empty" do
+      expect(subject).to be_empty
+    end
+
+    it "checks if the airport is full" do
+      subject.land(plane)
+      expect(subject). to be_full
+    end
+
+    it "raises error when airport is full with DEFAULT_CAPACITY planes" do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error("Cannot land, airport full")
+    end
   end
 
   describe '#take_off' do
@@ -28,8 +42,8 @@ describe Airport do
     end
   end
 
-  it "checks if the airport is empty" do
-    expect(subject).to be_empty
+  it "should have a default capacity when no argument is provided" do
+    expect(subject.capacity).to eq(Airport::DEFAULT_CAPACITY)
   end
 
 end
