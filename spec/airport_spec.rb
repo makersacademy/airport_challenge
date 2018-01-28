@@ -19,7 +19,9 @@ describe Airport do
     airport_plane_landed.take_off(plane)
     airport_plane_landed
   }
-  let(:airport_custom_capacity) {Airport.new(50)}
+  let(:custom_capacity) {50}
+  let(:airport_custom_capacity) {Airport.new(custom_capacity)}
+
 
   context "#land(plane)" do
 
@@ -57,7 +59,7 @@ describe Airport do
       end
 
       it "Airport capacity can change if set to a different number" do
-        expect(airport_custom_capacity.capacity).to eq(50)
+        expect(airport_custom_capacity.capacity).to eq(custom_capacity)
       end
 
       it "Raises an error if airport is full and try to land plane" do
