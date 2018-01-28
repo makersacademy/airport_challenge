@@ -25,3 +25,5 @@ describe "Land plane" do
       expect(airport.take_off(plane)).to eq "Plane take off"
     end
   end
+
+  

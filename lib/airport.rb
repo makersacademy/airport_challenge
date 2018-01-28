@@ -2,6 +2,7 @@ class Airport
 
   attr_reader :planes
 
+
   def initialize
     @planes = []
   end
@@ -14,5 +15,7 @@ class Airport
     planes.pop
     return "Plane take off"
   end
+
+
 
 end
