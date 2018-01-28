@@ -14,4 +14,9 @@ describe Airport do
     plane = Plane.new
     expect(subject.land(plane)).to eq plane
   end
+  it "stores a plane" do
+    plane = Plane.new
+    subject.land(plane)
+    expect.(subject.plane).to eq plane
+  end
 end
