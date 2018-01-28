@@ -1,5 +1,9 @@
 class Weather
   def stormy?
-    [true, false].sample
+    @stormy = randomise
+  end
+
+  def randomise
+    rand(5) == 1
   end
 end
