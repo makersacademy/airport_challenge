@@ -14,14 +14,15 @@ class Airport
   end
 
   def land(plane)
-    fail "Storm's a-brewing - Better divert course!" if @weather.stormy?
+    fail "Storm's a-brewing - Better divert course!" if weather.stormy?
+    fail "No room at the Inn - Try another airport!" if storage.length >= capacity
     storage << plane
     plane.land
     "#{plane} has now landed."
   end
 
   def takeoff(plane)
-    fail "Storm's a-brewing - Better hold tight!" if @weather.stormy?
+    fail "Storm's a-brewing - Better hold tight!" if weather.stormy?
     storage.delete(plane)
     plane.takeoff
     "#{plane} has now taken off"

@@ -31,10 +31,10 @@ describe Airport do
       expect {airport.land(plane)}.to raise_error "Storm's a-brewing - Better divert course!"
     end
 
-    # it 'raises error if airport is full' do
-    #   (Airport::DEFAULT_CAPACITY - 1).times { airport.land(plane) }
-    #   expect {airport.land(plane).to raise_error "No room at the Inn - Try another airport!"}
-    # end
+    it 'raises error if airport is full' do
+      full_airport = Airport.new(weather, 0)
+      expect {full_airport.land(plane)}.to raise_error "No room at the Inn - Try another airport!"
+    end
   end
 
   describe '#takeoff' do
