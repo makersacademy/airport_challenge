@@ -6,23 +6,30 @@ describe Airport do
   let(:plane) { :plane }
   subject(:airport) { described_class.new }
 
-  describe '#initialize(capacity)' do
+  it { is_expected.to respond_to(:landing).with(1).argument }
+  it { is_expected.to respond_to(:taking_off).with(1).argument }
+
+  describe '#initialize' do
     it 'sets the default capacity of the airport to 5' do
       expect(airport.capacity).to eq(described_class::DEFAULT_CAPACITY)
     end
   end
 
-  describe '#arrivals' do
-    it 'stores planes in the airport hangar, and confirms storage' do
+  context '#arrivals' do
+    it 'allows planes to arrive' do
+      expect(airport.landing(plane)).to eq "#{plane} has landed!"
+    end
+
+    it 'stores landed planes in the airport hangar' do
       airport.landing(plane)
       expect(airport.airport_hangar).to eq [plane]
     end
 
-    it 'does not allow duplicate planes to arrive or depart' do
+    it 'raises an error for duplicated arrivals and departures' do
       airport.landing(plane)
-      expect { airport.landing(plane) }.to raise_error('this plane has already arrived!')
+      expect { airport.landing(plane) }.to raise_error('this plane has already landed!')
       airport.taking_off(plane)
-      expect { airport.taking_off(plane) }.to raise_error('this plane has already departed!')
+      expect { airport.taking_off(plane) }.to raise_error('this plane has already taken-off!')
     end
   end
 
