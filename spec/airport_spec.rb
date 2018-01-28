@@ -20,19 +20,16 @@ describe Airport do
         expect(airport_max10.is_full?).to be true
       end
 
-
     it 'gives self a maximum default capacity' do
       Airport::DEFAULT_CAPACITY.times{subject.planes << plane}
       expect(subject.is_full?).to be true
     end
 
-
-
   end
 
   describe '#weather' do
     it 'gives Airport a weather attribute' do
-      expect(subject.weather).to be_a String
+      expect(subject.weather).to be_a Symbol
     end
   end
 

@@ -23,7 +23,7 @@ class Airport
   private
 
   def set_weather
-    chance < 2? "stormy" : "fine"
+    chance < 2? :stormy : :fine
   end
 
   def chance
