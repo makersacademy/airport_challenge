@@ -8,28 +8,34 @@ describe Airport do
       plane = Plane.new
       expect(subject.land(plane)).to eq [plane]
     end
+    it "raises an error when airport is full" do
+      plane = Plane.new
+      subject.capacity.times{ subject.land plane}
+      expect { subject.land plane }.to raise_error "You can't land, Airport is full"
+    end
   end
 
   describe "#take_off" do
     it { is_expected.to respond_to(:take_off).with(1).argument }
     it "allow to planes to take off" do
       plane = Plane.new
-      expect(subject.take_off(plane)).to eq plane
+      expect(subject.take_off(plane)).to eq [plane]
     end
   end
 
-  describe "landed_planes" do
+  describe "hangar" do
     it "returns landed planes" do
       plane = Plane.new
       subject.land(plane)
-      expect(subject.landed_planes).to eq [plane]
+      expect(subject.hangar).to eq [plane]
     end
   end
 
+
   describe "initialization" do
-    it "should have a capacity to keep the landed planes " do
-      plane = Plane.new
-      expect { 10.times { subject.land plane } }.to_not raise_error
+    it "should have a deafult capacity to keep the landed planes " do
+      expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+
     end
   end
 end
