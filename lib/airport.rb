@@ -9,15 +9,18 @@ class Airport
   end
 
   def weather_report
-    print "Today's weather is #{@weather}"
     set_weather
+    print "Today's weather is #{@weather}"
   end
 
-private
+  private
 
   def set_weather
-    rand(9) < 2? "stormy" : "fine"
+    chance < 2? "stormy" : "fine"
   end
 
+  def chance
+    rand(9)
+  end
 
 end

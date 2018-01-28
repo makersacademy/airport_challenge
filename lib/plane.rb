@@ -10,7 +10,7 @@ class Plane
 
   def land(airport)
     airport.planes << self
-    @current_airport = airport # array of planes at current airport
+    @current_airport = airport
   end
 
   def take_off

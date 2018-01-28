@@ -11,11 +11,16 @@ describe Plane do
       subject.land(airport)
       expect(airport.planes).to include(subject)
     end
+
+    it 'raises and error when airport.weather is stormy' do
+
+    end
   end
 
   describe '#take_off' do
     let(:plane){Plane.new}
     let(:airport){double('airport',:planes => [])}
+
     it 'takes off from its current airport' do
       plane.land(airport)
       plane.take_off
