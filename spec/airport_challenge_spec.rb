@@ -9,53 +9,34 @@ require 'airport.rb'
 describe Airport do
   let(:plane) { :plane }
   subject(:airport) { described_class.new }
+  subject(:larger_airport) { described_class.new 50 }
 
-  # it { is_expected.to respond_to(:arrivals).with(1).argument }
-  # it { is_expected.to respond_to(:departures).with(1).argument }
-
-  context '#arrivals' do
-    it 'allows planes to arrive' do
-      airport.arrivals(plane)
-      expect(airport.arrivals(plane)).to eq "#{plane} has arrived!"
-    end
-
-    it 'allows arrivals to be confirmed' do
-      airport.arrivals(plane)
-      expect(airport.airport_hangar).to include plane
-    end
-
-    it 'stores arrivals in the airport hangar' do
-      airport.arrivals(plane)
-      expect(airport.airport_hangar).to eq [plane]
-    end
-  end
-
-  context '#departures' do
-    it 'allows planes to depart' do
-      airport.departures(plane)
-      expect(airport.departures(plane)).to eq "#{plane} has departed!"
-    end
-
-    it 'allows departures to be confirmed in good weather' do
-      allow(airport).to receive(:weather_forecast) { 'stormy' }
-      airport.departures(plane)
-      expect(airport.airport_hangar).not_to include plane
-    end
-  end
-
-  context '#airport capacity' do
+  describe '#initialize(capacity)' do
     it 'sets the default capacity of the airport to 5' do
       expect(airport.total_capacity).to eq(described_class::DEFAULT_CAPACITY)
     end
-  end
-end
 
-# context '#bad_weather' do
-#   it 'prevents departures if the weather is stormy' do
-#   end
-# end
-#     allow(airport.weather).to receive(:storm_forecast).and_return true
-#     airport.departures(plane)
-#     expect { airport.departures(plane) }.to raise_error('the weather is too bad!')
-#   end
-# end
+    it 'can have a greater capacity if needed' do
+      expect(larger_airport.total_capacity).to eq 50
+    end
+  end
+
+  describe '#arrivals' do
+    it 'stores planes in the airport hangar, and confirms storage' do
+      airport.arrivals(plane)
+      expect(airport.airport_hangar).to eq [plane]
+    end
+
+    it 'does not allow duplicate planes to arrive or depart' do
+      airport.arrivals(plane)
+      expect { airport.arrivals(plane) }.to raise_error('this plane has already arrived!')
+      airport.departures(plane)
+      expect { airport.departures(plane) }.to raise_error('this plane has already departed!')
+    end
+  end
+
+  # # it 'does not allow planes to depart during bad weather' do
+  # #   allow(airport.weather_forecast).to receive(:weather_forecast[0])
+  # #   expect { airport.departures(plane) }.to raise_error('flights suspended due to bad weather!')
+  # # end
+end
