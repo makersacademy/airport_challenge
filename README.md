@@ -19,6 +19,8 @@ We have a request from a client to write the software to control the flow of pla
 
 -----
 
+I've attempted to write code in a TDD way and attempted to build up the classes to pass the tests.
+
 To get started require in the relevant files:
 
 ```
@@ -119,3 +121,5 @@ There is 1 in 20 chance of it being stormy and then planes can't land or take of
 RuntimeError: It is too stormy to take off
 from /Users/noelvock/Projects/airport_challenge/lib/airport.rb:25:in `take_off'
 ```
+
+While the main requirements have been met there are some edge cases that need to be dealt with, for example the same plane can land many times at one airport creating multiple copies of itself until capacity is met.
