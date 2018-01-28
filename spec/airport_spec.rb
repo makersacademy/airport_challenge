@@ -31,7 +31,13 @@ describe Airport do
         expect(airport_plane_landed.hangar).to include(plane)
       end
 
-      # TODO - Raises error - landed planes cannot land again
+      context "in_hangar? == true" do
+        it "Landed planes cannot land again" do
+          allow(airport_plane_landed).to receive(:in_hangar?).and_return(true)
+          expect{airport_plane_landed.land(plane)}.to raise_error("Plane already landed")
+        end
+
+      end
 
     end
 
@@ -76,9 +82,13 @@ describe Airport do
         expect{airport_plane_landed.take_off(plane)}.to output("Plane #{plane} has left the hangar\n").to_stdout
       end
 
-      it "Raises error if plane taking off is not in the hangar" do
-        allow(airport_empty).to receive(:in_hangar?).and_return(false)
-        expect{airport_empty.take_off(plane)}.to raise_error("That plane is not in the hangar")
+      context "#in_hangar == false" do
+
+        it "Raises error if plane taking off is not in the hangar" do
+          allow(airport_empty).to receive(:in_hangar?).and_return(false)
+          expect{airport_empty.take_off(plane)}.to raise_error("That plane is not in the hangar")
+        end
+
       end
 
     end
