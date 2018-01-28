@@ -29,7 +29,7 @@ class Airport
 
   private
   def stormy_weather?
-    rand(2) == 1
+    rand(20) == 1
   end
 
   def full?

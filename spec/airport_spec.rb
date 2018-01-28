@@ -1,25 +1,18 @@
 require 'airport'
-require 'plane'
 
 describe Airport do
 
   it { is_expected.to respond_to(:land) }
   it { is_expected.to respond_to(:land).with(1).argument }
   it "lands a plane" do
-    plane = Plane.new
+    plane = double(Object.new)
     allow(subject).to receive(:stormy_weather?) { false }
     subject.land(plane)
     expect(plane).to eq subject.planes[0]
   end
-  # it "stores a plane" do
-  #   plane = Plane.new
-  #   allow(subject).to receive(:stormy_weather?) { false }
-  #   subject.land(plane)
-  #   expect(subject.plane).to eq plane
-  # end
   it { is_expected.to respond_to(:take_off) }
   it "lets one plane land and take off" do
-    plane = Plane.new
+    plane = double(Object.new)
     allow(subject).to receive(:stormy_weather?) { false }
     subject.land(plane)
     subject.take_off
@@ -27,7 +20,7 @@ describe Airport do
   end
   context "stormy weather" do
     let(:airport) { Airport.new }
-    let(:plane) { Plane.new }
+    let(:plane) { double(Object.new) }
     it "should not let a plane land when weather is stormy" do
       allow(airport).to receive(:stormy_weather?) { true }
       expect { airport.land(plane) }.to raise_error("It is too stormy to land")
@@ -35,7 +28,7 @@ describe Airport do
   end
   context "plane is landed and weather is stormy" do
     let(:airport) { Airport.new }
-    let(:plane) { Plane.new }
+    let(:plane) { double(Object.new) }
     it "should not let a plane take off when weather is stormy" do
       allow(airport).to receive(:stormy_weather?) { false }
       airport.land(plane)
@@ -45,7 +38,7 @@ describe Airport do
   end
   context "Plane is landed weather is not stormy" do
     let(:airport) { Airport.new }
-    let(:plane) { Plane.new }
+    let(:plane) { double(Object.new) }
     it "should let a plane take off when weather is not stormy" do
       allow(airport).to receive(:stormy_weather?) { false }
       airport.land(plane)
@@ -56,8 +49,8 @@ describe Airport do
   end
   context "Airport is full." do
     let(:airport) { Airport.new(1) }
-    let(:plane) { Plane.new }
-    let(:plane2) { Plane.new }
+    let(:plane) { double(Object.new) }
+    let(:plane2) { double(Object.new) }
     it "Should not land when airport is full" do
       allow(airport).to receive(:stormy_weather?) { false }
       airport.land(plane)
@@ -81,12 +74,20 @@ describe Airport do
     end
   end
   context "landed planes added to the planes array" do
-    let(:plane) { Plane.new }
-    let(:plane2) { Plane.new }
+    let(:plane) { double(Object.new) }
+    let(:plane2) { double(Object.new) }
     it "lets multiple planes land" do
       allow(subject).to receive(:stormy_weather?) { false }
       subject.land(plane)
       subject.land(plane2)
     end
   end
+  context "a plane should has already landed" do
+    let(:plane) { double(Object.new) }
+    it "shouldn't land more then once" do
+      subject.land(plane)
+      expect { subject.land(plane) }.to raise_error("This plane has already landed")
+    end
+  end
+
 end
