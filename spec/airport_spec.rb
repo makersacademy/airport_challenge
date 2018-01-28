@@ -1,5 +1,6 @@
 require "airport"
 require "plane"
+require "weather"
 
 describe Airport do
   airport = Airport.new
@@ -26,4 +27,21 @@ describe "Land plane" do
     end
   end
 
-  
+describe "Full airport" do
+  airport = Airport.new
+  plane = Plane.new
+  it 'raises an error when airport is full' do
+      airport.capacity.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error 'Airport is full'
+    end
+end
+
+  # describe "Cant land its stormy" do
+  # airport = Airport.new
+  # plane = Plane.new
+  # weather = Weather.new
+  # it "doesn't allow planes to land" do
+  #   airport.weather = stormy?
+  #       expect { airport.land(plane) }.to raise_error "Too stormy to land"
+  #     end
+  #   end
