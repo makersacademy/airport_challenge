@@ -24,9 +24,6 @@ describe Airport do
   let(:not_stormy) {allow(subject).to receive(:stormy?).and_return(false)}
   let(:stormy) {allow(subject).to receive(:stormy?).and_return(true)}
 
-  let(:in_hangar) {allow(subject).to receive(:in_hangar?).and_return(true)}
-  let (:not_in_hanger) {allow(subject).to receive(:in_hangar?).and_return(false)}
-
   context "#land(plane)" do
 
     it { is_expected.to respond_to(:land).with(1).argument}
@@ -39,7 +36,6 @@ describe Airport do
 
       context "in_hangar? == true" do
         it "Landed planes cannot land again" do
-          allow(airport_plane_landed).to receive(:in_hangar?).and_return(true)
           expect{airport_plane_landed.land(plane)}.to raise_error("Plane already landed")
         end
 
@@ -93,7 +89,6 @@ describe Airport do
       context "#in_hangar == false" do
 
         it "Raises error if plane taking off is not in the hangar" do
-          allow(subject).to receive(:in_hangar?).and_return(false)
           expect{subject.take_off(plane)}.to raise_error("That plane is not in the hangar")
         end
 
