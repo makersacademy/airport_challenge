@@ -9,8 +9,11 @@ describe Plane do
 
   describe '#status' do
 
-    it 'shows \'grounded\' if plane has landed in airport' do
+    before(:each) do
       airport.land(subject)
+    end
+
+    it 'shows \'grounded\' if plane has landed in airport' do
       expect(subject.status).to eq "Grounded"
     end
 
@@ -18,6 +21,6 @@ describe Plane do
       airport.takeoff(subject)
       expect(subject.status).to eq "Airborne"
     end
-    
+
   end
 end
