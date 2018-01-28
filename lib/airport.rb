@@ -11,10 +11,10 @@ class Airport
   end
 
   def land(plane)
-    raise "Please enter holding pattern, we are at full capacity" if full?
     raise "That plane is already at this airport" if at_airport?(plane)
     raise "That plane has landed but not at this airport" unless plane.flying?
     raise "It is too stormy to land" if stormy?
+    raise "Please enter holding pattern, we are at full capacity" if full?
     plane.land
     @planes << plane
   end

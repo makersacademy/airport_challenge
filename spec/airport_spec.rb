@@ -20,17 +20,19 @@ describe Airport do
   it 'allows planes to land and take off except in stormy weather' do
     allow(plane).to receive(:land).and_return(flying?: false)
     allow(plane).to receive(:fly).and_return(flying?: true)
+    allow(subject).to receive(:stormy?) { true }
+    # Check planes cannot land during stormy weather
+    expect { subject.land(plane) }.to raise_error "It is too stormy to land"
     allow(subject).to receive(:stormy?) { false }
     subject.land(plane)
-    # Check planes can land
+    # Check planes can land in good weather
     expect(subject.planes).to eq [plane]
     allow(subject).to receive(:stormy?) { true }
-    # Check planes cannot land or take off in stormy weather
-    expect { subject.land(plane) }.to raise_error "It is too stormy to land"
+    # Check planes cannot take off in stormy weather
     expect { subject.take_off(plane) }.to raise_error "It is too stormy to take off"
     allow(subject).to receive(:stormy?) { false }
     subject.take_off(plane)
-    #  Check planes can take off
+    #  Check planes can take off in good weather
     expect(subject.planes).to eq []
   end
 
