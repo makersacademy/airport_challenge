@@ -4,6 +4,18 @@ describe Airport do
 
   let(:plane) { double("A plane", airbourne?: true, taken_off: true, landed: false) }
 
+  context "#initialize" do
+
+    it "initializes with an empty hangar" do
+      expect(subject.hangar).to eq([])
+    end
+
+    it "initializes with a default capacity of 50" do
+      expect(subject.capacity).to eq(50)
+    end
+
+  end
+
   context "#land" do
 
     it "lands a plane" do
