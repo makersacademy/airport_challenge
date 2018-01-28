@@ -48,13 +48,13 @@ I would like a default airport capacity that can be overridden as appropriate
 Approach
 -----
 
-I approached this challenge as did in the course, by breaking down the user stories into individual objects and the methods associated they should be responsible for.
+I approached this challenge by breaking down the user stories into individual objects and the methods for which they should be responsible.
 Once I had the core of the system in place, I used feature testing in IRB to work out the possible edge cases and add error handling for them where appropriate
 
-Some particular issues that arose
+Some particular issues that arose:
 
 * Testing the value of an instance variable if it is changed by the method but not returned, and there is not a reader method available for it.
-> This arose in Airport#take_off. In the end I decided it was reasonable to include attr_reader :planes to allow air traffic controllers to see the list of planes currently landed at the airport, but it is easy to see that there are scenarios where this might not be a solution.
+> This arose in Airport#take_off. In the end I decided it was reasonable to include ```attr_reader :planes``` to allow air traffic controllers to see the list of planes currently landed at the airport, but it is easy to see that there are scenarios where this might not be a solution.
 
 * Best practice for testing that a boolean is returned but not the specific value.
 
