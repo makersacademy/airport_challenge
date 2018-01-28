@@ -2,7 +2,8 @@
 
 # comment
 class Weather
-  def stormy?
+  attr_reader :stormy
+  def stormy
     [true, false, false, false].sample
   end
 end

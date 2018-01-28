@@ -17,14 +17,12 @@ class Airport
   end
 
   def departures(plane)
-    raise 'the weather is too bad!' if stormy?
+    raise "the weather is too bad!" if stormy?
     @airport_hangar.delete(plane)
     "#{plane} has taken off!"
   end
 
-  private
-
   def stormy?
-    weather.stormy?
+    weather.stormy
   end
 end
