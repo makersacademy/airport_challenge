@@ -18,6 +18,7 @@ class Airport
   def take_off(plane)
     raise "No planes available" if planes.empty?
     raise "Plane is already in the air" unless planes.include?(plane)
+    raise "It is too stormy to take off" if weather.stormy?
     plane.status = "In air"
     planes.delete(plane)
   end
