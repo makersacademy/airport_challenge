@@ -1,7 +1,7 @@
 require_relative "weather"
+require_relative "plane"
 
 class Airport
-
   DEFAULT_CAPACITY = 10
 
   attr_reader :hangar
@@ -15,13 +15,14 @@ class Airport
 
   def land(plane)
     fail " Airplane is not allowed to land due to stormy weather" if storm?
+    # fail " Airplane is allowed to land due to clear weather" if clear?
     fail "Airplane is not allow to land, Airport is full" if full?
     @hangar << plane
     "Plane has landed"
+
   end
 
   def take_off(plane)
-    #fail "Plane has already taken off" unless @hangar.include?(plane)
     fail "Airplane is not allowed to take off due to stormy weather" if storm?
     @hangar.delete(plane)
     "Plane has taken off"
@@ -37,7 +38,7 @@ class Airport
     @weather.random_weather == "storm"
   end
 
-  # def hangar
-  #  @plane
+  # def clear?
+  #   @weather.random_weather == "clear"
   # end
 end
