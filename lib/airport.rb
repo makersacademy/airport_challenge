@@ -24,7 +24,7 @@ class Airport
   attr_reader :planes, :capacity
 
   def stormy?
-    rand(2).zero?
+    Weather::stormy?
   end
 
 end
