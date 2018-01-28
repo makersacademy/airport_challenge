@@ -8,6 +8,10 @@ describe Airport do
     subject.land(plane)
     subject
   }
+  let(:airport_full) {
+    described_class::DEFAULT_CAPACITY.times {airport_empty.land(double('A plane'))}
+    airport_empty
+  }
   let(:aiport_plane_takes_off) {
     airport_plane_landed.take_off(plane)
     airport_plane_landed
@@ -33,6 +37,10 @@ describe Airport do
 
       it "Airport capacity can change if set to a different number" do
         expect(airport_custom_capacity.capacity).to eq(50)
+      end
+
+      it "Raises an error if airport is full and try to land plane" do
+        expect{airport_full.land(plane)}.to raise_error("Cannot land, airport full")
       end
 
     end

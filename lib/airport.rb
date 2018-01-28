@@ -12,6 +12,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Cannot land, airport full" if full?
     @hangar << plane
   end
 
@@ -19,5 +20,12 @@ class Airport
     @hangar.delete(plane)
     puts "Plane #{plane} has left the hangar"
   end
+
+#TODO - make a module witht these core functionalities
+  private
+
+    def full?
+      @hangar.count >= @capacity
+    end
 
 end
