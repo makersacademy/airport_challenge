@@ -1,10 +1,15 @@
 class Weather
+
   def stormy?
     random_weather == :stormy
   end
 
+  private
+
+  WEATHER = [:stormy, :sunny, :sunny, :sunny]
+
   def random_weather
-    possible_weather = [:stormy, :sunny, :sunny, :sunny]
-    possible_weather.sample
+    WEATHER.sample
   end
+
 end

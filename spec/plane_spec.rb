@@ -1,13 +1,12 @@
 require 'plane'
 require 'airport'
-require 'weather'
 
 describe Plane do
   subject(:plane) { described_class.new }
   let(:airport) { Airport.new(weather) }
   let(:weather) { double :Weather, stormy?: false }
 
-  describe '#planes' do
+  describe '#status' do
 
     it "returns the current status of the plane" do
       expect(subject.status).to eq "In air"
