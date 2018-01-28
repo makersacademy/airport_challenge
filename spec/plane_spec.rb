@@ -9,6 +9,7 @@ describe Plane do
     it 'lands self at an airport' do
       airport = double('airport',:planes => [])
       allow(airport).to receive(:weather)
+      allow(airport).to receive(:is_full?)
       subject.land(airport)
       expect(airport.planes).to include(subject)
     end
@@ -18,28 +19,32 @@ describe Plane do
       allow(airport).to receive(:weather){"stormy"}
       expect{subject.land(airport)}.to raise_error "It's stormy here. Cannot land at this airport"
     end
+
+    it 'raises and error when the airport is full' do
+      airport = double('airport',:planes => [])
+      allow(airport).to receive(:weather)
+      allow(airport).to receive(:is_full?){true}
+      expect{subject.land(airport)}.to raise_error "This airport is full. Cannot land here"
+    end
   end
 
   describe '#take_off' do
 
-    let(:airport){double('airport', :planes => [])}
+    let(:airport){double('airport', :planes => [], :weather => "fine", :is_full? => nil)}
     let(:plane){Plane.new}
 
     it 'takes off from its current airport' do
-      allow(airport).to receive(:weather)
       plane.land(airport)
       plane.take_off
       expect(airport.planes).to eql([])
     end
 
     it 'confirms self is no longer at the airport' do
-      allow(airport).to receive(:weather)
       plane.land(airport)
       expect{plane.take_off}.to output('Plane has left airport').to_stdout
     end
 
     it 'raises an error when airport.weather is stormy' do
-      allow(airport).to receive(:weather)
       plane.land(airport)
       allow(airport).to receive(:weather){"stormy"}
       expect{plane.take_off}.to raise_error "It's stormy. Cannot take off from this airport"

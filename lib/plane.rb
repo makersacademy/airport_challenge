@@ -24,6 +24,8 @@ private
   def landing_status(airport)
     if airport.weather == "stormy"
       fail "It's stormy here. Cannot land at this airport"
+    elsif airport.is_full?
+      fail "This airport is full. Cannot land here"
     else
       true
     end

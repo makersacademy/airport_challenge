@@ -1,16 +1,23 @@
 class Airport
 
+  DEFAULT_CAPACITY = 20
+
   attr_accessor :planes
   attr_reader :weather
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @weather = set_weather
+    @capacity = capacity
   end
 
   def weather_report
     set_weather
     print "Today's weather is #{@weather}"
+  end
+
+  def is_full?
+    true if planes.count >= DEFAULT_CAPACITY
   end
 
   private
