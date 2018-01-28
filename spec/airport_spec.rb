@@ -7,21 +7,29 @@ describe Airport do
 
   describe '#land' do
     it "allows plane to land (add to array)" do
-      expect(subject.land(:plane)).to include :plane
+      expect(subject.land(plane)).to include plane
     end
   end
 
   describe '#take_off' do
     it "allows plane to take off(remove from array)" do
-      subject.land(:plane)
-      subject.take_off(:plane)
-      expect(subject.planes.include?(:plane)).to eq false
+      subject.land(plane)
+      subject.take_off(plane)
+      expect(subject.planes.include?(plane)).to eq false
     end
 
     it "confirms take off" do
-      subject.land(:plane)
-      expect(subject.take_off(:plane)).to eq("We have take off")
+      subject.land(plane)
+      expect(subject.take_off(plane)).to eq("We have take off")
     end
+
+    it "raises error if no planes to take off" do
+      expect { subject.take_off(plane) }.to raise_error("No planes available")
+    end
+  end
+
+  it "checks if the airport is empty" do
+    expect(subject).to be_empty
   end
 
 end
