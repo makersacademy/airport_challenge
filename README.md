@@ -56,9 +56,8 @@ Some particular issues that arose
 > This arose in Airport#take_off. In the end I decided it was reasonable to include attr_reader :planes to allow air traffic controllers to see the list of planes currently landed at the airport, but it is easy to see that there are scenarios where this might not be a solution.
 
 * Best practice for testing that a boolean is returned but not the specific value.
->Currently I am just using
-```expect(method_under_test).to eq(true).or eq(false)
-```
+
+>Currently I am just using ```expect(method_under_test).to eq(true).or eq(false)```
 
 * The difference between including and requiring modules.
 >Currently weather.rb is required at the top of the page and the line ```extend weather``` is included at the top of the Airport class, but I am not clear what best practice would be.
