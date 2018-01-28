@@ -1,10 +1,12 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  attr_accessor :storage
+  attr_accessor :storage, :weather
 
-  def initialize
+  def initialize(weather = Weather.new)
     @storage = []
+    @weather = weather
   end
 
   def land(plane)
@@ -14,6 +16,7 @@ class Airport
   end
 
   def takeoff(plane)
+    fail "Storm's a-brewing - Better hold tight!" if @weather.stormy?
     storage.delete(plane)
     plane.takeoff
     "#{plane} has now taken off"

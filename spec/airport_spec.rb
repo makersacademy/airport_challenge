@@ -2,8 +2,9 @@ require 'airport'
 
 describe Airport do
 
-  let(:airport) {Airport.new}
+  subject(:airport) {described_class.new(weather)}
   let(:plane) {Plane.new}
+  let(:weather) {double :weather, stormy?: false}
 
   describe '#land' do
     before(:each) do
@@ -16,12 +17,15 @@ describe Airport do
   end
 
   describe '#takeoff' do
-    before(:each) do
-      airport.takeoff(plane)
-    end
 
     it 'releases a plane due for takeoff' do
+      airport.takeoff(plane)
       expect(airport.storage.include?(plane)). to eq false
+    end
+
+    it 'raises error if weather is stormy' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect {airport.takeoff(plane)}.to raise_error "Storm's a-brewing - Better hold tight!"
     end
   end
 end
