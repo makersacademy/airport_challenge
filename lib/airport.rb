@@ -1,4 +1,5 @@
 require_relative "Plane"
+require_relative "Weather"
 
 class Airport
 
@@ -13,7 +14,14 @@ class Airport
   end
 
   def take_off(plane)
+    raise "Cannot take off in stormy weather" if stormy?
     @hangar.delete(plane)
+  end
+
+  private
+
+  def stormy?
+    rand(10) < 2
   end
 
 end

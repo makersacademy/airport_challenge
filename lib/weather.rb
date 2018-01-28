@@ -1,7 +1,9 @@
 class Weather
 
+  attr_reader :stormy
+
   def stormy?
-    true
+    @stormy = true
   end
 
 end

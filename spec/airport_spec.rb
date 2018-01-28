@@ -26,8 +26,14 @@ describe Airport do
     end
 
     it "removes plane from the airport after take_off" do
+      allow(subject).to receive(:stormy?).and_return false
       subject.take_off(plane)
       expect(subject.hangar).to eq([])
+    end
+
+    it "Cannot take_off in stormy weather" do
+      allow(subject).to receive(:stormy?).and_return true
+      expect { subject.take_off(plane) }.to raise_error("Cannot take off in stormy weather")
     end
 
   end
