@@ -18,6 +18,14 @@ describe Airport do
 
   describe "#land_plane" do
 
+      it 'only lands plane if plane is not landed already' do
+        allow(airport.weather).to receive(:stormy).and_return false
+        allow(large_airport.weather).to receive(:stormy).and_return false
+        landed_plane = plane
+        large_airport.land(landed_plane)
+        expect{airport.land(landed_plane)}.to raise_error "That plane has landed elsewhere"
+      end
+
       it "has plane in hangar after landing" do
         allow(airport.weather).to receive(:stormy).and_return false
         airport.land(plane)
@@ -26,7 +34,7 @@ describe Airport do
 
       it "prevents landing if airport is full " do
         allow(large_airport.weather).to receive(:stormy).and_return false
-        large_airport.capacity.times {large_airport.land(plane)}
+        large_airport.capacity.times {large_airport.land(Plane.new)}
         expect{large_airport.land(plane)}.to raise_error "Airport is full, you cannot land."
       end
 
