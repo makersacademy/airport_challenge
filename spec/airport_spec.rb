@@ -4,9 +4,6 @@ describe Airport do
 
   let(:plane) { double("A plane") }
 
-  it { is_expected.to respond_to(:land).with(1).argument }
-  it { is_expected.to respond_to(:take_off) }
-
   context "#land" do
 
     it "lands a plane" do
