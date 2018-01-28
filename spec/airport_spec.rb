@@ -9,12 +9,15 @@ describe Airport do
 
   context "#land" do
 
-    before(:each) do
+    it "lands a plane" do
+      allow(subject).to receive(:stormy?).and_return false
       subject.land(plane)
+      expect(subject.hangar).to include plane
     end
 
-    it "lands a plane" do
-      expect(subject.hangar).to include plane
+    it "Cannot land in stormy weather" do
+      allow(subject).to receive(:stormy?).and_return true
+      expect { subject.land(plane) }.to raise_error("Cannot land in stormy weather")
     end
 
   end
@@ -22,11 +25,11 @@ describe Airport do
   context "#take_off" do
 
     before(:each) do
+      allow(subject).to receive(:stormy?).and_return false
       subject.land(plane)
     end
 
     it "removes plane from the airport after take_off" do
-      allow(subject).to receive(:stormy?).and_return false
       subject.take_off(plane)
       expect(subject.hangar).to eq([])
     end

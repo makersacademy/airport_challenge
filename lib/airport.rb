@@ -1,5 +1,4 @@
 require_relative "Plane"
-require_relative "Weather"
 
 class Airport
 
@@ -10,6 +9,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Cannot land in stormy weather" if stormy?
     @hangar << plane
   end
 
