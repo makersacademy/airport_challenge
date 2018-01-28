@@ -9,15 +9,18 @@ describe Airport do
 
   context "#land" do
     it "lands a plane" do
-      expect(subject.land(plane)).to eq(plane)
+      expect(subject.land(plane)).to eq([plane])
     end
+
   end
 
   context "#take_off" do
     it "removes plane from the airport after take_off" do
       subject.land(plane)
-      expect(subject.take_off).to eq(nil)
+      subject.take_off(plane)
+      expect(subject.hangar).to eq([])
     end
+
   end
 
 end
