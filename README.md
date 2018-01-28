@@ -17,9 +17,10 @@ Mini personal code review: My appraisal of my attempt at the weekend challenge
 
 * I found writing the core code was quite an enjoyable process. I did not get stuck anywhere as I built up the core functionality through BDD, which took c.3 hours. I think this was due to the level of similarity with Boris bikes and due to applying my learnings from the week, particularly to very carefully read each and every error message (which meant I didn't write erroneous tests)
 * Next steps if I had the time would be to simplify the test code (particularly the 'let' examples, which are long and take too much focus to keep track of) and spend more time ensuring the code was of good quality and refactored (e.g. fulling applying XP principles).
+* There is also of course a lot of additional functionality that could be built, but I enjoyed applying the YAGNI principles in this case (You aren't gonna need it!)
 * I was not sure if I should build direct tests of the boolean methods, which currently don't have tests as they are private methods
 * I would like to review the quality of the design/structure of my code and tests, and verify with an experienced developer what I should focus on to better apply XP principles
-
+* I made a first attempt at a feature test using a spec file, but don't know how to do this in practice, so keen to learn! 
 
 Airport Challenge
 =================
