@@ -1,9 +1,11 @@
 require 'plane'
 require 'airport'
+require 'weather'
 
 describe Plane do
   subject(:plane) { described_class.new }
-  let(:airport) { Airport.new }
+  let(:airport) { Airport.new(weather) }
+  let(:weather) { double :Weather, stormy?: false }
 
   describe '#planes' do
 

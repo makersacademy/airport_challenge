@@ -1,9 +1,11 @@
 require 'airport'
 require 'plane'
+require 'weather'
 
 describe Airport do
-  subject(:airport) { described_class.new }
+  subject(:airport) { described_class.new(weather) }
   let(:plane) { Plane.new }
+  let(:weather) { double :weather, stormy?: false }
 
   it "is empty when created" do
     expect(subject.planes).to eq []
@@ -27,7 +29,7 @@ describe Airport do
 
     describe '#take_off' do
 
-      let(:another_plane) {Plane.new}
+      let(:another_plane) { Plane.new }
 
       it "releases a plane from the airport" do
         subject.land(plane)
@@ -49,7 +51,7 @@ describe Airport do
         subject.land(plane)
         subject.land(another_plane)
         subject.take_off(plane)
-        expect{ subject.take_off(plane) }.to raise_error "Plane has already taken off"
+        expect { subject.take_off(plane) }.to raise_error "Plane is already in the air"
       end
 
     end
@@ -57,6 +59,20 @@ describe Airport do
   end
 
   context 'When it is stormy' do
+
+    let(:weather) { double :weather, stormy?: true }
+
+    describe '#stormy?' do
+      it 'returns true if the weather is stormy' do
+        expect(weather.stormy?).to eq true
+      end
+    end
+
+    describe '#land' do
+      it "doesn't allow planes to land" do
+        expect { subject.land(plane) }.to raise_error "It is too stormy to land"
+      end
+    end
 
   end
 

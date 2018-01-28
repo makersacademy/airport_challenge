@@ -1,22 +1,25 @@
-class Airport
-  attr_reader :planes
+require_relative 'weather'
 
-  def initialize
+class Airport
+  attr_reader :planes, :weather
+
+  def initialize(weather = Weather.new)
     @planes = []
+    @weather = weather
   end
 
   def land(plane)
-    if planes.include? plane
-      raise "Plane has already landed"
-    end
+    raise "Plane has already landed" if planes.include? plane
+    raise "It is too stormy to land" if weather.stormy?
     plane.status = "At airport"
     planes << plane
   end
 
   def take_off(plane)
     raise "No planes available" if planes.empty?
-    raise "Plane has already taken off" unless planes.include?(plane)
+    raise "Plane is already in the air" unless planes.include?(plane)
     plane.status = "In air"
     planes.delete(plane)
   end
+
 end
