@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 require_relative 'plane.rb'
+require_relative 'weather.rb'
 # top-level class comment thing
 class Airport
-  attr_reader :airport_hangar
+  attr_reader :airport_hangar, :weather
 
   def initialize
     @airport_hangar = []
-    # @weather = Weather.new
+    @weather = Weather.new
   end
 
   def arrivals(plane)
@@ -16,11 +17,14 @@ class Airport
   end
 
   def departures(plane)
+    raise 'the weather is too bad!' if stormy?
     @airport_hangar.delete(plane)
     "#{plane} has taken off!"
   end
 
-  # def bad_weather(storms)
-  #   @weather << storms
-  # end
+  private
+
+  def stormy?
+    weather.stormy?
+  end
 end

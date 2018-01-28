@@ -13,33 +13,46 @@ describe Airport do
   # it { is_expected.to respond_to(:arrivals).with(1).argument }
   # it { is_expected.to respond_to(:departures).with(1).argument }
 
-  context '#monitors arrivals and departures' do
-    it 'allows planes to arrive' do
-      expect(airport.arrivals(plane)).to eq "#{plane} has landed!"
+  # context '#monitors arrivals and departures' do
+  #   it 'allows planes to arrive' do
+  #     expect(airport.arrivals(plane)).to eq "#{plane} has landed!"
+  #   end
+  #
+  # #   it 'allows planes to depart' do
+  # #     airport.departures(plane)
+  # #     expect(airport.departures(plane)).to eq "#{plane} has taken off!"
+  # #   end
+  # # end
+  # end
+
+  describe '#arrivals and #departures' do
+    it 'stores arrivals in the airport hangar' do
+      airport.arrivals(plane)
+      expect(airport.airport_hangar).to eq [plane]
     end
+
+    # it 'arrival can be confirmed' do
+    #   airport.departures(plane)
+    #   expect(airport.airport_hangar).to include plane
+    # end
 
     it 'allows planes to depart' do
       airport.departures(plane)
       expect(airport.departures(plane)).to eq "#{plane} has taken off!"
     end
-  end
 
-  describe '#stores and removes planes in the airport hangar' do
-    it 'stores arrivals in airport hangar' do
-      airport.arrivals(plane)
-      expect(airport.airport_hangar).to include plane
-    end
-
-    it 'removes departures from airport hangar' do
+    it 'departure can be confirmed' do
       airport.departures(plane)
       expect(airport.airport_hangar).not_to include plane
     end
   end
 
-  # describe '#prevents arrivals and departures in bad weather' do
-  #   it 'raises an error when the weather is stormy' do
-  #     allow(:airport).to receive(:weather) { stormy }
-  #     expect(airport.departures(plane)).to raise_error('bad weather!')
-  #   end
-  # end
+  describe '#weather changes' do
+    context '#bad weather' do
+      it '#prevents arrivals and departures if the weather is stormy' do
+        airport.arrivals(plane)
+        expect { airport.departures(plane) }.to raise_error('the weather is too bad!')
+      end
+    end
+  end
 end
