@@ -6,7 +6,7 @@ class Airport
 
   DEFAULT_CAPACITY = 6
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
     @capacity = capacity
     @weather = Weather.new
@@ -30,22 +30,32 @@ class Airport
     "#{plane} has just taken off"
   end
 
+  private
+
   def before_land(plane)
-    raise "Already in hangar" if has_plane?(plane)
-    raise "Hangar is at its full capacity" if is_full?
-    raise "Can't land due to stormy weather" if weather.stormy?
+    raise "Already in hangar" if plane?(plane)
+    raise "Hangar is at its full capacity" if full?
+
+    if weather.stormy?
+      weather.change
+      raise "Can't land due to stormy weather"
+    end
   end
 
   def before_take_off(plane)
-    raise "Plane not in hangar" if !has_plane?(plane)
-    raise "Can't take off due to stormy weather" if weather.stormy?
+    raise "Plane not in hangar" unless plane?(plane)
+
+    if weather.stormy?
+      weather.change
+      raise "Can't take off due to stormy weather"
+    end
   end
 
-  def has_plane?(plane)
-    hangar.include?(plane) ? true : false
+  def plane?(plane)
+    hangar.include?(plane)
   end
 
-  def is_full?
-    hangar.count == capacity ? true : false
+  def full?
+    hangar.count == capacity
   end
 end
