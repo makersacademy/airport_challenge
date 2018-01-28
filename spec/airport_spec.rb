@@ -3,6 +3,17 @@ require "airport"
 describe Airport do
   let(:plane) {:plane}
   subject(:airport) {described_class.new}
+  subject(:large_airport) {described_class.new 40}
+
+  describe "#initialize" do
+    it "defaults to 15 capacity" do
+      expect(airport.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it "can have a different capacity size" do
+      expect(large_airport.capacity).to eq 40
+    end
+  end
 
   describe "#land_plane" do
       it "should take a plane and add it to the hangar" do
@@ -16,10 +27,10 @@ describe Airport do
         expect(airport.hangar).to include plane
       end
 
-      it "prevents landing if airport is full" do
-        allow(airport.weather).to receive(:stormy).and_return false
-        described_class::DEFAULT_CAPACITY.times {airport.land(plane)}
-        expect{airport.land(plane)}.to raise_error "Airport is full, you cannot land."
+      it "prevents landing if airport is full " do
+        allow(large_airport.weather).to receive(:stormy).and_return false
+        large_airport.capacity.times {large_airport.land(plane)}
+        expect{large_airport.land(plane)}.to raise_error "Airport is full, you cannot land."
       end
 
       context "stormy" do
