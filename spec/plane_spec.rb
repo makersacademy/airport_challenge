@@ -13,13 +13,13 @@ describe Plane do
       airport.land(subject)
     end
 
-    it 'shows \'grounded\' if plane has landed in airport' do
-      expect(subject.status).to eq "Grounded"
+    it 'states plane is in airport' do
+      expect(subject.status).to eq :grounded
     end
 
-    it 'shows \'Airborne\' if plane has taken off from airport' do
+    it 'states plane has left airport' do
       airport.takeoff(subject)
-      expect(subject.status).to eq "Airborne"
+      expect(subject.status).to eq :airborne
     end
 
   end

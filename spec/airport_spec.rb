@@ -34,12 +34,14 @@ describe Airport do
     end
 
     it 'raises error if landed plane tries to land' do
-      expect {subject.land(plane)}.to raise_error "Too late mate - Plane is already down!"
+      message = "Too late mate - Plane is already down!"
+      expect {subject.land(plane)}.to raise_error message
     end
 
     it 'raises error if airport is full', :empty do
       allow(subject).to receive(:full?).and_return(true)
-      expect {subject.land(plane)}.to raise_error "No room at the Inn - Try another airport!"
+      message = "No room at the Inn - Try another airport!"
+      expect {subject.land(plane)}.to raise_error message
     end
   end
 
@@ -59,13 +61,15 @@ describe Airport do
     end
 
     it 'raises error if storage is empty', :empty do
-      expect {subject.takeoff(plane)}.to raise_error "No planes available"
+      message = "No planes available"
+      expect {subject.takeoff(plane)}.to raise_error message
     end
 
     it 'raises error if flying plane tries to take-off' do
       subject.land(plane_2)
       subject.takeoff(plane)
-      expect {subject.takeoff(plane)}.to raise_error "You know we are flying right now, right?"
+      message = "You know we are flying right now, right?"
+      expect {subject.takeoff(plane)}.to raise_error message
     end
   end
 
@@ -73,13 +77,15 @@ describe Airport do
 
     it 'raises error if plane tries to land during storm' do
       allow(weather).to receive(:stormy?).and_return(true)
-      expect {subject.land(plane)}.to raise_error "Storm's a-brewing - Better divert course!"
+      message = "Storm's a-brewing - Better divert course!"
+      expect {subject.land(plane)}.to raise_error message
     end
 
     it 'raises error if plane tries to take-off during storm' do
       subject.storage << plane
       allow(weather).to receive(:stormy?).and_return(true)
-      expect {subject.takeoff(plane)}.to raise_error "Storm's a-brewing - Better hold tight!"
+      message = "Storm's a-brewing - Better hold tight!"
+      expect {subject.takeoff(plane)}.to raise_error message
     end
   end
 end

@@ -1,13 +1,13 @@
 class Weather
   def stormy?
-    random_weather == :stormy
+    random_outlook == :stormy
   end
 
   private
 
-  WEATHER = [:sunny, :sunny, :stormy, :sunny, :sunny]
+  OUTLOOKS = [:sunny, :sunny, :stormy, :sunny, :sunny]
 
-  def random_weather
-    WEATHER.sample
+  def random_outlook
+    OUTLOOKS.sample
   end
 end

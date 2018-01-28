@@ -21,6 +21,22 @@ taking off, or not allowing any planes to land when the airport is at full capac
 
 * Once this structure was in place, it became easier to manage edge cases, such as making sure a place could not take off if it was already flying.
 
+* Given more time, I would look at improving the encapsulation of my programme e.g. using more private methods to reduce access inside airport.rb
+
+### Example Code
+
+```
+2.5.0 :001 > require './lib/airport.rb'
+ => true
+2.5.0 :002 > airport = Airport.new
+ => #<Airport:0x00007fab4d0cb660 @storage=[], @weather=#<Weather:0x00007fab4d0ca148>, @capacity=20>
+2.5.0 :003 > plane = Plane.new
+ => #<Plane:0x00007fab4d043328 @status=nil>
+2.5.0 :004 > airport.land(plane)
+#<Plane:0x00007fab4d043328> has now landed.
+ => [#<Plane:0x00007fab4d043328 @status="Grounded">]
+```
+
 ### Install and Execution
 
 Install Bundler and the relevant gems with the below commands:
