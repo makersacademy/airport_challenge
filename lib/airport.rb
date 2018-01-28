@@ -19,8 +19,8 @@ class Airport
   end
 
   def take_off(plane)
-    raise "Stormy, cannot take off!" if stormy?
     raise "That plane is not in the hangar" if in_hangar?(plane) == false
+    raise "Stormy, cannot take off!" if stormy?
     @hangar.delete(plane)
     puts "Plane #{plane} has left the hangar"
   end
