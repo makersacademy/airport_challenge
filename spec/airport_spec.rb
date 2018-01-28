@@ -25,6 +25,11 @@ describe Airport do
         expect { subject.land(plane) }.to raise_error "Plane has already landed"
       end
 
+      it "raises an error if the airport is full" do
+        4.times {subject.land(Plane.new)}
+        expect {subject.land(Plane.new)}.to raise_error "Airport is full"
+      end
+
     end
 
     describe '#take_off' do

@@ -2,6 +2,7 @@ require_relative 'weather'
 
 class Airport
   attr_reader :planes, :weather
+  CAPACITY = 5
 
   def initialize(weather = Weather.new)
     @planes = []
@@ -10,6 +11,7 @@ class Airport
 
   def land(plane)
     raise "Plane has already landed" if planes.include? plane
+    raise "Airport is full" if planes.count >= CAPACITY
     raise "It is too stormy to land" if weather.stormy?
     plane.status = "At airport"
     planes << plane
