@@ -12,4 +12,13 @@ RSpec.describe Airport do
       expect(subject.store(plane)).to eq [plane]
     end
   end
+
+  it {is_expected.to respond_to(:release)}
+
+  describe '#release' do
+    it 'releases a plane for takeoff' do
+      subject.store(plane)
+      expect(subject.release(plane)).to eq plane
+    end
+  end
 end

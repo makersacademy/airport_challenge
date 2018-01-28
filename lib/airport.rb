@@ -8,4 +8,8 @@ class Airport
   def store(plane)
     storage << plane
   end
+
+  def release(plane)
+    storage.delete(plane)
+  end
 end

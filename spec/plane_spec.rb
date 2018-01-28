@@ -8,8 +8,14 @@ RSpec.describe Plane do
 
   describe '#land' do
 
-    it 'records plane' do
-      expect(subject.land(plane)).to eq plane
+    it 'returns output that plane has landed' do
+      expect(subject.land(plane)).to eq "#{plane} has now landed."
+    end
+  end
+
+  describe '#takeoff' do
+    it 'returns output that plane has now departed' do
+      expect(subject.takeoff(plane)).to eq "#{plane} has now departed."
     end
   end
 end
