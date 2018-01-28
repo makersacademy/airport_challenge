@@ -1,3 +1,5 @@
+require_relative 'plane'
+
 class Airport
   attr_accessor :storage
 
@@ -5,11 +7,8 @@ class Airport
     @storage = []
   end
 
-  def store(plane)
+  def land(plane)
     storage << plane
-  end
-
-  def release(plane)
-    storage.delete(plane)
+    "#{plane} has now landed."
   end
 end
