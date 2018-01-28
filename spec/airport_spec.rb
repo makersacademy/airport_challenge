@@ -15,15 +15,15 @@ describe Airport do
     airport_empty
   }
   let(:aiport_plane_takes_off) {
+    allow(airport_empty).to receive(:stormy?).and_return(false)
     airport_plane_landed.take_off(plane)
     airport_plane_landed
   }
   let(:airport_custom_capacity) {Airport.new(50)}
 
-  it { is_expected.to respond_to(:land).with(1).argument}
-  it { is_expected.to respond_to(:take_off).with(1).argument}
-
   context "#land(plane)" do
+
+    it { is_expected.to respond_to(:land).with(1).argument}
 
     context "#stormy?" do
 
@@ -58,12 +58,23 @@ describe Airport do
 
   context "#take_off(plane)" do
 
-    it "allows a plane to take off and removes it from the hangar" do
-      expect(aiport_plane_takes_off.hangar).not_to include(plane)
-    end
+    it { is_expected.to respond_to(:take_off).with(1).argument}
 
-    it "confirms that the plane is no longer at the airport" do
-      expect{airport_plane_landed.take_off(plane)}.to output("Plane #{plane} has left the hangar\n").to_stdout
+    context "#stormy?" do
+
+      it "Not stormy: allows a plane to take off and removes it from the hangar" do
+        expect(aiport_plane_takes_off.hangar).not_to include(plane)
+      end
+
+      it "Not stormy: confirms that the plane is no longer at the airport" do
+        expect{airport_plane_landed.take_off(plane)}.to output("Plane #{plane} has left the hangar\n").to_stdout
+      end
+
+      it "Stormy: Doesn't allow plane to take off" do
+        allow(airport_plane_landed).to receive(:stormy?).and_return(true)
+        expect{airport_plane_landed.take_off(plane)}.to raise_error("Stormy, cannot take off!")
+      end
+
     end
 
   end
