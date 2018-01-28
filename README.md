@@ -1,3 +1,15 @@
+My approach to solving the challenge
+=================
+
+Development process
+-----
+* First, I read through the **User Stories** and drew their **Domain Models** in order to have a clear idea about the different objects and messages of each app feature
+* I focused on writing RSpec **Feature Tests** (divided into fully-working **Unit Tests**) for the different User Stories. Once I finished a Feature Test, I checked a list that I made with edge cases and worked on the relevant ones for that Feature Test. This was the cycle I followed all the time, never moving to a different Feature Test until I verified the previous one was working as expected.
+* I decided to work on the stormy weather User Stories at the end as it was easier for me to accommodate them in my app once I had all the functionalites done because of the randomness being related to other functionalities.
+
+* My next step would be to ask the client about the weather check procedure, as it is not clear how often the plane should try to land or take off. For now, I decided to change the weather again at random after it was randomly set to stormy for a given airport. Otherwise, the weather would be always stormy at that airport and it would have to close down eventually due to its inability to instruct planes to land or take off.
+
+
 Airport Challenge
 =================
 

@@ -6,7 +6,7 @@ class Weather
   end
 
   def change
-    @condition = rand(1..100) <= 40 ? 'stormy' : 'sunny'
+    @condition = rand(1..100) <= 3 ? 'stormy' : 'sunny'
   end
 
   def stormy?
