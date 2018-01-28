@@ -9,7 +9,7 @@ class Airport
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
-    @weather = Weather.new
+    @weather = Weather.new.weather
     @capacity = capacity
   end
 
@@ -20,5 +20,5 @@ class Airport
   def full?
     true if planes.length >= @capacity
   end
-  
+
 end
