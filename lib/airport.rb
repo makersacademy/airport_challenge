@@ -21,7 +21,6 @@ class Airport
   end
 
   def taking_off(plane)
-    raise 'this plane has already taken-off!' unless @airport_hangar.include?(plane)
     airport_hangar.delete(plane)
     @taxied_planes -= 1
     "#{plane} has taken-off!"

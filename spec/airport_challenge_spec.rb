@@ -20,21 +20,30 @@ describe Airport do
       expect(airport.landing(plane)).to eq "#{plane} has landed!"
     end
 
-    it 'stores landed planes in the airport hangar' do
+    it 'stores planes that have landed in the "airport hangar"' do
       airport.landing(plane)
       expect(airport.airport_hangar).to eq [plane]
     end
 
-    it 'raises an error if a plane tries to land (or take-off) twice consecutively!' do
+    it 'raises an error if a plane tries to land twice consecutively' do
       airport.landing(plane)
       expect { airport.landing(plane) }.to raise_error('this plane has already landed!')
-      airport.taking_off(plane)
-      expect { airport.taking_off(plane) }.to raise_error('this plane has already taken-off!')
     end
   end
+
+  context '#taking_off' do
+    it 'allows planes to take off' do
+      expect(airport.taking_off(plane)).to eq "#{plane} has taken-off!"
+    end
+
+    it 'allows departures to be confirmed' do
+      airport.taking_off(plane)
+      expect(airport.airport_hangar).not_to include plane
+    end
+  end
+end
 
   # # it 'does not allow planes to depart during bad weather' do
   # #   allow(airport.weather_forecast).to receive(:weather_forecast[0])
   # #   expect { airport.departures(plane) }.to raise_error('flights suspended due to bad weather!')
   # # end
-end
