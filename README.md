@@ -1,14 +1,39 @@
 # Airport Challenge
 
+Completed this as the first weekend challenge at Makers Academy.
+
+This program emulates software for air traffic controllers to control the flow of planes at an airport.
+
+## How to use
+
+I am Ruby Version 2.5.0
+
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
+irb -r './lib/plane.rb'
+
+```
+
+### Sample output
+
+```
+Lauras-MBP:airport_challenge lwkchan$ irb -r './lib/plane.rb'
+2.5.0 :001 > heathrow = Airport.new
+ => #<Airport:0x00007fc85d91dfc0 @planes=[], @weather=#<Weather:0x00007fc85d91def8 @weather=:fine>, @capacity=20>
+2.5.0 :002 > boeing747 = Plane.new
+ => #<Plane:0x00007fc85d990610>
+2.5.0 :003 > Luton = Airport.new(30)
+ => #<Airport:0x00007fc85d9826f0 @planes=[], @weather=#<Weather:0x00007fc85d982678 @weather=:fine>, @capacity=30>
+2.5.0 :004 > boeing747.land(Luton)
+ => #<Airport:0x00007fc85d9826f0 @planes=[#<Plane:0x00007fc85d990610 @current_airport=#<Airport:0x00007fc85d9826f0 ...>>], @weather=#<Weather:0x00007fc85d982678 @weather=:fine>, @capacity=30>
+2.5.0 :005 > boeing747.take_off
+Plane has left airport => nil
+
+```
+
+### To test
+
+```
+rspec
 
 ```
 
