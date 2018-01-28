@@ -25,13 +25,19 @@ describe Airport do
 
     it { is_expected.to respond_to(:land).with(1).argument}
 
-    context "#stormy?" do
+    context "#stormy? = false" do
 
-      it "Not stormy: lands a plane and adds it to the hangar" do
+      it "lands a plane and adds it to the hangar" do
         expect(airport_plane_landed.hangar).to include(plane)
       end
 
-      it "Stormy: plane cannot land when stormy" do
+      # TODO - Raises error - landed planes cannot land again
+
+    end
+
+    context "#stormy? = true" do
+
+      it "plane cannot land when stormy" do
         allow(airport_empty).to receive(:stormy?).and_return(true)
         expect{airport_empty.land(plane)}.to raise_error("Stormy, cannot land!")
       end
@@ -60,17 +66,21 @@ describe Airport do
 
     it { is_expected.to respond_to(:take_off).with(1).argument}
 
-    context "#stormy?" do
+    context "#stormy? = false" do
 
-      it "Not stormy: allows a plane to take off and removes it from the hangar" do
+      it "Allows a plane to take off and removes it from the hangar" do
         expect(aiport_plane_takes_off.hangar).not_to include(plane)
       end
 
-      it "Not stormy: confirms that the plane is no longer at the airport" do
+      it "Confirms that the plane is no longer at the airport" do
         expect{airport_plane_landed.take_off(plane)}.to output("Plane #{plane} has left the hangar\n").to_stdout
       end
 
-      it "Stormy: Doesn't allow plane to take off" do
+    end
+
+    context "#stormy? = true" do
+
+      it "Doesn't allow plane to take off" do
         allow(airport_plane_landed).to receive(:stormy?).and_return(true)
         expect{airport_plane_landed.take_off(plane)}.to raise_error("Stormy, cannot take off!")
       end

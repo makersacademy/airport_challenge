@@ -27,7 +27,7 @@ class Airport
   private
 
     def full?
-      @hangar.count >= @capacity
+      hangar.count >= capacity
     end
 
     def stormy?
