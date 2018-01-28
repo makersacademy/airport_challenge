@@ -1,8 +1,10 @@
-class Airport
+require_relative './weather'
 
+class Airport
+  extend Weather
   DEFAULT_CAPACITY = 10
 
-  attr_reader :planes 
+  attr_reader :planes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
