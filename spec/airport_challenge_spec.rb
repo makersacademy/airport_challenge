@@ -42,8 +42,10 @@ describe Airport do
     end
   end
 
-  # context '#bad_weather' do
-  #   it 'prevents departures if the weather is stormy' do
+  context '#bad_weather' do
+    it 'prevents departures if the weather is stormy' do
+    end
+  end
   #     allow(airport.weather).to receive(:storm_forecast).and_return true
   #     airport.departures(plane)
   #     expect { airport.departures(plane) }.to raise_error('the weather is too bad!')
