@@ -8,7 +8,7 @@ class Airport
   end
 
   def land(plane)
-    raise "Airport at capacity" if planes.length >= capacity
+    raise "Airport at capacity" if at_capacity?
     raise "Too stormy to land" if stormy?
     planes << plane
   end
@@ -25,6 +25,10 @@ class Airport
 
   def stormy?
     Weather::stormy?
+  end
+
+  def at_capacity?
+    planes.length >= capacity
   end
 
 end
