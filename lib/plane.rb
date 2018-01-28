@@ -2,7 +2,7 @@ class Plane
 
   attr_reader :airbourne
 
-  def initialize(airbourne=true)
+  def initialize(airbourne = true)
     @airbourne = airbourne
   end
 

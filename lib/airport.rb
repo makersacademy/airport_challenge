@@ -12,7 +12,7 @@ class Airport
   end
 
   def land(plane)
-    raise "Plane is not airbourne" if !airbourne?(plane)
+    raise "Plane is not airbourne" unless airbourne?(plane)
     raise "Cannot land in stormy weather" if stormy?
     raise "Cannot land while airport is full" if full?
     plane.landed
