@@ -1,6 +1,6 @@
 require "airport"
 require "plane"
-require "weather"
+# require "weather"
 
 describe Airport do
   airport = Airport.new
@@ -37,13 +37,12 @@ describe "Full airport" do
 end
 
 describe "Airport empty" do
-airport = Airport.new
-plane = Plane.new
-it 'raises an error when airport is empty' do
-  expect { airport.take_off(plane) }.to raise_error 'Airport is empty'
+  airport = Airport.new
+  plane = Plane.new
+  it 'raises an error when airport is empty' do
+     expect { airport.take_off(plane) }.to raise_error 'Airport is empty'
   end
 end
-
 
 
 
@@ -51,8 +50,8 @@ end
   # airport = Airport.new
   # plane = Plane.new
   # weather = Weather.new
-  # it "doesn't allow planes to land" do
-  #   airport.weather = stormy?
+  # it 'raises an error when airport is stormy' do
+  #   allow(airport).to receive(:stormy?).and return true
   #       expect { airport.land(plane) }.to raise_error "Too stormy to land"
   #     end
   #   end
