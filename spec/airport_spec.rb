@@ -78,7 +78,7 @@ describe Airport do
 
       it "Raises error if plane taking off is not in the hangar" do
         allow(airport_empty).to receive(:in_hangar?).and_return(false)
-        expect{airport_empty.take_off}. to raise_error("That plane is not in the hangar")
+        expect{airport_empty.take_off(plane)}.to raise_error("That plane is not in the hangar")
       end
 
     end

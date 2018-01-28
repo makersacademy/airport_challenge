@@ -19,6 +19,7 @@ class Airport
 
   def take_off(plane)
     raise "Stormy, cannot take off!" if stormy?
+    raise "That plane is not in the hangar" if in_hangar?(plane) == false
     @hangar.delete(plane)
     puts "Plane #{plane} has left the hangar"
   end
@@ -32,6 +33,10 @@ class Airport
 
     def stormy?
       true if rand(10) > 8
+    end
+
+    def in_hangar?(plane)
+      hangar.include?(plane)
     end
 
 end
