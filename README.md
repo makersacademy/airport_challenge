@@ -65,9 +65,8 @@ To run program
 -----
 In irb, enter the following:
 `require ./lib/airport.rb`
-`require ./lib/plane.rb`
 
-Example irb output
+Example irb output:
 
 ```
 $ irb
@@ -84,5 +83,5 @@ $ irb
 2.4.1 :006 > airport.take_off(plane)
  => #<Plane:0x007fa8f684d298 @status="In air">
 2.4.1 :007 > plane.status
- => "In air" 
+ => "In air"
 ```
