@@ -41,6 +41,10 @@ describe Plane do
       expect { subject.take_off }.to raise_error "It's stormy. Cannot take off from this airport"
     end
 
+    it 'raises an error when airplane is in flight' do
+      expect { subject.take_off }.to raise_error "You are currently in flight"
+    end
+
   end
 
 end
