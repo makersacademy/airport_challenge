@@ -9,13 +9,13 @@ describe Plane do
     expect(subject).to be_a Plane
   end
 
-  describe 'landed' do
-    it "responds to #landed?" do
-      expect(subject).to respond_to(:landed?)
-    end
+  # describe 'landed' do
+  #   it "responds to #landed?" do
+  #     expect(subject).to respond_to(:landed?)
+  #   end
 
-    it 'should return true if a plane has landed' do
-      expect(subject.landed?).to eq true
-    end
-  end
+  #   it 'should return true if a plane has landed' do
+  #     expect(subject.landed?).to eq true
+  #   end
+  # end
 end
