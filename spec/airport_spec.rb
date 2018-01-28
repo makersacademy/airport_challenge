@@ -3,25 +3,29 @@ require "airport"
 describe Airport do
 
   let(:plane) {double('A plane')}
-  let(:airport_empty) {Airport.new}
   let(:airport_plane_landed) {
-    allow(subject).to receive(:stormy?).and_return(false)
+    not_stormy
     subject.land(plane)
     subject
   }
   let(:airport_full) {
-    allow(airport_empty).to receive(:stormy?).and_return(false)
-    described_class::DEFAULT_CAPACITY.times {airport_empty.land(double('A plane'))}
-    airport_empty
+    not_stormy
+    described_class::DEFAULT_CAPACITY.times {subject.land(double('A plane'))}
+    subject
   }
   let(:aiport_plane_takes_off) {
-    allow(airport_empty).to receive(:stormy?).and_return(false)
+    allow(subject).to receive(:stormy?).and_return(false)
     airport_plane_landed.take_off(plane)
     airport_plane_landed
   }
   let(:custom_capacity) {50}
   let(:airport_custom_capacity) {Airport.new(custom_capacity)}
 
+  let(:not_stormy) {allow(subject).to receive(:stormy?).and_return(false)}
+  let(:stormy) {allow(subject).to receive(:stormy?).and_return(true)}
+
+  let(:in_hangar) {allow(subject).to receive(:in_hangar?).and_return(true)}
+  let (:not_in_hanger) {allow(subject).to receive(:in_hangar?).and_return(false)}
 
   context "#land(plane)" do
 
@@ -46,8 +50,8 @@ describe Airport do
     context "#stormy? = true" do
 
       it "plane cannot land when stormy" do
-        allow(airport_empty).to receive(:stormy?).and_return(true)
-        expect{airport_empty.land(plane)}.to raise_error("Stormy, cannot land!")
+        stormy
+        expect{subject.land(plane)}.to raise_error("Stormy, cannot land!")
       end
 
     end
@@ -55,7 +59,7 @@ describe Airport do
     context "#capacity - Testing capacity of airport works with landing planes" do
 
       it "Airport has a default capacity of 20 planes" do
-        expect(airport_empty.capacity).to eq(described_class::DEFAULT_CAPACITY)
+        expect(subject.capacity).to eq(described_class::DEFAULT_CAPACITY)
       end
 
       it "Airport capacity can change if set to a different number" do
@@ -89,8 +93,8 @@ describe Airport do
       context "#in_hangar == false" do
 
         it "Raises error if plane taking off is not in the hangar" do
-          allow(airport_empty).to receive(:in_hangar?).and_return(false)
-          expect{airport_empty.take_off(plane)}.to raise_error("That plane is not in the hangar")
+          allow(subject).to receive(:in_hangar?).and_return(false)
+          expect{subject.take_off(plane)}.to raise_error("That plane is not in the hangar")
         end
 
       end
@@ -100,8 +104,9 @@ describe Airport do
     context "#stormy? = true" do
 
       it "Doesn't allow plane to take off" do
-        allow(airport_plane_landed).to receive(:stormy?).and_return(true)
-        expect{airport_plane_landed.take_off(plane)}.to raise_error("Stormy, cannot take off!")
+        stormy
+        allow(subject).to receive(:in_hangar?).and_return(true)
+        expect{subject.take_off(plane)}.to raise_error("Stormy, cannot take off!")
       end
 
     end
