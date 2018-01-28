@@ -25,26 +25,21 @@ describe Airport do
   end
 
   describe '#land' do
-    before(:each) do
-      subject.land(plane)
+    before(:each) do |test|
+      subject.land(plane) unless test.metadata[:empty]
     end
 
     it 'stores plane that has landed' do
       expect(subject.storage).to include(plane)
     end
 
-    it 'raises error if weather is stormy' do
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect {subject.land(plane)}.to raise_error "Storm's a-brewing - Better divert course!"
-    end
-
-    it 'raises error if airport is full' do
-      allow(subject).to receive(:full?).and_return(true)
-      expect {subject.land(plane)}.to raise_error "No room at the Inn - Try another airport!"
-    end
-
     it 'raises error if landed plane tries to land' do
       expect {subject.land(plane)}.to raise_error "Too late mate - Plane is already down!"
+    end
+
+    it 'raises error if airport is full', :empty do
+      allow(subject).to receive(:full?).and_return(true)
+      expect {subject.land(plane)}.to raise_error "No room at the Inn - Try another airport!"
     end
   end
 
@@ -63,11 +58,6 @@ describe Airport do
       expect(subject.storage).not_to include plane
     end
 
-    it 'raises error if weather is stormy' do
-      allow(weather).to receive(:stormy?).and_return(true)
-      expect {subject.takeoff(plane)}.to raise_error "Storm's a-brewing - Better hold tight!"
-    end
-
     it 'raises error if storage is empty', :empty do
       expect {subject.takeoff(plane)}.to raise_error "No planes available"
     end
@@ -76,6 +66,20 @@ describe Airport do
       subject.land(plane_2)
       subject.takeoff(plane)
       expect {subject.takeoff(plane)}.to raise_error "You know we are flying right now, right?"
+    end
+  end
+
+  describe 'stormy scenarios' do
+
+    it 'raises error if plane tries to land during storm' do
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect {subject.land(plane)}.to raise_error "Storm's a-brewing - Better divert course!"
+    end
+
+    it 'raises error if plane tries to take-off during storm' do
+      subject.storage << plane
+      allow(weather).to receive(:stormy?).and_return(true)
+      expect {subject.takeoff(plane)}.to raise_error "Storm's a-brewing - Better hold tight!"
     end
   end
 end
