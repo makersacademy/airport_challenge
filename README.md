@@ -22,7 +22,7 @@ In the program you can:
 - create Airport (`Airport.new`) objects;
   - the default capacity of an airport is 5 planes, but you can set it to whatever value while creating a new airport.
 - create Plane (`Plane.new`) objects;
-  - at default, a new plane has a status of `flying` - is outside an airport. The initial status can be changed to `at_airport`.
+  - at default, a new plane has a status of `flying` - is outside an airport. The initial status can will be changed to `at_airport` when the plane lands at an airport.
 - land a plane at an airport (`plane.land(airport)`) only when:
   - it's sunny at the airport;
   - there are empty spots at the airport;
