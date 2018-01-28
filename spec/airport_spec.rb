@@ -1,8 +1,8 @@
 require "airport"
-require "plane"
 
 describe Airport do
-  let(:plane) {Plane.new}
+  let(:plane) {double('plane')}
+  let(:landed_plane) {double('landed plane', landed?: true)}
   subject(:airport) {described_class.new}
   subject(:large_airport) {described_class.new 40}
 
@@ -20,27 +20,30 @@ describe Airport do
 
       it 'only lands plane if plane is not landed already' do
         allow(airport.weather).to receive(:stormy).and_return false
-        allow(large_airport.weather).to receive(:stormy).and_return false
-        landed_plane = plane
-        large_airport.land(landed_plane)
         expect{airport.land(landed_plane)}.to raise_error "That plane has landed elsewhere"
       end
 
       it "has plane in hangar after landing" do
         allow(airport.weather).to receive(:stormy).and_return false
+        allow(plane).to receive(:landed)
+        allow(plane).to receive(:landed?)
         airport.land(plane)
         expect(airport.hangar).to include plane
       end
 
-      it "prevents landing if airport is full " do
+      it "prevents landing if airport is full" do
         allow(large_airport.weather).to receive(:stormy).and_return false
-        large_airport.capacity.times {large_airport.land(Plane.new)}
+        allow(plane).to receive(:landed?)
+        allow(plane).to receive(:landed)
+        large_airport.capacity.times {large_airport.land(plane)}
         expect{large_airport.land(plane)}.to raise_error "Airport is full, you cannot land."
       end
 
       context "stormy" do
         it "should prevent landing if stormy" do
           allow(airport.weather).to receive(:stormy).and_return true
+          allow(plane).to receive(:landed?)
+          allow(plane).to receive(:landed)
           expect{airport.land(plane)}.to raise_error "Landing unavailable. The storm is too heavy."
         end
       end
@@ -50,6 +53,9 @@ describe Airport do
     context "sunny" do
       it "should take off a plane and remove it from hangar" do
         allow(airport.weather).to receive(:stormy).and_return false
+        allow(plane).to receive(:landed?)
+        allow(plane).to receive(:landed)
+        allow(plane).to receive(:take_off).and_return "#{plane} has taken off"
         airport.land(plane)
         expect(airport.take_off(plane)).to eq "#{plane} has taken off"
       end
@@ -63,6 +69,8 @@ describe Airport do
     context "stormy" do
       it "should prevent take off if stormy" do
         allow(airport.weather).to receive(:stormy).and_return false
+        allow(plane).to receive(:landed?)
+        allow(plane).to receive(:landed)
         airport.land(plane)
         allow(airport.weather).to receive(:stormy).and_return true
         expect{airport.take_off(plane)}.to raise_error "The weather is too bad!"

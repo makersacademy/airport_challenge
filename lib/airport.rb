@@ -22,7 +22,6 @@ class Airport
     raise "The weather is too bad!" if stormy?
     taxi(plane)
     plane.take_off
-    "#{plane} has taken off"
   end
 
   private

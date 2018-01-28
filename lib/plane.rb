@@ -5,6 +5,7 @@ class Plane
 
   def take_off
     @landed = false
+    "#{self} has taken off"
   end
   def landed?
     @landed
