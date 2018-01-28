@@ -11,4 +11,9 @@ class Airport
     storage << plane
     "#{plane} has now landed."
   end
+
+  def takeoff(plane)
+    storage.delete(plane)
+    "#{plane} has now taken off"
+  end
 end
