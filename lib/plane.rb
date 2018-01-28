@@ -7,6 +7,7 @@ class Plane
     @landed = false
     "#{self} has taken off"
   end
+  
   def landed?
     @landed
   end
