@@ -8,7 +8,7 @@ describe Airport do
 
   describe '#initialize(capacity)' do
     it 'sets the default capacity of the airport to 5' do
-      expect(airport.total_capacity).to eq(described_class::DEFAULT_CAPACITY)
+      expect(airport.capacity).to eq(described_class::DEFAULT_CAPACITY)
     end
   end
 

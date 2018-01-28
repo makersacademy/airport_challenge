@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# comment
+# weather class
 class Weather
   def weather_forecast
     %w[stormy sunny rainy clear windy].sample

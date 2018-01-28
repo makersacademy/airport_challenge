@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # dud unit tests for airplane.rb!
 
 #   it { is_expected.to respond_to(:arrivals).with(1).argument }
