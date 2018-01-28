@@ -22,21 +22,29 @@ describe Plane do
 
   describe '#take_off' do
 
-    let(:current_airport){double('airport', :planes => [])}
+    let(:airport){double('airport', :planes => [])}
     let(:plane){Plane.new}
 
     it 'takes off from its current airport' do
-      allow(current_airport).to receive(:weather)
-      plane.land(current_airport)
+      allow(airport).to receive(:weather)
+      plane.land(airport)
       plane.take_off
-      expect(current_airport.planes).to eql([])
+      expect(airport.planes).to eql([])
     end
 
     it 'confirms self is no longer at the airport' do
-      allow(current_airport).to receive(:weather)
-      plane.land(current_airport)
+      allow(airport).to receive(:weather)
+      plane.land(airport)
       expect{plane.take_off}.to output('Plane has left airport').to_stdout
     end
+
+    it 'raises an error when airport.weather is stormy' do
+      allow(airport).to receive(:weather)
+      plane.land(airport)
+      allow(airport).to receive(:weather){"stormy"}
+      expect{plane.take_off}.to raise_error "It's stormy. Cannot take off from this airport"
+    end
+
   end
 
 end
