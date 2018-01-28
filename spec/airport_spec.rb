@@ -5,10 +5,12 @@ describe Airport do
   let(:plane) {double('A plane')}
   let(:airport_empty) {Airport.new}
   let(:airport_plane_landed) {
+    allow(subject).to receive(:stormy?).and_return(false)
     subject.land(plane)
     subject
   }
   let(:airport_full) {
+    allow(airport_empty).to receive(:stormy?).and_return(false)
     described_class::DEFAULT_CAPACITY.times {airport_empty.land(double('A plane'))}
     airport_empty
   }
@@ -23,11 +25,18 @@ describe Airport do
 
   context "#land(plane)" do
 
-    it "lands a plane and adds it to the hangar" do
-      expect(airport_plane_landed.hangar[0]).to eq(plane)
-    end
+    context "#stormy?" do
 
-    #TODO - guard condition prevents landing plane when airport is full
+      it "Not stormy: lands a plane and adds it to the hangar" do
+        expect(airport_plane_landed.hangar).to include(plane)
+      end
+
+      it "Stormy: plane cannot land when stormy" do
+        allow(airport_empty).to receive(:stormy?).and_return(true)
+        expect{airport_empty.land(plane)}.to raise_error("Stormy, cannot land!")
+      end
+
+    end
 
     context "#capacity - Testing capacity of airport works with landing planes" do
 

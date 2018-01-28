@@ -13,6 +13,7 @@ class Airport
 
   def land(plane)
     raise "Cannot land, airport full" if full?
+    raise "Stormy, cannot land!" if stormy?
     @hangar << plane
   end
 
@@ -21,11 +22,15 @@ class Airport
     puts "Plane #{plane} has left the hangar"
   end
 
-#TODO - make a module witht these core functionalities
+#TODO - make a module with these core functionalities that is mixed in
   private
 
     def full?
       @hangar.count >= @capacity
+    end
+
+    def stormy?
+      true if rand(10) > 8
     end
 
 end
