@@ -7,6 +7,9 @@ describe Plane do
   describe "#land" do
 
     context "when plane landed" do
+      before :each do
+        plane.land(airport)
+      end
       it "raises 'Plane already landed' error" do
         expect { plane.land(airport) }.to raise_error "Plane already landed"
       end

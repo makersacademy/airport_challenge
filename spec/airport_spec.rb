@@ -58,10 +58,11 @@ describe Airport do
       context "when plane is landed in airport" do
         before :each do
           airport.land(plane)
+          airport.take_off(plane)
         end
 
         it "removes plane from airport" do
-          expect(airport.take_off(plane)).not_to include plane
+          expect(airport.planes).not_to include plane
         end
       end
 

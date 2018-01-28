@@ -1,7 +1,6 @@
 class Plane
 
   def initialize
-    @landed = true
   end
 
   def land(airport)
@@ -11,7 +10,7 @@ class Plane
   end
 
   def take_off(airport)
-    raise "Plane already flying" unless landed
+    raise "Plane already flying" if landed == false
     airport.take_off(self)
     @landed = false
   end

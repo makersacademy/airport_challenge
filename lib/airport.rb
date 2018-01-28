@@ -2,6 +2,8 @@ class Airport
 
   DEFAULT_CAPACITY = 10
 
+  attr_reader :planes 
+
   def initialize(capacity = DEFAULT_CAPACITY)
     @planes = []
     @capacity = capacity
@@ -16,12 +18,12 @@ class Airport
   def take_off(plane)
     raise "Too stormy to take off" if stormy?
     raise "Plane not in this airport" unless planes.include?(plane)
-    planes.reject { plane }
+    planes.reject! { plane }
   end
 
   private
 
-  attr_reader :planes, :capacity
+  attr_reader :capacity
 
   def stormy?
     Weather::stormy?

@@ -1,6 +1,6 @@
 module Weather
 
-  def stormy?
+  def self.stormy?
     rand(2).zero?
   end
 
