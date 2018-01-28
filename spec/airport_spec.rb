@@ -19,7 +19,7 @@ describe Airport do
     before(:each) do
       airport.takeoff(plane)
     end
-    
+
     it 'releases a plane due for takeoff' do
       expect(airport.storage.include?(plane)). to eq false
     end
