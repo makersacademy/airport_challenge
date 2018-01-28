@@ -17,7 +17,7 @@ class Airport
   end
 
   def is_full?
-    true if planes.count >= DEFAULT_CAPACITY
+    true if planes.length >= @capacity
   end
 
   private

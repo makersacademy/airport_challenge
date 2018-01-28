@@ -6,23 +6,20 @@ describe Plane do
   it {is_expected.to respond_to(:take_off)}
 
   describe '#land' do
+
+    let(:airport){double('airport', :planes => [], :weather => "fine", :is_full? => nil)}
+
     it 'lands self at an airport' do
-      airport = double('airport',:planes => [])
-      allow(airport).to receive(:weather)
-      allow(airport).to receive(:is_full?)
       subject.land(airport)
       expect(airport.planes).to include(subject)
     end
 
     it 'raises an error when airport.weather is stormy' do
-      airport = double('airport',:planes => [])
       allow(airport).to receive(:weather){"stormy"}
       expect{subject.land(airport)}.to raise_error "It's stormy here. Cannot land at this airport"
     end
 
     it 'raises and error when the airport is full' do
-      airport = double('airport',:planes => [])
-      allow(airport).to receive(:weather)
       allow(airport).to receive(:is_full?){true}
       expect{subject.land(airport)}.to raise_error "This airport is full. Cannot land here"
     end
