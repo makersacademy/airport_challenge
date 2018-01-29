@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'airport.rb'
-require 'weather.rb'
 
 describe Airport do
   let(:plane) { :plane }
