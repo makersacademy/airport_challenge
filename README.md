@@ -79,7 +79,11 @@ I wanted to send to each object I needed.
 | plane  | land     |
 |        | take off |
 | airport | has max. capacity |
-|         | has local weather conditions |
+|         | ~~has local weather conditions~~ |
+| weather | is stormy |
+|         | is fine   |
+
+- *NB - I separated the weather out from airport as shown above, since I wanted airport to only serve one purpose: to store airplanes. Nonetheless, in my code, each new instance of airport is initialized with an accompanying instance of the weather.*
 
 2. From here, I expanded my domain model and thought more broadly about the relationships between the plane and the airport. E.g. When a plane could land in the airport, when a plane could take off etc.
 
