@@ -73,7 +73,7 @@ describe Airport do
     end
   end
 
-  describe 'stormy scenarios' do
+  context 'in stormy weather' do
 
     it 'raises error if plane tries to land during storm' do
       allow(weather).to receive(:stormy?).and_return(true)
