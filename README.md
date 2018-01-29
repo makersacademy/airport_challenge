@@ -18,8 +18,8 @@ Instructions
 We have a request from a client to write the software to control the flow of planes at an airport.
 
 
-Set up the environment
--------
+Setting up the environment
+--------------------------
 
 1. Clone this repo into to your local machine
 2. Run the command `gem install bundle` (if you don't have bundle already)
@@ -29,9 +29,9 @@ Set up the environment
 
 
 How to use
------
+---------
 
- The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
 
 Here are the user stories that we worked out in collaboration with the client:
 
@@ -63,14 +63,69 @@ I would like a default airport capacity that can be overridden as appropriate
 
 Tasks
 -----
-- Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories.
-- You will need to use a random number generator to set the weather.
-- You should create Domain models and feature tests.
-- You should create Unit test and pass rspec test with 100% of coverage.
-- You should use Rubocop to make your code readeable.
 
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
+After reading the User Stories, I created a Domain Model drawing an abstract representation of the objects and messages and make more easy the use of feature tests. e.g
 
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
 
-Please create separate files for every class, module and test suite.
+Objects           Messages
+
+Plane             Land
+Plane             Take Off
+airport           Not landing if full
+Weather           Not landing if stormy
+Weather           Not taking off if
+
+
+Next step, Use of feature test to have an idea about the Unit Test structure. e.g
+
+2.5.0 :004 > airport = Airport.new
+ => #<Airport:0x00007fe1598ba758 @hangar=[], @capacity=10, @weather=#<Weather:0x00007fe1598ba708>>
+2.5.0 :005 > plane1 = Plane.new
+ => #<Plane:0x00007fe15a132340>
+2.5.0 :006 > plane2 = Plane.new
+ => #<Plane:0x00007fe15a12af28>
+2.5.0 :007 > weather = Weather.new
+ => #<Weather:0x00007fe1598aae70>
+
+ Plane landing:
+
+2.5.0 :008 > airport.land(plane1)
+ => "Plane has landed"
+2.5.0 :009 > airport.land(plane2)
+ => "Plane has landed"
+2.5.0 :010 > airport.hangar
+ => [#<Plane:0x00007fe15a132340>, #<Plane:0x00007fe15a12af28>]
+
+ Plane taking off:
+
+2.5.0 :011 > airport.take_off(plane2)
+ => "Plane has taken off"
+2.5.0 :012 > airport.hangar
+ => [#<Plane:0x00007fe15a132340>]
+2.5.0 :013 > aairport.capacity
+
+Airport capacity and random weather :
+
+2.5.0 :014 > airport.capacity
+ => 10
+2.5.0 :015 > weather.random_weather
+ => "clear"
+2.5.0 :016 > weather.random_weather
+ => "stormy"
+
+
+Those feature tests, gave me an idea about how objects and messages will interact togheter in an Unit Test.
+
+Unit tests were performed and updated, rspec test was passed with 100% of coverage and Rubocop was used to make the code  more readable.
+
+
+Version
+-----
+
+Ruby 2.5.0
+
+
+Author
+-----
+
+Jenny Arenas
