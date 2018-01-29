@@ -15,12 +15,14 @@ Airport Challenge!
 
 # Useage #
 
+```
 [1] pry(main)> require "./lib/airport"
 => true
 [2] pry(main)> airport = Airport.new
 => #<Airport:0x00007ffc10079a18 @airport_hangar=[], @capacity=5, @taxied_planes=0, @weather=#<Weather:0x00007ffc100799c8>>
 [3] pry(main)> plane = Plane.new
 => #<Plane:0x00007ffc100a1068>
+```
 
 ## Step x Step ##
 
