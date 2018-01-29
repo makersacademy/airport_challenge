@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'weather.rb'
+require_relative 'plane.rb'
 # airport class
 class Airport
   attr_reader :airport_hangar, :capacity, :taxied_planes, :weather
