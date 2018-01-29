@@ -4,8 +4,8 @@ describe Airport do
 
   subject(:airport) {described_class.new(weather)}
   let(:airport_2) {described_class.new(weather, 30)}
-  let(:plane) {double :status= => nil}
-  let(:plane_2) {double :status= => nil}
+  let(:plane) {double :plane, :status= => nil}
+  let(:plane_2) {double :plane_2, :status= => nil}
   let(:weather) {double stormy?: false}
 
   describe 'storage' do
