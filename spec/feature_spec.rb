@@ -6,7 +6,7 @@
 #   airport = Airport.new
 #
 #   airport.land(plane)
-# 
+#
 #   15.times { airport.land(Plane.new) }
 #
 #   4.times { airport.take_off(hangar[rand(8)]) }

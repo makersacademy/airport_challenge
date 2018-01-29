@@ -19,13 +19,13 @@ class Airport
     raise 'Cannot land, airport full' if full?(hangar)
     raise 'Plane already landed' if in_hangar?(plane)
     raise 'Stormy, cannot land!' if stormy?
-    @hangar << plane
+    hangar << plane
   end
 
   def take_off(plane)
     raise 'That plane is not in the hangar' if in_hangar?(plane) == false
     raise 'Stormy, cannot take off!' if stormy?
-    @hangar.delete(plane)
+    hangar.delete(plane)
     puts "Plane #{plane} has left the hangar"
   end
 
