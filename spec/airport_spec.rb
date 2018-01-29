@@ -26,7 +26,7 @@ describe Airport do
 
   describe '#land' do
     before(:each) do |test|
-      subject.land(plane) unless test.metadata[:empty]
+      subject.land(plane) unless test.metadata[:full]
     end
 
     it 'stores plane that has landed' do
@@ -38,7 +38,7 @@ describe Airport do
       expect {subject.land(plane)}.to raise_error message
     end
 
-    it 'raises error if airport is full', :empty do
+    it 'raises error if airport is full', :full do
       allow(subject).to receive(:full?).and_return(true)
       message = "No room at the Inn - Try another airport!"
       expect {subject.land(plane)}.to raise_error message
