@@ -14,6 +14,7 @@ describe "Land plane" do
   airport = Airport.new
   plane = Plane.new
     it "should allow a plane to land" do
+      allow(airport).to receive(:stormy?).and_return false
       expect(airport.land(plane)).to eq [plane]
       end
     end
@@ -31,7 +32,10 @@ describe "Full airport" do
   airport = Airport.new
   plane = Plane.new
   it 'raises an error when airport is full' do
-      airport.capacity.times { airport.land(plane) }
+    Airport::DEFAULT_CAPACITY.times do
+    allow(airport).to receive(:stormy?).and_return false
+      airport.land(plane)
+    end
       expect { airport.land(plane) }.to raise_error 'Airport is full'
     end
 end
@@ -46,12 +50,13 @@ end
 
 
 
-  # describe "Cant land its stormy" do
-  # airport = Airport.new
-  # plane = Plane.new
-  # weather = Weather.new
-  # it 'raises an error when airport is stormy' do
-  #   allow(airport).to receive(:stormy?).and return true
-  #       expect { airport.land(plane) }.to raise_error "Too stormy to land"
-  #     end
-  #   end
+  describe "Cant land its stormy" do
+
+  airport = Airport.new
+  plane = Plane.new
+
+  it 'raises an error when airport is stormy' do
+    allow(airport).to receive(:stormy?).and_return true
+        expect { airport.land(plane) }.to raise_error "Too stormy to land"
+      end
+    end
