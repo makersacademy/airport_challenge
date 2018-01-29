@@ -33,3 +33,9 @@ In order to be successful at this project, my code **MUST**:
 - [ ]  Prevent departures and landings when the weather is "stormy".
 - [x]  Prevent arrivals when the airport is full.
 - [ ]  Set a default airport capacity that can be overridden as necessary.
+
+## Future goals ##
+
+If I had to repeat this task, I would:
+1. Create more conditional factors that enable a plane to land at an airport (i.e size of plane?)
+2. Board passengers!
