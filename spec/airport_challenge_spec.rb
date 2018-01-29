@@ -17,12 +17,11 @@ describe Airport do
 
   context '#landing' do
     it 'planes are unable to land in stormy weather' do
-      allow(airport).to receive(:storm?).and_return(true)
+      allow(airport).to receive(:weather) { 'stormy' }
       expect { airport.landing(plane) }.to raise_error 'the weather is too bad for landing!'
     end
 
     it 'allows all planes to land if the weather is good' do
-      allow(airport).to receive(:storm?).and_return(false)
       expect(airport.landing(plane)).to eq "#{plane} has landed!"
     end
 
@@ -39,12 +38,11 @@ describe Airport do
 
   context '#taking_off' do
     it 'planes are unable to take-off in stormy weather' do
-      allow(airport).to receive(:storm?).and_return(true)
+      allow(airport).to receive(:weather) { 'stormy' }
       expect { airport.taking_off(plane) }.to raise_error 'the weather is too bad for taking-off!'
     end
 
     it 'allows all planes to take off if the weather is good' do
-      allow(airport).to receive(:storm?).and_return(false)
       expect(airport.taking_off(plane)).to eq "#{plane} has taken-off!"
     end
 
@@ -54,8 +52,3 @@ describe Airport do
     end
   end
 end
-
-# # it 'does not allow planes to depart during bad weather' do
-# #   allow(airport.weather_forecast).to receive(:weather_forecast[0])
-# #   expect { airport.departures(plane) }.to raise_error('flights suspended due to bad weather!')
-# # end
