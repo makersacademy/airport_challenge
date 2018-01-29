@@ -15,10 +15,15 @@ describe Plane do
       allow(airport).to receive(:weather) { :stormy }
       expect { subject.land(airport) }.to raise_error "It's stormy here. Cannot land at this airport"
     end
-    it 'raises and error when the airport is full' do
+    it 'raises an error when the airport is full' do
       allow(airport).to receive(:full?) { true }
       expect { subject.land(airport) }.to raise_error "This airport is full. Cannot land here"
     end
+    it 'raises an error when already landed' do
+      subject.land(airport)
+      expect { subject.land(airport) }.to raise_error "Cannot land while plane is landed already"
+    end
+
   end
 
   describe '#take_off' do

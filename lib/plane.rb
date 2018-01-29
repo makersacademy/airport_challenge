@@ -2,8 +2,6 @@ require_relative 'airport'
 
 class Plane
 
-  attr_reader :current_airport
-
   def initialize
     @current_airport
   end
@@ -22,6 +20,7 @@ private
   def landing_status(airport)
     fail "It's stormy here. Cannot land at this airport" if airport.weather == :stormy
     fail "This airport is full. Cannot land here" if airport.full?
+    fail "Cannot land while plane is landed already" if @current_airport != nil
     true
   end
 
