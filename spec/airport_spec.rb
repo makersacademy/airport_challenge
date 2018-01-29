@@ -2,7 +2,7 @@ require "airport"
 
 describe Airport do
 
-  let(:plane) { double("A plane", airbourne?: true, taken_off: true, landed: false) }
+  let(:plane) { double("A plane", airborne?: true, taken_off: true, landed: false) }
 
   context "#initialize" do
 
@@ -48,14 +48,14 @@ describe Airport do
     end
 
     it "removes plane from the airport after take_off" do
-      expect(plane).to receive(:airbourne?).and_return false
+      expect(plane).to receive(:airborne?).and_return false
       subject.take_off(plane)
       expect(subject.hangar).to eq([])
     end
 
     it "Cannot take_off in stormy weather" do
       allow(subject).to receive(:stormy?).and_return true
-      expect(plane).to receive(:airbourne?).and_return false
+      expect(plane).to receive(:airborne?).and_return false
       expect { subject.take_off(plane) }.to raise_error("Cannot take off in stormy weather")
     end
 

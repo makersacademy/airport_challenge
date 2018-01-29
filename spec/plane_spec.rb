@@ -4,27 +4,27 @@ describe Plane do
 
   context "#initialize" do
 
-    it "initializes planes as airbourne" do
-      expect(subject).to be_airbourne
+    it "initializes planes as airborne" do
+      expect(subject).to be_airborne
     end
 
   end
 
   context "#landed" do
 
-    it "Changes airbourne status to false when landing" do
+    it "Changes airborne status to false when landing" do
       subject.landed
-      expect(subject.airbourne?).to eq false
+      expect(subject.airborne?).to eq false
     end
 
   end
 
   context "#taken_off" do
 
-    it "Changes airbourne status to true when taking off" do
+    it "Changes airborne status to true when taking off" do
       subject.landed
       subject.taken_off
-      expect(subject.airbourne?).to eq true
+      expect(subject.airborne?).to eq true
     end
 
   end

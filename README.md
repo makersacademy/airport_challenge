@@ -31,6 +31,15 @@ How to use
 5. `airport.land(plane)` - Lands a plane at an airport.
 6. `airport.take_off(plane)` - Takes off a plane from an airport.
 
+My approach
+-----
+
+I began by looking at the user stories (see below) and using these to draw a domain model to see what objects and messages I would need. I would then feature test to decide what unit tests I would need to write.
+
+Using TDD I would write a failing unit test, run `rspec` to see it fail, fix the error to make it pass and test again. If it passed I could then refactor. When all required unit tests were complete I would repeat the feature test to ensure everything was working as intended.
+
+I created classes for Airport and Plane. Currently the weather is controlled by the Airport class, although in future weather could be extracted into its own class.
+
 User Stories
 -----
 
