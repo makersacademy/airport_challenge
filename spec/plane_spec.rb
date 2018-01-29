@@ -22,7 +22,7 @@ describe Plane do
   end
 
   describe '#take_off' do
-    let(:airport) { double('airport', :planes => [], :weather => "fine", :full? => nil) }
+    let(:airport) { double('airport', :planes => [], :weather => :fine, :full? => nil) }
 
     it 'takes off from its current airport' do
       subject.land(airport)
