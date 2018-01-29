@@ -3,11 +3,8 @@
 require 'airport.rb'
 
 describe Airport do
-  let(:plane) { :plane }
+  let(:plane) { Plane.new }
   subject(:airport) { described_class.new }
-
-  it { is_expected.to respond_to(:landing).with(1).argument }
-  it { is_expected.to respond_to(:taking_off).with(1).argument }
 
   describe '#initialize' do
     it 'sets the default capacity of the airport to 5 planes' do
@@ -15,10 +12,11 @@ describe Airport do
     end
   end
 
-  context '#landing' do
+  describe '#landing' do
     it 'planes are unable to land in stormy weather' do
       allow(airport).to receive(:weather) { 'stormy' }
-      expect { airport.landing(plane) }.to raise_error 'the weather is too bad for landing!'
+      message = 'the weather is too bad for landing!'
+      expect { airport.landing(plane) }.to raise_error message
     end
 
     it 'allows all planes to land if the weather is good' do
@@ -36,7 +34,7 @@ describe Airport do
     end
   end
 
-  context '#taking_off' do
+  describe '#taking_off' do
     it 'planes are unable to take-off in stormy weather' do
       allow(airport).to receive(:weather) { 'stormy' }
       expect { airport.taking_off(plane) }.to raise_error 'the weather is too bad for taking-off!'
@@ -47,6 +45,7 @@ describe Airport do
     end
 
     it 'removes departed planes from the "airport hangar"' do
+      airport.landing(plane) # before
       airport.taking_off(plane)
       expect(airport.airport_hangar).not_to include plane
     end

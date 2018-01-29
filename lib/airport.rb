@@ -16,7 +16,7 @@ class Airport
   def landing(plane)
     raise 'the weather is too bad for landing!' if weather == 'stormy'
     raise 'this plane has already landed!' if airport_hangar.include?(plane)
-    raise 'the airport is full!' if full?
+    raise 'the airport is full!' if full? # boolean return
     airport_hangar << plane
     @taxied_planes += 1
     "#{plane} has landed!"
@@ -29,13 +29,14 @@ class Airport
     "#{plane} has taken-off!"
   end
 
-  def bad_weather
-    %w[stormy sunny rainy clear windy].sample
-  end
-
   private
 
   def full?
     airport_hangar.count >= capacity
+  end
+
+  def bad_weather
+    %w[stormy sunny rainy clear windy].sample
+    # true or false
   end
 end
