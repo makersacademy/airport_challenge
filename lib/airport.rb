@@ -15,7 +15,6 @@ class Airport
 
   def land(plane)
     fail " Airplane is not allowed to land due to stormy weather" if storm?
-    # fail " Airplane is allowed to land due to clear weather" if clear?
     fail "Airplane is not allow to land, Airport is full" if full?
     @hangar << plane
     "Plane has landed"
@@ -38,7 +37,4 @@ class Airport
     @weather.random_weather == "storm"
   end
 
-  # def clear?
-  #   @weather.random_weather == "clear"
-  # end
 end
