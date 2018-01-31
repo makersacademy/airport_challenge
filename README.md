@@ -1,5 +1,5 @@
-Airport Challenge!
-=================
+# Airport Challenge!
+====================
 
 ```
         ______
@@ -12,8 +12,11 @@ Airport Challenge!
                 =  ===(_________)
 
 ```
+## Introduction
 
-# Useage #
+Welcome to my repo for the Makers Academy weekend challenge(1). My task was to test drive the creation of a set of classes/modules to satisfy the user stories below. In order to achieve my goals, I needed to implement guard classes to defend against edge cases, thereby ensuring that the planes in my test were only able to take off from airports that they are currently residing in.
+
+## Useage
 
 ```
 [1] pry(main)> require "./lib/airport"
@@ -24,7 +27,7 @@ Airport Challenge!
 => #<Plane:0x00007ffc100a1068>
 ```
 
-## Step x Step ##
+## Step x Step
 
 In order to be successful at this project, my code **MUST**:
 - [x] Instruct a plane to land at the airport.

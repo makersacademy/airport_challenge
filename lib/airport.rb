@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'plane.rb'
+require_relative 'weather.rb'
 # airport class
 class Airport
   attr_reader :airport_hangar, :capacity, :taxied_planes, :weather
@@ -10,11 +11,11 @@ class Airport
     @airport_hangar = []
     @capacity = capacity
     @taxied_planes = 0
-    @weather = bad_weather
+    @weather = Weather.new
   end
 
   def landing(plane)
-    raise 'the weather is too bad for landing!' if weather == 'stormy'
+    raise 'the weather is too bad for landing!' if stormy?
     raise 'this plane has already landed!' if airport_hangar.include?(plane)
     raise 'the airport is full!' if full? # boolean return
     airport_hangar << plane
@@ -23,7 +24,7 @@ class Airport
   end
 
   def taking_off(plane)
-    raise 'the weather is too bad for taking-off!' if weather == 'stormy'
+    raise 'the weather is too bad for taking-off!' if stormy?
     airport_hangar.delete(plane)
     @taxied_planes -= 1
     "#{plane} has taken-off!"
@@ -35,8 +36,7 @@ class Airport
     airport_hangar.count >= capacity
   end
 
-  def bad_weather
-    %w[stormy sunny rainy clear windy].sample
-    # true or false
+  def stormy?
+    @weather.weather_forecast
   end
 end
