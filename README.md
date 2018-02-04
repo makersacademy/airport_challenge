@@ -6,7 +6,7 @@ This program emulates software for air traffic controllers to control the flow o
 
 ## How to use
 
-I am Ruby Version 2.5.0
+Use Ruby Version 2.5.0
 
 ```
 irb -r './lib/plane.rb'
