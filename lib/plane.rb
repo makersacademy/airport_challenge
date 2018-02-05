@@ -3,6 +3,8 @@ class Plane
   DEFAULT_STATUS="flying"
 
   attr_accessor :status
+  attr_reader :random
+  attr_reader :tell_weather
 
   def initialize
     @status = DEFAULT_STATUS
