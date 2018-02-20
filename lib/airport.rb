@@ -11,11 +11,11 @@ class Airport
     @airport_hangar = []
     @capacity = capacity
     @taxied_planes = 0
-    @weather = Weather.new
+    # @weather = Weather.new
   end
 
   def landing(plane)
-    raise 'the weather is too bad for landing!' if stormy?
+    raise 'the weather is too bad for landing!' if Weather.stormy?
     raise 'this plane has already landed!' if airport_hangar.include?(plane)
     raise 'the airport is full!' if full? # boolean return
     airport_hangar << plane
@@ -24,7 +24,7 @@ class Airport
   end
 
   def taking_off(plane)
-    raise 'the weather is too bad for taking-off!' if stormy?
+    raise 'the weather is too bad for taking-off!' if Weather.stormy?
     airport_hangar.delete(plane)
     @taxied_planes -= 1
     "#{plane} has taken-off!"
@@ -36,7 +36,7 @@ class Airport
     airport_hangar.count >= capacity
   end
 
-  def stormy?
-    @weather.weather_forecast
-  end
+  # def stormy?
+  #   @weather.weather_stormy?
+  # end
 end
