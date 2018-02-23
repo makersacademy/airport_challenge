@@ -8,4 +8,8 @@ class Airport
   def land(plane)
     @hangar.push(plane)
   end
+
+  def take_off(plane)
+    @hangar.delete(plane)
+  end
 end

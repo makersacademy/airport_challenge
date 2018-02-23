@@ -12,4 +12,12 @@ describe Airport do
       expect(subject.hangar).to include(fake_plane)
     end
   end
+
+  describe '#take_off' do
+    it 'makes a plane take off from airport' do
+      subject.land(fake_plane)
+      subject.take_off(fake_plane)
+      expect(subject.hangar).not_to include(fake_plane)
+    end
+  end
 end
