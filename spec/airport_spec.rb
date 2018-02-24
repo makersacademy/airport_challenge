@@ -24,8 +24,15 @@ describe Airport do
   end
   describe 'default capacity system that can be overwritten' do
     it ' checks the default capacity can be overwritten' do
-      airport = Airport.new(0,30)
+      airport = Airport.new(0, 30)
       expect(airport.capacity).to eq 30
+    end
+  end
+  describe 'airport full error' do
+    it 'raises and error when the airport is full' do
+      airport = Airport.new(20)
+      plane = Plane.new
+      expect { airport.land_plane(plane) }.to raise_error 'The hangar is currently full'
     end
   end
 end

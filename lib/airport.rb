@@ -11,6 +11,7 @@ class Airport
 
   # this method lands
   def land_plane(plane)
+    raise 'The hangar is currently full' if @hangar.length >= capacity
     p 'The plane has landed'
     @hangar.push(plane)
   end
