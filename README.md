@@ -88,3 +88,15 @@ Finally, don’t overcomplicate things. This task isn’t as hard as it may seem
 * **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
 
 * Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+
+
+**DOMAIN MODEL FROM USER STORY**
+
+* class Airport (methods: inititalize, instruct_land, instruct_takeoff, confirm_takeoff)
+
+* class Plane (methods: initialize, land, takeoff, attr_accessor :plane_status)
+
+* DEFAULT_CAPACITY constant set to 100 but can be passed as parameter in initialize of Airport.new
+
+* Weather generator works by randomly selecting a number between 1-10 inclusive and it will change the weather to stormy if the number is 2 or 7 otherwise the weather will be sunny (meaning planes can takeoff and land). This is essential seetting the weather to have a 20% chance of being stormy (in which case planes can not land or takeoff)
+
