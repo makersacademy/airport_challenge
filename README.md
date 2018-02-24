@@ -2,9 +2,12 @@ Airport Challenge
 =================
 My own approach:
 
-1. Firstly, create a hand written Domain Model.
+1. Firstly, I create a hand written Domain Model.
     The objective is to translate User Stories into a functional system.
     To do so, in OOP, we create two columns of Objects and Messages.
+2. Secondly, I create my app called 'airport.rb'.
+    The objective is to run, in IRB, a feature test for the written Domain Model.
+    To do so, from the Command Line, I create a new file with the atom command and I invoke IRB.
 
 
 
