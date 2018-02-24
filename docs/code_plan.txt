@@ -1,0 +1,29 @@
+Air Traffic controller
+Plane
+Passenger
+System Designer
+
+Instruct plane to land at airport
+Confirm plane is no longer in airport
+
+safety()
+Prevent takeoff when weather is stormy
+Prevent landing when weather is stormy
+Prevent landing when the airport is full
+
+Default airport capacity that can be overridden
+
+plane = Plane.new(destination)
+controller = TrafficController.new
+airport = Airport.new(3)
+
+plane.land(airport)
+ if controller.safety() true
+
+controller.land(plane)
+
+controller.takeoff(plane)
+controller.confirm_takeoff(plane)
+
+controller.safetycheck()
+controller.land(plane) only if safetycheck is true
