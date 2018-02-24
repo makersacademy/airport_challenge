@@ -17,6 +17,8 @@ class Airport
   end
 
   def takeoff(plane)
+    # do not let plane takeoff if stormy
+    raise 'Too stormy to takeoff' if weather > 8
     # takeoff a plane by removing it from the landed_planes
     # return landed_planes to confirm the plane is no longer in the array
     @landed_planes.delete(plane)

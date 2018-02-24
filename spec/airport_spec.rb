@@ -48,5 +48,11 @@ describe Airport do
       plane = Plane.new
       allow(london.land(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to land')
     end
+
+    it 'raises exception too stormy to takeoff' do # test if exception is raise if weather is too stormy to takeoff
+      london = Airport.new
+      plane = Plane.new
+      allow(london.land(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to takeoff')
+    end
   end
 end
