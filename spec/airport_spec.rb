@@ -1,11 +1,6 @@
 require 'airport'
 
 describe Airport do
-  describe 'feature test' do
-    it 'checks if several planes can land and take off' do
-      airport = Airport.new(10)
-    end
-  end
   describe '#land_plane' do
     it 'lands a plane' do
       plane = Plane.new

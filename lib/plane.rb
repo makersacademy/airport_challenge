@@ -1,5 +1,4 @@
-require_relative 'airport'
-# creates a plane class which can be used to customise planes if needed
 class Plane
-
+# this is left empty for now but can be used if the client wishes to add
+# customisation
 end
