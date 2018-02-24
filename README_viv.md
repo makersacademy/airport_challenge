@@ -32,6 +32,8 @@ As an air traffic controller
 To ensure safety
 I want to prevent takeoff when weather is stormy
 ```
+DONE
+
 | object | message |
 |--|--|
 |airport| check_weather(weather) |
@@ -48,6 +50,8 @@ I want to prevent landing when weather is stormy
 |airport| check_weather(weather) |
 | weather | stormy? |
 |airport| land(plane) unless stormy |
+
+DONE
 
 ```
 As an air traffic controller

@@ -15,24 +15,32 @@ class Airport
     @parked_planes.index(plane)
   end
 
-  def land(plane)
-    plane.land
+  def land(plane, weather)
+    if clear_weather?(weather)
+      plane.land
+    else
+      fail 'Weather is too stormy to land!'
+    end
   end
 
   def launch_plane(plane)
     @parked_planes.delete_at(find_plane(plane))
   end
 
-  def takeoff(plane)
-    plane.takeoff
+  def takeoff(plane, weather)
+    if clear_weather?(weather)
+      plane.takeoff
+    else
+      fail 'Weather is too stormy to take off!'
+    end
   end
 
   def confirm_departure(plane)
     !@parked_planes.include?(plane)
   end
 
-  def check_weather(weather)
-    weather.report
+  def clear_weather?(weather)
+    weather.report == 'clear'
   end
 
 end
