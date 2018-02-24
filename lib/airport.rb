@@ -9,8 +9,8 @@ class Airport
     @hangar << plane
   end
 
-  def takeoff
-    @hangar.pop
+  def takeoff(plane)
+    @hangar.delete(plane)
   end
 
   def status
@@ -21,7 +21,4 @@ private
   def empty
     @hangar.count.zero?
   end
-
-  def full
-
 end

@@ -14,7 +14,7 @@ describe Airport do
       ap = Airport.new
       plane = Plane.new
       ap.land(plane)
-      ap.takeoff
+      ap.takeoff(plane)
       expect(ap.status).to eq "There are 0 planes here"
     end
   end
