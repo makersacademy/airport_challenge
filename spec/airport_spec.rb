@@ -22,7 +22,7 @@ describe Airport do
       fk_weather = double(:report => :stormy)
       fk_plane = double()
       fk_plane2 = double(:land => subject.park_plane(fk_plane))
-      expect{
+      expect {
         subject.land(fk_plane2, fk_weather)
       }.to raise_error 'Weather is too stormy to land!'
     end
