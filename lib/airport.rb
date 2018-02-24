@@ -1,11 +1,12 @@
 require 'plane.rb'
 
 class Airport
-  attr_accessor :parked_planes
+  attr_accessor :parked_planes, :plane_capacity
   DEFAULT_CAPACITY = 5
 
   def initialize
     @parked_planes = []
+    @plane_capacity = DEFAULT_CAPACITY
   end
 
   def park_plane(plane)
@@ -41,6 +42,10 @@ class Airport
 
   def full?
     @parked_planes.count >= DEFAULT_CAPACITY
+  end
+
+  def overide_capacity(new_capacity)
+    @plane_capacity = new_capacity
   end
 
 end

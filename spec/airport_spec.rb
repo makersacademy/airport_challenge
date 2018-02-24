@@ -22,7 +22,7 @@ describe Airport do
       fk_weather = double(:report => 'stormy')
       fk_plane = double()
       fk_plane2 = double(:land => subject.park_plane(fk_plane))
-      expect{
+      expect {
         subject.land(fk_plane2, fk_weather)
       }.to raise_error 'Weather is too stormy to land!'
     end
@@ -114,6 +114,16 @@ describe Airport do
       fk_plane = double()
       subject.parked_planes.push(fk_plane)
       expect(subject.full?).to eq false
+    end
+  end
+
+  describe '#overide_capacity' do
+    it 'allows a default capacity to be overidden' do
+      subject.overide_capacity(20)
+      expect(subject.plane_capacity).to eq 20
+    end
+    it 'uses default values if not overidden' do
+      expect(subject.plane_capacity).to eq 5
     end
   end
 
