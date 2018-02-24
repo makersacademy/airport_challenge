@@ -140,3 +140,4 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:12:in `ins
 - In ```Airport``` class, I set up another attribute ```@capacity``` that, for the moment, uses a _magic number_.
 - Feature and unit tests pass
 - **Landing is now prevented when airport is full**
+- Commit
