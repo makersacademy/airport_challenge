@@ -11,10 +11,12 @@ class Airport
 
   # this method lands
   def land_plane(plane)
+    p 'The plane has landed'
     @hangar.push(plane)
   end
 
   def take_off
-     @flying = @hangar.shift
+    p 'The plane has taken off'
+    @flying = @hangar.shift
   end
 end

@@ -14,4 +14,12 @@ describe Airport do
       expect(airport.take_off).to eq airport.flying
     end
   end
+  describe 'confirmation plane has taken off' do
+    it 'confirms plane has left hangar' do
+      airport = Airport.new(3)
+      l = airport.hangar.length
+      airport.take_off
+      expect(airport.hangar.length).to eq l - 1
+    end
+  end 
 end
