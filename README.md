@@ -1,5 +1,16 @@
 Airport Challenge
 =================
+My own approach:
+
+1. Firstly, create a hand written Domain Model.
+    The objective is to translate User Stories into a functional system.
+    To do so, in OOP, we create two columns of Objects and Messages.
+
+
+
+
+
+
 
 ```
         ______
