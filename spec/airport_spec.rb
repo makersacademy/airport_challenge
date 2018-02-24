@@ -1,5 +1,10 @@
 require 'airport'
 
 describe Airport do
-  it { is_expected.to respond_to :instruct_landing }
+  describe '#instruct_landing' do
+    it 'instructs a plane to land' do
+      expect(subject).to receive(:instruct_landing)
+      subject.instruct_landing
+    end
+  end
 end

@@ -1,7 +1,4 @@
 ### Step 1 - Organise nouns and verbs of user stories into Objects and Messages
-
-
-
              Objects  | Messages
 -------------         |     -------------
 Air traffic controller|
@@ -48,7 +45,7 @@ function to link ```spec/airport_spec.rb``` and ```lib/airport.rb```
 
 - Test passes!
 
-- Committ
+- Commit
 
 ### Step 4 - Run feature test to assess expected ```Airport``` class behaviour
 
@@ -89,7 +86,7 @@ class Airport
 end
 ```
 - Test passes!
-- Committ
+- Commit
 
 ### Step 8 - Build a plane
 
@@ -109,3 +106,15 @@ end
 - Unit test passes!
 
 ### Step 9 - Create class for weather and corresponding unit test
+
+- Same approach as **Step 8**
+
+- Commit
+
+### Step 10 - Make the airport instruct planes to land
+- Wrote a unit test in RSpec for the method ```instruct_landing```
+- Similarly to step 14 in ```boris-bikes``` challenge, in ```Airport``` class, I set up an initial attribute ```@planes = []``` using ```initialize```.
+- Used ```attr_reader``` to read ```@planes = []```
+- I updated ```instruct_landing``` method and passed an argument ```plane``` to it. Through the ```<<``` operator, ```plane``` is going to be added to the ```@planes``` array.
+- **Airport now instructs plane to land**
+- Commit
