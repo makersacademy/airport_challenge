@@ -19,8 +19,12 @@ class Airport
     plane.land
   end
 
-  def launch_plane
-    @parked_planes.pop
+  def launch_plane(plane)
+    @parked_planes.delete_at(find_plane(plane))
+  end
+
+  def takeoff(plane)
+    plane.takeoff
   end
 
 end
