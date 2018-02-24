@@ -145,3 +145,9 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:12:in `ins
 ### Step 13 - A bit of refactoring
 - Got rid of the _magic number_ by passing ```capacity``` to ```initialize``` in ```Airport``` class
 - Commit
+
+### Step 14 - More refactoring (inspired by Sam's tutorial)
+- To make the code more readable, I defined a new ```private``` method ```full?```. The method is private because it won't be called from outside the class.
+- Further refactoring in ```airport_spec.rb```
+
+### Step 14 - Prevent landing and take off when weather is stormy
