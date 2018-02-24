@@ -21,5 +21,11 @@ describe Airport do
       airport.take_off
       expect(airport.hangar.length).to eq l - 1
     end
-  end 
+  end
+  describe 'default capacity system that can be overwritten' do
+    it ' checks the default capacity can be overwritten' do
+      airport = Airport.new(0,30)
+      expect(airport.capacity).to eq 30
+    end
+  end
 end
