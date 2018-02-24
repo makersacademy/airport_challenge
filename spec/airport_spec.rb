@@ -29,12 +29,19 @@ describe Airport do
     end
 
     it 'should return empty airport' do # test there is no planes in airport after takeoff
-
       london = Airport.new
       plane = Plane.new
       london.land(plane)
       london.takeoff(plane)
       expect(london.landed_planes).to eq([])
+    end
+  end
+
+  describe '#weather' do
+    # testing the weather method
+    it 'should return a random number between 1 - 10 inclusive' do # test if the return is
+      london = Airport.new
+      expect(london.weather).to be_between(1, 10)
     end
   end
 end
