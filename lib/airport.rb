@@ -2,6 +2,7 @@ require 'plane.rb'
 
 class Airport
   attr_accessor :parked_planes
+  DEFAULT_CAPACITY = 5
 
   def initialize
     @parked_planes = []
@@ -41,6 +42,10 @@ class Airport
 
   def clear_weather?(weather)
     weather.report == 'clear'
+  end
+
+  def full?
+    @parked_planes.count >= DEFAULT_CAPACITY
   end
 
 end

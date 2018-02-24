@@ -96,4 +96,17 @@ describe Airport do
     end
   end
 
+  describe '#full?' do
+    it 'returns true when plane park is full' do
+      fk_plane = double()
+      5.times{ subject.parked_planes.push(fk_plane) }
+      expect(subject.full?).to eq true
+    end
+    it 'returns false when plane park is not full' do
+      fk_plane = double()
+      subject.parked_planes.push(fk_plane)
+      expect(subject.full?).to eq false
+    end
+  end
+
 end
