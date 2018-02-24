@@ -90,3 +90,22 @@ end
 ```
 - Test passes!
 - Committ
+
+### Step 8 - Build a plane
+
+- In ```spec``` folder, I created a ```plane_spec.rb``` file to test for a ```Plane``` class.
+- Ran RSpec and got the following errors:
+```
+NameError:
+  uninitialized constant Plane
+# ./spec/plane_spec.rb:1:in `<top (required)>'
+```
+- Therefore, I created a ```lib/plane.rb``` and defined an empty ```Plane```:
+```
+class Plane
+
+end
+```
+- Unit test passes!
+
+### Step 9 - Create class for weather and corresponding unit test
