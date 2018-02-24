@@ -27,4 +27,12 @@ class Airport
     plane.takeoff
   end
 
+  def confirm_departure(plane)
+    !@parked_planes.include?(plane)
+  end
+
+  def check_weather(weather)
+    weather.report
+  end
+
 end
