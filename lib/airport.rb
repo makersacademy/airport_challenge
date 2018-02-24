@@ -1,6 +1,11 @@
 class Airport
-  attr_accessor :plane
+  attr_reader :plane
+
+  def initialize
+    @hangar = []
+  end
+
   def land(plane)
-    plane
+    @hangar << plane
   end
 end
