@@ -12,8 +12,15 @@ class Airport
   end
 
   def takeoff(plane)
-    @airport.pop
-    @airport
+    if weather == :stormy
+      @airport
+    elsif weather == :sunny
+      @airport.pop
+      @airport
+    end
   end
 
+   def weather
+     [:sunny, :stormy][rand(2)]
+   end
 end
