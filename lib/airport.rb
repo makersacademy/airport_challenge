@@ -1,11 +1,27 @@
 require_relative '../lib/plane'
 
 class Airport
-  def land(plane)
-    plane
+  def initialize
+    @hangar = []
   end
 
-  def takeoff(plane)
-    plane
+  def land(plane)
+    @hangar << plane
   end
+
+  def takeoff
+    @hangar.pop
+  end
+
+  def status
+    "There are #{@hangar.count} planes here"
+  end
+
+private
+  def empty
+    @hangar.count.zero?
+  end
+
+  def full
+
 end
