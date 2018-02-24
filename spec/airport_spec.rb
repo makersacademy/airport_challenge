@@ -31,8 +31,8 @@ describe Airport do
   describe 'airport full error' do
     it 'raises and error when the airport is full' do
       airport = Airport.new(20)
-      plane = Plane.new
-      expect { airport.land_plane(plane) }.to raise_error 'The hangar is currently full'
+      flying = Plane.new
+      expect { airport.request_to_land(flying) }.to raise_error 'The hangar is currently full'
     end
   end
 end
