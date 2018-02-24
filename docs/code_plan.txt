@@ -17,13 +17,14 @@ plane = Plane.new(destination)
 controller = TrafficController.new
 airport = Airport.new(3)
 
-plane.land(airport)
- if controller.safety() true
-
 controller.land(plane)
-
 controller.takeoff(plane)
 controller.confirm_takeoff(plane)
+controller
+private
+  safetycheck?
+{ if weather is stormy then raise error}
+{ if airport.capacity is full then raise error }
 
 controller.safetycheck()
 controller.land(plane) only if safetycheck is true
