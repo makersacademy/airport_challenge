@@ -9,4 +9,9 @@ class Airport
     @landed_planes << Plane.new
     Plane.new
   end
+
+  def take_off
+    @landed_planes.pop
+    Plane.new
+  end
 end
