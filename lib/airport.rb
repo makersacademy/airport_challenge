@@ -8,4 +8,8 @@ class Airport
   def instruct_landing(plane)
     @planes << plane
   end
+
+  def instruct_take_off(plane)
+  end
+
 end
