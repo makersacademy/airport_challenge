@@ -17,11 +17,9 @@ class Airport
   end
 
   def land(plane, weather)
-    if clear_weather?(weather)
-      plane.land
-    else
-      fail 'Weather is too stormy to land!'
-    end
+    fail 'Weather is too stormy to land!' unless clear_weather?(weather)
+    fail 'Airport cannot land any more planes at present!' if full?
+    plane.land
   end
 
   def launch_plane(plane)

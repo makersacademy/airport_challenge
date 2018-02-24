@@ -3,13 +3,11 @@ require 'airport'
 describe Airport do
 
   describe '#park_plane' do
-
     it 'parks a plane' do
       fk_plane = double()
       subject.park_plane(fk_plane)
       expect(subject.parked_planes[0]).to eq fk_plane
     end
-
   end
 
   describe '#land' do
@@ -27,6 +25,16 @@ describe Airport do
       expect{
         subject.land(fk_plane2, fk_weather)
       }.to raise_error 'Weather is too stormy to land!'
+    end
+    it "doesn't land a plane when the park is full" do
+      fk_weather = double(:report => 'clear')
+      fk_plane = double()
+      fk_plane2 = double(:land => subject.park_plane(fk_plane))
+      fk_plane3 = double()
+      5.times { subject.parked_planes.push(fk_plane3) }
+      expect{
+        subject.land(fk_plane2, fk_weather)
+      }.to raise_error 'Airport cannot land any more planes at present!'
     end
   end
 
@@ -99,7 +107,7 @@ describe Airport do
   describe '#full?' do
     it 'returns true when plane park is full' do
       fk_plane = double()
-      5.times{ subject.parked_planes.push(fk_plane) }
+      5.times { subject.parked_planes.push(fk_plane) }
       expect(subject.full?).to eq true
     end
     it 'returns false when plane park is not full' do

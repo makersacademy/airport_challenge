@@ -63,6 +63,8 @@ I want to prevent landing when the airport is full
 |--|--|
 |airport| land(plane) unless full? |
 
+DONE
+
 ```
 As the system designer
 So that the software can be used for many different airports
