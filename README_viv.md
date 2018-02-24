@@ -11,6 +11,8 @@ I want to instruct a plane to land at an airport
 |plane| lands |
 |airport| adds plane to inventory|
 
+DONE
+
 ```
 As an air traffic controller
 So I can get passengers on the way to their destination
