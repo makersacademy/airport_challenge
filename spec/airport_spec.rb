@@ -1,6 +1,11 @@
 require 'airport'
 
 describe Airport do
+  describe 'feature test' do
+    it 'checks if several planes can land and take off' do
+      airport = Airport.new(10)
+    end
+  end
   describe '#land_plane' do
     it 'lands a plane' do
       plane = Plane.new
@@ -52,6 +57,23 @@ describe Airport do
       flying = Plane.new
       weather = double('weather', :randomize => :stormy)
       expect { airport.request_to_land(flying, weather) }.to raise_error 'You cannot land due to stormy weather'
+    end
+  end
+  describe 'take off in sunny weather' do
+    it 'checks planes can leave in sunny weather' do
+      airport = Airport.new(1)
+      weather = double('weather', :randomize => :sunny)
+      expect(airport.request_take_off(weather)).to eq airport.flying
+    end
+  end
+  describe 'land in sunny weather' do
+    it 'checks planes can land in sunny weather' do
+      airport = Airport.new(1)
+      airport.take_off
+      l = airport.hangar.length
+      weather = double('weather', :randomize => :sunny)
+      airport.request_to_land(airport.flying, weather)
+      expect(airport.hangar.length).to eq l + 1
     end
   end
 end
