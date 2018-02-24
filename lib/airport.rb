@@ -27,11 +27,8 @@ class Airport
   end
 
   def takeoff(plane, weather)
-    if clear_weather?(weather)
-      plane.takeoff
-    else
-      fail 'Weather is too stormy to take off!'
-    end
+    fail 'Weather is too stormy to take off!' unless clear_weather?(weather)
+    plane.takeoff
   end
 
   def confirm_departure(plane)
