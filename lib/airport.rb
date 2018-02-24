@@ -10,6 +10,8 @@ class Airport
   end
 
   def land(plane)
+    # do not let plane land if stormy
+    raise 'Too stormy to land' if weather > 8
     # land a plane by adding it to the landed_planes
     @landed_planes << plane
   end
