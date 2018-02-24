@@ -13,10 +13,10 @@ class Airport
   end
 
   # this method request to land a plane
-  def request_to_land(plane)
+  def request_to_land(plane, weather_class = Weather.new)
     todays_weather = weather_report
     raise 'The hangar is currently full' if @hangar.length >= capacity
-    fail 'There is no plane to land' if @flying == nil
+    fail 'There is no plane to land' if @flying.nil?
     raise 'You cannot land due to stormy weather' if todays_weather == 'stormy'
     land_plane(plane)
   end
@@ -28,7 +28,7 @@ class Airport
     @hangar
   end
 
-  def request_take_off
+  def request_take_off(weather_class = Weather.new)
     todays_weather = weather_report
     raise 'There are no planes in the hangar' if @hangar.empty?
     raise 'You cannot leave due to stormy weather' if todays_weather == 'stormy'

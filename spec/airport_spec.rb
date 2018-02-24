@@ -40,5 +40,12 @@ describe Airport do
       airport = Airport.new
       expect { airport.request_take_off }.to raise_error 'There are no planes in the hangar'
     end
-  end 
+  end
+  describe 'no landing in stormy weather' do
+    it 'raises an error when a plane tries to land in stormy weather' do
+      airport = Airport.new(1)
+      weather = double('weather', :weather_report => 'stormy')
+      expect { airport.request_take_off(weather) }.to raise_error 'You cannot leave due to stormy weather'
+    end
+  end
 end
