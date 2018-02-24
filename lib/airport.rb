@@ -2,7 +2,6 @@ class Plane
 
 end
 
-
 class Airport
   attr_reader :hangar
 
@@ -11,10 +10,19 @@ class Airport
   end
 
   def land(plane)
-    @hangar.push(plane)
-    puts "Your plane #{plane} has landed in Manises airport and it is inside the hangar, ready for inspection."
-    puts "These are all the planes in your airport:"
-    p @hangar
+    puts "#{plane} has landed in Manises airport and is ready for inspection."
+    @hangar << plane
+  end
+
+  def take_off(plane)
+    @hangar -= [plane]
+  end
+
+  def confirmation_of_departure(plane)
+    if @hangar.include? plane fail "The #{plane} did not take off"
+    else
+      puts "Control Tower confirming the departure of #{plane}"
+    end
   end
 
 end

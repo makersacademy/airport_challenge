@@ -8,6 +8,10 @@ My own approach:
 2. Secondly, I create my app called 'airport.rb'.
     The objective is to run, in IRB, a feature test for the written Domain Model.
     To do so, from the Command Line, I create a new file with the atom command and I invoke IRB.
+3. In third place, I pass from feature tests in IRB to create Unit Tests initialializing the testing framework RSpec.
+    The objective is to pass the test for all the three methods created so far with a coverage of 100%.
+    To do so, and to ensure the quality of the code, I use rubocop to refactor before commiting.
+    
 
 
 
