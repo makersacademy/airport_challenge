@@ -28,6 +28,13 @@ class Airport
     @hangar
   end
 
+  def request_take_off
+    todays_weather = weather_report
+    raise 'There are no planes in the hangar' if @hangar.empty?
+    raise 'You cannot leave due to stormy weather' if todays_weather == 'stormy'
+    take_off
+  end
+
   def take_off
     p 'The plane has taken off'
     @flying = @hangar.shift
