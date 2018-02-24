@@ -1,5 +1,5 @@
 class Plane
-  attr_accessor :parked
+  attr_reader :parked
 
   def initialize
     @parked = false

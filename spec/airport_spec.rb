@@ -32,7 +32,7 @@ describe Airport do
       fk_plane2 = double(:land => subject.park_plane(fk_plane))
       fk_plane3 = double()
       5.times { subject.parked_planes.push(fk_plane3) }
-      expect{
+      expect {
         subject.land(fk_plane2, fk_weather)
       }.to raise_error 'Airport cannot land any more planes at present!'
     end
