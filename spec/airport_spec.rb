@@ -12,22 +12,22 @@ describe Airport do
 
   describe '#land' do
     it 'tells a plane to land and parks it' do
-      fk_weather = double(:report => 'clear')
+      fk_weather = double(:report => :clear)
       fk_plane = double()
       fk_plane2 = double(:land => subject.park_plane(fk_plane))
       subject.land(fk_plane2, fk_weather)
       expect(subject.parked_planes[0]).to eq fk_plane
     end
     it "doesn't land a plane in stormy weather" do
-      fk_weather = double(:report => 'stormy')
+      fk_weather = double(:report => :stormy)
       fk_plane = double()
       fk_plane2 = double(:land => subject.park_plane(fk_plane))
-      expect {
+      expect{
         subject.land(fk_plane2, fk_weather)
       }.to raise_error 'Weather is too stormy to land!'
     end
     it "doesn't land a plane when the park is full" do
-      fk_weather = double(:report => 'clear')
+      fk_weather = double(:report => :clear)
       fk_plane = double()
       fk_plane2 = double(:land => subject.park_plane(fk_plane))
       fk_plane3 = double()
@@ -59,7 +59,7 @@ describe Airport do
 
   describe '#takeoff' do
     it 'tells a plane to takeoff and launches it' do
-      fk_weather = double(:report => 'clear')
+      fk_weather = double(:report => :clear)
       fk_plane = double()
       subject.parked_planes.push(fk_plane)
       fk_plane2 = double(:takeoff => subject.launch_plane(fk_plane))
@@ -67,7 +67,7 @@ describe Airport do
       expect(subject.parked_planes.include?(fk_plane)).to eq false
     end
     it "doesn't allow takeoff in stormy weather" do
-      fk_weather = double(:report => 'stormy')
+      fk_weather = double(:report => :stormy)
       fk_plane = double()
       subject.parked_planes.push(fk_plane)
       fk_plane2 = double(:takeoff => subject.launch_plane(fk_plane))
@@ -79,7 +79,7 @@ describe Airport do
 
   describe '#confirm_departure' do
     it 'confirms that a plane is no longer in the airport' do
-      fk_weather = double(:report => 'clear')
+      fk_weather = double(:report => :clear)
       fk_plane = double()
       subject.parked_planes.push(fk_plane)
       fk_plane2 = double(:takeoff => subject.launch_plane(fk_plane))
@@ -95,11 +95,11 @@ describe Airport do
 
   describe '#clear_weather?' do
     it 'returns true when weather is clear' do
-      fk_weather = double(:report => 'clear')
+      fk_weather = double(:report => :clear)
       expect(subject.clear_weather?(fk_weather)).to eq true
     end
     it 'returns false when weather is stormy' do
-      fk_weather = double(:report => 'stormy')
+      fk_weather = double(:report => :stormy)
       expect(subject.clear_weather?(fk_weather)).to eq false
     end
   end
@@ -119,12 +119,11 @@ describe Airport do
 
   describe '#overide_capacity' do
     it 'allows a default capacity to be overidden' do
-      subject.overide_capacity(20)
+      subject.override_capacity(20)
       expect(subject.plane_capacity).to eq 20
     end
     it 'uses default values if not overidden' do
       expect(subject.plane_capacity).to eq 5
     end
   end
-
 end
