@@ -6,10 +6,10 @@ class Airport
 
   # number of planes already in hangar can be specified through an argument
   # if given
-  def initialize(no_of_planes = 0, capacity = 20)
+  def initialize(no_of_planes = 0, capacity = 20, plane_class = Plane.new)
     @hangar = []
     @capacity = capacity
-    no_of_planes.times { @hangar << Plane.new } unless no_of_planes > capacity
+    no_of_planes.times { @hangar << plane_class } unless no_of_planes > capacity
   end
 
   # this method request to land a plane
@@ -41,8 +41,8 @@ class Airport
   end
 
   # this method returns either 'sunny' or 'stormy'
-  def weather_report
-    weather = Weather.new
+  def weather_report(weather_class = Weather.new)
+    weather = weather_class
     weather.current_weather
   end
 end
