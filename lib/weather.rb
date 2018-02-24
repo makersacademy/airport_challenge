@@ -1,7 +1,6 @@
 class Weather
-  attr_reader :current_weather
-  def initialize
+  def randomize
     sn, st = 'sunny', 'stormy'
-    @current_weather = [sn, sn, sn, sn, sn, st].sample
+    [sn, sn, sn, sn, sn, st].sample
   end
 end
