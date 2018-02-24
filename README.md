@@ -1,90 +1,121 @@
-Airport Challenge
-=================
+# Airport Challenge (Makers Academy Weekend Challenge #1)
+
+A basic simulation of airport ground control.
+
+## Contents
+/lib  
+airport.rb  
+plane.rb  
+weather.rb  
+
+/spec  
+airport_spec.rb  
+plane_spec.rb  
+weather_spec.rb  
+
+## Getting Started
+
+1) Clone or download and unzip repository.
+2) Load 'airport.rb' in irb, pry or other ruby REPL. All dependencies loaded automatically.
+
+## Instructions for use
+
+The ground control simulation has three elements - airports, planes and weather.
+
+To make a new airport, input **[airport] = Airport.new**, where [] indicates the user should input a variable name of their choice.
+
+To make a new plane, input **[plane] = Plane.new**
+
+To make new weather, input **[weather] = Weather.new**
+
+The following SOP will use airport, plane and weather as placeholder names to refer to any instance of the Airport, Plane or Weather class.
+
+Planes are assembled by Zeus and flung into the world mid-flight. To land a newly created plane, use **airport.land(plane, weather)**. If **the weather conditions are suitable** and the **airport isn't full**, the plane will land and be parked.
+
+To check weather conditions, use **weather.report** (NB weather is pretty tricky stuff and will change from clear to stormy instantly, so there isn't much point in checking it. Good luck with the landing anyway!). As weather is so changeable, landings that cannot be completed due to stormy weather should be successful with subsequent attempts.
+
+Airport capacity defaults to 5 planes, and can be checked with **airport.plane_capacity**. You can land planes as long as the airport isn't full. You shouldn't land planes at a full airport because it's dangerous. However, if you desperately **have** to bend the rules and land a plane at a full airport (or stop a plane landing at an empty airport) for reasons relating to romance/terrorism/saving christmas etc you can use **airport.override_capacity([new capacity])** to expand ( or reduce ) the number of planes an airport can take.  
+
+To tell a parked plane to take off, use **airport.takeoff(plane, weather)**. If the weather is calm, the plane will take off. As with landings, unsuccessful takesoffs due to stormy weather should be successful if you simple try again. If you want to ensure the plane you have just told to take off has gone, **airport.confirm_departure(plane)** will return **true** if that particular plane is no longer parked at the airport.
+
+## Testing
+
+All tests were designed and run using the rspec framework. If the rspec gem is installed, they can be run from terminal in the main repository folder using the **rspec** command.
+
+## Development: Domain Modelling
 
 ```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Steps
--------
-
-1. Fork this repo, and clone to your local machine
-2. Run the command `gem install bundle` (if you don't have bundle already)
-3. When the installation completes, run `bundle`
-4. Complete the following task:
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
-```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
+```
+| object | message |
+|--|--|
+|airport| land(plane)|
+|plane| lands |
+|airport| adds plane to inventory|
 
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+DONE
+
+```
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
+```
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent takeoff when weather is stormy 
+| object | message |
+|--|--|
+|airport| takeoff(plane)|
+|plane| takes off |
+|airport| removes plane from inventory|
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when weather is stormy 
+DONE
 
-As an air traffic controller 
-To ensure safety 
-I want to prevent landing when the airport is full 
+```
+As an air traffic controller
+To ensure safety
+I want to prevent takeoff when weather is stormy
+```
+DONE
 
+| object | message |
+|--|--|
+|airport| check_weather(weather) |
+| weather | stormy? |
+|airport| takeoff(plane) unless stormy |
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when weather is stormy
+```
+| object | message |
+|--|--|
+|airport| check_weather(weather) |
+| weather | stormy? |
+|airport| land(plane) unless stormy |
+
+DONE
+
+```
+As an air traffic controller
+To ensure safety
+I want to prevent landing when the airport is full
+```
+
+| object | message |
+|--|--|
+|airport| land(plane) unless full? |
+
+DONE
+
+```
 As the system designer
 So that the software can be used for many different airports
 I would like a default airport capacity that can be overridden as appropriate
 ```
+| object | message |
+|--|--|
+| airport | variable capacity|
 
-Your task is to test drive the creation of a set of classes/modules to satisfy all the above user stories. You will need to use a random number generator to set the weather (it is normally sunny but on rare occasions it may be stormy). In your tests, you'll need to use a stub to override random weather to ensure consistent test behaviour.
-
-Your code should defend against [edge cases](http://programmers.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b) such as inconsistent states of the system ensuring that planes can only take off from airports they are in; planes that are already flying cannot takes off and/or be in an airport; planes that are landed cannot land again and must be in an airport, etc.
-
-For overriding random weather behaviour, please read the documentation to learn how to use test doubles: https://www.relishapp.com/rspec/rspec-mocks/docs . There’s an example of using a test double to test a die that’s relevant to testing random weather in the test.
-
-Please create separate files for every class, module and test suite.
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc. 
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this weekend.
-
-**BONUS**
-
-* Write an RSpec **feature** test that lands and takes off a number of planes
-
-Note that is a practice 'tech test' of the kinds that employers use to screen developer applicants.  More detailed submission requirements/guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md)
-
-Finally, don’t overcomplicate things. This task isn’t as hard as it may seem at first.
-
-* **Submit a pull request early.**  There are various checks that happen automatically when you send a pull request.  **Fix these issues if you can**.  Green is good.
-
-* Finally, please submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am.
+DONE
