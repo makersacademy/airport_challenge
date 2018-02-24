@@ -111,9 +111,6 @@ end
 - Used ```attr_reader``` to read ```@planes = []```
 - I updated ```instruct_landing``` method and passed an argument ```plane``` to it. Through the ```<<``` operator, ```plane``` is going to be added to the ```@planes``` array.
 - **Airport now instructs plane to land**
-  **completed User story: As an air traffic controller
-So I can get passengers to a destination
-I want to instruct a plane to land at an airport**
 - Commit
 
 ### Step 10.5 - Change test for ```instruct_landing```
@@ -132,4 +129,14 @@ I want to instruct a plane to land at an airport**
 ```ArgumentError: wrong number of arguments (given 1, expected 0)
 from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:12:in `instruct_take_off'
 ```
-- Changed the unit test to take one argument
+- To fix this error, I changed the unit test to take one argument and also passed one argument to ```instruct_take_off``` method.
+- Tests are passing now.
+- **Airport now instructs plane to take off**
+- Commit
+
+### Step 12 - Prevent landing when airport is full
+- Ran feature test in ```pry```, at this stage an infinite number of planes can land to the airport.
+- Wrote unit test that raises an error once 20 or more planes are landed.
+- In ```Airport``` class, I set up another attribute ```@capacity``` that, for the moment, uses a _magic number_.
+- Feature and unit tests pass
+- **Landing is now prevented when airport is full**
