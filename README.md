@@ -15,7 +15,8 @@ Airport Challenge
 
 Instructions
 ---------
-* Please read the instructions [here](Instructions.md)
+We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.
+* More detailed instructions [here](INSTRUSTIONS.md)
 
 Domain Model
 -------
