@@ -3,9 +3,8 @@ require 'airport'
 describe Airport do
   describe '#land_plane' do
     it 'lands a plane' do
-      airport = Airport.new
       plane = Plane.new
-      expect(airport.land_plane(plane)).to eq airport.hangar << plane
+      expect(subject.land_plane(plane)).to eq subject.hangar << plane
     end
   end
   describe '#take_off' do
@@ -37,8 +36,7 @@ describe Airport do
   end
   describe 'no planes error' do
     it 'raises an error when there are no planes to take off' do
-      airport = Airport.new
-      expect { airport.request_take_off }.to raise_error 'There are no planes in the hangar'
+      expect { subject.request_take_off }.to raise_error 'There are no planes in the hangar'
     end
   end
   describe 'no take off in stormy weather' do
