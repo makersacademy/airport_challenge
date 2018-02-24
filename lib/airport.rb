@@ -1,3 +1,5 @@
+require 'weather'
+
 class Airport
   attr_reader :planes, :capacity
 
@@ -8,6 +10,7 @@ class Airport
 
   def instruct_landing(plane)
     raise 'Cannot land. Airport is full' if full?
+    raise 'Cannot land due to stormy weather' if stormy?
     @planes << plane
   end
 
@@ -15,8 +18,12 @@ class Airport
   end
 
   private
-  
+
   def full?
     @planes.size >= @capacity
+  end
+
+  def stormy?
+    rand(1..6) > 4
   end
 end

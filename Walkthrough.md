@@ -151,3 +151,10 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:12:in `ins
 - Further refactoring in ```airport_spec.rb```
 
 ### Step 14 - Prevent landing and take off when weather is stormy
+- Wrote unit test to prevent landing and take off when weather is stormy.
+- Used new RSPec syntax: ```context``` to group tests that are related logically
+- Defined a new ```private``` method called ```stormy?``` that generates random output.
+  **At some point, the** ```stormy?``` **method** **will have to be placed in** ```Weather``` **class (dependency injection or isolation?)**
+- Test passes
+- **Landing and take off are now prevented when weather is stormy**
+- Commit
