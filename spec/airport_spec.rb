@@ -17,7 +17,7 @@ describe Airport do
       end
 
     context 'when full' do
-      it 'does not allow planes to land' do
+      it 'does not allow plane to land' do
         20.times { airport.instruct_landing(plane) }
         expect { airport.instruct_landing(plane) }.to raise_error 'Cannot land. Airport is full'
       end
@@ -42,7 +42,10 @@ describe Airport do
     context 'when weather stormy' do
       before do
         allow(airport).to receive(:stormy?).and_return(true)
-        expect { airport.instruct_landing(plane) }.to raise_error 'Cannot land due to stormy weather'
+      end
+
+      it 'instructs a plane not to take off' do
+        expect { airport.instruct_take_off(plane) }.to raise_error 'Cannot take off due to stormy weather'
       end
     end
   end
