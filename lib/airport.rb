@@ -1,20 +1,20 @@
 require_relative 'plane'
 
 class Airport
-  attr_reader :gates, :capacity
+  attr_reader :hangar, :capacity, :flying
 
   def initialize(no_of_planes = 0, capacity = 20)
-    @gates = []
+    @hangar = []
     @capacity = capacity
-    no_of_planes.times { @gates << Plane.new } unless no_of_planes > capacity
+    no_of_planes.times { @hangar << Plane.new } unless no_of_planes > capacity
   end
 
+  # this method lands
   def land_plane(plane)
-    @gates.push
+    @hangar.push(plane)
   end
 
   def take_off
-    @flying = @gates.shift
-
+     @flying = @hangar.shift
   end
 end
