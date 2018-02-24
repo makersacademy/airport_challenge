@@ -4,36 +4,27 @@ describe Airport do
 # testing the Airport class
   describe '#land' do
     # testing for instruct_land method
-    it 'should land plane into @landed_places' do # test landing 1 plane
+    it 'should land plane into @landed_planes' do # test landing 1 plane
+      #london = object_double(Airport.new, :weather => 1)  # Trying to setup double
       london = Airport.new
       plane = Plane.new
+      london.current_weather = 1
+      #allow(london).to receive(:land.and_return(london.landed_planes << plane)
       expect(london.land(plane)).to eq(london.landed_planes)
-    end
-
-    it 'should land 2 planes into @landed_places' do # test landing 2 planes
-      london = Airport.new
-      plane1 = Plane.new
-      plane2 = Plane.new
-      london.land(plane1)
-      expect(london.land(plane2)).to eq(london.landed_planes)
     end
   end
 
   describe '#takeoff' do
     # testing the takeoff method
     it 'should takeoff a plane' do # test single plane takeoff
+      #london = double # Trying to setup double
       london = Airport.new
       plane = Plane.new
-      london.land(plane)
-      expect(london.takeoff(plane)).to eq([])
-    end
-
-    it 'should return updated landed planes confirming takeoff' do # test the plane that took off is not landed
-      london = Airport.new
-      plane = Plane.new
+      london.current_weather = 1
       london.land(plane)
       expect(london.takeoff(plane)).to eq(london.landed_planes)
     end
+
   end
 
   describe '#weather' do
@@ -46,13 +37,22 @@ describe Airport do
     it 'raises exception too stormy to land' do # test if exception is raise if weather is too stormy to land
       london = Airport.new
       plane = Plane.new
-      allow(london.land(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to land')
+      # setting current_weather to be too stormy to land
+      # overiding random weather
+      london.current_weather = 9
+      expect { london.land(plane) }.to raise_error('Too stormy to land')
+      #allow(london.land(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to land')  # Worked before putting in weather if statement
+
     end
 
     it 'raises exception too stormy to takeoff' do # test if exception is raise if weather is too stormy to takeoff
       london = Airport.new
       plane = Plane.new
-      allow(london.land(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to takeoff')
+      # setting current_weather to be too stormy to takeoff
+      # overiding random weather
+      london.current_weather = 9
+      expect { london.takeoff(plane) }.to raise_error('Too stormy to takeoff')
+      #allow(london.takeoff(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to takeoff')
     end
   end
 end
