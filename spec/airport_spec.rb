@@ -2,7 +2,7 @@ require 'airport'
 require 'plane'
 
 describe Airport do
-  subject(:airport) { described_class.new }
+  subject(:airport) { described_class.new(20) }
   let(:plane) { double :plane }
   it 'instructs a plane to land' do
     expect(airport).to respond_to(:instruct_landing).with(1).argument

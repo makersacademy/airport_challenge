@@ -141,3 +141,7 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:12:in `ins
 - Feature and unit tests pass
 - **Landing is now prevented when airport is full**
 - Commit
+
+### Step 13 - A bit of refactoring
+- Got rid of the _magic number_ by passing ```capacity``` to ```initialize``` in ```Airport``` class
+- Commit
