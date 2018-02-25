@@ -40,7 +40,25 @@ airport = Airport.new(airport_id, <capcity>)
 
 # --------------------------------------------------- #
 ```
-### Airport class methods
+
+### Example Run in irb ###
+```
+$ irb
+2.5.0 :001 > require './lib/airport'
+ => true
+2.5.0 :002 > airport = Airport.new('HEATHROW',50)
+ => #<Airport:0x00007fa969010940 @capacity=50, @hanger=[], @id="HEATHROW">
+2.5.0 :003 > plane = Plane.new('BA5567')
+ => #<Plane:0x00007fa96a08d7c8 @id="BA5567", @airport=nil>
+2.5.0 :004 > weather = Weather.new
+ => #<Weather:0x00007fa96a0a1480 @stormy=[false, true, false, false, false]>
+2.5.0 :005 > airport.land(plane,weather.stormy?)
+ => [#<Plane:0x00007fa96a08d7c8 @id="BA5567", @airport="HEATHROW">]
+2.5.0 :006 > airport.take_off(plane,weather.stormy?)
+ => #<Plane:0x00007fa96a08d7c8 @id="BA5567", @airport=nil>
+```
+
+### Airport class methods ###
 ```
 Airport.land(plane, weather)
 # allows planes to land
@@ -65,6 +83,7 @@ Airport.full?()
 ```
 # No public methods. Just initialize() method that takes arguments as above
 ```
+
 # Weather class methods
 ```
 Weather.stormy?()
