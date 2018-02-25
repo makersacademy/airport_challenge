@@ -1,4 +1,4 @@
-require 'plane'
+require './lib/plane.rb'
 
 class Airport
   def initialize
@@ -6,12 +6,24 @@ class Airport
   end
 
   def land
-    @landed_planes << Plane.new
-    Plane.new
+    if stormy?
+      raise Exception.new('Cannot land in stormy weather!')
+    else
+      @landed_planes << Plane.new
+      Plane.new
+    end
   end
 
   def take_off
-    @landed_planes.pop
-    Plane.new
+    if stormy?
+      raise Exception.new('Cannot take off in stormy weather!')
+    else
+      @landed_planes.pop
+      Plane.new
+    end
+  end
+
+  def stormy?
+    rand(1..100) >= 90
   end
 end
