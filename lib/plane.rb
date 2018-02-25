@@ -2,11 +2,12 @@ require './lib/airport.rb'
 
 class Plane
 
-  attr_reader :flight_approval, :land_approval
+  attr_reader :flight_approval, :land_approval, :status
 
   def initialize(airport)
     @airport = airport
-    @airport.hangar.push(self)
+    @airport.dock_plane(self)
+    @status = :docked
     @flight_approval = false
     @land_approval = true
   end
@@ -16,8 +17,8 @@ class Plane
   end
 
   def take_off
-    @airport.hangar.delete(self) 
-    @airport = 'in-flight'
+    @airport.release_plane(self) 
+    @status = :inflight
     @land_approval = false
   end
 
@@ -27,7 +28,7 @@ class Plane
 
   def land(airport) 
     @flight_approval = false
-    @airport = airport
-    @airport.hangar.push(self)
+    @status = :docked
+    @airport.dock_plane(self)
   end
 end

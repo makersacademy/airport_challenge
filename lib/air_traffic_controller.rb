@@ -5,7 +5,7 @@ class AirTrafficController
   end
 
   def request_status(plane)
-    plane.airport
+    plane.status
   end
 
   def approval(weather)
@@ -19,7 +19,11 @@ class AirTrafficController
 
   def land_approval(plane, weather, airport)
     approval(weather)
-    fail 'denied - no space at airport' unless airport.spaces.include? nil
+    fail 'denied - no space at airport' if space?(airport)
     plane.land_approval = true
+  end
+
+  def space?(airport)
+    airport.hangar.length >= airport.capacity
   end
 end
