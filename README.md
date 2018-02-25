@@ -16,7 +16,7 @@ My own approach:
     To do so, I use stub to override random weather conditions.
 5. I add all the tests to cover the first 4 user stories.
    The objective is to defend against edge cases.
-   To do so, I use stub to test all the different possibilities until getting more than a 98% coverage. 
+   To do so, I use stub to test all the different possibilities until getting more than a 98% coverage.
 
 
 

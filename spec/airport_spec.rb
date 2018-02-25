@@ -1,9 +1,27 @@
-require './lib/airport.rb'
+require './lib/airport_with_limited_capacity.rb'
 
 describe Airport do
   boeing747 = Plane.new
 
-  it { should respond_to(:land, :take_off, :confirmation_of_departure) }
+  it { should respond_to(:observe_weather, :land, :take_off, :confirmation_of_departure) }
+
+  context "When observing the weather" do
+    context "and rand is not zero" do
+      before { srand(1) }
+      it "is sunny" do
+        result = subject.observe_weather
+        expect(result).to eq :sunny
+      end
+    end
+
+    context "and rand is zero" do
+      before { srand(0) }
+      it "is stormy" do
+        result = subject.observe_weather
+        expect(result).to eq :stormy
+      end
+    end
+  end
 
   context "When the weather is sunny" do
     it "lands a plane" do

@@ -4,19 +4,13 @@ end
 
 class Airport
   attr_reader :hangar
-  DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY)
+  def initialize
     @hangar = []
-    @capacity = capacity
   end
 
   def observe_weather
-    rand(6).zero? ? :stormy : :sunny
-  end
-
-  def full?
-    !@hangar.length < @capacity
+    rand(2).zero? ? :stormy : :sunny
   end
 
   def land(plane)
@@ -36,7 +30,6 @@ class Airport
       puts "Until the weather conditions are favorable, no takeoffs authorized."
       @hangar
     else
-      fail "Sorry, the hangar already operating in full capacity" if full?
       @hangar -= [plane]
     end
   end
