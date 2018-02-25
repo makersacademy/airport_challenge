@@ -1,10 +1,16 @@
+require_relative 'airport'
+
 class Weather
-  def forecast
-    outlook = rand(5)
-    if outlook == 1
-      true
-    else
-      false
-    end
+  def stormy?
+    weather_forecast == :stormy
   end
+
+private
+
+  FORECAST = [:fine, :stormy, :fine, :fine, :fine]
+
+  def weather_forecast
+    FORECAST.sample
+  end
+
 end

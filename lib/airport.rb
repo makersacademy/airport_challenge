@@ -1,11 +1,15 @@
-require_relative '../lib/plane'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  def initialize
+  attr_reader :weather
+  def initialize(weather: Weather.new)
     @hangar = []
+    @weather = weather
   end
 
   def land(plane)
+    fail 'Bad weather, landing cancelled' if weather.stormy?
     @hangar << plane
   end
 
@@ -18,6 +22,7 @@ class Airport
   end
 
 private
+
   def empty
     @hangar.count.zero?
   end
