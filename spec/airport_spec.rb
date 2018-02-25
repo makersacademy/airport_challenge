@@ -1,4 +1,6 @@
 require 'airport'
+require 'plane'
+require 'weather'
 
 describe Airport do
   # create a fake plane to use across my tests
