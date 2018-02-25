@@ -1,5 +1,6 @@
 require './lib/airport.rb'
 require './lib/plane.rb'
+require './lib/weather.rb'
 
 describe Plane do
   it "tells me when it is landed" do
