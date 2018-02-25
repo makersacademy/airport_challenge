@@ -2,10 +2,12 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
+  DEFAULT_CAPACITY = 10
   attr_accessor :planes
   attr_reader :weather_forcaster
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
     @planes = []
     @weather_forcaster = Weather.new
   end
@@ -16,7 +18,6 @@ class Airport
     else
       if @weather_forcaster.stormy?
         raise "Sorry, it's too stormy to land"
-        @planes
       else
         @planes << plane
       end
@@ -26,7 +27,6 @@ class Airport
   def takeoff(plane)
     if @weather_forcaster.stormy?
       raise "Sorry, it's too stormy to take off"
-      @planes
     else
       @planes.pop
       @planes
@@ -35,7 +35,7 @@ class Airport
 
   private
   def full?
-    @planes.empty?
+    @planes.length >= @capacity
   end
 
 end
