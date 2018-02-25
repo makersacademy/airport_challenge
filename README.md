@@ -57,7 +57,7 @@ $ irb
 2.5.0 :006 > airport.take_off(plane,weather.stormy?)
  => #<Plane:0x00007fa96a08d7c8 @id="BA5567", @airport=nil>
 ```
-
+## Classes and methods ##
 ### Airport class methods ###
 ```
 Airport.land(plane, weather)
@@ -84,7 +84,7 @@ Airport.full?()
 # No public methods. Just initialize() method that takes arguments as above
 ```
 
-# Weather class methods
+### Weather class methods
 ```
 Weather.stormy?()
 # stormy?(). This method returns true or false randomly 1/5 chances of storm
