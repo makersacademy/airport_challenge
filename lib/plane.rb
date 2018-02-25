@@ -6,16 +6,14 @@ class Plane
     @landed = false
   end
 
-  def land(airport)
+  def land
     fail 'Plane is on ground!' if @landed
-    @landed= true
-    airport.park_plane(self)
+    @landed = true
   end
 
-  def takeoff(airport)
+  def takeoff
     fail 'Plane is already flying!' unless @landed
     @landed = false
-    airport.launch_plane(self)
   end
 
 end

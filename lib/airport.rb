@@ -3,6 +3,8 @@ require_relative 'weather.rb'
 
 class Airport
 
+  attr_reader :plane_capacity
+
   DEFAULT_CAPACITY = 5
 
   def initialize
@@ -14,27 +16,22 @@ class Airport
     fail 'Weather is too stormy to land!' unless clear_weather?(weather)
     fail 'Airport cannot land any more planes at present!' if full?
     plane.land(self)
+    @parked_planes.push(plane)
   end
 
-  def takeoff(plane, weather)
-    fail 'Weather is too stormy to take off!' unless clear_weather?(weather)
-    plane.takeoff(self)
-  end
-
-  def park_plane(plane)
-    @parked_planes.push(plane) if plane.parked
-  end
-
-  def confirm_arrived(plane)
+  def confirm_arrival(plane)
     @parked_planes.include?(plane)
   end
 
-  def launch_plane(plane)
-    @parked_planes.delete_at(find_plane(plane)) if plane.parked
+  def takeoff(plane, weather)
+    fail 'Plane is not parked here!' unless confirm_arrival(plane)
+    fail 'Weather is too stormy to take off!' unless clear_weather?(weather)
+    plane.takeoff(self)
+    @parked_planes.delete_at(find_plane(plane))
   end
 
   def confirm_departure(plane)
-    !confirm_arrived(plane)
+    !@parked_planes.include?(plane)
   end
 
   def override_capacity(new_capacity)
