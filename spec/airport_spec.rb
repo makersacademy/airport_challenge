@@ -35,4 +35,12 @@ describe Airport do
       expect { airport.allow_takeoff(plane, weather) }.to raise_error 'Bad weather, takeoff denied'
     end
   end
+
+  describe 'denies landing when airport full' do
+    it "no space for plane to land" do
+      weather = double(:weather, :weather_ok? => true)
+      20.times { airport.landing(plane, weather) }
+      expect { airport.landing(plane, weather) }. to raise_error 'Airport full, landing denied'
+    end
+  end
 end

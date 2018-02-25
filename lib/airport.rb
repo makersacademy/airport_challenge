@@ -12,6 +12,7 @@ class Airport
   end
 
   def landing(plane, weather)
+    raise Exception.new("Airport full, landing denied") if @planes_now.length == @capacity
     raise Exception.new("Bad weather, landing denied") unless weather.weather_ok?
 
     @planes_now << plane
