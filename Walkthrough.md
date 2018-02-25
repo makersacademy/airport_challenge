@@ -196,3 +196,26 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:20:in `ins
 - Updated the ```instruct_take_off``` method and refactored it based on Sam's tutorial
 - **A plane can now only take off from the airport it is in**
 - Commit
+
+- **Step 17 - Default capacity of airport to be overriden as appropriate**
+- Ran feature test in ```pry```; wanted to create a new airport with default capacity, however because our current code initializes ```Airport``` class objects with two variables (```@capacity``` and ```@weather```), I got the following error:
+```[3] pry(main)> default_airport = Airport.new(Weather.new)
+ArgumentError: wrong number of arguments (given 1, expected 2)
+from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:6:in `initialize'
+```
+- First thing that could have been done to solve the error would have been to swap initialized variables ```capacity``` and ```weather``` in unit test.
+- RSpec failed, I swapped initialized variables also in ```Airport``` class.
+- Rspec test passes.
+- In feature test in ```pry```, I still got the error above.
+- I needed to get rid of the _magic number_, I could have encapuslated the numerical literal in a constant in my production code, however, I wanted to write a unit test first.
+- Following Sam's tutorial, in ```airport_spec.rb```, I created a new context for ```defaults``` and wrote a test for a default instance of ```Airport``` class (```default_airport```).
+- Ran RSPec and got the following error:
+```Airport#instruct_landing when weather not stormy when full does not allow plane to land
+     Failure/Error: Airport::DEFAULT_CAPACITY.times { airport.instruct_landing(plane) }
+
+     NameError:
+       uninitialized constant Airport::DEFAULT_CAPACITY
+```
+- I initialized the constant ```DEFAULT_CAPACITY``` in ```Airport``` class. Ran RSpec and test passes
+- **Set default airport capacity**
+- Commit
