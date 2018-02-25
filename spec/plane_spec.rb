@@ -5,6 +5,7 @@ describe Plane do
   it "should change its status to the airport when it lands" do
     plane = Plane.new
     airport = Airport.new
+    airport.weather = 'sunny'
     airport.land(plane)
     expect(plane.status).to eq airport
   end
