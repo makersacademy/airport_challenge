@@ -12,21 +12,6 @@ Airport Challenge
                 =  ===(_________)
 
 ```
-
-Instructions
----------
-
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
-Task
------
-
-We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
-
 ```
 As an air traffic controller
 So I can get passengers to a destination
@@ -58,3 +43,10 @@ I would like a default airport capacity that can be overridden as appropriate
 |   Air traffic controller   |             |
 |   Plane     |  status  |
 |   Airport   |     land(plane), take_off(plane), full?        |
+
+**How I handled the weather component**
+I made an attribute called weather which is equal to an array.sample. Then I would raise an error if you try to land or take off when the weather = "stormy"
+For the rspec tests, I just set the weather to sunny so it wouldn't affect the tests.
+
+**How I stopped you taking off planes which are in the air or taking off planes from an airport they are not docked in**
+I gave the plane class an attribute called status, which was 'air' when in the air and was set to the airport it landed in when it was on the ground. This meant that when you tried to take off a plane from an airport its status had to be equal to the airport you are trying to take it off from.
