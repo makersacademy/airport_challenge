@@ -12,6 +12,13 @@ describe Airport do
       #allow(london).to receive(:land.and_return(london.landed_planes << plane)
       expect(london.land(plane)).to eq(london.landed_planes)
     end
+
+    it 'should not allow planes to land if airport is at full capacity' do
+      london = Airport.new(0)
+      plane = Plane.new
+      london.current_weather = 1
+      expect { london.land(plane) }.to raise_error('No capacity in airport')
+    end
   end
 
   describe '#takeoff' do
@@ -22,9 +29,9 @@ describe Airport do
       plane = Plane.new
       london.current_weather = 1
       london.land(plane)
+      london.current_weather = 1
       expect(london.takeoff(plane)).to eq(london.landed_planes)
     end
-
   end
 
   describe '#weather' do
@@ -42,7 +49,6 @@ describe Airport do
       london.current_weather = 9
       expect { london.land(plane) }.to raise_error('Too stormy to land')
       #allow(london.land(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to land')  # Worked before putting in weather if statement
-
     end
 
     it 'raises exception too stormy to takeoff' do # test if exception is raise if weather is too stormy to takeoff
