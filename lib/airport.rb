@@ -14,4 +14,10 @@ class Airport
     @planes_now << plane
     puts "#{plane} has landed"
   end
+
+  def allow_takeoff(plane)
+    @planes_now.delete(plane)
+    puts "#{plane} has taken off"
+  end
+
 end
