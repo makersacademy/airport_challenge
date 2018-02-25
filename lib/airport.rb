@@ -15,6 +15,8 @@ class Airport
   end
 
   def land(plane)
+    # do not let plane land if plane is already landed
+    raise 'Plane already landed' if @plane_status == "landed"
     # do not let plane land if airport is full
     raise 'No capacity in airport' if @landed_planes.length >= @capacity
     # do not let plane land if stormy
@@ -28,6 +30,7 @@ class Airport
     end
     # land a plane by adding it to the landed_planes
     @current_weather = 0
+    @plane_status = "landed"
     @landed_planes << plane
   end
 

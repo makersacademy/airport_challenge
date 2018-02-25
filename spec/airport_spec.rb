@@ -9,22 +9,30 @@ describe Airport do
       london = Airport.new
       plane = Plane.new
       london.current_weather = 1
-      #allow(london).to receive(:land.and_return(london.landed_planes << plane)
+      # allow(london).to receive(:land.and_return(london.landed_planes << plane)
       expect(london.land(plane)).to eq(london.landed_planes)
     end
 
-    it 'should not allow planes to land if airport is at full capacity' do
+    it 'should not allow plane to land if airport is at full capacity' do
       london = Airport.new(0)
       plane = Plane.new
       london.current_weather = 1
       expect { london.land(plane) }.to raise_error('No capacity in airport')
+    end
+
+    it 'should not allow plane to land if plane is already landed' do
+      london = Airport.new
+      plane = Plane.new
+      london.current_weather = 1
+      london.land(plane)
+      expect { london.land(plane) }.to raise_error('Plane already landed')
     end
   end
 
   describe '#takeoff' do
     # testing the takeoff method
     it 'should takeoff a plane' do # test single plane takeoff
-      #london = double # Trying to setup double
+      # london = double # Trying to setup double
       london = Airport.new
       plane = Plane.new
       london.current_weather = 1
@@ -48,7 +56,7 @@ describe Airport do
       # overiding random weather
       london.current_weather = 9
       expect { london.land(plane) }.to raise_error('Too stormy to land')
-      #allow(london.land(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to land')  # Worked before putting in weather if statement
+      # allow(london.land(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to land')  # Worked before putting in weather if statement
     end
 
     it 'raises exception too stormy to takeoff' do # test if exception is raise if weather is too stormy to takeoff
@@ -58,7 +66,7 @@ describe Airport do
       # overiding random weather
       london.current_weather = 9
       expect { london.takeoff(plane) }.to raise_error('Too stormy to takeoff')
-      #allow(london.takeoff(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to takeoff')
+      # allow(london.takeoff(plane)).to receive(:weather).and_return(9).and_raise('Too stormy to takeoff')
     end
   end
 end
