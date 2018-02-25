@@ -5,21 +5,27 @@ class Airport
   attr_reader :landed_planes
   attr_accessor :current_weather
   attr_reader :capacity
-  @current_weather = 0
   DEFAULT_CAPACITY = 3
+  @current_weather = 0
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @landed_planes = []
+    @current_weather = 0
   end
 
   def land(plane)
+    # do not let plane land if airport is full
     raise 'No capacity in airport' if @landed_planes.length >= @capacity
     # do not let plane land if stormy
     if @current_weather == 0      # If we dont pass in weather, then automatically generate weather
       @current_weather = weather
     end
-    raise 'Too stormy to land' if @current_weather > 8
+    puts @current_weather
+    if @current_weather > 8
+      @current_weather = 0
+      raise 'Too stormy to land'
+    end
     # land a plane by adding it to the landed_planes
     @current_weather = 0
     @landed_planes << plane
@@ -30,7 +36,10 @@ class Airport
     if @current_weather == 0      # If we dont pass in weather, then automatically generate weather
       @current_weather = weather
     end
-    raise 'Too stormy to takeoff' if @current_weather > 8
+    if @current_weather > 8
+        @current_weather = 0
+      raise 'Too stormy to takeoff'
+    end
     # takeoff a plane by removing it from the landed_planes
     # return landed_planes to confirm the plane is no longer in the array
     @current_weather = 0
