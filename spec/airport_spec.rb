@@ -28,7 +28,7 @@ describe Airport do
 
   describe "to ensure safety" do
     it "can check the weather" do
-      expect { airport_full.check_weather }.to change { airport_full.weather_report }
+      expect { airport_full.check_weather }.to(change { airport_full.weather_report })
     end
 
     it "prevents landing when stormy" do
