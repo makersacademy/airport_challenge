@@ -1,5 +1,5 @@
 require 'airport'
-
+DEFAULT_CAPACITY = 10 
 describe Airport do
 
   it { is_expected.to respond_to :take_off }
@@ -30,7 +30,7 @@ describe Airport do
     end
 
     it 'raises an error when airport is full' do
-      10.times { subject.land(Plane.new) }
+      DEFAULT_CAPACITY.times { subject.land(Plane.new) }
       expect { subject.land Plane.new }. to raise_error 'Airport is full'
     end
   end

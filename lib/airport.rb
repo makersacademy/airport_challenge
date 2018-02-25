@@ -1,6 +1,9 @@
 require_relative 'plane'
 
 class Airport
+
+DEFAULT_CAPACITY = 10
+
   def initialize
     @hangar = []
   end
@@ -21,11 +24,11 @@ class Airport
   private
 
   def full?
-    @hangar.count >=10
+    @hangar.count >= DEFAULT_CAPACITY
   end
 
   def empty?
     @hangar.empty?
-  end 
+  end
 
 end
