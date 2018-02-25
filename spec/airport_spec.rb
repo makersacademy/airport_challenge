@@ -1,12 +1,12 @@
 require 'airport'
-require 'plane'
-require 'weather'
+#require 'plane'
+#require 'weather'
 
 describe Airport do
   subject(:airport) { described_class.new(weather, 20) }
   subject(:other_airport) { described_class.new(weather, 20) }
   subject(:default_airport) { described_class.new(weather) }
-  let(:plane) { double :plane }
+  let(:plane) { double :plane, instruct_landing: nil, instruct_take_off: nil }
   let(:weather) { double :weather }
 
   describe '#instruct_landing' do
@@ -16,7 +16,8 @@ describe Airport do
       end
 
       it 'instructs plane to land' do
-        expect(airport).to respond_to(:instruct_landing).with(1).argument
+        expect(plane).to receive(:instruct_landing)
+        airport.instruct_landing(plane)
       end
 
       context 'when full' do
@@ -42,7 +43,9 @@ describe Airport do
       end
 
       it 'instructs plane to take off' do
-        expect(airport).to respond_to(:instruct_take_off).with(1).argument
+        airport.instruct_landing(plane)
+        expect(plane).to receive(:instruct_take_off)
+        airport.instruct_take_off(plane)
       end
 
       it 'returns plane that took off' do

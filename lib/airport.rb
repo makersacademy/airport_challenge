@@ -2,7 +2,6 @@ require_relative 'weather'
 
 class Airport
   DEFAULT_CAPACITY = 20
-  attr_reader :planes, :capacity, :weather
 
   def initialize(weather, capacity = DEFAULT_CAPACITY)
     @weather = weather
@@ -14,12 +13,15 @@ class Airport
   def instruct_landing(plane)
     raise 'Plane cannot land. Airport is full' if full?
     raise 'Plane cannot land due to stormy weather' if stormy?
+    plane.instruct_landing(self)
     @planes << plane
   end
 
   def instruct_take_off(plane)
     raise 'Plane cannot take off due to stormy weather' if stormy?
-    raise 'Plane cannot take off. Plane at another airport' unless at_airport?(plane)
+    raise 'Plane cannot take off. Plane at another airport' unless
+    at_airport?(plane)
+    plane.instruct_take_off
     plane
   end
 

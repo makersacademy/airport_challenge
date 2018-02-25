@@ -4,7 +4,7 @@
 Air traffic controller|
 Plane                 |
 Airport               | instruct_landing, instruct_take_off, plane_count
-Weather               |  stormy?
+Weather               | stormy?
 
 ### Step 2 - Feature test in ```pry```
 ```NameError: uninitialized constant Airport
@@ -266,3 +266,47 @@ from (pry):8:in `__pry__'
 - Need to update production code by raising error in ```Plane#airport```. Test passed.
 - **Flying plane cannot be in airport now**
 - Commit
+
+- **Step 19 - Plane that are landed cannot land again and must be in airport (edge cases)**
+- Ran feature test to land plane and got following error:
+```[7] pry(main)> plane.instruct_landing
+NoMethodError: undefined method `instruct_landing' for #<Plane:0x00007fd0281e7440>
+from (pry):7:in `__pry__'
+```
+- Wrote a unit test to describe ```#instruct_landing```. Ran test in RSpec and got following error:
+```Plane#instruct_landing should respond to #instruct_landing
+     Failure/Error: it { is_expected.to respond_to :instruct_landing}
+       expected #<Plane:0x00007fd856b97748> to respond to :instruct_landing
+```
+- Defined ```Plane#instruct_landing```. RSpec test passed.
+- Wrote a unit test to raise error for plane that has already landed. RSpec test failed.
+- Updated production code by raising error in ```Plane#instruct_landing```. RSpec test passed.
+- In feature test, when trying to ```instruct_landing``` on ```Plane``` instances, I kept getting following error:
+```[13] pry(main)> plane.instruct_landing
+RuntimeError: Plane cannot land. Plane has already landed
+from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/plane.rb:8:in `instruct_landing'
+[14] pry(main)> plane2 = Plane.new
+=> #<Plane:0x00007fc97704d6a0>
+[15] pry(main)> plane2.instruct_landing
+```
+- I got very stuck (more than usual) and decided to follow - and try to understand [Sam's solution](https://www.youtube.com/watch?v=Vg0cFVLH_EM).
+- In ```Plane``` initialized variable ```@flying = true``` (plane definitely flying).
+- In ```Plane#instruct_landing``` updated code so that plane cannot land ```unless @flying``` (instruct_landing is false)
+- RSpec test passes but feature test fails.
+- Update unit test in ```airport_spec.rb```. in ```#land``` description, we except plane to receive ```:instruct_landing```.
+- Ran RSpec and got following error:
+```Failure/Error: expect(plane).to receive(:instruct_landing)
+
+       (Double :plane).instruct_landing(*(any args))
+           expected: 1 time with any arguments
+           received: 0 times with any arguments
+```
+- In ```Airport#instruct_landing```, set up ```plane.instruct_landing``` (equal to false). RSpec failed:
+```Failure/Error: plane.instruct_landing
+       #<Double :plane> received unexpected message :instruct_landing with (no args)
+```
+- Want to make sure ```:double``` receives ```#instruct_landing``` (updated ```airport_spec.rb```).
+- RSpec test passed. However, in feature test, I still got ```RuntimeError: Plane cannot land. Plane has already landed```.
+- Updated ```airport_spec.rb```, ```plane_spec.rb``` and ```Airport``` and ```Plane``` class following [Sam's solution](https://www.youtube.com/watch?v=Vg0cFVLH_EM) as I did struggle with this bit. RSpec and feature tests are both successful.
+- **Planes that have already landed cannot land again now and are stored in airport**
+- Commit 
