@@ -16,6 +16,13 @@ describe Airport do
         expect(result).to be true
       end
     end
+
+    context "and it is not full" do
+      it "returns false" do
+        result = subject.full?
+        expect(result).to be false
+      end
+    end
   end
 
   context "When observing the weather" do
