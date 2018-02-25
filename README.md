@@ -11,7 +11,9 @@ My own approach:
 3. In third place, I pass from feature tests in IRB to create Unit Tests initialializing the testing framework RSpec.
     The objective is to pass the test for all the three methods created so far with a coverage of 100%.
     To do so, and to ensure the quality of the code, I use rubocop to refactor before commiting.
-    
+4. Then, I add a couple of methods, including the weather conditions, and I create more Unit Tests.
+    I try to ensure consistent test behaviour.
+    To do so, I use stub to override random weather conditions. 
 
 
 
