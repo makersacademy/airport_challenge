@@ -6,8 +6,8 @@ class Weather
   end
 
   private
-    def weather_generator
-      rand(2)
-    end
+  def weather_generator
+    rand(2)
+  end
 
 end
