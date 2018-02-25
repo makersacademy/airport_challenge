@@ -6,7 +6,7 @@ class Weather
 
   private
 
-  OUTLOOKS = [:stormy, :fine, :fine, :fine]
+  OUTLOOKS = [:stormy, :fine, :fine, :fine].freeze
 
   def random_outlook
     OUTLOOKS.sample

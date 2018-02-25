@@ -4,13 +4,15 @@ require 'weather'
 
 describe Airport do
   subject(:airport) { described_class.new(20, weather) }
+  subject(:other_airport) { described_class.new(20, weather) }
   let(:plane) { double :plane }
   let(:weather) { double :weather }
+
 
   describe '#instruct_landing' do
     context 'when weather not stormy' do
       before do
-        allow(weather).to receive(:stormy?).and_return(false)
+        allow(weather).to receive(:stormy?).and_return false
       end
 
       it 'instructs a plane to land' do
@@ -35,8 +37,17 @@ describe Airport do
 
   describe '#instruct_take_off' do
     context 'when weather not stormy' do
+      before do
+        allow(weather).to receive(:stormy?).and_return false
+      end
+
       it 'instructs a plane to take off' do
         expect(airport).to respond_to(:instruct_take_off).with(1).argument
+      end
+
+      it 'raises error if plane is not at this specific airport' do
+        other_airport.instruct_landing(plane)
+        expect { airport.instruct_take_off(plane) }.to raise_error 'Plane cannot take off. Plane at another airport'
       end
     end
 

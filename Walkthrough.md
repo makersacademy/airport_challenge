@@ -146,7 +146,7 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:12:in `ins
 - Got rid of the _magic number_ by passing ```capacity``` to ```initialize``` in ```Airport``` class
 - Commit
 
-### Step 14 - More refactoring (inspired by Sam's tutorial)
+### Step 14 - More refactoring (inspired by [Sam's tutorial](https://www.youtube.com/watch?v=Vg0cFVLH_EM))
 - To make the code more readable, I defined a new ```private``` method ```full?```. The method is private because it won't be called from outside the class.
 - Further refactoring in ```airport_spec.rb```
 
@@ -157,4 +157,42 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:12:in `ins
   **At some point, the** ```stormy?``` **method** **will have to be placed in** ```Weather``` **Single Responsibility Principle**
 - Test passes
 - **Landing and take off are now prevented when weather is stormy**
+- Commit
+
+### Step 15 - Take stormy? method to another class (Single Responsibility Principle)
+- Wrote unit test in ```weather_spec.rb``` for both "stormy" and "not stormy" conditions, following both [code review rubric](docs/review.md) and [Sam's tutorial](https://www.youtube.com/watch?v=Vg0cFVLH_EM)].
+- Ran RSpec and got following error:
+```NoMethodError:
+       undefined method `stormy?' for #<Weather:0x00007f822a98d128>
+```
+- In class ```Weather```, I defined method ```stormy?``` and private array of default values ```OUTLOOKS``` along with private method ```random_outlook```, which randomly selects one of the four items in the array (see [code review rubric](docs/review.md)).
+- As per instructions, I used a stub to override random weather (see [code review rubric](docs/review.md)).
+- ```Airport``` class does not depend on ```Weather``` class anymore.
+- Commit
+
+### Step 16 - Plane can only take off from airport it is in (edge case)
+- Feature test in ```pry``` shows that same plane can take off from any airport
+- ```
+[37] pry(main)> airport
+=> #<Airport:0x00007ff112a50090 @capacity=21, @planes=[#<Plane:0x00007ff112b190d0>], @weather=#<Weather:0x00007ff112a500b8>>
+[38] pry(main)> airport_2
+=> #<Airport:0x00007ff112af1d78
+ @capacity=20,
+ @planes=[#<Plane:0x00007ff112b190d0>, #<Plane:0x00007ff112b190d0>],
+ @weather=#<Weather:0x00007ff112af1da0>>
+[39] pry(main)> airport_2.instruct_take_off(plane)
+RuntimeError: Cannot take off due to stormy weather
+from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:20:in `instruct_take_off'
+[40] pry(main)> airport.instruct_take_off(plane)
+RuntimeError: Cannot take off due to stormy weather
+from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:20:in `instruct_take_off'
+[41] pry(main)> airport.instruct_take_off(plane)
+=> nil
+```
+- Wrote test in ```#instruct_take_off``` in ```airport_spec.rb``` to raise error if plane is not at specific airport, ran rspec and got the following error:
+```Failure/Error: expect { airport.instruct_take_off(plane) }.to raise_error 'Plane cannot take off. Plane at another airport'
+       expected Exception with "Plane cannot take off. Plane at another airport" but nothing was raised
+```
+- Updated the ```instruct_take_off``` method and refactored it based on Sam's tutorial
+- **A plane can now only take off from the airport it is in**
 - Commit
