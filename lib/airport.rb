@@ -13,10 +13,11 @@ class Airport
   end
 
   def land(plane, weather)
+    fail "That isn't a plane!" unless plane.ping == 'I am a plane.'
     fail 'Weather is too stormy to land!' unless clear_weather?(weather)
     fail 'Airport cannot land any more planes at present!' if full?
     fail 'Plane is already parked here!' if confirm_arrival(plane)
-    plane.land
+    plane.land(self)
     @parked_planes.push(plane)
   end
 
@@ -39,6 +40,10 @@ class Airport
     fail 'Please enter an integer >= 0' if new_capacity.negative?
     fail 'Please enter an integer >= 0' unless new_capacity.integer?
     @plane_capacity = new_capacity
+  end
+
+  def ping
+    'I am an airport.'
   end
 
   private

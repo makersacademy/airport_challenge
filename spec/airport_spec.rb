@@ -6,6 +6,7 @@ describe Airport do
 
   before(:each) do
     @fk_plane = double(
+      :ping => 'I am a plane.',
       :land => nil,
       :takeoff => nil,
       :landed => true
@@ -76,4 +77,11 @@ describe Airport do
       expect(airport.plane_capacity).to eq 5
     end
   end
+
+  describe '#ping' do
+    it 'responds to a transponder ping' do
+      expect(airport.ping).to eq 'I am an airport.'
+    end
+  end
+
 end
