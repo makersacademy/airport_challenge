@@ -1,11 +1,15 @@
 class Airport
-  attr_reader :hangar
+  DEFAULT_CAPACITY = 10
 
-  def initialize
+  attr_reader :hangar, :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def land(plane)
+    fail 'Airport at full capacity' if capacity_reached?
     @hangar.push(plane)
   end
 
@@ -13,8 +17,7 @@ class Airport
     @hangar.delete(plane)
   end
 
-  def safe_to_operate?(stormy)
-    fail 'conditions not suitable for operations' if stormy == true
-    true
+  def capacity_reached?
+    @hangar.length >= @capacity
   end
 end
