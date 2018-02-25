@@ -1,6 +1,10 @@
 require 'airport'
-DEFAULT_CAPACITY = 10 
+#DEFAULT_CAPACITY = 10
 describe Airport do
+
+  # it 'has default capacity' do
+  #   expect(subject.capacity).to eq Airport::DEFAULT_CAPACITY
+  # end
 
   it { is_expected.to respond_to :take_off }
 
@@ -30,8 +34,16 @@ describe Airport do
     end
 
     it 'raises an error when airport is full' do
-      DEFAULT_CAPACITY.times { subject.land(Plane.new) }
+      subject.capacity.times { subject.land(Plane.new) }
       expect { subject.land Plane.new }. to raise_error 'Airport is full'
+    end
+  end
+
+  describe '#initialize' do
+    it 'has a variable capacity' do
+      airport = Airport.new(50)
+      50.times { airport.land Plane.new }
+      expect{ airport.land Plane.new }.to raise_error 'Airport is full'
     end
   end
 
