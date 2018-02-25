@@ -3,7 +3,20 @@ require './lib/airport_with_limited_capacity.rb'
 describe Airport do
   boeing747 = Plane.new
 
-  it { should respond_to(:observe_weather, :land, :take_off, :confirmation_of_departure) }
+  it { should respond_to(:full?, :observe_weather, :land, :take_off, :confirmation_of_departure) }
+
+  context "When checking the hangar capacity" do
+    context "and it is full" do
+      it "returns true" do
+        allow(subject).to receive(:observe_weather) { :sunny }
+        20.times do
+          subject.land(boeing747)
+        end
+        result = subject.full?
+        expect(result).to be true
+      end
+    end
+  end
 
   context "When observing the weather" do
     context "and rand is not zero" do

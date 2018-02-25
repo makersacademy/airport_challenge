@@ -11,6 +11,10 @@ class Airport
     @capacity = capacity
   end
 
+  def full?
+    @hangar.length >= @capacity
+  end
+
   def observe_weather
     rand(4).zero? ? :stormy : :sunny
   end
