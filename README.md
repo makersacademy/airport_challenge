@@ -42,23 +42,23 @@ airport = Airport.new(airport_id, <capcity>)
 ```
 ### Airport class methods
 ```
-# allows planes to land
 Airport.land(plane, weather)
+# allows planes to land
 # land() will throw error if
 # - Plane has already landed at an(y) airport
 # - Weather is stormy (can be overriden by passing false instead of weather)
 # - Airport capacity is reached and there is no more space
 ```
 ```
-# allows planes to take_off if Weather_obj.stormy is false
 Airport.take_off(plane, weather)
+# allows planes to take_off if Weather_obj.stormy is false
 # take_off() will throw error if
 # - Plane not at the airport (in mid air or at any other airport)
 # - Weather is stormy (can be overriden by passing false instead of weather)
 ```
 ```
-# private method full() returns true or false depending on number of planes in the hanger
 Airport.full?()
+# private method full() returns true or false depending on number of planes in the hanger
 ```
 
 ### Plane class methods
@@ -67,6 +67,6 @@ Airport.full?()
 ```
 # Weather class methods
 ```
-# stormy?(). This method returns true or false randomly 1/5 chances of storm
 Weather.stormy?()
+# stormy?(). This method returns true or false randomly 1/5 chances of storm
 ```
