@@ -8,15 +8,10 @@ class Airport
   end
 
   def land(plane)
+    fail 'Airport is full' if @plane
     @plane = plane
   end
 
-# this is an attribute reader, i.e. read the @plane attribute on an instance
-  # def plane
-  #   @plane
-  # end
-
-# shorthand to write the method above
   attr_reader :plane
 
 end

@@ -11,11 +11,6 @@ describe Airport do
 
   it { is_expected.to respond_to(:land).with(1).argument }
 
-  it 'docks a landing plane' do
-    plane = Plane.new
-    expect(subject.land(plane)).to eq plane
-  end
-
   describe '#take_off' do
     it 'releases a plane' do
       plane = Plane.new
@@ -25,6 +20,18 @@ describe Airport do
 
     it 'raises an error when there are no planes to take off' do
       expect { subject.take_off }.to raise_error 'No planes available'
+    end
+  end
+
+  describe '#land' do
+    it 'docks a landing plane' do
+      plane = Plane.new
+      expect(subject.land(plane)).to eq plane
+    end
+
+    it 'raises an error when airport is full' do
+      subject.land(Plane.new)
+      expect { subject.land Plane.new }. to raise_error 'Airport is full'
     end
   end
 
