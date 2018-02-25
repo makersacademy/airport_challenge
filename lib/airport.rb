@@ -6,12 +6,10 @@ class Airport
   end
 
   def land
-    if stormy?
-      raise Exception.new('Cannot land in stormy weather!')
-    else
-      @landed_planes << Plane.new
-      Plane.new
-    end
+    raise Exception.new('Cannot land in stormy weather!') if stormy?
+    raise Exception.new('Cannot land; the airport is full!') if full?
+    @landed_planes << Plane.new
+    Plane.new
   end
 
   def take_off
@@ -21,6 +19,10 @@ class Airport
       @landed_planes.pop
       Plane.new
     end
+  end
+
+  def full?
+    @landed_planes.length >= 10
   end
 
   def stormy?
