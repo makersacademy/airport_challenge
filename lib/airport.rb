@@ -19,27 +19,17 @@ class Airport
   end
 
   def instruct_land(plane)
+    # airport send instruction for plane to land
+    # do not let plane be instruct to land if plane is already landed
+    raise 'Plane already landed' if plane.plane_status == "landed"
     plane.instruct = "land"
   end
 
-  def takeoff(plane)
+  def instruct_takeoff(plane)
+    # airport send instruction for plane to takeoff
     # do not let plane takeoff if plane is already in-flight
     raise 'Plane already in flight' if plane.plane_status == "in-flight"
-    # do not let plane takeoff if stormy
-    if @current_weather == 0      # If we dont pass in weather, then automatically generate weather
-      @current_weather = weather
-    end
-    if @current_weather > 8
-        @current_weather = 0
-      raise 'Too stormy to takeoff'
-    end
-    # takeoff a plane by removing it from the landed_planes
-    # return landed_planes to confirm the plane is no longer in the array
-    @current_weather = 0
-    @landed_planes.delete(plane)
-    @plane_status = "in-flight"
-    @landed_planes
-
+    plane.instruct = "takeoff"
   end
 
   def weather

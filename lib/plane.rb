@@ -17,8 +17,6 @@ class Plane
 
   def land(airport)
     if @instruct == "land"
-      # do not let plane land if plane is already landed
-      raise 'Plane already landed' if @plane_status == "landed"
       # do not let plane land if airport is full
       raise 'No capacity in airport' if airport.landed_planes.length >= airport.capacity
       # do not let plane land if stormy
@@ -37,6 +35,29 @@ class Plane
       airport.landed_planes << self
     else
       raise 'No instruct from airport to land'
+    end
+  end
+
+  def takeoff(airport)
+    if @instruct == "takeoff"
+      #describes takeoff method based on which airport the plane is in
+      # do not let plane takeoff if stormy
+      if airport.current_weather == 0      # If we dont pass in weather, then automatically generate weather
+        airport.current_weather = airport.weather
+      end
+      if airport.current_weather > 8
+        airport.current_weather = 0
+        raise 'Too stormy to takeoff'
+      end
+      # takeoff a plane by removing it from the landed_planes
+      # return landed_planes to confirm the plane is no longer in the array
+      airport.current_weather = 0
+      airport.landed_planes.delete(self)
+      @plane_status = "in-flight"
+      @instruct = "none"
+      airport.landed_planes
+    else
+      raise 'No instruct from airport to takeoff'
     end
   end
 end
