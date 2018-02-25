@@ -32,11 +32,17 @@ The following SOP will use airport, plane and weather as placeholder names to re
 
 Planes are assembled by Zeus and flung into the world mid-flight. To land a newly created plane, use **airport.land(plane, weather)**. If **the weather conditions are suitable** and the **airport isn't full**, the plane will land and be parked.
 
-To check weather conditions, use **weather.report** (NB weather is pretty tricky stuff and will change from clear to stormy instantly, so there isn't much point in checking it. Good luck with the landing anyway!). As weather is so changeable, landings that cannot be completed due to stormy weather should be successful with subsequent attempts.
+To check weather conditions, use **weather.report** (NB weather is pretty tricky stuff and will change from clear to stormy instantly, so there isn't much point in checking it. Good luck with the landing anyway!). As weather is so changeable, landings that cannot be completed due to stormy weather should be successful with subsequent attempts. If you want to ensure that the plane you just told to land has actually landed **airport.confirm_arrival(plane)** will return **true** if that particular plane is parked in the airport.
 
-Airport capacity defaults to 5 planes, and can be checked with **airport.plane_capacity**. You can land planes as long as the airport isn't full. You shouldn't land planes at a full airport because it's dangerous. However, if you desperately **have** to bend the rules and land a plane at a full airport (or stop a plane landing at an empty airport) for reasons relating to romance/terrorism/saving christmas etc you can use **airport.override_capacity([new capacity])** to expand ( or reduce ) the number of planes an airport can take.  
+Because of the way time works in this bit of the cosmos, planes that are already landed cannot be landed again before they have taken off.
+
+Airport capacity is a mysterious value that can only be determined by trying to land planes at an airport until it tells you to stop. You can land planes as long as the airport isn't full. You shouldn't land planes at a full airport because it's dangerous.
+
+However, if you desperately **have** to bend the rules and land a plane at a full airport (or stop a plane landing at an empty airport) for reasons relating to romance/terrorism/saving christmas etc you can use **airport.override_capacity([new capacity])** to expand ( or reduce ) the number of planes an airport can take. (NB [new capacity] should be an integer >= 0)
 
 To tell a parked plane to take off, use **airport.takeoff(plane, weather)**. If the weather is calm, the plane will take off. As with landings, unsuccessful takesoffs due to stormy weather should be successful if you simple try again. If you want to ensure the plane you have just told to take off has gone, **airport.confirm_departure(plane)** will return **true** if that particular plane is no longer parked at the airport.
+
+Again due to times arrow, a plane that has taken off already (or is already flying in its newborn state) cannot take off again.
 
 ## Testing
 

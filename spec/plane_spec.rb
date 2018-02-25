@@ -6,12 +6,7 @@ describe Plane do
 
   describe '#land' do
 
-    it 'lands at an airport' do
-      plane.land
-      expect(plane.landed).to eq true
-    end
-
-    it "doesn't land unless flying" do
+    it 'lands at an airport unless flying' do
       plane.land
       expect { plane.land }.to raise_error('Plane is on ground!')
     end
@@ -20,13 +15,9 @@ describe Plane do
 
   describe '#takeoff' do
 
-    it 'takes off from an aiport if parked' do
+    it 'takes off from an aiport unless flying' do
       plane.land
       plane.takeoff
-      expect(plane.landed).to eq false
-    end
-
-    it "doesn't takeoff unless parked" do
       expect { plane.takeoff }.to raise_error('Plane is already flying!')
     end
 

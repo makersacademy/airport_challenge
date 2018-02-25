@@ -15,7 +15,8 @@ class Airport
   def land(plane, weather)
     fail 'Weather is too stormy to land!' unless clear_weather?(weather)
     fail 'Airport cannot land any more planes at present!' if full?
-    plane.land(self)
+    fail 'Plane is already parked here!' if confirm_arrival(plane)
+    plane.land
     @parked_planes.push(plane)
   end
 
@@ -26,7 +27,7 @@ class Airport
   def takeoff(plane, weather)
     fail 'Plane is not parked here!' unless confirm_arrival(plane)
     fail 'Weather is too stormy to take off!' unless clear_weather?(weather)
-    plane.takeoff(self)
+    plane.takeoff
     @parked_planes.delete_at(find_plane(plane))
   end
 
@@ -35,6 +36,8 @@ class Airport
   end
 
   def override_capacity(new_capacity)
+    fail 'Please enter an integer >= 0' if new_capacity.negative?
+    fail 'Please enter an integer >= 0' unless new_capacity.integer?
     @plane_capacity = new_capacity
   end
 
