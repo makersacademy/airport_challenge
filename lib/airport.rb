@@ -1,8 +1,10 @@
 require './lib/plane.rb'
 
 class Airport
-  def initialize
+  DEFAULT_CAPACITY = 100
+  def initialize(capacity = DEFAULT_CAPACITY)
     @landed_planes = []
+    @capacity = capacity
   end
 
   def land
@@ -13,16 +15,13 @@ class Airport
   end
 
   def take_off
-    if stormy?
-      raise Exception.new('Cannot take off in stormy weather!')
-    else
-      @landed_planes.pop
-      Plane.new
-    end
+    raise Exception.new('Cannot take off in stormy weather!') if stormy?
+    @landed_planes.pop
+    Plane.new
   end
 
   def full?
-    @landed_planes.length >= 10
+    @landed_planes.length >= @capacity
   end
 
   def stormy?
