@@ -35,6 +35,8 @@ class Airport
   end
 
   def takeoff(plane)
+    # do not let plane takeoff if plane is already in-flight
+    raise 'Plane already in flight' if plane.plane_status == "in-flight"
     # do not let plane takeoff if stormy
     if @current_weather == 0      # If we dont pass in weather, then automatically generate weather
       @current_weather = weather
@@ -47,6 +49,7 @@ class Airport
     # return landed_planes to confirm the plane is no longer in the array
     @current_weather = 0
     @landed_planes.delete(plane)
+    @plane_status = "in-flight"
     @landed_planes
 
   end

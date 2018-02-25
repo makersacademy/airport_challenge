@@ -35,10 +35,16 @@ describe Airport do
       # london = double # Trying to setup double
       london = Airport.new
       plane = Plane.new
-      london.current_weather = 1
-      london.land(plane)
+      plane.plane_status = "landed"
       london.current_weather = 1
       expect(london.takeoff(plane)).to eq(london.landed_planes)
+    end
+
+    it 'should not allow plane to takeoff if plane is already in flight' do
+      london = Airport.new
+      plane = Plane.new
+      london.current_weather = 1
+      expect { london.takeoff(plane) }.to raise_error('Plane already in flight')
     end
   end
 
@@ -62,6 +68,8 @@ describe Airport do
     it 'raises exception too stormy to takeoff' do # test if exception is raise if weather is too stormy to takeoff
       london = Airport.new
       plane = Plane.new
+      london.current_weather = 1
+      plane.plane_status = "landed"
       # setting current_weather to be too stormy to takeoff
       # overiding random weather
       london.current_weather = 9
