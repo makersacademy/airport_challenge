@@ -1,7 +1,6 @@
 class Plane
   attr_accessor :landed
-
   def land
-    landed = true
+    true
   end
 end
