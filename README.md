@@ -1,3 +1,29 @@
+
+README for my Airport Challenge
+-Makers Academy week 1 weeknend challenge
+
+In order to make sure I cover the user story, I took notes to differenciate subjects and verbs. 
+
+I made three Classes, which means I made three files, that are airport, plane, and weather.
+Plane class is pretty much empty, just in order to make it possible to make instances called plane.
+Weather class generates weather. Since there is a rare chance of getting stormy, I made three sunny's and one stormy. I run .sample to this array with four objects in order to return a weather. I could have made weather method within AirPort class but since weather is unrelated to any other method, I tried to encupsilate it to make it neat.
+AirPort does the most jobs. Here I write mothods land, take off, and also stormy? and full?, in order to make it easier to coralate with tests. 
+
+In the first method "land" I check in the spec
+ -It lets the plane land
+ -It raises an error when the weather is stormy
+ -It raises an error when the airport is full
+ -It makes sure the plane stays in the airport once it lands (unless it takes off)
+ I used loop so that it can adapt to the change of capacity of airport. I assigned a new airport within the last method as it throws an error saying the airport is full otherwise.
+
+In the second method "takeoff" I check inthe spec
+ -It raises an error when the weather is stormy
+ -It raises an error when the airport is empty (=no plane to take off)
+ -It lets the plane take off
+For the same reason above, I assigned a new airport within the second method in order to make the airport empty. In the first method I had to assign the weather twice in order to let a plane land first so that the airport has a plane. Otherwise there is no plane to take off, therefore it throws an error that the airport is empty.
+
+
+
 Airport Challenge
 =================
 
