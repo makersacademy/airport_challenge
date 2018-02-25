@@ -1,5 +1,4 @@
 class Plane
-  attr_reader :parked
 
   def initialize
     @parked = false
