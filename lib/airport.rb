@@ -17,8 +17,7 @@ class Airport
     raise 'Plane already landed at an airport' unless plane.airport.nil?
     raise 'Error! Airport Full' if full?
     raise 'BAD WEATHER CONDITION! Cannot allow to land' if stormy
-
-    plane.airport = @id
+    plane.airport = @id # set plane.airport to current airport
     @hanger.push(plane)
   end
 
@@ -26,7 +25,7 @@ class Airport
   def take_off(plane, stormy)
     raise 'Error! Plane not at this airport' unless plane.airport.eql?(@id)
     raise 'BAD WEATHER CONDITION! Cannot allow to take off' if stormy
-    plane.airport = nil
+    plane.airport = nil # set plane.airport to nil before take off
     @hanger.delete(plane)
   end
 
