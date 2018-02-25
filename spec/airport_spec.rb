@@ -13,6 +13,12 @@ describe Airport do
       allow(ap.weather).to receive(:stormy?).and_return true
       expect { ap.land(plane) }.to raise_error 'Bad weather, landing cancelled'
     end
+
+    it 'prevents planes landing when the airport is full' do
+      allow(ap.weather).to receive(:stormy?).and_return false
+      30.times { ap.land(plane) }
+      expect { ap.land(plane) }.to raise_error 'Airport is full, can\'t land'
+    end
   end
 
   describe '#takeoff' do

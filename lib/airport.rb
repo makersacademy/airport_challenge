@@ -3,12 +3,16 @@ require_relative 'weather'
 
 class Airport
   attr_reader :weather
+  DEFAULT_CAPACITY = 30
+
   def initialize(weather: Weather.new)
     @hangar = []
     @weather = weather
+    @capacity = DEFAULT_CAPACITY
   end
 
   def land(plane)
+    fail 'Airport is full, can\'t land' if full
     fail 'Bad weather, landing cancelled' if weather.stormy?
     @hangar << plane
   end
@@ -26,5 +30,9 @@ private
 
   def empty
     @hangar.count.zero?
+  end
+
+  def full
+    @hangar.count == @capacity
   end
 end
