@@ -1,26 +1,30 @@
-require './lib/plane.rb'
+require_relative 'plane'
+require_relative 'weather'
 
 class Airport
   attr_accessor :airport
+  attr_reader :weather_forcaster
 
   def initialize
     @airport = []
+    @weather_forcaster = Weather.new
   end
 
   def land(plane)
-    @airport << plane
+    if @weather_forcaster.stormy?
+      @airport
+    else
+      @airport << plane
+    end
   end
 
   def takeoff(plane)
-    if weather == :stormy
+    if @weather_forcaster.stormy?
       @airport
-    elsif weather == :sunny
+    else
       @airport.pop
       @airport
     end
   end
 
-   def weather
-     [:sunny, :stormy][rand(2)]
-   end
 end

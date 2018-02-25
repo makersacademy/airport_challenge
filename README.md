@@ -49,7 +49,7 @@ I want to prevent takeoff when weather is stormy
 Objects  | Messages
 ------------- | -------------
 Air traffic controller  |
-Plane  | takeoff(stormy?)
+Plane  | takeoff(stormy)
 airport | can't takeoff
 
 ```
@@ -57,6 +57,11 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when weather is stormy
 ```
+Objects  | Messages
+------------- | -------------
+Air traffic controller  |
+Plane  | land(stormy)
+airport | can't land
 ```
 As an air traffic controller
 To ensure safety
