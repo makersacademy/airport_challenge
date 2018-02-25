@@ -219,3 +219,32 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:6:in `init
 - I initialized the constant ```DEFAULT_CAPACITY``` in ```Airport``` class. Ran RSpec and test passes
 - **Set default airport capacity**
 - Commit
+
+- **Step 18 - Plane flying cannot take off / be in airport (edge case)**
+- Ran feature test in ```pry``` and got the following error:
+```[11] pry(main)> airport.instruct_landing(plane)
+=> [#<Plane:0x00007f897193f880>]
+[12] pry(main)> flying_plane = airport.instruct_take_off(plane)
+=> nil
+[13] pry(main)> flying_plane.instruct_take_off
+NoMethodError: undefined method `instruct_take_off' for nil:NilClass
+from (pry):13:in `__pry__'
+```
+- Need to define method for ```Plane``` class.
+- Wrote unit test in ```plane_spec.rb```, and test in RSpec fails.
+- On to the production code, I defined ```instruct_take_off``` method in ```Plane``` class. Test passed.
+- Wrote another unit test that raises an error when trying to take off a plan that is already flying. Ran RSpec and got the following error message:
+``` Failure/Error: expect { plane.instruct_take_off }.to raise_error 'Plane cannot take off, plane is flying already'
+       expected Exception with "Plane cannot take off, plane is flying already" but nothing was raised
+```
+- In the production code, in ```Plane#instruct_take_off```, raised an error and test passed.
+- As per Sam's tutorial, in order for ```#instruct_take_off``` not to return ```nil```, in ```airport_spec.rb```, I wrote a test that is supposed to return the plane that took off. Ran RSpec and got following error:
+``` Failure/Error: expect(airport.instruct_take_off(plane)).to eq plane
+
+       expected: #<Double :plane>
+            got: nil
+
+       (compared using ==)
+```
+- Need to update production code. In ```Airport#instruct_take_off```, return ```plane```. RSpec test passed
+- 
