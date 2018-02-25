@@ -1,0 +1,2 @@
+describe Airport do
+end
