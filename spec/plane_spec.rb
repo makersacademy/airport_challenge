@@ -9,7 +9,7 @@ describe Plane do
 
   describe "#take_off" do
     it 'respond to take_off method' do
-      expect(Plane.new).to respond_to(:take_off)
+      expect(Plane.new).to respond_to(:take_off).with(1).arguments
     end
   end
 
