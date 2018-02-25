@@ -26,17 +26,18 @@ attr_accessor :ramps, :airport_status, :airport_capacity, :stormy
       @ramps = Array.new(@airport_capacity, nil)
     end
     airport_full?
+    weather
   end
 
   # Land plane at airport at @ramp index location idx
   def land_plane(plane, idx)
     # Generate weather status (sunny / stormy)
-    weather
+    #weather
     # Raise an error if airport is full or weather is stormy
     raise "No ramp at location #{idx}" if idx > @airport_capacity - 1
+    raise "Airport is full - cannot land" if airport_full? == "full"
     raise "Ramp #{idx} is not empty" if @ramps[idx] != nil
     raise "Plane is already landed" if plane.plane_status == "landed"
-    raise "Airport is full - cannot land" if airport_full? == "full"
     raise "Weather is stormy - cannot land" if @stormy == true
 
     # Change plane_status to "landed"
@@ -54,14 +55,14 @@ attr_accessor :ramps, :airport_status, :airport_capacity, :stormy
   # Select a plane to take off by @ramps index number
   def take_off(idx)
     # Generate weather status (sunny / stormy)
-    weather
+    #weather
+    plane_take_off = @ramps[idx]
     # Raise an error if incorrect/non-existent plane index or weather is stormy
-    raise "No plane at this ramp" if @ramps[idx] == nil
+    raise "No plane at this ramp" if plane_take_off == nil
     raise "No ramp at location #{idx}" if idx > @airport_capacity - 1
-    raise "Plane is already airborne" if plane.plane_status == "airborne"
+    raise "Plane is already airborne" if plane_take_off.plane_status == "airborne"
     raise "Weather is stormy - cannot take-off" if @stormy == true
     # Change plane_status to "airborne"
-    plane_take_off = @ramps[idx]
     plane_take_off.airborne
     @ramps[idx] = nil
     # Set @airport_status

@@ -7,6 +7,7 @@ describe Airport do
       airport = Airport.new("not full", 5)
       plane = Plane.new
       ramp = airport.land_plane(plane, 0)
+      airport.stormy = false
       expect(ramp).to include(plane)
       expect(plane.plane_status).to eq "landed"
     end
