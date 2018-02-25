@@ -1,6 +1,4 @@
-class Plane
-
-end
+require './lib/plane.rb'
 
 class Airport
   attr_reader :hangar
@@ -15,6 +13,10 @@ class Airport
     @hangar.length >= @capacity
   end
 
+  def plane_in_hangar?(plane)
+    @hangar.include? plane
+  end
+
   def observe_weather
     rand(4).zero? ? :stormy : :sunny
   end
@@ -26,6 +28,7 @@ class Airport
       @hangar
     else
       fail "Sorry, the hangar is full." if full?
+      fail "This plane is already in the hangar." if plane_in_hangar?(plane)
       puts "#{plane} landed in Manises airport and is ready for inspection."
       @hangar << plane
     end
@@ -37,6 +40,7 @@ class Airport
       puts "Until the weather conditions are favorable, no takeoffs authorized."
       @hangar
     else
+      fail "This plane is not in the hangar." unless plane_in_hangar?(plane)
       @hangar -= [plane]
     end
   end

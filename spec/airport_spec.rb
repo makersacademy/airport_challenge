@@ -10,7 +10,7 @@ describe Airport do
       it "returns true" do
         allow(subject).to receive(:observe_weather) { :sunny }
         20.times do
-          subject.land(boeing747)
+          subject.land(Plane.new)
         end
         result = subject.full?
         expect(result).to be true
@@ -50,11 +50,32 @@ describe Airport do
       expect(result).to eq [boeing747]
     end
 
+    context "and the plane is already there" do
+      before do
+        allow(subject).to receive(:observe_weather) { :sunny }
+        subject.land(boeing747)
+      end
+
+      it "does not land a plane twice" do
+        expect { subject.land(boeing747) }.to raise_error("This plane is already in the hangar.")
+      end
+    end
+
     it "lets the last airplane take off" do
       allow(subject).to receive(:observe_weather) { :sunny }
       subject.land(boeing747)
       result = subject.take_off(boeing747)
       expect(result).to be_empty
+    end
+
+    context "and the plane is not in the hangar" do
+      before do
+        allow(subject).to receive(:observe_weather) { :sunny }
+      end
+
+      it "does not land a plane twice" do
+        expect { subject.take_off(boeing747) }.to raise_error("This plane is not in the hangar.")
+      end
     end
   end
 
@@ -78,7 +99,7 @@ describe Airport do
     it "raises an error" do
       allow(subject).to receive(:observe_weather) { :sunny }
       20.times do
-        subject.land(boeing747)
+        subject.land(Plane.new)
       end
       expect { subject.land(boeing747) }.to raise_error("Sorry, the hangar is full.")
     end
