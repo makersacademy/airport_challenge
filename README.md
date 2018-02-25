@@ -44,9 +44,10 @@ I would like a default airport capacity that can be overridden as appropriate
 |   Plane     |  status  |
 |   Airport   |     land(plane), take_off(plane), full?        |
 
-**How I handled the weather component**
-I made an attribute called weather which is equal to an array.sample. Then I would raise an error if you try to land or take off when the weather = "stormy"
-For the rspec tests, I just set the weather to sunny so it wouldn't affect the tests.
+**How I handled the weather component:**
 
-**How I stopped you taking off planes which are in the air or taking off planes from an airport they are not docked in**
-I gave the plane class an attribute called status, which was 'air' when in the air and was set to the airport it landed in when it was on the ground. This meant that when you tried to take off a plane from an airport its status had to be equal to the airport you are trying to take it off from.
+ I made an attribute called weather which is equal to an array.sample. Then I would raise an error if you try to land or take off when the weather = "stormy". For the rspec tests, I just set the weather to sunny so it wouldn't affect the tests.
+
+**How I stopped you taking off planes which are in the air or taking off planes from an airport they are not docked in:**
+
+ I gave the plane class an attribute called status, which was 'air' when in the air and was set to the airport it landed in when it was on the ground. This meant that when you tried to take off a plane from an airport its status had to be equal to the airport you are trying to take it off from.
