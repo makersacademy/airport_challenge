@@ -56,5 +56,5 @@ I would like a default airport capacity that can be overridden as appropriate
 |    Objects   | Messages |
 | ------------ | ----------- |
 |   Air traffic controller   |             |
-|   Plane     |  land, take_off, in_air?  |
-|   Airport   |     full?        |
+|   Plane     |  status  |
+|   Airport   |     land(plane), take_off(plane), full?        |
