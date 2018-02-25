@@ -1,6 +1,9 @@
 require 'airport'
 describe Airport do
   subject(:airport) { Airport.new }
+   # Creating a new airport below with 0 capacity to test full method
+  full_airport = Airport.new(0)
+
 
   # create a plane before each test
   before(:each) do
@@ -16,11 +19,19 @@ describe Airport do
   # airport land method check
   it '#land' do
     expect(airport).to respond_to(:land).with(2).arguments
-    expect(airport.land(@plane, @sunny).last).to be(@plane)
+    expect(airport.land(@plane, @sunny).last).to be_an_Array #(@plane)
   end
 
   it 'expect #land to raise error if stormy' do
-    expect{airport.land(@plane, true)}.to raise_error
+  # USE CURLY BRACES FOR RAISE...WHY? IDK!
+    expect{ airport.land(@plane, @stormy) }.to raise_error 'BAD WEATHER CONDITION! Cannot allow to land'
+  end
+
+  # Don't allow landing if airport is full
+  it 'expect #land to raise error if airport is full' do
+    # creating scenario
+    # USE CURLY BRACES FOR RAISE...WHY? IDK!
+    expect { full_airport.land(@plane, @sunny) }.to raise_error 'Error! Airport Full'
   end
 
   # airport take off method check
@@ -31,7 +42,8 @@ describe Airport do
   end
 
   it 'expect #take_off to raise error if stormy' do
-    expect{airport.take_off(@plane, @stormy) }.to raise_error
+    # USE CURLY BRACES FOR RAISE...WHY? IDK!
+    expect { airport.take_off(@plane, @stormy) }.to raise_error 'BAD WEATHER CONDITION! Cannot allow to take off'
   end
 
   # airport prevent landing method check

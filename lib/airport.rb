@@ -14,13 +14,19 @@ class Airport
 # land method to allow planes to land
   def land(plane, stormy)
     raise 'BAD WEATHER CONDITION! Cannot allow to land' if stormy
+    raise 'Error! Airport Full' if full?
     @hanger.push(plane)
   end
 
 # take_off method to allow planes to take off
   def take_off(plane, stormy)
     raise 'BAD WEATHER CONDITION! Cannot allow to take off' if stormy
+    raise 'Error! Airport Full' if full?
     @hanger.delete(plane)
+  end
+
+  def full?
+    @hanger.length >= capacity
   end
 
 # prevent_landing method to prevent landing
