@@ -11,6 +11,13 @@ describe Airport do
       result = subject.land(boeing747)
       expect(result).to eq [boeing747]
     end
+
+    it "lets the last airplane take off" do
+      allow(subject).to receive(:observe_weather) { :sunny }
+      subject.land(boeing747)
+      result = subject.take_off(boeing747)
+      expect(result).to be_empty
+    end
   end
 
   context "When the weather is stormy" do
@@ -19,13 +26,13 @@ describe Airport do
       result = subject.land(boeing747)
       expect(result).to be_empty
     end
-  end
 
-  context "When the last airplane takes off" do
-    it "leaves an empty hangar" do
+    it "does not let the last airplane take off" do
+      allow(subject).to receive(:observe_weather) { :sunny }
       subject.land(boeing747)
+      allow(subject).to receive(:observe_weather) { :stormy }
       result = subject.take_off(boeing747)
-      expect(result).to be_empty
+      expect(result).to eq [boeing747]
     end
   end
 
