@@ -3,10 +3,14 @@ require_relative '../lib/plane'
 class Airport
   # controls instances of Airport including landing, takeoff
   attr_reader :landed_planes
+  attr_reader :weather
   attr_accessor :current_weather
   attr_reader :capacity
+
   DEFAULT_CAPACITY = 3
   @current_weather = 0
+  # plane instruct tells plane instance what to do
+  # plane instruct is true for land and false for no instruct
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -14,24 +18,8 @@ class Airport
     @current_weather = 0
   end
 
-  def land(plane)
-    # do not let plane land if plane is already landed
-    raise 'Plane already landed' if @plane_status == "landed"
-    # do not let plane land if airport is full
-    raise 'No capacity in airport' if @landed_planes.length >= @capacity
-    # do not let plane land if stormy
-    if @current_weather == 0      # If we dont pass in weather, then automatically generate weather
-      @current_weather = weather
-    end
-    puts @current_weather
-    if @current_weather > 8
-      @current_weather = 0
-      raise 'Too stormy to land'
-    end
-    # land a plane by adding it to the landed_planes
-    @current_weather = 0
-    @plane_status = "landed"
-    @landed_planes << plane
+  def instruct_land(plane)
+    plane.instruct = "land"
   end
 
   def takeoff(plane)
