@@ -1,5 +1,5 @@
-# Airport Challenge (Makers Academy Weekend Challenge #1)
-=================  
+# Airport Challenge (Makers Academy Weekend Challenge #1) 
+
 A basic sandbox simulating airport ground control.
 
 ## Contents
