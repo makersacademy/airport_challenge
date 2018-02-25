@@ -2,7 +2,7 @@ require 'airport'
 describe Airport do
 
   # airport new (initialize) method check
-  it { should respond_to(:new) }
+  # it { should respond_to(:new) }
 
   # airport land method check
   it { should respond_to(:land) }
