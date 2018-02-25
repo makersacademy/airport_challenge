@@ -1,5 +1,6 @@
 
 require_relative 'plane'
+require_relative 'weather'
 class Airport
 
   CAPACITY = 5
@@ -12,17 +13,17 @@ class Airport
   end
 
   def landing(plane)
+    fail "landing denied, hangar is full!" if full?
     @hangar << plane
   end
 
   def take_off(plane)
      plane = @hangar.delete_at(-1)
-     plane
-    # puts " A plane left the Hangar!"
+     "#{plane}" + 'A plane left the hangar!'
   end
 
   def full?
-    # @hangar.count >= @capacity
+    @hangar.length >= @capacity
   end
 
 

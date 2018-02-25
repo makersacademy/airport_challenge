@@ -8,6 +8,12 @@ describe Airport do
 
   it { should respond_to(:landing, :full?, :take_off,) }
 
+  describe '#full?' do
+    it 'not allow plane to landing if hangar is full' do
+      Airport::CAPACITY.times {subject.landing(@plane) }
+      expect {subject.landing(@plane) }.to raise_error "landing denied, hangar is full!"
+    end
+  end
 
   # it { expect(subject.full?).to eq false}
   describe '#landing' do
@@ -22,7 +28,7 @@ describe Airport do
     it { should respond_to(:take_off).with(1).argument }
     it " allow plane to leave the airport" do
     subject.landing(@plane)
-    expect(subject.take_off(@plane)).to eq @plane
+    expect(subject.take_off(@plane)).to eq "#{@plane}" + 'A plane left the hangar!'
    end
   end
 end
