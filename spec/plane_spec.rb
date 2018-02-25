@@ -19,7 +19,7 @@ describe Plane do
       plane.land(@fk_airport)
       expect {
         plane.land(@fk_airport)
-      }.to raise_error('Plane is parked!')
+      }.to raise_error('Plane is on ground!')
     end
 
   end

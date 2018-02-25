@@ -1,19 +1,21 @@
 class Plane
 
+  attr_reader :landed
+
   def initialize
-    @parked = false
+    @landed = false
   end
 
   def land(airport)
-    fail 'Plane is parked!' if @parked
+    fail 'Plane is on ground!' if @landed
+    @landed= true
     airport.park_plane(self)
-    @parked = true
   end
 
   def takeoff(airport)
-    fail 'Plane is already flying!' unless @parked
+    fail 'Plane is already flying!' unless @landed
+    @landed = false
     airport.launch_plane(self)
-    @parked = false
   end
 
 end

@@ -2,26 +2,24 @@ require 'airport'
 
 describe Airport do
 
-  describe '#park_plane' do
-    it 'parks a plane' do
-      fk_plane = double()
-      subject.park_plane(fk_plane)
-      expect(subject.parked_planes[0]).to eq fk_plane
-    end
+  subject(:airport) { described_class.new }
+
+  before(:each) do
+    @fk_plane_parked = double(:parked => true)
+    @fk_plane_parkable = double(:land => subject.park_plane(@fk_plane_parked))
+    @fk_plane_flying = double(
+      :land => subject.park_plane(@fk_plane_flying),
+      :parked => false)
+    @fk_weather_clear = double(:report => :clear)
+    @fk_weather_stormy = double(:report => :stormy)
   end
 
   describe '#land' do
     it 'tells a plane to land and parks it' do
-      fk_weather = double(:report => :clear)
-      fk_plane = double()
-      fk_plane2 = double(:land => subject.park_plane(fk_plane))
-      subject.land(fk_plane2, fk_weather)
-      expect(subject.parked_planes[0]).to eq fk_plane
+      subject.land(@fk_plane_parkable, @fk_weather_clear)
+      expect(subject.confirm_arrived(@fk_plane_parked)).to eq true
     end
     it "doesn't land a plane in stormy weather" do
-      fk_weather = double(:report => :stormy)
-      fk_plane = double()
-      fk_plane2 = double(:land => subject.park_plane(fk_plane))
       expect {
         subject.land(fk_plane2, fk_weather)
       }.to raise_error 'Weather is too stormy to land!'
