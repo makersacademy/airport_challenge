@@ -309,4 +309,26 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/plane.rb:8:in `instru
 - RSpec test passed. However, in feature test, I still got ```RuntimeError: Plane cannot land. Plane has already landed```.
 - Updated ```airport_spec.rb```, ```plane_spec.rb``` and ```Airport``` and ```Plane``` class following [Sam's solution](https://www.youtube.com/watch?v=Vg0cFVLH_EM) as I did struggle with this bit. RSpec and feature tests are both successful.
 - **Planes that have already landed cannot land again now and are stored in airport**
-- Commit 
+- Commit
+
+- **Step 20 - Confirm plane is no longer in airport**
+- Ran feature test in and, currently, a plane that takes off is still in the airport, see below:
+```[6] pry(main)> airport.instruct_landing(plane2)
+=> [#<Plane:0x00007fcc363a0c00
+  @airport=#<Airport:0x00007fcc36392c68 @capacity=20, @planes=[...], @weather=#<Weather:0x00007fcc36392c90>>,
+  @flying=false>]
+[7] pry(main)> airport.instruct_take_off(plane2)
+=> #<Plane:0x00007fcc363a0c00
+ @airport=#<Airport:0x00007fcc36392c68 @capacity=20, @planes=[#<Plane:0x00007fcc363a0c00 ...>], @weather=#<Weather:0x00007fcc36392c90>>,
+ @flying=false>
+ ```
+ - Following Sam's suggestion, in feature test, called a method ```Airport#planes```, and got the following error:
+ ```[8] pry(main)> airport.planes
+NoMethodError: undefined method `planes' for #<Airport:0x00007fcc36392c68>
+```
+- Wrote a unit test for ```#planes``` in ```airport_spec```. RSpec test failed.
+- Need to define ```Airport#planes```. Made it an ```attr_reader```. RSpec still fails, there are conflicting unit tests.
+- Had to write two tests one to return planes at airport, the other not to return those that took off. RSpec still fails.
+- Changed production code. In ```Airport#instruct_take_off```, when the plane takes off, it gets "popped" from the ```@planes``` array. RSpec test passed.
+- **Airport can now confirm plane is no longer in airport**
+- Commit

@@ -1,6 +1,4 @@
 require 'airport'
-#require 'plane'
-#require 'weather'
 
 describe Airport do
   subject(:airport) { described_class.new(weather, 20) }
@@ -66,6 +64,23 @@ describe Airport do
 
       it 'instructs plane not to take off' do
         expect { airport.instruct_take_off(plane) }.to raise_error 'Plane cannot take off due to stormy weather'
+      end
+    end
+
+    describe '#planes' do
+      before do
+        allow(weather).to receive(:stormy?).and_return false
+      end
+
+      it 'returns planes at the airport' do
+        airport.instruct_landing(plane)
+        expect(airport.planes).to include plane
+      end
+
+      it 'does not return planes that took off' do
+        airport.instruct_landing(plane)
+        airport.instruct_take_off(plane)
+        expect(airport.planes).not_to include plane
       end
     end
 
