@@ -1,4 +1,4 @@
-require './lib/airport_with_limited_capacity.rb'
+require './lib/airport.rb'
 
 describe Airport do
   boeing747 = Plane.new
@@ -71,6 +71,16 @@ describe Airport do
       allow(subject).to receive(:observe_weather) { :stormy }
       result = subject.take_off(boeing747)
       expect(result).to eq [boeing747]
+    end
+  end
+
+  context "When the hangar is full" do
+    it "raises an error" do
+      allow(subject).to receive(:observe_weather) { :sunny }
+      20.times do
+        subject.land(boeing747)
+      end
+      expect { subject.land(boeing747) }.to raise_error("Sorry, the hangar is full.")
     end
   end
 

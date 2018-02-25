@@ -11,13 +11,13 @@ class Airport
     @capacity = capacity
   end
 
+  def full?
+    @hangar.length >= @capacity
+  end
+
   def observe_weather
     rand(4).zero? ? :stormy : :sunny
   end
-  #
-  # def full?
-  #   !@hangar.length < @capacity
-  # end
 
   def land(plane)
     weather = observe_weather
@@ -25,7 +25,8 @@ class Airport
       puts "Until the weather conditions are favorable, no landings authorized."
       @hangar
     else
-      puts "#{plane} has landed in Manises airport and is ready for inspection."
+      fail "Sorry, the hangar is full." if full?
+      puts "#{plane} landed in Manises airport and is ready for inspection."
       @hangar << plane
     end
   end
@@ -36,7 +37,6 @@ class Airport
       puts "Until the weather conditions are favorable, no takeoffs authorized."
       @hangar
     else
-      # fail "Sorry, the hangar already operating in full capacity" if full?
       @hangar -= [plane]
     end
   end
