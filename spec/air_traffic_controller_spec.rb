@@ -1,46 +1,42 @@
 require 'air_traffic_controller'
 
 describe AirTrafficController do
-
-  let(:dummy_plane_flying) { double :dummy_plane_flying, airport: 'in-flight' } 
-  let(:dummy_airport_heathrow) { double :dummy_airport_heathrow, spaces: Array.new(10) } 
-
-  describe ':bad_weather?' do
-  
-    it 'if weather is sunny return true' do
-      expect(subject.bad_weather?("Sunny")).to eq(false)
-    end
-
-  end
+  subject(:atc) { AirTrafficController.new }
+  let(:dummy_plane_flying) { double :dummy_plane_flying, airport: :inflight } 
+  let(:dummy_plane_docked) { double :dummy_plane_docked, airport: :heathrow } 
+  let(:dummy_airport_heathrow) { double :dummy_airport_heathrow, hangar: [], capacity: 10 } 
 
   describe ':request_status' do
   
-    it "identify whether a plane is 'in-flight' or at an airport" do
-      expect(subject.request_status(dummy_plane_flying)).to eq('in-flight')
+    it "identify that plane is 'in-flight'" do
+      expect(atc.request_status(dummy_plane_flying)).to eq(:inflight)
     end
 
+    it "identify that plane is docked at an airport" do
+      expect(atc.request_status(dummy_plane_docked)).to eq(:docked)
+    end
   end
 
   describe ':approval' do
   
     it 'raises exception if there is bad weather' do
-      expect { subject.approval("Stormy") }.to raise_error(RuntimeError)
+      expect { atc.approval("Stormy") }.to raise_error(RuntimeError)
     end
 
   end
 
   describe ':flight_approval' do
     it 'makes plane aware they have flight approval' do
-      dummy_plane = double(:flight_approval= => true) 
-      expect(subject.flight_approval(dummy_plane, "Sunny")).to eq(true) 
+      dummy_plane = double(:acknowledge_flight_approval => true) 
+      expect(atc.flight_approval(dummy_plane, :sunny)).to eq(true) 
     end
 
   end
 
   describe ':land_approval' do
     it 'makes plane aware they have landing approval' do
-      dummy_plane = double(:land_approval= => true) 
-      expect(subject.land_approval(dummy_plane, "Sunny", dummy_airport_heathrow)).to eq(true) 
+      dummy_plane = double(:acknowledge_land_approval => true) 
+      expect(atc.land_approval(dummy_plane, :sunny, dummy_airport_heathrow)).to eq(true) 
     end
 
   end

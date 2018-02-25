@@ -1,34 +1,42 @@
-require './lib/airport.rb'
+require_relative 'airport'
 
 class Plane
 
-  attr_reader :flight_approval, :land_approval, :status
+  attr_reader :flight_approval, :land_approval, :airport
 
   def initialize(airport)
-    @airport = airport
+    @airport, @flight_approval = airport, false
     @airport.dock_plane(self)
-    @status = :docked
-    @flight_approval = false
-    @land_approval = true
+  end
+
+  def take_off
+    take_off_check
+    @airport.release_plane(self) 
+    @land_approval, @airport = false, :inflight
+  end
+
+  def land(airport) 
+    landing_check(airport)
+    @flight_approval, @airport = false, airport
+    @airport.dock_plane(self)
+  end
+
+  def acknowledge_flight_approval
+    @flight_approval = true
+  end
+
+  def acknowledge_land_approval(airport)
+    @land_approval_at = airport
   end
 
   def take_off_check
     fail 'no flight approval' if @flight_approval == false
   end
 
-  def take_off
-    @airport.release_plane(self) 
-    @status = :inflight
-    @land_approval = false
+  def landing_check(airport)
+    fail 'you are already landed' if @airport != :inflight
+    fail 'not approved to land here' if @land_approval_at != airport
+    fail 'airport not specified' if airport.class != Airport
   end
 
-  def landing_check
-    fail 'no landing approval' if @land_approval == false
-  end
-
-  def land(airport) 
-    @flight_approval = false
-    @status = :docked
-    @airport.dock_plane(self)
-  end
 end

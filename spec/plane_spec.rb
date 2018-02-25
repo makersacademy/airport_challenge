@@ -1,54 +1,72 @@
 require 'plane'
 
 describe Plane do
-  
-  let(:dummy_airport_stansted) { double :dummy_airport, hangar: [] } 
-  let(:dummy_airport_heathrow) { double :dummy_airport, hangar: [] } 
+  let(:dummy_airport) { double :dummy_airport, dock_plane: [], release_plane: [], class: Airport }
+  subject(:plane) { Plane.new(dummy_airport) }  
 
   describe ':initialize' do
-
-    it "planes should initialize in an airport hangar" do
-      Plane.new(dummy_airport_stansted) 
-      expect(dummy_airport_stansted.hangar.length).to eq(1)
+     
+    it 'initializes airport' do
+      expect(plane.airport).to eq(dummy_airport)
     end
-
-  end
-
-  describe ':take_off_check' do
-
-    it "if plane has no approval error should be raised" do
-      plane = Plane.new(dummy_airport_stansted)
-      expect { plane.take_off_check }.to raise_error(RuntimeError)
+      
+    it 'assigns flight_approval' do
+      expect(plane.flight_approval).to eq(false)
     end
 
   end
 
   describe ':take_off' do
 
-    it "plane should remove itself from their airports hangar" do
-      plane = Plane.new(dummy_airport_stansted)
+    it 'tests if take off sets land approval to false' do
+      plane.acknowledge_flight_approval
+      plane.instance_variable_set(:@airport, dummy_airport)
       plane.take_off
-      expect(dummy_airport_stansted.hangar.length).to eq(0)
+      expect(plane.land_approval).to eq(false)
+    end
+
+    it 'tests if take off sets airport to inflight' do
+      plane.acknowledge_flight_approval
+      plane.instance_variable_set(:@airport, dummy_airport)
+      plane.take_off
+      expect(plane.airport).to eq(:inflight)
+    end
+
+  end
+
+  describe ':land' do
+
+    it 'tests if land is set to false' do
+      plane.acknowledge_land_approval(dummy_airport)
+      plane.instance_variable_set(:@airport, :inflight)
+      plane.land(dummy_airport)
+      expect(plane.flight_approval).to eq(false)
+    end
+
+  end
+
+  describe ':acknowledge_flight_approval' do
+  
+    it 'on approval should be true' do
+      plane.acknowledge_flight_approval
+      expect(plane.flight_approval).to eq(true)
+    end
+  end
+
+  describe ':take_off_check' do
+    
+    it 'if flight approval has not been given raise error' do
+      expect { plane.take_off_check }.to raise_error(RuntimeError)
     end
 
   end
 
   describe ':landing_check' do
-
-    it "if plane has no approval error should be raised" do
-      plane = Plane.new(dummy_airport_stansted)
-      plane.take_off
-      expect { plane.landing_check }.to raise_error(RuntimeError)
-    end
-  end
-
-  describe ':land' do
-
-    it "plane should land in an airports hangar" do
-      plane = Plane.new(dummy_airport_stansted)
-      plane.take_off
-      plane.land(dummy_airport_heathrow)
-      expect(dummy_airport_heathrow.hangar.length).to eq(1)
+    
+    it 'if airport and airport approved for landing are not the same raise error' do
+      dummy_airport_other = double(:dock_plane => [])
+      plane.acknowledge_land_approval(dummy_airport_other)
+      expect { plane.landing_check(dummy_airport) }.to raise_error(RuntimeError)
     end
 
   end

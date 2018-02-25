@@ -10,11 +10,11 @@ class Airport
   end
 
   def dock_plane(plane)
+    fail 'hangar is at capacity' if @hangar.length >= @capacity
     @hangar.push(plane)
   end
 
   def release_plane(plane)
     @hangar.delete(plane)
   end
-
 end

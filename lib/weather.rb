@@ -1,12 +1,15 @@
 class Weather
 
+  PATTERNS = [:stormy, :sunny, :sunny, :sunny, :sunny]
+
+  attr_reader :current
+
   def initialize
-    @probability = { "Stormy" => 2, "Sunny" => 8 }
     @current = generate
   end
 
+  private
   def generate
-    return "Stormy" if (rand(1..10) - @probability["Stormy"]) <= 0
-    "Sunny"
+    PATTERNS.sample
   end
 end
