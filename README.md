@@ -104,7 +104,7 @@ airport.instruct_take_off(plane)
 ```
 
 ## Resources
-- [Sam Morgan's tutorial](https://www.youtube.com/watch?v=Vg0cFVLH_EM)]: provided a massive input on organisisng user stories, along with helping me understand the use of ```RSpec``` mocks and syntax.
+- [Sam Morgan's tutorial](https://www.youtube.com/watch?v=Vg0cFVLH_EM): provided a massive input on organising user stories, along with helping me understand the use of ```RSpec``` mocks and syntax.
 - [Former Makers Academy student, Tom Spencer's blog](https://medium.com/@tomspencer_uk/weekend-challenges-with-makers-academy-my-experience-with-the-airport-challenge-4e50ea848bb4)
 - [Airport Challenge code review rubric](docs/review.md).
 - [@vannio](https://github.com/vannio/challenge-airport-traffic/blob/master/README.md)'s repository for input on README structure.
