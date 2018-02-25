@@ -22,7 +22,7 @@ describe Airport do
       context 'when full' do
         it 'does not allow plane to land' do
           20.times { airport.instruct_landing(plane) }
-          expect { airport.instruct_landing(plane) }.to raise_error 'Cannot land. Airport is full'
+          expect { airport.instruct_landing(plane) }.to raise_error 'Plane cannot land. Airport is full'
         end
       end
     end
@@ -30,7 +30,7 @@ describe Airport do
     context 'when weather stormy' do
       it 'does not allow plane to land' do
         allow(weather).to receive(:stormy?).and_return true
-        expect { airport.instruct_landing(plane) }.to raise_error 'Cannot land due to stormy weather'
+        expect { airport.instruct_landing(plane) }.to raise_error 'Plane cannot land due to stormy weather'
       end
     end
   end
@@ -50,7 +50,7 @@ describe Airport do
         expect(airport.instruct_take_off(plane)).to eq plane
       end
 
-      it 'raises error if plane is not at this specific airport' do
+      it 'raises an error if plane is not at this specific airport' do
         other_airport.instruct_landing(plane)
         expect { airport.instruct_take_off(plane) }.to raise_error 'Plane cannot take off. Plane at another airport'
       end
@@ -62,7 +62,7 @@ describe Airport do
       end
 
       it 'instructs plane not to take off' do
-        expect { airport.instruct_take_off(plane) }.to raise_error 'Cannot take off due to stormy weather'
+        expect { airport.instruct_take_off(plane) }.to raise_error 'Plane cannot take off due to stormy weather'
       end
     end
 
@@ -70,7 +70,7 @@ describe Airport do
       it 'has a default capacity' do
         allow(weather).to receive(:stormy?).and_return false
         described_class::DEFAULT_CAPACITY.times { default_airport.instruct_landing(plane) }
-        expect { default_airport.instruct_landing(plane) }.to raise_error 'Cannot land. Airport is full'
+        expect { default_airport.instruct_landing(plane) }.to raise_error 'Plane cannot land. Airport is full'
       end
     end
   end

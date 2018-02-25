@@ -220,7 +220,7 @@ from /Users/WorkStuff/Desktop/gitDir/airport_challenge/lib/airport.rb:6:in `init
 - **Set default airport capacity**
 - Commit
 
-- **Step 18 - Plane flying cannot take off / be in airport (edge case)**
+- **Step 18 - Flying plane cannot take off and cannot be in airport (edge cases)**
 - Ran feature test in ```pry``` and got the following error:
 ```[11] pry(main)> airport.instruct_landing(plane)
 => [#<Plane:0x00007f897193f880>]
@@ -247,4 +247,22 @@ from (pry):13:in `__pry__'
        (compared using ==)
 ```
 - Need to update production code. In ```Airport#instruct_take_off```, return ```plane```. RSpec test passed
-- 
+- **Flying plane cannot take off**
+- Commit
+- To test for flying plane that cannot be in airport, I ran feature test calling a method ```airport``` on ```flying_plane``` and got the following error:
+```
+NoMethodError: undefined method `airport' for #<Plane:0x00007fc909b23ac0>
+from (pry):8:in `__pry__'
+```
+- In ```plane_spec```, I described ```#airport```. Ran test in RSpec and got following error:
+```Failure/Error: it { is_expected to respond_to :airport  }
+
+     NoMethodError:
+       undefined method `to' for #<RSpec::ExampleGroups::Plane::Airport:0x00007ff347147548>
+```
+- In the production code, I defined ```Plane#airport``` and test passed.
+- In feature test, calling ```Plane#airport``` returns ```nil```. Need to do something.
+- Wrote a unit test to raise error when plane is flying and cannot be at airport. RSpec test failed.
+- Need to update production code by raising error in ```Plane#airport```. Test passed.
+- **Flying plane cannot be in airport now**
+- Commit
