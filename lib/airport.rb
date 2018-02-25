@@ -12,7 +12,7 @@ class Airport
   end
 
   def observe_weather
-    rand(6).zero? ? :stormy : :sunny
+    rand(4).zero? ? :stormy : :sunny
   end
 
   def full?

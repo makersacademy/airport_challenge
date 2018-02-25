@@ -4,13 +4,15 @@ end
 
 class Airport
   attr_reader :hangar
+  DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @hangar = []
+    @capacity = capacity
   end
 
   def observe_weather
-    rand(2).zero? ? :stormy : :sunny
+    rand(4).zero? ? :stormy : :sunny
   end
 
   def land(plane)
