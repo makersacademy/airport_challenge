@@ -1,7 +1,8 @@
 require_relative 'plane'
+require_relative 'weather'
 
 class Airport
-  attr_accessor :capacity, :planes_now
+  attr_reader :capacity, :planes_now
 
   CAPACITY = 20
 
@@ -10,14 +11,16 @@ class Airport
     @planes_now = []
   end
 
-  def allow_landing(plane)
+  def landing(plane, weather)
+    raise Exception.new("Bad weather, landing denied") unless weather.weather_ok?
+
     @planes_now << plane
     puts "#{plane} has landed"
   end
 
-  def allow_takeoff(plane)
+  def allow_takeoff(plane, weather)
+    raise Exception.new("Bad weather, takeoff denied") unless weather.weather_ok?
     @planes_now.delete(plane)
     puts "#{plane} has taken off"
   end
-
 end

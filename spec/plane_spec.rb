@@ -1,5 +1,9 @@
+require 'plane'
+
 describe Plane do
+  subject(:plane) { described_class.new }
+
   it 'is flying' do
-    expect(subject.plane_status).to eq "flying"
+    expect(plane.plane_status).to eq "flying"
   end
 end
