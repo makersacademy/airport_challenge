@@ -34,4 +34,12 @@ describe Airport do
     airport = Airport.new
     expect(airport.takeoff(plane_double))
   end
+
+  it 'when plane has taken off, confirm it is no longer in airport' do
+    plane_double = double('plane_double', status: 'grounded')
+    airport = Airport.new
+    airport.land(plane_double)
+    airport.takeoff(plane_double)
+    expect(airport.hanger).not_to include(plane_double)
+  end
 end
