@@ -1,3 +1,6 @@
+require './lib/weather'
+require './lib/plane'
+
 class Airport
   DEFAULT_CAPACITY = 10
 
@@ -8,13 +11,15 @@ class Airport
     @capacity = capacity
   end
 
-  def land(plane)
+  def land(plane, weather)
     fail 'Airport at full capacity' if hangar_capacity_reached?
+    fail 'Unable to land due to weather' if weather.stormy?
     @hangar.push(plane)
   end
 
-  def take_off(plane)
+  def take_off(plane, weather)
     fail 'Airport is empty' if hangar_empty?
+    fail 'Unable to depart due to weather' if weather.stormy?
     @hangar.delete(plane)
   end
 
@@ -24,5 +29,9 @@ class Airport
 
   def hangar_empty?
     @hangar.empty?
+  end
+
+  def safe_for_operations?(weather)
+    weather.stormy?
   end
 end
