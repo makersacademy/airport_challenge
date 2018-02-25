@@ -1,3 +1,2 @@
 describe Plane do
-  
 end
