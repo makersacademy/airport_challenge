@@ -9,7 +9,10 @@ class Airport
   end
 
   def plane_lands(plane)
-    @current_plane = plane
-    @airport << @current_plane
+    @airport << plane
+  end
+
+  def plane_takeoff
+    @airport.pop
   end
 end

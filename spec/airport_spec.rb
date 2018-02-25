@@ -14,7 +14,14 @@ describe Airport do
     it 'accepts plane into airport' do
       airport = Airport.new
       plane = Plane.new
-      expect(airport.plane_lands(plane)).to eq(airport.current_plane)
+      expect(airport.plane_lands(plane)).to include(plane)
+    end
+  end
+
+  describe '#plane_takeoff' do
+    it 'pops plane from airport' do
+      airport = Airport.new
+      expect(airport).to respond_to :plane_takeoff
     end
   end
 
