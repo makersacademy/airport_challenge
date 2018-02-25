@@ -1,7 +1,7 @@
 require_relative 'plane'
 require_relative 'weather'
 class Airport
-  attr_reader :hangar, :plane, :weather
+  attr_reader :hangar, :weather
 
   def initialize
     @hangar = []
@@ -9,11 +9,12 @@ class Airport
   end
 
   def land(plane)
+    fail 'Landing cancelled due to bad weather' if @weather.stormy?
     @hangar << plane
   end
 
   def take_off(plane)
-    fail 'Take off cancelled due to bad weather' if @weather.stormy? == true
+    fail 'Take off cancelled due to bad weather' if @weather.stormy?
     @hangar.delete(plane)
     status
   end

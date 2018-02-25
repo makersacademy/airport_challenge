@@ -6,7 +6,12 @@ describe Airport do
   subject(:airport) { described_class.new }
   subject(:plane) { described_class.new }
   describe '#land' do
-    it 'should land a plane' do
+    it 'should not allow landing when weather is stormy' do
+      allow(airport.weather).to receive(:stormy?).and_return true
+      expect { airport.land(plane) }.to raise_error 'Landing cancelled due to bad weather'
+    end
+    it 'should land a plane when weather is sunny' do
+      allow(airport.weather).to receive(:stormy?).and_return false
       expect(airport.land(plane)).to eq [plane]
     end
   end
