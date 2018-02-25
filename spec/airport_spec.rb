@@ -22,4 +22,16 @@ describe Airport do
     airport = Airport.new
     expect(airport.land(plane_double)).to eq('grounded')
   end
+
+  it 'when instructing plane to takeoff' do
+    plane_double = plane_double
+    airport = Airport.new
+    expect(airport).to respond_to(:takeoff)
+  end
+
+  it 'when plane is passed as an argument to takeoff' do
+    plane_double = double('plane_double', status: 'grounded')
+    airport = Airport.new
+    expect(airport.takeoff(plane_double))
+  end
 end
