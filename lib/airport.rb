@@ -14,6 +14,7 @@ class Airport
   end
 
   def takeoff(plane)
+    fail 'Bad weather, takeoff cancelled' if weather.stormy?
     @hangar.delete(plane)
   end
 

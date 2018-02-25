@@ -22,6 +22,13 @@ describe Airport do
       ap.takeoff(plane)
       expect(ap.status).to eq "There are 0 planes here"
     end
+
+    it 'won\'t take off due to stormy weather' do
+      allow(ap.weather).to receive(:stormy?).and_return false
+      ap.land(plane)
+      allow(ap.weather).to receive(:stormy?).and_return true
+      expect { ap.takeoff(plane) }.to raise_error 'Bad weather, takeoff cancelled'
+    end
   end
 
   describe '#status' do
