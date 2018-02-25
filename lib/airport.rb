@@ -3,7 +3,8 @@ require_relative 'plane'
 class Airport
 
   def take_off
-    Plane.new
+    fail 'No planes available' unless @plane
+    @plane
   end
 
   def land(plane)
