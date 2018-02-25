@@ -19,9 +19,15 @@ describe Airport do
     expect {
       plane1 = Plane.new
       plane2 = Plane.new
-      airport = Airport.new
+      airport = Airport.new(1)
       airport.land(plane1)
       airport.land(plane2)
     }.to raise_error("The airport is full")
   end
+  it "allows default capacity to be overridden" do
+    expect(
+      Airport.new(30).capacity
+    ).to eq 30
+  end
+
 end
