@@ -14,6 +14,11 @@ describe Airport do
       allow(airport.weather).to receive(:stormy?).and_return false
       expect(airport.land(plane)).to eq [plane]
     end
+    it 'should not land a plane when airport is full' do
+      allow(airport.weather).to receive(:stormy?).and_return false
+      20.times { airport.land(plane) }
+      expect { airport.land(plane) }.to raise_error 'Airport is full, cannot land the plane'
+    end
   end
   describe '#take_off' do
     it 'should not allow take off when weather is stormy' do
