@@ -2,39 +2,52 @@ Review
 =================
 How did I approach the challenge?
 ---------
-* 1.) Read the user stories.
-* 2.) Identified the key objects and methods within them.
-* 3.) Created the unit tests for the simpler objects.
-* 4.) Wrote the code for the simpler objects (i.e weather and airport).
-* 5.) Did the same for the more complex objects (i.e air_traffic_controller and plane).
-* 6.) Initial refactor to adjust program so that more control was given to the objects.
-* 7.) Secondary refactor.
+* Read the user stories.
+* Identified the key objects and methods within them.
+* Created the unit tests for the simpler objects.
+* Wrote the code for the simpler objects (i.e weather and airport).
+* Did the same for the more complex objects (i.e air_traffic_controller and plane).
+* Initial refactor to adjust program so that more control was given to the objects.
+* Secondary refactor.
 
-
-Elements attempted
+Elements included
 ---------
-* Basic features.
+* Plane status (AirTrafficController - .request_status(plane))
+* Plane landing (Plane - .land(airport))
+* Plane takeoff (Plane - .take_off)
+* Storms prevent landing (AirTrafficController)
+* Storms prevent takeoff (AirTrafficController)
+* Full airport cannot land planes (Airport)
+* Variable and default capacity (Airport)
+* Errors raised for inconsistent actions (Plane, AirTrafficController, Airport)
 
 Narrative
 ---------
  Key objects are created using the below syntax.
 
-`2.5.0 :001 > controller = AirTrafficController.new
- => #<AirTrafficController:0x00007fee049a71b8>
-2.5.0 :002 > gatwick = Airport.new
- => #<Airport:0x00007fee04992b00 @capacity=10, @hangar=[]>
- 2.5.0 :003 > weather = Weather.new
- => #<Weather:0x00007f9b0c8b3c48 @current=:sunny>`
+`2.5.0 :001 > controller = AirTrafficController.new`
+
+`=> #<AirTrafficController:0x00007fee049a71b8>`
+
+`2.5.0 :002 > gatwick = Airport.new`
+
+`=> #<Airport:0x00007fee04992b00 @capacity=10, @hangar=[]>`
+
+`2.5.0 :003 > weather = Weather.new`
+
+`=> #<Weather:0x00007f9b0c8b3c48 @current=:sunny>`
 
  In order to create a `Plane` object you need to pass it an instance of an airport.
  This airport is considered the planes starting airport.
 
- `2.5.0 :004 > plane = Plane.new(gatwick)
- => #<Plane:0x00007f9b0a8378e8 @airport=#<Airport:0x00007f9b0b80aa90 @capacity=10, @hangar=[]>, @flight_approval=false>`
+ `2.5.0 :004 > plane = Plane.new(gatwick)`
+
+` => #<Plane:0x00007f9b0a8378e8 @airport=#<Airport:0x00007f9b0b80aa90 @capacity=10, @hangar=[]>, @flight_approval=false>`
 
  If a `Plane` attempts to take off without flight approval an error will be raised.
 
  `2.5.0 :005 > plane.take_off`
+
  `RuntimeError (no flight approval)`
 
  If a `Plane` attempts to land when it is already landed an error will be raised.
@@ -44,13 +57,15 @@ Narrative
 
  If `Air traffic controllers` know the plane and the weather, so weather-willing they can do so.
 
- `2.5.0 :007 > controller.flight_approval(plane, Weather.new.current)
-  RuntimeError (denied - weather is not sunny)`
+ `2.5.0 :007 > controller.flight_approval(plane, Weather.new.current)`
+
+  `RuntimeError (denied - weather is not sunny)`
 
  Not this time...
 
- `2.5.0 :008 > controller.flight_approval(plane, Weather.new.current)
-  => true`
+ `2.5.0 :008 > controller.flight_approval(plane, Weather.new.current)`
+
+  `=> true`
 
  Approval has been granted! The plane can now take off.
 
@@ -58,14 +73,15 @@ Narrative
 
  `Air traffic controllers` can check on the status of planes at all times.
 
- `2.5.0 :010 > controller.request_status(plane)
-  => :inflight`
+ `2.5.0 :010 > controller.request_status(plane)`
+
+  `=> :inflight`
 
   For a plane to land it must specify where it is landing through an argument. If it doesn't also have approval an error will be raised.
 
- `2.5.0 :011 > heathrow = Airport.new
-  2.5.0 :012 > plane.land(heathrow)
-  RuntimeError (not approved to land here)`
+ `2.5.0 :011 > heathrow = Airport.new`
+ `2.5.0 :012 > plane.land(heathrow)`
+ `RuntimeError (not approved to land here)`
 
   So long as the weather is not stormy, `Air traffic controllers` can grant approval to land at specific airports.
 
@@ -73,8 +89,9 @@ Narrative
 
   Although approval has been given, plane is still inflight.
 
-  `2.5.0 :014 > controller.request_status(plane)
- => :inflight`
+  `2.5.0 :014 > controller.request_status(plane)`
+
+  `=> :inflight`
 
   Plane is then able to land at that airport.
 
