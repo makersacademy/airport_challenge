@@ -67,6 +67,11 @@ As an air traffic controller
 To ensure safety
 I want to prevent landing when the airport is full
 ```
+Objects  | Messages
+------------- | -------------
+Air traffic controller  |
+Plane  | land(full)
+airport | can't land
 ```
 As the system designer
 So that the software can be used for many different airports
