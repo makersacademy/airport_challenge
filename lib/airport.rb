@@ -30,6 +30,7 @@ class Airport
     @hanger.delete(plane)
   end
 
+  private
 # method to check if full capacity has been reached
   def full?
     @hanger.length >= capacity
