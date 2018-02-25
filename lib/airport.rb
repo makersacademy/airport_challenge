@@ -1,4 +1,5 @@
 require_relative 'plane'
+require_relative 'weather'
 # Airport class definition
 class Airport
   DEFAULT_CAPACITY = 30
@@ -11,12 +12,14 @@ class Airport
   end
 
 # land method to allow planes to land
-  def land(plane)
+  def land(plane, stormy)
+    raise 'BAD WEATHER CONDITION! Cannot allow to land' if stormy
     @hanger.push(plane)
   end
 
 # take_off method to allow planes to take off
-  def take_off(plane)
+  def take_off(plane, stormy)
+    raise 'BAD WEATHER CONDITION! Cannot allow to take off' if stormy
     @hanger.delete(plane)
   end
 

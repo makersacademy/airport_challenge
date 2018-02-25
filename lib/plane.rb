@@ -1,6 +1,6 @@
 # Plane class definition
 class Plane
-  attr_accessor :plane_num
+  attr_accessor :id
 
   def initialize(id = self)
     @id = id
