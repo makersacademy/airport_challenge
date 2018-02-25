@@ -83,8 +83,7 @@ class Airport
 
   # Create new Weather object which reports current weather status
   def check_weather
-    weather = Weather.new
-    @weather_report = weather.report
+    @weather_report = Weather.new
   end
 
 end

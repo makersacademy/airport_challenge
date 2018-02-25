@@ -1,6 +1,63 @@
 Airport Challenge
 =================
 
+**Julian's README Content**
+From the user stories and instructions, the following have been created to enable the program to work:
+*Classes*
+1. Airport - the principal class responsible for running the program
+2. Plane - used for assigning and amending statuses to plane objects ("landed" or "airborne")
+3. Weather - used for generating weather states ("sunny" or "stormy")
+4. Modules - used for storing constants
+
+*Airport Methods*
+0. Initialize - creates a new Airport object which contains an array `@ramps`, where planes land in.
+* `airport_full` (optional argument) - pre-populates airport ramps with Plane objects if "full" (default).
+* `airport_capacity` (optional argument) - sets capacity of airport; default to the constant AIR_CAP.
+
+1. land_plane - lands a plane in the `@ramps` array. Several guard conditions must be passed to run the code. If the plane can land, the `@plane_status` attribute is set to "landed".
+* `plane` (mandatory argument) - the Plane object to land
+* `idx` (mandatory argument) - the index location of `@ramp` to land plane at.
+* `weather` (optional argument) - by default uses the `check_weather` method to randomly generate the weather state.
+
+2. take_off - flies a plane out of the Airport `@ramps` array.  Several guard conditions must be passed to run the code. If the plane can take off, the `@plane_status` attribute is set to "airborne".
+* `idx` (mandatory argument) - index location of `@ramps` for the plane you want to fly.
+* `weather` (optional argument) - by default uses the `check_weather` method to randomly generate the weather state.
+
+3. airport_full? - checks the `@ramps` array to determine `@airport_status` attribute value ("full" or "not full").
+
+4. check_weather - creates a new Weather object and determine the `@weather_report` attribute value ("sunny" or "stormy").
+
+*Plane Methods*
+0. Initialize - creates a new Plane object. By default, its `@plane_status` attribute is set to "airborne".
+`plane_ref` (optional argument) - a custom reference for the plane; easier than reading object IDs.
+1. landed - sets `@plane_status` attribute to "landed"
+2. airborne - sets `@plane_status` attribute to "airborne"
+
+*Weather Methods*
+0. Initialize - creates a new Weather object and returns a randomly generated state of "sunny" or "stormy". 10% chance of getting "stormy".
+
+*Modules*
+0. CAPACITY - stores the airport capacity constant, AIR_CAP (set to 10)
+
+*Instructions*
+1. To run the program, you first need to generate a new airport object
+  * airport = Airport.new()
+2. Either create a plane object or have one take off from one of the airport `@ramps`
+  * `plane1 = Plane.new`
+  * `plane2 = airport.take_off(0)`
+3. To land a plane, select an empty index location in `@ramps` (these will be `nil` objects)
+  * `airport.land_plane(plane1, 0)`
+4. If landing or taking off is not possible, you will get an error message. The following will stop landing / take off:
+  * Weather is stormy
+  * Non-existent ramp selected
+  * Airport is full (landing only)
+  * Ramp is not empty (i.e. occupied by another plane) (landing only)
+  * Plane is already landed (landing only)
+  * No plane at the ramp (take off only)
+  * Plane is already airborne (take off only)
+
+
+**Original README Content**
 ```
         ______
         _\____\___
