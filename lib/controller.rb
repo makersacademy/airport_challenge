@@ -1,4 +1,4 @@
-class AirTrafficController
+class Controller
 
   def request_status(plane)
     return :inflight if plane.airport == :inflight
@@ -13,7 +13,7 @@ class AirTrafficController
   def land_approval(plane, weather, airport)
     approval(weather)
     fail 'denied - no space at airport' if space?(airport)
-    plane.acknowledge_land_approval(airport) 
+    plane.acknowledge_land_approval(airport)
   end
 
   def space?(airport)

@@ -11,11 +11,11 @@ class Plane
 
   def take_off
     take_off_check
-    @airport.release_plane(self) 
+    @airport.release_plane(self)
     @land_approval, @airport = false, :inflight
   end
 
-  def land(airport) 
+  def land(airport)
     landing_check(airport)
     @flight_approval, @airport = false, airport
     @airport.dock_plane(self)

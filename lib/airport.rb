@@ -1,3 +1,7 @@
+require_relative 'weather'
+require_relative 'controller'
+require_relative 'plane'
+
 class Airport
 
   attr_reader :hangar, :capacity
