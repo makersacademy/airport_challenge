@@ -29,5 +29,11 @@ describe Airport do
       Airport.new(30).capacity
     ).to eq 30
   end
-
+  it "raises an error when you try to take off a plane that isn't in that airport" do
+    expect {
+      plane = Plane.new
+      airport = Airport.new
+      airport.take_off(plane)
+    }.to raise_error("This plane is not in this airport")
+  end
 end

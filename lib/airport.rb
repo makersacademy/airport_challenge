@@ -11,11 +11,12 @@ class Airport
 
   def land(plane)
     fail "The airport is full" if full?
-    plane.status = 'ground'
+    plane.status = self
     @planes << plane
   end
 
   def take_off(plane)
+    fail "This plane is not in this airport" if plane.status != self
     plane.status = 'air'
     @planes.delete(plane)
   end
@@ -25,5 +26,5 @@ class Airport
   def full?
     @planes.length == @capacity
   end
-  
+
 end
