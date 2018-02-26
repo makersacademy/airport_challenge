@@ -13,15 +13,15 @@ class Airport
     raise Exception.new('Cannot land in stormy weather!') if stormy?
     raise Exception.new('Cannot land; the airport is full!') if full?
     plane.location = self
-    @landed_planes << Plane.new
-    Plane.new
+    @landed_planes << plane
+
   end
 
   def take_off(plane)
     raise Exception.new('Cannot take off in stormy weather!') if stormy?
     raise Exception.new('Cannot allow take off; you are contacting the wrong control tower!') if plane.location != self
-    @landed_planes.delete(plane)
     plane.location = 'in_flight'
+    @landed_planes.delete(plane)
   end
 
 

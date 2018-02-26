@@ -11,7 +11,7 @@ describe Airport do
       allow(subject).to receive(:stormy?).and_return(false)
     end
 
-    it { expect(subject.land(plane)).to be_a Plane}
+    
 
     describe 'Plane take off not allowed' do
       it 'Denies take off from a different airport' do
