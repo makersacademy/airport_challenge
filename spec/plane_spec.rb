@@ -13,6 +13,13 @@ describe Plane do
     end
   end
 
+  it 'removes a plane from the airport' do
+      plane, airport = Plane.new, Airport.new
+      plane.land_at(airport)
+      plane.take_off(airport)
+      expect(airport.planes).not_to eq plane
+    end
+
   it 'creates a new airport' do
     expect(Airport.new).to be_a Airport
   end
