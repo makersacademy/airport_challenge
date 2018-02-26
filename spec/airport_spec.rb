@@ -1,6 +1,12 @@
 require 'airport.rb'
 
 describe Airport do
+  context do
+    before do
+      let(:plane) { double :plane, status: 'grounding' }
+    end
+  end
+
   it 'is an airport' do
     expect(subject).to be_an_instance_of(Airport)
   end
@@ -42,4 +48,30 @@ describe Airport do
     airport.takeoff(plane_double)
     expect(airport.hanger).not_to include(plane_double)
   end
+
+  it 'when plane hasnt taken off, confirm it is still in the hanger' do
+    plane_double = double('plane_double', status: 'grounded')
+    airport = Airport.new
+    airport.land(plane_double)
+    expect(airport.hanger).to include(plane_double)
+  end
+
+  it 'when weather is stormy, plane cannot takeoff' do
+    plane_double = double('plane_double', status: 'grounded')
+    airport = Airport.new
+    # airport.todays_weather
+    allow(airport.stormy?).to receive(:stormy)
+    airport.land(plane_double)
+
+    expect { airport.safety }.to raise_error(RuntimeError, 'Bad weather')
+  end
+
+  # it "when weather is fine, planes can takeoff" do
+  #   plane_double = double('plane_double', status: 'grounded')
+  #   airport = Airport.new
+  #   airport.land(plane_double)
+  #   allow(@todays_weather).to receive(:stormy).and_return(true)
+  #   expect { airport.safety }.to raise_error('Bad weather conditions')
+  #
+  # end
 end
