@@ -7,25 +7,25 @@ class Airport
   attr_reader :capacity
   attr_reader :hangar
 
-  def initialize(capacity = CAPACITY)
+  def initialize(capacity = CAPACITY, station = Weather.new)
     @hangar = []
     @capacity = capacity
+    @station = station
   end
 
-  def landing(plane, storm)
-    fail "--BAD WEATHER CONDITION-- landing not possible" if storm
+  def landing(plane)
+    fail "--BAD WEATHER CONDITION-- landing not possible" if @station.storm?
     fail "landing denied, hangar is full!" if full?
     @hangar << plane
   end
 
-  # def take_off(plane)
-  #    plane = @hangar.delete_at(-1)
-  #    "#{plane}" + 'A plane left the hangar!'
-  # end
-
-  def full?
-    @hangar.length > @capacity
+  def take_off(plane)
+    fail "--BAD WEATHER CONDITION-- take_off is not possible" if @station.storm?
+     plane = @hangar.delete_at(-1)
+     "#{plane}" + 'A plane left the hangar!'
   end
 
-
+  def full?
+    @hangar.length >= @capacity
+  end
 end
