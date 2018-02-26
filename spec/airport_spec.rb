@@ -11,6 +11,12 @@ describe Airport do
       :takeoff => nil,
       :landed => true
     )
+    @fk_non_plane = double(
+      :ping => 'I am actually a bird.',
+      :land => nil,
+      :takeoff => nil,
+      :landed => true
+    )
     @fk_weather_clear = double(:report => :clear)
     @fk_weather_stormy = double(:report => :stormy)
   end
@@ -19,6 +25,11 @@ describe Airport do
     it 'confirms a succesful landing' do
       airport.land(@fk_plane, @fk_weather_clear)
       expect(airport.confirm_arrival(@fk_plane)).to eq true
+    end
+    it "doesn't land a non-plane" do
+      expect {
+        airport.land(@fk_non_plane, @fk_weather_stormy)
+      }.to raise_error "That isn't a plane!"
     end
     it "doesn't land a plane in stormy weather" do
       expect {
