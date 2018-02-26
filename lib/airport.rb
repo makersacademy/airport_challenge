@@ -2,16 +2,20 @@ require_relative 'plane'
 require_relative 'weather'
 
 class Airport
-  attr_reader :hangar, :capacity, :flying
+  attr_reader :hangar, :capacity, :flying, :plane_class
   # constant decalring the default capacity
   DEF_CAP = 20
 
   # number of planes already in hangar can be specified through an argument
   # if given
-  def initialize(no_of_planes = 0, capacity = DEF_CAP, plane_class = Plane.new)
+  def initialize(capacity = DEF_CAP, plane_class = Plane.new)
     @hangar = []
     @capacity = capacity
-    no_of_planes.times { @hangar << plane_class } unless no_of_planes > capacity
+    @plane_class = plane_class
+  end
+
+  def number_of_planes(num)
+    num.times { @hangar.push(@plane_class) } unless num + @hangar.length > capacity
   end
 
   # this method requests to land a plane
@@ -26,15 +30,15 @@ class Airport
   # this method feeds to request_to_land
   def land_plane(plane)
     p 'The plane has landed'
-    @hangar.push(plane)
+    hangar.push(plane)
     @flying = nil
-    @hangar
+    hangar
   end
 
   # this method requests for a plane to leave
   def request_take_off(weather_class = Weather.new)
     todays_weather = weather_class.randomize
-    raise 'There are no planes in the hangar' if @hangar.empty?
+    raise 'There are no planes in the hangar' if hangar.empty?
     raise 'You cannot leave due to stormy weather' if todays_weather == :stormy
     take_off
   end
@@ -42,6 +46,6 @@ class Airport
   # this method feeds to request_take_off
   def take_off
     p 'The plane has taken off'
-    @flying = @hangar.shift
+    @flying = hangar.shift
   end
 end
