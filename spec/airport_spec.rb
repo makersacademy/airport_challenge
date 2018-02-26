@@ -6,22 +6,27 @@ describe Airport do
   let(:airport_not_full) { Airport.new("not full", 10) }
   let(:airport_full) { Airport.new("full", 10) }
   let(:plane) { Plane.new }
+  let(:plane_dbl) { double(:plane_dbl) }
 
   describe "allows passengers to get to their destination" do
     it "by landing a plane at an airport" do
       allow(airport_not_full).to receive(:check_weather) { "sunny" }
+      allow(plane_dbl).to receive(:plane_status) { "airborne" }
+      allow(plane_dbl).to receive(:landed) { "landed" }
+
       sunny = airport_not_full.check_weather
-      ramp = airport_not_full.land_plane(plane, 0, sunny)
-      expect(ramp).to include(plane)
-      expect(plane.plane_status).to eq "landed"
+      ramp = airport_not_full.land_plane(plane_dbl, 0, sunny)
+      expect(ramp).to include(plane_dbl)
     end
 
     it "by taking off a plane from an airport and confirming so" do
       allow(airport_not_full).to receive(:check_weather) { "sunny" }
+      allow(plane_dbl).to receive(:plane_status) { "landed" }
+      allow(plane_dbl).to receive(:airborne) { "airborne" }
+
       sunny = airport_not_full.check_weather
-      this_plane = airport_full.ramps[0]
-      expect(airport_full.take_off(0, sunny)).to eq this_plane
-      expect(this_plane.plane_status).to eq "airborne"
+      airport_full.ramps.insert(0, plane_dbl)
+      expect(airport_full.take_off(0, sunny)).to eq plane_dbl
       expect { airport_full.take_off(11, sunny) }.to raise_error "No plane at this ramp"
     end
   end
