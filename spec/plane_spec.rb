@@ -6,12 +6,12 @@ describe Plane do
     # testing for instruct_land method
     it 'should land plane into @landed_planes' do
       # test landing plane assuming good weather and instruct sent from airport
-      #london = object_double(Airport.new, :weather => 1)  # Trying to setup double
+      # london = object_double(Airport.new, :weather => 1) - Try to setup double
       airport = Airport.new
       plane = Plane.new
       airport.instruct_land(plane)
       airport.current_weather = 1
-      # allow(london).to receive(:land.and_return(london.landed_planes << plane) #double setup
+      # allow(london).to receive(:land.and_return(london.landed_planes << plane)
       expect(plane.land(airport)).to eq(airport.landed_planes)
     end
 
@@ -25,11 +25,11 @@ describe Plane do
     end
 
     it 'should not allow planes to land without instruct_land from airport' do
-      #do not let planes land if not instructed to by airport
+      # do not let planes land if not instructed to by airport
       airport = Airport.new
       plane = Plane.new
       airport.current_weather = 1
-      expect { plane.land(airport) }.to raise_error('No instruct from airport to land')
+      expect { plane.land(airport) }.to raise_error('No instruct to land from this airport to land')
     end
   end
 
@@ -40,18 +40,19 @@ describe Plane do
       # london = double # Trying to setup double
       airport = Airport.new
       plane = Plane.new
-      plane.plane_status = "landed"
+      plane.plane_status = ["landed", airport]
       airport.instruct_takeoff(plane)
       airport.current_weather = 1
       expect(plane.takeoff(airport)).to eq(airport.landed_planes)
     end
 
-    it 'should not allow planes to takeoff without instruct_takeoff from airport' do
+    it 'should not allow planes to takeoff without instruct from airport' do
+      # do not let planes takeoff if not instructed to by airport
       airport = Airport.new
       plane = Plane.new
       plane.plane_status = "landed"
       airport.current_weather = 1
-      expect { plane.takeoff(airport) }.to raise_error('No instruct from airport to takeoff')
+      expect { plane.takeoff(airport) }.to raise_error('No instruct to takeoff from this airport to takeoff')
     end
   end
 
