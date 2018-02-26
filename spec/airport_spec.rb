@@ -1,5 +1,6 @@
 require_relative '../lib/airport.rb'
 require_relative '../lib/plane.rb'
+require_relative '../lib/weather.rb'
 
 describe Airport do
 
@@ -23,6 +24,19 @@ describe Airport do
       airport = Airport.new
       expect(airport).to respond_to :plane_takeoff
     end
+    it 'raises exception if weather is stormy' do
+      airport = Airport.new
+      # weather = Weather.new
+      expect { airport.plane_takeoff }.to raise_error 'Plane grounded, weather is stormy'
+    end
   end
+
+  # describe '#bad_weather' do
+  #   it 'does not let plane takeoff in bad weather' do
+  #     airport = Airport.new
+  #     weather = Weather.new
+  #
+  #   end
+  # end
 
 end
