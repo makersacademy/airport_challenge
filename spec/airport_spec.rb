@@ -1,8 +1,21 @@
 require_relative '../lib/airport'
 
 describe Airport do
+  DEFAULT_CAPACITY = 30
   subject(:ap) { described_class.new }
   subject(:plane) { described_class.new }
+
+  describe '#initialize' do
+    it 'has a default capacity' do
+      expect(ap.capacity).to eq DEFAULT_CAPACITY
+    end
+
+    it 'has a customized capacity of 50' do
+      big_ap = Airport.new(50)
+      expect(big_ap.capacity).to eq 50
+    end
+  end
+
   describe '#land' do
     it 'lands the plane at the airport with no storms' do
       allow(ap.weather).to receive(:stormy?).and_return false

@@ -6,7 +6,6 @@ class Weather
   end
 
 private
-
   FORECAST = [:fine, :stormy, :fine, :fine, :fine]
 
   def weather_forecast
