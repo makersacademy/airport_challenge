@@ -14,5 +14,4 @@ describe Airport do
     expect(airport.planes).to eq plane
   end
 
-
 end
