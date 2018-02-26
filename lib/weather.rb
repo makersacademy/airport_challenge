@@ -1,6 +1,9 @@
 class Weather
-  var = rand(1..6)
-  def storm?(var)
-    return true if var == 6
+
+  def storm?
+    var = rand(1..6)
+    return false if var == 6
+    else
+      return true
   end
 end

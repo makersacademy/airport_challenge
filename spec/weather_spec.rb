@@ -1,11 +1,10 @@
 require './lib/weather'
 
 describe Weather do
-  it { should respond_to(:storm?).with(1).argument }
+  it { should respond_to(:storm?) }
   describe '#storm?' do
-    it 'should return a random number 1 and 6' do
-    expect(subject.storm?(6)).to eq true
-
+    it 'should return a random condition of the weather' do
+    expect(subject.storm?).to be(false).or be(true)
     end
   end
 end
