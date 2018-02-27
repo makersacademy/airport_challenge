@@ -13,7 +13,7 @@ I began this challenge by breaking the user stories down, one at a time. I manag
 - [ ] Add domain modeling breakdown in readme
 
 ##  File Contents
-```
+```bash
 project
 |
 |--lib
