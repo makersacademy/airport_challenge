@@ -17,14 +17,14 @@ I began this challenge by breaking the user stories down, one at a time. I manag
 project
 |
 |--lib
-|	  |-- airport.rb
-|  	|-- plane.rb
-|   |-- weather.rb
+|  |-- airport.rb
+|  |-- plane.rb
+|  |-- weather.rb
 |
 |--spec
-|	  |-- airport_spec.rb
-|  	|-- plane_spec.rb
-|   |-- weather_spec.rb
+|  |-- airport_spec.rb
+|  |-- plane_spec.rb
+|  |-- weather_spec.rb
 ```
 
 ## Getting started
