@@ -10,7 +10,7 @@ describe Airport do
     @fake_stormy_weather = double(:weather, :stormy? => true)
   end
 
-  let(:fake_plane) { double() }
+  let(:fake_plane) { double(:adjust_status => 'flying') }
 
   describe '#land' do
     it 'makes a plane land in airport' do
