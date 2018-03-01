@@ -13,7 +13,7 @@ I began this challenge by breaking the user stories down, one at a time. I manag
 - [ ] Add domain modeling breakdown in readme
 
 ##  File Contents
-```bash
+```
 project
 |
 |--lib
@@ -40,11 +40,13 @@ There are 3 main components to this code base. airport, planes and the weather.
 
 To create these, use the standard object creation format.
 
-`airport = Airport.new`
-`plane = Plane.new`
-`weather = Weather.new`
+```
+airport = Airport.new
+plane = Plane.new
+weather = Weather.new
+```
 
-Capacity of the airport can be modified by specifying the number of planes when initialising an airport object
+Capacity of the airport can be modified by specifying the number of planes when initializing the airport object.
 
 `airport = Airport.new(20)`
 
