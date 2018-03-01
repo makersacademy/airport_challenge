@@ -1,16 +1,14 @@
 require 'airport'
-require 'plane'
-require 'weather'
 
 describe Airport do
   subject(:airport) { described_class.new }
+
+  let(:fake_plane) { double(:adjust_status => 'flying') }
 
   before(:each) do
     @fake_good_weather = double(:weather, :stormy? => false)
     @fake_stormy_weather = double(:weather, :stormy? => true)
   end
-
-  let(:fake_plane) { double(:adjust_status => 'flying') }
 
   describe '#land' do
     it 'makes a plane land in airport' do

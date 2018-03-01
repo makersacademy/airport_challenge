@@ -1,27 +1,20 @@
-require 'airport'
 require 'plane'
 
 describe Plane do
   subject(:plane) { described_class.new }
 
-  let(:weather) { double(:stormy? => false) }
-
   describe 'status' do
-    it 'plane status is flying if not in hangar' do
+    it 'changes plane status is flying if not in hangar' do
       expect(plane.status).to eq 'flying'
     end
 
-    it 'change plane status if plane lands' do
-      airport = Airport.new
-      airport.land(plane, weather)
+    it 'changes plane status if plane lands' do
+      plane.adjust_status('landed')
       expect(plane.status).to eq 'landed'
     end
 
-    it 'change plane status if plane takes off' do
-      airport = Airport.new
-
-      airport.land(plane, weather)
-      airport.take_off(plane, weather)
+    it 'changes plane status if plane takes off' do
+      plane.adjust_status('flying')
       expect(plane.status).to eq 'flying'
     end
   end
