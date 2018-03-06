@@ -1,4 +1,4 @@
-# Airport Challenge
+# Airport Challenge :airplane:
 **Makers Academy - Weekend Challenge 1**
 
 Our first weekend challenge was to create a small sandbox environment to simulate a small airport.
@@ -50,7 +50,7 @@ Capacity of the airport can be modified by specifying the number of planes when 
 
 `airport = Airport.new(20)`
 
-# Example IRB Usage
+## Example IRB Usage
 ```
 2.5.0 :001 > airport = Airport.new(5)
  => #<Airport:0x00007ffa9e13b0f0 @hangar=[], @capacity=5>
