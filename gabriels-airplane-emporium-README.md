@@ -11,9 +11,9 @@ Can do all kinds of cool stuff like landing and takeoffing planes. Except when t
 one argument which sets the capacity of the airports hangar. If no arguments are
 given DEFAULT_CAPACITY is used to set capacity. DEFAULT_CAPACITY is set to 100.
     Notes:
-    - Airport.new creates an airport with a @hangar with a capacity of DEFAULT_CAPACITY.
-    - If an argument is provided then the @capacity of @hangar will be set to that number.
-    - Entering anything other than a positive integer for capacity will raise an error.
+    * Airport.new creates an airport with a @hangar with a capacity of DEFAULT_CAPACITY.
+    * If an argument is provided then the @capacity of @hangar will be set to that number.
+    * Entering anything other than a positive integer for capacity will raise an error.
 
     Examples:
     ```
