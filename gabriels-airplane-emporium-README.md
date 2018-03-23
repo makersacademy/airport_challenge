@@ -4,10 +4,11 @@
 
 ### Features:
 
-### Airport:
+## Airport:
 Can do all kinds of cool stuff like landing and takeoffing (?) planes. Except when the weather is :poop:. Then it can't do those things because people might die. We don't want that at our airports.
 
-#### Current Features:
+### Current Features:
+#### \#initialize
 `.initialize` => Runs when `Airport.new` is called. Creates a new airport. Takes
 one argument which sets the capacity of the airports hangar. If no arguments are
 given `DEFAULT_CAPACITY` is used to set `@capacity`. `DEFAULT_CAPACITY` is set to 100.
@@ -27,6 +28,7 @@ other_airport = Airport.new(50)
 other_airport.capacity # => 50
 ```
 
+#### \#land
 `land(plane)` => takes a plane instance as an argument and tells it
 to land at the airport.
 
@@ -54,10 +56,10 @@ Taking off
 
 Not letting planes take off in :poop: weather.
 
-### Plane
+## Plane
 
 Doesn't even have wings yet.
 
-### Weather
+## Weather
 
 What's a weather?
