@@ -19,17 +19,40 @@ Notes:
 
 Examples:
 
-    ```
-    our_airport = Airport.new
-    our_airport.capacity # => 100, also known as DEFAULT_CAPACITY
+```
+our_airport = Airport.new
+our_airport.capacity # => 100, also known as DEFAULT_CAPACITY
 
-    other_airport = Airport.new(50)
-    other_airport.capacity # => 50
-    ```
+other_airport = Airport.new(50)
+other_airport.capacity # => 50
+```
+
+`land(plane)` => takes a plane instance as an argument and tells it
+to land at the airport.
+
+Notes:
+* Landed planes appear in the airport's `@hangar`.
+* Only instances of the `Plane` class can be landed. Attempting to land anything
+else raises the error (`not_a_plane_error`).
+* Attempting to land a plane at a full airport will raise `airport_full_error`.
+
+Examples:
+
+```
+our_airport = Airport.new
+our_plane = Plane.new
+our_airport.land(our_plane)
+our_airport.hangar # => [our_plane]
+
+our_airport.land("this is a string not a plane")
+# => RuntimeError: That's not a plane! It can't land here!
+```
 
 #### Future Features:
 
-TBA
+Taking off
+
+Not letting planes take off in :poop: weather.
 
 ### Plane
 
