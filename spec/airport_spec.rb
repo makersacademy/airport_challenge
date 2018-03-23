@@ -37,10 +37,17 @@ describe Airport do
       expect(airport.hangar).to include plane
     end
 
-    it "should raise an error if trying to land soemthing other than a plane" do
+    it "should raise an error if trying to land something other than a plane" do
       message = "That's not a plane! It can't land here!"
       expect { airport.land("not a plane") }.to raise_error message
     end
+
+    it "should raise an error if trying to land a plane at a full airport" do
+      message = "Sorry, this airport is full! Bye!"
+      100.times { airport.land(Plane.new) }
+      expect { airport.land(plane) }.to raise_error message
+    end
+
   end
 
 end
