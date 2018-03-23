@@ -5,7 +5,7 @@
 ### Features:
 
 ### Airport:
-Can do all kinds of cool stuff like landing and takeoffing (?) planes. Except when the weather is :poop:. Then it can't do those things because people might die. We don't want that at our airports. 
+Can do all kinds of cool stuff like landing and takeoffing (?) planes. Except when the weather is :poop:. Then it can't do those things because people might die. We don't want that at our airports.
 
 #### Current Features:
 `.initialize` => Runs when `Airport.new` is called. Creates a new airport. Takes
@@ -27,6 +27,14 @@ Examples:
     other_airport.capacity # => 50
     ```
 
-### Future Features:
+#### Future Features:
 
 TBA
+
+### Plane
+
+Doesn't even have wings yet.
+
+### Weather
+
+What's a weather?

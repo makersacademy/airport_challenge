@@ -21,4 +21,26 @@ describe Airport do
     expect { Airport.new(-256) }.to raise_error message
   end
 
+  it "should have a hangar to store the planes" do
+    expect(airport.hangar).to eq []
+  end
+
+  describe '#land' do
+    let(:plane) { Plane.new }
+
+    it "should respond to .land" do
+      expect(airport).to respond_to(:land)
+    end
+
+    it "should add a plane to the hangar" do
+      airport.land(plane)
+      expect(airport.hangar).to include plane
+    end
+
+    it "should raise an error if trying to land soemthing other than a plane" do
+      message = "That's not a plane! It can't land here!"
+      expect { airport.land("not a plane") }.to raise_error message
+    end
+  end
+
 end
