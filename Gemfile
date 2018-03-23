@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rake'
 gem 'rubocop'
+gem 'rspec'
 
 group :test do
   gem 'rspec'
