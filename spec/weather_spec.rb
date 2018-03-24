@@ -6,8 +6,13 @@ describe Weather do
 
     it "returns cloudy" do
       allow(Kernel).to receive(:rand).with(0..1).and_return(0)
-      result = Weather.roll_weather
-      expect(result).to eq("cloudy")
+      expect(Weather.roll_weather).to eq("cloudy")
+    end
+
+    it "returns clear" do
+      allow(Kernel).to receive(:rand).with(0..1).and_return(1)
+
+      expect(Weather.roll_weather).to eq("clear")
     end
 
   end
