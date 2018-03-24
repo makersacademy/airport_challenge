@@ -69,6 +69,11 @@ In the initial stages of the challenge feature tests were run using IRB.
     - Running unit test after defining let_takeoff method in airport.rb.
     - Included IRB test image for the AIRPORT_README.
     - Included failing unit test image.
+- 6 - Launching Planes, checking plane status:
+    - Running feature tests plane.status_grounded? and getting NoMethodError.
+    - Creating spec/plane_spec.rb and spec/plane.rb files.
+    - Writing test for plane_spec.rb, running file and getting the Errors
+    - Writing code for plane.rb which includes class Plane, and passing tests.    
 
 
 ## ToDo
