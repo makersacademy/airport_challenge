@@ -54,7 +54,7 @@ describe Airport do
     it 'returns false when not full (custom capacity airport)' do 
       airport = Airport.new(2000)
       1486.times { airport.add_plane('airplane') }
-      expect(airport.full?).to eq(true)
+      expect(airport.full?).to eq(false)
     end 
   end
 end 
