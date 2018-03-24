@@ -29,4 +29,27 @@ air traffic controller |
 system designer |
 
 
-### Writing the first test
+### Feature testing
+
+To start off, I want to see if I can make a new airport:
+```
+heathrow = Airport.new
+```
+This throws up the error uninitialized Constant.
+
+### Unit testing
+
+I then write a spec test to either match the error I'm getting, or a test to solve a single issue I have been getting.
+```
+describe Airport do
+end
+```
+Running `rspec` will fail, with the errior uninitialized Constant.
+
+### Implementing code
+
+I then open up `airport.rb` and create an `Airport` class.
+Running both the rspec and unit test confirms that I have correctly implemented the code.
+
+
+### first problem
