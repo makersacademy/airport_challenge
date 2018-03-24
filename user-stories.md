@@ -29,8 +29,8 @@ I want to instruct a plane to take off from an airport and confirm that it is no
 
 | Objects       | Messages      |
 | ------------- | ------------- |
-| Plane         | land          |
-| Airport       |               |
+| Plane         | takeoff       |
+| Airport       | check_airport |
 
 As an air traffic controller
 To ensure safety

@@ -7,10 +7,15 @@ class Airport
     @plane = plane
   end
 
+  def takeoffplane
+    Plane.new
+  end
+
 end
 
 =begin
 (PASS) Airport lands a Plane
 (PASS) Airport returns landed planes
-(TEST) Planes take off from airport
+(PASS) Planes take off from airport
+(TEST) Check plane removed from airport
 =end
