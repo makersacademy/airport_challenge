@@ -1,5 +1,9 @@
 class Airport
 
+  def hangar
+    []
+  end
+
   def stormy?
     false
   end

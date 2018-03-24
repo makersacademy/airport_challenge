@@ -14,7 +14,12 @@ describe Airport do
 
   describe '#hangar' do
 
-    it { is_expected.to be_a(Array) }
+    it 'should return an Array' do
+
+      expect(subject.hangar).to be_an_instance_of(Array)
+      # expect(subject.get_ids).to be_an_instance_of(Array)
+    end
+
   end
 
 end
