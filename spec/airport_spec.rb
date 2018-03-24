@@ -16,11 +16,19 @@ describe Airport do
   end
 
   it 'removes a plane from the airport capacity when instructed to takeoff' do
+  # this test needs a plane double
   airport = Airport.new
   plane = Plane.new
   plane.land_plane(airport)
   airport.takeoff
   expect(airport.planes_in_airport).to eq []
+
+  end
+
+
+
+  it 'prevents plane takeoff when the weather is stormy' do
+
 
   end
 
