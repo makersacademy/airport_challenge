@@ -28,5 +28,36 @@ describe Airport do
       airport.add_plane('plane')
       expect(airport.hangar.size).to be(1)
     end 
-  end 
+  end
+
+
+  describe '.full?' do 
+    it 'returns true when full (default capacity airport)' do 
+      airport = Airport.new
+      100.times { airport.add_plane('airplane') }
+      expect(airport.full?).to eq(true)
+    end 
+
+    it 'returns false when not full (default capacity airport)' do 
+      airport = Airport.new
+      37.times { airport.add_plane('airplane') }
+      expect(airport.full?).to eq(false)
+    end 
+
+    it 'return false when airport contains no airplanes' do 
+      expect(subject.full?).to eq(false)
+    end 
+
+    it 'returns true when full (custom capacity airport)' do 
+      airport = Airport.new (2000)
+      2000.times { airport.add_plane('airplane') }
+      expect(airport.full?).to eq(true)
+    end 
+
+    it 'returns false when not full (custom capacity airport)' do 
+      airport = Airport.new (2000)
+      1486.times { airport.add_plane('airplane') }
+      expect(airport.full?).to eq(true)
+    end 
+  end
 end 
