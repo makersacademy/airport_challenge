@@ -7,6 +7,10 @@ class Airport
     @planes = []
   end
   
+  def stormy?
+    weather.stormy?
+  end
+
   def full?
     planes.length >= capacity
   end
