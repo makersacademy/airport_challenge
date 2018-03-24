@@ -1,6 +1,8 @@
-#Airport challenge#
+#Airport challenge
+
 Program allows us to permit planes to land or take off unless the weather conditions are stormy. It will not allow same plane to land twice at the airport or take off while not there. It will not allow plane to land while the airport is full. We can use default or custom capacity.
-##How it works?##
+
+##How it works?
 ```irb
 2.5.0 :001 > require './lib/airport.rb'
  => true
