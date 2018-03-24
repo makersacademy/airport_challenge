@@ -9,13 +9,11 @@ Can do all kinds of cool stuff like landing and takeoffing (?) planes. Except wh
 
 ### Current Features:
 #### \#initialize
-`.initialize` => Runs when `Airport.new` is called. Creates a new airport. Takes
-one argument which sets the capacity of the airports hangar. If no arguments are
-given `DEFAULT_CAPACITY` is used to set `@capacity`. `DEFAULT_CAPACITY` is set to 100.
+`.new` => Creates a new airport. Takes one argument which sets the capacity of the airports hangar. If no arguments are given `DEFAULT_CAPACITY` is used to set `@capacity`. `DEFAULT_CAPACITY` is set to 100.
 An instance of `Weather` is also created and stored in `@weather`. This is for determining if planes are allowed to take off or land (both aren't allowed when `@weather.stormy?` returns `true`).
 
 Notes:
-* Airport.new creates an airport with a `@hangar` with a capacity of `DEFAULT_CAPACITY`.
+* Airports are created by default with a `@hangar` with a capacity of `DEFAULT_CAPACITY`.
 * If an argument is provided then the `@capacity` of `@hangar` will be set to that number.
 * Entering anything other than a positive integer for capacity will raise an error.
 
@@ -60,6 +58,13 @@ our_airport.land(our_plane)
 # => RuntimeError: "Cannot land in stormy weather!"
 ```
 
+#### \#takeoff
+Instructs a plane to take off.
+
+Notes:
+* If an argument is given it instructs that specific plane to take off.
+* If no argument is given it instructs the last plane in the `@hangar` to take off.
+* Trying to take off in `:stormy` weather raises `stormy_weather_takeoff_error`.
 
 
 ## Plane
@@ -69,13 +74,14 @@ our_airport.land(our_plane)
 #### \#initialize
 Creates a new instance of Plane. If passed an argument it will set `@name` to whatever is passed. If nothing is passed the `DEFAULT_PLANE_NAME` of `"Just a plane"` will be used. This only exists so  the `.takeoff` feature of `Airport` can specify a specific plane to take off.
 
+:airplane: :airplane: :airplane: :airplane: :airplane: :airplane: :airplane: :airplane:
 
 ## Weather
 
 ### Current Features
 
 #### \#initialize
-Creates a new Weather instance. Also sets `@current_state` to one of the entries in the WEATHER_STATES constant.
+Creates a new Weather instance. Also sets `@current_state` to one of the entries in the `WEATHER_STATES` constant.
 
 #### \#stormy?
 Returns `true` if `@current_state == :stormy`. Used in the `Airport` class to determine if it is safe to land a plane or let it take off.
