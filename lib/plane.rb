@@ -7,7 +7,7 @@ class Plane
   end
 
   def take_off(airport)
-    raise "No such a plane at this airport" if status(airport) == false
+    raise "No such a plane on this airport" if status(airport) == false
     raise "It is stormy" if airport.stormy? == true
     airport.planes.delete(self)
   end
