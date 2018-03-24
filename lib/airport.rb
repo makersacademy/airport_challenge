@@ -4,7 +4,7 @@ end
 
 class Airplane
 
-  def land
+  def land(where)
   end
 
 end
