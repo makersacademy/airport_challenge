@@ -25,19 +25,15 @@ Run the automated tests for this challenge via RSpec or rubocop.
 
 ### Break down of end to end tests
 
-Explain what these tests test and why.
+In the initial stages of the challenge feature tests were run using IRB.
 
-```
-Give an example
-```
+- Feature test example:
 
-### And coding style tests
+![FT](../master/myFolder/image.png)
 
-Explain what these tests test and why.
+- Unit test image:
 
-```
-Give an example
-```
+![UT](../master/myFolder/image.png)
 
 ## Built With  
 
@@ -67,7 +63,12 @@ Give an example
 - 4 - Passing first Unit Test:
     - Created lib/airport.rb with the class defined within.
     - Ran RSpec and received fist test pass.
-- 5 -     
+- 5 - Feature Tests in IRB and further unit tests:
+    - Running feature test.
+    - Running unit test to get failure.
+    - Running unit test after defining let_takeoff method in airport.rb.
+    - Included IRB test image for the AIRPORT_README.
+    - Included failing unit test image.
 
 
 ## ToDo
