@@ -146,6 +146,6 @@ I then open up `airport.rb` and create an `Airport` class.
 Running both the rspec and unit test confirms that I have correctly implemented the code.
 
 
-### first problem
+### Weather randomisation
 
 As we now have created an `Airport` class, we should decide what goes into this class. One thing to note that the weather I have listed during the domain modelling. Airport should instantiate a new `Weather` class whenever a new `Airport` is made.
